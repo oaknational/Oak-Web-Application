@@ -6,15 +6,14 @@ import {
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
 
-import { Popover } from "../SharedComponents/Popover";
-import { ListBox } from "../SharedComponents/ListBox";
+import { Popover } from "@/components/SharedComponents/Popover";
+import { ListBox } from "@/components/SharedComponents/ListBox";
 import {
   RotatedInputLabel,
   StyledInput,
-} from "../SharedComponents/Input/Input";
-import { DropdownFocusUnderline } from "../GenericPagesComponents/Select/Select";
-import { School } from "../TeacherComponents/ResourcePageSchoolPicker/ResourcePageSchoolPicker";
-
+} from "@/components/SharedComponents/Input/Input";
+import { DropdownFocusUnderline } from "@/components/GenericPagesComponents/Select/Select";
+import { School } from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import { OakColorName } from "@/styles/theme/types";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
@@ -22,7 +21,7 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 
-const SearchComboBox = <T extends School>(
+const ResourcePageSearchComboBox = <T extends School>(
   props: ComboBoxStateOptions<T> & { hasError?: boolean; required?: boolean },
 ) => {
   // Setup filter function and state.
@@ -122,4 +121,4 @@ const SearchComboBox = <T extends School>(
   );
 };
 
-export default SearchComboBox;
+export default ResourcePageSearchComboBox;

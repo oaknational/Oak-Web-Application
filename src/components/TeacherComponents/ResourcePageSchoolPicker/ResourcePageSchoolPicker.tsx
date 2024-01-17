@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { Item } from "react-stately";
 
-
 import { formatSchoolName } from "./formatSchoolName";
 import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
-import SearchComboBox from "@/components/SearchComboBox/SearchComboBox";
+import ResourcePageSearchComboBox from "@/components/TeacherComponents/ResourcePageSearchComboBox";
 
 type ResourcePageSchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
@@ -38,7 +37,7 @@ export type School = {
 
 const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
   return (
-    <SearchComboBox
+    <ResourcePageSearchComboBox
       hasError={props.hasError}
       label={props.label}
       inputValue={props.schoolPickerInputValue}
@@ -71,7 +70,7 @@ const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
           </Item>
         );
       }}
-    </SearchComboBox>
+    </ResourcePageSearchComboBox>
   );
 };
 
