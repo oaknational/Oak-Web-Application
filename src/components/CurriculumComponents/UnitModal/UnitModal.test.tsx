@@ -31,6 +31,7 @@ describe("Unit modal", () => {
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
@@ -45,6 +46,7 @@ describe("Unit modal", () => {
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
@@ -64,6 +66,7 @@ describe("Unit modal", () => {
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
 
@@ -81,6 +84,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -96,6 +100,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -113,6 +118,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -129,6 +135,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -144,6 +151,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -159,6 +167,7 @@ describe("Unit modal", () => {
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -177,6 +186,7 @@ describe("Unit modal", () => {
             unitOptionsAvailable={true}
             setUnitOptionsAvailable={stateFn}
             isHighlighted={false}
+            setUnitVariantID={stateFn}
           />,
         );
 
@@ -203,6 +213,7 @@ describe("Unit modal", () => {
         unitData={mockOptionalityUnit}
         unitOptionsAvailable={true}
         setUnitOptionsAvailable={stateFn}
+        setUnitVariantID={stateFn}
         isHighlighted={false}
       />,
     );

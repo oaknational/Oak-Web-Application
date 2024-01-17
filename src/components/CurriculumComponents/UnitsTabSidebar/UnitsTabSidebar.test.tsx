@@ -10,7 +10,7 @@ import {
   mockUnitKS4,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
 
-const lessons: Lesson[] = [
+const lessonsPublished: Lesson[] = [
   {
     slug: "lesson-1",
     title: "Lesson 1",
@@ -27,6 +27,15 @@ const lessons: Lesson[] = [
     _state: "published",
   },
 ];
+
+const lessonsUnpublished = [
+  {
+    slug: "lesson-1",
+    title: "Lesson 1",
+    _state: "new",
+  },
+];
+
 const unitInformationViewed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -78,7 +87,8 @@ describe("Sidebar component", () => {
           displayModal={true}
           onClose={jest.fn()}
           unitSlug={mockUnitKS4.slug}
-          lessons={lessons}
+          programmeSlug="maths-secondary-ks4-aqa"
+          lessons={lessonsPublished}
         />,
       );
 
@@ -122,12 +132,15 @@ describe("Sidebar component", () => {
           onClose={jest.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockOptionalityUnit.slug}
-          lessons={[]}
+          lessons={lessonsUnpublished}
+          programmeSlug="maths-primary-ks1"
         />,
       );
 
+      const contentLinkButton = queryByTestId("unit-lessons-button");
       expect(queryByTestId("coming-soon-flag")).toBeInTheDocument();
-      expect(queryByTestId("unit-lessons-button")).toBeInTheDocument();
+      expect(contentLinkButton).toBeInTheDocument();
+      expect(contentLinkButton).toHaveAttribute("aria-disabled", "true");
     });
 
     test("should have button and no flag for available units", () => {
@@ -137,7 +150,8 @@ describe("Sidebar component", () => {
           onClose={jest.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockUnitKS4.slug}
-          lessons={lessons}
+          lessons={lessonsPublished}
+          programmeSlug="maths-primary-ks1"
         />,
       );
 
@@ -153,14 +167,14 @@ describe("Sidebar component", () => {
           unitOptionsAvailable={false}
           unitSlug={mockUnitKS4.slug}
           programmeSlug={"maths-primary-ks1"}
-          lessons={lessons}
+          lessons={lessonsPublished}
         />,
       );
 
       const linkToUnit = await findByRole("link");
       const forwardLink = linkToUnit.getAttribute("href");
       expect(linkToUnit).toBeInTheDocument();
-      expect(linkToUnit).toBeEnabled();
+      expect(linkToUnit).toHaveAttribute("aria-disabled", "false");
       expect(forwardLink).toEqual(
         "/teachers/programmes/maths-primary-ks1/units/composition-of-numbers-6-to-10/lessons",
       );
@@ -174,16 +188,39 @@ describe("Sidebar component", () => {
           unitOptionsAvailable={false}
           programmeSlug={"maths-secondary-ks4-aqa"}
           unitSlug={mockUnitKS4.slug}
-          lessons={lessons}
+          lessons={lessonsPublished}
         />,
       );
 
       const linkToUnit = await findByRole("link");
       const forwardLink = linkToUnit.getAttribute("href");
       expect(linkToUnit).toBeInTheDocument();
-      expect(linkToUnit).toBeEnabled();
+      expect(linkToUnit).toHaveAttribute("aria-disabled", "false");
       expect(forwardLink).toEqual(
         "/teachers/programmes/maths-secondary-ks4-aqa/units/composition-of-numbers-6-to-10/lessons",
+      );
+    });
+
+    test("user is directed to correct link for unit variant", async () => {
+      const { findByRole, queryByTestId } = renderWithTheme(
+        <UnitsTabSidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitOptionsAvailable={false}
+          programmeSlug={"maths-primary-ks1"}
+          unitSlug={mockOptionalityUnit.slug}
+          lessons={lessonsPublished}
+          unitVariantID={2}
+        />,
+      );
+
+      const linkToUnit = await findByRole("link");
+      const forwardLink = linkToUnit.getAttribute("href");
+      expect(linkToUnit).toBeInTheDocument();
+      expect(linkToUnit).toHaveAttribute("aria-disabled", "false");
+      expect(queryByTestId("coming-soon-flag")).not.toBeInTheDocument();
+      expect(forwardLink).toEqual(
+        "/teachers/programmes/maths-primary-ks1/units/composition-of-numbers-6-to-10-2/lessons",
       );
     });
   });
