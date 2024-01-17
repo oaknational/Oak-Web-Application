@@ -61,13 +61,6 @@ interface YearSelection {
   };
 }
 
-export function getLessonsAvailable(lessons: Lesson[] | null): boolean {
-  return (
-    (lessons &&
-      lessons.some((lesson: Lesson) => lesson._state === "published")) ||
-    false
-  );
-}
 // Function component
 
 const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
