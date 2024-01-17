@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import useIsCurrent from "@/components/MenuLinks/useIsCurrent";
+import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 import { LI } from "@/components/SharedComponents/Typography";
