@@ -22,8 +22,8 @@ import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
-import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
-import MobileFilters from "@/components/MobileFilters";
+import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
@@ -185,7 +185,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
                     Filter by thread
                   </Heading>
-                  <LearningThemeFilters
+                  <UnitsLearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
@@ -229,7 +229,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $mt={0}
                     $mb={[16, 0]}
                   >
-                    <LearningThemeFilters
+                    <UnitsLearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
                       selectedThemeSlug={themeSlug ? themeSlug : "all"}

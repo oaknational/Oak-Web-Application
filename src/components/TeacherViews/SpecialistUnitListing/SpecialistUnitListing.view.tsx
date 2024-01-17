@@ -12,8 +12,8 @@ import { Heading, P } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
-import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
-import MobileFilters from "@/components/MobileFilters";
+import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;

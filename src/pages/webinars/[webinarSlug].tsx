@@ -21,7 +21,7 @@ import BlogPortableText from "@/components/GenericPagesComponents/PostPortableTe
 import Flex from "@/components/SharedComponents/Flex";
 import WebinarVideo from "@/components/GenericPagesComponents/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";

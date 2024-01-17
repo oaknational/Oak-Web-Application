@@ -7,7 +7,7 @@ import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
 import SpriteSheet from "../src/components/SharedComponents/SpriteSheet";
-import InlineSpriteSheet from "../src/components/InlineSpriteSheet";
+import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSpriteSheet";
 
 const OriginalNextImage = NextImage.default;
 // @ts-ignore

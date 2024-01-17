@@ -1,1 +1,0 @@
-export { formatSchoolName } from "./formatSchoolName";

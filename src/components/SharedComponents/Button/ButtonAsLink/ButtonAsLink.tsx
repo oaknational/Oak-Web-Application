@@ -2,17 +2,17 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
+import { CommonButtonProps, defaultButtonProps } from "../common";
+
 import {
-  OakLinkPropsWithoutChildren,
-  transformOakLinkProps,
-} from "../../../OakLink";
-import useButtonAsLinkProps from "../useButtonAsLinkProps";
+  OwaLinkPropsWithoutChildren,
+  transformOwaLinkProps,
+} from "@/components/SharedComponents/OwaLink";
+import useButtonAsLinkProps from "@/components/SharedComponents/Button/useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,
   getButtonStylesProps,
-} from "../button.styles";
-import { CommonButtonProps, defaultButtonProps } from "../common";
-
+} from "@/components/SharedComponents/Button/button.styles";
 import ButtonInner, {
   ButtonInnerProps,
 } from "@/components/SharedComponents/Button/ButtonInner";
@@ -26,12 +26,12 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
   `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps &
-  OakLinkPropsWithoutChildren &
+  OwaLinkPropsWithoutChildren &
   Pick<ButtonInnerProps, "currentStyles"> & {
     disabled?: boolean;
   };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
-  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
+  const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
   const {
     label,
     labelSuffixA11y,

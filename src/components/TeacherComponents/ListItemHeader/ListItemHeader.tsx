@@ -1,6 +1,6 @@
 import { FC, MutableRefObject } from "react";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
@@ -125,9 +125,9 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
               yearTitle={props.yearTitle}
             />
           )}
-        <OakLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
+        <OwaLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
           <ListTitle index={index}>{itemTitle}</ListTitle>
-        </OakLink>
+        </OwaLink>
       </Flex>
     </Flex>
   );
