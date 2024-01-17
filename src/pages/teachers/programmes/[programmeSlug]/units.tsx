@@ -13,19 +13,19 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
-import UnitList from "@/components/UnitAndLessonLists/UnitList";
+import UnitList from "@/components/TeacherComponents/UnitList";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
-import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
-import MobileFilters from "@/components/MobileFilters";
+import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
-import TabularNav from "@/components/TabularNav";
+import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -34,7 +34,7 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -173,7 +173,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
                     Filter by thread
                   </Heading>
-                  <LearningThemeFilters
+                  <UnitsLearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
@@ -217,7 +217,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $mt={0}
                     $mb={[16, 0]}
                   >
-                    <LearningThemeFilters
+                    <UnitsLearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
                       selectedThemeSlug={themeSlug ? themeSlug : "all"}

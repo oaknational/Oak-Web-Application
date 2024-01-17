@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useHover } from "react-aria";
 
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
@@ -54,7 +54,7 @@ const PostListUpcomingWebinarListItem: FC<
       <Box $mr="auto">
         <P>Coming soon, {formatDate(date, { month: "short" })}</P>
         <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
-          <OakLink
+          <OwaLink
             {...primaryTargetProps}
             page={"webinar-single"}
             webinarSlug={slug}
@@ -62,7 +62,7 @@ const PostListUpcomingWebinarListItem: FC<
             $isHovered={cardIsHovered && !buttonIsHovered}
           >
             {title}
-          </OakLink>
+          </OwaLink>
         </Heading>
         <P $mt={8}>
           <LineClamp lines={2}>{summary}</LineClamp>

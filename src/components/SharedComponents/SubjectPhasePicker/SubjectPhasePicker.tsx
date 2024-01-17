@@ -3,7 +3,7 @@ import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Svg from "@/components/SharedComponents/Svg";
 import { Heading, Span, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
@@ -16,11 +16,11 @@ import {
   Subject,
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
+import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import TagPromotional from "@/components/TagPromotional";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
@@ -436,7 +436,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   ))}
                 </Box>
                 <Box $mt={24}>
-                  <OakLink
+                  <OwaLink
                     page={"oak-curriculum"}
                     $textDecoration={"underline"}
                     $font={"heading-7"}
@@ -447,7 +447,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="external"
                       verticalAlign="bottom"
                     />
-                  </OakLink>
+                  </OwaLink>
                 </Box>
               </FocusOn>
             </Box>

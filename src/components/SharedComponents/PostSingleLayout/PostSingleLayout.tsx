@@ -9,7 +9,7 @@ import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import MobileFilters from "@/components/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,

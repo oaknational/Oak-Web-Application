@@ -2,7 +2,7 @@ import React, { createContext, FC, useId } from "react";
 import { useRadioGroup, AriaRadioGroupProps } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
 
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 
 export const RadioContext = createContext<RadioGroupState | null>(null);
 

@@ -1,14 +1,13 @@
 import { FC } from "react";
 
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
-import useClickableCard from "../../../hooks/useClickableCard";
-import OakLink from "../../OakLink";
-import SubjectIcon from "../../SharedComponents/SubjectIcon";
-import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
-
 import { KeyStageSubject } from "./SubjectCardList";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useClickableCard from "@/hooks/useClickableCard";
+import OwaLink from "@/components/SharedComponents/OwaLink";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Typography, {
   Heading,
   HeadingTag,
@@ -84,15 +83,15 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
               {subject.length === 1 ? (
-                <OakLink
+                <OwaLink
                   {...primaryTargetProps}
                   page="unit-index"
                   programmeSlug={programmeSlug}
                 >
                   {subjectTitle}
-                </OakLink>
+                </OwaLink>
               ) : (
-                <OakLink
+                <OwaLink
                   {...primaryTargetProps}
                   page="programme-index"
                   keyStageSlug={keyStageSlug}
@@ -108,7 +107,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   }}
                 >
                   {subjectTitle}
-                </OakLink>
+                </OwaLink>
               )}
             </Heading>
             <Typography

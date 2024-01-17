@@ -9,21 +9,21 @@ import { PostHogProvider } from "posthog-js/react";
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
-import "../browser-lib/gleap/gleap.css";
-import "../browser-lib/oak-globals/oakGlobals";
-import GlobalStyle from "../styles/GlobalStyle";
-import SpriteSheet from "../components/SharedComponents/SpriteSheet";
-import ErrorBoundary from "../components/ErrorBoundary";
-import DefaultSeo from "../browser-lib/seo/DefaultSeo";
-import useOakTheme from "../hooks/useOakTheme";
-import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
+import "@/browser-lib/gleap/gleap.css";
+import "@/browser-lib/oak-globals/oakGlobals";
+import GlobalStyle from "@/styles/GlobalStyle";
+import SpriteSheet from "@/components/SharedComponents/SpriteSheet";
+import ErrorBoundary from "@/components/AppComponents/ErrorBoundary";
+import DefaultSeo from "@/browser-lib/seo/DefaultSeo";
+import useOakTheme from "@/hooks/useOakTheme";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import AnalyticsProvider, {
   AnalyticsProviderProps,
-} from "../context/Analytics/AnalyticsProvider";
-import AppHooks from "../components/App/AppHooks";
-import { MenuProvider } from "../context/Menu";
-import { ToastProvider } from "../context/Toast";
-import InlineSpriteSheet from "../components/InlineSpriteSheet";
+} from "@/context/Analytics/AnalyticsProvider";
+import { MenuProvider } from "@/context/Menu";
+import { ToastProvider } from "@/context/Toast";
+import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
+import AppHooks from "@/components/AppComponents/App/AppHooks";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;

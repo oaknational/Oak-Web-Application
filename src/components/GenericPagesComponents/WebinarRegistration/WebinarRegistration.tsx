@@ -2,8 +2,8 @@ import { FC, useId } from "react";
 
 import NewsletterForm, {
   useNewsletterForm,
-} from "@/components/Forms/NewsletterForm";
-import OakLink from "@/components/OakLink";
+} from "@/components/GenericPagesComponents/NewsletterForm";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { HeadingTag, P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
@@ -73,9 +73,9 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           >
             Fill this form to watch this webinar and get free resources and
             other helpful content by email. Unsubscribe any time.{" "}
-            <OakLink page="legal" legalSlug="privacy-policy" $isInline>
+            <OwaLink page="legal" legalSlug="privacy-policy" $isInline>
               Privacy policy
-            </OakLink>
+            </OwaLink>
             .
           </P>
         </Flex>

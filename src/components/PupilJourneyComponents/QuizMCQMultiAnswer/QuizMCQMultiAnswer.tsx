@@ -9,7 +9,7 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { createRef, useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import {
   OakFlex,
   OakImage,
@@ -17,53 +17,34 @@ import {
 } from "@oak-academy/oak-components";
 
 import {
-  MCAnswer,
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
 
-export const QuizMCQMultiAnswer = () => {
+export type QuizMCQMultiAnswerProps = {
+  onInitialChange?: () => void;
+  onChange?: () => void;
+};
+
+export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
+  const { onInitialChange, onChange } = props;
+  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
+
   const quizEngineContext = useQuizEngineContext();
-
-  const innerRefs = useRef<React.RefObject<HTMLInputElement>[]>([]);
-
-  const currentQuestionIndex = quizEngineContext?.currentQuestionIndex ?? 0;
+  const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
-  const currentQuestionData = quizEngineContext?.currentQuestionData;
+  const questionUid = currentQuestionData?.questionUid;
+
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
   );
-  const questionUid = currentQuestionData?.questionUid;
-
-  useEffect(() => {
-    // Dynamically create the refs for the answers
-    innerRefs.current = answers.map(() => createRef<HTMLInputElement>());
-  }, [answers]);
-
-  useEffect(() => {
-    if (questionState?.mode === "grading") {
-      // create a list of selected answers
-      const selectedAnswers: MCAnswer[] = innerRefs.current
-        .map((ref, index) => {
-          return ref.current?.checked ? answers[index] : null;
-        })
-        .filter((answer): answer is MCAnswer => !!answer); // remove nulls
-
-      quizEngineContext?.handleSubmitMCAnswer(selectedAnswers);
-    }
-  }, [questionState, answers, quizEngineContext]);
 
   if (!questionState || !currentQuestionData) {
     return null;
   }
-
-  const handleOnChange = () => {
-    if (questionState?.mode === "init") {
-      quizEngineContext?.updateQuestionMode("input");
-    }
-  };
 
   const isFeedbackMode = questionState.mode === "feedback";
 
@@ -90,18 +71,19 @@ export const QuizMCQMultiAnswer = () => {
           />
         ) : undefined;
 
-        const feedback = isFeedbackMode
-          ? questionState.feedback?.[index]
-          : undefined;
+        const feedback =
+          isFeedbackMode && Array.isArray(questionState.feedback)
+            ? questionState.feedback[index]
+            : undefined;
 
         return (
           <OakQuizCheckBox
-            key={`${questionUid}-answer${index}`}
-            id={`${questionUid}-answer${index}`}
-            value={answerText ? answerText.text : ""}
+            key={`${questionUid}-answer-${index}`}
+            id={`${questionUid}-answer-${index}`}
+            displayValue={answerText ? answerText.text : " "}
+            value={`answer-${index}`}
             feedback={feedback}
             image={answerImage}
-            innerRef={innerRefs.current[index]}
             onChange={handleOnChange}
           />
         );

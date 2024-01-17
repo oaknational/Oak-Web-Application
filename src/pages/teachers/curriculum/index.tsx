@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -15,12 +15,12 @@ import Typography, {
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
+import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import OakLink from "@/components/OakLink/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -71,7 +71,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
+            <HomepageCurriculumLandingHero
+              subjectPhaseOptions={subjectPhaseOptions}
+            />
           </Flex>
         </MaxWidth>
       </Flex>
@@ -130,7 +132,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 </LI>
               </UL>
               <Typography $font={"heading-7"} $mb={12}>
-                <OakLink
+                <OwaLink
                   page={"blog-single"}
                   blogSlug="our-approach-to-curriculum"
                   $display={"flex"}
@@ -138,7 +140,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 >
                   Read more about our approach
                   <Icon name={"chevron-right"} />
-                </OakLink>
+                </OwaLink>
               </Typography>
             </Box>
           </Flex>

@@ -12,7 +12,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Heading, P } from "@/components/SharedComponents/Typography";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
