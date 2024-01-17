@@ -3,9 +3,9 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import {
-  OakLinkPropsWithoutChildren,
-  transformOakLinkProps,
-} from "@/components/OakLink";
+  OwaLinkPropsWithoutChildren,
+  transformOwaLinkProps,
+} from "@/components/SharedComponents/OwaLink";
 import useButtonAsLinkProps from "@/components/SharedComponents/Button/useButtonAsLinkProps";
 import IconButtonInner from "@/components/SharedComponents/Button/IconButtonInner";
 import { CommonIconButtonProps } from "@/components/SharedComponents/Button/common";
@@ -18,14 +18,14 @@ const StyledNextLink = styled.a<IconButtonStylesProps>`
   ${iconButtonStyles}
 `;
 
-type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
+type IconButtonAsLinkProps = OwaLinkPropsWithoutChildren &
   CommonIconButtonProps & {
     "aria-label": string;
     disabled?: boolean;
   };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
-  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
+  const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
   const {
     icon,
     iconColorOverride,

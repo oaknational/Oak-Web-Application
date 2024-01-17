@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Logo from "@/components/AppComponents/Logo";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
@@ -78,7 +78,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   if (props.type === "page" && props.page == "classroom") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...props}
           {...primaryTargetProps}
           $focusStyles={["underline"]}
@@ -87,7 +87,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           }}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
@@ -95,7 +95,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   if (props.type === "page" && props.page == "teacher-hub") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...props}
           {...primaryTargetProps}
           $focusStyles={["underline"]}
@@ -105,34 +105,34 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           }}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
   if (props.type === "page") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           {...props}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
   if (props.href) {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           page={null}
           href={props.href}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
