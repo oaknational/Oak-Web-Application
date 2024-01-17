@@ -19,6 +19,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   programmeSlug?: string;
   lessons: Lesson[] | [];
   unitSlug?: string | undefined;
+  unitVariantID?: number | null;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
@@ -29,6 +30,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   programmeSlug,
   lessons,
   unitSlug,
+  unitVariantID,
 }) => {
   const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
     return (
@@ -93,15 +95,14 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                         $alignItems={"flex-start"}
                         $gap={8}
                       >
-                        {(lessonsAvailable === false ||
-                          lessonsAvailable === null) && (
+                        {lessonsAvailable === false && (
                           <TagFunctional
                             data-testid="coming-soon-flag"
                             text={"Coming soon"}
                             color="grey"
                           />
                         )}
-                        {lessons && unitSlug && (
+                        {lessons && programmeSlug && unitSlug && (
                           <ButtonAsLink
                             data-testid="unit-lessons-button"
                             label="See lessons in unit"
@@ -113,7 +114,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
                             page="lesson-index"
-                            unitSlug={unitSlug}
+                            unitSlug={
+                              unitVariantID
+                                ? `${unitSlug}-${unitVariantID}`
+                                : unitSlug
+                            }
                             programmeSlug={programmeSlug}
                           />
                         )}

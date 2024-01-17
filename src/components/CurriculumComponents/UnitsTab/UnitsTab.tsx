@@ -81,10 +81,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
+  const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
   const unitSlugs = new Set<string>();
   const duplicateUnitSlugs = new Set<string>();
-
   // Initialize data structure for displaying units by year
   const yearData: {
     [key: string]: {
@@ -694,9 +694,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                         programmeSlug={createProgrammeSlug()}
                         unitOptionsAvailable={unitOptionsAvailable}
                         unitSlug={unitData?.slug}
+                        unitVariantID={unitVariantID}
                       >
                         <UnitModal
                           setCurrentUnitLessons={setCurrentUnitLessons}
+                          setUnitVariantID={setUnitVariantID}
                           unitData={unitData}
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
