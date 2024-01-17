@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./Accordion";
+import Component from "./CurriculumUnitDetailsAccordion";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -18,7 +18,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const Accordion: Story = {
+export const CurriculumUnitDetailsAccordion: Story = {
   args: {
     title: "Lessons in unit",
   },
