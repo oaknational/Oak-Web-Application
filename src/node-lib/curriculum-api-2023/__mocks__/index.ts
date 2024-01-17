@@ -1,3 +1,5 @@
+import curriculumUnitsTabFixture from "../fixtures/curriculumUnits.fixture";
+
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
@@ -16,6 +18,7 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
+  | "curriculumUnits"
 > = {
   subjectPhaseOptions: vi.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -32,7 +35,7 @@ const curriculumApi: Pick<
   pupilLessonOverview: vi.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
-  lessonOverviewCanonical: vi.fn(async () => {    
+  lessonOverviewCanonical: vi.fn(async () => {
     return {
       ...lessonOverviewFixture(),
       pathways: [lessonOverviewFixture()],
@@ -43,6 +46,9 @@ const curriculumApi: Pick<
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
     };
+  }),
+  curriculumUnits: vi.fn(async () => {
+    return curriculumUnitsTabFixture();
   }),
 };
 

@@ -34,7 +34,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
@@ -59,7 +59,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 456",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
@@ -83,7 +83,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 456",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
@@ -120,7 +120,7 @@ describe("getHubspotDownloadFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
@@ -154,7 +154,7 @@ describe("getHubspotDownloadFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });

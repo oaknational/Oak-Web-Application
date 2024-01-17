@@ -11,10 +11,10 @@ import LessonListPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import * as resultsPerPage from "@/utils/resultsPerPage";
 
 const render = renderWithProviders();
 
-const utilsMock = jest.requireMock("@/utils/resultsPerPage");
 vi.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
@@ -69,7 +69,7 @@ describe("Lesson listing page", () => {
       });
     });
     it.skip("renders the correct SEO details with pagination", async () => {
-      utilsMock.RESULTS_PER_PAGE = 2;
+      Object.defineProperty(resultsPerPage, "RESULTS_PER_PAGE", { value: 10 });
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );

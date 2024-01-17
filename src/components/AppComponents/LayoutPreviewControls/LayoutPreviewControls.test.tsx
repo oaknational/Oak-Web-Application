@@ -1,10 +1,9 @@
+import mockRouter from "next-router-mock";
+
 import LayoutPreviewControls from "./LayoutPreviewControls";
 
 import { ToastProvider } from "@/context/Toast";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 describe("LayoutPreviewControls", () => {
   beforeEach(() => {
@@ -13,10 +12,7 @@ describe("LayoutPreviewControls", () => {
   });
 
   it("renders a link to exit preview mode including the current URL", () => {
-    useRouter.mockReturnValue({
-      asPath: "/blog/some-blog-post",
-      query: {},
-    });
+    mockRouter.setCurrentUrl("/blog/some-blog-post");
 
     const { getByRole } = renderWithTheme(
       <ToastProvider>

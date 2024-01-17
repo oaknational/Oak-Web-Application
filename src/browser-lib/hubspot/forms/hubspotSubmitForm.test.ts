@@ -145,7 +145,7 @@ describe("hubspotSubmitForm", () => {
             context: {
               hutk: "hubspotutk value 456",
               pageName: "",
-              pageUri: "http://localhost/",
+              pageUri: "http://localhost:3000/",
             },
             fields: [
               { name: "email", value: "email value" },
@@ -160,7 +160,7 @@ describe("hubspotSubmitForm", () => {
               context: {
                 hutk: "hubspotutk value 456",
                 pageName: "",
-                pageUri: "http://localhost/",
+                pageUri: "http://localhost:3000/",
               },
               fields: [
                 { name: "email", value: "email value" },
@@ -195,7 +195,7 @@ describe("hubspotSubmitForm", () => {
             context: {
               hutk: "hubspotutk value 456",
               pageName: "",
-              pageUri: "http://localhost/",
+              pageUri: "http://localhost:3000/",
             },
             fields: [
               { name: "email", value: "email value" },
@@ -209,7 +209,7 @@ describe("hubspotSubmitForm", () => {
               context: {
                 hutk: "hubspotutk value 456",
                 pageName: "",
-                pageUri: "http://localhost/",
+                pageUri: "http://localhost:3000/",
               },
               fields: [
                 { name: "email", value: "email value" },

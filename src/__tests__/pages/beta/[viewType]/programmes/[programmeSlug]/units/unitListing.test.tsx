@@ -10,13 +10,12 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import * as resultsPerPage from "@/utils/resultsPerPage";
 
-vi.mock("next/router", () => require("next-router-mock"));
-
-const utilsMock = jest.requireMock("@/utils/resultsPerPage");
 vi.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
+vi.mock("next/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
@@ -99,7 +98,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
 
     it.skip("renders the correct SEO details for programmes with pagination", async () => {
-      utilsMock.RESULTS_PER_PAGE = 10;
+      Object.defineProperty(resultsPerPage, "RESULTS_PER_PAGE", { value: 10 });
       const { seo } = renderWithSeo()(
         <UnitListingPage
           curriculumData={{

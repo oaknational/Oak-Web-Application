@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { MockedFunction } from "jest-mock";
+import mockRouter from "next-router-mock";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
@@ -19,11 +19,10 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
 
-vi.mock("next/router");
-vi.mock("@/node-lib/curriculum-api-2023", () => ({
-  curriculumOverview: vi.fn(),
-  curriculumUnits: vi.fn(),
-}));
+// vi.mock("@/node-lib/curriculum-api-2023", () => ({
+//   curriculumOverview: vi.fn(),
+//   curriculumUnits: vi.fn(),
+// }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
@@ -83,12 +82,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
-
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=overview",
+      );
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
@@ -103,11 +99,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("renders the Curriculum Overview Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=overview",
+      );
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
@@ -124,11 +118,10 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("renders the Curriculum Units Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "units" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=units",
+      );
+
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
