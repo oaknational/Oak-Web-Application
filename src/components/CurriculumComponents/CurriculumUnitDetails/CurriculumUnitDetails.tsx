@@ -6,7 +6,7 @@ import { Heading, LI, P, OL } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
-import Accordion from "@/components/ArchivedComponents/Accordion";
+import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
 
 export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
@@ -75,36 +75,39 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
       )}
       <Flex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
-          <Accordion title="Lessons in unit">
+          <CurriculumUnitDetailsAccordion title="Lessons in unit">
             <OL $mt={0} data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
                   return <LI key={lesson}>{lesson}</LI>;
                 })}
             </OL>
-          </Accordion>
+          </CurriculumUnitDetailsAccordion>
         )}
 
         {priorUnitDescription && (
-          <Accordion title="Previous unit description">
+          <CurriculumUnitDetailsAccordion title="Previous unit description">
             <P $mb={12} $font={"body-2-bold"}>
               {priorUnitTitle}
             </P>
             <P $mb={12} $font={"body-2"}>
               {priorUnitDescription}
             </P>
-          </Accordion>
+          </CurriculumUnitDetailsAccordion>
         )}
 
         {futureUnitDescription && (
-          <Accordion title="Following unit description" lastAccordion={true}>
+          <CurriculumUnitDetailsAccordion
+            title="Following unit description"
+            lastAccordion={true}
+          >
             <P $mb={12} $font={"body-2-bold"}>
               {futureUnitTitle}
             </P>
             <P $mb={12} $font={"body-2"}>
               {futureUnitDescription}
             </P>
-          </Accordion>
+          </CurriculumUnitDetailsAccordion>
         )}
       </Flex>
     </Flex>

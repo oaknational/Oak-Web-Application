@@ -23,7 +23,7 @@ import Typography, {
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -78,14 +78,14 @@ const customPolicyComponent: PortableTextComponents = {
         ariaLabel = children[0];
       }
       return (
-        <OakLink
+        <OwaLink
           href={value?.href}
           aria-label={ariaLabel}
           $textDecoration={"underline"}
           page={null}
         >
           {children}
-        </OakLink>
+        </OwaLink>
       );
     },
   },
