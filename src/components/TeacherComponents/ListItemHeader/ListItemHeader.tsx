@@ -11,6 +11,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -23,6 +24,20 @@ interface CommonProps {
   page: "Unit" | "Lesson";
   onClick?: () => void;
 }
+
+type SpecialistListItemProps = IndividualSpecialistUnit &
+  CommonProps & {
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    expired: boolean | null;
+    index?: number;
+  };
+
+export const isSpecialistUnit = (
+  x: ListItemHeadingProps | SpecialistListItemProps,
+): x is SpecialistListItemProps => {
+  return "developmentalStageTitle" in x;
+};
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
@@ -51,21 +66,20 @@ export const ListTitle: FC<{
   );
 };
 
-const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
+const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
+  props,
+) => {
   const {
     title,
     slug,
     subjectTitle,
     hideTopHeading,
-    keyStageTitle,
     primaryTargetProps,
     page,
     expired,
     onClick,
     programmeSlug,
     index,
-    isExemplarUnit,
-    yearTitle,
   } = props;
 
   const itemTitle = title;
@@ -93,20 +107,24 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   return (
     <Flex>
       <Flex $mb={2} $flexDirection={"column"}>
-        {!hideTopHeading && !isExemplarUnit && (
-          <ListItemHeaderCategoryHeading
-            keyStageTitle={keyStageTitle}
-            subjectTitle={subjectTitle}
-            page={page}
-          />
-        )}
-        {!hideTopHeading && isExemplarUnit && (
-          <ListItemHeaderExpemplarCategoryHeading
-            keyStageTitle={keyStageTitle}
-            subjectTitle={subjectTitle}
-            yearTitle={yearTitle}
-          />
-        )}
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          !props.isExemplarUnit && (
+            <ListItemHeaderCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              page={page}
+            />
+          )}
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          props.isExemplarUnit && (
+            <ListItemHeaderExpemplarCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              yearTitle={props.yearTitle}
+            />
+          )}
         <OwaLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
           <ListTitle index={index}>{itemTitle}</ListTitle>
         </OwaLink>

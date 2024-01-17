@@ -85,11 +85,10 @@ export type ProgrammeListingLinkProps = {
 
 type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
-  "page"
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-programme-index";
 };
-
 export type UnitListingLinkProps = {
   page: "unit-index";
   programmeSlug: string;
@@ -97,10 +96,13 @@ export type UnitListingLinkProps = {
     ["learning-theme"]?: string | null;
   };
 };
-type SpecialistUnitListingLinkProps = Omit<UnitListingLinkProps, "page"> & {
+
+export type SpecialistUnitListingLinkProps = Omit<
+  UnitListingLinkProps,
+  "page"
+> & {
   page: "specialist-unit-index";
 };
-
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
   keyStageSlug: string;
