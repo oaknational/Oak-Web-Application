@@ -1,19 +1,19 @@
 import userEvent from "@testing-library/user-event";
 
-import Accordion from "./Accordion";
+import CurriculumUnitDetailsAccordion from "./CurriculumUnitDetailsAccordion";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";
 import { P } from "@/components/SharedComponents/Typography";
 
-describe("Accordion component", () => {
+describe("CurriculumUnitDetailsAccordion", () => {
   test("component renders with correct title", () => {
     const { getByText } = renderWithTheme(
-      <Accordion title={"Lessons in unit"}>
+      <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card>
           <P>Test child</P>
         </Card>
-      </Accordion>,
+      </CurriculumUnitDetailsAccordion>,
     );
 
     expect(getByText("Lessons in unit")).toBeInTheDocument();
@@ -21,11 +21,11 @@ describe("Accordion component", () => {
 
   test("child component to not be visible on unexpanded container", () => {
     const { getByTestId } = renderWithTheme(
-      <Accordion title={"Lessons in unit"}>
+      <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
           <P>Test child</P>
         </Card>
-      </Accordion>,
+      </CurriculumUnitDetailsAccordion>,
     );
 
     expect(getByTestId("test-child")).not.toBeVisible();
@@ -33,11 +33,11 @@ describe("Accordion component", () => {
 
   test("container expands on click, child component to become visible", async () => {
     const { getByTestId } = renderWithTheme(
-      <Accordion title={"Lessons in unit"}>
+      <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
           <P>Test child</P>
         </Card>
-      </Accordion>,
+      </CurriculumUnitDetailsAccordion>,
     );
 
     const button = getByTestId("expand-accordian-button");
@@ -49,11 +49,11 @@ describe("Accordion component", () => {
 
   test("has aria-expanded changes from false to true when component is expanded", async () => {
     const { getByTestId } = renderWithTheme(
-      <Accordion title={"Lessons in unit"}>
+      <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
           <P>Test child</P>
         </Card>
-      </Accordion>,
+      </CurriculumUnitDetailsAccordion>,
     );
 
     const button = getByTestId("expand-accordian-button");
@@ -67,11 +67,11 @@ describe("Accordion component", () => {
 
   test("component renders child component", async () => {
     const { getByText, getByTestId } = renderWithTheme(
-      <Accordion title={"Lessons in unit"}>
+      <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid="test-child">
           <P>Test child</P>
         </Card>
-      </Accordion>,
+      </CurriculumUnitDetailsAccordion>,
     );
     expect(getByTestId("test-child")).not.toBeVisible();
 
