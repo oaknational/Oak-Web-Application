@@ -6,8 +6,8 @@ import {
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
-export const PupilViewsReview = () => {
-  const { updateCurrentSection } = useLessonEngineContext();
+export const PupilViewsVideo = () => {
+  const { updateCurrentSection, completeSection } = useLessonEngineContext();
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -15,7 +15,14 @@ export const PupilViewsReview = () => {
       $pa={"inner-padding-xl"}
       $gap={"space-between-s"}
     >
-      <OakHeading tag="h1">Review</OakHeading>
+      <OakHeading tag="h1">Video</OakHeading>
+      <OakSecondaryButton
+        onClick={() => {
+          completeSection("video");
+        }}
+      >
+        Complete Section
+      </OakSecondaryButton>
       <OakSecondaryButton
         onClick={() => {
           updateCurrentSection("overview");

@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+/**
+ * A hook with a callback for when the state is updated.
+ * NB. the new state is passed as an argument to the callback.
+ *
+ * Taken from https://stackoverflow.com/a/61842546/899616
+ *
+ */
+
 export function useStateCallback<T>(
   initialState: T,
 ): [T, (state: T | ((prevState: T) => T), cb?: (state: T) => void) => void] {

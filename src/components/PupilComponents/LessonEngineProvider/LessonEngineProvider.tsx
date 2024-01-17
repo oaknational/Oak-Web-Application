@@ -17,9 +17,14 @@ export const isLessonSection = (
   return lessonSections.includes(currentSection as LessonSection);
 };
 
+export type LessonSectionResult = { grade: number; maxScore: number };
+
+type LessonSectionResults = Partial<Record<LessonSection, LessonSectionResult>>;
+
 export type LessonEngineContextType = {
   currentSection: LessonSection;
   completedSections: LessonSection[];
+  sectionResults: LessonSectionResults;
   getIsComplete: (section: LessonSection) => boolean;
   completeSection: (section: LessonSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
@@ -43,6 +48,10 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
 
   const [completedSections, setCompletedSections] = useState<LessonSection[]>(
     [],
+  );
+
+  const [sectionResults, setSectionResults] = useState<LessonSectionResults>(
+    {},
   );
 
   const getIsComplete = (section: LessonSection) =>
@@ -73,7 +82,11 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
   };
 
   const updateQuizResult = (vals: { grade: number; maxScore: number }) => {
-    console.log("updateQuizResult", currentSection, vals);
+    setSectionResults((prev) => {
+      const newSectionResults = { ...prev };
+      newSectionResults[currentSection] = vals;
+      return newSectionResults;
+    });
   };
 
   return (
@@ -81,6 +94,7 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
       value={{
         currentSection,
         completedSections,
+        sectionResults,
         getIsComplete,
         completeSection,
         updateCurrentSection,

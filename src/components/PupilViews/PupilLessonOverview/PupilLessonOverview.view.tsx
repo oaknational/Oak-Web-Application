@@ -1,5 +1,57 @@
-import { OakFlex } from "@oak-academy/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakLI,
+  OakSecondaryButton,
+  OakUL,
+} from "@oak-academy/oak-components";
+
+import {
+  lessonSections,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
 
 export const PupilViewsLessonOverview = () => {
-  return <OakFlex>Overview</OakFlex>;
+  const { completedSections, sectionResults, updateCurrentSection } =
+    useLessonEngineContext();
+
+  return (
+    <OakFlex
+      $pa={"inner-padding-l"}
+      $flexDirection={"column"}
+      $alignItems={"start"}
+      $gap={"space-between-s"}
+    >
+      <OakHeading tag="h1">Overview</OakHeading>
+      <OakUL>
+        {lessonSections.map((s) => (
+          <OakLI
+            key={s}
+            $mv="space-between-ssx"
+            $pa={"inner-padding-s"}
+            $ba="border-solid-s"
+          >
+            <OakFlex
+              $gap={"space-between-ssx"}
+              $justifyContent={"space-between"}
+            >
+              <OakSecondaryButton
+                onClick={() => {
+                  updateCurrentSection(s);
+                }}
+              >
+                {s}
+              </OakSecondaryButton>
+              <OakBox $width={"all-spacing-5"}>
+                {completedSections.includes(s) && "✅"}
+                {sectionResults[s] &&
+                  `${sectionResults[s]?.grade}/${sectionResults[s]?.maxScore}`}
+              </OakBox>
+            </OakFlex>
+          </OakLI>
+        ))}
+      </OakUL>
+    </OakFlex>
+  );
 };
