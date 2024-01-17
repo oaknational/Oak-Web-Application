@@ -35,6 +35,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     boardMembers,
     documents,
     governancePortableText,
+    boardHeader,
   } = pageData;
 
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
@@ -58,7 +59,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               tag={"h2"}
               $textAlign={["center"]}
             >
-              Our interim board
+              {boardHeader}
             </Heading>
             <BioCardList
               $mb={[80, 60]}
