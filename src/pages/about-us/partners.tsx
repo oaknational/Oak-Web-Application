@@ -10,7 +10,7 @@ import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSumma
 import getPageProps from "@/node-lib/getPageProps";
 import { SpacingProps } from "@/styles/utils/spacing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import CMSImage, {

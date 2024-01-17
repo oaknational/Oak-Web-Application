@@ -10,7 +10,7 @@ import { LandingPageTextBlock } from "@/components/GenericPagesComponents/Landin
 import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero";
 import getPageProps from "@/node-lib/getPageProps";
 import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export type LandingPageProps = {

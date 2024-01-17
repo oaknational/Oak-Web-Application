@@ -1,4 +1,4 @@
-import { FooterSections } from "../../components/SiteFooter/SiteFooter";
+import { FooterSections } from "@/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter";
 
 const footerSections: FooterSections = {
   pupils: {

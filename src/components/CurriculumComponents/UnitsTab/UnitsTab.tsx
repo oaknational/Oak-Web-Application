@@ -12,11 +12,11 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
-import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal, {
   Lesson,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import { P, Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -684,8 +684,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                             </Card>
                           );
                         })}
-
-                      <Sidebar
+                      <UnitsTabSidebar
                         displayModal={displayModal}
                         onClose={handleCloseModal}
                         unitData={unitData}
@@ -703,7 +702,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                             unitData ? isHighlightedUnit(unitData) : false
                           }
                         />
-                      </Sidebar>
+                      </UnitsTabSidebar>
                     </Flex>
                   </Box>
                 );
