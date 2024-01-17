@@ -162,8 +162,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <TabularNav
                     $mb={[10, 24]}
                     label="themes"
-                    $flexDirection={["column", "row"]}
-                    $alignItems={["flex-start", "center"]}
+                    $overflowX={["scroll", "visible"]}
+                    $overflowY={"hidden"}
                     $gap={[12, 0]}
                     links={developmentalStage.map(
                       ({ title, slug, lessonCount }) => ({
