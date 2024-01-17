@@ -172,6 +172,54 @@ export interface ErrorInfo {
 }
 
 /**
+ * Recursively parse the error metadata and remove any sensitive values that can reasonably be removed.
+ * @param errorInfo
+ *
+ * @returns The error info with sensitive values removed.
+ */
+export function removeSensitiveValues(errorInfo: ErrorInfo): ErrorInfo {
+  function recursiveStringReplace(
+    obj: Record<string, unknown> | undefined,
+  ): Record<string, unknown> {
+    function replacer(value: unknown): typeof value {
+      if (typeof value === "string") {
+        const piiPatterns = [
+          // email
+          /[^@\s]+@[^@\s]+/g,
+        ];
+        if (piiPatterns.some((pattern) => pattern.test(value))) {
+          return "[REDACTED]";
+        }
+        return value;
+      }
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
+        // Recursively remove sensitive data from any nested objects
+        return recursiveStringReplace(value as Record<string, unknown>);
+      }
+      return value;
+    }
+    const newObj = {} as Record<string, unknown>;
+    for (const key in obj) {
+      newObj[key] = replacer(obj[key]);
+    }
+    return newObj;
+  }
+  // If there is no metadata to sanitise, return the original error info.
+  if (!errorInfo.meta) {
+    return errorInfo;
+  }
+  const safeMeta = recursiveStringReplace(errorInfo.meta);
+  return {
+    ...errorInfo,
+    meta: safeMeta,
+  };
+}
+
+/**
  * Oak Error code structure. This extends Error.
  *
  * @param errorInfo - The error information (code and message).
@@ -182,8 +230,11 @@ class OakError extends Error {
   private _hasBeenReported = false;
 
   constructor(errorInfo: ErrorInfo) {
-    super(getErrorMessage(errorInfo));
-    this.errorInfo = errorInfo;
+    // Remove any sensitive values in the meta data.
+    const safeErrorInfo: ErrorInfo = removeSensitiveValues(errorInfo);
+
+    super(getErrorMessage(safeErrorInfo));
+    this.errorInfo = safeErrorInfo;
     if (
       errorInfo.originalError instanceof OakError &&
       errorInfo.originalError.hasBeenReported
