@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";

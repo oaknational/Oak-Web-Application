@@ -11,7 +11,7 @@ import PostList, {
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";

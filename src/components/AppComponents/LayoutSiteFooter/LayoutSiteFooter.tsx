@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Logo from "@/components/AppComponents/Logo";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";

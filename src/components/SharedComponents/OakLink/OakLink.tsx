@@ -7,11 +7,10 @@ import {
   MaybeOakHref,
   resolveOakHref,
   ResolveOakHrefProps,
-} from "../../common-lib/urls";
-import { OmitKeepDiscriminated } from "../../utils/generics";
-import { box } from "../SharedComponents/Box";
-import { HTMLAnchorProps } from "../SharedComponents/Button/common";
-
+} from "@/common-lib/urls";
+import { OmitKeepDiscriminated } from "@/utils/generics";
+import { box } from "@/components/SharedComponents/Box";
+import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import FocusUnderline, {
   focusUnderlineStyles,
 } from "@/components/SharedComponents/FocusUnderline";

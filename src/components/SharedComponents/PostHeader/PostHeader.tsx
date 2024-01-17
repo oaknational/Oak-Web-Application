@@ -8,7 +8,7 @@ import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 
 type PostHeaderProps = {

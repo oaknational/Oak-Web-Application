@@ -7,7 +7,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";

@@ -3,7 +3,7 @@ import { FC } from "react";
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";

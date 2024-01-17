@@ -1,6 +1,6 @@
 import { FC, useId } from "react";
 
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import NewsletterForm, {
   NewsletterFormProps,
 } from "@/components/GenericPagesComponents/NewsletterForm";

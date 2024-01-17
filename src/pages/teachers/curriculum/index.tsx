@@ -20,7 +20,7 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import OakLink from "@/components/OakLink/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink/OakLink";
 import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";

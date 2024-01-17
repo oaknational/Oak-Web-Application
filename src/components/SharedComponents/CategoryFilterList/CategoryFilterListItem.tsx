@@ -1,4 +1,4 @@
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";

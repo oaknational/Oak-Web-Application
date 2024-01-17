@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   OakLinkPropsWithoutChildren,
   transformOakLinkProps,
-} from "@/components/OakLink";
+} from "@/components/SharedComponents/OakLink";
 import useButtonAsLinkProps from "@/components/SharedComponents/Button/useButtonAsLinkProps";
 import IconButtonInner from "@/components/SharedComponents/Button/IconButtonInner";
 import { CommonIconButtonProps } from "@/components/SharedComponents/Button/common";

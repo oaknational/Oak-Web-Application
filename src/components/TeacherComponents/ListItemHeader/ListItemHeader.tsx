@@ -1,6 +1,6 @@
 import { FC, MutableRefObject } from "react";
 
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   OakLinkPropsWithoutChildren,
   transformOakLinkProps,
-} from "../../../OakLink";
+} from "../../OakLink";
 import useButtonAsLinkProps from "../useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,

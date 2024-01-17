@@ -1,14 +1,13 @@
 import { FC } from "react";
 
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
-import useClickableCard from "../../../hooks/useClickableCard";
-import OakLink from "../../OakLink";
-import SubjectIcon from "../../SharedComponents/SubjectIcon";
-import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
-
 import { KeyStageSubject } from "./SubjectCardList";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useClickableCard from "@/hooks/useClickableCard";
+import OakLink from "@/components/SharedComponents/OakLink";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Typography, {
   Heading,
   HeadingTag,

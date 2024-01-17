@@ -3,7 +3,7 @@ import { useTheme } from "styled-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 
 /**
  * We need a simple client-side error header which doesn't use context so that

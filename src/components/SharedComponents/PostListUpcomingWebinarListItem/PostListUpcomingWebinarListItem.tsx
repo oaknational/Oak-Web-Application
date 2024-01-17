@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useHover } from "react-aria";
 
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";

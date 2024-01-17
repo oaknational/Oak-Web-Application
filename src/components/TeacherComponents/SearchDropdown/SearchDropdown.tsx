@@ -4,7 +4,7 @@ import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchRes
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 

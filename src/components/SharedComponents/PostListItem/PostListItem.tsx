@@ -6,7 +6,7 @@ import PostListItemImage from "./PostListItemImage";
 import { BlogWebinarCategory, Image } from "@/common-lib/cms-types";
 import useClickableCard from "@/hooks/useClickableCard";
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";

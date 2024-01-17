@@ -2,8 +2,10 @@ import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 
-import { OakLinkProps, transformOakLinkProps } from "../../OakLink";
-
+import {
+  OakLinkProps,
+  transformOakLinkProps,
+} from "@/components/SharedComponents/OakLink";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import { DROP_SHADOW } from "@/styles/utils/dropShadow";
 import getColorByName from "@/styles/themeHelpers/getColorByName";

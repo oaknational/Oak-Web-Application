@@ -3,7 +3,7 @@ import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import Svg from "@/components/SharedComponents/Svg";
 import { Heading, Span, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";

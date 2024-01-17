@@ -15,7 +15,7 @@ import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/Bl
 import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
 import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
-import { getOakLinkHref } from "../../components/OakLink/OakLink";
+import { getOakLinkHref } from "../../components/SharedComponents/OakLink/OakLink";
 import getBrowserConfig from "../getBrowserConfig";
 
 const courseProvider = {

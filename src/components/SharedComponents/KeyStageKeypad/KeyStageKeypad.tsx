@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

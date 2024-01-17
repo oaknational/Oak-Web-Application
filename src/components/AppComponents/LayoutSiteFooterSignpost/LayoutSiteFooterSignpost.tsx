@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 

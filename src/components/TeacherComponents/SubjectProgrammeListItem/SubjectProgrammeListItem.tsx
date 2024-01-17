@@ -5,7 +5,7 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/SharedComponents/Typography";
-import OakLink from "@/components/OakLink";
+import OakLink from "@/components/SharedComponents/OakLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
