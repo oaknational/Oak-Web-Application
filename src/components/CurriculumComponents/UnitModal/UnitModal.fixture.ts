@@ -1,4 +1,23 @@
 import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
+
+const lessons: Lesson[] = [
+  {
+    slug: "lesson-1",
+    title: "Lesson 1",
+    _state: "new",
+  },
+  {
+    slug: "lesson-2",
+    title: "Lesson 2",
+    _state: "published",
+  },
+  {
+    slug: "lesson-3",
+    title: "Lesson 3",
+    _state: "published",
+  },
+];
 
 export const mockUnit: Unit = {
   connection_future_unit_description: "Test connection future unit description",
@@ -51,23 +70,7 @@ export const mockUnitKS4: Unit = {
   phase: "Secondary",
   phase_slug: "secondary",
   planned_number_of_lessons: 15,
-  lessons: [
-    {
-      slug: "lesson-1",
-      title: "Lesson 1",
-      _state: "new",
-    },
-    {
-      slug: "lesson-2",
-      title: "Lesson 2",
-      _state: "published",
-    },
-    {
-      slug: "lesson-3",
-      title: "Lesson 3",
-      _state: "published",
-    },
-  ],
+  lessons,
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,
@@ -101,26 +104,7 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
-    lessons: [
-      {
-        slug: "lesson-1",
-        title: "Lesson 1",
-        order: 1,
-        _state: "new",
-      },
-      {
-        slug: "lesson-2",
-        title: "Lesson 2",
-        order: 2,
-        _state: "new",
-      },
-      {
-        slug: "lesson-3",
-        title: "Lesson 3",
-        order: 3,
-        _state: "published",
-      },
-    ],
+    lessons,
   },
   {
     title: "Test optional unit 2",
@@ -130,26 +114,7 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
-    lessons: [
-      {
-        slug: "lesson-1",
-        title: "Lesson 1",
-        order: 1,
-        _state: "new",
-      },
-      {
-        slug: "lesson-2",
-        title: "Lesson 2",
-        order: 2,
-        _state: "new",
-      },
-      {
-        slug: "lesson-3",
-        title: "Lesson 3",
-        order: 3,
-        _state: "new",
-      },
-    ],
+    lessons,
   },
   {
     title: "Test optional unit 3",
@@ -159,26 +124,7 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
-    lessons: [
-      {
-        slug: "lesson-1",
-        title: "Lesson 1",
-        order: 1,
-        _state: "new",
-      },
-      {
-        slug: "lesson-2",
-        title: "Lesson 2",
-        order: 2,
-        _state: "new",
-      },
-      {
-        slug: "lesson-3",
-        title: "Lesson 3",
-        order: 3,
-        _state: "new",
-      },
-    ],
+    lessons,
   },
 ];
 

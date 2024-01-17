@@ -1,14 +1,32 @@
 import userEvent from "@testing-library/user-event";
 
+import { Lesson } from "../UnitModal/UnitModal";
+
 import UnitsTabSidebar from "./UnitsTabSidebar";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
-  mockUnit,
   mockOptionalityUnit,
   mockUnitKS4,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
 
+const lessons: Lesson[] = [
+  {
+    slug: "lesson-1",
+    title: "Lesson 1",
+    _state: "new",
+  },
+  {
+    slug: "lesson-2",
+    title: "Lesson 2",
+    _state: "published",
+  },
+  {
+    slug: "lesson-3",
+    title: "Lesson 3",
+    _state: "published",
+  },
+];
 const unitInformationViewed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -23,7 +41,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} />,
+      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]} />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
@@ -31,7 +49,7 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()}>
+      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]}>
         <div data-testid="sidebar-children" />
       </UnitsTabSidebar>,
     );
@@ -42,7 +60,7 @@ describe("Sidebar component", () => {
   test("onClose state function called when close button selected", async () => {
     const mockClose = jest.fn();
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={mockClose} />,
+      <UnitsTabSidebar displayModal={true} onClose={mockClose} lessons={[]} />,
     );
 
     const user = userEvent.setup();
@@ -59,8 +77,8 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockUnit}
-          lessonsAvailable={true}
+          unitSlug={mockUnitKS4.slug}
+          lessons={lessons}
         />,
       );
 
@@ -72,9 +90,23 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockOptionalityUnit}
-          lessonsAvailable={false}
           unitOptionsAvailable={true}
+          unitSlug={mockOptionalityUnit.slug}
+          lessons={[]}
+        />,
+      );
+
+      expect(queryByTestId("unit-lessons-button")).not.toBeInTheDocument();
+    });
+
+    test("should not render the unit info button when passed no programme slug", () => {
+      const { queryByTestId } = renderWithTheme(
+        <UnitsTabSidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitOptionsAvailable={true}
+          unitSlug={mockOptionalityUnit.slug}
+          lessons={[]}
         />,
       );
 
@@ -88,9 +120,9 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockOptionalityUnit}
-          lessonsAvailable={false}
           unitOptionsAvailable={false}
+          unitSlug={mockOptionalityUnit.slug}
+          lessons={[]}
         />,
       );
 
@@ -103,9 +135,9 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockOptionalityUnit}
-          lessonsAvailable={true}
           unitOptionsAvailable={false}
+          unitSlug={mockUnitKS4.slug}
+          lessons={lessons}
         />,
       );
 
@@ -118,10 +150,10 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockUnit}
-          lessonsAvailable={true}
           unitOptionsAvailable={false}
-          examboardSlug={"aqa"}
+          unitSlug={mockUnitKS4.slug}
+          programmeSlug={"maths-primary-ks1"}
+          lessons={lessons}
         />,
       );
 
@@ -139,10 +171,10 @@ describe("Sidebar component", () => {
         <UnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitData={mockUnitKS4}
-          lessonsAvailable={true}
           unitOptionsAvailable={false}
-          examboardSlug={"aqa"}
+          programmeSlug={"maths-secondary-ks4-aqa"}
+          unitSlug={mockUnitKS4.slug}
+          lessons={lessons}
         />,
       );
 
