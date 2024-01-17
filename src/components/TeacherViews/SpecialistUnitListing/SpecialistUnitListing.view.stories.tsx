@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from "./SpecialistUnitListing.view";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import MenuDecorator from "@/storybook-decorators/MenuDecorator";
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, MenuDecorator],
   component: Component,
 };
 

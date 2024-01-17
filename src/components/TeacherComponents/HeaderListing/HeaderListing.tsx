@@ -9,6 +9,7 @@ import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -55,6 +56,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
+  const specialistDownloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=${subjectSlug}&extension=pdf`;
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -83,7 +85,12 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 programmeFactor
               )}
             </Span>
-            <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
+            <Heading
+              $mb={24}
+              tag={"h1"}
+              $font={["heading-5", "heading-3"]}
+              $wordWrap={"normal"}
+            >
               {title}
             </Heading>
             <Flex $display={["none", "flex"]}>
@@ -94,6 +101,18 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   subjectSlug={subjectSlug}
                   subjectTitle={subjectTitle}
                   tier={tierSlug}
+                />
+              )}
+              {hasCurriculumDownload && !isKeyStagesAvailable && (
+                <ButtonAsLink
+                  icon={"download"}
+                  iconBackground="black"
+                  label={"Curriculum download (PDF)"}
+                  href={specialistDownloadLink}
+                  page={null}
+                  size="large"
+                  variant="minimal"
+                  $iconPosition={"trailing"}
                 />
               )}
             </Flex>
@@ -108,6 +127,18 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             subjectSlug={subjectSlug}
             subjectTitle={subjectTitle}
             tier={tierSlug}
+          />
+        )}
+        {hasCurriculumDownload && !isKeyStagesAvailable && (
+          <ButtonAsLink
+            icon={"download"}
+            iconBackground="black"
+            label={"Curriculum download (PDF)"}
+            href={specialistDownloadLink}
+            page={null}
+            size="large"
+            variant="minimal"
+            $iconPosition={"trailing"}
           />
         )}
       </Flex>

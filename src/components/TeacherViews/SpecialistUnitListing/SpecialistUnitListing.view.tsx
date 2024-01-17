@@ -13,6 +13,7 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
+import MobileFilters from "@/components/MobileFilters";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -169,7 +170,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
-              {/* {themes.length > 1 && (
+              {themes.length > 1 && (
                 <MobileFilters
                   providedId={learningThemesId}
                   label="Threads"
@@ -186,7 +187,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     }}
                   />
                 </MobileFilters>
-              )} */}
+              )}
             </Flex>
             <UnitList
               {...curriculumData}
