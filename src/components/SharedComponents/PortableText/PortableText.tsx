@@ -14,7 +14,7 @@ import { PTActionTrigger } from "./PTActionTrigger";
 import errorReporter from "@/common-lib/error-reporter";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { LI, OL, P, Span } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -86,9 +86,9 @@ export const PTInternalLink: PortableTextMarkComponent<{
   href = getProxiedSanityAssetUrl(href);
 
   return (
-    <OakLink href={href} page={null} $isInline>
+    <OwaLink href={href} page={null} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 
@@ -103,9 +103,9 @@ export const PTExternalLink: PortableTextMarkComponent<{
   const { href } = props.value;
 
   return (
-    <OakLink href={href} page={null} $isInline>
+    <OwaLink href={href} page={null} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 
@@ -118,9 +118,9 @@ export const PTAnchorLink: PortableTextMarkComponent<{
   }
 
   return (
-    <OakLink page={null} href={`#${props.value.anchor}`} $isInline>
+    <OwaLink page={null} href={`#${props.value.anchor}`} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 

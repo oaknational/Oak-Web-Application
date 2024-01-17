@@ -3,9 +3,9 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import {
-  OakLinkProps,
-  transformOakLinkProps,
-} from "@/components/SharedComponents/OakLink";
+  OwaLinkProps,
+  transformOwaLinkProps,
+} from "@/components/SharedComponents/OwaLink";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import { DROP_SHADOW } from "@/styles/utils/dropShadow";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
@@ -38,7 +38,7 @@ export type CardLinkProps = {
   children: ReactNode;
   $hideDefaultFocus?: boolean;
   $hoverStyles?: HoverStyles;
-} & OakLinkProps;
+} & OwaLinkProps;
 
 type StyleProps = {
   $hoverStyles: HoverStyles;
@@ -92,7 +92,7 @@ const StyledNextLink = styled.a<StyleProps>`
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
   ({ $hideDefaultFocus, $hoverStyles = [], ...props }, ref) => {
-    const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
+    const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
 
     return (
       <Link {...nextLinkProps} passHref legacyBehavior>

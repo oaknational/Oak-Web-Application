@@ -11,7 +11,7 @@ import PostList, {
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
@@ -72,10 +72,10 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                   </Heading>
                   <Flex $flexDirection={"row"}>
                     <Typography $mr={16} $font="heading-7">
-                      <OakLink page={"webinar-index"}>All webinars</OakLink>
+                      <OwaLink page={"webinar-index"}>All webinars</OwaLink>
                     </Typography>
                     <Typography $font="heading-7">
-                      <OakLink page={"blog-index"}>All blogs</OakLink>
+                      <OwaLink page={"blog-index"}>All blogs</OwaLink>
                     </Typography>
                   </Flex>
                 </Flex>

@@ -91,7 +91,7 @@ export const ActiveLinkUnderline = styled(Svg)`
   }
 `;
 
-export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
+export type OwaLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
   StyleProps & {
     children: ReactNode;
     disabled?: boolean;
@@ -114,17 +114,17 @@ export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
       }
     | ResolveOakHrefProps
   );
-export type OakLinkPropsWithoutChildren = OmitKeepDiscriminated<
-  OakLinkProps,
+export type OwaLinkPropsWithoutChildren = OmitKeepDiscriminated<
+  OwaLinkProps,
   "children"
 >;
 
-export const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
+export const getOwaLinkHref = (props: OwaLinkPropsWithoutChildren) => {
   const href = "href" in props ? props.href : resolveOakHref(props);
   return href;
 };
 
-export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
+export const transformOwaLinkProps = <T extends OwaLinkPropsWithoutChildren>(
   props: T,
 ) => {
   const {
@@ -137,7 +137,7 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
     role,
     ...linkProps
   } = props;
-  const href = getOakLinkHref(props);
+  const href = getOwaLinkHref(props);
 
   const isExternal = isExternalHref(href);
   const target = isExternal ? "_blank" : undefined;
@@ -178,8 +178,8 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
  * @todo currently this allows href as any string, do we want to further
  * restrict it?
  */
-const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
-  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
+const OwaLink = forwardRef<HTMLAnchorElement, OwaLinkProps>((props, ref) => {
+  const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
   return (
     <Link {...nextLinkProps} legacyBehavior passHref>
       <StyledNextLink ref={ref} {...transformedProps}>
@@ -197,4 +197,4 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   );
 });
 
-export default OakLink;
+export default OwaLink;

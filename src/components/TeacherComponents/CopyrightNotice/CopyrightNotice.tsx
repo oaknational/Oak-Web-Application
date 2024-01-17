@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import P from "@/components/SharedComponents/Typography/P";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
 import Icon from "@/components/SharedComponents/Icon";
@@ -28,7 +28,7 @@ const PreAlbCopyright = (
   <P $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
-    <OakLink
+    <OwaLink
       page={"legal"}
       legalSlug="terms-and-conditions"
       $isInline
@@ -41,7 +41,7 @@ const PreAlbCopyright = (
     >
       terms &amp; conditions{" "}
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>{" "}
+    </OwaLink>{" "}
     (Collection 1), except where otherwise stated.
   </P>
 );
@@ -69,7 +69,7 @@ const PostAlbCopyright = (
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </StyledLink>{" "}
     except where otherwise stated. See{" "}
-    <OakLink
+    <OwaLink
       page={"legal"}
       legalSlug="terms-and-conditions"
       $isInline
@@ -82,7 +82,7 @@ const PostAlbCopyright = (
     >
       Oak's terms & conditions
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>{" "}
+    </OwaLink>{" "}
     (Collection 2).
   </P>
 );

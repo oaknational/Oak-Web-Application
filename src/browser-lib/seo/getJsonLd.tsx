@@ -15,7 +15,7 @@ import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/Bl
 import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
 import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
-import { getOakLinkHref } from "../../components/SharedComponents/OakLink/OakLink";
+import { getOwaLinkHref } from "../../components/SharedComponents/OwaLink/OwaLink";
 import getBrowserConfig from "../getBrowserConfig";
 
 const courseProvider = {
@@ -59,7 +59,7 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
   const breadcrumbsForJsonLd = props.itemListElements.map((i, index) => ({
     position: index + 1,
     name: i.label,
-    item: getOakLinkHref(i.oakLinkProps),
+    item: getOwaLinkHref(i.oakLinkProps),
   }));
 
   return BreadcrumbsJsonLdNextSeo({

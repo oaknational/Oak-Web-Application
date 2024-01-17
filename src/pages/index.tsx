@@ -7,7 +7,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
@@ -147,10 +147,10 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             </Heading>
             <Flex $flexDirection={"row"}>
               <Typography $mr={16} $font="heading-7">
-                <OakLink page={"webinar-index"}>All webinars</OakLink>
+                <OwaLink page={"webinar-index"}>All webinars</OwaLink>
               </Typography>
               <Typography $font="heading-7">
-                <OakLink page={"blog-index"}>All blogs</OakLink>
+                <OwaLink page={"blog-index"}>All blogs</OwaLink>
               </Typography>
             </Flex>
           </Flex>

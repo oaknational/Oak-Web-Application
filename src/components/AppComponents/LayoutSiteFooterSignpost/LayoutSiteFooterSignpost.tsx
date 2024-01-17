@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
@@ -15,9 +15,9 @@ const LayoutSiteFooterSignpost: FC = () => {
         testing. To contact us with questions or feedback use our feedback tool
         at the bottom right corner of the screen (look for the question mark) or
         email{" "}
-        <OakLink $isInline page={null} href={"mailto:help@thenational.academy"}>
+        <OwaLink $isInline page={null} href={"mailto:help@thenational.academy"}>
           help@thenational.academy
-        </OakLink>
+        </OwaLink>
       </P>
     </Box>
   );

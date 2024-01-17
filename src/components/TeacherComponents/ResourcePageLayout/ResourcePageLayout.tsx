@@ -26,7 +26,7 @@ import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex";
 import Input from "@/components/SharedComponents/Input";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 
 /** Generic layout component for Downloads and Share page */
@@ -159,7 +159,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                           Join over 100k teachers and get free resources and
                           other helpful content by email. Unsubscribe at any
                           time. Read our{" "}
-                          <OakLink
+                          <OwaLink
                             page="legal"
                             legalSlug="privacy-policy"
                             $isInline
@@ -176,7 +176,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                               size={20}
                               data-testid="external-link-icon"
                             />
-                          </OakLink>
+                          </OwaLink>
                           .
                         </P>
                         <Controller

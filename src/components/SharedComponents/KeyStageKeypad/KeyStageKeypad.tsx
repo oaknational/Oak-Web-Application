@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -25,7 +25,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
   const backgroundColour = isCurrent ? "black" : "white";
 
   return (
-    <OakLink
+    <OwaLink
       $background={backgroundColour}
       $position={"relative"}
       $justifyContent={"center"}
@@ -47,7 +47,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
     >
       <P $font={"heading-7"}>{shortCode}</P>
       <BrushBorders color={backgroundColour} />
-    </OakLink>
+    </OwaLink>
   );
 };
 

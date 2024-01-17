@@ -8,7 +8,7 @@ import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 
 type PostHeaderProps = {
@@ -23,9 +23,9 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
     <>
       <Flex $justifyContent="space-between" $flexDirection={["column", "row"]}>
         <Heading tag={"h2"} $color="navy" $font={["heading-7"]}>
-          <OakLink page={page} categorySlug={post.category.slug}>
+          <OwaLink page={page} categorySlug={post.category.slug}>
             {post.category.title}
-          </OakLink>
+          </OwaLink>
         </Heading>
         <Span $font={"body-3"} $mt={[8, 0]}>
           {formattedDate}

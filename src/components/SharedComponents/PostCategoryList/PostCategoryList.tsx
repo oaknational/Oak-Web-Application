@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import CategoryFilterList from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import {
@@ -43,7 +43,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         ]}
       />
       <Flex $mt={32} $height={30} $font={"heading-7"}>
-        <OakLink
+        <OwaLink
           $display="flex"
           $width={"auto"}
           $height="100%"
@@ -58,7 +58,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
             $background={"blue"}
             name="arrow-right"
           />
-        </OakLink>
+        </OwaLink>
       </Flex>
     </Box>
   );

@@ -4,7 +4,7 @@ import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
@@ -25,11 +25,11 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
         $width={"100%"}
         $justifyContent={"space-between"}
       >
-        <OakLink page={"home"}>
+        <OwaLink page={"home"}>
           <Logo variant="with text" height={48} width={104} />
-        </OakLink>
+        </OwaLink>
         {props.headerCta?.linkType && (
-          <OakLink page={null} href={getLinkHref(props.headerCta)}>
+          <OwaLink page={null} href={getLinkHref(props.headerCta)}>
             <Flex
               $width={[200, "100%"]}
               $justifyContent={"flex-end"}
@@ -48,7 +48,7 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
                 size={28}
               />
             </Flex>
-          </OakLink>
+          </OwaLink>
         )}
       </Flex>
     </LayoutFixedHeader>

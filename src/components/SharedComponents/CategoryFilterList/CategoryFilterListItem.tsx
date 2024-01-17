@@ -1,4 +1,4 @@
-import OakLink from "@/components/SharedComponents/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
@@ -66,7 +66,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
       $alignItems="center"
       $mb={12}
     >
-      <OakLink
+      <OwaLink
         $display="flex"
         $height="100%"
         $alignItems="center"
@@ -102,7 +102,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         >
           {label}
         </Flex>
-      </OakLink>
+      </OwaLink>
     </LI>
   );
 };
