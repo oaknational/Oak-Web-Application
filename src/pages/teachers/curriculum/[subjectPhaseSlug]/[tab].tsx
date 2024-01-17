@@ -12,7 +12,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
 import UnitsTab from "@/components/CurriculumComponents/UnitsTab";
-import AppLayout from "@/components/AppLayout/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import curriculumApi, {
   CurriculumUnitsTabData,

@@ -13,7 +13,7 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -25,7 +25,7 @@ import Box from "@/components/SharedComponents/Box";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
-import TabularNav from "@/components/TabularNav";
+import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

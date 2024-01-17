@@ -10,7 +10,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
@@ -33,7 +33,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -41,7 +41,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
     default: () => {
@@ -51,7 +51,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },

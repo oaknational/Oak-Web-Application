@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";

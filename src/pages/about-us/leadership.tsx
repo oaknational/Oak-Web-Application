@@ -9,7 +9,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "@/common-lib/cms-types";
 import getPageProps from "@/node-lib/getPageProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import { Heading } from "@/components/SharedComponents/Typography";
 
 export type AboutPageProps = {

@@ -6,30 +6,30 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
-import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
-import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
+import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import useDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck";
+import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   DownloadResourceType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
-import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
+import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
+import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
-} from "@/components/TeacherComponents/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
-import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
-import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
+import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
-import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
+import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 type LessonDownloadsProps =
   | {
