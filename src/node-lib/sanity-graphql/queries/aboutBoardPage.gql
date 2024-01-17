@@ -31,5 +31,6 @@ query aboutBoardPage($isDraftFilter: Sanity_DocumentFilter) {
     seo {
       ...Seo
     }
+    boardHeader
   }
 }

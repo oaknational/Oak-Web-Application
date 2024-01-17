@@ -8,7 +8,6 @@ const searchResultsData = searchResultsItem()[0];
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Foundations/SearchDropdown",
   argTypes: {},
 };
 

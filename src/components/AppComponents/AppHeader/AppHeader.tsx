@@ -2,11 +2,11 @@ import { FC, useRef } from "react";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
-import { ActiveLinkUnderline } from "@/components/OakLink/OakLink";
+import { ActiveLinkUnderline } from "@/components/SharedComponents/OwaLink/OwaLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -41,26 +41,26 @@ const AppHeader: FC<HeaderProps> = () => {
         $alignItems={"center"}
       >
         <Flex $justifyContent={"center"} $alignItems={"center"}>
-          <OakLink page={"home"}>
+          <OwaLink page={"home"}>
             <Box $display={["block", "none"]}>
               <Logo height={48} width={31} variant="without text" />
             </Box>
             <Box $display={["none", "block"]}>
               <Logo variant="with text" height={48} width={104} />
             </Box>
-          </OakLink>
+          </OwaLink>
         </Flex>
         <Flex $alignItems={"center"} $gap={24} $font="heading-7">
-          <OakLink
+          <OwaLink
             page={"home"}
             $focusStyles={["underline"]}
             $isSelected={true}
           >
             Teachers
             <ActiveLinkUnderline name="horizontal-rule" />
-          </OakLink>
+          </OwaLink>
           <Flex $alignItems="center" $gap={4}>
-            <OakLink
+            <OwaLink
               page="classroom"
               $focusStyles={["underline"]}
               htmlAnchorProps={{
@@ -70,7 +70,7 @@ const AppHeader: FC<HeaderProps> = () => {
               }}
             >
               Pupils
-            </OakLink>
+            </OwaLink>
             <Icon name="external" />
           </Flex>
           <IconButton

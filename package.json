@@ -53,6 +53,7 @@
     "remove-local-components": "yalc remove @oak-academy/oak-components && $npm_execpath install @oak-academy/oak-components"
   },
   "overrides": {
+    "@testing-library/dom": "^9.3.1",
     "puppeteer": "$puppeteer",
     "react": "$react",
     "react-dom": "$react-dom",

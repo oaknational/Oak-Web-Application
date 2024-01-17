@@ -30,7 +30,7 @@ describe("downloadZip", () => {
   });
 
   test("it handles rejection by returning error message", async () => {
-    jest
+    vi
       .spyOn(global, "fetch")
       .mockImplementationOnce((() =>
         Promise.resolve(rejectResponse)) as jest.Mock);

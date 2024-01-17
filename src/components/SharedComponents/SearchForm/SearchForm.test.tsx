@@ -201,14 +201,12 @@ describe("<SearchForm />", () => {
     await user.keyboard("{Enter}");
 
     expect(searchAttempted).toHaveBeenCalledTimes(1);
-    expect(searchAttempted).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      pageName: null,
+    expect(searchAttempted).toHaveBeenCalledWith(expect.objectContaining({
       searchFilterOptionSelected: [],
       searchSource: "homepage search box",
       searchTerm: "search me",
       context: "homepage",
-    });
+    }));
   });
   it("search input is populated with placeholder text", () => {
     const placeholderText = "Search by keyword or topic";

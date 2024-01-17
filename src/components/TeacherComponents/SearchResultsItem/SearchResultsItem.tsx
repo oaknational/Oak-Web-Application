@@ -3,7 +3,7 @@ import { FC } from "react";
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
@@ -119,7 +119,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         {isPathwaySearchHit ? (
           <SearchDropdown {...props} />
         ) : (
-          <OakLink
+          <OwaLink
             aria-label={`${subjectTitle} ${type}: ${title}`}
             {...buttonLinkProps}
             onClick={() => {
@@ -135,7 +135,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
               </Span>
               <Icon $ml={4} name={"arrow-right"} />
             </Flex>
-          </OakLink>
+          </OwaLink>
         )}
       </Flex>
     </Flex>

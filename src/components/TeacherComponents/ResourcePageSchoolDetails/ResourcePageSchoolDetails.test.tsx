@@ -6,7 +6,7 @@ import ResourcePageSchoolDetails from "./ResourcePageSchoolDetails";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
-import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
+import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 
 const setSchool = vi.fn();
 const props = {

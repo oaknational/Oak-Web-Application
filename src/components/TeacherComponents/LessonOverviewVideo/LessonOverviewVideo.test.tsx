@@ -7,7 +7,7 @@ import {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-vi.mock("@/components/VideoPlayer/VideoPlayer", () => ({
+vi.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
   __esModule: true,
   default: () => <video data-testid="video-element" />,
 }));

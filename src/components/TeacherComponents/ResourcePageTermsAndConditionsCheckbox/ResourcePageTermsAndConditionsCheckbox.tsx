@@ -3,7 +3,7 @@ import { FC } from "react";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Box from "@/components/SharedComponents/Box";
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
 export type ResourcePageTermsAndConditionsCheckboxProps = CheckboxProps & {

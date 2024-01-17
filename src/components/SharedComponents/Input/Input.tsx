@@ -17,7 +17,7 @@ import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import Svg from "@/components/SharedComponents/Svg";
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import { Span } from "@/components/SharedComponents/Typography";
 import Label from "@/components/SharedComponents/Typography/Label";
 

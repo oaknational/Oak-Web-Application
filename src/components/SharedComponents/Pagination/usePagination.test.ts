@@ -1,10 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
+import mockRouter from "next-router-mock";
 
 import usePagination from "./usePagination";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 // Default test values
 const pathname = "/blogs";
@@ -13,14 +11,12 @@ const pageSize = 10;
 const items = Array(30);
 
 describe("usePagination()", () => {
-  vi.mock("next/dist/client/router", () => require("next-router-mock"));
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   test("calculates correct totalPages", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
+    mockRouter.setCurrentUrl(pathname);
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -29,7 +25,7 @@ describe("usePagination()", () => {
     expect(result.current.totalPages).toBe(5);
   });
   test("defaults to page 1", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
+    mockRouter.setCurrentUrl(pathname);
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -38,19 +34,19 @@ describe("usePagination()", () => {
     expect(result.current.currentPage).toBe(1);
   });
   test("correct hrefs on first page", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
+    mockRouter.setCurrentUrl(pathname + "?page=1");
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
 
     expect(result.current).toMatchObject({
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: { pathname: mockRouter.asPath },
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("correct hrefs on last page", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 5 } });
+    mockRouter.setCurrentUrl(pathname + "?page=5");
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -58,11 +54,11 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       prevPageUrlObject: { pathname, query: { page: "4" } },
-      nextPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
   test("if page < 1, default to page=1 ", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: -5 } });
+    mockRouter.setCurrentUrl(pathname + "?page=-5");
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -70,12 +66,12 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       currentPage: 1,
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: { pathname: mockRouter.asPath },
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("if page > totalPages, default to page=1 ", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 500 } });
+    mockRouter.setCurrentUrl(pathname + "?page=500");
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -84,14 +80,11 @@ describe("usePagination()", () => {
     expect(result.current).toMatchObject({
       currentPage: 5,
       prevPageUrlObject: { pathname, query: { page: "4" } },
-      nextPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
   test("works if current route has dynamic slug in pathname", () => {
-    useRouter.mockReturnValueOnce({
-      pathname: "/blog/[categorySlug]",
-      query: { categorySlug: "updates", page: 1 },
-    });
+    mockRouter.setCurrentUrl("/blog/updates?page=1");
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -102,14 +95,14 @@ describe("usePagination()", () => {
       totalPages: 5,
       totalResults: 41,
       nextPageUrlObject: {
-        pathname: "/blog/[categorySlug]",
-        query: { categorySlug: "updates", page: "2" },
+        pathname: "/blog/updates",
+        query: { page: "2" },
       },
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
   test("it returns the correct number of currentPageItems", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
+    mockRouter.setCurrentUrl(pathname + "?page=1");
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -120,7 +113,7 @@ describe("usePagination()", () => {
     });
   });
   test("returns firstItemRef with a valid ref", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
+    mockRouter.setCurrentUrl(pathname);
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );

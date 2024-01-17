@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";
@@ -71,7 +71,7 @@ const SubjectListingCardDoubleCountCard: FC<
           size={"small"}
         />
       )}
-      <OakLink
+      <OwaLink
         {...oakLinkProps}
         aria-label={ariaLabel}
         $hideDefaultFocus
@@ -93,7 +93,7 @@ const SubjectListingCardDoubleCountCard: FC<
             lessonCount > 1 ? "lessons" : "lesson"
           }`}</Span>
         </Flex>
-      </OakLink>
+      </OwaLink>
     </SubjectListingTextTile>
   );
 };

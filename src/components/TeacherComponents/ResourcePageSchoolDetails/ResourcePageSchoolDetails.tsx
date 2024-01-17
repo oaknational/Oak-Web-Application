@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
 
 import Flex from "@/components/SharedComponents/Flex";
-import SchoolPicker from "@/components/SchoolPicker";
-import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
+import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
+import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 
 export type ResourcePageSchoolDetailsProps = {
@@ -73,7 +73,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
   };
   return (
     <>
-      <SchoolPicker
+      <ResourcePageSchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}

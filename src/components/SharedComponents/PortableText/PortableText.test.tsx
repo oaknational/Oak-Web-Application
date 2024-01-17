@@ -1,5 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
 
 import {
   PTAnchorLink,
@@ -17,6 +18,7 @@ import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProv
 
 const consoleWarnSpy = vi.spyOn(console, "warn");
 
+
 vi.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
 
 const reportError = vi.fn();
@@ -30,6 +32,7 @@ vi.mock("@/common-lib/error-reporter", () => ({
 
 describe("PortableText", () => {
   beforeEach(() => {
+    mockRouter.setCurrentUrl("/some-page");
     vi.resetAllMocks();
     vi.clearAllMocks();
 
@@ -189,7 +192,7 @@ describe("PortableText", () => {
 
       const link = getByRole("link");
       expect(link).toHaveAccessibleName("An anchor link");
-      expect(link).toHaveAttribute("href", "#a-section-of-the-page");
+      expect(link).toHaveAttribute("href", "/some-page#a-section-of-the-page");
     });
 
     it("renders nothing when not passed an anchor", async () => {

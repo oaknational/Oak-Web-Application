@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 
-import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
-import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
