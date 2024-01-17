@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const fields = getServerSideSitemapFields(
     context,
     sitemapBaseUrl,
-    "/key-stages/",
+    "/teachers/key-stages/",
     keystageSlugs,
   );
 
