@@ -6,7 +6,7 @@ import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { ToggleStyleConfig } from "@/components/ArchivedComponents/Toggle/Toggle";
-import { VideoStyleConfig } from "@/components/VideoPlayer/VideoPlayer";
+import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
 /**

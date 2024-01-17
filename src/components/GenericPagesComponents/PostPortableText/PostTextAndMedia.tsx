@@ -8,7 +8,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/SharedComponents/Typography";
-import VideoPlayer from "@/components/VideoPlayer";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 // When we get the JSON portable text it doesn't have the same field names as

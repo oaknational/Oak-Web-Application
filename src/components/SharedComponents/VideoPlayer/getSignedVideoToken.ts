@@ -1,7 +1,8 @@
-import OakError from "../../errors/OakError";
-import errorReporter from "../../common-lib/error-reporter";
-
 import { PlaybackPolicy } from "./useSignedVideoToken";
+
+import OakError from "@/errors/OakError";
+import errorReporter from "@/common-lib/error-reporter";
+
 const reportError = errorReporter("useSignedPlaybackId");
 
 const getSignedVideoToken = async (

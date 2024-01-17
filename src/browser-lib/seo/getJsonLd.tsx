@@ -13,7 +13,7 @@ import {
 import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/BlogIndex.view";
 import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
-import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
 import { getOakLinkHref } from "../../components/OakLink/OakLink";
 import getBrowserConfig from "../getBrowserConfig";

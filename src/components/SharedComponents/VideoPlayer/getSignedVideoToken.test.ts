@@ -1,11 +1,12 @@
-import OakError from "../../errors/OakError";
-
 import getSignedVideoToken from "./getSignedVideoToken";
+
+import OakError from "@/errors/OakError";
+
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
 const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>

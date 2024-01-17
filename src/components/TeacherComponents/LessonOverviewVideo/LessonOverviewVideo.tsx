@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
-import VideoPlayer from "@/components/VideoPlayer";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { P } from "@/components/SharedComponents/Typography";
 import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
 import Flex from "@/components/SharedComponents/Flex";

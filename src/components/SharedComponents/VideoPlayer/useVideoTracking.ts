@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
-import errorReporter from "../../common-lib/error-reporter";
-import useAnalytics from "../../context/Analytics/useAnalytics";
+import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
+import errorReporter from "@/common-lib/error-reporter";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 const reportError = errorReporter("useVideoTracking");
 
