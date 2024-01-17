@@ -1,4 +1,7 @@
-import { UnitListingLinkProps } from "../../../common-lib/urls";
+import {
+  UnitListingLinkProps,
+  SpecialistUnitListingLinkProps,
+} from "../../../common-lib/urls";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
@@ -20,8 +23,8 @@ export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: LearningTheme[] | null;
-  linkProps: UnitListingLinkProps;
-  trackingProps: LearningThemeSelectedTrackingProps;
+  linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
+  trackingProps?: LearningThemeSelectedTrackingProps;
 };
 const LearningThemeFilters = ({
   labelledBy,
@@ -32,7 +35,9 @@ const LearningThemeFilters = ({
 }: LearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
-    getKey: (linkProps: UnitListingLinkProps) => {
+    getKey: (
+      linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps,
+    ) => {
       if (linkProps.search?.["learning-theme"]) {
         return linkProps.search?.["learning-theme"];
       } else return "all";

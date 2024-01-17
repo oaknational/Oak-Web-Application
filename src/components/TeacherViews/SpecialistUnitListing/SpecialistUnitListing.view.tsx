@@ -1,5 +1,6 @@
 import { FC, useId } from "react";
 import { useTheme } from "styled-components";
+import { useRouter } from "next/router";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -11,6 +12,7 @@ import { Heading, P } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
+import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -67,6 +69,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   } = curriculumData;
 
   const themeId = useId();
+  const learningThemesId = useId();
+
+  const router = useRouter();
+  const themeSlug = router.query["learning-theme"]?.toString();
 
   const theme = useTheme();
 
@@ -77,9 +83,6 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
     pageSize: RESULTS_PER_PAGE,
     items: units, //unitsFilteredByLearningTheme,
   });
-
-  /**
-   */
 
   const { currentPageItems } = paginationProps;
 
@@ -103,18 +106,16 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
         subjectIconBackgroundColor="lavender"
-        keyStageSlug="ks1"
-        keyStageTitle="KS1"
         title={"Communication and language"}
         programmeFactor="Communication and language"
       />
 
       <MaxWidth $ph={16}>
-        <Grid>
+        <Grid data-testid="specialist-unit-grid">
           <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
             <Box
               $display={["none", "block"]}
-              $position={["sticky"]}
+              $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
               $mt={[0, 32]}
               $pt={[48]}
@@ -124,6 +125,15 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <P id={themeId} $color={"black"} $font="body-3" $mb={16}>
                     Filter by thread
                   </P>
+                  <LearningThemeFilters
+                    labelledBy={learningThemesId}
+                    learningThemes={themes}
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                    linkProps={{
+                      page: "specialist-unit-index",
+                      programmeSlug: subjectSlug,
+                    }}
+                  />
                 </Flex>
               )}
             </Box>
@@ -140,7 +150,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 </Heading>
               </Flex>
               {developmentalStage.length > 0 && (
-                <nav aria-label="tiers" data-testid="tiers-nav">
+                <nav aria-label="tiers" data-testid="developmental-nav">
                   <TabularNav
                     $mb={[10, 24]}
                     label="tiers"
@@ -159,6 +169,24 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
+              {/* {themes.length > 1 && (
+                <MobileFilters
+                  providedId={learningThemesId}
+                  label="Threads"
+                  $mt={0}
+                  $mb={[16, 0]}
+                >
+                  <LearningThemeFilters
+                    labelledBy={learningThemesId}
+                    learningThemes={themes}
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                    linkProps={{
+                      page: "specialist-unit-index",
+                      programmeSlug: subjectSlug,
+                    }}
+                  />
+                </MobileFilters>
+              )} */}
             </Flex>
             <UnitList
               {...curriculumData}

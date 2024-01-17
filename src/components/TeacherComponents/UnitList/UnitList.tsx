@@ -53,7 +53,10 @@ const UnitList: FC<UnitListProps> = (props) => {
         <>
           <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
-              <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
+              <LI
+                key={`UnitList-UnitListItem-${item[0]?.slug}`}
+                data-testid="unit-list-item"
+              >
                 {item.length > 1 && isUnitOption(item) ? (
                   <>
                     <UnitListOptionalityCard

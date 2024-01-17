@@ -22,8 +22,8 @@ export type HeaderListingProps = {
   subjectSlug: string;
   subjectIconBackgroundColor: OakColorName;
   year?: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
+  keyStageSlug?: string;
+  keyStageTitle?: string;
   tierSlug?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
@@ -53,6 +53,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
   } = props;
+
+  const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -85,7 +87,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               {title}
             </Heading>
             <Flex $display={["none", "flex"]}>
-              {hasCurriculumDownload && (
+              {hasCurriculumDownload && isKeyStagesAvailable && (
                 <HeaderListingCurriculumDownloadButton
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={keyStageTitle}
@@ -99,7 +101,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
         </Flex>
       </Flex>
       <Flex $background={background} $display={["inline", "none"]}>
-        {hasCurriculumDownload && (
+        {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}

@@ -96,7 +96,11 @@ export type UnitListingLinkProps = {
     ["learning-theme"]?: string | null;
   };
 };
-type SpecialistUnitListingLinkProps = Omit<UnitListingLinkProps, "page"> & {
+
+export type SpecialistUnitListingLinkProps = Omit<
+  UnitListingLinkProps,
+  "page"
+> & {
   page: "specialist-unit-index";
 };
 export type KeyStageSubjectProgrammesLinkProps = {
