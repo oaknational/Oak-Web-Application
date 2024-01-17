@@ -1,4 +1,28 @@
-import OakError from "./OakError";
+import OakError, { removeSensitiveValues, ErrorInfo } from "./OakError";
+
+describe("removeSensitiveValues", () => {
+  it("should remove all email addresses from the error metadata", () => {
+    const errorInfo = {
+      code: "misc/unknown",
+      meta: {
+        email: "someone@example.com",
+        nestedProperty: {
+          email: "a_different@email.org",
+        },
+      },
+    } as ErrorInfo;
+    const safeErrorInfo = removeSensitiveValues(errorInfo);
+    expect(safeErrorInfo).toMatchObject({
+      code: "misc/unknown",
+      meta: {
+        email: "[REDACTED]",
+        nestedProperty: {
+          email: "[REDACTED]",
+        },
+      },
+    });
+  });
+});
 
 describe("errors/OakError", () => {
   it("should include a stack trace", () => {

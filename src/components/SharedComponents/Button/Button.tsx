@@ -16,7 +16,7 @@ import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
-} from "@/components/UnstyledButton";
+} from "@/components/SharedComponents/UnstyledButton";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
