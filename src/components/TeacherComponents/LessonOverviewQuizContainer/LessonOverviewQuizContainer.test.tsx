@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import QuizContainerNew from "./QuizContainerNew";
+import LessonOverviewQuizContainer from "./LessonOverviewQuizContainer";
 
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
@@ -30,11 +30,11 @@ const imageAttribution: {
   },
 ];
 
-describe("QuizContainerNew", () => {
+describe("LessonOverviewQuizContainer", () => {
   jest.mock("next/dist/client/router", () => require("next-router-mock"));
   test("should render quizzes", () => {
     renderWithTheme(
-      <QuizContainerNew
+      <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
         imageAttribution={imageAttribution}
       />,
@@ -43,7 +43,7 @@ describe("QuizContainerNew", () => {
   });
   test("should render attribution ", () => {
     renderWithTheme(
-      <QuizContainerNew
+      <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
         imageAttribution={imageAttribution}
       />,

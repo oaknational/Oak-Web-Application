@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { calcDims } from "../../quizUtils";
+import { calcDims } from "../LessonOverviewQuizContainer/quizUtils";
 
 import QuizOakImage from "./QuizOakImage";
 

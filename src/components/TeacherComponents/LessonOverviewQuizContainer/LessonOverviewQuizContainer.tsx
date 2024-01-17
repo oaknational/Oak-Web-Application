@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import QuestionsListNew from "./QuestionsListNew";
-
+import QuizQuestionsList from "@/components/TeacherComponents/QuizQuestionsList";
 import { Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -13,7 +12,7 @@ export type QuizProps = {
   imageAttribution: { attribution: string; questionNumber: string }[];
 };
 
-const QuizContainerNew: FC<QuizProps> = (props) => {
+const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
   return props.questions && props.questions.length > 0 ? (
     <>
       <Flex
@@ -22,7 +21,7 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
         $width={"100%"}
         $position={"relative"}
       >
-        <QuestionsListNew {...props} />
+        <QuizQuestionsList {...props} />
         <BoxBorders />
       </Flex>
       {props.imageAttribution.length > 0 && (
@@ -39,4 +38,4 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
   ) : null;
 };
 
-export default QuizContainerNew;
+export default LessonOverviewQuizContainer;

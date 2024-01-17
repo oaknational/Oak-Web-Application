@@ -1,21 +1,20 @@
 import { FC } from "react";
 
-import { QuestionStem } from "./QuestionStem";
-import { MCAnswers } from "./Answers/MCAnswers";
-import { MatchAnswers } from "./Answers/MatchAnswers";
-import { OrderAnswers } from "./Answers/OrderAnswers";
-import { ShortAnswers } from "./Answers/ShortAnswers";
-
+import { QuestionStem } from "@/components/TeacherComponents/QuestionListItemNew/QuestionStem";
+import { MCAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/MCAnswers";
+import { MatchAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/MatchAnswers";
+import { OrderAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/OrderAnswers";
+import { ShortAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/ShortAnswers";
 import Flex from "@/components/SharedComponents/Flex";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
-export type QuestionListItemProps = {
+export type QuizQuestionsListItemProps = {
   question: NonNullable<LessonOverviewQuizData>[number];
   index: number;
 };
 
-const QuestionListItem: FC<QuestionListItemProps> = (props) => {
+const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
   const { question, index } = props;
   const { questionStem, answers } = question;
 
@@ -56,4 +55,4 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   );
 };
 
-export default QuestionListItem;
+export default QuizQuestionsListItem;

@@ -1,6 +1,6 @@
 import { VisuallyHidden } from "react-aria";
 
-import { removeMarkdown } from "@/components/QuizContainerNew/quizUtils";
+import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";

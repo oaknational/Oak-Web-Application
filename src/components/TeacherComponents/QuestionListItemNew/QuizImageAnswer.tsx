@@ -1,7 +1,10 @@
 import { FC, useState } from "react";
 import { VisuallyHidden } from "react-aria";
 
-import { calcDims, removeMarkdown } from "../../quizUtils";
+import {
+  calcDims,
+  removeMarkdown,
+} from "../LessonOverviewQuizContainer/quizUtils";
 
 import QuizOakImage from "./QuizOakImage";
 

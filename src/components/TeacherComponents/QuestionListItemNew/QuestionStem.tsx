@@ -1,4 +1,7 @@
-import { shortAnswerTitleFormatter, removeMarkdown } from "../../quizUtils";
+import {
+  shortAnswerTitleFormatter,
+  removeMarkdown,
+} from "../LessonOverviewQuizContainer/quizUtils";
 
 import QuizImage from "./QuizImage";
 

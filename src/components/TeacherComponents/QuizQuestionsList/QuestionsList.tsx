@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 
-import { QuizProps } from "../QuizContainerNew";
-
-import QuestionListItem from "./QuestionListItemNew";
-
+import { QuizProps } from "@/components/TeacherComponents/LessonOverviewQuizContainer/LessonOverviewQuizContainer";
+import QuizQuestionsListItem from "@/components/TeacherComponents/QuizQuestionsListItem";
 import { Heading } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex";
@@ -23,7 +21,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
       <Flex $flexDirection={"column"} $gap={56} role="list">
         {questions.map((question, i) => {
           return (
-            <QuestionListItem
+            <QuizQuestionsListItem
               key={`QuestionsList-UL-QuestionListItem-${i}`}
               question={question}
               index={i}
