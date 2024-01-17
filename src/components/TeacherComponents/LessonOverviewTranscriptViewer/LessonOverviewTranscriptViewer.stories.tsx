@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TranscriptViewer, TranscriptViewerProps } from "./TranscriptViewer";
+import {
+  LessonOverviewTranscriptViewer,
+  LessonOverviewTranscriptViewerProps,
+} from "./LessonOverviewTranscriptViewer";
 
 const transcriptSentences = [
   "Hi, I'm Rebecca, your computing teacher for the collaborating online respectfully unit.",
@@ -17,19 +20,19 @@ const transcriptSentences = [
   "Here is an example of a secure password, and notice, you've got a number, either side, and you've got three random words in the middle there.",
 ];
 
-const props: TranscriptViewerProps = {
+const props: LessonOverviewTranscriptViewerProps = {
   transcriptSentences,
 };
 
-const meta: Meta<typeof TranscriptViewer> = {
-  component: TranscriptViewer,
+const meta: Meta<typeof LessonOverviewTranscriptViewer> = {
+  component: LessonOverviewTranscriptViewer,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof TranscriptViewer>;
+type Story = StoryObj<typeof LessonOverviewTranscriptViewer>;
 
 export const Standard: Story = {
-  render: ({ ...args }) => <TranscriptViewer {...args} />,
+  render: ({ ...args }) => <LessonOverviewTranscriptViewer {...args} />,
   args: { ...props },
 };

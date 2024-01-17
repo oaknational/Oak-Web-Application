@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/VideoPlayer";
 import { P } from "@/components/SharedComponents/Typography";
-import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";
+import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
 import Flex from "@/components/SharedComponents/Flex";
 
 export interface LessonOverviewVideoProps {
@@ -107,7 +107,9 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
       {transcriptSentences &&
         transcriptSentences.length > 0 &&
         transcriptOn && (
-          <TranscriptViewer transcriptSentences={transcriptSentences} />
+          <LessonOverviewTranscriptViewer
+            transcriptSentences={transcriptSentences}
+          />
         )}
     </Flex>
   );

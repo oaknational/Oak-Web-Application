@@ -5,13 +5,13 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { P } from "@/components/SharedComponents/Typography";
 
-export interface TranscriptViewerProps {
+export interface LessonOverviewTranscriptViewerProps {
   transcriptSentences: string[] | null;
 }
 
-export const TranscriptViewer: FC<TranscriptViewerProps> = ({
-  transcriptSentences,
-}) => (
+export const LessonOverviewTranscriptViewer: FC<
+  LessonOverviewTranscriptViewerProps
+> = ({ transcriptSentences }) => (
   <Flex $width={"100%"} $justifyContent={"center"}>
     <Box
       role="article"
@@ -44,4 +44,4 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
   </Flex>
 );
 
-export default TranscriptViewer;
+export default LessonOverviewTranscriptViewer;
