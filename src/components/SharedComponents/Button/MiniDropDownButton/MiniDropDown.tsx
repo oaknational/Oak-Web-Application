@@ -10,7 +10,7 @@ import {
 } from "@/components/SharedComponents/Button/common";
 import UnstyledButton, {
   UnstyledButtonProps,
-} from "@/components/UnstyledButton";
+} from "@/components/SharedComponents/UnstyledButton";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
 import { IconName } from "@/components/SharedComponents/Icon";

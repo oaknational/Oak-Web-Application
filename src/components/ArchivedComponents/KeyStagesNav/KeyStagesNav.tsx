@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
@@ -46,9 +46,9 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
             />
             {keyStage.years.map((year: KeyStageYear, index) => (
               <P key={index} $mb={16}>
-                <OakLink page={null} href={year.url}>
+                <OwaLink page={null} href={year.url}>
                   {year.name}
-                </OakLink>
+                </OwaLink>
               </P>
             ))}
           </Flex>

@@ -3,7 +3,7 @@ import { OakFlex, OakImage, OakSpan } from "@oak-academy/oak-components";
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
-} from "@/components/QuizContainerNew/quizUtils";
+} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import {
   StemImageObject,
   StemTextObject,

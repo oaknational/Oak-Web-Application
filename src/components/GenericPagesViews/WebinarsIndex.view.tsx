@@ -5,7 +5,7 @@ import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import { BlogWebinarCategory, WebinarPreview } from "@/common-lib/cms-types";
 import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage";
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
-import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 
