@@ -1,11 +1,13 @@
 import { ReactNode, createContext, useContext, memo, useState } from "react";
 
+import { useStateCallback } from "@/hooks/useStateCallback";
+
 export const lessonSections = [
   "overview",
   "intro",
   "starter-quiz",
-  "exit-quiz",
   "video",
+  "exit-quiz",
   "review",
 ] as const;
 
@@ -46,9 +48,9 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
   const [currentSection, setCurrentSection] =
     useState<LessonSection>("overview");
 
-  const [completedSections, setCompletedSections] = useState<LessonSection[]>(
-    [],
-  );
+  const [completedSections, setCompletedSections] = useStateCallback<
+    LessonSection[]
+  >([]);
 
   const [sectionResults, setSectionResults] = useState<LessonSectionResults>(
     {},
@@ -59,10 +61,20 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
 
   const completeSection = (section: LessonSection) => {
     // concatenate and dedupe the array
-    setCompletedSections((prev) =>
-      [...prev, section].filter(
-        (item, index, array) => array.indexOf(item) === index,
-      ),
+    setCompletedSections(
+      (prev) =>
+        [...prev, section].filter(
+          (item, index, array) => array.indexOf(item) === index,
+        ),
+      (_completedSections) => {
+        if (
+          _completedSections.length ===
+          lessonSections.filter((s) => s !== "overview" && s !== "review")
+            .length
+        ) {
+          setCurrentSection("review");
+        } else setCurrentSection("overview");
+      },
     );
   };
 
@@ -71,14 +83,14 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
   };
 
   const proceedToNextSection = () => {
-    const currentIndex = lessonSections.indexOf(currentSection);
-    const nextIndex = currentIndex + 1;
-    const nextSection = lessonSections[nextIndex];
-    if (!nextSection) {
+    const remainingSections = lessonSections.filter(
+      (s) => !completedSections.includes(s) && s !== "overview",
+    );
+    if (remainingSections.length === 0 || remainingSections[0] === undefined) {
       // if there is no next section, we are at the end of the lesson
       return;
     }
-    setCurrentSection(nextSection);
+    setCurrentSection(remainingSections[0]);
   };
 
   const updateQuizResult = (vals: { grade: number; maxScore: number }) => {

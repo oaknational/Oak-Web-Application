@@ -45,7 +45,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.currentSection).toEqual("intro");
   });
 
-  it("progresses to the next section in order with proceedToNextQuestion", () => {
+  it("progresses to the next uncompleted section in order with proceedToNextQuestion", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: (props) =>
         providerWrapper({
@@ -57,16 +57,15 @@ describe("LessonEngineProvider", () => {
       throw new Error("result.current is null");
     }
 
-    expect(result.current.currentSection).toEqual("overview");
+    act(() => {
+      result.current.completeSection("intro");
+    });
+    expect(result.current.completedSections).toEqual(["intro"]);
 
-    for (const s of lessonSections) {
-      act(() => {
-        const { proceedToNextSection } = result.current;
-        proceedToNextSection();
-      });
-      const nextSection = lessonSections[lessonSections.indexOf(s) + 1] ?? s;
-      expect(result.current.currentSection).toEqual(nextSection);
-    }
+    act(() => {
+      result.current.proceedToNextSection();
+    });
+    expect(result.current.currentSection).toEqual("starter-quiz");
   });
 
   it("tracks completed sections", () => {

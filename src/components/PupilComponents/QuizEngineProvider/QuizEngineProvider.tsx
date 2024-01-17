@@ -56,12 +56,8 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const {
-    updateQuizResult,
-    completeSection,
-    currentSection,
-    updateCurrentSection,
-  } = useLessonEngineContext();
+  const { updateQuizResult, completeSection, currentSection } =
+    useLessonEngineContext();
 
   const filteredQuestions = useMemo(
     () =>
@@ -201,17 +197,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       (index) => {
         if (index === maxScore) {
           completeSection(currentSection);
-          updateCurrentSection("overview");
         }
       },
     );
-  }, [
-    maxScore,
-    setCurrentQuestionIndex,
-    completeSection,
-    currentSection,
-    updateCurrentSection,
-  ]);
+  }, [maxScore, setCurrentQuestionIndex, completeSection, currentSection]);
 
   return (
     <QuizEngineContext.Provider

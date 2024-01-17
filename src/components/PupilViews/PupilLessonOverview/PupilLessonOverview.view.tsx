@@ -3,6 +3,7 @@ import {
   OakFlex,
   OakHeading,
   OakLI,
+  OakPrimaryButton,
   OakSecondaryButton,
   OakUL,
 } from "@oak-academy/oak-components";
@@ -13,8 +14,12 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 
 export const PupilViewsLessonOverview = () => {
-  const { completedSections, sectionResults, updateCurrentSection } =
-    useLessonEngineContext();
+  const {
+    completedSections,
+    sectionResults,
+    updateCurrentSection,
+    proceedToNextSection,
+  } = useLessonEngineContext();
 
   return (
     <OakFlex
@@ -25,33 +30,38 @@ export const PupilViewsLessonOverview = () => {
     >
       <OakHeading tag="h1">Overview</OakHeading>
       <OakUL>
-        {lessonSections.map((s) => (
-          <OakLI
-            key={s}
-            $mv="space-between-ssx"
-            $pa={"inner-padding-s"}
-            $ba="border-solid-s"
-          >
-            <OakFlex
-              $gap={"space-between-ssx"}
-              $justifyContent={"space-between"}
+        {lessonSections
+          .filter((s) => s !== "overview" && s !== "review")
+          .map((s) => (
+            <OakLI
+              key={s}
+              $mv="space-between-ssx"
+              $pa={"inner-padding-s"}
+              $ba="border-solid-s"
             >
-              <OakSecondaryButton
-                onClick={() => {
-                  updateCurrentSection(s);
-                }}
+              <OakFlex
+                $gap={"space-between-ssx"}
+                $justifyContent={"space-between"}
               >
-                {s}
-              </OakSecondaryButton>
-              <OakBox $width={"all-spacing-5"}>
-                {completedSections.includes(s) && "✅"}
-                {sectionResults[s] &&
-                  `${sectionResults[s]?.grade}/${sectionResults[s]?.maxScore}`}
-              </OakBox>
-            </OakFlex>
-          </OakLI>
-        ))}
+                <OakSecondaryButton
+                  onClick={() => {
+                    updateCurrentSection(s);
+                  }}
+                >
+                  {s}
+                </OakSecondaryButton>
+                <OakBox $width={"all-spacing-5"}>
+                  {completedSections.includes(s) && "✅"}
+                  {sectionResults[s] &&
+                    `${sectionResults[s]?.grade}/${sectionResults[s]?.maxScore}`}
+                </OakBox>
+              </OakFlex>
+            </OakLI>
+          ))}
       </OakUL>
+      <OakPrimaryButton onClick={proceedToNextSection}>
+        Proceed to next section
+      </OakPrimaryButton>
     </OakFlex>
   );
 };

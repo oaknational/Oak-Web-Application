@@ -201,34 +201,6 @@ describe("QuizEngineContext", () => {
     );
   });
 
-  it("should update the current section to overview when the quiz is completed", () => {
-    const lessonEngineContext = getLessonEngineContext();
-
-    const { result } = renderHook(() => useQuizEngineContext(), {
-      wrapper: (props) =>
-        wrapper(
-          { ...props, questionsArray: questionsArrayFixture ?? [] },
-          lessonEngineContext,
-        ),
-    });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    const { handleNextQuestion, maxScore } = result.current;
-
-    for (let i = 0; i < maxScore; i++) {
-      act(() => {
-        handleNextQuestion();
-      });
-      expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
-    }
-    expect(lessonEngineContext.updateCurrentSection).toHaveBeenCalledWith(
-      "overview",
-    );
-  });
-
   describe("handleSubmitMCAnswer", () => {
     it("should grade a single answer mcq as correct if the pupilAnswer is correct", () => {
       const { result } = renderHook(() => useQuizEngineContext(), {

@@ -7,7 +7,7 @@ import {
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 export const PupilViewsIntro = () => {
-  const { updateCurrentSection, completeSection } = useLessonEngineContext();
+  const { completeSection } = useLessonEngineContext();
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -22,13 +22,6 @@ export const PupilViewsIntro = () => {
         }}
       >
         Complete Section
-      </OakSecondaryButton>
-      <OakSecondaryButton
-        onClick={() => {
-          updateCurrentSection("overview");
-        }}
-      >
-        Back
       </OakSecondaryButton>
     </OakFlex>
   );
