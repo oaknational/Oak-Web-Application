@@ -15,7 +15,7 @@ import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
-} from "@/components/UnstyledButton";
+} from "@/components/SharedComponents/UnstyledButton";
 import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

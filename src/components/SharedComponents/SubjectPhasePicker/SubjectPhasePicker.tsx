@@ -16,7 +16,7 @@ import {
   Subject,
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
+import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
