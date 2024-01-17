@@ -85,12 +85,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 programmeFactor
               )}
             </Span>
-            <Heading
-              $mb={24}
-              tag={"h1"}
-              $font={["heading-5", "heading-3"]}
-              $wordWrap={"normal"}
-            >
+            <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
               {title}
             </Heading>
             <Flex $display={["none", "flex"]}>

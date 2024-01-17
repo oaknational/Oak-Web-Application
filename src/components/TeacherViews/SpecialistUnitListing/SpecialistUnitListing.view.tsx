@@ -102,13 +102,20 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             },
             label: "Specialist programmes",
           },
+          {
+            oakLinkProps: {
+              page: "specialist-unit-index",
+              programmeSlug: subjectSlug,
+            },
+            label: subjectTitle,
+          },
         ]}
         background={"lavender30"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
         subjectIconBackgroundColor="lavender"
-        title={"Communication and language"}
-        programmeFactor="Communication and language"
+        title={subjectTitle}
+        programmeFactor="Specialist and therapies"
       />
 
       <MaxWidth $ph={16}>
@@ -154,7 +161,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 <nav aria-label="tiers" data-testid="developmental-nav">
                   <TabularNav
                     $mb={[10, 24]}
-                    label="tiers"
+                    label="themes"
                     $flexDirection={["column", "row"]}
                     $alignItems={["flex-start", "center"]}
                     $gap={[12, 0]}
