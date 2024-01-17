@@ -1,10 +1,11 @@
 import { Key, useState } from "react";
 import useSWR from "swr";
 
-import errorReporter from "../../common-lib/error-reporter";
-import OakError from "../../errors/OakError";
+import { School } from "./ResourcePageSchoolPicker";
 
-import { School } from "./SchoolPicker";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
 const reportError = errorReporter("SchoolPicker");
 
 export const fetcher = (queryUrl: string) =>

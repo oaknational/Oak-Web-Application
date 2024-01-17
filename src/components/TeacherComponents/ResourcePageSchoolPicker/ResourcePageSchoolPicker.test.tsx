@@ -2,9 +2,10 @@ import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 import { Key, useState } from "react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import SchoolPicker from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 const schools = [
   {

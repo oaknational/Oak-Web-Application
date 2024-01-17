@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 
-import Component from "./SchoolPicker";
+import Component from "./ResourcePageSchoolPicker";
 
 import Box from "@/components/SharedComponents/Box";
 
@@ -69,15 +69,15 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const SchoolPicker = Template.bind({});
+export const ResourcePageSchoolPicker = Template.bind({});
 
-SchoolPicker.args = {
+ResourcePageSchoolPicker.args = {
   hasError: false,
 };
 
-export const SchoolPickerError = Template.bind({});
+export const ResourcePageSchoolPickerError = Template.bind({});
 
-SchoolPickerError.args = {
+ResourcePageSchoolPickerError.args = {
   hasError: true,
   required: true,
 };

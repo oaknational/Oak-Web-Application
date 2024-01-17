@@ -13,7 +13,7 @@ import {
   StyledInput,
 } from "../SharedComponents/Input/Input";
 import { DropdownFocusUnderline } from "../GenericPagesComponents/Select/Select";
-import { School } from "../SchoolPicker/SchoolPicker";
+import { School } from "../TeacherComponents/ResourcePageSchoolPicker/ResourcePageSchoolPicker";
 
 import { OakColorName } from "@/styles/theme/types";
 import { Span } from "@/components/SharedComponents/Typography";

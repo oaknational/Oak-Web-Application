@@ -1,8 +1,9 @@
 import { act, renderHook } from "@testing-library/react";
 
-import OakError from "../../errors/OakError";
-
 import useSchoolPicker, { fetcher } from "./useSchoolPicker";
+
+import OakError from "@/errors/OakError";
+
 
 const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
   data: null,

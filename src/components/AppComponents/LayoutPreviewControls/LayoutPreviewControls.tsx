@@ -11,7 +11,7 @@ import Flex from "@/components/SharedComponents/Flex";
  * A small toast-like banner in the bottom left corner to inform
  * users they're viewing the site in preview mode
  */
-const PreviewControls: FC = () => {
+const LayoutPreviewControls: FC = () => {
   const router = useRouter();
   const secretParam = router.query.secret;
 
@@ -59,4 +59,4 @@ const PreviewControls: FC = () => {
   );
 };
 
-export default PreviewControls;
+export default LayoutPreviewControls;

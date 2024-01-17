@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { Item } from "react-stately";
 
-import SearchComboBox from "../SearchComboBox/SearchComboBox";
 
 import { formatSchoolName } from "./formatSchoolName";
 import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
-type SchoolPickerProps = Omit<
+import SearchComboBox from "@/components/SearchComboBox/SearchComboBox";
+
+type ResourcePageSchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
   "data" | "error" | "selectedSchool"
 > & {
@@ -35,7 +36,7 @@ export type School = {
  * Used on downloads page
  */
 
-const SchoolPicker: FC<SchoolPickerProps> = (props) => {
+const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
   return (
     <SearchComboBox
       hasError={props.hasError}
@@ -74,4 +75,4 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   );
 };
 
-export default SchoolPicker;
+export default ResourcePageSchoolPicker;
