@@ -3,6 +3,10 @@ import { FC } from "react";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import SubjectProgrammeListItem from "@/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import {
+  SpecialistProgramme,
+  SpecialistProgrammes,
+} from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 
 /**
  * Clickable learning tier card list.
@@ -10,11 +14,18 @@ import Grid, { GridArea } from "@/components/SharedComponents/Grid";
  * ## Usage
  * Used on a key stage 4 learning tier page
  */
-const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
+export type SubjectProgrammeListProps = {
+  onClick: (
+    props:
+      | SubjectProgrammeListProps["programmes"][number]
+      | SpecialistProgramme,
+  ) => void;
+  programmes: ProgrammeListingPageData["programmes"] | SpecialistProgrammes;
+};
+
+const SubjectProgrammeList: FC<SubjectProgrammeListProps> = ({
   programmes,
-  subjectSlug,
-  keyStageSlug,
-  keyStageTitle,
+  onClick,
 }) => {
   const colSpan = programmes.length === 2 ? 6 : 4;
   return (
@@ -26,12 +37,7 @@ const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
-            <SubjectProgrammeListItem
-              keyStageSlug={keyStageSlug}
-              keyStageTitle={keyStageTitle}
-              subjectSlug={subjectSlug}
-              {...programme}
-            />
+            <SubjectProgrammeListItem programme={programme} onClick={onClick} />
           </GridArea>
         );
       })}

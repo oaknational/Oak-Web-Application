@@ -1,36 +1,51 @@
 import { FC } from "react";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { SubjectProgrammeListProps } from "../SubjectProgrammeList/SubjectProgrammeList";
+
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/SharedComponents/Typography";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import {
+  SpecialistUnitListingLinkProps,
+  UnitListingLinkProps,
+} from "@/common-lib/urls";
+import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 
-const SubjectProgrammeListItem: FC<
-  Pick<
-    ProgrammeListingPageData,
-    "subjectSlug" | "keyStageSlug" | "keyStageTitle"
-  > &
-    ProgrammeListingPageData["programmes"][number]
-> = (props) => {
-  const {
-    subjectSlug,
-    subjectTitle,
-    tierTitle,
-    examBoardTitle,
-    keyStageSlug,
-    keyStageTitle,
-    programmeSlug,
-  } = props;
+export type SubjectProgrammeListItemProps = {
+  programme:
+    | SubjectProgrammeListProps["programmes"][number]
+    | SpecialistProgramme;
+  onClick: (
+    props:
+      | SubjectProgrammeListProps["programmes"][number]
+      | SpecialistProgramme,
+  ) => void;
+};
+
+const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
+  const { programme, onClick } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const isSpecialist = "developmentalStageTitle" in programme;
+
+  const heading = isSpecialist
+    ? programme.developmentalStageTitle
+    : programme.tierTitle ?? programme.examBoardTitle;
+
+  const ariaLabel = isSpecialist
+    ? programme.developmentalStageTitle
+    : `${programme.tierTitle ? programme.tierTitle : ""} ${
+        programme.examBoardTitle ? programme.examBoardTitle : ""
+      }`;
+
+  const linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps =
+    isSpecialist
+      ? { page: "specialist-unit-index", ...programme }
+      : { page: "unit-index", ...programme };
 
   return (
     <Card
@@ -44,28 +59,11 @@ const SubjectProgrammeListItem: FC<
       <Flex $pa={16}>
         <OwaLink
           {...primaryTargetProps}
-          page={"unit-index"}
-          programmeSlug={programmeSlug}
-          onClick={() => {
-            tierTitle !== null &&
-              track.tierSelected({
-                subjectTitle,
-                subjectSlug,
-                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                keyStageSlug,
-                tierName: tierTitle,
-                analyticsUseCase,
-              });
-          }}
+          {...linkProps}
+          onClick={() => onClick(programme)}
         >
-          <Heading
-            $font={"heading-7"}
-            tag="h3"
-            ariaLabel={`${tierTitle ? tierTitle : ""} ${
-              examBoardTitle ? examBoardTitle : ""
-            }`}
-          >
-            {tierTitle ?? examBoardTitle}
+          <Heading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
+            {heading}
           </Heading>
         </OwaLink>
       </Flex>
