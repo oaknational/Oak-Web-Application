@@ -173,9 +173,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               {themes.length > 1 && (
                 <MobileFilters
                   providedId={learningThemesId}
-                  label="Threads"
+                  label="Filter by thread"
                   $mt={0}
                   $mb={[16, 0]}
+                  iconBackground="white"
                 >
                   <LearningThemeFilters
                     labelledBy={learningThemesId}

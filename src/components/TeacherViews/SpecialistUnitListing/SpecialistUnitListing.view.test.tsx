@@ -23,14 +23,15 @@ describe("SpecialistUnitListing", () => {
   });
 
   test("renders themes filters ", () => {
-    const { getByText } = render(
+    const { queryAllByText } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
-    const themePrimary = getByText("Test Theme Primary");
-    const themeSecondary = getByText("Test Theme Secondary");
+    // mobile and desktop both rendered
+    const themePrimary = queryAllByText("Test Theme Primary");
+    const themeSecondary = queryAllByText("Test Theme Secondary");
 
-    expect(themePrimary).toBeInTheDocument();
-    expect(themeSecondary).toBeInTheDocument();
+    expect(themePrimary).toHaveLength(2);
+    expect(themeSecondary).toHaveLength(2);
   });
 
   test("speacialist unit list", () => {
