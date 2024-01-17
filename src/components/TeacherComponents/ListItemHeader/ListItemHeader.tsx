@@ -31,8 +31,6 @@ type SpecialistListItemProps = IndividualSpecialistUnit &
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
     expired: boolean | null;
     index?: number;
-    isExemplarUnit?: boolean;
-    yearTitle?: string | null;
   };
 
 export const isSpecialistUnit = (
@@ -82,8 +80,6 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
     onClick,
     programmeSlug,
     index,
-    isExemplarUnit,
-    yearTitle,
   } = props;
 
   const itemTitle = title;
@@ -111,20 +107,24 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
   return (
     <Flex>
       <Flex $mb={2} $flexDirection={"column"}>
-        {!hideTopHeading && !isExemplarUnit && !isSpecialistUnit(props) && (
-          <ListItemHeaderCategoryHeading
-            keyStageTitle={props.keyStageTitle}
-            subjectTitle={subjectTitle}
-            page={page}
-          />
-        )}
-        {!hideTopHeading && isExemplarUnit && !isSpecialistUnit(props) && (
-          <ListItemHeaderExpemplarCategoryHeading
-            keyStageTitle={props.keyStageTitle}
-            subjectTitle={subjectTitle}
-            yearTitle={yearTitle}
-          />
-        )}
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          !props.isExemplarUnit && (
+            <ListItemHeaderCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              page={page}
+            />
+          )}
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          props.isExemplarUnit && (
+            <ListItemHeaderExpemplarCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              yearTitle={props.yearTitle}
+            />
+          )}
         <OakLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
           <ListTitle index={index}>{itemTitle}</ListTitle>
         </OakLink>
