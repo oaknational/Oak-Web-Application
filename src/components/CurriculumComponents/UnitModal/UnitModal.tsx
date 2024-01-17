@@ -4,10 +4,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
-import {
-  Unit,
-  getLessonsAvailable,
-} from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
@@ -22,7 +19,7 @@ type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
-  setLessonsAvailable: (x: boolean) => void;
+  setCurrentUnitLessons: (x: Lesson[]) => void;
   unitOptionsAvailable: boolean;
   isHighlighted: boolean;
 };
@@ -37,7 +34,7 @@ const UnitModal: FC<UnitModalProps> = ({
   unitData,
   displayModal,
   setUnitOptionsAvailable,
-  setLessonsAvailable,
+  setCurrentUnitLessons,
   unitOptionsAvailable,
   isHighlighted,
 }) => {
@@ -211,9 +208,7 @@ const UnitModal: FC<UnitModalProps> = ({
                                 onClick={() => {
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
-                                  setLessonsAvailable(
-                                    getLessonsAvailable(optionalUnit.lessons),
-                                  );
+                                  setCurrentUnitLessons(optionalUnit.lessons);
                                   setCurriculumUnitDetails({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,

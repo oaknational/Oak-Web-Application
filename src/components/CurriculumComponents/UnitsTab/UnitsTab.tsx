@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/SharedComponents/Box";
@@ -71,7 +71,6 @@ export function getLessonsAvailable(lessons: Lesson[] | null): boolean {
 // Function component
 
 const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
-  // console.log(data, examboardSlug);
   // Initialize constants
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
@@ -81,21 +80,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
-  const [lessonsAvailable, setLessonsAvailable] = useState<boolean | null>(
-    null,
-  );
+  const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
   const unitSlugs = new Set<string>();
   const duplicateUnitSlugs = new Set<string>();
-
-  useEffect(() => {
-    if (unitData) {
-      setLessonsAvailable(getLessonsAvailable(unitData.lessons));
-    }
-    if (displayModal === false) {
-      setLessonsAvailable(null);
-    }
-  }, [unitData, displayModal]);
 
   // Initialize data structure for displaying units by year
   const yearData: {
@@ -347,7 +335,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   const handleCloseModal = () => {
     setDisplayModal(false);
-    setLessonsAvailable(null);
+    setCurrentUnitLessons([]);
   };
 
   // Analytics handlers
@@ -378,6 +366,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       });
     }
   }
+
+  const createProgrammeSlug = () => {
+    if (unitData?.keystage_slug === "ks4") {
+      return `${unitData.subject_slug}-${unitData.phase_slug}-${
+        unitData.keystage_slug
+      }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+        examboardSlug ? "-" + examboardSlug : ""
+      }`;
+    }
+    return unitData
+      ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+      : "";
+  };
+
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
@@ -677,6 +679,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                     handleOpenModal();
                                     setUnitOptionsAvailable(unitOptions);
                                     setUnitData({ ...unit });
+                                    setCurrentUnitLessons(unit.lessons || []);
                                   }}
                                   ref={modalButtonRef}
                                 />
@@ -687,13 +690,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                       <UnitsTabSidebar
                         displayModal={displayModal}
                         onClose={handleCloseModal}
-                        unitData={unitData}
-                        lessonsAvailable={lessonsAvailable}
+                        lessons={currentUnitLessons}
+                        programmeSlug={createProgrammeSlug()}
                         unitOptionsAvailable={unitOptionsAvailable}
-                        examboardSlug={examboardSlug}
+                        unitSlug={unitData?.slug}
                       >
                         <UnitModal
-                          setLessonsAvailable={setLessonsAvailable}
+                          setCurrentUnitLessons={setCurrentUnitLessons}
                           unitData={unitData}
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}

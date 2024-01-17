@@ -10,38 +10,36 @@ import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
-  unitData?: Unit | null;
   unitOptionsAvailable?: boolean;
-  lessonsAvailable?: boolean | null;
-  examboardSlug?: string | null;
+  programmeSlug?: string;
+  lessons: Lesson[] | [];
+  unitSlug?: string | undefined;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
   displayModal,
   onClose,
   children,
-  lessonsAvailable,
-  unitData,
   unitOptionsAvailable,
-  examboardSlug,
+  programmeSlug,
+  lessons,
+  unitSlug,
 }) => {
-  const createUnitLink = () => {
-    if (unitData?.keystage_slug === "ks4") {
-      return `${unitData.subject_slug}-${unitData.phase_slug}-${
-        unitData.keystage_slug
-      }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-        examboardSlug ? "-" + examboardSlug : ""
-      }`;
-    }
-    return unitData
-      ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-      : "";
+  const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
+    return (
+      (lessons &&
+        lessons.some((lesson: Lesson) => lesson._state === "published")) ||
+      false
+    );
   };
+
+  const lessonsAvailable = getLessonsAvailable(lessons);
+
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
@@ -95,14 +93,15 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                         $alignItems={"flex-start"}
                         $gap={8}
                       >
-                        {lessonsAvailable === false && (
+                        {(lessonsAvailable === false ||
+                          lessonsAvailable === null) && (
                           <TagFunctional
                             data-testid="coming-soon-flag"
                             text={"Coming soon"}
                             color="grey"
                           />
                         )}
-                        {unitData && (
+                        {lessons && unitSlug && (
                           <ButtonAsLink
                             data-testid="unit-lessons-button"
                             label="See lessons in unit"
@@ -114,8 +113,8 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
                             page="lesson-index"
-                            unitSlug={unitData.slug}
-                            programmeSlug={createUnitLink()}
+                            unitSlug={unitSlug}
+                            programmeSlug={programmeSlug}
                           />
                         )}
                       </Flex>
