@@ -52,6 +52,7 @@ export type AboutLeadershipPage = z.infer<typeof aboutLeadershipPageSchema>;
 export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
   introPortableText: portableTextSchema,
+  boardHeader: z.string(),
   documents: z.array(attachmentSchema),
   governancePortableText: portableTextSchema,
   boardMembers: z.array(teamMemberSchema),
