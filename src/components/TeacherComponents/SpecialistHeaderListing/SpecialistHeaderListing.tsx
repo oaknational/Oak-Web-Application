@@ -43,7 +43,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
             {title}
           </Span>
           <Flex $flexDirection={["column", "row", "row"]}>
-            <Flex $maxWidth={60} $mr={16}>
+            <Flex $mb={[16, 0]} $maxWidth={60} $mr={16}>
               <SubjectIconBrushBorders
                 $pa={4}
                 containerMinWidth={[40, 60]}
