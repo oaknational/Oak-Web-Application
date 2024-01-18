@@ -1,3 +1,16 @@
+# [1.329.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.328.0...v1.329.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* correct url for keystages pages ([0036b8d](https://github.com/oaknational/Oak-Web-Application/commit/0036b8d8ca36c262c84a30d596dd9a6731156f4d))
+
+
+### Features
+
+* add keystage pages to sitemap ([2b6e724](https://github.com/oaknational/Oak-Web-Application/commit/2b6e72413a9f239a6e17473ca8454607b7fc75ac))
+* index keystage pages ([debb85e](https://github.com/oaknational/Oak-Web-Application/commit/debb85edb29da0f1f875e1862ea75cfc5f489217))
+
 # [1.328.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.3...v1.328.0) (2024-01-18)
 
 
