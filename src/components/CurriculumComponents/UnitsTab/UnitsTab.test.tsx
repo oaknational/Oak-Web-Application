@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { act, waitFor } from "@testing-library/react";
 
-import UnitsTab from "./UnitsTab";
+import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -27,7 +27,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
@@ -44,7 +44,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("threads with duplicate orders sort alphabetically", async () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
     const isSorted = threadOptions
@@ -130,7 +130,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     const threadOptions = await findAllByTestId("thread-radio");
     expect(threadOptions).toHaveLength(3);
     expect(threadOptions.map((option) => option.getAttribute("value"))).toEqual(
@@ -144,7 +146,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
     const threads = await findAllByTestId("thread-radio");
@@ -159,7 +161,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(await findByTestId("all-years-radio")).toBeInTheDocument();
     const yearOptions = await findAllByTestId("year-radio");
@@ -171,7 +173,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const yearOptions = await findAllByTestId("year-radio");
     const extractedYears = yearOptions.map((option) =>
@@ -269,7 +271,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findByTestId, findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={"aqa"} />,
+    );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(1);
     const tag = await findByTestId("options-tag");
@@ -278,7 +282,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const threads = queryAllByTestId("thread-radio");
     await act(async () => {
@@ -300,7 +304,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const yearOptions = queryAllByTestId("year-radio");
     await act(async () => {
@@ -373,7 +377,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={"aqa"} />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     // Combined science is selected by default, so only 1 expected
     expect(unitCards).toHaveLength(1);
@@ -449,7 +455,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(2);
     const domainButtons = await findAllByTestId("domain-button");
@@ -508,11 +516,36 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
+            {
+              title: "Lesson 1",
+              slug: "lesson-1",
+              order: 1,
+              _state: "published",
+            },
+            {
+              title: "Lesson 2",
+              slug: "lesson-2",
+              order: 2,
+              _state: "published",
+            },
+            {
+              title: "Lesson 3",
+              slug: "lesson-3",
+              order: 3,
+              _state: "published",
+            },
+            {
+              title: "Lesson 4",
+              slug: "lesson-4",
+              order: 4,
+              _state: "published",
+            },
+            {
+              title: "Lesson 5",
+              slug: "lesson-5",
+              order: 5,
+              _state: "published",
+            },
           ],
           phase: "Secondary",
           phase_slug: "secondary",
@@ -556,7 +589,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug="aqa" />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     // Foundation selected by default, so only 2 (including blank) expected
     expect(unitCards).toHaveLength(2);
@@ -625,8 +660,75 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findByTestId } = render(<UnitsTab data={data} />);
+    const { findByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     const tag = await findByTestId("options-tag");
     expect(tag).toHaveTextContent("2");
+  });
+
+  describe("programme slugs are created correctly", () => {
+    test("unit data with exam board returns the correct programme slug", () => {
+      const unitData = {
+        planned_number_of_lessons: 5,
+        connection_future_unit_description: null,
+        connection_prior_unit_description: null,
+        connection_future_unit_title: null,
+        connection_prior_unit_title: null,
+        domain: null,
+        domain_id: null,
+        examboard: null,
+        examboard_slug: null,
+        keystage_slug: "ks4",
+        lessons: [],
+        phase: "Secondary",
+        phase_slug: "secondary",
+        slug: "cellular-respiration-and-atp",
+        subject: "Combined Science",
+        subject_parent: "Science",
+        subject_parent_slug: "science",
+        subject_slug: "combined-science",
+        threads: [],
+        tier: "Foundation",
+        tier_slug: "foundation",
+        title: "Aerobic and anaerobic cellular respiration",
+        unit_options: [],
+        year: "11",
+      };
+      expect(createProgrammeSlug(unitData, "aqa")).toEqual(
+        "combined-science-secondary-ks4-foundation-aqa",
+      );
+    });
+    test("unit data for ks3 returns the correct programme slug", () => {
+      const unitData = {
+        planned_number_of_lessons: 5,
+        connection_future_unit_description: null,
+        connection_prior_unit_description: null,
+        connection_future_unit_title: null,
+        connection_prior_unit_title: null,
+        domain: null,
+        domain_id: null,
+        examboard: null,
+        examboard_slug: null,
+        keystage_slug: "ks3",
+        lessons: [],
+        phase: "Secondary",
+        phase_slug: "secondary",
+        slug: "cellular-respiration-and-atp",
+        subject: "Combined Science",
+        subject_parent: "Science",
+        subject_parent_slug: "science",
+        subject_slug: "combined-science",
+        threads: [],
+        tier: "Foundation",
+        tier_slug: "foundation",
+        title: "Aerobic and anaerobic cellular respiration",
+        unit_options: [],
+        year: "9",
+      };
+      expect(createProgrammeSlug(unitData, "aqa")).toEqual(
+        "combined-science-secondary-ks3",
+      );
+    });
   });
 });
