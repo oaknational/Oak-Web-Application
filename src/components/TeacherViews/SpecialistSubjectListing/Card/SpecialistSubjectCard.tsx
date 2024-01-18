@@ -1,12 +1,10 @@
-import { SpecialistSubject } from "./SpecialistSubjectListing.view";
+import { SpecialistSubject } from "../SpecialistSubjectListing.view";
 
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { Heading, Span } from "@/components/SharedComponents/Typography";
 
 const getSpecialistCardBackgroundColour = (heading: string) => {
   switch (heading) {
@@ -25,7 +23,7 @@ const SpecialistSubjectCard = (props: {
   <Card
     $background={getSpecialistCardBackgroundColour(props.heading)}
     $borderRadius={4}
-    $pa={12}
+    $pa={16}
     $height="100%"
     data-testid={`${props.heading.toLowerCase()}-subject-card`}
   >
@@ -75,29 +73,4 @@ const SpecialistSubjectCard = (props: {
   </Card>
 );
 
-export const SpecialistSubjectCards = (props: {
-  heading: string;
-  summary: string;
-  subjects: Array<SpecialistSubject>;
-}) => {
-  return (
-    <Flex $flexDirection="column" $gap={24}>
-      <Flex $flexDirection="column" $gap={16}>
-        <Heading tag="h3" $font="heading-3">
-          {props.heading}
-        </Heading>
-        <P>{props.summary}</P>
-      </Flex>
-      <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>
-        {props.subjects.map((subject, i) => (
-          <GridAreaListItem
-            key={`subject-list-item-${subject.subjectSlug}-${i}`}
-            $colSpan={[12, 6, 3]}
-          >
-            <SpecialistSubjectCard subject={subject} heading={props.heading} />
-          </GridAreaListItem>
-        ))}
-      </GridList>
-    </Flex>
-  );
-};
+export default SpecialistSubjectCard;

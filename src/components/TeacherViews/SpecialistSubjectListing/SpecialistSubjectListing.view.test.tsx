@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 
 import SpecialistSubjectListingPage from "./SpecialistSubjectListing.view";
 import {
@@ -42,8 +42,14 @@ describe("SpecialistSubjectListing", () => {
 
     expect(specialistSummary).toBeInTheDocument();
 
-    const subjectCards = screen.getAllByTestId("specialist-subject-card");
-    expect(subjectCards).toHaveLength(3);
+    const subjectCardLists = screen.getAllByRole("list");
+    expect(subjectCardLists).toHaveLength(2);
+
+    if (!subjectCardLists[0]) throw new Error("No subject card list found");
+    const specialistSubjectCards = within(subjectCardLists[0]).getAllByRole(
+      "listitem",
+    );
+    expect(specialistSubjectCards).toHaveLength(3);
   });
   it("renders a therapies subject section", () => {
     renderWithTheme(
@@ -64,7 +70,13 @@ describe("SpecialistSubjectListing", () => {
     );
     expect(therapiesSummary).toBeInTheDocument();
 
-    const subjectCards = screen.getAllByTestId("therapies-subject-card");
-    expect(subjectCards).toHaveLength(4);
+    const subjectCardLists = screen.getAllByRole("list");
+    expect(subjectCardLists).toHaveLength(2);
+
+    if (!subjectCardLists[1]) throw new Error("No subject card list found");
+    const therapySubjectCards = within(subjectCardLists[1]).getAllByRole(
+      "listitem",
+    );
+    expect(therapySubjectCards).toHaveLength(4);
   });
 });

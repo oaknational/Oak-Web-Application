@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { SpecialistSubjectCards } from "./SpecialistSubjectCard";
+import SpecialistSubjectCardSection from "./Card/SpecialistSubjectCardList";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -28,16 +28,16 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
-        <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 40]} $mb={40}>
+        <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 56]} $mb={[48, 56]}>
           Specialist & Therapies
         </Heading>
         <Flex $flexDirection="column" $gap={[24, 48]}>
-          <SpecialistSubjectCards
+          <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"
             summary="Our Specialist curriculum helps you to support learning around three stages; early development, building understanding and applying learning, as well as creative arts and physical development."
           />
-          <SpecialistSubjectCards
+          <SpecialistSubjectCardSection
             subjects={therapies}
             heading="Therapies"
             summary="These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' developmental needs."
