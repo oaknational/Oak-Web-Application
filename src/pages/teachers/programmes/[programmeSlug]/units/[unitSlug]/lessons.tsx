@@ -27,6 +27,7 @@ import { LessonListItemProps } from "@/components/TeacherComponents/LessonListIt
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -73,18 +74,27 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const trackLessonSelected = ({ ...props }: LessonListItemProps) => {
-    track.lessonSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug: props.subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: props.lessonTitle,
-      lessonSlug: props.lessonSlug,
-      analyticsUseCase,
-    });
+  const trackLessonSelected = ({
+    ...props
+  }: LessonListItemProps | SpecialistLesson) => {
+    const isSpecialistLesson = (
+      x: LessonListItemProps | SpecialistLesson,
+    ): x is SpecialistLesson => {
+      return (x as SpecialistLesson).lessonSlug !== undefined;
+    };
+    if (!isSpecialistLesson(props)) {
+      track.lessonSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug: props.subjectSlug,
+        unitName: unitTitle,
+        unitSlug,
+        lessonName: props.lessonTitle,
+        lessonSlug: props.lessonSlug,
+        analyticsUseCase,
+      });
+    }
   };
 
   return (
