@@ -15,13 +15,15 @@ export type AccordionContainerTitles =
   | "Previous unit description"
   | "Following unit description";
 
-type AccordionProps = {
+type CurriculumUnitDetailsAccordionProps = {
   title: AccordionContainerTitles;
   children: React.ReactNode;
   lastAccordion?: boolean;
 };
 
-const Accordion: FC<AccordionProps> = ({ title, children, lastAccordion }) => {
+const CurriculumUnitDetailsAccordion: FC<
+  CurriculumUnitDetailsAccordionProps
+> = ({ title, children, lastAccordion }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -107,4 +109,4 @@ const Accordion: FC<AccordionProps> = ({ title, children, lastAccordion }) => {
   );
 };
 
-export default Accordion;
+export default CurriculumUnitDetailsAccordion;

@@ -35,6 +35,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -98,16 +99,27 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     ...{ noFollow: true, noIndex: true },
   };
 
-  const trackUnitSelected = ({ ...props }: UnitListItemProps) => {
-    track.unitSelected({
-      keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: props.title,
-      unitSlug: props.slug,
-      analyticsUseCase,
-    });
+  const trackUnitSelected = ({
+    ...props
+  }: UnitListItemProps | IndividualSpecialistUnit) => {
+    // Temporary until tracking for specialist units
+    const isSpecialistUnit = (
+      x: UnitListItemProps | IndividualSpecialistUnit,
+    ): x is IndividualSpecialistUnit => {
+      return "developmentalStageTitle" in x;
+    };
+
+    if (!isSpecialistUnit(props)) {
+      return track.unitSelected({
+        keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: props.title,
+        unitSlug: props.slug,
+        analyticsUseCase,
+      });
+    }
   };
 
   return (
