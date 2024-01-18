@@ -1,8 +1,4 @@
-import { describe, expect, it } from "vitest";
-/**
- * @jest-environment jsdom
- */
-import React from "react";
+import { describe, expect, it, vi } from "vitest";
 import { act } from "react-dom/test-utils";
 
 import SearchResults from "./SearchResults";

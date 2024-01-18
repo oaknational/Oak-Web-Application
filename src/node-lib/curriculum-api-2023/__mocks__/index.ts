@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import curriculumUnitsTabFixture from "../fixtures/curriculumUnits.fixture";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";

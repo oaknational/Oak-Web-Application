@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import React, { useState } from "react";
+import { describe, expect, it, vi } from "vitest";
+import { useState } from "react";
 import { fireEvent } from "@testing-library/react";
 
 import HomePageTabImageNav from "./HomePageTabImageNav";

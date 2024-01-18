@@ -1,12 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import mockRouter from "next-router-mock";
-// import { useRouter } from "next/router";
 
 import useMenuContext from "./useMenuContext";
 import MenuProvider from "./MenuProvider";
-
-vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useMenuContext()", () => {
   beforeEach(() => {

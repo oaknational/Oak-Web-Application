@@ -1,11 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 
 import useSchoolPicker, { fetcher } from "./useSchoolPicker";
 
 import OakError from "@/errors/OakError";
 
-const mockUseSWR = vi.fn<{ data: unknown; error: unknown }, []>(() => ({
+const mockUseSWR = vi.fn<[{ data: unknown; error: unknown }]>(() => ({
   data: null,
   error: null,
 }));
@@ -27,7 +27,7 @@ const data = [
 
 vi.mock("swr", () => ({
   __esModule: true,
-  default: (...args: []) => mockUseSWR(...args),
+  default: mockUseSWR,
 }));
 
 const reportError = vi.fn();
@@ -40,7 +40,7 @@ vi.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const fetch = vi.spyOn(global, "fetch") as vi.Mock;
+const fetch = vi.spyOn(global, "fetch") as Mock;
 
 describe("useSchoolPicker", () => {
   beforeEach(() => {

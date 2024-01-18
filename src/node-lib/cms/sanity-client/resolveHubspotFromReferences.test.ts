@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import OakError from "../../../errors/OakError";
 import { getHubspotFormById } from "../../hubspot-forms";
@@ -7,7 +7,7 @@ import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 
 vi.mock("../../hubspot-forms");
 
-const mockedGetHubspotFormById = getHubspotFormById as jest.MockedFn<
+const mockedGetHubspotFormById = getHubspotFormById as MockedFn<
   typeof getHubspotFormById
 >;
 

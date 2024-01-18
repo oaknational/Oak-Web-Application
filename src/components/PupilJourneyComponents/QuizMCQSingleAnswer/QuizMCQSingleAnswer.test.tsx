@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";

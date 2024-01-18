@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import Bugsnag from "@bugsnag/js";
 import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";

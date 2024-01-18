@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import handler from "../../../../pages/api/exit-preview/[[...path]]";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";

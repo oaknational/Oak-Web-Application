@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import getDownloadResourcesExistence, {
   DownloadsApiCheckFilesResponseSchema,
@@ -45,7 +45,7 @@ describe("checkIfDownloadResourcesExist()", () => {
           ok: true,
         });
       }
-    }) as jest.Mock;
+    }) as Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {

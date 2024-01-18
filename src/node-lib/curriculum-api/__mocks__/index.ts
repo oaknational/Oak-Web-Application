@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import { CurriculumApi } from "..";
 import searchPageFixture from "../fixtures/searchPage.fixture";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";

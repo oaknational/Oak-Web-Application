@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { RefObject } from "react";
 import MuxPlayerElement from "@mux/mux-player";
 

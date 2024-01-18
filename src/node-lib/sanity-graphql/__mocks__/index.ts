@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import homepageFixture from "../fixtures/homepage.json";
 import aboutWhoWeArePageFixture from "../fixtures/aboutWhoWeArePage.json";
 import aboutLeadershipPageFixture from "../fixtures/aboutLeadershipPage.json";

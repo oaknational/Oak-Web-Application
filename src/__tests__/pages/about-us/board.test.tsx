@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { MockedObject, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";

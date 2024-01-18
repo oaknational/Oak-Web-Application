@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import useBugSnag from "./useBugsnag";
@@ -26,6 +26,6 @@ describe("useBugSnag", () => {
 
     expect(initialiseBugsnag).toHaveBeenCalledWith(initialArgs.userId);
   });
-  test.todo("should set userId on Bugsnag");
-  test.todo("should get paused if consent revoked");
+  it.todo("should set userId on Bugsnag");
+  it.todo("should get paused if consent revoked");
 });

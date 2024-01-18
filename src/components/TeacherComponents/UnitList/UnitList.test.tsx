@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { act } from "react-dom/test-utils";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";

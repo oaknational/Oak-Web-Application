@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
@@ -20,7 +20,7 @@ describe("createDownloadResourcesLink()", () => {
   let downloadResourcesLink;
 
   beforeEach(() => {
-    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {
@@ -34,7 +34,7 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should throw error if fetch throws", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.reject("bad thing"),
     );
 

@@ -1,4 +1,12 @@
-import { describe, expect, it , Mock } from "vitest";
+import {
+  beforeEach,
+  describe,
+  expect,
+  it,
+  Mock,
+  MockedObject,
+  vi,
+} from "vitest";
 import { GetServerSidePropsContext } from "next";
 import { PostHog } from "posthog-node";
 import { sample } from "lodash/fp";

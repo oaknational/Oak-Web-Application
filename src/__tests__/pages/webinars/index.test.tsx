@@ -1,4 +1,4 @@
-import { describe, expect, it , vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import { WebinarPreview } from "@/common-lib/cms-types";

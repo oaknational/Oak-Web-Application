@@ -1,4 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { fail } from "node:assert";
+
+import { Mock, afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 import downloadZip from "./downloadZip";
 
@@ -14,11 +16,11 @@ const rejectResponse = {
   status: 400,
 };
 
-global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
 
 describe("downloadZip", () => {
   beforeEach(() => {
-    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   afterAll(() => {

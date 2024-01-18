@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 export const mockOnChange = vi.fn();

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { MockedObject, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";

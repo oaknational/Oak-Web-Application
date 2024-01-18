@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
 import { fetchResults } from "./fetchResults";

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/video/signed-url";

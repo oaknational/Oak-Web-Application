@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { OverlayProvider } from "react-aria";
 import userEvent from "@testing-library/user-event";

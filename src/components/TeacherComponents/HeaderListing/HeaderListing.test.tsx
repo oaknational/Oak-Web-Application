@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import HeaderListing, { HeaderListingProps } from "./HeaderListing";
 import { headerListingProps } from "./HeaderListing.stories";

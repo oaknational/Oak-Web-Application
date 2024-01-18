@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
@@ -68,7 +68,7 @@ vi.mock("../../common-lib/error-reporter", () => ({
     (...args: []) =>
       reportError(...args),
 }));
-const fetch = vi.spyOn(global, "fetch") as jest.Mock;
+const fetch = vi.spyOn(global, "fetch") as Mock;
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);

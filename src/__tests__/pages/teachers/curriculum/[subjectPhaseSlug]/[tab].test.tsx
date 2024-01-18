@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { MockedObject, beforeEach, describe, expect, it, vi } from "vitest";
 import { MockedFunction } from "jest-mock";
 import mockRouter from "next-router-mock";
 
@@ -20,10 +20,6 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
 
-// vi.mock("@/node-lib/curriculum-api-2023", () => ({
-//   curriculumOverview: vi.fn(),
-//   curriculumUnits: vi.fn(),
-// }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview

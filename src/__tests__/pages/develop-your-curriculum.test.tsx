@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import { screen, within } from "@testing-library/react";
 
 import { BlogPostPreview, CurriculumPage } from "../../common-lib/cms-types";
