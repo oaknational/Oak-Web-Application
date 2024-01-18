@@ -95,11 +95,7 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
   };
 
   const updateQuizResult = (vals: { grade: number; numQuestions: number }) => {
-    setSectionResults((prev) => {
-      const newSectionResults = { ...prev };
-      newSectionResults[currentSection] = vals;
-      return newSectionResults;
-    });
+    setSectionResults((prev) => ({ ...prev, [currentSection]: vals }));
   };
 
   return (
