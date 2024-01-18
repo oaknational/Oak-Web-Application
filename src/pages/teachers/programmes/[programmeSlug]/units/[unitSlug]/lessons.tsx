@@ -77,24 +77,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const trackLessonSelected = ({
     ...props
   }: LessonListItemProps | SpecialistLesson) => {
-    const isSpecialistLesson = (
-      x: LessonListItemProps | SpecialistLesson,
-    ): x is SpecialistLesson => {
-      return (x as SpecialistLesson).lessonSlug !== undefined;
-    };
-    if (!isSpecialistLesson(props)) {
-      track.lessonSelected({
-        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug: props.subjectSlug,
-        unitName: unitTitle,
-        unitSlug,
-        lessonName: props.lessonTitle,
-        lessonSlug: props.lessonSlug,
-        analyticsUseCase,
-      });
-    }
+    track.lessonSelected({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug: props.subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: props.lessonTitle,
+      lessonSlug: props.lessonSlug,
+      analyticsUseCase,
+    });
   };
 
   return (
