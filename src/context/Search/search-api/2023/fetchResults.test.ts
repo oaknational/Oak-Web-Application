@@ -6,8 +6,10 @@ const mockResponse = {
 } as unknown as Response;
 const mockFetch = vi.spyOn(global, "fetch").mockResolvedValue(mockResponse);
 const mockHandleFetchError = vi.fn();
-vi.mock("@/browser-lib/getBrowserConfig", () => () => "test");
-vi.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
+vi.mock("@/browser-lib/getBrowserConfig", () => ({ default: () => "test" }));
+vi.mock("@/utils/handleFetchError", () => ({
+  default: () => mockHandleFetchError,
+}));
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
     vi.clearAllMocks();

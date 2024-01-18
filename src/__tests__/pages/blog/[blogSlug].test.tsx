@@ -1,22 +1,12 @@
+import { vi } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
+import mockRouter from "next-router-mock";
 
-import { BlogPost } from "../../../common-lib/cms-types";
-import BlogSinglePage, {
-  BlogSinglePageProps,
-} from "../../../pages/blog/[blogSlug]";
-import renderWithProviders from "../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../__helpers__/renderWithSeo";
+import { BlogPost } from "@/common-lib/cms-types";
+import BlogSinglePage, { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 
-vi.mock("next/router", () => ({
-  __esModule: true,
-  ...jest.requireActual("next/router"),
-  useRouter: () => ({
-    ...jest.requireActual("next/router").useRouter,
-    asPath: "asPath test value",
-    query: {},
-    pathname: "/blog/[blogSlug]",
-  }),
-}));
 vi.mock("next-sanity-image", () => ({
   __esModule: true,
   useNextSanityImage: () => ({
@@ -24,53 +14,62 @@ vi.mock("next-sanity-image", () => ({
   }),
 }));
 
-const testBlog: BlogPost = {
-  title: "A blog",
-  id: "5",
-  date: new Date("2025-01-01"),
-  slug: "a-blog",
-  author: { id: "000", name: "Author McAuthorFace" },
-  mainImage: {
-    asset: {
-      _id: "",
-      url: "",
+const { testBlog, blogPosts, blogPostBySlug } = vi.hoisted(() => {
+  const testBlog: BlogPost = {
+    title: "A blog",
+    id: "5",
+    date: new Date("2025-01-01"),
+    slug: "a-blog",
+    author: { id: "000", name: "Author McAuthorFace" },
+    mainImage: {
+      asset: {
+        _id: "",
+        url: "",
+      },
     },
-  },
-  summaryPortableText: "Lorem ipsum",
-  contentPortableText: [],
-  category: {
-    title: "Lesson Plabning",
-    slug: "lesson-planning",
-  },
-};
+    summaryPortableText: "Lorem ipsum",
+    contentPortableText: [],
+    category: {
+      title: "Lesson Plabning",
+      slug: "lesson-planning",
+    },
+  };
 
-const testBlog2: BlogPost = {
-  title: "Another blog",
-  id: "6",
-  date: new Date("2022-01-01"),
-  slug: "another-blog",
-  author: { id: "000", name: "Author McAuthorFace" },
-  mainImage: {
-    asset: {
-      _id: "",
-      url: "",
+  const testBlog2: BlogPost = {
+    title: "Another blog",
+    id: "6",
+    date: new Date("2022-01-01"),
+    slug: "another-blog",
+    author: { id: "000", name: "Author McAuthorFace" },
+    mainImage: {
+      asset: {
+        _id: "",
+        url: "",
+      },
     },
-  },
-  summaryPortableText: "Lorem ipsum",
-  contentPortableText: [],
-  category: {
-    title: "Lesson Plabning",
-    slug: "lesson-planning",
-  },
-};
+    summaryPortableText: "Lorem ipsum",
+    contentPortableText: [],
+    category: {
+      title: "Lesson Plabning",
+      slug: "lesson-planning",
+    },
+  };
+
+  const blogPosts = vi.fn(() => [testBlog, testBlog2]);
+  const blogPostBySlug = vi.fn(() => testBlog);
+
+  return {
+    testBlog,
+    testBlog2,
+    blogPosts,
+    blogPostBySlug,
+  };
+});
 
 const testSerializedBlog = {
   ...testBlog,
   date: new Date().toISOString(),
 };
-
-const blogPosts = vi.fn(() => [testBlog, testBlog2]);
-const blogPostBySlug = vi.fn(() => testBlog);
 
 const render = renderWithProviders();
 
@@ -78,13 +77,14 @@ describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
-    vi.mock("../../../node-lib/cms", () => ({
+    vi.mock("@/node-lib/cms", () => ({
       __esModule: true,
       default: {
         blogPosts: vi.fn(blogPosts),
         blogPostBySlug: vi.fn(blogPostBySlug),
       },
     }));
+    mockRouter.setCurrentUrl("/blog/a-blog");
   });
 
   describe("BlogSinglePage", () => {
@@ -111,7 +111,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("getStaticPaths", () => {
     it("Should return the paths of all blogs", async () => {
-      const { getStaticPaths } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticPaths } = await import("@/pages/blog/[blogSlug]");
 
       const pathsResult = await getStaticPaths();
 
@@ -124,7 +124,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("getStaticProps", () => {
     it("Should fetch the correct blog", async () => {
-      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticProps } = await import("@/pages/blog/[blogSlug]");
       await getStaticProps({
         params: { blogSlug: "another-blog" },
       });
@@ -136,7 +136,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     });
 
     it("Should not fetch draft content by default", async () => {
-      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticProps } = await import("@/pages/blog/[blogSlug]");
       await getStaticProps({
         params: { blogSlug: "another-blog" },
       });
@@ -147,7 +147,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     });
 
     it("Should fetch draft content in preview mode", async () => {
-      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticProps } = await import("@/pages/blog/[blogSlug]");
       await getStaticProps({
         params: { blogSlug: "another-blog" },
         preview: true,
@@ -159,7 +159,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     });
 
     it("Should format the blog date", async () => {
-      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticProps } = await import("@/pages/blog/[blogSlug]");
       const propsResult = (await getStaticProps({
         params: { blogSlug: "another-blog" },
       })) as { props: BlogSinglePageProps };
@@ -172,7 +172,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     it("should return notFound when a blog post is missing", async () => {
       blogPostBySlug.mockResolvedValueOnce(null as never);
 
-      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const { getStaticProps } = await import("@/pages/blog/[blogSlug]");
       const propsResult = (await getStaticProps({
         params: { blogSlug: "another-blog" },
       })) as { props: BlogSinglePageProps };

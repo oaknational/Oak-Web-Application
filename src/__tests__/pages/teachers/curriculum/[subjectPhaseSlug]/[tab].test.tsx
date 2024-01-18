@@ -35,7 +35,7 @@ vi.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
   default: () => () => null,
 }));
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 vi.mock("next-sanity-image", () => ({
   ...jest.requireActual("next-sanity-image"),

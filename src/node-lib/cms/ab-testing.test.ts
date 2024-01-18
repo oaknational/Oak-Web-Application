@@ -1,3 +1,4 @@
+import { Mock } from "vitest";
 import { GetServerSidePropsContext } from "next";
 import { PostHog } from "posthog-node";
 import { sample } from "lodash/fp";
@@ -10,10 +11,13 @@ import { getABTestedLandingPage } from "./ab-testing";
 import CMSClient from ".";
 
 vi.mock("./");
-vi.mock("lodash/fp");
+vi.mock("lodash/fp", () => ({
+  ...vi.importActual("lodash/fp"),
+  sample: vi.fn(),
+}));
 vi.mock("posthog-node");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const testLandingPage = {} as LandingPage;
 const control = { ...testLandingPage, slug: "ab-tested-page-control" };
@@ -81,7 +85,7 @@ describe("ab-testing", () => {
       expect(sample).toBeCalledWith([control, variantA, variantB]);
 
       // The random value returned from sample()
-      const sampledResult = (sample as jest.Mock).mock.results?.[0]?.value;
+      const sampledResult = (sample as Mock).mock.results?.[0]?.value;
       expect(pageVariant).toBe(sampledResult);
     });
   });

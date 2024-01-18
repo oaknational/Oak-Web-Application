@@ -2,10 +2,10 @@ import { act, renderHook } from "@testing-library/react";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 
-const videoStarted = jest.fn();
-const videoPlayed = jest.fn();
-const videoPaused = jest.fn();
-const videoFinished = jest.fn();
+const videoStarted = vi.fn();
+const videoPlayed = vi.fn();
+const videoPaused = vi.fn();
+const videoFinished = vi.fn();
 
 vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -41,7 +41,7 @@ const getState: VideoTrackingGetState = () => ({
 
 describe("useVideoTracking", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("calls track.videoStarted only once", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));

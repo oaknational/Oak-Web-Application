@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { BlogPostPreview } from "../../../common-lib/cms-types";
 import {
@@ -58,21 +59,20 @@ const testSerializedBlogPreview2: SerializedBlogPostPreview = {
 const blogPosts = vi.fn(() => [testBlogPreview, testBlogPreview2]);
 const blogListingPage = vi.fn(() => testPageData);
 
-vi.mock("next/dist/client/router", () => require("next-router-mock"));
-
 const render = renderWithProviders();
+
+vi.doMock("../../../node-lib/cms", () => ({
+  __esModule: true,
+  default: {
+    blogPosts: blogPosts,
+    blogListingPage: blogListingPage,
+  },
+}));
 
 describe("pages/blog/index.tsx", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
-    vi.mock("../../../node-lib/cms", () => ({
-      __esModule: true,
-      default: {
-        blogPosts: blogPosts,
-        blogListingPage: blogListingPage,
-      },
-    }));
   });
 
   describe("PostListingPage", () => {

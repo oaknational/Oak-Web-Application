@@ -43,9 +43,9 @@ const props: CurriculumHomePageProps = {
 
 vi.mock(
   "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker",
-  () => {
-    return vi.fn(() => <div>Mock SubjectPhasePicker</div>);
-  },
+  () => ({
+    default: vi.fn(() => <div>Mock SubjectPhasePicker</div>),
+  }),
 );
 
 const mockCMS = (willErr = false) => ({

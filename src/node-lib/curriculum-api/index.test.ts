@@ -14,7 +14,7 @@ import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 /**
  * This module is mocked in jest.setup.js, so need to unmock it here in order to test it
  */
-jest.unmock(".");
+vi.unmock(".");
 
 const teachersHomePage = vi.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,

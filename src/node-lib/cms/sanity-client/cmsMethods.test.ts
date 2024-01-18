@@ -4,8 +4,8 @@ import { parseResults } from "./parseResults";
 import { resolveSanityReferences } from "./resolveSanityReferences";
 import { getBySlug, getList, getSingleton } from "./cmsMethods";
 
-vi.mock("./parseResults", () => {
-  const original = jest.requireActual("./parseResults");
+vi.mock("./parseResults", async () => {
+  const original = await vi.importActual("./parseResults");
   return {
     __esModule: true,
     parseResults: vi.fn(original.parseResults),
@@ -28,7 +28,7 @@ describe("cms/sanity-client/cmsMethods", () => {
   });
 
   describe("getSingleton", () => {
-    const singletonGraphQLMethod = jest
+    const singletonGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
 
@@ -98,7 +98,7 @@ describe("cms/sanity-client/cmsMethods", () => {
   });
 
   describe("getBySlug", () => {
-    const bySlugGraphQLMethod = jest
+    const bySlugGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
     const bySlugClientMethod = getBySlug(
@@ -167,7 +167,7 @@ describe("cms/sanity-client/cmsMethods", () => {
   });
 
   describe("getList", () => {
-    const listGraphQLMethod = jest
+    const listGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
 

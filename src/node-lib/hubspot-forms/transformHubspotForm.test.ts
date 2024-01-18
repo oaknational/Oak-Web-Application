@@ -348,19 +348,21 @@ describe("transformHubspotForm", () => {
   });
 
   describe("addConditions", () => {
-    const hubspotFilter = {
-      operator: "SET_ANY",
-      strValue: "",
-      boolValue: false,
-      numberValue: 0,
-      strValues: ["Teacher"],
-      numberValues: [],
-    };
+    test("it adds conditions to the field", () => {
+      const hubspotFilter = {
+        operator: "SET_ANY",
+        strValue: "",
+        boolValue: false,
+        numberValue: 0,
+        strValues: ["Teacher"],
+        numberValues: [],
+      };
 
-    expect(transformHubspotFilter(hubspotFilter, "user_type")).toEqual({
-      field: "user_type",
-      operator: "in",
-      value: ["Teacher"],
+      expect(transformHubspotFilter(hubspotFilter, "user_type")).toEqual({
+        field: "user_type",
+        operator: "in",
+        value: ["Teacher"],
+      });
     });
   });
 });

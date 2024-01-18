@@ -1,3 +1,5 @@
+import { MockedObject, expect, vi } from "vitest";
+
 import CMSClient from "../../node-lib/cms";
 import { ContactPage } from "../../common-lib/cms-types";
 import ContactUs, { getStaticProps } from "../../pages/contact-us";
@@ -20,7 +22,7 @@ const testContactPageData: ContactPage = {
 
 vi.mock("../../node-lib/cms");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const render = renderWithProviders();
 

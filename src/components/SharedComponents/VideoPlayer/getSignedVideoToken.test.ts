@@ -2,9 +2,9 @@ import getSignedVideoToken from "./getSignedVideoToken";
 
 import OakError from "@/errors/OakError";
 
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+const fetch = vi.spyOn(global, "fetch") as vi.Mock;
 
-const reportError = jest.fn();
+const reportError = vi.fn();
 vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
@@ -16,7 +16,7 @@ vi.mock("@/common-lib/error-reporter", () => ({
 describe("getSignedVideoToken", () => {
   test("should throw an error if failed to fetch token ", async () => {
     fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue({ res: "this" }),
+      json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: false,
       status: 404,
       statusText: "Not Found",
@@ -33,7 +33,7 @@ describe("getSignedVideoToken", () => {
   });
   test("should return json is res.ok ", async () => {
     fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue({ res: "this" }),
+      json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: true,
       status: 404,
       statusText: "Not Found",

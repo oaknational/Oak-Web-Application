@@ -8,6 +8,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/su
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -19,6 +20,7 @@ const curriculumApi: Pick<
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
   | "curriculumUnits"
+  | "searchPage"
 > = {
   subjectPhaseOptions: vi.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -49,6 +51,11 @@ const curriculumApi: Pick<
   }),
   curriculumUnits: vi.fn(async () => {
     return curriculumUnitsTabFixture();
+  }),
+  searchPage: vi.fn(async () => {
+    return {
+      searchPage: [searchPageFixture()],
+    };
   }),
 };
 

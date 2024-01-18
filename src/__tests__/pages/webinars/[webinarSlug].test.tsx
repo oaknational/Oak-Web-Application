@@ -80,17 +80,18 @@ const webinarBySlug = vi.fn(() => testWebinar);
 
 const render = renderWithProviders();
 
+vi.doMock("../../../node-lib/cms", () => ({
+  __esModule: true,
+  default: {
+    webinars: vi.fn(webinars),
+    webinarBySlug: vi.fn(webinarBySlug),
+  },
+}));
+
 describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
-    vi.mock("../../../node-lib/cms", () => ({
-      __esModule: true,
-      default: {
-        webinars: vi.fn(webinars),
-        webinarBySlug: vi.fn(webinarBySlug),
-      },
-    }));
   });
 
   describe("WebinarDetailPage", () => {

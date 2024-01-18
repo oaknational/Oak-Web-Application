@@ -17,13 +17,13 @@ const mockSetEmailInLocalStorageFn = vi.fn();
 const mockSetSchoolInLocalStorageFn = vi.fn();
 const mockSetTermsInLocalStorageFn = vi.fn();
 
-vi.mock("./useLocalStorageForDownloads", () => {
-  return vi.fn(() => ({
+vi.mock("./useLocalStorageForDownloads", () => ({
+  default: vi.fn(() => ({
     setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
     setSchoolInLocalStorage: mockSetSchoolInLocalStorageFn,
     setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
-  }));
-});
+  })),
+}));
 
 const data: ResourceFormProps = {
   onSubmit: vi.fn(),

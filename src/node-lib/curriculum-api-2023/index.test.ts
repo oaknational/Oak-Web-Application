@@ -1,23 +1,18 @@
-import searchPageFixture from "./fixtures/searchPage.fixture";
+import mocks from "./__mocks__";
 
 import curriculumApi from ".";
 
-jest.unmock(".");
-
-const searchPage = vi.fn(() => ({
-  searchPage: searchPageFixture(),
-}));
-
+vi.mock(".", async () => ({ default: (await vi.importActual(".")).default }));
 vi.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
-    searchPage: (...args: []) => searchPage(...args),
+    searchPage: mocks.searchPage,
   }),
 }));
 
 describe("curriculum-api", () => {
   test("searchPage", async () => {
     await curriculumApi.searchPage();
-    expect(searchPage).toHaveBeenCalled();
+    expect(mocks.searchPage).toHaveBeenCalled();
   });
 });

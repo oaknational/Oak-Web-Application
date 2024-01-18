@@ -5,7 +5,7 @@ import { resolveSanityReferences } from "./resolveSanityReferences";
 
 vi.mock("../../sanity-graphql");
 
-const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
+const mockSanityGraphqlApi = sanityGraphqlApi as MockedObject<
   typeof sanityGraphqlApi
 >;
 

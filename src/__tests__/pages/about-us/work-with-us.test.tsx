@@ -13,7 +13,7 @@ import { testAboutPageBaseData } from "./about-us.fixtures";
 
 vi.mock("../../../node-lib/cms");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
   ...testAboutPageBaseData,

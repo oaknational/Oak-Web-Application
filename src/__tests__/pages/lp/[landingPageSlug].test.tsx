@@ -13,7 +13,7 @@ import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
 vi.mock("../../../node-lib/cms");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const testLandingPage: LandingPage = {
   id: "5",

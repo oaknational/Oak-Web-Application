@@ -134,7 +134,7 @@ describe("search helpers", () => {
   test("gets expected filters from query with empty filters", () => {
     const query = { term: "macbeth" };
     const result = getFiltersFromQuery(query);
-    expect(result).toEqual([]);
+    expect(result).toEqual([undefined, undefined, undefined, undefined]);
   });
   test("gets sorted filters with multiple filters", () => {
     const query = {

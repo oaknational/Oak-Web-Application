@@ -14,8 +14,8 @@ import getSanityClient from "./";
  */
 vi.mock("../../sanity-graphql");
 
-vi.mock("./parseResults", () => {
-  const original = jest.requireActual("./parseResults");
+vi.mock("./parseResults", async () => {
+  const original = await vi.importActual("./parseResults");
   return {
     __esModule: true,
     parseResults: vi.fn(original.parseResults),
@@ -31,7 +31,7 @@ vi.mock("./resolveSanityReferences", () => {
   };
 });
 
-const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
+const mockSanityGraphqlApi = sanityGraphqlApi as MockedObject<
   typeof sanityGraphqlApi
 >;
 

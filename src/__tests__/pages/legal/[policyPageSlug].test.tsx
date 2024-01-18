@@ -32,17 +32,18 @@ const testSerializedPolicyPage = {
 const policyPages = vi.fn(() => [testPolicyPage, testPolicyPage2]);
 const policyPageBySlug = vi.fn(() => testPolicyPage);
 
+vi.doMock("../../../node-lib/cms", () => ({
+  __esModule: true,
+  default: {
+    policyPages: vi.fn(policyPages),
+    policyPageBySlug: vi.fn(policyPageBySlug),
+  },
+}));
+
 describe("pages/legal/[policyPageSlug].tsx", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
-    vi.mock("../../../node-lib/cms", () => ({
-      __esModule: true,
-      default: {
-        policyPages: vi.fn(policyPages),
-        policyPageBySlug: vi.fn(policyPageBySlug),
-      },
-    }));
   });
 
   const render = renderWithProviders();

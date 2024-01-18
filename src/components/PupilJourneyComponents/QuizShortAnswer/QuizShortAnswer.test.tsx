@@ -1,6 +1,3 @@
-import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import "@testing-library/jest-dom";
 import { act, fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 

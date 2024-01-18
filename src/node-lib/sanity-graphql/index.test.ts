@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import graphqlApi, { requestWithLogging } from ".";
 
 const configGetSpy = vi.fn((key: string) => {
@@ -9,31 +11,29 @@ const configGetSpy = vi.fn((key: string) => {
     sanityGraphqlApiSecret: "sanity-secret",
   }[key];
 });
-const GraphQLClientSpy = vi.fn();
+
+const { reportError } = vi.hoisted(() => ({
+  reportError: vi.fn(),
+}));
+vi.mock("@/common-lib/error-reporter/errorReporter", () => ({
+  __esModule: true,
+  default: () => reportError,
+}));
 vi.mock("./generated/sdk", () => ({
   getSdk: vi.fn(() => "the sdk"),
 }));
-
-const reportError = vi.fn();
-vi.mock("../../common-lib/error-reporter", () => ({
+vi.doMock("../getServerConfig", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      reportError(...args),
+  default: configGetSpy,
+}));
+const GraphQLClientSpy = vi.fn();
+vi.doMock("graphql-request", () => ({
+  GraphQLClient: GraphQLClientSpy,
 }));
 
 describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
     vi.resetModules();
-
-    vi.mock("../getServerConfig", () => ({
-      __esModule: true,
-      default: configGetSpy,
-    }));
-    vi.mock("graphql-request", () => ({
-      GraphQLClient: GraphQLClientSpy,
-    }));
   });
 
   it("should return the sdk", () => {
@@ -64,7 +64,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
     expect(res).toBe(actionResult);
   });
 
-  it("requestWithLogging should report graphql errors to bugsnag", async () => {
+  it.only("requestWithLogging should report graphql errors to bugsnag", async () => {
     const originalError = new Error(`GraphQL Error (Code: 504)`);
 
     const action = vi.fn().mockRejectedValue(originalError);

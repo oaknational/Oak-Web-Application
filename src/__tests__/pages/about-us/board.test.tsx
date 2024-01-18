@@ -14,7 +14,7 @@ vi.mock("posthog-js/react", () => ({
 }));
 vi.mock("../../../node-lib/cms");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
 vi.mock("next-sanity-image", () => ({

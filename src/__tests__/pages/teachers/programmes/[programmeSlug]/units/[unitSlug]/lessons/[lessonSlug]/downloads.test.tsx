@@ -31,7 +31,6 @@ const getDownloadResourcesExistenceData = {
   },
 };
 
-vi.mock("next/dist/client/router", () => require("next-router-mock"));
 vi.mock(
   "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
@@ -52,9 +51,9 @@ vi.mock(
 
 vi.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
-  () => {
-    return vi.fn();
-  },
+  () => ({
+    default: vi.fn(),
+  }),
 );
 
 beforeEach(() => {
