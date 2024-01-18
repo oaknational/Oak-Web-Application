@@ -18,7 +18,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   unitOptionsAvailable?: boolean;
   programmeSlug?: string;
   lessons: Lesson[] | [];
-  unitSlug?: string | undefined;
+  unitSlug?: string;
   unitVariantID?: number | null;
 };
 

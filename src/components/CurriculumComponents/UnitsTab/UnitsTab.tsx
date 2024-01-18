@@ -375,19 +375,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     }
   }
 
-  // const createProgrammeSlug = () => {
-  //   if (unitData?.keystage_slug === "ks4") {
-  //     return `${unitData.subject_slug}-${unitData.phase_slug}-${
-  //       unitData.keystage_slug
-  //     }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-  //       examboardSlug ? "-" + examboardSlug : ""
-  //     }`;
-  //   }
-  //   return unitData
-  //     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-  //     : "";
-  // };
-
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
@@ -687,7 +674,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                     handleOpenModal();
                                     setUnitOptionsAvailable(unitOptions);
                                     setUnitData({ ...unit });
-                                    setCurrentUnitLessons(unit.lessons || []);
+                                    setCurrentUnitLessons(unit.lessons ?? []);
                                   }}
                                   ref={modalButtonRef}
                                 />
