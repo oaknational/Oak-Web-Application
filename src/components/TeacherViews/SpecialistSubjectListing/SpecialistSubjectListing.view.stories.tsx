@@ -13,7 +13,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SpecialistUnitListingPage: Story = {
+export const SpecialistSubjectListingPage: Story = {
   args: {
     therapies: therapiesSubjectListingFixture,
     specialist: specialistSubjectListingFixture,

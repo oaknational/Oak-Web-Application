@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { specialistSubjectListingFixture } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.fixture";
 
-import Component from "./SpecialistSubjectCardSection";
+import Component from "./SpecialistSubjectListingCardSection";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -11,7 +11,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SpecialistUnitListingPage: Story = {
+export const SpecialistSubjectListingCardSection: Story = {
   args: {
     heading: "Specialist",
     summary: "This is a summary of the specialist subjects.",

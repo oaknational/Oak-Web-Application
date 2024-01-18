@@ -13,7 +13,7 @@ const SpecialistSubjectCardSection = (props: {
 }) => {
   return (
     <Flex $flexDirection="column" $gap={24}>
-      <Flex $flexDirection="column" $gap={16}>
+      <Flex $flexDirection="column" $gap={16} $maxWidth={["100%", "70%"]}>
         <Heading tag="h3" $font="heading-3">
           {props.heading}
         </Heading>
