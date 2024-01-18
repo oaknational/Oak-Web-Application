@@ -10,7 +10,7 @@ const testEventProperties = {
 };
 
 describe("getAvoBridge", () => {
-  test("logEvent", () => {
+  it("logEvent", () => {
     const avoBridge = getAvoBridge({ posthog });
     avoBridge.logEvent(testEventName, testEventProperties);
 

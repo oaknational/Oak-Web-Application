@@ -14,7 +14,7 @@ vi.mock("@/common-lib/error-reporter", () => ({
 }));
 
 describe("getSignedVideoToken", () => {
-  test("should throw an error if failed to fetch token ", async () => {
+  it("should throw an error if failed to fetch token ", async () => {
     fetch.mockResolvedValue({
       json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: false,
@@ -31,7 +31,7 @@ describe("getSignedVideoToken", () => {
     ).rejects.toThrowError(new OakError({ code: "video/fetch-signed-token" }));
     expect(reportError).toBeCalled();
   });
-  test("should return json is res.ok ", async () => {
+  it("should return json is res.ok ", async () => {
     fetch.mockResolvedValue({
       json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: true,

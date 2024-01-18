@@ -8,7 +8,7 @@ import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIn
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("usePostList.ts", () => {
-  test("handles no posts", () => {
+  it("handles no posts", () => {
     const { result } = renderHook(() => usePostList({ items: [] }));
     expect(result.current).toEqual({
       currentPageItems: [],
@@ -28,7 +28,7 @@ describe("usePostList.ts", () => {
       },
     });
   });
-  test("handles only past posts", () => {
+  it("handles only past posts", () => {
     const pastPost = webinarToPostListItem(mockWebinar());
     const { result } = renderHook(() => usePostList({ items: [pastPost] }));
 
@@ -50,7 +50,7 @@ describe("usePostList.ts", () => {
       },
     });
   });
-  test("handles single upcoming post", () => {
+  it("handles single upcoming post", () => {
     const upcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2052-04-14" }),
     );
@@ -77,7 +77,7 @@ describe("usePostList.ts", () => {
       },
     });
   });
-  test("handles multiple upcoming posts (returning the soonest)", () => {
+  it("handles multiple upcoming posts (returning the soonest)", () => {
     const firstUpcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2033-04-14" }),
     );
@@ -106,7 +106,7 @@ describe("usePostList.ts", () => {
       },
     });
   });
-  test("pagination: returns correct 'paginationProps'", () => {
+  it("pagination: returns correct 'paginationProps'", () => {
     const upcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2033-04-14" }),
     );

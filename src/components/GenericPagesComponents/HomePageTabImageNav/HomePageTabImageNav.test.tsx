@@ -7,13 +7,13 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { HomePageTab } from "@/pages";
 
 describe("HomePageTabImageNav Component", () => {
-  test("renders without errors", () => {
+  it("renders without errors", () => {
     const { container } = renderWithTheme(
       <HomePageTabImageNav current="teachers" setCurrent={() => {}} />,
     );
     expect(container).toBeTruthy();
   });
-  test("receives and handles props correctly", () => {
+  it("receives and handles props correctly", () => {
     const setCurrent = vi.fn();
     const { getAllByText } = renderWithTheme(
       <HomePageTabImageNav current="teachers" setCurrent={setCurrent} />,

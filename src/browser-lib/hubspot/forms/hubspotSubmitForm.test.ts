@@ -247,7 +247,7 @@ describe("hubspotSubmitForm", () => {
       // mock fetch to first respond with INVALID_EMAIL, then with a 400
       server.use(primaryForm400InvalidEmail, fallbackForm400HubspotError);
     });
-    test("error should be reported", async () => {
+    it("error should be reported", async () => {
       /**
        * @todo we should mark reported errors as "notified" to avoid them
        * being re-reported
@@ -264,7 +264,7 @@ describe("hubspotSubmitForm", () => {
     beforeEach(() => {
       server.use(primaryForm400UnknownError);
     });
-    test("error is thrown with correct message", async () => {
+    it("error is thrown with correct message", async () => {
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -277,7 +277,7 @@ describe("hubspotSubmitForm", () => {
         "Sorry, we couldn't sign you up just now, try again later.",
       );
     });
-    test("error is reported", async () => {
+    it("error is reported", async () => {
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
@@ -296,7 +296,7 @@ describe("hubspotSubmitForm", () => {
         ),
       );
     });
-    test("user is displayed correct message", async () => {
+    it("user is displayed correct message", async () => {
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });

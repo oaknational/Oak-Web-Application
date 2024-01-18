@@ -11,7 +11,7 @@ const ref = {
 } as unknown as RefObject<MuxPlayerElement>;
 
 describe("getSubtitleTrack", () => {
-  test("gets subtitle track", () => {
+  it("gets subtitle track", () => {
     expect(getSubtitleTrack(ref)).toBe(subtitleTrack);
   });
 });

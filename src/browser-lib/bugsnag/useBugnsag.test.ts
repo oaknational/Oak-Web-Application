@@ -19,7 +19,7 @@ describe("useBugSnag", () => {
     vi.resetModules();
   });
 
-  test("should call initialiseBugsnag() with the correct gleap config", () => {
+  it("should call initialiseBugsnag() with the correct gleap config", () => {
     const initialArgs = { enabled: true, userId: "not_a_user" };
     renderHook(() => useBugSnag(initialArgs));
 

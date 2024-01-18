@@ -51,7 +51,7 @@ describe("SubjectCardListItem", () => {
     vi.clearAllMocks();
   });
 
-  test("render a Card with the Name of the Subject", () => {
+  it("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
@@ -63,7 +63,7 @@ describe("SubjectCardListItem", () => {
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
   });
-  test("if available has a link to take you to the corresponding subject page", () => {
+  it("if available has a link to take you to the corresponding subject page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
@@ -78,7 +78,7 @@ describe("SubjectCardListItem", () => {
     });
     expect(cardClickTarget).toBeInTheDocument();
   });
-  test("calls tracking.keyStageSelected once, with correct props", async () => {
+  it("calls tracking.keyStageSelected once, with correct props", async () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"

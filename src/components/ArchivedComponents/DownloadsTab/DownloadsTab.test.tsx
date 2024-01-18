@@ -4,7 +4,7 @@ import curriculumDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Component - Download Tab", () => {
-  test("user can see see the heading", async () => {
+  it("user can see see the heading", async () => {
     const { getByTestId } = renderWithTheme(
       <DownloadsTab data={curriculumDownloadsFixture()} />,
     );

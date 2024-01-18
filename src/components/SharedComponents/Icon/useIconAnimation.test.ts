@@ -3,7 +3,7 @@ import { waitFor, renderHook } from "@testing-library/react";
 import useIconAnimation from "./useIconAnimation";
 
 describe("useIconAnimation", () => {
-  test("returns correct initial value", () => {
+  it("returns correct initial value", () => {
     const { result } = renderHook(() =>
       useIconAnimation({ shouldAnimate: false }),
     );
@@ -14,7 +14,7 @@ describe("useIconAnimation", () => {
     });
   });
 
-  test("returns correct value at 'in' stage", () => {
+  it("returns correct value at 'in' stage", () => {
     const { result } = renderHook(() =>
       useIconAnimation({ shouldAnimate: true }),
     );
@@ -24,7 +24,7 @@ describe("useIconAnimation", () => {
       stage: "in",
     });
   });
-  test("returns correct value at 'out' stage", async () => {
+  it("returns correct value at 'out' stage", async () => {
     const { result } = renderHook(() =>
       useIconAnimation({ shouldAnimate: true, timeIn: 5 }),
     );
@@ -36,7 +36,7 @@ describe("useIconAnimation", () => {
       });
     });
   });
-  test("returns correct value at 'back' stage", async () => {
+  it("returns correct value at 'back' stage", async () => {
     const { result } = renderHook(() =>
       useIconAnimation({
         shouldAnimate: true,

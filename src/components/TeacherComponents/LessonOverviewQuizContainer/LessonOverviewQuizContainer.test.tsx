@@ -32,7 +32,7 @@ const imageAttribution: {
 
 describe("LessonOverviewQuizContainer", () => {
   vi.mock("next/dist/client/router", () => require("next-router-mock"));
-  test("should render quizzes", () => {
+  it("should render quizzes", () => {
     renderWithTheme(
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
@@ -41,7 +41,7 @@ describe("LessonOverviewQuizContainer", () => {
     );
     expect(screen.getByText("What is a main clause?")).toBeInTheDocument();
   });
-  test("should render attribution ", () => {
+  it("should render attribution ", () => {
     renderWithTheme(
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}

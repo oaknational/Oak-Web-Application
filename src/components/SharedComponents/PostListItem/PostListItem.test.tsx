@@ -26,7 +26,7 @@ const testPropsWebinar: PostListItemProps = {
 };
 
 describe("components/PostListItem", () => {
-  test("renders the correct heading tag", () => {
+  it("renders the correct heading tag", () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testProps} titleTag="h6" />,
     );
@@ -35,7 +35,7 @@ describe("components/PostListItem", () => {
     expect(listHeading).toHaveTextContent("Item title");
   });
 
-  test("blog-post: button should have the correct href", async () => {
+  it("blog-post: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testProps} contentType="blog-post" />,
     );
@@ -43,7 +43,7 @@ describe("components/PostListItem", () => {
     expect(button).toHaveAttribute("href", `/blog/${testProps.slug}`);
   });
 
-  test("blog-post: should contain link to category", async () => {
+  it("blog-post: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testProps} contentType="blog-post" />,
     );
@@ -53,7 +53,7 @@ describe("components/PostListItem", () => {
       `/blog/categories/${testProps.category.slug}`,
     );
   });
-  test("webinar: button should have the correct href", async () => {
+  it("webinar: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testPropsWebinar} />,
     );
@@ -61,7 +61,7 @@ describe("components/PostListItem", () => {
     expect(button).toHaveAttribute("href", `/webinars/${testProps.slug}`);
   });
 
-  test("webinar: should contain link to category", async () => {
+  it("webinar: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testPropsWebinar} />,
     );
@@ -72,7 +72,7 @@ describe("components/PostListItem", () => {
     );
   });
 
-  test("renders the provided image", () => {
+  it("renders the provided image", () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testProps} withImage />,
     );
@@ -86,7 +86,7 @@ describe("components/PostListItem", () => {
     expect(image).toBeInTheDocument();
   });
 
-  test("doesn't render an image without withImage=true", () => {
+  it("doesn't render an image without withImage=true", () => {
     const { queryByRole } = renderWithTheme(
       <PostListItem {...testProps} withImage={false} />,
     );
@@ -95,7 +95,7 @@ describe("components/PostListItem", () => {
     expect(image).not.toBeInTheDocument();
   });
 
-  test("sets the image alt text to be empty when not provided", () => {
+  it("sets the image alt text to be empty when not provided", () => {
     const { getByRole } = renderWithTheme(
       <PostListItem {...testProps} withImage />,
     );

@@ -23,17 +23,15 @@ describe("downloadZip", () => {
     vi.restoreAllMocks();
   });
 
-  test("should invoke the fetch function when invoked", async () => {
+  it("should invoke the fetch function when invoked", async () => {
     await downloadZip("4", "maths");
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
-  test("it handles rejection by returning error message", async () => {
-    vi
-      .spyOn(global, "fetch")
-      .mockImplementationOnce((() =>
-        Promise.resolve(rejectResponse)) as jest.Mock);
+  it("it handles rejection by returning error message", async () => {
+    vi.spyOn(global, "fetch").mockImplementationOnce((() =>
+      Promise.resolve(rejectResponse)) as jest.Mock);
     try {
       await downloadZip("4", "Physics");
       fail("should not reach here");

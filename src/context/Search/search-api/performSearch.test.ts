@@ -35,7 +35,7 @@ describe("performSearch", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("should call onStart on start", () => {
+  it("should call onStart on start", () => {
     fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
     performSearch({
       query: {
@@ -45,7 +45,7 @@ describe("performSearch", () => {
     });
     expect(callbacks.onStart).toHaveBeenCalled();
   });
-  test("should call onSuccess with 2023 results on success", async () => {
+  it("should call onSuccess with 2023 results on success", async () => {
     fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
     await performSearch({
       query: {
@@ -59,7 +59,7 @@ describe("performSearch", () => {
       ...mockResults2020,
     ]);
   });
-  test("should call onFail on fail", async () => {
+  it("should call onFail on fail", async () => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     vi.spyOn(console, "error").mockImplementation(() => {});
     fetchResults2020Spy.mockRejectedValue(new Error("test"));

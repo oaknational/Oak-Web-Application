@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import transform from "./transform";
 
 describe("transform", () => {
-  test("should correctly handle prop 'transform' as string", async () => {
+  it("should correctly handle prop 'transform' as string", async () => {
     const StyledComponent = styled.div`
       ${transform}
     `;
@@ -14,7 +14,7 @@ describe("transform", () => {
 
     expect(getByTestId("test")).toHaveStyle("transform: translateY(20px)");
   });
-  test("should correctly handle prop 'transform' as array", async () => {
+  it("should correctly handle prop 'transform' as array", async () => {
     const StyledComponent = styled.div`
       ${transform}
     `;

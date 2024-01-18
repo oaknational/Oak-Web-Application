@@ -10,7 +10,7 @@ const onClick = vi.fn();
 
 const render = renderWithProviders();
 describe("components/UnitList", () => {
-  test("renders the list items", () => {
+  it("renders the list items", () => {
     render(
       <UnitList
         {...unitListingFixture()}
@@ -20,7 +20,7 @@ describe("components/UnitList", () => {
       />,
     );
   });
-  test("renders the optionality list card when data has optional units", () => {
+  it("renders the optionality list card when data has optional units", () => {
     const { getByTestId } = render(
       <UnitList
         {...unitListingFixture()}
@@ -33,7 +33,7 @@ describe("components/UnitList", () => {
     expect(optionalityCard).toBeInTheDocument();
   });
 
-  test("does not render the optionality list card when no optional units", () => {
+  it("does not render the optionality list card when no optional units", () => {
     const { queryByTestId } = render(
       <UnitList
         {...unitListingFixture()}
@@ -45,7 +45,7 @@ describe("components/UnitList", () => {
     const optionalityCard = queryByTestId("unit-optionality-card");
     expect(optionalityCard).not.toBeInTheDocument();
   });
-  test("onClick is called when a unit is clicked", () => {
+  it("onClick is called when a unit is clicked", () => {
     const { getByText } = render(
       <UnitList
         {...unitListingFixture()}

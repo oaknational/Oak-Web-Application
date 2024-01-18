@@ -22,7 +22,7 @@ const createRef = () => {
 };
 
 describe("getPercentagedElapsed", () => {
-  test("gets percentage elapsed", () => {
+  it("gets percentage elapsed", () => {
     expect(getPercentageElapsed(createRef())).toBe(92);
   });
 });

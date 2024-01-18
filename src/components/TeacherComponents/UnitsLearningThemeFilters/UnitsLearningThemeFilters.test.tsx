@@ -10,7 +10,7 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
-  test("should render links to lessons", () => {
+  it("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}

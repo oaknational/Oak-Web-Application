@@ -11,7 +11,7 @@ vi.mock("./generated/sdk", () => ({
 }));
 
 describe("curriculum-api", () => {
-  test("searchPage", async () => {
+  it("searchPage", async () => {
     await curriculumApi.searchPage();
     expect(mocks.searchPage).toHaveBeenCalled();
   });

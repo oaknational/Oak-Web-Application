@@ -26,7 +26,7 @@ const legacyHitObject = getSearchHitObject(legacyHit, allKeyStages);
 const render = renderWithProviders();
 
 describe("SearchResultsItem", () => {
-  test("It renders a lesson title", () => {
+  it("It renders a lesson title", () => {
     if (hitObjectLesson) {
       const { getByText } = render(<SearchResultsItem {...hitObjectLesson} />);
       expect(
@@ -36,7 +36,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders 'lesson' for a lesson hit in metadata", () => {
+  it("It renders 'lesson' for a lesson hit in metadata", () => {
     if (hitObjectLesson) {
       const { getByText } = render(<SearchResultsItem {...hitObjectLesson} />);
       expect(getByText("Lesson")).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders 'unit' for a unit hit in metadata", () => {
+  it("It renders 'unit' for a unit hit in metadata", () => {
     if (hitObjectUnit) {
       const { getByText } = render(<SearchResultsItem {...hitObjectUnit} />);
       expect(getByText("Unit")).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("It renders 'new' tag for new content", () => {
+  it("It renders 'new' tag for new content", () => {
     if (hitObjectUnit) {
       const { getByText } = render(<SearchResultsItem {...hitObjectUnit} />);
       expect(getByText("New")).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("It does not render 'new' tag for legacy content", () => {
+  it("It does not render 'new' tag for legacy content", () => {
     if (legacyHitObject) {
       const { queryByText } = render(
         <SearchResultsItem {...legacyHitObject} />,
@@ -70,7 +70,7 @@ describe("SearchResultsItem", () => {
       throw new Error("legacyHitObject is undefined");
     }
   });
-  test("It renders ks short code in meta data", () => {
+  it("It renders ks short code in meta data", () => {
     if (hitObjectUnit) {
       const { getByText } = render(<SearchResultsItem {...hitObjectUnit} />);
       expect(getByText("KS2")).toBeInTheDocument();
@@ -78,7 +78,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("It renders a lesson description", () => {
+  it("It renders a lesson description", () => {
     if (hitObjectLesson) {
       const { getByText } = render(<SearchResultsItem {...hitObjectLesson} />);
       expect(
@@ -90,7 +90,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders a button with the correct text for lesson", () => {
+  it("It renders a button with the correct text for lesson", () => {
     if (hitObjectLesson) {
       const { queryByText } = render(
         <SearchResultsItem {...hitObjectLesson} />,
@@ -101,7 +101,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders a button with the correct text for unit", () => {
+  it("It renders a button with the correct text for unit", () => {
     if (hitObjectUnit) {
       const { queryByText } = render(<SearchResultsItem {...hitObjectUnit} />);
       const link = queryByText("See unit");
@@ -110,7 +110,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("It renders a link with the correct aria label (unit)", () => {
+  it("It renders a link with the correct aria label (unit)", () => {
     if (hitObjectUnit) {
       const { getByLabelText } = render(
         <SearchResultsItem {...hitObjectUnit} />,
@@ -121,7 +121,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("It renders a link with the correct aria label (lesson)", () => {
+  it("It renders a link with the correct aria label (lesson)", () => {
     if (hitObjectLesson) {
       const { getByLabelText } = render(
         <SearchResultsItem {...hitObjectLesson} />,
@@ -134,7 +134,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders a link with the correct href (lesson)", () => {
+  it("It renders a link with the correct href (lesson)", () => {
     if (hitObjectLesson) {
       const { getByRole } = render(<SearchResultsItem {...hitObjectLesson} />);
       const link = getByRole("link");
@@ -146,7 +146,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectLesson is undefined");
     }
   });
-  test("It renders a link with the correct href (unit)", () => {
+  it("It renders a link with the correct href (unit)", () => {
     if (hitObjectUnit) {
       const { getByRole } = render(<SearchResultsItem {...hitObjectUnit} />);
       const link = getByRole("link");
@@ -158,7 +158,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("calls onclick with correct data if search hit is clicked", () => {
+  it("calls onclick with correct data if search hit is clicked", () => {
     if (hitObjectLesson) {
       const { getByText } = render(
         <SearchResultsItem

@@ -84,7 +84,7 @@ describe("useSearch()", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("query should come from url querystring", async () => {
+  it("query should come from url querystring", async () => {
     const { result } = renderHookWithProviders({
       router: { url: "?term=something" },
     })(() => useSearch({ allKeyStages }));
@@ -93,7 +93,7 @@ describe("useSearch()", () => {
       expect(result.current.query.term).not.toBe("test-tem");
     });
   });
-  test("status should default to 'not-asked' if no search term in url", () => {
+  it("status should default to 'not-asked' if no search term in url", () => {
     const { result } = renderHookWithProviders({ router: { url: "" } })(() =>
       useSearch({ allKeyStages }),
     );
@@ -101,7 +101,7 @@ describe("useSearch()", () => {
 
     expect(status).toBe("not-asked");
   });
-  test("status should default to 'loading' if search term in url", () => {
+  it("status should default to 'loading' if search term in url", () => {
     const { result } = renderHookWithProviders({
       router: { url: "?term=something" },
     })(() => useSearch({ allKeyStages }));
@@ -109,18 +109,18 @@ describe("useSearch()", () => {
 
     expect(status).toBe("loading");
   });
-  test("fetch should not be called if no search term in query", () => {
+  it("fetch should not be called if no search term in query", () => {
     renderHookWithProviders({ router: { url: "" } })(() =>
       useSearch({ allKeyStages }),
     );
     expect(fetch).not.toHaveBeenCalled();
   });
-  test("fetch should be called once if search term in query", async () => {
+  it("fetch should be called once if search term in query", async () => {
     renderHookWithProviders(providers)(() => useSearch({ allKeyStages }));
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });
-  test("results should be returned in the correct form", async () => {
+  it("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
 
     const { result } = renderHookWithProviders(providers)(() =>
@@ -160,7 +160,7 @@ describe("useSearch()", () => {
       }),
     );
   });
-  test("results should be returned in the correct form", async () => {
+  it("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
     const { result } = renderHookWithProviders(providers)(() =>
       useSearch({ allKeyStages }),
@@ -169,7 +169,7 @@ describe("useSearch()", () => {
       expect(result.current.results.length).toBe(20);
     });
   });
-  test("status should be 'fail' if fetch fails", async () => {
+  it("status should be 'fail' if fetch fails", async () => {
     fetch.mockResolvedValue(badFetchResolvedValue);
     const { result } = renderHookWithProviders(providers)(() =>
       useSearch({ allKeyStages }),

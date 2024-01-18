@@ -66,7 +66,7 @@ describe("ErrorBoundary.tsx", () => {
 
     window.localStorage.clear();
   });
-  test("[bugsnag:enabled] should render children if no error", () => {
+  it("[bugsnag:enabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
         <div data-testid="child">The app</div>
@@ -75,7 +75,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
-  test("[bugsnag:enabled] should render client error view in the case of an uncaught exception", () => {
+  it("[bugsnag:enabled] should render client error view in the case of an uncaught exception", () => {
     const { getByRole } = render(
       <ErrorBoundary>
         <TantrumChild />
@@ -98,7 +98,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(mockNotify).toHaveBeenCalled();
   });
-  test("[bugsnag:disabled] should render children if no error", () => {
+  it("[bugsnag:disabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
         <div data-testid="child">The app</div>
@@ -107,7 +107,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
-  test("[bugsnag:disabled] should render client error view in the case of an uncaught exception", () => {
+  it("[bugsnag:disabled] should render client error view in the case of an uncaught exception", () => {
     const { getByRole } = render(
       <ErrorBoundary>
         <TantrumChild />
@@ -118,7 +118,7 @@ describe("ErrorBoundary.tsx", () => {
       "An error occurred",
     );
   });
-  test("[bugsnag:disabled] should not call reportError", () => {
+  it("[bugsnag:disabled] should not call reportError", () => {
     render(
       <ErrorBoundary>
         <TantrumChild />

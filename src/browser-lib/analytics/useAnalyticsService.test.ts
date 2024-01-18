@@ -27,21 +27,20 @@ describe("useAnalyticsService", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
-
   });
-  test("should not call service.init() if consentState:disabled", () => {
+  it("should not call service.init() if consentState:disabled", () => {
     renderHook(() =>
       useAnalyticsService({ service, config: null, consentState: "disabled" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should not call service.init() if consentState:pending", () => {
+  it("should not call service.init() if consentState:pending", () => {
     renderHook(() =>
       useAnalyticsService({ service, config: null, consentState: "pending" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should call service.init(config) if consentState:enabled", () => {
+  it("should call service.init(config) if consentState:enabled", () => {
     renderHook(() =>
       useAnalyticsService({
         service,
@@ -51,7 +50,7 @@ describe("useAnalyticsService", () => {
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
-  test("should set posthog distinct if callback passed", async () => {
+  it("should set posthog distinct if callback passed", async () => {
     renderHook(() =>
       useAnalyticsService({
         service,

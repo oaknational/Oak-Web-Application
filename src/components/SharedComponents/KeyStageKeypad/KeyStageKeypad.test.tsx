@@ -36,7 +36,7 @@ describe("components/Key Stage keypad", () => {
     },
   );
 
-  test("calls tracking.keyStageSelected once, with correct props", async () => {
+  it("calls tracking.keyStageSelected once, with correct props", async () => {
     const { getByText } = renderWithTheme(
       <KeyStageKeypad {...keyStageKeypad} />,
     );

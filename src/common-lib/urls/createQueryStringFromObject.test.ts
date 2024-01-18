@@ -1,12 +1,12 @@
 import createQueryStringFromObject from "./createQueryStringFromObject";
 
 describe("createQueryStringFromObject", () => {
-  test("returns empty string if no query passed", () => {
+  it("returns empty string if no query passed", () => {
     const result = createQueryStringFromObject();
 
     expect(result).toBe("");
   });
-  test("should return correct string", () => {
+  it("should return correct string", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
       category: "oak-updates",
@@ -14,7 +14,7 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth&category=oak-updates");
   });
-  test("should strip out null", () => {
+  it("should strip out null", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
       category: null,
@@ -22,7 +22,7 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth");
   });
-  test("should strip out undefined", () => {
+  it("should strip out undefined", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
       category: undefined,
@@ -30,7 +30,7 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth");
   });
-  test("should strip out empty arrays", () => {
+  it("should strip out empty arrays", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
       category: [],
@@ -38,7 +38,7 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth");
   });
-  test("should join string array with ',' delimeter", () => {
+  it("should join string array with ',' delimeter", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
       categories: ["english", "theatre", "history"],

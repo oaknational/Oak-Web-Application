@@ -3,7 +3,7 @@ import { createSearchQuery } from "../../useSearch";
 import { constructElasticQuery } from "./constructElasticQuery";
 
 describe("Search/2023/constructElasticQuery", () => {
-  test("handles search term (without key stages)", () => {
+  it("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({ term: "writing" }),
     );
@@ -49,7 +49,7 @@ describe("Search/2023/constructElasticQuery", () => {
       },
     });
   });
-  test("handles key stages", () => {
+  it("handles key stages", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({ term: "macbeth", keyStages: ["ks3"] }),
     );
@@ -101,7 +101,7 @@ describe("Search/2023/constructElasticQuery", () => {
       },
     });
   });
-  test("handles subject filters", () => {
+  it("handles subject filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
         term: "macbeth",
@@ -155,7 +155,7 @@ describe("Search/2023/constructElasticQuery", () => {
     });
   });
 
-  test("handles type filters", () => {
+  it("handles type filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
         term: "macbeth",
@@ -210,7 +210,7 @@ describe("Search/2023/constructElasticQuery", () => {
     });
   });
 
-  test("handles examboard filters", () => {
+  it("handles examboard filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
         term: "waves",

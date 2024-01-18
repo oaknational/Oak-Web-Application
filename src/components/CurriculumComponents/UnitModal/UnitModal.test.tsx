@@ -22,7 +22,7 @@ describe("Unit modal", () => {
   });
   const stateFn = vi.fn();
 
-  test("renders with correct heading", () => {
+  it("renders with correct heading", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         displayModal={true}
@@ -35,7 +35,7 @@ describe("Unit modal", () => {
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
   });
 
-  test("renders the correct number of threads", () => {
+  it("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
       <UnitModal
         displayModal={true}
@@ -53,7 +53,7 @@ describe("Unit modal", () => {
     expect(testThread2).toBeInTheDocument();
   });
 
-  test("lesson metadata renders correct data", () => {
+  it("lesson metadata renders correct data", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         displayModal={true}
@@ -69,7 +69,7 @@ describe("Unit modal", () => {
   });
 
   describe("non-optional units", () => {
-    test("does not render optionality card", () => {
+    it("does not render optionality card", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -83,7 +83,7 @@ describe("Unit modal", () => {
       expect(queryByTestId("unit-option-card")).not.toBeInTheDocument();
     });
 
-    test("renders CurriculumUnitDetails component", () => {
+    it("renders CurriculumUnitDetails component", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -99,7 +99,7 @@ describe("Unit modal", () => {
   });
 
   describe("optional units", () => {
-    test("optionality cards render", () => {
+    it("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -114,7 +114,7 @@ describe("Unit modal", () => {
       expect(optionalityCard).toBeInTheDocument();
     });
 
-    test("does not render CurriculumUnitDetails component", () => {
+    it("does not render CurriculumUnitDetails component", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -128,7 +128,7 @@ describe("Unit modal", () => {
       expect(queryByTestId("curriculum-unit-details")).not.toBeInTheDocument();
     });
 
-    test("optionality cards render correct number of units", () => {
+    it("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -142,7 +142,7 @@ describe("Unit modal", () => {
       expect(getAllByTestId("unit-option")).toHaveLength(3);
     });
 
-    test("optionality cards render correct unit titles", () => {
+    it("optionality cards render correct unit titles", () => {
       const { getByText } = renderWithTheme(
         <UnitModal
           displayModal={true}
@@ -158,7 +158,7 @@ describe("Unit modal", () => {
       expect(getByText("Test optional unit 3")).toBeInTheDocument();
     });
 
-    test("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
+    it("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
       const { getAllByTestId, getByTestId, getByText, queryByTestId } =
         renderWithTheme(
           <UnitModal
@@ -185,7 +185,7 @@ describe("Unit modal", () => {
       }
     });
   });
-  test("calls tracking.unitInformationViewed once, with correct props", async () => {
+  it("calls tracking.unitInformationViewed once, with correct props", async () => {
     renderWithTheme(
       <UnitModal
         displayModal={true}

@@ -178,7 +178,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 });
 
 describe("tracking", () => {
-  test("It calls tracking.unitSelected with correct props when clicked", async () => {
+  it("It calls tracking.unitSelected with correct props when clicked", async () => {
     const { getByRole } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />,
     );

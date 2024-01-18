@@ -14,7 +14,7 @@ describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("should call fetch with correct query", async () => {
+  it("should call fetch with correct query", async () => {
     await fetchResults({ term: "test" });
 
     expect(mockFetch).toHaveBeenCalledWith("test", {
@@ -27,7 +27,7 @@ describe("search-api/2023/fetchResults", () => {
       body: '{"from":0,"size":100,"query":{"bool":{"should":[{"multi_match":{"query":"test","type":"phrase","analyzer":"stop","fields":["lessonTitle^6","unitTitle^6","lessonDescription^3","lessons.lessonTitle^3"]}},{"multi_match":{"query":"test","fields":["*"],"type":"most_fields","analyzer":"stop","prefix_length":1}}],"filter":[],"minimum_should_match":1}},"highlight":{"number_of_fragments":0,"pre_tags":["<b>"],"post_tags":["</b>"],"fields":{"pupil_lesson_outcome":{}}}}',
     });
   });
-  test("should respond with transformed data", async () => {
+  it("should respond with transformed data", async () => {
     const results = await fetchResults({ term: "test" });
 
     expect(results).toHaveLength(20);

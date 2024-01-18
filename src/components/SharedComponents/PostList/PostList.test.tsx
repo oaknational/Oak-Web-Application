@@ -6,7 +6,7 @@ import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps
 const render = renderWithProviders();
 
 describe("components/PostList", () => {
-  test("renders the list items", () => {
+  it("renders the list items", () => {
     const { getByRole } = render(
       <PostList
         paginationProps={mockPaginationProps}
@@ -32,7 +32,7 @@ describe("components/PostList", () => {
     expect(listHeading).toBeInTheDocument();
   });
 
-  test("formats the date correctly", () => {
+  it("formats the date correctly", () => {
     const { getByText } = render(
       <PostList
         paginationProps={mockPaginationProps}

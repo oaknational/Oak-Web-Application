@@ -47,7 +47,7 @@ const searchResultExpanded = vi.fn();
 const render = renderWithProviders();
 
 describe("<SearchResults />", () => {
-  test("A lesson search result links to the lesson listing page", () => {
+  it("A lesson search result links to the lesson listing page", () => {
     const { getByRole } = render(
       <SearchResults
         {...props}
@@ -65,7 +65,7 @@ describe("<SearchResults />", () => {
     );
   });
   // @todo when we have programme_slug in search index
-  test("A unit search result links to the unit listing page", () => {
+  it("A unit search result links to the unit listing page", () => {
     const { getByRole } = render(
       <SearchResults
         searchResultOpened={searchResultOpened}
@@ -82,7 +82,7 @@ describe("<SearchResults />", () => {
     );
   });
 
-  test("it renders the search results", () => {
+  it("it renders the search results", () => {
     const { getAllByRole } = render(
       <SearchResults
         searchResultOpened={searchResultOpened}
@@ -96,7 +96,7 @@ describe("<SearchResults />", () => {
     expect(searchElement.length).toEqual(20);
   });
 
-  test("it renders pagination if there are more results than 20 results", () => {
+  it("it renders pagination if there are more results than 20 results", () => {
     const hits = getNHits(21);
     const { getByRole } = render(
       <SearchResults
@@ -111,7 +111,7 @@ describe("<SearchResults />", () => {
 
     expect(pagination).toBeInTheDocument();
   });
-  test("it does not render pagination if there are 20 results", () => {
+  it("it does not render pagination if there are 20 results", () => {
     const hits = getNHits(20);
     const { queryByRole } = render(
       <SearchResults
@@ -126,7 +126,7 @@ describe("<SearchResults />", () => {
 
     expect(pagination).not.toBeInTheDocument();
   });
-  test("search results clicked is called when a search result is clicked", () => {
+  it("search results clicked is called when a search result is clicked", () => {
     const hits = getNHits(1);
     const { getByRole } = render(
       <SearchResults

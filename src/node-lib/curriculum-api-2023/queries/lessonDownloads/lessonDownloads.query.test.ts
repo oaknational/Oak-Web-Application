@@ -32,7 +32,7 @@ const downloads = [
 ];
 
 describe("lessonDownloads()", () => {
-  test("throws a not found error if no download is found", async () => {
+  it("throws a not found error if no download is found", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
@@ -54,7 +54,7 @@ describe("lessonDownloads()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
@@ -71,7 +71,7 @@ describe("lessonDownloads()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first downloads is returned if multiple lessons in response", async () => {
+  it("first downloads is returned if multiple lessons in response", async () => {
     const unit = await lessonDownloads({
       ...sdk,
       lessonDownloads: vi.fn(() =>
@@ -92,7 +92,7 @@ describe("lessonDownloads()", () => {
     });
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,

@@ -116,7 +116,7 @@ describe("responsive", () => {
     `;
     expect(stringify(actual)).toEqual(stringify(expected));
   });
-  test("should handle when parse fn gets from theme", async () => {
+  it("should handle when parse fn gets from theme", async () => {
     const StyledComponent = styled.div<{ $color?: OakColorName }>`
       ${responsive(
         "color",

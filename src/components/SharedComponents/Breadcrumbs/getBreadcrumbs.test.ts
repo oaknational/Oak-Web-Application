@@ -20,7 +20,7 @@ const categories = [
 ];
 
 describe("getBlogBreadcrumbs", () => {
-  test("passed a category list and slug it returns a breadcrumbs array", () => {
+  it("passed a category list and slug it returns a breadcrumbs array", () => {
     const breadcrumbs = getBlogWebinarListBreadcrumbs(
       categories,
       "research-and-insights",
@@ -42,7 +42,7 @@ describe("getBlogBreadcrumbs", () => {
     expect(breadcrumbs).toEqual(expectedCrumbs);
   });
 
-  test("passed a category list but NO slug it still returns breadcrumbs array with All as the last slug", () => {
+  it("passed a category list but NO slug it still returns breadcrumbs array with All as the last slug", () => {
     const breadcrumbs = getBlogWebinarListBreadcrumbs(
       categories,
       null,

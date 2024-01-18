@@ -12,7 +12,7 @@ describe("menu backdrop", () => {
     mockRouter.setCurrentUrl("/");
   });
 
-  test("if menu is closed it is hidden", () => {
+  it("if menu is closed it is hidden", () => {
     const { getByTestId } = renderWithTheme(
       <MenuProvider>
         <MenuBackdrop state="exited" />
@@ -22,7 +22,7 @@ describe("menu backdrop", () => {
     expect(getByTestId("menu-backdrop")).not.toBeVisible();
   });
 
-  test("if menu open is open it is visible", () => {
+  it("if menu open is open it is visible", () => {
     const { getByTestId } = renderWithTheme(
       <MenuProvider>
         <MenuBackdrop state="entering" />

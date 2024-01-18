@@ -28,11 +28,11 @@ describe("SocialButtons", () => {
       expect(link).toHaveAttribute("href", profileUrl);
     },
   );
-  test("renders nothing if no socials passed", () => {
+  it("renders nothing if no socials passed", () => {
     const { container } = renderWithTheme(<SocialButtons for="no one" />);
     expect(container).toBeEmptyDOMElement();
   });
-  test("renders only socials which are passed", () => {
+  it("renders only socials which are passed", () => {
     const { getAllByRole } = renderWithTheme(
       <SocialButtons
         for="someone"

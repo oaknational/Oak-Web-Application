@@ -17,7 +17,7 @@ const testCurriculumUnitDetails = {
 };
 
 describe("CurriculumUnitDetails component", () => {
-  test("it should render the threads", () => {
+  it("it should render the threads", () => {
     const { getByText, getAllByTestId } = renderWithTheme(
       <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
     );
@@ -28,7 +28,7 @@ describe("CurriculumUnitDetails component", () => {
     expect(thread).toBeInTheDocument();
   });
 
-  test("it should render the correct number of lessons count", () => {
+  it("it should render the correct number of lessons count", () => {
     const { getByText } = renderWithTheme(
       <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
     );
@@ -38,7 +38,7 @@ describe("CurriculumUnitDetails component", () => {
   });
 
   describe("accordion functionality on component", () => {
-    test("it should render all accordion components", () => {
+    it("it should render all accordion components", () => {
       const { getAllByTestId, getByText } = renderWithTheme(
         <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
       );
@@ -49,7 +49,7 @@ describe("CurriculumUnitDetails component", () => {
       expect(getByText("Following unit description")).toBeInTheDocument();
     });
 
-    test("when expanding lesson accordion it should render correct lessons list", async () => {
+    it("when expanding lesson accordion it should render correct lessons list", async () => {
       const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
         <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
       );

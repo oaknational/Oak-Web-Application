@@ -55,7 +55,7 @@ describe("useAnalytics", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("service.identify() should be called if service included in array", () => {
+  it("service.identify() should be called if service included in array", () => {
     callWithArgs.mockImplementation((identify) =>
       identify("someone", {}, ["posthog"]),
     );
@@ -64,7 +64,7 @@ describe("useAnalytics", () => {
 
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
-  test("service.identify() should not be called if service not included in array", () => {
+  it("service.identify() should not be called if service not included in array", () => {
     callWithArgs.mockImplementation((identify) =>
       identify("someone", {}, ["hubspot"]),
     );
@@ -73,7 +73,7 @@ describe("useAnalytics", () => {
 
     expect(posthogIdentify).not.toHaveBeenCalled();
   });
-  test("service.identify() should be called if no services array passed", () => {
+  it("service.identify() should be called if no services array passed", () => {
     callWithArgs.mockImplementation((identify) => identify("someone", {}));
 
     render(<CallIdentify />);

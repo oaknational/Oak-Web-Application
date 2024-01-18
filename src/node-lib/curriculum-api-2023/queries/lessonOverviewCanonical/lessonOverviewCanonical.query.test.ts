@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import lessonOverviewCanonical from "./lessonOverviewCanonical.query";
 
 describe("lessonOverviewCanonical()", () => {
-  test("throws a not found error if no lesson is found", async () => {
+  it("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,
@@ -14,7 +14,7 @@ describe("lessonOverviewCanonical()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("should combine lessons to create pathways list as a property", async () => {
+  it("should combine lessons to create pathways list as a property", async () => {
     const originalLessonBase = {
       isLegacy: false,
       lessonSlug: "lesson-slug",
@@ -85,7 +85,7 @@ describe("lessonOverviewCanonical()", () => {
     });
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,

@@ -12,7 +12,7 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("PostCategoryList", () => {
-  test("should render links to lessons", () => {
+  it("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         labelledBy={labelId}
@@ -32,7 +32,7 @@ describe("PostCategoryList", () => {
       "/blog/categories/lesson-planning",
     );
   });
-  test("should work with webinars", () => {
+  it("should work with webinars", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         labelledBy={labelId}
@@ -52,7 +52,7 @@ describe("PostCategoryList", () => {
       "/webinars/categories/lesson-planning",
     );
   });
-  test("current link should be signposted with aria-current='page'", () => {
+  it("current link should be signposted with aria-current='page'", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
@@ -67,7 +67,7 @@ describe("PostCategoryList", () => {
     const currentLink = getByRole("link", { current: "page" });
     expect(currentLink).toHaveAccessibleName("Lesson Planning");
   });
-  test("selectedCategorySlug null should mean All is current", () => {
+  it("selectedCategorySlug null should mean All is current", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
@@ -82,7 +82,7 @@ describe("PostCategoryList", () => {
     const currentLink = getByRole("link", { current: "page" });
     expect(currentLink).toHaveAccessibleName("All");
   });
-  test("non current links should not be signposted with aria-current", () => {
+  it("non current links should not be signposted with aria-current", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
@@ -97,7 +97,7 @@ describe("PostCategoryList", () => {
     const nonCurrentLink = getByRole("link", { name: "Oak Updates" });
     expect(nonCurrentLink).not.toHaveAttribute("aria-current");
   });
-  test("nav element should have the correct accessible name", () => {
+  it("nav element should have the correct accessible name", () => {
     const { getByRole } = renderWithTheme(
       <>
         <span id={labelId}>Test Categories</span>

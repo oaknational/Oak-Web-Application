@@ -15,7 +15,7 @@ describe("NewsletterForm", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("user can fill out and submit form with keyboard", async () => {
+  it("user can fill out and submit form with keyboard", async () => {
     render(<NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />);
 
     const user = userEvent.setup();
@@ -50,7 +50,7 @@ describe("NewsletterForm", () => {
       userRole: "Student",
     });
   });
-  test("should display error hint on blur if no name is entered", async () => {
+  it("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
@@ -66,7 +66,7 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Enter a name");
   });
-  test("should display error hint on blur if name more than 60 chars", async () => {
+  it("should display error hint on blur if name more than 60 chars", async () => {
     const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
@@ -85,7 +85,7 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Name must contain fewer than 60 charaters");
   });
-  test("should display error hint on blur if no email is entered", async () => {
+  it("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
@@ -101,7 +101,7 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Enter an email");
   });
-  test("should display error hint on blur email not formatted correctly", async () => {
+  it("should display error hint on blur email not formatted correctly", async () => {
     const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
@@ -118,7 +118,7 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Enter a valid email");
   });
-  test("form cannot be submitted if not complete", async () => {
+  it("form cannot be submitted if not complete", async () => {
     const onSubmit = vi.fn();
     const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
@@ -134,7 +134,7 @@ describe("NewsletterForm", () => {
 
     expect(onSubmit).toHaveBeenCalledTimes(0);
   });
-  test("onSubmit() should not be called if form invalid", async () => {
+  it("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
@@ -145,7 +145,7 @@ describe("NewsletterForm", () => {
 
     expect(onSubmit).not.toHaveBeenCalled();
   });
-  test("should display correct message if OakError thrown from onSubmit()", async () => {
+  it("should display correct message if OakError thrown from onSubmit()", async () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByRole, getByPlaceholderText } = render(
@@ -168,7 +168,7 @@ describe("NewsletterForm", () => {
       "Thank you, that's been received, but please check as your email doesn't look quite right.",
     );
   });
-  test("should display default message if no OakError", async () => {
+  it("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,

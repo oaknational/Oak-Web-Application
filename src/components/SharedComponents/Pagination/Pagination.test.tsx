@@ -1,6 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import { RefObject } from "react";
-import mockRouter from 'next-router-mock';
+import mockRouter from "next-router-mock";
 
 import Pagination from "./Pagination";
 
@@ -15,7 +15,7 @@ describe("Pagination", () => {
     vi.clearAllMocks();
   });
 
-  test("it renders", () => {
+  it("it renders", () => {
     const totalPages = 25;
     const currentPage = 1;
     const nextPageUrlObject = "prev";
@@ -33,7 +33,7 @@ describe("Pagination", () => {
 
     getByRole("navigation");
   });
-  test("displays the correct text", () => {
+  it("displays the correct text", () => {
     const totalPages = 17;
     const currentPage = 15;
     const nextPageUrlObject = "next-page";
@@ -51,7 +51,7 @@ describe("Pagination", () => {
 
     getByText("page 15 / 17");
   });
-  test("next arrow has correct href", () => {
+  it("next arrow has correct href", () => {
     const totalPages = 25;
     const currentPage = 6;
     const nextPageUrlObject = {
@@ -72,7 +72,7 @@ describe("Pagination", () => {
     const link = getByRole("link", { name: "blog page 7" });
     expect(link).toHaveAttribute("href", "/blog/updates?page=2");
   });
-  test("previous arrow has correct href", () => {
+  it("previous arrow has correct href", () => {
     const totalPages = 25;
     const currentPage = 6;
     const prevPageUrlObject = {
@@ -94,7 +94,7 @@ describe("Pagination", () => {
     expect(link).toHaveAttribute("href", "/blog/updates?page=5");
   });
 
-  test("the next arrow is disabled when there are no more pages", () => {
+  it("the next arrow is disabled when there are no more pages", () => {
     const totalPages = 25;
     const currentPage = 25;
     const nextPageUrlObject = "next-page";
@@ -116,7 +116,7 @@ describe("Pagination", () => {
     expect(nextLink).toHaveAttribute("aria-disabled", "true");
     expect(nextLink).toHaveAttribute("href", CURRENT_PATH);
   });
-  test("previous button is disabled on page 1", () => {
+  it("previous button is disabled on page 1", () => {
     const totalPages = 25;
     const currentPage = 1;
     const nextPageUrlObject = "next-page";
@@ -137,7 +137,7 @@ describe("Pagination", () => {
     expect(previousLink).toHaveAttribute("aria-disabled", "true");
     expect(previousLink).toHaveAttribute("href", CURRENT_PATH);
   });
-  test("nothing is displayed if there is only one page", () => {
+  it("nothing is displayed if there is only one page", () => {
     const totalPages = 1;
     const currentPage = 1;
     const nextPageUrlObject = "next-page";
@@ -154,7 +154,7 @@ describe("Pagination", () => {
 
     expect(queryByRole("navigation")).toBeNull();
   });
-  test("focus is set on ref when query has page and there is a ref passed to component", async () => {
+  it("focus is set on ref when query has page and there is a ref passed to component", async () => {
     mockRouter.setCurrentUrl("/?page=2");
 
     const totalPages = 40;

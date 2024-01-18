@@ -27,22 +27,22 @@ describe("startGleap", () => {
     vi.clearAllMocks();
     vi.resetModules();
   });
-  test("should set Gleap on the window object", () => {
+  it("should set Gleap on the window object", () => {
     startGleap(gleapConfig);
 
     expect(window.Gleap).toBeTruthy();
   });
-  test("should set the correct frame url", () => {
+  it("should set the correct frame url", () => {
     startGleap(gleapConfig);
 
     expect(setFrameUrl).toHaveBeenCalledWith(frameUrl);
   });
-  test("should set the correct api url", () => {
+  it("should set the correct api url", () => {
     startGleap(gleapConfig);
 
     expect(setApiUrl).toHaveBeenCalledWith(apiUrl);
   });
-  test("should call Gleap.initialise with apiKey", () => {
+  it("should call Gleap.initialise with apiKey", () => {
     startGleap(gleapConfig);
 
     expect(initialize).toHaveBeenCalledWith(apiKey);

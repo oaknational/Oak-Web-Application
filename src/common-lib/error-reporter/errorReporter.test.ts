@@ -189,7 +189,7 @@ describe("common-lib/error-reporter", () => {
       expect(consoleLog).toHaveBeenCalledWith("Original error:");
       expect(consoleError).toHaveBeenCalledWith("test thing");
     });
-    test("adds originalError if error is OakError", () => {
+    it("adds originalError if error is OakError", () => {
       const originalError = new Error(
         "some error from somewhere (not our fault!)",
       );
@@ -201,21 +201,21 @@ describe("common-lib/error-reporter", () => {
         originalError,
       });
     });
-    test("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
+    it("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
       const error = new OakError({ code: "misc/unknown" });
       error.hasBeenReported = true;
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
 
-    test("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
+    it("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
       const error = new OakError({ code: "preview/zod-error" });
       error.config.shouldNotify = false;
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
 
-    test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
+    it("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
       reportError({
         originalError: {
           originalError: {
@@ -227,18 +227,18 @@ describe("common-lib/error-reporter", () => {
       });
       expect(mockNotify).not.toHaveBeenCalled();
     });
-    test("will not get stuck in a recursive loop", () => {
+    it("will not get stuck in a recursive loop", () => {
       const error = new Error("self referential error");
       (error as { originalError?: unknown }).originalError = error;
       reportError(error);
       expect(mockNotify).toHaveBeenCalled();
     });
-    test("sets error.hasBeenReported = true", async () => {
+    it("sets error.hasBeenReported = true", async () => {
       const error = new OakError({ code: "misc/unknown" });
       reportError(error);
       expect(error.hasBeenReported).toBe(true);
     });
-    test("will not report same error twice", () => {
+    it("will not report same error twice", () => {
       const error = new OakError({ code: "misc/unknown" });
       reportError(error);
       reportError(error);

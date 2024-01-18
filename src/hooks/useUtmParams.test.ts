@@ -16,18 +16,18 @@ describe("useUtmParams()", () => {
 
   vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
-  test("defaults to empty object", () => {
+  it("defaults to empty object", () => {
     mockRouter.setCurrentUrl("/some-page");
 
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({});
   });
-  test("returns utm params", () => {
+  it("returns utm params", () => {
     mockRouter.setCurrentUrl("/some-page?utm_source=twitter&bar=baz");
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({ utm_source: "twitter" });
   });
-  test("gets params from local storage if available", async () => {
+  it("gets params from local storage if available", async () => {
     mockRouter.setCurrentUrl("/some-page");
     window.localStorage.setItem(
       "oak-utm-params",
@@ -39,7 +39,7 @@ describe("useUtmParams()", () => {
       utm_term: "hella yeah",
     });
   });
-  test("utm params local storage gets updated when they change in the query", () => {
+  it("utm params local storage gets updated when they change in the query", () => {
     mockRouter.setCurrentUrl(
       "/some-page?utm_campaign=tests rule&utm_term=hella yeah",
     );

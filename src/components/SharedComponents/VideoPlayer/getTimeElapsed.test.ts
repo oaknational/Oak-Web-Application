@@ -12,15 +12,15 @@ const createRef = (currentTime: number | undefined) => {
 };
 
 describe("getTimeElapsed", () => {
-  test("gets currentTime rounded down", () => {
+  it("gets currentTime rounded down", () => {
     const ref = createRef(54.5467948);
     expect(getTimeElapsed(ref)).toBe(54);
   });
-  test("returns null if currentTime undefined", () => {
+  it("returns null if currentTime undefined", () => {
     const ref = createRef(undefined);
     expect(getTimeElapsed(ref)).toBe(null);
   });
-  test("returns null if currentTime NaN", () => {
+  it("returns null if currentTime NaN", () => {
     const ref = createRef(NaN);
     expect(getTimeElapsed(ref)).toBe(null);
   });

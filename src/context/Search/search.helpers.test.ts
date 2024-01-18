@@ -35,7 +35,7 @@ const lessonHitTier = lessonSearchHitSchema.parse(
 const allKeyStages = searchPageFixture().keyStages;
 
 describe("search helpers", () => {
-  test("getLessonObject maps to new key stage slug", () => {
+  it("getLessonObject maps to new key stage slug", () => {
     const lessonListObject = getLessonObject({
       hit: lessonHit,
       allKeyStages,
@@ -44,13 +44,13 @@ describe("search helpers", () => {
     expect(lessonListObject?.keyStageSlug).toEqual("ks2");
   });
 
-  test("getUnitObject maps to new key stage slug", () => {
+  it("getUnitObject maps to new key stage slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
 
     expect(unitListObject?.keyStageSlug).toEqual("ks2");
   });
 
-  test("getProgrammeSlug returns a correct slug", () => {
+  it("getProgrammeSlug returns a correct slug", () => {
     const unitListObjectLegacy = getUnitObject({
       hit: { ...unitHit, legacy: true },
       allKeyStages,
@@ -74,7 +74,7 @@ describe("search helpers", () => {
       "drama-primary-ks2-l",
     );
   });
-  test("getProgrammeSlug returns a correct slug with tier", () => {
+  it("getProgrammeSlug returns a correct slug with tier", () => {
     const unitListObject = getUnitObject({ hit: unitHitTier, allKeyStages });
     const lessonListObject = getLessonObject({
       hit: lessonHitTier,
@@ -87,7 +87,7 @@ describe("search helpers", () => {
       "english-secondary-ks4-higher",
     );
   });
-  test("legacy suffix is only added when legacy flag is true ", () => {
+  it("legacy suffix is only added when legacy flag is true ", () => {
     const unitListObject = getUnitObject({
       hit: { ...unitHit, legacy: true },
       allKeyStages,
@@ -103,23 +103,23 @@ describe("search helpers", () => {
       "drama-primary-ks2-l",
     );
   });
-  test("isFilterItem returns true if slug is a filter item", () => {
+  it("isFilterItem returns true if slug is a filter item", () => {
     expect(isFilterItem("ks2", allKeyStages)).toEqual(true);
   });
-  test("isFilterItem returns false if slug is not filter item", () => {
+  it("isFilterItem returns false if slug is not filter item", () => {
     expect(isFilterItem("hello", allKeyStages)).toEqual(false);
   });
-  test("getFilterForQuery return array from array", () => {
+  it("getFilterForQuery return array from array", () => {
     expect(getFilterForQuery(["ks3", "ks2"], allKeyStages)).toEqual([
       "ks3",
       "ks2",
     ]);
   });
-  test("getFilterForQuery return array from string", () => {
+  it("getFilterForQuery return array from string", () => {
     expect(getFilterForQuery("ks2", allKeyStages)).toEqual(["ks2"]);
   });
 
-  test("gets expected filters from query", () => {
+  it("gets expected filters from query", () => {
     const query = {
       term: "macbeth",
       keyStages: "ks2",
@@ -131,12 +131,12 @@ describe("search helpers", () => {
     const result = getFiltersFromQuery(query);
     expect(result).toEqual(["ks2", "lesson", "wjec", "english-grammar"]);
   });
-  test("gets expected filters from query with empty filters", () => {
+  it("gets expected filters from query with empty filters", () => {
     const query = { term: "macbeth" };
     const result = getFiltersFromQuery(query);
     expect(result).toEqual([undefined, undefined, undefined, undefined]);
   });
-  test("gets sorted filters with multiple filters", () => {
+  it("gets sorted filters with multiple filters", () => {
     const query = {
       term: "macbeth",
       keyStages: "ks2",

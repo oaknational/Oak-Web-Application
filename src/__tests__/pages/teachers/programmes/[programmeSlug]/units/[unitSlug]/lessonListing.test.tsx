@@ -31,7 +31,7 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("Lesson listing page", () => {
-  test("it renders the unit title as page title", () => {
+  it("it renders the unit title as page title", () => {
     const { getByRole } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );
@@ -41,7 +41,7 @@ describe("Lesson listing page", () => {
     expect(pageHeading).toBeInTheDocument();
   });
 
-  test("it renders the correct number of lessons", () => {
+  it("it renders the correct number of lessons", () => {
     const { getByText } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );
@@ -109,7 +109,7 @@ describe("Lesson listing page", () => {
     });
   });
   describe("tracking", () => {
-    test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+    it("It calls tracking.lessonSelected with correct props when clicked", async () => {
       const { getByText } = render(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );

@@ -3,7 +3,7 @@ import { CookieConsents } from "../CookieConsentProvider";
 import { fromTuples, toTuples } from "./useConfirmicConsents";
 
 describe("toTuples", () => {
-  test("it should convert to an array of tuples", () => {
+  it("it should convert to an array of tuples", () => {
     const value: CookieConsents = {
       strictlyNecessary: {
         state: "enabled",
@@ -37,7 +37,7 @@ describe("toTuples", () => {
   });
 });
 describe("fromTuples", () => {
-  test("it should convert from array of tuples to a CookieConsents", () => {
+  it("it should convert from array of tuples to a CookieConsents", () => {
     const tuples = [
       [
         "metomic-consented-pol:3c779fd2-9d6b-4613-8eed-e746cb669d7e",

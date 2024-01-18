@@ -9,7 +9,7 @@ import {
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
 
 describe("UnitsTabSidebar component", () => {
-  test("should render the sidebar", () => {
+  it("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
       <UnitsTabSidebar displayModal={true} onClose={vi.fn()} />,
     );
@@ -17,7 +17,7 @@ describe("UnitsTabSidebar component", () => {
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
   });
 
-  test("should render the sidebar with children", () => {
+  it("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
       <UnitsTabSidebar displayModal={true} onClose={vi.fn()}>
         <div data-testid="sidebar-children" />
@@ -27,7 +27,7 @@ describe("UnitsTabSidebar component", () => {
     expect(getByTestId("sidebar-children")).toBeInTheDocument();
   });
 
-  test("onClose state function called when close button selected", async () => {
+  it("onClose state function called when close button selected", async () => {
     const mockClose = vi.fn();
     const { getByTestId } = renderWithTheme(
       <UnitsTabSidebar displayModal={true} onClose={mockClose} />,
@@ -44,7 +44,7 @@ describe("UnitsTabSidebar component", () => {
   });
 
   describe("Unit lessons button", () => {
-    test("should render the unit lessons button when passed unit data with no optionality", () => {
+    it("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
@@ -56,7 +56,7 @@ describe("UnitsTabSidebar component", () => {
       expect(getByTestId("unit-lessons-button")).toBeInTheDocument();
     });
 
-    test("should not render the unit info button when passed unit data with optionality", () => {
+    it("should not render the unit info button when passed unit data with optionality", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}

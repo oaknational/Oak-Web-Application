@@ -179,7 +179,7 @@ describe("DynamicForm", () => {
     ],
   } as FormDefinition;
 
-  test("user can fill out and submit form with keyboard", async () => {
+  it("user can fill out and submit form with keyboard", async () => {
     renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -217,7 +217,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("should display error hint on blur if no name is entered", async () => {
+  it("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -233,7 +233,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("should display all error hints on submit", async () => {
+  it("should display all error hints on submit", async () => {
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -253,7 +253,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("onSubmit() should not be called if form invalid", async () => {
+  it("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );

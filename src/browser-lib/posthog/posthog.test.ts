@@ -33,13 +33,13 @@ vi.mock("posthog-js", () => ({
     has_opted_out_capturing: () => true,
     get_distinct_id: () => textDistinctId,
     register: (...args: []) => register(...args),
-  }
+  },
 }));
 describe("posthog.ts", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("init should be called with correct config", async () => {
+  it("init should be called with correct config", async () => {
     const config = {
       apiKey: "12",
       apiHost: "https://test.thenational.academy",
@@ -47,7 +47,7 @@ describe("posthog.ts", () => {
     await posthog.init(config);
     expect(init).toHaveBeenCalledWith(config.apiKey, expect.any(Object));
   });
-  test("init return distinct id", async () => {
+  it("init return distinct id", async () => {
     const config = {
       apiKey: "12",
       apiHost: "https://test.thenational.academy",
@@ -55,7 +55,7 @@ describe("posthog.ts", () => {
     const distinctId = await posthog.init(config);
     expect(distinctId).toBe(textDistinctId);
   });
-  test("init calls register() with legacy anonymous id", async () => {
+  it("init calls register() with legacy anonymous id", async () => {
     getLegacyAnonymousId.mockImplementationOnce(
       () => "test legacy anonymous id",
     );
@@ -67,30 +67,30 @@ describe("posthog.ts", () => {
     });
   });
 
-  test("identify", () => {
+  it("identify", () => {
     posthog.identify("123", { email: "abc" });
     expect(identify).toHaveBeenCalledWith("123", { email: "abc" });
   });
-  test("track", () => {
+  it("track", () => {
     posthog.track("foo", { bar: "baz" });
     expect(capture).toHaveBeenCalledWith("foo", {
       bar: "baz",
     });
   });
-  test("page", () => {
+  it("page", () => {
     posthog.page({ path: "/foo/ban" });
     expect(capture).toHaveBeenCalledWith("$pageview");
   });
 
-  test("optIn", () => {
+  it("optIn", () => {
     posthog.optIn();
     expect(optInCapturing).toHaveBeenCalled();
   });
-  test("optOut", () => {
+  it("optOut", () => {
     posthog.optOut();
     expect(optOutCapturing).toHaveBeenCalled();
   });
-  test("state", () => {
+  it("state", () => {
     expect(posthog.state()).toBe("pending");
     getHasConsentedTo.mockImplementationOnce(() => "enabled");
     expect(posthog.state()).toBe("enabled");

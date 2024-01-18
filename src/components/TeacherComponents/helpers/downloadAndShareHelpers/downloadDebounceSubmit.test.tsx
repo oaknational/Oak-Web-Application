@@ -30,7 +30,7 @@ describe("downloadDebounceSubmit", () => {
     vi.clearAllMocks();
   });
 
-  test("should report an error if failed to fetch downloads and throws on error", async () => {
+  it("should report an error if failed to fetch downloads and throws on error", async () => {
     onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
 
     downloadDebounceSubmit(
@@ -40,7 +40,7 @@ describe("downloadDebounceSubmit", () => {
       expect(error.code).toEqual("downloads/failed-to-fetch");
     });
   });
-  test("should update state for attempting to download ", async () => {
+  it("should update state for attempting to download ", async () => {
     onSubmit.mockImplementationOnce(() =>
       Promise.resolve("Download successful!"),
     );

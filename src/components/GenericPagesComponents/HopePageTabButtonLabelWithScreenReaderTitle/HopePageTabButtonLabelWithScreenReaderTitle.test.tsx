@@ -3,7 +3,7 @@ import HopePageTabButtonLabelWithScreenReaderTitle from "./HopePageTabButtonLabe
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("HopePageTabButtonLabelWithScreenReaderTitle", () => {
-  test("should have correct default styles", () => {
+  it("should have correct default styles", () => {
     const { getByText } = renderWithTheme(
       <HopePageTabButtonLabelWithScreenReaderTitle>
         Test

@@ -123,11 +123,11 @@ vi.mock("./generated/sdk", () => ({
   }),
 }));
 describe("curriculum-api", () => {
-  test("teachersHomePage", async () => {
+  it("teachersHomePage", async () => {
     await curriculumApi.teachersHomePage();
     expect(teachersHomePage).toHaveBeenCalled();
   });
-  test("lessonDownloads", async () => {
+  it("lessonDownloads", async () => {
     await curriculumApi.lessonDownloads({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
@@ -142,7 +142,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("lessonShare", async () => {
+  it("lessonShare", async () => {
     await curriculumApi.lessonShare({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
@@ -157,7 +157,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("unitListing", async () => {
+  it("unitListing", async () => {
     await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4-l",
     });
@@ -169,7 +169,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("unitListing learningThemes contains 'no themes'", async () => {
+  it("unitListing learningThemes contains 'no themes'", async () => {
     const units = await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4",
     });
@@ -180,7 +180,7 @@ describe("curriculum-api", () => {
 
     expect(hasThemes).toBe(true);
   });
-  test("lessonListing", async () => {
+  it("lessonListing", async () => {
     await curriculumApi.lessonListing({
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
@@ -194,7 +194,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("lessonOverview", async () => {
+  it("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
       lessonSlug: "Geometry fundamentals",
       unitSlug: "geometry",
@@ -209,7 +209,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("tierListing", async () => {
+  it("tierListing", async () => {
     await curriculumApi.tierListing({
       keyStageSlug: "ks4",
       subjectSlug: "higher-l",
@@ -222,7 +222,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("tierListing: not found", async () => {
+  it("tierListing: not found", async () => {
     tierListing.mockImplementationOnce(() => {
       return {
         mv_programmes: [],
@@ -235,7 +235,7 @@ describe("curriculum-api", () => {
       }),
     ).rejects.toThrow("Resource not found");
   });
-  test("subjectListing", async () => {
+  it("subjectListing", async () => {
     await curriculumApi.subjectListing({
       keyStageSlug: "ks4",
     });
@@ -243,11 +243,11 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks4",
     });
   });
-  test("searchPage", async () => {
+  it("searchPage", async () => {
     await curriculumApi.searchPage();
     expect(searchPage).toHaveBeenCalled();
   });
-  test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
+  it("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
     const availableProgrammes = subjectListingFixture().subjects;
     const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(

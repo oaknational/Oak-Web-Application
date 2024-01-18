@@ -41,7 +41,7 @@ describe("Unit List Item", () => {
     vi.clearAllMocks();
   });
 
-  test("It uses singular  form of lesson", () => {
+  it("It uses singular  form of lesson", () => {
     const singular = Object.assign({}, props);
     singular.lessonCount = 1;
     singular.expiredLessonCount = 0;
@@ -51,7 +51,7 @@ describe("Unit List Item", () => {
     expect(lessonCountText).toBeInTheDocument();
   });
 
-  test("It uses plural form of lessons", () => {
+  it("It uses plural form of lessons", () => {
     const plural = Object.assign({}, props);
     plural.expiredLessonCount = 0;
     render(<UnitListItem {...plural} />);
@@ -60,7 +60,7 @@ describe("Unit List Item", () => {
     expect(lessonCountText).toBeInTheDocument();
   });
 
-  test("It calls onClick with correct props when clicked", async () => {
+  it("It calls onClick with correct props when clicked", async () => {
     const { getByText } = render(<UnitListItem {...props} />);
 
     const unit = getByText("Numbers and numerals");

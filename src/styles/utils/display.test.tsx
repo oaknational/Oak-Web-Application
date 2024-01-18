@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import display from "./display";
 
 describe("display", () => {
-  test("should correctly handle prop 'display' as string", async () => {
+  it("should correctly handle prop 'display' as string", async () => {
     const StyledComponent = styled.div`
       ${display}
     `;
@@ -14,7 +14,7 @@ describe("display", () => {
 
     expect(getByTestId("test")).toHaveStyle("display: block");
   });
-  test("should correctly handle prop 'display' as array", async () => {
+  it("should correctly handle prop 'display' as array", async () => {
     const StyledComponent = styled.div`
       ${display}
     `;

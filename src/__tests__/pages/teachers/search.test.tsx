@@ -40,7 +40,7 @@ describe("pages/teachers/search.tsx", () => {
     });
   });
 
-  test("renders correct examBoard filters", async () => {
+  it("renders correct examBoard filters", async () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
@@ -52,7 +52,7 @@ describe("pages/teachers/search.tsx", () => {
       "AQA filter",
     );
   });
-  test("renders correct key stage filters", async () => {
+  it("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
@@ -64,7 +64,7 @@ describe("pages/teachers/search.tsx", () => {
       "KS1 filter",
     );
   });
-  test("renders correct subject filters", () => {
+  it("renders correct subject filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
@@ -76,7 +76,7 @@ describe("pages/teachers/search.tsx", () => {
       "English filter",
     );
   });
-  test("renders correct content type filters", () => {
+  it("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}

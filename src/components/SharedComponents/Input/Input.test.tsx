@@ -19,7 +19,7 @@ describe("Input", () => {
 
     expect(input).toBeInTheDocument();
   });
-  test("has accessible name", () => {
+  it("has accessible name", () => {
     const { getByRole } = renderWithTheme(
       <Input
         id="test-input"
@@ -31,7 +31,7 @@ describe("Input", () => {
     const input = getByRole("textbox");
     expect(input).toHaveAccessibleName("A particular label");
   });
-  test("has accessible error message", () => {
+  it("has accessible error message", () => {
     const { getByRole } = renderWithTheme(
       <Input
         id="test-input"

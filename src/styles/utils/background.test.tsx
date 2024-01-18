@@ -5,7 +5,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import background from "./background";
 
 describe("background", () => {
-  test("should correctly handle prop 'background' as string", async () => {
+  it("should correctly handle prop 'background' as string", async () => {
     const StyledComponent = styled.div`
       ${background}
     `;
@@ -18,7 +18,7 @@ describe("background", () => {
     );
     expect(getByTestId("test")).toHaveStyle("color: rgb(255, 255, 255)");
   });
-  test("should correctly handle prop 'background' as array", async () => {
+  it("should correctly handle prop 'background' as array", async () => {
     const StyledComponent = styled.div`
       ${background}
     `;

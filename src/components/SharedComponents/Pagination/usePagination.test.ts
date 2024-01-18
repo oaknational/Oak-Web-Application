@@ -15,7 +15,7 @@ describe("usePagination()", () => {
     vi.clearAllMocks();
   });
 
-  test("calculates correct totalPages", () => {
+  it("calculates correct totalPages", () => {
     mockRouter.setCurrentUrl(pathname);
 
     const { result } = renderHook(() =>
@@ -24,7 +24,7 @@ describe("usePagination()", () => {
 
     expect(result.current.totalPages).toBe(5);
   });
-  test("defaults to page 1", () => {
+  it("defaults to page 1", () => {
     mockRouter.setCurrentUrl(pathname);
 
     const { result } = renderHook(() =>
@@ -33,7 +33,7 @@ describe("usePagination()", () => {
 
     expect(result.current.currentPage).toBe(1);
   });
-  test("correct hrefs on first page", () => {
+  it("correct hrefs on first page", () => {
     mockRouter.setCurrentUrl(pathname + "?page=1");
 
     const { result } = renderHook(() =>
@@ -45,7 +45,7 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
-  test("correct hrefs on last page", () => {
+  it("correct hrefs on last page", () => {
     mockRouter.setCurrentUrl(pathname + "?page=5");
 
     const { result } = renderHook(() =>
@@ -57,7 +57,7 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
-  test("if page < 1, default to page=1 ", () => {
+  it("if page < 1, default to page=1 ", () => {
     mockRouter.setCurrentUrl(pathname + "?page=-5");
 
     const { result } = renderHook(() =>
@@ -70,7 +70,7 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
-  test("if page > totalPages, default to page=1 ", () => {
+  it("if page > totalPages, default to page=1 ", () => {
     mockRouter.setCurrentUrl(pathname + "?page=500");
 
     const { result } = renderHook(() =>
@@ -83,7 +83,7 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
-  test("works if current route has dynamic slug in pathname", () => {
+  it("works if current route has dynamic slug in pathname", () => {
     mockRouter.setCurrentUrl("/blog/updates?page=1");
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -101,7 +101,7 @@ describe("usePagination()", () => {
       prevPageUrlObject: { pathname: mockRouter.asPath },
     });
   });
-  test("it returns the correct number of currentPageItems", () => {
+  it("it returns the correct number of currentPageItems", () => {
     mockRouter.setCurrentUrl(pathname + "?page=1");
 
     const { result } = renderHook(() =>
@@ -112,7 +112,7 @@ describe("usePagination()", () => {
       currentPageItems: items.slice(0, pageSize),
     });
   });
-  test("returns firstItemRef with a valid ref", () => {
+  it("returns firstItemRef with a valid ref", () => {
     mockRouter.setCurrentUrl(pathname);
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),

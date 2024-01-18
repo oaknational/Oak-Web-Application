@@ -9,7 +9,7 @@ import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton"
 
 describe("toast notification", () => {
   const ROLE = "alert";
-  test("shows feedback", async () => {
+  it("shows feedback", async () => {
     const { getByRole, getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />

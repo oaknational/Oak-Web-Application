@@ -17,13 +17,13 @@ describe("removeDecommissionedKeys", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("removes the first key", () => {
+  it("removes the first key", () => {
     removeDecommissionedKeys();
     expect(localStorage.removeItem).toHaveBeenCalledWith(
       "some-old-feature-key",
     );
   });
-  test("removes the correct number of keys", () => {
+  it("removes the correct number of keys", () => {
     removeDecommissionedKeys();
     expect(localStorage.removeItem).toHaveBeenCalledTimes(2);
   });

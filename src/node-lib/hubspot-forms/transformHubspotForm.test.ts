@@ -348,7 +348,7 @@ describe("transformHubspotForm", () => {
   });
 
   describe("addConditions", () => {
-    test("it adds conditions to the field", () => {
+    it("it adds conditions to the field", () => {
       const hubspotFilter = {
         operator: "SET_ANY",
         strValue: "",

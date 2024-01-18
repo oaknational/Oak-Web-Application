@@ -12,13 +12,13 @@ describe("useAxe", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("calls startAxe() if enabled, only once", () => {
+  it("calls startAxe() if enabled, only once", () => {
     const { rerender } = renderHook(() => useAxe({ enabled: true }));
 
     rerender();
     expect(startAxe).toHaveBeenCalledTimes(1);
   });
-  test("not calls startAxe() if disabled", () => {
+  it("not calls startAxe() if disabled", () => {
     renderHook(() => useAxe({ enabled: false }));
     expect(startAxe).not.toHaveBeenCalled();
   });

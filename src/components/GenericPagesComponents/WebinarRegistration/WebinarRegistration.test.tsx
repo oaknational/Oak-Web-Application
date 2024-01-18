@@ -20,13 +20,13 @@ const props: WebinarRegistrationProps = {
   onSubmit: noop,
 };
 describe("WebinarRegistration", () => {
-  test("renders heading with correct tag and content", () => {
+  it("renders heading with correct tag and content", () => {
     const { getByRole } = renderWithTheme(<WebinarRegistration {...props} />);
 
     const heading = getByRole("heading", { level: 5 });
     expect(heading).toHaveTextContent("Almost there");
   });
-  test("clicking button does not call onSubmit() if form not filled out", async () => {
+  it("clicking button does not call onSubmit() if form not filled out", async () => {
     const onSubmit = vi.fn();
     const { getByRole } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
@@ -37,7 +37,7 @@ describe("WebinarRegistration", () => {
     await user.click(button);
     expect(onSubmit).not.toHaveBeenCalled();
   });
-  test("clicking button calls onSubmit() if form filled out", async () => {
+  it("clicking button calls onSubmit() if form filled out", async () => {
     const onSubmit = vi.fn();
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
@@ -55,7 +55,7 @@ describe("WebinarRegistration", () => {
     );
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
-  test("button has a11y name with enough context", async () => {
+  it("button has a11y name with enough context", async () => {
     // visible label is just "Register", which on its own lacks context
     const onSubmit = vi.fn();
     const { getByRole } = renderWithTheme(

@@ -5,7 +5,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import color, { ColorProps } from "./color";
 
 describe("color", () => {
-  test("should correctly handle prop 'color' as string", async () => {
+  it("should correctly handle prop 'color' as string", async () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;
@@ -15,7 +15,7 @@ describe("color", () => {
 
     expect(getByTestId("test")).toHaveStyle("color: #c6d1ef");
   });
-  test("should correctly handle prop 'color' as array", async () => {
+  it("should correctly handle prop 'color' as array", async () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;

@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import lessonDownloadsCanonical from "./lessonDownloadsCanonical.query";
 
 describe("lessonDownloadsCanonical()", () => {
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,
@@ -15,7 +15,7 @@ describe("lessonDownloadsCanonical()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("both pathways returned if multiple lessons in response", async () => {
+  it("both pathways returned if multiple lessons in response", async () => {
     const { pathways } = await lessonDownloadsCanonical({
       ...sdk,
       lessonDownloadsCanonical: vi.fn(() =>
@@ -72,7 +72,7 @@ describe("lessonDownloadsCanonical()", () => {
       },
     ]);
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,

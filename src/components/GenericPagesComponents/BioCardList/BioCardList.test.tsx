@@ -5,7 +5,7 @@ import BioCardList from "./BioCardList";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("BioCardList", () => {
-  test("renders corrent headings", () => {
+  it("renders corrent headings", () => {
     const { getAllByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardList
@@ -31,7 +31,7 @@ describe("BioCardList", () => {
     expect(first).toHaveAccessibleName("Crayon Person");
     expect(second).toHaveAccessibleName("Leaf Breaker");
   });
-  test("cards clickable if withModals passed", () => {
+  it("cards clickable if withModals passed", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardList
@@ -57,7 +57,7 @@ describe("BioCardList", () => {
     });
     expect(cardClickTarget).toBeInTheDocument();
   });
-  test("cards not clickable by default", () => {
+  it("cards not clickable by default", () => {
     const { queryByText } = renderWithTheme(
       <OverlayProvider>
         <BioCardList
@@ -80,7 +80,7 @@ describe("BioCardList", () => {
     const cardClickTarget = queryByText("See bio");
     expect(cardClickTarget).not.toBeInTheDocument();
   });
-  test("button has aria expanded false when bio is closed", () => {
+  it("button has aria expanded false when bio is closed", () => {
     const { getByTitle } = renderWithTheme(
       <OverlayProvider>
         <BioCardList

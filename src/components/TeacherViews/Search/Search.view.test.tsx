@@ -180,21 +180,21 @@ describe("Search.page.tsx", () => {
     vi.clearAllMocks();
   });
 
-  test("status: error message displayed status is fail", () => {
+  it("status: error message displayed status is fail", () => {
     const { getByRole } = render(<Search {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
       "There was an error fetching search results",
     );
   });
-  test("status: loading not displayed if not passed", () => {
+  it("status: loading not displayed if not passed", () => {
     const { getByRole } = render(<Search {...props} />);
     expect(getByRole("status")).not.toHaveTextContent("Loading");
   });
-  test("status: loading displayed if passed", () => {
+  it("status: loading displayed if passed", () => {
     const { getByRole } = render(<Search {...props} status="loading" />);
     expect(getByRole("status")).toHaveTextContent("Loading");
   });
-  test("status: 'no results' message displayed if no results and status==='success'", () => {
+  it("status: 'no results' message displayed if no results and status==='success'", () => {
     const { getByRole } = render(
       <Search
         {...props}
@@ -204,7 +204,7 @@ describe("Search.page.tsx", () => {
     );
     expect(getByRole("status")).toHaveTextContent("No search results");
   });
-  test("status: 'no results' message not displayed if loading", () => {
+  it("status: 'no results' message not displayed if loading", () => {
     const { getByRole } = render(
       <Search
         {...props}
@@ -214,7 +214,7 @@ describe("Search.page.tsx", () => {
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
-  test("status: 'no results' message not displayed if results not empty", () => {
+  it("status: 'no results' message not displayed if results not empty", () => {
     const { getByRole } = render(
       <Search
         {...props}
@@ -224,13 +224,13 @@ describe("Search.page.tsx", () => {
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
-  test("results are displayed", () => {
+  it("results are displayed", () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(
       getByRole("link", { name: "subject title lesson: lesson title" }),
     ).toBeInTheDocument();
   });
-  test("results have correct href", () => {
+  it("results have correct href", () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(
       getByRole("link", { name: "subject title lesson: lesson title" }),
@@ -239,7 +239,7 @@ describe("Search.page.tsx", () => {
       "/teachers/programmes/subject-slug-ks1-l/units/topic-slug/lessons/lesson-slug",
     );
   });
-  test("search term is set on enter", async () => {
+  it("search term is set on enter", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const setSearchTerm = props.setSearchTerm as jest.Mock;
@@ -251,7 +251,7 @@ describe("Search.page.tsx", () => {
     });
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
-  test("query is set on submit button click", async () => {
+  it("query is set on submit button click", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const setSearchTerm = props.setSearchTerm as jest.Mock;
@@ -262,7 +262,7 @@ describe("Search.page.tsx", () => {
     });
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
-  test("tab order, 1: search input", async () => {
+  it("tab order, 1: search input", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
@@ -271,7 +271,7 @@ describe("Search.page.tsx", () => {
     });
     expect(searchInput).toHaveFocus();
   });
-  test("tab order, 2: submit button", async () => {
+  it("tab order, 2: submit button", async () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
 
     const user = userEvent.setup();
@@ -281,7 +281,7 @@ describe("Search.page.tsx", () => {
     });
     expect(getByRole("button", { name: "Submit" })).toHaveFocus();
   });
-  test("clicking result description clicks the link", async () => {
+  it("clicking result description clicks the link", async () => {
     const { getByText, getByRole } = render(
       <Search {...props} {...resultsProps} />,
     );
@@ -306,32 +306,32 @@ describe("Search.page.tsx", () => {
     expect(onLinkClick).toHaveBeenCalled();
   });
 
-  test("searchResultsDisplayed is called when a search is completed with success status", async () => {
+  it("searchResultsDisplayed is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);
     await waitFor(() =>
       expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
     );
   });
-  test("searchResultsDisplayed is called when a search is completed with fail status", async () => {
+  it("searchResultsDisplayed is called when a search is completed with fail status", async () => {
     render(<Search {...{ ...props, status: "fail" }} {...resultsProps} />);
     await waitFor(() =>
       expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
     );
   });
-  test("searchResultsDisplayed is not called when status is not asked", async () => {
+  it("searchResultsDisplayed is not called when status is not asked", async () => {
     render(<Search {...props} />);
     await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
-  test("searchResultsDisplayed is not called when status is loading", async () => {
+  it("searchResultsDisplayed is not called when status is loading", async () => {
     render(<Search {...{ ...props, status: "loading" }} />);
     await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
-  test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
+  it("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
     render(<Search {...props} {...resultsProps} />);
 
     expect(setSearchStartTime).toHaveBeenCalledTimes(1);
   });
-  test("searchResultOpened is called when a search hit is clicked", async () => {
+  it("searchResultOpened is called when a search hit is clicked", async () => {
     const { getByText } = render(<Search {...props} {...resultsProps} />);
     const description = getByText("lesson title");
     const user = userEvent.setup();
@@ -357,7 +357,7 @@ describe("Search.page.tsx", () => {
       context: "search",
     });
   });
-  test("searchResultClicked is called when a pathway hit is clicked", async () => {
+  it("searchResultClicked is called when a pathway hit is clicked", async () => {
     const { getByText } = render(
       <Search {...props} {...resultsPropsPathWays} />,
     );
@@ -390,7 +390,7 @@ describe("Search.page.tsx", () => {
       unitSlug: "topic-slug",
     });
   });
-  test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
+  it("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
     const { getByText } = render(
       <Search {...props} {...resultsPropsPathWays} />,
     );

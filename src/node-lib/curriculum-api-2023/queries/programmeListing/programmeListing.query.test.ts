@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import programmeListing from "./programmeListing.query";
 
 describe("programmeListing()", () => {
-  test("throws a not found error if programme is not found", async () => {
+  it("throws a not found error if programme is not found", async () => {
     await expect(async () => {
       await programmeListing({
         ...sdk,
@@ -15,7 +15,7 @@ describe("programmeListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await programmeListing({
         ...sdk,

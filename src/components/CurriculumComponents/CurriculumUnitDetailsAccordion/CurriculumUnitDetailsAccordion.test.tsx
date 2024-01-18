@@ -7,7 +7,7 @@ import Card from "@/components/SharedComponents/Card";
 import { P } from "@/components/SharedComponents/Typography";
 
 describe("CurriculumUnitDetailsAccordion", () => {
-  test("component renders with correct title", () => {
+  it("component renders with correct title", () => {
     const { getByText } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card>
@@ -19,7 +19,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     expect(getByText("Lessons in unit")).toBeInTheDocument();
   });
 
-  test("child component to not be visible on unexpanded container", () => {
+  it("child component to not be visible on unexpanded container", () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
@@ -31,7 +31,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     expect(getByTestId("test-child")).not.toBeVisible();
   });
 
-  test("container expands on click, child component to become visible", async () => {
+  it("container expands on click, child component to become visible", async () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
@@ -47,7 +47,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     expect(getByTestId("test-child")).toBeVisible();
   });
 
-  test("has aria-expanded changes from false to true when component is expanded", async () => {
+  it("has aria-expanded changes from false to true when component is expanded", async () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
@@ -65,7 +65,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     expect(button).toHaveAttribute("aria-expanded", "true");
   });
 
-  test("component renders child component", async () => {
+  it("component renders child component", async () => {
     const { getByText, getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid="test-child">

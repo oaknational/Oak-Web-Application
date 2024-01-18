@@ -8,13 +8,13 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 describe("components/AppHeader", () => {
-  test("header should be in the document", () => {
+  it("header should be in the document", () => {
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("banner")).toBeInTheDocument();
   });
 
-  test("it should be the teachers header colour", () => {
+  it("it should be the teachers header colour", () => {
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("banner")).toHaveStyle(
@@ -22,7 +22,7 @@ describe("components/AppHeader", () => {
     );
   });
 
-  test("clicking on the hamburger button opens the menu", async () => {
+  it("clicking on the hamburger button opens the menu", async () => {
     const { getByLabelText, getByTestId } = render(<AppHeader />);
 
     const user = userEvent.setup();
@@ -33,7 +33,7 @@ describe("components/AppHeader", () => {
     expect(getByTestId("menu")).toBeVisible();
   });
 
-  test("menu can be opened from keyboard", async () => {
+  it("menu can be opened from keyboard", async () => {
     render(<AppHeader />);
 
     const user = userEvent.setup();
@@ -47,7 +47,7 @@ describe("components/AppHeader", () => {
     expect(screen.getByTestId("menu")).toBeVisible();
   });
 
-  test("menu does not show old menu sections", async () => {
+  it("menu does not show old menu sections", async () => {
     render(<AppHeader />);
     const user = userEvent.setup();
     const hamburgerButton = screen.getByLabelText("Menu");
@@ -57,7 +57,7 @@ describe("components/AppHeader", () => {
     expect(oldMenuLink).not.toBeInTheDocument();
   });
 
-  test("it should include a link for new teacher experience", () => {
+  it("it should include a link for new teacher experience", () => {
     render(<AppHeader />);
     const teacherLink = screen.getAllByRole("link")[1];
 
@@ -67,7 +67,7 @@ describe("components/AppHeader", () => {
 
     expect(teacherLink.closest("a")).toHaveAttribute("href", "/");
   });
-  test("it should include a link for classroom", () => {
+  it("it should include a link for classroom", () => {
     render(<AppHeader />);
     const pupilsLink = screen.getAllByRole("link")[2];
 

@@ -5,7 +5,7 @@ import BoxBorders from ".";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("BoxBorders", () => {
-  test("should be excluded from the accessibility API", () => {
+  it("should be excluded from the accessibility API", () => {
     const { getByTestId } = renderWithTheme(<BoxBorders />);
 
     const element = getByTestId("brush-borders");

@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import subjectListing from "./subjectListing.query";
 
 describe("subjectListing()", () => {
-  test("throws a not found error if no subjects are found", async () => {
+  it("throws a not found error if no subjects are found", async () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,
@@ -19,7 +19,7 @@ describe("subjectListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,

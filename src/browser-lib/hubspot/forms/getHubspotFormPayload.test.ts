@@ -4,7 +4,7 @@ import {
 } from "./getHubspotFormPayloads";
 
 describe("getHubspotNewsletterFormPayload()", () => {
-  test("primary form payload is correct", () => {
+  it("primary form payload is correct", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 123",
@@ -39,7 +39,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       },
     });
   });
-  test("fallback form payload is correct", () => {
+  it("fallback form payload is correct", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 456",
@@ -64,7 +64,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       },
     });
   });
-  test("falsy values are removed", () => {
+  it("falsy values are removed", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 456",
@@ -90,7 +90,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
   });
 });
 describe("getHubspotDownloadFormPayload()", () => {
-  test("primary form payload is correct", () => {
+  it("primary form payload is correct", () => {
     expect(
       getHubspotDownloadsFormPayload({
         hutk: "hubspotutk value 123",
@@ -125,7 +125,7 @@ describe("getHubspotDownloadFormPayload()", () => {
       },
     });
   });
-  test("if schoolId === homeschool or notListed return schoolName as schoolId", () => {
+  it("if schoolId === homeschool or notListed return schoolName as schoolId", () => {
     expect(
       getHubspotDownloadsFormPayload({
         hutk: "hubspotutk value 123",

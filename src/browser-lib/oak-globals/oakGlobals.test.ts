@@ -3,7 +3,7 @@ import { THEME_NAMES } from "../../hooks/useOakTheme";
 import { getOakGlobals, setOakGlobals } from "./oakGlobals";
 
 describe("oakGlobals", () => {
-  test("getOakGlobals should get the latest value of window.__oakGlobals", () => {
+  it("getOakGlobals should get the latest value of window.__oakGlobals", () => {
     const testValue = { foo: "bantz" };
 
     // eslint-disable-next-line
@@ -12,7 +12,7 @@ describe("oakGlobals", () => {
 
     expect(getOakGlobals()).toBe(testValue);
   });
-  test("setOakGlobals should merge values", () => {
+  it("setOakGlobals should merge values", () => {
     const testValue = { foo: "bantz" };
 
     // eslint-disable-next-line

@@ -43,7 +43,7 @@ describe("useVideoTracking", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("calls track.videoStarted only once", () => {
+  it("calls track.videoStarted only once", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();
@@ -53,7 +53,7 @@ describe("useVideoTracking", () => {
     });
     expect(videoStarted).toHaveBeenCalledTimes(1);
   });
-  test("calls track.videoPlayed", () => {
+  it("calls track.videoPlayed", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();
@@ -61,19 +61,19 @@ describe("useVideoTracking", () => {
 
     expect(videoPlayed).toHaveBeenCalledWith(eventProps);
   });
-  test("calls track.videoPaused", () => {
+  it("calls track.videoPaused", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPause();
     });
     expect(videoPaused).toHaveBeenCalledWith(eventProps);
   });
-  test("calls track.videoFinished", () => {
+  it("calls track.videoFinished", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     result.current.onEnd();
     expect(videoFinished).toHaveBeenCalledWith(eventProps);
   });
-  test("calls correct number of times when a sequence is run", () => {
+  it("calls correct number of times when a sequence is run", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();

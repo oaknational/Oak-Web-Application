@@ -6,7 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 describe("SpecialistUnitListing", () => {
-  test("renders component", () => {
+  it("renders component", () => {
     const { getByTestId } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
@@ -14,7 +14,7 @@ describe("SpecialistUnitListing", () => {
 
     expect(unit).toBeInTheDocument();
   });
-  test("renders developmental stage navigation tabs", () => {
+  it("renders developmental stage navigation tabs", () => {
     const { getByTestId } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
@@ -22,7 +22,7 @@ describe("SpecialistUnitListing", () => {
     expect(developmentalNav).toBeInTheDocument();
   });
 
-  test("renders themes filters ", () => {
+  it("renders themes filters ", () => {
     const { queryAllByText } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
@@ -34,7 +34,7 @@ describe("SpecialistUnitListing", () => {
     expect(themeSecondary).toHaveLength(2);
   });
 
-  test("speacialist unit list", () => {
+  it("speacialist unit list", () => {
     const { getAllByTestId } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );

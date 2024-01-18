@@ -24,7 +24,7 @@ describe("SubjectListingCardDouble", () => {
     vi.clearAllMocks();
   });
 
-  test("render a Card with the Name of the Subject", () => {
+  it("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
@@ -35,7 +35,7 @@ describe("SubjectListingCardDouble", () => {
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
   });
-  test("old units with 1 programme take you to 'teachers' view unit listing page", () => {
+  it("old units with 1 programme take you to 'teachers' view unit listing page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
@@ -53,7 +53,7 @@ describe("SubjectListingCardDouble", () => {
       "/teachers/programmes/biology-secondary-ks4/units",
     );
   });
-  test("old units with more than one programme take you to 'teachers' view programme listing page", () => {
+  it("old units with more than one programme take you to 'teachers' view programme listing page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[1] as Subjects[number]}
@@ -71,7 +71,7 @@ describe("SubjectListingCardDouble", () => {
       "/teachers/key-stages/ks4/subjects/maths/programmes",
     );
   });
-  test("new units with 1 programme take you to 'teachers' view unit listing page", () => {
+  it("new units with 1 programme take you to 'teachers' view unit listing page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
@@ -89,7 +89,7 @@ describe("SubjectListingCardDouble", () => {
       "/teachers/key-stages/ks4/subjects/biology/programmes",
     );
   });
-  test("new units with more than one programme take you to 'teachers' view programme listing page", () => {
+  it("new units with more than one programme take you to 'teachers' view programme listing page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[1] as Subjects[number]}
@@ -107,7 +107,7 @@ describe("SubjectListingCardDouble", () => {
       "/teachers/programmes/biology-secondary-ks4/units",
     );
   });
-  test("new units are labeled as 'new'", () => {
+  it("new units are labeled as 'new'", () => {
     const { getByText } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[2] as Subjects[number]}
@@ -119,7 +119,7 @@ describe("SubjectListingCardDouble", () => {
     const cardClickTarget = getByText("New");
     expect(cardClickTarget).toBeInTheDocument();
   });
-  test("new label is not visible on old units", () => {
+  it("new label is not visible on old units", () => {
     const { queryByText } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[3] as Subjects[number]}
@@ -132,7 +132,7 @@ describe("SubjectListingCardDouble", () => {
     expect(cardClickTarget).not.toBeInTheDocument();
   });
 
-  test("calls tracking.subjectSelected once, with correct props", async () => {
+  it("calls tracking.subjectSelected once, with correct props", async () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}

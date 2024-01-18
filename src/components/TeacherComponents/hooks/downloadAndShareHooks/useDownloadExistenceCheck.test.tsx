@@ -34,7 +34,7 @@ describe("useDownloadExistenceCheck", () => {
     vi.clearAllMocks();
   });
 
-  test("it calls onComplete with correct argument when all resources are available", async () => {
+  it("it calls onComplete with correct argument when all resources are available", async () => {
     const lessonSlug = "sampleLesson";
     const resourcesToCheck: ResourcesToDownloadArrayType = [
       "exit-quiz-answers",
@@ -66,7 +66,7 @@ describe("useDownloadExistenceCheck", () => {
     expect(onComplete).toBeCalledWith(["exit-quiz-answers", "worksheet-pdf"]);
   });
 
-  test("it calls onComplete with correct argument when resource is not available", async () => {
+  it("it calls onComplete with correct argument when resource is not available", async () => {
     const lessonSlug = "sampleLesson";
     const resourcesToCheck: ResourcesToDownloadArrayType = [
       "exit-quiz-answers",

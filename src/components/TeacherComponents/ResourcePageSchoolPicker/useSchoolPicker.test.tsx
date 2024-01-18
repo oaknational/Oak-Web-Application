@@ -46,7 +46,7 @@ describe("useSchoolPicker", () => {
     vi.clearAllMocks();
     vi.resetModules();
   });
-  test("Schools should be returned with homeschool option if fetch succeeds", async () => {
+  it("Schools should be returned with homeschool option if fetch succeeds", async () => {
     const { result, rerender } = renderHook(useSchoolPicker);
     act(() => result.current.setSchoolPickerInputValue("wes"));
     mockUseSWR.mockImplementationOnce(() => ({
@@ -62,7 +62,7 @@ describe("useSchoolPicker", () => {
       },
     ]);
   });
-  test("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
+  it("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
       error: null,
@@ -71,7 +71,7 @@ describe("useSchoolPicker", () => {
 
     expect(result.current.schools).toEqual([]);
   });
-  test("should throw an error if failed to fetch school ", async () => {
+  it("should throw an error if failed to fetch school ", async () => {
     fetch.mockResolvedValue({
       json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: false,
@@ -85,7 +85,7 @@ describe("useSchoolPicker", () => {
     );
     expect(reportError).toBeCalled();
   });
-  test("should return and empty array with no data ", async () => {
+  it("should return and empty array with no data ", async () => {
     fetch.mockResolvedValue({
       json: vi.fn().mockResolvedValue({ res: undefined }),
       ok: true,

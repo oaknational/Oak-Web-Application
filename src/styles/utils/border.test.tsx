@@ -6,7 +6,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import { border } from "./border";
 
 describe("border", () => {
-  test("should correctly handle prop 'ba'", async () => {
+  it("should correctly handle prop 'ba'", async () => {
     const StyledComponent = styled.div`
       ${border}
     `;
@@ -19,7 +19,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-bottom: 0.75rem solid");
     expect(getByTestId("test")).toHaveStyle("border-right: 0.75rem solid");
   });
-  test("should correctly handle prop 'bv'", async () => {
+  it("should correctly handle prop 'bv'", async () => {
     const StyledComponent = styled.div`
       ${border}
     `;
@@ -30,7 +30,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-top: 0.75rem solid");
     expect(getByTestId("test")).toHaveStyle("border-bottom: 0.75rem solid");
   });
-  test("should correctly handle prop 'bh'", async () => {
+  it("should correctly handle prop 'bh'", async () => {
     const StyledComponent = styled.div`
       ${border}
     `;
@@ -61,7 +61,7 @@ describe("border", () => {
 
     expect(getByTestId("test")).toHaveStyle(expected);
   });
-  test("should correctly handle prop 'borderColor'", async () => {
+  it("should correctly handle prop 'borderColor'", async () => {
     const StyledComponent = styled.div`
       ${border}
     `;
@@ -71,7 +71,7 @@ describe("border", () => {
 
     expect(getByTestId("test")).toHaveStyle("border-color: #cacaca");
   });
-  test("should correctly handle prop 'borderRadius'", async () => {
+  it("should correctly handle prop 'borderRadius'", async () => {
     const StyledComponent = styled.div`
       ${border}
     `;

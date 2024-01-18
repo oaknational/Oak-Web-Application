@@ -22,7 +22,7 @@ describe("withQueue", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("should add to queue not fire events if state: pending", () => {
+  it("should add to queue not fire events if state: pending", () => {
     const service = withQueue(originalService);
 
     service.page({ path: "/bloo/blah?holy=moly" });
@@ -38,7 +38,7 @@ describe("withQueue", () => {
     expect(originalService.identify).not.toHaveBeenCalled();
     expect(originalService.track).not.toHaveBeenCalled();
   });
-  test("should clear queue without firing events if state -> disabled", async () => {
+  it("should clear queue without firing events if state -> disabled", async () => {
     // create a queue with a 10ms timer
     const service = withQueue(originalService, 10);
 
@@ -56,7 +56,7 @@ describe("withQueue", () => {
     expect(originalService.identify).not.toHaveBeenCalled();
     expect(originalService.track).not.toHaveBeenCalled();
   });
-  test("should fire events and clear queue if state -> enabled", async () => {
+  it("should fire events and clear queue if state -> enabled", async () => {
     // create a queue with a 10ms timer
     const service = withQueue(originalService, 10);
 

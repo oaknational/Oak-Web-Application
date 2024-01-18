@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import curriculumHeaderQuery from "./curriculumHeader.query";
 
-test("throws an error if only subject is given", async () => {
+it("throws an error if only subject is given", async () => {
   await expect(async () => {
     await curriculumHeaderQuery({
       ...sdk,
@@ -10,7 +10,7 @@ test("throws an error if only subject is given", async () => {
   }).rejects.toThrow(`Resource not found`);
 });
 
-test("throws an error if only phase is given", async () => {
+it("throws an error if only phase is given", async () => {
   await expect(async () => {
     await curriculumHeaderQuery({
       ...sdk,
@@ -18,7 +18,7 @@ test("throws an error if only phase is given", async () => {
   }).rejects.toThrow(`Resource not found`);
 });
 
-test("throws a not found error if no slug is found", async () => {
+it("throws a not found error if no slug is found", async () => {
   await expect(async () => {
     await curriculumHeaderQuery({
       ...sdk,
@@ -26,7 +26,7 @@ test("throws a not found error if no slug is found", async () => {
   }).rejects.toThrow(`Resource not found`);
 });
 
-test("tests if no exam board is passed in, then values are empty", async () => {
+it("tests if no exam board is passed in, then values are empty", async () => {
   const query = await curriculumHeaderQuery({
     ...sdk,
   })({ slug: "secondary-maths" });

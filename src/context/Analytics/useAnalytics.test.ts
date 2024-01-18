@@ -19,7 +19,7 @@ describe("useAnalytics", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  test("track should not work if statistics consent not given", () => {
+  it("track should not work if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
 
     act(() => {
@@ -28,7 +28,7 @@ describe("useAnalytics", () => {
 
     expect(posthogCapture).not.toHaveBeenCalled();
   });
-  test("posthog should not be initialised if statistics consent not given", () => {
+  it("posthog should not be initialised if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
     act(() => {
       result.current.track.developYourCurriculumSelected();

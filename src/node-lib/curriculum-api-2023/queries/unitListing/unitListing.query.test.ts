@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import unitListing from "./unitListing.query";
 
 describe("unitListing()", () => {
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await unitListing({
         ...sdk,
@@ -13,7 +13,7 @@ describe("unitListing()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first programme is returned if multiple programmes in response", async () => {
+  it("first programme is returned if multiple programmes in response", async () => {
     const programme = await unitListing({
       ...sdk,
       unitListing: vi.fn(() =>
@@ -57,7 +57,7 @@ describe("unitListing()", () => {
     });
     expect(programme.programmeSlug).toEqual("programme-slug-0");
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await unitListing({
         ...sdk,
