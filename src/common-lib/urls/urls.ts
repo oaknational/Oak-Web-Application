@@ -85,7 +85,7 @@ export type ProgrammeListingLinkProps = {
 
 type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
-  "page"
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-programme-index";
 };
@@ -191,8 +191,8 @@ type SubjectListingLinkProps = {
 };
 
 type SpecialistSubjectListingLinkProps = Omit<
-  LessonDownloadsLinkProps,
-  "page"
+  SubjectListingLinkProps,
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-subject-index";
 };
