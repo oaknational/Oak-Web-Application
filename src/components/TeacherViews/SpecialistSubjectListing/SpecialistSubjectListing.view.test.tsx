@@ -79,4 +79,30 @@ describe("SpecialistSubjectListing", () => {
     );
     expect(therapySubjectCards).toHaveLength(4);
   });
+  it("renders links in subject cards", () => {
+    renderWithTheme(
+      <SpecialistSubjectListingPage
+        specialist={specialistSubjectListingFixture}
+        therapies={therapiesSubjectListingFixture}
+      />,
+    );
+
+    const subjectWithProgrammeLink = screen.getByRole("link", {
+      name: /Creative Arts/i,
+    });
+    expect(subjectWithProgrammeLink).toBeInTheDocument();
+    expect(subjectWithProgrammeLink).toHaveAttribute(
+      "href",
+      "/teachers/specialist/subjects/creative-arts/programmes",
+    );
+
+    const subjectWithoutProgrammeLink = screen.getByRole("link", {
+      name: /Speech and Language Therapy/i,
+    });
+    expect(subjectWithoutProgrammeLink).toBeInTheDocument();
+    expect(subjectWithoutProgrammeLink).toHaveAttribute(
+      "href",
+      "/teachers/specialist/programmes/speech-and-language-therapy/units",
+    );
+  });
 });

@@ -83,7 +83,7 @@ export type ProgrammeListingLinkProps = {
   subjectSlug: string;
 };
 
-type SpecialistProgrammeListingLinkProps = Omit<
+export type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
   "page" | "keyStageSlug"
 > & {

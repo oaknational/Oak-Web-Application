@@ -6,7 +6,7 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     subjectTitle: "Occupational Therapy",
     unitCount: 10,
     lessonCount: 20,
-    programmeCount: 30,
+    programmeCount: 1,
     programmeSlug: "occupational-therapy",
   },
   {
@@ -22,7 +22,7 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     subjectTitle: "Speech and Language Therapy",
     unitCount: 10,
     lessonCount: 11,
-    programmeCount: 2,
+    programmeCount: 1,
     programmeSlug: "speech-and-language-therapy",
   },
   {
@@ -30,7 +30,7 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     subjectTitle: "Sensory Integration",
     unitCount: 10,
     lessonCount: 20,
-    programmeCount: 2,
+    programmeCount: 1,
     programmeSlug: "sensory-integration-early-development",
   },
 ];
