@@ -1,0 +1,21 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
+import Component from "./SpecialistSubjectListing.view";
+import {
+  specialistSubjectListingFixture,
+  therapiesSubjectListingFixture,
+} from "./SpecialistSubjectListing.fixture";
+
+const meta: Meta<typeof Component> = {
+  component: Component,
+};
+
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const SpecialistUnitListingPage: Story = {
+  args: {
+    therapies: therapiesSubjectListingFixture,
+    specialist: specialistSubjectListingFixture,
+  },
+};
