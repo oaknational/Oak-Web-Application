@@ -60,4 +60,20 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     programmeCount: 2,
     programmeSlug: "independant-living-early-development",
   },
+  {
+    subjectSlug: "numeracy",
+    subjectTitle: "Numeracy",
+    unitCount: 10,
+    lessonCount: 20,
+    programmeCount: 1,
+    programmeSlug: "numeracy",
+  },
+  {
+    subjectSlug: "physical-development",
+    subjectTitle: "Physical Development",
+    unitCount: 8,
+    lessonCount: 40,
+    programmeCount: 2,
+    programmeSlug: "physical-development-early-development",
+  },
 ];
