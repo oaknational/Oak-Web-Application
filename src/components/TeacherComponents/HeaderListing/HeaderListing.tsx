@@ -9,6 +9,7 @@ import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -22,8 +23,8 @@ export type HeaderListingProps = {
   subjectSlug: string;
   subjectIconBackgroundColor: OakColorName;
   year?: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
+  keyStageSlug?: string;
+  keyStageTitle?: string;
   tierSlug?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
@@ -53,6 +54,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
   } = props;
+
+  const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
+  const specialistDownloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=${subjectSlug}&extension=pdf`;
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -85,7 +89,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               {title}
             </Heading>
             <Flex $display={["none", "flex"]}>
-              {hasCurriculumDownload && (
+              {hasCurriculumDownload && isKeyStagesAvailable && (
                 <HeaderListingCurriculumDownloadButton
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={keyStageTitle}
@@ -94,18 +98,42 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   tier={tierSlug}
                 />
               )}
+              {hasCurriculumDownload && !isKeyStagesAvailable && (
+                <ButtonAsLink
+                  icon={"download"}
+                  iconBackground="black"
+                  label={"Curriculum download (PDF)"}
+                  href={specialistDownloadLink}
+                  page={null}
+                  size="large"
+                  variant="minimal"
+                  $iconPosition={"trailing"}
+                />
+              )}
             </Flex>
           </Flex>
         </Flex>
       </Flex>
       <Flex $background={background} $display={["inline", "none"]}>
-        {hasCurriculumDownload && (
+        {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             subjectSlug={subjectSlug}
             subjectTitle={subjectTitle}
             tier={tierSlug}
+          />
+        )}
+        {hasCurriculumDownload && !isKeyStagesAvailable && (
+          <ButtonAsLink
+            icon={"download"}
+            iconBackground="black"
+            label={"Curriculum download (PDF)"}
+            href={specialistDownloadLink}
+            page={null}
+            size="large"
+            variant="minimal"
+            $iconPosition={"trailing"}
           />
         )}
       </Flex>
