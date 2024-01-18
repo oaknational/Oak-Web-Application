@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";

@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
@@ -74,7 +75,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("padding-bottom: 0.75rem");
     expect(getByTestId("test")).toHaveStyle("padding-right: 0.75rem");
   });
-  test.each([
+  it.each([
     ["$pl", "1em", "padding-left: 1em;"],
     ["$pr", "1em", "padding-right: 1em;"],
     ["$pt", "1em", "padding-top: 1em;"],

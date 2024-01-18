@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 /**
  * Tests adapted from https://gist.github.com/JakeCoxon/c7ebf6e6496f8468226fd36b596e1985
  */

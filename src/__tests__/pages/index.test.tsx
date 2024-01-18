@@ -1,4 +1,4 @@
-import { MockedObject, vi } from "vitest";
+import { describe, expect, it , MockedObject, vi } from "vitest";
 import { screen, within, getByRole, fireEvent } from "@testing-library/react";
 
 import Teachers, {

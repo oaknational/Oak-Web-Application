@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import {
   mockSeo,

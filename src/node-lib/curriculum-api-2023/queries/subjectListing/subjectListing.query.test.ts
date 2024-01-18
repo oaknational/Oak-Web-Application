@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import sdk from "../../sdk";
 
 import subjectListing from "./subjectListing.query";

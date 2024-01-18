@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { THEME_NAMES } from "../../hooks/useOakTheme";
 
 import { getOakGlobals, setOakGlobals } from "./oakGlobals";

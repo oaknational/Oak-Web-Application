@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import PostList from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";

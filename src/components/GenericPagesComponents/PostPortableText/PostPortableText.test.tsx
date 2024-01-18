@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { within } from "@testing-library/react";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";

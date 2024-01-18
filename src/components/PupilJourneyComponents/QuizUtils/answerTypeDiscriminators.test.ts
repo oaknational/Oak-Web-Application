@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { isMultiAnswerMCQ, isShortAnswer } from "./answerTypeDiscriminators";
 
 import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";

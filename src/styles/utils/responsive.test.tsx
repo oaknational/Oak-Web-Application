@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import styled, {
   css,
   DefaultTheme,
@@ -130,7 +131,7 @@ describe("responsive", () => {
 
     expect(getByTestId("test")).toHaveStyle("color: #845ad9");
   });
-  test.each([
+  it.each([
     ["pl", "padding-left", "1em", "padding-left: 1em;"],
     ["pr", "padding-right", "1em", "padding-right: 1em;"],
     ["pt", "padding-top", "1em", "padding-top: 1em;"],

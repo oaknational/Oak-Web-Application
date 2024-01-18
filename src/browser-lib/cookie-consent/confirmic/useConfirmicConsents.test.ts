@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { CookieConsents } from "../CookieConsentProvider";
 
 import { fromTuples, toTuples } from "./useConfirmicConsents";

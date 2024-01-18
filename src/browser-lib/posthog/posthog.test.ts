@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import posthogJs from "posthog-js";
 
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";

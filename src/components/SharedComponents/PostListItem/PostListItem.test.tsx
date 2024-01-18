@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import PostListItem, { PostListItemProps } from ".";
 
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";

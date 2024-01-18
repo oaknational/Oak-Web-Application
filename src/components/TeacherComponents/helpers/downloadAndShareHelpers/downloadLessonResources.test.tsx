@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 

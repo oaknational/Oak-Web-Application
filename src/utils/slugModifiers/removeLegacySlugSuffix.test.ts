@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { LEGACY_SLUG_SUFFIX } from "./isSlugLegacy";
 import removeLegacySlugSuffix from "./removeLegacySlugSuffix";
 

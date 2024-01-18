@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
@@ -17,7 +18,6 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 const consoleWarnSpy = vi.spyOn(console, "warn");
-
 
 vi.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
 

@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 

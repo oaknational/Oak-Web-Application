@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import CurriculumTabBadge from ".";
 
 import theme from "@/styles/theme/default.theme";

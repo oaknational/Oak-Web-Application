@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import mockRouter from "next-router-mock";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";

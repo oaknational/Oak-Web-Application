@@ -1,5 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 
+import { describe, expect, it } from "vitest";
+
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 import {

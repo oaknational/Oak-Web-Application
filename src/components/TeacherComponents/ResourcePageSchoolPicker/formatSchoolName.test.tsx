@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { formatSchoolName } from "./formatSchoolName";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";

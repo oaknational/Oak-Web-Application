@@ -1,5 +1,6 @@
 import { ParsedUrlQuery } from "node:querystring";
 
+import { describe, expect, it } from "vitest";
 import { getServerSideSitemap } from "next-sitemap";
 import { GetServerSidePropsContext, PreviewData } from "next";
 

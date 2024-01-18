@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
@@ -42,7 +43,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-right: 0.75rem solid");
   });
 
-  test.each([
+  it.each([
     ["$bl", "1px", "border-left: 0.063rem solid"],
     ["$br", "1px", "border-right: 0.063rem solid"],
     ["$bt", "1em", "border-top: 1em solid"],

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "./fixtures/lessonDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";

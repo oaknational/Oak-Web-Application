@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import ProgrammesListingPage, {

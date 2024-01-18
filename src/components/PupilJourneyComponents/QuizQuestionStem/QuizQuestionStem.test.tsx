@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";

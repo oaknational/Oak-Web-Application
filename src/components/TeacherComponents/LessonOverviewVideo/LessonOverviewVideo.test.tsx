@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { fireEvent } from "@testing-library/react";
 
 import {

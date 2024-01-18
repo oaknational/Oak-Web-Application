@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import LessonOverviewDetails from "./LessonOverviewDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";

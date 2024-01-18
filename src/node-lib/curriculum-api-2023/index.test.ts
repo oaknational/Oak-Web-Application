@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import mocks from "./__mocks__";
 
 import curriculumApi from ".";

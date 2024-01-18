@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import truthy from "./truthy";
 /**
  * Note this function is really just for types, which we're not testing here

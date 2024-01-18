@@ -1,3 +1,4 @@
+import { describe, expect } from "vitest";
 import styled from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
@@ -10,7 +11,7 @@ const StyledComponent = styled.div`
 `;
 
 describe("typography", () => {
-  test.each(Object.entries(FONT_VARIANTS))(
+  it.each(Object.entries(FONT_VARIANTS))(
     'should correctly handle prop $font="%s"',
     async (font, [fontSize, lineHeight, fontWeight, letterSpacing]) => {
       const { getByTestId } = renderWithTheme(

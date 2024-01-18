@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import SearchPage from "@/pages/teachers/search";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";

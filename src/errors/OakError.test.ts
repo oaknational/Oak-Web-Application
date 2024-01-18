@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import OakError, { removeSensitiveValues, ErrorInfo } from "./OakError";
 
 describe("removeSensitiveValues", () => {

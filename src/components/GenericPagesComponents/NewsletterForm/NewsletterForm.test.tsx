@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 

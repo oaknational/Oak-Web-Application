@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import OverviewTab from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { pickAnswerComponent } from "./pickAnswerComponent";
 
 import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer";

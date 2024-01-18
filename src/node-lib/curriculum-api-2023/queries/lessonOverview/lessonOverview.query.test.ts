@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import sdk from "../../sdk";
 
 import lessonOverview from "./lessonOverview.query";

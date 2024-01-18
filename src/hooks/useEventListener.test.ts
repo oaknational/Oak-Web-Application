@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { fireEvent, renderHook } from "@testing-library/react";
 
 import useEventListener from "./useEventListener";
@@ -20,10 +21,7 @@ const windowRemoveEventListenerSpy = vi.spyOn(window, "removeEventListener");
 
 const ref = { current: document.createElement("div") };
 const refAddEventListenerSpy = vi.spyOn(ref.current, "addEventListener");
-const refRemoveEventListenerSpy = vi.spyOn(
-  ref.current,
-  "removeEventListener",
-);
+const refRemoveEventListenerSpy = vi.spyOn(ref.current, "removeEventListener");
 
 describe("useEventListener()", () => {
   afterEach(() => {
@@ -60,9 +58,7 @@ describe("useEventListener()", () => {
   it("should unbind the event listener from the window after the hook is unmounted", () => {
     const eventName = "test-event";
 
-    const { unmount } = renderHook(() =>
-      useEventListener(eventName, vi.fn()),
-    );
+    const { unmount } = renderHook(() => useEventListener(eventName, vi.fn()));
 
     expect(windowAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,

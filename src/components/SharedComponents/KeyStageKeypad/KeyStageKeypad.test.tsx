@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import KeyStageKeypad from "./KeyStageKeypad";
@@ -24,7 +25,7 @@ describe("components/Key Stage keypad", () => {
     vi.clearAllMocks();
   });
 
-  test.each(keyStages)(
+  it.each(keyStages)(
     "renders a key stage and year button with %p text",
     (keyStage) => {
       const { getAllByText } = renderWithTheme(

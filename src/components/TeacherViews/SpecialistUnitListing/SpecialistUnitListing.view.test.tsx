@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import specialistUnitListingFixture from "./SpecialistUnitListing.fixture";
 import SpecialistUnitListing from "./SpecialistUnitListing.view";
 

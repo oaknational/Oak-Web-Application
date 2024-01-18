@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { hubspotWithoutQueue as hubspot } from "./hubspot";
 
 const reportError = vi.fn();

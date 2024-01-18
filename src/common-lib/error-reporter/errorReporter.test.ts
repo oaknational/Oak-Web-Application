@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import Bugsnag, { Event as BugsnagEvent } from "@bugsnag/js";
 
 import OakError from "../../errors/OakError";

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import CMSVideo from ".";
 
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";

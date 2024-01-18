@@ -1,4 +1,4 @@
-import React from "react";
+import { describe, expect, it } from "vitest";
 import { act } from "react-dom/test-utils";
 
 import SearchResultsItem from "./SearchResultsItem";
@@ -172,7 +172,7 @@ describe("SearchResultsItem", () => {
       });
       expect(searchResultClicked).toHaveBeenCalledWith({
         type: "lesson",
-        title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+        title: "Dipping into Macbeth - Brave Macbeth (Part 2)",
         description: `In this lesson we are introduced to <mark class="highlighted">Macbeth</mark> and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.`,
         subjectSlug: "drama",
         keyStageShortCode: "KS2",

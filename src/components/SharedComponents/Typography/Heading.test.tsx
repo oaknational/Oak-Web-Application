@@ -1,3 +1,5 @@
+import { describe, expect } from "vitest";
+
 import Heading, { HeadingTag } from "./Heading";
 
 import { FontVariant, FONT_VARIANTS } from "@/styles/utils/typography";
@@ -5,7 +7,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { REM_DP } from "@/styles/utils/getRemUnits";
 
 describe("Heading", () => {
-  test.each([["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"]])(
+  it.each([["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"]])(
     "should correctly render %s tag",
     (tag) => {
       const { getByRole } = renderWithTheme(
@@ -15,7 +17,7 @@ describe("Heading", () => {
       expect(getByRole("heading", { level: 1 })).toBeTruthy();
     },
   );
-  test.each(Object.entries(FONT_VARIANTS))(
+  it.each(Object.entries(FONT_VARIANTS))(
     'should correctly handle prop $font="%s"',
     async (font, [fontSize, lineHeight, fontWeight, letterSpacing]) => {
       const { getByTestId } = renderWithTheme(

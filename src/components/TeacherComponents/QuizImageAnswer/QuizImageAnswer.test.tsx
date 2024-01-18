@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import QuizImageAnswer from "./QuizImageAnswer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";

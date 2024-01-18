@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { waitFor, renderHook, act } from "@testing-library/react";
 
 import { getOakGlobals } from "../browser-lib/oak-globals/oakGlobals";

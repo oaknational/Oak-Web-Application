@@ -1,4 +1,4 @@
-import { MockedObject, expect, vi } from "vitest";
+import { describe, expect, it , MockedObject, vi } from "vitest";
 
 import CMSClient from "../../node-lib/cms";
 import { ContactPage } from "../../common-lib/cms-types";

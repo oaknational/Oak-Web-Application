@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { isInaccessible } from "@testing-library/react";
 
 import BoxBorders from ".";

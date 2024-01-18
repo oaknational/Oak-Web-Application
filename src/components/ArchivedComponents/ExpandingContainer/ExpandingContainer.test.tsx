@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
@@ -5,7 +6,6 @@ import ExpandingContainer from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";
-import { act } from "react-dom/test-utils";
 
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(
@@ -242,7 +242,7 @@ describe("comonents/ExpandingContainer", () => {
 
     const downloadButton = screen.getByTestId("expand-button");
     // await act(async () => {
-      await user.click(downloadButton);
+    await user.click(downloadButton);
     // });
     expect(screen.getByTestId("expanded-container")).toHaveStyle(
       "max-height: 600rem",

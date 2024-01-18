@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { act, fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 

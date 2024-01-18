@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { act, screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
 
@@ -11,7 +12,7 @@ import LessonOverviewPage, {
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
-vi.mock('@/node-lib/curriculum-api-2023'); 
+vi.mock("@/node-lib/curriculum-api-2023");
 
 const props = {
   curriculumData: lessonOverviewFixture({

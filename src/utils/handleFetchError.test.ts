@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import handleFetchError from "./handleFetchError";
 
 describe("handleFetchError()", () => {

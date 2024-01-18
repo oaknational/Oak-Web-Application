@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import mockRouter from "next-router-mock";
 
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";

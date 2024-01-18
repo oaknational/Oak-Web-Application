@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { act, screen } from "@testing-library/react";
 
 import UnitListItem from "./UnitListItem";

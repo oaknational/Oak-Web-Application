@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";

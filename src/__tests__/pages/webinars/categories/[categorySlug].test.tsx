@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { Webinar } from "../../../../common-lib/cms-types";
 
 const testWebinar = {

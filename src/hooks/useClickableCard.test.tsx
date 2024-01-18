@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { MouseEventHandler, MutableRefObject } from "react";
 import { render, renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

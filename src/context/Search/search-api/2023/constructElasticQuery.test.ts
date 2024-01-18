@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { createSearchQuery } from "../../useSearch";
 
 import { constructElasticQuery } from "./constructElasticQuery";

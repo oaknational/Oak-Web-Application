@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { MockedFunction } from "jest-mock";
 import mockRouter from "next-router-mock";
 

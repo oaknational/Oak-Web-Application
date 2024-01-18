@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
 import { fetchResults } from "./fetchResults";
 
@@ -40,7 +42,7 @@ describe("search-api/2023/fetchResults", () => {
     expect(results[0]?._source).toMatchObject({
       id: 211319,
       slug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
-      title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+      title: "Dipping into Macbeth - Brave Macbeth (Part 2)",
       subject_title: "Drama",
       subject_slug: "drama",
       key_stage_title: "Key Stage 2",

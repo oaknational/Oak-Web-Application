@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import SearchFilters from "./SearchFilters";
 import { searchFilters, mockOnChange } from "./test-helpers";
 

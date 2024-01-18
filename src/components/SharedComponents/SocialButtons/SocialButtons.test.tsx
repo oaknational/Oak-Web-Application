@@ -1,9 +1,11 @@
+import { describe, expect, it } from "vitest";
+
 import SocialButtons from "./SocialButtons";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("SocialButtons", () => {
-  test.each([
+  it.each([
     ["instagram", "oaknational", "https://instagram.com/oaknational"],
     [
       "facebook",

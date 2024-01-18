@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import getLegacyAnonymousId from "./getLegacyAnonymousId";
 
 const getCookies = vi.fn();

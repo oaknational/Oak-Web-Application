@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import getProxiedSanityAssetUrl from "./getProxiedSanityAssetUrl";
 
 describe("getProxiedSanityAssetUrl", () => {

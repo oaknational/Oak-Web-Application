@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
 

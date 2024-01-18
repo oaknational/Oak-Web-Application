@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { waitFor } from "@testing-library/react";
 
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
@@ -145,7 +146,7 @@ describe("useSearch()", () => {
           subject_slug: "drama",
           subject_title: "Drama",
           theme_title: null,
-          title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+          title: "Dipping into Macbeth - Brave Macbeth (Part 2)",
           topic_slug: "dipping-into-shakespeare-da5e",
           topic_title: "Dipping into Shakespeare",
           type: "lesson",

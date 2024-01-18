@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import mockRouter from "next-router-mock";
 
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";

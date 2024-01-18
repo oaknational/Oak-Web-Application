@@ -1,5 +1,5 @@
+import { describe, expect, it , vi } from "vitest";
 import { screen } from "@testing-library/react";
-import { vi } from "vitest";
 
 import { WebinarPreview } from "@/common-lib/cms-types";
 import {
@@ -10,7 +10,6 @@ import WebinarListingPage from "@/pages/webinars";
 import { mockSeoResult, mockVideoAsset } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
-
 
 const testPageData = {
   id: "123",

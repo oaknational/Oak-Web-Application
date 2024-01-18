@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { OverlayProvider } from "react-aria";
 
 import BioCardList from "./BioCardList";

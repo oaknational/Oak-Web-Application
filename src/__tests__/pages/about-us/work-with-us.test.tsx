@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -46,7 +47,7 @@ const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
               _key: "1654a5ff63560",
               _type: "span",
               marks: [],
-              text: "We're hiring! If you share our values, and want to help make a difference, then join one of our remote-based teams: Education, Operations, Product & Engineering and School Support\n",
+              text: "We're hiring! If you share our values, and want to help make a difference, then join one of our remote-based teams: Education, Operations, Product & Engineering and School Support",
             },
           ],
           markDefs: [],

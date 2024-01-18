@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { waitFor, renderHook } from "@testing-library/react";
 
 import useIconAnimation from "./useIconAnimation";

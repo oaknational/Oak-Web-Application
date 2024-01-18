@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import DownloadsTab from "./DownloadsTab";
 
 import curriculumDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumDownloads.fixture";
