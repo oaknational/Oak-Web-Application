@@ -1,4 +1,4 @@
-import { SpecialistSubject } from "../SpecialistSubjectListing.view";
+import { SpecialistSubject } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";

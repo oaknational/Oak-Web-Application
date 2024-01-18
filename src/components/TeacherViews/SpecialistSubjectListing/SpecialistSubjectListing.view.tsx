@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import SpecialistSubjectCardSection from "./Card/SpecialistSubjectCardList";
+import SpecialistSubjectCardSection from "../../TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectCardSection";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

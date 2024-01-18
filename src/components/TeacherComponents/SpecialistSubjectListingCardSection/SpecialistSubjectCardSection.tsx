@@ -1,6 +1,5 @@
-import { SpecialistSubject } from "../SpecialistSubjectListing.view";
-
-import SpecialistSubjectCard from "./SpecialistSubjectCard";
+import { SpecialistSubject } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
+import SpecialistSubjectCard from "../SpecialistSubjectListingCard/SpecialistSubjectCard";
 
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
