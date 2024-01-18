@@ -61,7 +61,10 @@ const LessonList: FC<LessonListProps> = (props) => {
         <>
           <UL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
-              <LI key={`LessonList-LessonListItem-${item.lessonSlug}`}>
+              <LI
+                key={`LessonList-LessonListItem-${item.lessonSlug}`}
+                data-testid={"lesson-list-item"}
+              >
                 <LessonListItem
                   {...item}
                   unitTitle={unitTitle}

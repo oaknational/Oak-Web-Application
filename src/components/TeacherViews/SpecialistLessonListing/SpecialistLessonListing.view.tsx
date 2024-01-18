@@ -57,8 +57,6 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
 
-  console.log(lessons, "<<<< ");
-
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: RESULTS_PER_PAGE,
@@ -98,7 +96,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
         title={subjectTitle}
       />
       <MaxWidth $ph={16}>
-        <Grid>
+        <Grid data-testid="specialist-lesson-grid">
           <GridArea $colSpan={[12, 9]} $mt={[16, 32]}>
             <LessonList
               {...curriculumData}
