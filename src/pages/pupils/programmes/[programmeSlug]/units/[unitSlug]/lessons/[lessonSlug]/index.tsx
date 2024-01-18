@@ -39,6 +39,7 @@ const PupilPageContent = ({
   const searchParams = useSearchParams();
   const [overrideApplied, setOverrideApplied] = useState(false);
 
+  // temporary hack to allow overriding the current section - will be removed on moving to page navigation
   const overrideSection = searchParams.get("section");
   if (overrideSection && isLessonSection(overrideSection) && !overrideApplied) {
     setOverrideApplied(true);
