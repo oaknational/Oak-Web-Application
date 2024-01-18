@@ -59,7 +59,7 @@ const getContext = (
       },
     ],
     score: 0,
-    maxScore: 0,
+    numQuestions: 0,
     updateQuestionMode: () => {},
     handleSubmitMCAnswer: () => {},
     handleSubmitShortAnswer: () => {},

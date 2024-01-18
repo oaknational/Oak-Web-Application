@@ -5,6 +5,7 @@ import React, {
   memo,
   useCallback,
   useContext,
+  useState,
 } from "react";
 
 import {
@@ -12,7 +13,6 @@ import {
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { useStateCallback } from "@/hooks/useStateCallback";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -36,7 +36,7 @@ export type QuizEngineContextType = {
   currentQuestionIndex: number;
   questionState: QuestionState[];
   score: number;
-  maxScore: number;
+  numQuestions: number;
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
@@ -69,9 +69,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     [questionsArray],
   );
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useStateCallback(0);
+  // consolidate all this state into a single stateful object . This will make side effects easier to manage
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestionData = filteredQuestions[currentQuestionIndex];
-  const [questionState, setQuestionState] = useStateCallback<QuestionState[]>(
+  const [questionState, setQuestionState] = useState<QuestionState[]>(
     filteredQuestions.map(() => ({
       mode: "init",
       offerHint: false,
@@ -80,7 +81,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     })),
   );
 
-  const maxScore = filteredQuestions.length;
+  const numQuestions = filteredQuestions.length;
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
@@ -88,10 +89,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     (_questionState: QuestionState[]) => {
       updateQuizResult({
         grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
-        maxScore,
+        numQuestions,
       });
     },
-    [maxScore, updateQuizResult],
+    [numQuestions, updateQuizResult],
   );
 
   const updateQuestionMode = useCallback(
@@ -147,8 +148,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           }),
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
         };
+        handleScoreUpdate(newState);
         return newState;
-      }, handleScoreUpdate);
+      });
     },
     [
       currentQuestionData,
@@ -180,8 +182,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           feedback,
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
         };
+        handleScoreUpdate(newState);
         return newState;
-      }, handleScoreUpdate);
+      });
     },
     [
       currentQuestionData,
@@ -192,15 +195,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const handleNextQuestion = useCallback(() => {
-    setCurrentQuestionIndex(
-      (prev) => Math.min(prev + 1, maxScore),
-      (index) => {
-        if (index === maxScore) {
-          completeSection(currentSection);
-        }
-      },
-    );
-  }, [maxScore, setCurrentQuestionIndex, completeSection, currentSection]);
+    setCurrentQuestionIndex((prev) => {
+      const _currentQuestionIndex = Math.min(prev + 1, numQuestions);
+      if (_currentQuestionIndex === numQuestions) {
+        completeSection(currentSection);
+      }
+      return _currentQuestionIndex;
+    });
+  }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
 
   return (
     <QuizEngineContext.Provider
@@ -209,7 +211,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         currentQuestionIndex,
         questionState,
         score,
-        maxScore,
+        numQuestions,
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,

@@ -33,7 +33,7 @@ const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
   handleNextQuestion: () => {},
   handleSubmitShortAnswer: () => {},
   score: 0,
-  maxScore: 1,
+  numQuestions: 1,
 });
 
 const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({

@@ -53,7 +53,7 @@ export const PupilViewsLessonOverview = () => {
                 <OakBox $width={"all-spacing-5"}>
                   {completedSections.includes(s) && "✅"}
                   {sectionResults[s] &&
-                    `${sectionResults[s]?.grade}/${sectionResults[s]?.maxScore}`}
+                    `${sectionResults[s]?.grade}/${sectionResults[s]?.numQuestions}`}
                 </OakBox>
               </OakFlex>
             </OakLI>

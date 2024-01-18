@@ -1,7 +1,5 @@
 import { ReactNode, createContext, useContext, memo, useState } from "react";
 
-import { useStateCallback } from "@/hooks/useStateCallback";
-
 export const lessonSections = [
   "overview",
   "intro",
@@ -19,7 +17,7 @@ export const isLessonSection = (
   return lessonSections.includes(currentSection as LessonSection);
 };
 
-export type LessonSectionResult = { grade: number; maxScore: number };
+export type LessonSectionResult = { grade: number; numQuestions: number };
 
 type LessonSectionResults = Partial<Record<LessonSection, LessonSectionResult>>;
 
@@ -31,7 +29,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateQuizResult: (vals: { grade: number; maxScore: number }) => void;
+  updateQuizResult: (vals: { grade: number; numQuestions: number }) => void;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -39,18 +37,19 @@ export const LessonEngineContext = createContext<LessonEngineContextType>(null);
 export const useLessonEngineContext = () => {
   const context = useContext(LessonEngineContext);
   if (!context) {
-    throw new Error("`QuizEngineProvider` is not available");
+    throw new Error("`LessonEngineProvider` is not available");
   }
   return context;
 };
 
 export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
+  // consolidate into a single stateful object
   const [currentSection, setCurrentSection] =
     useState<LessonSection>("overview");
 
-  const [completedSections, setCompletedSections] = useStateCallback<
-    LessonSection[]
-  >([]);
+  const [completedSections, setCompletedSections] = useState<LessonSection[]>(
+    [],
+  );
 
   const [sectionResults, setSectionResults] = useState<LessonSectionResults>(
     {},
@@ -61,21 +60,23 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
 
   const completeSection = (section: LessonSection) => {
     // concatenate and dedupe the array
-    setCompletedSections(
-      (prev) =>
-        [...prev, section].filter(
-          (item, index, array) => array.indexOf(item) === index,
-        ),
-      (_completedSections) => {
-        if (
-          _completedSections.length ===
-          lessonSections.filter((s) => s !== "overview" && s !== "review")
-            .length
-        ) {
-          setCurrentSection("review");
-        } else setCurrentSection("overview");
-      },
-    );
+    setCompletedSections((prev) => {
+      const _completedSections = [...prev, section].filter(
+        (item, index, array) => array.indexOf(item) === index,
+      );
+
+      // redirect the user according to what sections have been completed
+      if (
+        _completedSections.length ===
+        lessonSections.filter((s) => s !== "overview" && s !== "review").length
+      ) {
+        setCurrentSection("review");
+      } else {
+        setCurrentSection("overview");
+      }
+
+      return _completedSections;
+    });
   };
 
   const updateCurrentSection = (section: LessonSection) => {
@@ -93,7 +94,7 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
     setCurrentSection(remainingSections[0]);
   };
 
-  const updateQuizResult = (vals: { grade: number; maxScore: number }) => {
+  const updateQuizResult = (vals: { grade: number; numQuestions: number }) => {
     setSectionResults((prev) => {
       const newSectionResults = { ...prev };
       newSectionResults[currentSection] = vals;

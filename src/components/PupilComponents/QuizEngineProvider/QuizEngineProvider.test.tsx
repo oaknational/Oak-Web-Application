@@ -114,7 +114,7 @@ describe("QuizEngineContext", () => {
     });
   });
 
-  describe("maxScore", () => {
+  describe("numQuestions", () => {
     it("should default to the number of supported questions", () => {
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
@@ -125,9 +125,9 @@ describe("QuizEngineContext", () => {
         throw new Error("result.current is null");
       }
 
-      const { maxScore } = result.current;
+      const { numQuestions } = result.current;
 
-      expect(maxScore).toBe(
+      expect(numQuestions).toBe(
         questionsArrayFixture?.filter(
           (q) =>
             q.questionType === "multiple-choice" ||
@@ -173,7 +173,7 @@ describe("QuizEngineContext", () => {
     expect(result.current.currentQuestionData).toBe(questionsArrayFixture?.[1]);
   });
 
-  it("should update the section as complete when currentQuestionIndex is > maxScore", () => {
+  it("should update the section as complete when currentQuestionIndex is > numQuestions", () => {
     const lessonEngineContext = getLessonEngineContext();
 
     const { result } = renderHook(() => useQuizEngineContext(), {
@@ -188,9 +188,9 @@ describe("QuizEngineContext", () => {
       throw new Error("result.current is null");
     }
 
-    const { handleNextQuestion, maxScore } = result.current;
+    const { handleNextQuestion, numQuestions } = result.current;
 
-    for (let i = 0; i < maxScore; i++) {
+    for (let i = 0; i < numQuestions; i++) {
       act(() => {
         handleNextQuestion();
       });

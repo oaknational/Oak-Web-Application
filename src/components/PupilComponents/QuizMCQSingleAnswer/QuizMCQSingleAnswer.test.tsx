@@ -29,7 +29,7 @@ const getContext = (): NonNullable<QuizEngineContextType> => ({
   handleNextQuestion: jest.fn(),
   handleSubmitShortAnswer: jest.fn(),
   score: 0,
-  maxScore: 1,
+  numQuestions: 1,
 });
 
 describe("QuizMCQSingleAnswer", () => {

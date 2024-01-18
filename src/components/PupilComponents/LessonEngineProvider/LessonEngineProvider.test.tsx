@@ -194,11 +194,11 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults).toEqual({});
 
     act(() => {
-      result.current.updateQuizResult({ grade: 0, maxScore: 0 });
+      result.current.updateQuizResult({ grade: 0, numQuestions: 0 });
     });
 
     expect(result.current.sectionResults).toEqual({
-      overview: { grade: 0, maxScore: 0 },
+      overview: { grade: 0, numQuestions: 0 },
     });
   });
 });
