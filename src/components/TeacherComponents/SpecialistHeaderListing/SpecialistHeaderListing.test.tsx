@@ -50,7 +50,7 @@ describe("SpecialistHeaderListing", () => {
     expect(description).toHaveTextContent(props.description);
   });
 
-  /* Skipped out until - I want to be able to download specialist curriculum maps LESQ-586 */
+  /*  - I want to be able to download specialist curriculum maps LESQ-586 */
   it.skip("renders the curriculum download button", () => {
     const { queryAllByText } = renderWithTheme(
       <SpecialistHeaderListing {...props} />,

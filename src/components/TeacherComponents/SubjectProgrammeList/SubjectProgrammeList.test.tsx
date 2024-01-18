@@ -1,4 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import SubjectProgrammeList from "./SubjectProgrammeList";
 
@@ -12,10 +13,15 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const onClick = jest.fn();
+
 describe("SubjectProgrammeList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
-      <SubjectProgrammeList {...tieredProgrammeListingFixture()} />,
+      <SubjectProgrammeList
+        onClick={onClick}
+        {...tieredProgrammeListingFixture()}
+      />,
     );
 
     waitFor(() => {
@@ -28,6 +34,31 @@ describe("SubjectProgrammeList", () => {
       expect(screen.getAllByRole("heading", { level: 3 })[2]?.textContent).toBe(
         "Higher",
       );
+    });
+  });
+  it("calls tracking.tierSelected once, with correct props", async () => {
+    renderWithTheme(
+      <SubjectProgrammeList
+        onClick={onClick}
+        {...tieredProgrammeListingFixture()}
+      />,
+    );
+
+    const trier = screen.getByText("Higher");
+
+    const user = userEvent.setup();
+    await user.click(trier);
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith({
+      examBoardDisplayOrder: null,
+      examBoardSlug: null,
+      examBoardTitle: null,
+      programmeSlug: "maths-secondary-ks4-higher",
+      subjectTitle: "Maths",
+      tierDisplayOrder: "3",
+      tierSlug: "higher",
+      tierTitle: "Higher",
     });
   });
 });

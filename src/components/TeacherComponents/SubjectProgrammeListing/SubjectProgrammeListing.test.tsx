@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
@@ -10,16 +11,18 @@ const curriculumData = tieredProgrammeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
+const onClick = jest.fn();
 
 describe("SubjectProgrammeListing", () => {
   test("render a tier subject component with heading ", () => {
-    render(<SubjectProgrammeListing {...curriculumData} />);
+    render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     expect(screen.getByText("Select tier of learning")).toBeInTheDocument();
   });
   test("it does not render a tier heading when there are no tiers ", () => {
     const { queryByText } = render(
       <SubjectProgrammeListing
+        onClick={onClick}
         {...{
           ...curriculumData,
           programmes: curriculumData.programmes.filter(
@@ -34,7 +37,12 @@ describe("SubjectProgrammeListing", () => {
     expect(tiersTitle).toBeNull();
   });
   test("render a exam board subject component with heading ", () => {
-    render(<SubjectProgrammeListing {...examBoardCurriculumData} />);
+    render(
+      <SubjectProgrammeListing
+        onClick={onClick}
+        {...examBoardCurriculumData}
+      />,
+    );
 
     expect(screen.getByText("Select exam board")).toBeInTheDocument();
   });
@@ -42,6 +50,7 @@ describe("SubjectProgrammeListing", () => {
   test("it does not render an exam board heading when there is no exam boards  ", () => {
     const { queryByText } = render(
       <SubjectProgrammeListing
+        onClick={onClick}
         {...{
           ...curriculumData,
           programmes: curriculumData.programmes.filter(
@@ -58,7 +67,7 @@ describe("SubjectProgrammeListing", () => {
 
   test("render a list of card items with the name of the programmes ", () => {
     const { getAllByRole } = render(
-      <SubjectProgrammeListing {...curriculumData} />,
+      <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
     expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
@@ -71,7 +80,7 @@ describe("SubjectProgrammeListing", () => {
 
   test("each card items will link have a link to a different query ", () => {
     const { getByRole } = render(
-      <SubjectProgrammeListing {...curriculumData} />,
+      <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
@@ -82,5 +91,25 @@ describe("SubjectProgrammeListing", () => {
       "href",
       "/teachers/programmes/maths-secondary-ks4-higher/units",
     );
+  });
+  it("calls tracking.tierSelected once, with correct props", async () => {
+    render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
+
+    const trier = screen.getByText("Higher");
+
+    const user = userEvent.setup();
+    await user.click(trier);
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith({
+      examBoardDisplayOrder: null,
+      examBoardSlug: null,
+      examBoardTitle: null,
+      programmeSlug: "maths-secondary-ks4-higher",
+      subjectTitle: "Maths",
+      tierDisplayOrder: "3",
+      tierSlug: "higher",
+      tierTitle: "Higher",
+    });
   });
 });
