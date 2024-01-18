@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/SharedComponents/Box";
@@ -76,12 +76,24 @@ export function createProgrammeSlug(
     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
     : "";
 }
+// Initialize data structure for displaying units by year
+let yearData: {
+  [key: string]: {
+    units: Unit[];
+    childSubjects: Subject[];
+    domains: Domain[];
+    tiers: Tier[];
+  };
+} = {};
+let threadOptions: Thread[] = [];
+let yearOptions: string[] = [];
+const unitSlugs = new Set<string>();
+const duplicateUnitSlugs = new Set<string>();
+
 // Function component
 
 const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   // Initialize constants
-  const threadOptions: Thread[] = [];
-  const yearOptions: string[] = [];
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [displayModal, setDisplayModal] = useState(false);
@@ -91,149 +103,152 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
-  const unitSlugs = new Set<string>();
-  const duplicateUnitSlugs = new Set<string>();
-  // Initialize data structure for displaying units by year
-  const yearData: {
-    [key: string]: {
-      units: Unit[];
-      childSubjects: Subject[];
-      domains: Domain[];
-      tiers: Tier[];
-    };
-  } = {};
 
-  data.units.forEach((unit) => {
-    // Populate years object
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
-    }
+  const [yearSelection, setYearSelection] = useState<YearSelection>({});
+  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
-    // Populate threads object
+  // Put data formatting code in useEffect to avoid unnecessary re-renders
+  useEffect(() => {
+    yearData = {};
+    threadOptions = [];
+    yearOptions = [];
+    unitSlugs.clear();
+    duplicateUnitSlugs.clear();
 
-    unit.threads.forEach((thread) => {
-      if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
-        threadOptions.push(thread);
+    data.units.forEach((unit) => {
+      // Populate years object
+
+      if (yearOptions.every((yo) => yo !== unit.year)) {
+        yearOptions.push(unit.year);
+      }
+
+      // Populate threads object
+
+      unit.threads.forEach((thread) => {
+        if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
+          threadOptions.push(thread);
+        }
+      });
+
+      // Check if the yearData object has an entry for the unit's year
+      // If not, initialize it with default values
+
+      let currentYearData = yearData[unit.year];
+      if (!currentYearData) {
+        currentYearData = {
+          units: [],
+          childSubjects: [],
+          domains: [],
+          tiers: [],
+        };
+        yearData[unit.year] = currentYearData;
+      }
+
+      // Add the current unit
+
+      currentYearData.units.push(unit);
+
+      // Populate list of child subject filter values
+
+      if (
+        unit.subject_parent &&
+        unit.subject_parent_slug &&
+        currentYearData.childSubjects.every(
+          (c) => c.subject_slug !== unit.subject_slug,
+        )
+      ) {
+        currentYearData.childSubjects.push({
+          subject: unit.subject,
+          subject_slug: unit.subject_slug,
+        });
+      }
+
+      // Populate list of domain filter values
+
+      if (
+        unit.domain &&
+        unit.domain_id &&
+        currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
+      ) {
+        currentYearData.domains.push({
+          domain: unit.domain,
+          domain_id: unit.domain_id,
+        });
+      }
+
+      // Populate list of tier filter values
+
+      if (
+        unit.tier &&
+        unit.tier_slug &&
+        currentYearData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
+      ) {
+        currentYearData.tiers.push({
+          tier: unit.tier,
+          tier_slug: unit.tier_slug,
+        });
+      }
+
+      // Check for duplicate unit slugs
+
+      if (unitSlugs.has(unit.slug)) {
+        duplicateUnitSlugs.add(unit.slug);
+      } else {
+        unitSlugs.add(unit.slug);
       }
     });
 
-    // Check if the yearData object has an entry for the unit's year
-    // If not, initialize it with default values
+    // Sort year data
 
-    let currentYearData = yearData[unit.year];
-    if (!currentYearData) {
-      currentYearData = {
-        units: [],
-        childSubjects: [],
-        domains: [],
-        tiers: [],
-      };
-      yearData[unit.year] = currentYearData;
-    }
+    yearOptions.sort((a, b) => Number(a) - Number(b));
 
-    // Add the current unit
+    // Sort threads
 
-    currentYearData.units.push(unit);
+    const threadOrders = new Set(threadOptions.map((to) => to.order));
+    if (threadOptions.length > threadOrders.size) {
+      // In secondary science multiple threads can have the same order value due
+      // to multiple subjects (eg biology, chemistry, physics) being shown, so
+      // if orders are not unique, sort alphabetically by slug
 
-    // Populate list of child subject filter values
-
-    if (
-      unit.subject_parent &&
-      unit.subject_parent_slug &&
-      currentYearData.childSubjects.every(
-        (c) => c.subject_slug !== unit.subject_slug,
-      )
-    ) {
-      currentYearData.childSubjects.push({
-        subject: unit.subject,
-        subject_slug: unit.subject_slug,
-      });
-    }
-
-    // Populate list of domain filter values
-
-    if (
-      unit.domain &&
-      unit.domain_id &&
-      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
-    ) {
-      currentYearData.domains.push({
-        domain: unit.domain,
-        domain_id: unit.domain_id,
-      });
-    }
-
-    // Populate list of tier filter values
-
-    if (
-      unit.tier &&
-      unit.tier_slug &&
-      currentYearData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
-    ) {
-      currentYearData.tiers.push({
-        tier: unit.tier,
-        tier_slug: unit.tier_slug,
-      });
-    }
-
-    // Check for duplicate unit slugs
-
-    if (unitSlugs.has(unit.slug)) {
-      duplicateUnitSlugs.add(unit.slug);
+      threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
     } else {
-      unitSlugs.add(unit.slug);
+      // If orders are unique, use them to sort
+
+      threadOptions.sort((a, b) => a.order - b.order);
     }
-  });
 
-  // Sort year data
+    // Set up year-specific filters (domains, child subjects, tiers):
+    // populate options and select defaults
 
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+    const initialYearSelection = {} as YearSelection;
+    Object.keys(yearData).forEach((year) => {
+      const filters = yearData[year];
+      if (!filters) {
+        throw new Error("year filters missing");
+      }
+      if (filters.domains.length > 0) {
+        filters.domains.sort((a, b) => a.domain_id - b.domain_id);
+        filters.domains.unshift({
+          domain: "All",
+          domain_id: 0,
+        });
+      }
+      filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+      initialYearSelection[year] = {
+        subject:
+          filters.childSubjects.find(
+            (s) => s.subject_slug === "combined-science",
+          ) ?? null,
+        domain: filters.domains.length ? filters.domains[0] : null,
+        tier: filters.tiers.length ? filters.tiers[0] : null,
+      };
+    });
 
-  // Sort threads
-
-  const threadOrders = new Set(threadOptions.map((to) => to.order));
-  if (threadOptions.length > threadOrders.size) {
-    // In secondary science multiple threads can have the same order value due
-    // to multiple subjects (eg biology, chemistry, physics) being shown, so
-    // if orders are not unique, sort alphabetically by slug
-
-    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
-  } else {
-    // If orders are unique, use them to sort
-
-    threadOptions.sort((a, b) => a.order - b.order);
-  }
-
-  // Set up year-specific filters (domains, child subjects, tiers):
-  // populate options and select defaults
-
-  const initialYearSelection = {} as YearSelection;
-  Object.keys(yearData).forEach((year) => {
-    const data = yearData[year];
-    if (!data) {
-      throw new Error("year data missing");
-    }
-    if (data.domains.length > 0) {
-      data.domains.sort((a, b) => a.domain_id - b.domain_id);
-      data.domains.unshift({
-        domain: "All",
-        domain_id: 0,
-      });
-    }
-    data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
-    initialYearSelection[year] = {
-      subject:
-        data.childSubjects.find((s) => s.subject_slug === "combined-science") ??
-        null,
-      domain: data.domains.length ? data.domains[0] : null,
-      tier: data.tiers.length ? data.tiers[0] : null,
-    };
-  });
-
-  const [yearSelection, setYearSelection] =
-    useState<YearSelection>(initialYearSelection);
-  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+    setYearSelection(initialYearSelection);
+    setSelectedThread(null);
+    setSelectedYear(null);
+  }, [data]);
 
   // Filter interaction handlers
 
@@ -287,9 +302,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   function highlightedUnitCount(): number {
     let count = 0;
     Object.keys(yearData).forEach((year) => {
-      const data = yearData[year];
-      if (data && (!selectedYear || selectedYear === year)) {
-        data.units.forEach((unit) => {
+      const units = yearData[year]?.units;
+      if (units && (!selectedYear || selectedYear === year)) {
+        units.forEach((unit) => {
           if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
             count++;
           }
@@ -313,7 +328,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   function isVisibleUnit(year: string, unit: Unit) {
     const s = yearSelection[year];
     if (!s) {
-      throw new Error("year selection missing");
+      return false;
     }
     const filterBySubject =
       !s.subject || s.subject.subject_slug === unit.subject_slug;

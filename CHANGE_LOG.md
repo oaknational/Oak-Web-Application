@@ -1,3 +1,11 @@
+## [1.327.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.2...v1.327.3) (2024-01-18)
+
+
+### Bug Fixes
+
+* change variable names ([934de0f](https://github.com/oaknational/Oak-Web-Application/commit/934de0f43ca6d5d4e0908918d693e2db0159d87e))
+* reset selection filters on page update ([d861ffc](https://github.com/oaknational/Oak-Web-Application/commit/d861ffc60d1414fb982314a6bdc423104bd14311))
+
 ## [1.327.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.1...v1.327.2) (2024-01-17)
 
 
