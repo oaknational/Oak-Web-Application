@@ -12,9 +12,11 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
-import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
-import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal, {
+  Lesson,
+} from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import { P, Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -25,6 +27,7 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
+  examboardSlug: string | null;
 };
 
 export type Unit = CurriculumUnitsTabData["units"][number];
@@ -58,6 +61,21 @@ interface YearSelection {
   };
 }
 
+export function createProgrammeSlug(
+  unitData?: Unit | null,
+  examboardSlug?: string | null,
+) {
+  if (unitData?.keystage_slug === "ks4") {
+    return `${unitData.subject_slug}-${unitData.phase_slug}-${
+      unitData.keystage_slug
+    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+      examboardSlug ? "-" + examboardSlug : ""
+    }`;
+  }
+  return unitData
+    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+    : "";
+}
 // Initialize data structure for displaying units by year
 let yearData: {
   [key: string]: {
@@ -74,15 +92,16 @@ const duplicateUnitSlugs = new Set<string>();
 
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
+const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   // Initialize constants
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
+  const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
+  const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   const [yearSelection, setYearSelection] = useState<YearSelection>({});
@@ -339,6 +358,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const handleCloseModal = () => {
     setDisplayModal(false);
+    setCurrentUnitLessons([]);
   };
 
   // Analytics handlers
@@ -651,6 +671,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   color={isHighlighted ? "black" : "white"}
                                 />
                               </Box>
+
                               <Flex
                                 $flexDirection={"row"}
                                 $justifyContent={"flex-end"}
@@ -668,6 +689,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                     handleOpenModal();
                                     setUnitOptionsAvailable(unitOptions);
                                     setUnitData({ ...unit });
+                                    setCurrentUnitLessons(unit.lessons ?? []);
                                   }}
                                   ref={modalButtonRef}
                                 />
@@ -678,10 +700,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       <UnitsTabSidebar
                         displayModal={displayModal}
                         onClose={handleCloseModal}
-                        unitData={unitData}
+                        lessons={currentUnitLessons}
+                        programmeSlug={createProgrammeSlug(
+                          unitData,
+                          examboardSlug,
+                        )}
                         unitOptionsAvailable={unitOptionsAvailable}
+                        unitSlug={unitData?.slug}
+                        unitVariantID={unitVariantID}
                       >
                         <UnitModal
+                          setCurrentUnitLessons={setCurrentUnitLessons}
+                          setUnitVariantID={setUnitVariantID}
                           unitData={unitData}
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
