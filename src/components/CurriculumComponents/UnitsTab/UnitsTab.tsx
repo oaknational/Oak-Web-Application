@@ -204,25 +204,25 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
     const initialYearSelection = {} as YearSelection;
     Object.keys(yearData).forEach((year) => {
-      const data = yearData[year];
-      if (!data) {
-        throw new Error("year data missing");
+      const filters = yearData[year];
+      if (!filters) {
+        throw new Error("year filters missing");
       }
-      if (data.domains.length > 0) {
-        data.domains.sort((a, b) => a.domain_id - b.domain_id);
-        data.domains.unshift({
+      if (filters.domains.length > 0) {
+        filters.domains.sort((a, b) => a.domain_id - b.domain_id);
+        filters.domains.unshift({
           domain: "All",
           domain_id: 0,
         });
       }
-      data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+      filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
       initialYearSelection[year] = {
         subject:
-          data.childSubjects.find(
+          filters.childSubjects.find(
             (s) => s.subject_slug === "combined-science",
           ) ?? null,
-        domain: data.domains.length ? data.domains[0] : null,
-        tier: data.tiers.length ? data.tiers[0] : null,
+        domain: filters.domains.length ? filters.domains[0] : null,
+        tier: filters.tiers.length ? filters.tiers[0] : null,
       };
     });
 
@@ -283,9 +283,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   function highlightedUnitCount(): number {
     let count = 0;
     Object.keys(yearData).forEach((year) => {
-      const data = yearData[year];
-      if (data && (!selectedYear || selectedYear === year)) {
-        data.units.forEach((unit) => {
+      const units = yearData[year]?.units;
+      if (units && (!selectedYear || selectedYear === year)) {
+        units.forEach((unit) => {
           if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
             count++;
           }
