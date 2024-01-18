@@ -35,7 +35,7 @@ describe("downloadZip", () => {
 
   it("it handles rejection by returning error message", async () => {
     vi.spyOn(global, "fetch").mockImplementationOnce((() =>
-      Promise.resolve(rejectResponse)) as jest.Mock);
+      Promise.resolve(rejectResponse)) as Mock);
     try {
       await downloadZip("4", "Physics");
       fail("should not reach here");

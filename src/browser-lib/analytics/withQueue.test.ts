@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   AnalyticsService,
@@ -48,7 +48,7 @@ describe("withQueue", () => {
     service.identify("user-123", { email: "bar" });
     service.track("event-123", { foo: "bar" });
 
-    (originalService.state as jest.Mock).mockImplementation(() => "disabled");
+    (originalService.state as Mock).mockImplementation(() => "disabled");
 
     // wait 15ms so that queue can refresh
     await new Promise((r) => setTimeout(r, 15));
@@ -69,7 +69,7 @@ describe("withQueue", () => {
     service.identify(...identifyArgs);
     service.track(...trackArgs);
 
-    (originalService.state as jest.Mock).mockImplementation(() => "enabled");
+    (originalService.state as Mock).mockImplementation(() => "enabled");
 
     // wait 15ms so that queue can refresh
     await new Promise((r) => setTimeout(r, 15));

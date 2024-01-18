@@ -6,7 +6,9 @@ import { resolveSanityReferences } from "./resolveSanityReferences";
 import { getBySlug, getList, getSingleton } from "./cmsMethods";
 
 vi.mock("./parseResults", async () => {
-  const original = await vi.importActual("./parseResults");
+  const original = (await vi.importActual("./parseResults")) as {
+    parseResults: typeof parseResults;
+  };
   return {
     __esModule: true,
     parseResults: vi.fn(original.parseResults),

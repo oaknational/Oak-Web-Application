@@ -34,14 +34,16 @@ vi.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
 
 const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
-vi.mock("next-sanity-image", () => ({
-  ...jest.requireActual("next-sanity-image"),
-  useNextSanityImage: () => ({
-    src: "/test/img/src.png",
-    width: 400,
-    height: 400,
-  }),
-}));
+vi.mock("next-sanity-image", async () => {
+  return {
+    ...(await vi.importActual("next-sanity-image")),
+    useNextSanityImage: () => ({
+      src: "/test/img/src.png",
+      width: 400,
+      height: 400,
+    }),
+  };
+});
 const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
   typeof curriculumApi.curriculumUnits
 >;

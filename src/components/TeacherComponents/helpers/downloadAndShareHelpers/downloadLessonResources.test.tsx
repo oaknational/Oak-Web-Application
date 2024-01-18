@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
@@ -28,7 +28,7 @@ const resourcesToDownloadAsSelection = "exit-quiz-answers,worksheet-pdf";
 
 describe("downloadLessonResources", () => {
   beforeEach(() => {
-    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   it("should return when no resource types are passed", async () => {

@@ -67,7 +67,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if fetch throws", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.reject("bad thing"),
     );
 
@@ -83,7 +83,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if API returns a bad response with a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({
@@ -113,7 +113,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if API returns a bad response without a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({

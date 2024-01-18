@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
@@ -243,7 +243,7 @@ describe("Search.page.tsx", () => {
   it("search term is set on enter", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    const setSearchTerm = props.setSearchTerm as Mock;
     setSearchTerm.mockClear();
     getByRole("searchbox").focus();
     await act(async () => {
@@ -255,7 +255,7 @@ describe("Search.page.tsx", () => {
   it("query is set on submit button click", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    const setSearchTerm = props.setSearchTerm as Mock;
     setSearchTerm.mockClear();
     const submit = getByRole("button", { name: "Submit" });
     await act(async () => {

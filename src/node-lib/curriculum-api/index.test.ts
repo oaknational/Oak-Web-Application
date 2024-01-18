@@ -14,7 +14,7 @@ import searchPageFixture from "./fixtures/searchPage.fixture";
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
 /**
- * This module is mocked in jest.setup.js, so need to unmock it here in order to test it
+ * This module is mocked in setup.js, so need to unmock it here in order to test it
  */
 vi.unmock(".");
 

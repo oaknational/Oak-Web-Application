@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from "node:querystring";
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getServerSideSitemap } from "next-sitemap";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
@@ -11,7 +11,7 @@ vi.mock("next-sitemap", () => ({
   getServerSideSitemap: vi.fn(),
 }));
 
-type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;
+type MockedGetServerSideSitemap = Mock;
 
 type SeoData = {
   loc: string;

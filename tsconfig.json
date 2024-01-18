@@ -34,8 +34,13 @@
     "**/*.ts",
     "**/*.tsx",
     "e2e_tests/browser/fixtures.ts",
-    "src/__tests__/__helpers__/reporters/slowTestReporter.js"
-, "src/components/NewButtons", "src/components/GenericPagesComponents/HomepageTabImageButton", "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle", "src/components/GenericPagesComponents/HomePageTabFocusUnderline"  ],
+    "src/__tests__/__helpers__/reporters/slowTestReporter.js",
+    "src/components/NewButtons",
+    "src/components/GenericPagesComponents/HomepageTabImageButton",
+    "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
+    "src/components/GenericPagesComponents/HomePageTabFocusUnderline",
+    "src/common-lib/urls/getDeploymentTestUrls.test.js"
+  ],
   "exclude": [
     "node_modules", 
     "netlify/edge-functions", 

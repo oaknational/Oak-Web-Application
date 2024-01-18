@@ -47,7 +47,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     );
   });
 
-  test.only("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
+  it("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}

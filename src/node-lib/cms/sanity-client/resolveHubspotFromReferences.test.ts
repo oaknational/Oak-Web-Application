@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Mock, describe, expect, it, vi, beforeEach } from "vitest";
 
 import OakError from "../../../errors/OakError";
 import { getHubspotFormById } from "../../hubspot-forms";
@@ -7,9 +7,7 @@ import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 
 vi.mock("../../hubspot-forms");
 
-const mockedGetHubspotFormById = getHubspotFormById as MockedFn<
-  typeof getHubspotFormById
->;
+const mockedGetHubspotFormById = getHubspotFormById as Mock;
 
 const reportError = vi.fn();
 vi.mock("../../../common-lib/error-reporter", () => ({

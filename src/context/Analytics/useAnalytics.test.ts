@@ -7,10 +7,10 @@ import useAnalytics from "./useAnalytics";
 
 const posthogCapture = vi.fn();
 const posthogInit = vi.fn();
-vi.mock("posthog-js", () => ({
+vi.mock("posthog-js", async () => ({
   __esModule: true,
   default: {
-    ...jest.requireActual("posthog-js"),
+    ...(await vi.importActual("posthog-js")),
     capture: (...args: []) => posthogCapture(...args),
     init: (...args: []) => posthogInit(...args),
   },

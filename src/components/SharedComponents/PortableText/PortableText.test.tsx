@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi, Mock } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
@@ -146,7 +146,7 @@ describe("PortableText", () => {
   describe("PTActionTrigger", () => {
     it("renders a button that triggers cookie consent manager ", async () => {
       const showConsentManager = vi.fn();
-      (useCookieConsent as jest.Mock).mockImplementation(() => ({
+      (useCookieConsent as Mock).mockImplementation(() => ({
         showConsentManager,
       }));
       const user = userEvent.setup();

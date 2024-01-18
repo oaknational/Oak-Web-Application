@@ -5,7 +5,7 @@ import CMSVideo from ".";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const mockPlayer = vi.fn(() => <div />);
+const mockPlayer = vi.fn<[unknown]>(() => <div />);
 
 vi.mock("@/components/SharedComponents/VideoPlayer", () => ({
   __esModule: true,

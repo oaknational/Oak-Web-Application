@@ -8,7 +8,10 @@ vi.mock(".", async () => ({ default: (await vi.importActual(".")).default }));
 vi.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
-    searchPage: mocks.searchPage,
+    searchPage: async () => {
+      const res = await mocks.searchPage();
+      return { searchPage: [res] };
+    },
   }),
 }));
 

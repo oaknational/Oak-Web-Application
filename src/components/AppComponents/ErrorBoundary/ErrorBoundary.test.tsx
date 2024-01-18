@@ -87,7 +87,7 @@ describe("ErrorBoundary.tsx", () => {
       "An error occurred",
     );
   });
-  test.skip("[bugsnag:enabled] should call reportError", () => {
+  it.skip("[bugsnag:enabled] should call reportError", () => {
     /**
      * @TODO fix this test
      */

@@ -1,4 +1,12 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  Mock,
+  MockedObject,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import { GetServerSidePropsContext } from "next";
 
@@ -129,7 +137,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
 
     it("should redirect the user to an A/B tested page if it exists", async () => {
-      (getABTestedLandingPage as jest.Mock).mockResolvedValue({
+      (getABTestedLandingPage as Mock).mockResolvedValue({
         ...testLandingPage,
         slug: "ab-tested-page-variant",
       });

@@ -55,7 +55,7 @@ describe("components/Key Stage keypad", () => {
     });
   });
 
-  test.skip.each(years)("renders a year link with %p text", (year) => {
+  it.skip.each(years)("renders a year link with %p text", (year) => {
     const { getByText } = renderWithTheme(
       <KeyStageKeypad {...keyStageKeypad} />,
     );

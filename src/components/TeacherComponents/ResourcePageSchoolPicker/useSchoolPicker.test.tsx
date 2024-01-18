@@ -5,10 +5,14 @@ import useSchoolPicker, { fetcher } from "./useSchoolPicker";
 
 import OakError from "@/errors/OakError";
 
-const mockUseSWR = vi.fn<[{ data: unknown; error: unknown }]>(() => ({
-  data: null,
-  error: null,
-}));
+const { mockUseSWR } = vi.hoisted(() => {
+  const mockUseSWR = vi.fn<[{ data: unknown; error: unknown }]>(() => ({
+    data: null,
+    error: null,
+  }));
+
+  return { mockUseSWR };
+});
 
 const data = [
   {

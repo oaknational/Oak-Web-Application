@@ -178,7 +178,7 @@ describe("useSearch()", () => {
 
     await waitFor(() => expect(result.current.status).toBe("fail"));
   });
-  test.skip("error should be reported", async () => {
+  it.skip("error should be reported", async () => {
     // @todo skipping this test, not sure why it's failing
     const error = new Error("bad thing");
     fetch.mockRejectedValue(error);

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { Mock, describe, expect, it, vi } from "vitest";
 import { GetStaticPropsContext, PreviewData } from "next";
 
 import LessonOverviewCanonicalPage, {
@@ -52,9 +52,7 @@ describe("LessonOverviewCanonicalPage", () => {
     });
 
     it("should call legacy api if 2023 throws curriculum-api/not-found error ", async () => {
-      (
-        curriculumApi2023.lessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
+      (curriculumApi2023.lessonOverviewCanonical as Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
       const propsResult = (await getStaticProps({
@@ -72,14 +70,10 @@ describe("LessonOverviewCanonicalPage", () => {
       expect(propsResult.props.lesson.lessonSlug).toEqual("macbeth-lesson-1");
     });
     it("should call throw an error if both API's are not found", async () => {
-      (
-        curriculumApi2023.lessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
+      (curriculumApi2023.lessonOverviewCanonical as Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
-      (
-        curriculumApi.lessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
+      (curriculumApi.lessonOverviewCanonical as Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
       await expect(

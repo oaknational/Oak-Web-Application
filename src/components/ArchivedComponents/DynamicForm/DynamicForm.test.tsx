@@ -270,7 +270,7 @@ describe("DynamicForm", () => {
    * These skipped tests should probably belong to HubspotForm wrapper
    * around DynamicForm. Currently copied from NewsletterForm.test.tsx
    */
-  test.skip("should display correct message if OakError thrown from onSubmit()", async () => {
+  it.skip("should display correct message if OakError thrown from onSubmit()", async () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByRole, getByPlaceholderText } = renderWithTheme(
@@ -291,7 +291,7 @@ describe("DynamicForm", () => {
     );
   });
 
-  test.skip("should display default message if no OakError", async () => {
+  it.skip("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,

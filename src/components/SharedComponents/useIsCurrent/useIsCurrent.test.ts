@@ -1,4 +1,4 @@
-import { describe, expect, vi } from "vitest";
+import { describe, expect, vi, it } from "vitest";
 import { renderHook } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 

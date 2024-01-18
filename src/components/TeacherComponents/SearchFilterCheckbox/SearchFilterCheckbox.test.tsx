@@ -39,5 +39,5 @@ describe("SearchFilterCheckbox", () => {
     expect(checkbox).toBeChecked();
   });
 
-  test.todo("calls onChange when clicked");
+  it.todo("calls onChange when clicked");
 });

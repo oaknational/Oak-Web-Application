@@ -65,10 +65,9 @@ describe("ab-testing", () => {
         req: { cookies },
       } as unknown as GetServerSidePropsContext;
 
-      const posthogInstance = (PostHog as jest.Mock<PostHog>).mock.instances[0];
-      (posthogInstance?.getFeatureFlag as jest.Mock).mockResolvedValue(
-        "variant-b",
-      );
+      const posthogInstance = (PostHog as unknown as Mock<[PostHog]>).mock
+        .instances[0];
+      (posthogInstance?.getFeatureFlag as Mock).mockResolvedValue("variant-b");
 
       const pageVariant = await getABTestedLandingPage(
         "ab-tested-page",

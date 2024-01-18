@@ -56,7 +56,7 @@ const curriculumApi: Pick<
   }),
   searchPage: vi.fn(async () => {
     return {
-      searchPage: [searchPageFixture()],
+      ...searchPageFixture(),
     };
   }),
 };

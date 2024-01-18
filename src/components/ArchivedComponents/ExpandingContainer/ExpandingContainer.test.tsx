@@ -48,8 +48,8 @@ it("component renders with the title only", () => {
 });
 /** @todo This test need rewriting to not depend on logging being called. */
 it.skip("renders top right icons", async () => {
-  const log1 = jest.spyOn(console, "log");
-  const log2 = jest.spyOn(console, "log");
+  const log1 = vi.spyOn(console, "log");
+  const log2 = vi.spyOn(console, "log");
   const user = userEvent.setup();
   renderWithTheme(
     <ExpandingContainer
@@ -138,8 +138,8 @@ describe("comonents/ExpandingContainer", () => {
   });
   /** @todo This test need rewriting to not depend on logging being called. */
   it.skip("renders top right icons", async () => {
-    const log1 = jest.spyOn(console, "log");
-    const log2 = jest.spyOn(console, "log");
+    const log1 = vi.spyOn(console, "log");
+    const log2 = vi.spyOn(console, "log");
     const user = userEvent.setup();
     renderWithTheme(
       <ExpandingContainer
@@ -222,7 +222,7 @@ describe("comonents/ExpandingContainer", () => {
     );
   });
 
-  it.only("component expands and contract on click", async () => {
+  it("component expands and contract on click", async () => {
     const user = userEvent.setup();
     renderWithTheme(
       <ExpandingContainer

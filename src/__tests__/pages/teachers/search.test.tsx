@@ -22,7 +22,7 @@ vi.mock("posthog-js/react", () => ({
 }));
 
 describe("pages/teachers/search.tsx", () => {
-  test.skip("renders the correct SEO details", () => {
+  it.skip("renders the correct SEO details", () => {
     const { seo } = renderWithSeo(providers)(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}

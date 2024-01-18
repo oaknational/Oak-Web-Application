@@ -37,7 +37,7 @@ describe("getHasConsentedTo", () => {
    * @TODO currently we can't achieve this behaviour, we will fix it when
    * we build our own solution
    */
-  test.todo(
+  it.todo(
     "returns false if user has consented to a previous version of the policy but not the new one",
   );
 });

@@ -18,8 +18,8 @@ vi.mock("../../../node-lib/cms");
 const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
-vi.mock("next-sanity-image", () => ({
-  ...jest.requireActual("next-sanity-image"),
+vi.mock("next-sanity-image", async () => ({
+  ...(await vi.importActual("next-sanity-image")),
   useNextSanityImage: () => ({
     src: "/test/img/src.png",
     width: 400,

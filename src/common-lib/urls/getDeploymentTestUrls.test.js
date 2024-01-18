@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/named
+import { describe, expect, it } from "vitest";
+
 import getDeploymentTestUrls from "./getDeploymentTestUrls";
 
 describe("getDeploymentTestUrls", () => {
