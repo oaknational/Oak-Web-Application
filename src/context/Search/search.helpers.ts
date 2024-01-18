@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from "querystring";
+
 import {
   KeyStage,
   LessonSearchHit,
@@ -10,7 +12,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
-import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
@@ -36,15 +38,32 @@ export const getFilterForQuery = <T extends { slug: string }>(
 };
 
 // Analytics
+export const getFiltersFromQuery = (query: ParsedUrlQuery) => {
+  return [
+    query.keyStages,
+    query.contentTypes,
+    query.examBoards,
+    query.subjects,
+  ];
+};
+
+export const combineSearchFilters = (
+  filters: Array<string | Array<string> | undefined>,
+) => {
+  return filters
+    .flat()
+    .filter((f) => !!f)
+    .join(",");
+};
+
 export const getSortedSearchFiltersSelected = (
-  filterOptions: string | string[] | undefined,
+  query: ParsedUrlQuery,
 ): [] | string[] => {
-  if (typeof filterOptions === "string") {
-    return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
-  } else if (Array.isArray(filterOptions)) {
-    return filterOptions.sort((a, b) => (a.slice(-1) < b.slice(-1) ? -1 : 1));
+  const combinedFilters = combineSearchFilters(getFiltersFromQuery(query));
+  if (!combinedFilters) {
+    return [];
   }
-  return [];
+  return combinedFilters.split(",").sort((a, b) => (a < b ? -1 : 1));
 };
 
 const keyStageToSentenceCase = (keyStage?: string): string | undefined => {

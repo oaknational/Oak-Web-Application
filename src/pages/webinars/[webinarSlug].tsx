@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
@@ -17,13 +17,13 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
+import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import Flex from "@/components/SharedComponents/Flex";
-import WebinarVideo from "@/components/Posts/WebinarVideo";
+import WebinarVideo from "@/components/GenericPagesComponents/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {

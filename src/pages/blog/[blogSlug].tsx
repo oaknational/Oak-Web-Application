@@ -8,7 +8,7 @@ import {
 import { useNextSanityImage } from "next-sanity-image";
 import { uniqBy } from "lodash/fp";
 
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { BlogPost } from "@/common-lib/cms-types";
 import {
@@ -17,11 +17,11 @@ import {
 } from "@/node-lib/isr";
 import Box from "@/components/SharedComponents/Box";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
-import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
+import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { sanityClientLike } from "@/components/SharedComponents/CMSImage";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
-import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {

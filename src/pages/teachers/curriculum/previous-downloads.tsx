@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 
-import AppLayout from "@/components/AppLayout/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
 import curriculumPreviousDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Flex from "@/components/SharedComponents/Flex/Flex";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import TabularNav from "@/components/TabularNav/TabularNav";
+import TabularNav from "@/components/SharedComponents/TabularNav";
 import Heading from "@/components/SharedComponents/Typography/Heading";
 import Icon from "@/components/SharedComponents/Icon/Icon";
 import Hr from "@/components/SharedComponents/Typography/Hr";
@@ -17,7 +17,7 @@ import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAs
 import {
   CurriculumDownload,
   CurriculumDownloads,
-} from "@/components/pages/Curriculum/CurriculumDownloads/CurriculumDownloads";
+} from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const data = curriculumPreviousDownloadsFixture();
