@@ -5,7 +5,7 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/SharedComponents/Typography";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -42,7 +42,7 @@ const SubjectProgrammeListItem: FC<
       $transition={"all 0.4s ease-out"}
     >
       <Flex $pa={16}>
-        <OakLink
+        <OwaLink
           {...primaryTargetProps}
           page={"unit-index"}
           programmeSlug={programmeSlug}
@@ -67,7 +67,7 @@ const SubjectProgrammeListItem: FC<
           >
             {tierTitle ?? examBoardTitle}
           </Heading>
-        </OakLink>
+        </OwaLink>
       </Flex>
 
       <BoxBorders gapPosition="rightTop" />

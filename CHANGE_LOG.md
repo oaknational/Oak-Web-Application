@@ -1,3 +1,27 @@
+## [1.327.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.1...v1.327.2) (2024-01-17)
+
+
+### Bug Fixes
+
+* add refactor to releaseRules ([74fa2d5](https://github.com/oaknational/Oak-Web-Application/commit/74fa2d5dc5561bdca0933684848f4d3953f480dd))
+
+## [1.327.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.0...v1.327.1) (2024-01-17)
+
+# [1.327.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.326.1...v1.327.0) (2024-01-17)
+
+
+### Bug Fixes
+
+* exclude generated sdk from sonar ([17aa5cc](https://github.com/oaknational/Oak-Web-Application/commit/17aa5cc94069a07722447bb9becca2b7fff6f02b))
+* sanity fixture ([0ed15e7](https://github.com/oaknational/Oak-Web-Application/commit/0ed15e789e336a162dd6cdab2e4b8a86ff86d8aa))
+
+
+### Features
+
+* update board page scheme with board header field ([139024b](https://github.com/oaknational/Oak-Web-Application/commit/139024b4a77d8a1679c3f69529ee89738bfc39f2))
+
+## [1.326.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.326.0...v1.326.1) (2024-01-17)
+
 # [1.326.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.1...v1.326.0) (2024-01-15)
 
 

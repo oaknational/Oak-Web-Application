@@ -6,7 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockPlayer = jest.fn((_props: never) => <div />);
 
-jest.mock("@/components/VideoPlayer", () => ({
+jest.mock("@/components/SharedComponents/VideoPlayer", () => ({
   __esModule: true,
   default: (props: never) => mockPlayer(props),
 }));

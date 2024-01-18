@@ -20,7 +20,7 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import OakLink from "@/components/OakLink/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -132,7 +132,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 </LI>
               </UL>
               <Typography $font={"heading-7"} $mb={12}>
-                <OakLink
+                <OwaLink
                   page={"blog-single"}
                   blogSlug="our-approach-to-curriculum"
                   $display={"flex"}
@@ -140,7 +140,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 >
                   Read more about our approach
                   <Icon name={"chevron-right"} />
-                </OakLink>
+                </OwaLink>
               </Typography>
             </Box>
           </Flex>

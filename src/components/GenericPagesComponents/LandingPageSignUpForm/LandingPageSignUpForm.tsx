@@ -1,6 +1,6 @@
 import { FC, useId } from "react";
 
-import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
+import NewsletterForm, { useNewsletterForm } from "../NewsletterForm";
 
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
