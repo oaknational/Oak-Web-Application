@@ -11,5 +11,6 @@ query pupilLessonOverview(
     }
   ) {
     starterQuiz
+    exitQuiz
   }
 }
