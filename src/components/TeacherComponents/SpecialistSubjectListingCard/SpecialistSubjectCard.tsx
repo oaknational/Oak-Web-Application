@@ -10,16 +10,7 @@ import {
   SpecialistProgrammeListingLinkProps,
   SpecialistUnitListingLinkProps,
 } from "@/common-lib/urls";
-
-const getSpecialistCardBackgroundColour = (heading: string) => {
-  switch (heading) {
-    case "Therapies":
-      return "mint";
-    case "Specialist":
-    default:
-      return "aqua";
-  }
-};
+import { OakColorName } from "@/styles/theme";
 
 const getOakLinkProps = (
   subject: SpecialistSubject,
@@ -44,14 +35,13 @@ const getAriaLabel = (subject: SpecialistSubject) => {
 
 const SpecialistSubjectCard = (props: {
   subject: SpecialistSubject;
-  heading: string;
+  backgroundColour: OakColorName;
 }) => (
   <Card
-    $background={getSpecialistCardBackgroundColour(props.heading)}
+    $background={props.backgroundColour}
     $borderRadius={4}
     $pa={16}
     $height="100%"
-    data-testid={`${props.heading.toLowerCase()}-subject-card`}
   >
     <Flex
       $flexDirection="column"

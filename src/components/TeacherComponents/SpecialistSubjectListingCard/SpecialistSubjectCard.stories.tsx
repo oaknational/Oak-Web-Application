@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Component>;
 
 export const SpecialistSubjectCard: Story = {
   args: {
-    heading: "Specialist",
+    backgroundColour: "aqua",
     subject: specialistSubjectListingFixture[0],
   },
 };

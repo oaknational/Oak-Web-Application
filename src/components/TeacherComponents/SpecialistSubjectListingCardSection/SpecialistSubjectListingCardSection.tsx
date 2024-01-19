@@ -6,6 +6,16 @@ import { Heading, P } from "@/components/SharedComponents/Typography";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 
+const getSpecialistCardBackgroundColour = (heading: string) => {
+  switch (heading) {
+    case "Therapies":
+      return "mint";
+    case "Specialist":
+    default:
+      return "aqua";
+  }
+};
+
 const SpecialistSubjectCardSection = (props: {
   heading: string;
   summary: string;
@@ -25,7 +35,12 @@ const SpecialistSubjectCardSection = (props: {
             key={`subject-list-item-${subject.subjectSlug}-${i}`}
             $colSpan={[12, 6, 3]}
           >
-            <SpecialistSubjectCard subject={subject} heading={props.heading} />
+            <SpecialistSubjectCard
+              subject={subject}
+              backgroundColour={getSpecialistCardBackgroundColour(
+                props.heading,
+              )}
+            />
           </GridAreaListItem>
         ))}
       </GridList>
