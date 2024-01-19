@@ -19,6 +19,8 @@ type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
+  setCurrentUnitLessons: (x: Lesson[]) => void;
+  setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
   isHighlighted: boolean;
 };
@@ -26,12 +28,15 @@ type UnitModalProps = {
 export type Lesson = {
   title: string;
   slug?: string;
+  _state?: string;
 };
 
 const UnitModal: FC<UnitModalProps> = ({
   unitData,
   displayModal,
   setUnitOptionsAvailable,
+  setCurrentUnitLessons,
+  setUnitVariantID,
   unitOptionsAvailable,
   isHighlighted,
 }) => {
@@ -52,12 +57,18 @@ const UnitModal: FC<UnitModalProps> = ({
       setCurriculumUnitDetails(null);
       setOptionalityModalOpen(false);
       setUnitOptionsAvailable(false);
+      setUnitVariantID(null);
     }
 
     if (optionalityModalOpen) {
       setUnitOptionsAvailable(false);
     }
-  }, [displayModal, setUnitOptionsAvailable, optionalityModalOpen]);
+  }, [
+    displayModal,
+    setUnitOptionsAvailable,
+    optionalityModalOpen,
+    setUnitVariantID,
+  ]);
 
   useEffect(() => {
     // For tracking open model events
@@ -72,6 +83,7 @@ const UnitModal: FC<UnitModalProps> = ({
           yearGroupSlug: unitData.year,
           unitHighlighted: isHighlighted,
           analyticsUseCase: analyticsUseCase,
+          //update to include optionality units
         });
       }
     }
@@ -102,6 +114,7 @@ const UnitModal: FC<UnitModalProps> = ({
                   handleOptionalityModal();
                   setUnitOptionsAvailable(true);
                   setCurriculumUnitDetails(null);
+                  setUnitVariantID(null);
                 }}
               />
             </Box>
@@ -205,6 +218,8 @@ const UnitModal: FC<UnitModalProps> = ({
                                 onClick={() => {
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
+                                  setUnitVariantID(optionalUnit.unitvariant_id);
+                                  setCurrentUnitLessons(optionalUnit.lessons);
                                   setCurriculumUnitDetails({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
