@@ -49,7 +49,7 @@ describe("SpecialistSubjectListing", () => {
     const specialistSubjectCards = within(subjectCardLists[0]).getAllByRole(
       "listitem",
     );
-    expect(specialistSubjectCards).toHaveLength(3);
+    expect(specialistSubjectCards).toHaveLength(5);
   });
   it("renders a therapies subject section", () => {
     renderWithTheme(
