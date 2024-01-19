@@ -114,9 +114,8 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Flex
-      $minWidth={320}
       $maxHeight={72}
-      $width={"fit-content"}
+      $width={320}
       $position={"relative"}
       {...hoverProps}
       data-testid="lessonResourcesCheckbox"
