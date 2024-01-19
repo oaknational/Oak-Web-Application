@@ -17,7 +17,7 @@ describe("SpecialistSubjectListing", () => {
       />,
     );
     const heading = screen.getByRole("heading", {
-      name: /Specialist & Therapies/i,
+      name: /Specialist and Therapies/i,
       level: 1,
     });
     expect(heading).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("SpecialistSubjectListing", () => {
 
     const specialistHeading = screen.getByRole("heading", {
       name: /Specialist/i,
-      level: 3,
+      level: 2,
     });
     expect(specialistHeading).toBeInTheDocument();
 
@@ -61,7 +61,7 @@ describe("SpecialistSubjectListing", () => {
 
     const therapiesHeading = screen.getByRole("heading", {
       name: /Therapies/i,
-      level: 3,
+      level: 2,
     });
     expect(therapiesHeading).toBeInTheDocument();
 
