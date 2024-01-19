@@ -669,7 +669,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   describe("programme slugs are created correctly", () => {
-    test("unit data with exam board returns the correct programme slug", () => {
+    it("unit data with exam board returns the correct programme slug", () => {
       const unitData = {
         planned_number_of_lessons: 5,
         connection_future_unit_description: null,
@@ -700,7 +700,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         "combined-science-secondary-ks4-foundation-aqa",
       );
     });
-    test("unit data for ks3 returns the correct programme slug", () => {
+    it("unit data for ks3 returns the correct programme slug", () => {
       const unitData = {
         planned_number_of_lessons: 5,
         connection_future_unit_description: null,

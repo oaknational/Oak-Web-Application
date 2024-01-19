@@ -1,4 +1,4 @@
-import { expect, vi, it } from "vitest";
+import { describe, expect, vi, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import { Lesson } from "../UnitModal/UnitModal";

@@ -38,11 +38,11 @@ const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
   currentSection: "starter-quiz",
   completedSections: [],
   sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
+  getIsComplete: vi.fn(),
+  completeSection: vi.fn(),
+  updateCurrentSection: vi.fn(),
+  proceedToNextSection: vi.fn(),
+  updateQuizResult: vi.fn(),
 });
 
 describe("QuizRenderer", () => {
