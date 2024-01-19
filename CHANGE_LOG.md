@@ -1,3 +1,39 @@
+# [1.330.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.329.0...v1.330.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* code review feedback ([1b11690](https://github.com/oaknational/Oak-Web-Application/commit/1b1169031b215101b82fd1c501c6ec1a2889d8c3))
+* comment on some temporary code ([e37c0ea](https://github.com/oaknational/Oak-Web-Application/commit/e37c0ea6291aa48bfd2073bc998ff1281445c1e4))
+* import paths after merge ([4c26440](https://github.com/oaknational/Oak-Web-Application/commit/4c2644073c2f7241c90f4b8fca21205c8de8cba1))
+* merge conflicts - import paths still broken ([92c0f57](https://github.com/oaknational/Oak-Web-Application/commit/92c0f575331f26fef073bee37d8c270b5b0de03c))
+* remove isComplete prop ([4714690](https://github.com/oaknational/Oak-Web-Application/commit/47146907222bc473fa5c15bc85a9ece98c0a6ec8))
+* simplify syntax ([621bf81](https://github.com/oaknational/Oak-Web-Application/commit/621bf81faeb4fc962a9d11932a7c07e5fcb2dbe7))
+* temporarily exclude views from sonar-cloud as draft implementation ([96c810e](https://github.com/oaknational/Oak-Web-Application/commit/96c810e958e9f2b88839ebe9e7841efab1a2a142))
+* update mcq multi story to include lessonEngine dependency ([f6b2553](https://github.com/oaknational/Oak-Web-Application/commit/f6b2553e2a46795f370176076a1a082bcd01c47d))
+
+
+### Features
+
+* adding navigation ([c0fcf73](https://github.com/oaknational/Oak-Web-Application/commit/c0fcf730e1fb68edae27a5613c499d0d855e3c26))
+* adding placeholder views ([226db22](https://github.com/oaknational/Oak-Web-Application/commit/226db22dc19c92d636d8c6a17e709314869c6d48))
+* changes views via query param ([30ca2c9](https://github.com/oaknational/Oak-Web-Application/commit/30ca2c92c838073de24ecc35ce4529cabde07b73))
+* renamed pupilcomponents folder added lesson engine provider ([9e2e0ab](https://github.com/oaknational/Oak-Web-Application/commit/9e2e0ab119ccd02e7cda9a94c59c02b69355a995))
+* update to match designed userflow ([a49b461](https://github.com/oaknational/Oak-Web-Application/commit/a49b46150ae755a5d1b4571a80730ab53b6ba2e2))
+
+# [1.329.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.328.0...v1.329.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* correct url for keystages pages ([0036b8d](https://github.com/oaknational/Oak-Web-Application/commit/0036b8d8ca36c262c84a30d596dd9a6731156f4d))
+
+
+### Features
+
+* add keystage pages to sitemap ([2b6e724](https://github.com/oaknational/Oak-Web-Application/commit/2b6e72413a9f239a6e17473ca8454607b7fc75ac))
+* index keystage pages ([debb85e](https://github.com/oaknational/Oak-Web-Application/commit/debb85edb29da0f1f875e1862ea75cfc5f489217))
+
 # [1.328.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.3...v1.328.0) (2024-01-18)
 
 
