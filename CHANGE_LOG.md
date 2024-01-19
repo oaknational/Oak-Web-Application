@@ -1,3 +1,69 @@
+# [1.330.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.329.0...v1.330.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* code review feedback ([1b11690](https://github.com/oaknational/Oak-Web-Application/commit/1b1169031b215101b82fd1c501c6ec1a2889d8c3))
+* comment on some temporary code ([e37c0ea](https://github.com/oaknational/Oak-Web-Application/commit/e37c0ea6291aa48bfd2073bc998ff1281445c1e4))
+* import paths after merge ([4c26440](https://github.com/oaknational/Oak-Web-Application/commit/4c2644073c2f7241c90f4b8fca21205c8de8cba1))
+* merge conflicts - import paths still broken ([92c0f57](https://github.com/oaknational/Oak-Web-Application/commit/92c0f575331f26fef073bee37d8c270b5b0de03c))
+* remove isComplete prop ([4714690](https://github.com/oaknational/Oak-Web-Application/commit/47146907222bc473fa5c15bc85a9ece98c0a6ec8))
+* simplify syntax ([621bf81](https://github.com/oaknational/Oak-Web-Application/commit/621bf81faeb4fc962a9d11932a7c07e5fcb2dbe7))
+* temporarily exclude views from sonar-cloud as draft implementation ([96c810e](https://github.com/oaknational/Oak-Web-Application/commit/96c810e958e9f2b88839ebe9e7841efab1a2a142))
+* update mcq multi story to include lessonEngine dependency ([f6b2553](https://github.com/oaknational/Oak-Web-Application/commit/f6b2553e2a46795f370176076a1a082bcd01c47d))
+
+
+### Features
+
+* adding navigation ([c0fcf73](https://github.com/oaknational/Oak-Web-Application/commit/c0fcf730e1fb68edae27a5613c499d0d855e3c26))
+* adding placeholder views ([226db22](https://github.com/oaknational/Oak-Web-Application/commit/226db22dc19c92d636d8c6a17e709314869c6d48))
+* changes views via query param ([30ca2c9](https://github.com/oaknational/Oak-Web-Application/commit/30ca2c92c838073de24ecc35ce4529cabde07b73))
+* renamed pupilcomponents folder added lesson engine provider ([9e2e0ab](https://github.com/oaknational/Oak-Web-Application/commit/9e2e0ab119ccd02e7cda9a94c59c02b69355a995))
+* update to match designed userflow ([a49b461](https://github.com/oaknational/Oak-Web-Application/commit/a49b46150ae755a5d1b4571a80730ab53b6ba2e2))
+
+# [1.329.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.328.0...v1.329.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* correct url for keystages pages ([0036b8d](https://github.com/oaknational/Oak-Web-Application/commit/0036b8d8ca36c262c84a30d596dd9a6731156f4d))
+
+
+### Features
+
+* add keystage pages to sitemap ([2b6e724](https://github.com/oaknational/Oak-Web-Application/commit/2b6e72413a9f239a6e17473ca8454607b7fc75ac))
+* index keystage pages ([debb85e](https://github.com/oaknational/Oak-Web-Application/commit/debb85edb29da0f1f875e1862ea75cfc5f489217))
+
+# [1.328.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.3...v1.328.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* add lesson type import ([e7f3e38](https://github.com/oaknational/Oak-Web-Application/commit/e7f3e3814cac99c9fb24d8acd8a93f037e6c8483))
+* add uv id to link for optionality ([93b82ba](https://github.com/oaknational/Oak-Web-Application/commit/93b82ba68e89cd65abd251d9f3aee767ed9f6efe))
+* ks3/ks4 unit link creation ([2d07773](https://github.com/oaknational/Oak-Web-Application/commit/2d0777398dd9da332745e936c9a11defc6f9fca2))
+* lag on opening modal ([69feebe](https://github.com/oaknational/Oak-Web-Application/commit/69feebea61e8ffd2f191f893e010e68337df4fe1))
+* make _state optional in schema ([41ef221](https://github.com/oaknational/Oak-Web-Application/commit/41ef221d8fe11f3e402eea00a4fbbe752b9be309))
+* pulled examboard slug through ([0179c6b](https://github.com/oaknational/Oak-Web-Application/commit/0179c6b9d76c6d9837f18cf35fca3b556afb267d))
+* remove current from see lessons in unit button ([a7c102a](https://github.com/oaknational/Oak-Web-Application/commit/a7c102ac6243846adbaee336c702e9e249bec888))
+* removed extra parentheses ([0495e57](https://github.com/oaknational/Oak-Web-Application/commit/0495e5702c3cc80c2b5945a44282b4c3d09d8914))
+* removed unused fixture ([a4ba47d](https://github.com/oaknational/Oak-Web-Application/commit/a4ba47d877d4a505c9b40bc8bf0ce015d0ae29be))
+* update lessons available for optionality units ([344b49e](https://github.com/oaknational/Oak-Web-Application/commit/344b49e835112e3a29512640c4b4b5322c9db468))
+* update sdk ([fa586ab](https://github.com/oaknational/Oak-Web-Application/commit/fa586ab418b7bdeb55bcfc28a0d8b6fca743a330))
+
+
+### Features
+
+* removed coming soon for available lessons ([3ef8db4](https://github.com/oaknational/Oak-Web-Application/commit/3ef8db480511c906ccc23db787c1a32966b4117b))
+
+## [1.327.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.2...v1.327.3) (2024-01-18)
+
+
+### Bug Fixes
+
+* change variable names ([934de0f](https://github.com/oaknational/Oak-Web-Application/commit/934de0f43ca6d5d4e0908918d693e2db0159d87e))
+* reset selection filters on page update ([d861ffc](https://github.com/oaknational/Oak-Web-Application/commit/d861ffc60d1414fb982314a6bdc423104bd14311))
+
 ## [1.327.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.1...v1.327.2) (2024-01-17)
 
 
