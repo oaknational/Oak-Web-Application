@@ -1,12 +1,13 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { OakFlex } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
@@ -33,18 +34,18 @@ const TimeLineCard: FC<TimeLineProps> = ({
   bodyPortableText,
   $alignItems,
   cta,
-  ...props
 }) => {
   return (
-    <Flex
-      $pv={0}
-      $ph={[16]}
+    <OakFlex
+      $pv={"inner-padding-none"}
+      $ph={["inner-padding-m"]}
       $alignItems={$alignItems}
       $flexDirection={"column"}
-      $mb={[80, 92]}
-      {...props}
+      $mb={["space-between-xxxl", "space-between-xxxl"]} // the second one should be 92px but currently there is no equivalent
     >
-      <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
+      <OakFlex $flexDirection={"column"} $width={["100%", "100%"]}>
+        {" "}
+        {/* ["100%", "50%"] but no value available */}
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
           {title}
         </OutlineHeading>
@@ -52,7 +53,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
           <PortableTextWithDefaults value={bodyPortableText} />
         </Typography>
         {cta && (
-          <Flex>
+          <OakFlex>
             <ButtonAsLink
               $mt={[36]}
               icon={"arrow-right"}
@@ -61,10 +62,10 @@ const TimeLineCard: FC<TimeLineProps> = ({
               page={null}
               href={getLinkHref(cta)}
             />
-          </Flex>
+          </OakFlex>
         )}
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };
 
@@ -83,24 +84,28 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           $mt={92}
         >
           <BrushBorders hideOnMobileH color={"pink50"} />
-          <Flex
+          <OakFlex
             $justifyContent={"center"}
             $alignItems={"center"}
-            $pb={[24, 24, 0]}
-            $pr={[0, 0, 72]}
-            $minWidth={["50%"]}
+            $pr={[
+              "inner-padding-none",
+              "inner-padding-none",
+              "inner-padding-xl",
+            ]} // inner-padding-l 24px, before 72px
+            $pb={["inner-padding-xl", "inner-padding-xl", "inner-padding-none"]}
+            // $minWidth={["50%"]}
           >
             {pageData.intro.mediaType == "video" && (
               <CMSVideo video={pageData.intro.video} location="marketing" />
             )}
-          </Flex>
+          </OakFlex>
           <Box $minWidth={["50%"]}>
             <Typography $mb={36} $font={["body-2", "body-1"]}>
               <PortableTextWithDefaults
                 value={pageData.intro.bodyPortableText}
               />
             </Typography>
-            <Flex $justifyContent={"flex-start"}>
+            <OakFlex $justifyContent={"flex-start"}>
               {pageData.intro.cta && (
                 <ButtonAsLink
                   icon={"arrow-right"}
@@ -110,7 +115,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   href={getLinkHref(pageData.intro.cta)}
                 />
               )}
-            </Flex>
+            </OakFlex>
           </Box>
         </Card>
         <TimeLineCard

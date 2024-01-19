@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
+import { OakFlex } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
@@ -18,7 +19,6 @@ import CMSImage, {
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 import { Heading, LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
@@ -61,12 +61,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
           Meet our teachers
         </Heading>
-        <Flex
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"center"}
           $minWidth={"100%"}
-          $minHeight={[160, 300]}
-          $mb={48}
+          $minHeight={["all-spacing-17", "all-spacing-19"]} // all-spacing-19 is 240px, previously 300px
+          $mb={"space-between-l"}
           $position={"relative"}
         >
           <Illustration
@@ -76,7 +76,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             fill
             $objectFit="contain"
           />
-        </Flex>
+        </OakFlex>
         <ButtonAsLink
           icon={"arrow-right"}
           $iconPosition={"trailing"}
