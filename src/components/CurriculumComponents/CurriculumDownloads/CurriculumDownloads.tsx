@@ -200,7 +200,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
             <Grid>
               <GridArea $colSpan={[12, 12, 7]}>
                 <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={24}>
-                  Choose your downloads
+                  Choose your download
                 </Heading>
                 <FieldError id={"downloads-error"} withoutMarginBottom>
                   {form.errors?.resources?.message}
@@ -219,7 +219,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                           e: ChangeEvent<HTMLInputElement>,
                         ) => {
                           if (e.target.checked) {
-                            onChange([...fieldValue, download.url]);
+                            onChange([download.url]);
                           } else {
                             onChange(
                               fieldValue.filter(
@@ -382,7 +382,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                   onClick={(event) =>
                     void form.handleSubmit(onFormSubmit)(event)
                   }
-                  text={"Download .zip"}
+                  text={"Download PDF"}
                   icon={"download"}
                   isLoading={isAttemptingDownload}
                   disabled={

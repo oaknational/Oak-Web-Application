@@ -207,10 +207,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (isPreselectedDownloadType(queryResults)) {
       preselected = getPreselectedDownloadResourceTypes(queryResults);
     }
-
-    console.log("********** preselected", preselected);
-
-    if (preselected) {
+    if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
       preselected === "all"
         ? setValue("resources", getInitialResourcesState())
