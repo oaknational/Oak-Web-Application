@@ -4,22 +4,21 @@ import {
 } from "@portabletext/react";
 import { FC } from "react";
 
-import PostBlockCallout from "./PostBlockCallout";
-import PostCallout from "./PostCallout";
-import PostCta from "./PostCta";
-import PostForm from "./PostForm";
-import PostImageWithAltText from "./PostImageWithAltText";
-import PostQuote from "./PostQuote";
-import PostSectionHeading from "./PostSectionHeading";
-import PostTextAndMedia from "./PostTextAndMedia";
-import PostVideo from "./PostVideo";
+import PostBlockCallout from "@/components/GenericPagesComponents/PostBlockCallout";
+import PostCallout from "@/components/GenericPagesComponents/PostCallout";
+import PostCta from "@/components/GenericPagesComponents/PostCta";
+import PostForm from "@/components/GenericPagesComponents/PostForm";
+import PostImageWithAltText from "@/components/GenericPagesComponents/PostImageWithAltText";
+import PostQuote from "@/components/GenericPagesComponents/PostQuote";
+import PostSectionHeading from "@/components/GenericPagesComponents/PostSectionHeading";
+import PostTextAndMedia from "@/components/GenericPagesComponents/PostTextAndMedia";
+import PostVideo from "@/components/GenericPagesComponents/PostVideo";
 import {
   extractFootnotes,
   Footnote,
   PostFootnoteAnnotation,
   PostFootnotesSection,
-} from "./PostFootnotes";
-
+} from "@/components/GenericPagesComponents/PostFootnotes";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 

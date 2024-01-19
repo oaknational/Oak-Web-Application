@@ -90,6 +90,7 @@ const testAboutBoardPageData: AboutBoardPage = {
       style: "normal",
     },
   ],
+  boardHeader: "Our interim board",
 };
 
 const render = renderWithProviders();
