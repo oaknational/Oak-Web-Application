@@ -53,12 +53,12 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     programmeSlug: "creative-arts-early-development",
   },
   {
-    subjectSlug: "independant-living",
-    subjectTitle: "Independant Living",
+    subjectSlug: "independent-living",
+    subjectTitle: "Independent Living",
     unitCount: 4,
     lessonCount: 15,
     programmeCount: 2,
-    programmeSlug: "independant-living-early-development",
+    programmeSlug: "independent-living-early-development",
   },
   {
     subjectSlug: "numeracy",

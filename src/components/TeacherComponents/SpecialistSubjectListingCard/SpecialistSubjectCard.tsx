@@ -69,9 +69,10 @@ const SpecialistSubjectCard = (props: {
       >
         <SubjectIcon
           subjectSlug={props.subject.subjectSlug}
+          $height={80}
           $width={80}
-          height={80}
         />
+
         <Heading
           $textAlign={["start", "center"]}
           $font={["heading-6", "heading-5"]}
