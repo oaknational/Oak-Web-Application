@@ -92,7 +92,7 @@ describe("SubjectProgrammeListing", () => {
       "/teachers/programmes/maths-secondary-ks4-higher/units",
     );
   });
-  it("calls tracking.tierSelected once, with correct props", async () => {
+  it("calls onclick once, with correct props", async () => {
     render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     const tier = screen.getByText("Higher");

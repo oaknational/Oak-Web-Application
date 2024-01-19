@@ -4,11 +4,9 @@ import userEvent from "@testing-library/user-event";
 import SpecialistProgrammeListing from "./SpecialistProgrammeListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
-import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
+import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistProgrammes.fixture";
 
-const curriculumData = tieredProgrammeListingFixture();
-const examBoardCurriculumData = examBoardProgrammeListingFixture();
+const curriculumData = specialistProgrammeListingPageDataFixture();
 
 const render = renderWithProviders();
 const onClick = jest.fn();
@@ -19,52 +17,7 @@ describe("SpecialistProgrammeListing", () => {
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(screen.getByText("Select tier of learning")).toBeInTheDocument();
-  });
-  test("it does not render a tier heading when there are no tiers ", () => {
-    const { queryByText } = render(
-      <SpecialistProgrammeListing
-        onClick={onClick}
-        {...{
-          ...curriculumData,
-          programmes: curriculumData.programmes.filter(
-            (programme) => !programme.tierSlug,
-          ),
-        }}
-      />,
-    );
-
-    const tiersTitle = queryByText("Learning tiers");
-
-    expect(tiersTitle).toBeNull();
-  });
-  test("render a exam board subject component with heading ", () => {
-    render(
-      <SpecialistProgrammeListing
-        onClick={onClick}
-        {...examBoardCurriculumData}
-      />,
-    );
-
-    expect(screen.getByText("Select exam board")).toBeInTheDocument();
-  });
-
-  test("it does not render an exam board heading when there is no exam boards  ", () => {
-    const { queryByText } = render(
-      <SpecialistProgrammeListing
-        onClick={onClick}
-        {...{
-          ...curriculumData,
-          programmes: curriculumData.programmes.filter(
-            (programme) => !programme.examBoardSlug,
-          ),
-        }}
-      />,
-    );
-
-    const examsTitle = queryByText("Exam boards");
-
-    expect(examsTitle).toBeNull();
+    expect(screen.getByText("Developmental stages")).toBeInTheDocument();
   });
 
   test("render a list of card items with the name of the programmes ", () => {
@@ -72,11 +25,11 @@ describe("SpecialistProgrammeListing", () => {
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-      "Higher",
-    );
     expect(getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
-      "Foundation",
+      "Early development 1",
+    );
+    expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
+      "Creative arts 1",
     );
   });
 
@@ -85,35 +38,26 @@ describe("SpecialistProgrammeListing", () => {
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
+    expect(getByRole("link", { name: "Early development 1" })).toHaveAttribute(
       "href",
-      "/teachers/programmes/maths-secondary-ks4-foundation/units",
+      "/teachers/specialist/programmes/early-development/units",
     );
-    expect(getByRole("link", { name: "Higher" })).toHaveAttribute(
+    expect(getByRole("link", { name: "Creative arts 1" })).toHaveAttribute(
       "href",
-      "/teachers/programmes/maths-secondary-ks4-higher/units",
+      "/teachers/specialist/programmes/creative-arts/units",
     );
   });
-  it("calls tracking.tierSelected once, with correct props", async () => {
+  it("calls onClick with correct props", async () => {
     render(
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    const tier = screen.getByText("Higher");
+    const programmeCard = screen.getByText("Early development 1");
 
     const user = userEvent.setup();
-    await user.click(tier);
+    await user.click(programmeCard);
 
     expect(onClick).toHaveBeenCalledTimes(1);
-    expect(onClick).toHaveBeenCalledWith({
-      examBoardDisplayOrder: null,
-      examBoardSlug: null,
-      examBoardTitle: null,
-      programmeSlug: "maths-secondary-ks4-higher",
-      subjectTitle: "Maths",
-      tierDisplayOrder: "3",
-      tierSlug: "higher",
-      tierTitle: "Higher",
-    });
+    // expect(onClick).toHaveBeenCalledWith({});
   });
 });

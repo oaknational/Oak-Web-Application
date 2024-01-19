@@ -2,15 +2,10 @@ import React, { FC } from "react";
 
 import ProgrammeListContainer from "../ProgrammeListContainer";
 
-import ProgrammeList from "@/components/TeacherComponents/ProgrammeList";
+import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import Grid, { GridAreaProps } from "@/components/SharedComponents/Grid";
+import Grid from "@/components/SharedComponents/Grid";
 import { Heading } from "@/components/SharedComponents/Typography";
-
-export type LessonItemContainerProps = {
-  children?: React.ReactNode;
-  numberOfProgrammes?: number;
-} & GridAreaProps;
 
 const SubjectProgrammeListing: FC<
   ProgrammeListingPageData & {
@@ -44,10 +39,10 @@ const SubjectProgrammeListing: FC<
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select tier of learning
             </Heading>
-            <ProgrammeList
+            <SubjectProgrammeList
               {...props}
               programmes={tierProgrammes}
-              onClickSubject={onClick}
+              onClick={onClick}
             />
           </ProgrammeListContainer>
         )}
@@ -56,10 +51,10 @@ const SubjectProgrammeListing: FC<
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select exam board
             </Heading>
-            <ProgrammeList
+            <SubjectProgrammeList
               {...props}
               programmes={examBoardProgrammes}
-              onClickSubject={onClick}
+              onClick={onClick}
             />
           </ProgrammeListContainer>
         )}
@@ -77,10 +72,10 @@ const SubjectProgrammeListing: FC<
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examBoard}
                   </Heading>
-                  <ProgrammeList
+                  <SubjectProgrammeList
                     {...props}
                     programmes={programmeOfexamBoard}
-                    onClickSubject={onClick}
+                    onClick={onClick}
                   />
                 </ProgrammeListContainer>
               );
@@ -90,11 +85,6 @@ const SubjectProgrammeListing: FC<
       </Grid>
     </>
   );
-};
-
-export type URLParams = {
-  subjectSlug: string;
-  keyStageSlug: string;
 };
 
 export default SubjectProgrammeListing;

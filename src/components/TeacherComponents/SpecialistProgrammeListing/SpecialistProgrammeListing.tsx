@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 
 import ProgrammeListContainer from "../ProgrammeListContainer";
+import SpecialistProgrammeListItem from "../SpecialistProgrammeListItem";
 
-import ProgrammeList from "@/components/TeacherComponents/ProgrammeList";
 import { Heading } from "@/components/SharedComponents/Typography";
 import {
   SpecialistProgramme,
   SpecialistProgrammes,
 } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
+import { GridArea } from "@/components/SharedComponents/Grid";
 
 const SpecialistProgrammeListing: FC<{
   onClick: (props: SpecialistProgramme) => void;
@@ -15,7 +16,7 @@ const SpecialistProgrammeListing: FC<{
 }> = ({ ...props }) => {
   const { programmes, onClick } = props;
   const programmeColSpan = programmes.length === 2 ? 6 : 9;
-
+  const colSpan = programmes.length === 2 ? 6 : 4;
   return (
     <ProgrammeListContainer
       $background="aqua"
@@ -24,18 +25,22 @@ const SpecialistProgrammeListing: FC<{
       <Heading tag="h2" $font="heading-5" $mb={30}>
         Developmental stages
       </Heading>
-      <ProgrammeList
-        {...props}
-        programmes={programmes}
-        onClickSpecialist={onClick}
-      />
+      {programmes.map((programme) => {
+        return (
+          <GridArea
+            $mb={16}
+            $colSpan={[12, 12, colSpan]}
+            key={programme.programmeSlug}
+          >
+            <SpecialistProgrammeListItem
+              programme={programme}
+              onClick={onClick}
+            />
+          </GridArea>
+        );
+      })}
     </ProgrammeListContainer>
   );
-};
-
-export type URLParams = {
-  subjectSlug: string;
-  keyStageSlug: string;
 };
 
 export default SpecialistProgrammeListing;

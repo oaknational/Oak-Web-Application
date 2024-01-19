@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ProgrammeList from "./ProgrammeList";
+import SubjectProgrammeList from "./SubjectProgrammeList";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
@@ -18,8 +18,8 @@ const onClick = jest.fn();
 describe("ProgrammeList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
-      <ProgrammeList
-        onClickSubject={onClick}
+      <SubjectProgrammeList
+        onClick={onClick}
         {...tieredProgrammeListingFixture()}
       />,
     );
@@ -38,8 +38,8 @@ describe("ProgrammeList", () => {
   });
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
-      <ProgrammeList
-        onClickSubject={onClick}
+      <SubjectProgrammeList
+        onClick={onClick}
         {...tieredProgrammeListingFixture()}
       />,
     );
