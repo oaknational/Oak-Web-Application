@@ -7,7 +7,7 @@ import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
@@ -41,9 +41,10 @@ const TimeLineCard: FC<TimeLineProps> = ({
       $ph={["inner-padding-m"]}
       $alignItems={$alignItems}
       $flexDirection={"column"}
-      $mb={["space-between-xxxl", "space-between-xxxl"]} // the second one should be 92px but currently there is no equivalent
+      $mb={"space-between-xxxl"}
     >
-      <OakFlex $flexDirection={"column"} $width={["100%", "100%"]}>
+      {/* can't use OakFlex as it doesn't have 50% width property, instead we should implement Grid here but it is not ported over to oak-components yet */}
+      <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
         {" "}
         {/* ["100%", "50%"] but no value available */}
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
@@ -64,7 +65,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
             />
           </OakFlex>
         )}
-      </OakFlex>
+      </Flex>
     </OakFlex>
   );
 };
@@ -85,38 +86,33 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           <BrushBorders hideOnMobileH color={"pink50"} />
           <OakFlex
-            $justifyContent={"center"}
-            $alignItems={"center"}
-            $pr={[
-              "inner-padding-none",
-              "inner-padding-none",
-              "inner-padding-xl",
-            ]} // inner-padding-l 24px, before 72px
-            $pb={["inner-padding-xl", "inner-padding-xl", "inner-padding-none"]}
-            // $minWidth={["50%"]}
+            $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
+            $flexDirection={["column", "column", "row"]}
           >
-            {pageData.intro.mediaType == "video" && (
-              <CMSVideo video={pageData.intro.video} location="marketing" />
-            )}
-          </OakFlex>
-          <Box $minWidth={["50%"]}>
-            <Typography $mb={36} $font={["body-2", "body-1"]}>
-              <PortableTextWithDefaults
-                value={pageData.intro.bodyPortableText}
-              />
-            </Typography>
-            <OakFlex $justifyContent={"flex-start"}>
-              {pageData.intro.cta && (
-                <ButtonAsLink
-                  icon={"arrow-right"}
-                  $iconPosition="trailing"
-                  label={pageData.intro.cta.label}
-                  page={null}
-                  href={getLinkHref(pageData.intro.cta)}
-                />
+            <OakFlex $justifyContent={"center"} $alignItems={"center"}>
+              {pageData.intro.mediaType == "video" && (
+                <CMSVideo video={pageData.intro.video} location="marketing" />
               )}
             </OakFlex>
-          </Box>
+            <Box $width={["100%", "100%", "50%"]}>
+              <Typography $mb={36} $font={["body-2", "body-1"]}>
+                <PortableTextWithDefaults
+                  value={pageData.intro.bodyPortableText}
+                />
+              </Typography>
+              <OakFlex $justifyContent={"flex-start"}>
+                {pageData.intro.cta && (
+                  <ButtonAsLink
+                    icon={"arrow-right"}
+                    $iconPosition="trailing"
+                    label={pageData.intro.cta.label}
+                    page={null}
+                    href={getLinkHref(pageData.intro.cta)}
+                  />
+                )}
+              </OakFlex>
+            </Box>
+          </OakFlex>
         </Card>
         <TimeLineCard
           bodyPortableText={pageData.timeline.from.bodyPortableText}

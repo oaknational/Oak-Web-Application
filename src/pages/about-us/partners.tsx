@@ -65,7 +65,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $alignItems={"center"}
           $justifyContent={"center"}
           $minWidth={"100%"}
-          $minHeight={["all-spacing-17", "all-spacing-19"]} // all-spacing-19 is 240px, previously 300px
+          $minHeight={["all-spacing-17", "all-spacing-19"]}
           $mb={"space-between-l"}
           $position={"relative"}
         >
