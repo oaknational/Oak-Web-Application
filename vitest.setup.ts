@@ -18,7 +18,7 @@ vi.mock("react", async (importOriginal) => {
     useId: () => "react-use-id-test-result",
   };
 });
-vi.mock("./src/image-data/generated/inline-sprite.svg", () => ({
+vi.mock("@/image-data/generated/inline-sprite.svg", () => ({
   default: "svg",
 }));
 afterEach(() => {

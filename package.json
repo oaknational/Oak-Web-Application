@@ -160,6 +160,7 @@
     "@types/styled-components": "^5.1.30",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.1",
     "@wdio/browserstack-service": "^8.27.1",
     "@wdio/cli": "^8.27.1",

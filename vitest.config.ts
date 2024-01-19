@@ -1,10 +1,11 @@
 import path from "path";
 
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    globals: true,
+    testTimeout: 10000,
     environment: "jsdom",
     setupFiles: ["vitest.setup.ts"],
     coverage: {
@@ -16,4 +17,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  plugins: [react()],
 });
