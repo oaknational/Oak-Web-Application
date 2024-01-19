@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
-import { OakFlex, OakMaxWidth } from "@oak-academy/oak-components";
+import { OakFlex, OakMaxWidth, OakHeading } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
@@ -18,7 +18,7 @@ import CMSImage, {
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { Heading, LI } from "@/components/SharedComponents/Typography";
+import { LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 export type AboutPageProps = {
@@ -60,9 +60,13 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
 
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Meet our teachers
-        </Heading>
+        </OakHeading>
         <OakFlex
           $alignItems={"center"}
           $justifyContent={"center"}
@@ -88,9 +92,13 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $mb={[80, 92]}
         />
 
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Curriculum partners
-        </Heading>
+        </OakHeading>
         <FlexList $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.curriculumPartners.map((partner) => (
             <LI
@@ -107,9 +115,13 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             </LI>
           ))}
         </FlexList>
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Tech partners
-        </Heading>
+        </OakHeading>
         <FlexList $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.techPartners.map((partner) => (
             <LI

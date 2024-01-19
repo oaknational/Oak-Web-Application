@@ -1,6 +1,11 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakFlex, OakMaxWidth } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakTypography,
+  OakHeading,
+} from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
@@ -9,7 +14,6 @@ import Layout from "@/components/AppComponents/Layout";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
@@ -49,9 +53,9 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
           {title}
         </OutlineHeading>
-        <Typography $font={["body-2", "body-1"]}>
+        <OakTypography $font={["body-2", "body-1"]}>
           <PortableTextWithDefaults value={bodyPortableText} />
-        </Typography>
+        </OakTypography>
         {cta && (
           <OakFlex>
             <ButtonAsLink
@@ -98,11 +102,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               )}
             </OakFlex>
             <Box $width={["100%", "100%", "50%"]}>
-              <Typography $mb={36} $font={["body-2", "body-1"]}>
+              <OakTypography
+                $mb={"space-between-m2"}
+                $font={["body-2", "body-1"]}
+              >
                 <PortableTextWithDefaults
                   value={pageData.intro.bodyPortableText}
                 />
-              </Typography>
+              </OakTypography>
               <OakFlex $justifyContent={"flex-start"}>
                 {pageData.intro.cta && (
                   <ButtonAsLink
@@ -139,18 +146,18 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               <GridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $background={"aqua"}>
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
-                  <Heading
+                  <OakHeading
                     $font={["heading-5", "heading-4"]}
                     tag={"h3"}
-                    $mb={[24]}
+                    $mb={["space-between-m"]}
                   >
                     {principle.title}
-                  </Heading>
-                  <Typography $font={["body-2", "body-1"]}>
+                  </OakHeading>
+                  <OakTypography $font={["body-2", "body-1"]}>
                     <PortableTextWithDefaults
                       value={principle.bodyPortableText}
                     />
-                  </Typography>
+                  </OakTypography>
                 </Card>
               </GridArea>
             </Fragment>

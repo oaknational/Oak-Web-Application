@@ -1,5 +1,5 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakMaxWidth } from "@oak-academy/oak-components";
+import { OakMaxWidth, OakHeading } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -10,7 +10,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "@/common-lib/cms-types";
 import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;
@@ -36,14 +35,14 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
         />
         {leadershipTeam && (
           <>
-            <Heading
-              $mb={[40, 32]}
+            <OakHeading
+              $mb={["space-between-l", "space-between-m2"]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
               $textAlign={"center"}
             >
               Our leadership
-            </Heading>
+            </OakHeading>
             <BioCardList
               $mb={[80, 60]}
               $ph={[16, 0]}
