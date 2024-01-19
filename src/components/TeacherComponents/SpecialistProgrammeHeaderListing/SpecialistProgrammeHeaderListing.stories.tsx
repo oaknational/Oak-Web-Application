@@ -9,7 +9,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SubjectIconBrushBorders: Story = {
+export const SpecialistProgrammeHeaderListing: Story = {
   args: {
     title: "Specialist & therapies",
     breadcrumbs: [
@@ -35,6 +35,6 @@ export const SubjectIconBrushBorders: Story = {
       "Help your pupils with their communication and language development, including sentence composition, writing and word reading skills by exploring topics including holidays and the seasons.",
     hasCurriculumDownload: true,
     subjectSlug: "communication-and-language",
-    subjectTitle: "Communication and Language",
+    subjectTitle: "Communication and language",
   },
 };

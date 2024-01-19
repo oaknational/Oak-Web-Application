@@ -1,13 +1,11 @@
 import React, { FC } from "react";
 
-import SubjectProgrammeListContainer from "../SubjectProgrammeListContainer";
-import { SubjectProgrammeListProps } from "../SubjectProgrammeList/SubjectProgrammeList";
+import ProgrammeListContainer from "../ProgrammeListContainer";
 
-import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
+import ProgrammeList from "@/components/TeacherComponents/ProgrammeList";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import Grid, { GridAreaProps } from "@/components/SharedComponents/Grid";
 import { Heading } from "@/components/SharedComponents/Typography";
-import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 
 export type LessonItemContainerProps = {
   children?: React.ReactNode;
@@ -16,14 +14,10 @@ export type LessonItemContainerProps = {
 
 const SubjectProgrammeListing: FC<
   ProgrammeListingPageData & {
-    onClick: (
-      props:
-        | SubjectProgrammeListProps["programmes"][number]
-        | SpecialistProgramme,
-    ) => void;
+    onClick: (props: ProgrammeListingPageData["programmes"][number]) => void;
   }
 > = ({ ...props }) => {
-  const { programmes } = props;
+  const { programmes, onClick } = props;
 
   const examBoards = Array.from(
     new Set(programmes.map((programme) => programme.examBoardTitle)),
@@ -46,20 +40,28 @@ const SubjectProgrammeListing: FC<
     <>
       <Grid $cg={16} $rg={16}>
         {examBoards.length < 2 && (
-          <SubjectProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
+          <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select tier of learning
             </Heading>
-            <SubjectProgrammeList {...props} programmes={tierProgrammes} />
-          </SubjectProgrammeListContainer>
+            <ProgrammeList
+              {...props}
+              programmes={tierProgrammes}
+              onClickSubject={onClick}
+            />
+          </ProgrammeListContainer>
         )}
         {tiers.length < 2 && (
-          <SubjectProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
+          <ProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select exam board
             </Heading>
-            <SubjectProgrammeList {...props} programmes={examBoardProgrammes} />
-          </SubjectProgrammeListContainer>
+            <ProgrammeList
+              {...props}
+              programmes={examBoardProgrammes}
+              onClickSubject={onClick}
+            />
+          </ProgrammeListContainer>
         )}
         {tiers.length > 1 && examBoards.length > 1 && (
           <>
@@ -68,18 +70,19 @@ const SubjectProgrammeListing: FC<
                 (programme) => programme.examBoardTitle == examBoard,
               );
               return (
-                <SubjectProgrammeListContainer
+                <ProgrammeListContainer
                   key={`${examBoard}-${index}`}
                   $colSpan={[12, 4]}
                 >
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examBoard}
                   </Heading>
-                  <SubjectProgrammeList
+                  <ProgrammeList
                     {...props}
                     programmes={programmeOfexamBoard}
+                    onClickSubject={onClick}
                   />
-                </SubjectProgrammeListContainer>
+                </ProgrammeListContainer>
               );
             })}
           </>

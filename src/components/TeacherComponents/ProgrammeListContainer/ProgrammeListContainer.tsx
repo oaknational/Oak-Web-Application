@@ -1,13 +1,15 @@
 import { FC } from "react";
 
-import { LessonItemContainerProps } from "../SubjectProgrammeListing/SubjectProgrammeListing";
-
-import { GridArea } from "@/components/SharedComponents/Grid";
+import { GridArea, GridAreaProps } from "@/components/SharedComponents/Grid";
 import { OakColorName } from "@/styles/theme";
 
-const SubjectProgrammeListContainer: FC<
-  LessonItemContainerProps & { $background?: OakColorName }
-> = (props) => {
+export type ProgrammeListContainer = {
+  children?: React.ReactNode;
+  numberOfProgrammes?: number;
+  $background?: OakColorName;
+} & GridAreaProps;
+
+const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
   const {
     children,
     numberOfProgrammes,
@@ -26,4 +28,4 @@ const SubjectProgrammeListContainer: FC<
   );
 };
 
-export default SubjectProgrammeListContainer;
+export default ProgrammeListContainer;

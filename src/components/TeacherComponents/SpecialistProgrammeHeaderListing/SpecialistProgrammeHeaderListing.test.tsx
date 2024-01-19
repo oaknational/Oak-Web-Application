@@ -1,4 +1,4 @@
-import SpecialistHeaderListing from "./SpecialistHeaderListing";
+import SpecialistProgrammeHeaderListing from "./SpecialistProgrammeHeaderListing";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -23,10 +23,10 @@ const props = {
   subjectTitle: "Communication and Language",
 };
 
-describe("SpecialistHeaderListing", () => {
+describe("SpecialistProgrammeHeaderListing", () => {
   it("renders the subject heading with the correct level", () => {
     const { getAllByRole } = renderWithTheme(
-      <SpecialistHeaderListing {...props} />,
+      <SpecialistProgrammeHeaderListing {...props} />,
     );
     const subjectHeading = getAllByRole("heading", { level: 1 });
     expect(subjectHeading).toHaveLength(1);
@@ -34,7 +34,7 @@ describe("SpecialistHeaderListing", () => {
   });
   it("renders the title", () => {
     const { getByText } = renderWithTheme(
-      <SpecialistHeaderListing {...props} />,
+      <SpecialistProgrammeHeaderListing {...props} />,
     );
     const title = getByText(props.title);
     expect(title).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe("SpecialistHeaderListing", () => {
 
   it("renders the description", () => {
     const { getByText } = renderWithTheme(
-      <SpecialistHeaderListing {...props} />,
+      <SpecialistProgrammeHeaderListing {...props} />,
     );
     const description = getByText(props.description);
     expect(description).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe("SpecialistHeaderListing", () => {
   /*  - I want to be able to download specialist curriculum maps LESQ-586 */
   it.skip("renders the curriculum download button", () => {
     const { queryAllByText } = renderWithTheme(
-      <SpecialistHeaderListing {...props} />,
+      <SpecialistProgrammeHeaderListing {...props} />,
     );
     const downloadLink = queryAllByText("Curriculum download (PDF)");
 

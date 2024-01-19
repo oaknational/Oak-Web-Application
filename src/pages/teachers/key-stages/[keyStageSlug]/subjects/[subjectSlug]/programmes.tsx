@@ -19,8 +19,6 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
-import { SubjectProgrammeListProps } from "@/components/TeacherComponents/SubjectProgrammeList/SubjectProgrammeList";
-import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
@@ -36,9 +34,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const handleProgrammeClick = (
-    programme:
-      | SubjectProgrammeListProps["programmes"][number]
-      | SpecialistProgramme,
+    programme: ProgrammeListingPageData["programmes"][number],
   ) => {
     "tierTitle" in programme &&
       keyStageSentenceCase &&

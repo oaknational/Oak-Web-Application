@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import SubjectProgrammeListing from "./SubjectProgrammeListing";
+import SpecialistProgrammeListing from "./SpecialistProgrammeListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
@@ -13,15 +13,17 @@ const examBoardCurriculumData = examBoardProgrammeListingFixture();
 const render = renderWithProviders();
 const onClick = jest.fn();
 
-describe("SubjectProgrammeListing", () => {
+describe("SpecialistProgrammeListing", () => {
   test("render a tier subject component with heading ", () => {
-    render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
+    render(
+      <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
+    );
 
     expect(screen.getByText("Select tier of learning")).toBeInTheDocument();
   });
   test("it does not render a tier heading when there are no tiers ", () => {
     const { queryByText } = render(
-      <SubjectProgrammeListing
+      <SpecialistProgrammeListing
         onClick={onClick}
         {...{
           ...curriculumData,
@@ -38,7 +40,7 @@ describe("SubjectProgrammeListing", () => {
   });
   test("render a exam board subject component with heading ", () => {
     render(
-      <SubjectProgrammeListing
+      <SpecialistProgrammeListing
         onClick={onClick}
         {...examBoardCurriculumData}
       />,
@@ -49,7 +51,7 @@ describe("SubjectProgrammeListing", () => {
 
   test("it does not render an exam board heading when there is no exam boards  ", () => {
     const { queryByText } = render(
-      <SubjectProgrammeListing
+      <SpecialistProgrammeListing
         onClick={onClick}
         {...{
           ...curriculumData,
@@ -67,7 +69,7 @@ describe("SubjectProgrammeListing", () => {
 
   test("render a list of card items with the name of the programmes ", () => {
     const { getAllByRole } = render(
-      <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
+      <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
     expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
@@ -80,7 +82,7 @@ describe("SubjectProgrammeListing", () => {
 
   test("each card items will link have a link to a different query ", () => {
     const { getByRole } = render(
-      <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
+      <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
@@ -93,7 +95,9 @@ describe("SubjectProgrammeListing", () => {
     );
   });
   it("calls tracking.tierSelected once, with correct props", async () => {
-    render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
+    render(
+      <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
+    );
 
     const tier = screen.getByText("Higher");
 
