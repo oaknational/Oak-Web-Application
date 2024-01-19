@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import mockRouter from "next-router-mock";
-import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
@@ -186,9 +185,7 @@ describe("tracking", () => {
 
     const unit = getByRole("link", { name: "1. Data Representation" });
 
-    await act(async () => {
-      await userEvent.click(unit);
-    });
+    await userEvent.click(unit);
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
 

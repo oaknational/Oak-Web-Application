@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
 
 import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
@@ -117,9 +116,7 @@ describe("Lesson listing page", () => {
 
       const lesson = getByText("Add two surds");
 
-      await act(async () => {
-        await userEvent.click(lesson);
-      });
+      await userEvent.click(lesson);
 
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({

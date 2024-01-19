@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from "vitest";
-import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 
 import LessonList from ".";
@@ -88,9 +87,7 @@ describe("components/ Lesson List", () => {
     );
     const unit = getByText("Add two surds");
 
-    await act(async () => {
-      await userEvent.click(unit);
-    });
+    await userEvent.click(unit);
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
