@@ -33,6 +33,9 @@ const getAriaLabel = (subject: SpecialistSubject) => {
   }, ${subject.lessonCount} ${subject.lessonCount > 1 ? "lessons" : "lesson"}`;
 };
 
+const getSentenceCase = (str: string) =>
+  `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
+
 const SpecialistSubjectCard = (props: {
   subject: SpecialistSubject;
   backgroundColour: OakColorName;
@@ -69,7 +72,7 @@ const SpecialistSubjectCard = (props: {
           tag={"h6"}
           $ma={0}
         >
-          {props.subject.subjectTitle}
+          {getSentenceCase(props.subject.subjectTitle)}
         </Heading>
       </Flex>
       <OwaLink
