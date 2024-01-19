@@ -69,8 +69,8 @@ const SpecialistSubjectCard = (props: {
       >
         <SubjectIcon
           subjectSlug={props.subject.subjectSlug}
-          $height={80}
-          $width={80}
+          $height={[60, 80]}
+          $width={[60, 80]}
         />
 
         <Heading
