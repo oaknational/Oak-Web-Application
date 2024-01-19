@@ -22,9 +22,7 @@ export type ProviderProps = {
 export const AllTheProviders: FC<ProviderProps> = ({ children, theme }) => {
   return (
     <ThemeProvider theme={{ ...defaultTheme, ...theme }}>
-      <MemoryRouterProvider>
-        {children}
-      </MemoryRouterProvider>
+      <MemoryRouterProvider>{children}</MemoryRouterProvider>
     </ThemeProvider>
   );
 };

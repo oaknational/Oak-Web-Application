@@ -18,7 +18,7 @@ const usePagination = <T>(
   const { pageSize, totalResults, items } = props;
   const totalPages = Math.ceil(totalResults / pageSize);
   const router = useRouter();
-  
+
   const { page: pageRaw } = router.query;
   const pageString = (Array.isArray(pageRaw) ? pageRaw[0] : pageRaw) || "";
   const pageNumber = Math.max(Math.min(parseInt(pageString), totalPages), 1);

@@ -18,17 +18,6 @@ const renderWithSeo =
   (ui: ReactElement, options?: Omit<RenderOptions, "wrapper">) => {
     const renderResult = renderWithProviders(providers)(ui, options);
 
-    console.log(Object.keys(renderResult));
-    
-
-    const meta1 = renderResult.baseElement.querySelectorAll("meta");
-
-    console.log("meta1", meta1);
-
-    const meta2 = renderResult.container.querySelectorAll("meta");
-
-    console.log("meta2", meta2);
-
     const getMetaProperty = (name: string) =>
       renderResult.container
         .querySelector(`meta[property="${name}"]`)
