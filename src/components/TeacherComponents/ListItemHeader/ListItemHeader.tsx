@@ -28,8 +28,8 @@ interface CommonProps {
 
 type SpecialistListItemProps = (IndividualSpecialistUnit | SpecialistLesson) &
   CommonProps & {
-    title: SpecialistLesson["lessonTitle"] | IndividualSpecialistUnit["title"];
-    slug: SpecialistLesson["lessonSlug"] | IndividualSpecialistUnit["slug"];
+    title: string;
+    slug: string;
     subjectTitle: string;
     programmeSlug: string;
     expired: boolean | null;
@@ -44,8 +44,8 @@ export const isSpecialistUnit = (
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
-    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
-    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    title: string;
+    slug: string;
     expired: boolean | null;
     index?: number;
     isExemplarUnit?: boolean;
