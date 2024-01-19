@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
-import { OakFlex } from "@oak-academy/oak-components";
+import { OakFlex, OakMaxWidth } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
@@ -10,7 +10,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { SpacingProps } from "@/styles/utils/spacing";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/AppComponents/Layout";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
@@ -47,7 +46,10 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
 const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
           image={{
@@ -125,7 +127,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </FlexList>
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

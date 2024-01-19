@@ -1,4 +1,5 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { OakMaxWidth } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -8,7 +9,6 @@ import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCa
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "@/common-lib/cms-types";
 import getPageProps from "@/node-lib/getPageProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/AppComponents/Layout";
 import { Heading } from "@/components/SharedComponents/Typography";
 
@@ -21,7 +21,10 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
           image={{
@@ -52,7 +55,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
         )}
 
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

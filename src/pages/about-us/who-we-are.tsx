@@ -1,12 +1,11 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakFlex } from "@oak-academy/oak-components";
+import { OakFlex, OakMaxWidth } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
@@ -73,7 +72,11 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]} $alignItems={"center"}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+        $alignItems={"center"}
+      >
         <GenericSummaryCard {...pageData} />
         <Card
           $pv={32}
@@ -154,7 +157,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </Grid>
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };
