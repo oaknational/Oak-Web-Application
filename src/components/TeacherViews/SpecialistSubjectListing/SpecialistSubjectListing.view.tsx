@@ -29,7 +29,7 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
     <Flex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 56]} $mb={[48, 56]}>
-          Specialist & Therapies
+          Specialist and Therapies
         </Heading>
         <Flex $flexDirection="column" $gap={[24, 48]}>
           <SpecialistSubjectCardSection
