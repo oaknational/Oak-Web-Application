@@ -1,11 +1,10 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
-import { OakFlex } from "@oak-academy/oak-components";
+import { OakFlex, OakMaxWidth } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
@@ -32,7 +31,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo } = pageData;
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
           image={{
@@ -80,7 +82,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Grid>
 
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };
