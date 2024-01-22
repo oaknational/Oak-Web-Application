@@ -17,7 +17,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
-import QuizContainerNew from "@/components/QuizContainerNew";
+import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {

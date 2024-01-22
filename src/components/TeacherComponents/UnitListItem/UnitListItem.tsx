@@ -12,11 +12,15 @@ import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDe
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { Span } from "@/components/SharedComponents/Typography";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
   "year" | "unitStudyOrder"
-> & {
+> &
+  UnitListProps;
+
+type UnitListProps = {
   hideTopHeading?: boolean;
   hitCount?: number;
   index: number;
@@ -26,15 +30,19 @@ export type UnitListItemProps = Omit<
   unitOptions?: UnitData[];
   isExemplarUnit?: boolean;
   yearTitle?: string | null;
-  onClick: (props: UnitListItemProps) => void;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
+
+export type SpecialistListItemProps = IndividualSpecialistUnit & UnitListProps;
 
 /**
  * Contains an title, icon, learning theme, number of lessons and optional Unit Quiz .
  * Links to a lesson-index page
  *
  **/
-const UnitListItem: FC<UnitListItemProps> = (props) => {
+const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
+  props,
+) => {
   const {
     title,
     lessonCount,
@@ -47,6 +55,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     yearTitle,
     isExemplarUnit,
     onClick,
+    themeTitle,
   } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -91,6 +100,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         {!isUnitOption && yearTitle && !isExemplarUnit && (
           <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
             {yearTitle}
+          </Span>
+        )}
+        {themeTitle && (
+          <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
+            {themeTitle}
           </Span>
         )}
         <ListItemHeader

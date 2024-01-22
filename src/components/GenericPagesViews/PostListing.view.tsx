@@ -16,7 +16,7 @@ import {
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import MobileFilters from "@/components/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import {
   PostListingPageProps,
   blogToPostListItem,

@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { capitalize } from "lodash";
 
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import downloadZip from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton/helpers/downloadZip";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Button from "@/components/SharedComponents/Button";

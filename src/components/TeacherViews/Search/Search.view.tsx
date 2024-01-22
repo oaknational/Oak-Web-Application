@@ -11,7 +11,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import MobileFilters from "@/components/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SharedComponents/SearchForm";

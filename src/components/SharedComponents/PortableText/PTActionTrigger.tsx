@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { PortableTextMarkComponent } from "@portabletext/react";
 
-import UnstyledButton from "@/components/UnstyledButton";
+import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { Span } from "@/components/SharedComponents/Typography";
 

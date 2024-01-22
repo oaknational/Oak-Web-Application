@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import Icon from "@/components/SharedComponents/Icon";
 import UL from "@/components/SharedComponents/Typography/UL";
@@ -77,7 +77,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   {disabled ? (
                     <>{label}</>
                   ) : (
-                    <OakLink {...oakLinkProps}>{label}</OakLink>
+                    <OwaLink {...oakLinkProps}>{label}</OwaLink>
                   )}
                 </BreadcrumbConstrainer>
               </BreadcrumbsLi>

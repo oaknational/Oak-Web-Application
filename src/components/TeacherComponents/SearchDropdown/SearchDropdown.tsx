@@ -4,7 +4,7 @@ import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchRes
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
@@ -69,7 +69,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
 
               return (
                 <LI $pl={8} key={`${index}-${item.programmeSlug}`} $mb={16}>
-                  <OakLink
+                  <OwaLink
                     $color={"navy"}
                     data-testid="search-dropdown-link"
                     $font={"heading-7"}
@@ -82,7 +82,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     }}
                   >
                     {buttonTitle}
-                  </OakLink>
+                  </OwaLink>
                 </LI>
               );
             })}
