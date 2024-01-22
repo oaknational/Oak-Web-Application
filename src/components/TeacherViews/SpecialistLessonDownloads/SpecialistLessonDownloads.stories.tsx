@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./SpecialistDownloads.view";
+import Component from "./SpecialistLessonDownloads.view";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import MenuDecorator from "@/storybook-decorators/MenuDecorator";
@@ -13,7 +13,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SpecialistDownloadsPage: Story = {
+export const SpecialistLessonDownloadsPage: Story = {
   args: {
     curriculumData: {
       lesson: {

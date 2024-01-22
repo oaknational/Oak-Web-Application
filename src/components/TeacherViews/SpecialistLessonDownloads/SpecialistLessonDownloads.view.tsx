@@ -5,11 +5,11 @@ import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
-type SpecialistDownloadsView = {
-  curriculumData: SpecialistDownloadsProps;
+type SpecialistLessonDownloadsView = {
+  curriculumData: SpecialistLessonDownloadsProps;
 };
 
-type SpecialistDownloadsProps = {
+export type SpecialistLessonDownloadsProps = {
   lesson: LessonPathway & {
     isLegacy: boolean;
     lessonTitle: string;
@@ -19,7 +19,7 @@ type SpecialistDownloadsProps = {
   };
 };
 
-const SpecialistDownloads: FC<SpecialistDownloadsView> = ({
+const SpecialistLessonDownloads: FC<SpecialistLessonDownloadsView> = ({
   curriculumData,
 }) => {
   return (
@@ -29,4 +29,4 @@ const SpecialistDownloads: FC<SpecialistDownloadsView> = ({
   );
 };
 
-export default SpecialistDownloads;
+export default SpecialistLessonDownloads;
