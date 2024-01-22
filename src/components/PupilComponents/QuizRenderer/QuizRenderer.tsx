@@ -1,12 +1,5 @@
 import { FormEvent } from "react";
-import {
-  OakFlex,
-  OakForm,
-  OakHeading,
-  OakPrimaryButton,
-  OakSecondaryButton,
-  OakSpan,
-} from "@oak-academy/oak-components";
+import { OakFlex, OakForm, OakHeading } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
@@ -16,13 +9,12 @@ import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem"
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
-  const { currentSection, updateCurrentSection } = useLessonEngineContext();
+  const { currentSection } = useLessonEngineContext();
 
   const {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
-    handleNextQuestion,
     updateQuestionMode,
     handleSubmitMCAnswer,
     handleSubmitShortAnswer,
@@ -30,19 +22,14 @@ export const QuizRenderer = () => {
 
   let innerRender = null;
 
-  let questionFeedback = null;
+  const handleInitialChange = () => {
+    if (questionState[currentQuestionIndex]?.mode === "init") {
+      updateQuestionMode("input");
+    }
+  };
 
   if (currentQuestionData) {
     const { questionStem, answers } = currentQuestionData;
-
-    const isFeedbackMode =
-      questionState[currentQuestionIndex]?.mode === "feedback";
-
-    const handleInitialChange = () => {
-      if (questionState[currentQuestionIndex]?.mode === "init") {
-        updateQuestionMode("input");
-      }
-    };
 
     const AnswerComponent = answers ? pickAnswerComponent(answers) : null;
     const answerRender = AnswerComponent ? (
@@ -87,7 +74,7 @@ export const QuizRenderer = () => {
     };
 
     innerRender = (
-      <OakForm onSubmit={handleSubmit}>
+      <OakForm id="a-form" onSubmit={handleSubmit}>
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuizQuestionStem
             questionStem={questionStem}
@@ -95,42 +82,8 @@ export const QuizRenderer = () => {
             showIndex={true}
           />
           {answerRender}
-          {!isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton
-                disabled={questionState[currentQuestionIndex]?.mode === "init"}
-                type="submit"
-              >
-                Submit
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-          {isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton onClick={handleNextQuestion}>
-                Next Question
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
         </OakFlex>
       </OakForm>
-    );
-
-    questionFeedback = (
-      <OakFlex
-        $position={"absolute"}
-        $left={"space-between-m"}
-        $flexDirection={"column"}
-        $gap={"space-between-ssx"}
-      >
-        <OakSpan>mode: {questionState[currentQuestionIndex]?.mode}</OakSpan>
-        <OakSpan>
-          feedback:
-          {questionState[currentQuestionIndex]?.grade === 1
-            ? "correct"
-            : "incorrect"}
-        </OakSpan>
-      </OakFlex>
     );
   }
 
@@ -138,27 +91,19 @@ export const QuizRenderer = () => {
     <OakFlex
       $flexDirection={"column"}
       $color="text-subdued"
-      $minWidth={"all-spacing-24"}
+      // $minWidth={"all-spacing-24"}
       $pa={"inner-padding-xl"}
       $ba="border-solid-m"
       $borderColor={"border-inverted"}
       $background={"bg-decorative1-very-subdued"}
       $alignItems={"center"}
       $gap={"all-spacing-5"}
+      $width={"100%"}
     >
       <OakHeading tag="h1">
         {currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       </OakHeading>
-      {questionFeedback}
       {innerRender}
-
-      <OakSecondaryButton
-        onClick={() => {
-          updateCurrentSection("overview");
-        }}
-      >
-        Back
-      </OakSecondaryButton>
     </OakFlex>
   );
 };

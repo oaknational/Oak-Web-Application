@@ -1,28 +1,80 @@
-import { OakFlex } from "@oak-academy/oak-components";
-
 import {
-  QuestionsArray,
-  QuizEngineProvider,
-} from "@/components/PupilComponents/QuizEngineProvider";
+  OakBackLink,
+  OakBox,
+  OakFlex,
+  OakLessonBottomNav,
+  OakLessonLayout,
+  OakLessonLayoutProps,
+  OakLessonTopNav,
+  OakPrimaryButton,
+} from "@oak-academy/oak-components";
+
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
-type PupilViewsQuizProps = {
-  questionsArray: QuestionsArray;
-};
+export const PupilViewsQuiz = () => {
+  const { currentSection, updateCurrentSection } = useLessonEngineContext();
+  const quizEngineContext = useQuizEngineContext();
 
-export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
+  const { currentQuestionIndex, questionState, handleNextQuestion } =
+    quizEngineContext;
+
+  const isFeedbackMode =
+    questionState[currentQuestionIndex]?.mode === "feedback";
+
   return (
-    <QuizEngineProvider questionsArray={questionsArray}>
-      <OakFlex
-        $width={"100vw"}
-        $height={"100vh"}
-        $background={"bg-decorative1–main"}
-        $flexDirection={"column"}
-        $alignItems={"center"}
-        $pt="inner-padding-xl"
+    <OakBox>
+      <OakLessonLayout
+        bottomNavSlot={
+          <OakLessonBottomNav>
+            {!isFeedbackMode && (
+              <OakFlex $pt="inner-padding-l">
+                <OakPrimaryButton
+                  form={"a-form"}
+                  disabled={
+                    questionState[currentQuestionIndex]?.mode === "init"
+                  }
+                  type="submit"
+                >
+                  Submit
+                </OakPrimaryButton>
+              </OakFlex>
+            )}
+            {isFeedbackMode && (
+              <OakFlex $pt="inner-padding-l">
+                <OakPrimaryButton onClick={handleNextQuestion}>
+                  Next Question
+                </OakPrimaryButton>
+                //{" "}
+              </OakFlex>
+            )}
+          </OakLessonBottomNav>
+        }
+        lessonSectionName={
+          currentSection as OakLessonLayoutProps["lessonSectionName"]
+        }
+        topNavSlot={
+          <OakLessonTopNav
+            backLinkSlot={
+              <OakBackLink
+                type="button"
+                onClick={() => {
+                  updateCurrentSection("overview");
+                }}
+              />
+            }
+            counterSlot={null}
+            heading="Intro"
+            lessonSectionName="intro"
+            mobileSummary="In progress..."
+          />
+        }
       >
-        <QuizRenderer />
-      </OakFlex>
-    </QuizEngineProvider>
+        <OakFlex>
+          <QuizRenderer />
+        </OakFlex>
+      </OakLessonLayout>
+    </OakBox>
   );
 };
