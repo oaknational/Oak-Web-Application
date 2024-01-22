@@ -25,10 +25,7 @@ export const SpecialistLessonDownloadsPage: Story = {
         subjectTitle: "Specialist and therapies",
         unitSlug: "Creative arts",
         unitTitle: "Creative arts",
-        tierSlug: null,
-        tierTitle: null,
-        examBoardSlug: null,
-        examBoardTitle: null,
+
         nextLessons: [
           {
             lessonSlug: "were-part-of-the-same-pond-2",
@@ -39,27 +36,21 @@ export const SpecialistLessonDownloadsPage: Story = {
         ],
         downloads: [
           {
-            type: "worksheet-pdf",
-            exists: true,
-            label: "Worksheet",
-            ext: "PDF",
-          },
-          {
             type: "presentation",
             exists: true,
             label: "Presentation",
             ext: "PPT",
           },
           {
-            type: "exit-quiz-questions",
+            type: "intro-quiz-questions",
             exists: true,
-            label: "Exit quiz questions",
+            label: "Starter quiz questions",
             ext: "PDF",
           },
           {
-            type: "exit-quiz-answers",
+            type: "intro-quiz-answers",
             exists: true,
-            label: "Exit quiz answers",
+            label: "Starter quiz answers",
             ext: "PDF",
           },
         ],

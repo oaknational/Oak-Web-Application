@@ -6,21 +6,18 @@ const specialistLessonDownloadsFixtures = (
   return {
     lesson: {
       isLegacy: true,
-      lessonSlug: "super-juice-1",
-      lessonTitle: "Super juice",
+      lessonSlug: "test-lesson-1",
+      lessonTitle: "Test lesson",
       programmeSlug: "test-arts-l",
-      subjectSlug: "specialist-and-therapies",
-      subjectTitle: "Specialist and therapies",
-      unitSlug: "Creative arts",
-      unitTitle: "Creative arts",
-      tierSlug: null,
-      tierTitle: null,
-      examBoardSlug: null,
-      examBoardTitle: null,
+      subjectSlug: "test-subject",
+      subjectTitle: "Test subject",
+      unitSlug: "test-unit",
+      unitTitle: "Test unit",
+
       nextLessons: [
         {
-          lessonSlug: "lockdown-heroes-8",
-          lessonTitle: "Lockdown heroes",
+          lessonSlug: "test-lesson-1",
+          lessonTitle: "Test lesson 1",
         },
         { lessonSlug: "test-lesson-2", lessonTitle: "Test lesson 2" },
         { lessonSlug: "test-lesson-3", lessonTitle: "Test lesson 3" },
