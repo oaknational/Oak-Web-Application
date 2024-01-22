@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./SpecialistLessonDownloads.view";
+import { downloads, nextLessons } from "./SpecialistLessonDownloads.fixture";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import MenuDecorator from "@/storybook-decorators/MenuDecorator";
@@ -25,35 +26,8 @@ export const SpecialistLessonDownloadsPage: Story = {
         subjectTitle: "Specialist and therapies",
         unitSlug: "Creative arts",
         unitTitle: "Creative arts",
-
-        nextLessons: [
-          {
-            lessonSlug: "were-part-of-the-same-pond-2",
-            lessonTitle: "We're part of the same pond",
-          },
-          { lessonSlug: "glitter-gems-3", lessonTitle: "Glitter gems" },
-          { lessonSlug: "games-apart-4", lessonTitle: "Games apart" },
-        ],
-        downloads: [
-          {
-            type: "presentation",
-            exists: true,
-            label: "Presentation",
-            ext: "PPT",
-          },
-          {
-            type: "intro-quiz-questions",
-            exists: true,
-            label: "Starter quiz questions",
-            ext: "PDF",
-          },
-          {
-            type: "intro-quiz-answers",
-            exists: true,
-            label: "Starter quiz answers",
-            ext: "PDF",
-          },
-        ],
+        nextLessons: nextLessons,
+        downloads: downloads,
       },
     },
   },
