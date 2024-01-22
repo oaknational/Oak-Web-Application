@@ -17,7 +17,7 @@ describe("SpecialistSubjectListing", () => {
       />,
     );
     const heading = screen.getByRole("heading", {
-      name: /Specialist and Therapies/i,
+      name: /Specialists and therapies/i,
       level: 1,
     });
     expect(heading).toBeInTheDocument();
