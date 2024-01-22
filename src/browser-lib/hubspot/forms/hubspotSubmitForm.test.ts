@@ -3,27 +3,81 @@ import {
   getHubspotNewsletterPayload,
   NewsletterHubspotFormData,
 } from "./getHubspotFormPayloads";
-import { json } from "stream/consumers";
 
+import { getFakeFetch } from "@/__tests__/__helpers__/fakeFetch";
+import type {
+  FetchMatcher,
+  ResponseData,
+} from "@/__tests__/__helpers__/fakeFetch";
+
+const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
+const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
 const hubspotFormId = "hubspot-test-form";
+const primaryFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+const fallbackFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFallbackFormId}`;
 
-const primaryFormSuccess = {
+interface HubspotResponseData extends ResponseData {
+  status: number;
+  inlineMessage?: string;
+  errors?: Record<string, unknown>[];
+  aSurpriseField?: string;
+}
+class HubspotFetchMatcher implements FetchMatcher {
+  private _path: string;
+  private _responseData: HubspotResponseData;
+
+  static build(path: string, response: HubspotResponseData) {
+    return new HubspotFetchMatcher(path, response);
+  }
+
+  get path() {
+    return this._path;
+  }
+
+  get jsonValue() {
+    const { inlineMessage, errors } = this._responseData;
+    const jsonResponse = inlineMessage ? { inlineMessage } : { errors };
+    return jsonResponse;
+  }
+
+  get response() {
+    const { status, errors } = this._responseData;
+    const jsonResponse = this.jsonValue;
+    return Promise.resolve({
+      ok: !errors,
+      status: status,
+      json: () => Promise.resolve(jsonResponse),
+    });
+  }
+
+  constructor(path: string, response: HubspotResponseData) {
+    this._path = path;
+    this._responseData = response;
+  }
+}
+
+const buildMatcher = HubspotFetchMatcher.build;
+const primaryFormSuccess = buildMatcher(primaryFormEndpoint, {
   status: 200,
   inlineMessage: "Thanks that worked the first time",
-};
-const fallbackFormSuccess = {
+});
+const fallbackFormSuccess = buildMatcher(fallbackFormEndpoint, {
   status: 200,
   inlineMessage: "Thanks, it worked in the fallback, but not the primary!",
-};
-const hubspotErrorFailure = {
+});
+
+const hubspotErrorFailure = buildMatcher(primaryFormEndpoint, {
   status: 400,
   errors: [{ errorType: "INPUT_TOO_LARGE" }],
-};
-const invalidEmailFailure = {
+});
+const invalidEmailFailure = buildMatcher(primaryFormEndpoint, {
   status: 400,
   errors: [{ errorType: "INVALID_EMAIL" }],
-};
-const unknownErrorFailure = { status: 400, foo: "bar error details" };
+});
+const unknownErrorFailure = buildMatcher(primaryFormEndpoint, {
+  status: 400,
+  aSurpriseField: "bar error details",
+});
 
 // Cache the oringal fetch function
 const originalFetch = global.fetch;
@@ -65,42 +119,13 @@ const payload = getHubspotNewsletterPayload({
   data,
 });
 
-type ResponseData = {
-  status: number;
-  inlineMessage?: string;
-  errors?: Record<string, unknown>[];
-};
-
-/**
- * Takes an array responses to return from fetch, to be returned in order.
- * @param responses
- * @returns
- */
-function getFakeFetch(responses: ResponseData[]): jest.Mock {
-  const mockFetch = jest.fn();
-
-  responses.forEach((response) => {
-    mockFetch.mockImplementationOnce(() => {
-      const { status, inlineMessage, errors } = response;
-      const jsonResponse = inlineMessage ? { inlineMessage } : { errors };
-      return Promise.resolve({
-        ok: !errors,
-        status: status,
-        json: () => Promise.resolve(jsonResponse),
-      });
-    });
-  });
-
-  return mockFetch;
-}
-
 describe("hubspotSubmitForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
     it("should fetch the correct url with the correct payload", async () => {
-      global.fetch = getFakeFetch([primaryFormSuccess]);
+      global.fetch = getFakeFetch(primaryFormSuccess);
 
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
