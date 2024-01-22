@@ -105,6 +105,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
               paginationProps={paginationProps}
               headingTag={"h2"}
               unitTitle={unitTitle}
+              // TODO: implement new avo tracking function when available
               onClick={() => {}}
             />
           </GridArea>
