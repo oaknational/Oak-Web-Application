@@ -20,7 +20,7 @@ const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
     url,
     // Wait for the Next app to load.
     waitForSelector: "#__next",
-    waitForTimeout: 2000,
+    waitForTimeout: 3000,
   };
   return snapshotConfig;
 });
