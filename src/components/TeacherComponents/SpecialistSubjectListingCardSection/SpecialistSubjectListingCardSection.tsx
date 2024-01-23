@@ -5,6 +5,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 const getSpecialistCardBackgroundColour = (heading: string) => {
   switch (heading) {
@@ -23,12 +24,16 @@ const SpecialistSubjectCardSection = (props: {
 }) => {
   return (
     <Flex $flexDirection="column" $gap={24}>
-      <Flex $flexDirection="column" $gap={16} $maxWidth={["100%", "70%"]}>
-        <Heading tag="h2" $font="heading-3">
-          {props.heading}
-        </Heading>
-        <P>{props.summary}</P>
-      </Flex>
+      <Grid $rg={16}>
+        <GridArea $colSpan={[12]}>
+          <Heading tag="h2" $font="heading-3">
+            {props.heading}
+          </Heading>
+        </GridArea>
+        <GridArea $colSpan={[12, 12, 9]}>
+          <P>{props.summary}</P>
+        </GridArea>
+      </Grid>
       <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>
         {props.subjects.map((subject, i) => (
           <GridAreaListItem
