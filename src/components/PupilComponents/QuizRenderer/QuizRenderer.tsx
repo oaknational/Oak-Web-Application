@@ -6,7 +6,12 @@ import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pick
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 
-export const QuizRenderer = () => {
+type QuizRenderProps = {
+  formId: string;
+};
+
+export const QuizRenderer = (props: QuizRenderProps) => {
+  const { formId } = props;
   const quizEngineContext = useQuizEngineContext();
 
   const {
@@ -72,7 +77,7 @@ export const QuizRenderer = () => {
     };
 
     innerRender = (
-      <OakForm id="a-form" onSubmit={handleSubmit}>
+      <OakForm id={formId} onSubmit={handleSubmit}>
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuizQuestionStem
             questionStem={questionStem}

@@ -30,55 +30,55 @@ const QuizInner = () => {
 
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
+  const formId = "quiz-form";
 
-  return (
-    <OakLessonLayout
-      bottomNavSlot={
-        <OakLessonBottomNav>
-          {!isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton
-                form={"a-form"}
-                disabled={questionState[currentQuestionIndex]?.mode === "init"}
-                type="submit"
-              >
-                Submit
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-          {isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton onClick={handleNextQuestion}>
-                Next Question
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-        </OakLessonBottomNav>
-      }
-      lessonSectionName={currentSection as CurrentSection}
-      topNavSlot={
-        <OakLessonTopNav
-          backLinkSlot={
-            <OakBackLink
-              type="button"
-              onClick={() => {
-                updateCurrentSection("overview");
-              }}
-            />
-          }
-          counterSlot={null}
-          heading={
-            (currentSection as CurrentSection) === "starter-quiz"
-              ? "Starter Quiz"
-              : "Exit Quiz"
-          }
-          lessonSectionName={currentSection as CurrentSection}
-          mobileSummary="In progress..."
+  const bottomNavSlot = (
+    <OakLessonBottomNav>
+      {!isFeedbackMode && (
+        <OakFlex $pt="inner-padding-l">
+          <OakPrimaryButton
+            form={formId}
+            disabled={questionState[currentQuestionIndex]?.mode === "init"}
+            type="submit"
+          >
+            Submit
+          </OakPrimaryButton>
+        </OakFlex>
+      )}
+      {isFeedbackMode && (
+        <OakFlex $pt="inner-padding-l">
+          <OakPrimaryButton onClick={handleNextQuestion}>
+            Next Question
+          </OakPrimaryButton>
+        </OakFlex>
+      )}
+    </OakLessonBottomNav>
+  );
+
+  const topNavSlot = (
+    <OakLessonTopNav
+      backLinkSlot={
+        <OakBackLink
+          type="button"
+          onClick={() => {
+            updateCurrentSection("overview");
+          }}
         />
       }
+      counterSlot={null}
+      heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
+      lessonSectionName={currentSection as CurrentSection}
+      mobileSummary="In progress..."
+    />
+  );
+  return (
+    <OakLessonLayout
+      bottomNavSlot={bottomNavSlot}
+      lessonSectionName={currentSection}
+      topNavSlot={topNavSlot}
     >
       <OakFlex>
-        <QuizRenderer />
+        <QuizRenderer formId={formId} />
       </OakFlex>
     </OakLessonLayout>
   );
