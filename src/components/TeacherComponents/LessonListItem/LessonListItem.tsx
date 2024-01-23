@@ -12,6 +12,7 @@ import { P, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -26,7 +27,17 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   index: number;
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
-  onClick: (props: LessonListItemProps) => void;
+  onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+};
+
+export type SpecialistLessonListItemProps = SpecialistLesson & {
+  unitTitle: string;
+  hideTopHeading?: boolean;
+  hitCount?: number;
+  index: number;
+  currentPage?: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+  onClick: (props: SpecialistLessonListItemProps | LessonListItemProps) => void;
 };
 
 function getAvailableResourceList({
@@ -35,7 +46,7 @@ function getAvailableResourceList({
   presentationCount,
   worksheetCount,
   hasCopyrightMaterial,
-}: LessonListItemProps) {
+}: LessonListItemProps | SpecialistLessonListItemProps) {
   const resources: LessonResourceGraphicsItemProps[] = [];
 
   if (presentationCount && !hasCopyrightMaterial) {
@@ -81,7 +92,9 @@ function getAvailableResourceList({
  * Contains a lesson title, description, icon, and icons for resources
  * Links to a lesson-index page
  */
-const LessonListItem: FC<LessonListItemProps> = (props) => {
+const LessonListItem: FC<
+  LessonListItemProps | SpecialistLessonListItemProps
+> = (props) => {
   const {
     lessonTitle,
     lessonSlug,

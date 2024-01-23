@@ -27,6 +27,7 @@ import { LessonListItemProps } from "@/components/TeacherComponents/LessonListIt
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -73,7 +74,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const trackLessonSelected = ({ ...props }: LessonListItemProps) => {
+  const trackLessonSelected = ({
+    ...props
+  }: LessonListItemProps | SpecialistLesson) => {
     track.lessonSelected({
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
