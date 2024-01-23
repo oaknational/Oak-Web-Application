@@ -2,22 +2,22 @@ import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout";
-import SubjectListingPage from "@/components/pages/SubjectListing.page";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Box from "@//components/Box";
+import Box from "@/components/SharedComponents/Box";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 
 export type KeyStagePageProps = {
@@ -47,7 +47,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
           title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
           description: "Key stage by subject",
         }),
-        ...{ noFollow: true, noIndex: true },
+        ...{ noFollow: false, noIndex: false },
       }}
       $background="white"
     >

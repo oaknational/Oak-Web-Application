@@ -9,11 +9,11 @@ import { useRouter } from "next/router";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
-import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
-import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import AppLayout from "@/components/AppLayout/AppLayout";
-import Box from "@/components/Box/Box";
+import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
+import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
+import UnitsTab from "@/components/CurriculumComponents/UnitsTab";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import Box from "@/components/SharedComponents/Box";
 import curriculumApi, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
@@ -24,11 +24,11 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
-import { buildCurriculumMetadata } from "@/components/pages/CurriculumInfo/helpers/curriculumMetadata";
+import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -87,7 +87,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 
       break;
     case "units":
-      tabContent = <UnitsTab data={curriculumUnitsTabData} />;
+      tabContent = (
+        <UnitsTab data={curriculumUnitsTabData} examboardSlug={examboardSlug} />
+      );
       break;
     default:
       throw new Error("Not a valid tab");

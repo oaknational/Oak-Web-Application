@@ -12,15 +12,18 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Typography, { Heading, P } from "@/components/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Layout from "@/components/AppComponents/Layout";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Typography, {
+  Heading,
+  P,
+} from "@/components/SharedComponents/Typography";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
-import OakLink from "@/components/OakLink";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -75,14 +78,14 @@ const customPolicyComponent: PortableTextComponents = {
         ariaLabel = children[0];
       }
       return (
-        <OakLink
+        <OwaLink
           href={value?.href}
           aria-label={ariaLabel}
           $textDecoration={"underline"}
           page={null}
         >
           {children}
-        </OakLink>
+        </OwaLink>
       );
     },
   },

@@ -3,21 +3,20 @@ import { Fragment } from "react";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Card from "@/components/Card";
-import AboutContactCard from "@/components/AboutContactCard";
-import { Heading } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import Layout from "@/components/AppComponents/Layout";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Card from "@/components/SharedComponents/Card";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Flex from "@/components/SharedComponents/Flex";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -34,8 +33,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -80,7 +79,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </Grid>
 
-        <AboutContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

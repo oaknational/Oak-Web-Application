@@ -33,7 +33,6 @@ describe("Search/2023/constructElasticQuery", () => {
                 fields: ["*"],
                 type: "most_fields",
                 analyzer: "stop",
-                fuzziness: "AUTO:4,7",
                 prefix_length: 1,
               },
             },
@@ -46,7 +45,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -80,7 +79,6 @@ describe("Search/2023/constructElasticQuery", () => {
                 fields: ["*"],
                 type: "most_fields",
                 analyzer: "stop",
-                fuzziness: "AUTO:4,7",
                 prefix_length: 1,
               },
             },
@@ -99,7 +97,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -137,7 +135,6 @@ describe("Search/2023/constructElasticQuery", () => {
                 fields: ["*"],
                 type: "most_fields",
                 analyzer: "stop",
-                fuzziness: "AUTO:4,7",
                 prefix_length: 1,
               },
             },
@@ -153,7 +150,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -192,7 +189,6 @@ describe("Search/2023/constructElasticQuery", () => {
                 fields: ["*"],
                 type: "most_fields",
                 analyzer: "stop",
-                fuzziness: "AUTO:4,7",
                 prefix_length: 1,
               },
             },
@@ -209,7 +205,80 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
+      },
+    });
+  });
+
+  test("handles examboard filters", () => {
+    const elasticQuery = constructElasticQuery(
+      createSearchQuery({
+        term: "waves",
+        keyStages: ["ks4"],
+        subjects: ["physics"],
+        examBoards: ["aqa"],
+      }),
+    );
+    expect(elasticQuery).toEqual({
+      from: 0,
+      size: 100,
+      query: {
+        bool: {
+          should: [
+            {
+              multi_match: {
+                query: "waves",
+                type: "phrase",
+                analyzer: "stop",
+                fields: [
+                  "lessonTitle^6",
+                  "unitTitle^6",
+                  "lessonDescription^3",
+                  "lessons.lessonTitle^3",
+                ],
+              },
+            },
+            {
+              multi_match: {
+                query: "waves",
+                fields: ["*"],
+                type: "most_fields",
+                analyzer: "stop",
+                prefix_length: 1,
+              },
+            },
+          ],
+          filter: [
+            { terms: { keyStageSlug: ["ks4"] } },
+            { terms: { subjectSlug: ["physics"] } },
+            {
+              bool: {
+                minimum_should_match: 1,
+                should: [
+                  {
+                    terms: {
+                      examBoardSlug: ["aqa"],
+                    },
+                  },
+                  {
+                    terms: {
+                      "pathways.examBoardSlug": ["aqa"],
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+          minimum_should_match: 1,
+        },
+      },
+      highlight: {
+        number_of_fragments: 0,
+        pre_tags: ["<b>"],
+        post_tags: ["</b>"],
+        fields: {
+          pupil_lesson_outcome: {},
+        },
       },
     });
   });

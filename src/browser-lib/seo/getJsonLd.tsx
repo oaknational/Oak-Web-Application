@@ -10,12 +10,12 @@ import {
   CarouselJsonLd,
 } from "next-seo";
 
-import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
-import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
-import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
-import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
+import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/BlogIndex.view";
+import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
+import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
-import { getOakLinkHref } from "../../components/OakLink/OakLink";
+import { getOwaLinkHref } from "../../components/SharedComponents/OwaLink/OwaLink";
 import getBrowserConfig from "../getBrowserConfig";
 
 const courseProvider = {
@@ -59,7 +59,7 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
   const breadcrumbsForJsonLd = props.itemListElements.map((i, index) => ({
     position: index + 1,
     name: i.label,
-    item: getOakLinkHref(i.oakLinkProps),
+    item: getOwaLinkHref(i.oakLinkProps),
   }));
 
   return BreadcrumbsJsonLdNextSeo({

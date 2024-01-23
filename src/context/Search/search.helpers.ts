@@ -1,15 +1,18 @@
+import { ParsedUrlQuery } from "querystring";
+
 import {
   KeyStage,
   LessonSearchHit,
   UnitSearchHit,
   SearchHit,
+  PathwaySchema,
 } from "./search.types";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
-import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
@@ -35,15 +38,47 @@ export const getFilterForQuery = <T extends { slug: string }>(
 };
 
 // Analytics
+export const getFiltersFromQuery = (query: ParsedUrlQuery) => {
+  return [
+    query.keyStages,
+    query.contentTypes,
+    query.examBoards,
+    query.subjects,
+  ];
+};
+
+export const combineSearchFilters = (
+  filters: Array<string | Array<string> | undefined>,
+) => {
+  return filters
+    .flat()
+    .filter((f) => !!f)
+    .join(",");
+};
+
 export const getSortedSearchFiltersSelected = (
-  filterOptions: string | string[] | undefined,
+  query: ParsedUrlQuery,
 ): [] | string[] => {
-  if (typeof filterOptions === "string") {
-    return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
-  } else if (Array.isArray(filterOptions)) {
-    return filterOptions.sort((a, b) => (a.slice(-1) < b.slice(-1) ? -1 : 1));
+  const combinedFilters = combineSearchFilters(getFiltersFromQuery(query));
+  if (!combinedFilters) {
+    return [];
   }
-  return [];
+  return combinedFilters.split(",").sort((a, b) => (a < b ? -1 : 1));
+};
+
+export const keyStageToSentenceCase = (
+  keyStage?: string,
+): string | undefined => {
+  if (!keyStage) {
+    return undefined;
+  }
+  const words = keyStage.split(" ");
+
+  if (words.length > 1 && words[1] !== undefined) {
+    words[1] = words[1].toLowerCase();
+  }
+
+  return words.join(" ");
 };
 
 export function elasticKeyStageSlugToKeyStage({
@@ -73,8 +108,26 @@ export function elasticKeyStageSlugToKeyStage({
     reportError(error);
   }
 
-  return keyStage;
+  return { ...keyStage, title: keyStageToSentenceCase(keyStage?.title) };
 }
+
+const pathwaysSnakeToCamel = (pathway: PathwaySchema) => {
+  return {
+    programmeSlug: pathway.programme_slug,
+    unitSlug: pathway.unit_slug,
+    unitTitle: pathway.unit_title,
+    keyStageSlug: pathway.key_stage_slug,
+    keyStageTitle: pathway.key_stage_title,
+    subjectSlug: pathway.subject_slug,
+    subjectTitle: pathway.subject_title,
+    tierSlug: pathway.tier_slug || null,
+    tierTitle: pathway.tier_title || null,
+    examBoardSlug: pathway.exam_board_slug || null,
+    examBoardTitle: pathway.exam_board_title || null,
+    yearSlug: pathway.year_slug || null,
+    yearTitle: pathway.year_title || null,
+  };
+};
 
 const getProgrammeSlug = (
   hit: LessonSearchHit | UnitSearchHit,
@@ -135,7 +188,12 @@ export function getLessonObject(props: {
   const lessonResult: SearchResultsItemProps = {
     type: "lesson",
     title: highlightedHit.title?.toString(),
+    unitTitle:
+      highlightedHit.unit_title?.toString() ||
+      highlightedHit.topic_title?.toString() ||
+      "",
     description: highlightedHit.lesson_description?.toString() || "",
+    pupilLessonOutcome: highlightedHit.pupil_lesson_outcome?.toString() || "",
     subjectSlug: highlightedHit.subject_slug?.toString(),
     keyStageShortCode: keyStage?.shortCode?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
@@ -143,6 +201,9 @@ export function getLessonObject(props: {
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways.map((pathway) =>
+      pathwaysSnakeToCamel(pathway),
+    ),
   };
 
   if (
@@ -190,6 +251,9 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways.map((pathway) =>
+      pathwaysSnakeToCamel(pathway),
+    ),
   };
 
   if (

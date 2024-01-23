@@ -6,12 +6,12 @@ import {
   GetStaticPathsResult,
 } from "next";
 
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import LessonList from "@/components/UnitAndLessonLists/LessonList";
-import usePagination from "@/components/Pagination/usePagination";
-import Grid, { GridArea } from "@/components/Grid";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import LessonList from "@/components/TeacherComponents/LessonList";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -21,8 +21,13 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import HeaderListing from "@/components/HeaderListing";
+import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -65,6 +70,25 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   });
 
   const { currentPageItems, paginationTitle } = paginationProps;
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const trackLessonSelected = ({
+    ...props
+  }: LessonListItemProps | SpecialistLesson) => {
+    track.lessonSelected({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug: props.subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: props.lessonTitle,
+      lessonSlug: props.lessonSlug,
+      analyticsUseCase,
+    });
+  };
 
   return (
     <AppLayout
@@ -129,6 +153,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               paginationProps={paginationProps}
               headingTag={"h2"}
               unitTitle={unitTitle}
+              onClick={trackLessonSelected}
             />
           </GridArea>
         </Grid>

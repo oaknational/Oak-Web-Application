@@ -20,9 +20,7 @@ const serversideSitemapPaths = [
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
   "/teachers/curriculum/sitemap.xml",
-  // Don't include the beta dynamic sitemaps until the beta goes public.
-  /** @todo fix generating this page so it takes under a minute at request time */
-  // "/beta/teachers/key-stages/sitemap.xml",
+  "/teachers/key-stages/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
@@ -43,26 +41,20 @@ module.exports = {
       {
         userAgent: "*",
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
-        allow: ["/", "/teachers/curriculum", "teachers/curriculum/"],
-        disallow: ["/teachers/", "/teachers/key-stages/"],
+        disallow: ["/teachers/programmes/", "/teachers/lessons/"],
       },
     ],
   },
   exclude: [
     //Exclude lesson journey pages from the sitemap.
-    "/teachers/key-stages",
-    "/teachers/key-stages/*",
     "/teachers/lessons",
     "/teachers/lessons/*",
     "/teachers/programmes",
     "/teachers/programmes/*",
-    "/teachers/early-release-units",
     "/teachers/search",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
-    // Don't list the files that generate sitemaps for the dynamic pages.
-    "/teachers/key-stages/sitemap.xml",
     // Pointer exclusions
     "/webinars/using-oak-to-support-during-covid-disruption-and-setting-cover-2",
     "/webinars/boosting-motivation-in-the-classroom",

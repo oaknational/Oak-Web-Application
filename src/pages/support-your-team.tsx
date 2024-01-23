@@ -1,22 +1,21 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
-import CMSClient from "../node-lib/cms";
-import { SupportPage } from "../common-lib/cms-types";
-import Layout from "../components/Layout";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
-import { Heading, P } from "../components/Typography";
-import Flex from "../components/Flex";
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import { TextBlockCard } from "../components/Sanity/TextBlock/TextBlockCard";
-import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardImageCta";
-import BubbleMessage from "../components/BubbleMessage";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
-import Box from "../components/Box";
-import getPageProps from "../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { SupportPage } from "@/common-lib/cms-types";
+import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { SupportYourTeamTextBlockCard } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCard/SupportYourTeamTextBlockCard";
+import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardImageCta";
+import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
+import getPageProps from "@/node-lib/getPageProps";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Layout from "@/components/AppComponents/Layout";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type SupportPageProps = {
   pageData: SupportPage;
@@ -45,14 +44,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Flex>
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
-            <BubbleMessage
+            <SupportYourTeamBubbleMessage
               background={"aqua"}
               variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
             />
-            <BubbleMessage
+            <SupportYourTeamBubbleMessage
               background={"pink50"}
               variant="bubble-2"
               outlineHeading={"50%"}
@@ -74,13 +73,19 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Flex>
         <Grid $mb={56} $rg={56} $cg={[0, 40]}>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard background={"lemon50"} {...pageData.planning} />
+            <SupportYourTeamTextBlockCard
+              background={"lemon50"}
+              {...pageData.planning}
+            />
           </GridArea>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard background={"lemon50"} {...pageData.cover} />
+            <SupportYourTeamTextBlockCard
+              background={"lemon50"}
+              {...pageData.cover}
+            />
           </GridArea>
         </Grid>
-        <TextBlockCardImageCta
+        <SupportYourTeamTextBlockCardImageCta
           {...pageData.curriculum}
           background={"aqua"}
           image={{
@@ -88,7 +93,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             sizes: "(min-width: 750px) 720px, 100vw",
           }}
         />
-        <TextBlockCardImageCta
+        <SupportYourTeamTextBlockCardImageCta
           {...pageData.development}
           background={"pink50"}
           image={{
@@ -105,25 +110,30 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
           $mt={48}
         >
-          <Heading $font={["heading-5", "heading-4"]} $mb={20} tag={"h2"}>
-            Start using Oak today
-          </Heading>
-          <Box $width={360}>
+          <Box $maxWidth={["100%", 380, 380]}>
+            <Heading
+              $textAlign={"center"}
+              $font={["heading-5", "heading-4"]}
+              $mb={20}
+              tag={"h2"}
+            >
+              Start using Oak today
+            </Heading>
             <P $textAlign={"center"} $font={"body-2"}>
               Search our lessons to find all the resources you need to support
               your team.
             </P>
+            <Flex $justifyContent={"center"}>
+              <ButtonAsLink
+                $mt={32}
+                $mb={92}
+                page={"home"}
+                label={"Search our lessons"}
+                icon={"arrow-right"}
+                $iconPosition={"trailing"}
+              />
+            </Flex>
           </Box>
-          <Flex $justifyContent={"center"}>
-            <ButtonAsLink
-              $mt={32}
-              $mb={92}
-              page={"home"}
-              label={"Search our lessons"}
-              icon={"arrow-right"}
-              $iconPosition={"trailing"}
-            />
-          </Flex>
         </Flex>
       </MaxWidth>
     </Layout>

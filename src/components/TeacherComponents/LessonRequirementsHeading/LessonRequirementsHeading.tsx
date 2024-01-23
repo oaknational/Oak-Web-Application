@@ -1,0 +1,26 @@
+import React, { FC } from "react";
+
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Flex from "@/components/SharedComponents/Flex";
+import { Heading } from "@/components/SharedComponents/Typography";
+
+type LessonRequirementsHeadingProps = {
+  helperIcon: IconName;
+  heading: string;
+};
+
+const LessonRequirementsHeading: FC<LessonRequirementsHeadingProps> = ({
+  helperIcon,
+  heading,
+}) => {
+  return (
+    <Flex $flexDirection={"row"} $alignItems={"center"}>
+      <Icon name={helperIcon} variant="minimal" $mr={8} />
+      <Heading $font={"heading-7"} tag="h3">
+        {heading}
+      </Heading>
+    </Flex>
+  );
+};
+
+export default LessonRequirementsHeading;
