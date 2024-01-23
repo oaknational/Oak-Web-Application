@@ -52,6 +52,7 @@
     "remove-local-components": "yalc remove @oak-academy/oak-components && $npm_execpath install @oak-academy/oak-components"
   },
   "overrides": {
+    "@testing-library/dom": "$@testing-library/dom",
     "puppeteer": "$puppeteer",
     "react": "$react",
     "react-dom": "$react-dom",
@@ -151,6 +152,7 @@
     "@storybook/nextjs": "^7.6.7",
     "@storybook/react": "^7.6.7",
     "@storybook/testing-library": "^0.2.2",
+    "@testing-library/dom": "^9.3.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.1.0",
     "@testing-library/user-event": "^14.5.1",
