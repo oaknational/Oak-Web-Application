@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { OakFlex } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
@@ -22,7 +23,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -72,7 +72,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
           Documents
         </Heading>
-        <Flex $mh={[16, 0]} $flexDirection={"column"}>
+        <OakFlex
+          $mh={["space-between-s", "space-between-none"]}
+          $flexDirection={"column"}
+        >
           <Typography $width={"100%"}>
             <Hr $color={"aqua"} $mv={32} />
           </Typography>
@@ -86,15 +89,15 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                 <GridAreaListItem key={doc.title} $colSpan={[6, 3, 2]}>
                   <Card $height={220} $pa={16}>
                     <BoxBorders gapPosition="rightTop" />
-                    <Flex
+                    <OakFlex
                       $justifyContent={"space-between"}
-                      $height={"100%"}
                       $flexDirection={"column"}
+                      $height={"100%"}
                     >
                       <Heading $font={"heading-7"} tag={"h3"}>
                         {doc.title}
                       </Heading>
-                      <Flex
+                      <OakFlex
                         $alignItems={"center"}
                         $justifyContent={"space-between"}
                       >
@@ -106,8 +109,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                           href={`${doc.file.asset.url}?dl`}
                           background={"blue"}
                         />
-                      </Flex>
-                    </Flex>
+                      </OakFlex>
+                    </OakFlex>
                   </Card>
                 </GridAreaListItem>
               );
@@ -116,7 +119,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           <Typography $width={"100%"}>
             <Hr $color={"aqua"} $mv={0} $mt={32} />
           </Typography>
-        </Flex>
+        </OakFlex>
         <Card
           $mh="auto"
           $mv={[80, 92]}
