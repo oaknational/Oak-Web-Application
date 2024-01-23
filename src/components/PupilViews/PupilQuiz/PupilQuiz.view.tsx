@@ -77,9 +77,7 @@ const QuizInner = () => {
       lessonSectionName={currentSection}
       topNavSlot={topNavSlot}
     >
-      <OakFlex>
-        <QuizRenderer formId={formId} />
-      </OakFlex>
+      <QuizRenderer formId={formId} />
     </OakLessonLayout>
   );
 };
