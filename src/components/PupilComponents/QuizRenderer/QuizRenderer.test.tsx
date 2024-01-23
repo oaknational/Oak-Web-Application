@@ -54,7 +54,7 @@ const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
     const spy = jest.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
+    expect(() => renderWithTheme(<QuizRenderer formId="formId" />)).toThrow();
     spy.mockRestore();
   });
 
@@ -65,7 +65,7 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -81,7 +81,7 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -101,7 +101,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
               <OakPrimaryButton form={"a-form"} type="submit">
                 Submit
               </OakPrimaryButton>
@@ -126,7 +126,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
               <OakPrimaryButton onClick={handleNextQuestion}>
                 Next Question
               </OakPrimaryButton>
@@ -151,7 +151,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
               <OakPrimaryButton form={"a-form"} type="submit">
                 Submit
               </OakPrimaryButton>
@@ -191,7 +191,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
               <OakPrimaryButton form={"a-form"} type="submit">
                 Submit
               </OakPrimaryButton>
@@ -228,7 +228,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="form-id" />
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -255,7 +255,7 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="form-id" />
             <OakPrimaryButton form={"a-form"} type="submit">
               Submit
             </OakPrimaryButton>
