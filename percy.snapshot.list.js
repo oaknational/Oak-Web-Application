@@ -15,11 +15,14 @@ console.log("Percy base url:", baseUrl);
 // Make Percy wait for the Next app to load.
 
 const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
-  return {
+  /** @type {import('@percy/core/types/index').SnapshotOptions} */
+  const snapshotConfig = {
     url,
     // Wait for the Next app to load.
     waitForSelector: "#__next",
+    waitForTimeout: 2000,
   };
+  return snapshotConfig;
 });
 
 const urls = snapshotRelativeUrls.map((relUrl) => {
