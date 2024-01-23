@@ -15,19 +15,20 @@ import {
   UL,
   HeadingTag,
 } from "@/components/SharedComponents/Typography";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 
 export type LessonListProps = {
   lessonCount: number;
-  currentPageItems: Omit<
-    LessonListItemProps,
-    "unitTitle" | "index" | "onClick"
-  >[];
-  keyStageSlug: string;
+  currentPageItems:
+    | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">[]
+    | SpecialistLesson[];
+  keyStageSlug?: string;
   subjectSlug: string;
   paginationProps: PaginationProps & UsePaginationProps;
   headingTag: HeadingTag;
   unitTitle: string;
-  onClick: (props: LessonListItemProps) => void;
+  onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -60,7 +61,10 @@ const LessonList: FC<LessonListProps> = (props) => {
         <>
           <UL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
-              <LI key={`LessonList-LessonListItem-${item.lessonSlug}`}>
+              <LI
+                key={`LessonList-LessonListItem-${item.lessonSlug}`}
+                data-testid={"lesson-list-item"}
+              >
                 <LessonListItem
                   {...item}
                   unitTitle={unitTitle}

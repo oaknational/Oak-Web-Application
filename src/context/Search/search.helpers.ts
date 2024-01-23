@@ -66,7 +66,9 @@ export const getSortedSearchFiltersSelected = (
   return combinedFilters.split(",").sort((a, b) => (a < b ? -1 : 1));
 };
 
-const keyStageToSentenceCase = (keyStage?: string): string | undefined => {
+export const keyStageToSentenceCase = (
+  keyStage?: string,
+): string | undefined => {
   if (!keyStage) {
     return undefined;
   }

@@ -1,3 +1,12 @@
+# [1.331.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.330.1...v1.331.0) (2024-01-23)
+
+
+### Features
+
+* specialist header listing component ([3de24f4](https://github.com/oaknational/Oak-Web-Application/commit/3de24f44fd28146737cabd0d058e96f53ff93eec))
+
+## [1.330.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.330.0...v1.330.1) (2024-01-22)
+
 # [1.330.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.329.0...v1.330.0) (2024-01-18)
 
 
