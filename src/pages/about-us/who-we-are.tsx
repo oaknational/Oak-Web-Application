@@ -2,6 +2,9 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakGridAreaProps,
   OakMaxWidth,
   OakTypography,
   OakHeading,
@@ -11,7 +14,6 @@ import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -30,45 +32,44 @@ export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
 };
 
-type TimeLineProps = TextBlock & FlexProps;
+type TimeLineProps = TextBlock & OakGridAreaProps;
 
 const TimeLineCard: FC<TimeLineProps> = ({
   title,
   bodyPortableText,
-  $alignItems,
+  $colStart,
+  $colSpan,
   cta,
 }) => {
   return (
     <OakFlex
       $pv={"inner-padding-none"}
       $ph={["inner-padding-m"]}
-      $alignItems={$alignItems}
       $flexDirection={"column"}
       $mb={"space-between-xxxl"}
     >
-      {/* can't use OakFlex as it doesn't have 50% width property, instead we should implement Grid here but it is not ported over to oak-components yet */}
-      <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
-        {" "}
-        {/* ["100%", "50%"] but no value available */}
-        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
-          {title}
-        </OutlineHeading>
-        <OakTypography $font={["body-2", "body-1"]}>
-          <PortableTextWithDefaults value={bodyPortableText} />
-        </OakTypography>
-        {cta && (
-          <OakFlex>
-            <ButtonAsLink
-              $mt={[36]}
-              icon={"arrow-right"}
-              $iconPosition={"trailing"}
-              label={cta.label}
-              page={null}
-              href={getLinkHref(cta)}
-            />
-          </OakFlex>
-        )}
-      </Flex>
+      <OakGrid>
+        <OakGridArea $colSpan={$colSpan} $colStart={$colStart}>
+          <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
+            {title}
+          </OutlineHeading>
+          <OakTypography $font={["body-2", "body-1"]}>
+            <PortableTextWithDefaults value={bodyPortableText} />
+          </OakTypography>
+          {cta && (
+            <OakFlex>
+              <ButtonAsLink
+                $mt={[36]}
+                icon={"arrow-right"}
+                $iconPosition={"trailing"}
+                label={cta.label}
+                page={null}
+                href={getLinkHref(cta)}
+              />
+            </OakFlex>
+          )}
+        </OakGridArea>
+      </OakGrid>
     </OakFlex>
   );
 };
@@ -127,18 +128,21 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
         <TimeLineCard
           bodyPortableText={pageData.timeline.from.bodyPortableText}
           title={pageData.timeline.from.title}
-          $alignItems={"flex-start"}
+          $colStart={[1, 1]}
+          $colSpan={[12, 6]}
         />
         <TimeLineCard
           bodyPortableText={pageData.timeline.to.bodyPortableText}
           title={pageData.timeline.to.title}
-          $alignItems={["flex-start", "center"]}
+          $colStart={[1, 4]}
+          $colSpan={[12, 6]}
         />
         <TimeLineCard
           bodyPortableText={pageData.timeline.beyond.bodyPortableText}
           title={pageData.timeline.beyond.title}
           cta={pageData.timeline.beyond.cta}
-          $alignItems={["flex-start", "flex-end"]}
+          $colStart={[1, 7]}
+          $colSpan={[12, 6]}
         />
         <Grid $mb={80} $cg={28} $rg={32}>
           {pageData.principles.map((principle) => (

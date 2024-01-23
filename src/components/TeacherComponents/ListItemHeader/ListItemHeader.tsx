@@ -12,6 +12,7 @@ import {
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -22,13 +23,15 @@ interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-type SpecialistListItemProps = IndividualSpecialistUnit &
+type SpecialistListItemProps = (IndividualSpecialistUnit | SpecialistLesson) &
   CommonProps & {
-    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
-    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    title: string;
+    slug: string;
+    subjectTitle: string;
+    programmeSlug: string;
     expired: boolean | null;
     index?: number;
   };
@@ -41,8 +44,8 @@ export const isSpecialistUnit = (
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
-    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
-    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    title: string;
+    slug: string;
     expired: boolean | null;
     index?: number;
     isExemplarUnit?: boolean;

@@ -5,18 +5,19 @@ import SubjectProgrammeListItem from "@/components/TeacherComponents/SubjectProg
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
- * Clickable learning tier card list.
+ * Clickable programme card list.
  *
  * ## Usage
- * Used on a key stage 4 learning tier page
+ * Used on subject and specialist programmes pages
  */
-const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
-  programmes,
-  subjectSlug,
-  keyStageSlug,
-  keyStageTitle,
-}) => {
+export type ProgrammeListProps = {
+  programmes: ProgrammeListingPageData["programmes"];
+  onClick: (props: ProgrammeListingPageData["programmes"][number]) => void;
+};
+
+const ProgrammeList: FC<ProgrammeListProps> = ({ programmes, onClick }) => {
   const colSpan = programmes.length === 2 ? 6 : 4;
+
   return (
     <Grid $cg={16}>
       {programmes.map((programme) => {
@@ -26,12 +27,7 @@ const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
-            <SubjectProgrammeListItem
-              keyStageSlug={keyStageSlug}
-              keyStageTitle={keyStageTitle}
-              subjectSlug={subjectSlug}
-              {...programme}
-            />
+            <SubjectProgrammeListItem programme={programme} onClick={onClick} />
           </GridArea>
         );
       })}
@@ -39,4 +35,4 @@ const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
   );
 };
 
-export default SubjectProgrammeList;
+export default ProgrammeList;
