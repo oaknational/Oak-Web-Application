@@ -29,13 +29,13 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
     <Flex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 56]} $mb={[48, 56]}>
-          Specialists and therapies
+          Specialist and therapies
         </Heading>
         <Flex $flexDirection="column" $gap={[24, 48]}>
           <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"
-            summary="Our Specialist curriculum helps you to support learning around three stages; early development, building understanding and applying learning, as well as creative arts and physical development."
+            summary="Our specialist curriculum helps you to support learning around three stages; early development, building understanding and applying learning, as well as creative arts and physical development."
           />
           <SpecialistSubjectCardSection
             subjects={therapies}
