@@ -7,19 +7,21 @@ import Svg from "@/components/SharedComponents/Svg";
 import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
 type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {
   subjectSlug: string | null;
   isLegacyLesson?: boolean;
   color: OakColorName;
+  containerMinWidth?: FlexProps["$minWidth"];
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   subjectSlug,
   color,
   isLegacyLesson,
+  containerMinWidth = [80, 140],
   ...cmsImageProps
 }) => {
   const asset = subjectSlug ? getSubjectIconAsset(subjectSlug) : null;
@@ -34,7 +36,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   }
 
   return (
-    <Flex $minWidth={[80, 140]} $width={"100%"} $position={"relative"}>
+    <Flex $minWidth={containerMinWidth} $width={"100%"} $position={"relative"}>
       <Svg
         $color={color}
         $position={"absolute"}
