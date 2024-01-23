@@ -6,7 +6,11 @@ import {
   NextPage,
 } from "next";
 import { useSearchParams } from "next/navigation";
-import { oakDefaultTheme, OakThemeProvider } from "@oak-academy/oak-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakThemeProvider,
+} from "@oak-academy/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -72,7 +76,9 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider>
-        <PupilPageContent curriculumData={curriculumData} />
+        <OakBox $height={"100vh"} $minWidth={"100vw"}>
+          <PupilPageContent curriculumData={curriculumData} />
+        </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>
   );
