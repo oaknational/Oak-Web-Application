@@ -4,7 +4,6 @@ import Component from "./SpecialistLesson.view";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import MenuDecorator from "@/storybook-decorators/MenuDecorator";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator, MenuDecorator],
@@ -18,13 +17,13 @@ export const SpecialistLessonDownloadsPage: Story = {
   args: {
     curriculumData: {
       isLegacy: true,
-      lessonSlug: "specialist-lesson-1",
-      lessonTitle: "Speccialist lesson",
-      programmeSlug: "specialist-programme",
-      subjectSlug: "specialist-subject",
-      subjectTitle: "Specialist subject",
-      unitTitle: "Specialist unit",
-      unitSlug: "specialist-unit",
+      lessonSlug: "a-birthday-sensory-story",
+      lessonTitle: "A birthday sensory story",
+      programmeSlug: "changes-and-transtions-123a",
+      subjectSlug: "communication-and-language",
+      subjectTitle: "Specialist",
+      unitTitle: "Creative Arts",
+      unitSlug: "creative-art",
       keyLearningPoints: [
         { keyLearningPoint: "Specialist" },
         { keyLearningPoint: "Information" },
@@ -36,16 +35,15 @@ export const SpecialistLessonDownloadsPage: Story = {
       contentGuidance: null,
       presentationUrl:
         "https://docs.google.com/presentation/d/18ZFU8gdczMK9U3XxmC5mN9GLN7yigCQvbSX1E0SR0WU/embed?start=false&amp;loop=false&amp",
-      worksheetUrl:
-        "https://docs.google.com/presentation/d/1gjXZk0ylpz--95u4cIpTN6UPfEnWoIk6xH6pW23_mqY/embed?start=false&amp;loop=false&amp",
+      worksheetUrl: null,
       isWorksheetLandscape: true,
       hasCopyrightMaterial: false,
       videoMuxPlaybackId: null,
       videoWithSignLanguageMuxPlaybackId: null,
-      transcriptSentences: ["this is a sentence", "this is another sentence"],
+      transcriptSentences: null,
       hasDownloadableResources: true,
-      starterQuiz: quizQuestions,
-      exitQuiz: quizQuestions,
+      starterQuiz: null,
+      exitQuiz: null,
       expired: false,
     },
   },

@@ -1,14 +1,12 @@
 import { SpecialistLessonOverviewData } from "./SpecialistLesson.view";
 
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-
-const lessonOverviewFixture = (
+const specialistLessonOverviewFixture = (
   partial?: Partial<SpecialistLessonOverviewData>,
 ): SpecialistLessonOverviewData => {
   return {
     isLegacy: true,
     lessonSlug: "specialist-lesson-1",
-    lessonTitle: "Speccialist lesson",
+    lessonTitle: "Specialist lesson",
     programmeSlug: "specialist-programme",
     subjectSlug: "specialist-subject",
     subjectTitle: "Specialist subject",
@@ -33,11 +31,11 @@ const lessonOverviewFixture = (
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: ["this is a sentence", "this is another sentence"],
     hasDownloadableResources: true,
-    starterQuiz: quizQuestions,
-    exitQuiz: quizQuestions,
+    starterQuiz: null,
+    exitQuiz: null,
     expired: false,
     ...partial,
   };
 };
 
-export default lessonOverviewFixture;
+export default specialistLessonOverviewFixture;
