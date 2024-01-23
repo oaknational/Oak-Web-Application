@@ -37,7 +37,7 @@ describe("SpecialistSubjectListing", () => {
     expect(specialistHeading).toBeInTheDocument();
 
     const specialistSummary = screen.getByText(
-      "Our Specialist curriculum helps you to support learning around three stages; early development, building understanding and applying learning, as well as creative arts and physical development.",
+      "Our specialist curriculum helps you to support learning around three stages; early development, building understanding and applying learning, as well as creative arts and physical development.",
     );
 
     expect(specialistSummary).toBeInTheDocument();
