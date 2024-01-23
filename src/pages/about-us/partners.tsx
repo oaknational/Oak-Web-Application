@@ -1,6 +1,11 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
-import { OakFlex, OakMaxWidth, OakHeading } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakHeading,
+  OakLI,
+} from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
@@ -18,7 +23,6 @@ import CMSImage, {
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 export type AboutPageProps = {
@@ -101,10 +105,11 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </OakHeading>
         <FlexList $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.curriculumPartners.map((partner) => (
-            <LI
-              $mb={32}
-              $minWidth={"20%"}
-              listStyle="none"
+            <OakLI
+              $mb={"space-between-m2"}
+              $minWidth={["all-spacing-10", "all-spacing-18", "all-spacing-19"]}
+              $listStyle={"none"}
+              // $minWidth={"20%"}
               key={`curriculum-partners-${partner.name}`}
             >
               <ImageContainer
@@ -112,7 +117,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
                 image={partner}
                 $pa={[4, 16]}
               />
-            </LI>
+            </OakLI>
           ))}
         </FlexList>
         <OakHeading
@@ -124,10 +129,10 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </OakHeading>
         <FlexList $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.techPartners.map((partner) => (
-            <LI
-              $mb={32}
-              $minWidth={"20%"}
-              listStyle="none"
+            <OakLI
+              $mb={"space-between-m2"}
+              $minWidth={["all-spacing-10", "all-spacing-18", "all-spacing-19"]}
+              $listStyle="none"
               key={`tech-partners-${partner.name}`}
             >
               <ImageContainer
@@ -135,7 +140,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
                 name={partner.name}
                 image={partner}
               />
-            </LI>
+            </OakLI>
           ))}
         </FlexList>
         <GenericContactCard {...pageData.contactSection} />
