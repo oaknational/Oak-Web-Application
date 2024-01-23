@@ -102,7 +102,7 @@ describe("QuizRenderer", () => {
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="formId" />
-              <OakPrimaryButton form={"a-form"} type="submit">
+              <OakPrimaryButton form={"formId"} type="submit">
                 Submit
               </OakPrimaryButton>
             </QuizEngineContext.Provider>
@@ -151,8 +151,8 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer formId="formId" />
-              <OakPrimaryButton form={"a-form"} type="submit">
+              <QuizRenderer formId="form-id" />
+              <OakPrimaryButton form="form-id" type="submit">
                 Submit
               </OakPrimaryButton>
             </QuizEngineContext.Provider>
@@ -191,8 +191,8 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer formId="formId" />
-              <OakPrimaryButton form={"a-form"} type="submit">
+              <QuizRenderer formId="form-id" />
+              <OakPrimaryButton form="form-id" type="submit">
                 Submit
               </OakPrimaryButton>
             </QuizEngineContext.Provider>
@@ -256,7 +256,7 @@ describe("QuizRenderer", () => {
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer formId="form-id" />
-            <OakPrimaryButton form={"a-form"} type="submit">
+            <OakPrimaryButton form="form-id" type="submit">
               Submit
             </OakPrimaryButton>
           </QuizEngineContext.Provider>
