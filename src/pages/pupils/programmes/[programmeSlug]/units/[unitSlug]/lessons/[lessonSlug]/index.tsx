@@ -35,7 +35,7 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
         <OakFlex
           $width={"100vw"}
           $height={"100vh"}
-          $background={"bg-decorative1–main"}
+          $background={"bg-decorative1-main"}
           $flexDirection={"column"}
           $alignItems={"center"}
           $pt="inner-padding-xl"
