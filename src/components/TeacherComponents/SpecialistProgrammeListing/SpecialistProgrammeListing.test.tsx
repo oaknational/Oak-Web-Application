@@ -58,6 +58,10 @@ describe("SpecialistProgrammeListing", () => {
     await user.click(programmeCard);
 
     expect(onClick).toHaveBeenCalledTimes(1);
-    // expect(onClick).toHaveBeenCalledWith({});
+    expect(onClick).toHaveBeenCalledWith({
+      developmentalStageSlug: "early-development-1",
+      developmentalStageTitle: "Early development 1",
+      programmeSlug: "early-development",
+    });
   });
 });
