@@ -190,8 +190,8 @@ type SubjectListingLinkProps = {
 };
 
 type SpecialistSubjectListingLinkProps = Omit<
-  LessonDownloadsLinkProps,
-  "page"
+  SubjectListingLinkProps,
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-subject-index";
 };
