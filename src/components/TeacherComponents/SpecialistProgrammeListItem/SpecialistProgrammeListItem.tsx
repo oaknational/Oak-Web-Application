@@ -6,23 +6,19 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
-import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 
-export type SubjectProgrammeListItemProps = {
-  programme: ProgrammeListingPageData["programmes"][number];
-  onClick: (props: ProgrammeListingPageData["programmes"][number]) => void;
+export type SpecialistProgrammeListItemProps = {
+  programme: SpecialistProgramme;
+  onClick: (props: SpecialistProgramme) => void;
 };
 
-const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
+const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
+  props,
+) => {
   const { programme, onClick } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
-
-  const heading = programme.tierTitle ?? programme.examBoardTitle;
-
-  const ariaLabel = `${programme.tierTitle ? programme.tierTitle : ""} ${
-    programme.examBoardTitle ? programme.examBoardTitle : ""
-  }`;
 
   return (
     <Card
@@ -35,13 +31,17 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
     >
       <Flex $pa={16}>
         <OwaLink
-          page="unit-index"
+          page={"specialist-unit-index"}
           {...primaryTargetProps}
           {...props.programme}
           onClick={() => onClick(programme)}
         >
-          <Heading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
-            {heading}
+          <Heading
+            $font={"heading-7"}
+            tag="h3"
+            ariaLabel={props.programme.developmentalStageTitle}
+          >
+            {props.programme.developmentalStageTitle}
           </Heading>
         </OwaLink>
       </Flex>
@@ -51,4 +51,4 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
   );
 };
 
-export default SubjectProgrammeListItem;
+export default SpecialistProgrammeListItem;
