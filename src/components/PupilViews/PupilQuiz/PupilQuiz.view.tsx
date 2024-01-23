@@ -1,6 +1,5 @@
 import {
   OakBackLink,
-  OakFlex,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonTopNav,
@@ -19,11 +18,19 @@ type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
 };
 
-type CurrentSection = "starter-quiz" | "exit-quiz";
+type QuizSection = "starter-quiz" | "exit-quiz";
+
+const isQuizSection = (section: string): section is QuizSection => {
+  return ["starter-quiz", "exit-quiz"].includes(section);
+};
 
 const QuizInner = () => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
+
+  if (!isQuizSection(currentSection)) {
+    return null;
+  }
 
   const { currentQuestionIndex, questionState, handleNextQuestion } =
     quizEngineContext;
@@ -35,22 +42,19 @@ const QuizInner = () => {
   const bottomNavSlot = (
     <OakLessonBottomNav>
       {!isFeedbackMode && (
-        <OakFlex $pt="inner-padding-l">
-          <OakPrimaryButton
-            form={formId}
-            disabled={questionState[currentQuestionIndex]?.mode === "init"}
-            type="submit"
-          >
-            Submit
-          </OakPrimaryButton>
-        </OakFlex>
+        <OakPrimaryButton
+          form={formId}
+          disabled={questionState[currentQuestionIndex]?.mode === "init"}
+          type="submit"
+          width={["100%", "auto"]}
+        >
+          Submit
+        </OakPrimaryButton>
       )}
       {isFeedbackMode && (
-        <OakFlex $pt="inner-padding-l">
-          <OakPrimaryButton onClick={handleNextQuestion}>
-            Next Question
-          </OakPrimaryButton>
-        </OakFlex>
+        <OakPrimaryButton width={["100%", "auto"]} onClick={handleNextQuestion}>
+          Next Question
+        </OakPrimaryButton>
       )}
     </OakLessonBottomNav>
   );
@@ -67,10 +71,11 @@ const QuizInner = () => {
       }
       counterSlot={null}
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
-      lessonSectionName={currentSection as CurrentSection}
+      lessonSectionName={currentSection}
       mobileSummary="In progress..."
     />
   );
+
   return (
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
