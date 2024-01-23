@@ -1,15 +1,13 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm, OakHeading } from "@oak-academy/oak-components";
+import { OakFlex, OakForm } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
-  const { currentSection } = useLessonEngineContext();
 
   const {
     currentQuestionData,
@@ -91,18 +89,11 @@ export const QuizRenderer = () => {
     <OakFlex
       $flexDirection={"column"}
       $color="text-subdued"
-      // $minWidth={"all-spacing-24"}
       $pa={"inner-padding-xl"}
-      $ba="border-solid-m"
-      $borderColor={"border-inverted"}
-      $background={"bg-decorative1-very-subdued"}
       $alignItems={"center"}
       $gap={"all-spacing-5"}
       $width={"100%"}
     >
-      <OakHeading tag="h1">
-        {currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
-      </OakHeading>
       {innerRender}
     </OakFlex>
   );

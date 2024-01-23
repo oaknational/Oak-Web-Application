@@ -25,7 +25,6 @@ import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo/PupilVideo.v
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
-import { QuizEngineProvider } from "@/components/PupilComponents/QuizEngineProvider";
 
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
@@ -55,19 +54,11 @@ const PupilPageContent = ({
     case "intro":
       return <PupilViewsIntro />;
     case "starter-quiz":
-      return (
-        <QuizEngineProvider questionsArray={starterQuiz ?? []}>
-          <PupilViewsQuiz />
-        </QuizEngineProvider>
-      );
+      return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
       return <PupilViewsVideo />;
     case "exit-quiz":
-      return (
-        <QuizEngineProvider questionsArray={exitQuiz ?? []}>
-          <PupilViewsQuiz />
-        </QuizEngineProvider>
-      );
+      return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
       return <PupilViewsReview />;
     default:
