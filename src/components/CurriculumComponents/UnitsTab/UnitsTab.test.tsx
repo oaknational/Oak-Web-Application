@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { act, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
@@ -285,12 +285,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const threads = queryAllByTestId("thread-radio");
-    await act(async () => {
-      if (!threads[0]) {
-        throw new Error("No thread option found");
-      }
-      await userEvent.click(threads[0]);
-    });
+    if (!threads[0]) {
+      throw new Error("No thread option found");
+    }
+    await userEvent.click(threads[0]);
     const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
       return unit.threads.some(
         (thread) => thread.slug === threads[0]?.getAttribute("value"),
@@ -307,12 +305,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const yearOptions = queryAllByTestId("year-radio");
-    await act(async () => {
-      if (!yearOptions[0]) {
-        throw new Error("No year option found");
-      }
-      await userEvent.click(yearOptions[0]);
-    });
+    if (!yearOptions[0]) {
+      throw new Error("No year option found");
+    }
+    await userEvent.click(yearOptions[0]);
     const headings = await findAllByTestId("year-heading");
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent(
@@ -385,12 +381,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(1);
     const subjectButtons = await findAllByTestId("subject-button");
     expect(subjectButtons).toHaveLength(2);
-    await act(async () => {
-      if (!subjectButtons[1]) {
-        throw new Error("Missing second subject button");
-      }
-      userEvent.click(subjectButtons[1]);
-    });
+    if (!subjectButtons[1]) {
+      throw new Error("Missing second subject button");
+    }
+    userEvent.click(subjectButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(1);
@@ -463,12 +457,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const domainButtons = await findAllByTestId("domain-button");
     // When there are domains, "All" button is added, so 3 expected
     expect(domainButtons).toHaveLength(3);
-    await act(async () => {
-      if (!domainButtons[1]) {
-        throw new Error("Missing second domain button");
-      }
-      userEvent.click(domainButtons[1]);
-    });
+    if (!domainButtons[1]) {
+      throw new Error("Missing second domain button");
+    }
+    userEvent.click(domainButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(1);
@@ -597,12 +589,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(2);
     const tierButtons = await findAllByTestId("tier-button");
     expect(tierButtons).toHaveLength(2);
-    await act(async () => {
-      if (!tierButtons[1]) {
-        throw new Error("Missing second subject button");
-      }
-      userEvent.click(tierButtons[1]);
-    });
+    if (!tierButtons[1]) {
+      throw new Error("Missing second subject button");
+    }
+    userEvent.click(tierButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
