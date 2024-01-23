@@ -13,7 +13,6 @@ import {
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
-
 const questionsArrayFixture = quizQuestions || [];
 
 const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
