@@ -32,3 +32,6 @@ export type LessonOverviewInPathway = LessonBase & {
   unitSlug: string;
   programmeSlug: string;
 };
+
+export type SpecialistLessonOverview = LessonBase &
+  Omit<LessonOverviewInPathway, "keyStageTitle" | "keyStageSlug">;
