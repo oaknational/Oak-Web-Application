@@ -1,21 +1,15 @@
-export interface FetchMatcher {
-  path: string;
-  jsonValue: Record<string, unknown>;
-  response: Promise<{
-    ok: boolean;
-    status: number;
-    json: () => Promise<Record<string, unknown>>;
-  }>;
-}
+import type { FakeResponse, FetchMatcher } from "./generics";
 
 /**
- * Takes an array responses to return from fetch, to be returned in order.
+ * Takes an array of FetchMatchers, or a single FetchMatcher, and returns a
+ * mock fetch function that will return the response specified by the matcher.
+ *
  * @param matchers - An array of FetchMatchers, or a single FetchMatcher.
- * @returns
+ * @returns A mock fetch function.
  */
 export function getFakeFetch(
   matchers: FetchMatcher[] | FetchMatcher,
-): jest.Mock {
+): jest.Mock<() => Promise<FakeResponse>> {
   const mockFetch = jest.fn();
 
   mockFetch.mockImplementation((...fetchArgs) => {
@@ -39,3 +33,9 @@ export function getFakeFetch(
 
   return mockFetch;
 }
+
+/**
+ * Export the specific fetch matcher builders.
+ */
+
+export { buildHubspotFetchMatcher } from "./hubspot";

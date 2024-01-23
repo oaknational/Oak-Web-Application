@@ -4,10 +4,9 @@ import {
   NewsletterHubspotFormData,
 } from "./getHubspotFormPayloads";
 
-import { getFakeFetch } from "@/__tests__/__helpers__/fakeFetch";
-import type {
-  FetchMatcher,
-  ResponseData,
+import {
+  getFakeFetch,
+  buildHubspotFetchMatcher as buildMatcher,
 } from "@/__tests__/__helpers__/fakeFetch";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
@@ -16,47 +15,6 @@ const hubspotFormId = "hubspot-test-form";
 const primaryFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
 const fallbackFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFallbackFormId}`;
 
-interface HubspotResponseData extends ResponseData {
-  status: number;
-  inlineMessage?: string;
-  errors?: Record<string, unknown>[];
-  aSurpriseField?: string;
-}
-class HubspotFetchMatcher implements FetchMatcher {
-  private _path: string;
-  private _responseData: HubspotResponseData;
-
-  static build(path: string, response: HubspotResponseData) {
-    return new HubspotFetchMatcher(path, response);
-  }
-
-  get path() {
-    return this._path;
-  }
-
-  get jsonValue() {
-    const { inlineMessage, errors } = this._responseData;
-    const jsonResponse = inlineMessage ? { inlineMessage } : { errors };
-    return jsonResponse;
-  }
-
-  get response() {
-    const { status, errors } = this._responseData;
-    const jsonResponse = this.jsonValue;
-    return Promise.resolve({
-      ok: !errors,
-      status: status,
-      json: () => Promise.resolve(jsonResponse),
-    });
-  }
-
-  constructor(path: string, response: HubspotResponseData) {
-    this._path = path;
-    this._responseData = response;
-  }
-}
-
-const buildMatcher = HubspotFetchMatcher.build;
 const primaryFormSuccess = buildMatcher(primaryFormEndpoint, {
   status: 200,
   inlineMessage: "Thanks that worked the first time",
@@ -124,8 +82,10 @@ describe("hubspotSubmitForm", () => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
-    it("should fetch the correct url with the correct payload", async () => {
-      global.fetch = getFakeFetch(primaryFormSuccess);
+    it.only("should fetch the correct url with the correct payload", async () => {
+      global.fetch = getFakeFetch(
+        primaryFormSuccess,
+      ) as unknown as typeof fetch;
 
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
