@@ -1,3 +1,5 @@
+import { describe, it, expect } from "vitest";
+
 import specialistLessonDownloadsFixtures from "./SpecialistLessonDownloads.fixture";
 import SpecialistLessonDownloads from "./SpecialistLessonDownloads.view";
 
@@ -6,7 +8,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 describe("SpecialistLessonDownloads", () => {
-  test("renders component", () => {
+  it("renders component", () => {
     const { getByText } = render(
       <SpecialistLessonDownloads
         curriculumData={specialistLessonDownloadsFixtures()}
@@ -17,7 +19,7 @@ describe("SpecialistLessonDownloads", () => {
     expect(lessonDownloads).toBeInTheDocument();
   });
 
-  test("renders with the correct resources to download", () => {
+  it("renders with the correct resources to download", () => {
     const { getAllByTestId, getByText } = render(
       <SpecialistLessonDownloads
         curriculumData={specialistLessonDownloadsFixtures()}

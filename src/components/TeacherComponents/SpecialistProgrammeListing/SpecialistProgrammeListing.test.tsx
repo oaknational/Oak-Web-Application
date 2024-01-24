@@ -1,3 +1,4 @@
+import { vi, describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -9,10 +10,10 @@ import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum
 const curriculumData = specialistProgrammeListingPageDataFixture();
 
 const render = renderWithProviders();
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("SpecialistProgrammeListing", () => {
-  test("render a tier subject component with heading ", () => {
+  it("render a tier subject component with heading ", () => {
     render(
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
@@ -20,7 +21,7 @@ describe("SpecialistProgrammeListing", () => {
     expect(screen.getByText("Developmental stages")).toBeInTheDocument();
   });
 
-  test("render a list of card items with the name of the programmes ", () => {
+  it("render a list of card items with the name of the programmes ", () => {
     const { getAllByRole } = render(
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
@@ -33,7 +34,7 @@ describe("SpecialistProgrammeListing", () => {
     );
   });
 
-  test("each card items will link have a link to a different query ", () => {
+  it("each card items will link have a link to a different query ", () => {
     const { getByRole } = render(
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );

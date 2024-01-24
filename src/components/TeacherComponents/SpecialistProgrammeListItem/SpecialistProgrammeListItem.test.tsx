@@ -1,3 +1,4 @@
+import { vi, describe, beforeEach, it, expect } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -8,14 +9,14 @@ import SpecialistProgrammeListItem, {
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistProgrammes.fixture";
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const programme = specialistProgrammeListingPageDataFixture()
   .programmes[0] as SpecialistProgrammeListItemProps["programme"];
 
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders SpecialistProgrammeListItem", () => {
