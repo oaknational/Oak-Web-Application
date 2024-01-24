@@ -2,6 +2,12 @@ import LessonOverviewCommonMisconceptions from "./LessonOverviewCommonMisconcept
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+jest.mock("better-react-mathjax", () => ({
+  MathJax: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+}));
+
 describe("LessonOverviewCommonMisconceptions component", () => {
   it("should render with correct heading", () => {
     const commonMisconceptions = [
@@ -12,7 +18,7 @@ describe("LessonOverviewCommonMisconceptions component", () => {
         commonMisconceptions={commonMisconceptions}
       />,
     );
-    const componentTitle = getByText("Common misconceptions");
+    const componentTitle = getByText("Common misconception");
     expect(getByTestId("heading")).toBeInTheDocument();
     expect(componentTitle).toBeInTheDocument();
   });
