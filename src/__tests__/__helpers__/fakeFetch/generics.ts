@@ -1,5 +1,3 @@
-import { T } from "lodash/fp";
-
 export interface ResponseConfig {
   status: number;
   errors?: Record<string, unknown>[];
@@ -19,7 +17,12 @@ export interface FakeResponse {
 export interface FetchMatcher {
   path: string;
   response: Promise<FakeResponse>;
-  jsonValue?: Record<string, unknown>;
+}
+
+class NotImplementedError extends Error {
+  constructor(message?: string) {
+    super(`Please implement in a subclass: ${message}`);
+  }
 }
 
 /**
@@ -36,7 +39,7 @@ export class GenericFetchMatcher implements FetchMatcher {
   }
 
   get response(): Promise<FakeResponse> {
-    throw TypeError("Please implement is a subclass of GenericFetchMatcher.");
+    throw new NotImplementedError();
   }
 
   protected getBaseResponseData(): FakeResponse {
@@ -55,4 +58,14 @@ export class GenericFetchMatcher implements FetchMatcher {
     this._path = path;
     this._responseConfig = response;
   }
+}
+
+export function buildFetchMatcher<
+  FetchMatcherType extends typeof GenericFetchMatcher,
+>(
+  FetchMatcherClass: FetchMatcherType,
+  path: string,
+  responseConfig: ResponseConfig,
+) {
+  return new FetchMatcherClass(path, responseConfig);
 }

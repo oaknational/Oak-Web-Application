@@ -1,4 +1,4 @@
-import { GenericFetchMatcher } from "./generics";
+import { GenericFetchMatcher, buildFetchMatcher } from "./generics";
 import type { FakeResponse, ResponseConfig } from "./generics";
 
 interface HubspotResponseConfig extends ResponseConfig {
@@ -23,7 +23,7 @@ class HubspotFetchMatcher extends GenericFetchMatcher {
   get response(): Promise<HubspotFakeResponse> {
     // Need an IIFE to use await inside a getter 🙄
     const returnData = (async () => {
-      const baseResponseData = await super.getBaseResponseData();
+      const baseResponseData = super.getBaseResponseData();
       const jsonResponse = this.jsonValue;
       const responseData = {
         ...baseResponseData,
@@ -44,5 +44,9 @@ export function buildHubspotFetchMatcher(
   path: string,
   responseConfig: HubspotResponseConfig,
 ) {
-  return new HubspotFetchMatcher(path, responseConfig);
+  return buildFetchMatcher(
+    HubspotFetchMatcher,
+    path,
+    responseConfig,
+  ) as HubspotFetchMatcher;
 }

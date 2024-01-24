@@ -82,7 +82,7 @@ describe("hubspotSubmitForm", () => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
-    it.only("should fetch the correct url with the correct payload", async () => {
+    it("should fetch the correct url with the correct payload", async () => {
       global.fetch = getFakeFetch(
         primaryFormSuccess,
       ) as unknown as typeof fetch;
@@ -130,7 +130,8 @@ describe("hubspotSubmitForm", () => {
       );
     });
 
-    it.skip("should not report error if fallback succeeds", async () => {
+    it("should not report error if fallback succeeds", async () => {
+      global.fetch = getFakeFetch([hubspotErrorFailure, fallbackFormSuccess]);
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
