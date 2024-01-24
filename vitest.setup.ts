@@ -18,9 +18,12 @@ vi.mock("react", async (importOriginal) => {
     useId: () => "react-use-id-test-result",
   };
 });
-vi.mock("@/image-data/generated/inline-sprite.svg", () => ({
-  default: "svg",
-}));
+vi.mock(
+  "@/components/GenericPagesComponents/InlineSpriteSheet/InlineSpriteSheet.tsx",
+  () => ({
+    default: () => null,
+  }),
+);
 afterEach(() => {
   cleanup();
 });

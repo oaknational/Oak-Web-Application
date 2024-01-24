@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     testTimeout: 10000,
     environment: "jsdom",
-    setupFiles: ["vitest.setup.ts"],
+    setupFiles: ["./vitest.setup.ts"],
     coverage: {
       reporter: ["lcov"],
     },
