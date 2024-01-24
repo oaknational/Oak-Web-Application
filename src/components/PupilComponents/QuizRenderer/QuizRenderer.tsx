@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
-
 import { OakFlex, OakForm } from "@oak-academy/oak-components";
+
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -88,6 +88,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           $flexDirection={"column"}
           $gap={["space-between-m", "space-between-l", "space-between-xl"]}
           $color={"text-primary"}
+          $font={["heading-6", "heading-4", "heading-4"]}
         >
           <QuizQuestionStem
             questionStem={questionStem}
