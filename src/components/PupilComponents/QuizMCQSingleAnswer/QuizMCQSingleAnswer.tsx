@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
+import {
+  OakRadioGroup,
+  OakQuizRadioButton,
+  OakSpan,
+  OakFlex,
+} from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
@@ -40,37 +45,43 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakRadioGroup
-      name={questionUid || "mcq-single-answer"}
+    <OakFlex
       $flexDirection={"column"}
-      $gap={"space-between-s"}
-      onChange={handleOnChange}
-      disabled={isFeedbackMode}
+      $gap={["space-between-m", "space-between-m", "space-between-m2"]}
     >
-      {answers?.map((answer, i) => {
-        const label = answer.answer.find(isText);
+      <OakSpan>Select one answer</OakSpan>
+      <OakRadioGroup
+        name={questionUid || "mcq-single-answer"}
+        $flexDirection={"column"}
+        $gap={"space-between-s"}
+        onChange={handleOnChange}
+        disabled={isFeedbackMode}
+      >
+        {answers?.map((answer, i) => {
+          const label = answer.answer.find(isText);
 
-        const image = getStemImage({
-          stem: answer.answer,
-          minWidth: "all-spacing-19",
-        });
+          const image = getStemImage({
+            stem: answer.answer,
+            minWidth: "all-spacing-19",
+          });
 
-        const feedback = Array.isArray(questionState.feedback)
-          ? questionState.feedback[i]
-          : undefined;
+          const feedback = Array.isArray(questionState.feedback)
+            ? questionState.feedback[i]
+            : undefined;
 
-        return (
-          <OakQuizRadioButton
-            id={`${questionUid}-answer-${i}`}
-            key={`${questionUid}-answer-${i}`}
-            tabIndex={i}
-            value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
-            label={label?.text}
-            feedback={feedback}
-            image={image}
-          />
-        );
-      })}
-    </OakRadioGroup>
+          return (
+            <OakQuizRadioButton
+              id={`${questionUid}-answer-${i}`}
+              key={`${questionUid}-answer-${i}`}
+              tabIndex={i}
+              value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
+              label={label?.text}
+              feedback={feedback}
+              image={image}
+            />
+          );
+        })}
+      </OakRadioGroup>{" "}
+    </OakFlex>
   );
 };

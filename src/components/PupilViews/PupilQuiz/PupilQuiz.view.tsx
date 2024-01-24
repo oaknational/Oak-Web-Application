@@ -4,6 +4,7 @@ import {
   OakLessonLayout,
   OakLessonTopNav,
   OakPrimaryButton,
+  OakQuizCounter,
 } from "@oak-academy/oak-components";
 
 import {
@@ -32,15 +33,27 @@ const QuizInner = () => {
     return null;
   }
 
-  const { currentQuestionIndex, questionState, handleNextQuestion } =
-    quizEngineContext;
+  const {
+    currentQuestionIndex,
+    questionState,
+    handleNextQuestion,
+    numQuestions,
+  } = quizEngineContext;
 
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
   const formId = "quiz-form";
 
   const bottomNavSlot = (
-    <OakLessonBottomNav>
+    <OakLessonBottomNav
+      feedback={
+        isFeedbackMode
+          ? questionState[currentQuestionIndex]?.grade === 1
+            ? "correct"
+            : "incorrect"
+          : null
+      }
+    >
       {!isFeedbackMode && (
         <OakPrimaryButton
           form={formId}
@@ -53,7 +66,9 @@ const QuizInner = () => {
       )}
       {isFeedbackMode && (
         <OakPrimaryButton width={["100%", "auto"]} onClick={handleNextQuestion}>
-          Next Question
+          {currentQuestionIndex + 1 === numQuestions
+            ? "Continue lesson"
+            : "Next question"}
         </OakPrimaryButton>
       )}
     </OakLessonBottomNav>
@@ -69,7 +84,12 @@ const QuizInner = () => {
           }}
         />
       }
-      counterSlot={null}
+      counterSlot={
+        <OakQuizCounter
+          counter={currentQuestionIndex + 1}
+          total={numQuestions}
+        />
+      }
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       lessonSectionName={currentSection}
       mobileSummary="In progress..."
