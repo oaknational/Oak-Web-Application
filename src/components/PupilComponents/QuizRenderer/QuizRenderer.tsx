@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm } from "@oak-academy/oak-components";
 
+import { OakFlex, OakForm } from "@oak-academy/oak-components";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -77,8 +77,18 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     };
 
     innerRender = (
-      <OakForm id={formId} onSubmit={handleSubmit}>
-        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
+      <OakForm
+        id={formId}
+        onSubmit={handleSubmit}
+        $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
+        $minWidth={["100%", "all-spacing-21", "all-spacing-23"]}
+        $ph={["inner-padding-none", "inner-padding-none", "inner-padding-xl"]}
+      >
+        <OakFlex
+          $flexDirection={"column"}
+          $gap={["space-between-m", "space-between-l", "space-between-xl"]}
+          $color={"text-primary"}
+        >
           <QuizQuestionStem
             questionStem={questionStem}
             index={currentQuestionIndex}
@@ -94,7 +104,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     <OakFlex
       $flexDirection={"column"}
       $color="text-subdued"
-      $pa={"inner-padding-xl"}
+      $pa={["inner-padding-none", "inner-padding-xl"]}
       $alignItems={"center"}
       $gap={"all-spacing-5"}
       $width={"100%"}
