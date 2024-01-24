@@ -10,6 +10,7 @@ import {
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
+  SpecialistLessonOverview,
 } from "@/components/TeacherComponents/types/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -34,7 +35,10 @@ import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOver
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewCanonical | LessonOverviewInPathway;
+  lesson:
+    | LessonOverviewCanonical
+    | LessonOverviewInPathway
+    | SpecialistLessonOverview;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
@@ -137,7 +141,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
   return (
-    <>
+    <MathJaxProvider>
       <HeaderLesson
         {...lesson}
         {...commonPathway}
@@ -218,7 +222,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     />
                   </LessonItemContainer>
                 )}
-
                 <LessonItemContainer
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
@@ -285,62 +288,58 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     />
                   </LessonItemContainer>
                 )}
-                <MathJaxProvider>
-                  {pageLinks.find((p) => p.label === "Starter quiz") && (
-                    <LessonItemContainer
-                      ref={starterQuizSectionRef}
-                      title={"Starter quiz"}
-                      shareable={isLegacyLicense}
-                      anchorId="starter-quiz"
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "starter quiz",
-                        });
-                      }}
-                      slugs={slugs}
-                      isFinalElement={
-                        pageLinks.findIndex(
-                          (p) => p.label === "Starter quiz",
-                        ) ===
-                        pageLinks.length - 1
-                      }
-                    >
-                      {starterQuiz && (
-                        <QuizContainerNew
-                          questions={starterQuiz}
-                          imageAttribution={starterQuizImageAttribution}
-                        />
-                      )}
-                    </LessonItemContainer>
-                  )}
-                  {pageLinks.find((p) => p.label === "Exit quiz") && (
-                    <LessonItemContainer
-                      ref={exitQuizSectionRef}
-                      title={"Exit quiz"}
-                      anchorId="exit-quiz"
-                      downloadable={true}
-                      shareable={isLegacyLicense}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "exit quiz",
-                        });
-                      }}
-                      slugs={slugs}
-                      isFinalElement={
-                        pageLinks.findIndex((p) => p.label === "Exit quiz") ===
-                        pageLinks.length - 1
-                      }
-                    >
-                      {exitQuiz && (
-                        <QuizContainerNew
-                          questions={exitQuiz}
-                          imageAttribution={exitQuizImageAttribution}
-                        />
-                      )}
-                    </LessonItemContainer>
-                  )}
-                </MathJaxProvider>
+                {pageLinks.find((p) => p.label === "Starter quiz") && (
+                  <LessonItemContainer
+                    ref={starterQuizSectionRef}
+                    title={"Starter quiz"}
+                    shareable={isLegacyLicense}
+                    anchorId="starter-quiz"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "starter quiz",
+                      });
+                    }}
+                    slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Starter quiz") ===
+                      pageLinks.length - 1
+                    }
+                  >
+                    {starterQuiz && (
+                      <QuizContainerNew
+                        questions={starterQuiz}
+                        imageAttribution={starterQuizImageAttribution}
+                      />
+                    )}
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Exit quiz") && (
+                  <LessonItemContainer
+                    ref={exitQuizSectionRef}
+                    title={"Exit quiz"}
+                    anchorId="exit-quiz"
+                    downloadable={true}
+                    shareable={isLegacyLicense}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "exit quiz",
+                      });
+                    }}
+                    slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Exit quiz") ===
+                      pageLinks.length - 1
+                    }
+                  >
+                    {exitQuiz && (
+                      <QuizContainerNew
+                        questions={exitQuiz}
+                        imageAttribution={exitQuizImageAttribution}
+                      />
+                    )}
+                  </LessonItemContainer>
+                )}
                 {pageLinks.find((p) => p.label === "Additional material") && (
                   <LessonItemContainer
                     ref={additionalMaterialSectionRef}
@@ -368,12 +367,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     {/* 
                     Temporary fix for additional material due to unexpected poor rendering of google docs
                     <OverviewPresentation
-                      asset={additionalMaterialUrl}
-                      isAdditionalMaterial={true}
-                      title={lessonTitle}
-                      isWorksheetLandscape={isWorksheetLandscape}
-                      isWorksheet={true}
-                    /> */}
+                    asset={additionalMaterialUrl}
+                    isAdditionalMaterial={true}
+                    title={lessonTitle}
+                    isWorksheetLandscape={isWorksheetLandscape}
+                    isWorksheet={true}
+                  /> */}
                   </LessonItemContainer>
                 )}
               </Flex>
@@ -381,6 +380,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </Grid>
         )}
       </MaxWidth>
-    </>
+    </MathJaxProvider>
   );
 }
