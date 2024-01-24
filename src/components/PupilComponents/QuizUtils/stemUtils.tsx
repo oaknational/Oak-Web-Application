@@ -1,4 +1,4 @@
-import { OakAllSpacingToken, OakImage } from "@oak-academy/oak-components";
+import { OakAllSpacingToken, OakImage } from "@oaknational/oak-components";
 
 import {
   StemImageObject,

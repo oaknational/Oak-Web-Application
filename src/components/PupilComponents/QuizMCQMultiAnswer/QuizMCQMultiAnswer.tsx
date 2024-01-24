@@ -14,7 +14,7 @@ import {
   OakFlex,
   OakImage,
   OakQuizCheckBox,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import {
   StemImageObject,

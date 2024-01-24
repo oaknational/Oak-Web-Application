@@ -6,7 +6,7 @@ import {
   OakHeading,
   OakGrid,
   OakGridArea,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";

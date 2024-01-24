@@ -1,4 +1,4 @@
-import { OakFlex } from "@oak-academy/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import {
   QuestionsArray,

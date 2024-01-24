@@ -1,4 +1,4 @@
-import { OakImage } from "@oak-academy/oak-components";
+import { OakImage } from "@oaknational/oak-components";
 
 import { getStemImage, getStemImageData } from "./stemUtils";
 

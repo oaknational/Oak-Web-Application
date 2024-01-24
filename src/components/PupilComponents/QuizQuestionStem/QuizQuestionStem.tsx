@@ -1,4 +1,4 @@
-import { OakFlex, OakImage, OakSpan } from "@oak-academy/oak-components";
+import { OakFlex, OakImage, OakSpan } from "@oaknational/oak-components";
 
 import {
   removeMarkdown,
