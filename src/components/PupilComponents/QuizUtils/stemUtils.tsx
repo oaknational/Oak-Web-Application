@@ -1,10 +1,14 @@
-import { OakAllSpacingToken, OakImage } from "@oaknational/oak-components";
+import {
+  OakAllSpacingToken,
+  OakCloudinaryImage,
+} from "@oaknational/oak-components";
 
 import {
   StemImageObject,
   StemObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export const isImage = (obj: StemObject): obj is StemImageObject =>
   obj.type === "image";
@@ -32,12 +36,14 @@ export const getStemImage = ({
   const data = getStemImageData(stem);
   if (data)
     return (
-      <OakImage
-        src={data.image_object.secure_url}
+      <OakCloudinaryImage
+        cloudinaryId={data.image_object.secure_url}
         alt={""} // TODO: add alt text
         width={data.image_object.width}
         height={data.image_object.height}
         $minWidth={minWidth}
+        placeholder="oak"
+        sizes={getSizes(["100vw", 1200])}
       />
     );
 };
