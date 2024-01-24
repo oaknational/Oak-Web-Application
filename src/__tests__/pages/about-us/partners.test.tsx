@@ -83,7 +83,7 @@ describe("pages/about-us/board.tsx", () => {
     );
   });
 
-  it("Renders correct list of curriculum partners", async () => {
+  it("Renders curriculum partners", async () => {
     renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
 
     const curriculumPartnersList = screen.getByTestId(
@@ -92,7 +92,7 @@ describe("pages/about-us/board.tsx", () => {
     expect(curriculumPartnersList.childElementCount).toBe(3);
   });
 
-  it("Renders correct list of tech partners", async () => {
+  it("Renders tech partners", async () => {
     renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
 
     const curriculumPartnersList = screen.getByTestId("tech-partners-list");

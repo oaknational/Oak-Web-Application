@@ -4,7 +4,8 @@ import {
   OakFlex,
   OakMaxWidth,
   OakHeading,
-  OakLI,
+  OakGrid,
+  OakGridArea,
 } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -23,7 +24,6 @@ import CMSImage, {
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -103,27 +103,21 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           Curriculum partners
         </OakHeading>
-        <FlexList
-          $ph={[16, 0]}
-          $flexWrap={"wrap"}
-          $width={"100%"}
+        <OakGrid
+          $mb={"space-between-xl"}
           data-testid="curriculum-partners-list"
         >
           {pageData.curriculumPartners.map((partner) => (
-            <OakLI
-              $mb={"space-between-m2"}
-              $minWidth={["all-spacing-10", "all-spacing-18", "all-spacing-19"]}
-              $listStyle={"none"}
-              key={`curriculum-partners-${partner.name}`}
-            >
+            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
               <ImageContainer
+                $pa={[16, 24, 32]}
                 name={partner.name}
                 image={partner}
-                $pa={[4, 16]}
               />
-            </OakLI>
+            </OakGridArea>
           ))}
-        </FlexList>
+        </OakGrid>
+
         <OakHeading
           $mb={["space-between-l", "space-between-m2"]}
           $font={["heading-6", "heading-5"]}
@@ -131,28 +125,18 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           Tech partners
         </OakHeading>
-        <FlexList
-          $ph={[16, 0]}
-          $mb={56}
-          $flexWrap={"wrap"}
-          $width={"100%"}
-          data-testid="tech-partners-list"
-        >
+        <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
           {pageData.techPartners.map((partner) => (
-            <OakLI
-              $mb={"space-between-m2"}
-              $minWidth={["all-spacing-10", "all-spacing-18", "all-spacing-19"]}
-              $listStyle="none"
-              key={`tech-partners-${partner.name}`}
-            >
+            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
               <ImageContainer
-                $pa={[8, 32]}
+                $pa={[16, 24, 32]}
                 name={partner.name}
                 image={partner}
               />
-            </OakLI>
+            </OakGridArea>
           ))}
-        </FlexList>
+        </OakGrid>
+
         <GenericContactCard {...pageData.contactSection} />
       </OakMaxWidth>
     </Layout>
