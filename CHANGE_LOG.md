@@ -1,3 +1,24 @@
+## [1.333.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.1...v1.333.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* point dowloads gql to correct mv ([9a29fcf](https://github.com/oaknational/Oak-Web-Application/commit/9a29fcfdb1d2dcdbab9eaed10122ed55d8028a1d))
+
+## [1.333.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.0...v1.333.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* move hubspot submission before downloads ([3188268](https://github.com/oaknational/Oak-Web-Application/commit/3188268a30f003dbaf20aa688702ada3a5eb7652))
+
+# [1.333.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.3...v1.333.0) (2024-01-24)
+
+
+### Features
+
+* add mathjax to lesson details ([b890ce4](https://github.com/oaknational/Oak-Web-Application/commit/b890ce4a798633cbfe7ea3592a38c79b6992aeae))
+
 ## [1.332.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.2...v1.332.3) (2024-01-23)
 
 ## [1.332.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.1...v1.332.2) (2024-01-23)
