@@ -103,13 +103,17 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           Curriculum partners
         </OakHeading>
-        <FlexList $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
+        <FlexList
+          $ph={[16, 0]}
+          $flexWrap={"wrap"}
+          $width={"100%"}
+          data-testid="curriculum-partners-list"
+        >
           {pageData.curriculumPartners.map((partner) => (
             <OakLI
               $mb={"space-between-m2"}
               $minWidth={["all-spacing-10", "all-spacing-18", "all-spacing-19"]}
               $listStyle={"none"}
-              // $minWidth={"20%"}
               key={`curriculum-partners-${partner.name}`}
             >
               <ImageContainer
@@ -127,7 +131,13 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           Tech partners
         </OakHeading>
-        <FlexList $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
+        <FlexList
+          $ph={[16, 0]}
+          $mb={56}
+          $flexWrap={"wrap"}
+          $width={"100%"}
+          data-testid="tech-partners-list"
+        >
           {pageData.techPartners.map((partner) => (
             <OakLI
               $mb={"space-between-m2"}
