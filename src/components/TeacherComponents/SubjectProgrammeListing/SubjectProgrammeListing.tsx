@@ -1,10 +1,9 @@
 import React, { FC } from "react";
+import { OakGrid } from "@oak-academy/oak-components";
 
-import ProgrammeListContainer from "../ProgrammeListContainer";
-
+import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import Grid from "@/components/SharedComponents/Grid";
 import { Heading } from "@/components/SharedComponents/Typography";
 
 const SubjectProgrammeListing: FC<
@@ -33,7 +32,7 @@ const SubjectProgrammeListing: FC<
 
   return (
     <>
-      <Grid $cg={16} $rg={16}>
+      <OakGrid $cg={"all-spacing-4"} $rg={"all-spacing-4"}>
         {examBoards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
@@ -82,7 +81,7 @@ const SubjectProgrammeListing: FC<
             })}
           </>
         )}
-      </Grid>
+      </OakGrid>
     </>
   );
 };

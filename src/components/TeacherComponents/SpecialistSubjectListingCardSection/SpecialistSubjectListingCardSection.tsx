@@ -1,11 +1,11 @@
-import { SpecialistSubject } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
-import SpecialistSubjectCard from "../SpecialistSubjectListingCard/SpecialistSubjectCard";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
+import SpecialistSubjectCard from "@/components/TeacherComponents/SpecialistSubjectListingCard/SpecialistSubjectCard";
 
 const getSpecialistCardBackgroundColour = (heading: string) => {
   switch (heading) {
@@ -24,16 +24,16 @@ const SpecialistSubjectCardSection = (props: {
 }) => {
   return (
     <Flex $flexDirection="column" $gap={24}>
-      <Grid $rg={16}>
-        <GridArea $colSpan={[12]}>
+      <OakGrid $rg={"all-spacing-4"}>
+        <OakGridArea $colSpan={[12]}>
           <Heading tag="h2" $font="heading-3">
             {props.heading}
           </Heading>
-        </GridArea>
-        <GridArea $colSpan={[12, 12, 9]}>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, 12, 9]}>
           <P>{props.summary}</P>
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
       <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>
         {props.subjects.map((subject, i) => (
           <GridAreaListItem

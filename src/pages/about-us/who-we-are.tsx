@@ -17,7 +17,6 @@ import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -136,10 +135,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           $colStart={[1, 7]}
           $colSpan={[12, 6]}
         />
-        <Grid $mb={80} $cg={28} $rg={32}>
+        <OakGrid
+          $mb={"space-between-xxxl"}
+          $cg={"all-spacing-6"}
+          $rg={"all-spacing-7"}
+        >
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
-              <GridArea $colSpan={[12, 6]}>
+              <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $background={"aqua"}>
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
                   <Heading
@@ -155,10 +158,10 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                     />
                   </Typography>
                 </Card>
-              </GridArea>
+              </OakGridArea>
             </Fragment>
           ))}
-        </Grid>
+        </OakGrid>
         <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>

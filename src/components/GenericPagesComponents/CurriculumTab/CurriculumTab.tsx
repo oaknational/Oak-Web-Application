@@ -1,10 +1,10 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, {
@@ -17,8 +17,8 @@ const CurriculumTab: FC = () => {
   return (
     <Flex $background={"aqua"} $pv={24}>
       <MaxWidth $ph={[16]} $pb={24}>
-        <Grid $cg={16}>
-          <GridArea $colSpan={[12, 6]}>
+        <OakGrid $cg={"all-spacing-4"}>
+          <OakGridArea $colSpan={[12, 6]}>
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -56,8 +56,8 @@ const CurriculumTab: FC = () => {
                 />
               </Flex>
             </Flex>
-          </GridArea>
-          <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <Flex
               $pv={64}
               $flexDirection={"column"}
@@ -95,8 +95,8 @@ const CurriculumTab: FC = () => {
                 <CurriculumTabBadge icon="bell" />
               </Box>
             </Flex>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </Flex>
   );

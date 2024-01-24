@@ -1,14 +1,13 @@
 import React, { FC } from "react";
+import { OakGridArea } from "@oak-academy/oak-components";
 
-import ProgrammeListContainer from "../ProgrammeListContainer";
-import SpecialistProgrammeListItem from "../SpecialistProgrammeListItem";
-
+import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
+import SpecialistProgrammeListItem from "@/components/TeacherComponents/SpecialistProgrammeListItem";
 import { Heading } from "@/components/SharedComponents/Typography";
 import {
   SpecialistProgramme,
   SpecialistProgrammes,
 } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
-import { GridArea } from "@/components/SharedComponents/Grid";
 
 const SpecialistProgrammeListing: FC<{
   onClick: (props: SpecialistProgramme) => void;
@@ -27,8 +26,8 @@ const SpecialistProgrammeListing: FC<{
       </Heading>
       {programmes.map((programme) => {
         return (
-          <GridArea
-            $mb={16}
+          <OakGridArea
+            $mb={"space-between-s"}
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
@@ -36,7 +35,7 @@ const SpecialistProgrammeListing: FC<{
               programme={programme}
               onClick={onClick}
             />
-          </GridArea>
+          </OakGridArea>
         );
       })}
     </ProgrammeListContainer>

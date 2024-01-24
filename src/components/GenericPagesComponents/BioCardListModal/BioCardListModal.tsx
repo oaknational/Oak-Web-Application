@@ -1,4 +1,5 @@
 import { FC, MutableRefObject, useRef } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import { ModalControllerRefs } from "./useBioCardListModal";
 
@@ -13,7 +14,6 @@ import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import BioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog";
 import useBioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog";
@@ -99,8 +99,15 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
           $justifyContent={"unset"}
           $alignItems={"unset"}
         >
-          <Grid $position="relative" $mt={[0, 16, 0]}>
-            <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
+          <OakGrid
+            $position="relative"
+            $mt={[
+              "space-between-none",
+              "space-between-s",
+              "space-between-none",
+            ]}
+          >
+            <OakGridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
               <Box $position={"relative"} $zIndex={"inFront"}>
                 <Heading
                   {...titleProps}
@@ -123,8 +130,12 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   {role}
                 </P>
               </Box>
-            </GridArea>
-            <GridArea $colSpan={[12, 7, 4]} $order={[0, 1]} $pt={[48, 0]}>
+            </OakGridArea>
+            <OakGridArea
+              $colSpan={[12, 7, 4]}
+              $order={[0, 1]}
+              $pt={["inner-padding-xl", "inner-padding-none"]}
+            >
               <Box
                 $position="relative"
                 $mb={[20, 0]}
@@ -158,8 +169,8 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   )}
                 </AspectRatio>
               </Box>
-            </GridArea>
-            <GridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
               {bioPortableText && (
                 <Box
                   $ml={[0, 0, 72]}
@@ -171,8 +182,8 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   <PortableTextWithDefaults value={bioPortableText} />
                 </Box>
               )}
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
           <Flex
             $position={["fixed", "absolute"]}
             $bottom={[0]}

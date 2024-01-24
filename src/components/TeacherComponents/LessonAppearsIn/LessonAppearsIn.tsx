@@ -1,5 +1,6 @@
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
@@ -59,14 +60,14 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
                   </Span>
                 </Flex>
               </Heading>
-              <Grid $rg={16} $cg={16}>
+              <OakGrid $rg={"all-spacing-4"} $cg={"all-spacing-4"}>
                 {examBoards.map((examBoard, index) => {
                   const tagColors: TagColor[] = ["aqua", "pink", "lemon"];
                   const tagColor =
                     tagColors[index % tagColors.length] || "aqua";
 
                   return (
-                    <GridArea
+                    <OakGridArea
                       key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}-e-${examBoard.examBoardSlug}`}
                       $colSpan={[12, 6, 4]}
                     >
@@ -76,10 +77,10 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
                         headingTag={examBoardHeadingTag}
                         examBoardTagColor={tagColor}
                       />
-                    </GridArea>
+                    </OakGridArea>
                   );
                 })}
-              </Grid>
+              </OakGrid>
             </Flex>
           );
         });

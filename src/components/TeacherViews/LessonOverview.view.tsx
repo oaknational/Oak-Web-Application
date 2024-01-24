@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import {
   getCommonPathway,
@@ -15,7 +16,6 @@ import {
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
@@ -178,13 +178,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </Typography>
           </Box>
         ) : (
-          <Grid $mt={[48]}>
-            <GridArea
+          <OakGrid $mt={["space-between-l"]}>
+            <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <Flex
                 as="nav"
@@ -199,8 +199,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </Flex>
-            </GridArea>
-            <GridArea $colSpan={[12, 9]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 9]}>
               <Flex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
@@ -376,8 +376,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   </LessonItemContainer>
                 )}
               </Flex>
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
         )}
       </MaxWidth>
     </MathJaxProvider>

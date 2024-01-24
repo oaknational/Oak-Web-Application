@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
-import { OakFlex } from "@oak-academy/oak-components";
+import { OakFlex, OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
@@ -10,7 +10,6 @@ import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
@@ -42,10 +41,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           }}
           bodyPortableText={pageData.introPortableText}
         />
-        <Grid $mb={[72, 92]} $cg={28} $rg={[0, 40]}>
+        <OakGrid
+          $mb={["space-between-xxl", "space-between-xxxl"]}
+          $cg={"all-spacing-6"}
+          $rg={["all-spacing-0", "all-spacing-8"]}
+        >
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
-              <GridArea $colSpan={[12, 6]}>
+              <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
                   <Heading
                     $font={["heading-6", "heading-5"]}
@@ -74,10 +77,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   )}
                   <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>
-              </GridArea>
+              </OakGridArea>
             </Fragment>
           ))}
-        </Grid>
+        </OakGrid>
 
         <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>

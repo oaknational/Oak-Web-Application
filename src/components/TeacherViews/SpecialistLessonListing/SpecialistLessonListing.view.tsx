@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 
@@ -96,8 +96,11 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
         title={subjectTitle}
       />
       <MaxWidth $ph={16}>
-        <Grid data-testid="specialist-lesson-grid">
-          <GridArea $colSpan={[12, 9]} $mt={[16, 32]}>
+        <OakGrid data-testid="specialist-lesson-grid">
+          <OakGridArea
+            $colSpan={[12, 9]}
+            $mt={["space-between-s", "space-between-m2"]}
+          >
             <LessonList
               {...curriculumData}
               lessonCount={lessons.length}
@@ -108,8 +111,8 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
               // TODO: implement new avo tracking function when available
               onClick={() => {}}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </>
   );

@@ -1,4 +1,5 @@
 import { FC, useId } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import NewsletterForm, {
@@ -8,7 +9,6 @@ import { P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * Newsletter Form wrapper adds copy around around NewsletterForm.
@@ -37,8 +37,8 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       {...containerProps}
     >
       <AnchorTarget id={anchorTargetId} />
-      <Grid>
-        <GridArea $colSpan={[12, desktopColSpan]}>
+      <OakGrid>
+        <OakGridArea $colSpan={[12, desktopColSpan]}>
           <CardTitle tag="h2" icon="magic-carpet" iconSize={56}>
             Don’t miss out
           </CardTitle>
@@ -55,11 +55,11 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
             </OwaLink>
             .
           </P>
-        </GridArea>
-        <GridArea $colSpan={[12, desktopColSpan]} $mt={12}>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"space-between-xs"}>
           <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </Card>
   );
 };

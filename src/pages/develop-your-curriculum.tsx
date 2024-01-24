@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";
@@ -16,7 +17,6 @@ import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Cover from "@/components/SharedComponents/Cover";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
@@ -107,9 +107,13 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               {pageData.elements.title}
             </Heading>
           </Box>
-          <Grid $ph={[0, 24]} $cg={16} data-testid="elements-of-curriculum">
+          <OakGrid
+            $ph={["inner-padding-none", "inner-padding-xl"]}
+            $cg={"all-spacing-4"}
+            data-testid="elements-of-curriculum"
+          >
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
-              <GridArea
+              <OakGridArea
                 $display={["none", "block"]}
                 key={`${index}-${heading}`}
                 $colSpan={[12, 4]}
@@ -119,11 +123,11 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     {heading}
                   </P>
                 </Box>
-              </GridArea>
+              </OakGridArea>
             ))}
             {pageData.elements.posts.map((element, index) => (
               <Fragment key={`${index}-${element.title}`}>
-                <GridArea $colSpan={[12, 4]}>
+                <OakGridArea $colSpan={[12, 4]}>
                   <BrushBorders hideOnMobileH color={"lemon50"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $font={"heading-light-6"}>
@@ -154,10 +158,10 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                       </Heading>
                     </Box>
                   </Card>
-                </GridArea>
+                </OakGridArea>
               </Fragment>
             ))}
-          </Grid>
+          </OakGrid>
         </Card>
         <Card
           $pt={0}

@@ -5,6 +5,7 @@ import {
   NextPage,
 } from "next";
 import { PortableTextComponents } from "@portabletext/react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { PolicyPage } from "@/common-lib/cms-types";
@@ -13,7 +14,6 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, {
@@ -101,8 +101,8 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
       $background={"white"}
     >
       <MaxWidth $ph={[16, 24]} $maxWidth={[720]}>
-        <Grid>
-          <GridArea $colSpan={[12, 12, 12]}>
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}
             <Flex $alignItems={"center"}>
               <Heading $mt={80} $mb={32} $font={"heading-3"} tag={"h1"}>
@@ -126,8 +126,8 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
                 withoutDefaultComponents
               />
             </Typography>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </Layout>
   );

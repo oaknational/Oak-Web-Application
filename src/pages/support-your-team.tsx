@@ -1,5 +1,6 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { SupportPage } from "@/common-lib/cms-types";
@@ -9,7 +10,6 @@ import { SupportYourTeamTextBlockCard } from "@/components/GenericPagesComponent
 import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardImageCta";
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/AppComponents/Layout";
@@ -71,20 +71,24 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $iconPosition={"trailing"}
           />
         </Flex>
-        <Grid $mb={56} $rg={56} $cg={[0, 40]}>
-          <GridArea $colSpan={[12, 12, 6]}>
+        <OakGrid
+          $mb={"space-between-xl"}
+          $rg={"all-spacing-10"}
+          $cg={["all-spacing-0", "all-spacing-8"]}
+        >
+          <OakGridArea $colSpan={[12, 12, 6]}>
             <SupportYourTeamTextBlockCard
               background={"lemon50"}
               {...pageData.planning}
             />
-          </GridArea>
-          <GridArea $colSpan={[12, 12, 6]}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 12, 6]}>
             <SupportYourTeamTextBlockCard
               background={"lemon50"}
               {...pageData.cover}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
         <SupportYourTeamTextBlockCardImageCta
           {...pageData.curriculum}
           background={"aqua"}

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -6,7 +7,6 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * This is a header for the specialist listing pages (programme).
@@ -37,8 +37,8 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <Grid>
-        <GridArea $colSpan={[12, 6]}>
+      <OakGrid>
+        <OakGridArea $colSpan={[12, 6]}>
           <Span $mb={16} $color={"grey60"} $font={"heading-7"}>
             {title}
           </Span>
@@ -71,8 +71,8 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               subjectTitle={subjectTitle}
             />
           )} */}
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </LessonHeaderWrapper>
   );
 };
