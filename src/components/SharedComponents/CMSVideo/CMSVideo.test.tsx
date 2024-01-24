@@ -1,12 +1,13 @@
+import { describe, expect, it, vi } from "vitest";
+
 import CMSVideo from ".";
 
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mockPlayer = jest.fn((_props: never) => <div />);
+const mockPlayer = vi.fn<[unknown]>(() => <div />);
 
-jest.mock("@/components/SharedComponents/VideoPlayer", () => ({
+vi.mock("@/components/SharedComponents/VideoPlayer", () => ({
   __esModule: true,
   default: (props: never) => mockPlayer(props),
 }));

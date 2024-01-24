@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -17,12 +18,12 @@ describe("CollapsibleSection", () => {
         buttons={[
           {
             icon: "download",
-            onClick: jest.fn(),
+            onClick: vi.fn(),
             ariaLabel: "Download button",
           },
           {
             icon: "share",
-            onClick: jest.fn(),
+            onClick: vi.fn(),
             ariaLabel: "Share button",
           },
         ]}
@@ -59,7 +60,7 @@ describe("CollapsibleSection", () => {
   });
 
   it("has passed in buttons with onClick event", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
 
     renderWithTheme(
       <CollapsibleSection

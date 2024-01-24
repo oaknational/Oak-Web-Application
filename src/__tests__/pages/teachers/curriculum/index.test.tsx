@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import CurriculumHomePage, {
@@ -41,15 +42,15 @@ const props: CurriculumHomePageProps = {
   posts: mockPosts,
 };
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker",
-  () => {
-    return jest.fn(() => <div>Mock SubjectPhasePicker</div>);
-  },
+  () => ({
+    default: vi.fn(() => <div>Mock SubjectPhasePicker</div>),
+  }),
 );
 
 const mockCMS = (willErr = false) => ({
-  blogPostBySlug: jest.fn((slug) => {
+  blogPostBySlug: vi.fn((slug) => {
     if (willErr) throw new Error("Missing blog post");
     switch (slug) {
       case "how-to-design-a-subject-curriculum":
@@ -113,7 +114,7 @@ describe("pages/curriculum/index", () => {
 
     describe("fetchCurriculumPageBlogs", () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
       });
 
       it("Should return the correct data", async () => {

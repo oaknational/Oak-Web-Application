@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
@@ -9,7 +11,7 @@ const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
@@ -23,7 +25,7 @@ describe("Component - Curriculum Header", () => {
     return render(<CurriculumHeader {...defaultProps} />);
   };
 
-  test("user can see the breadcrumbs", async () => {
+  it("user can see the breadcrumbs", async () => {
     const { findAllByRole } = renderComponent();
     const links = await findAllByRole("link");
     expect(links[0]).toHaveTextContent("Home");
@@ -31,13 +33,13 @@ describe("Component - Curriculum Header", () => {
     expect(links[2]).toHaveTextContent("Unit sequence");
   });
 
-  test("user can see the subject icon", async () => {
+  it("user can see the subject icon", async () => {
     const { findByTestId } = renderComponent();
     const subjectIcon = await findByTestId("subjectIcon");
     expect(subjectIcon).toBeInTheDocument();
   });
 
-  test("user can see the page title", async () => {
+  it("user can see the page title", async () => {
     const { findByRole } = renderComponent();
     let keyStages: string;
     if (curriculumHeaderFixture().phase === "primary") {
@@ -53,7 +55,7 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
-  test("should return correct page title for primary phase subject", () => {
+  it("should return correct page title for primary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
     });
@@ -63,7 +65,7 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
-  test("should return correct page title for secondary phase subject", () => {
+  it("should return correct page title for secondary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary"),
     });
@@ -73,13 +75,13 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
-  test("user can see the tabular navigation", async () => {
+  it("user can see the tabular navigation", async () => {
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
   });
 
-  test("keyStage metadata", () => {
+  it("keyStage metadata", () => {
     const { getByTestId } = renderComponent();
     const examboardMetadata = getByTestId("examboard-metadata");
     expect(examboardMetadata).toHaveTextContent("AQA (KS4)");

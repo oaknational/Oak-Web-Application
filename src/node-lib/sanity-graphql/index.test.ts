@@ -1,6 +1,8 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import graphqlApi, { requestWithLogging } from ".";
 
-const configGetSpy = jest.fn((key: string) => {
+const configGetSpy = vi.fn((key: string) => {
   return {
     sanityProjectId: "the-project",
     sanityDataset: "the-dataset",
@@ -9,31 +11,29 @@ const configGetSpy = jest.fn((key: string) => {
     sanityGraphqlApiSecret: "sanity-secret",
   }[key];
 });
-const GraphQLClientSpy = jest.fn();
-jest.mock("./generated/sdk", () => ({
-  getSdk: jest.fn(() => "the sdk"),
-}));
 
-const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+const { reportError } = vi.hoisted(() => ({
+  reportError: vi.fn(),
+}));
+vi.mock("@/common-lib/error-reporter/errorReporter", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      reportError(...args),
+  default: () => reportError,
+}));
+vi.mock("./generated/sdk", () => ({
+  getSdk: vi.fn(() => "the sdk"),
+}));
+vi.doMock("../getServerConfig", () => ({
+  __esModule: true,
+  default: configGetSpy,
+}));
+const GraphQLClientSpy = vi.fn();
+vi.doMock("graphql-request", () => ({
+  GraphQLClient: GraphQLClientSpy,
 }));
 
 describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
-    jest.resetModules();
-
-    jest.mock("../getServerConfig", () => ({
-      __esModule: true,
-      default: configGetSpy,
-    }));
-    jest.mock("graphql-request", () => ({
-      GraphQLClient: GraphQLClientSpy,
-    }));
+    vi.resetModules();
   });
 
   it("should return the sdk", () => {
@@ -57,7 +57,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
 
   it("requestWithLogging should call the given action", async () => {
     const actionResult = {};
-    const action = jest.fn().mockResolvedValue(actionResult);
+    const action = vi.fn().mockResolvedValue(actionResult);
 
     const res = await requestWithLogging(action, "someOperation");
 
@@ -67,7 +67,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
   it("requestWithLogging should report graphql errors to bugsnag", async () => {
     const originalError = new Error(`GraphQL Error (Code: 504)`);
 
-    const action = jest.fn().mockRejectedValue(originalError);
+    const action = vi.fn().mockRejectedValue(originalError);
 
     await expect(async () => {
       await requestWithLogging(action, "someOperation");

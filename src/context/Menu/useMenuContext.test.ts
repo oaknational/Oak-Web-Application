@@ -1,18 +1,16 @@
+import { beforeEach, describe, expect, it } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import mockRouter from "next-router-mock";
-// import { useRouter } from "next/router";
 
 import useMenuContext from "./useMenuContext";
 import MenuProvider from "./MenuProvider";
-
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useMenuContext()", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/");
   });
 
-  test("'open' should default to false", () => {
+  it("'open' should default to false", () => {
     const { result } = renderHook(() => useMenuContext(), {
       wrapper: MenuProvider,
     });
@@ -21,7 +19,7 @@ describe("useMenuContext()", () => {
     expect(open).toBe(false);
   });
 
-  test("toggleOpen should open menu", () => {
+  it("toggleOpen should open menu", () => {
     const { result } = renderHook(() => useMenuContext(), {
       wrapper: MenuProvider,
     });
@@ -33,7 +31,7 @@ describe("useMenuContext()", () => {
     expect(result.current.open).toBe(true);
   });
 
-  test("closeMenu should close menu", () => {
+  it("closeMenu should close menu", () => {
     const { result } = renderHook(() => useMenuContext(), {
       wrapper: MenuProvider,
     });

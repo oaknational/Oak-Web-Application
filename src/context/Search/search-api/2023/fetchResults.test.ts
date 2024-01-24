@@ -1,18 +1,22 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
 import { fetchResults } from "./fetchResults";
 
 const mockResponse = {
-  json: jest.fn().mockResolvedValue(elasticResponse2023),
+  json: vi.fn().mockResolvedValue(elasticResponse2023),
 } as unknown as Response;
-const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
-const mockHandleFetchError = jest.fn();
-jest.mock("@/browser-lib/getBrowserConfig", () => () => "test");
-jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
+const mockFetch = vi.spyOn(global, "fetch").mockResolvedValue(mockResponse);
+const mockHandleFetchError = vi.fn();
+vi.mock("@/browser-lib/getBrowserConfig", () => ({ default: () => "test" }));
+vi.mock("@/utils/handleFetchError", () => ({
+  default: () => mockHandleFetchError,
+}));
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("should call fetch with correct query", async () => {
+  it("should call fetch with correct query", async () => {
     await fetchResults({ term: "test" });
 
     expect(mockFetch).toHaveBeenCalledWith("test", {
@@ -25,7 +29,7 @@ describe("search-api/2023/fetchResults", () => {
       body: '{"from":0,"size":100,"query":{"bool":{"should":[{"multi_match":{"query":"test","type":"phrase","analyzer":"stop","fields":["lessonTitle^6","unitTitle^6","lessonDescription^3","lessons.lessonTitle^3"]}},{"multi_match":{"query":"test","fields":["*"],"type":"most_fields","analyzer":"stop","prefix_length":1}}],"filter":[],"minimum_should_match":1}},"highlight":{"number_of_fragments":0,"pre_tags":["<b>"],"post_tags":["</b>"],"fields":{"pupil_lesson_outcome":{}}}}',
     });
   });
-  test("should respond with transformed data", async () => {
+  it("should respond with transformed data", async () => {
     const results = await fetchResults({ term: "test" });
 
     expect(results).toHaveLength(20);
@@ -38,7 +42,7 @@ describe("search-api/2023/fetchResults", () => {
     expect(results[0]?._source).toMatchObject({
       id: 211319,
       slug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
-      title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+      title: "Dipping into Macbeth - Brave Macbeth (Part 2)",
       subject_title: "Drama",
       subject_slug: "drama",
       key_stage_title: "Key Stage 2",

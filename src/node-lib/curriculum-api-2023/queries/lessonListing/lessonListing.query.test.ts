@@ -1,23 +1,25 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import lessonListing from "./lessonListing.query";
 
 describe("lessonListing()", () => {
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonListing({
         ...sdk,
-        lessonListing: jest.fn(() => Promise.resolve({ unit: [] })),
+        lessonListing: vi.fn(() => Promise.resolve({ unit: [] })),
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first unit is returned if multiple units in response", async () => {
+  it("first unit is returned if multiple units in response", async () => {
     const unit = await lessonListing({
       ...sdk,
-      lessonListing: jest.fn(() =>
+      lessonListing: vi.fn(() =>
         Promise.resolve({
           unit: [
             {
@@ -49,13 +51,13 @@ describe("lessonListing()", () => {
     });
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonListing({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonListing: jest.fn(() =>
+        lessonListing: vi.fn(() =>
           Promise.resolve({
             unit: [
               {

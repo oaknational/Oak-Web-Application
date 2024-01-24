@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
 
 import specialistLessonOverviewFixture from "./SpecialistLesson.fixture";
@@ -8,7 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 describe("SpecialistLessonDownloads", () => {
-  test("renders component", () => {
+  it("renders component", () => {
     const { getByText } = render(
       <SpecialistLesson curriculumData={specialistLessonOverviewFixture()} />,
     );
@@ -17,7 +18,7 @@ describe("SpecialistLessonDownloads", () => {
     expect(title).toBeInTheDocument();
   });
 
-  test("renders with the correct resources", () => {
+  it("renders with the correct resources", () => {
     render(
       <SpecialistLesson curriculumData={specialistLessonOverviewFixture()} />,
     );

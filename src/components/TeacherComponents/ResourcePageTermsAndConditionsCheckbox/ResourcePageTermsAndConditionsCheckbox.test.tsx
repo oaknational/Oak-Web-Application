@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import ResourcePageTermsAndConditionsCheckbox from "./ResourcePageTermsAndConditionsCheckbox";
@@ -9,7 +10,7 @@ describe("ResourcePageTermsAndConditionsCheckbox", () => {
     renderWithTheme(
       <ResourcePageTermsAndConditionsCheckbox
         checked={false}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         id={"123"}
         name={"terms"}
       />,
@@ -23,7 +24,7 @@ describe("ResourcePageTermsAndConditionsCheckbox", () => {
     renderWithTheme(
       <ResourcePageTermsAndConditionsCheckbox
         checked={false}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         errorMessage="Please select the checkbox"
         id={"123"}
         name={"terms"}

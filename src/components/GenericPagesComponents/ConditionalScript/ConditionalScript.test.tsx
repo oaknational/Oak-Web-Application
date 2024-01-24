@@ -1,22 +1,23 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 
 import ConditionalScript from "./ConditionalScript";
 
-const Mock = jest.fn();
-jest.mock("next/script", () => ({
+const Mock = vi.fn();
+vi.mock("next/script", () => ({
   __esModule: true,
   default: (...props: []) => Mock(...props),
 }));
 
 describe("<ConditionalScript />", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("loads if shouldLoad true", () => {
+  it("loads if shouldLoad true", () => {
     render(<ConditionalScript shouldLoad={true} src="foo" />);
     expect(Mock).toHaveBeenCalledWith({ src: "foo" }, {});
   });
-  test("does not load if shouldLoad false", () => {
+  it("does not load if shouldLoad false", () => {
     render(<ConditionalScript shouldLoad={false} src="foo" />);
     expect(Mock).not.toHaveBeenCalled();
   });

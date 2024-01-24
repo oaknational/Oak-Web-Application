@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { RefObject } from "react";
 import MuxPlayerElement from "@mux/mux-player";
 
@@ -11,7 +12,7 @@ const ref = {
 } as unknown as RefObject<MuxPlayerElement>;
 
 describe("getSubtitleTrack", () => {
-  test("gets subtitle track", () => {
+  it("gets subtitle track", () => {
     expect(getSubtitleTrack(ref)).toBe(subtitleTrack);
   });
 });

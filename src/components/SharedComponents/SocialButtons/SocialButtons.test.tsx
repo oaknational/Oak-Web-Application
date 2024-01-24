@@ -1,9 +1,11 @@
+import { describe, expect, it } from "vitest";
+
 import SocialButtons from "./SocialButtons";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("SocialButtons", () => {
-  test.each([
+  it.each([
     ["instagram", "oaknational", "https://instagram.com/oaknational"],
     [
       "facebook",
@@ -28,11 +30,11 @@ describe("SocialButtons", () => {
       expect(link).toHaveAttribute("href", profileUrl);
     },
   );
-  test("renders nothing if no socials passed", () => {
+  it("renders nothing if no socials passed", () => {
     const { container } = renderWithTheme(<SocialButtons for="no one" />);
     expect(container).toBeEmptyDOMElement();
   });
-  test("renders only socials which are passed", () => {
+  it("renders only socials which are passed", () => {
     const { getAllByRole } = renderWithTheme(
       <SocialButtons
         for="someone"

@@ -1,3 +1,13 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
@@ -48,13 +58,13 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
-const getHubspotUserToken = jest.fn(() => "hubspotutk value");
-jest.mock("./getHubspotUserToken", () => ({
+const getHubspotUserToken = vi.fn(() => "hubspotutk value");
+vi.mock("./getHubspotUserToken", () => ({
   __esModule: true,
   default: (...args: []) => getHubspotUserToken(...args),
 }));
-const reportError = jest.fn();
-jest.mock("../../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -76,7 +86,7 @@ const payload = getHubspotNewsletterPayload({
 
 describe("hubspotSubmitForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("succeeds", () => {
     it("should fetch the correct url with the correct payload", async () => {
@@ -145,7 +155,7 @@ describe("hubspotSubmitForm", () => {
             context: {
               hutk: "hubspotutk value 456",
               pageName: "",
-              pageUri: "http://localhost/",
+              pageUri: "http://localhost:3000/",
             },
             fields: [
               { name: "email", value: "email value" },
@@ -160,7 +170,7 @@ describe("hubspotSubmitForm", () => {
               context: {
                 hutk: "hubspotutk value 456",
                 pageName: "",
-                pageUri: "http://localhost/",
+                pageUri: "http://localhost:3000/",
               },
               fields: [
                 { name: "email", value: "email value" },
@@ -195,7 +205,7 @@ describe("hubspotSubmitForm", () => {
             context: {
               hutk: "hubspotutk value 456",
               pageName: "",
-              pageUri: "http://localhost/",
+              pageUri: "http://localhost:3000/",
             },
             fields: [
               { name: "email", value: "email value" },
@@ -209,7 +219,7 @@ describe("hubspotSubmitForm", () => {
               context: {
                 hutk: "hubspotutk value 456",
                 pageName: "",
-                pageUri: "http://localhost/",
+                pageUri: "http://localhost:3000/",
               },
               fields: [
                 { name: "email", value: "email value" },
@@ -242,12 +252,12 @@ describe("hubspotSubmitForm", () => {
   });
   describe("Primary form fails with INVALID_EMAIL and fallback form fails too", () => {
     beforeEach(() => {
-      jest.restoreAllMocks();
-      jest.clearAllMocks();
+      vi.restoreAllMocks();
+      vi.clearAllMocks();
       // mock fetch to first respond with INVALID_EMAIL, then with a 400
       server.use(primaryForm400InvalidEmail, fallbackForm400HubspotError);
     });
-    test("error should be reported", async () => {
+    it("error should be reported", async () => {
       /**
        * @todo we should mark reported errors as "notified" to avoid them
        * being re-reported
@@ -264,7 +274,7 @@ describe("hubspotSubmitForm", () => {
     beforeEach(() => {
       server.use(primaryForm400UnknownError);
     });
-    test("error is thrown with correct message", async () => {
+    it("error is thrown with correct message", async () => {
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -277,7 +287,7 @@ describe("hubspotSubmitForm", () => {
         "Sorry, we couldn't sign you up just now, try again later.",
       );
     });
-    test("error is reported", async () => {
+    it("error is reported", async () => {
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
@@ -296,7 +306,7 @@ describe("hubspotSubmitForm", () => {
         ),
       );
     });
-    test("user is displayed correct message", async () => {
+    it("user is displayed correct message", async () => {
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });

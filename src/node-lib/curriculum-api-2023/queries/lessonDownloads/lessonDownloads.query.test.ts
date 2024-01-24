@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
@@ -32,11 +34,11 @@ const downloads = [
 ];
 
 describe("lessonDownloads()", () => {
-  test("throws a not found error if no download is found", async () => {
+  it("throws a not found error if no download is found", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: [],
             unit: [
@@ -54,11 +56,11 @@ describe("lessonDownloads()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: downloads,
             unit: [],
@@ -71,10 +73,10 @@ describe("lessonDownloads()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first downloads is returned if multiple lessons in response", async () => {
+  it("first downloads is returned if multiple lessons in response", async () => {
     const unit = await lessonDownloads({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      lessonDownloads: vi.fn(() =>
         Promise.resolve({
           downloads: downloads,
           unit: [
@@ -92,13 +94,13 @@ describe("lessonDownloads()", () => {
     });
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: [
               {

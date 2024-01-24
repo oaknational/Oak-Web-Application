@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
@@ -7,7 +8,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ResourcePageDetailsCompleted", () => {
   it("renders ResourcePageDetailsCompleted component", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <ResourcePageDetailsCompleted
@@ -25,7 +26,7 @@ describe("ResourcePageDetailsCompleted", () => {
   });
 
   it("renders 'not provided' message if email if not passed", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <ResourcePageDetailsCompleted
@@ -39,7 +40,7 @@ describe("ResourcePageDetailsCompleted", () => {
   });
 
   it("calls correct function on Edit button click", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <ResourcePageDetailsCompleted
@@ -60,7 +61,7 @@ describe("ResourcePageDetailsCompleted", () => {
 
   describe("renders correct message dependent on input", () => {
     it("should render homeschool message when user selects homeschool option", () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
 
       const { getByText } = renderWithTheme(
         <ResourcePageDetailsCompleted
@@ -78,7 +79,7 @@ describe("ResourcePageDetailsCompleted", () => {
     });
 
     it("should render not listed message when users school is not listed", () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
 
       const { getByText } = renderWithTheme(
         <ResourcePageDetailsCompleted

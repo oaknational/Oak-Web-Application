@@ -1,10 +1,12 @@
+import { describe, expect, it, vi } from "vitest";
+
 import Button from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Button", () => {
   it("renders a button", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <Button
@@ -22,7 +24,7 @@ describe("Button", () => {
   });
 
   it("calls onClick function when button is clicked", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <Button
@@ -42,7 +44,7 @@ describe("Button", () => {
   });
 
   it("does nothing onClick if button is disabled", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <Button

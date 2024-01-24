@@ -1,5 +1,7 @@
+import { beforeEach, describe, expect, it, vi, Mock } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
 
 import {
   PTAnchorLink,
@@ -15,12 +17,12 @@ import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
-const consoleWarnSpy = jest.spyOn(console, "warn");
+const consoleWarnSpy = vi.spyOn(console, "warn");
 
-jest.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
+vi.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
 
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -30,8 +32,9 @@ jest.mock("@/common-lib/error-reporter", () => ({
 
 describe("PortableText", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.clearAllMocks();
+    mockRouter.setCurrentUrl("/some-page");
+    vi.resetAllMocks();
+    vi.clearAllMocks();
 
     consoleWarnSpy.mockImplementation(noop);
   });
@@ -142,8 +145,8 @@ describe("PortableText", () => {
 
   describe("PTActionTrigger", () => {
     it("renders a button that triggers cookie consent manager ", async () => {
-      const showConsentManager = jest.fn();
-      (useCookieConsent as jest.Mock).mockImplementation(() => ({
+      const showConsentManager = vi.fn();
+      (useCookieConsent as Mock).mockImplementation(() => ({
         showConsentManager,
       }));
       const user = userEvent.setup();
@@ -189,7 +192,7 @@ describe("PortableText", () => {
 
       const link = getByRole("link");
       expect(link).toHaveAccessibleName("An anchor link");
-      expect(link).toHaveAttribute("href", "#a-section-of-the-page");
+      expect(link).toHaveAttribute("href", "/some-page#a-section-of-the-page");
     });
 
     it("renders nothing when not passed an anchor", async () => {

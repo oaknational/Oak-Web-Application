@@ -1,8 +1,10 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import "../__tests__/__helpers__/LocalStorageMock";
 
 import removeDecommissionedKeys from "./removeDecommissionedKeys";
 
-jest.mock("./localStorageKeys", () => ({
+vi.mock("./localStorageKeys", () => ({
   decommissionedKeys: [
     {
       key: "some-old-feature-key",
@@ -11,19 +13,19 @@ jest.mock("./localStorageKeys", () => ({
     { key: "another old feature key", decommissionedAt: "2023-03-15" },
   ],
 }));
-jest.spyOn(localStorage, "removeItem");
+vi.spyOn(localStorage, "removeItem");
 
 describe("removeDecommissionedKeys", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("removes the first key", () => {
+  it("removes the first key", () => {
     removeDecommissionedKeys();
     expect(localStorage.removeItem).toHaveBeenCalledWith(
       "some-old-feature-key",
     );
   });
-  test("removes the correct number of keys", () => {
+  it("removes the correct number of keys", () => {
     removeDecommissionedKeys();
     expect(localStorage.removeItem).toHaveBeenCalledTimes(2);
   });

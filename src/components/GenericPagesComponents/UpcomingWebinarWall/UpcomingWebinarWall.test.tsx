@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import UpcomingWebinarWall, {
@@ -16,14 +17,14 @@ const props: UpcomingWebinarWallProps = {
   buttonSuffixA11y: "for webinars",
 };
 describe("UpcomingWebinarWall", () => {
-  test("renders heading with correct tag and content", () => {
+  it("renders heading with correct tag and content", () => {
     const { getByRole } = renderWithTheme(<UpcomingWebinarWall {...props} />);
 
     const heading = getByRole("heading", { level: 5 });
     expect(heading).toHaveTextContent("Register to view");
   });
-  test("clicking button (link) calls onClick()", async () => {
-    const onClick = jest.fn();
+  it("clicking button (link) calls onClick()", async () => {
+    const onClick = vi.fn();
     const { getByRole } = renderWithTheme(
       <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );
@@ -33,9 +34,9 @@ describe("UpcomingWebinarWall", () => {
     await user.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-  test("button (link) has a11y name with enough context", async () => {
+  it("button (link) has a11y name with enough context", async () => {
     // visible label is just "Register", which on its own lacks context
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByRole } = renderWithTheme(
       <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );

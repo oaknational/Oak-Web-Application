@@ -1,6 +1,5 @@
 import { GraphQLClient } from "graphql-request";
 
-import errorReporter from "../../common-lib/error-reporter";
 import getServerConfig from "../getServerConfig";
 
 import {
@@ -9,6 +8,8 @@ import {
   // AllBlogPostsQuery,
   // AllWebinarsQuery,
 } from "./generated/sdk";
+
+import errorReporter from "@/common-lib/error-reporter";
 
 const reportError = errorReporter("sanity-graphql.ts");
 

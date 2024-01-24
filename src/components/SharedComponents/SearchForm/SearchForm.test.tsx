@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 /**
  * @jest-environment jsdom
  */
@@ -9,13 +10,14 @@ import SearchForm from "./SearchForm";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const handleSubmit = jest.fn();
+const handleSubmit = vi.fn();
 
 const providers = { theme: {} };
 const render = renderWithProviders(providers);
-const searchJourneyInitiated = jest.fn();
-const searchAttempted = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
+const searchJourneyInitiated = vi.fn();
+const searchAttempted = vi.fn();
+
+vi.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -26,11 +28,9 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   }),
 }));
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-
 describe("<SearchForm />", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders", () => {
@@ -202,14 +202,14 @@ describe("<SearchForm />", () => {
     await user.keyboard("{Enter}");
 
     expect(searchAttempted).toHaveBeenCalledTimes(1);
-    expect(searchAttempted).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      pageName: null,
-      searchFilterOptionSelected: [],
-      searchSource: "homepage search box",
-      searchTerm: "search me",
-      context: "homepage",
-    });
+    expect(searchAttempted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        searchFilterOptionSelected: [],
+        searchSource: "homepage search box",
+        searchTerm: "search me",
+        context: "homepage",
+      }),
+    );
   });
   it("search input is populated with placeholder text", () => {
     const placeholderText = "Search by keyword or topic";

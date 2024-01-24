@@ -1,3 +1,4 @@
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
@@ -59,20 +60,20 @@ const goodFetchMockImplementation = (url: string) => {
   }
 };
 
-const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
     (...args: []) =>
       reportError(...args),
 }));
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+const fetch = vi.spyOn(global, "fetch") as Mock;
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
 
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
@@ -82,9 +83,9 @@ const providers = { router: { url: "?term=test-term" } };
 
 describe("useSearch()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("query should come from url querystring", async () => {
+  it("query should come from url querystring", async () => {
     const { result } = renderHookWithProviders({
       router: { url: "?term=something" },
     })(() => useSearch({ allKeyStages }));
@@ -93,7 +94,7 @@ describe("useSearch()", () => {
       expect(result.current.query.term).not.toBe("test-tem");
     });
   });
-  test("status should default to 'not-asked' if no search term in url", () => {
+  it("status should default to 'not-asked' if no search term in url", () => {
     const { result } = renderHookWithProviders({ router: { url: "" } })(() =>
       useSearch({ allKeyStages }),
     );
@@ -101,7 +102,7 @@ describe("useSearch()", () => {
 
     expect(status).toBe("not-asked");
   });
-  test("status should default to 'loading' if search term in url", () => {
+  it("status should default to 'loading' if search term in url", () => {
     const { result } = renderHookWithProviders({
       router: { url: "?term=something" },
     })(() => useSearch({ allKeyStages }));
@@ -109,18 +110,18 @@ describe("useSearch()", () => {
 
     expect(status).toBe("loading");
   });
-  test("fetch should not be called if no search term in query", () => {
+  it("fetch should not be called if no search term in query", () => {
     renderHookWithProviders({ router: { url: "" } })(() =>
       useSearch({ allKeyStages }),
     );
     expect(fetch).not.toHaveBeenCalled();
   });
-  test("fetch should be called once if search term in query", async () => {
+  it("fetch should be called once if search term in query", async () => {
     renderHookWithProviders(providers)(() => useSearch({ allKeyStages }));
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });
-  test("results should be returned in the correct form", async () => {
+  it("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
 
     const { result } = renderHookWithProviders(providers)(() =>
@@ -145,7 +146,7 @@ describe("useSearch()", () => {
           subject_slug: "drama",
           subject_title: "Drama",
           theme_title: null,
-          title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+          title: "Dipping into Macbeth - Brave Macbeth (Part 2)",
           topic_slug: "dipping-into-shakespeare-da5e",
           topic_title: "Dipping into Shakespeare",
           type: "lesson",
@@ -160,7 +161,7 @@ describe("useSearch()", () => {
       }),
     );
   });
-  test("results should be returned in the correct form", async () => {
+  it("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
     const { result } = renderHookWithProviders(providers)(() =>
       useSearch({ allKeyStages }),
@@ -169,7 +170,7 @@ describe("useSearch()", () => {
       expect(result.current.results.length).toBe(20);
     });
   });
-  test("status should be 'fail' if fetch fails", async () => {
+  it("status should be 'fail' if fetch fails", async () => {
     fetch.mockResolvedValue(badFetchResolvedValue);
     const { result } = renderHookWithProviders(providers)(() =>
       useSearch({ allKeyStages }),
@@ -177,7 +178,7 @@ describe("useSearch()", () => {
 
     await waitFor(() => expect(result.current.status).toBe("fail"));
   });
-  test.skip("error should be reported", async () => {
+  it.skip("error should be reported", async () => {
     // @todo skipping this test, not sure why it's failing
     const error = new Error("bad thing");
     fetch.mockRejectedValue(error);

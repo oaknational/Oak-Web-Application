@@ -1,10 +1,11 @@
+import { describe, expect, it, vi } from "vitest";
 import { createMocks } from "node-mocks-http";
 
 import handler from "../../../pages/api/health";
 
 describe("/api/health", () => {
   it("has a handler", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { req, res } = createMocks();
 

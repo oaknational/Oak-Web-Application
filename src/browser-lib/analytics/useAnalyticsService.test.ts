@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
@@ -8,39 +9,39 @@ import useAnalyticsService from "./useAnalyticsService";
 
 const service: AnalyticsService<unknown> = {
   name: "test service" as ServiceType,
-  init: jest.fn(() => Promise.resolve("test-posthog-distinct-id")),
-  state: jest.fn(() => "pending"),
-  track: jest.fn(),
-  page: jest.fn(),
-  identify: jest.fn(),
-  optOut: jest.fn(),
-  optIn: jest.fn(),
+  init: vi.fn(() => Promise.resolve("test-posthog-distinct-id")),
+  state: vi.fn(() => "pending"),
+  track: vi.fn(),
+  page: vi.fn(),
+  identify: vi.fn(),
+  optOut: vi.fn(),
+  optIn: vi.fn(),
 };
 
-const setPosthogDistinctId = jest.fn();
+const setPosthogDistinctId = vi.fn();
+vi.mock("../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default: (ctx: string) => errorReporter(ctx),
+}));
 
 describe("useAnalyticsService", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../common-lib/error-reporter", () => ({
-      __esModule: true,
-      default: jest.fn(errorReporter),
-    }));
+    vi.clearAllMocks();
+    vi.resetModules();
   });
-  test("should not call service.init() if consentState:disabled", () => {
+  it("should not call service.init() if consentState:disabled", () => {
     renderHook(() =>
       useAnalyticsService({ service, config: null, consentState: "disabled" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should not call service.init() if consentState:pending", () => {
+  it("should not call service.init() if consentState:pending", () => {
     renderHook(() =>
       useAnalyticsService({ service, config: null, consentState: "pending" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should call service.init(config) if consentState:enabled", () => {
+  it("should call service.init(config) if consentState:enabled", () => {
     renderHook(() =>
       useAnalyticsService({
         service,
@@ -50,7 +51,7 @@ describe("useAnalyticsService", () => {
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
-  test("should set posthog distinct if callback passed", async () => {
+  it("should set posthog distinct if callback passed", async () => {
     renderHook(() =>
       useAnalyticsService({
         service,

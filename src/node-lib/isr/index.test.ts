@@ -1,11 +1,12 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 /**
  * @jest-environment node
  */
 
 describe("isr.decorateWithIsr()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
   it("Does not mutate the original results", async () => {
     process.env.DISABLE_ISR = "anything_but_on";

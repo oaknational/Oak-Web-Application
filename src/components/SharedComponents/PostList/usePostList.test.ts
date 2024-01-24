@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import usePostList from "./usePostList";
@@ -5,10 +6,10 @@ import usePostList from "./usePostList";
 import { mockWebinar } from "@/__tests__/pages/webinars/webinar.fixtures";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("usePostList.ts", () => {
-  test("handles no posts", () => {
+  it("handles no posts", () => {
     const { result } = renderHook(() => usePostList({ items: [] }));
     expect(result.current).toEqual({
       currentPageItems: [],
@@ -20,15 +21,15 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 0,
         totalResults: 0,
-        nextPageUrlObject: { pathname: "", query: { page: "2" } },
-        prevPageUrlObject: { pathname: "" },
+        nextPageUrlObject: { pathname: "/", query: { page: "2" } },
+        prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
           current: null,
         },
       },
     });
   });
-  test("handles only past posts", () => {
+  it("handles only past posts", () => {
     const pastPost = webinarToPostListItem(mockWebinar());
     const { result } = renderHook(() => usePostList({ items: [pastPost] }));
 
@@ -42,15 +43,15 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageUrlObject: { pathname: "" },
-        prevPageUrlObject: { pathname: "" },
+        nextPageUrlObject: { pathname: "/" },
+        prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
           current: null,
         },
       },
     });
   });
-  test("handles single upcoming post", () => {
+  it("handles single upcoming post", () => {
     const upcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2052-04-14" }),
     );
@@ -69,15 +70,15 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageUrlObject: { pathname: "" },
-        prevPageUrlObject: { pathname: "" },
+        nextPageUrlObject: { pathname: "/" },
+        prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
           current: null,
         },
       },
     });
   });
-  test("handles multiple upcoming posts (returning the soonest)", () => {
+  it("handles multiple upcoming posts (returning the soonest)", () => {
     const firstUpcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2033-04-14" }),
     );
@@ -98,15 +99,15 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageUrlObject: { pathname: "" },
-        prevPageUrlObject: { pathname: "" },
+        nextPageUrlObject: { pathname: "/" },
+        prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
           current: null,
         },
       },
     });
   });
-  test("pagination: returns correct 'paginationProps'", () => {
+  it("pagination: returns correct 'paginationProps'", () => {
     const upcomingPost = webinarToPostListItem(
       mockWebinar({ date: "2033-04-14" }),
     );
@@ -126,8 +127,8 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 8,
         totalResults: 30,
-        nextPageUrlObject: { pathname: "", query: { page: "2" } },
-        prevPageUrlObject: { pathname: "" },
+        nextPageUrlObject: { pathname: "/", query: { page: "2" } },
+        prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
           current: null,
         },

@@ -1,19 +1,24 @@
+import { describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { useSignedMuxToken } from "./useSignedVideoToken";
 
-const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
-  data: null,
-  error: null,
-}));
+const { mockUseSWR } = vi.hoisted(() => {
+  const mockUseSWR = vi.fn<[{ data: unknown; error: unknown }]>(() => ({
+    data: null,
+    error: null,
+  }));
 
-jest.mock("swr", () => ({
+  return { mockUseSWR };
+});
+
+vi.mock("swr", () => ({
   __esModule: true,
-  default: (...args: []) => mockUseSWR(...args),
+  default: mockUseSWR,
 }));
 
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -21,12 +26,12 @@ jest.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-jest.mock("./getSignedVideoToken", () => ({
+vi.mock("./getSignedVideoToken", () => ({
   __esModule: true,
-  default: jest.fn().mockReturnValue(Promise.resolve([])),
+  default: vi.fn().mockReturnValue(Promise.resolve([])),
 }));
 
-jest.mock("@/common-lib/error-reporter", () => ({
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -35,7 +40,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 describe("useSignedMuxToken", () => {
-  test("'loading' should default to false on public video", () => {
+  it("'loading' should default to false on public video", () => {
     const { result } = renderHook(() =>
       useSignedMuxToken({
         playbackId: "123",
@@ -49,7 +54,7 @@ describe("useSignedMuxToken", () => {
     expect(loading).toBe(false);
   });
 
-  test("'token' should be null on a public video", () => {
+  it("'token' should be null on a public video", () => {
     const { result } = renderHook(() =>
       useSignedMuxToken({
         playbackId: "123",
@@ -62,7 +67,7 @@ describe("useSignedMuxToken", () => {
 
     expect(playbackToken).toBe(null);
   });
-  test("'loading' should default to true on signed video", () => {
+  it("'loading' should default to true on signed video", () => {
     const { result } = renderHook(() =>
       useSignedMuxToken({
         playbackId: "123",
@@ -75,7 +80,7 @@ describe("useSignedMuxToken", () => {
 
     expect(loading).toBe(true);
   });
-  test("should return correct state on error ", () => {
+  it("should return correct state on error ", () => {
     mockUseSWR.mockImplementationOnce(() => ({ data: null, error: "error" }));
     const { result } = renderHook(() =>
       useSignedMuxToken({
@@ -92,7 +97,7 @@ describe("useSignedMuxToken", () => {
       error: "error",
     });
   });
-  test("should return correct signed playback token ", () => {
+  it("should return correct signed playback token ", () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: JSON.stringify({ token: "1234" }),
       error: null,
@@ -112,7 +117,7 @@ describe("useSignedMuxToken", () => {
       error: null,
     });
   });
-  test("should report an error if there is data but no token ", () => {
+  it("should report an error if there is data but no token ", () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: "123",
       error: "error",

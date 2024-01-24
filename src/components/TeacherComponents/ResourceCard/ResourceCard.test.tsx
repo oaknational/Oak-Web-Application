@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -14,7 +15,7 @@ describe("ResourceCard", () => {
         label="Worksheet"
         subtitle="PDF"
         checked
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         resourceType="worksheet-pdf"
       />,
     );

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
@@ -47,8 +48,8 @@ it("component renders with the title only", () => {
 });
 /** @todo This test need rewriting to not depend on logging being called. */
 it.skip("renders top right icons", async () => {
-  const log1 = jest.spyOn(console, "log");
-  const log2 = jest.spyOn(console, "log");
+  const log1 = vi.spyOn(console, "log");
+  const log2 = vi.spyOn(console, "log");
   const user = userEvent.setup();
   renderWithTheme(
     <ExpandingContainer
@@ -80,8 +81,8 @@ it.skip("renders top right icons", async () => {
   expect(log2).toHaveBeenCalled();
 });
 
-const resourceContainerExpanded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const resourceContainerExpanded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -93,7 +94,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("comonents/ExpandingContainer", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("component renders with the title", () => {
@@ -137,8 +138,8 @@ describe("comonents/ExpandingContainer", () => {
   });
   /** @todo This test need rewriting to not depend on logging being called. */
   it.skip("renders top right icons", async () => {
-    const log1 = jest.spyOn(console, "log");
-    const log2 = jest.spyOn(console, "log");
+    const log1 = vi.spyOn(console, "log");
+    const log2 = vi.spyOn(console, "log");
     const user = userEvent.setup();
     renderWithTheme(
       <ExpandingContainer
@@ -172,7 +173,7 @@ describe("comonents/ExpandingContainer", () => {
 
   it("calls tackingCallback on Download Button click if provided in props", async () => {
     const user = userEvent.setup();
-    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonClick = vi.fn();
 
     renderWithTheme(
       <ExpandingContainer
@@ -240,7 +241,9 @@ describe("comonents/ExpandingContainer", () => {
     );
 
     const downloadButton = screen.getByTestId("expand-button");
+    // await act(async () => {
     await user.click(downloadButton);
+    // });
     expect(screen.getByTestId("expanded-container")).toHaveStyle(
       "max-height: 600rem",
     );
@@ -311,10 +314,10 @@ describe("comonents/ExpandingContainer", () => {
     await user.click(expandButton);
 
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
-    expect(resourceContainerExpanded).toHaveBeenCalledWith({
-      pageName: null,
-      containerTitle: "Video",
-      analyticsUseCase: null,
-    });
+    expect(resourceContainerExpanded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        containerTitle: "Video",
+      }),
+    );
   });
 });

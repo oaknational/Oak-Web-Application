@@ -1,3 +1,5 @@
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+
 import getDownloadResourcesExistence, {
   DownloadsApiCheckFilesResponseSchema,
   LegacyDownloadsApiCheckFilesResponseSchema,
@@ -28,7 +30,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   let downloadResourcesExist;
 
   beforeEach(() => {
-    global.fetch = jest.fn((url) => {
+    global.fetch = vi.fn((url) => {
       if (
         url ===
         "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
@@ -43,7 +45,7 @@ describe("checkIfDownloadResourcesExist()", () => {
           ok: true,
         });
       }
-    }) as jest.Mock;
+    }) as Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {
@@ -65,7 +67,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if fetch throws", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.reject("bad thing"),
     );
 
@@ -81,7 +83,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if API returns a bad response with a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({
@@ -111,7 +113,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should throw error if API returns a bad response without a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({

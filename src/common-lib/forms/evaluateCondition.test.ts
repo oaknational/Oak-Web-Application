@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { FieldRenderCondition } from "./FormDefinition";
 import evaluateCondition from "./evaluateCondition";
 

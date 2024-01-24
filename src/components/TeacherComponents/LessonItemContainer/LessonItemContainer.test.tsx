@@ -1,3 +1,4 @@
+import { describe, expect, it, vi, beforeAll } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
@@ -8,8 +9,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 import { LessonOverviewData } from "@/node-lib/curriculum-api";
 
-const resourceContainerExpanded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const resourceContainerExpanded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -113,7 +114,7 @@ describe("LessonItemContainer", () => {
 
   it("calls trackingCallback on Download Button click if provided in props", async () => {
     const user = userEvent.setup();
-    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonClick = vi.fn();
 
     renderWithTheme(
       <LessonItemContainer

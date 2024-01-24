@@ -1,8 +1,10 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import curriculumOverviewQuery from "./curriculumOverview.query";
 describe("curriculum overview query", () => {
-  test("throws params incorrect error if slugs are blank", async () => {
+  it("throws params incorrect error if slugs are blank", async () => {
     expect(async () => {
       await curriculumOverviewQuery(sdk)({
         subjectSlug: "",
@@ -11,11 +13,11 @@ describe("curriculum overview query", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a not found error if no valid subject phase is found", async () => {
+  it("throws a not found error if no valid subject phase is found", async () => {
     await expect(async () => {
       await curriculumOverviewQuery({
         ...sdk,
-        curriculumOverview: jest.fn(() =>
+        curriculumOverview: vi.fn(() =>
           Promise.resolve({ curriculumOverview: [] }),
         ),
       })({

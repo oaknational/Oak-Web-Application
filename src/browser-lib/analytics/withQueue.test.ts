@@ -1,3 +1,5 @@
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+
 import {
   AnalyticsService,
   EventFn,
@@ -9,20 +11,20 @@ import withQueue from "./withQueue";
 
 const originalService: AnalyticsService<unknown> = {
   name: "test service" as ServiceType,
-  init: jest.fn(),
-  state: jest.fn(() => "pending"),
-  track: jest.fn(),
-  page: jest.fn(),
-  identify: jest.fn(),
-  optOut: jest.fn(),
-  optIn: jest.fn(),
+  init: vi.fn(),
+  state: vi.fn(() => "pending"),
+  track: vi.fn(),
+  page: vi.fn(),
+  identify: vi.fn(),
+  optOut: vi.fn(),
+  optIn: vi.fn(),
 };
 
 describe("withQueue", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("should add to queue not fire events if state: pending", () => {
+  it("should add to queue not fire events if state: pending", () => {
     const service = withQueue(originalService);
 
     service.page({ path: "/bloo/blah?holy=moly" });
@@ -38,7 +40,7 @@ describe("withQueue", () => {
     expect(originalService.identify).not.toHaveBeenCalled();
     expect(originalService.track).not.toHaveBeenCalled();
   });
-  test("should clear queue without firing events if state -> disabled", async () => {
+  it("should clear queue without firing events if state -> disabled", async () => {
     // create a queue with a 10ms timer
     const service = withQueue(originalService, 10);
 
@@ -46,7 +48,7 @@ describe("withQueue", () => {
     service.identify("user-123", { email: "bar" });
     service.track("event-123", { foo: "bar" });
 
-    (originalService.state as jest.Mock).mockImplementation(() => "disabled");
+    (originalService.state as Mock).mockImplementation(() => "disabled");
 
     // wait 15ms so that queue can refresh
     await new Promise((r) => setTimeout(r, 15));
@@ -56,7 +58,7 @@ describe("withQueue", () => {
     expect(originalService.identify).not.toHaveBeenCalled();
     expect(originalService.track).not.toHaveBeenCalled();
   });
-  test("should fire events and clear queue if state -> enabled", async () => {
+  it("should fire events and clear queue if state -> enabled", async () => {
     // create a queue with a 10ms timer
     const service = withQueue(originalService, 10);
 
@@ -67,7 +69,7 @@ describe("withQueue", () => {
     service.identify(...identifyArgs);
     service.track(...trackArgs);
 
-    (originalService.state as jest.Mock).mockImplementation(() => "enabled");
+    (originalService.state as Mock).mockImplementation(() => "enabled");
 
     // wait 15ms so that queue can refresh
     await new Promise((r) => setTimeout(r, 15));

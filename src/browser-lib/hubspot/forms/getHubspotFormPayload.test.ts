@@ -1,10 +1,12 @@
+import { describe, expect, it } from "vitest";
+
 import {
   getHubspotDownloadsFormPayload,
   getHubspotNewsletterPayload,
 } from "./getHubspotFormPayloads";
 
 describe("getHubspotNewsletterFormPayload()", () => {
-  test("primary form payload is correct", () => {
+  it("primary form payload is correct", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 123",
@@ -34,12 +36,12 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
   });
-  test("fallback form payload is correct", () => {
+  it("fallback form payload is correct", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 456",
@@ -59,12 +61,12 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 456",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
   });
-  test("falsy values are removed", () => {
+  it("falsy values are removed", () => {
     expect(
       getHubspotNewsletterPayload({
         hutk: "hubspotutk value 456",
@@ -83,14 +85,14 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 456",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
   });
 });
 describe("getHubspotDownloadFormPayload()", () => {
-  test("primary form payload is correct", () => {
+  it("primary form payload is correct", () => {
     expect(
       getHubspotDownloadsFormPayload({
         hutk: "hubspotutk value 123",
@@ -120,12 +122,12 @@ describe("getHubspotDownloadFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });
   });
-  test("if schoolId === homeschool or notListed return schoolName as schoolId", () => {
+  it("if schoolId === homeschool or notListed return schoolName as schoolId", () => {
     expect(
       getHubspotDownloadsFormPayload({
         hutk: "hubspotutk value 123",
@@ -154,7 +156,7 @@ describe("getHubspotDownloadFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "http://localhost:3000/",
         pageName: "",
       },
     });

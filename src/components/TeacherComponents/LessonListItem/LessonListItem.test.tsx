@@ -1,3 +1,4 @@
+import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
@@ -5,7 +6,7 @@ import LessonListItem from "./LessonListItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const props = {
   unitTitle: "Adding surds",
@@ -40,17 +41,17 @@ describe("Lesson List Item", () => {
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("It shows lesson title", () => {
+  it("It shows lesson title", () => {
     const { getByRole } = render(<LessonListItem {...props} />);
     const lessonHeading = getByRole("heading", { level: 3 });
 
     expect(lessonHeading).toBeInTheDocument();
   });
 
-  test("It shows lesson description", () => {
+  it("It shows lesson description", () => {
     const { getAllByText } = render(<LessonListItem {...props} />);
 
     const description = getAllByText("In this lesson")[0];
@@ -58,7 +59,7 @@ describe("Lesson List Item", () => {
     expect(description).toBeInTheDocument();
   });
 
-  test("It is a link to the lesson overview page", () => {
+  it("It is a link to the lesson overview page", () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
     expect(getByText("Add two surds").closest("a")).toHaveAttribute(
@@ -66,7 +67,7 @@ describe("Lesson List Item", () => {
       "/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c",
     );
   });
-  test("It renders expired message is expired lesson", () => {
+  it("It renders expired message is expired lesson", () => {
     const { getByText } = render(
       <LessonListItem {...{ ...props, expired: true }} />,
     );
@@ -75,7 +76,7 @@ describe("Lesson List Item", () => {
       getByText("This lesson is currently unavailable."),
     ).toBeInTheDocument();
   });
-  test("It calls onClick with correct props when clicked", async () => {
+  it("It calls onClick with correct props when clicked", async () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
     const lesson = getByText("Add two surds");
@@ -89,7 +90,7 @@ describe("Lesson List Item", () => {
     });
   });
 
-  test("it changes the card background colour on hover", async () => {
+  it("it changes the card background colour on hover", async () => {
     render(<LessonListItem {...props} />);
     const cardContainer = screen.getByTestId("list-item-card-container");
     expect(cardContainer).toHaveStyle("background-color: #ffffff");

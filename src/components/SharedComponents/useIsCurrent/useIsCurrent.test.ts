@@ -1,12 +1,13 @@
+import { describe, expect, vi, it } from "vitest";
 import { renderHook } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
 import useIsCurrent from "./useIsCurrent";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useIsCurrent", () => {
-  test.each([
+  it.each([
     {
       linkHref: "/lesson-planning",
       currentHref: "http://localhost:3000/lesson-planning?foo=bar#video",

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import unitListingFixture from "../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 
 import { filterLearningTheme } from "./filterLearningTheme";

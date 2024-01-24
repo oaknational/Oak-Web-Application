@@ -1,10 +1,11 @@
+import { describe, expect, it } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 
 import useToastContext from "./useToastContext";
 import ToastProvider from "./ToastProvider";
 
 describe("useToastContext", () => {
-  test("'shown' should default to false", () => {
+  it("'shown' should default to false", () => {
     const { result } = renderHook(() => useToastContext(), {
       wrapper: ToastProvider,
     });
@@ -13,7 +14,7 @@ describe("useToastContext", () => {
     expect(shown).toBe(false);
   });
 
-  test("showToast should show the toast with message", () => {
+  it("showToast should show the toast with message", () => {
     const message = "Some message";
 
     const { result } = renderHook(() => useToastContext(), {
@@ -28,7 +29,7 @@ describe("useToastContext", () => {
     expect(result.current.message).toEqual(message);
   });
 
-  test("it should throw an error if called outside of toast provider", () => {
+  it("it should throw an error if called outside of toast provider", () => {
     expect(() => {
       renderHook(() => useToastContext());
     }).toThrow(Error("useToastContext called outside of toast provider"));

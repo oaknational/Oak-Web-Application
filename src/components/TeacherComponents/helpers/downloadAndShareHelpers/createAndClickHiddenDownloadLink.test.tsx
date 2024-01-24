@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import {
   hideAndClickDownloadLink,
   createLink,
@@ -27,7 +29,7 @@ describe("hideAndClickDownloadLink()", () => {
 
   it("click the link", () => {
     const link = createLink();
-    link.click = jest.fn();
+    link.click = vi.fn();
 
     hideAndClickDownloadLink("testUrl", link);
 

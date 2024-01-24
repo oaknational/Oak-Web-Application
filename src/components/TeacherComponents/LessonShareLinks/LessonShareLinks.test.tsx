@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -5,9 +6,11 @@ import LessonShareLinks from "./LessonShareLinks";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const onSubmit = vi.fn();
+
 describe("LessonShareLinks", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("should render", () => {
     renderWithTheme(
@@ -15,7 +18,7 @@ describe("LessonShareLinks", () => {
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        onSubmit={onSubmit}
       />,
     );
     const shareHeader = screen.getByRole("heading");
@@ -28,7 +31,7 @@ describe("LessonShareLinks", () => {
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        onSubmit={onSubmit}
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -41,7 +44,6 @@ describe("LessonShareLinks", () => {
   });
 
   it("should call onSubmit with copy-link", async () => {
-    const onSubmit = jest.fn();
     renderWithTheme(
       <LessonShareLinks
         disabled={false}
@@ -60,7 +62,6 @@ describe("LessonShareLinks", () => {
   });
 
   it("should call onSubmit with correct avoMedium", async () => {
-    const onSubmit = jest.fn();
     const { getByRole } = renderWithTheme(
       <LessonShareLinks
         disabled={false}

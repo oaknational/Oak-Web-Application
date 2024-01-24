@@ -16,7 +16,7 @@ _Diagram 1. The key events driving automated checks and tests in this repository
 
 ## Code Checks
 
-We use [Jest](https://jestjs.io/), with the [NextJS Jest Config](../jest.config.js).
+We use [Vitest](https://vitest.dev/), for which the [config can be found here](../vitest.config.js).
 
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.

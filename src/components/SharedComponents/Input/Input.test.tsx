@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import Input from "./Input";
@@ -11,7 +12,7 @@ describe("Input", () => {
         id="test-input"
         label="An input"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -19,25 +20,25 @@ describe("Input", () => {
 
     expect(input).toBeInTheDocument();
   });
-  test("has accessible name", () => {
+  it("has accessible name", () => {
     const { getByRole } = renderWithTheme(
       <Input
         id="test-input"
         label="A particular label"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
     const input = getByRole("textbox");
     expect(input).toHaveAccessibleName("A particular label");
   });
-  test("has accessible error message", () => {
+  it("has accessible error message", () => {
     const { getByRole } = renderWithTheme(
       <Input
         id="test-input"
         label="A particular label"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         error="You done wrong"
       />,
     );

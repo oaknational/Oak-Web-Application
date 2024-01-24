@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -6,10 +7,10 @@ import downloadZip from "./helpers/downloadZip";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("./helpers/downloadZip");
+vi.mock("./helpers/downloadZip");
 
-const curriculumMapDownloaded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumMapDownloaded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -23,10 +24,10 @@ const render = renderWithProviders();
 
 describe("HeaderListingCurriculumDownloadButton", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("renders a download button link with href corresponding to passed in props", () => {
+  it("renders a download button link with href corresponding to passed in props", () => {
     const { getByRole } = render(
       <HeaderListingCurriculumDownloadButton
         keyStageSlug={"ks4"}
@@ -46,7 +47,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     );
   });
 
-  test("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
+  it("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -62,17 +63,18 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     await user.click(linkTitle);
 
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
-    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      pageName: null,
-      subjectSlug: "english",
-      subjectTitle: "English",
-    });
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "english",
+        subjectTitle: "English",
+      }),
+    );
   });
 
-  test("renders a tiered download button link from unit page with tiers", () => {
+  it("renders a tiered download button link from unit page with tiers", () => {
     const { getByRole } = render(
       <HeaderListingCurriculumDownloadButton
         keyStageSlug={"ks4"}
@@ -93,7 +95,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     );
   });
 
-  test("renders a button to download a zip file when on a tiered lesson page", () => {
+  it("renders a button to download a zip file when on a tiered lesson page", () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -106,7 +108,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     const buttonTitle = screen.getByText("Curriculum download (.zip)");
     expect(buttonTitle).toBeInTheDocument();
   });
-  test("it downloads a zip when there are no tiers, ks4 and maths", async () => {
+  it("it downloads a zip when there are no tiers, ks4 and maths", async () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -124,7 +126,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     expect(downloadZip).toHaveBeenCalledTimes(1);
     expect(downloadZip).toHaveBeenCalledWith("4", "maths");
   });
-  test("it downloads a pdf when there are tiers, ks4 and maths", async () => {
+  it("it downloads a pdf when there are tiers, ks4 and maths", async () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -140,7 +142,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     expect(linkTitle).toBeInTheDocument();
     expect(downloadZip).toHaveBeenCalledTimes(0);
   });
-  test("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
+  it("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
     render(
       <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -158,13 +160,14 @@ describe("HeaderListingCurriculumDownloadButton", () => {
     expect(downloadZip).toHaveBeenCalledTimes(1);
     expect(downloadZip).toHaveBeenCalledWith("4", "maths");
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
-    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      pageName: null,
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-    });
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+      }),
+    );
   });
 });

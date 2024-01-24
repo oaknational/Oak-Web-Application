@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import KeyStageKeypad from "./KeyStageKeypad";
@@ -8,9 +9,9 @@ import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 const keyStages = ["1", "2", "3", "4"];
 const years = ["6", "7", "8", "9", "10", "11"];
 
-const keyStageSelected = jest.fn();
+const keyStageSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -21,10 +22,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("components/Key Stage keypad", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test.each(keyStages)(
+  it.each(keyStages)(
     "renders a key stage and year button with %p text",
     (keyStage) => {
       const { getAllByText } = renderWithTheme(
@@ -36,7 +37,7 @@ describe("components/Key Stage keypad", () => {
     },
   );
 
-  test("calls tracking.keyStageSelected once, with correct props", async () => {
+  it("calls tracking.keyStageSelected once, with correct props", async () => {
     const { getByText } = renderWithTheme(
       <KeyStageKeypad {...keyStageKeypad} />,
     );
@@ -54,7 +55,7 @@ describe("components/Key Stage keypad", () => {
     });
   });
 
-  test.skip.each(years)("renders a year link with %p text", (year) => {
+  it.skip.each(years)("renders a year link with %p text", (year) => {
     const { getByText } = renderWithTheme(
       <KeyStageKeypad {...keyStageKeypad} />,
     );

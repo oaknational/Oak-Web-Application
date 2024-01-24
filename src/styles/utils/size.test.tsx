@@ -1,10 +1,11 @@
+import { describe, expect, it } from "vitest";
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
 import size from "./size";
 
 describe("size", () => {
-  test.each([
+  it.each([
     ["$width", "50%", "width: 50%;"],
     ["$height", 20, "height: 1.25rem;"],
     ["$minWidth", 80, "min-width: 5rem;"],

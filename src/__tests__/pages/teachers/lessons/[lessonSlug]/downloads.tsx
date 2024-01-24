@@ -1,3 +1,4 @@
+import { Mock, expect, vi } from "vitest";
 import { GetStaticPropsContext, PreviewData } from "next";
 
 import LessonDownloadsCanonicalPage, {
@@ -10,6 +11,8 @@ import lessonDownloadsFixture from "@/node-lib/curriculum-api/fixtures/lessonDow
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
+
+vi.mock("@/node-lib/curriculum-api-2023");
 
 const render = renderWithProviders();
 
@@ -51,7 +54,7 @@ describe("LessonDownloadsCanonicalPage", () => {
 
     it("should call legacy api if 2023 throws curriculum-api/not-found error ", async () => {
       (
-        curriculumApi2023.lessonDownloadsCanonical as jest.Mock
+        curriculumApi2023.lessonDownloadsCanonical as Mock
       ).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
@@ -75,13 +78,11 @@ describe("LessonDownloadsCanonicalPage", () => {
     });
     it("should call throw an error if both API's are not found", async () => {
       (
-        curriculumApi2023.lessonDownloadsCanonical as jest.Mock
+        curriculumApi2023.lessonDownloadsCanonical as Mock
       ).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
-      (
-        curriculumApi.lessonDownloadsCanonical as jest.Mock
-      ).mockRejectedValueOnce(
+      (curriculumApi.lessonDownloadsCanonical as Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
       await expect(

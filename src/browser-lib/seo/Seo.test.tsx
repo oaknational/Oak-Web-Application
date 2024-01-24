@@ -1,9 +1,10 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
 import SEO from "./Seo";
 
-jest.mock("next/head", () => {
+vi.mock("next/head", () => {
   return {
     __esModule: true,
     default: ({ children }: { children: Array<React.ReactElement> }) => {
@@ -12,7 +13,7 @@ jest.mock("next/head", () => {
   };
 });
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const mockSeoProps = {
   title: "Maths lesson",

@@ -1,10 +1,12 @@
+import { describe, expect, it, vi } from "vitest";
+
 import HeaderListing, { HeaderListingProps } from "./HeaderListing";
 import { headerListingProps } from "./HeaderListing.stories";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const curriculumMapDownloaded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumMapDownloaded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

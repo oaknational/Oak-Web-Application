@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import useNewsletterForm from "./useNewsletterForm";
@@ -7,32 +8,32 @@ import {
   NewsletterHubspotFormData,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
-const identify = jest.fn();
+const identify = vi.fn();
 
 const testPosthogDistinctId = "test-anonymous-id";
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     identify: (...args: []) => identify(...args),
     posthogDistinctId: testPosthogDistinctId,
   }),
 }));
-const hubspotSubmitForm = jest.fn();
-jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+const hubspotSubmitForm = vi.fn();
+vi.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
   __esModule: true,
   default: (...args: []) => hubspotSubmitForm(...args),
 }));
-jest.mock("@/hooks/useUtmParams", () => ({
+vi.mock("@/hooks/useUtmParams", () => ({
   __esModule: true,
   default: () => ({ utm_source: "les_twitz" }),
 }));
 
 describe("useNewsletterForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("should call hubspotSubmitForm() and include utm params", () => {
+  it("should call hubspotSubmitForm() and include utm params", () => {
     const { result } = renderHook(() => useNewsletterForm());
     const data: NewsletterHubspotFormData = {
       email: "test",
@@ -49,7 +50,7 @@ describe("useNewsletterForm", () => {
       hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
     });
   });
-  test("should call analytics.identify() with email", () => {
+  it("should call analytics.identify() with email", () => {
     const { result } = renderHook(() => useNewsletterForm());
     result.current.onSubmit({ email: "test", name: "", userRole: "" });
 
@@ -61,7 +62,7 @@ describe("useNewsletterForm", () => {
       ["hubspot"],
     );
   });
-  test("should call analytics.identify() with rejected email", () => {
+  it("should call analytics.identify() with rejected email", () => {
     /**
      * This tests the case when the hubspot form has rejected the email address
      * but we still want to create a contact.

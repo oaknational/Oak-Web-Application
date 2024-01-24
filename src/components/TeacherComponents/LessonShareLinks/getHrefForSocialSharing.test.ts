@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 import { shareLinkConfig } from "./linkConfig";
 

@@ -1,7 +1,9 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
 import { hubspotWithoutQueue as hubspot } from "./hubspot";
 
-const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -9,44 +11,44 @@ jest.mock("../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const qPush = jest.fn();
-const pPush = jest.fn();
+const qPush = vi.fn();
+const pPush = vi.fn();
 
 describe("hubspot.ts", () => {
   beforeEach(() => {
     window._hsq = { push: qPush };
     window._hsp = { push: pPush };
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   afterEach(() => {
     window._hsq = undefined;
     window._hsp = undefined;
   });
-  test("identify", () => {
+  it("identify", () => {
     hubspot.identify("123", { email: "abc" });
     expect(qPush).toHaveBeenCalledWith([
       "identify",
       { id: "123", email: "abc" },
     ]);
   });
-  test("identify without email", () => {
+  it("identify without email", () => {
     hubspot.identify("123", {});
     expect(reportError).toHaveBeenCalled();
     expect(qPush).toHaveBeenCalledWith(["identify", { id: "123" }]);
   });
-  test("page", () => {
+  it("page", () => {
     hubspot.page({ path: "/foo/ban" });
     expect(qPush).toHaveBeenCalledWith(["setPath", "/foo/ban"]);
     expect(qPush).toHaveBeenCalledWith(["trackPageView"]);
   });
-  test("track", () => {
+  it("track", () => {
     hubspot.track("my-event", { foo: "bar" });
     expect(qPush).toHaveBeenCalledWith([
       "trackEvent",
       { id: "my-event", foo: "bar" },
     ]);
   });
-  test("track: with id in properties should error", () => {
+  it("track: with id in properties should error", () => {
     hubspot.track("my-event", { foo: "bar", id: "123-oops-456" });
     expect(reportError).toHaveBeenCalled();
     expect(qPush).toHaveBeenCalledWith([
@@ -54,11 +56,11 @@ describe("hubspot.ts", () => {
       { id: "my-event", foo: "bar" },
     ]);
   });
-  test("optIn", () => {
+  it("optIn", () => {
     hubspot.optIn();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack", { track: true }]);
   });
-  test("optOut", () => {
+  it("optOut", () => {
     hubspot.optOut();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack"]);
     expect(pPush).toHaveBeenCalledWith(["revokeCookieConsent"]);

@@ -1,13 +1,14 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 
-const videoStarted = jest.fn();
-const videoPlayed = jest.fn();
-const videoPaused = jest.fn();
-const videoFinished = jest.fn();
+const videoStarted = vi.fn();
+const videoPlayed = vi.fn();
+const videoPaused = vi.fn();
+const videoFinished = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -41,9 +42,9 @@ const getState: VideoTrackingGetState = () => ({
 
 describe("useVideoTracking", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("calls track.videoStarted only once", () => {
+  it("calls track.videoStarted only once", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();
@@ -53,7 +54,7 @@ describe("useVideoTracking", () => {
     });
     expect(videoStarted).toHaveBeenCalledTimes(1);
   });
-  test("calls track.videoPlayed", () => {
+  it("calls track.videoPlayed", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();
@@ -61,19 +62,19 @@ describe("useVideoTracking", () => {
 
     expect(videoPlayed).toHaveBeenCalledWith(eventProps);
   });
-  test("calls track.videoPaused", () => {
+  it("calls track.videoPaused", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPause();
     });
     expect(videoPaused).toHaveBeenCalledWith(eventProps);
   });
-  test("calls track.videoFinished", () => {
+  it("calls track.videoFinished", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     result.current.onEnd();
     expect(videoFinished).toHaveBeenCalledWith(eventProps);
   });
-  test("calls correct number of times when a sequence is run", () => {
+  it("calls correct number of times when a sequence is run", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPlay();

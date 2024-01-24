@@ -1,6 +1,4 @@
-import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import "@testing-library/jest-dom";
+import { describe, expect, it, vi } from "vitest";
 import { act, fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 
@@ -27,10 +25,10 @@ const getContext = (): NonNullable<QuizEngineContextType> => ({
       grade: 0,
     },
   ],
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
+  updateQuestionMode: vi.fn(),
+  handleSubmitMCAnswer: vi.fn(),
+  handleNextQuestion: vi.fn(),
+  handleSubmitShortAnswer: vi.fn(),
   score: 0,
   numQuestions: 1,
 });
@@ -53,7 +51,7 @@ describe("QuizShortAnswer", () => {
 
   it("calls onInitialChange when there is user input", () => {
     const context = getContext();
-    const onInitialChange = jest.fn();
+    const onInitialChange = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

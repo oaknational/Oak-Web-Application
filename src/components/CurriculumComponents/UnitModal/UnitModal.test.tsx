@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import UnitModal from "./UnitModal";
@@ -5,8 +6,8 @@ import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const unitInformationViewed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const unitInformationViewed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -18,11 +19,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("Unit modal", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  const stateFn = jest.fn();
+  const stateFn = vi.fn();
 
-  test("renders with correct heading", () => {
+  it("renders with correct heading", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
@@ -37,7 +38,7 @@ describe("Unit modal", () => {
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
   });
 
-  test("renders the correct number of threads", () => {
+  it("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
@@ -57,7 +58,7 @@ describe("Unit modal", () => {
     expect(testThread2).toBeInTheDocument();
   });
 
-  test("lesson metadata renders correct data", () => {
+  it("lesson metadata renders correct data", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
@@ -75,7 +76,7 @@ describe("Unit modal", () => {
   });
 
   describe("non-optional units", () => {
-    test("does not render optionality card", () => {
+    it("does not render optionality card", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -91,7 +92,7 @@ describe("Unit modal", () => {
       expect(queryByTestId("unit-option-card")).not.toBeInTheDocument();
     });
 
-    test("renders CurriculumUnitDetails component", () => {
+    it("renders CurriculumUnitDetails component", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -109,7 +110,7 @@ describe("Unit modal", () => {
   });
 
   describe("optional units", () => {
-    test("optionality cards render", () => {
+    it("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -126,7 +127,7 @@ describe("Unit modal", () => {
       expect(optionalityCard).toBeInTheDocument();
     });
 
-    test("does not render CurriculumUnitDetails component", () => {
+    it("does not render CurriculumUnitDetails component", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -142,7 +143,7 @@ describe("Unit modal", () => {
       expect(queryByTestId("curriculum-unit-details")).not.toBeInTheDocument();
     });
 
-    test("optionality cards render correct number of units", () => {
+    it("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -158,7 +159,7 @@ describe("Unit modal", () => {
       expect(getAllByTestId("unit-option")).toHaveLength(3);
     });
 
-    test("optionality cards render correct unit titles", () => {
+    it("optionality cards render correct unit titles", () => {
       const { getByText } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
@@ -176,7 +177,7 @@ describe("Unit modal", () => {
       expect(getByText("Test optional unit 3")).toBeInTheDocument();
     });
 
-    test("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
+    it("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
       const { getAllByTestId, getByTestId, getByText, queryByTestId } =
         renderWithTheme(
           <UnitModal
@@ -205,7 +206,7 @@ describe("Unit modal", () => {
       }
     });
   });
-  test("calls tracking.unitInformationViewed once, with correct props", async () => {
+  it("calls tracking.unitInformationViewed once, with correct props", async () => {
     renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}

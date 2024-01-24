@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
@@ -5,11 +7,11 @@ import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 describe("pupilLessonOverview()", () => {
-  test("throws a not found error if no lesson is found", async () => {
+  it("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await pupilLessonOverviewQuery({
         ...sdk,
-        pupilLessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
+        pupilLessonOverview: vi.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
@@ -18,10 +20,10 @@ describe("pupilLessonOverview()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("first lesson is returned if multiple units in response", async () => {
+  it("first lesson is returned if multiple units in response", async () => {
     const lesson = await pupilLessonOverviewQuery({
       ...sdk,
-      pupilLessonOverview: jest.fn(() =>
+      pupilLessonOverview: vi.fn(() =>
         Promise.resolve({
           lesson: [
             {

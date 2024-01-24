@@ -1,20 +1,22 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import SearchFilters from "./SearchFilters";
 import { searchFilters, mockOnChange } from "./test-helpers";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const props = searchFilters;
 
-const searchRefined = jest.fn();
+const searchRefined = vi.fn();
 
 describe("SearchFilters", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("renders all the key stage, subject filters and search type filters", () => {
+  it("renders all the key stage, subject filters and search type filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}
@@ -32,7 +34,7 @@ describe("SearchFilters", () => {
         props.examBoardFilters.length,
     );
   });
-  test("have correct a11y label", () => {
+  it("have correct a11y label", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}
@@ -51,7 +53,7 @@ describe("SearchFilters", () => {
     expect(mathsFilter).toBeInTheDocument();
     expect(ks2Filter).toBeInTheDocument();
   });
-  test("respect 'checked' attribute when filter active", () => {
+  it("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}
@@ -90,7 +92,7 @@ describe("SearchFilters", () => {
     expect(lessonFilter).toHaveAttribute("checked");
     expect(examBoardFilter).toHaveAttribute("checked");
   });
-  test("respect 'checked' attribute when filter not active", () => {
+  it("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}
@@ -129,7 +131,7 @@ describe("SearchFilters", () => {
     expect(unitFilter).not.toHaveAttribute("checked");
     expect(examBoardFilter).not.toHaveAttribute("checked");
   });
-  test("onChange on click", () => {
+  it("onChange on click", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}
@@ -177,7 +179,7 @@ describe("SearchFilters", () => {
     // );
   });
 
-  test("searchRefined function invoked when checked", () => {
+  it("searchRefined function invoked when checked", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
         searchRefined={searchRefined}

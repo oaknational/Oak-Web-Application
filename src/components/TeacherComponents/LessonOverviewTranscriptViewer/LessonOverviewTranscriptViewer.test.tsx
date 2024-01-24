@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import LessonOverviewTranscriptViewer from "./LessonOverviewTranscriptViewer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -9,7 +11,7 @@ const transcriptSentences = [
 ];
 
 describe("LessonOverviewTranscriptViewer", () => {
-  test("it renders all the sentences", () => {
+  it("it renders all the sentences", () => {
     const { getByText, getAllByRole } = renderWithTheme(
       <LessonOverviewTranscriptViewer
         transcriptSentences={transcriptSentences}

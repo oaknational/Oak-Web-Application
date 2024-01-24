@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
@@ -9,7 +10,7 @@ describe("useLocalStorageForDownloads", () => {
     window.localStorage.clear();
   });
 
-  test("schoolFromLocalStorage should default to object with schoolId and schoolName as empty strings", () => {
+  it("schoolFromLocalStorage should default to object with schoolId and schoolName as empty strings", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     expect(result.current.schoolFromLocalStorage).toStrictEqual({
       schoolId: "",
@@ -17,17 +18,17 @@ describe("useLocalStorageForDownloads", () => {
     });
   });
 
-  test("emailFromLocalStorage should default to empty string", () => {
+  it("emailFromLocalStorage should default to empty string", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     expect(result.current.emailFromLocalStorage).toBe("");
   });
 
-  test("termsFromLocalSotrage should default to false", () => {
+  it("termsFromLocalSotrage should default to false", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     expect(result.current.termsFromLocalStorage).toBe(false);
   });
 
-  test("calling setSchoolInLocalStorage with schoolId should set schoolFromLocalStorage to correct value", () => {
+  it("calling setSchoolInLocalStorage with schoolId should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
       result.current.setSchoolInLocalStorage({
@@ -41,7 +42,7 @@ describe("useLocalStorageForDownloads", () => {
     });
   });
 
-  test("calling setSchoolInLocalStorage with schoolName should set schoolFromLocalStorage to correct value", () => {
+  it("calling setSchoolInLocalStorage with schoolName should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
       result.current.setSchoolInLocalStorage({
@@ -55,7 +56,7 @@ describe("useLocalStorageForDownloads", () => {
     });
   });
 
-  test("calling setEmailInLocalStorage should set emailFromLocalStorage to correct value", () => {
+  it("calling setEmailInLocalStorage should set emailFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
       result.current.setEmailInLocalStorage("test@test.com");
@@ -63,7 +64,7 @@ describe("useLocalStorageForDownloads", () => {
     expect(result.current.emailFromLocalStorage).toBe("test@test.com");
   });
 
-  test("calling setTermsInLocalSotrage should set termsFromLocalStorage to correct value", () => {
+  it("calling setTermsInLocalSotrage should set termsFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
       result.current.setTermsInLocalStorage(true);

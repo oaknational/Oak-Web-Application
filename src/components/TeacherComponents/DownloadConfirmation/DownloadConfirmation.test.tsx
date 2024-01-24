@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmation from "./DownloadConfirmation";
@@ -6,11 +7,11 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+  vi.fn() as unknown as TrackFns["onwardContentSelected"];
 
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should render", () => {

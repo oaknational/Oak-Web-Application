@@ -1,7 +1,8 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 describe("getBrowserConfig()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
   it("should retrieve the correct value from env", async () => {
     process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL = "www.thenational.academy";

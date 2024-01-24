@@ -1,7 +1,9 @@
+import { describe, expect, it, vi } from "vitest";
+
 import getAvoBridge from "./getAvoBridge";
 
 const posthog = {
-  track: jest.fn(),
+  track: vi.fn(),
 };
 
 const testEventName = "test-event";
@@ -10,7 +12,7 @@ const testEventProperties = {
 };
 
 describe("getAvoBridge", () => {
-  test("logEvent", () => {
+  it("logEvent", () => {
     const avoBridge = getAvoBridge({ posthog });
     avoBridge.logEvent(testEventName, testEventProperties);
 

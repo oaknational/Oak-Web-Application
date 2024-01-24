@@ -1,13 +1,15 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import subjectListing from "./subjectListing.query";
 
 describe("subjectListing()", () => {
-  test("throws a not found error if no subjects are found", async () => {
+  it("throws a not found error if no subjects are found", async () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,
-        subjectListing: jest.fn(() =>
+        subjectListing: vi.fn(() =>
           Promise.resolve({
             keyStageSubjects: [],
             keyStages: [{ keyStages: [] }],
@@ -19,13 +21,13 @@ describe("subjectListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        subjectListing: jest.fn(() =>
+        subjectListing: vi.fn(() =>
           Promise.resolve({
             keyStages: [{ keyStages: [] }],
             keyStageSubjects: [

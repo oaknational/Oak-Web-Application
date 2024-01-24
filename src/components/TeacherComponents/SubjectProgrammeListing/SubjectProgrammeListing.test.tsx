@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -11,15 +12,15 @@ const curriculumData = tieredProgrammeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("SubjectProgrammeListing", () => {
-  test("render a tier subject component with heading ", () => {
+  it("render a tier subject component with heading ", () => {
     render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     expect(screen.getByText("Select tier of learning")).toBeInTheDocument();
   });
-  test("it does not render a tier heading when there are no tiers ", () => {
+  it("it does not render a tier heading when there are no tiers ", () => {
     const { queryByText } = render(
       <SubjectProgrammeListing
         onClick={onClick}
@@ -36,7 +37,7 @@ describe("SubjectProgrammeListing", () => {
 
     expect(tiersTitle).toBeNull();
   });
-  test("render a exam board subject component with heading ", () => {
+  it("render a exam board subject component with heading ", () => {
     render(
       <SubjectProgrammeListing
         onClick={onClick}
@@ -47,7 +48,7 @@ describe("SubjectProgrammeListing", () => {
     expect(screen.getByText("Select exam board")).toBeInTheDocument();
   });
 
-  test("it does not render an exam board heading when there is no exam boards  ", () => {
+  it("it does not render an exam board heading when there is no exam boards  ", () => {
     const { queryByText } = render(
       <SubjectProgrammeListing
         onClick={onClick}
@@ -65,7 +66,7 @@ describe("SubjectProgrammeListing", () => {
     expect(examsTitle).toBeNull();
   });
 
-  test("render a list of card items with the name of the programmes ", () => {
+  it("render a list of card items with the name of the programmes ", () => {
     const { getAllByRole } = render(
       <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );
@@ -78,7 +79,7 @@ describe("SubjectProgrammeListing", () => {
     );
   });
 
-  test("each card items will link have a link to a different query ", () => {
+  it("each card items will link have a link to a different query ", () => {
     const { getByRole } = render(
       <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );

@@ -1,3 +1,7 @@
+import { vi } from "vitest";
+
+import curriculumUnitsTabFixture from "../fixtures/curriculumUnits.fixture";
+
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
@@ -6,6 +10,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/su
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -16,32 +21,42 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
+  | "curriculumUnits"
+  | "searchPage"
 > = {
-  subjectPhaseOptions: jest.fn(async () => {
+  subjectPhaseOptions: vi.fn(async () => {
     return subjectPhaseOptionsFixture();
   }),
-  curriculumOverview: jest.fn(async () => {
+  curriculumOverview: vi.fn(async () => {
     return curriculumOverviewMVFixture();
   }),
-  subjectListingPage: jest.fn(async () => {
+  subjectListingPage: vi.fn(async () => {
     return subjectListingFixture2023();
   }),
-  teachersHomePage: jest.fn(async () => {
+  teachersHomePage: vi.fn(async () => {
     return teachersHomePageFixture();
   }),
-  pupilLessonOverview: jest.fn(async () => {
+  pupilLessonOverview: vi.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
-  lessonOverviewCanonical: jest.fn(async () => {
+  lessonOverviewCanonical: vi.fn(async () => {
     return {
       ...lessonOverviewFixture(),
       pathways: [lessonOverviewFixture()],
     };
   }),
-  lessonDownloadsCanonical: jest.fn(async () => {
+  lessonDownloadsCanonical: vi.fn(async () => {
     return {
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
+    };
+  }),
+  curriculumUnits: vi.fn(async () => {
+    return curriculumUnitsTabFixture();
+  }),
+  searchPage: vi.fn(async () => {
+    return {
+      ...searchPageFixture(),
     };
   }),
 };

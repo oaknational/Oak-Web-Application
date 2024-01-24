@@ -1,15 +1,16 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act } from "@testing-library/react";
 
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
 import useAnalytics from "./useAnalytics";
 
-const posthogCapture = jest.fn();
-const posthogInit = jest.fn();
-jest.mock("posthog-js", () => ({
+const posthogCapture = vi.fn();
+const posthogInit = vi.fn();
+vi.mock("posthog-js", async () => ({
   __esModule: true,
   default: {
-    ...jest.requireActual("posthog-js"),
+    ...(await vi.importActual("posthog-js")),
     capture: (...args: []) => posthogCapture(...args),
     init: (...args: []) => posthogInit(...args),
   },
@@ -17,9 +18,9 @@ jest.mock("posthog-js", () => ({
 
 describe("useAnalytics", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("track should not work if statistics consent not given", () => {
+  it("track should not work if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
 
     act(() => {
@@ -28,7 +29,7 @@ describe("useAnalytics", () => {
 
     expect(posthogCapture).not.toHaveBeenCalled();
   });
-  test("posthog should not be initialised if statistics consent not given", () => {
+  it("posthog should not be initialised if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
     act(() => {
       result.current.track.developYourCurriculumSelected();

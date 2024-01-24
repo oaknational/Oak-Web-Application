@@ -1,3 +1,5 @@
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
 import OakError from "@/errors/OakError";
@@ -18,7 +20,7 @@ describe("createDownloadResourcesLink()", () => {
   let downloadResourcesLink;
 
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {
@@ -32,7 +34,7 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should throw error if fetch throws", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.reject("bad thing"),
     );
 
@@ -48,7 +50,7 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should throw error if API returns a bad response with a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({
@@ -76,7 +78,7 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should throw error if API returns a bad response without a specific error", async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+    (global.fetch as Mock).mockImplementationOnce(() =>
       Promise.resolve({
         json: () =>
           Promise.resolve({

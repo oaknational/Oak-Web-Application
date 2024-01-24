@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { within } from "@testing-library/react";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
@@ -151,7 +152,7 @@ const withFootnotes = [
 const render = renderWithProviders();
 
 describe("components/PostPortableText", () => {
-  test("text and media renders an image", () => {
+  it("text and media renders an image", () => {
     const { getByAltText } = render(
       <PostPortableText portableText={textAndMedia} />,
     );
@@ -160,7 +161,7 @@ describe("components/PostPortableText", () => {
 
     expect(imageAltText).toBeInTheDocument();
   });
-  test("image with alt text has alt text", () => {
+  it("image with alt text has alt text", () => {
     const { getByAltText } = render(
       <PostPortableText portableText={[textAndMedia[0]?.image]} />,
     );
@@ -169,7 +170,7 @@ describe("components/PostPortableText", () => {
 
     expect(imageAltText).toBeInTheDocument();
   });
-  test("quote renders a quote", () => {
+  it("quote renders a quote", () => {
     const { getByText } = render(<PostPortableText portableText={quote} />);
 
     const quoteText = getByText(
@@ -178,7 +179,7 @@ describe("components/PostPortableText", () => {
 
     expect(quoteText).toBeInTheDocument();
   });
-  test("cta renders a button with a label", () => {
+  it("cta renders a button with a label", () => {
     const { getByText } = render(
       <PostPortableText portableText={[textAndMedia[0]?.cta]} />,
     );
@@ -187,14 +188,14 @@ describe("components/PostPortableText", () => {
 
     expect(ctaLabel).toBeInTheDocument();
   });
-  test("callout has styled background", () => {
+  it("callout has styled background", () => {
     const { getByText } = render(<PostPortableText portableText={[callout]} />);
 
     const calloutText = getByText("I'm a callout out!").closest("div");
 
     expect(calloutText).toHaveStyle("background-color: #f6e8a0");
   });
-  test("formWrapper renders a newsletter form", () => {
+  it("formWrapper renders a newsletter form", () => {
     const { getByText } = render(<PostPortableText portableText={[form]} />);
 
     const heading = getByText("This is a form!");
@@ -204,7 +205,7 @@ describe("components/PostPortableText", () => {
     expect(submitButton).toBeInTheDocument();
   });
   describe("footnotes", () => {
-    test("footnote links are rendered inline", () => {
+    it("footnote links are rendered inline", () => {
       const { getAllByRole } = render(
         <PostPortableText portableText={withFootnotes} />,
       );
@@ -217,7 +218,7 @@ describe("components/PostPortableText", () => {
         "#footnote-ref-FOOTNOTE_MARK_1",
       );
     });
-    test("footnote references are rendered with backlinks", () => {
+    it("footnote references are rendered with backlinks", () => {
       const { getByRole } = render(
         <PostPortableText portableText={withFootnotes} />,
       );
@@ -245,7 +246,7 @@ describe("components/PostPortableText", () => {
       expect(footnoteWithSource).toHaveAttribute("href", "https://example.com");
     });
 
-    test("does not render the footnotes section when none exist", () => {
+    it("does not render the footnotes section when none exist", () => {
       const { queryByRole } = render(
         <PostPortableText portableText={textAndMedia} />,
       );

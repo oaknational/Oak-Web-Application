@@ -1,13 +1,15 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import curriculumUnitsQuery from "./curriculumUnits.query";
 
 describe("curriculum units query", () => {
-  test("throws params incorrect error if slugs are blank", async () => {
+  it("throws params incorrect error if slugs are blank", async () => {
     await expect(async () => {
       await curriculumUnitsQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumUnits: vi.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "",
         phaseSlug: "",
@@ -16,11 +18,11 @@ describe("curriculum units query", () => {
     }).rejects.toThrow(`The params provided are incorrect`);
   });
 
-  test("throws resource not found error if no rows are returned", async () => {
+  it("throws resource not found error if no rows are returned", async () => {
     await expect(async () => {
       await curriculumUnitsQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumUnits: vi.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "english",
         phaseSlug: "secondary",

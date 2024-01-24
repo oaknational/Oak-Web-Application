@@ -1,16 +1,18 @@
+import { describe, expect, it, vi } from "vitest";
+
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    track: jest.fn(),
+    track: vi.fn(),
   }),
 }));
 
 describe("UnitsLearningThemeFilters", () => {
-  test("should render links to lessons", () => {
+  it("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}

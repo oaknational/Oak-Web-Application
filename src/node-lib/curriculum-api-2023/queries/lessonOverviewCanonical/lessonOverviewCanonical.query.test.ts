@@ -1,20 +1,22 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import lessonOverviewCanonical from "./lessonOverviewCanonical.query";
 
 describe("lessonOverviewCanonical()", () => {
-  test("throws a not found error if no lesson is found", async () => {
+  it("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,
-        lessonOverviewCanonical: jest.fn(() => Promise.resolve({ lesson: [] })),
+        lessonOverviewCanonical: vi.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("should combine lessons to create pathways list as a property", async () => {
+  it("should combine lessons to create pathways list as a property", async () => {
     const originalLessonBase = {
       isLegacy: false,
       lessonSlug: "lesson-slug",
@@ -31,7 +33,7 @@ describe("lessonOverviewCanonical()", () => {
     };
     const lesson = await lessonOverviewCanonical({
       ...sdk,
-      lessonOverviewCanonical: jest.fn(() =>
+      lessonOverviewCanonical: vi.fn(() =>
         Promise.resolve({
           lesson: [
             {
@@ -85,11 +87,11 @@ describe("lessonOverviewCanonical()", () => {
     });
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,
-        lessonOverviewCanonical: jest.fn(() =>
+        lessonOverviewCanonical: vi.fn(() =>
           Promise.resolve({
             lesson: [{}],
           }),

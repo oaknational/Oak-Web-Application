@@ -1,10 +1,11 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import mockRouter from "next-router-mock";
 
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import GenericSummaryCardNavButton from "./GenericSummaryCardNavButton";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const buttons = [
   { label: "First one", href: "/first-one" },
@@ -16,7 +17,7 @@ describe("GenericSummaryCardNavButton", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/first-one");
   });
-  test("renders links with correct hrefs and labels", () => {
+  it("renders links with correct hrefs and labels", () => {
     const { getAllByRole } = renderWithTheme(
       <GenericSummaryCardNavButton ariaLabel="testing 123" buttons={buttons} />,
     );
@@ -31,14 +32,14 @@ describe("GenericSummaryCardNavButton", () => {
       expect(matchingLink).toHaveAccessibleName(button.label);
     });
   });
-  test("renders nav with correct a11y label", () => {
+  it("renders nav with correct a11y label", () => {
     const { getByRole } = renderWithTheme(
       <GenericSummaryCardNavButton ariaLabel="testing 123" buttons={buttons} />,
     );
     const nav = getByRole("navigation");
     expect(nav).toHaveAccessibleName("testing 123");
   });
-  test("only 'current' link has aria-current='page'", () => {
+  it("only 'current' link has aria-current='page'", () => {
     mockRouter.setCurrentUrl("/second-one");
 
     const { getByRole } = renderWithTheme(

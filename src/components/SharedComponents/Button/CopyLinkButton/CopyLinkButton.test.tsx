@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import CopyLinkButton from "./CopyLinkButton";
@@ -53,7 +54,7 @@ describe("Copy link button", () => {
     await user.click(button);
 
     const clipboardText = await navigator.clipboard.readText();
-    expect(clipboardText).toBe("http://localhost/");
+    expect(clipboardText).toBe("http://localhost:3000/");
   });
 
   it("copies the provided URL to the clipboard", async () => {

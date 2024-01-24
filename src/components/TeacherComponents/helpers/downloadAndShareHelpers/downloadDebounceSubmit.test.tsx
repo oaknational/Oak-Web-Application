@@ -1,9 +1,11 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import downloadDebounceSubmit, {
   DownloadDebouncedSubmitProps,
 } from "./downloadDebounceSubmit";
 
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter/", () => ({
+const reportError = vi.fn();
+vi.mock("@/common-lib/error-reporter/", () => ({
   __esModule: true,
   default:
     () =>
@@ -11,10 +13,10 @@ jest.mock("@/common-lib/error-reporter/", () => ({
       reportError(...args),
 }));
 
-const setIsAttemptingDownload = jest.fn();
-const setEditDetailsClicked = jest.fn();
-const setApiError = jest.fn();
-const onSubmit = jest.fn();
+const setIsAttemptingDownload = vi.fn();
+const setEditDetailsClicked = vi.fn();
+const setApiError = vi.fn();
+const onSubmit = vi.fn();
 
 const props = {
   data: {},
@@ -27,10 +29,10 @@ const props = {
 
 describe("downloadDebounceSubmit", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("should report an error if failed to fetch downloads and throws on error", async () => {
+  it("should report an error if failed to fetch downloads and throws on error", async () => {
     onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
 
     downloadDebounceSubmit(
@@ -40,7 +42,7 @@ describe("downloadDebounceSubmit", () => {
       expect(error.code).toEqual("downloads/failed-to-fetch");
     });
   });
-  test("should update state for attempting to download ", async () => {
+  it("should update state for attempting to download ", async () => {
     onSubmit.mockImplementationOnce(() =>
       Promise.resolve("Download successful!"),
     );

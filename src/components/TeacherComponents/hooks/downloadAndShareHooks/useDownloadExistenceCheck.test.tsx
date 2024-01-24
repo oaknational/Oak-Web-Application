@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
@@ -17,11 +18,11 @@ const getDownloadResourcesExistenceData = Object.entries(resources).map((v) => [
   { exists: v[1] },
 ]);
 
-const getDownloadResourcesExistenceMock = jest.fn(() => ({
+const getDownloadResourcesExistenceMock = vi.fn(() => ({
   resources: getDownloadResourcesExistenceData,
 }));
 
-jest.mock(
+vi.mock(
   "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
@@ -31,16 +32,16 @@ jest.mock(
 
 describe("useDownloadExistenceCheck", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("it calls onComplete with correct argument when all resources are available", async () => {
+  it("it calls onComplete with correct argument when all resources are available", async () => {
     const lessonSlug = "sampleLesson";
     const resourcesToCheck: ResourcesToDownloadArrayType = [
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
     const isLegacyDownload = true;
 
     renderHook(() =>
@@ -66,13 +67,13 @@ describe("useDownloadExistenceCheck", () => {
     expect(onComplete).toBeCalledWith(["exit-quiz-answers", "worksheet-pdf"]);
   });
 
-  test("it calls onComplete with correct argument when resource is not available", async () => {
+  it("it calls onComplete with correct argument when resource is not available", async () => {
     const lessonSlug = "sampleLesson";
     const resourcesToCheck: ResourcesToDownloadArrayType = [
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
 
     getDownloadResourcesExistenceMock.mockImplementationOnce(() => ({
       resources: [
@@ -96,5 +97,5 @@ describe("useDownloadExistenceCheck", () => {
     });
   });
 
-  test.todo("it calls Bugsnug if there is an error");
+  it.todo("it calls Bugsnug if there is an error");
 });

@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -6,14 +7,14 @@ import SubjectProgrammeList from "./SubjectProgrammeList";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    track: jest.fn(),
+    track: vi.fn(),
   }),
 }));
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("ProgrammeList", () => {
   it("Renders correct titles ", () => {

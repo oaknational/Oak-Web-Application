@@ -1,3 +1,4 @@
+import { describe, expect, vi, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import { Lesson } from "../UnitModal/UnitModal";
@@ -36,8 +37,8 @@ const lessonsUnpublished = [
   },
 ];
 
-const unitInformationViewed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const unitInformationViewed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -48,17 +49,17 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("Sidebar component", () => {
-  test("should render the sidebar", () => {
+  it("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]} />,
+      <UnitsTabSidebar displayModal={true} onClose={vi.fn()} lessons={[]} />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
   });
 
-  test("should render the sidebar with children", () => {
+  it("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]}>
+      <UnitsTabSidebar displayModal={true} onClose={vi.fn()} lessons={[]}>
         <div data-testid="sidebar-children" />
       </UnitsTabSidebar>,
     );
@@ -66,8 +67,8 @@ describe("Sidebar component", () => {
     expect(getByTestId("sidebar-children")).toBeInTheDocument();
   });
 
-  test("onClose state function called when close button selected", async () => {
-    const mockClose = jest.fn();
+  it("onClose state function called when close button selected", async () => {
+    const mockClose = vi.fn();
     const { getByTestId } = renderWithTheme(
       <UnitsTabSidebar displayModal={true} onClose={mockClose} lessons={[]} />,
     );
@@ -81,11 +82,11 @@ describe("Sidebar component", () => {
   });
 
   describe("Unit lessons button", () => {
-    test("should render the unit lessons button when passed unit data with no optionality", () => {
+    it("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitSlug={mockUnitKS4.slug}
           programmeSlug="maths-secondary-ks4-aqa"
           lessons={lessonsPublished}
@@ -95,11 +96,11 @@ describe("Sidebar component", () => {
       expect(getByTestId("unit-lessons-button")).toBeInTheDocument();
     });
 
-    test("should not render the unit info button when passed unit data with optionality", () => {
+    it("should not render the unit info button when passed unit data with optionality", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={true}
           unitSlug={mockOptionalityUnit.slug}
           lessons={[]}
@@ -109,11 +110,11 @@ describe("Sidebar component", () => {
       expect(queryByTestId("unit-lessons-button")).not.toBeInTheDocument();
     });
 
-    test("should not render the unit info button when passed no programme slug", () => {
+    it("should not render the unit info button when passed no programme slug", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={true}
           unitSlug={mockOptionalityUnit.slug}
           lessons={[]}
@@ -125,11 +126,11 @@ describe("Sidebar component", () => {
   });
 
   describe("Navigate to lesson button", () => {
-    test("should render coming soon for unavailable units", () => {
+    it("should render coming soon for unavailable units", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockOptionalityUnit.slug}
           lessons={lessonsUnpublished}
@@ -143,11 +144,11 @@ describe("Sidebar component", () => {
       expect(contentLinkButton).toHaveAttribute("aria-disabled", "true");
     });
 
-    test("should have button and no flag for available units", () => {
+    it("should have button and no flag for available units", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockUnitKS4.slug}
           lessons={lessonsPublished}
@@ -159,11 +160,11 @@ describe("Sidebar component", () => {
       expect(queryByTestId("unit-lessons-button")).toBeInTheDocument();
     });
 
-    test("user is directed to correct link for available unit for ks3", async () => {
+    it("user is directed to correct link for available unit for ks3", async () => {
       const { findByRole } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockUnitKS4.slug}
           programmeSlug={"maths-primary-ks1"}
@@ -180,11 +181,11 @@ describe("Sidebar component", () => {
       );
     });
 
-    test("user is directed to correct link for available unit for ks4 with exam board", async () => {
+    it("user is directed to correct link for available unit for ks4 with exam board", async () => {
       const { findByRole } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={false}
           programmeSlug={"maths-secondary-ks4-aqa"}
           unitSlug={mockUnitKS4.slug}
@@ -201,11 +202,11 @@ describe("Sidebar component", () => {
       );
     });
 
-    test("user is directed to correct link for unit variant", async () => {
+    it("user is directed to correct link for unit variant", async () => {
       const { findByRole, queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitOptionsAvailable={false}
           programmeSlug={"maths-primary-ks1"}
           unitSlug={mockOptionalityUnit.slug}

@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { Webinar } from "../../../../common-lib/cms-types";
 
 const testBlog = {
@@ -10,16 +12,16 @@ const testBlog2 = {
   category: { title: "Some other category", slug: "some-other-category" },
 } as Webinar;
 
-const blogPosts = jest.fn(() => [testBlog, testBlog2]);
+const blogPosts = vi.fn(() => [testBlog, testBlog2]);
 
 describe("pages/blog/categories/[categorySlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        blogPosts: jest.fn(blogPosts),
+        blogPosts: vi.fn(blogPosts),
       },
     }));
   });

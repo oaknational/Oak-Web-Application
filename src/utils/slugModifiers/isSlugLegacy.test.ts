@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import isSlugLegacy, { LEGACY_SLUG_SUFFIX } from "./isSlugLegacy";
 
 describe("isSlugLegacy", () => {

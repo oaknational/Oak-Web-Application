@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import Toast from "./Toast";
@@ -9,7 +10,7 @@ import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton"
 
 describe("toast notification", () => {
   const ROLE = "alert";
-  test("shows feedback", async () => {
+  it("shows feedback", async () => {
     const { getByRole, getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />

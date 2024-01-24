@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
@@ -15,7 +16,7 @@ const testProps: MobileFiltersProps = {
 const render = renderWithProviders();
 
 describe("components/MobileFilters", () => {
-  test("it renders all blogs button and has focus", async () => {
+  it("it renders all blogs button and has focus", async () => {
     const { getByText } = render(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 
@@ -25,7 +26,7 @@ describe("components/MobileFilters", () => {
     expect(allBlogs).toHaveFocus();
   });
 
-  test("it hides all blogs button when categories is clicked", async () => {
+  it("it hides all blogs button when categories is clicked", async () => {
     const { getByText } = render(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 

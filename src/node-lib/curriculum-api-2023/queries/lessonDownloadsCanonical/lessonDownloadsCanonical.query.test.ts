@@ -1,13 +1,15 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import lessonDownloadsCanonical from "./lessonDownloadsCanonical.query";
 
 describe("lessonDownloadsCanonical()", () => {
-  test("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,
-        lessonDownloadsCanonical: jest.fn(() =>
+        lessonDownloadsCanonical: vi.fn(() =>
           Promise.resolve({ lessonDownloadsCanonical: [] }),
         ),
       })({
@@ -15,10 +17,10 @@ describe("lessonDownloadsCanonical()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("both pathways returned if multiple lessons in response", async () => {
+  it("both pathways returned if multiple lessons in response", async () => {
     const { pathways } = await lessonDownloadsCanonical({
       ...sdk,
-      lessonDownloadsCanonical: jest.fn(() =>
+      lessonDownloadsCanonical: vi.fn(() =>
         Promise.resolve({
           lessonDownloadsCanonical: [
             {
@@ -72,13 +74,13 @@ describe("lessonDownloadsCanonical()", () => {
       },
     ]);
   });
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloadsCanonical: jest.fn(() =>
+        lessonDownloadsCanonical: vi.fn(() =>
           Promise.resolve({
             lessonDownloadsCanonical: [
               {

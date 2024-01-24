@@ -1,3 +1,4 @@
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import { screen, within } from "@testing-library/react";
 
 import { BlogPostPreview, CurriculumPage } from "../../common-lib/cms-types";
@@ -60,20 +61,19 @@ const testCurriculumPageData: CurriculumPage = {
   seo: mockSeo(),
 };
 
-const getPageData = jest.fn(() => testCurriculumPageData);
+const getPageData = vi.fn(() => testCurriculumPageData);
+vi.mock("@/node-lib/cms", () => ({
+  default: {
+    curriculumPage: (...args: []) => getPageData(...args),
+  },
+}));
 
 const render = renderWithProviders();
 
 describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../src/node-lib/cms/", () => ({
-      __esModule: true,
-      default: {
-        curriculumPage: jest.fn(getPageData),
-      },
-    }));
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", () => {
@@ -98,7 +98,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   describe.skip("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <Curriculum pageData={testCurriculumPageData} />,
       );

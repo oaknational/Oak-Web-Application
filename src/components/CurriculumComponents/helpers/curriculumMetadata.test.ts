@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { buildCurriculumMetadata } from "./curriculumMetadata";
 
 describe("buildCurriculumMetadata", () => {

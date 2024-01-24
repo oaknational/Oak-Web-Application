@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { OverlayProvider } from "react-aria";
 import userEvent from "@testing-library/user-event";
 
@@ -26,16 +27,16 @@ const bio = {
 const defaultProps = {
   bio,
   isOpen: true,
-  closeModal: jest.fn(),
-  openModal: jest.fn(),
-  nextBio: jest.fn(),
-  prevBio: jest.fn(),
+  closeModal: vi.fn(),
+  openModal: vi.fn(),
+  nextBio: vi.fn(),
+  prevBio: vi.fn(),
   modalControllerRefs: {},
 };
 
 describe("BioCardListModal", () => {
   const user = userEvent.setup();
-  test("doesn't render if isOpen false", () => {
+  it("doesn't render if isOpen false", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} isOpen={false} />
@@ -44,7 +45,7 @@ describe("BioCardListModal", () => {
 
     expect(container).toHaveTextContent("");
   });
-  test("doesn't render if bio is undefined", () => {
+  it("doesn't render if bio is undefined", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} bio={undefined} />
@@ -53,7 +54,7 @@ describe("BioCardListModal", () => {
 
     expect(container).toHaveTextContent("");
   });
-  test("dialog has correct title", () => {
+  it("dialog has correct title", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} />
@@ -63,7 +64,7 @@ describe("BioCardListModal", () => {
 
     expect(dialog).toHaveAccessibleName(bio.name);
   });
-  test("tabbing works as expected (focus is trapped within modal)", async () => {
+  it("tabbing works as expected (focus is trapped within modal)", async () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} />
@@ -84,8 +85,8 @@ describe("BioCardListModal", () => {
     expect(closeButton).toHaveFocus();
   });
 
-  test("pressing 'next' button calls 'nextBio'", async () => {
-    const nextBio = jest.fn();
+  it("pressing 'next' button calls 'nextBio'", async () => {
+    const nextBio = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} nextBio={nextBio} />
@@ -96,8 +97,8 @@ describe("BioCardListModal", () => {
     await user.click(nextButton);
     expect(nextBio).toHaveBeenCalled();
   });
-  test("pressing 'prev' button calls 'prevBio'", async () => {
-    const prevBio = jest.fn();
+  it("pressing 'prev' button calls 'prevBio'", async () => {
+    const prevBio = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} prevBio={prevBio} />
@@ -108,8 +109,8 @@ describe("BioCardListModal", () => {
     await user.click(prevButton);
     expect(prevBio).toHaveBeenCalled();
   });
-  test("pressing 'close' button calls 'closeModal'", async () => {
-    const closeModal = jest.fn();
+  it("pressing 'close' button calls 'closeModal'", async () => {
+    const closeModal = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} closeModal={closeModal} />
@@ -120,8 +121,8 @@ describe("BioCardListModal", () => {
     await user.click(closeButton);
     expect(closeModal).toHaveBeenCalled();
   });
-  test("opening modal sets aria-expanded to true", async () => {
-    const closeModal = jest.fn();
+  it("opening modal sets aria-expanded to true", async () => {
+    const closeModal = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} closeModal={closeModal} />
@@ -133,7 +134,7 @@ describe("BioCardListModal", () => {
 
     expect(closeButton).toHaveAttribute("aria-expanded", "true");
   });
-  test("'prev' button disabled if 'prevBio' is undefined", () => {
+  it("'prev' button disabled if 'prevBio' is undefined", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} prevBio={undefined} />

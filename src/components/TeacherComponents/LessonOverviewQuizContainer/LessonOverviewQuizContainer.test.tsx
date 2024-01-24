@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 
 import LessonOverviewQuizContainer from "./LessonOverviewQuizContainer";
@@ -8,7 +9,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const quizQuestionsData: LessonOverviewQuizData = quizQuestions;
 
-jest.mock("better-react-mathjax", () => ({
+vi.mock("better-react-mathjax", () => ({
   MathJax: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -31,8 +32,8 @@ const imageAttribution: {
 ];
 
 describe("LessonOverviewQuizContainer", () => {
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
-  test("should render quizzes", () => {
+  vi.mock("next/dist/client/router", () => require("next-router-mock"));
+  it("should render quizzes", () => {
     renderWithTheme(
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
@@ -41,7 +42,7 @@ describe("LessonOverviewQuizContainer", () => {
     );
     expect(screen.getByText("What is a main clause?")).toBeInTheDocument();
   });
-  test("should render attribution ", () => {
+  it("should render attribution ", () => {
     renderWithTheme(
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}

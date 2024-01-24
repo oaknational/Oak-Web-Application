@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import KeyStagesNav from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -20,17 +22,14 @@ const years = [
 ];
 
 describe("components/Key Stages Nav", () => {
-  test.each(keyStages)(
-    "renders a key stage button with %p text",
-    (keyStage) => {
-      const { getByText } = renderWithTheme(
-        <KeyStagesNav keyStages={keyStagesNavData} />,
-      );
-      const keyStageButton = getByText(keyStage);
+  it.each(keyStages)("renders a key stage button with %p text", (keyStage) => {
+    const { getByText } = renderWithTheme(
+      <KeyStagesNav keyStages={keyStagesNavData} />,
+    );
+    const keyStageButton = getByText(keyStage);
 
-      expect(keyStageButton).toBeInTheDocument();
-    },
-  );
+    expect(keyStageButton).toBeInTheDocument();
+  });
 
   it("it renders a nav with correct assessibilty description", () => {
     const { container } = renderWithTheme(
@@ -40,7 +39,7 @@ describe("components/Key Stages Nav", () => {
     const nav = container.querySelector("nav");
     expect(nav).toHaveAccessibleName("key stages and year groups");
   });
-  test.each(years)("renders a year link with %p text", (year) => {
+  it.each(years)("renders a year link with %p text", (year) => {
     const { getByText } = renderWithTheme(
       <KeyStagesNav keyStages={keyStagesNavData} />,
     );

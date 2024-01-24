@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
@@ -17,14 +18,14 @@ const props: PropsWithoutForm = {
   page: "download",
   header: "Downloads",
   selectAllChecked: true,
-  handleToggleSelectAll: jest.fn(),
+  handleToggleSelectAll: vi.fn(),
   errors: {},
   showLoading: false,
   showNoResources: false,
   showPostAlbCopyright: true,
   showSavedDetails: false,
-  onEditClick: jest.fn(),
-  setSchool: jest.fn(),
+  onEditClick: vi.fn(),
+  setSchool: vi.fn(),
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
   resourcesHeader: "Lesson downloads",

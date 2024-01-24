@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
@@ -7,10 +8,10 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
+const curriculumThreadHighlighted = vi.fn();
+const yearGroupSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -23,9 +24,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("user can see the content", async () => {
+  it("user can see the content", async () => {
     const { queryAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -33,7 +34,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
   });
 
-  test("number of unit cards matches expected units", async () => {
+  it("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -41,7 +42,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
   });
 
-  test("threads with duplicate orders sort alphabetically", async () => {
+  it("threads with duplicate orders sort alphabetically", async () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
@@ -56,7 +57,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(isSorted).toBe(true);
   });
 
-  test("threads with unique orders sort by order", async () => {
+  it("threads with unique orders sort by order", async () => {
     const data = {
       units: [
         {
@@ -144,7 +145,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
   });
 
-  test("user can see all the thread choices", async () => {
+  it("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -159,7 +160,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(threads).toHaveLength(threadSet.size);
   });
 
-  test("All the year group choices are visible", async () => {
+  it("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -171,7 +172,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(yearOptions).toHaveLength(yearSet.size);
   });
 
-  test("Year group choices are properly sorted", async () => {
+  it("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -185,7 +186,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(isSorted).toBe(true);
   });
 
-  test("duplicate units without examboard are filtered out", async () => {
+  it("duplicate units without examboard are filtered out", async () => {
     const data = {
       units: [
         {
@@ -280,7 +281,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(tag).toHaveTextContent("2");
   });
 
-  test("user can highlight units by threads", async () => {
+  it("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -300,7 +301,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(selectedThread).toBeInTheDocument();
   });
 
-  test("user can filter by year group", async () => {
+  it("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
@@ -316,7 +317,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
   });
 
-  test("user can filter units by parent subject", async () => {
+  it("user can filter units by parent subject", async () => {
     const data = {
       units: [
         {
@@ -392,7 +393,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test("user can filter units by domain", async () => {
+  it("user can filter units by domain", async () => {
     const data = {
       units: [
         {
@@ -467,7 +468,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test("user can filter units by tier", async () => {
+  it("user can filter units by tier", async () => {
     const data = {
       units: [
         {
@@ -600,7 +601,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test("user can see correct number of unit options", async () => {
+  it("user can see correct number of unit options", async () => {
     const data = {
       units: [
         {
@@ -658,7 +659,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   describe("programme slugs are created correctly", () => {
-    test("unit data with exam board returns the correct programme slug", () => {
+    it("unit data with exam board returns the correct programme slug", () => {
       const unitData = {
         planned_number_of_lessons: 5,
         connection_future_unit_description: null,
@@ -689,7 +690,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         "combined-science-secondary-ks4-foundation-aqa",
       );
     });
-    test("unit data for ks3 returns the correct programme slug", () => {
+    it("unit data for ks3 returns the correct programme slug", () => {
       const unitData = {
         planned_number_of_lessons: 5,
         connection_future_unit_description: null,

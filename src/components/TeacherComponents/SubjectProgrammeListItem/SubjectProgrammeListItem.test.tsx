@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -5,7 +6,16 @@ import SubjectProgrammeListItem from "./SubjectProgrammeListItem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const onClick = jest.fn();
+const tierSelected = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      tierSelected: (...args: unknown[]) => tierSelected(...args),
+    },
+  }),
+}));
+const onClick = vi.fn();
 
 const programme = {
   subjectSlug: "maths",
@@ -23,7 +33,7 @@ const programme = {
 
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders SubjectProgrammeListItem", () => {

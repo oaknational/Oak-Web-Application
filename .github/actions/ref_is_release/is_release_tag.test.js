@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/named
+import { describe, it, expect } from "vitest";
+
 const isReleaseTag = require("./is_release_tag");
 
 const branchRef = "refs/heads/some_branch";

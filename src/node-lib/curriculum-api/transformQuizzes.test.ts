@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { transformQuiz } from "./transformQuizzes";
 import { legacyQuizFixture } from "./fixtures/legacyQuiz.fixture";
 

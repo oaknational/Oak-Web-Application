@@ -1,15 +1,17 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import SearchActiveFilters from "./SearchActiveFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchFilters } from "@/components/TeacherComponents/SearchFilters/test-helpers";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("SearchActiveFilters", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test.each(
+  it.each(
     searchFilters.keyStageFilters
       .filter((ks) => ks.checked)
       .map((ks) => ks.title),
@@ -20,7 +22,7 @@ describe("SearchActiveFilters", () => {
     const button = getByRole("button", { name: `Remove ${ks} filter` });
     expect(button).toBeInTheDocument();
   });
-  test.each(
+  it.each(
     searchFilters.keyStageFilters
       .filter((ks) => !ks.checked)
       .map((ks) => ks.title),
@@ -31,7 +33,7 @@ describe("SearchActiveFilters", () => {
     const button = queryByRole("button", { name: `Remove ${ks} filter` });
     expect(button).not.toBeInTheDocument();
   });
-  test.each(
+  it.each(
     searchFilters.subjectFilters
       .filter((subject) => subject.checked)
       .map((subject) => subject.title),
@@ -43,7 +45,7 @@ describe("SearchActiveFilters", () => {
     expect(button).toBeInTheDocument();
   });
 
-  test.each(
+  it.each(
     searchFilters.subjectFilters
       .filter((subject) => !subject.checked)
       .map((subject) => subject.title),
@@ -55,7 +57,7 @@ describe("SearchActiveFilters", () => {
     expect(button).not.toBeInTheDocument();
   });
 
-  test.each(
+  it.each(
     searchFilters.contentTypeFilters
       .filter((type) => type.checked)
       .map((ContentType) => ContentType.title),
@@ -69,7 +71,7 @@ describe("SearchActiveFilters", () => {
     expect(button).toBeInTheDocument();
   });
 
-  test.each(
+  it.each(
     searchFilters.contentTypeFilters
       .filter((type) => !type.checked)
       .map((ContentType) => ContentType.title),

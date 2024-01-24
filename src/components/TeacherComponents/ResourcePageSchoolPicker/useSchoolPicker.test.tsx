@@ -1,13 +1,18 @@
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 
 import useSchoolPicker, { fetcher } from "./useSchoolPicker";
 
 import OakError from "@/errors/OakError";
 
-const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
-  data: null,
-  error: null,
-}));
+const { mockUseSWR } = vi.hoisted(() => {
+  const mockUseSWR = vi.fn<[{ data: unknown; error: unknown }]>(() => ({
+    data: null,
+    error: null,
+  }));
+
+  return { mockUseSWR };
+});
 
 const data = [
   {
@@ -24,14 +29,14 @@ const data = [
   },
 ];
 
-jest.mock("swr", () => ({
+vi.mock("swr", () => ({
   __esModule: true,
-  default: (...args: []) => mockUseSWR(...args),
+  default: mockUseSWR,
 }));
 
-const reportError = jest.fn();
+const reportError = vi.fn();
 
-jest.mock("@/common-lib/error-reporter", () => ({
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -39,14 +44,14 @@ jest.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+const fetch = vi.spyOn(global, "fetch") as Mock;
 
 describe("useSchoolPicker", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
-  test("Schools should be returned with homeschool option if fetch succeeds", async () => {
+  it("Schools should be returned with homeschool option if fetch succeeds", async () => {
     const { result, rerender } = renderHook(useSchoolPicker);
     act(() => result.current.setSchoolPickerInputValue("wes"));
     mockUseSWR.mockImplementationOnce(() => ({
@@ -62,7 +67,7 @@ describe("useSchoolPicker", () => {
       },
     ]);
   });
-  test("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
+  it("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
       error: null,
@@ -71,9 +76,9 @@ describe("useSchoolPicker", () => {
 
     expect(result.current.schools).toEqual([]);
   });
-  test("should throw an error if failed to fetch school ", async () => {
+  it("should throw an error if failed to fetch school ", async () => {
     fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue({ res: "this" }),
+      json: vi.fn().mockResolvedValue({ res: "this" }),
       ok: false,
       status: 401,
       statusText: "Not Found",
@@ -85,9 +90,9 @@ describe("useSchoolPicker", () => {
     );
     expect(reportError).toBeCalled();
   });
-  test("should return and empty array with no data ", async () => {
+  it("should return and empty array with no data ", async () => {
     fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue({ res: undefined }),
+      json: vi.fn().mockResolvedValue({ res: undefined }),
       ok: true,
       status: 404,
       statusText: "Not Found",

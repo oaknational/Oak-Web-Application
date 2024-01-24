@@ -63,12 +63,6 @@ module.exports = {
       },
     },
     {
-      files: ["**/*.test.{js,ts,tsx}"],
-      env: {
-        jest: true,
-      },
-    },
-    {
       files: ["scripts/build/**/*.{js,ts,tsx}"],
       env: {
         es2020: true,

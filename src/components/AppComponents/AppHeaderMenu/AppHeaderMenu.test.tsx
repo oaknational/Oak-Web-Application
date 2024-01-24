@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
@@ -10,14 +11,14 @@ import { menuContext } from "@/context/Menu/MenuProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("AppHeaderMenu", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/lesson-planning");
   });
 
-  test("it renders with a close button", () => {
+  it("it renders with a close button", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
         <AppHeaderMenu menuButtonRef={null} />
@@ -27,7 +28,7 @@ describe("AppHeaderMenu", () => {
     expect(getByLabelText("Close Menu")).toBeInTheDocument();
   });
 
-  test("it is hidden and not expanded by default", () => {
+  it("it is hidden and not expanded by default", () => {
     const { getByLabelText, getByTestId } = renderWithTheme(
       <MenuProvider>
         <AppHeaderMenu menuButtonRef={null} />
@@ -39,11 +40,11 @@ describe("AppHeaderMenu", () => {
     expect(getByTestId("menu")).toHaveAttribute("aria-expanded", "false");
   });
 
-  test("if menu context open is true it is visible and expanded", () => {
+  it("if menu context open is true it is visible and expanded", () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText, getByTestId } = renderWithTheme(
@@ -57,11 +58,11 @@ describe("AppHeaderMenu", () => {
     expect(getByTestId("menu")).toHaveAttribute("aria-expanded", "true");
   });
 
-  test("clicking the close button invokes the closeMenu callback", async () => {
+  it("clicking the close button invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -76,11 +77,11 @@ describe("AppHeaderMenu", () => {
 
     expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
   });
-  test("it has aria-expanded true when open", async () => {
+  it("it has aria-expanded true when open", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -95,11 +96,11 @@ describe("AppHeaderMenu", () => {
 
     expect(closeButton).toHaveAttribute("aria-expanded", "true");
   });
-  test("it has aria-expanded false when closed", async () => {
+  it("it has aria-expanded false when closed", async () => {
     const menuValue = {
       open: false,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -119,11 +120,11 @@ describe("AppHeaderMenu", () => {
   // react-aria useKeyboard Escape key code path.
   // See https://github.com/testing-library/user-event/issues/969
   // Not necessarily to same underlying cause, but potentially related.
-  test.skip("pressing the escape key invokes the closeMenu callback", async () => {
+  it.skip("pressing the escape key invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     renderWithTheme(
@@ -141,13 +142,13 @@ describe("AppHeaderMenu", () => {
     expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
   });
 
-  test("it returns focus to the button it was passed as a ref when closed", async () => {
+  it("it returns focus to the button it was passed as a ref when closed", async () => {
     const menuButtonRef = createRef<HTMLButtonElement>();
 
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { rerender, getByLabelText } = renderWithTheme(
@@ -158,7 +159,7 @@ describe("AppHeaderMenu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn}
         />
         <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,
@@ -174,7 +175,7 @@ describe("AppHeaderMenu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn}
         />
         <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,

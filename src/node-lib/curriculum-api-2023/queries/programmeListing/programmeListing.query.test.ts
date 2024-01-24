@@ -1,13 +1,15 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import programmeListing from "./programmeListing.query";
 
 describe("programmeListing()", () => {
-  test("throws a not found error if programme is not found", async () => {
+  it("throws a not found error if programme is not found", async () => {
     await expect(async () => {
       await programmeListing({
         ...sdk,
-        programmeListing: jest.fn(() => Promise.resolve({ programmes: [] })),
+        programmeListing: vi.fn(() => Promise.resolve({ programmes: [] })),
       })({
         keyStageSlug: "key-stage-slug",
         subjectSlug: "subject-slug",
@@ -15,13 +17,13 @@ describe("programmeListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await programmeListing({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        programmeListing: jest.fn(() =>
+        programmeListing: vi.fn(() =>
           Promise.resolve({
             programmes: [
               {

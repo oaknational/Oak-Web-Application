@@ -1,16 +1,17 @@
 import { ParsedUrlQuery } from "node:querystring";
 
+import { Mock, vi, describe, beforeEach, afterEach, expect, it } from "vitest";
 import { getServerSideSitemap } from "next-sitemap";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import { getServerSideProps } from "@/pages/teachers/key-stages/sitemap.xml";
 import { generatedFields } from "@/node-lib/curriculum-api-2023/fixtures/keyStageSitemap.fixture";
 
-jest.mock("next-sitemap", () => ({
-  getServerSideSitemap: jest.fn(),
+vi.mock("next-sitemap", () => ({
+  getServerSideSitemap: vi.fn(),
 }));
 
-type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;
+type MockedGetServerSideSitemap = Mock;
 
 type SeoData = {
   loc: string;

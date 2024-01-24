@@ -1,10 +1,12 @@
+import { describe, expect, it, vi } from "vitest";
+
 import DownloadConfirmationNextLessonContainer from "./DownloadConfirmationNextLessonContainer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+  vi.fn() as unknown as TrackFns["onwardContentSelected"];
 
 const nextLessons = [
   {

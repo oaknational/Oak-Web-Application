@@ -1,3 +1,12 @@
+import {
+  beforeEach,
+  describe,
+  expect,
+  it,
+  Mock,
+  MockedObject,
+  vi,
+} from "vitest";
 import { GetServerSidePropsContext } from "next";
 import { PostHog } from "posthog-node";
 import { sample } from "lodash/fp";
@@ -9,11 +18,14 @@ import { getABTestedLandingPage } from "./ab-testing";
 
 import CMSClient from ".";
 
-jest.mock("./");
-jest.mock("lodash/fp");
-jest.mock("posthog-node");
+vi.mock("./");
+vi.mock("lodash/fp", () => ({
+  ...vi.importActual("lodash/fp"),
+  sample: vi.fn(),
+}));
+vi.mock("posthog-node");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const testLandingPage = {} as LandingPage;
 const control = { ...testLandingPage, slug: "ab-tested-page-control" };
@@ -53,10 +65,9 @@ describe("ab-testing", () => {
         req: { cookies },
       } as unknown as GetServerSidePropsContext;
 
-      const posthogInstance = (PostHog as jest.Mock<PostHog>).mock.instances[0];
-      (posthogInstance?.getFeatureFlag as jest.Mock).mockResolvedValue(
-        "variant-b",
-      );
+      const posthogInstance = (PostHog as unknown as Mock<[PostHog]>).mock
+        .instances[0];
+      (posthogInstance?.getFeatureFlag as Mock).mockResolvedValue("variant-b");
 
       const pageVariant = await getABTestedLandingPage(
         "ab-tested-page",
@@ -81,7 +92,7 @@ describe("ab-testing", () => {
       expect(sample).toBeCalledWith([control, variantA, variantB]);
 
       // The random value returned from sample()
-      const sampledResult = (sample as jest.Mock).mock.results?.[0]?.value;
+      const sampledResult = (sample as Mock).mock.results?.[0]?.value;
       expect(pageVariant).toBe(sampledResult);
     });
   });

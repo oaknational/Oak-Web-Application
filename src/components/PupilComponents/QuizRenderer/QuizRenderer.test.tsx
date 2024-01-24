@@ -1,6 +1,4 @@
-import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import "@testing-library/jest-dom";
+import { describe, expect, it, vi } from "vitest";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
@@ -40,16 +38,16 @@ const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
   currentSection: "starter-quiz",
   completedSections: [],
   sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
+  getIsComplete: vi.fn(),
+  completeSection: vi.fn(),
+  updateCurrentSection: vi.fn(),
+  proceedToNextSection: vi.fn(),
+  updateQuizResult: vi.fn(),
 });
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
-    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
     spy.mockRestore();
   });
@@ -123,7 +121,7 @@ describe("QuizRenderer", () => {
     const context = getQuizEngineContext();
 
     if (context?.questionState?.[0]) {
-      context.updateQuestionMode = jest.fn();
+      context.updateQuestionMode = vi.fn();
       context.questionState[0].mode = "input";
 
       const { getByRole } = renderWithTheme(
@@ -180,7 +178,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "feedback";
-      context.handleNextQuestion = jest.fn();
+      context.handleNextQuestion = vi.fn();
 
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -202,7 +200,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "input";
-      context.handleSubmitMCAnswer = jest.fn();
+      context.handleSubmitMCAnswer = vi.fn();
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -239,7 +237,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "input";
-      context.handleSubmitMCAnswer = jest.fn();
+      context.handleSubmitMCAnswer = vi.fn();
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -300,7 +298,7 @@ describe("QuizRenderer", () => {
       context.questionState[0].mode = "input";
     }
 
-    context.handleSubmitShortAnswer = jest.fn();
+    context.handleSubmitShortAnswer = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

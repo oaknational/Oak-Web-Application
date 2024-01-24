@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import DismissibleCard from "./DismissibleCard";
@@ -6,14 +7,14 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 
 describe("DismissibleCard", () => {
-  test("'close' button should have correct label", () => {
+  it("'close' button should have correct label", () => {
     const { getByRole } = renderWithTheme(
       <DismissibleCard title="test card" />,
     );
     const button = getByRole("button");
     expect(button).toHaveAccessibleName("Dismiss test card");
   });
-  test("pressing 'close' button should remove card from document", async () => {
+  it("pressing 'close' button should remove card from document", async () => {
     const { getByRole, getByTestId } = renderWithTheme(
       <DismissibleCard title="test card" />,
     );

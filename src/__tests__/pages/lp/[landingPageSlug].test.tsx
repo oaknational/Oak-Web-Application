@@ -1,3 +1,12 @@
+import {
+  Mock,
+  MockedObject,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import { GetServerSidePropsContext } from "next";
 
@@ -11,9 +20,9 @@ import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
 const testLandingPage: LandingPage = {
   id: "5",
@@ -56,16 +65,16 @@ const testLandingPage: LandingPage = {
   seo: null,
 };
 
-jest.mock("../../../node-lib/cms/ab-testing");
+vi.mock("../../../node-lib/cms/ab-testing");
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
 describe("pages/lp/[landingPageSlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
 
     mockCMSClient.landingPages.mockResolvedValue([testLandingPage]);
     mockCMSClient.landingPageBySlug.mockResolvedValue(testLandingPage);
@@ -80,7 +89,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
 
     describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
+      it.skip("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
           <LandingPageTemplate pageData={testLandingPage} />,
         );
@@ -128,7 +137,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
 
     it("should redirect the user to an A/B tested page if it exists", async () => {
-      (getABTestedLandingPage as jest.Mock).mockResolvedValue({
+      (getABTestedLandingPage as Mock).mockResolvedValue({
         ...testLandingPage,
         slug: "ab-tested-page-variant",
       });

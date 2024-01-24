@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MouseEventHandler, MutableRefObject } from "react";
 import { render, renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -29,33 +30,33 @@ const Clickable = ({
 
 describe("useClickableCard()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("clicking the container clicks the click target", async () => {
-    const onClick = jest.fn();
+  it("clicking the container clicks the click target", async () => {
+    const onClick = vi.fn();
     const { getByTestId } = render(<Clickable onClick={onClick} />);
     const container = getByTestId("container");
     const user = userEvent.setup();
     await user.click(container);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-  test("clicking the primary button should only cause the click callback to be fired once", async () => {
-    const onClick = jest.fn();
+  it("clicking the primary button should only cause the click callback to be fired once", async () => {
+    const onClick = vi.fn();
     const { getByRole } = render(<Clickable onClick={onClick} />);
     const primaryButton = getByRole("button", { name: "Primary button" });
     const user = userEvent.setup();
     await user.click(primaryButton);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-  test("clicking the secondary button does not click the click target", async () => {
-    const onClick = jest.fn();
+  it("clicking the secondary button does not click the click target", async () => {
+    const onClick = vi.fn();
     const { getByRole } = render(<Clickable onClick={onClick} />);
     const secondaryButton = getByRole("button", { name: "Secondary button" });
     const user = userEvent.setup();
     await user.click(secondaryButton);
     expect(onClick).not.toHaveBeenCalled();
   });
-  test("you can pass in an external ref", async () => {
+  it("you can pass in an external ref", async () => {
     const ref = { current: "my ref" as unknown as HTMLAnchorElement };
     const { result } = renderHook(() =>
       useClickableCard(ref as MutableRefObject<HTMLAnchorElement>),

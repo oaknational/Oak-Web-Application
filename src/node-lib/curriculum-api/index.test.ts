@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "./fixtures/lessonDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
@@ -12,20 +14,20 @@ import searchPageFixture from "./fixtures/searchPage.fixture";
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
 /**
- * This module is mocked in jest.setup.js, so need to unmock it here in order to test it
+ * This module is mocked in setup.js, so need to unmock it here in order to test it
  */
-jest.unmock(".");
+vi.unmock(".");
 
-const teachersHomePage = jest.fn(() => ({
+const teachersHomePage = vi.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
-const lessonDownloads = jest.fn(() => ({
+const lessonDownloads = vi.fn(() => ({
   mv_downloads: [lessonDownloadsFixtures()],
 }));
-const lessonShares = jest.fn(() => ({
+const lessonShares = vi.fn(() => ({
   mv_share: [lessonShareFixtures()],
 }));
-const unitListing = jest.fn(() => ({
+const unitListing = vi.fn(() => ({
   mv_programmes: [
     {
       programmeSlug: unitListingFixture().programmeSlug,
@@ -42,7 +44,7 @@ const unitListing = jest.fn(() => ({
   mv_tiers: unitListingFixture().tiers,
   mv_units: unitsFixture(),
 }));
-const lessonListing = jest.fn(() => ({
+const lessonListing = vi.fn(() => ({
   mv_units: [
     {
       programmeSlug: lessonListingFixture().programmeSlug,
@@ -57,7 +59,7 @@ const lessonListing = jest.fn(() => ({
   ],
   mv_lessons: lessonListingFixture().lessons,
 }));
-const lessonOverview = jest.fn(() => ({
+const lessonOverview = vi.fn(() => ({
   mv_lessons: [
     {
       lessonSlug: lessonOverviewFixture().lessonSlug,
@@ -91,24 +93,24 @@ const lessonOverview = jest.fn(() => ({
   starterQuiz: lessonOverviewFixture().starterQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
-const tierListing = jest.fn(() => ({
+const tierListing = vi.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
-const subjectListing = jest.fn(() => ({
+const subjectListing = vi.fn(() => ({
   mv_programmes_available: subjectListingFixture().subjects,
   mv_programmes_unavailable: subjectListingFixture().subjectsUnavailable,
   mv_key_stages: teachersHomePageFixture().keyStages,
   keyStageList: [{ slug: "ks4", title: "Key stage 4", shortCode: "KS4" }],
 }));
 
-const searchPage = jest.fn(() => ({
+const searchPage = vi.fn(() => ({
   mv_key_stages: searchPageFixture().keyStages,
   mv_programmes_available: searchPageFixture().subjects,
 }));
 
-jest.mock("");
+vi.mock("");
 
-jest.mock("./generated/sdk", () => ({
+vi.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
     teachersHomePage: (...args: []) => teachersHomePage(...args),
@@ -123,11 +125,11 @@ jest.mock("./generated/sdk", () => ({
   }),
 }));
 describe("curriculum-api", () => {
-  test("teachersHomePage", async () => {
+  it("teachersHomePage", async () => {
     await curriculumApi.teachersHomePage();
     expect(teachersHomePage).toHaveBeenCalled();
   });
-  test("lessonDownloads", async () => {
+  it("lessonDownloads", async () => {
     await curriculumApi.lessonDownloads({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
@@ -142,7 +144,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("lessonShare", async () => {
+  it("lessonShare", async () => {
     await curriculumApi.lessonShare({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
@@ -157,7 +159,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("unitListing", async () => {
+  it("unitListing", async () => {
     await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4-l",
     });
@@ -169,7 +171,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("unitListing learningThemes contains 'no themes'", async () => {
+  it("unitListing learningThemes contains 'no themes'", async () => {
     const units = await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4",
     });
@@ -180,7 +182,7 @@ describe("curriculum-api", () => {
 
     expect(hasThemes).toBe(true);
   });
-  test("lessonListing", async () => {
+  it("lessonListing", async () => {
     await curriculumApi.lessonListing({
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
@@ -194,7 +196,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("lessonOverview", async () => {
+  it("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
       lessonSlug: "Geometry fundamentals",
       unitSlug: "geometry",
@@ -209,7 +211,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("tierListing", async () => {
+  it("tierListing", async () => {
     await curriculumApi.tierListing({
       keyStageSlug: "ks4",
       subjectSlug: "higher-l",
@@ -222,7 +224,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("tierListing: not found", async () => {
+  it("tierListing: not found", async () => {
     tierListing.mockImplementationOnce(() => {
       return {
         mv_programmes: [],
@@ -235,7 +237,7 @@ describe("curriculum-api", () => {
       }),
     ).rejects.toThrow("Resource not found");
   });
-  test("subjectListing", async () => {
+  it("subjectListing", async () => {
     await curriculumApi.subjectListing({
       keyStageSlug: "ks4",
     });
@@ -243,11 +245,11 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks4",
     });
   });
-  test("searchPage", async () => {
+  it("searchPage", async () => {
     await curriculumApi.searchPage();
     expect(searchPage).toHaveBeenCalled();
   });
-  test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
+  it("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
     const availableProgrammes = subjectListingFixture().subjects;
     const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(

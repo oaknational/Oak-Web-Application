@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
 import CMSImage from "./CMSImage";

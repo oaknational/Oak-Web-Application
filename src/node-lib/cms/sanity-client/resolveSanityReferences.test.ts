@@ -1,11 +1,13 @@
+import { MockedObject, beforeEach, describe, expect, it, vi } from "vitest";
+
 import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import { resolveSanityReferences } from "./resolveSanityReferences";
 
-jest.mock("../../sanity-graphql");
+vi.mock("../../sanity-graphql");
 
-const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
+const mockSanityGraphqlApi = sanityGraphqlApi as MockedObject<
   typeof sanityGraphqlApi
 >;
 
@@ -24,8 +26,8 @@ const mockObjWithReferences = {
 
 describe("resolveSanityReferences", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
 
     mockSanityGraphqlApi.portableTextReferences.mockResolvedValue({
       allDocument: [

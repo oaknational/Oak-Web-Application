@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 import { Key, useState } from "react";
@@ -45,12 +46,12 @@ const schools = [
   },
 ];
 
-const setSchoolPickerInputValue = jest.fn();
-const setSelectedSchool = jest.fn();
+const setSchoolPickerInputValue = vi.fn();
+const setSelectedSchool = vi.fn();
 
 describe("search autocomplete", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("renders a SearchCombobox input", () => {
     renderWithTheme(

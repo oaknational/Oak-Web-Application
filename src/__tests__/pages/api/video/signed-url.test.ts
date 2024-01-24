@@ -1,8 +1,10 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/video/signed-url";
 
-const signPlaybackId = jest.fn().mockReturnValue("some-token");
-jest.mock("@mux/mux-node", () => ({
+const signPlaybackId = vi.fn().mockReturnValue("some-token");
+vi.mock("@mux/mux-node", () => ({
   __esModule: true,
   default: {
     JWT: {
@@ -13,7 +15,7 @@ jest.mock("@mux/mux-node", () => ({
 
 describe("/api/video/signed-url", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("should return a signed url", async () => {
     const { req, res } = createNextApiMocks({

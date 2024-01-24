@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
@@ -5,10 +6,10 @@ import { useEffect } from "react";
 import AnalyticsProvider from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
-const posthogIdentify = jest.fn();
-const posthogCapture = jest.fn();
-const posthogInit = jest.fn();
-jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
+const posthogIdentify = vi.fn();
+const posthogCapture = vi.fn();
+const posthogInit = vi.fn();
+vi.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
   __esModule: true,
   useCookieConsent: () => ({
     hasConsentedTo: () => "enabled",
@@ -18,12 +19,12 @@ jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
  * mock withQueue as identity, because the queue messes with tests, and itself
  * is tested separately
  */
-jest.mock("../../browser-lib/analytics/withQueue", () => ({
+vi.mock("../../browser-lib/analytics/withQueue", () => ({
   __esModule: true,
   default: (x: unknown) => x,
 }));
 
-const callWithArgs = jest.fn((identify) => identify());
+const callWithArgs = vi.fn((identify) => identify());
 
 const ChildCallingIdentify = () => {
   const { identify } = useAnalytics();
@@ -53,9 +54,9 @@ const CallIdentify = () => {
 
 describe("useAnalytics", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("service.identify() should be called if service included in array", () => {
+  it("service.identify() should be called if service included in array", () => {
     callWithArgs.mockImplementation((identify) =>
       identify("someone", {}, ["posthog"]),
     );
@@ -64,7 +65,7 @@ describe("useAnalytics", () => {
 
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
-  test("service.identify() should not be called if service not included in array", () => {
+  it("service.identify() should not be called if service not included in array", () => {
     callWithArgs.mockImplementation((identify) =>
       identify("someone", {}, ["hubspot"]),
     );
@@ -73,7 +74,7 @@ describe("useAnalytics", () => {
 
     expect(posthogIdentify).not.toHaveBeenCalled();
   });
-  test("service.identify() should be called if no services array passed", () => {
+  it("service.identify() should be called if no services array passed", () => {
     callWithArgs.mockImplementation((identify) => identify("someone", {}));
 
     render(<CallIdentify />);

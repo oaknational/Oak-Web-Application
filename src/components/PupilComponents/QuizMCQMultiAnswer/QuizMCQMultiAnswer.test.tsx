@@ -1,6 +1,4 @@
-import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import "@testing-library/jest-dom";
+import { expect, vi, describe, it } from "vitest";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
@@ -63,10 +61,10 @@ describe("QuizMCQMultiAnswer", () => {
     ],
     score: 0,
     numQuestions: 0,
-    updateQuestionMode: jest.fn(),
-    handleSubmitMCAnswer: jest.fn(),
-    handleNextQuestion: jest.fn(),
-    handleSubmitShortAnswer: jest.fn(),
+    updateQuestionMode: vi.fn(),
+    handleSubmitMCAnswer: vi.fn(),
+    handleNextQuestion: vi.fn(),
+    handleSubmitShortAnswer: vi.fn(),
   };
 
   const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {

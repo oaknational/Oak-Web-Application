@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import Bugsnag, { Event as BugsnagEvent } from "@bugsnag/js";
 
 import OakError from "../../errors/OakError";
@@ -10,9 +11,9 @@ import errorReporter, {
   getBugsnagOnError,
 } from "./errorReporter";
 
-const getHasConsentedTo = jest.fn();
+const getHasConsentedTo = vi.fn();
 
-jest.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
+vi.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
   __esModule: true,
   default: (service: string) => getHasConsentedTo(service),
 }));
@@ -21,9 +22,9 @@ const parentMetaFields = {
   query: { paramName: "paramValue" },
 };
 const testContext = "/test/endpoint";
-const consoleLog = jest.fn();
-const consoleError = jest.fn();
-const consoleWarn = jest.fn();
+const consoleLog = vi.fn();
+const consoleError = vi.fn();
+const consoleWarn = vi.fn();
 const logger = {
   log: consoleLog,
   warn: consoleWarn,
@@ -45,21 +46,21 @@ const event = {
   context: undefined,
   severity: undefined,
   groupingHash: undefined,
-  addMetadata: jest.fn(),
+  addMetadata: vi.fn(),
 };
 
-const mockNotify = jest.fn(async (err, cb) => cb(event));
-jest.mock("./bugsnagNotify", () => ({
+const mockNotify = vi.fn(async (err, cb) => cb(event));
+vi.mock("./bugsnagNotify", () => ({
   __esModule: true,
   default: (err: unknown, cb: unknown) => mockNotify(err, cb),
 }));
 
-const mockStart = jest.fn();
+const mockStart = vi.fn();
 Bugsnag.start = mockStart;
 
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("matchesUserAgent", () => {
     it("returns false if the ua string doesn't contain words in the disallow list", () => {
@@ -151,7 +152,7 @@ describe("common-lib/error-reporter", () => {
   });
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
       getHasConsentedTo.mockImplementation(() => true);
@@ -189,7 +190,7 @@ describe("common-lib/error-reporter", () => {
       expect(consoleLog).toHaveBeenCalledWith("Original error:");
       expect(consoleError).toHaveBeenCalledWith("test thing");
     });
-    test("adds originalError if error is OakError", () => {
+    it("adds originalError if error is OakError", () => {
       const originalError = new Error(
         "some error from somewhere (not our fault!)",
       );
@@ -201,21 +202,21 @@ describe("common-lib/error-reporter", () => {
         originalError,
       });
     });
-    test("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
+    it("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
       const error = new OakError({ code: "misc/unknown" });
       error.hasBeenReported = true;
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
 
-    test("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
+    it("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
       const error = new OakError({ code: "preview/zod-error" });
       error.config.shouldNotify = false;
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
 
-    test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
+    it("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
       reportError({
         originalError: {
           originalError: {
@@ -227,18 +228,18 @@ describe("common-lib/error-reporter", () => {
       });
       expect(mockNotify).not.toHaveBeenCalled();
     });
-    test("will not get stuck in a recursive loop", () => {
+    it("will not get stuck in a recursive loop", () => {
       const error = new Error("self referential error");
       (error as { originalError?: unknown }).originalError = error;
       reportError(error);
       expect(mockNotify).toHaveBeenCalled();
     });
-    test("sets error.hasBeenReported = true", async () => {
+    it("sets error.hasBeenReported = true", async () => {
       const error = new OakError({ code: "misc/unknown" });
       reportError(error);
       expect(error.hasBeenReported).toBe(true);
     });
-    test("will not report same error twice", () => {
+    it("will not report same error twice", () => {
       const error = new OakError({ code: "misc/unknown" });
       reportError(error);
       reportError(error);
@@ -250,7 +251,7 @@ describe("common-lib/error-reporter", () => {
   });
   describe("[disabled]: errorReporter()()", () => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       getHasConsentedTo.mockImplementation(() => false);
     });
     it("does not call bugsnag.notify with the error", async () => {

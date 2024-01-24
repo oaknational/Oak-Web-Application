@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -36,8 +37,8 @@ const subjectCardListItemTrackingProps: KeyStageSubject = [
   },
 ];
 
-const subjectSelected = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const subjectSelected = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -48,10 +49,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("SubjectCardListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  test("render a Card with the Name of the Subject", () => {
+  it("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
@@ -63,7 +64,7 @@ describe("SubjectCardListItem", () => {
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
   });
-  test("if available has a link to take you to the corresponding subject page", () => {
+  it("if available has a link to take you to the corresponding subject page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
@@ -78,7 +79,7 @@ describe("SubjectCardListItem", () => {
     });
     expect(cardClickTarget).toBeInTheDocument();
   });
-  test("calls tracking.keyStageSelected once, with correct props", async () => {
+  it("calls tracking.keyStageSelected once, with correct props", async () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
@@ -12,10 +13,10 @@ const roles = [
   { value: "other", label: "Other" },
 ];
 
-const setSelectedKey = jest.fn();
+const setSelectedKey = vi.fn();
 describe("select", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("renders a drop down select", () => {
     renderWithTheme(

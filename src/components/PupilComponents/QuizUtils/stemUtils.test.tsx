@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { OakImage } from "@oak-academy/oak-components";
 
 import { getStemImage, getStemImageData } from "./stemUtils";

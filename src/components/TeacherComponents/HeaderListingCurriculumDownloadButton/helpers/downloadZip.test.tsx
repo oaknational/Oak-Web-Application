@@ -1,3 +1,7 @@
+import { fail } from "node:assert";
+
+import { Mock, afterAll, beforeEach, describe, expect, it, vi } from "vitest";
+
 import downloadZip from "./downloadZip";
 
 const data = { url: "downloadUrlString" };
@@ -12,28 +16,26 @@ const rejectResponse = {
   status: 400,
 };
 
-global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
 
 describe("downloadZip", () => {
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
-  test("should invoke the fetch function when invoked", async () => {
+  it("should invoke the fetch function when invoked", async () => {
     await downloadZip("4", "maths");
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
-  test("it handles rejection by returning error message", async () => {
-    jest
-      .spyOn(global, "fetch")
-      .mockImplementationOnce((() =>
-        Promise.resolve(rejectResponse)) as jest.Mock);
+  it("it handles rejection by returning error message", async () => {
+    vi.spyOn(global, "fetch").mockImplementationOnce((() =>
+      Promise.resolve(rejectResponse)) as Mock);
     try {
       await downloadZip("4", "Physics");
       fail("should not reach here");

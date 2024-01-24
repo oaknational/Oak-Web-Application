@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -12,7 +13,7 @@ describe("Toggle", () => {
         checked={true}
         labelOn="label"
         labelOff="label"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -27,7 +28,7 @@ describe("Toggle", () => {
         checked={true}
         labelOn="label on"
         labelOff="label"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 

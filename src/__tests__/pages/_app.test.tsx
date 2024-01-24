@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
@@ -11,7 +12,7 @@ const noopAvoLogger = {
   logError: () => false,
 };
 
-jest.mock("../../hooks/useOakTheme", () => ({
+vi.mock("../../hooks/useOakTheme", () => ({
   __esModule: true,
   default: () => ({
     name: "default",
@@ -19,7 +20,7 @@ jest.mock("../../hooks/useOakTheme", () => ({
   }),
 }));
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("<MyApp>", () => {
   it("Renders Component", () => {

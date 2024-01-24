@@ -1,3 +1,4 @@
+import { MockedObject, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
@@ -12,26 +13,29 @@ import getSanityClient from "./";
  * Note: sanity-graphql mocks are configured in
  * sanity-graphql/__mocks__
  */
-jest.mock("../../sanity-graphql");
+vi.mock("../../sanity-graphql");
 
-jest.mock("./parseResults", () => {
-  const original = jest.requireActual("./parseResults");
+vi.mock("./parseResults", async () => {
+  const original = (await vi.importActual("./parseResults")) as {
+    parseResults: typeof import("./parseResults").parseResults;
+  };
+
   return {
     __esModule: true,
-    parseResults: jest.fn(original.parseResults),
+    parseResults: vi.fn(original.parseResults),
   };
 });
 
-jest.mock("./resolveSanityReferences", () => {
+vi.mock("./resolveSanityReferences", () => {
   return {
     __esModule: true,
     // Return self without transform, bypassing any errors caused by
     // dodgy mocks
-    resolveSanityReferences: jest.fn((x) => x),
+    resolveSanityReferences: vi.fn((x) => x),
   };
 });
 
-const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
+const mockSanityGraphqlApi = sanityGraphqlApi as MockedObject<
   typeof sanityGraphqlApi
 >;
 
@@ -47,8 +51,8 @@ const testVideo = {
 
 describe("cms/sanity-client", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   describe("webinarsBySlug", () => {

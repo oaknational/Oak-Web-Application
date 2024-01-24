@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import Bugsnag from "@bugsnag/js";
 import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";
@@ -10,16 +11,16 @@ import noop from "@/__tests__/__helpers__/noop";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import theme from "@/styles/theme";
 
-const consoleLogSpy = jest.spyOn(console, "log");
-const consoleErrorSpy = jest.spyOn(console, "error");
+const consoleLogSpy = vi.spyOn(console, "log");
+const consoleErrorSpy = vi.spyOn(console, "error");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 useRouter.mockReturnValue({
   asPath: "test asPath value",
 });
 
-const mockNotify = jest.fn(async (err, cb) => cb(event));
+const mockNotify = vi.fn(async (err, cb) => cb(event));
 Bugsnag.notify = mockNotify;
 
 const TantrumChild = () => {
@@ -36,7 +37,7 @@ const WithStatisticsConsent: FC = (props) => {
       <CookieConsentProvider
         {...props}
         __testMockValue={{
-          showConsentManager: jest.fn(),
+          showConsentManager: vi.fn(),
           hasConsentedTo: () => "enabled",
           hasConsentedToPolicy: () => "enabled",
         }}
@@ -50,7 +51,7 @@ const WithoutStatisticsConsent: FC = (props) => {
       <CookieConsentProvider
         {...props}
         __testMockValue={{
-          showConsentManager: jest.fn(),
+          showConsentManager: vi.fn(),
           hasConsentedTo: () => "disabled",
           hasConsentedToPolicy: () => "disabled",
         }}
@@ -66,7 +67,7 @@ describe("ErrorBoundary.tsx", () => {
 
     window.localStorage.clear();
   });
-  test("[bugsnag:enabled] should render children if no error", () => {
+  it("[bugsnag:enabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
         <div data-testid="child">The app</div>
@@ -75,7 +76,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
-  test("[bugsnag:enabled] should render client error view in the case of an uncaught exception", () => {
+  it("[bugsnag:enabled] should render client error view in the case of an uncaught exception", () => {
     const { getByRole } = render(
       <ErrorBoundary>
         <TantrumChild />
@@ -86,7 +87,7 @@ describe("ErrorBoundary.tsx", () => {
       "An error occurred",
     );
   });
-  test.skip("[bugsnag:enabled] should call reportError", () => {
+  it.skip("[bugsnag:enabled] should call reportError", () => {
     /**
      * @TODO fix this test
      */
@@ -98,7 +99,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(mockNotify).toHaveBeenCalled();
   });
-  test("[bugsnag:disabled] should render children if no error", () => {
+  it("[bugsnag:disabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
         <div data-testid="child">The app</div>
@@ -107,7 +108,7 @@ describe("ErrorBoundary.tsx", () => {
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
-  test("[bugsnag:disabled] should render client error view in the case of an uncaught exception", () => {
+  it("[bugsnag:disabled] should render client error view in the case of an uncaught exception", () => {
     const { getByRole } = render(
       <ErrorBoundary>
         <TantrumChild />
@@ -118,7 +119,7 @@ describe("ErrorBoundary.tsx", () => {
       "An error occurred",
     );
   });
-  test("[bugsnag:disabled] should not call reportError", () => {
+  it("[bugsnag:disabled] should not call reportError", () => {
     render(
       <ErrorBoundary>
         <TantrumChild />

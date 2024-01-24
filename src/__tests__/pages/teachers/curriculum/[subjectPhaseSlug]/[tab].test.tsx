@@ -1,5 +1,6 @@
-import { useRouter } from "next/router";
+import { MockedObject, beforeEach, describe, expect, it, vi } from "vitest";
 import { MockedFunction } from "jest-mock";
+import mockRouter from "next-router-mock";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
@@ -19,33 +20,30 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
 
-jest.mock("next/router");
-jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  curriculumOverview: jest.fn(),
-  curriculumUnits: jest.fn(),
-}));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
   >;
 
-jest.mock("@/node-lib/cms");
+vi.mock("@/node-lib/cms");
 
-jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
+vi.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
   __esModule: true,
   default: () => () => null,
 }));
 
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockCMSClient = CMSClient as MockedObject<typeof CMSClient>;
 
-jest.mock("next-sanity-image", () => ({
-  ...jest.requireActual("next-sanity-image"),
-  useNextSanityImage: () => ({
-    src: "/test/img/src.png",
-    width: 400,
-    height: 400,
-  }),
-}));
+vi.mock("next-sanity-image", async () => {
+  return {
+    ...(await vi.importActual("next-sanity-image")),
+    useNextSanityImage: () => ({
+      src: "/test/img/src.png",
+      width: 400,
+      height: 400,
+    }),
+  };
+});
 const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
   typeof curriculumApi.curriculumUnits
 >;
@@ -54,13 +52,13 @@ const mockedFetchSubjectPhasePickerData =
     typeof fetchSubjectPhasePickerData
   >;
 
-jest.mock("@/pages/teachers/curriculum/index", () => ({
-  fetchSubjectPhasePickerData: jest.fn(),
+vi.mock("@/pages/teachers/curriculum/index", () => ({
+  fetchSubjectPhasePickerData: vi.fn(),
 }));
 
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {
@@ -83,12 +81,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
-
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=overview",
+      );
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
@@ -103,11 +98,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("renders the Curriculum Overview Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=overview",
+      );
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
@@ -124,11 +117,10 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("renders the Curriculum Units Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "units" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
+      mockRouter.setCurrentUrl(
+        "/teachers-2023/curriculum/english-secondary-aqa/overview?tab=units",
+      );
+
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage

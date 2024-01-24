@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { describe, expect, it, vi } from "vitest";
+import { useState } from "react";
 import { fireEvent } from "@testing-library/react";
 
 import HomePageTabImageNav from "./HomePageTabImageNav";
@@ -7,14 +8,14 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { HomePageTab } from "@/pages";
 
 describe("HomePageTabImageNav Component", () => {
-  test("renders without errors", () => {
+  it("renders without errors", () => {
     const { container } = renderWithTheme(
       <HomePageTabImageNav current="teachers" setCurrent={() => {}} />,
     );
     expect(container).toBeTruthy();
   });
-  test("receives and handles props correctly", () => {
-    const setCurrent = jest.fn();
+  it("receives and handles props correctly", () => {
+    const setCurrent = vi.fn();
     const { getAllByText } = renderWithTheme(
       <HomePageTabImageNav current="teachers" setCurrent={setCurrent} />,
     );

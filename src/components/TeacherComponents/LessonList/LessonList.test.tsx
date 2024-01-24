@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import LessonList from ".";
@@ -14,10 +15,10 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("components/ Lesson List", () => {
-  test("it renders the list items", () => {
+  it("it renders the list items", () => {
     const { getByRole } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -35,7 +36,7 @@ describe("components/ Lesson List", () => {
 
     expect(listHeading).toBeInTheDocument();
   });
-  test("it renders pagination if lesson count is greater than 5 ", () => {
+  it("it renders pagination if lesson count is greater than 5 ", () => {
     const { getByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -53,7 +54,7 @@ describe("components/ Lesson List", () => {
 
     expect(pagination).toBeInTheDocument();
   });
-  test("it does not renders pagination if lesson count is less than 5 ", () => {
+  it("it does not renders pagination if lesson count is less than 5 ", () => {
     const { queryByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -71,7 +72,7 @@ describe("components/ Lesson List", () => {
 
     expect(pagination).not.toBeInTheDocument();
   });
-  test("onClick is called when a unit is clicked", async () => {
+  it("onClick is called when a unit is clicked", async () => {
     const { getByText } = render(
       <LessonList
         paginationProps={mockPaginationProps}

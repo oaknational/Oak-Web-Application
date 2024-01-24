@@ -1,22 +1,24 @@
+import { describe, expect, it, vi } from "vitest";
+
 import sdk from "../../sdk";
 
 import subjectPhaseOptions from "./subjectPhaseOptions.query";
 
 describe("subjectPhaseOptions()", () => {
-  test("throws a not found error if no options are found", async () => {
+  it("throws a not found error if no options are found", async () => {
     await expect(async () => {
       await subjectPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() => Promise.resolve({ options: [] })),
+        subjectPhaseOptions: vi.fn(() => Promise.resolve({ options: [] })),
       })();
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await subjectPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() =>
+        subjectPhaseOptions: vi.fn(() =>
           Promise.resolve({
             options: [
               {

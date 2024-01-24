@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { SearchHit } from "../search.types";
 
 import { performSearch } from "./performSearch";
@@ -11,31 +13,32 @@ const mockResults2020: SearchHit[] = [{ foo: "bar-2020" }];
 // @ts-expect-error
 const mockResults2023: SearchHit[] = [{ foo: "bar-2023" }];
 
-jest.mock("./2020/fetchResults", () => ({
+vi.mock("./2020/fetchResults", async () => ({
   __esModule: true,
-  ...jest.requireActual("./2020/fetchResults"),
+  ...(await vi.importActual("./2020/fetchResults")),
 }));
-const fetchResults2020Spy = jest
+const fetchResults2020Spy = vi
   .spyOn(fetchResults2020, "fetchResults")
   .mockResolvedValue([...mockResults2020]);
 
-jest.mock("./2023/fetchResults", () => ({
+vi.mock("./2023/fetchResults", async () => ({
   __esModule: true,
-  ...jest.requireActual("./2023/fetchResults"),
+  ...(await vi.importActual("./2023/fetchResults")),
 }));
-const fetchResults2023Spy = jest.spyOn(fetchResults2023, "fetchResults");
+const fetchResults2023Spy = vi.spyOn(fetchResults2023, "fetchResults");
 
 const callbacks = {
-  onStart: jest.fn(),
-  onSuccess: jest.fn(),
-  onFail: jest.fn(),
+  onStart: vi.fn(),
+  onSuccess: vi.fn(),
+  onFail: vi.fn(),
 };
 
 describe("performSearch", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  test("should call onStart on start", () => {
+  it("should call onStart on start", () => {
+    fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
     performSearch({
       query: {
         term: "test",
@@ -44,7 +47,7 @@ describe("performSearch", () => {
     });
     expect(callbacks.onStart).toHaveBeenCalled();
   });
-  test("should call onSuccess with 2023 results on success", async () => {
+  it("should call onSuccess with 2023 results on success", async () => {
     fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
     await performSearch({
       query: {
@@ -58,7 +61,9 @@ describe("performSearch", () => {
       ...mockResults2020,
     ]);
   });
-  test("should call onFail on fail", async () => {
+  it("should call onFail on fail", async () => {
+    vi.spyOn(console, "log").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
     fetchResults2020Spy.mockRejectedValue(new Error("test"));
     await performSearch({
       query: {

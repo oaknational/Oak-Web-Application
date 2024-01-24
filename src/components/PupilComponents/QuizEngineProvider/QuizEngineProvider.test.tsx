@@ -1,4 +1,4 @@
-import React from "react";
+import { describe, expect, it, vi, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 
 import {
@@ -16,11 +16,11 @@ const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
   currentSection: "starter-quiz",
   completedSections: [],
   sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
+  getIsComplete: vi.fn(),
+  completeSection: vi.fn(),
+  updateCurrentSection: vi.fn(),
+  proceedToNextSection: vi.fn(),
+  updateQuizResult: vi.fn(),
 });
 
 describe("QuizEngineContext", () => {
@@ -434,13 +434,13 @@ describe("QuizEngineContext", () => {
 
 describe("useQuizEngineContext", () => {
   it("throws an error when there is no context", () => {
-    jest.spyOn(console, "error").mockImplementation(() => jest.fn()); // suppress console.error
+    vi.spyOn(console, "error").mockImplementation(() => vi.fn()); // suppress console.error
     expect(() => renderHook(() => useQuizEngineContext())).toThrow(
       "`QuizEngineProvider` is not available",
     );
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });

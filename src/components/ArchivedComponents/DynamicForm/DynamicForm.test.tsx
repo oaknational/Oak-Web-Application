@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
@@ -8,13 +9,11 @@ import { FormDefinition, FormField } from "@/common-lib/forms/FormDefinition";
 import OakError from "@/errors/OakError";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.setTimeout(10000);
-
-const onSubmit = jest.fn();
+const onSubmit = vi.fn();
 
 describe("DynamicForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("DynamicFormField", () => {
@@ -28,7 +27,7 @@ describe("DynamicForm", () => {
       } as FormField;
 
       const { getByPlaceholderText } = renderWithTheme(
-        <DynamicFormField field={field} register={jest.fn()} />,
+        <DynamicFormField field={field} register={vi.fn()} />,
       );
 
       const input = getByPlaceholderText("Anna Smith");
@@ -181,7 +180,7 @@ describe("DynamicForm", () => {
     ],
   } as FormDefinition;
 
-  test("user can fill out and submit form with keyboard", async () => {
+  it("user can fill out and submit form with keyboard", async () => {
     renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -219,7 +218,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("should display error hint on blur if no name is entered", async () => {
+  it("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -235,7 +234,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("should display all error hints on submit", async () => {
+  it("should display all error hints on submit", async () => {
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -255,7 +254,7 @@ describe("DynamicForm", () => {
     });
   });
 
-  test("onSubmit() should not be called if form invalid", async () => {
+  it("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
     );
@@ -271,7 +270,7 @@ describe("DynamicForm", () => {
    * These skipped tests should probably belong to HubspotForm wrapper
    * around DynamicForm. Currently copied from NewsletterForm.test.tsx
    */
-  test.skip("should display correct message if OakError thrown from onSubmit()", async () => {
+  it.skip("should display correct message if OakError thrown from onSubmit()", async () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByRole, getByPlaceholderText } = renderWithTheme(
@@ -292,7 +291,7 @@ describe("DynamicForm", () => {
     );
   });
 
-  test.skip("should display default message if no OakError", async () => {
+  it.skip("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,

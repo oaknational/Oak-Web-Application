@@ -1,34 +1,37 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 
 import { parseResults } from "./parseResults";
 import { resolveSanityReferences } from "./resolveSanityReferences";
 import { getBySlug, getList, getSingleton } from "./cmsMethods";
 
-jest.mock("./parseResults", () => {
-  const original = jest.requireActual("./parseResults");
+vi.mock("./parseResults", async () => {
+  const original = (await vi.importActual("./parseResults")) as {
+    parseResults: typeof parseResults;
+  };
   return {
     __esModule: true,
-    parseResults: jest.fn(original.parseResults),
+    parseResults: vi.fn(original.parseResults),
   };
 });
 
-jest.mock("./resolveSanityReferences", () => {
+vi.mock("./resolveSanityReferences", () => {
   return {
     __esModule: true,
     // Return self without transform, bypassing any errors caused by
     // dodgy mocks
-    resolveSanityReferences: jest.fn((x) => x),
+    resolveSanityReferences: vi.fn((x) => x),
   };
 });
 
 describe("cms/sanity-client/cmsMethods", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   describe("getSingleton", () => {
-    const singletonGraphQLMethod = jest
+    const singletonGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
 
@@ -50,7 +53,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns null when no content is found", async () => {
       const nullReturningSingletonClientMethod = getSingleton(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.any(),
         (res) => res.allResults?.[0],
       );
@@ -98,7 +101,7 @@ describe("cms/sanity-client/cmsMethods", () => {
   });
 
   describe("getBySlug", () => {
-    const bySlugGraphQLMethod = jest
+    const bySlugGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
     const bySlugClientMethod = getBySlug(
@@ -119,7 +122,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns null when no content is found", async () => {
       const nullReturningBySlugClientMethod = getBySlug(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.any(),
         (res) => res.allResults?.[0],
       );
@@ -167,7 +170,7 @@ describe("cms/sanity-client/cmsMethods", () => {
   });
 
   describe("getList", () => {
-    const listGraphQLMethod = jest
+    const listGraphQLMethod = vi
       .fn()
       .mockResolvedValue({ allResults: [{ foo: "bar" }] });
 
@@ -189,7 +192,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns an empty array when no content is found", async () => {
       const emptyReturningListClientMethod = getList(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.array(z.any()),
         (res) => res.allResults,
       );
