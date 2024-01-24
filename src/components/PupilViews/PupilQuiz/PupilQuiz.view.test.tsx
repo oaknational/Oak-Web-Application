@@ -64,7 +64,7 @@ describe("PupilQuizView", () => {
       fireEvent.click(getByLabelText(/a group of letters/));
       fireEvent.click(getByRole("button", { name: "Submit" }));
     });
-    expect(getByText("Next Question").closest("button")).toBeInTheDocument();
+    expect(getByText("Next question").closest("button")).toBeInTheDocument();
   });
 
   it("does not render Next button when questionState.mode is not feedback", () => {
