@@ -108,9 +108,9 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           data-testid="curriculum-partners-list"
         >
           {pageData.curriculumPartners.map((partner) => (
-            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
+            <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
               <ImageContainer
-                $pa={[16, 24, 32]}
+                $pa={[16, 24, 16]}
                 name={partner.name}
                 image={partner}
               />
