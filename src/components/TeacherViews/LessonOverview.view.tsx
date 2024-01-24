@@ -10,6 +10,7 @@ import {
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
+  SpecialistLessonOverview,
 } from "@/components/TeacherComponents/types/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -34,7 +35,10 @@ import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOver
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewCanonical | LessonOverviewInPathway;
+  lesson:
+    | LessonOverviewCanonical
+    | LessonOverviewInPathway
+    | SpecialistLessonOverview;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
