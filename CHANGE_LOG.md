@@ -1,3 +1,10 @@
+## [1.333.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.0...v1.333.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* move hubspot submission before downloads ([3188268](https://github.com/oaknational/Oak-Web-Application/commit/3188268a30f003dbaf20aa688702ada3a5eb7652))
+
 # [1.333.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.3...v1.333.0) (2024-01-24)
 
 
