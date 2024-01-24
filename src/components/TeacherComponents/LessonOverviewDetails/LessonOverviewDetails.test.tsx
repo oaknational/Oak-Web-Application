@@ -4,6 +4,12 @@ import LessonOverviewDetails from "./LessonOverviewDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+jest.mock("better-react-mathjax", () => ({
+  MathJax: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+}));
+
 describe("LessonOverviewDetails component", () => {
   const keyLearningPoints = [{ keyLearningPoint: "test" }];
   const commonMisconceptions = [
@@ -67,7 +73,7 @@ describe("LessonOverviewDetails component", () => {
       />,
     );
 
-    const commonMisconceptionsComponent = getByText("Common misconceptions");
+    const commonMisconceptionsComponent = getByText("Common misconception");
     expect(commonMisconceptionsComponent).toBeInTheDocument();
   });
 

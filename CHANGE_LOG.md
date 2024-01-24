@@ -1,3 +1,59 @@
+## [1.333.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.2...v1.333.3) (2024-01-24)
+
+## [1.333.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.1...v1.333.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* point dowloads gql to correct mv ([9a29fcf](https://github.com/oaknational/Oak-Web-Application/commit/9a29fcfdb1d2dcdbab9eaed10122ed55d8028a1d))
+
+## [1.333.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.0...v1.333.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* move hubspot submission before downloads ([3188268](https://github.com/oaknational/Oak-Web-Application/commit/3188268a30f003dbaf20aa688702ada3a5eb7652))
+
+# [1.333.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.3...v1.333.0) (2024-01-24)
+
+
+### Features
+
+* add mathjax to lesson details ([b890ce4](https://github.com/oaknational/Oak-Web-Application/commit/b890ce4a798633cbfe7ea3592a38c79b6992aeae))
+
+## [1.332.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.2...v1.332.3) (2024-01-23)
+
+## [1.332.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.1...v1.332.2) (2024-01-23)
+
+## [1.332.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.332.0...v1.332.1) (2024-01-23)
+
+# [1.332.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.331.0...v1.332.0) (2024-01-23)
+
+
+### Bug Fixes
+
+* changed length of test subjects ([8063aa3](https://github.com/oaknational/Oak-Web-Application/commit/8063aa3bdfb0241d82d7171751ed2098c5eeba96))
+* responsive icon sizes ([2aecb97](https://github.com/oaknational/Oak-Web-Application/commit/2aecb976bebc043f9cb952e517fc7ec4c0eea512))
+* story names ([a88246e](https://github.com/oaknational/Oak-Web-Application/commit/a88246e0c9dcfe357fe157782d554430040e0867))
+
+
+### Features
+
+* add component with initial parts ([50e9d0a](https://github.com/oaknational/Oak-Web-Application/commit/50e9d0adb0a0f7a1501681b1b1cc6a79559a56f6))
+* add links to subject cards ([6a4b09f](https://github.com/oaknational/Oak-Web-Application/commit/6a4b09f57328b0e5356cd63a4ed72577c6c91c8d))
+* add therapy icons ([74a2737](https://github.com/oaknational/Oak-Web-Application/commit/74a27375c50642e7974d89f020ba7c4ccf7ad59b))
+* make subject headings sentence case ([a6267cb](https://github.com/oaknational/Oak-Web-Application/commit/a6267cba601fafc290e62206803f26ed1896e0bd))
+* style specialist subject listing page ([9dee6cd](https://github.com/oaknational/Oak-Web-Application/commit/9dee6cd8a011db5fa5a4c030b435a6a33a53b0a9))
+
+# [1.331.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.330.1...v1.331.0) (2024-01-23)
+
+
+### Features
+
+* specialist header listing component ([3de24f4](https://github.com/oaknational/Oak-Web-Application/commit/3de24f44fd28146737cabd0d058e96f53ff93eec))
+
+## [1.330.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.330.0...v1.330.1) (2024-01-22)
+
 # [1.330.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.329.0...v1.330.0) (2024-01-18)
 
 

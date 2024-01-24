@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
+import { OakFlex } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
@@ -9,7 +10,6 @@ import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
@@ -58,7 +58,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                     <PortableTextWithDefaults value={card.bodyPortableText} />
                   </Typography>
                   {card.cta?.linkType == "external" && (
-                    <Flex>
+                    <OakFlex>
                       <ButtonAsLink
                         background="blue"
                         label={card.cta.label}
@@ -70,7 +70,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       >
                         {card.cta.label}
                       </ButtonAsLink>
-                    </Flex>
+                    </OakFlex>
                   )}
                   <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>

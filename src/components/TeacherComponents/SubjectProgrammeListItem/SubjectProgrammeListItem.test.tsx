@@ -15,6 +15,21 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+const onClick = vi.fn();
+
+const programme = {
+  subjectSlug: "maths",
+  subjectTitle: "Maths",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key stage 4",
+  tierTitle: "Higher",
+  tierSlug: "higher",
+  programmeSlug: "maths-secondary-ks4-higher",
+  tierDisplayOrder: null,
+  examBoardSlug: null,
+  examBoardTitle: null,
+  examBoardDisplayOrder: null,
+};
 
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
@@ -23,20 +38,7 @@ describe("ProgrammeListItem", () => {
 
   it("renders SubjectProgrammeListItem", () => {
     renderWithTheme(
-      <SubjectProgrammeListItem
-        subjectSlug="maths"
-        subjectTitle="Maths"
-        keyStageSlug="ks4"
-        keyStageTitle="Key stage 4"
-        tierTitle="Higher"
-        tierSlug="higher"
-        programmeSlug="maths-secondary-ks4-higher"
-        // background="grey30"
-        tierDisplayOrder={null}
-        examBoardSlug={null}
-        examBoardTitle={null}
-        examBoardDisplayOrder={null}
-      />,
+      <SubjectProgrammeListItem onClick={onClick} programme={programme} />,
     );
 
     expect(screen.getByText("Higher")).toBeInTheDocument();
@@ -44,20 +46,7 @@ describe("ProgrammeListItem", () => {
 
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
-      <SubjectProgrammeListItem
-        subjectSlug="maths"
-        subjectTitle="Maths"
-        keyStageSlug="ks4"
-        keyStageTitle="Key Stage 4"
-        tierTitle="Higher"
-        tierSlug="higher"
-        programmeSlug="maths-secondary-ks4-higher"
-        // background="grey30"
-        tierDisplayOrder={null}
-        examBoardSlug={null}
-        examBoardTitle={null}
-        examBoardDisplayOrder={null}
-      />,
+      <SubjectProgrammeListItem onClick={onClick} programme={programme} />,
     );
 
     const trier = screen.getByText("Higher");
@@ -65,14 +54,7 @@ describe("ProgrammeListItem", () => {
     const user = userEvent.setup();
     await user.click(trier);
 
-    expect(tierSelected).toHaveBeenCalledTimes(1);
-    expect(tierSelected).toHaveBeenCalledWith({
-      subjectTitle: "Maths",
-      subjectSlug: "maths",
-      tierName: "Higher",
-      keyStageTitle: "Key Stage 4",
-      keyStageSlug: "ks4",
-      analyticsUseCase: null,
-    });
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith(programme);
   });
 });
