@@ -87,8 +87,6 @@ export const QuizRenderer = (props: QuizRenderProps) => {
         <OakFlex
           $flexDirection={"column"}
           $gap={["space-between-m", "space-between-l", "space-between-xl"]}
-          $color={"text-primary"}
-          $font={["heading-6", "heading-4", "heading-4"]}
         >
           <QuizQuestionStem
             questionStem={questionStem}
