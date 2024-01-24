@@ -140,7 +140,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $alignItems="center"
           $mr={$iconPosition === "leading" ? 8 : 0}
           $ml={$iconPosition === "trailing" ? 8 : 0}
-          $color={color}
+          $color={color ?? labelColor}
         >
           <Icon
             variant="brush"
