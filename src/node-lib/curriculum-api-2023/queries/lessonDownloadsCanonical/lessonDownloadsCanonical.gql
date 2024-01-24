@@ -1,5 +1,5 @@
 query lessonDownloadsCanonical($lessonSlug: String!) {
-  lessonDownloadsCanonical: published_mv_downloads_3_0_0(
+  lessonDownloadsCanonical: published_mv_downloads_3_0_2(
     where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     downloads

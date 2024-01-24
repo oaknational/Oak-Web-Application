@@ -122,6 +122,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
+    await onHubspotSubmit(data);
+
     try {
       await debouncedSubmit({
         data,
@@ -130,8 +132,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setEditDetailsClicked,
         onSubmit,
       });
-      setIsDownloadSuccessful(true);
 
+      setIsDownloadSuccessful(true);
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
       }
@@ -163,8 +165,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onwardContent,
         emailSupplied: data?.email ? true : false,
       });
-
-      onHubspotSubmit(data);
     } catch (error) {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);

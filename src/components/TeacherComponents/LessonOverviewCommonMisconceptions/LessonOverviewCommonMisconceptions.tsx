@@ -30,7 +30,7 @@ const LessonOverviewCommonMisconceptions = ({
       $justifyContent={"center"}
     >
       <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
-        Common misconceptions
+        Common misconception
       </Heading>
       {commonMisconceptions?.map(
         (commonMisconception: LessonOverviewCommonMisconception, i: number) => {

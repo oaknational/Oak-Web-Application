@@ -20,8 +20,8 @@ export type LessonOverviewHeaderProps = {
   examBoardTitle?: string | null;
   tierTitle?: string | null;
   unitSlug: string | null;
-  keyStageSlug: string | null;
-  keyStageTitle: string | null;
+  keyStageSlug?: string | null;
+  keyStageTitle?: string | null;
   unitTitle: string | null;
   subjectTitle: string | null;
   programmeSlug: string | null;
