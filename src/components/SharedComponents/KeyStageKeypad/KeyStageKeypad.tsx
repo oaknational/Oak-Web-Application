@@ -65,7 +65,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       <OakGrid
         $mb={years ? "space-between-l" : "space-between-m"}
         $ph={"inner-padding-xs"}
-        // $gap={24}
+        $cg={"all-spacing-6"}
         $maxWidth={"all-spacing-22"}
       >
         {keyStages.map((keyStage) => (
