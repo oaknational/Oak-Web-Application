@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
-import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 

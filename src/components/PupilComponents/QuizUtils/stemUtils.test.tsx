@@ -1,4 +1,4 @@
-import { OakImage } from "@oak-academy/oak-components";
+import { OakCloudinaryImage } from "@oaknational/oak-components";
 
 import { getStemImage, getStemImageData } from "./stemUtils";
 
@@ -32,8 +32,8 @@ describe("stemUtils", () => {
   describe("getStemImage", () => {
     it("should return an OakImage with src from the stem", () => {
       const result = getStemImage({ stem, minWidth: "all-spacing-19" });
-      expect(result?.type).toEqual(OakImage);
-      expect(result?.props.src).toEqual(
+      expect(result?.type).toEqual(OakCloudinaryImage);
+      expect(result?.props.cloudinaryId).toEqual(
         (stem[0] as StemImageObject).image_object.secure_url,
       );
     });
