@@ -51,7 +51,6 @@ describe("generateLegacyProgrammeListing", () => {
     expect(result.subjectSlug).toEqual("combined-science-l");
   });
   it("transforms new programme listings", () => {
-    console.log(ks4MathsFullProgrammeListing);
     const result = generateProgrammeListing(
       ks4MathsFullProgrammeListing,
       false,
