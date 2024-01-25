@@ -1,15 +1,16 @@
 import {
+  generateCorrectProgrammes,
+  generateProgrammeListing,
+} from "./generateCorrectProgrammes";
+
+import {
   mathsKs4Full,
   physicsKs4Full,
   combinedScienceKs4Full,
   ks4MathsFullProgrammeListing,
   ks4CombinedScienceFullProgrammeListing,
   mathsKs4New,
-} from "./programmes.fixture";
-import {
-  generateCorrectProgrammes,
-  generateProgrammeListing,
-} from "./generateCorrectProgrammes";
+} from "@/node-lib/curriculum-api-2023/fixtures/programmes.fixture";
 
 describe("generateCorrectProgrammes", () => {
   it("returns the same programmes when they are not in target subjects", () => {
