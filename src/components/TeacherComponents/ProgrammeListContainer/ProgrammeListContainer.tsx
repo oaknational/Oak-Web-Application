@@ -1,6 +1,9 @@
 import { FC } from "react";
 
-import { GridArea, GridAreaProps } from "@/components/SharedComponents/Grid";
+import {
+  GridArea,
+  GridAreaProps,
+} from "@/components/SharedComponents/Grid.deprecated";
 import { OakColorName } from "@/styles/theme";
 
 export type ProgrammeListContainer = {

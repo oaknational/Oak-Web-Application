@@ -8,7 +8,7 @@ import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
-import { GridArea } from "@/components/SharedComponents/Grid";
+import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";

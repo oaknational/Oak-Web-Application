@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./GridArea";
+import Component from "./GridArea.deprecated";
 
 import Grid from ".";
 
