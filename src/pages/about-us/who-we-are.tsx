@@ -5,16 +5,17 @@ import {
   OakGrid,
   OakGridArea,
   OakGridAreaProps,
+  OakMaxWidth,
+  OakTypography,
+  OakHeading,
 } from "@oak-academy/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -51,9 +52,9 @@ const TimeLineCard: FC<TimeLineProps> = ({
           <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
             {title}
           </OutlineHeading>
-          <Typography $font={["body-2", "body-1"]}>
+          <OakTypography $font={["body-2", "body-1"]}>
             <PortableTextWithDefaults value={bodyPortableText} />
-          </Typography>
+          </OakTypography>
           {cta && (
             <OakFlex>
               <ButtonAsLink
@@ -75,7 +76,11 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]} $alignItems={"center"}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+        $alignItems={"center"}
+      >
         <GenericSummaryCard {...pageData} />
         <Card
           $pv={32}
@@ -97,11 +102,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               )}
             </OakFlex>
             <Box $width={["100%", "100%", "50%"]}>
-              <Typography $mb={36} $font={["body-2", "body-1"]}>
+              <OakTypography
+                $mb={"space-between-m2"}
+                $font={["body-2", "body-1"]}
+              >
                 <PortableTextWithDefaults
                   value={pageData.intro.bodyPortableText}
                 />
-              </Typography>
+              </OakTypography>
               <OakFlex $justifyContent={"flex-start"}>
                 {pageData.intro.cta && (
                   <ButtonAsLink
@@ -137,33 +145,33 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
         />
         <OakGrid
           $mb={"space-between-xxxl"}
-          $cg={"all-spacing-6"}
-          $rg={"all-spacing-7"}
+          $cg={"space-between-m"}
+          $rg={"space-between-m2"}
         >
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $background={"aqua"}>
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
-                  <Heading
+                  <OakHeading
                     $font={["heading-5", "heading-4"]}
                     tag={"h3"}
-                    $mb={[24]}
+                    $mb={["space-between-m"]}
                   >
                     {principle.title}
-                  </Heading>
-                  <Typography $font={["body-2", "body-1"]}>
+                  </OakHeading>
+                  <OakTypography $font={["body-2", "body-1"]}>
                     <PortableTextWithDefaults
                       value={principle.bodyPortableText}
                     />
-                  </Typography>
+                  </OakTypography>
                 </Card>
               </OakGridArea>
             </Fragment>
           ))}
         </OakGrid>
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };
