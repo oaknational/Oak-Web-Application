@@ -68,10 +68,9 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={showConsentManager}
+        labelColor={"black"}
         $hoverStyles={["underline-link-text"]}
-      >
-        {props.text}
-      </Button>
+      />
     );
   }
 
