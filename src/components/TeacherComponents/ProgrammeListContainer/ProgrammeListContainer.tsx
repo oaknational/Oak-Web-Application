@@ -1,16 +1,15 @@
 import { FC } from "react";
-
 import {
-  GridArea,
-  GridAreaProps,
-} from "@/components/SharedComponents/Grid.deprecated";
-import { OakColorName } from "@/styles/theme";
+  OakGridArea,
+  OakGridAreaProps,
+  OakColorToken,
+} from "@oak-academy/oak-components";
 
 export type ProgrammeListContainer = {
   children?: React.ReactNode;
   numberOfProgrammes?: number;
-  $background?: OakColorName;
-} & GridAreaProps;
+  $background?: OakColorToken;
+} & OakGridAreaProps;
 
 const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
   const {
@@ -20,14 +19,14 @@ const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
     ...gridAreaProps
   } = props;
   return (
-    <GridArea
+    <OakGridArea
       $background={$background}
-      $pa={16}
-      $borderRadius={4}
+      $pa={"inner-padding-m"}
+      $borderRadius={"border-radius-s"}
       {...gridAreaProps}
     >
       {children}
-    </GridArea>
+    </OakGridArea>
   );
 };
 
