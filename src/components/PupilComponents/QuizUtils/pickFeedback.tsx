@@ -1,4 +1,4 @@
-import { OakSpan } from "@oak-academy/oak-components";
+import { OakSpan } from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "../QuizEngineProvider";
 
