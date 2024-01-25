@@ -113,12 +113,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             data-testid="elements-of-curriculum"
           >
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
-              <OakGridArea
-                $display={["none", "block"]}
-                key={`${index}-${heading}`}
-                $colSpan={[12, 4]}
-              >
-                <Box $ph={[16, 0]}>
+              <OakGridArea key={`${index}-${heading}`} $colSpan={[12, 4]}>
+                <Box $ph={[16, 0]} $display={["none", "block"]}>
                   <P $mb={[24, 16]} $font={"heading-light-6"}>
                     {heading}
                   </P>

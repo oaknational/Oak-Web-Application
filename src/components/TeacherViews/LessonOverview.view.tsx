@@ -33,6 +33,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 
 export type LessonOverviewProps = {
   lesson:
@@ -179,12 +180,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </Box>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
-            <OakGridArea
+            <GridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <Flex
                 as="nav"
@@ -199,7 +200,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </Flex>
-            </OakGridArea>
+            </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
               <Flex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") && (
