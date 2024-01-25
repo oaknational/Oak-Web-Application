@@ -45,11 +45,12 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap={["space-between-m", "space-between-m", "space-between-m2"]}
-    >
-      <OakSpan>Select one answer</OakSpan>
+    <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakSpan
+        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
+      >
+        Select one answer
+      </OakSpan>
       <OakRadioGroup
         name={questionUid || "mcq-single-answer"}
         $flexDirection={"column"}

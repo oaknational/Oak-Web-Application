@@ -52,11 +52,12 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap={["space-between-m", "space-between-m", "space-between-m2"]}
-    >
-      <OakSpan>Select {numCorrectAnswers} answer</OakSpan>
+    <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakSpan
+        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
+      >
+        Select {numCorrectAnswers} answers
+      </OakSpan>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {answers.map((answer, index) => {
           const filterByText = answer.answer.filter(

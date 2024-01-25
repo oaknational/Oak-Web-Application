@@ -5,6 +5,7 @@ import {
   OakLessonTopNav,
   OakPrimaryButton,
   OakQuizCounter,
+  OakSpan,
 } from "@oak-academy/oak-components";
 
 import {
@@ -14,6 +15,7 @@ import {
 } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { pickFeedBackComponent } from "@/components/PupilComponents/QuizUtils/pickFeedback";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -34,6 +36,7 @@ const QuizInner = () => {
   }
 
   const {
+    currentQuestionData,
     currentQuestionIndex,
     questionState,
     handleNextQuestion,
@@ -52,6 +55,17 @@ const QuizInner = () => {
             ? "correct"
             : "incorrect"
           : null
+      }
+      answerFeedback={
+        questionState[currentQuestionIndex]?.grade === 1 ? (
+          <OakSpan $color={"text-primary"} $font={"body-2"}>
+            Well done!
+          </OakSpan>
+        ) : currentQuestionData?.answers ? (
+          pickFeedBackComponent(currentQuestionData?.answers)
+        ) : (
+          ""
+        )
       }
     >
       {!isFeedbackMode && (
@@ -92,7 +106,11 @@ const QuizInner = () => {
       }
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       lessonSectionName={currentSection}
-      mobileSummary="In progress..."
+      mobileSummary={
+        <OakSpan $color={"text-primary"} $font={"body-3"}>
+          Question {currentQuestionIndex + 1} of {numQuestions}
+        </OakSpan>
+      }
     />
   );
 
