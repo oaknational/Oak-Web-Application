@@ -29,10 +29,10 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 export type LessonOverviewProps = {
   lesson:
@@ -61,6 +61,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     exitQuiz,
     expired,
     keyLearningPoints,
+    lessonCohort,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -134,7 +135,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
-  const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
+  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
@@ -256,9 +257,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                       title={lessonTitle}
                       transcriptSentences={transcriptSentences}
-                      isLegacy={isSlugLegacy(
-                        programmeSlug ?? subjectSlug ?? "",
-                      )}
+                      isLegacy={isLegacyLicense}
                     />
                   </LessonItemContainer>
                 )}

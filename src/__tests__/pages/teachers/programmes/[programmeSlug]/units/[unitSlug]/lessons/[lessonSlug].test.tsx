@@ -10,6 +10,7 @@ import LessonOverviewPage, {
   LessonOverviewPageProps,
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -90,18 +91,61 @@ describe("pages/teachers/lessons", () => {
     expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
-  it("share button is disabled with non legacy content", async () => {
-    render(
+  it("share button is not disabled with non legacy content", () => {
+    const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
           hasDownloadableResources: false,
           expired: true,
+          lessonCohort: null,
         })}
       />,
     );
 
-    const shareButton = screen.queryAllByTestId("share-all-button");
-    const shareLabel = screen.queryAllByText("Share activities with pupils");
+    const shareButton = queryAllByTestId("share-all-button");
+    const shareLabel = queryAllByText("Share activities with pupils");
+
+    if (shareButton[0] !== undefined && shareButton.length > 0) {
+      expect(shareButton[0]).not.toHaveAttribute("disabled");
+      expect(shareLabel[0]).toBeInTheDocument();
+    } else {
+      throw new Error("Share all button not found");
+    }
+  });
+  it("share button is not disabled with non legacy content", () => {
+    const { queryAllByTestId, queryAllByText } = render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: false,
+          expired: true,
+          lessonCohort: LEGACY_COHORT,
+        })}
+      />,
+    );
+
+    const shareButton = queryAllByTestId("share-all-button");
+    const shareLabel = queryAllByText("Share activities with pupils");
+
+    if (shareButton[0] !== undefined && shareButton.length > 0) {
+      expect(shareButton[0]).not.toHaveAttribute("disabled");
+      expect(shareLabel[0]).toBeInTheDocument();
+    } else {
+      throw new Error("Share all button not found");
+    }
+  });
+  it("share button is  disabled with non legacy content", () => {
+    const { queryAllByTestId, queryAllByText } = render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: false,
+          expired: true,
+          lessonCohort: NEW_COHORT,
+        })}
+      />,
+    );
+
+    const shareButton = queryAllByTestId("share-all-button");
+    const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
       expect(shareButton[0]).toHaveAttribute("disabled");
