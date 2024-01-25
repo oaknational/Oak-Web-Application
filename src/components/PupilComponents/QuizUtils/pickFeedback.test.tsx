@@ -1,9 +1,8 @@
-import {
-  QuizMCQMultiAnswerFeedback,
-  QuizMCQSingleAnswerFeedback,
-  QuizShortAnswerFeedback,
-  pickFeedBackComponent,
-} from "./pickFeedback";
+import { QuizMCQMultiAnswerFeedback } from "../QuizMCQMultiAnswerFeedback";
+import { QuizMCQSingleAnswerFeedback } from "../QuizMCQSingleAnswerFeedback";
+import { QuizShortAnswerFeedback } from "../QuizShortAnswerFeedback";
+
+import { pickFeedBackComponent } from "./pickFeedback";
 
 import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
