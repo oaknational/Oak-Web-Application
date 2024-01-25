@@ -1,3 +1,10 @@
+# [1.334.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.4...v1.334.0) (2024-01-25)
+
+
+### Features
+
+* **PUPIL-334:** use `OakCloudinaryImage` to serve images in quizzes ([5a819a1](https://github.com/oaknational/Oak-Web-Application/commit/5a819a142e6628ccabe9965853facfdaad4d281b))
+
 ## [1.333.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.3...v1.333.4) (2024-01-25)
 
 ## [1.333.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.2...v1.333.3) (2024-01-24)
