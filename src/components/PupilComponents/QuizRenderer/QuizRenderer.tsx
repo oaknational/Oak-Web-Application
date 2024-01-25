@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm } from "@oak-academy/oak-components";
+import { OakFlex, OakForm } from "@oaknational/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";

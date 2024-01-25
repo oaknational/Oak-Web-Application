@@ -7,10 +7,10 @@ import {
 } from "next";
 import { useSearchParams } from "next/navigation";
 import {
-  OakBox,
   oakDefaultTheme,
   OakThemeProvider,
-} from "@oak-academy/oak-components";
+  OakBox,
+} from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

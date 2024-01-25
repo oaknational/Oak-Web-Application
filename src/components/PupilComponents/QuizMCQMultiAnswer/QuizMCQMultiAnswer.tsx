@@ -11,11 +11,11 @@
 
 import { useMemo } from "react";
 import {
+  OakCloudinaryImage,
   OakFlex,
-  OakImage,
   OakQuizCheckBox,
   OakSpan,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import {
   StemImageObject,
@@ -23,6 +23,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;
@@ -71,12 +72,14 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
             filterByImage.length > 0 && filterByImage[0]?.image_object;
 
           const answerImage = answerImageData ? (
-            <OakImage
-              src={answerImageData.secure_url}
+            <OakCloudinaryImage
+              cloudinaryId={answerImageData.secure_url}
               alt=""
               width={answerImageData.width}
               height={answerImageData.height}
               $minWidth={"all-spacing-19"}
+              placeholder="oak"
+              sizes={getSizes(["100vw", 1200])}
             />
           ) : undefined;
 

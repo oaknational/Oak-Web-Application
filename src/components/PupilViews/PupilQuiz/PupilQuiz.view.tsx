@@ -1,4 +1,5 @@
 import {
+  OakCloudinaryConfigProvider,
   OakBackLink,
   OakLessonBottomNav,
   OakLessonLayout,
@@ -6,7 +7,7 @@ import {
   OakPrimaryButton,
   OakQuizCounter,
   OakSpan,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import {
   QuestionsArray,
@@ -127,8 +128,15 @@ const QuizInner = () => {
 
 export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   return (
-    <QuizEngineProvider questionsArray={questionsArray}>
-      <QuizInner />
-    </QuizEngineProvider>
+    <OakCloudinaryConfigProvider
+      value={{
+        cloud: { cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME },
+        url: { privateCdn: true },
+      }}
+    >
+      <QuizEngineProvider questionsArray={questionsArray}>
+        <QuizInner />
+      </QuizEngineProvider>
+    </OakCloudinaryConfigProvider>
   );
 };

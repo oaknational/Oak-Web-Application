@@ -6,7 +6,7 @@ import {
   OakHeading,
   OakP,
   OakTypography,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";

@@ -4,7 +4,7 @@ import {
   OakQuizRadioButton,
   OakSpan,
   OakFlex,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";

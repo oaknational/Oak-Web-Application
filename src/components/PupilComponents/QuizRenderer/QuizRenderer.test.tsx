@@ -5,7 +5,7 @@ import {
   OakPrimaryButton,
   OakThemeProvider,
   oakDefaultTheme,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
 import {
