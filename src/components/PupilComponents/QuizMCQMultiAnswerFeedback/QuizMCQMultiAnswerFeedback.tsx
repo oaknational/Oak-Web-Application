@@ -10,9 +10,11 @@ export const QuizMCQMultiAnswerFeedback = () => {
     "multiple-choice"
   ]?.filter((answer) => answer.answer_is_correct);
   const labels = correctAnswers?.map((answer) => answer.answer?.find(isText));
-  return (
-    <OakSpan $color={"text-primary"} $font={"body-2"}>
-      Correct answers: {labels?.map((label) => label?.text).join(", ")}
-    </OakSpan>
-  );
+  if (labels && labels.length !== 0)
+    return (
+      <OakSpan $color={"text-primary"} $font={"body-2"}>
+        Correct answers: {labels.map((label) => label?.text).join(", ")}
+      </OakSpan>
+    );
+  return null;
 };

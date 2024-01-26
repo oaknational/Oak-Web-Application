@@ -34,20 +34,18 @@ describe("QuizMCQMultiAnswerFeedback", () => {
   it("renders all answers when currentQuestionData.question type is multiple choice", () => {
     const context = getQuizEngineContext();
 
-    if (context?.currentQuestionData) {
-      const { getByText } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizMCQMultiAnswerFeedback />
-          </QuizEngineContext.Provider>
-        </OakThemeProvider>,
-      );
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizMCQMultiAnswerFeedback />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
 
-      expect(
-        getByText(
-          "Correct answers: a group of words that contains a verb and makes complete sense",
-        ),
-      ).toBeInTheDocument();
-    }
+    expect(
+      getByText(
+        "Correct answers: a group of words that contains a verb and makes complete sense",
+      ),
+    ).toBeInTheDocument();
   });
 });

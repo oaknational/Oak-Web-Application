@@ -22,7 +22,6 @@ describe("QuestionListItem", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        {" "}
         <QuizQuestionStem questionStem={mcqText.questionStem} index={0} />
       </OakThemeProvider>,
     );
@@ -36,7 +35,6 @@ describe("QuestionListItem", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        {" "}
         <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
       </OakThemeProvider>,
     );

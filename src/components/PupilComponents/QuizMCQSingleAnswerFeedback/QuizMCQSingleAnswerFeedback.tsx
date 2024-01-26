@@ -10,9 +10,11 @@ export const QuizMCQSingleAnswerFeedback = () => {
     "multiple-choice"
   ]?.filter((answer) => answer.answer_is_correct);
   const label = correctAnswer?.[0]?.answer?.find(isText);
-  return (
-    <OakSpan $color={"text-primary"} $font={"body-2"}>
-      Correct answer: {label?.text}
-    </OakSpan>
-  );
+  if (label)
+    return (
+      <OakSpan $color={"text-primary"} $font={"body-2"}>
+        Correct answer: {label.text}
+      </OakSpan>
+    );
+  return null;
 };

@@ -30,7 +30,7 @@ const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
   numQuestions: 1,
 });
 
-describe("QuizMCQMultiAnswerFeedback", () => {
+describe("QuizShortAnswerFeedback", () => {
   it("renders all answers when currentQuestionData.question type is multiple choice", () => {
     const context = getQuizEngineContext();
     context.currentQuestionData = quizQuestions?.find(

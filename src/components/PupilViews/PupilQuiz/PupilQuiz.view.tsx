@@ -44,33 +44,44 @@ const QuizInner = () => {
     numQuestions,
   } = quizEngineContext;
 
+  const formId = "quiz-form";
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
-  const isCorrect = questionState[currentQuestionIndex]?.grade === 1;
-  const isAlmostCorrect = questionState[currentQuestionIndex]?.grade === 0.5;
-  const formId = "quiz-form";
+  const grade = questionState[currentQuestionIndex]?.grade;
+  const isCorrect = grade === 1;
+
+  const correctFeedback = (
+    <OakSpan $color={"text-primary"} $font={"body-2"}>
+      Well done!
+    </OakSpan>
+  );
+  const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
+    if (answers) {
+      return pickFeedBackComponent(answers);
+    }
+    return null;
+  };
+
+  function pickFeedback(grade: number | undefined) {
+    switch (grade) {
+      case 1:
+        return "correct";
+      case 0:
+        return "incorrect";
+      case 0.5:
+        return "partially-correct";
+      default:
+        return null;
+    }
+  }
 
   const bottomNavSlot = (
     <OakLessonBottomNav
-      feedback={
-        isFeedbackMode
-          ? isCorrect
-            ? "correct"
-            : isAlmostCorrect
-              ? "partially-correct"
-              : "incorrect"
-          : null
-      }
+      feedback={isFeedbackMode ? pickFeedback(grade) : null}
       answerFeedback={
-        isCorrect ? (
-          <OakSpan $color={"text-primary"} $font={"body-2"}>
-            Well done!
-          </OakSpan>
-        ) : currentQuestionData?.answers ? (
-          pickFeedBackComponent(currentQuestionData?.answers)
-        ) : (
-          ""
-        )
+        isCorrect
+          ? correctFeedback
+          : incorrectFeedback(currentQuestionData?.answers)
       }
     >
       {!isFeedbackMode && (
