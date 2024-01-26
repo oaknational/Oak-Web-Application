@@ -10,8 +10,6 @@ import { QuizMCQMultiAnswerFeedback } from "./QuizMCQMultiAnswerFeedback";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
-
 const questionsArrayFixture = quizQuestions || [];
 
 const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
