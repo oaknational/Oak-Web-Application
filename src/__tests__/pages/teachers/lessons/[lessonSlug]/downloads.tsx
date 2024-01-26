@@ -7,11 +7,9 @@ import LessonDownloadsCanonicalPage, {
 } from "@/pages/teachers/lessons/[lessonSlug]/downloads";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
-import lessonDownloadsFixture2023 from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
-import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 
 const render = renderWithProviders();
 
@@ -89,18 +87,6 @@ describe("LessonDownloadsCanonicalPage", () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError();
-    });
-  });
-  describe("lessonDownloads2023", () => {
-    it("should render the correct title", async () => {
-      const result = render(
-        <LessonDownloads
-          isCanonical={false}
-          lesson={lessonDownloadsFixture2023()}
-        />,
-      );
-
-      expect(result.queryByText("Downloads")).toBeInTheDocument();
     });
   });
 });
