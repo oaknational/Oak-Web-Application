@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -73,6 +74,8 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
+      // doesnt' exist go to the old database if it does exist go to the new database use
+      // update the query to filter out legacy data ✅
 
       const isLegacy = isSlugLegacy(programmeSlug);
 
@@ -86,6 +89,7 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             unitSlug,
             lessonSlug,
+            lessonCohort: NEW_COHORT,
           });
 
       if (!curriculumData) {
