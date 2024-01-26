@@ -15,14 +15,11 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  _name: { input: any; output: any; }
   bigint: { input: any; output: any; }
   bpchar: { input: any; output: any; }
   date: { input: any; output: any; }
   json: { input: any; output: any; }
   jsonb: { input: any; output: any; }
-  name: { input: any; output: any; }
-  oid: { input: any; output: any; }
   timestamp: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
 };
@@ -84,19 +81,6 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Boolean expression to compare columns of type "_name". All fields are combined with logical 'AND'. */
-export type _Name_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['_name']['input']>;
-  _gt?: InputMaybe<Scalars['_name']['input']>;
-  _gte?: InputMaybe<Scalars['_name']['input']>;
-  _in?: InputMaybe<Array<Scalars['_name']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['_name']['input']>;
-  _lte?: InputMaybe<Scalars['_name']['input']>;
-  _neq?: InputMaybe<Scalars['_name']['input']>;
-  _nin?: InputMaybe<Array<Scalars['_name']['input']>>;
 };
 
 /** columns and relationships of "assets" */
@@ -7977,32 +7961,6 @@ export type Mutation_RootUpdate_Videos_ManyArgs = {
   updates: Array<Videos_Updates>;
 };
 
-/** Boolean expression to compare columns of type "name". All fields are combined with logical 'AND'. */
-export type Name_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['name']['input']>;
-  _gt?: InputMaybe<Scalars['name']['input']>;
-  _gte?: InputMaybe<Scalars['name']['input']>;
-  _in?: InputMaybe<Array<Scalars['name']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['name']['input']>;
-  _lte?: InputMaybe<Scalars['name']['input']>;
-  _neq?: InputMaybe<Scalars['name']['input']>;
-  _nin?: InputMaybe<Array<Scalars['name']['input']>>;
-};
-
-/** Boolean expression to compare columns of type "oid". All fields are combined with logical 'AND'. */
-export type Oid_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['oid']['input']>;
-  _gt?: InputMaybe<Scalars['oid']['input']>;
-  _gte?: InputMaybe<Scalars['oid']['input']>;
-  _in?: InputMaybe<Array<Scalars['oid']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['oid']['input']>;
-  _lte?: InputMaybe<Scalars['oid']['input']>;
-  _neq?: InputMaybe<Scalars['oid']['input']>;
-  _nin?: InputMaybe<Array<Scalars['oid']['input']>>;
-};
-
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -10663,172 +10621,6 @@ export type Pf_Years_Variance_Fields = {
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
   year_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "pg_all_foreign_keys" */
-export type Pg_All_Foreign_Keys = {
-  __typename?: 'pg_all_foreign_keys';
-  fk_columns?: Maybe<Scalars['_name']['output']>;
-  fk_constraint_name?: Maybe<Scalars['name']['output']>;
-  fk_schema_name?: Maybe<Scalars['name']['output']>;
-  fk_table_name?: Maybe<Scalars['name']['output']>;
-  fk_table_oid?: Maybe<Scalars['oid']['output']>;
-  is_deferrable?: Maybe<Scalars['Boolean']['output']>;
-  is_deferred?: Maybe<Scalars['Boolean']['output']>;
-  match_type?: Maybe<Scalars['String']['output']>;
-  on_delete?: Maybe<Scalars['String']['output']>;
-  on_update?: Maybe<Scalars['String']['output']>;
-  pk_columns?: Maybe<Scalars['_name']['output']>;
-  pk_constraint_name?: Maybe<Scalars['name']['output']>;
-  pk_index_name?: Maybe<Scalars['name']['output']>;
-  pk_schema_name?: Maybe<Scalars['name']['output']>;
-  pk_table_name?: Maybe<Scalars['name']['output']>;
-  pk_table_oid?: Maybe<Scalars['oid']['output']>;
-};
-
-/** aggregated selection of "pg_all_foreign_keys" */
-export type Pg_All_Foreign_Keys_Aggregate = {
-  __typename?: 'pg_all_foreign_keys_aggregate';
-  aggregate?: Maybe<Pg_All_Foreign_Keys_Aggregate_Fields>;
-  nodes: Array<Pg_All_Foreign_Keys>;
-};
-
-/** aggregate fields of "pg_all_foreign_keys" */
-export type Pg_All_Foreign_Keys_Aggregate_Fields = {
-  __typename?: 'pg_all_foreign_keys_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Pg_All_Foreign_Keys_Max_Fields>;
-  min?: Maybe<Pg_All_Foreign_Keys_Min_Fields>;
-};
-
-
-/** aggregate fields of "pg_all_foreign_keys" */
-export type Pg_All_Foreign_Keys_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Pg_All_Foreign_Keys_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "pg_all_foreign_keys". All fields are combined with a logical 'AND'. */
-export type Pg_All_Foreign_Keys_Bool_Exp = {
-  _and?: InputMaybe<Array<Pg_All_Foreign_Keys_Bool_Exp>>;
-  _not?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
-  _or?: InputMaybe<Array<Pg_All_Foreign_Keys_Bool_Exp>>;
-  fk_columns?: InputMaybe<_Name_Comparison_Exp>;
-  fk_constraint_name?: InputMaybe<Name_Comparison_Exp>;
-  fk_schema_name?: InputMaybe<Name_Comparison_Exp>;
-  fk_table_name?: InputMaybe<Name_Comparison_Exp>;
-  fk_table_oid?: InputMaybe<Oid_Comparison_Exp>;
-  is_deferrable?: InputMaybe<Boolean_Comparison_Exp>;
-  is_deferred?: InputMaybe<Boolean_Comparison_Exp>;
-  match_type?: InputMaybe<String_Comparison_Exp>;
-  on_delete?: InputMaybe<String_Comparison_Exp>;
-  on_update?: InputMaybe<String_Comparison_Exp>;
-  pk_columns?: InputMaybe<_Name_Comparison_Exp>;
-  pk_constraint_name?: InputMaybe<Name_Comparison_Exp>;
-  pk_index_name?: InputMaybe<Name_Comparison_Exp>;
-  pk_schema_name?: InputMaybe<Name_Comparison_Exp>;
-  pk_table_name?: InputMaybe<Name_Comparison_Exp>;
-  pk_table_oid?: InputMaybe<Oid_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Pg_All_Foreign_Keys_Max_Fields = {
-  __typename?: 'pg_all_foreign_keys_max_fields';
-  match_type?: Maybe<Scalars['String']['output']>;
-  on_delete?: Maybe<Scalars['String']['output']>;
-  on_update?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Pg_All_Foreign_Keys_Min_Fields = {
-  __typename?: 'pg_all_foreign_keys_min_fields';
-  match_type?: Maybe<Scalars['String']['output']>;
-  on_delete?: Maybe<Scalars['String']['output']>;
-  on_update?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "pg_all_foreign_keys". */
-export type Pg_All_Foreign_Keys_Order_By = {
-  fk_columns?: InputMaybe<Order_By>;
-  fk_constraint_name?: InputMaybe<Order_By>;
-  fk_schema_name?: InputMaybe<Order_By>;
-  fk_table_name?: InputMaybe<Order_By>;
-  fk_table_oid?: InputMaybe<Order_By>;
-  is_deferrable?: InputMaybe<Order_By>;
-  is_deferred?: InputMaybe<Order_By>;
-  match_type?: InputMaybe<Order_By>;
-  on_delete?: InputMaybe<Order_By>;
-  on_update?: InputMaybe<Order_By>;
-  pk_columns?: InputMaybe<Order_By>;
-  pk_constraint_name?: InputMaybe<Order_By>;
-  pk_index_name?: InputMaybe<Order_By>;
-  pk_schema_name?: InputMaybe<Order_By>;
-  pk_table_name?: InputMaybe<Order_By>;
-  pk_table_oid?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "pg_all_foreign_keys" */
-export enum Pg_All_Foreign_Keys_Select_Column {
-  /** column name */
-  FkColumns = 'fk_columns',
-  /** column name */
-  FkConstraintName = 'fk_constraint_name',
-  /** column name */
-  FkSchemaName = 'fk_schema_name',
-  /** column name */
-  FkTableName = 'fk_table_name',
-  /** column name */
-  FkTableOid = 'fk_table_oid',
-  /** column name */
-  IsDeferrable = 'is_deferrable',
-  /** column name */
-  IsDeferred = 'is_deferred',
-  /** column name */
-  MatchType = 'match_type',
-  /** column name */
-  OnDelete = 'on_delete',
-  /** column name */
-  OnUpdate = 'on_update',
-  /** column name */
-  PkColumns = 'pk_columns',
-  /** column name */
-  PkConstraintName = 'pk_constraint_name',
-  /** column name */
-  PkIndexName = 'pk_index_name',
-  /** column name */
-  PkSchemaName = 'pk_schema_name',
-  /** column name */
-  PkTableName = 'pk_table_name',
-  /** column name */
-  PkTableOid = 'pk_table_oid'
-}
-
-/** Streaming cursor of the table "pg_all_foreign_keys" */
-export type Pg_All_Foreign_Keys_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Pg_All_Foreign_Keys_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Pg_All_Foreign_Keys_Stream_Cursor_Value_Input = {
-  fk_columns?: InputMaybe<Scalars['_name']['input']>;
-  fk_constraint_name?: InputMaybe<Scalars['name']['input']>;
-  fk_schema_name?: InputMaybe<Scalars['name']['input']>;
-  fk_table_name?: InputMaybe<Scalars['name']['input']>;
-  fk_table_oid?: InputMaybe<Scalars['oid']['input']>;
-  is_deferrable?: InputMaybe<Scalars['Boolean']['input']>;
-  is_deferred?: InputMaybe<Scalars['Boolean']['input']>;
-  match_type?: InputMaybe<Scalars['String']['input']>;
-  on_delete?: InputMaybe<Scalars['String']['input']>;
-  on_update?: InputMaybe<Scalars['String']['input']>;
-  pk_columns?: InputMaybe<Scalars['_name']['input']>;
-  pk_constraint_name?: InputMaybe<Scalars['name']['input']>;
-  pk_index_name?: InputMaybe<Scalars['name']['input']>;
-  pk_schema_name?: InputMaybe<Scalars['name']['input']>;
-  pk_table_name?: InputMaybe<Scalars['name']['input']>;
-  pk_table_oid?: InputMaybe<Scalars['oid']['input']>;
 };
 
 /** columns and relationships of "programme_threads" */
@@ -20681,10 +20473,6 @@ export type Query_Root = {
   pf_years_aggregate: Pf_Years_Aggregate;
   /** fetch data from the table: "pf_years" using primary key columns */
   pf_years_by_pk?: Maybe<Pf_Years>;
-  /** fetch data from the table: "pg_all_foreign_keys" */
-  pg_all_foreign_keys: Array<Pg_All_Foreign_Keys>;
-  /** fetch aggregated fields from the table: "pg_all_foreign_keys" */
-  pg_all_foreign_keys_aggregate: Pg_All_Foreign_Keys_Aggregate;
   /** An array relationship */
   programme_threads: Array<Programme_Threads>;
   /** An aggregate relationship */
@@ -20879,10 +20667,6 @@ export type Query_Root = {
   quizzes_aggregate: Quizzes_Aggregate;
   /** fetch data from the table: "quizzes" using primary key columns */
   quizzes_by_pk?: Maybe<Quizzes>;
-  /** fetch data from the table: "tap_funky" */
-  tap_funky: Array<Tap_Funky>;
-  /** fetch aggregated fields from the table: "tap_funky" */
-  tap_funky_aggregate: Tap_Funky_Aggregate;
   /** An array relationship */
   thirdpartycontent: Array<Thirdpartycontent>;
   /** An aggregate relationship */
@@ -21339,24 +21123,6 @@ export type Query_RootPf_Years_AggregateArgs = {
 export type Query_RootPf_Years_By_PkArgs = {
   _state: Scalars['String']['input'];
   year_id: Scalars['Int']['input'];
-};
-
-
-export type Query_RootPg_All_Foreign_KeysArgs = {
-  distinct_on?: InputMaybe<Array<Pg_All_Foreign_Keys_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Pg_All_Foreign_Keys_Order_By>>;
-  where?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
-};
-
-
-export type Query_RootPg_All_Foreign_Keys_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Pg_All_Foreign_Keys_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Pg_All_Foreign_Keys_Order_By>>;
-  where?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
 };
 
 
@@ -22211,24 +21977,6 @@ export type Query_RootQuizzes_AggregateArgs = {
 export type Query_RootQuizzes_By_PkArgs = {
   _state: Scalars['String']['input'];
   quiz_id: Scalars['Int']['input'];
-};
-
-
-export type Query_RootTap_FunkyArgs = {
-  distinct_on?: InputMaybe<Array<Tap_Funky_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tap_Funky_Order_By>>;
-  where?: InputMaybe<Tap_Funky_Bool_Exp>;
-};
-
-
-export type Query_RootTap_Funky_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Tap_Funky_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tap_Funky_Order_By>>;
-  where?: InputMaybe<Tap_Funky_Bool_Exp>;
 };
 
 
@@ -24373,12 +24121,6 @@ export type Subscription_Root = {
   pf_years_by_pk?: Maybe<Pf_Years>;
   /** fetch data from the table in a streaming manner: "pf_years" */
   pf_years_stream: Array<Pf_Years>;
-  /** fetch data from the table: "pg_all_foreign_keys" */
-  pg_all_foreign_keys: Array<Pg_All_Foreign_Keys>;
-  /** fetch aggregated fields from the table: "pg_all_foreign_keys" */
-  pg_all_foreign_keys_aggregate: Pg_All_Foreign_Keys_Aggregate;
-  /** fetch data from the table in a streaming manner: "pg_all_foreign_keys" */
-  pg_all_foreign_keys_stream: Array<Pg_All_Foreign_Keys>;
   /** An array relationship */
   programme_threads: Array<Programme_Threads>;
   /** An aggregate relationship */
@@ -24663,12 +24405,6 @@ export type Subscription_Root = {
   quizzes_by_pk?: Maybe<Quizzes>;
   /** fetch data from the table in a streaming manner: "quizzes" */
   quizzes_stream: Array<Quizzes>;
-  /** fetch data from the table: "tap_funky" */
-  tap_funky: Array<Tap_Funky>;
-  /** fetch aggregated fields from the table: "tap_funky" */
-  tap_funky_aggregate: Tap_Funky_Aggregate;
-  /** fetch data from the table in a streaming manner: "tap_funky" */
-  tap_funky_stream: Array<Tap_Funky>;
   /** An array relationship */
   thirdpartycontent: Array<Thirdpartycontent>;
   /** An aggregate relationship */
@@ -25260,31 +24996,6 @@ export type Subscription_RootPf_Years_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Pf_Years_Stream_Cursor_Input>>;
   where?: InputMaybe<Pf_Years_Bool_Exp>;
-};
-
-
-export type Subscription_RootPg_All_Foreign_KeysArgs = {
-  distinct_on?: InputMaybe<Array<Pg_All_Foreign_Keys_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Pg_All_Foreign_Keys_Order_By>>;
-  where?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
-};
-
-
-export type Subscription_RootPg_All_Foreign_Keys_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Pg_All_Foreign_Keys_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Pg_All_Foreign_Keys_Order_By>>;
-  where?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
-};
-
-
-export type Subscription_RootPg_All_Foreign_Keys_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Pg_All_Foreign_Keys_Stream_Cursor_Input>>;
-  where?: InputMaybe<Pg_All_Foreign_Keys_Bool_Exp>;
 };
 
 
@@ -26457,31 +26168,6 @@ export type Subscription_RootQuizzes_StreamArgs = {
 };
 
 
-export type Subscription_RootTap_FunkyArgs = {
-  distinct_on?: InputMaybe<Array<Tap_Funky_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tap_Funky_Order_By>>;
-  where?: InputMaybe<Tap_Funky_Bool_Exp>;
-};
-
-
-export type Subscription_RootTap_Funky_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Tap_Funky_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tap_Funky_Order_By>>;
-  where?: InputMaybe<Tap_Funky_Bool_Exp>;
-};
-
-
-export type Subscription_RootTap_Funky_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Tap_Funky_Stream_Cursor_Input>>;
-  where?: InputMaybe<Tap_Funky_Bool_Exp>;
-};
-
-
 export type Subscription_RootThirdpartycontentArgs = {
   distinct_on?: InputMaybe<Array<Thirdpartycontent_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -26729,156 +26415,6 @@ export type Subscription_RootVideos_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Videos_Stream_Cursor_Input>>;
   where?: InputMaybe<Videos_Bool_Exp>;
-};
-
-/** columns and relationships of "tap_funky" */
-export type Tap_Funky = {
-  __typename?: 'tap_funky';
-  args?: Maybe<Scalars['String']['output']>;
-  is_definer?: Maybe<Scalars['Boolean']['output']>;
-  is_strict?: Maybe<Scalars['Boolean']['output']>;
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  kind?: Maybe<Scalars['bpchar']['output']>;
-  langoid?: Maybe<Scalars['oid']['output']>;
-  name?: Maybe<Scalars['name']['output']>;
-  oid?: Maybe<Scalars['oid']['output']>;
-  owner?: Maybe<Scalars['name']['output']>;
-  returns?: Maybe<Scalars['String']['output']>;
-  returns_set?: Maybe<Scalars['Boolean']['output']>;
-  schema?: Maybe<Scalars['name']['output']>;
-  volatility?: Maybe<Scalars['bpchar']['output']>;
-};
-
-/** aggregated selection of "tap_funky" */
-export type Tap_Funky_Aggregate = {
-  __typename?: 'tap_funky_aggregate';
-  aggregate?: Maybe<Tap_Funky_Aggregate_Fields>;
-  nodes: Array<Tap_Funky>;
-};
-
-/** aggregate fields of "tap_funky" */
-export type Tap_Funky_Aggregate_Fields = {
-  __typename?: 'tap_funky_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Tap_Funky_Max_Fields>;
-  min?: Maybe<Tap_Funky_Min_Fields>;
-};
-
-
-/** aggregate fields of "tap_funky" */
-export type Tap_Funky_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Tap_Funky_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "tap_funky". All fields are combined with a logical 'AND'. */
-export type Tap_Funky_Bool_Exp = {
-  _and?: InputMaybe<Array<Tap_Funky_Bool_Exp>>;
-  _not?: InputMaybe<Tap_Funky_Bool_Exp>;
-  _or?: InputMaybe<Array<Tap_Funky_Bool_Exp>>;
-  args?: InputMaybe<String_Comparison_Exp>;
-  is_definer?: InputMaybe<Boolean_Comparison_Exp>;
-  is_strict?: InputMaybe<Boolean_Comparison_Exp>;
-  is_visible?: InputMaybe<Boolean_Comparison_Exp>;
-  kind?: InputMaybe<Bpchar_Comparison_Exp>;
-  langoid?: InputMaybe<Oid_Comparison_Exp>;
-  name?: InputMaybe<Name_Comparison_Exp>;
-  oid?: InputMaybe<Oid_Comparison_Exp>;
-  owner?: InputMaybe<Name_Comparison_Exp>;
-  returns?: InputMaybe<String_Comparison_Exp>;
-  returns_set?: InputMaybe<Boolean_Comparison_Exp>;
-  schema?: InputMaybe<Name_Comparison_Exp>;
-  volatility?: InputMaybe<Bpchar_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Tap_Funky_Max_Fields = {
-  __typename?: 'tap_funky_max_fields';
-  args?: Maybe<Scalars['String']['output']>;
-  kind?: Maybe<Scalars['bpchar']['output']>;
-  returns?: Maybe<Scalars['String']['output']>;
-  volatility?: Maybe<Scalars['bpchar']['output']>;
-};
-
-/** aggregate min on columns */
-export type Tap_Funky_Min_Fields = {
-  __typename?: 'tap_funky_min_fields';
-  args?: Maybe<Scalars['String']['output']>;
-  kind?: Maybe<Scalars['bpchar']['output']>;
-  returns?: Maybe<Scalars['String']['output']>;
-  volatility?: Maybe<Scalars['bpchar']['output']>;
-};
-
-/** Ordering options when selecting data from "tap_funky". */
-export type Tap_Funky_Order_By = {
-  args?: InputMaybe<Order_By>;
-  is_definer?: InputMaybe<Order_By>;
-  is_strict?: InputMaybe<Order_By>;
-  is_visible?: InputMaybe<Order_By>;
-  kind?: InputMaybe<Order_By>;
-  langoid?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  oid?: InputMaybe<Order_By>;
-  owner?: InputMaybe<Order_By>;
-  returns?: InputMaybe<Order_By>;
-  returns_set?: InputMaybe<Order_By>;
-  schema?: InputMaybe<Order_By>;
-  volatility?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "tap_funky" */
-export enum Tap_Funky_Select_Column {
-  /** column name */
-  Args = 'args',
-  /** column name */
-  IsDefiner = 'is_definer',
-  /** column name */
-  IsStrict = 'is_strict',
-  /** column name */
-  IsVisible = 'is_visible',
-  /** column name */
-  Kind = 'kind',
-  /** column name */
-  Langoid = 'langoid',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Oid = 'oid',
-  /** column name */
-  Owner = 'owner',
-  /** column name */
-  Returns = 'returns',
-  /** column name */
-  ReturnsSet = 'returns_set',
-  /** column name */
-  Schema = 'schema',
-  /** column name */
-  Volatility = 'volatility'
-}
-
-/** Streaming cursor of the table "tap_funky" */
-export type Tap_Funky_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Tap_Funky_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Tap_Funky_Stream_Cursor_Value_Input = {
-  args?: InputMaybe<Scalars['String']['input']>;
-  is_definer?: InputMaybe<Scalars['Boolean']['input']>;
-  is_strict?: InputMaybe<Scalars['Boolean']['input']>;
-  is_visible?: InputMaybe<Scalars['Boolean']['input']>;
-  kind?: InputMaybe<Scalars['bpchar']['input']>;
-  langoid?: InputMaybe<Scalars['oid']['input']>;
-  name?: InputMaybe<Scalars['name']['input']>;
-  oid?: InputMaybe<Scalars['oid']['input']>;
-  owner?: InputMaybe<Scalars['name']['input']>;
-  returns?: InputMaybe<Scalars['String']['input']>;
-  returns_set?: InputMaybe<Scalars['Boolean']['input']>;
-  schema?: InputMaybe<Scalars['name']['input']>;
-  volatility?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
 /** columns and relationships of "thirdpartycontent" */
@@ -32612,7 +32148,7 @@ export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   lessonSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
+  lessonCohort: Scalars['String']['input'];
 }>;
 
 
@@ -32777,7 +32313,7 @@ export const LessonListingDocument = gql`
 }
     `;
 export const LessonOverviewDocument = gql`
-    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!, $lessonCohort: String) {
+    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!, $lessonCohort: String!) {
   lesson: published_mv_lesson_overview_3_0_1(
     where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}, lessonCohort: {_eq: $lessonCohort}}
   ) {
