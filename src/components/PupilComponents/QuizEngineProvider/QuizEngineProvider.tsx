@@ -128,8 +128,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         (answer) => answer && correctAnswers?.includes(answer),
       );
 
-      const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
-
+      const grade =
+        matchingAnswers.length === correctAnswers?.length
+          ? 1
+          : matchingAnswers.length > 0
+            ? 0.5
+            : 0;
+      console.log("grade", grade, matchingAnswers, correctAnswers);
       setQuestionState((prev) => {
         const newState = [...prev];
         newState[currentQuestionIndex] = {

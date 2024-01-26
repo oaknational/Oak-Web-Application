@@ -46,19 +46,23 @@ const QuizInner = () => {
 
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
+  const isCorrect = questionState[currentQuestionIndex]?.grade === 1;
+  const isAlmostCorrect = questionState[currentQuestionIndex]?.grade === 0.5;
   const formId = "quiz-form";
 
   const bottomNavSlot = (
     <OakLessonBottomNav
       feedback={
         isFeedbackMode
-          ? questionState[currentQuestionIndex]?.grade === 1
+          ? isCorrect
             ? "correct"
-            : "incorrect"
+            : isAlmostCorrect
+              ? "partially-correct"
+              : "incorrect"
           : null
       }
       answerFeedback={
-        questionState[currentQuestionIndex]?.grade === 1 ? (
+        isCorrect ? (
           <OakSpan $color={"text-primary"} $font={"body-2"}>
             Well done!
           </OakSpan>
