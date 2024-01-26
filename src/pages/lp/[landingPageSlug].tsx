@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakMaxWidth } from "@oak-academy/oak-components";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSClient from "@/node-lib/cms";

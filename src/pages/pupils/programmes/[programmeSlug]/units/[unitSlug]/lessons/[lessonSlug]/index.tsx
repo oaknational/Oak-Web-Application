@@ -6,7 +6,7 @@ import {
   NextPage,
 } from "next";
 import { useSearchParams } from "next/navigation";
-import { oakDefaultTheme, OakThemeProvider } from "@oak-academy/oak-components";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

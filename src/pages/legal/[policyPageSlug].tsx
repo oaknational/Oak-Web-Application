@@ -12,7 +12,7 @@ import {
   OakMaxWidth,
   OakHeading,
   OakP,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { PolicyPage } from "@/common-lib/cms-types";

@@ -1,4 +1,8 @@
-import { OakFlex, OakImage, OakSpan } from "@oak-academy/oak-components";
+import {
+  OakCloudinaryImage,
+  OakFlex,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import {
   removeMarkdown,
@@ -8,6 +12,7 @@ import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export const QuizQuestionStem = ({
   questionStem,
@@ -48,12 +53,14 @@ export const QuizQuestionStem = ({
               $pv={"inner-padding-xl"}
               key={`q-${displayNumber}-stem-element-${i}`}
             >
-              <OakImage
-                src={stemItem.image_object.secure_url}
+              <OakCloudinaryImage
+                cloudinaryId={stemItem.image_object.secure_url}
                 height={stemItem.image_object.height}
                 width={stemItem.image_object.width}
                 alt={""}
                 $minWidth={"all-spacing-19"}
+                placeholder="oak"
+                sizes={getSizes(["100vw", 1200])}
               />
             </OakFlex>
           );

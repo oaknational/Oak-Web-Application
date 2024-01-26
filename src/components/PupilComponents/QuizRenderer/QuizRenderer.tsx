@@ -6,7 +6,7 @@ import {
   OakPrimaryButton,
   OakSecondaryButton,
   OakSpan,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
