@@ -74,8 +74,6 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
-      // doesnt' exist go to the old database if it does exist go to the new database use
-      // update the query to filter out legacy data ✅
 
       const isLegacy = isSlugLegacy(programmeSlug);
 

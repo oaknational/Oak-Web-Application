@@ -30,6 +30,7 @@ import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirm
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 type LessonDownloadsProps =
   | {
@@ -38,6 +39,7 @@ type LessonDownloadsProps =
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
+        lessonCohort?: string | null;
         downloads: LessonDownloadsData["downloads"];
         pathways: LessonPathway[];
         nextLessons?: NextLesson[];
@@ -49,6 +51,7 @@ type LessonDownloadsProps =
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
+        lessonCohort?: string | null;
         downloads: LessonDownloadsData["downloads"];
         nextLessons: NextLesson[];
       };
@@ -56,7 +59,7 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, downloads, isLegacy, lessonCohort } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -73,8 +76,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const isLegacyDownload = isLegacy;
-
+  const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const onwardContent = lesson.nextLessons
     ? lesson.nextLessons?.map((nextLesson) => {
         return nextLesson.lessonSlug;
