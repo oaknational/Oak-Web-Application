@@ -91,7 +91,7 @@ describe("pages/teachers/lessons", () => {
     expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
-  it("share button is not disabled with non legacy content", () => {
+  it("share button is not disabled with non legacy content (lessonCohort is null)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
@@ -112,7 +112,7 @@ describe("pages/teachers/lessons", () => {
       throw new Error("Share all button not found");
     }
   });
-  it("share button is not disabled with non legacy content", () => {
+  it("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
