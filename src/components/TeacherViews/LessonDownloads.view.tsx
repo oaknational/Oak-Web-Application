@@ -59,7 +59,7 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, lessonCohort } = lesson;
+  const { lessonTitle, lessonSlug, downloads, isLegacy, lessonCohort } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -77,7 +77,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
-
   const onwardContent = lesson.nextLessons
     ? lesson.nextLessons?.map((nextLesson) => {
         return nextLesson.lessonSlug;
@@ -181,7 +180,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
     onComplete: setActiveResources,
-    isLegacyDownload: isLegacyDownload,
+    isLegacyDownload: isLegacy,
   });
 
   return (
@@ -238,7 +237,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             onEditClick={handleEditDetailsCompletedClick}
             register={form.register}
             control={form.control}
-            showPostAlbCopyright={!isLegacyDownload}
+            showPostAlbCopyright={!isLegacy}
             resourcesHeader="Lesson resources"
             triggerForm={form.trigger}
             apiError={apiError}
