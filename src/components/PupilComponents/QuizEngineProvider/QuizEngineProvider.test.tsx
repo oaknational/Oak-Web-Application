@@ -346,7 +346,7 @@ describe("QuizEngineContext", () => {
 
       expect(questionState[0]).toEqual({
         mode: "feedback",
-        grade: 0,
+        grade: 0.5,
         feedback: ["correct", "incorrect", "incorrect", "correct"],
         offerHint: false,
       });

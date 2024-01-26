@@ -134,7 +134,6 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           : matchingAnswers.length > 0
             ? 0.5
             : 0;
-      console.log("grade", grade, matchingAnswers, correctAnswers);
       setQuestionState((prev) => {
         const newState = [...prev];
         newState[currentQuestionIndex] = {
