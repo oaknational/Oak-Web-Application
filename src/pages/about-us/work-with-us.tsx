@@ -7,7 +7,7 @@ import {
   OakGridArea,
   OakHeading,
   OakTypography,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";

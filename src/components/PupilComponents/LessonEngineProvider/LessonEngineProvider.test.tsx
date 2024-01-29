@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { act, render, renderHook } from "@testing-library/react";
-import { OakSpan } from "@oak-academy/oak-components";
+import { OakSpan } from "@oaknational/oak-components";
 
 import {
   LessonEngineProvider,

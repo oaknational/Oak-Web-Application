@@ -3,7 +3,7 @@ import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import { LessonEngineProvider } from "../LessonEngineProvider";
 

@@ -1,3 +1,17 @@
+# [1.335.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.334.0...v1.335.0) (2024-01-25)
+
+
+### Features
+
+* add method to transform programmes from the api into correct format for legacy and non-legacy ([f40e4a7](https://github.com/oaknational/Oak-Web-Application/commit/f40e4a74b038bf6906209a1a4b3e60b2164c2348))
+
+# [1.334.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.4...v1.334.0) (2024-01-25)
+
+
+### Features
+
+* **PUPIL-334:** use `OakCloudinaryImage` to serve images in quizzes ([5a819a1](https://github.com/oaknational/Oak-Web-Application/commit/5a819a142e6628ccabe9965853facfdaad4d281b))
+
 ## [1.333.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.3...v1.333.4) (2024-01-25)
 
 ## [1.333.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.333.2...v1.333.3) (2024-01-24)
