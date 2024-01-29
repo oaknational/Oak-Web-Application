@@ -5,7 +5,10 @@ import ProgrammesListingPage, {
   getStaticProps,
   URLParams,
 } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
-import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
+import {
+  generatedLegacyProgrammeData,
+  tieredProgrammeListingFixture,
+} from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -69,12 +72,11 @@ describe("programmes listing page", () => {
           keyStageSlug: "ks4",
           subjectSlug: "maths-l",
         },
-      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-        props: ProgrammeListingPageData;
-      };
+      })) as { props: ProgrammeListingPageData };
 
-      expect(testRes.props).toEqual(tieredProgrammeListingFixture());
+      expect(testRes.props).toEqual(generatedLegacyProgrammeData);
     });
+
     it("should throw error when not provided context params", async () => {
       await expect(
         getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>),

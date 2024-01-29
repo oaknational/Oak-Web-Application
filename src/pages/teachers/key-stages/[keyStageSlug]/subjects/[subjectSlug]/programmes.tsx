@@ -129,7 +129,6 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context params");
       }
-
       const curriculumData = isSlugLegacy(context.params?.subjectSlug)
         ? await curriculumApi.tierListing({
             keyStageSlug: context.params?.keyStageSlug,
@@ -144,7 +143,6 @@ export const getStaticProps: GetStaticProps<
         curriculumData,
         isSlugLegacy(context.params?.subjectSlug),
       );
-
       const results = {
         props: {
           ...generatedCurriculumData,

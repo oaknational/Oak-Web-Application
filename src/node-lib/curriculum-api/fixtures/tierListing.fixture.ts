@@ -11,7 +11,7 @@ export const tieredProgrammeListingFixture = (
     subjectTitle: "Maths",
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks4-foundation",
+        programmeSlug: "maths-secondary-ks3-foundation",
         subjectTitle: "Maths",
         tierSlug: "foundation",
         tierTitle: "Foundation",
@@ -21,7 +21,7 @@ export const tieredProgrammeListingFixture = (
         examBoardDisplayOrder: null,
       },
       {
-        programmeSlug: "maths-secondary-ks4-higher",
+        programmeSlug: "maths-secondary-ks3-higher",
         subjectTitle: "Maths",
         tierSlug: "higher",
         tierTitle: "Higher",
@@ -31,9 +31,37 @@ export const tieredProgrammeListingFixture = (
         examBoardDisplayOrder: null,
       },
     ],
-
     ...partial,
   };
+};
+
+export const generatedLegacyProgrammeData = {
+  keyStageSlug: "ks3",
+  keyStageTitle: "Key stage 3",
+  subjectSlug: "maths-l",
+  subjectTitle: "Maths",
+  programmes: [
+    {
+      programmeSlug: "maths-secondary-ks3-foundation-l",
+      subjectTitle: "Maths",
+      tierSlug: "foundation",
+      tierTitle: "Foundation",
+      tierDisplayOrder: "1",
+      examBoardSlug: null,
+      examBoardTitle: null,
+      examBoardDisplayOrder: null,
+    },
+    {
+      programmeSlug: "maths-secondary-ks3-higher-l",
+      subjectTitle: "Maths",
+      tierSlug: "higher",
+      tierTitle: "Higher",
+      tierDisplayOrder: "3",
+      examBoardSlug: null,
+      examBoardTitle: null,
+      examBoardDisplayOrder: null,
+    },
+  ],
 };
 
 const tierListingFixture = (
