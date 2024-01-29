@@ -305,8 +305,7 @@ describe("hubspotSubmitForm", () => {
 
   describe("Hubspot responds with unexpected response (e.g. their api has changed)", () => {
     test("error is thrown with correct message", async () => {
-      const fakeFetch = getFakeFetch([unknownErrorFailure]);
-      global.fetch = fakeFetch.asFetch;
+      global.fetch = getFakeFetch([unknownErrorFailure]).asFetch;
 
       let errorMessage = "";
       try {
@@ -317,10 +316,6 @@ describe("hubspotSubmitForm", () => {
         errorMessage = error.message;
         console.log(error);
       }
-
-      // DEBUG
-      const response = await fakeFetch.getResult(0);
-      console.log(response);
 
       expect(errorMessage).toBe(
         "Sorry, we couldn't sign you up just now, try again later.",
