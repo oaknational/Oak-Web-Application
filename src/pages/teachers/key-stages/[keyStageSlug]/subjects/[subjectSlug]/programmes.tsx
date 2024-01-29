@@ -20,6 +20,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
+import { generateCorrectProgrammes } from "@/components/TeacherComponents/helpers/programmeHelpers/generateCorrectProgrammes";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
@@ -138,6 +139,13 @@ export const getStaticProps: GetStaticProps<
             keyStageSlug: context.params?.keyStageSlug,
             subjectSlug: context.params?.subjectSlug,
           });
+
+      const generatedProgrammes = generateCorrectProgrammes(
+        curriculumData.programmes,
+        isSlugLegacy(context.params?.subjectSlug),
+      );
+
+      curriculumData.programmes = generatedProgrammes;
 
       const results = {
         props: {
