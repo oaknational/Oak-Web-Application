@@ -54,6 +54,7 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
         name={`short-answer-${questionUid}`}
         onChange={handleOnChange}
         feedback={feedback}
+        $width={["100%", "all-spacing-22"]}
       />
     </OakFlex>
   );

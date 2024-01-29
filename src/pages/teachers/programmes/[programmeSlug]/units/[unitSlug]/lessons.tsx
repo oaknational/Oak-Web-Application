@@ -5,13 +5,13 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -144,8 +144,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
-        <Grid>
-          <GridArea $colSpan={[12, 9]} $mt={[16, 32]}>
+        <OakGrid>
+          <OakGridArea
+            $colSpan={[12, 9]}
+            $mt={["space-between-s", "space-between-m2"]}
+          >
             <LessonList
               {...curriculumData}
               lessonCount={lessons.length}
@@ -155,8 +158,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               unitTitle={unitTitle}
               onClick={trackLessonSelected}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </AppLayout>
   );
