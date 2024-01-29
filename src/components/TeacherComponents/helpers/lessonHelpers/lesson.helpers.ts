@@ -33,6 +33,7 @@ export const getCommonPathway = (
     examBoardTitle: null,
     tierSlug: null,
     tierTitle: null,
+    lessonCohort: null,
   };
 
   return pathways.reduce(

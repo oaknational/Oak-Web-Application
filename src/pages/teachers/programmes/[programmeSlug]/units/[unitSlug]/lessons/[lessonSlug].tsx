@@ -74,7 +74,6 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
-
       const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.lessonOverview({
             programmeSlug,
