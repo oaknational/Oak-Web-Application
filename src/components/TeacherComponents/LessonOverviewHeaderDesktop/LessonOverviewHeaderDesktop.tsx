@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -7,7 +8,6 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
@@ -26,8 +26,8 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
 
   return (
     <Box $display={["none", "grid"]}>
-      <Grid>
-        <GridArea $justifyContent={"center"} $colSpan={[12, 3]}>
+      <OakGrid>
+        <OakGridArea $justifyContent={"center"} $colSpan={[12, 3]}>
           <Flex $height={[172, 172, 200]} $width={[172, 172, 200]}>
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
@@ -40,8 +40,8 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               isLegacyLesson={isLegacyLesson}
             />
           </Flex>
-        </GridArea>
-        <GridArea
+        </OakGridArea>
+        <OakGridArea
           $justifyContent={"center"}
           $colSpan={[12, 9]}
           $alignItems={"flex-start"}
@@ -72,8 +72,8 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               </Flex>
             </Flex>
           </Flex>
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </Box>
   );
 };

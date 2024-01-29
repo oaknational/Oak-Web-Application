@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { PostListingPageProps } from "@/components/GenericPagesViews/BlogIndex.view";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
@@ -8,7 +9,6 @@ import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList
 import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
 import PostList from "@/components/SharedComponents/PostList";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
@@ -31,8 +31,8 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
   });
 
   return (
-    <Grid $ph={[12, 0]}>
-      <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
+    <OakGrid $ph={["inner-padding-s", "inner-padding-none"]}>
+      <OakGridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
         <Box
           $display={["none", "block"]}
           $position={[null, "sticky"]}
@@ -51,13 +51,17 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
             page={page}
           />
         </Box>
-      </GridArea>
+      </OakGridArea>
       {/* @todo is there a nicer way to make this 1 column spacer? */}
-      <GridArea $order={1} $colSpan={[12, 1]} />
-      <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[16, 72]}>
+      <OakGridArea $order={1} $colSpan={[12, 1]} />
+      <OakGridArea
+        $order={[1, 0]}
+        $colSpan={[12, 7, 8]}
+        $mt={["space-between-s", "space-between-xxl"]}
+      >
         <PostList {...blogListProps} />
-      </GridArea>
-    </Grid>
+      </OakGridArea>
+    </OakGrid>
   );
 };
 

@@ -25,12 +25,16 @@ export const QuizQuestionStem = ({
   const displayNumber = `Q${index + 1}.`;
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"space-between-s"}
+      $color={"text-primary"}
+    >
       <OakFlex key="stem-header">
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
-            $font={"heading-5"}
+            $font={["heading-6", "heading-4", "heading-4"]}
           >
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
           </OakSpan>

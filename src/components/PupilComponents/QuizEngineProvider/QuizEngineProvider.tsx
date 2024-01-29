@@ -128,7 +128,17 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         (answer) => answer && correctAnswers?.includes(answer),
       );
 
-      const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
+      let grade = 0;
+      switch (matchingAnswers.length) {
+        case correctAnswers?.length:
+          grade = 1;
+          break;
+        case 0:
+          grade = 0;
+          break;
+        default:
+          grade = 0.5;
+      }
 
       setQuestionState((prev) => {
         const newState = [...prev];
