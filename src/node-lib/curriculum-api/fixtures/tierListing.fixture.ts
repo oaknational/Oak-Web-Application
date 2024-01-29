@@ -5,13 +5,13 @@ export const tieredProgrammeListingFixture = (
   partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {
-    keyStageSlug: "ks3",
-    keyStageTitle: "Key stage 3",
+    keyStageSlug: "ks4",
+    keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks3-foundation",
+        programmeSlug: "maths-secondary-ks4-foundation",
         subjectTitle: "Maths",
         tierSlug: "foundation",
         tierTitle: "Foundation",
@@ -21,7 +21,7 @@ export const tieredProgrammeListingFixture = (
         examBoardDisplayOrder: null,
       },
       {
-        programmeSlug: "maths-secondary-ks3-higher",
+        programmeSlug: "maths-secondary-ks4-higher",
         subjectTitle: "Maths",
         tierSlug: "higher",
         tierTitle: "Higher",
@@ -36,13 +36,13 @@ export const tieredProgrammeListingFixture = (
 };
 
 export const generatedLegacyProgrammeData = {
-  keyStageSlug: "ks3",
-  keyStageTitle: "Key stage 3",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key stage 4",
   subjectSlug: "maths-l",
   subjectTitle: "Maths",
   programmes: [
     {
-      programmeSlug: "maths-secondary-ks3-foundation-l",
+      programmeSlug: "maths-secondary-ks4-foundation-l",
       subjectTitle: "Maths",
       tierSlug: "foundation",
       tierTitle: "Foundation",
@@ -52,7 +52,7 @@ export const generatedLegacyProgrammeData = {
       examBoardDisplayOrder: null,
     },
     {
-      programmeSlug: "maths-secondary-ks3-higher-l",
+      programmeSlug: "maths-secondary-ks4-higher-l",
       subjectTitle: "Maths",
       tierSlug: "higher",
       tierTitle: "Higher",

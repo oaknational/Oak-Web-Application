@@ -44,9 +44,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 3 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "We have resources for tiers: Foundation, Higher",
-        ogTitle: "Key stage 3 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We have resources for tiers: Foundation, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
