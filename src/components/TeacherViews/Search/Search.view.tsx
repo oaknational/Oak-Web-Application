@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";

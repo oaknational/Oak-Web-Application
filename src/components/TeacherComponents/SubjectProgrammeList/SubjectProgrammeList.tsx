@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import SubjectProgrammeListItem from "@/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem";

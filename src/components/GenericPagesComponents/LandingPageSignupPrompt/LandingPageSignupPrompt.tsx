@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { PortableTextJSON } from "@/common-lib/cms-types";

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OakGridArea } from "@oak-academy/oak-components";
+import { OakGridArea } from "@oaknational/oak-components";
 
 import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SpecialistProgrammeListItem from "@/components/TeacherComponents/SpecialistProgrammeListItem";

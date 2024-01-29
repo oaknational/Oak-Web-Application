@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";

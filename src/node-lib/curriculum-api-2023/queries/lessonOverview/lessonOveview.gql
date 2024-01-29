@@ -2,12 +2,14 @@ query lessonOverview(
   $programmeSlug: String!
   $lessonSlug: String!
   $unitSlug: String!
+  $lessonCohort: String!
 ) {
-  lesson: published_mv_lesson_overview_3_0_0(
+  lesson: published_mv_lesson_overview_3_0_1(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }
+      lessonCohort: { _eq: $lessonCohort }
     }
   ) {
     lessonSlug
@@ -41,5 +43,6 @@ query lessonOverview(
     yearTitle
     hasDownloadableResources
     videoTitle
+    lessonCohort
   }
 }

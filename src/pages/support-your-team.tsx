@@ -1,6 +1,6 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { SupportPage } from "@/common-lib/cms-types";

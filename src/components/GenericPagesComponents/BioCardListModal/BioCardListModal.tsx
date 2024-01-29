@@ -1,5 +1,5 @@
 import { FC, MutableRefObject, useRef } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { ModalControllerRefs } from "./useBioCardListModal";
 

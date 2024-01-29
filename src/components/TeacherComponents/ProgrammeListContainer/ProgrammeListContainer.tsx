@@ -3,7 +3,7 @@ import {
   OakGridArea,
   OakGridAreaProps,
   OakColorToken,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 export type ProgrammeListContainer = {
   children?: React.ReactNode;

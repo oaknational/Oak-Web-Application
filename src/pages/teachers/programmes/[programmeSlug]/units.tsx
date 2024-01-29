@@ -7,7 +7,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,

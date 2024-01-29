@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";

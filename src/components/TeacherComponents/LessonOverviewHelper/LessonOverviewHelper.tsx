@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { PostListingPageProps } from "@/components/GenericPagesViews/BlogIndex.view";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";

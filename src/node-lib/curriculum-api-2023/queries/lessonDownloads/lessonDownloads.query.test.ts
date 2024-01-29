@@ -51,6 +51,7 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
+        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -68,6 +69,7 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
+        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -89,6 +91,7 @@ describe("lessonDownloads()", () => {
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
+      lessonCohort: "2023-2024",
     });
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
@@ -123,6 +126,7 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
+        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`unitSlug`);
   });

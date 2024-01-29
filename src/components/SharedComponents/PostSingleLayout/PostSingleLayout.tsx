@@ -1,5 +1,5 @@
 import { FC, ReactNode, useId } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";

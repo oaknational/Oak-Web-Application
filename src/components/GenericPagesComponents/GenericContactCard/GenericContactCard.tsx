@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";

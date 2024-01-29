@@ -5,7 +5,7 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";

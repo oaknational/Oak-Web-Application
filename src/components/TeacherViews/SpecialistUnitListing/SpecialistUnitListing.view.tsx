@@ -1,7 +1,7 @@
 import { FC, useId } from "react";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

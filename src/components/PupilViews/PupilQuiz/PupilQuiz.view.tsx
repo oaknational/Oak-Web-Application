@@ -1,4 +1,7 @@
-import { OakFlex } from "@oak-academy/oak-components";
+import {
+  OakCloudinaryConfigProvider,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import {
   QuestionsArray,
@@ -12,17 +15,24 @@ type PupilViewsQuizProps = {
 
 export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   return (
-    <QuizEngineProvider questionsArray={questionsArray}>
-      <OakFlex
-        $width={"100vw"}
-        $height={"100vh"}
-        $background={"bg-decorative1-main"}
-        $flexDirection={"column"}
-        $alignItems={"center"}
-        $pt="inner-padding-xl"
-      >
-        <QuizRenderer />
-      </OakFlex>
-    </QuizEngineProvider>
+    <OakCloudinaryConfigProvider
+      value={{
+        cloud: { cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME },
+        url: { privateCdn: true },
+      }}
+    >
+      <QuizEngineProvider questionsArray={questionsArray}>
+        <OakFlex
+          $width={"100vw"}
+          $height={"100vh"}
+          $background={"bg-decorative1-main"}
+          $flexDirection={"column"}
+          $alignItems={"center"}
+          $pt="inner-padding-xl"
+        >
+          <QuizRenderer />
+        </OakFlex>
+      </QuizEngineProvider>
+    </OakCloudinaryConfigProvider>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

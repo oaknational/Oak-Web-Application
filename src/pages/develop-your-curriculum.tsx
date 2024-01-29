@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";

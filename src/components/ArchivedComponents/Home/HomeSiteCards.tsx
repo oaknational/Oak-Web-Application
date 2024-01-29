@@ -1,4 +1,4 @@
-import { OakGrid, OakGridArea } from "@oak-academy/oak-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import CardLinkIcon from "@/components/SharedComponents/Card/CardLinkIcon";
