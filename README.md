@@ -75,7 +75,7 @@ Unit tests live next to the code they are testing wherever possible. Next does n
 
 ### End-to-End Browser Tests
 
-We use WebriverIO.
+We use WebdriverIO.
 
 See the [testing docs for further details](./docs/testing.md#e2e-browser-tests).
 
