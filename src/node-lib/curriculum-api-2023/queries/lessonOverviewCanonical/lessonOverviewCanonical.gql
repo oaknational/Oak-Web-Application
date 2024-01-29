@@ -1,5 +1,5 @@
 query lessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_3_0_0(
+  lesson: published_mv_lesson_overview_3_0_1(
     where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     lessonSlug
@@ -34,5 +34,6 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     exitQuiz
     yearTitle
     hasDownloadableResources
+    lessonCohort
   }
 }

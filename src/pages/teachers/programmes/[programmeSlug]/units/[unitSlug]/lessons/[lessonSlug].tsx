@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -83,6 +84,7 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             lessonSlug,
             unitSlug,
+            lessonCohort: NEW_COHORT,
           });
 
       if (!curriculumData) {
