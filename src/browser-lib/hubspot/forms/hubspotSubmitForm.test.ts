@@ -8,6 +8,7 @@ import {
   getFakeFetch,
   buildHubspotFetchMatcher as buildMatcher,
 } from "@/__tests__/__helpers__/fakeFetch";
+import type { ResponsePromise } from "@/__tests__/__helpers__/fakeFetch/hubspot";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
@@ -40,7 +41,7 @@ const unknownErrorFailure = buildMatcher(primaryFormEndpoint, {
 });
 
 // Fallback form failures
-const fallbackUnknownErrorFailure = buildMatcher(fallbackFormEndpoint, {
+const fallbackHubspotErrorFailure = buildMatcher(fallbackFormEndpoint, {
   status: 400,
   errors: [{ errorType: "HUBSPOT_ERROR" }],
 });
@@ -156,10 +157,9 @@ describe("hubspotSubmitForm", () => {
     it("should report error if fallback fails", async () => {
       const fakeFetch = getFakeFetch([
         invalidEmailFailure,
-        fallbackUnknownErrorFailure,
+        fallbackHubspotErrorFailure,
       ]);
       global.fetch = fakeFetch.asFetch;
-      const fetchMock = fakeFetch.asMock;
 
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -168,13 +168,8 @@ describe("hubspotSubmitForm", () => {
       }
 
       // Get the mock response from the fallback form.
-      const fakeFetchResponses = fetchMock.mock.results;
-      const potentialFallbackFormResponse = fakeFetchResponses[1];
-      if (potentialFallbackFormResponse === undefined) {
-        throw new Error("No response from fallback form");
-      }
-      const fallbackFormResponse = await potentialFallbackFormResponse.value;
-      const hubspotErrorData = await fallbackFormResponse.json();
+      const fakeFetchResponse = fakeFetch.getResult(1) as ResponsePromise;
+      const hubspotErrorData = await (await fakeFetchResponse).json();
 
       expect(reportError).toHaveBeenNthCalledWith(
         1,
@@ -218,16 +213,21 @@ describe("hubspotSubmitForm", () => {
     });
   });
 
-  describe.skip("primary form fails with other hubspot error (not INVALID_EMAIL)", () => {
-    beforeEach(() => {
-      server.use(primaryForm400HubspotError);
-    });
-    it("should send error to bugsnag including response details", async () => {
+  describe("primary form fails with other hubspot error (not INVALID_EMAIL)", () => {
+    it.only("should send error to bugsnag including response details", async () => {
+      const fakeFetch = getFakeFetch([inputTooLargeFailure]);
+      global.fetch = fakeFetch.asFetch;
+
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
+
+      // Get the mock response from the primary form.
+      const fakeFetchResponse = fakeFetch.getResult(0) as ResponsePromise;
+      const hubspotErrorData = await (await fakeFetchResponse).json();
+
       expect(reportError).toHaveBeenCalledWith(
         new Error("Sorry, we couldn't sign you up just now, try again later."),
         {

@@ -9,8 +9,10 @@ interface HubspotResponseConfig extends ResponseConfig {
 
 interface HubspotFakeResponse extends FakeResponse {
   aSurpriseField?: string;
-  json?: () => Promise<{ inlineMessage?: string }>;
+  json: () => Promise<{ inlineMessage?: string }>;
 }
+
+export type ResponsePromise = Promise<HubspotFakeResponse>;
 
 class HubspotFetchMatcher extends GenericFetchMatcher {
   private get jsonValue() {
@@ -20,7 +22,7 @@ class HubspotFetchMatcher extends GenericFetchMatcher {
     return jsonResponse;
   }
 
-  get response(): Promise<HubspotFakeResponse> {
+  get response(): ResponsePromise {
     // Need an IIFE to use await inside a getter 🙄
     const returnData = (async () => {
       const baseResponseData = super.getBaseResponseData();
