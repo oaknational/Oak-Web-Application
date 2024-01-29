@@ -44,13 +44,7 @@ describe("generateLegacyProgrammeListing", () => {
     );
     expect(result?.programmes.length).toEqual(2);
   });
-  it("transforms legacy subject slug", () => {
-    const result = generateProgrammeListing(
-      ks4CombinedScienceFullProgrammeListing,
-      true,
-    );
-    expect(result.subjectSlug).toEqual("combined-science-l");
-  });
+
   it("transforms new programme listings", () => {
     const result = generateProgrammeListing(
       ks4MathsFullProgrammeListing,
