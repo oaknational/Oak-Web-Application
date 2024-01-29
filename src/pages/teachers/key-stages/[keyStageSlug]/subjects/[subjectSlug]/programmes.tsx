@@ -25,7 +25,6 @@ import { generateProgrammeListing } from "@/components/TeacherComponents/helpers
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
     props;
-
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
@@ -143,6 +142,7 @@ export const getStaticProps: GetStaticProps<
         curriculumData,
         isSlugLegacy(context.params?.subjectSlug),
       );
+
       const results = {
         props: {
           ...generatedCurriculumData,

@@ -7,7 +7,7 @@ export const tieredProgrammeListingFixture = (
   return {
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    subjectSlug: "maths",
+    subjectSlug: "maths-l",
     subjectTitle: "Maths",
     programmes: [
       {
