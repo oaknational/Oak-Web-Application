@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 
@@ -10,8 +10,8 @@ const AiTab: FC = () => {
   return (
     <Flex $background={"pink"} $pv={24} $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
-        <Grid $cg={16}>
-          <GridArea $colSpan={[12, 6]}>
+        <OakGrid $cg={"all-spacing-4"}>
+          <OakGridArea $colSpan={[12, 6]}>
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -42,8 +42,8 @@ const AiTab: FC = () => {
                 $mb={24}
               />
             </Flex>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </Flex>
   );

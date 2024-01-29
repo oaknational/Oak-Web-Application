@@ -1,13 +1,17 @@
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import CardLinkIcon from "@/components/SharedComponents/Card/CardLinkIcon";
 
 const HomeSiteCards = () => {
   const { track } = useAnalytics();
 
   return (
-    <Grid $cg={[8, 16]} $ph={[12, 0]}>
-      <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
+    <OakGrid
+      $cg={["space-between-ssx", "space-between-s"]}
+      $ph={["inner-padding-s", "inner-padding-none"]}
+    >
+      <OakGridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
         <CardLinkIcon
           page="lesson-planning"
           title={"Plan a lesson"}
@@ -15,8 +19,8 @@ const HomeSiteCards = () => {
           background="mint"
           htmlAnchorProps={{ onClick: track.planALessonSelected }}
         />
-      </GridArea>
-      <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
+      </OakGridArea>
+      <OakGridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
         <CardLinkIcon
           page="develop-your-curriculum"
           title={"Develop your curriculum"}
@@ -26,8 +30,8 @@ const HomeSiteCards = () => {
             onClick: track.developYourCurriculumSelected,
           }}
         />
-      </GridArea>
-      <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
+      </OakGridArea>
+      <OakGridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
         <CardLinkIcon
           page="support-your-team"
           title={"Support your team"}
@@ -37,8 +41,8 @@ const HomeSiteCards = () => {
             onClick: track.supportYourTeamSelected,
           }}
         />
-      </GridArea>
-    </Grid>
+      </OakGridArea>
+    </OakGrid>
   );
 };
 

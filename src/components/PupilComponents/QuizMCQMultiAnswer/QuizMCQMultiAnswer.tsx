@@ -11,10 +11,11 @@
 
 import { useMemo } from "react";
 import {
+  OakCloudinaryImage,
   OakFlex,
-  OakImage,
   OakQuizCheckBox,
-} from "@oak-academy/oak-components";
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import {
   StemImageObject,
@@ -22,6 +23,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;
@@ -36,7 +38,9 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
-
+  const numCorrectAnswers = currentQuestionData?.answers?.[
+    "multiple-choice"
+  ]?.filter((a) => a.answer_is_correct === true).length;
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
@@ -49,45 +53,54 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-      {answers.map((answer, index) => {
-        const filterByText = answer.answer.filter(
-          (a) => a.type === "text",
-        ) as StemTextObject[];
-        const filterByImage = answer.answer.filter(
-          (a) => a.type === "image",
-        ) as StemImageObject[];
-        const answerText = filterByText.length > 0 && filterByText[0];
-        const answerImageData =
-          filterByImage.length > 0 && filterByImage[0]?.image_object;
+    <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakSpan
+        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
+      >
+        Select {numCorrectAnswers} answers
+      </OakSpan>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+        {answers.map((answer, index) => {
+          const filterByText = answer.answer.filter(
+            (a) => a.type === "text",
+          ) as StemTextObject[];
+          const filterByImage = answer.answer.filter(
+            (a) => a.type === "image",
+          ) as StemImageObject[];
+          const answerText = filterByText.length > 0 && filterByText[0];
+          const answerImageData =
+            filterByImage.length > 0 && filterByImage[0]?.image_object;
 
-        const answerImage = answerImageData ? (
-          <OakImage
-            src={answerImageData.secure_url}
-            alt=""
-            width={answerImageData.width}
-            height={answerImageData.height}
-            $minWidth={"all-spacing-19"}
-          />
-        ) : undefined;
+          const answerImage = answerImageData ? (
+            <OakCloudinaryImage
+              cloudinaryId={answerImageData.secure_url}
+              alt=""
+              width={answerImageData.width}
+              height={answerImageData.height}
+              $minWidth={"all-spacing-19"}
+              placeholder="oak"
+              sizes={getSizes(["100vw", 1200])}
+            />
+          ) : undefined;
 
-        const feedback =
-          isFeedbackMode && Array.isArray(questionState.feedback)
-            ? questionState.feedback[index]
-            : undefined;
+          const feedback =
+            isFeedbackMode && Array.isArray(questionState.feedback)
+              ? questionState.feedback[index]
+              : undefined;
 
-        return (
-          <OakQuizCheckBox
-            key={`${questionUid}-answer-${index}`}
-            id={`${questionUid}-answer-${index}`}
-            displayValue={answerText ? answerText.text : " "}
-            value={`answer-${index}`}
-            feedback={feedback}
-            image={answerImage}
-            onChange={handleOnChange}
-          />
-        );
-      })}
+          return (
+            <OakQuizCheckBox
+              key={`${questionUid}-answer-${index}`}
+              id={`${questionUid}-answer-${index}`}
+              displayValue={answerText ? answerText.text : " "}
+              value={`answer-${index}`}
+              feedback={feedback}
+              image={answerImage}
+              onChange={handleOnChange}
+            />
+          );
+        })}
+      </OakFlex>
     </OakFlex>
   );
 };

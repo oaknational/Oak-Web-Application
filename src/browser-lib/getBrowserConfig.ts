@@ -290,6 +290,32 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description: "Sign up link for upcoming webinars",
     default: null,
   },
+  oakComponentsAssetsHost: {
+    value: process.env.NEXT_PUBLIC_OAK_ASSETS_HOST,
+    envName: "NEXT_PUBLIC_OAK_ASSETS_HOST",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "Host for assets needed by the oak-components package",
+  },
+  oakComponentsAssetsPath: {
+    value: process.env.NEXT_PUBLIC_OAK_ASSETS_PATH,
+    envName: "NEXT_PUBLIC_OAK_ASSETS_PATH",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description:
+      "Remote path to assets served from `oakAssetsHost`. Required by the oak-components package",
+  },
+  cloudinaryCloudName: {
+    value: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    envName: "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description:
+      "The secure Cloudinary instance serving user generated content",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
