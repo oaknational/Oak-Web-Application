@@ -32,29 +32,31 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 
+type BaseLessonDownload = {
+  isLegacy: boolean;
+  lessonTitle: string;
+  lessonSlug: string;
+  lessonCohort?: string | null;
+  downloads: LessonDownloadsData["downloads"];
+};
+
+type CanonicalLesson = BaseLessonDownload & {
+  pathways: LessonPathway[];
+  nextLessons?: NextLesson[];
+};
+
+type NonCanonicalLesson = BaseLessonDownload & {
+  nextLessons: NextLesson[];
+} & LessonPathway;
+
 type LessonDownloadsProps =
   | {
       isCanonical: true;
-      lesson: {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        lessonCohort?: string | null;
-        downloads: LessonDownloadsData["downloads"];
-        pathways: LessonPathway[];
-        nextLessons?: NextLesson[];
-      };
+      lesson: CanonicalLesson;
     }
   | {
       isCanonical: false;
-      lesson: LessonPathway & {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        lessonCohort?: string | null;
-        downloads: LessonDownloadsData["downloads"];
-        nextLessons: NextLesson[];
-      };
+      lesson: NonCanonicalLesson;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
