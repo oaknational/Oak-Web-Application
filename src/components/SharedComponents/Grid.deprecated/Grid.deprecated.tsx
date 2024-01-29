@@ -29,6 +29,10 @@ export type GridProps = BoxProps & {
   $gridTemplateAreas?: ResponsiveValues<string>;
   $gridTemplateColumns?: ResponsiveValues<string>;
 };
+
+/**
+ * @deprecated use OakGrid from oak-components instead
+ */
 const Grid = styled(Box)<GridProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
@@ -12,7 +13,6 @@ import { useNewsletterForm } from "@/components/GenericPagesComponents/Newslette
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -35,21 +35,29 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
     <>
       <Flex $background={"lemon50"} $justifyContent={"center"}>
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
-          <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
-            <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
+          <OakGrid
+            $cg={["space-between-s", "space-between-m2"]}
+            $rg={["space-between-none", "space-between-m2"]}
+            $mt={["space-between-s", "space-between-xxxl"]}
+          >
+            <OakGridArea $colSpan={[12, 4]} $order={[0, 0]}>
               <HomeAboutCard {...pageData.sidebarCard1} />
-            </GridArea>
-            <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 1]}>
+            </OakGridArea>
+            <OakGridArea
+              $mb={["space-between-xl", "space-between-none"]}
+              $colSpan={[12, 4]}
+              $order={[2, 1]}
+            >
               <HomeHelpCard {...pageData.sidebarCard2} />
-            </GridArea>
-            <GridArea $colSpan={[12, 4]} $order={[4, 1]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 4]} $order={[4, 1]}>
               <NewsletterFormWrap
                 {...newsletterFormProps}
                 anchorTargetId="email-sign-up"
               />
-            </GridArea>
-            <GridArea
-              $mb={[64, 0]}
+            </OakGridArea>
+            <OakGridArea
+              $mb={["space-between-xl", "space-between-none"]}
               $colSpan={[12, 8]}
               $rowSpan={[3]}
               $order={[3, 0]}
@@ -81,8 +89,8 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                 </Flex>
                 <PostList {...blogListProps} />
               </Box>
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
         </MaxWidth>
       </Flex>
     </>

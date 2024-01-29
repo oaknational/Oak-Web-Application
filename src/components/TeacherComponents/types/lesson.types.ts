@@ -15,6 +15,7 @@ export type LessonPathway = {
   tierSlug?: string | null;
   examBoardTitle?: string | null;
   examBoardSlug?: string | null;
+  lessonCohort?: string | null;
 };
 
 export type LessonOverviewCanonical = LessonBase & {

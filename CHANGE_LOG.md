@@ -1,3 +1,14 @@
+## [1.335.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.2...v1.335.3) (2024-01-29)
+
+## [1.335.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.1...v1.335.2) (2024-01-29)
+
+
+### Bug Fixes
+
+* missing props in test ([c2a2a25](https://github.com/oaknational/Oak-Web-Application/commit/c2a2a25009a8a6a796a9388b4aa6fcc6a7dd6d84))
+
+## [1.335.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.0...v1.335.1) (2024-01-29)
+
 # [1.335.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.334.0...v1.335.0) (2024-01-25)
 
 
