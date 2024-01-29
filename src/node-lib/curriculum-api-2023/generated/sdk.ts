@@ -32160,7 +32160,7 @@ export type LessonOverviewCanonicalQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null }> };
+export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_1', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, lessonCohort?: string | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -32357,7 +32357,7 @@ export const LessonOverviewDocument = gql`
     `;
 export const LessonOverviewCanonicalDocument = gql`
     query lessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_3_0_0(
+  lesson: published_mv_lesson_overview_3_0_1(
     where: {lessonSlug: {_eq: $lessonSlug}}
   ) {
     lessonSlug
@@ -32392,6 +32392,7 @@ export const LessonOverviewCanonicalDocument = gql`
     exitQuiz
     yearTitle
     hasDownloadableResources
+    lessonCohort
   }
 }
     `;
