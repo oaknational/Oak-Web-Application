@@ -91,7 +91,7 @@ describe("pages/teachers/lessons", () => {
     expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
-  it("share button is not disabled with non legacy content (lessonCohort is null)", () => {
+  it("share button is not disabled with legacy content (lessonCohort is null)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
