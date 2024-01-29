@@ -15,6 +15,7 @@ const hubspotFormId = "hubspot-test-form";
 const primaryFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
 const fallbackFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFallbackFormId}`;
 
+// Success responses
 const primaryFormSuccess = buildMatcher(primaryFormEndpoint, {
   status: 200,
   inlineMessage: "Thanks that worked the first time",
@@ -24,7 +25,8 @@ const fallbackFormSuccess = buildMatcher(fallbackFormEndpoint, {
   inlineMessage: "Thanks, it worked in the fallback, but not the primary!",
 });
 
-const hubspotErrorFailure = buildMatcher(primaryFormEndpoint, {
+// Primary form failures
+const inputTooLargeFailure = buildMatcher(primaryFormEndpoint, {
   status: 400,
   errors: [{ errorType: "INPUT_TOO_LARGE" }],
 });
@@ -35,6 +37,12 @@ const invalidEmailFailure = buildMatcher(primaryFormEndpoint, {
 const unknownErrorFailure = buildMatcher(primaryFormEndpoint, {
   status: 400,
   aSurpriseField: "bar error details",
+});
+
+// Fallback form failures
+const fallbackUnknownErrorFailure = buildMatcher(fallbackFormEndpoint, {
+  status: 400,
+  errors: [{ errorType: "HUBSPOT_ERROR" }],
 });
 
 // Cache the oringal fetch function
@@ -83,9 +91,7 @@ describe("hubspotSubmitForm", () => {
   });
   describe("succeeds", () => {
     it("should fetch the correct url with the correct payload", async () => {
-      global.fetch = getFakeFetch(
-        primaryFormSuccess,
-      ) as unknown as typeof fetch;
+      global.fetch = getFakeFetch(primaryFormSuccess).asFetch;
 
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
@@ -95,7 +101,7 @@ describe("hubspotSubmitForm", () => {
       expect(successMessage).toBe("Thanks that worked the first time");
     });
     it("should succeed even if user doesn't have hubspot cookie", async () => {
-      global.fetch = getFakeFetch([primaryFormSuccess]);
+      global.fetch = getFakeFetch([primaryFormSuccess]).asFetch;
 
       getHubspotUserToken.mockImplementationOnce(
         () => undefined as unknown as string,
@@ -111,7 +117,10 @@ describe("hubspotSubmitForm", () => {
 
   describe("primary form fails with INVALID_EMAIL", () => {
     it("should throw with the correct error message", async () => {
-      global.fetch = getFakeFetch([invalidEmailFailure, fallbackFormSuccess]);
+      global.fetch = getFakeFetch([
+        invalidEmailFailure,
+        fallbackFormSuccess,
+      ]).asFetch;
 
       let errorMessage = "";
       try {
@@ -131,7 +140,10 @@ describe("hubspotSubmitForm", () => {
     });
 
     it("should not report error if fallback succeeds", async () => {
-      global.fetch = getFakeFetch([hubspotErrorFailure, fallbackFormSuccess]);
+      global.fetch = getFakeFetch([
+        invalidEmailFailure,
+        fallbackFormSuccess,
+      ]).asFetch;
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
@@ -141,13 +153,29 @@ describe("hubspotSubmitForm", () => {
       expect(reportError).not.toHaveBeenCalled();
     });
 
-    it.skip("should report error if fallback fails", async () => {
-      server.use(fallbackForm400UnknownError);
+    it("should report error if fallback fails", async () => {
+      const fakeFetch = getFakeFetch([
+        invalidEmailFailure,
+        fallbackUnknownErrorFailure,
+      ]);
+      global.fetch = fakeFetch.asFetch;
+      const fetchMock = fakeFetch.asMock;
+
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
+
+      // Get the mock response from the fallback form.
+      const fakeFetchResponses = fetchMock.mock.results;
+      const potentialFallbackFormResponse = fakeFetchResponses[1];
+      if (potentialFallbackFormResponse === undefined) {
+        throw new Error("No response from fallback form");
+      }
+      const fallbackFormResponse = await potentialFallbackFormResponse.value;
+      const hubspotErrorData = await fallbackFormResponse.json();
+
       expect(reportError).toHaveBeenNthCalledWith(
         1,
         new Error("Sorry, we couldn't sign you up just now, try again later."),
@@ -184,7 +212,7 @@ describe("hubspotSubmitForm", () => {
             hubspotFormId: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
             isFallbackAttempt: true,
           },
-          responseBody: unknownErrorData,
+          responseBody: hubspotErrorData,
         },
       );
     });

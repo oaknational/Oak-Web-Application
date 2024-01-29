@@ -7,11 +7,12 @@ type FakeFetch = jest.Mock<Promise<FakeResponse>>;
  * mock fetch function that will return the response specified by the matcher.
  *
  * @param matchers - An array of FetchMatchers, or a single FetchMatcher.
- * @returns A fake fetch function. We use type coercion because we need it to be assignable to the global fetch function.
+ * @returns An object with two references to the same mock fetch function, one typed as fetch, and one typed as a mock.
  */
-export function getFakeFetch(
-  matchers: FetchMatcher[] | FetchMatcher,
-): typeof fetch {
+export function getFakeFetch(matchers: FetchMatcher[] | FetchMatcher): {
+  asFetch: typeof fetch;
+  asMock: FakeFetch;
+} {
   const fakeFetch: FakeFetch = jest.fn();
 
   fakeFetch.mockImplementation((...fetchArgs) => {
@@ -33,7 +34,10 @@ export function getFakeFetch(
     return matcher.response;
   });
 
-  return fakeFetch as unknown as typeof fetch;
+  return {
+    asFetch: fakeFetch as unknown as typeof fetch,
+    asMock: fakeFetch,
+  };
 }
 
 /**
