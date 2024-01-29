@@ -6,6 +6,7 @@ import {
 
 import {
   getFakeFetch,
+  getFakeFetchWithNetworkError,
   buildHubspotFetchMatcher as buildMatcher,
 } from "@/__tests__/__helpers__/fakeFetch";
 import type { ResponsePromise } from "@/__tests__/__helpers__/fakeFetch/hubspot";
@@ -46,7 +47,7 @@ const fallbackHubspotErrorFailure = buildMatcher(fallbackFormEndpoint, {
   errors: [{ errorType: "HUBSPOT_ERROR" }],
 });
 
-// Cache the oringal fetch function
+// Cache the original fetch function
 const originalFetch = global.fetch;
 
 // Reset any runtime request handlers we may add during the tests.
@@ -214,7 +215,7 @@ describe("hubspotSubmitForm", () => {
   });
 
   describe("primary form fails with other hubspot error (not INVALID_EMAIL)", () => {
-    it.only("should send error to bugsnag including response details", async () => {
+    it("should send error to bugsnag including response details", async () => {
       const fakeFetch = getFakeFetch([inputTooLargeFailure]);
       global.fetch = fakeFetch.asFetch;
 
@@ -267,6 +268,8 @@ describe("hubspotSubmitForm", () => {
       );
     });
     it("should throw with the correct error message", async () => {
+      global.fetch = getFakeFetch([inputTooLargeFailure]).asFetch;
+
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -281,14 +284,12 @@ describe("hubspotSubmitForm", () => {
     });
   });
 
-  describe.skip("Primary form fails with INVALID_EMAIL and fallback form fails too", () => {
-    beforeEach(() => {
-      jest.restoreAllMocks();
-      jest.clearAllMocks();
-      // mock fetch to first respond with INVALID_EMAIL, then with a 400
-      server.use(primaryForm400InvalidEmail, fallbackForm400HubspotError);
-    });
+  describe("Primary form fails with INVALID_EMAIL and fallback form fails too", () => {
     test("error should be reported", async () => {
+      global.fetch = getFakeFetch([
+        invalidEmailFailure,
+        fallbackHubspotErrorFailure,
+      ]).asFetch;
       /**
        * @todo we should mark reported errors as "notified" to avoid them
        * being re-reported
@@ -302,11 +303,11 @@ describe("hubspotSubmitForm", () => {
     });
   });
 
-  describe.skip("Hubspot responds with unexpected response (e.g. their api has changed)", () => {
-    beforeEach(() => {
-      server.use(primaryForm400UnknownError);
-    });
+  describe("Hubspot responds with unexpected response (e.g. their api has changed)", () => {
     test("error is thrown with correct message", async () => {
+      const fakeFetch = getFakeFetch([unknownErrorFailure]);
+      global.fetch = fakeFetch.asFetch;
+
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
@@ -314,12 +315,19 @@ describe("hubspotSubmitForm", () => {
         // eslint-disable-next-line
         // @ts-ignore
         errorMessage = error.message;
+        console.log(error);
       }
+
+      // DEBUG
+      const response = await fakeFetch.getResult(0);
+      console.log(response);
+
       expect(errorMessage).toBe(
         "Sorry, we couldn't sign you up just now, try again later.",
       );
     });
     test("error is reported", async () => {
+      global.fetch = getFakeFetch([unknownErrorFailure]).asFetch;
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
@@ -330,16 +338,9 @@ describe("hubspotSubmitForm", () => {
     });
   });
 
-  describe.skip("Network error", () => {
-    beforeEach(() => {
-      server.use(
-        rest.post(primaryFormEndpoint, (req, res) =>
-          // DEBUG this is now resulting in an OakError, so the following tests fail.
-          res.networkError("Failed to connect"),
-        ),
-      );
-    });
+  describe("Network error", () => {
     test("user is displayed correct message", async () => {
+      global.fetch = getFakeFetchWithNetworkError().asFetch;
       let errorMessage = "";
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });

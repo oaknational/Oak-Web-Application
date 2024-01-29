@@ -7,6 +7,10 @@ type FakeFetch = jest.Mock<PromiseForFakeResponse>;
  * Takes an array of FetchMatchers, or a single FetchMatcher, and returns a
  * mock fetch function that will return the response specified by the matcher.
  *
+ * Note that the matcher will match on all methods.
+ *
+ * @todo support matching on method as well as path.
+ *
  * @param matchers - An array of FetchMatchers, or a single FetchMatcher.
  * @returns An object with two references to the same mock fetch function, one typed as fetch, and one typed as a mock. Also includes a helper function to get the result of a specific fetch call.
  */
@@ -22,6 +26,7 @@ export function getFakeFetch(matchers: FetchMatcher[] | FetchMatcher): {
 
     let matcher: FetchMatcher | undefined;
     if (Array.isArray(matchers)) {
+      // Currently only supports one matcher per path.
       matcher = matchers.find((matcher) => matcher.path === requestedPath);
     } else {
       matcher = matchers;
@@ -47,6 +52,25 @@ export function getFakeFetch(matchers: FetchMatcher[] | FetchMatcher): {
       }
       return value;
     },
+  };
+}
+
+/**
+ * Get a fake fetch that will have a network error.
+ */
+export function getFakeFetchWithNetworkError(): {
+  asFetch: typeof fetch;
+  asMock: FakeFetch;
+} {
+  const fakeFetch: FakeFetch = jest.fn();
+
+  fakeFetch.mockImplementation(() => {
+    return Promise.reject(new Error("Ohhh nooooooo!"));
+  });
+
+  return {
+    asFetch: fakeFetch as unknown as typeof fetch,
+    asMock: fakeFetch,
   };
 }
 

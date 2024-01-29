@@ -44,8 +44,14 @@ export class GenericFetchMatcher implements FetchMatcher {
 
   protected getBaseResponseData(): FakeResponse {
     const { status, errors } = this._responseConfig;
+    // No error code status or errors passed with the response.
+    // So a 200 with errors passed is not okay, which may be wrong.
+    const ok =
+      !/4\d\d/.test(status.toString()) &&
+      !/5\d\d/.test(status.toString()) &&
+      (!errors || errors.length === 0);
     const responseData: FakeResponse = {
-      ok: !errors,
+      ok,
       status: status,
       THIS_IS_A_FAKE_RESPONSE:
         "If you were expecting a real response make sure you have reinstated the real `fetch` function.",
