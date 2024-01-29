@@ -33,20 +33,18 @@ describe("QuizMCQSingleAnswerFeedback", () => {
   it("renders the answer when currentQuestionData.question type is multiple choice", () => {
     const context = getQuizEngineContext();
 
-    if (context?.currentQuestionData) {
-      const { getByText } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizMCQSingleAnswerFeedback />
-          </QuizEngineContext.Provider>
-        </OakThemeProvider>,
-      );
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizMCQSingleAnswerFeedback />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
 
-      expect(
-        getByText(
-          `Correct answer: a group of words that contains a verb and makes complete sense`,
-        ),
-      ).toBeInTheDocument();
-    }
+    expect(
+      getByText(
+        `Correct answer: a group of words that contains a verb and makes complete sense`,
+      ),
+    ).toBeInTheDocument();
   });
 });
