@@ -1,9 +1,9 @@
 import React, { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import Box from "@/components/SharedComponents/Box";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonOverviewRequirements, {
   Equipment,
   ContentGuidance,
@@ -25,35 +25,35 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
 }) => {
   return (
     <Box $background={"aqua50"} $position={"relative"} $width={320}>
-      <Grid $rg={32} $pa={24}>
+      <OakGrid $rg={"all-spacing-7"} $pa={"inner-padding-xl"}>
         {equipment && equipment?.length > 0 && (
-          <GridArea $colStart={1} $colSpan={[12]}>
+          <OakGridArea $colStart={1} $colSpan={[12]}>
             <LessonOverviewRequirements
               helperIcon={"equipment-required"}
               heading="Equipment"
               equipment={equipment}
             />
-          </GridArea>
+          </OakGridArea>
         )}
         {contentGuidance && (
-          <GridArea $colStart={1} $colSpan={[12]}>
+          <OakGridArea $colStart={1} $colSpan={[12]}>
             <LessonOverviewRequirements
               helperIcon={"content-guidance"}
               heading="Content guidance"
               contentGuidance={contentGuidance}
             />
-          </GridArea>
+          </OakGridArea>
         )}
         {supervisionLevel && (
-          <GridArea $colStart={1} $colSpan={[12]}>
+          <OakGridArea $colStart={1} $colSpan={[12]}>
             <LessonOverviewRequirements
               helperIcon={"supervision-level"}
               heading="Supervision"
               supervisionLevel={supervisionLevel}
             />
-          </GridArea>
+          </OakGridArea>
         )}
-        <GridArea $colStart={1} $colSpan={[12]}>
+        <OakGridArea $colStart={1} $colSpan={[12]}>
           <LessonRequirementsHeading
             helperIcon={"copyright"}
             heading="Licence"
@@ -65,8 +65,8 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
               openLinksExternally={false}
             />
           </Box>
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
       <BrushBorders color="aqua50" />
     </Box>
   );

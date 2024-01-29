@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import SubjectProgrammeListItem from "@/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * Clickable programme card list.
@@ -19,19 +19,19 @@ const ProgrammeList: FC<ProgrammeListProps> = ({ programmes, onClick }) => {
   const colSpan = programmes.length === 2 ? 6 : 4;
 
   return (
-    <Grid $cg={16}>
+    <OakGrid $cg={"all-spacing-4"}>
       {programmes.map((programme) => {
         return (
-          <GridArea
-            $mb={16}
+          <OakGridArea
+            $mb={"space-between-s"}
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
             <SubjectProgrammeListItem programme={programme} onClick={onClick} />
-          </GridArea>
+          </OakGridArea>
         );
       })}
-    </Grid>
+    </OakGrid>
   );
 };
 

@@ -4,8 +4,8 @@ import flex from "@/styles/utils/flex";
 import responsive, { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { TypographyProps } from "@/styles/utils/typography";
 import { box } from "@/components/SharedComponents/Box";
-import { GridAreaProps } from "@/components/SharedComponents/Grid";
-import { gridArea } from "@/components/SharedComponents/Grid/GridArea";
+import { GridAreaProps } from "@/components/SharedComponents/Grid.deprecated";
+import { gridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type ListItemProps = {

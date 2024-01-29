@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -7,7 +8,6 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { Heading, UL, LI, P } from "@/components/SharedComponents/Typography";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
@@ -62,13 +62,18 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       <P $color={"black"} $mb={16} $font={"heading-7"}>
         Select key stage
       </P>
-      <Grid $mb={years ? 48 : 24} $ph={8} $gap={24} $maxWidth={580}>
+      <OakGrid
+        $mb={years ? "space-between-l" : "space-between-m"}
+        $ph={"inner-padding-xs"}
+        $cg={"all-spacing-6"}
+        $maxWidth={"all-spacing-22"}
+      >
         {keyStages.map((keyStage) => (
-          <GridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
+          <OakGridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
             <KeypadLink {...keyStage} />
-          </GridArea>
+          </OakGridArea>
         ))}
-      </Grid>
+      </OakGrid>
 
       {years && (
         <>
