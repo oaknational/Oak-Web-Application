@@ -59,11 +59,10 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, lessonCohort } = lesson;
+  const { lessonTitle, lessonSlug, downloads } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-
   const {
     programmeSlug,
     keyStageTitle,
@@ -72,8 +71,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     subjectTitle,
     unitSlug,
     unitTitle,
+    lessonCohort,
   } = commonPathway;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
