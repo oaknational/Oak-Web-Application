@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
+import { OakRadioGroup, OakQuizRadioButton } from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";

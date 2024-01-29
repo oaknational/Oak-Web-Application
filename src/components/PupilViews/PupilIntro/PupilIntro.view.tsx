@@ -2,7 +2,7 @@ import {
   OakFlex,
   OakHeading,
   OakSecondaryButton,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
