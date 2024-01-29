@@ -40,18 +40,18 @@ describe("PupilQuizView", () => {
   });
 
   it("disables submit button when mode is init", () => {
-    const { getByText } = renderWithTheme(
+    const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByText("Submit").closest("button")).toBeDisabled();
+    expect(getByRole("button", { name: "Submit" })).toBeDisabled();
   });
 
   it("renders Next button when questionState.mode is feedback", () => {
-    const { getByText, getByLabelText, getByRole } = renderWithTheme(
+    const { getByLabelText, getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
@@ -64,7 +64,7 @@ describe("PupilQuizView", () => {
       fireEvent.click(getByLabelText(/a group of letters/));
       fireEvent.click(getByRole("button", { name: "Submit" }));
     });
-    expect(getByText("Next question").closest("button")).toBeInTheDocument();
+    expect(getByRole("button", { name: "Next question" })).toBeInTheDocument();
   });
 
   it("does not render Next button when questionState.mode is not feedback", () => {
