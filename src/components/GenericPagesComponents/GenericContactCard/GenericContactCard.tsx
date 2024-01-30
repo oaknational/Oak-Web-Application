@@ -1,6 +1,15 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import Link from "next/link";
+import {
+  oakDefaultTheme,
+  OakThemeProvider,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
+import { resolveOakHref } from "@/common-lib/urls";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
@@ -9,7 +18,6 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
 const genericContactCardPortableTextComponents: PortableTextComponents = {
@@ -38,7 +46,7 @@ type GenericContactCardProps = {
 const GenericContactCard: FC<GenericContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
   return (
-    <Flex $position={"relative"} $width={"100%"}>
+    <OakFlex $position={"relative"} $width={"100%"}>
       <BrushBorders hideOnMobileH hideOnMobileV color={"mint50"} />
       <OakGrid>
         <OakGridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
@@ -52,9 +60,14 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
               components={genericContactCardPortableTextComponents}
               value={props.infoPortableText}
             />
-            <Flex $mb={[32, 0]}>
-              <ButtonAsLink label={"Contact us"} page="contact" />
-            </Flex>
+            <OakFlex $mb={["space-between-m2", "space-between-none"]}>
+              <OakPrimaryButton
+                element={Link}
+                href={resolveOakHref({ page: "contact" })}
+              >
+                Contact us
+              </OakPrimaryButton>
+            </OakFlex>
           </Card>
         </OakGridArea>
         <OakGridArea
@@ -67,7 +80,7 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
           </Flex>
         </OakGridArea>
       </OakGrid>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,12 +1,16 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 import {
+  oakDefaultTheme,
+  OakThemeProvider,
   OakFlex,
   OakMaxWidth,
   OakHeading,
   OakGrid,
   OakGridArea,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
+import { resolveOakHref } from "@/common-lib/urls";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
@@ -23,7 +27,6 @@ import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -49,97 +52,102 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
 
 const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
-      >
-        <GenericSummaryCard {...pageData} />
-        <GenericIntroCard
-          image={{
-            illustration: "supporting",
-            sizes: "(min-width: 750px) 720px, 100vw",
-            priority: true,
-          }}
-          bodyPortableText={pageData.introPortableText}
-        />
-
-        <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
-          $font={["heading-6", "heading-5"]}
-          tag={"h2"}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+        <OakMaxWidth
+          $mb={["space-between-xl", "space-between-xxxl"]}
+          $mt={["space-between-xl", "space-between-xxxl"]}
         >
-          Meet our teachers
-        </OakHeading>
-        <OakFlex
-          $alignItems={"center"}
-          $justifyContent={"center"}
-          $minWidth={"100%"}
-          $minHeight={["all-spacing-17", "all-spacing-19"]}
-          $mb={"space-between-l"}
-          $position={"relative"}
-        >
-          <Illustration
-            sizes={getSizes([95, 178])}
-            slug="teacher-carrying-more-stuff"
-            $objectPosition={"center center"}
-            fill
-            $objectFit="contain"
+          <GenericSummaryCard {...pageData} />
+          <GenericIntroCard
+            image={{
+              illustration: "supporting",
+              sizes: "(min-width: 750px) 720px, 100vw",
+              priority: true,
+            }}
+            bodyPortableText={pageData.introPortableText}
           />
-        </OakFlex>
-        <ButtonAsLink
-          icon={"arrow-right"}
-          $iconPosition={"trailing"}
-          label={"Our teachers"}
-          page="our-teachers"
-          $mh="auto"
-          $mb={[80, 92]}
-        />
 
-        <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
-          $font={["heading-6", "heading-5"]}
-          tag={"h2"}
-        >
-          Curriculum partners
-        </OakHeading>
-        <OakGrid
-          $mb={"space-between-xl"}
-          data-testid="curriculum-partners-list"
-        >
-          {pageData.curriculumPartners.map((partner) => (
-            <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
-              <ImageContainer
-                $pa={[16, 24, 16]}
-                name={partner.name}
-                image={partner}
-              />
-            </OakGridArea>
-          ))}
-        </OakGrid>
+          <OakHeading
+            $mb={["space-between-l", "space-between-m2"]}
+            $font={["heading-6", "heading-5"]}
+            tag={"h2"}
+          >
+            Meet our teachers
+          </OakHeading>
+          <OakFlex
+            $alignItems={"center"}
+            $justifyContent={"center"}
+            $minWidth={"100%"}
+            $minHeight={["all-spacing-17", "all-spacing-19"]}
+            $mb={"space-between-l"}
+            $position={"relative"}
+          >
+            <Illustration
+              sizes={getSizes([95, 178])}
+              slug="teacher-carrying-more-stuff"
+              $objectPosition={"center center"}
+              fill
+              $objectFit="contain"
+            />
+          </OakFlex>
 
-        <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
-          $font={["heading-6", "heading-5"]}
-          tag={"h2"}
-        >
-          Tech partners
-        </OakHeading>
-        <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
-          {pageData.techPartners.map((partner) => (
-            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
-              <ImageContainer
-                $pa={[16, 24, 32]}
-                name={partner.name}
-                image={partner}
-              />
-            </OakGridArea>
-          ))}
-        </OakGrid>
+          <OakFlex $mb={"space-between-xxxl"} $justifyContent={"center"}>
+            <OakPrimaryButton
+              element={"a"}
+              href={resolveOakHref({ page: "our-teachers" })}
+              iconName={"arrow-right"}
+              isTrailingIcon={true}
+            >
+              Our teachers
+            </OakPrimaryButton>
+          </OakFlex>
 
-        <GenericContactCard {...pageData.contactSection} />
-      </OakMaxWidth>
-    </Layout>
+          <OakHeading
+            $mb={["space-between-l", "space-between-m2"]}
+            $font={["heading-6", "heading-5"]}
+            tag={"h2"}
+          >
+            Curriculum partners
+          </OakHeading>
+          <OakGrid
+            $mb={"space-between-xl"}
+            data-testid="curriculum-partners-list"
+          >
+            {pageData.curriculumPartners.map((partner) => (
+              <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
+                <ImageContainer
+                  $pa={[16, 24, 16]}
+                  name={partner.name}
+                  image={partner}
+                />
+              </OakGridArea>
+            ))}
+          </OakGrid>
+
+          <OakHeading
+            $mb={["space-between-l", "space-between-m2"]}
+            $font={["heading-6", "heading-5"]}
+            tag={"h2"}
+          >
+            Tech partners
+          </OakHeading>
+          <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
+            {pageData.techPartners.map((partner) => (
+              <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
+                <ImageContainer
+                  $pa={[16, 24, 32]}
+                  name={partner.name}
+                  image={partner}
+                />
+              </OakGridArea>
+            ))}
+          </OakGrid>
+
+          <GenericContactCard {...pageData.contactSection} />
+        </OakMaxWidth>
+      </Layout>
+    </OakThemeProvider>
   );
 };
 

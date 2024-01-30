@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
@@ -14,7 +15,6 @@ import {
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { P } from "@/components/SharedComponents/Typography";
-import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -124,19 +124,16 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
         $mt={32}
+        $mb={32}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <Button
-        $mt={24}
-        label="Sign up to the newsletter"
-        $fullWidth
-        htmlButtonProps={{ disabled: loading }}
-        background="black"
-      />
+      <OakPrimaryButton type="submit" disabled={loading}>
+        Sign up to the newsletter
+      </OakPrimaryButton>
       <P
         $mt={error ? 16 : 0}
         $font={"body-3"}

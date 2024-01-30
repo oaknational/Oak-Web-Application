@@ -1,12 +1,15 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
 import {
+  oakDefaultTheme,
+  OakThemeProvider,
   OakFlex,
   OakMaxWidth,
   OakGrid,
   OakGridArea,
   OakHeading,
   OakTypography,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -35,45 +38,55 @@ const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo } = pageData;
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
-      >
-        <GenericSummaryCard {...pageData} />
-        <GenericIntroCard
-          image={{
-            illustration: "supporting",
-            sizes: "(min-width: 750px) 720px, 100vw",
-            priority: true,
-          }}
-          bodyPortableText={pageData.introPortableText}
-        />
-        <OakGrid
-          $mb={["space-between-xxl", "space-between-xxxl"]}
-          $cg={"space-between-m"}
-          $rg={["space-between-none", "space-between-m2"]}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+        <OakMaxWidth
+          $mb={["space-between-xl", "space-between-xxxl"]}
+          $mt={["space-between-xl", "space-between-xxxl"]}
         >
-          {getWorkWithUsCards(pageData).map((card) => (
-            <Fragment key={card.title}>
-              <OakGridArea $colSpan={[12, 6]}>
-                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
-                  <OakHeading
-                    $font={["heading-6", "heading-5"]}
-                    tag={"h2"}
-                    $mb={"space-between-m"}
-                  >
-                    {card.title}
-                  </OakHeading>
-                  <OakTypography
-                    $mb={"space-between-m2"}
-                    $font={["body-2", "body-1"]}
-                  >
-                    <PortableTextWithDefaults value={card.bodyPortableText} />
-                  </OakTypography>
-                  {card.cta?.linkType == "external" && (
-                    <OakFlex>
-                      <ButtonAsLink
+          <GenericSummaryCard {...pageData} />
+          <GenericIntroCard
+            image={{
+              illustration: "supporting",
+              sizes: "(min-width: 750px) 720px, 100vw",
+              priority: true,
+            }}
+            bodyPortableText={pageData.introPortableText}
+          />
+          <OakGrid
+            $mb={["space-between-xxl", "space-between-xxxl"]}
+            $cg={"space-between-m"}
+            $rg={["space-between-none", "space-between-m2"]}
+          >
+            {getWorkWithUsCards(pageData).map((card) => (
+              <Fragment key={card.title}>
+                <OakGridArea $colSpan={[12, 6]}>
+                  <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
+                    <OakHeading
+                      $font={["heading-6", "heading-5"]}
+                      tag={"h2"}
+                      $mb={"space-between-m"}
+                    >
+                      {card.title}
+                    </OakHeading>
+                    <OakTypography
+                      $mb={"space-between-m2"}
+                      $font={["body-2", "body-1"]}
+                    >
+                      <PortableTextWithDefaults value={card.bodyPortableText} />
+                    </OakTypography>
+                    {card.cta?.linkType == "external" && (
+                      <OakFlex>
+                        <OakPrimaryButton
+                          element={"a"}
+                          href={card.cta.external}
+                          iconName={"external"}
+                          isTrailingIcon={true}
+                        >
+                          {card.cta.label}
+                        </OakPrimaryButton>
+
+                        {/* <ButtonAsLink
                         background="blue"
                         label={card.cta.label}
                         page={null}
@@ -83,19 +96,20 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                         iconBackground="lemon"
                       >
                         {card.cta.label}
-                      </ButtonAsLink>
-                    </OakFlex>
-                  )}
-                  <BrushBorders hideOnMobileH color={"aqua"} />
-                </Card>
-              </OakGridArea>
-            </Fragment>
-          ))}
-        </OakGrid>
+                      </ButtonAsLink> */}
+                      </OakFlex>
+                    )}
+                    <BrushBorders hideOnMobileH color={"aqua"} />
+                  </Card>
+                </OakGridArea>
+              </Fragment>
+            ))}
+          </OakGrid>
 
-        <GenericContactCard {...pageData.contactSection} />
-      </OakMaxWidth>
-    </Layout>
+          <GenericContactCard {...pageData.contactSection} />
+        </OakMaxWidth>
+      </Layout>
+    </OakThemeProvider>
   );
 };
 

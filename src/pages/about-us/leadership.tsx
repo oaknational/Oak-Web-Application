@@ -1,5 +1,10 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakMaxWidth, OakHeading } from "@oaknational/oak-components";
+import {
+  oakDefaultTheme,
+  OakThemeProvider,
+  OakMaxWidth,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -19,43 +24,45 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo, introPortableText, leadershipTeam } = pageData;
 
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
-      >
-        <GenericSummaryCard {...pageData} />
-        <GenericIntroCard
-          image={{
-            illustration: "supporting",
-            sizes: "(min-width: 750px) 720px, 100vw",
-            priority: true,
-          }}
-          bodyPortableText={introPortableText}
-        />
-        {leadershipTeam && (
-          <>
-            <OakHeading
-              $mb={["space-between-l", "space-between-m2"]}
-              $font={["heading-6", "heading-5"]}
-              tag={"h2"}
-              $textAlign={"center"}
-            >
-              Our leadership
-            </OakHeading>
-            <BioCardList
-              $mb={[80, 60]}
-              $ph={[16, 0]}
-              bios={leadershipTeam}
-              withModals
-              firstBioHasOwnRow
-            />
-          </>
-        )}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+        <OakMaxWidth
+          $mb={["space-between-xl", "space-between-xxxl"]}
+          $mt={["space-between-xl", "space-between-xxxl"]}
+        >
+          <GenericSummaryCard {...pageData} />
+          <GenericIntroCard
+            image={{
+              illustration: "supporting",
+              sizes: "(min-width: 750px) 720px, 100vw",
+              priority: true,
+            }}
+            bodyPortableText={introPortableText}
+          />
+          {leadershipTeam && (
+            <>
+              <OakHeading
+                $mb={["space-between-l", "space-between-m2"]}
+                $font={["heading-6", "heading-5"]}
+                tag={"h2"}
+                $textAlign={"center"}
+              >
+                Our leadership
+              </OakHeading>
+              <BioCardList
+                $mb={[80, 60]}
+                $ph={[16, 0]}
+                bios={leadershipTeam}
+                withModals
+                firstBioHasOwnRow
+              />
+            </>
+          )}
 
-        <GenericContactCard {...pageData.contactSection} />
-      </OakMaxWidth>
-    </Layout>
+          <GenericContactCard {...pageData.contactSection} />
+        </OakMaxWidth>
+      </Layout>
+    </OakThemeProvider>
   );
 };
 
