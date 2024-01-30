@@ -17,14 +17,9 @@ export const generateProgrammeListing = (
     isLegacy,
   );
 
-  const subjectSlug = isLegacy
-    ? `${programmeListing.subjectSlug}-l`
-    : programmeListing.subjectSlug;
-
   return {
     ...programmeListing,
     programmes,
-    subjectSlug,
   };
 };
 
@@ -34,6 +29,7 @@ const transformProgrammeSlugs = (
 ) => {
   if (isLegacy) {
     return programmes.map((p) => {
+      if (p.programmeSlug.endsWith("-l")) return p;
       p.programmeSlug = `${p.programmeSlug}-l`;
       return p;
     });

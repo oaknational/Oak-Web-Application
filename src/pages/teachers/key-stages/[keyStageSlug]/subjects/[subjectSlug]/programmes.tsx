@@ -20,11 +20,11 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
+import { generateProgrammeListing } from "@/components/TeacherComponents/helpers/programmeHelpers/generateCorrectProgrammes";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
     props;
-
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
@@ -128,7 +128,6 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context params");
       }
-
       const curriculumData = isSlugLegacy(context.params?.subjectSlug)
         ? await curriculumApi.tierListing({
             keyStageSlug: context.params?.keyStageSlug,
@@ -139,9 +138,14 @@ export const getStaticProps: GetStaticProps<
             subjectSlug: context.params?.subjectSlug,
           });
 
+      const generatedCurriculumData = generateProgrammeListing(
+        curriculumData,
+        isSlugLegacy(context.params?.subjectSlug),
+      );
+
       const results = {
         props: {
-          ...curriculumData,
+          ...generatedCurriculumData,
         },
       };
 
