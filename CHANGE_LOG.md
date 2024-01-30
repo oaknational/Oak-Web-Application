@@ -1,3 +1,45 @@
+# [1.336.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.3...v1.336.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* button width ([29eea9e](https://github.com/oaknational/Oak-Web-Application/commit/29eea9e4924fb7b5be028f6d3227f9746056affc))
+* layout component stretch to fill page ([26c065d](https://github.com/oaknational/Oak-Web-Application/commit/26c065d13fbd74adcbe4b3252c932807a185b037))
+
+
+### Features
+
+* **components:** merge main ([c00df69](https://github.com/oaknational/Oak-Web-Application/commit/c00df69b7461f486d7ef26a480cf5eba1cd7739c))
+* **components:** merge main ([e7c9516](https://github.com/oaknational/Oak-Web-Application/commit/e7c95168a3f87949edfaafea6268b6500cef6c68))
+* **components:** spacing changes ([98dc0fa](https://github.com/oaknational/Oak-Web-Application/commit/98dc0fa2b053a047c0f87b24821aafeaff317aa5))
+* **oak-layout:** add oak layout to quiz ([8ccd626](https://github.com/oaknational/Oak-Web-Application/commit/8ccd626a6b2daf282f8a78c19954e992b8ff5e78))
+* **pupilQuiz:** display counter, feedback and how many choice to pick ([870ee1b](https://github.com/oaknational/Oak-Web-Application/commit/870ee1bbebbba71a74e3a8fece145468a3cf5c1c))
+* **pupilQuiz:** lint fix ([293e6ab](https://github.com/oaknational/Oak-Web-Application/commit/293e6abc3820f2c0ada36cdff9b8776a7a4a481e))
+* **pupilQuiz:** merge commit ([d4d9c9b](https://github.com/oaknational/Oak-Web-Application/commit/d4d9c9b5153375042d5aba4371cefd14bc80fde1))
+* **pupilQuiz:** question stem font ([e09882e](https://github.com/oaknational/Oak-Web-Application/commit/e09882e42581399c46f4e1d7dfe826f6bf2259d6))
+* **pupilQuiz:** question stem font ([9af9e44](https://github.com/oaknational/Oak-Web-Application/commit/9af9e44e14bb282943f3ea466180a0248354e54e))
+* **pupilQuiz:** refactor and write tests ([996023e](https://github.com/oaknational/Oak-Web-Application/commit/996023e24c4d9eabef7e6d61eaf923ae58f1b2a0))
+* **pupilQuiz:** reiview changes ([6d0677f](https://github.com/oaknational/Oak-Web-Application/commit/6d0677f5a84d79a45d323ee2e0103cc92fd79284))
+* **pupilQuiz:** reiview changes ([4680249](https://github.com/oaknational/Oak-Web-Application/commit/46802496f2cf2444e486cd8f96d4099fe961bfe3))
+* **pupilQuiz:** remove redundant flex ([c4bf52b](https://github.com/oaknational/Oak-Web-Application/commit/c4bf52bf8c099d3f2e97cf756965a98516fc8213))
+* **pupilQuiz:** run prettier ([72b6eb1](https://github.com/oaknational/Oak-Web-Application/commit/72b6eb1f50dd1d97be60aff5a20a0777a5a2b750))
+* **pupilQuiz:** test fix ([c043463](https://github.com/oaknational/Oak-Web-Application/commit/c043463acaacfb8f2169ca5f004b62744e457100))
+* **pupilQuiz:** test fix ([298b07a](https://github.com/oaknational/Oak-Web-Application/commit/298b07a5f48035b3d7a5096c949aeb7ce2212f91))
+* **pupilQuiz:** update package ([82503be](https://github.com/oaknational/Oak-Web-Application/commit/82503be2c5d6b600c0f635d28627134e0eaa0c94))
+* **quizView:** add almost correct answer state ([94d3815](https://github.com/oaknational/Oak-Web-Application/commit/94d3815ba8978b92089fa9a84001e15d42e60f01))
+* **quizView:** add almost correct answer state ([2756a67](https://github.com/oaknational/Oak-Web-Application/commit/2756a671be1403aca8b641de6b776e1b4bc01e1b))
+* **quizView:** addfeedback and other style changes ([3cd7aff](https://github.com/oaknational/Oak-Web-Application/commit/3cd7aff9bb888c14d8d781d03728b1e7f1eb310b))
+* **quizView:** format ([7d9855c](https://github.com/oaknational/Oak-Web-Application/commit/7d9855c99a8db83b1f094a383f99c7bafec02e95))
+* **quizView:** increase test coverage ([1a739ea](https://github.com/oaknational/Oak-Web-Application/commit/1a739ea72103d805431b47789aa498cf6032b5ab))
+* **quizView:** merge commit ([60f9d66](https://github.com/oaknational/Oak-Web-Application/commit/60f9d66617fa2d89106aa860e07eb5808159cfc4))
+* **quizView:** merge main ([12a0b94](https://github.com/oaknational/Oak-Web-Application/commit/12a0b9420600f5cbdc025c764011112faf06e315))
+* **quizView:** merge main ([036b402](https://github.com/oaknational/Oak-Web-Application/commit/036b402b9876d42b28ceca7b05a89e4651a8eda9))
+* **quizView:** merge main ([237a49f](https://github.com/oaknational/Oak-Web-Application/commit/237a49f89928b5c298488ef6092067b29c1c0b1c))
+* **quizView:** merge main ([1aabd0a](https://github.com/oaknational/Oak-Web-Application/commit/1aabd0ace5a935465bcbe8f2b50a7fa0aa27e908))
+* **quizView:** refactor and clean code ([a4986b2](https://github.com/oaknational/Oak-Web-Application/commit/a4986b2783f924767213720e14e162c53dadc057))
+* **quizView:** remove if statement ([3dbf6ba](https://github.com/oaknational/Oak-Web-Application/commit/3dbf6ba6626898215afa66c883a3756015af15e6))
+* **quizView:** removeclosest method ([e6d9975](https://github.com/oaknational/Oak-Web-Application/commit/e6d99756ed28475b8c548fb01c8c95fde8d2476e))
+
 ## [1.335.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.2...v1.335.3) (2024-01-29)
 
 ## [1.335.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.335.1...v1.335.2) (2024-01-29)
