@@ -2,6 +2,13 @@ import { createSearchQuery } from "../../useSearch";
 
 import { constructElasticQuery } from "./constructElasticQuery";
 
+const highlight = {
+  number_of_fragments: 0,
+  pre_tags: ["<b>"],
+  post_tags: ["</b>"],
+  fields: { pupilLessonOutcome: {}, lessonDescription: {} },
+};
+
 describe("Search/2023/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
@@ -41,12 +48,7 @@ describe("Search/2023/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { pupil_lesson_outcome: {} },
-      },
+      highlight,
     });
   });
   test("handles key stages", () => {
@@ -93,12 +95,7 @@ describe("Search/2023/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { pupil_lesson_outcome: {} },
-      },
+      highlight,
     });
   });
   test("handles subject filters", () => {
@@ -146,12 +143,7 @@ describe("Search/2023/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { pupil_lesson_outcome: {} },
-      },
+      highlight,
     });
   });
 
@@ -201,12 +193,7 @@ describe("Search/2023/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { pupil_lesson_outcome: {} },
-      },
+      highlight,
     });
   });
 
@@ -277,7 +264,8 @@ describe("Search/2023/constructElasticQuery", () => {
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
         fields: {
-          pupil_lesson_outcome: {},
+          pupilLessonOutcome: {},
+          lessonDescription: {},
         },
       },
     });

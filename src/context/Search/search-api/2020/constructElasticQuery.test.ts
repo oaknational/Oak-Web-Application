@@ -2,6 +2,18 @@ import { createSearchQuery } from "../../useSearch";
 
 import constructElasticQuery from "./constructElasticQuery";
 
+const highlight = {
+  number_of_fragments: 0,
+  pre_tags: ["<b>"],
+  post_tags: ["</b>"],
+  fields: {
+    topic_title: {},
+    theme_title: {},
+    lesson_description: {},
+    pupil_lesson_outcome: {},
+  },
+};
+
 describe("Search/2020/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
@@ -43,12 +55,7 @@ describe("Search/2020/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
-      },
+      highlight,
     });
   });
   test("handles key stages", () => {
@@ -92,12 +99,7 @@ describe("Search/2020/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
-      },
+      highlight,
     });
   });
   test("handles subject filters", () => {
@@ -145,12 +147,7 @@ describe("Search/2020/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
-      },
+      highlight,
     });
   });
 
@@ -199,12 +196,7 @@ describe("Search/2020/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
-      },
+      highlight,
     });
   });
 
@@ -253,12 +245,7 @@ describe("Search/2020/constructElasticQuery", () => {
           minimum_should_match: 1,
         },
       },
-      highlight: {
-        number_of_fragments: 0,
-        pre_tags: ["<b>"],
-        post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
-      },
+      highlight,
     });
   });
 });
