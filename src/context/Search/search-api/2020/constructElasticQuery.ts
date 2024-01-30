@@ -102,7 +102,6 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       topic_title: {},
       theme_title: {},
       lesson_description: {},
-      pupil_lesson_outcome: {},
     },
   };
 
