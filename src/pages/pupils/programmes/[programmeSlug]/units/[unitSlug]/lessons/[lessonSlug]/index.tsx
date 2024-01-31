@@ -51,7 +51,6 @@ const PupilPageContent = ({
   }
 
   const { starterQuiz, exitQuiz, lessonTitle } = curriculumData;
-  console.log(starterQuiz);
   switch (currentSection) {
     case "overview":
       return <PupilViewsLessonOverview />;

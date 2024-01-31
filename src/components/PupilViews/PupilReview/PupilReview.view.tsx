@@ -86,12 +86,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
           $gap={"space-between-s"}
         >
           {lessonReviewSections.map((lessonSection) => {
-            console.log(
-              sectionResults,
-              completedSections,
-              lessonSection,
-              completedSections.includes(lessonSection),
-            );
             return (
               <OakLessonReviewItem
                 lessonSectionName={lessonSection}
