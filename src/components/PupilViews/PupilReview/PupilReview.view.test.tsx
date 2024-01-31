@@ -11,7 +11,6 @@ import {
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
-
 const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
   currentSection: "starter-quiz",
   completedSections: [],
