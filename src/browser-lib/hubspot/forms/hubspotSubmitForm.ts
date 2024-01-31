@@ -209,7 +209,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
         }
         /**
          * Either we have received a hubspot error other than INVALID_EMAIL
-         * or we've recieved INVALID_EMAIL in response to the fallback form
+         * or we've received INVALID_EMAIL in response to the fallback form
          * (which should never happen is the fallback form doesn't have an
          * email field.
          */
