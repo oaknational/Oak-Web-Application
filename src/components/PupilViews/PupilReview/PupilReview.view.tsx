@@ -51,11 +51,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $pa={"inner-padding-xl"}
         $gap={"space-between-xl"}
       >
-        <OakTertiaryButton
-          iconName="arrow-left"
-          $pa={"inner-padding-m"}
-          disabled
-        >
+        <OakTertiaryButton iconName="arrow-left" disabled>
           View all lessons
         </OakTertiaryButton>
         <OakFlex>
@@ -65,7 +61,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $gap={"space-between-l"}
             $justifyContent={"center"}
           >
-            <OakHeading tag="h1" $font={"heading-3"}>
+            <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
               Lesson review
             </OakHeading>
             <OakHeading tag="h2" $font={"heading-light-7"}>
