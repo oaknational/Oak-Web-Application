@@ -26,9 +26,13 @@ describe("pupilLessonOverview()", () => {
           lesson: [
             {
               starterQuiz: quizQuestions,
+              lessonSlug: "lesson-slug",
+              lessonTitle: "lesson-title",
             },
             {
               starterQuiz: [],
+              lessonSlug: "lesson-slug-2",
+              lessonTitle: "lesson-title-2",
             },
           ],
         }),

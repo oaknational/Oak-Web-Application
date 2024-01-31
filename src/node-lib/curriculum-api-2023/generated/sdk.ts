@@ -32177,7 +32177,7 @@ export type PupilLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_0', starterQuiz?: any | null, exitQuiz?: any | null }> };
+export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_0', starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, lessonTitle?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -32416,6 +32416,8 @@ export const PupilLessonOverviewDocument = gql`
   ) {
     starterQuiz
     exitQuiz
+    lessonSlug
+    lessonTitle
   }
 }
     `;
