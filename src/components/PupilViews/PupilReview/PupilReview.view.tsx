@@ -68,7 +68,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             <OakHeading tag="h1" $font={"heading-3"}>
               Lesson review
             </OakHeading>
-            <OakSpan $font={"body-3"}>{lessonTitle}</OakSpan>
+            <OakHeading tag="h2" $font={"heading-light-7"}>
+              {lessonTitle}
+            </OakHeading>
           </OakFlex>
 
           <OakFlex $flexGrow={1}>
