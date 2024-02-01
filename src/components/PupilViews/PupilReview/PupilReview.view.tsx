@@ -48,6 +48,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       topNavSlot={null}
     >
       <OakFlex
+        $pt={["inner-padding-m", "inner-padding-none"]}
         $flexDirection={"column"}
         $alignItems={"stretch"}
         $pa={["inner-padding-none", "inner-padding-xl"]}
