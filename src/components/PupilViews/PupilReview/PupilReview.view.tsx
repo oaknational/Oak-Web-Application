@@ -76,7 +76,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               $display={["none", "none", "block"]}
               $height={"all-spacing-19"}
               alt="a man standing in front of a blackboard with a bunch of objects on top of his head and hands in the air"
-              src="https://res.cloudinary.com/oak-web-application/image/upload/v1699887218/svg-illustrations/xrazqgtjmbdf1clz8wic"
+              src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1699887218/svg-illustrations/xrazqgtjmbdf1clz8wic`}
             />
           </OakFlex>
         </OakFlex>

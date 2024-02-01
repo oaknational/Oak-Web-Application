@@ -140,21 +140,16 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
         const grade = !feedback?.includes("incorrect") ? 1 : 0;
 
-        // Set isPartially Correct innitially to false
-        let isPartiallyCorrect = false;
-
-        // answerIsCorrectArray is an array of booleans indicating whether each answer is correct
-        const answerIsCorrectArray =
-          currentQuestionData?.answers?.["multiple-choice"]?.map(
-            (answer) => answer.answer_is_correct,
-          ) || [];
-
-        // match the answerIsCorrectArray with the feedback array to determine whether a user has answered at least one answer_is_correct answer correctly.
-        answerIsCorrectArray.forEach((answer, index) => {
-          if (answer === true && feedback?.[index] === "correct") {
-            isPartiallyCorrect = true;
-          }
-        });
+        const isPartiallyCorrect =
+          (grade === 0 &&
+            currentQuestionData?.answers?.["multiple-choice"]?.some(
+              (answer, index) => {
+                return (
+                  answer.answer_is_correct && feedback?.[index] === "correct"
+                );
+              },
+            )) ??
+          false;
 
         const newState = [...prev];
         newState[currentQuestionIndex] = {
@@ -162,7 +157,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           grade,
           feedback,
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          isPartiallyCorrect: isPartiallyCorrect && grade === 0,
+          isPartiallyCorrect,
         };
         handleScoreUpdate(newState);
         return newState;
