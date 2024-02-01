@@ -6,7 +6,6 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
-import Icon from "@/components/SharedComponents/Icon";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -19,6 +18,7 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import { P, Heading } from "@/components/SharedComponents/Typography";
+import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -108,6 +108,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
+  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
+    useState<boolean>(false);
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
     yearData = {};
@@ -390,13 +392,124 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     }
   }
 
-  return (
+  function handleMobileThreadModal(): void {
+    setMobileThreadModalOpen(!mobileThreadModalOpen);
+  }
+  return mobileThreadModalOpen ? (
+    <Box
+      $background={"white"}
+      $position="fixed"
+      $top={0}
+      $right={0}
+      $height={"100%"}
+      $width={"100%"}
+      $zIndex={"modalDialog"}
+      $overflow={"auto"}
+    >
+      <Box $position={"fixed"} $top={20} $right={16}>
+        <Button
+          label=""
+          aria-label="Close Menu"
+          icon={"cross"}
+          variant={"minimal"}
+          size={"large"}
+          onClick={handleMobileThreadModal}
+          aria-expanded={open}
+        />
+      </Box>
+      <Box $ml={16} $mt={32} $display={["block", "none"]}>
+        <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+          Highlight a thread
+        </Heading>
+        <P $mb={12}>
+          Threads are groups of units across the curriculum that build a common
+          body of knowledge
+        </P>
+        <RadioGroup
+          aria-label="Highlight a thread"
+          value={selectedThread ? selectedThread.slug : ""}
+          onChange={handleSelectThread}
+        >
+          <Box $overflow={"scroll"}>
+            <Box $mv={16}>
+              <Radio
+                aria-label={"None highlighted"}
+                value={""}
+                data-testid={"no-threads-radio"}
+              >
+                None highlighted
+              </Radio>
+            </Box>
+            {threadOptions.map((threadOption) => {
+              const isSelected = isSelectedThread(threadOption);
+              const highlightedCount = highlightedUnitCount();
+              return (
+                <Box
+                  $ba={1}
+                  $background={isSelected ? "black" : "white"}
+                  $borderColor={isSelected ? "black" : "grey40"}
+                  $borderRadius={4}
+                  $color={isSelected ? "white" : "black"}
+                  $font={isSelected ? "heading-light-7" : "body-2"}
+                  $ph={12}
+                  $pt={12}
+                  $mb={8}
+                  key={threadOption.slug}
+                >
+                  <Radio
+                    aria-label={threadOption.title}
+                    value={threadOption.slug}
+                    data-testid={
+                      isSelected ? "selected-thread-radio" : "thread-radio"
+                    }
+                  >
+                    {threadOption.title}
+                    {isSelected && (
+                      <>
+                        <br />
+                        {highlightedCount}
+                        {highlightedCount === 1 ? " unit " : " units "}
+                        highlighted
+                      </>
+                    )}
+                  </Radio>
+                </Box>
+              );
+            })}
+          </Box>
+        </RadioGroup>
+      </Box>
+
+      <Flex
+        $position={"fixed"}
+        $bottom={0}
+        $width={"100%"}
+        $background={"white"}
+        $right={0}
+        $justifyContent={"right"}
+      >
+        <Button
+          $ma={16}
+          label="Done"
+          icon="arrow-right"
+          $iconPosition="trailing"
+          iconBackground="black"
+          onClick={handleMobileThreadModal}
+        />
+      </Flex>
+    </Box>
+  ) : (
     <Box>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-        <Heading tag="h2" $mb={24} $font={["heading-5", "heading-4"]}>
+      <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
+        <Heading
+          tag="h2"
+          $mb={[0, 24]}
+          $ml={[18, 0]}
+          $font={["heading-5", "heading-4"]}
+        >
           Unit sequence
         </Heading>
-        <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
+        {/* <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
           <Box
             $background={"lemon"}
             $height={"100%"}
@@ -428,10 +541,60 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               to the national curriculum.
             </P>
           </Box>
-        </Card>
+        </Card> */}
         <OakGrid>
           <OakGridArea $colSpan={[12, 3]}>
-            <Box $mr={16} $mb={32}>
+            <Box
+              $position={["sticky", "static"]}
+              $display={["block", "none"]}
+              $top={[0]}
+              $ph={[18, 0]}
+              $background={"white"}
+            >
+              <Box>
+                <Button
+                  label="Highlight a thread"
+                  icon="chevron-right"
+                  $iconPosition="trailing"
+                  variant="buttonStyledAsLink"
+                  $mb={16}
+                  $mt={16}
+                  onClick={handleMobileThreadModal}
+                />
+
+                {/* <Hr /> */}
+                <Box>
+                  <ButtonGroup
+                    aria-label="Select a year group"
+                    $overflowX={"auto"}
+                    $overflow={"auto"}
+                  >
+                    {["All", ...yearOptions].map((yearOption) => (
+                      <Box key={yearOption} $mb={16} $mt={5} $ml={5}>
+                        <Button
+                          background={"grey20"}
+                          variant="brush"
+                          aria-label={`Year ${yearOption}`}
+                          data-testid={"year-radio"}
+                          currentStyles={["color", "text-underline"]}
+                          key={yearOption}
+                          title={yearOption === "All" ? "" : `${yearOption}`}
+                          label={
+                            yearOption === "All"
+                              ? yearOption
+                              : `Year ${yearOption}`
+                          }
+                          onClick={(e) =>
+                            handleSelectYear(e.currentTarget.title)
+                          }
+                        />
+                      </Box>
+                    ))}
+                  </ButtonGroup>
+                </Box>
+              </Box>
+            </Box>
+            <Box $mr={16} $mb={32} $display={["none", "block"]}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
               </Heading>
@@ -491,7 +654,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                 })}
               </RadioGroup>
             </Box>
-            <Box $mr={16} $mb={32}>
+            <Box $mr={16} $mb={32} $display={["none", "block"]}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Year group
               </Heading>
