@@ -29,6 +29,7 @@ type QuestionState = {
   grade: number;
   offerHint: boolean;
   feedback?: QuestionFeedbackType | QuestionFeedbackType[];
+  isPartiallyCorrect?: boolean;
 };
 
 export type QuizEngineContextType = {
@@ -124,39 +125,44 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         ? pupilAnswer
         : [pupilAnswer];
 
-      const matchingAnswers = pupilAnswerArray?.filter(
-        (answer) => answer && correctAnswers?.includes(answer),
-      );
-
-      let grade = 0;
-      switch (matchingAnswers.length) {
-        case correctAnswers?.length:
-          grade = 1;
-          break;
-        case 0:
-          grade = 0;
-          break;
-        default:
-          grade = 0.5;
-      }
-
       setQuestionState((prev) => {
+        const feedback = questionAnswers?.map((answer) => {
+          // every answer receives feedback whether the student has selected it or not
+          // which are the correct choices are implied by the combination of whether it is selected and the feedback
+          if (pupilAnswerArray.includes(answer)) {
+            // Where pupils have selected an answer
+            return correctAnswers?.includes(answer) ? "correct" : "incorrect";
+          } else {
+            // where pupils have not selected an answer
+            return correctAnswers?.includes(answer) ? "incorrect" : "correct";
+          }
+        });
+
+        const grade = !feedback?.includes("incorrect") ? 1 : 0;
+
+        // Set isPartially Correct innitially to false
+        let isPartiallyCorrect = false;
+
+        // answerIsCorrectArray is an array of booleans indicating whether each answer is correct
+        const answerIsCorrectArray =
+          currentQuestionData?.answers?.["multiple-choice"]?.map(
+            (answer) => answer.answer_is_correct,
+          ) || [];
+
+        // match the answerIsCorrectArray with the feedback array to determine whether a user has answered at least one answer_is_correct answer correctly.
+        answerIsCorrectArray.forEach((answer, index) => {
+          if (answer === true && feedback?.[index] === "correct") {
+            isPartiallyCorrect = true;
+          }
+        });
+
         const newState = [...prev];
         newState[currentQuestionIndex] = {
           mode: "feedback",
           grade,
-          feedback: questionAnswers?.map((answer) => {
-            // every answer receives feedback whether the student has selected it or not
-            // which are the correct choices are implied by the combination of whether it is selected and the feedback
-            if (pupilAnswerArray.includes(answer)) {
-              // Where pupils have selected an answer
-              return correctAnswers?.includes(answer) ? "correct" : "incorrect";
-            } else {
-              // where pupils have not selected an answer
-              return correctAnswers?.includes(answer) ? "incorrect" : "correct";
-            }
-          }),
+          feedback,
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          isPartiallyCorrect: isPartiallyCorrect && grade === 0,
         };
         handleScoreUpdate(newState);
         return newState;

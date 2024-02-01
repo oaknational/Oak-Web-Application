@@ -7,7 +7,6 @@ import {
   OakLessonLayout,
   OakLessonReviewItem,
   OakPrimaryButton,
-  OakSpan,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
@@ -25,9 +24,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const { updateCurrentSection, sectionResults, completedSections } =
     useLessonEngineContext();
 
+  const completed = completedSections.length === lessonReviewSections.length;
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
+        iconName="arrow-right"
+        isTrailingIcon
         type="button"
         width={["100%", "auto"]}
         onClick={() => {
@@ -48,7 +50,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       <OakFlex
         $flexDirection={"column"}
         $alignItems={"stretch"}
-        $pa={"inner-padding-xl"}
+        $pa={["inner-padding-none", "inner-padding-xl"]}
         $gap={"space-between-xl"}
       >
         <OakTertiaryButton iconName="arrow-left" disabled>
@@ -104,7 +106,11 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $ph={"inner-padding-xl"}
             $alignItems={"center"}
           >
-            <OakSpan $font="heading-5">Fantastic learning - well done!</OakSpan>
+            <OakFlex $font="heading-5" $textAlign={["center", "left", "left"]}>
+              {completed
+                ? "Fantastic learning - well done!"
+                : "Well done, you're Oaking it!"}
+            </OakFlex>
           </OakHandDrawnCard>
         </OakFlex>
       </OakFlex>

@@ -55,7 +55,7 @@ describe("PupilReview", () => {
       </OakThemeProvider>,
     );
     expect(
-      getByRole("button", { name: "Lesson overview" }),
+      getByRole("button", { name: /Lesson overview/i }),
     ).toBeInTheDocument();
   });
 });
