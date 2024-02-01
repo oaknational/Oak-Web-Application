@@ -10,7 +10,7 @@ import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/SharedComponents/Box";
-import Grid from "@/components/SharedComponents/Grid";
+import Grid from "@/components/SharedComponents/Grid.deprecated";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];

@@ -1,4 +1,7 @@
-import { UnitListingLinkProps } from "@/common-lib/urls";
+import {
+  SpecialistUnitListingLinkProps,
+  UnitListingLinkProps,
+} from "@/common-lib/urls";
 import CategoryFilterList, {
   LearningThemeSelectedTrackingProps,
 } from "@/components/SharedComponents/CategoryFilterList";
@@ -14,8 +17,8 @@ export type UnitsLearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: LearningTheme[] | null;
-  linkProps: UnitListingLinkProps;
-  trackingProps: LearningThemeSelectedTrackingProps;
+  linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
+  trackingProps?: LearningThemeSelectedTrackingProps;
 };
 const UnitsLearningThemeFilters = ({
   labelledBy,
@@ -26,7 +29,9 @@ const UnitsLearningThemeFilters = ({
 }: UnitsLearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
-    getKey: (linkProps: UnitListingLinkProps) => {
+    getKey: (
+      linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps,
+    ) => {
       if (linkProps.search?.["learning-theme"]) {
         return linkProps.search?.["learning-theme"];
       } else return "all";

@@ -12,6 +12,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+import lessonDownloadsFixtures2023 from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
   URLParams,
@@ -332,9 +333,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   describe("Copyright notice", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: true })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
       );
 
       const copyrightNotice = await screen.findByText(
@@ -347,9 +346,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: false })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures2023()} />,
       );
 
       const copyrightNotice = await screen.findByText(

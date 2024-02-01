@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { act, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import LessonListItem from "./LessonListItem";
 
@@ -81,9 +81,7 @@ describe("Lesson List Item", () => {
     const lesson = getByText("Add two surds");
 
     userEvent.setup();
-    await act(async () => {
-      await userEvent.click(lesson);
-    });
+    await userEvent.click(lesson);
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith({
@@ -98,9 +96,7 @@ describe("Lesson List Item", () => {
 
     const user = userEvent.setup();
 
-    await act(async () => {
-      await user.hover(cardContainer);
-    });
+    await user.hover(cardContainer);
     expect(cardContainer).toHaveStyle("background-color: #f2f2f2");
   });
 });

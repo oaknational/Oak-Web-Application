@@ -7,6 +7,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -20,7 +21,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
@@ -35,6 +35,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -98,16 +99,27 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     ...{ noFollow: true, noIndex: true },
   };
 
-  const trackUnitSelected = ({ ...props }: UnitListItemProps) => {
-    track.unitSelected({
-      keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: props.title,
-      unitSlug: props.slug,
-      analyticsUseCase,
-    });
+  const trackUnitSelected = ({
+    ...props
+  }: UnitListItemProps | IndividualSpecialistUnit) => {
+    // Temporary until tracking for specialist units
+    const isSpecialistUnit = (
+      x: UnitListItemProps | IndividualSpecialistUnit,
+    ): x is IndividualSpecialistUnit => {
+      return "developmentalStageTitle" in x;
+    };
+
+    if (!isSpecialistUnit(props)) {
+      return track.unitSelected({
+        keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: props.title,
+        unitSlug: props.slug,
+        analyticsUseCase,
+      });
+    }
   };
 
   return (
@@ -153,8 +165,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
-        <Grid>
-          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
+        <OakGrid>
+          <OakGridArea
+            $order={[0, 2]}
+            $colSpan={[12, 4, 3]}
+            $pl={["inner-padding-xl"]}
+          >
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -191,9 +207,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 </Flex>
               )}
             </Box>
-          </GridArea>
+          </OakGridArea>
 
-          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={32}>
+          <OakGridArea
+            $order={[1, 0]}
+            $colSpan={[12, 8, 9]}
+            $mt={"space-between-m2"}
+          >
             <Flex $flexDirection={["column-reverse", "column"]}>
               <Flex
                 $flexDirection={"row"}
@@ -264,8 +284,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               paginationProps={paginationProps}
               onClick={trackUnitSelected}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </AppLayout>
   );

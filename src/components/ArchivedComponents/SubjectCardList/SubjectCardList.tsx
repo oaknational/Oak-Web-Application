@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
 export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
@@ -21,10 +21,15 @@ const SubjectCardList: FC<SubjectCardListProps> = ({
   keyStageTitle,
 }) => {
   return (
-    <Grid $rg={16} $cg={16} $gridAutoRows={"1fr"} $mb={72}>
+    <OakGrid
+      $rg={"space-between-s"}
+      $cg={"space-between-s"}
+      $gridAutoRows={"1fr"}
+      $mb={"space-between-xxl"}
+    >
       {subjects.map((subject) => {
         return (
-          <GridArea
+          <OakGridArea
             key={`subject-list-item-${subject[0].subjectSlug}`}
             $colSpan={[6, 3, 2]}
           >
@@ -34,10 +39,10 @@ const SubjectCardList: FC<SubjectCardListProps> = ({
               keyStageTitle={keyStageTitle}
               isAvailable={isAvailable}
             />
-          </GridArea>
+          </OakGridArea>
         );
       })}
-    </Grid>
+    </OakGrid>
   );
 };
 

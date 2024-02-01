@@ -1,8 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Component from ".";
-
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 export default {
   component: Component,
@@ -15,11 +14,11 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Grid>
-    <GridArea $colSpan={[12, 6]}>
+  <OakGrid>
+    <OakGridArea $colSpan={[12, 6]}>
       <Component {...args} />
-    </GridArea>
-  </Grid>
+    </OakGridArea>
+  </OakGrid>
 );
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

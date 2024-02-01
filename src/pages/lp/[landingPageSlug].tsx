@@ -1,4 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSClient from "@/node-lib/cms";
@@ -11,7 +12,6 @@ import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero
 import getPageProps from "@/node-lib/getPageProps";
 import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -25,7 +25,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
       seoProps={getSeoProps(pageData.seo)}
     >
       <>
-        <MaxWidth $justifyContent={"flex-start"}>
+        <OakMaxWidth $justifyContent={"flex-start"}>
           <LandingPageHero hero={pageData.hero} />
           <>
             {pageData.content.map((content, index) => {
@@ -63,7 +63,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
               }
             })}
           </>
-        </MaxWidth>
+        </OakMaxWidth>
       </>
     </Layout>
   );

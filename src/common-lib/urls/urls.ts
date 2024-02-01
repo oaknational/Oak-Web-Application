@@ -83,13 +83,12 @@ export type ProgrammeListingLinkProps = {
   subjectSlug: string;
 };
 
-type SpecialistProgrammeListingLinkProps = Omit<
+export type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
-  "page"
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-programme-index";
 };
-
 export type UnitListingLinkProps = {
   page: "unit-index";
   programmeSlug: string;
@@ -97,10 +96,13 @@ export type UnitListingLinkProps = {
     ["learning-theme"]?: string | null;
   };
 };
-type SpecialistUnitListingLinkProps = Omit<UnitListingLinkProps, "page"> & {
+
+export type SpecialistUnitListingLinkProps = Omit<
+  UnitListingLinkProps,
+  "page"
+> & {
   page: "specialist-unit-index";
 };
-
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
   keyStageSlug: string;
@@ -188,8 +190,8 @@ type SubjectListingLinkProps = {
 };
 
 type SpecialistSubjectListingLinkProps = Omit<
-  LessonDownloadsLinkProps,
-  "page"
+  SubjectListingLinkProps,
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-subject-index";
 };

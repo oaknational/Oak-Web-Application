@@ -1,17 +1,17 @@
+import { useState } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { useSearchParams } from "next/navigation";
 import {
   oakDefaultTheme,
-  OakFlex,
   OakThemeProvider,
-} from "@oak-academy/oak-components";
+  OakBox,
+} from "@oaknational/oak-components";
 
-import { QuizEngineProvider } from "@/components/PupilJourneyComponents/QuizEngineProvider/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer/QuizRenderer";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
@@ -19,30 +19,67 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
+import {
+  LessonEngineProvider,
+  isLessonSection,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
+import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
+import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo/PupilVideo.view";
+import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
+import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
+import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
 
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
 };
 
+const PupilPageContent = ({
+  curriculumData,
+}: {
+  curriculumData: PupilLessonOverviewData;
+}) => {
+  const { currentSection, updateCurrentSection } = useLessonEngineContext();
+  const searchParams = useSearchParams();
+  const [overrideApplied, setOverrideApplied] = useState(false);
+
+  // temporary hack to allow overriding the current section - will be removed on moving to page navigation
+  const overrideSection = searchParams.get("section");
+  if (overrideSection && isLessonSection(overrideSection) && !overrideApplied) {
+    setOverrideApplied(true);
+    updateCurrentSection(overrideSection);
+  }
+
+  const { starterQuiz, exitQuiz } = curriculumData;
+
+  switch (currentSection) {
+    case "overview":
+      return <PupilViewsLessonOverview />;
+    case "intro":
+      return <PupilViewsIntro />;
+    case "starter-quiz":
+      return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
+    case "video":
+      return <PupilViewsVideo />;
+    case "exit-quiz":
+      return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
+    case "review":
+      return <PupilViewsReview />;
+    default:
+      return null;
+  }
+};
+
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
 }) => {
-  const { starterQuiz } = curriculumData;
-
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <QuizEngineProvider questionsArray={starterQuiz ?? []}>
-        <OakFlex
-          $width={"100vw"}
-          $height={"100vh"}
-          $background={"bg-decorative1–main"}
-          $flexDirection={"column"}
-          $alignItems={"center"}
-          $pt="inner-padding-xl"
-        >
-          <QuizRenderer />
-        </OakFlex>
-      </QuizEngineProvider>
+      <LessonEngineProvider>
+        <OakBox $height={"100vh"} $minWidth={"100vw"}>
+          <PupilPageContent curriculumData={curriculumData} />
+        </OakBox>
+      </LessonEngineProvider>
     </OakThemeProvider>
   );
 };
