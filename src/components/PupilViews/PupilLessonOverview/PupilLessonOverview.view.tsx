@@ -12,6 +12,7 @@ import {
   OakPrimaryButton,
   OakSpan,
   OakSubjectIcon,
+  OakTertiaryButton,
   isValidIconName,
 } from "@oaknational/oak-components";
 
@@ -68,22 +69,39 @@ export const PupilViewsLessonOverview = ({
           <OakPrimaryButton
             onClick={proceedToNextSection}
             width={["100%", "auto", "auto"]}
+            iconName="arrow-right"
+            isTrailingIcon
           >
-            Proceed to next section
+            Let's get ready
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
     >
+      <OakGrid
+        $maxWidth={["100%", "all-spacing-23", "100%"]}
+        $mt="space-between-s"
+        $mb={["space-between-none", "space-between-s"]}
+        $mh="auto"
+        $ph={["inner-padding-s", "inner-padding-xl", "inner-padding-none"]}
+      >
+        <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
+          <OakTertiaryButton disabled iconName="arrow-left">
+            View all lessons
+          </OakTertiaryButton>
+        </OakGridArea>
+      </OakGrid>
       <OakFlex
         $minHeight="100%"
         $alignItems={["flex-start", "flex-start", "center"]}
         $pv="inner-padding-xl"
-        $width={["100%", "all-spacing-22", "100%"]}
+        $ph={["inner-padding-none", "inner-padding-xl", "inner-padding-none"]}
+        $width="100%"
+        $maxWidth={["100%", "all-spacing-23", "100%"]}
         $mh="auto"
       >
         <OakGrid $cg="space-between-s">
           <OakGridArea
-            $colStart={[0, 0, 2]}
+            $colStart={[1, 1, 2]}
             $colSpan={[12, 12, 5]}
             $mb={["space-between-xl", "space-between-xl", "space-between-none"]}
           >
@@ -95,7 +113,7 @@ export const PupilViewsLessonOverview = ({
                 "space-between-m",
                 "space-between-none",
               ]}
-              $borderColor="bg-decorative4-main"
+              $borderColor="bg-decorative1-main"
               $pb={["inner-padding-l", "inner-padding-none"]}
               $ph={["inner-padding-s", "inner-padding-none"]}
               $bb={["border-solid-l", "border-solid-none", "border-solid-none"]}
@@ -111,7 +129,7 @@ export const PupilViewsLessonOverview = ({
                   <OakSubjectIcon
                     iconName={subjectIconName}
                     alt=""
-                    fill="bg-decorative4-main"
+                    fill="bg-decorative1-main"
                   />
                 </OakBox>
               )}
@@ -119,6 +137,7 @@ export const PupilViewsLessonOverview = ({
                 <OakBox $mb="space-between-s" $display={["none", "block"]}>
                   <OakBulletList
                     listItems={[yearTitle, subjectTitle].filter(isString)}
+                    $color="text-subdued"
                   />
                 </OakBox>
                 <OakHeading
@@ -139,7 +158,7 @@ export const PupilViewsLessonOverview = ({
             )}
           </OakGridArea>
           <OakGridArea
-            $colStart={[0, 0, 7]}
+            $colStart={[1, 1, 7]}
             $colSpan={[12, 12, 5]}
             $ph={["inner-padding-s", "inner-padding-none"]}
           >
