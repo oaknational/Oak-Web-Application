@@ -1,4 +1,9 @@
 import { FC, MutableRefObject } from "react";
+import {
+  OakTertiaryButton,
+  OakBox,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import { BioData } from "@/components/GenericPagesComponents/BioCardListModal/BioCardListModal";
@@ -6,7 +11,6 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import AvatarImage from "@/components/SharedComponents/AvatarImage";
-import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type BioCardListItemProps = BioData & {
@@ -15,10 +19,8 @@ export type BioCardListItemProps = BioData & {
   isOpen: boolean;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
-  const { name, role, image, socials, onClick, modalControllerRef, isOpen } =
-    props;
-  const { containerProps, primaryTargetProps } =
-    useClickableCard<HTMLButtonElement>();
+  const { name, role, image, socials, onClick, isOpen } = props;
+  const { containerProps } = useClickableCard<HTMLButtonElement>();
 
   return (
     <Flex
@@ -51,6 +53,20 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           $display={["none", "flex"]}
         />
         {onClick && (
+          <OakFlex $width={"100%"} $justifyContent={"flex-end"}>
+            <OakTertiaryButton
+              // {...primaryTargetProps}
+              onClick={() => onClick(props)}
+              iconName="arrow-right"
+              isTrailingIcon={true}
+              aria-expanded={isOpen}
+              aria-label={`See bio for ${name}`}
+            >
+              <OakBox $display={["none", "block"]}>See bio</OakBox>
+            </OakTertiaryButton>
+          </OakFlex>
+        )}
+        {/* {onClick && (
           <Button
             {...primaryTargetProps}
             ref={(node) => {
@@ -70,7 +86,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             shouldHideLabel={[true, false]}
             aria-expanded={isOpen}
           />
-        )}
+        )} */}
       </Flex>
     </Flex>
   );

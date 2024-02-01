@@ -8,6 +8,7 @@ import {
   OakTypography,
   oakDefaultTheme,
   OakThemeProvider,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -18,7 +19,6 @@ import GenericContactCard from "@/components/GenericPagesComponents/GenericConta
 import { Hr } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
-import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
@@ -115,12 +115,11 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                           $justifyContent={"space-between"}
                         >
                           <OakP>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</OakP>
-                          <IconButtonAsLink
-                            icon={"download"}
-                            aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
-                            page={null}
+                          <OakTertiaryButton
+                            element="a"
                             href={`${doc.file.asset.url}?dl`}
-                            background={"blue"}
+                            iconName="download"
+                            aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
                           />
                         </OakFlex>
                       </OakFlex>

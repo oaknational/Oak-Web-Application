@@ -2,9 +2,9 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
+import Button from "@/components/SharedComponents/Button";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
@@ -131,9 +131,13 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <OakPrimaryButton type="submit" disabled={loading}>
-        Sign up to the newsletter
-      </OakPrimaryButton>
+      <Button
+        $mt={24}
+        label="Sign up to the newsletter"
+        $fullWidth
+        htmlButtonProps={{ disabled: loading }}
+        background="black"
+      />
       <P
         $mt={error ? 16 : 0}
         $font={"body-3"}

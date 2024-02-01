@@ -1,8 +1,9 @@
 import mockRouter from "next-router-mock";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import GenericSummaryCardNavButton from "./GenericSummaryCardNavButton";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 

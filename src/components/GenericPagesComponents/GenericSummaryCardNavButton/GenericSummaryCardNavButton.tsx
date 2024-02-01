@@ -1,4 +1,9 @@
 import { FC } from "react";
+import Link from "next/link";
+import {
+  OakPrimaryButton,
+  OakPrimaryInvertedButton,
+} from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
@@ -30,25 +35,36 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   };
 
   return (
-    <LI listStyle="none">
+    <LI listStyle="none" $mr={[0, 24]} $mb={[0, 24]}>
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
-        <ButtonAsLink
-          htmlAnchorProps={htmlAnchorProps}
-          variant={isCurrent ? "brushNav" : "minimalNav"}
-          $hoverStyles={["underline-link-text"]}
-          label={label}
-          href={href}
-          page={null}
-          $mr={[0, 36]}
-          disabled={isCurrent}
-          isCurrent={isCurrent}
-          icon={isCurrent && arrowSuffix ? "arrow-right" : undefined}
-          iconBackground={isCurrent && arrowSuffix ? "transparent" : undefined}
-          $iconPosition="trailing"
-          shallow={shallow}
-          scroll={!shallow}
-        />
+        {isCurrent ? (
+          <OakPrimaryButton
+            element={Link}
+            href={isCurrent ? href : {}}
+            shallow={shallow}
+            iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
+            isTrailingIcon={true}
+            role={"link"}
+            aria-disabled={isCurrent}
+            width={"100%"}
+          >
+            {label}
+          </OakPrimaryButton>
+        ) : (
+          <OakPrimaryInvertedButton
+            element={Link}
+            href={href}
+            shallow={shallow}
+            iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
+            isTrailingIcon={true}
+            role={"link"}
+            aria-disabled={isCurrent}
+            width={"100%"}
+          >
+            {label}
+          </OakPrimaryInvertedButton>
+        )}
       </Box>
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
