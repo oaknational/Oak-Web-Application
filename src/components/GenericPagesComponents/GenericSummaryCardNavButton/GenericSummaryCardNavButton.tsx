@@ -3,13 +3,13 @@ import Link from "next/link";
 import {
   OakPrimaryButton,
   OakPrimaryInvertedButton,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 import { LI } from "@/components/SharedComponents/Typography";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
@@ -40,12 +40,14 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         {isCurrent ? (
           <OakPrimaryButton
+            {...htmlAnchorProps}
             element={Link}
             href={isCurrent ? href : {}}
             shallow={shallow}
             iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
             isTrailingIcon={true}
             role={"link"}
+            aria-label={label}
             aria-disabled={isCurrent}
             width={"100%"}
           >
@@ -53,12 +55,14 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           </OakPrimaryButton>
         ) : (
           <OakPrimaryInvertedButton
+            {...htmlAnchorProps}
             element={Link}
             href={href}
             shallow={shallow}
             iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
             isTrailingIcon={true}
             role={"link"}
+            aria-label={label}
             aria-disabled={isCurrent}
             width={"100%"}
           >
@@ -68,7 +72,17 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
       </Box>
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
-        <ButtonAsLink
+        <OakTertiaryButton
+          element={Link}
+          href={href}
+          shallow={shallow}
+          iconName="arrow-right"
+          aria-disabled={isCurrent}
+        >
+          {label}
+        </OakTertiaryButton>
+
+        {/* <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           isCurrent={isCurrent}
           currentStyles={["arrow-icon", "color"]}
@@ -79,7 +93,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           page={null}
           href={href}
           $mr={[0, 36]}
-        />
+        /> */}
       </Flex>
     </LI>
   );

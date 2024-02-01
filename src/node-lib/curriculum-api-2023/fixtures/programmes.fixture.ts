@@ -245,7 +245,7 @@ export const ks4MathsFullProgrammeListing = {
 export const ks4CombinedScienceFullProgrammeListing = {
   keyStageTitle: "Key Stage 4",
   keyStageSlug: "ks4",
-  subjectSlug: "combined-science",
+  subjectSlug: "combined-science-l",
   subjectTitle: "Combined Science",
   programmes: [
     {
