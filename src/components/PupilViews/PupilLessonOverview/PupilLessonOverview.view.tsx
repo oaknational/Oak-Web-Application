@@ -79,10 +79,10 @@ export const PupilViewsLessonOverview = ({
     >
       <OakGrid
         $maxWidth={["100%", "all-spacing-23", "100%"]}
-        $mt="space-between-s"
+        $mt="space-between-m"
         $mb={["space-between-none", "space-between-s"]}
         $mh="auto"
-        $ph={["inner-padding-s", "inner-padding-xl", "inner-padding-none"]}
+        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <OakTertiaryButton disabled iconName="arrow-left">
@@ -115,7 +115,7 @@ export const PupilViewsLessonOverview = ({
               ]}
               $borderColor="bg-decorative1-main"
               $pb={["inner-padding-l", "inner-padding-none"]}
-              $ph={["inner-padding-s", "inner-padding-none"]}
+              $ph={["inner-padding-m", "inner-padding-none"]}
               $bb={["border-solid-l", "border-solid-none", "border-solid-none"]}
             >
               {isValidIconName(subjectIconName) && (
@@ -160,7 +160,7 @@ export const PupilViewsLessonOverview = ({
           <OakGridArea
             $colStart={[1, 1, 7]}
             $colSpan={[12, 12, 5]}
-            $ph={["inner-padding-s", "inner-padding-none"]}
+            $ph={["inner-padding-m", "inner-padding-none"]}
           >
             <OakFlex $gap="space-between-s" $flexDirection="column">
               <OakLessonNavItem
