@@ -50,10 +50,29 @@ const PupilPageContent = ({
     updateCurrentSection(overrideSection);
   }
 
-  const { starterQuiz, exitQuiz, lessonTitle } = curriculumData;
+  const {
+    starterQuiz,
+    exitQuiz,
+    lessonTitle,
+    subjectTitle,
+    subjectSlug,
+    yearTitle,
+    pupilLessonOutcome,
+  } = curriculumData;
+
   switch (currentSection) {
     case "overview":
-      return <PupilViewsLessonOverview />;
+      return (
+        <PupilViewsLessonOverview
+          lessonTitle={lessonTitle}
+          subjectTitle={subjectTitle}
+          subjectSlug={subjectSlug}
+          yearTitle={yearTitle ?? undefined}
+          pupilLessonOutcome={pupilLessonOutcome ?? undefined}
+          starterQuizNumQuestions={starterQuiz?.length ?? 0}
+          exitQuizNumQuestions={exitQuiz?.length ?? 0}
+        />
+      );
     case "intro":
       return <PupilViewsIntro />;
     case "starter-quiz":

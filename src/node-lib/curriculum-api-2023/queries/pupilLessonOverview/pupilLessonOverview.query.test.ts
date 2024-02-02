@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
 
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 
 describe("pupilLessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -24,11 +24,7 @@ describe("pupilLessonOverview()", () => {
       pupilLessonOverview: jest.fn(() =>
         Promise.resolve({
           lesson: [
-            {
-              starterQuiz: quizQuestions,
-              lessonSlug: "lesson-slug",
-              lessonTitle: "lesson-title",
-            },
+            pupilLessonOverviewFixture(),
             {
               starterQuiz: [],
               lessonSlug: "lesson-slug-2",

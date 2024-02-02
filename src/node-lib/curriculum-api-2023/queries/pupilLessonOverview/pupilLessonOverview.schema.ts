@@ -1,13 +1,20 @@
 import { z } from "zod";
 
-import { lessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const pupilLessonOverviewSchema = z.object({
-  starterQuiz: lessonOverviewQuizData,
-  exitQuiz: lessonOverviewQuizData,
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-});
+export const pupilLessonOverviewSchema = baseLessonOverviewSchema
+  .pick({
+    lessonTitle: true,
+    lessonSlug: true,
+    starterQuiz: true,
+    exitQuiz: true,
+  })
+  .extend({
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    yearTitle: z.string().nullable().optional(),
+    pupilLessonOutcome: z.string().nullable().optional(),
+  });
 
 export type PupilLessonOverviewPageData = z.infer<
   typeof pupilLessonOverviewSchema
