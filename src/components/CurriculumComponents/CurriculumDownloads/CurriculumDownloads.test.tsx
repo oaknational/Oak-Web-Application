@@ -13,6 +13,7 @@ describe("Component - Curriculum Header", () => {
       category: "test-category",
       downloads: [
         {
+          icon: "french",
           label: "Test Label",
           url: "https://test-url.com",
         },

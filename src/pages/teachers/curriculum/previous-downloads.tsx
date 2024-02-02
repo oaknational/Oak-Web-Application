@@ -59,6 +59,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
         downloads.push({
           label: document.subject,
           url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&id=${document.slug}&extension=pdf`,
+          icon: document.icon,
         });
       });
     }
@@ -168,21 +169,5 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     </AppLayout>
   );
 };
-
-// TODO: Determine if ISR is needed for this page
-// export type URLParams = {
-//   category: string;
-// };
-// export const getStaticPaths = async () => {
-//   if (shouldSkipInitialBuild) {
-//     return getFallbackBlockingConfig();
-//   }
-
-//   const config: GetStaticPathsResult<URLParams> = {
-//     fallback: "blocking",
-//     paths: [],
-//   };
-//   return config;
-// };
 
 export default CurriculumPreviousDownloadsPage;

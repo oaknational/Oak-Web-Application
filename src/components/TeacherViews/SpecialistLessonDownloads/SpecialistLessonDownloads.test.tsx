@@ -24,7 +24,7 @@ describe("SpecialistLessonDownloads", () => {
       />,
     );
 
-    const resources = getAllByTestId("lessonResourcesCheckbox");
+    const resources = getAllByTestId("resourceCard");
 
     expect(resources).toHaveLength(4);
 

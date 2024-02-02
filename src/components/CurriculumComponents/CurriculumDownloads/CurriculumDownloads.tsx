@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { Controller } from "react-hook-form";
 import { debounce } from "lodash";
 import styled from "styled-components";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -20,7 +21,6 @@ import SchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDeta
 import TermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import Flex from "@/components/SharedComponents/Flex";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon from "@/components/SharedComponents/Icon";
 import OakLink from "@/components/SharedComponents/OwaLink";
 import { Heading, P, UL, LI } from "@/components/SharedComponents/Typography";
@@ -28,10 +28,12 @@ import Input from "@/components/SharedComponents/Input";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 
 export type CurriculumDownload = {
   label: string;
   url: string;
+  icon: string;
 };
 
 type CurriculumDownloadsProps = {
@@ -43,15 +45,10 @@ const CardContainer = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  > div {
+  > div > div {
+    display: inline-flex;
     margin-right: 24px;
     margin-bottom: 24px;
-    > label p {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: calc(100% - 36px);
-    }
   }
 `;
 
@@ -59,7 +56,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
   const { category, downloads } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-
   const {
     form,
     emailFromLocalStorage,
@@ -90,9 +86,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const [isDownloadSuccessful, setIsDownloadSuccessful] =
-    useState<boolean>(false);
-
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
     try {
@@ -104,6 +97,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
           const schoolName = data?.schoolName;
           const terms = data?.terms;
           const downloads = data?.resources;
+
           if (email) {
             setEmailInLocalStorage(email);
           }
@@ -133,7 +127,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
         { leading: true },
       );
       await debouncedFunction();
-      setIsDownloadSuccessful(true);
 
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
@@ -149,9 +142,14 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
         selectedResources,
       });
 
+      const selectedDownload = downloads.filter((download) => {
+        console.log("download", download);
+        return download.url === selectedResources[0];
+      })[0];
+
       track.curriculumResourcesDownloaded({
         category: category,
-        subject: "Subject", // TODO: replace with "subject" once we have the correct value
+        subject: selectedDownload ? selectedDownload.label : "None Specified",
         resourceType: selectedResourcesForTracking,
         analyticsUseCase,
         schoolUrn,
@@ -161,7 +159,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
       });
     } catch (error) {
       setIsAttemptingDownload(false);
-      setIsDownloadSuccessful(false);
       setApiError(
         "There was an error downloading your files. Please try again.",
       );
@@ -185,228 +182,210 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
       $pb={80}
       $pt={32}
     >
-      {isDownloadSuccessful ? (
-        <Box>Download successful!</Box>
-      ) : (
-        <Box $width="100%">
-          <Flex
-            $alignItems={"flex-start"}
-            $flexDirection={"column"}
-            $gap={[24, 32]}
-          >
-            <Heading tag="h1" $font={["heading-5", "heading-4"]}>
-              {category}
-            </Heading>
-            <Grid>
-              <GridArea $colSpan={[12, 12, 7]}>
-                <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={24}>
-                  Choose your download
-                </Heading>
-                <FieldError id={"downloads-error"} withoutMarginBottom>
-                  {form.errors?.resources?.message}
-                </FieldError>
-                <CardContainer>
+      <Box $width="100%">
+        <Flex
+          $alignItems={"flex-start"}
+          $flexDirection={"column"}
+          $gap={[24, 32]}
+        >
+          <Heading tag="h1" $font={["heading-5", "heading-4"]}>
+            {category}
+          </Heading>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 7]}>
+              <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={24}>
+                Choose your download
+              </Heading>
+              <FieldError id={"downloads-error"} withoutMarginBottom>
+                {form.errors?.resources?.message}
+              </FieldError>
+              <CardContainer>
+                <RadioGroup
+                  aria-label="Subject Download Options"
+                  onChange={(e) => {
+                    const selectedDownload = downloads.filter((download) => {
+                      return download.label === e;
+                    })[0];
+                    if (selectedDownload) {
+                      form.setValue("resources", [selectedDownload.url]);
+                      form.errors.resources = undefined;
+                      form.trigger();
+                    }
+                  }}
+                >
                   {downloads.map((download) => (
-                    <Controller
-                      control={form.control}
-                      defaultValue={[]}
+                    <ResourceCard
                       key={download.label}
-                      name="resources"
-                      render={({
-                        field: { value: fieldValue, onChange, name, onBlur },
-                      }) => {
-                        const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          if (e.target.checked) {
-                            onChange([download.url]);
-                          } else {
-                            onChange(
-                              fieldValue.filter(
-                                (val: CurriculumDownload | string) =>
-                                  val !== download.url,
-                              ),
-                            );
-                          }
-                          // Trigger the form to reevaluate errors
-                          form.trigger();
-                        };
-                        return (
-                          <ResourceCard
-                            id={download.label}
-                            name={name}
-                            label={download.label}
-                            subtitle={"PDF"}
-                            resourceType="curriculum-pdf"
-                            onChange={onChangeHandler}
-                            checked={fieldValue.includes(download.url)}
-                            onBlur={onBlur}
-                            hasError={form.errors?.resources ? true : false}
-                            data-testid={`download-card-${download.label}`}
-                          />
-                        );
-                      }}
+                      id={download.label}
+                      name={download.label}
+                      label={download.label}
+                      subtitle={"PDF"}
+                      resourceType="curriculum-pdf"
+                      onChange={() => {}}
+                      checked={false}
+                      onBlur={() => {}}
+                      hasError={form.errors?.resources ? true : false}
+                      data-testid={`download-card-${download.label}`}
+                      useRadio={true}
+                      subjectIcon={download.icon}
                     />
                   ))}
-                </CardContainer>
-              </GridArea>
-              <GridArea $colSpan={[12, 12, 5]}>
-                <Heading
-                  tag="h2"
-                  $font={["heading-6", "heading-5"]}
-                  $mb={[24, 32]}
-                >
-                  Your details
-                </Heading>
-                {form.errors.school && (
-                  <FieldError id="school-error">
-                    {form.errors.school?.message}
-                  </FieldError>
-                )}
-                {isLocalStorageLoading ? (
-                  <P $mt={24}>Loading...</P>
-                ) : (
-                  <Flex $flexDirection="column" $gap={24}>
-                    {shouldDisplayDetailsCompleted ? (
-                      <DetailsCompleted
-                        email={emailFromLocalStorage}
-                        school={schoolNameFromLocalStorage}
-                        onEditClick={handleEditDetailsCompletedClick}
-                      />
-                    ) : (
-                      <Box $maxWidth={[null, 420, 420]}>
-                        <SchoolDetails
-                          errors={form.errors}
-                          setSchool={setSchool}
-                          initialValue={schoolIdFromLocalStorage ?? undefined}
-                          initialSchoolName={
-                            schoolNameFromLocalStorage?.length &&
-                            schoolNameFromLocalStorage?.length > 0
-                              ? schoolNameFromLocalStorage
-                                  .charAt(0)
-                                  .toUpperCase() +
-                                schoolNameFromLocalStorage.slice(1)
-                              : undefined
-                          }
-                        />
-
-                        <Input
-                          id={"email"}
-                          data-testid="input-email"
-                          label="Email"
-                          autoComplete="email"
-                          placeholder="Enter email address here"
-                          isOptional={true}
-                          {...form.register("email")}
-                          error={form.errors?.email?.message}
-                        />
-                        <P $font="body-3" $mt={-20} $mb={48}>
-                          Join over 100k teachers and get free resources and
-                          other helpful content by email. Unsubscribe at any
-                          time. Read our{" "}
-                          <OakLink
-                            page="legal"
-                            legalSlug="privacy-policy"
-                            $isInline
-                            htmlAnchorProps={{
-                              target: "_blank",
-                              "aria-label":
-                                "Privacy policy (opens in a new tab)",
-                            }}
-                          >
-                            privacy policy
-                            <Icon
-                              name="external"
-                              verticalAlign="bottom"
-                              size={20}
-                              data-testid="external-link-icon"
-                            />
-                          </OakLink>
-                          .
-                        </P>
-                        <Controller
-                          control={form.control}
-                          name="terms"
-                          render={({
-                            field: { value, onChange, name, onBlur },
-                          }) => {
-                            const onChangeHandler = (
-                              e: ChangeEvent<HTMLInputElement>,
-                            ) => {
-                              onChange(e.target.checked);
-                              form.trigger();
-                            };
-                            return (
-                              <TermsAndConditionsCheckbox
-                                name={name}
-                                checked={value}
-                                onChange={onChangeHandler}
-                                onBlur={onBlur}
-                                id={"terms"}
-                                errorMessage={form.errors?.terms?.message}
-                                zIndex={"neutral"}
-                              />
-                            );
-                          }}
-                        />
-                      </Box>
-                    )}
-                    <CopyrightNotice
-                      // TODO: determine correct copyright to use
-                      showPostAlbCopyright={true}
-                      openLinksExternally={true}
+                </RadioGroup>
+              </CardContainer>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 12, 5]}>
+              <Heading
+                tag="h2"
+                $font={["heading-6", "heading-5"]}
+                $mb={[24, 32]}
+              >
+                Your details
+              </Heading>
+              {form.errors.school && (
+                <FieldError id="school-error">
+                  {form.errors.school?.message}
+                </FieldError>
+              )}
+              {isLocalStorageLoading ? (
+                <P $mt={24}>Loading...</P>
+              ) : (
+                <Flex $flexDirection="column" $gap={24}>
+                  {shouldDisplayDetailsCompleted ? (
+                    <DetailsCompleted
+                      email={emailFromLocalStorage}
+                      school={schoolNameFromLocalStorage}
+                      onEditClick={handleEditDetailsCompletedClick}
                     />
-                  </Flex>
-                )}
-                {hasFormErrors && (
-                  <Flex $flexDirection={"row"}>
-                    <Icon name="content-guidance" $color={"red"} />
-                    <Flex $flexDirection={"column"}>
-                      <P $ml={4} $color={"red"}>
-                        To complete correct the following:
-                      </P>
-                      <UL $mr={24}>
-                        {getFormErrorMessages().map((err, i) => {
-                          return (
-                            <LI $color={"red"} key={i}>
-                              {err}
-                            </LI>
-                          );
-                        })}
-                      </UL>
-                    </Flex>
-                  </Flex>
-                )}
-                <LoadingButton
-                  type="button"
-                  onClick={(event) =>
-                    void form.handleSubmit(onFormSubmit)(event)
-                  }
-                  text={"Download PDF"}
-                  icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    (!form.formState.isValid && !localStorageDetails)
-                  }
-                  loadingText={"Downloading..."}
-                />
+                  ) : (
+                    <Box $maxWidth={[null, 420, 420]}>
+                      <SchoolDetails
+                        errors={form.errors}
+                        setSchool={setSchool}
+                        initialValue={schoolIdFromLocalStorage ?? undefined}
+                        initialSchoolName={
+                          schoolNameFromLocalStorage?.length &&
+                          schoolNameFromLocalStorage?.length > 0
+                            ? schoolNameFromLocalStorage
+                                .charAt(0)
+                                .toUpperCase() +
+                              schoolNameFromLocalStorage.slice(1)
+                            : undefined
+                        }
+                      />
 
-                {apiError && !hasFormErrors && (
-                  <FieldError
-                    id="download-error"
-                    data-testid="download-error"
-                    variant={"large"}
-                    withoutMarginBottom
-                  >
-                    {apiError}
-                  </FieldError>
-                )}
-              </GridArea>
-            </Grid>
-          </Flex>
-        </Box>
-      )}
+                      <Input
+                        id={"email"}
+                        data-testid="input-email"
+                        label="Email"
+                        autoComplete="email"
+                        placeholder="Enter email address here"
+                        isOptional={true}
+                        {...form.register("email")}
+                        error={form.errors?.email?.message}
+                      />
+                      <P $font="body-3" $mt={-20} $mb={48}>
+                        Join over 100k teachers and get free resources and other
+                        helpful content by email. Unsubscribe at any time. Read
+                        our{" "}
+                        <OakLink
+                          page="legal"
+                          legalSlug="privacy-policy"
+                          $isInline
+                          htmlAnchorProps={{
+                            target: "_blank",
+                            "aria-label": "Privacy policy (opens in a new tab)",
+                          }}
+                        >
+                          privacy policy
+                          <Icon
+                            name="external"
+                            verticalAlign="bottom"
+                            size={20}
+                            data-testid="external-link-icon"
+                          />
+                        </OakLink>
+                        .
+                      </P>
+                      <Controller
+                        control={form.control}
+                        name="terms"
+                        render={({
+                          field: { value, onChange, name, onBlur },
+                        }) => {
+                          const onChangeHandler = (
+                            e: ChangeEvent<HTMLInputElement>,
+                          ) => {
+                            onChange(e.target.checked);
+                            form.trigger();
+                          };
+                          return (
+                            <TermsAndConditionsCheckbox
+                              name={name}
+                              checked={value}
+                              onChange={onChangeHandler}
+                              onBlur={onBlur}
+                              id={"terms"}
+                              errorMessage={form.errors?.terms?.message}
+                              zIndex={"neutral"}
+                            />
+                          );
+                        }}
+                      />
+                    </Box>
+                  )}
+                  <CopyrightNotice
+                    // TODO: determine correct copyright to use
+                    showPostAlbCopyright={true}
+                    openLinksExternally={true}
+                  />
+                </Flex>
+              )}
+              {hasFormErrors && (
+                <Flex $flexDirection={"row"}>
+                  <Icon name="content-guidance" $color={"red"} />
+                  <Flex $flexDirection={"column"}>
+                    <P $ml={4} $color={"red"}>
+                      To complete correct the following:
+                    </P>
+                    <UL $mr={24}>
+                      {getFormErrorMessages().map((err, i) => {
+                        return (
+                          <LI $color={"red"} key={i}>
+                            {err}
+                          </LI>
+                        );
+                      })}
+                    </UL>
+                  </Flex>
+                </Flex>
+              )}
+              <LoadingButton
+                type="button"
+                onClick={(event) => void form.handleSubmit(onFormSubmit)(event)}
+                text={"Download PDF"}
+                icon={"download"}
+                isLoading={isAttemptingDownload}
+                disabled={
+                  hasFormErrors ||
+                  (!form.formState.isValid && !localStorageDetails)
+                }
+                loadingText={"Downloading..."}
+              />
+
+              {apiError && !hasFormErrors && (
+                <FieldError
+                  id="download-error"
+                  data-testid="download-error"
+                  variant={"large"}
+                  withoutMarginBottom
+                >
+                  {apiError}
+                </FieldError>
+              )}
+            </OakGridArea>
+          </OakGrid>
+        </Flex>
+      </Box>
     </Box>
   );
 }
