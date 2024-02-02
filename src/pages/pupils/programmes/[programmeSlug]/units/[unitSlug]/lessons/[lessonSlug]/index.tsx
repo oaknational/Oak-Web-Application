@@ -50,8 +50,7 @@ const PupilPageContent = ({
     updateCurrentSection(overrideSection);
   }
 
-  const { starterQuiz, exitQuiz } = curriculumData;
-
+  const { starterQuiz, exitQuiz, lessonTitle } = curriculumData;
   switch (currentSection) {
     case "overview":
       return <PupilViewsLessonOverview />;
@@ -64,7 +63,7 @@ const PupilPageContent = ({
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
-      return <PupilViewsReview />;
+      return <PupilViewsReview lessonTitle={lessonTitle} />;
     default:
       return null;
   }

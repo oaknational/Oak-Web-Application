@@ -12,5 +12,7 @@ query pupilLessonOverview(
   ) {
     starterQuiz
     exitQuiz
+    lessonSlug
+    lessonTitle
   }
 }

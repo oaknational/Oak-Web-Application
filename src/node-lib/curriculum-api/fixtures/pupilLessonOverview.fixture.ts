@@ -7,6 +7,8 @@ const pupilLessonOverviewFixture = (
 ): PupilLessonOverviewData => {
   return {
     starterQuiz: quizQuestions,
+    lessonSlug: "lesson-slug",
+    lessonTitle: "lesson-title",
     ...partial,
   };
 };

@@ -5,6 +5,8 @@ import { lessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.sc
 export const pupilLessonOverviewSchema = z.object({
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
 });
 
 export type PupilLessonOverviewPageData = z.infer<
