@@ -1,3 +1,18 @@
+# [1.338.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.337.0...v1.338.0) (2024-02-02)
+
+
+### Bug Fixes
+
+* **PUPIL-283:** mobile gutter on lesson overview and quiz pages ([21068cd](https://github.com/oaknational/Oak-Web-Application/commit/21068cd3cdc6cc142fb8e48827066bbb8dfd65a2))
+* restore margin on lesson review page ([080bae6](https://github.com/oaknational/Oak-Web-Application/commit/080bae6b8d5df290b8e812fca5845b5a3e9cf706))
+
+
+### Features
+
+* **PUPIL-283:** add additional fields to the `pupilLessonOverview` query ([86b87eb](https://github.com/oaknational/Oak-Web-Application/commit/86b87eba7fd90a8e85cd2d0062b21efad298b261))
+* **PUPIL-283:** apply final styling to the lesson overview page ([a6e8609](https://github.com/oaknational/Oak-Web-Application/commit/a6e86094bc09209aef4300899992aa3e7325aa0c))
+* **PUPIL-283:** design tweaks following review ([ca5faa4](https://github.com/oaknational/Oak-Web-Application/commit/ca5faa497603cd3b2cc4db75c77bb9c7d73c5f64))
+
 # [1.337.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.336.3...v1.337.0) (2024-02-02)
 
 
