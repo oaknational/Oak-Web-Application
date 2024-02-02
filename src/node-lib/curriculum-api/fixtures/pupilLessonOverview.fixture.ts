@@ -15,6 +15,10 @@ const pupilLessonOverviewFixture = (
     contentGuidance: null,
     lessonEquipmentAndResources: null,
     worksheetUrl: null,
+    videoMuxPlaybackId: "mux-id",
+    videoWithSignLanguageMuxPlaybackId: "signed-mux-id",
+    transcriptSentences: ["this is a sentence", "this is another sentence"],
+    videoTitle: "Introduction to Islamic Geometry",
     ...partial,
   };
 };

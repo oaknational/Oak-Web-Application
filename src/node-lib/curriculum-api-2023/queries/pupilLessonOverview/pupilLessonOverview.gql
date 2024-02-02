@@ -24,5 +24,9 @@ query pupilLessonOverview(
     contentGuidance
     lessonEquipmentAndResources
     worksheetUrl
+    videoTitle
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
   }
 }
