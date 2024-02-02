@@ -1,18 +1,34 @@
 import {
   OakBackLink,
+  OakBox,
   OakGrid,
   OakGridArea,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonTopNav,
   OakPrimaryButton,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { useState } from "react";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
-export const PupilViewsVideo = () => {
+type PupilViewsVideoProps = {
+  videoTitle: string;
+  videoMuxPlaybackId: string;
+  videoWithSignLanguageMuxPlaybackId?: string;
+  transcriptSentences?: string;
+};
+
+export const PupilViewsVideo = ({
+  videoTitle,
+  videoMuxPlaybackId,
+  videoWithSignLanguageMuxPlaybackId,
+  transcriptSentences,
+}: PupilViewsVideoProps) => {
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
+  const [signLanguageOn, setSignLanguageOn] = useState(false);
 
   return (
     <OakLessonLayout
@@ -47,15 +63,31 @@ export const PupilViewsVideo = () => {
         </OakLessonBottomNav>
       }
     >
-      <OakGrid>
-        <OakGridArea $colStart={2} $colSpan={10}>
+      <OakGrid
+        $maxWidth={["100%", "all-spacing-23", "100%"]}
+        $mh="auto"
+        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+      >
+        <OakGridArea $colStart={[1, 1, 3]} $colSpan={[12, 12, 8]}>
           <VideoPlayer
-            playbackId={""}
+            playbackId={
+              signLanguageOn && videoWithSignLanguageMuxPlaybackId
+                ? videoWithSignLanguageMuxPlaybackId
+                : videoMuxPlaybackId
+            }
             playbackPolicy="public"
-            title={""}
-            location={"webinar"}
+            title={videoTitle}
+            location="lesson"
             isLegacy={false}
           />
+          {videoWithSignLanguageMuxPlaybackId && (
+            <OakTertiaryButton
+              onClick={() => setSignLanguageOn(!signLanguageOn)}
+            >
+              {signLanguageOn ? "Hide sign language" : "Show sign language"}
+            </OakTertiaryButton>
+          )}
+          <OakBox $mt="space-between-xl">{transcriptSentences}</OakBox>
         </OakGridArea>
       </OakGrid>
     </OakLessonLayout>

@@ -17,7 +17,7 @@ const pupilLessonOverviewFixture = (
     worksheetUrl: null,
     videoMuxPlaybackId: "mux-id",
     videoWithSignLanguageMuxPlaybackId: "signed-mux-id",
-    transcriptSentences: ["this is a sentence", "this is another sentence"],
+    transcriptSentences: "This is a sentence. This is another sentence",
     videoTitle: "Introduction to Islamic Geometry",
     ...partial,
   };

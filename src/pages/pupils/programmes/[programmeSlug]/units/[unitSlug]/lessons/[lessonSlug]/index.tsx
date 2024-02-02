@@ -58,6 +58,10 @@ const PupilPageContent = ({
     subjectSlug,
     yearTitle,
     pupilLessonOutcome,
+    videoTitle,
+    videoMuxPlaybackId,
+    videoWithSignLanguageMuxPlaybackId,
+    transcriptSentences,
   } = curriculumData;
 
   switch (currentSection) {
@@ -78,7 +82,16 @@ const PupilPageContent = ({
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
-      return <PupilViewsVideo />;
+      return (
+        <PupilViewsVideo
+          videoTitle={videoTitle ?? undefined}
+          videoMuxPlaybackId={videoMuxPlaybackId}
+          videoWithSignLanguageMuxPlaybackId={
+            videoWithSignLanguageMuxPlaybackId ?? undefined
+          }
+          transcriptSentences={transcriptSentences ?? undefined}
+        />
+      );
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
