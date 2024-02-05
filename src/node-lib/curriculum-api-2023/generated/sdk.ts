@@ -34211,10 +34211,11 @@ export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePag
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
+  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_3_0_0', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_3_1_0', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -34476,9 +34477,9 @@ export const TeachersHomePageDocument = gql`
 }
     `;
 export const UnitListingDocument = gql`
-    query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_3_0_0(
-    where: {programmeSlug: {_eq: $programmeSlug}}
+    query unitListing($programmeSlug: String!, $isLegacy: Boolean!) {
+  programme: published_mv_unit_listing_page_3_1_0(
+    where: {programmeSlug: {_eq: $programmeSlug}, isLegacy: {_eq: $isLegacy}}
   ) {
     programmeSlug
     keyStageSlug

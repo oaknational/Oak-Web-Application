@@ -326,6 +326,7 @@ export const getStaticProps: GetStaticProps<
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
+            isLegacy: false,
           });
 
       if (!curriculumData) {
