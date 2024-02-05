@@ -18,6 +18,7 @@ import {
   CurriculumDownload,
   CurriculumDownloads,
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
+import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const data = curriculumPreviousDownloadsFixture();
@@ -149,8 +150,38 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
         </Box>
       </Box>
 
-      <Box $background={"mint30"} $pt={[32]}>
-        <Box $maxWidth={1280} $mh={"auto"} $width={"100%"} $ph={28} $pt={1}>
+      <Box $background={"mint30"}>
+        <Box
+          $display={["block", "none", "none"]}
+          $maxWidth={1280}
+          $mh={"auto"}
+          $ph={28}
+          $pv={24}
+          $width={"100%"}
+        >
+          <DropdownSelect
+            id={"select-category"}
+            name={"select-category"}
+            onChange={(event) => updateTab(event.target.value)}
+            placeholder="Placeholder"
+            data-testid="dropdownSelect"
+            label="Select a category:"
+            listItems={Object.keys(categoryDocuments).map((category) => ({
+              value: category,
+              label: category,
+            }))}
+            selectedValue={activeTab}
+            $zIndex={"dropdownMenu"}
+          />
+        </Box>
+        <Box
+          $display={["none", "block", "block"]}
+          $maxWidth={1280}
+          $mh={"auto"}
+          $width={"100%"}
+          $ph={28}
+          $pt={32}
+        >
           <P $color="grey80" $font="heading-7" $mb={20}>
             Select a category:
           </P>

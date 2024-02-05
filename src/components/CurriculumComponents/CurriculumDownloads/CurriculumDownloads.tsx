@@ -47,8 +47,8 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   > div > div {
     display: inline-flex;
-    margin-right: 24px;
-    margin-bottom: 24px;
+    margin-right: 16px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -208,8 +208,10 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                     })[0];
                     if (selectedDownload) {
                       form.setValue("resources", [selectedDownload.url]);
-                      form.errors.resources = undefined;
-                      form.trigger();
+                      if (form.errors.resources) {
+                        form.errors.resources = undefined;
+                        form.trigger();
+                      }
                     }
                   }}
                 >
@@ -247,9 +249,9 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                 </FieldError>
               )}
               {isLocalStorageLoading ? (
-                <P $mt={24}>Loading...</P>
+                <P $mb={16}>Loading...</P>
               ) : (
-                <Flex $flexDirection="column" $gap={24}>
+                <Flex $flexDirection="column" $gap={24} $mb={16}>
                   {shouldDisplayDetailsCompleted ? (
                     <DetailsCompleted
                       email={emailFromLocalStorage}
@@ -326,7 +328,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                               onBlur={onBlur}
                               id={"terms"}
                               errorMessage={form.errors?.terms?.message}
-                              zIndex={"neutral"}
                             />
                           );
                         }}
@@ -341,7 +342,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                 </Flex>
               )}
               {hasFormErrors && (
-                <Flex $flexDirection={"row"}>
+                <Flex $flexDirection={"row"} $mb={16}>
                   <Icon name="content-guidance" $color={"red"} />
                   <Flex $flexDirection={"column"}>
                     <P $ml={4} $color={"red"}>

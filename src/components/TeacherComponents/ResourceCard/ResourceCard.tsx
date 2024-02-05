@@ -12,6 +12,7 @@ import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { LessonShareSchema } from "@/node-lib/curriculum-api";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import zIndex from "@/styles/utils/zIndex";
 
 export type ResourceCardProps = CheckboxProps & {
   label: string;
@@ -50,6 +51,7 @@ const BoxWithFocusState = styled.div`
 `;
 
 const RadioContainer = styled.div`
+  z-index: 1;
   width: 100%;
   label > div {
     width: 100%;
@@ -65,7 +67,7 @@ const RadioContainer = styled.div`
     position: absolute;
     right: 10px;
     top: calc(50% - 10px);
-    z-index: 1;
+    ${zIndex}
   }
 `;
 
@@ -158,7 +160,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       data-testid="resourceCard"
     >
       {useRadio ? (
-        <RadioContainer>
+        <RadioContainer $zIndex={"inFront"}>
           <Radio id={id} value={label} aria-label={label}>
             <ResourceCardLabel isHovered={isHovered} {...props} />
           </Radio>
