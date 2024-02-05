@@ -54,8 +54,7 @@ const searchResultsSourceUnitSchema = searchResultsSourceCommon.extend({
 });
 
 const searchResultsHighlightLessonSchema = z.object({
-  pupilLessonOutcome: z.coerce.string(),
-  lessonDescription: z.coerce.string(),
+  pupil_lesson_outcome: z.coerce.string(),
   lesson_description: z.coerce.string(),
   topic_title: z.coerce.string(),
 });
