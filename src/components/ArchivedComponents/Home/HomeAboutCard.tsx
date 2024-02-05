@@ -1,6 +1,6 @@
 import { FC } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
-import Typography from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -20,12 +20,12 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
         {props.title}
       </CardTitle>
 
-      <Typography $font={"body-2"} $mb={24}>
+      <OakTypography $font={"body-2"} $mb="space-between-m">
         <PortableTextWithDefaults
           value={props.bodyPortableText}
           withoutDefaultComponents
         />
-      </Typography>
+      </OakTypography>
 
       {props.cta && (
         <ButtonAsLink

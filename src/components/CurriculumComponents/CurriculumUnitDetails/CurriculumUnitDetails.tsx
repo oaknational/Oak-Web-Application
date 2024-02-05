@@ -1,8 +1,9 @@
 import { FC } from "react";
+import { OakHeading, OakLI, OakP } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { Heading, LI, P, OL } from "@/components/SharedComponents/Typography";
+import { OL } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
@@ -47,15 +48,15 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
       $mb={24}
       data-testid="curriculum-unit-details"
     >
-      <P $mb={32} $font={"body-2"}>
+      <OakP $mb="space-between-m2" $font={"body-2"}>
         {lessonsInUnit}
-      </P>
+      </OakP>
 
       {uniqueThreadsArray.length >= 1 && (
         <Box $mb={[24, 32]}>
-          <Heading tag="h3" $font={"heading-6"} $mb={8}>
+          <OakHeading tag="h3" $font={"heading-6"} $mb="space-between-ssx">
             Threads
-          </Heading>
+          </OakHeading>
           <Flex
             $flexDirection={["column", "row"]}
             $flexWrap={"wrap"}
@@ -79,7 +80,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             <OL $mt={0} data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
-                  return <LI key={lesson}>{lesson}</LI>;
+                  return <OakLI key={lesson}>{lesson}</OakLI>;
                 })}
             </OL>
           </CurriculumUnitDetailsAccordion>
@@ -87,12 +88,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
 
         {priorUnitDescription && (
           <CurriculumUnitDetailsAccordion title="Previous unit description">
-            <P $mb={12} $font={"body-2-bold"}>
+            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
               {priorUnitTitle}
-            </P>
-            <P $mb={12} $font={"body-2"}>
+            </OakP>
+            <OakP $mb="space-between-xs" $font={"body-2"}>
               {priorUnitDescription}
-            </P>
+            </OakP>
           </CurriculumUnitDetailsAccordion>
         )}
 
@@ -101,12 +102,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             title="Following unit description"
             lastAccordion={true}
           >
-            <P $mb={12} $font={"body-2-bold"}>
+            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
               {futureUnitTitle}
-            </P>
-            <P $mb={12} $font={"body-2"}>
+            </OakP>
+            <OakP $mb="space-between-xs" $font={"body-2"}>
               {futureUnitDescription}
-            </P>
+            </OakP>
           </CurriculumUnitDetailsAccordion>
         )}
       </Flex>

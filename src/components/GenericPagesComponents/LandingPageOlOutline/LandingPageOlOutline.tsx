@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { OakOL } from "@oaknational/oak-components";
 
 import { outlineShadow } from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { OL } from "@/components/SharedComponents/Typography";
 
-export const LandingPageOlOutline = styled(OL)<{ $color: OakColorName }>`
+export const LandingPageOlOutline = styled(OakOL)<{ $color: OakColorName }>`
   & div:last-child {
     margin-bottom: 0;
   }

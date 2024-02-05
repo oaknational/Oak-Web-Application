@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakP } from "@oaknational/oak-components";
 
 import { OakColorName } from "@/styles/theme/types";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Svg from "@/components/SharedComponents/Svg";
-import { P } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
@@ -49,24 +49,25 @@ const SupportYourTeamBubbleMessage: FC<
           $fontSize={[60, 100]}
           $font={"heading-1"}
         >
-          <P>{outlineHeading}</P>
+          <OakP>{outlineHeading}</OakP>
         </OutlineHeading>
-        <P
-          $mh={[12, 0]}
-          $mt={-20}
+        <OakP
+          $mh={["space-between-xs", "space-between-none"]}
+          // @todo
+          // $mt={-20}
           $textAlign={"center"}
           $font={["heading-5", "heading-4"]}
         >
           {heading}
-        </P>
+        </OakP>
         <Box $mt={[8, 4]} $maxWidth={300}>
-          <P
-            $mh={[30, 0]}
+          <OakP
+            $mh={["space-between-m2", "space-between-none"]}
             $textAlign={"center"}
             $font={["heading-light-7", "heading-light-6"]}
           >
             {subHeading}
-          </P>
+          </OakP>
         </Box>
       </Flex>
     </Flex>

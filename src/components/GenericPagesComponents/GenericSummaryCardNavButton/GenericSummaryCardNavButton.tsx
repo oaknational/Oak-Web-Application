@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakLI } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
-import { LI } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -30,7 +30,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   };
 
   return (
-    <LI listStyle="none">
+    <OakLI $listStyle="none">
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
@@ -65,7 +65,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           $mr={[0, 36]}
         />
       </Flex>
-    </LI>
+    </OakLI>
   );
 };
 
