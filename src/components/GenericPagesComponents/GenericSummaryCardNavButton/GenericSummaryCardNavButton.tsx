@@ -12,6 +12,7 @@ import { FlexList } from "@/components/SharedComponents/Typography/UL";
 import { LI } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 type LinkProps = {
   label: string;
@@ -37,7 +38,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   return (
     <LI listStyle="none" $mr={[0, 24]} $mb={[0, 24]}>
       {/* Desktop */}
-      <Box $display={["none", "block"]} $maxWidth={["100%"]}>
+      {/* <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         {isCurrent ? (
           <OakPrimaryButton
             {...htmlAnchorProps}
@@ -69,10 +70,10 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
             {label}
           </OakPrimaryInvertedButton>
         )}
-      </Box>
+      </Box> */}
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
-        <OakTertiaryButton
+        {/* <OakTertiaryButton
           element={Link}
           href={href}
           shallow={shallow}
@@ -80,9 +81,9 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           aria-disabled={isCurrent}
         >
           {label}
-        </OakTertiaryButton>
+        </OakTertiaryButton> */}
 
-        {/* <ButtonAsLink
+        <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           isCurrent={isCurrent}
           currentStyles={["arrow-icon", "color"]}
@@ -93,7 +94,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           page={null}
           href={href}
           $mr={[0, 36]}
-        /> */}
+        />
       </Flex>
     </LI>
   );

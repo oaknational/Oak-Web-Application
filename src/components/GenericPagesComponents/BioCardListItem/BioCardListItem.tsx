@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import { FC, MutableRefObject, useRef } from "react";
 import {
   OakTertiaryButton,
   OakBox,
@@ -19,8 +19,8 @@ export type BioCardListItemProps = BioData & {
   isOpen: boolean;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
-  const { name, role, image, socials, onClick, isOpen } = props;
-  const { containerProps } = useClickableCard<HTMLButtonElement>();
+  const { name, role, image, socials, onClick, isOpen, modalControllerRef } = props;
+  const { containerProps, primaryTargetProps } = useClickableCard<HTMLButtonElement>();
 
   return (
     <Flex
@@ -55,7 +55,6 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
         {onClick && (
           <OakFlex $width={"100%"} $justifyContent={"flex-end"}>
             <OakTertiaryButton
-              // {...primaryTargetProps}
               onClick={() => onClick(props)}
               iconName="arrow-right"
               isTrailingIcon={true}
