@@ -1,10 +1,10 @@
-import { SpecialistSubject } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
+import { OakHeading, OakSpan } from "@oaknational/oak-components";
 
+import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, Span } from "@/components/SharedComponents/Typography";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import {
   SpecialistProgrammeListingLinkProps,
@@ -66,14 +66,14 @@ const SpecialistSubjectCard = (props: {
           $width={[60, 80]}
         />
 
-        <Heading
+        <OakHeading
           $textAlign={["start", "center"]}
           $font={["heading-6", "heading-5"]}
           tag={"h6"}
-          $ma={0}
+          $ma="space-between-none"
         >
           {getSentenceCase(props.subject.subjectTitle)}
-        </Heading>
+        </OakHeading>
       </Flex>
       <OwaLink
         {...getOakLinkProps(props.subject)}
@@ -83,15 +83,15 @@ const SpecialistSubjectCard = (props: {
         <SubjectListingTextTile>
           <Flex $flexDirection={"column"} $pa={16}>
             <Flex>
-              <Span>
+              <OakSpan>
                 {`${props.subject.unitCount} ${
                   props.subject.unitCount > 1 ? "units" : "unit"
                 }`}
-              </Span>
+              </OakSpan>
             </Flex>
-            <Span>{`${props.subject.lessonCount} ${
+            <OakSpan>{`${props.subject.lessonCount} ${
               props.subject.lessonCount > 1 ? "lessons" : "lesson"
-            }`}</Span>
+            }`}</OakSpan>
           </Flex>
         </SubjectListingTextTile>
       </OwaLink>

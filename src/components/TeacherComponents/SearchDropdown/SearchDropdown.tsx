@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
+import { OakLI } from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import { LI } from "@/components/SharedComponents/Typography";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
@@ -68,7 +68,11 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
               }`;
 
               return (
-                <LI $pl={8} key={`${index}-${item.programmeSlug}`} $mb={16}>
+                <OakLI
+                  $pl="inner-padding-xs"
+                  key={`${index}-${item.programmeSlug}`}
+                  $mb="space-between-s"
+                >
                   <OwaLink
                     $color={"navy"}
                     data-testid="search-dropdown-link"
@@ -83,7 +87,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                   >
                     {buttonTitle}
                   </OwaLink>
-                </LI>
+                </OakLI>
               );
             })}
           </FlexList>

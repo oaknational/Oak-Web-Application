@@ -1,4 +1,5 @@
 import React, { FC, MutableRefObject } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import UnitListItemIconMobile from "@/components/TeacherComponents/UnitListItemIconMobile";
 import UnitListItemIconDesktop from "@/components/TeacherComponents/UnitListItemIconDesktop";
@@ -11,7 +12,6 @@ import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
-import { Span } from "@/components/SharedComponents/Typography";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitListItemProps = Omit<
@@ -98,14 +98,22 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
         $pa={16}
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
+          <OakSpan
+            $font={"heading-light-7"}
+            $color={"grey60"}
+            $mv="space-between-none"
+          >
             {yearTitle}
-          </Span>
+          </OakSpan>
         )}
         {themeTitle && (
-          <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
+          <OakSpan
+            $font={"heading-light-7"}
+            $color={"grey60"}
+            $mv="space-between-none"
+          >
             {themeTitle}
-          </Span>
+          </OakSpan>
         )}
         <ListItemHeader
           {...props}

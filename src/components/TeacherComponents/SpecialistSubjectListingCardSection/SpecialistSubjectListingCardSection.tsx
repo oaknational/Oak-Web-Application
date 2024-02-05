@@ -1,7 +1,11 @@
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
@@ -26,12 +30,12 @@ const SpecialistSubjectCardSection = (props: {
     <Flex $flexDirection="column" $gap={24}>
       <OakGrid $rg={"all-spacing-4"}>
         <OakGridArea $colSpan={[12]}>
-          <Heading tag="h2" $font="heading-3">
+          <OakHeading tag="h2" $font="heading-3">
             {props.heading}
-          </Heading>
+          </OakHeading>
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 9]}>
-          <P>{props.summary}</P>
+          <OakP>{props.summary}</OakP>
         </OakGridArea>
       </OakGrid>
       <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>

@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Typography from "@/components/SharedComponents/Typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
@@ -39,9 +39,9 @@ const TeachersTabResourceSelectorCard: FC<
           <Icon name={icon} $objectPosition={"center"} size={50} $pa={3} />
         </Flex>
         <Flex $height={"100%"} $alignItems={"center"}>
-          <Typography $font={"heading-light-7"} $color={"black"}>
+          <OakTypography $font={"heading-light-7"} $color={"black"}>
             {title}
-          </Typography>
+          </OakTypography>
         </Flex>
       </Flex>
 
