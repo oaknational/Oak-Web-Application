@@ -6,7 +6,11 @@ const pupilLessonOverviewFixture = (
   partial?: Partial<PupilLessonOverviewData>,
 ): PupilLessonOverviewData => {
   return {
+    lessonTitle: "Islamic Geometry",
+    subjectSlug: "maths",
+    subjectTitle: "Maths",
     starterQuiz: quizQuestions,
+    lessonSlug: "lesson-slug",
     ...partial,
   };
 };

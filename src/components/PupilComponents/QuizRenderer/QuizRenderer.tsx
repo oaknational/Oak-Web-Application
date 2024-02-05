@@ -82,7 +82,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
         onSubmit={handleSubmit}
         $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
         $minWidth={["100%", "all-spacing-21", "all-spacing-23"]}
-        $ph={["inner-padding-none", "inner-padding-none", "inner-padding-xl"]}
+        $ph={["inner-padding-m", "inner-padding-none", "inner-padding-xl"]}
       >
         <OakFlex
           $flexDirection={"column"}
