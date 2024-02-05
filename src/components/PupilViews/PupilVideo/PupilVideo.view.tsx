@@ -1,34 +1,41 @@
+import { useState } from "react";
 import {
   OakBackLink,
-  OakBox,
   OakGrid,
   OakGridArea,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonTopNav,
+  OakLessonVideoTranscript,
+  OakP,
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 type PupilViewsVideoProps = {
-  videoTitle: string;
-  videoMuxPlaybackId: string;
+  lessonTitle: string;
+  videoMuxPlaybackId?: string;
   videoWithSignLanguageMuxPlaybackId?: string;
-  transcriptSentences?: string;
+  transcriptSentences: string[];
+  lessonCohort?: string;
+  isLegacyLicense: boolean;
 };
 
 export const PupilViewsVideo = ({
-  videoTitle,
+  lessonTitle,
   videoMuxPlaybackId,
   videoWithSignLanguageMuxPlaybackId,
   transcriptSentences,
 }: PupilViewsVideoProps) => {
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
+  const playbackId =
+    signLanguageOn && videoWithSignLanguageMuxPlaybackId
+      ? videoWithSignLanguageMuxPlaybackId
+      : videoMuxPlaybackId;
 
   return (
     <OakLessonLayout
@@ -68,26 +75,42 @@ export const PupilViewsVideo = ({
         $mh="auto"
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
-        <OakGridArea $colStart={[1, 1, 3]} $colSpan={[12, 12, 8]}>
-          <VideoPlayer
-            playbackId={
-              signLanguageOn && videoWithSignLanguageMuxPlaybackId
-                ? videoWithSignLanguageMuxPlaybackId
-                : videoMuxPlaybackId
-            }
-            playbackPolicy="public"
-            title={videoTitle}
-            location="lesson"
-            isLegacy={false}
-          />
-          {videoWithSignLanguageMuxPlaybackId && (
-            <OakTertiaryButton
-              onClick={() => setSignLanguageOn(!signLanguageOn)}
-            >
-              {signLanguageOn ? "Hide sign language" : "Show sign language"}
-            </OakTertiaryButton>
+        <OakGridArea
+          $colStart={[1, 1, 3]}
+          $colSpan={[12, 12, 8]}
+          $mb="space-between-m2"
+        >
+          {playbackId && (
+            <VideoPlayer
+              playbackId={playbackId}
+              playbackPolicy="signed"
+              title={lessonTitle}
+              location="lesson"
+              isLegacy={false}
+            />
           )}
-          <OakBox $mt="space-between-xl">{transcriptSentences}</OakBox>
+        </OakGridArea>
+        <OakGridArea $colStart={[1, 1, 3]} $colSpan={[12, 12, 8]}>
+          <OakLessonVideoTranscript
+            id="video-transcript"
+            signLanguageControl={
+              videoWithSignLanguageMuxPlaybackId && (
+                <OakTertiaryButton
+                  onClick={() => setSignLanguageOn(!signLanguageOn)}
+                  iconName="sign-language"
+                  isTrailingIcon
+                >
+                  {signLanguageOn ? "Hide sign language" : "Show sign language"}
+                </OakTertiaryButton>
+              )
+            }
+          >
+            {transcriptSentences.map((sentence, index) => (
+              <OakP key={index} $mb="space-between-s">
+                {sentence}
+              </OakP>
+            ))}
+          </OakLessonVideoTranscript>
         </OakGridArea>
       </OakGrid>
     </OakLessonLayout>

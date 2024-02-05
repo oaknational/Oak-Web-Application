@@ -34184,7 +34184,7 @@ export type PupilLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_0', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, worksheetUrl?: string | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null }> };
+export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_1', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, worksheetUrl?: string | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, lessonCohort?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -34420,7 +34420,7 @@ export const ProgrammeListingDocument = gql`
     `;
 export const PupilLessonOverviewDocument = gql`
     query pupilLessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
-  lesson: published_mv_lesson_overview_3_0_0(
+  lesson: published_mv_lesson_overview_3_0_1(
     where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     lessonTitle
@@ -34441,6 +34441,7 @@ export const PupilLessonOverviewDocument = gql`
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
+    lessonCohort
   }
 }
     `;

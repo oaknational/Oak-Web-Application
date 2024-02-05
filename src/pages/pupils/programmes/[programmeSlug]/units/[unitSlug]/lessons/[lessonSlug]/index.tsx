@@ -58,10 +58,9 @@ const PupilPageContent = ({
     subjectSlug,
     yearTitle,
     pupilLessonOutcome,
-    videoTitle,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
-    transcriptSentences,
+    isLegacyLicense,
   } = curriculumData;
 
   switch (currentSection) {
@@ -84,12 +83,13 @@ const PupilPageContent = ({
     case "video":
       return (
         <PupilViewsVideo
-          videoTitle={videoTitle ?? undefined}
-          videoMuxPlaybackId={videoMuxPlaybackId}
+          lessonTitle={lessonTitle}
+          videoMuxPlaybackId={videoMuxPlaybackId ?? undefined}
           videoWithSignLanguageMuxPlaybackId={
             videoWithSignLanguageMuxPlaybackId ?? undefined
           }
-          transcriptSentences={transcriptSentences ?? undefined}
+          transcriptSentences={curriculumData.transcriptSentences ?? []}
+          isLegacyLicense={isLegacyLicense}
         />
       );
     case "exit-quiz":
