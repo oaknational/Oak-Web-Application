@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Layout from "@/components/AppComponents/Layout";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -213,10 +213,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonPlanningElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={[0, 40]} $rg={[56]}>
+          <OakGrid
+            $cg={["all-spacing-0", "all-spacing-8"]}
+            $rg={["all-spacing-10"]}
+          >
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
-                <GridArea
+                <OakGridArea
                   key={`plan-a-lessing--element-card--${id}`}
                   $colSpan={[12, 6]}
                 >
@@ -241,10 +244,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                       />
                     </Typography>
                   </LessonElementsCard>
-                </GridArea>
+                </OakGridArea>
               ),
             )}
-            <GridArea $colSpan={[12, 6]}>
+            <OakGridArea $colSpan={[12, 6]}>
               <Card
                 $position="relative"
                 $width={["100%", "auto"]}
@@ -279,8 +282,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   {...generateCtaProps(pageData.lessonElementsCTA)}
                 />
               </Card>
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
         </section>
       </MaxWidth>
 

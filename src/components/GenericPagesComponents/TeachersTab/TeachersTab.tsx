@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import Box from "@/components/SharedComponents/Box";
@@ -9,7 +10,6 @@ import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 
 type TeacherTabProps = {
@@ -20,8 +20,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   return (
     <Flex $background={"mint"} $pv={24} $overflow={"hidden"}>
       <MaxWidth $ph={[16]}>
-        <Grid $cg={16}>
-          <GridArea $colSpan={[12, 6]}>
+        <OakGrid $cg={"all-spacing-4"}>
+          <OakGridArea $colSpan={[12, 6]}>
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -55,8 +55,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 <KeyStageKeypad keyStages={keyStages} />
               </Box>
             </Flex>
-          </GridArea>
-          <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"hero-pupils"}>
               <TeachersTabResourceSelectorCard
                 icon={"worksheet"}
@@ -83,8 +83,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $display={["none", "none", "flex"]}
               />
             </ImageContainer>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </Flex>
   );

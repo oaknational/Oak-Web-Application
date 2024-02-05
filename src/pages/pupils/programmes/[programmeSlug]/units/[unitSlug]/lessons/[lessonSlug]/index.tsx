@@ -6,7 +6,11 @@ import {
   NextPage,
 } from "next";
 import { useSearchParams } from "next/navigation";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import {
+  oakDefaultTheme,
+  OakThemeProvider,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -46,11 +50,29 @@ const PupilPageContent = ({
     updateCurrentSection(overrideSection);
   }
 
-  const { starterQuiz, exitQuiz } = curriculumData;
+  const {
+    starterQuiz,
+    exitQuiz,
+    lessonTitle,
+    subjectTitle,
+    subjectSlug,
+    yearTitle,
+    pupilLessonOutcome,
+  } = curriculumData;
 
   switch (currentSection) {
     case "overview":
-      return <PupilViewsLessonOverview />;
+      return (
+        <PupilViewsLessonOverview
+          lessonTitle={lessonTitle}
+          subjectTitle={subjectTitle}
+          subjectSlug={subjectSlug}
+          yearTitle={yearTitle ?? undefined}
+          pupilLessonOutcome={pupilLessonOutcome ?? undefined}
+          starterQuizNumQuestions={starterQuiz?.length ?? 0}
+          exitQuizNumQuestions={exitQuiz?.length ?? 0}
+        />
+      );
     case "intro":
       return <PupilViewsIntro />;
     case "starter-quiz":
@@ -60,7 +82,7 @@ const PupilPageContent = ({
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
-      return <PupilViewsReview />;
+      return <PupilViewsReview lessonTitle={lessonTitle} />;
     default:
       return null;
   }
@@ -72,7 +94,9 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider>
-        <PupilPageContent curriculumData={curriculumData} />
+        <OakBox $height={"100vh"} $minWidth={"100vw"}>
+          <PupilPageContent curriculumData={curriculumData} />
+        </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>
   );

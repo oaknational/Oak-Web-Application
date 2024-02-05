@@ -30,37 +30,41 @@ import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirm
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { LEGACY_COHORT } from "@/config/cohort";
+
+type BaseLessonDownload = {
+  isLegacy: boolean;
+  lessonTitle: string;
+  lessonSlug: string;
+  lessonCohort?: string | null;
+  downloads: LessonDownloadsData["downloads"];
+};
+
+type CanonicalLesson = BaseLessonDownload & {
+  pathways: LessonPathway[];
+  nextLessons?: NextLesson[];
+};
+
+type NonCanonicalLesson = BaseLessonDownload & {
+  nextLessons: NextLesson[];
+} & LessonPathway;
 
 type LessonDownloadsProps =
   | {
       isCanonical: true;
-      lesson: {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
-        pathways: LessonPathway[];
-        nextLessons?: NextLesson[];
-      };
+      lesson: CanonicalLesson;
     }
   | {
       isCanonical: false;
-      lesson: LessonPathway & {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
-        nextLessons: NextLesson[];
-      };
+      lesson: NonCanonicalLesson;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, downloads } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-
   const {
     programmeSlug,
     keyStageTitle,
@@ -69,11 +73,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     subjectTitle,
     unitSlug,
     unitTitle,
+    lessonCohort,
   } = commonPathway;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const isLegacyDownload = isLegacy;
+  const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const onwardContent = lesson.nextLessons
     ? lesson.nextLessons?.map((nextLesson) => {
@@ -178,7 +182,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
     onComplete: setActiveResources,
-    isLegacyDownload: isLegacy,
+    isLegacyDownload: isLegacyDownload,
   });
 
   return (
@@ -235,7 +239,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             onEditClick={handleEditDetailsCompletedClick}
             register={form.register}
             control={form.control}
-            showPostAlbCopyright={!isLegacy}
+            showPostAlbCopyright={!isLegacyDownload}
             resourcesHeader="Lesson resources"
             triggerForm={form.trigger}
             apiError={apiError}

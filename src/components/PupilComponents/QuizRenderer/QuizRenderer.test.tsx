@@ -1,7 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakPrimaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
 import {
@@ -50,26 +54,8 @@ const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
     const spy = jest.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
+    expect(() => renderWithTheme(<QuizRenderer formId="formId" />)).toThrow();
     spy.mockRestore();
-  });
-
-  it("renders heading, mode and answer when there is currentQuestionData", () => {
-    const context = getQuizEngineContext();
-    const { getByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
-          </QuizEngineContext.Provider>
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-    const heading = getByText("Starter Quiz");
-    expect(heading).toBeInTheDocument();
-
-    const mode = getByText("mode: init");
-    expect(mode).toBeInTheDocument();
   });
 
   it("renders questionStem when questionState.mode !== 'end'", () => {
@@ -79,7 +65,7 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -95,28 +81,13 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
     const radio1 = getByLabelText("a group of letters");
     expect(radio1).toBeInTheDocument();
-  });
-
-  it("disables submit button when mode is init", () => {
-    const context = getQuizEngineContext();
-
-    const { getByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
-          </QuizEngineContext.Provider>
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-    expect(getByText("Submit").closest("button")).toBeDisabled();
   });
 
   it("updates question mode to grading when submit is clicked", () => {
@@ -130,7 +101,10 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
+              <OakPrimaryButton form={"formId"} type="submit">
+                Submit
+              </OakPrimaryButton>
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -141,52 +115,21 @@ describe("QuizRenderer", () => {
     }
   });
 
-  it("renders Next button when questionState.mode is feedback", () => {
-    const context = getQuizEngineContext();
-
-    if (context?.questionState?.[0]) {
-      context.questionState[0].mode = "feedback";
-    }
-
-    const { getByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
-          </QuizEngineContext.Provider>
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-    expect(getByText("Next Question").closest("button")).toBeInTheDocument();
-  });
-
-  it("does not render Next button when questionState.mode is not feedback", () => {
-    const context = getQuizEngineContext();
-
-    const { queryByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
-          </QuizEngineContext.Provider>
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-    expect(queryByText("Next Question")).not.toBeInTheDocument();
-  });
-
   it("calls handleNextQuestion when next button is clicked and questionState.mode === 'feedback'", () => {
     const context = getQuizEngineContext();
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "feedback";
-      context.handleNextQuestion = jest.fn();
+      const handleNextQuestion = (context.handleNextQuestion = jest.fn());
 
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="formId" />
+              <OakPrimaryButton onClick={handleNextQuestion}>
+                Next Question
+              </OakPrimaryButton>
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -208,7 +151,10 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="form-id" />
+              <OakPrimaryButton form="form-id" type="submit">
+                Submit
+              </OakPrimaryButton>
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -245,7 +191,10 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="form-id" />
+              <OakPrimaryButton form="form-id" type="submit">
+                Submit
+              </OakPrimaryButton>
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -279,7 +228,7 @@ describe("QuizRenderer", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={getLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
-              <QuizRenderer />
+              <QuizRenderer formId="form-id" />
             </QuizEngineContext.Provider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -306,7 +255,10 @@ describe("QuizRenderer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={getLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
-            <QuizRenderer />
+            <QuizRenderer formId="form-id" />
+            <OakPrimaryButton form="form-id" type="submit">
+              Submit
+            </OakPrimaryButton>
           </QuizEngineContext.Provider>
         </LessonEngineContext.Provider>
       </OakThemeProvider>,

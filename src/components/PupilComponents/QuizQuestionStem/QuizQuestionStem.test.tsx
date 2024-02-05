@@ -1,3 +1,8 @@
+import React from "react";
+import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
@@ -16,7 +21,9 @@ describe("QuestionListItem", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuizQuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizQuestionStem questionStem={mcqText.questionStem} index={0} />
+      </OakThemeProvider>,
     );
     const primaryQuestionText = getByText("What is a main clause?");
 
@@ -27,7 +34,9 @@ describe("QuestionListItem", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
     const { getByRole } = renderWithTheme(
-      <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
+      </OakThemeProvider>,
     );
     const image = getByRole("img");
 
@@ -43,7 +52,9 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuizQuestionStem questionStem={questionStem} index={0} />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizQuestionStem questionStem={questionStem} index={0} />
+      </OakThemeProvider>,
     );
     const secondaryText = getByText("This is some text");
 

@@ -1,12 +1,12 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";
 import Typography, {
@@ -200,19 +200,19 @@ const LayoutSiteFooter: FC = () => {
               <LayoutSiteFooterSignpost />
             </Flex>
           )}
-          <Grid>
-            <GridArea $colSpan={[12, 3]}>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <Box $mt={[0, 32]} />
               <FooterSectionLinks {...sections.teachers} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.oak} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.legal} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <Flex $justifyContent={["left", "right"]} $mt={[32, 0]}>
                 <Box $display={["none", "block"]}>
                   <Logo variant="with text" height={66} width={150} />
@@ -223,8 +223,8 @@ const LayoutSiteFooter: FC = () => {
                   {...OAK_SOCIALS}
                 />
               </Flex>
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
           <Flex
             $mb={56}
             $mt={[32, 64]}

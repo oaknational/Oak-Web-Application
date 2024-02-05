@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import { margin, MarginProps } from "@/styles/utils/spacing";
 import getFontFamily from "@/styles/themeHelpers/getFontFamily";
-import { GridProps } from "@/components/SharedComponents/Grid";
-import { grid } from "@/components/SharedComponents/Grid/Grid";
+import { GridProps } from "@/components/SharedComponents/Grid.deprecated";
+import { grid } from "@/components/SharedComponents/Grid.deprecated/Grid.deprecated";
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 /**

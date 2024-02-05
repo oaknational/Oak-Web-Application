@@ -48,6 +48,10 @@ const parseSpanStart = (value: string | null | undefined) => {
   return `span ${span}`;
 };
 
+/**
+ *  @deprecated
+ */
+
 export const gridArea = css<GridAreaProps>`
   flex-direction: column;
   ${responsive(
@@ -105,6 +109,9 @@ export const gridArea = css<GridAreaProps>`
   ${responsive("grid-row-start", (props) => props.$rowStart)}
 `;
 
+/**
+ * @deprecated use OakGridArea from oak-components instead
+ */
 const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
   ${gridArea}
 `;

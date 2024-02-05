@@ -29,6 +29,7 @@ type QuestionState = {
   grade: number;
   offerHint: boolean;
   feedback?: QuestionFeedbackType | QuestionFeedbackType[];
+  isPartiallyCorrect?: boolean;
 };
 
 export type QuizEngineContextType = {
@@ -124,29 +125,39 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         ? pupilAnswer
         : [pupilAnswer];
 
-      const matchingAnswers = pupilAnswerArray?.filter(
-        (answer) => answer && correctAnswers?.includes(answer),
-      );
-
-      const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
-
       setQuestionState((prev) => {
+        const feedback = questionAnswers?.map((answer) => {
+          // every answer receives feedback whether the student has selected it or not
+          // which are the correct choices are implied by the combination of whether it is selected and the feedback
+          if (pupilAnswerArray.includes(answer)) {
+            // Where pupils have selected an answer
+            return correctAnswers?.includes(answer) ? "correct" : "incorrect";
+          } else {
+            // where pupils have not selected an answer
+            return correctAnswers?.includes(answer) ? "incorrect" : "correct";
+          }
+        });
+
+        const grade = !feedback?.includes("incorrect") ? 1 : 0;
+
+        const isPartiallyCorrect =
+          (grade === 0 &&
+            currentQuestionData?.answers?.["multiple-choice"]?.some(
+              (answer, index) => {
+                return (
+                  answer.answer_is_correct && feedback?.[index] === "correct"
+                );
+              },
+            )) ??
+          false;
+
         const newState = [...prev];
         newState[currentQuestionIndex] = {
           mode: "feedback",
           grade,
-          feedback: questionAnswers?.map((answer) => {
-            // every answer receives feedback whether the student has selected it or not
-            // which are the correct choices are implied by the combination of whether it is selected and the feedback
-            if (pupilAnswerArray.includes(answer)) {
-              // Where pupils have selected an answer
-              return correctAnswers?.includes(answer) ? "correct" : "incorrect";
-            } else {
-              // where pupils have not selected an answer
-              return correctAnswers?.includes(answer) ? "incorrect" : "correct";
-            }
-          }),
+          feedback,
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          isPartiallyCorrect,
         };
         handleScoreUpdate(newState);
         return newState;

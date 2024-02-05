@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -86,6 +87,7 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             unitSlug,
             lessonSlug,
+            lessonCohort: NEW_COHORT,
           });
 
       if (!curriculumData) {

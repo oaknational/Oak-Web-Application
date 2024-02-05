@@ -1,5 +1,6 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
@@ -9,7 +10,6 @@ import Icon from "@/components/SharedComponents/Icon";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitModal, {
@@ -429,8 +429,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             </P>
           </Box>
         </Card>
-        <Grid>
-          <GridArea $colSpan={[12, 3]}>
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
@@ -522,8 +522,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                 ))}
               </RadioGroup>
             </Box>
-          </GridArea>
-          <GridArea $colSpan={[12, 9]}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 9]}>
             {Object.keys(yearData)
               .filter((year) => !selectedYear || selectedYear === year)
               .map((year) => {
@@ -725,8 +725,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                   </Box>
                 );
               })}
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </Box>
       <UnitTabBanner />
     </Box>
