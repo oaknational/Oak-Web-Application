@@ -47,7 +47,10 @@ const QuizInner = () => {
   const formId = "quiz-form";
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
+
   const grade = questionState[currentQuestionIndex]?.grade;
+  const isPartiallyCorrect =
+    questionState[currentQuestionIndex]?.isPartiallyCorrect;
   const isCorrect = grade === 1;
 
   const correctFeedback = (
@@ -62,13 +65,13 @@ const QuizInner = () => {
     return null;
   };
 
-  function pickFeedback(grade: number | undefined) {
-    switch (grade) {
-      case 1:
+  function pickFeedback(isCorrect: boolean, isPartiallyCorrect?: boolean) {
+    switch (true) {
+      case isCorrect:
         return "correct";
-      case 0:
+      case !isCorrect && !isPartiallyCorrect:
         return "incorrect";
-      case 0.5:
+      case !isCorrect && isPartiallyCorrect:
         return "partially-correct";
       default:
         return null;
@@ -77,7 +80,9 @@ const QuizInner = () => {
 
   const bottomNavSlot = (
     <OakLessonBottomNav
-      feedback={isFeedbackMode ? pickFeedback(grade) : null}
+      feedback={
+        isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
+      }
       answerFeedback={
         isCorrect
           ? correctFeedback

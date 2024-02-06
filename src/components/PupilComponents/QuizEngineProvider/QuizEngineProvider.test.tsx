@@ -227,6 +227,7 @@ describe("QuizEngineContext", () => {
         grade: 1,
         feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
+        isPartiallyCorrect: false,
       });
     });
 
@@ -255,6 +256,7 @@ describe("QuizEngineContext", () => {
         grade: 0,
         feedback: ["incorrect", "correct", "incorrect", "correct"],
         offerHint: false,
+        isPartiallyCorrect: false,
       });
     });
 
@@ -299,6 +301,7 @@ describe("QuizEngineContext", () => {
         grade: 1,
         feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
+        isPartiallyCorrect: false,
       });
     });
 
@@ -346,9 +349,10 @@ describe("QuizEngineContext", () => {
 
       expect(questionState[0]).toEqual({
         mode: "feedback",
-        grade: 0.5,
+        grade: 0,
         feedback: ["correct", "incorrect", "incorrect", "correct"],
         offerHint: false,
+        isPartiallyCorrect: true,
       });
     });
   });

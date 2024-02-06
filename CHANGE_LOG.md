@@ -1,3 +1,46 @@
+## [1.338.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.1...v1.338.2) (2024-02-06)
+
+## [1.338.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.0...v1.338.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* white bg for quiz stem images to avoid contrast issues ([d346862](https://github.com/oaknational/Oak-Web-Application/commit/d34686254d71cd7d85e065839b3e6963b528b6f5))
+
+# [1.338.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.337.0...v1.338.0) (2024-02-02)
+
+
+### Bug Fixes
+
+* **PUPIL-283:** mobile gutter on lesson overview and quiz pages ([21068cd](https://github.com/oaknational/Oak-Web-Application/commit/21068cd3cdc6cc142fb8e48827066bbb8dfd65a2))
+* restore margin on lesson review page ([080bae6](https://github.com/oaknational/Oak-Web-Application/commit/080bae6b8d5df290b8e812fca5845b5a3e9cf706))
+
+
+### Features
+
+* **PUPIL-283:** add additional fields to the `pupilLessonOverview` query ([86b87eb](https://github.com/oaknational/Oak-Web-Application/commit/86b87eba7fd90a8e85cd2d0062b21efad298b261))
+* **PUPIL-283:** apply final styling to the lesson overview page ([a6e8609](https://github.com/oaknational/Oak-Web-Application/commit/a6e86094bc09209aef4300899992aa3e7325aa0c))
+* **PUPIL-283:** design tweaks following review ([ca5faa4](https://github.com/oaknational/Oak-Web-Application/commit/ca5faa497603cd3b2cc4db75c77bb9c7d73c5f64))
+
+# [1.337.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.336.3...v1.337.0) (2024-02-02)
+
+
+### Features
+
+* **pupillessonreview:** format ([6a4bb47](https://github.com/oaknational/Oak-Web-Application/commit/6a4bb47794d77772306bb3d45ef4875676652164))
+* **PupilLessonReviewPage:** add compoents and finish review page ([731bc45](https://github.com/oaknational/Oak-Web-Application/commit/731bc456db57ddf92657c94994f7cfb0012b295a))
+* **PupilLessonReviewPage:** add text ([fedf138](https://github.com/oaknational/Oak-Web-Application/commit/fedf13814b51a8db1b6bd510032c09f7de36170a))
+* **PupilLessonReviewPage:** font and padding fix ([82bd0c1](https://github.com/oaknational/Oak-Web-Application/commit/82bd0c156b403f813e688d702d6345965baac0ca))
+* **PupilLessonReviewPage:** format ([9ea6f19](https://github.com/oaknational/Oak-Web-Application/commit/9ea6f196d37a78edd5a1b1c04d8212ebf0fac685))
+* **PupilLessonReviewPage:** lesson title font fix ([791c673](https://github.com/oaknational/Oak-Web-Application/commit/791c67359a236caed293e69bd939cc108a6b749a))
+* **PupilLessonReviewPage:** update fixture ([df2fcfb](https://github.com/oaknational/Oak-Web-Application/commit/df2fcfb6dcab2d1a4a266ac0d1c8b05ae072136f))
+* **PupilLessonReviewPage:** update oak-compoent dep ([537f6a7](https://github.com/oaknational/Oak-Web-Application/commit/537f6a75162c89fcc8efabc722fad18707a55278))
+* **pupillessonreview:** refactor image src and ispartiallycorrect logic ([1b16301](https://github.com/oaknational/Oak-Web-Application/commit/1b16301028c57e9536fe7b823277f793adb0ae82))
+* **pupillessonreview:** remove corretness and grading bugs ([71b30e4](https://github.com/oaknational/Oak-Web-Application/commit/71b30e40806b375fe1696e9b8de9541f1abe0880))
+* **pupillessonreview:** top padding for mobile view ([e985d6c](https://github.com/oaknational/Oak-Web-Application/commit/e985d6cc48701ecb7343623b54d85bf4926a653d))
+
+## [1.336.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.336.2...v1.336.3) (2024-02-01)
+
 ## [1.336.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.336.1...v1.336.2) (2024-01-31)
 
 ## [1.336.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.336.0...v1.336.1) (2024-01-30)
