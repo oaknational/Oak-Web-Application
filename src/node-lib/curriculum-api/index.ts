@@ -135,6 +135,7 @@ const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
+  displayOrder: z.number().optional(),
 });
 
 const subjectSchema = z.object({
