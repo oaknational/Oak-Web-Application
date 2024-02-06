@@ -95,64 +95,96 @@ export const getStaticProps: GetStaticProps<
       if (!context.params?.keyStageSlug) {
         throw new Error("No keyStageSlug");
       }
-
-      const curriculumData = await curriculumApi.subjectListing({
-        keyStageSlug: context.params?.keyStageSlug,
-      });
+      const keystage = context.params?.keyStageSlug;
 
       const curriculumData2023 = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: context.params?.keyStageSlug,
-        isLegacy: false,
+        keyStageSlug: keystage,
+        isLegacy: keystage === "early-years-foundation-stage",
       });
 
-      if (!curriculumData && !curriculumData2023) {
-        return {
-          notFound: true,
-        };
-      }
+      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData2023;
 
-      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
-      const subjectSlugs = curriculumData.subjects.map((s) =>
-        removeLegacySlugSuffix(s.subjectSlug),
-      );
       const subjectSlugs2023 =
         curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
 
-      const uniqueSubjectSlugs = [
-        ...new Set(subjectSlugs.concat(subjectSlugs2023)),
-      ];
+      if (keystage === "early-years-foundation-stage") {
+        if (!curriculumData2023) {
+          return {
+            notFound: true,
+          };
+        }
 
-      const subjects = uniqueSubjectSlugs
-        .map((subjectSlug) => {
+        const subjects = subjectSlugs2023.map((subjectSlug) => {
           return {
             subjectSlug,
-            old:
-              curriculumData.subjects.find(
-                (subject) =>
-                  removeLegacySlugSuffix(subject.subjectSlug) === subjectSlug,
-              ) || null,
-
+            old: null,
             new:
               curriculumData2023?.subjects.find(
                 (subject) => subject.subjectSlug === subjectSlug,
               ) || null,
           };
-        })
-        // Filter out subjects that don't exist in either curriculum
-        .filter((subject) => subject.old || subject.new)
-        // sort by slug so the old and new subjects are intermingled
-        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
+        });
 
-      const results = {
-        props: {
-          keyStageSlug,
-          keyStageTitle,
-          subjects,
-          keyStages,
-        },
-      };
+        const results = {
+          props: {
+            keyStageSlug,
+            keyStageTitle,
+            subjects,
+            keyStages,
+          },
+        };
 
-      return results;
+        return results;
+      } else {
+        const curriculumData = await curriculumApi.subjectListing({
+          keyStageSlug: keystage,
+        });
+        if (!curriculumData) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const subjectSlugs = curriculumData.subjects.map((s) =>
+          removeLegacySlugSuffix(s.subjectSlug),
+        );
+
+        const uniqueSubjectSlugs = [
+          ...new Set(subjectSlugs.concat(subjectSlugs2023)),
+        ];
+
+        const subjects = uniqueSubjectSlugs
+          .map((subjectSlug) => {
+            return {
+              subjectSlug,
+              old:
+                curriculumData.subjects.find(
+                  (subject) =>
+                    removeLegacySlugSuffix(subject.subjectSlug) === subjectSlug,
+                ) || null,
+
+              new:
+                curriculumData2023?.subjects.find(
+                  (subject) => subject.subjectSlug === subjectSlug,
+                ) || null,
+            };
+          })
+          // Filter out subjects that don't exist in either curriculum
+          .filter((subject) => subject.old || subject.new)
+          // sort by slug so the old and new subjects are intermingled
+          .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
+
+        const results = {
+          props: {
+            keyStageSlug,
+            keyStageTitle,
+            subjects,
+            keyStages,
+          },
+        };
+
+        return results;
+      }
     },
   });
 };
