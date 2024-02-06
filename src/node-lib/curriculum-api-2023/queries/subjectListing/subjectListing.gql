@@ -1,5 +1,5 @@
 query subjectListing($keyStageSlug: String!, $isLegacy: Boolean!) {
-  keyStageSubjects: published_mv_subject_listing_3_0_1(
+  keyStageSubjects: published_mv_subject_listing_3_0_2(
     where: {
       keyStageSlug: { _eq: $keyStageSlug }
       is_legacy: { _eq: $isLegacy }
