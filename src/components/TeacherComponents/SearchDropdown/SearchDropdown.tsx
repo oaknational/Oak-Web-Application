@@ -6,7 +6,7 @@ import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButto
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
+import { FlexList } from "@/components/SharedComponents/Typography/UL.deprecated";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   const { pathways, onClick, onToggleClick } = props;

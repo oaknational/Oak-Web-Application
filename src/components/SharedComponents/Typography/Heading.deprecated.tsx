@@ -35,12 +35,18 @@ export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   );
 };
 
+/**
+ * @deprecated use OakHeadingProps from oak-components instead
+ */
 export type HeadingProps = TypographyProps &
   HeadingTagProps &
   ColorProps &
   OpacityProps &
   MarginProps;
 
+/**
+ * @deprecated use OakHeading from oak-components instead
+ */
 const Heading = styled(HeadingTagComponent)<HeadingProps>`
   ${typography}
   ${margin}

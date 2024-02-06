@@ -4,7 +4,7 @@ import { OakLI } from "@oaknational/oak-components";
 
 import GraphiCircleIcon from "@/components/SharedComponents/Icon/GraphicCircleIcon";
 import { zIndexMap } from "@/styles/utils/zIndex";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { IconName } from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";

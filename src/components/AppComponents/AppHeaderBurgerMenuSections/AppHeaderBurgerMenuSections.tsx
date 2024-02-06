@@ -4,7 +4,7 @@ import { OakHeading, OakLI } from "@oaknational/oak-components";
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
+import { FlexList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import Flex from "@/components/SharedComponents/Flex";
 
 /**

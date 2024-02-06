@@ -3,7 +3,7 @@ import { OakLI } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
+import { FlexList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

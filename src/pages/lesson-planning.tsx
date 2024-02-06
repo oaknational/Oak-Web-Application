@@ -32,8 +32,8 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import { GridOrderedList } from "@/components/SharedComponents/Typography/OL";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
+import { GridOrderedList } from "@/components/SharedComponents/Typography/OL.deprecated";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;

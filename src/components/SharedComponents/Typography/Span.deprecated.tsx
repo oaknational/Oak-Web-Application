@@ -23,6 +23,8 @@ export type SpanProps = TypographyProps &
  * Span renders a `span` (inline text) component, exposing all the typography props.
  * ## Usage
  * Use this component when you want to apply styles to a piece of inline text.
+ *
+ * @deprecated use OakSpan from oak-components instead
  */
 const Span = styled.span<SpanProps>`
   ${typography}
