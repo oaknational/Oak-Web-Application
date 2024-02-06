@@ -109,6 +109,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [yearSelection, setYearSelection] = useState<YearSelection>({});
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
+    null,
+  );
 
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
@@ -407,7 +410,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       $height={"100%"}
       $width={"100%"}
       $zIndex={"modalDialog"}
-      $overflow={"auto"}
+      // $overflow={"auto"}
     >
       <Box $position={"fixed"} $top={20} $right={16}>
         <Button
@@ -433,7 +436,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           value={selectedThread ? selectedThread.slug : ""}
           onChange={handleSelectThread}
         >
-          <Box $overflow={"scroll"}>
+          <Box
+          // $overflow={"scroll"}
+          >
             <Box $mv={16}>
               <Radio
                 aria-label={"None highlighted"}
@@ -576,7 +581,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     <Box
                       $textOverflow={"ellipsis"}
                       $whiteSpace={"nowrap"}
-                      $overflow={"hidden"}
+                      // $overflow={"hidden"}
                     >
                       {selectedThread?.title} • {highlightedUnitCount()} units
                       highlighted
@@ -584,30 +589,41 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                   )}
                 </Box>
                 <Box
-                  $overflow={"hidden"}
+                  // $overflow={"hidden"}
                   $pt={10}
                   $dropShadow="mobileFilterSelector"
                   $width={"100%"}
                   $ph={[18, 0]}
+                  $position={"sticky"}
                 >
                   <ButtonGroup
                     aria-label="Select a year group"
                     $overflowX={"auto"}
                     $overflowY={"hidden"}
+                    $pb={2}
                   >
                     {yearOptions.map((yearOption) => (
                       <Box key={yearOption} $mt={5} $ml={5}>
                         <ButtonAsLink
-                          background={"grey20"}
                           variant="brush"
                           aria-label={`Year ${yearOption}`}
                           data-testid={"year-selection-mobile"}
-                          currentStyles={["color", "text-underline"]}
+                          // currentStyles={["color"]}
+                          // isCurrent={mobileYearSelection === yearOption}
+                          background={
+                            mobileYearSelection === yearOption
+                              ? "grey20"
+                              : "black"
+                          }
                           key={yearOption}
                           $transition={"all 0.3s ease"}
                           page={null}
                           label={`Year ${yearOption}`}
                           href={`#units-year-${yearOption}`}
+                          onClick={() => {
+                            setMobileYearSelection(yearOption);
+                            trackSelectYear(yearOption);
+                          }}
                         />
                       </Box>
                     ))}
