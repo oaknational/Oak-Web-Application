@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakLI,
   OakP,
+  OakUL,
 } from "@oaknational/oak-components";
 
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
@@ -14,7 +15,6 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { UL } from "@/components/SharedComponents/Typography";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -91,7 +91,12 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
           >
             Year
           </OakHeading>
-          <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8}>
+          <OakUL
+            $reset
+            $display={"flex"}
+            $mb={years ? "space-between-l" : "space-between-m"}
+            $ph="inner-padding-xs"
+          >
             {years.map((years) => (
               <OakLI
                 $width={"100%"}
@@ -101,7 +106,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
                 <KeypadLink key={`year:${years.title}`} {...years} />
               </OakLI>
             ))}
-          </UL>
+          </OakUL>
         </>
       )}
     </nav>

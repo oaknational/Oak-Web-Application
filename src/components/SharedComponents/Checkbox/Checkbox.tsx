@@ -1,6 +1,7 @@
 import { FC, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
+import { OakSpan } from "@oaknational/oak-components";
 
 import VisualCheckbox from "./VisualCheckbox";
 
@@ -12,7 +13,6 @@ import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import FocusUnderline from "@/components/SharedComponents/FocusUnderline";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { ZIndex } from "@/styles/utils/zIndex";
-import Span from "@/components/SharedComponents/Typography/Span";
 
 export type CheckboxConfig = {
   default: {
@@ -145,7 +145,7 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const CheckboxLabelText = styled(Span)<{ fontWeight: 400 | 600 }>`
+const CheckboxLabelText = styled(OakSpan)<{ fontWeight: 400 | 600 }>`
   margin-left: 8px;
   margin-right: 16px;
   font-weight: ${(props) => props.fontWeight};

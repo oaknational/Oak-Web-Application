@@ -1,9 +1,8 @@
 import { FC } from "react";
-import { OakHeading, OakLI, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakLI, OakP, OakOL } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { OL } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
@@ -77,12 +76,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
       <Flex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
           <CurriculumUnitDetailsAccordion title="Lessons in unit">
-            <OL $mt={0} data-testid="lesson-title-list">
+            <OakOL $mt="space-between-none" data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
                   return <OakLI key={lesson}>{lesson}</OakLI>;
                 })}
-            </OL>
+            </OakOL>
           </CurriculumUnitDetailsAccordion>
         )}
 
