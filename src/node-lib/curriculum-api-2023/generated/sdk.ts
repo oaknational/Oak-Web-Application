@@ -34207,7 +34207,7 @@ export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Arr
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_2', keyStages?: any | null }> };
+export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_3_0_0', keyStages?: any | null }> };
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -34471,7 +34471,7 @@ export const SubjectPhaseOptionsDocument = gql`
     `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
-  teachersHomePage: published_mv_homepage_2 {
+  teachersHomePage: published_mv_homepage_3_0_0 {
     keyStages: key_stages
   }
 }
