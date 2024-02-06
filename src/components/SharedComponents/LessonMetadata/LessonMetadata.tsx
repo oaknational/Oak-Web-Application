@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { OakTypography, OakTypographyProps } from "@oaknational/oak-components";
-
-import { BoxProps } from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import {
+  OakTypography,
+  OakTypographyProps,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 const LessonMetadata: FC<
   {
@@ -13,7 +15,7 @@ const LessonMetadata: FC<
     yearTitle?: string | null;
     metadataArray?: string[];
   } & OakTypographyProps &
-    BoxProps
+    OakFlexProps
 > = (props) => {
   const {
     yearTitle,
@@ -42,7 +44,7 @@ const LessonMetadata: FC<
     </React.Fragment>
   ));
 
-  return <Flex $gap={8}>{metadataElements}</Flex>;
+  return <OakFlex $gap="all-spacing-2">{metadataElements}</OakFlex>;
 };
 
 export default LessonMetadata;

@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { CSSProperties } from "styled-components";
-import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { FontVariant } from "@/styles/utils/typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Heading, {
+  HeadingTag,
+} from "@/components/SharedComponents/Typography/Heading.deprecated";
 import Flex from "@/components/SharedComponents/Flex";
 
 export const getIconFlexPosition = (
@@ -27,7 +29,7 @@ type IconPosition = "leading" | "trailing" | "aboveTitle";
 
 export type CardTitleProps = {
   children?: React.ReactNode;
-  tag: OakHeadingTag;
+  tag: HeadingTag;
   icon?: IconName;
   $iconPosition?: ResponsiveValues<IconPosition>;
   iconSize?: PixelSpacing;
@@ -90,9 +92,9 @@ const CardTitle: FC<CardTitleProps> = ({
           $pa={0}
         />
       )}
-      <OakHeading $font={$font} tag={tag}>
+      <Heading $font={$font} tag={tag}>
         {children}
-      </OakHeading>
+      </Heading>
     </Flex>
   );
 };
