@@ -1,3 +1,10 @@
+## [1.338.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.2...v1.338.3) (2024-02-06)
+
+
+### Bug Fixes
+
+* responsive width ([2afae66](https://github.com/oaknational/Oak-Web-Application/commit/2afae66eb8309a17938a4233233b53b257cbfa72))
+
 ## [1.338.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.1...v1.338.2) (2024-02-06)
 
 ## [1.338.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.0...v1.338.1) (2024-02-05)
