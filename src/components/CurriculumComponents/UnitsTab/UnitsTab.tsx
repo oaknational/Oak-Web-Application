@@ -437,7 +437,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               <Radio
                 aria-label={"None highlighted"}
                 value={""}
-                data-testid={"no-threads-radio"}
+                data-testid={"no-threads-radio-mobile"}
               >
                 None highlighted
               </Radio>
@@ -462,7 +462,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     aria-label={threadOption.title}
                     value={threadOption.slug}
                     data-testid={
-                      isSelected ? "selected-thread-radio" : "thread-radio"
+                      isSelected
+                        ? "selected-thread-radio-mobile"
+                        : "thread-radio-mobile"
                     }
                   >
                     {threadOption.title}
@@ -581,7 +583,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                           background={"grey20"}
                           variant="brush"
                           aria-label={`Year ${yearOption}`}
-                          data-testid={"year-radio"}
+                          data-testid={"year-selection-mobile"}
                           currentStyles={["color", "text-underline"]}
                           key={yearOption}
                           title={yearOption === "All" ? "" : `${yearOption}`}
