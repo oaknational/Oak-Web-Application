@@ -7,15 +7,14 @@ import { PupilViewsIntro } from "./PupilIntro.view";
 
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
-
 const curriculumData = {
-  ...lessonOverviewFixture(),
+  ...pupilLessonOverviewFixture(),
 };
 
 const equipmentAndResources = [{ equipment: "equipment" }];
