@@ -514,7 +514,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         <Heading
           tag="h2"
           $mb={[0, 24]}
-          $ml={[18, 0]}
+          $ml={[16, 0]}
           $font={["heading-5", "heading-4"]}
         >
           Unit sequence
@@ -558,81 +558,82 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             </P>
           </Box>
         </Card>
-        <OakGrid>
-          <OakGridArea $colSpan={[12, 3]}>
-            <Box
-              $position={["sticky", "static"]}
-              $display={["block", "none"]}
-              $top={0}
-              $width={"100%"}
-              $background={"white"}
-            >
-              <Box>
-                <Box $dropShadow="mobileFilterSelector" $ph={[18, 0]} $pb={16}>
-                  <Button
-                    label="Highlight a thread"
-                    icon="chevron-right"
-                    $iconPosition="trailing"
-                    variant="buttonStyledAsLink"
-                    $mt={16}
-                    onClick={handleMobileThreadModal}
-                  />
-                  {selectedThread && (
-                    <Box
-                      $textOverflow={"ellipsis"}
-                      $whiteSpace={"nowrap"}
-                      // $overflow={"hidden"}
-                    >
-                      {selectedThread?.title} • {highlightedUnitCount()} units
-                      highlighted
-                    </Box>
-                  )}
-                </Box>
-                <Box
-                  // $overflow={"hidden"}
-                  $pt={10}
-                  $dropShadow="mobileFilterSelector"
-                  $width={"100%"}
-                  $ph={[18, 0]}
-                  $position={"sticky"}
-                >
-                  <ButtonGroup
-                    aria-label="Select a year group"
-                    $overflowX={"auto"}
-                    $overflowY={"hidden"}
-                    $pb={2}
+        <Box
+          $display={["block", "none"]}
+          $position={["sticky", "static"]}
+          $top={0}
+          $zIndex={"fixedHeader"}
+        >
+          <Box
+            $width={"100%"}
+            $background={"white"}
+            $mb={8}
+            data-test-id="filter-mobiles"
+          >
+            <Box>
+              <Box $dropShadow="mobileFilterSelector" $ph={[16, 0]} $pb={16}>
+                <Button
+                  label="Highlight a thread"
+                  icon="chevron-right"
+                  $iconPosition="trailing"
+                  variant="buttonStyledAsLink"
+                  $mt={16}
+                  onClick={handleMobileThreadModal}
+                />
+                {selectedThread && (
+                  <Box
+                    $textOverflow={"ellipsis"}
+                    $whiteSpace={"nowrap"}
+                    $overflow={"hidden"}
                   >
-                    {yearOptions.map((yearOption) => (
-                      <Box key={yearOption} $mt={5} $ml={5}>
-                        <ButtonAsLink
-                          variant="brush"
-                          aria-label={`Year ${yearOption}`}
-                          data-testid={"year-selection-mobile"}
-                          // currentStyles={["color"]}
-                          // isCurrent={mobileYearSelection === yearOption}
-                          background={
-                            mobileYearSelection === yearOption
-                              ? "grey20"
-                              : "black"
-                          }
-                          key={yearOption}
-                          $transition={"all 0.3s ease"}
-                          page={null}
-                          label={`Year ${yearOption}`}
-                          href={`#units-year-${yearOption}`}
-                          onClick={() => {
-                            setMobileYearSelection(yearOption);
-                            trackSelectYear(yearOption);
-                          }}
-                        />
-                      </Box>
-                    ))}
-                  </ButtonGroup>
-                </Box>
+                    {selectedThread?.title} • {highlightedUnitCount()} units
+                    highlighted
+                  </Box>
+                )}
+              </Box>
+              <Box
+                $pt={10}
+                $dropShadow="mobileFilterSelector"
+                $width={"100%"}
+                $ph={[16, 0]}
+              >
+                <ButtonGroup
+                  aria-label="Select a year group"
+                  $overflowX={"auto"}
+                  $overflowY={"hidden"}
+                  $pb={2}
+                >
+                  {yearOptions.map((yearOption) => (
+                    <Box key={yearOption} $pt={8} $ml={5}>
+                      <ButtonAsLink
+                        variant="brush"
+                        aria-label={`Year ${yearOption}`}
+                        data-testid={"year-selection-mobile"}
+                        background={
+                          mobileYearSelection === yearOption
+                            ? "grey20"
+                            : "black"
+                        }
+                        key={yearOption}
+                        $transition={"all 0.3s ease"}
+                        page={null}
+                        label={`Year ${yearOption}`}
+                        href={`#units-year-${yearOption}`}
+                        onClick={() => {
+                          setMobileYearSelection(yearOption);
+                          trackSelectYear(yearOption);
+                        }}
+                      />
+                    </Box>
+                  ))}
+                </ButtonGroup>
               </Box>
             </Box>
-            {/* DESKTOP */}
-            <Box $mr={16} $mb={32} $display={["none", "block"]}>
+          </Box>
+        </Box>
+        <OakGrid>
+          <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
+            <Box $mr={16} $mb={32} $ml={16} $display={["none", "block"]}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
               </Heading>
