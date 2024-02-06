@@ -8,7 +8,6 @@ import {
   OakQuizCounter,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import {
   QuestionsArray,
   QuizEngineProvider,
@@ -45,8 +44,7 @@ const QuizInner = () => {
   } = quizEngineContext;
 
   const formId = "quiz-form";
-  const isFeedbackMode =
-    questionState[currentQuestionIndex]?.mode === "feedback";
+  const isFeedbackMode = questionState[currentQuestionIndex]?.mode === "feedback";
 
   const grade = questionState[currentQuestionIndex]?.grade;
   const isPartiallyCorrect =

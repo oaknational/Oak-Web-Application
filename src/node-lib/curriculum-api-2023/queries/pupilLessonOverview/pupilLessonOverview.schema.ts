@@ -8,6 +8,10 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     lessonSlug: true,
     starterQuiz: true,
     exitQuiz: true,
+    supervisionLevel: true,
+    contentGuidance: true,
+    lessonEquipmentAndResources: true,
+    worksheetUrl: true,
   })
   .extend({
     subjectSlug: z.string(),

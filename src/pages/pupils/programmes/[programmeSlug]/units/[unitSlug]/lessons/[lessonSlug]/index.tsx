@@ -6,12 +6,12 @@ import {
   NextPage,
 } from "next";
 import { useSearchParams } from "next/navigation";
+
 import {
   oakDefaultTheme,
   OakThemeProvider,
   OakBox,
 } from "@oaknational/oak-components";
-
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
@@ -74,7 +74,7 @@ const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro />;
+      return <PupilViewsIntro {...curriculumData} />;
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
