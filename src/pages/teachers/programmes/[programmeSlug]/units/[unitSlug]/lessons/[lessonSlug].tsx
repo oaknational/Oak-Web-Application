@@ -18,7 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
-import { NEW_COHORT } from "@/config/cohort";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -74,6 +74,12 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
+
+      const isEyfs = programmeSlug.endsWith("early-years-foundation-stage");
+
+      // TODO: is there a better way to do this
+      const cohortRegex = isEyfs ? `${LEGACY_COHORT}` : `(?!${LEGACY_COHORT})`;
+
       const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.lessonOverview({
             programmeSlug,
@@ -84,9 +90,8 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             lessonSlug,
             unitSlug,
-            lessonCohort: NEW_COHORT,
+            lessonCohort: cohortRegex,
           });
-
       if (!curriculumData) {
         return {
           notFound: true,
@@ -94,7 +99,7 @@ export const getStaticProps: GetStaticProps<
       }
 
       const { videoTitle } = curriculumData;
-      if (videoTitle && !isSlugLegacy(programmeSlug)) {
+      if (videoTitle && !isSlugLegacy(programmeSlug) && !isEyfs) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;

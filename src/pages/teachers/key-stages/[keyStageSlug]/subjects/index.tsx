@@ -102,6 +102,8 @@ export const getStaticProps: GetStaticProps<
         isLegacy: keystage === "early-years-foundation-stage",
       });
 
+      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData2023;
+
       const subjectSlugs2023 =
         curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
 
@@ -111,8 +113,6 @@ export const getStaticProps: GetStaticProps<
             notFound: true,
           };
         }
-
-        const { keyStageSlug, keyStageTitle, keyStages } = curriculumData2023;
 
         const subjects = subjectSlugs2023.map((subjectSlug) => {
           return {
@@ -144,7 +144,6 @@ export const getStaticProps: GetStaticProps<
             notFound: true,
           };
         }
-        const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
 
         const subjectSlugs = curriculumData.subjects.map((s) =>
           removeLegacySlugSuffix(s.subjectSlug),

@@ -326,7 +326,7 @@ export const getStaticProps: GetStaticProps<
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
-            isLegacy: false,
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
           });
 
       if (!curriculumData) {
