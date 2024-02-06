@@ -29,7 +29,7 @@ import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo/PupilVideo.v
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
-
+import { getCaptionsFromFile } from "@/utils/handleTranscript";
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
 };
@@ -158,9 +158,18 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      let transcriptSentences = curriculumData.transcriptSentences;
+
+      if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
+        // For new content we need to fetch the captions file from gCloud and parse the result to generate
+        // the transcript sentences.
+        const fileName = `${curriculumData.videoTitle}.vtt`;
+        transcriptSentences = (await getCaptionsFromFile(fileName)) ?? [];
+      }
+
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: { ...curriculumData, transcriptSentences },
         },
       };
 

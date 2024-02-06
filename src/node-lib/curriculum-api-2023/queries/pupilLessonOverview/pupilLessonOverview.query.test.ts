@@ -6,9 +6,6 @@ import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
-import * as handleTranscript from "@/utils/handleTranscript";
-
-jest.mock("@/utils/handleTranscript");
 
 describe("pupilLessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -32,7 +29,7 @@ describe("pupilLessonOverview()", () => {
   describe("when the lesson is for the 2020-2023 cohort", () => {
     const mockLesson = mockQueryLesson({ lessonCohort: LEGACY_COHORT });
 
-    it("does not fetch tra is false when the cohort is 2020-2023", async () => {
+    test("isLegacyLicense is true", async () => {
       const lesson = await executeLessonOverviewQuery([mockLesson]);
 
       expect(lesson.starterQuiz?.[0]?.questionId).toEqual(985);
@@ -42,21 +39,10 @@ describe("pupilLessonOverview()", () => {
   describe("when the lesson is for the 2023-2024 cohort", () => {
     const mockLesson = mockQueryLesson({ lessonCohort: NEW_COHORT });
 
-    it("fetches the transcript when the lesson is for the 2023-2024 cohort", async () => {
-      const TRANSCRIPT_SENTENCES = ["Hello I'm Mr Ben"];
-      jest
-        .spyOn(handleTranscript, "getCaptionsFromFile")
-        .mockResolvedValue(TRANSCRIPT_SENTENCES);
-      const VIDEO_TITLE = "INTRO_TO_ISLAMIC_GEOMETRY";
-      const lesson = await executeLessonOverviewQuery([
-        { ...mockLesson, videoTitle: VIDEO_TITLE },
-      ]);
+    test("isLegacyLicense is false", async () => {
+      const lesson = await executeLessonOverviewQuery([mockLesson]);
 
       expect(lesson.isLegacyLicense).toBe(false);
-      expect(lesson.transcriptSentences).toEqual(TRANSCRIPT_SENTENCES);
-      expect(handleTranscript.getCaptionsFromFile).toHaveBeenCalledWith(
-        `${VIDEO_TITLE}.vtt`,
-      );
     });
   });
 });
