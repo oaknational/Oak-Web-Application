@@ -23,6 +23,7 @@ import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 // Types and interfaces
 
@@ -558,43 +559,55 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               $position={["sticky", "static"]}
               $display={["block", "none"]}
               $top={0}
-              $ph={[18, 0]}
+              $width={"100%"}
               $background={"white"}
             >
               <Box>
-                <Button
-                  label="Highlight a thread"
-                  icon="chevron-right"
-                  $iconPosition="trailing"
-                  variant="buttonStyledAsLink"
-                  $mb={16}
-                  $mt={16}
-                  onClick={handleMobileThreadModal}
-                />
-                <Box $overflow={"hidden"}>
+                <Box $dropShadow="mobileFilterSelector" $ph={[18, 0]} $pb={16}>
+                  <Button
+                    label="Highlight a thread"
+                    icon="chevron-right"
+                    $iconPosition="trailing"
+                    variant="buttonStyledAsLink"
+                    $mt={16}
+                    onClick={handleMobileThreadModal}
+                  />
+                  {selectedThread && (
+                    <Box
+                      $textOverflow={"ellipsis"}
+                      $whiteSpace={"nowrap"}
+                      $overflow={"hidden"}
+                    >
+                      {selectedThread?.title} • {highlightedUnitCount()} units
+                      highlighted
+                    </Box>
+                  )}
+                </Box>
+                <Box
+                  $overflow={"hidden"}
+                  $pt={10}
+                  $dropShadow="mobileFilterSelector"
+                  $width={"100%"}
+                  $ph={[18, 0]}
+                >
                   <ButtonGroup
                     aria-label="Select a year group"
-                    $overflowX={"scroll"}
-                    $width={"100%"}
+                    $overflowX={"auto"}
+                    $overflowY={"hidden"}
                   >
-                    {["All", ...yearOptions].map((yearOption) => (
-                      <Box key={yearOption} $mb={16} $mt={5} $ml={5}>
-                        <Button
+                    {yearOptions.map((yearOption) => (
+                      <Box key={yearOption} $mt={5} $ml={5}>
+                        <ButtonAsLink
                           background={"grey20"}
                           variant="brush"
                           aria-label={`Year ${yearOption}`}
                           data-testid={"year-selection-mobile"}
                           currentStyles={["color", "text-underline"]}
                           key={yearOption}
-                          title={yearOption === "All" ? "" : `${yearOption}`}
-                          label={
-                            yearOption === "All"
-                              ? yearOption
-                              : `Year ${yearOption}`
-                          }
-                          onClick={(e) =>
-                            handleSelectYear(e.currentTarget.title)
-                          }
+                          $transition={"all 0.3s ease"}
+                          page={null}
+                          label={`Year ${yearOption}`}
+                          href={`#units-year-${yearOption}`}
                         />
                       </Box>
                     ))}
@@ -602,6 +615,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                 </Box>
               </Box>
             </Box>
+            {/* DESKTOP */}
             <Box $mr={16} $mb={32} $display={["none", "block"]}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
@@ -709,6 +723,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     $pl={30}
                     $mb={32}
                     $borderRadius={4}
+                    id={`units-year-${year}`}
                   >
                     <Heading
                       tag="h3"
