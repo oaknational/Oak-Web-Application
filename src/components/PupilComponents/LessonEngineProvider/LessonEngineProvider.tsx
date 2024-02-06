@@ -9,6 +9,13 @@ export const lessonSections = [
   "review",
 ] as const;
 
+export const lessonReviewSections = [
+  "intro",
+  "starter-quiz",
+  "video",
+  "exit-quiz",
+] as const;
+
 export type LessonSection = (typeof lessonSections)[number];
 
 export const isLessonSection = (
