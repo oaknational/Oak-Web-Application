@@ -2,15 +2,13 @@ import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 import Link from "next/link";
 import {
-  oakDefaultTheme,
-  OakThemeProvider,
   OakFlex,
   OakGrid,
   OakGridArea,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { resolveOakHref } from "@/common-lib/urls";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { PortableTextJSON } from "@/common-lib/cms-types";

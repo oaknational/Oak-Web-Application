@@ -10,8 +10,8 @@ import {
   OakGridArea,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { resolveOakHref } from "@/common-lib/urls";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -114,8 +114,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             $mb={"space-between-xl"}
             data-testid="curriculum-partners-list"
           >
-            {pageData.curriculumPartners.map((partner) => (
-              <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
+            {pageData.curriculumPartners.map((partner, index) => (
+              <OakGridArea
+                $colSpan={[4, 3, 2]}
+                $mb={"space-between-m2"}
+                key={index}
+              >
                 <ImageContainer
                   $pa={[16, 24, 16]}
                   name={partner.name}

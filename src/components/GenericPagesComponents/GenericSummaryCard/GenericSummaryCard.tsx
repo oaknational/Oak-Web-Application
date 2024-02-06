@@ -1,8 +1,6 @@
 import { FC } from "react";
-import { OakPrimaryNav, OakBox } from "@oaknational/oak-components";
 
 import aboutNavLinks from "@/browser-lib/fixtures/aboutNav";
-import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import SummaryCard, {
   SummaryCardProps,
 } from "@/components/SharedComponents/Card/SummaryCard";
@@ -20,15 +18,7 @@ type GenericSummaryCardProps = Pick<
  * Belongs at the top of each "About Us" sub-page
  */
 
-
 const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
-
-  const oakNavItems = aboutNavLinks.map(link => ({
-    href: link.href,
-    children: link.label,
-    isCurrent: useIsCurrent({ href: link.href }),
-  }));
-
   return (
     <SummaryCard
       {...props}
@@ -38,21 +28,11 @@ const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
         $minWidth: 166,
       }}
     >
-      {/* old mobile nav to be ported over to oak-components */}
-      <OakBox $mt="space-between-m2" $display={["flex", "none"]}>
-        <GenericSummaryCardNavButton
-          buttons={aboutNavLinks}
-          ariaLabel="about us"
-        />
-      </OakBox>
-
-      {/* desktop nav coming from oak-components */}
-      <OakBox $mt="space-between-m2" $display={["none", "flex"]}>
-        <OakPrimaryNav 
-          navItems={oakNavItems}
-          ariaLabel="about us"
-        />
-      </OakBox>
+      <GenericSummaryCardNavButton
+        $mt={36}
+        buttons={aboutNavLinks}
+        ariaLabel="about us"
+      />
     </SummaryCard>
   );
 };

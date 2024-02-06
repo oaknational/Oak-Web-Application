@@ -1,10 +1,5 @@
 import { FC } from "react";
-import Link from "next/link";
-import {
-  OakPrimaryButton,
-  OakPrimaryInvertedButton,
-  OakTertiaryButton,
-} from "@oaknational/oak-components";
+import { OakPrimaryNavItem } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
@@ -29,7 +24,7 @@ type GenericSummaryCardNavButtonProps = {
   shallow?: boolean;
 } & FlexProps;
 
-export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
+export const NavLink = ({ label, href }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
   const htmlAnchorProps: HTMLAnchorProps = {
     "aria-current": isCurrent ? "page" : undefined,
@@ -38,51 +33,12 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   return (
     <LI listStyle="none" $mr={[0, 24]} $mb={[0, 24]}>
       {/* Desktop */}
-      {/* <Box $display={["none", "block"]} $maxWidth={["100%"]}>
-        {isCurrent ? (
-          <OakPrimaryButton
-            {...htmlAnchorProps}
-            element={Link}
-            href={isCurrent ? href : {}}
-            shallow={shallow}
-            iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
-            isTrailingIcon={true}
-            role={"link"}
-            aria-label={label}
-            aria-disabled={isCurrent}
-            width={"100%"}
-          >
-            {label}
-          </OakPrimaryButton>
-        ) : (
-          <OakPrimaryInvertedButton
-            {...htmlAnchorProps}
-            element={Link}
-            href={href}
-            shallow={shallow}
-            iconName={isCurrent && arrowSuffix ? "arrow-right" : undefined}
-            isTrailingIcon={true}
-            role={"link"}
-            aria-label={label}
-            aria-disabled={isCurrent}
-            width={"100%"}
-          >
-            {label}
-          </OakPrimaryInvertedButton>
-        )}
-      </Box> */}
+      <Box $display={["none", "block"]} $maxWidth={["100%"]}>
+        <OakPrimaryNavItem href={href} isCurrent={isCurrent} children={label} />
+      </Box>
+
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
-        {/* <OakTertiaryButton
-          element={Link}
-          href={href}
-          shallow={shallow}
-          iconName="arrow-right"
-          aria-disabled={isCurrent}
-        >
-          {label}
-        </OakTertiaryButton> */}
-
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           isCurrent={isCurrent}
