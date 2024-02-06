@@ -20,7 +20,6 @@ type PupilViewsVideoProps = {
   videoMuxPlaybackId?: string;
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptSentences: string[];
-  lessonCohort?: string;
   isLegacyLicense: boolean;
 };
 
@@ -29,6 +28,7 @@ export const PupilViewsVideo = ({
   videoMuxPlaybackId,
   videoWithSignLanguageMuxPlaybackId,
   transcriptSentences,
+  isLegacyLicense,
 }: PupilViewsVideoProps) => {
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
@@ -80,37 +80,43 @@ export const PupilViewsVideo = ({
           $colSpan={[12, 12, 8]}
           $mb="space-between-m2"
         >
-          {playbackId && (
+          {playbackId ? (
             <VideoPlayer
               playbackId={playbackId}
               playbackPolicy="signed"
               title={lessonTitle}
               location="lesson"
-              isLegacy={false}
+              isLegacy={isLegacyLicense}
             />
+          ) : (
+            "This lesson does not contain a video"
           )}
         </OakGridArea>
         <OakGridArea $colStart={[1, 1, 3]} $colSpan={[12, 12, 8]}>
-          <OakLessonVideoTranscript
-            id="video-transcript"
-            signLanguageControl={
-              videoWithSignLanguageMuxPlaybackId && (
-                <OakTertiaryButton
-                  onClick={() => setSignLanguageOn(!signLanguageOn)}
-                  iconName="sign-language"
-                  isTrailingIcon
-                >
-                  {signLanguageOn ? "Hide sign language" : "Show sign language"}
-                </OakTertiaryButton>
-              )
-            }
-          >
-            {transcriptSentences.map((sentence, index) => (
-              <OakP key={index} $mb="space-between-s">
-                {sentence}
-              </OakP>
-            ))}
-          </OakLessonVideoTranscript>
+          {transcriptSentences.length > 0 && (
+            <OakLessonVideoTranscript
+              id="video-transcript"
+              signLanguageControl={
+                videoWithSignLanguageMuxPlaybackId && (
+                  <OakTertiaryButton
+                    onClick={() => setSignLanguageOn(!signLanguageOn)}
+                    iconName="sign-language"
+                    isTrailingIcon
+                  >
+                    {signLanguageOn
+                      ? "Hide sign language"
+                      : "Show sign language"}
+                  </OakTertiaryButton>
+                )
+              }
+            >
+              {transcriptSentences.map((sentence, index) => (
+                <OakP key={index} $mb="space-between-s">
+                  {sentence}
+                </OakP>
+              ))}
+            </OakLessonVideoTranscript>
+          )}
         </OakGridArea>
       </OakGrid>
     </OakLessonLayout>
