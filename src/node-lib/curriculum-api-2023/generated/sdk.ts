@@ -34190,7 +34190,6 @@ export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
-  lessonCohort: Scalars['String']['input'];
 }>;
 
 
@@ -34215,7 +34214,6 @@ export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   lessonSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
-  lessonCohort: Scalars['String']['input'];
 }>;
 
 
@@ -34321,9 +34319,9 @@ export const CurriculumUnitsDocument = gql`
 }
     `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!, $lessonCohort: String!) {
+    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   downloads: published_mv_downloads_3_0_4(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}, lessonCohort: {_regex: $lessonCohort}}
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     downloads
     programmeSlug
@@ -34384,9 +34382,9 @@ export const LessonListingDocument = gql`
 }
     `;
 export const LessonOverviewDocument = gql`
-    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!, $lessonCohort: String!) {
+    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
   lesson: published_mv_lesson_overview_3_0_2(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}, lessonCohort: {_regex: $lessonCohort}}
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     lessonSlug
     lessonTitle

@@ -2,14 +2,12 @@ query lessonDownloads(
   $lessonSlug: String!
   $programmeSlug: String!
   $unitSlug: String!
-  $lessonCohort: String!
 ) {
   downloads: published_mv_downloads_3_0_4(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }
-      lessonCohort: { _regex: $lessonCohort }
     }
   ) {
     downloads

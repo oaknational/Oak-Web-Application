@@ -18,7 +18,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { LEGACY_COHORT } from "@/config/cohort";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -76,10 +75,6 @@ export const getStaticProps: GetStaticProps<
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
       const isLegacy = isSlugLegacy(programmeSlug);
-      const isEyfs = programmeSlug.endsWith("early-years-foundation-stage");
-
-      // TODO: is there a better way to do this
-      const cohortRegex = isEyfs ? `${LEGACY_COHORT}` : `(?!${LEGACY_COHORT})`;
 
       const curriculumData = isLegacy
         ? await curriculumApi.lessonDownloads({
@@ -91,7 +86,6 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             unitSlug,
             lessonSlug,
-            lessonCohort: cohortRegex,
           });
 
       if (!curriculumData) {
