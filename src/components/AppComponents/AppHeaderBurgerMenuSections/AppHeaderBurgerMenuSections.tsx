@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { OakHeading, OakLI } from "@oaknational/oak-components";
+import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
 
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import Flex from "@/components/SharedComponents/Flex";
 
 /**
@@ -36,19 +35,19 @@ const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
           <OakHeading tag="h4" $font="heading-4">
             {section.header}
           </OakHeading>
-          <FlexList
-            $reset={true}
+          <OakFlex
+            as="ul"
             role="list"
             $display="flex"
             $flexDirection="column"
-            $gap={4}
+            $gap="all-spacing-1"
           >
             {section.links.map((link, i) => (
               <OakLI $listStyle="none" key={`${link.text}-${i}`}>
                 <AppHeaderBurgerMenuLink link={link} />
               </OakLI>
             ))}
-          </FlexList>
+          </OakFlex>
         </Flex>
       ))}
     </Flex>

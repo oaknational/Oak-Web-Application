@@ -1,12 +1,11 @@
 import { FC, useState } from "react";
-import { OakLI } from "@oaknational/oak-components";
+import { OakLI, OakFlex } from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL.deprecated";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   const { pathways, onClick, onToggleClick } = props;
@@ -54,13 +53,13 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
         $transition={"all 0.3s ease"}
       >
         {dropDownContent.length > 0 && (
-          <FlexList
-            $mt={16}
-            $reset
+          <OakFlex
+            as="ul"
+            $mt="space-between-xs"
             data-testid="search-dropdown-content"
-            $flexDirection={"column"}
-            $width={"fit-content"}
-            $gap={16}
+            $flexDirection="column"
+            $width="fit-content"
+            $gap="all-spacing-4"
           >
             {dropDownContent.map((item, index) => {
               const buttonTitle = `${item.examBoardTitle ?? ""} ${
@@ -90,7 +89,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                 </OakLI>
               );
             })}
-          </FlexList>
+          </OakFlex>
         )}
       </Box>
     </Flex>
