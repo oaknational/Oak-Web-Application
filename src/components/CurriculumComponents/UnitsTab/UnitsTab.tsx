@@ -14,6 +14,7 @@ import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitModal, {
   Lesson,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import Icon from "@/components/SharedComponents/Icon";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
@@ -395,6 +396,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
+
   return mobileThreadModalOpen ? (
     <Box
       $background={"white"}
@@ -509,7 +511,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         >
           Unit sequence
         </Heading>
-        {/* <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
+        <Card
+          $background={"lemon30"}
+          $pa={0}
+          $pl={96}
+          $mb={[16, 48]}
+          $display={["none", "block"]}
+        >
           <Box
             $background={"lemon"}
             $height={"100%"}
@@ -541,13 +549,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               to the national curriculum.
             </P>
           </Box>
-        </Card> */}
+        </Card>
         <OakGrid>
           <OakGridArea $colSpan={[12, 3]}>
             <Box
               $position={["sticky", "static"]}
               $display={["block", "none"]}
-              $top={[0]}
+              $top={0}
               $ph={[18, 0]}
               $background={"white"}
             >
@@ -561,13 +569,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                   $mt={16}
                   onClick={handleMobileThreadModal}
                 />
-
-                {/* <Hr /> */}
-                <Box>
+                <Box $overflow={"hidden"}>
                   <ButtonGroup
                     aria-label="Select a year group"
-                    $overflowX={"auto"}
-                    $overflow={"auto"}
+                    $overflowX={"scroll"}
+                    $width={"100%"}
                   >
                     {["All", ...yearOptions].map((yearOption) => (
                       <Box key={yearOption} $mb={16} $mt={5} $ml={5}>
