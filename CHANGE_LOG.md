@@ -1,3 +1,12 @@
+## [1.338.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.1...v1.338.2) (2024-02-06)
+
+## [1.338.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.0...v1.338.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* white bg for quiz stem images to avoid contrast issues ([d346862](https://github.com/oaknational/Oak-Web-Application/commit/d34686254d71cd7d85e065839b3e6963b528b6f5))
+
 # [1.338.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.337.0...v1.338.0) (2024-02-02)
 
 
