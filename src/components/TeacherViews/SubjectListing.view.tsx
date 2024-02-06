@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import OwaLink from "../SharedComponents/OwaLink";
+
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCardDouble";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
@@ -30,7 +32,15 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               to use at home with their children. Now they are used by teachers
               as inspiration for their own lesson planning. Learn about the
               evolution of our EYFS curriculum and how to use it in your
-              classroom. Visit our blog to learn more here.
+              classroom. Visit our blog to learn more{" "}
+              <OwaLink
+                href="https://www.thenational.academy/blog/oaks-approach-to-eyfs"
+                aria-label="eyfs-at-oak-blog"
+                page={null}
+              >
+                here
+              </OwaLink>
+              .
             </P>
           )}
         </Flex>
