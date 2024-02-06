@@ -3,8 +3,6 @@ import snakecaseKeys from "snakecase-keys";
 import { searchResultsSchema } from "../../search.schema";
 import { SearchHit, SearchQuery } from "../../search.types";
 
-import { constructElasticQuery } from "./constructElasticQuery";
-
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
 
@@ -16,7 +14,7 @@ export async function fetchResults(query: SearchQuery) {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructElasticQuery(query)),
+    body: JSON.stringify(query),
   };
 
   const response = await fetch(getBrowserConfig("searchApiUrl2023"), options);
