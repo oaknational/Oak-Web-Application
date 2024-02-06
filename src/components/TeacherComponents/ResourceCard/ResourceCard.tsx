@@ -161,7 +161,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     >
       {useRadio ? (
         <RadioContainer $zIndex={"inFront"}>
-          <Radio id={id} value={label} aria-label={label}>
+          <Radio id={id} value={id} aria-label={label}>
             <ResourceCardLabel isHovered={isHovered} {...props} />
           </Radio>
         </RadioContainer>

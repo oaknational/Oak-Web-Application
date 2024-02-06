@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
 import { Controller } from "react-hook-form";
 import { debounce } from "lodash";
 import styled from "styled-components";
@@ -36,6 +36,10 @@ export type CurriculumDownload = {
   icon: string;
 };
 
+export type CurriculumDownloadsRef = {
+  clearSelection: () => void;
+};
+
 type CurriculumDownloadsProps = {
   category: string;
   downloads: CurriculumDownload[];
@@ -52,7 +56,10 @@ const CardContainer = styled.div`
   }
 `;
 
-export function CurriculumDownloads(props: CurriculumDownloadsProps) {
+function CurriculumDownloads(
+  props: CurriculumDownloadsProps,
+  ref: React.ForwardedRef<CurriculumDownloadsRef>,
+) {
   const { category, downloads } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -85,6 +92,16 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
     useState<boolean>(false);
 
   const [apiError, setApiError] = useState<string | null>(null);
+  const [selectedUrl, setSelectedUrl] = useState<string>("");
+
+  const clearSelection = () => {
+    setSelectedUrl("");
+    form.setValue("resources", []);
+  };
+
+  useImperativeHandle(ref, () => ({
+    clearSelection: clearSelection,
+  }));
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
@@ -143,7 +160,6 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
       });
 
       const selectedDownload = downloads.filter((download) => {
-        console.log("download", download);
         return download.url === selectedResources[0];
       })[0];
 
@@ -202,12 +218,13 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
               <CardContainer>
                 <RadioGroup
                   aria-label="Subject Download Options"
+                  value={selectedUrl}
                   onChange={(e) => {
-                    const selectedDownload = downloads.filter((download) => {
-                      return download.label === e;
-                    })[0];
-                    if (selectedDownload) {
-                      form.setValue("resources", [selectedDownload.url]);
+                    if (e === "") {
+                      form.setValue("resources", []);
+                    } else {
+                      setSelectedUrl(e);
+                      form.setValue("resources", [e]);
                       if (form.errors.resources) {
                         form.errors.resources = undefined;
                         form.trigger();
@@ -218,7 +235,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                   {downloads.map((download) => (
                     <ResourceCard
                       key={download.label}
-                      id={download.label}
+                      id={download.url}
                       name={download.label}
                       label={download.label}
                       subtitle={"PDF"}
@@ -391,4 +408,4 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
   );
 }
 
-export default CurriculumDownloads;
+export default forwardRef(CurriculumDownloads);

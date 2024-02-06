@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
@@ -14,15 +14,16 @@ import Hr from "@/components/SharedComponents/Typography/Hr";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import P from "@/components/SharedComponents/Typography/P";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
-import {
+import CurriculumDownloads, {
   CurriculumDownload,
-  CurriculumDownloads,
+  CurriculumDownloadsRef,
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<string>("EYFS");
+  const downloadsRef = useRef<CurriculumDownloadsRef>(null);
   type Document = (typeof data)["documents"][0];
 
   const categoryDocuments = useMemo(() => {
@@ -50,6 +51,9 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       "",
       newUrl,
     );
+    if (downloadsRef.current) {
+      downloadsRef.current.clearSelection();
+    }
   };
 
   const downloads: CurriculumDownload[] = [];
@@ -196,7 +200,11 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
         </Box>
       </Box>
 
-      <CurriculumDownloads category={activeTab} downloads={downloads} />
+      <CurriculumDownloads
+        category={activeTab}
+        downloads={downloads}
+        ref={downloadsRef}
+      />
     </AppLayout>
   );
 };
