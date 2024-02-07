@@ -57,4 +57,23 @@ describe(PupilViewsLessonOverview, () => {
       expect(updateCurrentSection).toHaveBeenCalledWith(section);
     });
   });
+
+  it("displays the number of questions for each quiz", () => {
+    const { getByTestId } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            subjectTitle="English"
+            subjectSlug="english"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(getByTestId("starter-quiz")).toHaveTextContent("4 Questions");
+    expect(getByTestId("exit-quiz")).toHaveTextContent("Practice 5 questions");
+  });
 });

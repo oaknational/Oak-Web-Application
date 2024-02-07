@@ -177,8 +177,9 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="starter-quiz"
                   onClick={() => updateCurrentSection("starter-quiz")}
                   progress={pickProgressForSection("starter-quiz")}
-                  numQuestions={exitQuizNumQuestions}
+                  numQuestions={starterQuizNumQuestions}
                   grade={sectionResults["starter-quiz"]?.grade ?? 0}
+                  data-testid="starter-quiz"
                 />
               )}
               {lessonReviewSections.includes("video") && (
@@ -196,8 +197,9 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="exit-quiz"
                   onClick={() => updateCurrentSection("exit-quiz")}
                   progress={pickProgressForSection("exit-quiz")}
-                  numQuestions={starterQuizNumQuestions}
+                  numQuestions={exitQuizNumQuestions}
                   grade={sectionResults["exit-quiz"]?.grade ?? 0}
+                  data-testid="exit-quiz"
                 />
               )}
             </OakFlex>
