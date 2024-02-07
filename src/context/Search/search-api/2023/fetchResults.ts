@@ -5,6 +5,7 @@ import { SearchHit, SearchQuery } from "../../search.types";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 export async function fetchResults(query: SearchQuery) {
   const options: RequestInit = {
@@ -35,6 +36,7 @@ export async function fetchResults(query: SearchQuery) {
             lessonSlug?: string;
             unitTitle?: string;
             unitSlug?: string;
+            cohort?: string;
           };
         }) => {
           const source = hit._source;
@@ -42,10 +44,9 @@ export async function fetchResults(query: SearchQuery) {
             source.type === "lesson" ? source.lessonTitle : source.unitTitle;
           const slug =
             source.type === "lesson" ? source.lessonSlug : source.unitSlug;
-
           return {
             ...hit,
-            legacy: false,
+            legacy: source.cohort === LEGACY_COHORT,
             _source: {
               ...source,
               title,
