@@ -53,6 +53,94 @@ describe(PupilViewsVideo, () => {
 
     expect(queryByText("hello there")).toBeVisible();
   });
+
+  it('completes the section when "I\'ve finished the video" is clicked', async () => {
+    const completeSection = jest.fn();
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ completeSection })}
+        >
+          <PupilViewsVideo
+            videoMuxPlaybackId="123"
+            videoWithSignLanguageMuxPlaybackId="234"
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacyLicense={false}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    await userEvent.click(getByText("I've finished the video"));
+
+    expect(completeSection).toHaveBeenCalled();
+  });
+
+  it('sets the current section to "overview" when the back button is clicked', async () => {
+    const updateCurrentSection = jest.fn();
+    const { getByLabelText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ updateCurrentSection })}
+        >
+          <PupilViewsVideo
+            videoMuxPlaybackId="123"
+            videoWithSignLanguageMuxPlaybackId="234"
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacyLicense={false}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    await userEvent.click(getByLabelText("Back"));
+
+    expect(updateCurrentSection).toHaveBeenCalledWith("overview");
+  });
+
+  it("displays a message when there is no video ", async () => {
+    const updateCurrentSection = jest.fn();
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ updateCurrentSection })}
+        >
+          <PupilViewsVideo
+            videoMuxPlaybackId={undefined}
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacyLicense
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(
+      getByText("This lesson does not contain a video"),
+    ).toBeInTheDocument();
+  });
+
+  it('toggles the sign language version when "Show sign language" is clicked', async () => {
+    const { getByText, queryByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsVideo
+            videoMuxPlaybackId="123"
+            videoWithSignLanguageMuxPlaybackId="234"
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacyLicense={false}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    await userEvent.click(getByText("Show sign language"));
+
+    expect(queryByText("Hide sign language")).toBeInTheDocument();
+  });
 });
 
 function createLessonEngineContext(
