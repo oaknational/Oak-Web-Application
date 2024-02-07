@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -12,10 +13,11 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 const AiTab: FC = () => {
   return (
-    <Flex $background={"pink"} $pv={24} $overflow={"hidden"}>
+    <OakFlex $background={"pink"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
+            {/* @todo replace with OakFlex - work out $flex prop */}
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -49,7 +51,7 @@ const AiTab: FC = () => {
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

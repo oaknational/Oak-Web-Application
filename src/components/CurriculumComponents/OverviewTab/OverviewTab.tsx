@@ -5,6 +5,7 @@ import {
   OakUL,
   OakLI,
   OakTypography,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
@@ -47,7 +48,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       key={`principle-${i + 1}`}
       data-testid="subject-principles"
     >
-      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+      <OakFlex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+        {/* @todo replace with OakFlex - work out $borderRadius */}
         <Flex
           $background={"mint"}
           $borderRadius={"50%"}
@@ -57,7 +59,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           <Icon name="arrow-right" $ma={"auto"} $pa={2} />
         </Flex>
         {item}
-      </Flex>
+      </OakFlex>
     </OakLI>
   );
   const itemiseSubjectPrinciples = (item: string, i: number) => {
@@ -94,7 +96,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Flex $mb={10}>
+      <OakFlex $mb="space-between-ssx">
         <Box
           $mr={16}
           $pb={48}
@@ -147,7 +149,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $background={"lemon50"}
           />
         </Card>
-      </Flex>
+      </OakFlex>
       <Card
         $maxWidth={"100%"}
         $background={"mint30"}
@@ -171,16 +173,17 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
       {video && videoExplainer && (
-        <Flex
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"flex-start"}
           $flexDirection={["column-reverse", "row"]}
-          $gap={[24, 120]}
-          $mb={[48, 80]}
+          $gap={["all-spacing-6", "all-spacing-16"]}
+          $mb={["space-between-l", "space-between-xxxl"]}
         >
           <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
             <CMSVideo video={video} location="lesson" />
           </Box>
+          {/* @todo replace with OakFlex - work out $maxWidth */}
           <Flex
             $flexDirection={"column"}
             $maxWidth={["100%", "30%"]}
@@ -203,16 +206,16 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $textAlign={"start"}
             />
           </Flex>
-        </Flex>
+        </OakFlex>
       )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
-        <Flex
+        <OakFlex
           $justifyContent={"center"}
           $alignItems={"center"}
-          $pa={16}
+          $pa="inner-padding-m"
           $flexDirection={["column", "row"]}
-          $gap={[16, 32]}
+          $gap={["all-spacing-4", "all-spacing-7"]}
         >
           <CMSImage
             $background={"grey20"}
@@ -236,7 +239,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </OakHeading>
             <OakTypography $font={"body-1"}>{partnerBio}</OakTypography>
           </Box>
-        </Flex>
+        </OakFlex>
       </Card>
     </Box>
   );

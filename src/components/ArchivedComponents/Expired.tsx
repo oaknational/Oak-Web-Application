@@ -1,7 +1,5 @@
 import { FC } from "react";
-import { OakSpan } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 export type ExpiredProps = {
   page: "lesson" | "unit";
@@ -11,7 +9,7 @@ const Expired: FC<ExpiredProps> = (props) => {
   const { page } = props;
 
   return (
-    <Flex $alignItems={"center"}>
+    <OakFlex $alignItems={"center"}>
       <OakSpan
         $mr={["space-between-none", "space-between-m"]}
         $color={"grey70"}
@@ -19,7 +17,7 @@ const Expired: FC<ExpiredProps> = (props) => {
       >
         {`Unfortunately this ${page} is now unavailable.`}
       </OakSpan>
-    </Flex>
+    </OakFlex>
   );
 };
 

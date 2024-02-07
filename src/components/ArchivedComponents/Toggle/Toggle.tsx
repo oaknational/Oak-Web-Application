@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import { OakColorName } from "@/styles/theme/types";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type ToggleStyleConfig = {
   on: {
@@ -106,7 +105,7 @@ const Toggle: FC<ToggleProps> = ({
 }) => {
   return (
     <label>
-      <Flex $justifyContent={"center"}>
+      <OakFlex $justifyContent={"center"}>
         <LabelText
           checked={!checked}
           disabled={disabled}
@@ -135,7 +134,7 @@ const Toggle: FC<ToggleProps> = ({
         >
           {labelOn}
         </LabelText>
-      </Flex>
+      </OakFlex>
     </label>
   );
 };

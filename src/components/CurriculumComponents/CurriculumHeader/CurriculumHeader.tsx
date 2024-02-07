@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
@@ -72,6 +72,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
 
   return (
     <Box $mb={40}>
+      {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
           <Breadcrumbs
@@ -106,9 +107,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </Box>
       </Flex>
       <Box $background={color2}>
+        {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pv={32}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-            <Flex>
+            <OakFlex>
               <Box
                 $background={color1}
                 $borderRadius={6}
@@ -124,7 +126,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Flex $justifyContent={"center"} $flexDirection={"column"}>
+              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
                 {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
@@ -140,8 +142,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 >
                   {pageTitle}
                 </OakHeading>
-              </Flex>
-            </Flex>
+              </OakFlex>
+            </OakFlex>
           </Box>
         </Flex>
         <TabularNav

@@ -1,7 +1,12 @@
 import { FC } from "react";
-import { OakHeading, OakLI, OakP, OakOL } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakLI,
+  OakP,
+  OakOL,
+  OakFlex,
+} from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
@@ -41,10 +46,10 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   }`;
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $width={"100%"}
-      $mb={24}
+      $mb="space-between-m"
       data-testid="curriculum-unit-details"
     >
       <OakP $mb="space-between-m2" $font={"body-2"}>
@@ -56,10 +61,10 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           <OakHeading tag="h3" $font={"heading-6"} $mb="space-between-ssx">
             Threads
           </OakHeading>
-          <Flex
+          <OakFlex
             $flexDirection={["column", "row"]}
             $flexWrap={"wrap"}
-            $gap={8}
+            $gap="all-spacing-2"
             $alignItems={"flex-start"}
           >
             {uniqueThreadsArray.map((thread) => (
@@ -70,10 +75,10 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                 data-testid="thread-tag"
               />
             ))}
-          </Flex>
+          </OakFlex>
         </Box>
       )}
-      <Flex $flexDirection={"column"}>
+      <OakFlex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
           <CurriculumUnitDetailsAccordion title="Lessons in unit">
             <OakOL $mt="space-between-none" data-testid="lesson-title-list">
@@ -109,7 +114,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             </OakP>
           </CurriculumUnitDetailsAccordion>
         )}
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };

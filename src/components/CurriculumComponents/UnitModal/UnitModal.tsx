@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -92,13 +92,13 @@ const UnitModal: FC<UnitModalProps> = ({
   return (
     <>
       {unitData && (
-        <Flex
+        <OakFlex
           $flexDirection={"column"}
           $maxWidth={"100%"}
           $justifyContent={"space-between"}
           $width={"100%"}
           $overflowY={"scroll"}
-          $mt={72}
+          $mt="space-between-xxl"
         >
           <Box $ph={[24, 72]}>
             <Box $display={optionalityModalOpen ? "block" : "none"} $mb={16}>
@@ -144,6 +144,7 @@ const UnitModal: FC<UnitModalProps> = ({
               </Box>
             )}
 
+            {/* @todo replace with OakFlex once display is fixed in OakFlex - currently display: flex overwrites "none" */}
             <Flex
               $flexDirection={"column"}
               $display={optionalityModalOpen ? "none" : "flex"}
@@ -165,9 +166,9 @@ const UnitModal: FC<UnitModalProps> = ({
                   >
                     Unit options
                   </OakHeading>
-                  <Flex
+                  <OakFlex
                     $flexDirection={["column", "row"]}
-                    $gap={24}
+                    $gap="all-spacing-6"
                     $flexWrap={"wrap"}
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
@@ -195,12 +196,12 @@ const UnitModal: FC<UnitModalProps> = ({
                             </OakHeading>
                           </Box>
 
-                          <Flex
+                          <OakFlex
                             $flexDirection={"row"}
                             $justifyContent={"flex-end"}
                             $alignSelf={"flex-end"}
                           >
-                            <Flex
+                            <OakFlex
                               $flexDirection={"row"}
                               $alignItems={"flex-start"}
                               $width={"100%"}
@@ -235,12 +236,12 @@ const UnitModal: FC<UnitModalProps> = ({
                                   });
                                 }}
                               />
-                            </Flex>
-                          </Flex>
+                            </OakFlex>
+                          </OakFlex>
                         </Card>
                       );
                     })}
-                  </Flex>
+                  </OakFlex>
                 </Box>
               )}
             </Flex>
@@ -251,7 +252,7 @@ const UnitModal: FC<UnitModalProps> = ({
               </Box>
             )}
           </Box>
-        </Flex>
+        </OakFlex>
       )}
     </>
   );

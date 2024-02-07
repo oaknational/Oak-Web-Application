@@ -67,6 +67,7 @@ const CurriculumUnitDetailsAccordion: FC<
           name={isToggleOpen ? "chevron-up" : "chevron-down"}
         />
       </Card>
+      {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}
       <Flex
         data-testid={"accordion-container"}
         $maxHeight={isToggleOpen ? 9600 : 0}
