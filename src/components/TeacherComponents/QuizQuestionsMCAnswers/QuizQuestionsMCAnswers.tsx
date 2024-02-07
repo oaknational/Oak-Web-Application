@@ -1,5 +1,5 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography } from "@oaknational/oak-components";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -69,11 +69,11 @@ export const QuizQuestionsMCAnswers = (props: {
                 choice.answer_is_correct
               ) {
                 return (
-                  <Flex
+                  <OakFlex
                     key={`q-${questionNumber}-answer-element-${j}`}
                     $background={"lemon50"}
-                    $borderRadius={8}
-                    $ph={8}
+                    $borderRadius="border-radius-m2"
+                    $ph="inner-padding-xs"
                     $alignItems={"center"}
                   >
                     <Box $minWidth={32} aria-hidden>
@@ -86,7 +86,7 @@ export const QuizQuestionsMCAnswers = (props: {
                     <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                       {removeMarkdown(answerItem.text)}
                     </OakTypography>
-                  </Flex>
+                  </OakFlex>
                 );
               } else if (answerItem.type === "image") {
                 return imageAnswer ? (

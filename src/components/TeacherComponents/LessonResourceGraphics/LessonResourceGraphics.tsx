@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import LessonResourceGraphicsItem, {
   LessonResourceGraphicsItemProps,
 } from "@/components/TeacherComponents/LessonResourceGraphicsItem";
-import Flex from "@/components/SharedComponents/Flex";
 
 type LessonResourceGraphicsProps = {
   items: LessonResourceGraphicsItemProps[];
@@ -16,14 +16,14 @@ type LessonResourceGraphicsProps = {
 
 const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
   return (
-    <Flex $justifyContent={["space-evenly", "flex-start"]}>
+    <OakFlex $justifyContent={["space-evenly", "flex-start"]}>
       {items.map((item, index) => (
         <LessonResourceGraphicsItem
           key={`graphics-item-${item.titleSingular}-${index}`}
           {...item}
         />
       ))}
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -6,6 +6,7 @@ import {
   OakGridArea,
   OakHeading,
   OakP,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
@@ -137,7 +138,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               $pt={[48]}
             >
               {themes?.length > 1 && (
-                <Flex $flexDirection={"column"}>
+                <OakFlex $flexDirection={"column"}>
                   <OakP
                     id={themeId}
                     $color={"black"}
@@ -155,7 +156,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       programmeSlug: subjectSlug,
                     }}
                   />
-                </Flex>
+                </OakFlex>
               )}
             </Box>
           </OakGridArea>
@@ -165,11 +166,15 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               $pt={[48]}
               $mt={[0, 32]}
             >
-              <Flex $minWidth={120} $mb={24} $position={"relative"}>
+              <OakFlex
+                $minWidth="all-spacing-16"
+                $mb="space-between-m"
+                $position={"relative"}
+              >
                 <OakHeading $font={"heading-5"} tag={"h2"}>
                   {`Units`}
                 </OakHeading>
-              </Flex>
+              </OakFlex>
               {developmentalStage.length > 0 && (
                 <nav aria-label="tiers" data-testid="developmental-nav">
                   <TabularNav

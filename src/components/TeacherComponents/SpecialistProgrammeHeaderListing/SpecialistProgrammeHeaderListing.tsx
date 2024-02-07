@@ -5,12 +5,12 @@ import {
   OakHeading,
   OakP,
   OakSpan,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
 
 /**
@@ -47,8 +47,12 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
           <OakSpan $mb="space-between-s" $color={"grey60"} $font={"heading-7"}>
             {title}
           </OakSpan>
-          <Flex $flexDirection={["column", "row", "row"]}>
-            <Flex $gap={[16, 0]} $maxWidth={60} $mr={16}>
+          <OakFlex $flexDirection={["column", "row", "row"]}>
+            <OakFlex
+              $gap={["all-spacing-4", "all-spacing-0"]}
+              $maxWidth="all-spacing-11"
+              $mr={"space-between-s"}
+            >
               <SubjectIconBrushBorders
                 $pa={4}
                 containerMinWidth={[40, 60]}
@@ -57,13 +61,13 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
                 isLegacyLesson={true}
                 color={subjectIconBackgroundColor}
               />
-            </Flex>
-            <Flex $flexDirection={"column"}>
+            </OakFlex>
+            <OakFlex $flexDirection={"column"}>
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
               </OakHeading>
-            </Flex>
-          </Flex>
+            </OakFlex>
+          </OakFlex>
           <OakP $mb="space-between-s" $mt="space-between-s" $font={"body-1"}>
             {description}
           </OakP>

@@ -5,6 +5,7 @@ import {
   OakGridArea,
   OakHeading,
   OakP,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -46,8 +47,8 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             Using Oak in your school could have a big impact
           </OakHeading>
         </Flex>
-        <Flex $justifyContent={"center"}>
-          <Flex $flexDirection={["column", "row", "row"]}>
+        <OakFlex $justifyContent={"center"}>
+          <OakFlex $flexDirection={["column", "row", "row"]}>
             <SupportYourTeamBubbleMessage
               background={"aqua"}
               variant="bubble-1"
@@ -63,9 +64,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               subHeading={"in curriculum design"}
               $mr={[0, -8, 8]}
             />
-          </Flex>
-        </Flex>
-        <Flex $justifyContent={"center"}>
+          </OakFlex>
+        </OakFlex>
+        <OakFlex $justifyContent={"center"}>
           <ButtonAsLink
             $mt={32}
             $mb={92}
@@ -74,7 +75,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             icon={"arrow-right"}
             $iconPosition={"trailing"}
           />
-        </Flex>
+        </OakFlex>
         <OakGrid
           $mb={"space-between-xl"}
           $rg={"all-spacing-10"}
@@ -112,11 +113,11 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $maxHeight: [null, null, 150],
           }}
         />
-        <Flex
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $mt={48}
+          $mt="space-between-l"
         >
           <Box $maxWidth={["100%", 380, 380]}>
             <OakHeading
@@ -131,7 +132,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               Search our lessons to find all the resources you need to support
               your team.
             </OakP>
-            <Flex $justifyContent={"center"}>
+            <OakFlex $justifyContent={"center"}>
               <ButtonAsLink
                 $mt={32}
                 $mb={92}
@@ -140,9 +141,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
                 icon={"arrow-right"}
                 $iconPosition={"trailing"}
               />
-            </Flex>
+            </OakFlex>
           </Box>
-        </Flex>
+        </OakFlex>
       </MaxWidth>
     </Layout>
   );

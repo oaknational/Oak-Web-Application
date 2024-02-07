@@ -1,4 +1,4 @@
-import { OakLI, OakUL } from "@oaknational/oak-components";
+import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import SearchResultsItem, {
   SearchResultsItemProps,
@@ -6,7 +6,6 @@ import SearchResultsItem, {
 import Pagination from "@/components/SharedComponents/Pagination";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { KeyStage, SearchHit } from "@/context/Search/search.types";
 
@@ -40,7 +39,7 @@ const SearchResults = (props: SearchResultsProps) => {
   };
 
   return (
-    <Flex $background={"white"} $flexDirection="column">
+    <OakFlex $background={"white"} $flexDirection="column">
       {hitCount ? (
         <>
           <OakUL $reset>
@@ -75,7 +74,7 @@ const SearchResults = (props: SearchResultsProps) => {
           <Pagination pageName="Search" {...paginationProps} />
         </Box>
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

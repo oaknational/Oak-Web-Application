@@ -1,18 +1,17 @@
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCardDouble";
 import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Flex from "@/components/SharedComponents/Flex";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;
 
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <OakHeading
           $font={"heading-3"}
@@ -40,7 +39,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           })}
         </GridList>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
 
 type LessonRequirementsHeadingProps = {
   helperIcon: IconName;
@@ -14,12 +13,12 @@ const LessonRequirementsHeading: FC<LessonRequirementsHeadingProps> = ({
   heading,
 }) => {
   return (
-    <Flex $flexDirection={"row"} $alignItems={"center"}>
+    <OakFlex $flexDirection={"row"} $alignItems={"center"}>
       <Icon name={helperIcon} variant="minimal" $mr={8} />
       <OakHeading $font={"heading-7"} tag="h3">
         {heading}
       </OakHeading>
-    </Flex>
+    </OakFlex>
   );
 };
 

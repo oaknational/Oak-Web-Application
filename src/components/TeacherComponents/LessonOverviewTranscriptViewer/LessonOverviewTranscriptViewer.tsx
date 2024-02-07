@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
@@ -12,7 +12,7 @@ export interface LessonOverviewTranscriptViewerProps {
 export const LessonOverviewTranscriptViewer: FC<
   LessonOverviewTranscriptViewerProps
 > = ({ transcriptSentences }) => (
-  <Flex $width={"100%"} $justifyContent={"center"}>
+  <OakFlex $width={"100%"} $justifyContent={"center"}>
     <Box
       role="article"
       aria-label="The video transcript"
@@ -45,7 +45,7 @@ export const LessonOverviewTranscriptViewer: FC<
         </Box>
       </Flex>
     </Box>
-  </Flex>
+  </OakFlex>
 );
 
 export default LessonOverviewTranscriptViewer;
