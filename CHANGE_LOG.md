@@ -1,3 +1,14 @@
+# [1.341.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.340.0...v1.341.0) (2024-02-07)
+
+
+### Features
+
+* **lessonIntro:** add oak-components to intro page ([ad22981](https://github.com/oaknational/Oak-Web-Application/commit/ad2298107bf057edc2808ce39b122c414ca2d3c5))
+* **lessonIntro:** add oak-components to intro page ([2552a29](https://github.com/oaknational/Oak-Web-Application/commit/2552a291022358eb830c7848e8dd7a60bbe550c4))
+* **lessonIntro:** add oak-components to intro page ([e0861d1](https://github.com/oaknational/Oak-Web-Application/commit/e0861d1f77478c183ca4c3c07442977d0d9b47c9))
+* **lessonIntro:** fix lint errors ([43718d7](https://github.com/oaknational/Oak-Web-Application/commit/43718d7939ae06d80e0a9d5d2a5bfcfbf7f3ab40))
+* **lessonIntro:** remove sonar exclusions ([b547b04](https://github.com/oaknational/Oak-Web-Application/commit/b547b04bf71934fce2250658e0d13f6435304aa6))
+
 # [1.340.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.339.0...v1.340.0) (2024-02-07)
 
 
