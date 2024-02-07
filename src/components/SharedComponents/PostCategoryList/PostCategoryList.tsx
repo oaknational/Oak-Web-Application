@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -9,7 +10,6 @@ import {
   WebinarListingLinkProps,
 } from "@/common-lib/urls";
 import Icon from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
@@ -42,7 +42,11 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           })),
         ]}
       />
-      <Flex $mt={32} $height={30} $font={"heading-7"}>
+      <OakFlex
+        $mt="space-between-m2"
+        $height="all-spacing-7"
+        $font={"heading-7"}
+      >
         <OwaLink
           $display="flex"
           $width={"auto"}
@@ -59,7 +63,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
             name="arrow-right"
           />
         </OwaLink>
-      </Flex>
+      </OakFlex>
     </Box>
   );
 };

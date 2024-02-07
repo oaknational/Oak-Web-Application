@@ -1,10 +1,9 @@
 import Router, { useRouter } from "next/router";
 import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type PaginationProps = {
   currentPage: number;
@@ -49,7 +48,7 @@ const Pagination: FC<PaginationProps & { pageName: string }> = ({
 
   return (
     <nav data-testid={"pagination"} aria-label="pagination">
-      <Flex $alignItems={"center"} $justifyContent={"center"}>
+      <OakFlex $alignItems={"center"} $justifyContent={"center"}>
         <IconButtonAsLink
           size="small"
           aria-label={previousPageLabel}
@@ -73,7 +72,7 @@ const Pagination: FC<PaginationProps & { pageName: string }> = ({
           scroll={false}
           disabled={currentPage >= totalPages}
         />
-      </Flex>
+      </OakFlex>
     </nav>
   );
 };

@@ -1,6 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
-import { OakLI } from "@oaknational/oak-components";
+import { OakLI, OakFlex } from "@oaknational/oak-components";
 
 import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
@@ -27,9 +27,13 @@ const landingPortableTextComponent: PortableTextComponents = {
       const listItemText = props?.value?.children[0]?.text;
 
       return (
-        <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
+        <OakFlex
+          $position={"relative"}
+          $mb="space-between-l"
+          $alignItems={"center"}
+        >
           <OakLI $font={["heading-7", "heading-6"]}>{listItemText}</OakLI>
-        </Flex>
+        </OakFlex>
       );
     },
   },
@@ -65,9 +69,9 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           />
         )}
         {props.mediaType == "video" && (
-          <Flex $alignItems={"center"} $ph={20}>
+          <OakFlex $alignItems={"center"} $ph="inner-padding-l">
             <CMSVideo video={props.video} location="marketing" />
-          </Flex>
+          </OakFlex>
         )}
       </Flex>
       <Flex

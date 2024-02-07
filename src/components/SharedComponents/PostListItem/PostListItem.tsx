@@ -1,6 +1,11 @@
 import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
-import { OakP, OakHeading, OakHeadingTag } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakHeading,
+  OakHeadingTag,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
 
@@ -127,8 +132,8 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
-        <Flex
+      <OakFlex $flexDirection="column" $alignItems="flex-start" $width="100%">
+        <OakFlex
           $width="100%"
           $alignItems={["flex-start", "flex-end"]}
           $justifyContent="space-between"
@@ -149,7 +154,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           >
             {blogDate}
           </OakP>
-        </Flex>
+        </OakFlex>
         <OakHeading tag={titleTag} $font={"heading-5"} $mt="space-between-ssx">
           <OwaLink
             {...primaryTargetProps}
@@ -168,7 +173,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
         >
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };

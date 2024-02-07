@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { OakTypography, OakHeading } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakHeading,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Card from "./Card";
 
@@ -48,9 +52,13 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $pv={[24]}
       $ph={[16, 24]}
     >
-      <Flex $flexDirection={"column"} $width="100%">
-        <Flex>
-          <Flex $justifyContent={"center"} $flexDirection={"column"} $mr={48}>
+      <OakFlex $flexDirection={"column"} $width="100%">
+        <OakFlex>
+          <OakFlex
+            $justifyContent={"center"}
+            $flexDirection={"column"}
+            $mr="space-between-l"
+          >
             <OakHeading
               $mb={"space-between-ssx"}
               tag={"h1"}
@@ -73,7 +81,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                 <PortableTextWithDefaults value={summaryPortableText} />
               )}
             </OakTypography>
-          </Flex>
+          </OakFlex>
           {summaryCardImage && (
             <Flex
               $display={["none", "flex"]}
@@ -100,9 +108,9 @@ const SummaryCard: FC<SummaryCardProps> = ({
               </Cover>
             </Flex>
           )}
-        </Flex>
+        </OakFlex>
         {children}
-      </Flex>
+      </OakFlex>
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );

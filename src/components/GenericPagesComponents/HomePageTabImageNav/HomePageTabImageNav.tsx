@@ -1,3 +1,5 @@
+import { OakFlex } from "@oaknational/oak-components";
+
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import HomePageTabImageButton from "@/components/GenericPagesComponents/HomepageTabImageButton";
 import { Hr } from "@/components/SharedComponents/Typography";
@@ -12,7 +14,7 @@ const HomePageTabImageNav = ({
   setCurrent: (tab: HomePageTab) => void;
 }) => {
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <Flex
         as="nav"
         $width={"100%"}
@@ -60,7 +62,7 @@ const HomePageTabImageNav = ({
         />
       </Flex>
       <Hr $mt={0} $mb={0} $color={"white"} thickness={2} />
-    </Flex>
+    </OakFlex>
   );
 };
 

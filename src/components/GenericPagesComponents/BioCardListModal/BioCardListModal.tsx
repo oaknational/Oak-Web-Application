@@ -75,6 +75,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
 
   return (
     <BioCardListModalDialog {...modalDialogProps}>
+      {/* @todo replace with OakFlex - work out the padding */}
       <Flex $width={"100%"} $ph={[0, 72]}>
         <Box
           $position={"absolute"}
@@ -203,7 +204,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
               twitter={socials?.twitterUsername}
               linkedIn={socials?.linkedinUrl}
               $position={["absolute", "relative"]}
-              $left={[0]}
+              $left={["all-spacing-0"]}
               $alignItems="flex-end"
             />
             <BioCardListModalNavigationButtons

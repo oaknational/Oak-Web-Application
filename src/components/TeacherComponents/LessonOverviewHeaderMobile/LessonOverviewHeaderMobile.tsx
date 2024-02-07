@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -25,7 +30,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
 
   return (
     <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
-      <Flex>
+      <OakFlex>
         <Box $maxHeight={80} $maxWidth={80} $mr={16}>
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
@@ -36,7 +41,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
             color={subjectIconBackgroundColor}
           />
         </Box>
-        <Flex $flexDirection={"column"} $gap={8}>
+        <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
           {(examBoardTitle || yearTitle || tierTitle) && (
             <OakSpan $color={"grey60"} $font={"heading-light-7"}>
               <LessonMetadata
@@ -50,8 +55,8 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
           <OakHeading tag={"h1"} $font={"heading-5"}>
             {lessonTitle}
           </OakHeading>
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
       {pupilLessonOutcome && (
         <Box>
           <OakP $font={"body-3"}>{pupilLessonOutcome}</OakP>
