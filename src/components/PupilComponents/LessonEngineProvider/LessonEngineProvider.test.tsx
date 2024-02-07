@@ -4,8 +4,7 @@ import { OakSpan } from "@oaknational/oak-components";
 
 import {
   LessonEngineProvider,
-  LessonSection,
-  lessonSections,
+  lessonReviewSections,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
@@ -85,13 +84,13 @@ describe("LessonEngineProvider", () => {
 
     const { completeSection } = result.current;
 
-    lessonSections.forEach((s, i) => {
+    lessonReviewSections.forEach((s, i) => {
       act(() => {
         completeSection(s);
       });
 
       expect(result.current.completedSections).toEqual(
-        lessonSections.slice(0, i + 1),
+        lessonReviewSections.slice(0, i + 1),
       );
     });
   });
@@ -108,9 +107,9 @@ describe("LessonEngineProvider", () => {
       throw new Error("result.current is null");
     }
 
-    ["intro", "starter-quiz", "video"].forEach((s) => {
+    lessonReviewSections.forEach((s) => {
       act(() => {
-        result.current.completeSection(s as LessonSection);
+        result.current.completeSection(s);
       });
 
       expect(result.current.currentSection).toEqual("overview");
@@ -139,21 +138,21 @@ describe("LessonEngineProvider", () => {
 
     const { completeSection } = result.current;
 
-    lessonSections.forEach((s, i) => {
+    lessonReviewSections.forEach((s, i) => {
       act(() => {
         completeSection(s);
       });
 
       expect(result.current.completedSections).toEqual(
-        lessonSections.slice(0, i + 1),
+        lessonReviewSections.slice(0, i + 1),
       );
     });
 
     act(() => {
-      completeSection("overview");
+      completeSection("intro");
     });
 
-    expect(result.current.completedSections).toEqual(lessonSections);
+    expect(result.current.completedSections).toEqual(lessonReviewSections);
   });
 
   it("gets the correct isComplete value", () => {
@@ -170,12 +169,12 @@ describe("LessonEngineProvider", () => {
 
     expect(result.current.completedSections).toEqual([]);
 
-    lessonSections.forEach((s) => {
+    lessonReviewSections.forEach((s) => {
       expect(result.current.getIsComplete(s)).toEqual(false);
       act(() => {
-        result.current.completeSection("overview");
+        result.current.completeSection("intro");
       });
-      expect(result.current.getIsComplete("overview")).toEqual(true);
+      expect(result.current.getIsComplete("intro")).toEqual(true);
     });
   });
 

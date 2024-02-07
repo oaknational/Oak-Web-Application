@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useContext, memo, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  memo,
+  useReducer,
+  Reducer,
+} from "react";
 
 export const lessonSections = [
   "overview",
@@ -18,25 +25,98 @@ export const lessonReviewSections = [
 
 export type LessonSection = (typeof lessonSections)[number];
 
+type LessonReviewSection = (typeof lessonReviewSections)[number];
+
 export const isLessonSection = (
   currentSection: string,
 ): currentSection is LessonSection => {
   return lessonSections.includes(currentSection as LessonSection);
 };
 
-export type LessonSectionResult = { grade: number; numQuestions: number };
+type QuizResult = { grade: number; numQuestions: number };
+type LessonSectionState = { isComplete: boolean } & QuizResult;
+type LessonEngineAction =
+  | {
+      type: "setCurrentSection";
+      section: LessonSection;
+    }
+  | {
+      type: "completeSection";
+      section: LessonReviewSection;
+    }
+  | {
+      type: "updateQuizResult";
+      result: QuizResult;
+    }
+  | {
+      type: "proceedToNextSection";
+    };
+type LessonEngineState = {
+  currentSection: LessonSection;
+  sections: Partial<Record<LessonSection, LessonSectionState>>;
+};
 
-type LessonSectionResults = Partial<Record<LessonSection, LessonSectionResult>>;
+const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
+  currentState,
+  action,
+) => {
+  switch (action.type) {
+    case "setCurrentSection":
+      return { ...currentState, currentSection: action.section };
+    case "completeSection": {
+      const newState = {
+        ...currentState,
+        sections: {
+          ...currentState.sections,
+          [action.section]: {
+            isComplete: true,
+            ...currentState.sections[action.section],
+          },
+        },
+      };
+
+      // redirect the user according to what sections have been completed
+      newState.currentSection = lessonReviewSections.every(
+        (section) => newState.sections[section]?.isComplete,
+      )
+        ? "review"
+        : "overview";
+
+      return newState;
+    }
+    case "proceedToNextSection": {
+      const nextSection =
+        lessonReviewSections.find(
+          (section) => !currentState.sections[section]?.isComplete,
+        ) ?? lessonSections[0];
+
+      return { ...currentState, currentSection: nextSection };
+    }
+    case "updateQuizResult":
+      return {
+        ...currentState,
+        sections: {
+          ...currentState.sections,
+          [currentState.currentSection]: {
+            ...currentState.sections[currentState.currentSection],
+            ...action.result,
+          },
+        },
+      };
+    default:
+      return currentState;
+  }
+};
 
 export type LessonEngineContextType = {
   currentSection: LessonSection;
-  completedSections: LessonSection[];
-  sectionResults: LessonSectionResults;
-  getIsComplete: (section: LessonSection) => boolean;
-  completeSection: (section: LessonSection) => void;
-  updateCurrentSection: (section: LessonSection) => void;
+  completedSections: LessonReviewSection[];
+  sectionResults: LessonEngineState["sections"];
+  getIsComplete: (section: LessonReviewSection) => boolean;
+  completeSection: (section: LessonReviewSection) => void;
+  updateCurrentSection: (section: LessonReviewSection) => void;
   proceedToNextSection: () => void;
-  updateQuizResult: (vals: { grade: number; numQuestions: number }) => void;
+  updateQuizResult: (vals: QuizResult) => void;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -50,67 +130,31 @@ export const useLessonEngineContext = () => {
 };
 
 export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
-  // consolidate into a single stateful object
-  const [currentSection, setCurrentSection] =
-    useState<LessonSection>("overview");
-
-  const [completedSections, setCompletedSections] = useState<LessonSection[]>(
-    [],
+  const [state, dispatch] = useReducer(lessonEngineReducer, {
+    currentSection: "overview",
+    sections: {},
+  });
+  const getIsComplete = (section: LessonReviewSection): boolean =>
+    state.sections[section]?.isComplete ?? false;
+  const completeSection = (section: LessonReviewSection) => {
+    dispatch({ type: "completeSection", section });
+  };
+  const updateCurrentSection = (section: LessonSection) =>
+    dispatch({ type: "setCurrentSection", section });
+  const proceedToNextSection = () => dispatch({ type: "proceedToNextSection" });
+  const updateQuizResult = (result: QuizResult) => {
+    dispatch({ type: "updateQuizResult", result });
+  };
+  const completedSections = lessonReviewSections.filter(
+    (section) => state.sections[section]?.isComplete,
   );
-
-  const [sectionResults, setSectionResults] = useState<LessonSectionResults>(
-    {},
-  );
-
-  const getIsComplete = (section: LessonSection) =>
-    completedSections.includes(section);
-
-  const completeSection = (section: LessonSection) => {
-    // concatenate and dedupe the array
-    setCompletedSections((prev) => {
-      const _completedSections = [...prev, section].filter(
-        (item, index, array) => array.indexOf(item) === index,
-      );
-
-      // redirect the user according to what sections have been completed
-      if (
-        _completedSections.length ===
-        lessonSections.filter((s) => s !== "overview" && s !== "review").length
-      ) {
-        setCurrentSection("review");
-      } else {
-        setCurrentSection("overview");
-      }
-
-      return _completedSections;
-    });
-  };
-
-  const updateCurrentSection = (section: LessonSection) => {
-    setCurrentSection(section);
-  };
-
-  const proceedToNextSection = () => {
-    const remainingSections = lessonSections.filter(
-      (s) => !completedSections.includes(s) && s !== "overview",
-    );
-    if (remainingSections.length === 0 || remainingSections[0] === undefined) {
-      // if there is no next section, we are at the end of the lesson
-      return;
-    }
-    setCurrentSection(remainingSections[0]);
-  };
-
-  const updateQuizResult = (vals: { grade: number; numQuestions: number }) => {
-    setSectionResults((prev) => ({ ...prev, [currentSection]: vals }));
-  };
 
   return (
     <LessonEngineContext.Provider
       value={{
-        currentSection,
+        currentSection: state.currentSection,
         completedSections,
-        sectionResults,
+        sectionResults: state.sections,
         getIsComplete,
         completeSection,
         updateCurrentSection,
