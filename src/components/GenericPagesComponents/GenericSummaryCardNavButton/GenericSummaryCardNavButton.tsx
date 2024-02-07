@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { OakLI, OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakPrimaryNavItem,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 type LinkProps = {
   label: string;
@@ -22,33 +27,23 @@ type GenericSummaryCardNavButtonProps = {
   shallow?: boolean;
 } & OakFlexProps;
 
-export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
+export const NavLink = ({ label, href }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
   const htmlAnchorProps: HTMLAnchorProps = {
     "aria-current": isCurrent ? "page" : undefined,
   };
 
   return (
-    <OakLI $listStyle="none">
+    <OakLI
+      $listStyle="none"
+      $mr={["space-between-none", "space-between-m"]}
+      $mb={["space-between-none", "space-between-m"]}
+    >
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
-        <ButtonAsLink
-          htmlAnchorProps={htmlAnchorProps}
-          variant={isCurrent ? "brushNav" : "minimalNav"}
-          $hoverStyles={["underline-link-text"]}
-          label={label}
-          href={href}
-          page={null}
-          $mr={[0, 36]}
-          disabled={isCurrent}
-          isCurrent={isCurrent}
-          icon={isCurrent && arrowSuffix ? "arrow-right" : undefined}
-          iconBackground={isCurrent && arrowSuffix ? "transparent" : undefined}
-          $iconPosition="trailing"
-          shallow={shallow}
-          scroll={!shallow}
-        />
+        <OakPrimaryNavItem href={href} isCurrent={isCurrent} children={label} />
       </Box>
+
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
         <ButtonAsLink
@@ -86,7 +81,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
   return (
     <nav aria-label={ariaLabel}>
       <OakFlex
-        as={"ul"}
+        as="ul"
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}

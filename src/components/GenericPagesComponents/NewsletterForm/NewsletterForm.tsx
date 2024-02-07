@@ -5,6 +5,7 @@ import { z } from "zod";
 import { OakP } from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
+import Button from "@/components/SharedComponents/Button";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
@@ -14,7 +15,6 @@ import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -124,6 +124,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
         $mt={32}
+        $mb={32}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}

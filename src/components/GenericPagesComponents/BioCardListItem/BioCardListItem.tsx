@@ -1,5 +1,11 @@
 import { FC, MutableRefObject } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  //   OakTertiaryButton,
+  //   OakBox,
+  //   OakFlex,
+} from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import { BioData } from "@/components/GenericPagesComponents/BioCardListModal/BioCardListModal";
@@ -15,7 +21,7 @@ export type BioCardListItemProps = BioData & {
   isOpen: boolean;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
-  const { name, role, image, socials, onClick, modalControllerRef, isOpen } =
+  const { name, role, image, socials, onClick, isOpen, modalControllerRef } =
     props;
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
@@ -54,6 +60,22 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           twitter={socials?.twitterUsername}
           $display={["none", "flex"]}
         />
+        {/* an attempt to replace this button with oak-components but it strips functionality
+        of returning focus after closing the 'See bio' modal */}
+
+        {/* {onClick && (
+          <OakFlex $width={"100%"} $justifyContent={"flex-end"}>
+            <OakTertiaryButton
+              onClick={() => onClick(props)}
+              iconName="arrow-right"
+              isTrailingIcon={true}
+              aria-expanded={isOpen}
+              aria-label={`See bio for ${name}`}
+            >
+              <OakBox $display={["none", "block"]}>See bio</OakBox>
+            </OakTertiaryButton>
+          </OakFlex>
+        )} */}
         {onClick && (
           <Button
             {...primaryTargetProps}

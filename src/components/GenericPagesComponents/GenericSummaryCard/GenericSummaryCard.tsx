@@ -17,6 +17,7 @@ type GenericSummaryCardProps = Pick<
  *
  * Belongs at the top of each "About Us" sub-page
  */
+
 const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
   return (
     <SummaryCard

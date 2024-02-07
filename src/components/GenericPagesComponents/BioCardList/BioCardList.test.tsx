@@ -97,6 +97,7 @@ describe("BioCardList", () => {
     );
 
     const button = getByTitle("See bio for Crayon Person");
+    // const button = getByTitle("See bio for Crayon Person");
     expect(button).toHaveAttribute("aria-expanded", "false");
     // aria-expanded true button on BioModal
   });

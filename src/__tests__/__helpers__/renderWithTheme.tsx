@@ -8,6 +8,7 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 
@@ -21,7 +22,7 @@ export type ProviderProps = {
 export const AllTheProviders: FC<ProviderProps> = ({ children, theme }) => {
   return (
     <ThemeProvider theme={{ ...defaultTheme, ...theme }}>
-      {children}
+      <OakThemeProvider theme={oakDefaultTheme}>{children}</OakThemeProvider>
     </ThemeProvider>
   );
 };
