@@ -116,6 +116,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         subjectIconBackgroundColor="lavender"
         title={subjectTitle}
         programmeFactor="Specialist and therapies"
+        isNew={false}
       />
 
       <MaxWidth $ph={16}>
