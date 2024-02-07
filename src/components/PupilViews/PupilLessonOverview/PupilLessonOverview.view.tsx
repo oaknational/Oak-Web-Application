@@ -17,7 +17,7 @@ import {
 } from "@oaknational/oak-components";
 
 import {
-  LessonSection,
+  LessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
@@ -40,16 +40,12 @@ export const PupilViewsLessonOverview = ({
   exitQuizNumQuestions,
   starterQuizNumQuestions,
 }: PupilViewsLessonOverviewProps) => {
-  const {
-    completedSections,
-    sectionResults,
-    updateCurrentSection,
-    proceedToNextSection,
-  } = useLessonEngineContext();
+  const { sectionResults, updateCurrentSection, proceedToNextSection } =
+    useLessonEngineContext();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
 
-  function pickProgressForSection(section: LessonSection) {
-    if (completedSections.includes(section)) {
+  function pickProgressForSection(section: LessonReviewSection) {
+    if (sectionResults[section]?.isComplete) {
       return "complete";
     }
 

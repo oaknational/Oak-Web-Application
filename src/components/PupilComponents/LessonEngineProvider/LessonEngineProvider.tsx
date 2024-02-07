@@ -24,8 +24,7 @@ export const lessonReviewSections = [
 ] as const;
 
 export type LessonSection = (typeof lessonSections)[number];
-
-type LessonReviewSection = (typeof lessonReviewSections)[number];
+export type LessonReviewSection = (typeof lessonReviewSections)[number];
 
 export const isLessonSection = (
   currentSection: string,
@@ -33,8 +32,16 @@ export const isLessonSection = (
   return lessonSections.includes(currentSection as LessonSection);
 };
 
+export function isLessonReviewSection(
+  section: string,
+): section is LessonReviewSection {
+  return lessonSections.includes(section as LessonReviewSection);
+}
+
 type QuizResult = { grade: number; numQuestions: number };
-type LessonSectionState = { isComplete: boolean } & QuizResult;
+type LessonSectionState = {
+  isComplete: boolean;
+} & Partial<QuizResult>;
 type LessonEngineAction =
   | {
       type: "setCurrentSection";
@@ -53,7 +60,7 @@ type LessonEngineAction =
     };
 type LessonEngineState = {
   currentSection: LessonSection;
-  sections: Partial<Record<LessonSection, LessonSectionState>>;
+  sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
 };
 
 const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
@@ -69,8 +76,8 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         sections: {
           ...currentState.sections,
           [action.section]: {
-            isComplete: true,
             ...currentState.sections[action.section],
+            isComplete: true,
           },
         },
       };
@@ -92,7 +99,13 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
 
       return { ...currentState, currentSection: nextSection };
     }
-    case "updateQuizResult":
+    case "updateQuizResult": {
+      if (!isLessonReviewSection(currentState.currentSection)) {
+        throw new Error(
+          `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
+        );
+      }
+
       return {
         ...currentState,
         sections: {
@@ -103,6 +116,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
           },
         },
       };
+    }
     default:
       return currentState;
   }
@@ -110,11 +124,10 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
 
 export type LessonEngineContextType = {
   currentSection: LessonSection;
-  completedSections: LessonReviewSection[];
   sectionResults: LessonEngineState["sections"];
-  getIsComplete: (section: LessonReviewSection) => boolean;
+  isLessonComplete: boolean;
   completeSection: (section: LessonReviewSection) => void;
-  updateCurrentSection: (section: LessonReviewSection) => void;
+  updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
   updateQuizResult: (vals: QuizResult) => void;
 } | null;
@@ -134,8 +147,6 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
     currentSection: "overview",
     sections: {},
   });
-  const getIsComplete = (section: LessonReviewSection): boolean =>
-    state.sections[section]?.isComplete ?? false;
   const completeSection = (section: LessonReviewSection) => {
     dispatch({ type: "completeSection", section });
   };
@@ -145,7 +156,7 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
   const updateQuizResult = (result: QuizResult) => {
     dispatch({ type: "updateQuizResult", result });
   };
-  const completedSections = lessonReviewSections.filter(
+  const isLessonComplete = lessonReviewSections.every(
     (section) => state.sections[section]?.isComplete,
   );
 
@@ -153,9 +164,8 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
     <LessonEngineContext.Provider
       value={{
         currentSection: state.currentSection,
-        completedSections,
         sectionResults: state.sections,
-        getIsComplete,
+        isLessonComplete,
         completeSection,
         updateCurrentSection,
         proceedToNextSection,

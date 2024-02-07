@@ -3,10 +3,8 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
 
 describe(PupilViewsLessonOverview, () => {
   it("displays the lesson title", () => {
@@ -60,19 +58,3 @@ describe(PupilViewsLessonOverview, () => {
     });
   });
 });
-
-function createLessonEngineContext(
-  overrides?: Partial<LessonEngineContextType>,
-): NonNullable<LessonEngineContextType> {
-  return {
-    currentSection: "starter-quiz",
-    completedSections: [],
-    sectionResults: {},
-    getIsComplete: jest.fn(),
-    completeSection: jest.fn(),
-    updateCurrentSection: jest.fn(),
-    proceedToNextSection: jest.fn(),
-    updateQuizResult: jest.fn(),
-    ...overrides,
-  };
-}

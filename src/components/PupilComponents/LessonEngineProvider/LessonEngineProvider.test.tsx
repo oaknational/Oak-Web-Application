@@ -3,6 +3,7 @@ import { act, render, renderHook } from "@testing-library/react";
 import { OakSpan } from "@oaknational/oak-components";
 
 import {
+  LessonEngineContextType,
   LessonEngineProvider,
   lessonReviewSections,
   useLessonEngineContext,
@@ -59,40 +60,9 @@ describe("LessonEngineProvider", () => {
 
     act(() => {
       result.current.completeSection("intro");
-    });
-    expect(result.current.completedSections).toEqual(["intro"]);
-
-    act(() => {
       result.current.proceedToNextSection();
     });
     expect(result.current.currentSection).toEqual("starter-quiz");
-  });
-
-  it("tracks completed sections", () => {
-    const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
-    });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    expect(result.current.completedSections).toEqual([]);
-
-    const { completeSection } = result.current;
-
-    lessonReviewSections.forEach((s, i) => {
-      act(() => {
-        completeSection(s);
-      });
-
-      expect(result.current.completedSections).toEqual(
-        lessonReviewSections.slice(0, i + 1),
-      );
-    });
   });
 
   it("returns to overview on completeSection when not all sections are complete", () => {
@@ -108,21 +78,17 @@ describe("LessonEngineProvider", () => {
     }
 
     lessonReviewSections.forEach((s) => {
+      expect(result.current.currentSection).toEqual("overview");
+
       act(() => {
         result.current.completeSection(s);
       });
-
-      expect(result.current.currentSection).toEqual("overview");
-    });
-
-    act(() => {
-      result.current.completeSection("exit-quiz");
     });
 
     expect(result.current.currentSection).toEqual("review");
   });
 
-  it("doesn't duplicate completed sections", () => {
+  it("sets `isComplete` for the section when it is completed", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: (props) =>
         providerWrapper({
@@ -130,52 +96,29 @@ describe("LessonEngineProvider", () => {
         }),
     });
 
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    expect(result.current.completedSections).toEqual([]);
-
-    const { completeSection } = result.current;
-
-    lessonReviewSections.forEach((s, i) => {
-      act(() => {
-        completeSection(s);
-      });
-
-      expect(result.current.completedSections).toEqual(
-        lessonReviewSections.slice(0, i + 1),
-      );
-    });
-
-    act(() => {
-      completeSection("intro");
-    });
-
-    expect(result.current.completedSections).toEqual(lessonReviewSections);
-  });
-
-  it("gets the correct isComplete value", () => {
-    const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
-    });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    expect(result.current.completedSections).toEqual([]);
-
-    lessonReviewSections.forEach((s) => {
-      expect(result.current.getIsComplete(s)).toEqual(false);
+    lessonReviewSections.forEach((section) => {
+      expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
         result.current.completeSection("intro");
       });
-      expect(result.current.getIsComplete("intro")).toEqual(true);
+      expect(result.current.sectionResults.intro?.isComplete).toEqual(true);
     });
+  });
+
+  it("sets `isLessonComplete` to true when all review sections are complete", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: providerWrapper,
+    });
+
+    lessonReviewSections.forEach((section) => {
+      expect(result.current.isLessonComplete).toEqual(false);
+
+      act(() => {
+        result.current.completeSection(section);
+      });
+    });
+
+    expect(result.current.isLessonComplete).toEqual(true);
   });
 
   it("tracks section results", () => {
@@ -197,7 +140,22 @@ describe("LessonEngineProvider", () => {
     });
 
     expect(result.current.sectionResults).toEqual({
-      overview: { grade: 0, numQuestions: 0 },
+      overview: expect.objectContaining({ grade: 0, numQuestions: 0 }),
     });
   });
 });
+
+export function createLessonEngineContext(
+  overrides?: Partial<LessonEngineContextType>,
+): NonNullable<LessonEngineContextType> {
+  return {
+    isLessonComplete: false,
+    currentSection: "starter-quiz",
+    sectionResults: {},
+    completeSection: jest.fn(),
+    updateCurrentSection: jest.fn(),
+    proceedToNextSection: jest.fn(),
+    updateQuizResult: jest.fn(),
+    ...overrides,
+  };
+}

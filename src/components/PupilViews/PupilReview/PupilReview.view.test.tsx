@@ -6,27 +6,14 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { PupilViewsReview } from "./PupilReview.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
-
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
 
 describe("PupilReview", () => {
   it("displays the lesson title", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsReview lessonTitle="Lesson title" />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -36,7 +23,7 @@ describe("PupilReview", () => {
   it("displays the review item cards for intro, starter quiz, video, exit quiz", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsReview lessonTitle="Lesson title" />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -49,7 +36,7 @@ describe("PupilReview", () => {
   it("displays the lesson overview button", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsReview lessonTitle="Lesson title" />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
