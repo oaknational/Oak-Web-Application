@@ -5,17 +5,25 @@ import { OakSpan } from "@oaknational/oak-components";
 import {
   LessonEngineContextType,
   LessonEngineProvider,
-  lessonReviewSections,
+  allLessonReviewSections,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
 describe("LessonEngineProvider", () => {
-  const providerWrapper = ({ children }: { children: ReactNode }) => {
-    return <LessonEngineProvider>{children}</LessonEngineProvider>;
+  const ProviderWrapper = ({ children }: { children: ReactNode }) => {
+    return (
+      <LessonEngineProvider
+        initialLessonReviewSections={allLessonReviewSections}
+      >
+        {children}
+      </LessonEngineProvider>
+    );
   };
   it("renders children correctly", () => {
     const { getByText } = render(
-      <LessonEngineProvider>
+      <LessonEngineProvider
+        initialLessonReviewSections={allLessonReviewSections}
+      >
         <OakSpan>Hello World</OakSpan>
       </LessonEngineProvider>,
     );
@@ -25,10 +33,7 @@ describe("LessonEngineProvider", () => {
 
   it("tracks the current section", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
+      wrapper: ProviderWrapper,
     });
 
     if (result.current === null) {
@@ -48,10 +53,7 @@ describe("LessonEngineProvider", () => {
 
   it("progresses to the next uncompleted section in order with proceedToNextQuestion", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
+      wrapper: ProviderWrapper,
     });
 
     if (result.current === null) {
@@ -67,17 +69,14 @@ describe("LessonEngineProvider", () => {
 
   it("returns to overview on completeSection when not all sections are complete", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
+      wrapper: ProviderWrapper,
     });
 
     if (result.current === null) {
       throw new Error("result.current is null");
     }
 
-    lessonReviewSections.forEach((s) => {
+    allLessonReviewSections.forEach((s) => {
       expect(result.current.currentSection).toEqual("overview");
 
       act(() => {
@@ -90,13 +89,10 @@ describe("LessonEngineProvider", () => {
 
   it("sets `isComplete` for the section when it is completed", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
+      wrapper: ProviderWrapper,
     });
 
-    lessonReviewSections.forEach((section) => {
+    allLessonReviewSections.forEach((section) => {
       expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
         result.current.completeSection("intro");
@@ -107,10 +103,10 @@ describe("LessonEngineProvider", () => {
 
   it("sets `isLessonComplete` to true when all review sections are complete", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: providerWrapper,
+      wrapper: ProviderWrapper,
     });
 
-    lessonReviewSections.forEach((section) => {
+    allLessonReviewSections.forEach((section) => {
       expect(result.current.isLessonComplete).toEqual(false);
 
       act(() => {
@@ -123,10 +119,7 @@ describe("LessonEngineProvider", () => {
 
   it("tracks section results", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: (props) =>
-        providerWrapper({
-          ...props,
-        }),
+      wrapper: ProviderWrapper,
     });
 
     if (result.current === null) {
@@ -152,6 +145,7 @@ export function createLessonEngineContext(
     isLessonComplete: false,
     currentSection: "starter-quiz",
     sectionResults: {},
+    lessonReviewSections: allLessonReviewSections,
     completeSection: jest.fn(),
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),

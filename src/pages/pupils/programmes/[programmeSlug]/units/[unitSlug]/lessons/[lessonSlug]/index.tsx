@@ -22,6 +22,7 @@ import {
 import {
   LessonEngineProvider,
   isLessonSection,
+  allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
@@ -106,7 +107,9 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
 }) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider>
+      <LessonEngineProvider
+        initialLessonReviewSections={allLessonReviewSections}
+      >
         <OakBox $height={"100vh"}>
           <PupilPageContent curriculumData={curriculumData} />
         </OakBox>

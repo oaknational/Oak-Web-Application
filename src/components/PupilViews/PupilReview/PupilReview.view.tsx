@@ -10,10 +10,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import {
-  lessonReviewSections,
-  useLessonEngineContext,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -21,8 +18,12 @@ type PupilViewsReviewProps = {
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const { lessonTitle } = props;
-  const { updateCurrentSection, sectionResults, isLessonComplete } =
-    useLessonEngineContext();
+  const {
+    updateCurrentSection,
+    sectionResults,
+    isLessonComplete,
+    lessonReviewSections,
+  } = useLessonEngineContext();
 
   const bottomNavSlot = (
     <OakLessonBottomNav>

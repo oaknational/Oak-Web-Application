@@ -16,7 +16,7 @@ export const lessonSections = [
   "review",
 ] as const;
 
-export const lessonReviewSections = [
+export const allLessonReviewSections = [
   "intro",
   "starter-quiz",
   "video",
@@ -24,7 +24,7 @@ export const lessonReviewSections = [
 ] as const;
 
 export type LessonSection = (typeof lessonSections)[number];
-export type LessonReviewSection = (typeof lessonReviewSections)[number];
+export type LessonReviewSection = (typeof allLessonReviewSections)[number];
 
 export const isLessonSection = (
   currentSection: string,
@@ -58,8 +58,10 @@ type LessonEngineAction =
   | {
       type: "proceedToNextSection";
     };
+
 type LessonEngineState = {
   currentSection: LessonSection;
+  lessonReviewSections: Readonly<LessonReviewSection[]>;
   sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
 };
 
@@ -83,7 +85,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
       };
 
       // redirect the user according to what sections have been completed
-      newState.currentSection = lessonReviewSections.every(
+      newState.currentSection = currentState.lessonReviewSections.every(
         (section) => newState.sections[section]?.isComplete,
       )
         ? "review"
@@ -93,9 +95,13 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
     }
     case "proceedToNextSection": {
       const nextSection =
-        lessonReviewSections.find(
+        currentState.lessonReviewSections.find(
           (section) => !currentState.sections[section]?.isComplete,
-        ) ?? lessonSections[0];
+        ) ?? currentState.lessonReviewSections[0];
+
+      if (!nextSection) {
+        throw new Error("Lesson contains no sections to proceed to");
+      }
 
       return { ...currentState, currentSection: nextSection };
     }
@@ -130,6 +136,7 @@ export type LessonEngineContextType = {
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
   updateQuizResult: (vals: QuizResult) => void;
+  lessonReviewSections: Readonly<LessonReviewSection[]>;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -142,37 +149,47 @@ export const useLessonEngineContext = () => {
   return context;
 };
 
-export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(lessonEngineReducer, {
-    currentSection: "overview",
-    sections: {},
-  });
-  const completeSection = (section: LessonReviewSection) => {
-    dispatch({ type: "completeSection", section });
-  };
-  const updateCurrentSection = (section: LessonSection) =>
-    dispatch({ type: "setCurrentSection", section });
-  const proceedToNextSection = () => dispatch({ type: "proceedToNextSection" });
-  const updateQuizResult = (result: QuizResult) => {
-    dispatch({ type: "updateQuizResult", result });
-  };
-  const isLessonComplete = lessonReviewSections.every(
-    (section) => state.sections[section]?.isComplete,
-  );
+type LessonEngineProviderProps = {
+  children: ReactNode;
+  initialLessonReviewSections: Readonly<LessonReviewSection[]>;
+};
 
-  return (
-    <LessonEngineContext.Provider
-      value={{
-        currentSection: state.currentSection,
-        sectionResults: state.sections,
-        isLessonComplete,
-        completeSection,
-        updateCurrentSection,
-        proceedToNextSection,
-        updateQuizResult,
-      }}
-    >
-      {props.children}
-    </LessonEngineContext.Provider>
-  );
-});
+export const LessonEngineProvider = memo(
+  ({ children, initialLessonReviewSections }: LessonEngineProviderProps) => {
+    const [state, dispatch] = useReducer(lessonEngineReducer, {
+      lessonReviewSections: initialLessonReviewSections,
+      currentSection: "overview",
+      sections: {},
+    });
+    const completeSection = (section: LessonReviewSection) => {
+      dispatch({ type: "completeSection", section });
+    };
+    const updateCurrentSection = (section: LessonSection) =>
+      dispatch({ type: "setCurrentSection", section });
+    const proceedToNextSection = () =>
+      dispatch({ type: "proceedToNextSection" });
+    const updateQuizResult = (result: QuizResult) => {
+      dispatch({ type: "updateQuizResult", result });
+    };
+    const isLessonComplete = state.lessonReviewSections.every(
+      (section) => state.sections[section]?.isComplete,
+    );
+
+    return (
+      <LessonEngineContext.Provider
+        value={{
+          currentSection: state.currentSection,
+          sectionResults: state.sections,
+          isLessonComplete,
+          completeSection,
+          updateCurrentSection,
+          proceedToNextSection,
+          updateQuizResult,
+          lessonReviewSections: state.lessonReviewSections,
+        }}
+      >
+        {children}
+      </LessonEngineContext.Provider>
+    );
+  },
+);
