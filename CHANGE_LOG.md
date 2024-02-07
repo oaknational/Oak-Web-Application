@@ -1,3 +1,11 @@
+# [1.340.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.339.0...v1.340.0) (2024-02-07)
+
+
+### Features
+
+* update subject listing query ([8de932b](https://github.com/oaknational/Oak-Web-Application/commit/8de932b2d01c7a903f9c8b921a2d3b360f9e971e))
+* update unit listing mv ([f9ce363](https://github.com/oaknational/Oak-Web-Application/commit/f9ce3638140014f9ee68a59dde8c17e2e55fbf4e))
+
 # [1.339.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.3...v1.339.0) (2024-02-07)
 
 

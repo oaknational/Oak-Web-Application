@@ -5,7 +5,7 @@ import { Sdk } from "../../sdk";
 import unitListingSchema from "./unitListing.schema";
 
 const unitListingQuery =
-  (sdk: Sdk) => async (args: { programmeSlug: string }) => {
+  (sdk: Sdk) => async (args: { programmeSlug: string; isLegacy: boolean }) => {
     const res = await sdk.unitListing(args);
 
     const [programme] = res.programme;
