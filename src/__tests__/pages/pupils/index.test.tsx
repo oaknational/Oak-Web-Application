@@ -4,6 +4,8 @@ import {
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
+jest.mock("@/utils/handleTranscript");
+
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {

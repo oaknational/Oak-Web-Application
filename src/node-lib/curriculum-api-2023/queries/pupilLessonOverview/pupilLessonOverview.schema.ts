@@ -1,6 +1,10 @@
 import { z } from "zod";
+import { isString } from "lodash";
 
-import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  baseLessonOverviewSchema,
+  lessonPathwaySchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const pupilLessonOverviewSchema = baseLessonOverviewSchema
   .pick({
@@ -12,12 +16,34 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     contentGuidance: true,
     lessonEquipmentAndResources: true,
     worksheetUrl: true,
+    videoWithSignLanguageMuxPlaybackId: true,
+    videoMuxPlaybackId: true,
+    videoTitle: true,
+    transcriptSentences: true,
+    pupilLessonOutcome: true,
   })
+  .merge(
+    lessonPathwaySchema.pick({
+      subjectSlug: true,
+      subjectTitle: true,
+    }),
+  )
   .extend({
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
     yearTitle: z.string().nullable().optional(),
-    pupilLessonOutcome: z.string().nullable().optional(),
+    isLegacyLicense: z.boolean(),
+    transcriptSentences: z
+      .union([z.array(z.string()), z.string()])
+      .optional()
+      .nullable(),
+  })
+  .transform((data) => {
+    return {
+      ...data,
+      // The incoming GQL type for `transcriptSentences` is `string | null` but we're expecting an array of strings.
+      // I expect this is a mistake in the schema which might be corrected later. For now i'll guard against it
+      // and guarantee the incoming value transformed into an array of strings.
+      transcriptSentences: [data.transcriptSentences].flat().filter(isString),
+    };
   });
 
 export type PupilLessonOverviewPageData = z.infer<
