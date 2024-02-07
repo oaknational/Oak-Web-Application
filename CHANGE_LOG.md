@@ -1,3 +1,19 @@
+# [1.342.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.341.0...v1.342.0) (2024-02-07)
+
+
+### Bug Fixes
+
+* remove `min-width` from lesson page ([7411e55](https://github.com/oaknational/Oak-Web-Application/commit/7411e556eb6c572086d0963202d4122b34b06b2f))
+
+
+### Features
+
+* **PUPIL-291:** add a fallback state for a missing video ([768113e](https://github.com/oaknational/Oak-Web-Application/commit/768113e5d662b685dccdbe738946ccbb0e002952))
+* **PUPIL-291:** add video related fields to the pupil lesson query ([9cc20f3](https://github.com/oaknational/Oak-Web-Application/commit/9cc20f3e720fbd4597fff949ad310000ffeddc25))
+* **PUPIL-291:** apply final styling to the video page ([f40c68c](https://github.com/oaknational/Oak-Web-Application/commit/f40c68cf46cd6bd9f1b5f133fa522cffc41d65a9))
+* **PUPIL-291:** lift fetching of the transcript file out of the query ([cef4a9e](https://github.com/oaknational/Oak-Web-Application/commit/cef4a9e9237ce3c0f8536cf6c7a15d2eef1da172))
+* **PUPIL-291:** use `OakVideoTranscript` ([e34aa18](https://github.com/oaknational/Oak-Web-Application/commit/e34aa1861f8b8c04c6e81d368b190974e3ca558f))
+
 # [1.341.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.340.0...v1.341.0) (2024-02-07)
 
 
