@@ -51,7 +51,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.currentSection).toEqual("intro");
   });
 
-  it("progresses to the next uncompleted section in order with proceedToNextQuestion", () => {
+  it("progresses to the next uncompleted section in order with proceedToNextSection", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
     });
@@ -65,6 +65,25 @@ describe("LessonEngineProvider", () => {
       result.current.proceedToNextSection();
     });
     expect(result.current.currentSection).toEqual("starter-quiz");
+  });
+
+  it("returns to the first section when proceedToNextSection is called when all sections are complete", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
+
+    act(() => {
+      allLessonReviewSections.forEach((section) => {
+        result.current.completeSection(section);
+      });
+      result.current.proceedToNextSection();
+    });
+
+    expect(result.current.currentSection).toEqual(allLessonReviewSections[0]);
   });
 
   it("returns to overview on completeSection when not all sections are complete", () => {

@@ -45,4 +45,18 @@ describe("PupilReview", () => {
       getByRole("button", { name: /Lesson overview/i }),
     ).toBeInTheDocument();
   });
+
+  it("displays a special message when the lesson is complete", () => {
+    const { queryByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ isLessonComplete: true })}
+        >
+          <PupilViewsReview lessonTitle="Lesson title" />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(queryByText("Fantastic learning - well done!")).toBeInTheDocument();
+  });
 });

@@ -105,18 +105,7 @@ const PupilPageContent = ({
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
 }) => {
-  const availableSections = allLessonReviewSections.filter((section) => {
-    switch (section) {
-      case "starter-quiz":
-        return !!curriculumData?.starterQuiz?.length;
-      case "exit-quiz":
-        return !!curriculumData?.exitQuiz?.length;
-      case "video":
-        return !!curriculumData.videoMuxPlaybackId;
-      default:
-        return true;
-    }
-  });
+  const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -134,6 +123,22 @@ export type PupilPageURLParams = {
   unitSlug: string;
   programmeSlug: string;
 };
+
+export const pickAvailableSectionsForLesson = (
+  curriculumData: PupilLessonOverviewData,
+) =>
+  allLessonReviewSections.filter((section) => {
+    switch (section) {
+      case "starter-quiz":
+        return !!curriculumData?.starterQuiz?.length;
+      case "exit-quiz":
+        return !!curriculumData?.exitQuiz?.length;
+      case "video":
+        return !!curriculumData.videoMuxPlaybackId;
+      default:
+        return true;
+    }
+  });
 
 export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {
