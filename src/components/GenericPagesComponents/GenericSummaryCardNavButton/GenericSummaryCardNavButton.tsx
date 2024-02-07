@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { OakLI, OakPrimaryNavItem } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakPrimaryNavItem,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 
 type LinkProps = {
   label: string;
@@ -20,7 +25,7 @@ type GenericSummaryCardNavButtonProps = {
   buttons: LinkProps[];
   arrowSuffix?: boolean;
   shallow?: boolean;
-} & FlexProps;
+} & OakFlexProps;
 
 export const NavLink = ({ label, href }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
@@ -75,11 +80,12 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
 }) => {
   return (
     <nav aria-label={ariaLabel}>
-      <Flex
+      <OakFlex
+        as="ul"
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
-        $pa={0}
+        $pa="inner-padding-none"
         {...props}
       >
         {buttons.map((button) => (
@@ -90,7 +96,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
             arrowSuffix={arrowSuffix}
           />
         ))}
-      </Flex>
+      </OakFlex>
     </nav>
   );
 };
