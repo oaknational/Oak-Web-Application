@@ -107,7 +107,7 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider>
-        <OakBox $height={"100vh"} $minWidth={"100vw"}>
+        <OakBox $height={"100vh"}>
           <PupilPageContent curriculumData={curriculumData} />
         </OakBox>
       </LessonEngineProvider>
