@@ -1,13 +1,11 @@
 import { FC } from "react";
-import { OakPrimaryNavItem } from "@oaknational/oak-components";
+import { OakLI, OakPrimaryNavItem } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
-import { LI } from "@/components/SharedComponents/Typography";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
-import Box from "@/components/SharedComponents/Box";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Box from "@/components/SharedComponents/Box";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 type LinkProps = {
   label: string;
@@ -31,7 +29,11 @@ export const NavLink = ({ label, href }: LinkProps) => {
   };
 
   return (
-    <LI listStyle="none" $mr={[0, 24]} $mb={[0, 24]}>
+    <OakLI
+      $listStyle="none"
+      $mr={["space-between-none", "space-between-m"]}
+      $mb={["space-between-none", "space-between-m"]}
+    >
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <OakPrimaryNavItem href={href} isCurrent={isCurrent} children={label} />
@@ -52,7 +54,7 @@ export const NavLink = ({ label, href }: LinkProps) => {
           $mr={[0, 36]}
         />
       </Flex>
-    </LI>
+    </OakLI>
   );
 };
 
@@ -73,7 +75,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
 }) => {
   return (
     <nav aria-label={ariaLabel}>
-      <FlexList
+      <Flex
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
@@ -88,7 +90,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
             arrowSuffix={arrowSuffix}
           />
         ))}
-      </FlexList>
+      </Flex>
     </nav>
   );
 };

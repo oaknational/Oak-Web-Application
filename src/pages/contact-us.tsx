@@ -5,10 +5,10 @@ import {
   MissingComponentHandler,
   PortableTextComponents,
 } from "@portabletext/react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
@@ -37,7 +37,7 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
   });
 };
 
-const BodyHeading = styled(Heading)`
+const BodyHeading = styled(OakHeading)`
   &:first-child {
     margin-top: 0;
   }
@@ -51,13 +51,22 @@ const portableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       return (
-        <BodyHeading $font={"heading-5"} tag={"h2"} $mt={32} $mb={8}>
+        <BodyHeading
+          $font={"heading-5"}
+          tag={"h2"}
+          $mt="space-between-m2"
+          $mb="space-between-ssx"
+        >
           {props.children}
         </BodyHeading>
       );
     },
     normal: (props) => {
-      return <P $mt={[16, 24]}>{props.children}</P>;
+      return (
+        <OakP $mt={["space-between-s", "space-between-m"]}>
+          {props.children}
+        </OakP>
+      );
     },
   },
 };

@@ -24,8 +24,8 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;

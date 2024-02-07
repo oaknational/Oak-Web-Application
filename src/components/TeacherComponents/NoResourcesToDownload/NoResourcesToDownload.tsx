@@ -1,17 +1,22 @@
 import { FC } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
 const NoResourcesToDownload: FC = () => (
   <Box $ph={24} $mb={64} $mt={56}>
-    <Heading $mb={16} $mt={24} $font={["heading-6", "heading-7"]} tag={"h2"}>
+    <OakHeading
+      $mb="space-between-s"
+      $mt="space-between-m"
+      $font={["heading-6", "heading-7"]}
+      tag={"h2"}
+    >
       No downloads available
-    </Heading>
-    <P $mb={24} $font={["body-2", "body-1"]}>
+    </OakHeading>
+    <OakP $mb="space-between-m" $font={["body-2", "body-1"]}>
       Sorry, there are no downloadable teaching resources available for this
       lesson.
-    </P>
+    </OakP>
   </Box>
 );
 

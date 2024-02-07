@@ -4,10 +4,11 @@ import type { AriaListBoxOptions } from "@react-aria/listbox";
 import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
+import { OakLI } from "@oaknational/oak-components";
 
 import { InputFocusUnderline } from "@/components/SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
-import { LI, Span } from "@/components/SharedComponents/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -40,7 +41,7 @@ const List = styled.ul`
   outline: none;
 `;
 
-const ListItem = styled(LI)<ListItemProps>`
+const ListItem = styled(OakLI)<ListItemProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;

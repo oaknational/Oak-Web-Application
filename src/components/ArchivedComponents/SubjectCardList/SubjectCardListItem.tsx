@@ -1,4 +1,9 @@
 import { FC } from "react";
+import {
+  OakTypography,
+  OakHeading,
+  OakHeadingTag,
+} from "@oaknational/oak-components";
 
 import { KeyStageSubject } from "./SubjectCardList";
 
@@ -8,16 +13,12 @@ import useClickableCard from "@/hooks/useClickableCard";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Typography, {
-  Heading,
-  HeadingTag,
-} from "@/components/SharedComponents/Typography";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
-  titleTag?: HeadingTag;
+  titleTag?: OakHeadingTag;
 } & {
   subject: KeyStageSubject;
   keyStageSlug: string;
@@ -81,7 +82,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
       >
         {isAvailable ? (
           <>
-            <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+            <OakHeading
+              $font={["heading-7"]}
+              tag={titleTag}
+              $textAlign={"center"}
+            >
               {subject.length === 1 ? (
                 <OwaLink
                   {...primaryTargetProps}
@@ -109,20 +114,24 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   {subjectTitle}
                 </OwaLink>
               )}
-            </Heading>
-            <Typography
+            </OakHeading>
+            <OakTypography
               $font={"body-2"}
               $color={"grey60"}
-            >{`${unitCount} units`}</Typography>
-            <Typography
+            >{`${unitCount} units`}</OakTypography>
+            <OakTypography
               $font={"body-2"}
               $color={"grey60"}
-            >{`${lessonCount} lessons`}</Typography>
+            >{`${lessonCount} lessons`}</OakTypography>
           </>
         ) : (
-          <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+          <OakHeading
+            $font={["heading-7"]}
+            tag={titleTag}
+            $textAlign={"center"}
+          >
             {subjectTitle}
-          </Heading>
+          </OakHeading>
         )}
       </Flex>
       <BoxBorders gapPosition="rightTop" />

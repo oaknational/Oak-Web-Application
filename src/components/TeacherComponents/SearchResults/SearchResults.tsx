@@ -1,7 +1,8 @@
+import { OakLI, OakUL } from "@oaknational/oak-components";
+
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "@/components/TeacherComponents/SearchResultsItem";
-import { LI, UL } from "@/components/SharedComponents/Typography";
 import Pagination from "@/components/SharedComponents/Pagination";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
@@ -42,14 +43,14 @@ const SearchResults = (props: SearchResultsProps) => {
     <Flex $background={"white"} $flexDirection="column">
       {hitCount ? (
         <>
-          <UL $reset>
+          <OakUL $reset>
             {currentPageItems.map((hit, index) => {
               const searchHitObject = getSearchHitObject(hit, allKeyStages);
               if (!searchHitObject) {
                 return null;
               }
               return (
-                <LI
+                <OakLI
                   key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
                 >
                   <SearchResultsItem
@@ -62,10 +63,10 @@ const SearchResults = (props: SearchResultsProps) => {
                       searchResultExpanded(props, searchRank(index));
                     }}
                   />
-                </LI>
+                </OakLI>
               );
             })}
-          </UL>
+          </OakUL>
         </>
       ) : null}
 

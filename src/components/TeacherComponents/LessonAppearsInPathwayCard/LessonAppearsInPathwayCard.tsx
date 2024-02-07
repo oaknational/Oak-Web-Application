@@ -1,15 +1,16 @@
+import {
+  OakHeading,
+  OakHeadingTag,
+  OakSpan,
+} from "@oaknational/oak-components";
+
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
-import {
-  Heading,
-  HeadingTag,
-  Span,
-} from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInPathwayCardProps = {
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   examBoardTagColor: TagColor;
   unitSlug: string;
   examBoardTitle?: string | null;
@@ -36,18 +37,18 @@ export function LessonAppearsInPathwayCard(
 
   return (
     <Flex $flexDirection={["column"]} $background="white" $borderRadius={4}>
-      <Heading tag={headingTag}>
+      <OakHeading tag={headingTag}>
         <Flex $flexDirection={["row"]} $pa={16}>
           {examBoardTitle && (
             <TagFunctional
               text={examBoardTitle}
               color={examBoardTagColor}
-              $mr={10}
+              $mr="space-between-ssx"
             />
           )}
-          <Span $font="heading-5">{subjectTitle}</Span>
+          <OakSpan $font="heading-5">{subjectTitle}</OakSpan>
         </Flex>
-      </Heading>
+      </OakHeading>
       <Flex $flexDirection={["row"]} $pa={16} $flexWrap="wrap">
         {tiers.map(({ tierTitle, programmeSlug }, i) => {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";

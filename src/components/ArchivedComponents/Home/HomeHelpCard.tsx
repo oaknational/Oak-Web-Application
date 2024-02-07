@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
 import type { Card as CardShape } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
@@ -6,7 +7,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import Typography from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 type HomeSidebarTextCard = CardShape;
@@ -20,12 +20,12 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
         {props.title}
       </CardTitle>
 
-      <Typography $font={"body-2"} $mb={24}>
+      <OakTypography $font={"body-2"} $mb="space-between-m">
         <PortableTextWithDefaults
           value={props.bodyPortableText}
           withoutDefaultComponents
         />
-      </Typography>
+      </OakTypography>
 
       {props.cta && (
         <ButtonAsLink

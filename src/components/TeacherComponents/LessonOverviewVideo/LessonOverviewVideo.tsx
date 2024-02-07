@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
+import { OakP } from "@oaknational/oak-components";
 
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import { P } from "@/components/SharedComponents/Typography";
 import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
 import Flex from "@/components/SharedComponents/Flex";
 
@@ -97,10 +97,10 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           )}
         </Flex>
         {!hasCaptions && !signLanguageVideo && (
-          <P $mt={24} $textAlign="center">
+          <OakP $mt="space-between-m" $textAlign="center">
             Some of our videos, including non-English language videos, do not
             have captions.
-          </P>
+          </OakP>
         )}
       </Flex>
 

@@ -1,11 +1,11 @@
 import { FC } from "react";
+import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
 
 import { HomePageNotification } from "@/common-lib/cms-types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Icon from "@/components/SharedComponents/Icon";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
@@ -42,10 +42,14 @@ const HomeNotification: FC<HomeNotificationProps> = ({ notification }) => {
         <Icon name="bell" $background="oakGreen" variant="brush" size={30} />
       </Box>
 
-      <Span $font={["body-4", "body-3"]} $color="grey60">
+      <OakSpan $font={["body-4", "body-3"]} $color="grey60">
         {notification.label}
-      </Span>
-      <Heading $font={["heading-7", "heading-6"]} tag="h2" $mt={4}>
+      </OakSpan>
+      <OakHeading
+        $font={["heading-7", "heading-6"]}
+        tag="h2"
+        $mt="space-between-sssx"
+      >
         <CardLink
           page={null}
           href={href}
@@ -60,10 +64,10 @@ const HomeNotification: FC<HomeNotificationProps> = ({ notification }) => {
         >
           {notification.heading}
         </CardLink>
-      </Heading>
-      <P $font={["body-4", "body-2"]} $mt={4}>
+      </OakHeading>
+      <OakP $font={["body-4", "body-2"]} $mt="space-between-sssx">
         {notification.subheading}
-      </P>
+      </OakP>
     </Card>
   );
 };

@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { OakP } from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
 import Button from "@/components/SharedComponents/Button";
@@ -14,7 +15,6 @@ import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import { P } from "@/components/SharedComponents/Typography";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -138,22 +138,24 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         htmlButtonProps={{ disabled: loading }}
         background="black"
       />
-      <P
-        $mt={error ? 16 : 0}
+      <OakP
+        $mt={error ? "space-between-s" : "space-between-none"}
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
         $color="red"
       >
         {error}
-      </P>
-      <P
-        $mt={!error && successMessage ? 16 : 0}
+      </OakP>
+      <OakP
+        $mt={
+          !error && successMessage ? "space-between-s" : "space-between-none"
+        }
         $font={"body-3"}
         aria-live="polite"
       >
         {!error && successMessage}
-      </P>
+      </OakP>
     </Form>
   );
 };

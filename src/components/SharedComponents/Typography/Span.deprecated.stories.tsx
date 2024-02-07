@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./Span";
+import Component from "./Span.deprecated";
 
 import Typography, { P } from ".";
 
