@@ -20,5 +20,9 @@ query pupilLessonOverview(
     exitQuiz
     lessonSlug
     lessonTitle
+    supervisionLevel
+    contentGuidance
+    lessonEquipmentAndResources
+    worksheetUrl
   }
 }

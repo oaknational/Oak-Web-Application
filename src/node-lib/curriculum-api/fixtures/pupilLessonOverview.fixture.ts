@@ -11,6 +11,10 @@ const pupilLessonOverviewFixture = (
     subjectTitle: "Maths",
     starterQuiz: quizQuestions,
     lessonSlug: "lesson-slug",
+    supervisionLevel: null,
+    contentGuidance: null,
+    lessonEquipmentAndResources: null,
+    worksheetUrl: null,
     ...partial,
   };
 };
