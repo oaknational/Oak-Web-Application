@@ -91,7 +91,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         hasCurriculumDownload={isSlugLegacy(subjectSlug)}
         {...props}
         subjectSlug={removeLegacySlugSuffix(subjectSlug)}
-        isNew={false} //TODO: discuss
+        isNew={isSlugLegacy(subjectSlug)} // we have no way to know if it's new based on cohort information at this level
       />
       <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />

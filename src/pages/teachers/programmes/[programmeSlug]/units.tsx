@@ -162,7 +162,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
-        isNew={hasNewContent}
+        isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
