@@ -115,6 +115,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 disabled: true,
               },
             ]}
+            data-testid="breadcrumbs"
           />
           <Hr $color={"white"} />
           <Flex>
@@ -138,12 +139,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
                 $mb={24}
-                data-testid="curriculum-heading"
+                data-testid="heading"
               >
                 Previously released curricula
               </Heading>
               <Box $maxWidth={720}>
-                <P $font="body-1">
+                <P $font="body-1" data-testid="description">
                   Download our curricula from previous academic years to explore
                   our curriculum sequences, lesson information and the
                   curriculum principles that underpin them.
@@ -168,7 +169,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             name={"select-category"}
             onChange={(event) => updateTab(event.target.value)}
             placeholder="Placeholder"
-            data-testid="dropdownSelect"
+            data-testid="dropdownNav"
             label="Select a category:"
             listItems={Object.keys(categoryDocuments).map((category) => ({
               value: category,

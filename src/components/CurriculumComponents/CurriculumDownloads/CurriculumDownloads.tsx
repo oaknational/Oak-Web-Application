@@ -29,6 +29,7 @@ import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 export type CurriculumDownload = {
   label: string;
@@ -45,7 +46,7 @@ type CurriculumDownloadsProps = {
   downloads: CurriculumDownload[];
 };
 
-const CardContainer = styled.div`
+const CardsContainer = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -91,6 +92,7 @@ function CurriculumDownloads(
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
+  const { onHubspotSubmit } = useHubspotSubmit();
   const [apiError, setApiError] = useState<string | null>(null);
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 
@@ -105,6 +107,7 @@ function CurriculumDownloads(
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
+    await onHubspotSubmit(data);
     try {
       const debouncedFunction = debounce(
         async () => {
@@ -215,7 +218,7 @@ function CurriculumDownloads(
               <FieldError id={"downloads-error"} withoutMarginBottom>
                 {form.errors?.resources?.message}
               </FieldError>
-              <CardContainer>
+              <CardsContainer data-testid="downloadCardsContainer">
                 <RadioGroup
                   aria-label="Subject Download Options"
                   value={selectedUrl}
@@ -244,13 +247,13 @@ function CurriculumDownloads(
                       checked={false}
                       onBlur={() => {}}
                       hasError={form.errors?.resources ? true : false}
-                      data-testid={`download-card-${download.label}`}
+                      data-testid={`downloadCard`}
                       useRadio={true}
                       subjectIcon={download.icon}
                     />
                   ))}
                 </RadioGroup>
-              </CardContainer>
+              </CardsContainer>
             </OakGridArea>
             <OakGridArea $colSpan={[12, 12, 5]}>
               <Heading
@@ -294,7 +297,7 @@ function CurriculumDownloads(
 
                       <Input
                         id={"email"}
-                        data-testid="input-email"
+                        data-testid="inputEmail"
                         label="Email"
                         autoComplete="email"
                         placeholder="Enter email address here"
@@ -320,7 +323,6 @@ function CurriculumDownloads(
                             name="external"
                             verticalAlign="bottom"
                             size={20}
-                            data-testid="external-link-icon"
                           />
                         </OakLink>
                         .
@@ -388,12 +390,13 @@ function CurriculumDownloads(
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 loadingText={"Downloading..."}
+                data-testid="downloadButton"
               />
 
               {apiError && !hasFormErrors && (
                 <FieldError
                   id="download-error"
-                  data-testid="download-error"
+                  data-testid="downloadError"
                   variant={"large"}
                   withoutMarginBottom
                 >
