@@ -1,9 +1,13 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export const LandingPageSignupPrompt: FC<{
@@ -24,12 +28,16 @@ export const LandingPageSignupPrompt: FC<{
           $ph={["inner-padding-m", "inner-padding-none"]}
           $mb={["space-between-xl", "space-between-none"]}
         >
-          <Heading $font={["heading-4", "heading-5"]} tag={"h4"} $mb={[32]}>
+          <OakHeading
+            $font={["heading-4", "heading-5"]}
+            tag={"h4"}
+            $mb={["space-between-m2"]}
+          >
             {title}
-          </Heading>
-          <Typography $font={["body-2", "body-1"]}>
+          </OakHeading>
+          <OakTypography $font={["body-2", "body-1"]}>
             <PortableTextWithDefaults value={bodyPortableText} />
-          </Typography>
+          </OakTypography>
         </OakGridArea>
         <OakGridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
           <LandingPageSignUpForm formTitle={form.title} />

@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import { SupportYourTeamTextBlockCardULTick as Component } from "./SupportYourTeamTextBlockCardULTick";
 
 import { bodyPortableText } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCard/SupportYourTeamTextBlockCard.stories";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 
 export default {
@@ -26,13 +26,13 @@ export default {
 const Template: ComponentStory<typeof Card> = (args) => {
   return (
     <Card {...args}>
-      <Heading $mb={24} $font={"heading-5"} tag={"h2"}>
+      <OakHeading $mb="space-between-m" $font={"heading-5"} tag={"h2"}>
         UL with tick icons
-      </Heading>
-      <P $mb={24}>
+      </OakHeading>
+      <OakP $mb="space-between-m">
         Pass ULTick into the component prop of a PortableText component and
         bullet points become ticks.
-      </P>
+      </OakP>
       <PortableTextWithDefaults
         value={bodyPortableText}
         components={Component}

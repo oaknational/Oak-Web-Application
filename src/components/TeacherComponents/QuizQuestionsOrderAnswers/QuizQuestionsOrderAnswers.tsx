@@ -1,10 +1,10 @@
 import { VisuallyHidden } from "react-aria";
+import { OakTypography } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsOrderAnswers = ({
@@ -37,13 +37,13 @@ export const QuizQuestionsOrderAnswers = ({
                 <Icon name={"tick"} />
               </Box>
 
-              <Typography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
+              <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
                 {item.correct_order}
-              </Typography>
+              </OakTypography>
 
-              <Typography $font={["body-2", "body-1"]} aria-hidden>
+              <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                 - {removeMarkdown(orderAnswer.text)}
-              </Typography>
+              </OakTypography>
             </Flex>
           )
         );

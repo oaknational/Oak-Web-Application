@@ -1,9 +1,10 @@
 import { forwardRef } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
-import { Heading, Hr } from "@/components/SharedComponents/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -76,9 +77,9 @@ export const LessonItemContainer = forwardRef<
         $position={"relative"}
       >
         {title && (
-          <Heading $font={["heading-5", "heading-4"]} tag={"h2"}>
+          <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
             {title}
-          </Heading>
+          </OakHeading>
         )}
         {downloadable && slugs && (
           <LessonItemContainerLink

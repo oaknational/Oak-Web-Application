@@ -1,8 +1,8 @@
 import Router, { useRouter } from "next/router";
 import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
-import { Span } from "@/components/SharedComponents/Typography";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
@@ -60,9 +60,9 @@ const Pagination: FC<PaginationProps & { pageName: string }> = ({
           scroll={false}
           disabled={currentPage === 1}
         />
-        <Span $mh={24} $font={"body-2"}>
+        <OakSpan $mh={"space-between-m"} $font={"body-2"}>
           page {currentPage} / {totalPages}
-        </Span>
+        </OakSpan>
         <IconButtonAsLink
           size="small"
           aria-label={nextPageLabel}

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { OakLI, OakUL } from "@oaknational/oak-components";
 
 import UnitListItem, {
   UnitListItemProps,
@@ -9,7 +10,6 @@ import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 import {
@@ -51,9 +51,9 @@ const UnitList: FC<UnitListProps> = (props) => {
     <Flex $flexDirection="column">
       {currentPageItems.length ? (
         <>
-          <UL aria-label="A list of units" $reset>
+          <OakUL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
-              <LI
+              <OakLI
                 key={`UnitList-UnitListItem-${item[0]?.slug}`}
                 data-testid="unit-list-item"
               >
@@ -81,9 +81,9 @@ const UnitList: FC<UnitListProps> = (props) => {
                     })}
                   </Flex>
                 )}
-              </LI>
+              </OakLI>
             ))}
-          </UL>
+          </OakUL>
         </>
       ) : null}
       {units.length > 5 ? (

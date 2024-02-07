@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
 
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -6,7 +7,6 @@ import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
@@ -89,9 +89,9 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
         <Flex $ml={12} $flexDirection={"column"}>
           <Flex>
-            <Heading $mb={4} tag={"h2"} $font={"heading-7"}>
+            <OakHeading $mb="space-between-sssx" tag={"h2"} $font={"heading-7"}>
               {subjectTitle}
-            </Heading>
+            </OakHeading>
             {!legacy && <TagPromotional $ml={4} size="small" />}
           </Flex>
           <LessonMetadata
@@ -102,15 +102,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         </Flex>
       </Flex>
       <Flex $mb={32} $flexDirection={"column"}>
-        <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
+        <OakHeading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
-        </Heading>
+        </OakHeading>
         {searchHitDescription && (
-          <P
+          <OakP
             dangerouslySetInnerHTML={{
               __html: searchHitDescription,
             }}
-            $mt={16}
+            $mt="space-between-s"
             $font={"body-2"}
           />
         )}
@@ -130,9 +130,9 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
             $focusStyles={["underline"]}
           >
             <Flex $justifyContent={"center"} $alignItems={"center"}>
-              <Span $font={"heading-7"}>
+              <OakSpan $font={"heading-7"}>
                 {type === "unit" ? "See unit" : "See lesson"}
-              </Span>
+              </OakSpan>
               <Icon $ml={4} name={"arrow-right"} />
             </Flex>
           </OwaLink>

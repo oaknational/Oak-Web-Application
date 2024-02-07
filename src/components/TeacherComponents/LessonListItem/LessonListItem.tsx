@@ -1,4 +1,5 @@
 import { FC, MutableRefObject } from "react";
+import { OakP, OakSpan } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -8,7 +9,6 @@ import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
-import { P, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
@@ -150,9 +150,9 @@ const LessonListItem: FC<
               slug={lessonSlug}
             />
             {/* {expired && (
-                <P $mt={8} $font={["body-3", "body-2"]}>
+                <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                   This lesson is currently unavailable.
-                </P>
+                </OakP>
               )} */}
           </Flex>
         </Flex>
@@ -166,13 +166,13 @@ const LessonListItem: FC<
         >
           <Flex $mt={[8, 0]} $mr={[16, 0]}>
             {expired ? (
-              <P $mt={8} $font={["body-3", "body-2"]}>
+              <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                 This lesson is currently unavailable.
-              </P>
+              </OakP>
             ) : (
               <>
                 {description ? (
-                  <Span
+                  <OakSpan
                     dangerouslySetInnerHTML={{
                       __html: description,
                     }}
@@ -180,9 +180,9 @@ const LessonListItem: FC<
                     $color={"grey70"}
                   />
                 ) : (
-                  <P $font={["body-3", "body-2"]} $color={"grey70"}>
+                  <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
                     {pupilLessonOutcome}
-                  </P>
+                  </OakP>
                 )}
               </>
             )}

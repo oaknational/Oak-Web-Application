@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -122,11 +122,11 @@ const UnitModal: FC<UnitModalProps> = ({
               subjectTitle={unitData.subject}
               yearTitle={`Year ${unitData.year}`}
             />
-            <Heading tag="h2" $font={"heading-5"}>
+            <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
                 : curriculumUnitDetails.unitTitle}
-            </Heading>
+            </OakHeading>
             {!unitOptionsAvailable && (
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
@@ -157,14 +157,14 @@ const UnitModal: FC<UnitModalProps> = ({
                   data-testid="unit-options-card"
                   $borderRadius={4}
                 >
-                  <Heading
+                  <OakHeading
                     tag="h4"
                     $font={"heading-6"}
-                    $mb={24}
+                    $mb="space-between-m"
                     data-testid="unit-options-heading"
                   >
                     Unit options
-                  </Heading>
+                  </OakHeading>
                   <Flex
                     $flexDirection={["column", "row"]}
                     $gap={24}
@@ -185,14 +185,14 @@ const UnitModal: FC<UnitModalProps> = ({
                         >
                           <Box>
                             <BrushBorders color="white" />
-                            <Heading
+                            <OakHeading
                               tag="h5"
                               $font={"heading-7"}
-                              $mb={16}
+                              $mb="space-between-s"
                               $wordWrap={"normal"}
                             >
                               {optionalUnit.title}
-                            </Heading>
+                            </OakHeading>
                           </Box>
 
                           <Flex

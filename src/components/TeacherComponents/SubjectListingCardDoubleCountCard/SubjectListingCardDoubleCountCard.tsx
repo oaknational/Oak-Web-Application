@@ -1,10 +1,10 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -87,11 +87,13 @@ const SubjectListingCardDoubleCountCard: FC<
       >
         <Flex $flexDirection={"column"} $pa={16}>
           <Flex>
-            <Span>{`${unitCount} ${unitCount > 1 ? "units" : "unit"}`} </Span>
+            <OakSpan>
+              {`${unitCount} ${unitCount > 1 ? "units" : "unit"}`}{" "}
+            </OakSpan>
           </Flex>
-          <Span>{`${lessonCount} ${
+          <OakSpan>{`${lessonCount} ${
             lessonCount > 1 ? "lessons" : "lesson"
-          }`}</Span>
+          }`}</OakSpan>
         </Flex>
       </OwaLink>
     </SubjectListingTextTile>

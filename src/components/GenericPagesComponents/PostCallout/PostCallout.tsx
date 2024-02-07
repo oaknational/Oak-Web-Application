@@ -1,8 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
+import { OakP } from "@oaknational/oak-components";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import Flex from "@/components/SharedComponents/Flex";
-import { P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const PostCallout = (
@@ -25,7 +25,7 @@ const PostCallout = (
         components={{
           block: {
             sectionHeading: (props) => {
-              return <P $font={"heading-light-5"}>{props.children}</P>;
+              return <OakP $font={"heading-light-5"}>{props.children}</OakP>;
             },
           },
         }}

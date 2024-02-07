@@ -1,13 +1,17 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
@@ -16,16 +20,20 @@ const genericContactCardPortableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       return (
-        <Heading $mb={8} $font={["heading-6", "heading-5"]} tag="h2">
+        <OakHeading
+          $mb="space-between-ssx"
+          $font={["heading-6", "heading-5"]}
+          tag="h2"
+        >
           {props.children}
-        </Heading>
+        </OakHeading>
       );
     },
     normal: (props) => {
       return (
-        <Typography $mb={32} $font={["body-2", "body-1"]}>
+        <OakTypography $mb="space-between-m2" $font={["body-2", "body-1"]}>
           {props.children}
-        </Typography>
+        </OakTypography>
       );
     },
   },

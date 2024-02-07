@@ -1,6 +1,11 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { SupportPage } from "@/common-lib/cms-types";
@@ -11,7 +16,6 @@ import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesCompo
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
@@ -34,13 +38,13 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $pb={96}
           $ph={12}
         >
-          <Heading
+          <OakHeading
             $font={["heading-5", "heading-4"]}
             $textAlign="center"
             tag="h2"
           >
             Using Oak in your school could have a big impact
-          </Heading>
+          </OakHeading>
         </Flex>
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
@@ -115,18 +119,18 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $mt={48}
         >
           <Box $maxWidth={["100%", 380, 380]}>
-            <Heading
+            <OakHeading
               $textAlign={"center"}
               $font={["heading-5", "heading-4"]}
-              $mb={20}
+              $mb="space-between-m"
               tag={"h2"}
             >
               Start using Oak today
-            </Heading>
-            <P $textAlign={"center"} $font={"body-2"}>
+            </OakHeading>
+            <OakP $textAlign={"center"} $font={"body-2"}>
               Search our lessons to find all the resources you need to support
               your team.
-            </P>
+            </OakP>
             <Flex $justifyContent={"center"}>
               <ButtonAsLink
                 $mt={32}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakP } from "@oaknational/oak-components";
 
-import P from "@/components/SharedComponents/Typography/P";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
@@ -25,7 +25,7 @@ const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
 const PreAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
-  <P $font="body-3" {...props}>
+  <OakP $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
     <OwaLink
@@ -43,7 +43,7 @@ const PreAlbCopyright = (
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OwaLink>{" "}
     (Collection 1), except where otherwise stated.
-  </P>
+  </OakP>
 );
 
 const StyledLink = styled.a`
@@ -55,7 +55,7 @@ const StyledLink = styled.a`
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
-  <P $font="body-3" {...props}>
+  <OakP $font="body-3" {...props}>
     This content is © Oak National Academy Limited (2023), licensed on{" "}
     <StyledLink
       aria-label={`Open Government License version 3.0${
@@ -84,7 +84,7 @@ const PostAlbCopyright = (
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OwaLink>{" "}
     (Collection 2).
-  </P>
+  </OakP>
 );
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
