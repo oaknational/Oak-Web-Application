@@ -105,11 +105,22 @@ const PupilPageContent = ({
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
 }) => {
+  const availableSections = allLessonReviewSections.filter((section) => {
+    switch (section) {
+      case "starter-quiz":
+        return !!curriculumData?.starterQuiz?.length;
+      case "exit-quiz":
+        return !!curriculumData?.exitQuiz?.length;
+      case "video":
+        return !!curriculumData.videoMuxPlaybackId;
+      default:
+        return true;
+    }
+  });
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider
-        initialLessonReviewSections={allLessonReviewSections}
-      >
+      <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
           <PupilPageContent curriculumData={curriculumData} />
         </OakBox>
