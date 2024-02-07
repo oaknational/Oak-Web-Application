@@ -34,7 +34,8 @@ export type LessonOverviewHeaderProps = {
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
-  isLegacyLesson?: boolean;
+  isNew: boolean;
+  isShareable: boolean;
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;

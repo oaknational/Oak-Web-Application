@@ -91,7 +91,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         hasCurriculumDownload={isSlugLegacy(subjectSlug)}
         {...props}
         subjectSlug={removeLegacySlugSuffix(subjectSlug)}
-        isLegacyLesson={isSlugLegacy(subjectSlug)}
+        isNew={false} //TODO: discuss
       />
       <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />

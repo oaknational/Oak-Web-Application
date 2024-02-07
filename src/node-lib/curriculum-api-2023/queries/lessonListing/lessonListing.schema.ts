@@ -18,6 +18,13 @@ const lessonListingSchema = z.object({
   lessons: lessonListSchema,
 });
 
-export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
+const lessonListingPageData = z.object({
+  ...lessonListingSchema.shape,
+  hasNewContent: z.boolean(),
+});
+
+export type lessonListingSchema = z.infer<typeof lessonListingSchema>;
+
+export type LessonListingPageData = z.infer<typeof lessonListingPageData>;
 
 export default lessonListingSchema;

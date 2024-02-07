@@ -117,11 +117,11 @@ export const getStaticProps: GetStaticProps<
         const subjects = subjectSlugs2023.map((subjectSlug) => {
           return {
             subjectSlug,
-            old: null,
-            new:
+            old:
               curriculumData2023?.subjects.find(
                 (subject) => subject.subjectSlug === subjectSlug,
               ) || null,
+            new: null,
           };
         });
 
@@ -139,7 +139,7 @@ export const getStaticProps: GetStaticProps<
         const curriculumData = await curriculumApi.subjectListing({
           keyStageSlug: keystage,
         });
-        if (!curriculumData) {
+        if (!curriculumData && !curriculumData2023) {
           return {
             notFound: true,
           };

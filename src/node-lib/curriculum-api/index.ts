@@ -109,6 +109,7 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
+  cohort: z.string().nullable(),
   learningThemes: z
     .array(
       z.object({
@@ -200,6 +201,7 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
+  hasNewContent: z.boolean(),
   learningThemes: z
     .array(
       z.object({
