@@ -14,6 +14,7 @@ import {
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -27,7 +28,7 @@ export type SearchResultsItemProps = {
   pupilLessonOutcome?: string;
   nullTitle?: string;
   examBoard?: string;
-  legacy?: boolean;
+  cohort?: string;
   onToggleClick?: (searchHit: SearchResultsItemProps) => void;
   isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
@@ -60,7 +61,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     type,
     keyStageShortCode,
     yearTitle,
-    legacy,
+    cohort,
     subjectSlug,
     firstItemRef,
     pathways,
@@ -92,7 +93,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
             <Heading $mb={4} tag={"h2"} $font={"heading-7"}>
               {subjectTitle}
             </Heading>
-            {!legacy && <TagPromotional $ml={4} size="small" />}
+            {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
           </Flex>
           <LessonMetadata
             $font={"heading-light-7"}
