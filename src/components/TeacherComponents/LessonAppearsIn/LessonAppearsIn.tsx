@@ -1,18 +1,19 @@
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakHeadingTag,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
-import {
-  Heading,
-  HeadingTag,
-  Span,
-  getNextHeadingTag,
-} from "@/components/SharedComponents/Typography";
+import { getNextHeadingTag } from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInProps = {
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   subjects: {
     subjectTitle: string;
     subjectSlug: string;
@@ -41,9 +42,9 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
 
   return (
     <Flex $flexDirection={["column"]}>
-      <Heading $font={"heading-5"} tag={headingTag}>
+      <OakHeading $font={"heading-5"} tag={headingTag}>
         Lesson appears in
-      </Heading>
+      </OakHeading>
       {subjects.map(({ subjectTitle, subjectSlug, units }) => {
         return units.map(({ unitTitle, unitSlug, examBoards }) => {
           return (
@@ -52,14 +53,18 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
               $flexDirection={["column"]}
               $mt={48}
             >
-              <Heading tag={unitHeadingTag} $mb={16}>
+              <OakHeading tag={unitHeadingTag} $mb="space-between-s">
                 <Flex $flexDirection={["row"]} $alignItems="baseline">
-                  <TagFunctional text="Unit" color="grey" $mr={12} />
-                  <Span $font="heading-light-6">
+                  <TagFunctional
+                    text="Unit"
+                    color="grey"
+                    $mr="space-between-xs"
+                  />
+                  <OakSpan $font="heading-light-6">
                     {subjectTitle} / {unitTitle}
-                  </Span>
+                  </OakSpan>
                 </Flex>
-              </Heading>
+              </OakHeading>
               <OakGrid $rg={"all-spacing-4"} $cg={"all-spacing-4"}>
                 {examBoards.map((examBoard, index) => {
                   const tagColors: TagColor[] = ["aqua", "pink", "lemon"];

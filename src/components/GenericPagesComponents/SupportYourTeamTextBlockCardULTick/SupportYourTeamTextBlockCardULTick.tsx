@@ -1,15 +1,19 @@
 import { PortableTextComponents } from "@portabletext/react";
+import { OakLI, OakUL, OakSpan } from "@oaknational/oak-components";
 
 import Circle from "@/components/SharedComponents/Circle";
 import Icon from "@/components/SharedComponents/Icon";
-import { LI, Span, UL } from "@/components/SharedComponents/Typography";
 
 export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
   list: {
     bullet: ({ children }) => (
-      <UL $mt={36} $ml={0} $pa={0}>
+      <OakUL
+        $mt={"space-between-m2"}
+        $ml={"space-between-none"}
+        $pa={"inner-padding-none"}
+      >
         {children}
-      </UL>
+      </OakUL>
     ),
   },
 
@@ -18,18 +22,18 @@ export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
       const listItemText = props?.value?.children[0]?.text;
 
       return (
-        <LI
+        <OakLI
           $display={"flex"}
           $flexDirection={"row"}
-          listStyle={"none"}
-          $mb={44}
+          $listStyle={"none"}
+          $mb="space-between-l"
           $alignItems={"center"}
         >
           <Circle $mr={24} size={36} $background={"white"}>
             <Icon size={28} name={"tick"} />
           </Circle>
-          <Span $font={"heading-7"}>{listItemText}</Span>
-        </LI>
+          <OakSpan $font={"heading-7"}>{listItemText}</OakSpan>
+        </OakLI>
       );
     },
   },

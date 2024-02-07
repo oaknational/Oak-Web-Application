@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { Span } from "@/components/SharedComponents/Typography";
 import Icon from "@/components/SharedComponents/Icon";
 
 type FieldErrorVariant = "large";
@@ -31,13 +31,13 @@ const FieldError = (props: FieldErrorProps) => {
       <Flex $alignSelf={"flex-start"} $mr={4}>
         <Icon name="content-guidance" $color={"red"} />
       </Flex>
-      <Span
+      <OakSpan
         $color="red"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
         id={id}
       >
         {children}
-      </Span>
+      </OakSpan>
     </Flex>
   );
 };

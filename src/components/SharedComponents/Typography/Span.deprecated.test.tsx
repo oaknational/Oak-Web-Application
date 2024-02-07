@@ -1,4 +1,4 @@
-import Span from "./Span";
+import Span from "./Span.deprecated";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

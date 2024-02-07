@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Component from "./Hr";
-import Typography from "./Typography";
+import Typography from "./Typography.deprecated";
 
 export default {
   component: Component,

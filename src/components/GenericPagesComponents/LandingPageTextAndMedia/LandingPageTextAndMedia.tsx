@@ -1,5 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
+import { OakLI } from "@oaknational/oak-components";
 
 import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
@@ -10,13 +11,12 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import Flex from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { LI } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <LandingPageOlOutline $color={"lemon50"} $mh={0}>
+      <LandingPageOlOutline $color={"lemon50"} $mh={"space-between-none"}>
         {children}
       </LandingPageOlOutline>
     ),
@@ -28,7 +28,7 @@ const landingPortableTextComponent: PortableTextComponents = {
 
       return (
         <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
-          <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
+          <OakLI $font={["heading-7", "heading-6"]}>{listItemText}</OakLI>
         </Flex>
       );
     },

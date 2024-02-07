@@ -1,11 +1,11 @@
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { OakHeading } from "@oaknational/oak-components";
 
 import CollapsibleSection from "./CollapsibleSection";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 describe("CollapsibleSection", () => {
   it("renders a CollapsibleSection", () => {
@@ -41,9 +41,9 @@ describe("CollapsibleSection", () => {
         headingTag={"h2"}
         startOpen={false}
       >
-        <Heading $font={"heading-6"} tag={"h2"}>
+        <OakHeading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
-        </Heading>
+        </OakHeading>
       </CollapsibleSection>,
     );
 
@@ -74,9 +74,9 @@ describe("CollapsibleSection", () => {
           },
         ]}
       >
-        <Heading $font={"heading-6"} tag={"h2"}>
+        <OakHeading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
-        </Heading>
+        </OakHeading>
       </CollapsibleSection>,
     );
 

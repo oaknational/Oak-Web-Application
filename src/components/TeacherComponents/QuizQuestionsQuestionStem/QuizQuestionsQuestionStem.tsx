@@ -1,10 +1,11 @@
+import { OakTypography } from "@oaknational/oak-components";
+
 import {
   shortAnswerTitleFormatter,
   removeMarkdown,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import Flex from "@/components/SharedComponents/Flex";
-import Typography from "@/components/SharedComponents/Typography";
 import {
   StemImageObject,
   StemTextObject,
@@ -24,29 +25,32 @@ export const QuizQuestionsQuestionStem = ({
     <Flex $flexDirection={"column"} $gap={4}>
       <Flex key="stem-header">
         {showIndex && (
-          <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
+          <OakTypography
+            $font={["body-2-bold", "body-1-bold"]}
+            $mr="space-between-xs"
+          >
             {displayNumber}
-          </Typography>
+          </OakTypography>
         )}
         {questionStem[0]?.type === "text" && (
-          <Typography
+          <OakTypography
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
           >
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-          </Typography>
+          </OakTypography>
         )}
       </Flex>
 
       {questionStem.map((stemItem, i) => {
         if (stemItem.type === "text" && i > 0) {
           return (
-            <Typography
+            <OakTypography
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
               {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-            </Typography>
+            </OakTypography>
           );
         } else if (stemItem.type === "image") {
           return (

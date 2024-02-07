@@ -23,6 +23,7 @@ const listItem = css<ListItemProps>`
  *
  * Places where we directly want to style a list item
  *
+ * @deprecated use OakLI from oak-components instead
  * */
 const LI = styled.li<FlexProps & TypographyProps & ListItemProps>`
   ${box}

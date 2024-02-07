@@ -1,9 +1,8 @@
 import React, { FC } from "react";
+import { OakSpan, OakHeading } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
-import Heading from "@/components/SharedComponents/Typography/Heading";
 import DownloadConfirmationNextLessonCard from "@/components/TeacherComponents/DownloadConfirmationNextLessonCard";
-import { Span } from "@/components/SharedComponents/Typography";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
@@ -26,9 +25,13 @@ const DownloadConfirmationNextLessonContainer: FC<
 }) => {
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
-      <Heading tag={"h3"} $font={["heading-6", "heading-5"]} $mb={[32, 48]}>
-        More lessons in: <Span $color={"blue"}>{`${unitTitle}`}</Span>
-      </Heading>
+      <OakHeading
+        tag={"h3"}
+        $font={["heading-6", "heading-5"]}
+        $mb={["space-between-m2", "space-between-l"]}
+      >
+        More lessons in: <OakSpan $color={"blue"}>{`${unitTitle}`}</OakSpan>
+      </OakHeading>
       {nextLessons && (
         <Flex $flexDirection={["column", "row"]} $gap={16}>
           {nextLessons.map((lesson: NextLesson) => {
