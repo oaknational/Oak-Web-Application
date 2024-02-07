@@ -74,7 +74,7 @@ const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro />;
+      return <PupilViewsIntro {...curriculumData} />;
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":

@@ -102,6 +102,7 @@ export const getStaticProps: GetStaticProps<
 
       const curriculumData2023 = await curriculumApi2023.subjectListingPage({
         keyStageSlug: context.params?.keyStageSlug,
+        isLegacy: false,
       });
 
       if (!curriculumData && !curriculumData2023) {

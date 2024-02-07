@@ -1,9 +1,9 @@
 import { VisuallyHidden } from "react-aria";
+import { OakP, OakSpan } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
-import { P, Span } from "@/components/SharedComponents/Typography";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMatchAnswers = ({
@@ -41,20 +41,20 @@ export const QuizQuestionsMatchAnswers = ({
               </VisuallyHidden>
               <Icon $mr={8} name={"tick"} />
               <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
-                <P
+                <OakP
                   $whiteSpace={"nowrap"}
                   $font={["body-2-bold", "body-1-bold"]}
                   aria-hidden
                 >
                   {removeMarkdown(match_option.text)}
-                  <Span>{" -"}&nbsp;</Span>
-                </P>
-                <P
+                  <OakSpan>{" -"}&nbsp;</OakSpan>
+                </OakP>
+                <OakP
                   $whiteSpace={["break-spaces", "nowrap"]}
                   $font={["body-2", "body-1"]}
                 >
                   {removeMarkdown(correct_choice.text)}
-                </P>
+                </OakP>
               </Flex>
             </Flex>
           )

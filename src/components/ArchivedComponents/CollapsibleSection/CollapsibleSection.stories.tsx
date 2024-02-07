@@ -1,9 +1,9 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import Component from ".";
 
-import { Heading } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 
 export default {
@@ -35,9 +35,9 @@ const Template: ComponentStory<typeof Component> = () => {
       ]}
     >
       <Card $background={"grey40"}>
-        <Heading $font={"heading-6"} tag={"h2"}>
+        <OakHeading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
-        </Heading>
+        </OakHeading>
       </Card>
     </Component>
   );

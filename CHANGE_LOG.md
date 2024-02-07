@@ -1,3 +1,41 @@
+# [1.341.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.340.0...v1.341.0) (2024-02-07)
+
+
+### Features
+
+* **lessonIntro:** add oak-components to intro page ([ad22981](https://github.com/oaknational/Oak-Web-Application/commit/ad2298107bf057edc2808ce39b122c414ca2d3c5))
+* **lessonIntro:** add oak-components to intro page ([2552a29](https://github.com/oaknational/Oak-Web-Application/commit/2552a291022358eb830c7848e8dd7a60bbe550c4))
+* **lessonIntro:** add oak-components to intro page ([e0861d1](https://github.com/oaknational/Oak-Web-Application/commit/e0861d1f77478c183ca4c3c07442977d0d9b47c9))
+* **lessonIntro:** fix lint errors ([43718d7](https://github.com/oaknational/Oak-Web-Application/commit/43718d7939ae06d80e0a9d5d2a5bfcfbf7f3ab40))
+* **lessonIntro:** remove sonar exclusions ([b547b04](https://github.com/oaknational/Oak-Web-Application/commit/b547b04bf71934fce2250658e0d13f6435304aa6))
+
+# [1.340.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.339.0...v1.340.0) (2024-02-07)
+
+
+### Features
+
+* update subject listing query ([8de932b](https://github.com/oaknational/Oak-Web-Application/commit/8de932b2d01c7a903f9c8b921a2d3b360f9e971e))
+* update unit listing mv ([f9ce363](https://github.com/oaknational/Oak-Web-Application/commit/f9ce3638140014f9ee68a59dde8c17e2e55fbf4e))
+
+# [1.339.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.3...v1.339.0) (2024-02-07)
+
+
+### Features
+
+* deprecate relevant Typography components ([bf7ebe0](https://github.com/oaknational/Oak-Web-Application/commit/bf7ebe0c8097bed0348a40d8e5e4f30a6c547cd3))
+* fix typescript 'Map maximum size exceeded' error ([2beb427](https://github.com/oaknational/Oak-Web-Application/commit/2beb427660b1c42dce14bfa406ed6103dc29d9bd))
+* update Typography related components with oak-components ([c2ace51](https://github.com/oaknational/Oak-Web-Application/commit/c2ace5133485accea5d4011fa0985eb6155a9c35))
+* update Typography related components with oak-components - part 2 ([2995fd3](https://github.com/oaknational/Oak-Web-Application/commit/2995fd38599bea0b3db28a5f66ad50249e898f50))
+* update Typography related components with oak-components - part 3 ([f6bf745](https://github.com/oaknational/Oak-Web-Application/commit/f6bf7457a2a095f5cf3c206be92674b10cfde49b))
+* update Typography related components with oak-components - part 4 ([3819596](https://github.com/oaknational/Oak-Web-Application/commit/38195969411740c7f071aaf7d51052207048fb50))
+
+## [1.338.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.2...v1.338.3) (2024-02-06)
+
+
+### Bug Fixes
+
+* responsive width ([2afae66](https://github.com/oaknational/Oak-Web-Application/commit/2afae66eb8309a17938a4233233b53b257cbfa72))
+
 ## [1.338.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.1...v1.338.2) (2024-02-06)
 
 ## [1.338.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.0...v1.338.1) (2024-02-05)

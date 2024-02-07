@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
@@ -52,9 +52,13 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $alignItems={"center"}
       >
         <Box $ma={24} $maxWidth={["100%", 740, 740]}>
-          <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
+          <OakHeading
+            $mb={"space-between-ssx"}
+            $font={["heading-5", "heading-4"]}
+            tag={"h1"}
+          >
             {title}
-          </Heading>
+          </OakHeading>
         </Box>
         <Flex
           $justifyContent={"center"}

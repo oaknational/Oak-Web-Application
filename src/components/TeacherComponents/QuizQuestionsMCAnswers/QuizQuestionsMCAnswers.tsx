@@ -1,4 +1,5 @@
 import { VisuallyHidden } from "react-aria";
+import { OakTypography } from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -82,9 +83,9 @@ export const QuizQuestionsMCAnswers = (props: {
                       Correct answer: {removeMarkdown(answerItem.text)}
                     </VisuallyHidden>
 
-                    <Typography $font={["body-2", "body-1"]} aria-hidden>
+                    <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                       {removeMarkdown(answerItem.text)}
-                    </Typography>
+                    </OakTypography>
                   </Flex>
                 );
               } else if (answerItem.type === "image") {

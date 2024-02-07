@@ -5,8 +5,8 @@ import BioCardListModal, {
   BioData,
 } from "@/components/GenericPagesComponents/BioCardListModal";
 import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 

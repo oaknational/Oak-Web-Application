@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-
-import { Span } from "@/components/SharedComponents/Typography";
+import { OakSpan } from "@oaknational/oak-components";
 
 export const formatSchoolName = (
   schoolName: ReactNode,
@@ -17,24 +16,24 @@ export const formatSchoolName = (
   );
 
   return (
-    <Span $font={"heading-light-7"}>
+    <OakSpan $font={"heading-light-7"}>
       {splitSchoolName.map((splitSchoolNameItem: string, index: number) => {
         return (
-          <Span>
+          <OakSpan>
             {`${splitSchoolNameItem}`}
             {index < splitSchoolName.length - 1 && (
-              <Span
+              <OakSpan
                 $font={"body-2-bold"}
                 $textDecoration={"underline"}
                 $color={"blue"}
                 data-testid="strong-element"
               >
                 {sliceToMakeBold}
-              </Span>
+              </OakSpan>
             )}
-          </Span>
+          </OakSpan>
         );
       })}
-    </Span>
+    </OakSpan>
   );
 };

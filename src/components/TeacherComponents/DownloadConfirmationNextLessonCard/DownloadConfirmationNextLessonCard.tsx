@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Heading from "@/components/SharedComponents/Typography/Heading";
 import Box from "@/components/SharedComponents/Box";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
@@ -45,9 +45,13 @@ const DownloadConfirmationNextLessonCard: FC<
         $wordWrap={"break-word"}
         $gap={16}
       >
-        <Heading tag="h3" $font={"heading-6"} $mb={[16, "auto"]}>
+        <OakHeading
+          tag="h3"
+          $font={"heading-6"}
+          $mb={["space-between-s", "auto"]}
+        >
           {lessonTitle}
-        </Heading>
+        </OakHeading>
 
         <Flex
           $flexDirection={["column", "row", "row"]}

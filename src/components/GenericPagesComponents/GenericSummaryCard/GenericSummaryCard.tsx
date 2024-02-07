@@ -28,7 +28,7 @@ const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
       }}
     >
       <GenericSummaryCardNavButton
-        $mt={36}
+        $mt="space-between-m2"
         buttons={aboutNavLinks}
         ariaLabel="about us"
       />

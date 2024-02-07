@@ -1,5 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
@@ -11,7 +12,6 @@ import CardImage, {
 } from "@/components/SharedComponents/Card/CardComponents/CardImage";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const SupportYourTeamTextBlockCardImageCta: FC<
@@ -50,9 +50,13 @@ const SupportYourTeamTextBlockCardImageCta: FC<
         <CardImage {...image} />
       </Flex>
       <Flex $flexDirection={"column"} $font={["body-2", "body-1"]}>
-        <Heading $mb={32} $font={["heading-5", "heading-4"]} tag={"h2"}>
+        <OakHeading
+          $mb={"space-between-m2"}
+          $font={["heading-5", "heading-4"]}
+          tag={"h2"}
+        >
           {title}
-        </Heading>
+        </OakHeading>
         <PortableTextWithDefaults
           value={bodyPortableText}
           withoutDefaultComponents
