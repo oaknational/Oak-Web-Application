@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { OakSpan } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { Span } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";
@@ -42,7 +42,7 @@ const LayoutPreviewControls: FC = () => {
       $color="black"
       $background="white"
     >
-      <Span $mr={24}>Preview mode enabled</Span>
+      <OakSpan $mr="space-between-m">Preview mode enabled</OakSpan>
 
       <ButtonAsLink
         page={null}

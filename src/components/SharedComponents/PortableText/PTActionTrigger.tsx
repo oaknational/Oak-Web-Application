@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { PortableTextMarkComponent } from "@portabletext/react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
-import { Span } from "@/components/SharedComponents/Typography";
 
 enum AllowedActions {
   OPEN_COOKIE_SETTINGS = "OPEN_COOKIE_SETTINGS",
@@ -37,7 +37,7 @@ const ConsentManagerTrigger: FC<{ children?: React.ReactNode }> = (props) => {
       $display="inline"
       onClick={showConsentManager}
     >
-      <Span $color="navy">{props.children}</Span>
+      <OakSpan $color="navy">{props.children}</OakSpan>
     </UnstyledButton>
   );
 };

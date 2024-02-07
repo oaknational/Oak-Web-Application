@@ -7,7 +7,7 @@ import { FontVariant } from "@/styles/utils/typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Heading, {
   HeadingTag,
-} from "@/components/SharedComponents/Typography/Heading";
+} from "@/components/SharedComponents/Typography/Heading.deprecated";
 import Flex from "@/components/SharedComponents/Flex";
 
 export const getIconFlexPosition = (

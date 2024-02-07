@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakP, OakHeading } from "@oaknational/oak-components";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
@@ -7,7 +8,6 @@ import {
   FooterVariant,
 } from "@/components/AppComponents/Layout/Layout";
 import Layout from "@/components/AppComponents/Layout";
-import { P, Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";
@@ -17,7 +17,7 @@ import Flex from "@/components/SharedComponents/Flex";
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
 
-const ErrorHeading = styled(Heading)`
+const ErrorHeading = styled(OakHeading)`
   color: white;
   font-size: 120px;
   line-height: 144px;
@@ -52,17 +52,21 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             {statusCode ? (
               <ErrorHeading tag="h1">{statusCode}</ErrorHeading>
             ) : (
-              <Heading $font={"heading-5"} $mb={12} tag="h1">
+              <OakHeading $font={"heading-5"} $mb="space-between-xs" tag="h1">
                 An error occurred
-              </Heading>
+              </OakHeading>
             )}
           </Flex>
 
-          <Heading $mb={48} $font={["heading-5", "heading-4"]} tag={"h2"}>
+          <OakHeading
+            $mb="space-between-l"
+            $font={["heading-5", "heading-4"]}
+            tag={"h2"}
+          >
             Whoops! It looks like you have fallen too far from the tree.
-          </Heading>
+          </OakHeading>
 
-          <P $mb={24}>Let's get you back to browsing</P>
+          <OakP $mb="space-between-m">Let's get you back to browsing</OakP>
           <ButtonGroup>
             {onBackClick && (
               <Button

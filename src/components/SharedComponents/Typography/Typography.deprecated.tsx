@@ -10,6 +10,8 @@ type TypographyComponent = BoxProps & TypographyProps;
  * ## Usage
  * This should be the primary component to set a typography context.
  * Use this component whenever you want to style blocks of 'body' text.
+ *
+ * @deprecated use OakTypography from oak-components instead
  */
 const Typography = styled(Box)<TypographyComponent>`
   ${typography}

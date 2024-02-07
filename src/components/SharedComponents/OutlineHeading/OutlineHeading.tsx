@@ -7,7 +7,7 @@ import typography from "@/styles/utils/typography";
 import {
   HeadingProps,
   HeadingTagComponent,
-} from "@/components/SharedComponents/Typography/Heading";
+} from "@/components/SharedComponents/Typography/Heading.deprecated";
 
 export const outlineShadow = `-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}`;
 const outlineShadowLight = `-1px -1px 0 #878787, 1px -1px 0 #878787, -1px 1px 0 #878787, 1px 1px 0 #878787}`;

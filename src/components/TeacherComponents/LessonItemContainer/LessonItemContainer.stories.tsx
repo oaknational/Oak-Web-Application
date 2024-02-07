@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { OakP } from "@oaknational/oak-components";
 
 import {
   LessonItemContainer,
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
-import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
@@ -30,7 +30,7 @@ export const Standard: Story = {
   render: ({ ...args }) => (
     <LessonItemContainer {...args}>
       <Flex $justifyContent={"center"} $alignItems={"center"} $height={[110]}>
-        <P>Inner content here</P>
+        <OakP>Inner content here</OakP>
       </Flex>
     </LessonItemContainer>
   ),

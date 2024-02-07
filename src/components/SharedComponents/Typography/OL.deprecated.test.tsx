@@ -1,6 +1,6 @@
 import { screen, within } from "@testing-library/react";
 
-import OL from "./OL";
+import OL from "./OL.deprecated";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

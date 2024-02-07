@@ -1,8 +1,8 @@
+import { OakHeading, OakP } from "@oaknational/oak-components";
+
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Heading from "@/components/SharedComponents/Typography/Heading";
-import P from "@/components/SharedComponents/Typography/P";
 
 const UnitTabBanner = () => {
   return (
@@ -36,13 +36,13 @@ const UnitTabBanner = () => {
             $flexDirection={"column"}
             $alignItems={"flex-start"}
           >
-            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+            <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
               Need help with our new curriculum?
-            </Heading>
-            <P $font={["body-2", "body-1"]}>
+            </OakHeading>
+            <OakP $font={["body-2", "body-1"]}>
               Visit our help centre for technical support as well as tips and
               ideas to help you make the most of Oak.
-            </P>
+            </OakP>
           </Flex>
         </Flex>
         <ButtonAsLink

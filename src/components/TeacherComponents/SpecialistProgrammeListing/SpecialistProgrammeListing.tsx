@@ -1,9 +1,8 @@
 import React, { FC } from "react";
-import { OakGridArea } from "@oaknational/oak-components";
+import { OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SpecialistProgrammeListItem from "@/components/TeacherComponents/SpecialistProgrammeListItem";
-import { Heading } from "@/components/SharedComponents/Typography";
 import {
   SpecialistProgramme,
   SpecialistProgrammes,
@@ -21,9 +20,9 @@ const SpecialistProgrammeListing: FC<{
       $background="aqua"
       $colSpan={[12, 6, programmeColSpan]}
     >
-      <Heading tag="h2" $font="heading-5" $mb={30}>
+      <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
         Developmental stages
-      </Heading>
+      </OakHeading>
       {programmes.map((programme) => {
         return (
           <OakGridArea

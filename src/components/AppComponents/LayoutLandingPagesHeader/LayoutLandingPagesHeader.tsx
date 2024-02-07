@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
@@ -6,7 +7,6 @@ import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type LayoutLandingPagesHeaderProps = {
@@ -35,9 +35,9 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
               $justifyContent={"flex-end"}
               $alignItems={"center"}
             >
-              <Typography $textAlign="right" $font={"heading-7"}>
+              <OakTypography $textAlign="right" $font={"heading-7"}>
                 {props.headerCta.label}
-              </Typography>
+              </OakTypography>
               <Icon
                 $ml={12}
                 aria-label={"arrow-right"}
