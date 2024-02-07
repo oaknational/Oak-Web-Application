@@ -1,6 +1,7 @@
 import { pupilLessonOverviewSchema } from "./pupilLessonOverview.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
+import { LEGACY_COHORT } from "@/config/cohort";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
@@ -29,7 +30,11 @@ export const pupilLessonOverviewQuery =
       });
     }
 
+    const isLegacyLicense =
+      !lesson.lessonCohort || lesson.lessonCohort === LEGACY_COHORT;
+
     return pupilLessonOverviewSchema.parse({
       ...lesson,
+      isLegacyLicense,
     });
   };
