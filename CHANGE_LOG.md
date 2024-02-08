@@ -1,3 +1,14 @@
+# [1.345.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.344.0...v1.345.0) (2024-02-08)
+
+
+### Features
+
+* mark Flex component as deprecated with relevant comment ([6ca5f39](https://github.com/oaknational/Oak-Web-Application/commit/6ca5f39394c644a00a3135041bc24ec97957685c))
+* replace Flex with OakFlex where possible - part 1 ([78e0bac](https://github.com/oaknational/Oak-Web-Application/commit/78e0bacb494800d5c0feb228384a360c60b4b0d4))
+* replace Flex with OakFlex where possible - part 2 ([89e3eb6](https://github.com/oaknational/Oak-Web-Application/commit/89e3eb6f9931c2922812f0da71bbf9186208c554))
+* replace Flex with OakFlex where possible - part 3 ([716a944](https://github.com/oaknational/Oak-Web-Application/commit/716a9441f41981d35e1b1f613069f8b01c55d338))
+* revert Social buttons to use Flex as OakFlex doesn't handle display:none ([22ef802](https://github.com/oaknational/Oak-Web-Application/commit/22ef802ce94bb7a63ce29bfc1c823fc5554c4ad2))
+
 # [1.344.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.343.1...v1.344.0) (2024-02-08)
 
 

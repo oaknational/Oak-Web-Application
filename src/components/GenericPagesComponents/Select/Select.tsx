@@ -17,7 +17,7 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import ellipsis from "@/styles/ellipsis";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export { Item } from "react-stately";

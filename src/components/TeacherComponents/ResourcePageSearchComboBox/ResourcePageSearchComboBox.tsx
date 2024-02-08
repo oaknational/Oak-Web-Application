@@ -16,7 +16,7 @@ import {
 import { DropdownFocusUnderline } from "@/components/GenericPagesComponents/Select/Select";
 import { School } from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import { OakColorName } from "@/styles/theme/types";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 // Reuse the ListBox and Popover from your component library. See below for details.

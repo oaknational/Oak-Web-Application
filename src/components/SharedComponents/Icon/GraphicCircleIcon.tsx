@@ -4,7 +4,7 @@ import Icon, { IconName } from ".";
 
 import Circle from "@/components/SharedComponents/Circle";
 import { OakColorName } from "@/styles/theme";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type GraphicCircleIconProps = FlexProps & {
   icon: IconName;

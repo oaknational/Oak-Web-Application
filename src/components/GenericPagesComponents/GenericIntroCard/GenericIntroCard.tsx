@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { PortableTextProps } from "@portabletext/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
@@ -7,7 +8,6 @@ import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,
 } from "@/components/SharedComponents/Card/CardComponents/CardImage";
-import Flex from "@/components/SharedComponents/Flex";
 
 type GenericIntroCardProps = {
   image: CardImageProps;
@@ -26,15 +26,19 @@ const GenericIntroCard: FC<GenericIntroCardProps> = ({
       $ph={[16, 32]}
       $pv={32}
     >
-      <Flex $minWidth={240} $alignItems="center" $mr={[0, 72]}>
+      <OakFlex
+        $minWidth={"all-spacing-19"}
+        $alignItems="center"
+        $mr={["space-between-none", "space-between-xxl"]}
+      >
         <CardImage {...image} />
-      </Flex>
-      <Flex $alignItems="center" $font={["body-2", "body-1"]}>
+      </OakFlex>
+      <OakFlex $alignItems="center" $font={["body-2", "body-1"]}>
         <PortableTextWithDefaults
           value={bodyPortableText}
           withoutDefaultComponents
         />
-      </Flex>
+      </OakFlex>
       <BrushBorders hideOnMobileH color={"pink50"} />
     </Card>
   );

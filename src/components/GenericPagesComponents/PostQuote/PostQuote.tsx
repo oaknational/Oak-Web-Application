@@ -1,9 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import { Quote } from "@/common-lib/cms-types";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 
 const PostQuote = (props: PortableTextComponentProps<Quote>) => {
   if (!props.value?.text) {
@@ -11,7 +10,7 @@ const PostQuote = (props: PortableTextComponentProps<Quote>) => {
   }
 
   return (
-    <Flex $flexDirection={"column"} $mt={56}>
+    <OakFlex $flexDirection={"column"} $mt="space-between-xl">
       <Box $font={["heading-light-5", "heading-light-4"]}>
         <blockquote>&ldquo;{props.value.text.trim()}&rdquo;</blockquote>
       </Box>
@@ -21,7 +20,7 @@ const PostQuote = (props: PortableTextComponentProps<Quote>) => {
           {props.value.role && `, ${props.value.role}`}
         </OakP>
       </div>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,6 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
@@ -10,7 +10,7 @@ import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,
 } from "@/components/SharedComponents/Card/CardComponents/CardImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -49,7 +49,7 @@ const SupportYourTeamTextBlockCardImageCta: FC<
       >
         <CardImage {...image} />
       </Flex>
-      <Flex $flexDirection={"column"} $font={["body-2", "body-1"]}>
+      <OakFlex $flexDirection={"column"} $font={["body-2", "body-1"]}>
         <OakHeading
           $mb={"space-between-m2"}
           $font={["heading-5", "heading-4"]}
@@ -62,7 +62,7 @@ const SupportYourTeamTextBlockCardImageCta: FC<
           withoutDefaultComponents
         />
         {cta && (
-          <Flex>
+          <OakFlex>
             <ButtonAsLink
               $mt={32}
               href={getLinkHref(cta)}
@@ -76,9 +76,9 @@ const SupportYourTeamTextBlockCardImageCta: FC<
               // See owa issue #619
               // When this is standardized remove the exclusions from sonar
             />
-          </Flex>
+          </OakFlex>
         )}
-      </Flex>
+      </OakFlex>
       <BrushBorders hideOnMobileH color={background} />
     </Card>
   );

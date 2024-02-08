@@ -1,15 +1,13 @@
 import React, { FC } from "react";
-import { OakP } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 const PostBlockCallout: FC<{ children?: React.ReactNode }> = (props) => {
   return (
-    <Flex $flexDirection={"column"} $mt={56}>
+    <OakFlex $flexDirection={"column"} $mt="space-between-xl">
       <OakP $font={"heading-light-4"}>
         <blockquote>{props.children}</blockquote>
       </OakP>
-    </Flex>
+    </OakFlex>
   );
 };
 

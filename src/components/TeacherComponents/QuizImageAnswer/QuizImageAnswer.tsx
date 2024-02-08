@@ -8,7 +8,7 @@ import {
 
 import QuizOakImage from "@/components/TeacherComponents/QuizOakImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 
 type ImageProps = {

@@ -3,7 +3,7 @@ import { OakTypography } from "@oaknational/oak-components";
 
 import { Quote as QuoteSchema } from "@/common-lib/cms-types";
 import Blockquote from "@/components/SharedComponents/Typography/Blockquote";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (

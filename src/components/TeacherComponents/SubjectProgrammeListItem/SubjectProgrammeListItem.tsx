@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
@@ -33,7 +32,7 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
     >
-      <Flex $pa={16}>
+      <OakFlex $pa="inner-padding-m">
         <OwaLink
           page="unit-index"
           {...primaryTargetProps}
@@ -44,7 +43,7 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
             {heading}
           </OakHeading>
         </OwaLink>
-      </Flex>
+      </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />
     </Card>

@@ -10,7 +10,7 @@ import {
 import CMSClient from "@/node-lib/cms";
 import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";

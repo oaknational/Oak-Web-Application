@@ -4,17 +4,18 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Svg from "@/components/SharedComponents/Svg";
 
 const PupilTab: FC = () => {
   return (
-    <Flex $background={"lemon"} $pv={24} $overflow={"hidden"}>
+    <OakFlex $background={"lemon"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
@@ -63,7 +64,7 @@ const PupilTab: FC = () => {
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

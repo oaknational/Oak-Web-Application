@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { GridProps } from "@/components/SharedComponents/Grid.deprecated";
 import { grid } from "@/components/SharedComponents/Grid.deprecated/Grid.deprecated";
 import { box, BoxProps } from "@/components/SharedComponents/Box";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import flex from "@/styles/utils/flex";
 
 type ULProps = BoxProps & {

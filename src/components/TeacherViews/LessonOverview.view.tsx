@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import {
@@ -18,7 +19,6 @@ import {
   LessonOverviewInPathway,
   SpecialistLessonOverview,
 } from "@/components/TeacherComponents/types/lesson.types";
-import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -194,22 +194,22 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               $display={["none", "block"]}
               $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
-              <Flex
+              <OakFlex
                 as="nav"
                 aria-label="page navigation"
                 $flexDirection={"column"}
                 $alignItems={"flex-start"}
-                $gap={[8]}
-                $pr={[16]}
+                $gap={["all-spacing-2"]}
+                $pr={["inner-padding-m"]}
               >
                 <LessonOverviewAnchorLinks
                   links={pageLinks}
                   currentSectionId={currentSectionId}
                 />
-              </Flex>
+              </OakFlex>
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
-              <Flex $flexDirection={"column"} $position={"relative"}>
+              <OakFlex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
                     ref={slideDeckSectionRef}
@@ -381,7 +381,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   /> */}
                   </LessonItemContainer>
                 )}
-              </Flex>
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
         )}

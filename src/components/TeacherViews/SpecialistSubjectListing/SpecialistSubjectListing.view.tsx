@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
-import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export type SpecialistSubject = {
@@ -25,7 +24,7 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
   const { specialist, therapies } = props;
 
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <OakHeading
           $font={"heading-1"}
@@ -35,7 +34,10 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
         >
           Specialist and therapies
         </OakHeading>
-        <Flex $flexDirection="column" $gap={[24, 48]}>
+        <OakFlex
+          $flexDirection="column"
+          $gap={["all-spacing-6", "all-spacing-9"]}
+        >
           <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"
@@ -46,9 +48,9 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
             heading="Therapies"
             summary="These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' developmental needs."
           />
-        </Flex>
+        </OakFlex>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

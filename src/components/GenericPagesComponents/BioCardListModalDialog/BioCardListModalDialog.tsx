@@ -7,7 +7,7 @@ import {
   UnderlayProps,
 } from "./useBioCardListModalDialog";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type BioCardListModalDialogProps = {
   underlayProps: UnderlayProps;

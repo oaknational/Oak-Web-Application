@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 type HrefLink = { href: string };
 
@@ -30,7 +30,7 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
     : link.linkTo;
 
   return (
-    <Flex $alignItems="center" $gap={10}>
+    <OakFlex $alignItems="center" $gap="all-spacing-2">
       <ButtonAsLink
         icon={link.external ? "external" : undefined}
         aria-label={`${link.text}${
@@ -44,7 +44,7 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
         {...linkTo}
       />
       {link.new && <TagPromotional size="small" />}
-    </Flex>
+    </OakFlex>
   );
 };
 
