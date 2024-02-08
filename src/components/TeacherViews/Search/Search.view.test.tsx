@@ -6,6 +6,7 @@ import { SearchProps } from "./search.view.types";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const createSearchResult = (): SearchHit => {
   return {
@@ -27,6 +28,7 @@ const createSearchResult = (): SearchHit => {
       key_stage_title: "key stage 1",
       key_stage_slug: "key-stage-1",
       pathways: [],
+      cohort: LEGACY_COHORT,
     },
   };
 };
