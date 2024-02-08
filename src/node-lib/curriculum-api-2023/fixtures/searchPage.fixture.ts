@@ -77,7 +77,7 @@ export const searchResultsItem = (
       programmeSlug: "computing-secondary-ks4-l",
       unitSlug: "computer-systems-e17a",
     },
-    legacy: true,
+
     pathways: [
       {
         programmeSlug: "maths-program-1",
@@ -144,7 +144,7 @@ export const searchResultsItem = (
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },
-    legacy: true,
+
     pathways: [
       {
         programmeSlug: "maths-program-1",
@@ -213,7 +213,7 @@ export const searchResultsItem = (
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },
-    legacy: true,
+
     pathways: [
       {
         programmeSlug: "maths-program-1",
