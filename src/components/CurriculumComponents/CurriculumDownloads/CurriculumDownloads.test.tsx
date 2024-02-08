@@ -1,6 +1,5 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
-import { debounce } from "lodash";
 
 import CurriculumDownloads from "./CurriculumDownloads";
 
@@ -34,50 +33,81 @@ describe("Component - Curriculum Header", () => {
     expect(cards).toHaveLength(1);
   });
 
-  test("generates form errors", async () => {
-    const { getByTestId } = renderComponent();
-    waitFor(async () => {
-      const button = getByTestId("downloadButton");
-      expect(button).toBeInTheDocument();
-      userEvent.click(button);
-      await waitFor(() => {
-        expect(getByTestId("downloadError")).toBeInTheDocument();
-      });
-    });
-  });
-
   describe("Form submission", () => {
     const onHubspotSubmit = jest.fn();
     const setIsAttemptingDownload = jest.fn();
     const setApiError = jest.fn();
-    const setSchoolInLocalStorage = jest.fn();
-    const setTermsInLocalStorage = jest.fn();
-
-    jest.mock("lodash", () => ({
-      debounce: jest.fn((fn) => fn),
-    }));
 
     const curriculumResourcesDownloaded = jest.fn();
     jest.mock("@/context/Analytics/useAnalytics", () => ({
       default: () => ({
         track: {
-          curriculumResourcesDownloaded: (...args: unknown[]) =>
-            curriculumResourcesDownloaded(...args),
+          curriculumResourcesDownloaded: jest.fn(),
         },
-        identify: () => {},
+        identify: jest.fn(),
       }),
     }));
+
+    jest.mock(
+      "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
+      () => ({
+        createAndClickHiddenDownloadLink: jest.fn(),
+      }),
+    );
+
+    const setSchoolInLocalStorage = jest.fn();
+    const setEmailInLocalStorage = jest.fn();
+    const setTermsInLocalStorage = jest.fn();
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("generates school error", async () => {
+      const { getByTestId } = renderComponent();
+      const schoolInput = getByTestId("search-combobox-input");
+      userEvent.click(schoolInput);
+      userEvent.type(schoolInput, "notavalidschool!?");
+      userEvent.keyboard("{enter}");
+      waitFor(() => {
+        expect(getByTestId("errorList")).toBeInTheDocument();
+      });
+    });
+
+    test("generates email error", async () => {
+      const { getByTestId } = renderComponent();
+      const emailInput = getByTestId("inputEmail");
+      userEvent.click(emailInput);
+      userEvent.type(emailInput, "notavalidemail!?{enter}");
+      waitFor(() => {
+        expect(getByTestId("errorList")).toBeInTheDocument();
+      });
+    });
+
+    test("generates download error", async () => {
+      const { getByTestId } = renderComponent();
+      waitFor(async () => {
+        const button = getByTestId("downloadButton");
+        expect(button).toBeInTheDocument();
+        userEvent.click(button);
+        await waitFor(() => {
+          expect(getByTestId("downloadError")).toBeInTheDocument();
+        });
+      });
+    });
 
     test("submits form when correct information is entered", async () => {
       const { getByTestId } = renderComponent();
       const schoolInput = getByTestId("search-combobox-input");
       userEvent.click(schoolInput);
       userEvent.type(schoolInput, "Test School");
+      const emailInput = getByTestId("inputEmail");
+      userEvent.click(emailInput);
+      userEvent.type(emailInput, "valid-test-email@thenational.academy");
       waitFor(async () => {
         const button = getByTestId("downloadButton");
         userEvent.click(button);
         await waitFor(() => {
-          expect(debounce).toHaveBeenCalled();
           expect(onHubspotSubmit).toHaveBeenCalled();
           expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
             "https://test-url.com",
@@ -87,6 +117,9 @@ describe("Component - Curriculum Header", () => {
           expect(setSchoolInLocalStorage).toHaveBeenCalledWith(
             "Test School",
             "Test School",
+          );
+          expect(setEmailInLocalStorage).toHaveBeenCalledWith(
+            "valid-test-email.thenational.academy",
           );
           expect(setTermsInLocalStorage).toHaveBeenCalledWith(true);
           expect(curriculumResourcesDownloaded).toHaveBeenCalled();

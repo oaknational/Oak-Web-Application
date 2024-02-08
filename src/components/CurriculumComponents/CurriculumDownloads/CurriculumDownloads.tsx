@@ -1,7 +1,14 @@
 import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
 import { Controller } from "react-hook-form";
 import styled from "styled-components";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakUL,
+  OakLI,
+  OakP,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -22,7 +29,6 @@ import Flex from "@/components/SharedComponents/Flex";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Icon from "@/components/SharedComponents/Icon";
 import OakLink from "@/components/SharedComponents/OwaLink";
-import { Heading, P, UL, LI } from "@/components/SharedComponents/Typography";
 import Input from "@/components/SharedComponents/Input";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
@@ -88,6 +94,25 @@ function CurriculumDownloads(
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
 
+  const handleLocalStorageUpdates = (data: {
+    email?: string | undefined;
+    school: string;
+    schoolName: string;
+    terms: boolean;
+  }) => {
+    const { email, school, schoolName, terms } = data;
+    if (email) setEmailInLocalStorage(email);
+    if (terms) setTermsInLocalStorage(terms);
+
+    const isSpecialSchool = school === "homeschool" || school === "notListed";
+    if (school) {
+      setSchoolInLocalStorage({
+        schoolId: school,
+        schoolName: isSpecialSchool ? school : schoolName,
+      });
+    }
+  };
+
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -104,60 +129,26 @@ function CurriculumDownloads(
     clearSelection: clearSelection,
   }));
 
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
-    setApiError(null);
-    await onHubspotSubmit(data);
-    setIsAttemptingDownload(true);
-    const email = data?.email;
-    const schoolId = data?.school;
-    const terms = data?.terms;
-    const url = data?.resources[0];
+  const handleDownload = (url: string) => {
+    if (!url) return false; // Early return if no URL
+    createAndClickHiddenDownloadLink(url);
+    return true;
+  };
 
+  const trackDownloadAnalytics = (
+    data: { email?: string | undefined; school: string },
+    selectedDownload: CurriculumDownload,
+  ) => {
+    const { email, school } = data;
     const {
       schoolOption,
       schoolName,
       schoolUrn,
       selectedResourcesForTracking,
     } = getFormattedDetailsForTracking({
-      school: data.school,
+      school,
       selectedResources,
     });
-
-    if (url == undefined) {
-      setIsAttemptingDownload(false);
-      return;
-    }
-
-    if (email) {
-      setEmailInLocalStorage(email);
-    }
-    if (schoolId) {
-      if (schoolId === "homeschool" || schoolId === "notListed") {
-        setSchoolInLocalStorage({
-          schoolId,
-          schoolName: schoolId,
-        });
-      } else {
-        if (schoolName && schoolId) {
-          setSchoolInLocalStorage({ schoolId, schoolName });
-        }
-      }
-    }
-    if (terms) {
-      setTermsInLocalStorage(terms);
-    }
-    const downloadResourcesLink = downloads[0];
-    if (downloadResourcesLink) {
-      createAndClickHiddenDownloadLink(url);
-    }
-    setIsAttemptingDownload(false);
-    setEditDetailsClicked(false);
-    if (editDetailsClicked && !data.email) {
-      setEmailInLocalStorage("");
-    }
-    const selectedDownload = downloads.filter((download) => {
-      return url === download.url;
-    })[0];
 
     track.curriculumResourcesDownloaded({
       category: category,
@@ -167,8 +158,47 @@ function CurriculumDownloads(
       schoolUrn,
       schoolName,
       schoolOption,
-      emailSupplied: data?.email ? true : false,
+      emailSupplied: !!email,
     });
+  };
+
+  // Simplified onFormSubmit using helper functions
+  const onFormSubmit = async (data: ResourceFormProps) => {
+    try {
+      setApiError(null);
+      await onHubspotSubmit(data);
+      setIsAttemptingDownload(true);
+
+      const { email, school, schoolName, terms } = data;
+      handleLocalStorageUpdates({
+        email,
+        school,
+        schoolName: schoolName || "", // Ensure schoolName is a string
+        terms,
+      });
+
+      const downloadSuccess = handleDownload(data?.resources[0] ?? "");
+      if (!downloadSuccess) {
+        setIsAttemptingDownload(false);
+        return;
+      }
+
+      const selectedDownload = downloads.find(
+        (download) => download.url === data?.resources[0],
+      );
+      if (selectedDownload) {
+        trackDownloadAnalytics(data, selectedDownload);
+      }
+
+      setIsAttemptingDownload(false);
+      setEditDetailsClicked(false);
+      if (editDetailsClicked && !data.email) setEmailInLocalStorage("");
+    } catch (error) {
+      setIsAttemptingDownload(false);
+      setApiError(
+        "There was an error downloading your files. Please try again.",
+      );
+    }
   };
 
   const getFormErrorMessages = () => {
@@ -194,14 +224,18 @@ function CurriculumDownloads(
           $flexDirection={"column"}
           $gap={[24, 32]}
         >
-          <Heading tag="h1" $font={["heading-5", "heading-4"]}>
+          <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
             {category}
-          </Heading>
+          </OakHeading>
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 7]}>
-              <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={24}>
+              <OakHeading
+                tag="h2"
+                $font={["heading-6", "heading-5"]}
+                $mb={"space-between-m"}
+              >
                 Choose your download
-              </Heading>
+              </OakHeading>
               <FieldError id={"downloads-error"} withoutMarginBottom>
                 {form.errors?.resources?.message}
               </FieldError>
@@ -243,20 +277,20 @@ function CurriculumDownloads(
               </CardsContainer>
             </OakGridArea>
             <OakGridArea $colSpan={[12, 12, 5]}>
-              <Heading
+              <OakHeading
                 tag="h2"
                 $font={["heading-6", "heading-5"]}
-                $mb={[24, 32]}
+                $mb={["space-between-m", "space-between-m2"]}
               >
                 Your details
-              </Heading>
+              </OakHeading>
               {form.errors.school && (
                 <FieldError id="school-error">
                   {form.errors.school?.message}
                 </FieldError>
               )}
               {isLocalStorageLoading ? (
-                <P $mb={16}>Loading...</P>
+                <OakP $mb={"space-between-s"}>Loading...</OakP>
               ) : (
                 <Flex $flexDirection="column" $gap={24} $mb={16}>
                   {shouldDisplayDetailsCompleted ? (
@@ -292,7 +326,7 @@ function CurriculumDownloads(
                         {...form.register("email")}
                         error={form.errors?.email?.message}
                       />
-                      <P $font="body-3" $mt={-20} $mb={48}>
+                      <OakP $font="body-3" $mb={"space-between-l"}>
                         Join over 100k teachers and get free resources and other
                         helpful content by email. Unsubscribe at any time. Read
                         our{" "}
@@ -313,7 +347,7 @@ function CurriculumDownloads(
                           />
                         </OakLink>
                         .
-                      </P>
+                      </OakP>
                       <Controller
                         control={form.control}
                         name="terms"
@@ -350,18 +384,18 @@ function CurriculumDownloads(
                 <Flex $flexDirection={"row"} $mb={16}>
                   <Icon name="content-guidance" $color={"red"} />
                   <Flex $flexDirection={"column"}>
-                    <P $ml={4} $color={"red"}>
+                    <OakP $ml={"space-between-sssx"} $color={"red"}>
                       To complete correct the following:
-                    </P>
-                    <UL $mr={24}>
+                    </OakP>
+                    <OakUL $mr={"space-between-m"} data-testid="errorList">
                       {getFormErrorMessages().map((err, i) => {
                         return (
-                          <LI $color={"red"} key={i}>
+                          <OakLI $color={"red"} key={i}>
                             {err}
-                          </LI>
+                          </OakLI>
                         );
                       })}
-                    </UL>
+                    </OakUL>
                   </Flex>
                 </Flex>
               )}
