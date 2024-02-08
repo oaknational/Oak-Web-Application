@@ -18,6 +18,10 @@ jest.mock(
 const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   const renderComponent = () => {
     const defaultProps = {
       category: "test-category",
@@ -84,5 +88,6 @@ describe("Component - Curriculum Header", () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+    jest.useRealTimers();
   });
 });
