@@ -18,20 +18,30 @@ import {
   OakStaticMessageCard,
 } from "@oaknational/oak-components";
 
+import { useWorksheetDownload } from "./useWorksheetDownload";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import { ContentGuidance } from "@/components/TeacherComponents/LessonOverviewRequirements";
 
-export type PupilViewsIntroProps = PupilLessonOverviewData;
+export type PupilViewsIntroProps = PupilLessonOverviewData & {
+  hasWorksheet: boolean;
+};
 
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const {
     contentGuidance,
     supervisionLevel,
     lessonEquipmentAndResources,
-    worksheetUrl,
+    isLegacyLicense,
+    lessonSlug,
+    hasWorksheet,
   } = props;
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
+  const { startDownload, isDownloading } = useWorksheetDownload(
+    lessonSlug,
+    isLegacyLicense,
+  );
 
   const topNavSlot = (
     <OakLessonTopNav
@@ -143,7 +153,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     <OakP $font={"body-1"}>{supervisionLevel}</OakP>
                   </OakLessonInfoCard>
                 )}
-                {worksheetUrl && (
+                {hasWorksheet && (
                   <OakLessonInfoCard>
                     <OakCardHeader iconName="worksheet" tag="h1">
                       Worksheet
@@ -151,11 +161,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     <OakP $font={"body-1"}>Optional</OakP>
                     <OakFlex $justifyContent={"flex-end"}>
                       <OakPrimaryInvertedButton
-                        onClick={() => {}}
+                        onClick={startDownload}
+                        isLoading={isDownloading}
                         iconName="download"
                         isTrailingIcon
                         $font={"heading-7"}
-                        disabled
                       >
                         Download worksheet
                       </OakPrimaryInvertedButton>

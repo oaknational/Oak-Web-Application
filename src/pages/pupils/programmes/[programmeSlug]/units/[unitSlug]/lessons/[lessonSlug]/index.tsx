@@ -31,15 +31,16 @@ import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOve
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import getDownloadResourcesExistence from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
+  hasWorksheet: boolean;
 };
 
 const PupilPageContent = ({
   curriculumData,
-}: {
-  curriculumData: PupilLessonOverviewData;
-}) => {
+  hasWorksheet,
+}: PupilLessonOverviewPageProps) => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const searchParams = useSearchParams();
   const [overrideApplied, setOverrideApplied] = useState(false);
@@ -78,7 +79,9 @@ const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro {...curriculumData} />;
+      return (
+        <PupilViewsIntro {...curriculumData} hasWorksheet={hasWorksheet} />
+      );
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
@@ -104,6 +107,7 @@ const PupilPageContent = ({
 
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
+  hasWorksheet,
 }) => {
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
@@ -111,7 +115,10 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
-          <PupilPageContent curriculumData={curriculumData} />
+          <PupilPageContent
+            curriculumData={curriculumData}
+            hasWorksheet={hasWorksheet}
+          />
         </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>
@@ -186,9 +193,17 @@ export const getStaticProps: GetStaticProps<
         transcriptSentences = (await getCaptionsFromFile(fileName)) ?? [];
       }
 
+      // Check if the lesson has a worksheet available for download
+      const { resources } = await getDownloadResourcesExistence(
+        lessonSlug,
+        "worksheet-pdf",
+        curriculumData.isLegacyLicense,
+      );
+
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
           curriculumData: { ...curriculumData, transcriptSentences },
+          hasWorksheet: !!resources?.[0]?.[1].exists,
         },
       };
 

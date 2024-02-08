@@ -15,7 +15,6 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     supervisionLevel: true,
     contentGuidance: true,
     lessonEquipmentAndResources: true,
-    worksheetUrl: true,
     videoWithSignLanguageMuxPlaybackId: true,
     videoMuxPlaybackId: true,
     videoTitle: true,

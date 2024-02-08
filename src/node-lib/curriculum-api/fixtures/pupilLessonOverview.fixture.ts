@@ -14,7 +14,6 @@ const pupilLessonOverviewFixture = (
     supervisionLevel: null,
     contentGuidance: null,
     lessonEquipmentAndResources: null,
-    worksheetUrl: null,
     videoMuxPlaybackId: "mux-id",
     videoWithSignLanguageMuxPlaybackId: "signed-mux-id",
     transcriptSentences: ["This is a sentence.", "This is another sentence"],

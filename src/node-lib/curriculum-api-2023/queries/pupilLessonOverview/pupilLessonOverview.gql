@@ -23,7 +23,6 @@ query pupilLessonOverview(
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
-    worksheetUrl
     videoTitle
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
