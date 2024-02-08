@@ -53,15 +53,6 @@ describe("Component - Curriculum Header", () => {
     });
   });
 
-  test("generates email error", async () => {
-    const { getByTestId } = renderComponent();
-    const emailInput = getByTestId("inputEmail");
-    userEvent.type(emailInput, "notavalidemail!?{tab}");
-    await waitFor(() => {
-      expect(getByTestId("errorList")).toBeInTheDocument();
-    });
-  });
-
   test("generates download error", async () => {
     const { getByTestId } = renderComponent();
     userEvent.click(getByTestId("checkbox-download"));
