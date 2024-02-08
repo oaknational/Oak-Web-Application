@@ -29,8 +29,7 @@ export async function fetchResults(query: SearchQuery) {
       hits: unparsedData.hits.hits.map((hit: SearchHit) => {
         return {
           ...hit,
-          _source: { ...hit._source, pathways: [] },
-          cohort: LEGACY_COHORT,
+          _source: { ...hit._source, pathways: [], cohort: LEGACY_COHORT },
         };
       }),
     },
