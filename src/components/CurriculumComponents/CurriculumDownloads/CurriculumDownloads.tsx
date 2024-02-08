@@ -354,7 +354,6 @@ function CurriculumDownloads(
                     </Box>
                   )}
                   <CopyrightNotice
-                    // TODO: determine correct copyright to use
                     showPostAlbCopyright={true}
                     openLinksExternally={true}
                   />
