@@ -1,12 +1,11 @@
 import { NextPage } from "next";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
 import curriculumPreviousDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Flex from "@/components/SharedComponents/Flex/Flex";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import Icon from "@/components/SharedComponents/Icon/Icon";
@@ -117,7 +116,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             data-testid="breadcrumbs"
           />
           <Hr $color={"white"} />
-          <Flex>
+          <OakFlex>
             <Box
               $background={"mint30"}
               $mr={12}
@@ -150,7 +149,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 </OakP>
               </Box>
             </Box>
-          </Flex>
+          </OakFlex>
         </Box>
       </Box>
 

@@ -2,6 +2,7 @@ import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
 import { Controller } from "react-hook-form";
 import styled from "styled-components";
 import {
+  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -25,7 +26,6 @@ import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import DetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import SchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
-import Flex from "@/components/SharedComponents/Flex";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Icon from "@/components/SharedComponents/Icon";
 import OakLink from "@/components/SharedComponents/OwaLink";
@@ -219,10 +219,10 @@ function CurriculumDownloads(
       $pt={32}
     >
       <Box $width="100%">
-        <Flex
+        <OakFlex
           $alignItems={"flex-start"}
           $flexDirection={"column"}
-          $gap={[24, 32]}
+          $gap={["space-between-m", "space-between-m2"]}
         >
           <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
             {category}
@@ -292,7 +292,11 @@ function CurriculumDownloads(
               {isLocalStorageLoading ? (
                 <OakP $mb={"space-between-s"}>Loading...</OakP>
               ) : (
-                <Flex $flexDirection="column" $gap={24} $mb={16}>
+                <OakFlex
+                  $flexDirection="column"
+                  $gap={"space-between-m"}
+                  $mb={"space-between-s"}
+                >
                   {shouldDisplayDetailsCompleted ? (
                     <DetailsCompleted
                       email={emailFromLocalStorage}
@@ -378,12 +382,12 @@ function CurriculumDownloads(
                     showPostAlbCopyright={true}
                     openLinksExternally={true}
                   />
-                </Flex>
+                </OakFlex>
               )}
               {hasFormErrors && (
-                <Flex $flexDirection={"row"} $mb={16}>
+                <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
                   <Icon name="content-guidance" $color={"red"} />
-                  <Flex $flexDirection={"column"}>
+                  <OakFlex $flexDirection={"column"}>
                     <OakP $ml={"space-between-sssx"} $color={"red"}>
                       To complete correct the following:
                     </OakP>
@@ -396,8 +400,8 @@ function CurriculumDownloads(
                         );
                       })}
                     </OakUL>
-                  </Flex>
-                </Flex>
+                  </OakFlex>
+                </OakFlex>
               )}
               <LoadingButton
                 type="button"
@@ -425,7 +429,7 @@ function CurriculumDownloads(
               )}
             </OakGridArea>
           </OakGrid>
-        </Flex>
+        </OakFlex>
       </Box>
     </Box>
   );
