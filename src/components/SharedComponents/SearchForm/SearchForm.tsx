@@ -7,10 +7,10 @@ import {
 } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { OakFlex } from "@oaknational/oak-components";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import Flex from "@/components/SharedComponents/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
@@ -88,7 +88,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
 
   return (
     <StyledForm role="search" onSubmit={onSubmit} $alignItems={"center"}>
-      <Flex $width={"100%"} $flexDirection={"row"} $alignItems={"center"}>
+      <OakFlex $width={"100%"} $flexDirection={"row"} $alignItems={"center"}>
         <Input
           $mb={0}
           label="Search"
@@ -112,7 +112,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           size={"large"}
           $ml={20}
         />
-      </Flex>
+      </OakFlex>
     </StyledForm>
   );
 };

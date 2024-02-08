@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { LandingPageTextAndMedia as Component } from "./LandingPageTextAndMedia";
 
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
-import Flex from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -37,13 +37,13 @@ export const LandingPagesTextAndMedia: Story = {
     image: mockImageAsset(),
   },
   render: (args) => (
-    <Flex
-      $pa={32}
+    <OakFlex
+      $pa="inner-padding-xl"
       $background={"lavender50"}
       $justifyContent={"center"}
       $width="100%"
     >
       <Component {...args} />
-    </Flex>
+    </OakFlex>
   ),
 };

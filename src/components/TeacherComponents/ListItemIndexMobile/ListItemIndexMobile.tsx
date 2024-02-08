@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { OakColorName } from "@/styles/theme/types";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type ListItemIndexMobileProps = {
   background: OakColorName;

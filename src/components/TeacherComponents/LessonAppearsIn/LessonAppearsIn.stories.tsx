@@ -1,9 +1,9 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { LessonAppearsIn as Component } from "./LessonAppearsIn";
 
-import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export default {
@@ -12,11 +12,11 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
-  <Flex $background={"pink50"}>
+  <OakFlex $background={"pink50"}>
     <MaxWidth $pa={120}>
       <Component {...args} />
     </MaxWidth>
-  </Flex>
+  </OakFlex>
 );
 
 export const LessonAppearsIn = Template.bind({});

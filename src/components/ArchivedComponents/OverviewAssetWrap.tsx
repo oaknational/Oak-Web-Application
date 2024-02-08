@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type WrapProps = {
   children: ReactNode;

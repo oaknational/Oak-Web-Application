@@ -7,7 +7,7 @@ import Svg from "@/components/SharedComponents/Svg";
 import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {

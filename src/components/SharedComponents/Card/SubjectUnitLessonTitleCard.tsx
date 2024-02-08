@@ -3,7 +3,7 @@ import { OakHeading } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 export const titleCardIconBackground = {

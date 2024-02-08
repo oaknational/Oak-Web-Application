@@ -5,7 +5,7 @@ import { ResponsiveValues } from "@/styles/utils/responsive";
 import { ButtonSize } from "@/components/SharedComponents/Button/common";
 import { IconName } from "@/components/SharedComponents/Icon";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",

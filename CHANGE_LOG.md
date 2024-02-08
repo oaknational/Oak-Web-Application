@@ -1,3 +1,39 @@
+# [1.345.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.344.0...v1.345.0) (2024-02-08)
+
+
+### Features
+
+* mark Flex component as deprecated with relevant comment ([6ca5f39](https://github.com/oaknational/Oak-Web-Application/commit/6ca5f39394c644a00a3135041bc24ec97957685c))
+* replace Flex with OakFlex where possible - part 1 ([78e0bac](https://github.com/oaknational/Oak-Web-Application/commit/78e0bacb494800d5c0feb228384a360c60b4b0d4))
+* replace Flex with OakFlex where possible - part 2 ([89e3eb6](https://github.com/oaknational/Oak-Web-Application/commit/89e3eb6f9931c2922812f0da71bbf9186208c554))
+* replace Flex with OakFlex where possible - part 3 ([716a944](https://github.com/oaknational/Oak-Web-Application/commit/716a9441f41981d35e1b1f613069f8b01c55d338))
+* revert Social buttons to use Flex as OakFlex doesn't handle display:none ([22ef802](https://github.com/oaknational/Oak-Web-Application/commit/22ef802ce94bb7a63ce29bfc1c823fc5554c4ad2))
+
+# [1.344.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.343.1...v1.344.0) (2024-02-08)
+
+
+### Bug Fixes
+
+* keystage titles ([943172b](https://github.com/oaknational/Oak-Web-Application/commit/943172b98125a9b46bb80aaff105245418aa8ca1))
+* more nullable values ([8d2fc6e](https://github.com/oaknational/Oak-Web-Application/commit/8d2fc6ef8d5e008ab688d4484d6e8a7289b3b9e6))
+* new tag on programme page ([dd1e4f3](https://github.com/oaknational/Oak-Web-Application/commit/dd1e4f31d860401743469f7fc5784492fb8e86a7))
+* nullable required values ([3e88cbf](https://github.com/oaknational/Oak-Web-Application/commit/3e88cbf38d227a5e81e545da0279d0e241cccf72))
+
+
+### Features
+
+* add blog link ([4b9ae05](https://github.com/oaknational/Oak-Web-Application/commit/4b9ae05aeca584e7cb0f85b42b25276371504459))
+* add subject subheading for eyfs ([a45d589](https://github.com/oaknational/Oak-Web-Application/commit/a45d589b587841f5929158c2a3589a8934aa2cfc))
+* make lesson journey pages use latest mvs ([52c850a](https://github.com/oaknational/Oak-Web-Application/commit/52c850a76d610397823789830052c4d16c2130ba))
+* show new tag based on cohort ([06e07c6](https://github.com/oaknational/Oak-Web-Application/commit/06e07c62580ecb8cc4696376a26406e0005c0602))
+* sort and display keystages in a single row ([02944d9](https://github.com/oaknational/Oak-Web-Application/commit/02944d9844eea3b915dfd4309d0ca78ece687d0c))
+* update canonical lesson mv ([b7723fc](https://github.com/oaknational/Oak-Web-Application/commit/b7723fcb0f76553b64b33a6b6f57a467d70518da))
+* update homepage and subject listing mvs ([f9333b4](https://github.com/oaknational/Oak-Web-Application/commit/f9333b46a77dd7f5f43b45d5d84b9ec84a6b866a))
+* update homepage mv ([8d3213a](https://github.com/oaknational/Oak-Web-Application/commit/8d3213a36c6ef014ce25c9f5243f4cd1de87b935))
+* update subject listing mv ([f3a9fd8](https://github.com/oaknational/Oak-Web-Application/commit/f3a9fd8baf1a3e96d95691700738b3270839b44e))
+* update subject listing page to handle eyfs ([f732465](https://github.com/oaknational/Oak-Web-Application/commit/f732465795d20b14444c7771560883fc1de4b621))
+* update title for eyfs subjects page ([ecb5413](https://github.com/oaknational/Oak-Web-Application/commit/ecb541338fe034451aab99297f8f56bf83b2b256))
+
 ## [1.343.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.343.0...v1.343.1) (2024-02-08)
 
 

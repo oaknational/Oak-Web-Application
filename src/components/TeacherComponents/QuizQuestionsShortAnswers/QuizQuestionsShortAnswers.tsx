@@ -1,9 +1,8 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography } from "@oaknational/oak-components";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -23,13 +22,17 @@ export const QuizQuestionsShortAnswers = ({
   }, "");
 
   return (
-    <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"}>
-      <Flex
+    <OakFlex
+      $flexDirection={"column"}
+      $gap="all-spacing-1"
+      $alignItems={"start"}
+    >
+      <OakFlex
         $background={"lemon50"}
-        $borderRadius={8}
-        $ph={8}
+        $borderRadius="border-radius-m2"
+        $ph="inner-padding-xs"
         $alignItems={"center"}
-        $gap={8}
+        $gap="all-spacing-2"
       >
         <VisuallyHidden>
           Correct Answer: {removeMarkdown(answerString)}
@@ -42,7 +45,7 @@ export const QuizQuestionsShortAnswers = ({
         <OakTypography $font={["body-2", "body-1"]} aria-hidden>
           {removeMarkdown(answerString)}
         </OakTypography>
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };

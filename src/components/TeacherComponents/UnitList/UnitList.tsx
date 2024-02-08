@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import { OakLI, OakUL } from "@oaknational/oak-components";
+import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
@@ -48,7 +47,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   };
 
   return (
-    <Flex $flexDirection="column">
+    <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
         <>
           <OakUL aria-label="A list of units" $reset>
@@ -66,7 +65,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     />
                   </>
                 ) : (
-                  <Flex>
+                  <OakFlex>
                     {" "}
                     {item.map((unitOption) => {
                       return (
@@ -79,7 +78,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                         />
                       );
                     })}
-                  </Flex>
+                  </OakFlex>
                 )}
               </OakLI>
             ))}
@@ -97,7 +96,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <Box $pb={32} />
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

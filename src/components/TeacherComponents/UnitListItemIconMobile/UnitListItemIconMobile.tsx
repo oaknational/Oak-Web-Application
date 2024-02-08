@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { OakColorName } from "@/styles/theme/types";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type UnitListItemIconMobileProps = {
   subjectSlug: string;

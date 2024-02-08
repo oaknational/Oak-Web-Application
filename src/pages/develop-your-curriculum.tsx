@@ -13,7 +13,7 @@ import { CurriculumPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";

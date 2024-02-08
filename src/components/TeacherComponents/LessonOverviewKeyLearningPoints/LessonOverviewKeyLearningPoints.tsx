@@ -1,7 +1,5 @@
 import React from "react";
-import { OakOL, OakLI, OakHeading } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
+import { OakOL, OakLI, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 export type LessonOverviewKeyLearningPointProps = {
   keyLearningPoint: string | null;
@@ -21,7 +19,7 @@ const LessonOverviewKeyLearningPoints = ({
   );
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
@@ -55,7 +53,7 @@ const LessonOverviewKeyLearningPoints = ({
           },
         )}
       </OakOL>
-    </Flex>
+    </OakFlex>
   );
 };
 

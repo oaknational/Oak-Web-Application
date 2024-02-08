@@ -5,6 +5,7 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
@@ -14,7 +15,6 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 const genericContactCardPortableTextComponents: PortableTextComponents = {
   block: {
@@ -46,7 +46,7 @@ type GenericContactCardProps = {
 const GenericContactCard: FC<GenericContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
   return (
-    <Flex $position={"relative"} $width={"100%"}>
+    <OakFlex $position={"relative"} $width={"100%"}>
       <BrushBorders hideOnMobileH hideOnMobileV color={"mint50"} />
       <OakGrid>
         <OakGridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
@@ -60,9 +60,9 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
               components={genericContactCardPortableTextComponents}
               value={props.infoPortableText}
             />
-            <Flex $mb={[32, 0]}>
+            <OakFlex $mb={["space-between-m2", "space-between-none"]}>
               <ButtonAsLink label={"Contact us"} page="contact" />
-            </Flex>
+            </OakFlex>
           </Card>
         </OakGridArea>
         <OakGridArea
@@ -70,12 +70,15 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
           $order={[1, 2]}
           $colSpan={[12, 6, 4]}
         >
-          <Flex $background={"mint50"} $pa={[0, 24]}>
+          <OakFlex
+            $background={"mint50"}
+            $pa={["inner-padding-none", "inner-padding-xl"]}
+          >
             <NewsletterFormWrap onSubmit={onSubmit} />
-          </Flex>
+          </OakFlex>
         </OakGridArea>
       </OakGrid>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -12,7 +12,7 @@ import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type PostListProps = {
   upcomingItem?: PostListItemProps;

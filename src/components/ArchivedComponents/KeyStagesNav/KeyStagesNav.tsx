@@ -1,9 +1,8 @@
 import { FC } from "react";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type KeyStageYear = {
   name: string;
@@ -28,11 +27,11 @@ type KeyStageNavProps = {
 const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <Flex $flexDirection={["column", "row", "row"]}>
+      <OakFlex $flexDirection={["column", "row", "row"]}>
         {keyStages.map((keyStage) => (
-          <Flex
+          <OakFlex
             key={keyStage.name}
-            $mr={[12, 12, 64]}
+            $mr={["space-between-xs", "space-between-xs", "space-between-xl"]}
             $alignItems={"center"}
             $flexDirection={"column"}
           >
@@ -51,9 +50,9 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
                 </OwaLink>
               </OakP>
             ))}
-          </Flex>
+          </OakFlex>
         ))}
-      </Flex>
+      </OakFlex>
     </nav>
   );
 };

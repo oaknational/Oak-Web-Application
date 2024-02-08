@@ -1,11 +1,11 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { QuizQuestionsQuestionStem } from "@/components/TeacherComponents/QuizQuestionsQuestionStem/QuizQuestionsQuestionStem";
 import { QuizQuestionsMCAnswers } from "@/components/TeacherComponents/QuizQuestionsMCAnswers";
 import { QuizQuestionsMatchAnswers } from "@/components/TeacherComponents/QuizQuestionsMatchAnswers";
 import { QuizQuestionsOrderAnswers } from "@/components/TeacherComponents/QuizQuestionsOrderAnswers";
 import { QuizQuestionsShortAnswers } from "@/components/TeacherComponents/QuizQuestionsShortAnswers";
-import Flex from "@/components/SharedComponents/Flex";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
@@ -20,7 +20,12 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
 
   return (
     <MathJaxWrap>
-      <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
+      <OakFlex
+        $flexDirection={"column"}
+        $width={"100%"}
+        role="listitem"
+        $gap={"all-spacing-2"}
+      >
         <QuizQuestionsQuestionStem
           questionStem={questionStem}
           index={index}
@@ -56,7 +61,7 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
             )}
           </>
         )}
-      </Flex>
+      </OakFlex>
     </MathJaxWrap>
   );
 };

@@ -1,12 +1,11 @@
 import { FC, MutableRefObject } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
 import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponents/ListItemHeaderExpemplarCategoryHeading";
-import Flex from "@/components/SharedComponents/Flex";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
@@ -99,17 +98,17 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
 
   if (expired) {
     return (
-      <Flex $flexDirection={"column"}>
+      <OakFlex $flexDirection={"column"}>
         <ListTitle expired={true} index={index}>
           {itemTitle}
         </ListTitle>
-      </Flex>
+      </OakFlex>
     );
   }
 
   return (
-    <Flex>
-      <Flex $mb={2} $flexDirection={"column"}>
+    <OakFlex>
+      <OakFlex $mb="space-between-sssx" $flexDirection={"column"}>
         {!hideTopHeading &&
           !isSpecialistUnit(props) &&
           !props.isExemplarUnit && (
@@ -131,8 +130,8 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
         <OwaLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
           <ListTitle index={index}>{itemTitle}</ListTitle>
         </OwaLink>
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };
 
