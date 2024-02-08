@@ -34,6 +34,7 @@ const searchResultsSourceCommon = z.object({
   tier: z.string().nullish(),
   phase: z.string().nullish(),
   pathways: z.array(pathwaySchema).default([]),
+  cohort: z.string().optional(),
 });
 
 const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({

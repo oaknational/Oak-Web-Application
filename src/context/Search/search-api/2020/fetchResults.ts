@@ -3,6 +3,7 @@ import { SearchHit, SearchQuery } from "../../search.types";
 
 import constructElasticQuery from "./constructElasticQuery";
 
+import { LEGACY_COHORT } from "@/config/cohort";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
 
@@ -28,8 +29,7 @@ export async function fetchResults(query: SearchQuery) {
       hits: unparsedData.hits.hits.map((hit: SearchHit) => {
         return {
           ...hit,
-          _source: { ...hit._source, pathways: [] },
-          legacy: true,
+          _source: { ...hit._source, pathways: [], cohort: LEGACY_COHORT },
         };
       }),
     },
