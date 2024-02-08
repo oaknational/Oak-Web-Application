@@ -1,10 +1,14 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -30,16 +34,16 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers
-              </Heading>
-              <Heading $font={"heading-3"} tag={"h2"}>
+              </OakHeading>
+              <OakHeading $font={"heading-3"} tag={"h2"}>
                 Time-saving teaching resources
-              </Heading>
-              <Typography $font={"body-1"}>
+              </OakHeading>
+              <OakTypography $font={"body-1"}>
                 Get a head-start on your lesson planning using quality-checked
                 resources you can download and adapt for free.
-              </Typography>
+              </OakTypography>
               <Box $mt={16} $width={["100%", "100%", "90%"]}>
                 <SearchForm
                   searchContext="homepage"

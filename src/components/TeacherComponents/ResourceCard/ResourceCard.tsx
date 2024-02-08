@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
+import { OakP } from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import P from "@/components/SharedComponents/Typography/P";
 import Flex from "@/components/SharedComponents/Flex";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
@@ -123,14 +123,14 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           $pv={16}
           $width="100%"
         >
-          <P
+          <OakP
             $font="heading-7"
-            $mb={4}
+            $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
           >
             {label}
-          </P>
-          <P $color="grey60">{subtitle}</P>
+          </OakP>
+          <OakP $color="grey60">{subtitle}</OakP>
         </Flex>
       </Flex>
     </BoxWithFocusState>

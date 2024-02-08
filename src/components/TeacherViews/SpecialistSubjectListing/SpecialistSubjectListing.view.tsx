@@ -1,10 +1,9 @@
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
-import SpecialistSubjectCardSection from "../../TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
-
+import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 export type SpecialistSubject = {
   subjectSlug: string;
@@ -28,9 +27,14 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
-        <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 56]} $mb={[48, 56]}>
+        <OakHeading
+          $font={"heading-1"}
+          tag={"h1"}
+          $mt={["space-between-m2", "space-between-xl"]}
+          $mb={["space-between-l", "space-between-xl"]}
+        >
           Specialist and therapies
-        </Heading>
+        </OakHeading>
         <Flex $flexDirection="column" $gap={[24, 48]}>
           <SpecialistSubjectCardSection
             subjects={specialist}

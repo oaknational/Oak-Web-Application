@@ -80,6 +80,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
         {
           keyStageSlug: "ks123",
+          isLegacy: false,
         },
       );
     });

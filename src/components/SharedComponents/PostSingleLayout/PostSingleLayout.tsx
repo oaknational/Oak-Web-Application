@@ -1,5 +1,5 @@
 import { FC, ReactNode, useId } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -11,7 +11,6 @@ import theme from "@/styles/theme";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
@@ -68,13 +67,13 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             $position={[null, "sticky"]}
             $top={[null, HEADER_HEIGHT]}
           >
-            <Heading
+            <OakHeading
               tag="h3"
               $font="body-3"
               id={postCategoriesListProps.labelId}
             >
               Categories
-            </Heading>
+            </OakHeading>
             <PostCategoryList
               labelledBy={postCategoriesListProps.labelId}
               $mt={24}

@@ -53,6 +53,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $alignItems={"stretch"}
         $pa={["inner-padding-none", "inner-padding-xl"]}
         $gap={"space-between-xl"}
+        $mh={["space-between-s", "space-between-l"]}
       >
         <OakTertiaryButton iconName="arrow-left" disabled>
           View all lessons

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakTypography, OakHeading } from "@oaknational/oak-components";
 
 import Card from "./Card";
 
@@ -7,7 +8,6 @@ import { OakColorName } from "@/styles/theme/types";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
@@ -51,24 +51,28 @@ const SummaryCard: FC<SummaryCardProps> = ({
       <Flex $flexDirection={"column"} $width="100%">
         <Flex>
           <Flex $justifyContent={"center"} $flexDirection={"column"} $mr={48}>
-            <Heading
-              $mb={8}
+            <OakHeading
+              $mb={"space-between-ssx"}
               tag={"h1"}
               $font={["heading-6", "heading-5"]}
               $color={"grey60"}
             >
               {title}
-            </Heading>
-            <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
+            </OakHeading>
+            <OakHeading
+              $mb={"space-between-s"}
+              $font={["heading-5", "heading-4"]}
+              tag={"h2"}
+            >
               {heading}
-            </Heading>
-            <Typography $font={["body-2", "body-1"]}>
+            </OakHeading>
+            <OakTypography $font={["body-2", "body-1"]}>
               {typeof summaryPortableText === "string" ? (
                 <p>{summaryPortableText}</p>
               ) : (
                 <PortableTextWithDefaults value={summaryPortableText} />
               )}
-            </Typography>
+            </OakTypography>
           </Flex>
           {summaryCardImage && (
             <Flex

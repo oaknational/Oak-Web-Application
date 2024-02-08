@@ -1,9 +1,8 @@
 import { FC } from "react";
+import { OakSpan, OakColorToken } from "@oaknational/oak-components";
 
 import Svg from "@/components/SharedComponents/Svg";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
-import { OakColorName } from "@/styles/theme/types";
 
 const tagDimMap = {
   small: {
@@ -44,7 +43,7 @@ const tagFontMap = {
 type TagWithMap = keyof typeof tagDimMap;
 
 type TagPromotionalProps = FlexProps & {
-  $color?: OakColorName;
+  $color?: OakColorToken;
   size?: TagWithMap;
 } & FlexProps;
 
@@ -72,9 +71,9 @@ const TagPromotional: FC<TagPromotionalProps> = ({
         $bottom={textPosMap[size].bottom}
         $position={"absolute"}
       >
-        <Span $color={$color} $font={tagFontMap[size]}>
+        <OakSpan $color={$color} $font={tagFontMap[size]}>
           New
-        </Span>
+        </OakSpan>
       </Flex>
     </Flex>
   );

@@ -1,11 +1,11 @@
 import { FC, MutableRefObject } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
 import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponents/ListItemHeaderExpemplarCategoryHeading";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import {
   LessonListingLinkProps,
@@ -58,14 +58,14 @@ export const ListTitle: FC<{
   index?: number;
 }> = ({ children, expired, index }) => {
   return (
-    <Heading
+    <OakHeading
       $color={expired ? "grey60" : "black"}
       $font={["heading-7", expired ? "heading-light-6" : "heading-6"]}
       tag={"h3"}
       ariaLabel={index !== undefined ? `${index + 1}. ${children}` : undefined}
     >
       {children}
-    </Heading>
+    </OakHeading>
   );
 };
 

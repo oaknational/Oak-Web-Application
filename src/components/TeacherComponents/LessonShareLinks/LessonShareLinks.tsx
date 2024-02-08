@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
@@ -6,7 +7,6 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading } from "@/components/SharedComponents/Typography";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {
@@ -33,9 +33,14 @@ const LessonShareLinks: FC<{
 
   return (
     <>
-      <Heading $mt={24} $mb={4} tag={"h4"} $font={"heading-7"}>
+      <OakHeading
+        $mt="space-between-m"
+        $mb="space-between-sssx"
+        tag={"h4"}
+        $font={"heading-7"}
+      >
         Share options:
-      </Heading>
+      </OakHeading>
       <Flex $flexWrap={"wrap"} $width={"100%"} $gap={12}>
         <LoadingButton
           text={

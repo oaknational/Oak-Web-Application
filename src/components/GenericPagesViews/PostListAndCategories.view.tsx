@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import { PostListingPageProps } from "@/components/GenericPagesViews/BlogIndex.view";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
@@ -9,7 +9,6 @@ import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList
 import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
 import PostList from "@/components/SharedComponents/PostList";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
 export type PostListAndCategoriesProps = Omit<PostListingPageProps, "blogs"> & {
@@ -40,9 +39,13 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
           $mt={[0, 24]}
           $pt={[48]}
         >
-          <Heading tag="h3" $font="body-3" id={blogCategoriesListProps.labelId}>
+          <OakHeading
+            tag="h3"
+            $font="body-3"
+            id={blogCategoriesListProps.labelId}
+          >
             Categories
-          </Heading>
+          </OakHeading>
           <PostCategoryList
             labelledBy={blogCategoriesListProps.labelId}
             $mt={24}

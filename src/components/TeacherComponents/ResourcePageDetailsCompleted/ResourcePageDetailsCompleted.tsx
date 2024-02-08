@@ -1,6 +1,6 @@
 import { FC } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -38,16 +38,16 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       <Flex $flexDirection="column" $gap={24} $pa={24} $alignItems="flex-start">
         <Flex $flexDirection="column" $gap={16}>
           <Flex $flexDirection="column" $gap={4}>
-            <Heading tag="h3" $font="heading-7">
+            <OakHeading tag="h3" $font="heading-7">
               School
-            </Heading>
-            <P $font={"body-2"}>{getSchoolName(school)}</P>
+            </OakHeading>
+            <OakP $font={"body-2"}>{getSchoolName(school)}</OakP>
           </Flex>
           <Flex $flexDirection="column" $gap={4} $overflowWrap={"anywhere"}>
-            <Heading tag="h3" $font="heading-7">
+            <OakHeading tag="h3" $font="heading-7">
               Email
-            </Heading>
-            <P $font={"body-2"}>{email ? email : "Not provided"}</P>
+            </OakHeading>
+            <OakP $font={"body-2"}>{email ? email : "Not provided"}</OakP>
           </Flex>
         </Flex>
         <Button

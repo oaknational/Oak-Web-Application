@@ -1,10 +1,8 @@
 import { FC, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
+import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
 import { IconName } from "@/components/SharedComponents/Icon";
-import Heading, {
-  HeadingTag,
-} from "@/components/SharedComponents/Typography/Heading";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";
@@ -17,7 +15,7 @@ const Summary = styled.summary`
   }
 `;
 
-const SummaryHeading = styled(Heading)`
+const SummaryHeading = styled(OakHeading)`
   cursor: pointer;
 
   &:focus-within {
@@ -35,7 +33,7 @@ type CollapsibleSectionProps = {
   children?: React.ReactNode;
   startOpen: boolean;
   title: string;
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   buttons?: SummaryButton[];
 };
 /**

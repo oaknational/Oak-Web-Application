@@ -65,6 +65,7 @@ export const QuizQuestionStem = ({
                 $minWidth={"all-spacing-19"}
                 placeholder="oak"
                 sizes={getSizes(["100vw", 1200])}
+                $background={"white"}
               />
             </OakFlex>
           );

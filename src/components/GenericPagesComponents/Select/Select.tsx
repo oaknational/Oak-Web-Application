@@ -4,6 +4,7 @@ import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
+import { OakSpan } from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import {
@@ -16,7 +17,6 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import ellipsis from "@/styles/ellipsis";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -93,7 +93,7 @@ const SelectInner = styled(Flex)`
  * Contains either the selected value or the placeholder if no value is
  * selected
  */
-const SelectSpan = styled(Span)`
+const SelectSpan = styled(OakSpan)`
   ${ellipsis}
 `;
 

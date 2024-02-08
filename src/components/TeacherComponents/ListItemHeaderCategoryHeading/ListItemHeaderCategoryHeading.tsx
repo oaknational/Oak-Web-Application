@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-
-import { Span } from "@/components/SharedComponents/Typography";
+import { OakSpan } from "@oaknational/oak-components";
 
 type ListItemHeaderCategoryHeadingProps = {
   keyStageTitle?: string;
@@ -14,11 +13,11 @@ const ListItemHeaderCategoryHeading: FC<ListItemHeaderCategoryHeadingProps> = ({
   page,
 }) => {
   return (
-    <Span
+    <OakSpan
       $font={["heading-light-7", "heading-light-6"]}
       $color={"grey60"}
-      $mb={4}
-    >{`${keyStageTitle}, ${subjectTitle}, ${page}:`}</Span>
+      $mb="space-between-sssx"
+    >{`${keyStageTitle}, ${subjectTitle}, ${page}:`}</OakSpan>
   );
 };
 
