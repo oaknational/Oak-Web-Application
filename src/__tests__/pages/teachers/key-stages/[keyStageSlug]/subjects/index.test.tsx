@@ -24,6 +24,20 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       );
     });
   });
+  it("Renders eyfs keystage", async () => {
+    renderWithProviders()(
+      <SubjectListingPage
+        {...props}
+        keyStageSlug="early-years-foundation-stage"
+        keyStageTitle="Early years foundation stage"
+      />,
+    );
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+        "Early years foundation stage",
+      );
+    });
+  });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
