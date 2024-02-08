@@ -1,3 +1,10 @@
+# [1.343.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.342.0...v1.343.0) (2024-02-08)
+
+
+### Features
+
+* legacy filter ([2ca9831](https://github.com/oaknational/Oak-Web-Application/commit/2ca9831b0bcf9e0462868409723f1a480c18435f))
+
 # [1.342.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.341.0...v1.342.0) (2024-02-07)
 
 
