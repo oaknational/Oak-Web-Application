@@ -229,5 +229,6 @@ export const lessonListSchema = z.array(
     worksheetCount: z.number().nullish(),
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
+    lessonCohort: z.string().nullish(),
   }),
 );

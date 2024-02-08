@@ -94,6 +94,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
         subjectTitle={unitTitle}
         programmeFactor={programmeTitle}
         title={subjectTitle}
+        isNew={false}
       />
       <MaxWidth $ph={16}>
         <OakGrid data-testid="specialist-lesson-grid">
