@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 const getResourceTitle = (
@@ -35,9 +35,9 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
     >
       <Icon size={32} name={icon} $mr={[0, 6]} $mb={[8, 0]} />
       <Flex $display={["flex", "flex"]}>
-        <Span $font={"body-3"}>
+        <OakSpan $font={"body-3"}>
           {resourceCount} {getResourceTitle(props, resourceCount)}
-        </Span>
+        </OakSpan>
       </Flex>
     </Flex>
   );

@@ -11,6 +11,8 @@ type PProps = MarginProps & TypographyProps & ColorProps;
  * In general, using a `p` as a descendant of `<Body>` should suffice.
  * However, if you want different styles for a particular paragraph,
  * you can use this component to apply additional styles.
+ *
+ * @deprecated use OakP from oak-components instead
  */
 const P = styled.p<PProps>`
   ${typography}

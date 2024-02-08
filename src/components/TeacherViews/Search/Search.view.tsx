@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Flex from "@/components/SharedComponents/Flex";
@@ -165,9 +164,9 @@ const Search: FC<SearchProps> = (props) => {
         <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
             <Flex $flexDirection={["column"]} $mb={[48, 72]}>
-              <Heading tag="h1" $font={"heading-4"} $mb={32}>
+              <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
                 Search
-              </Heading>
+              </OakHeading>
               <SearchForm
                 searchContext="search"
                 searchTerm={query.term}

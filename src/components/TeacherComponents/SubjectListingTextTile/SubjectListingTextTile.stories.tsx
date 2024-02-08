@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import Component from "./SubjectListingTextTile";
-
-import { Span } from "@/components/SharedComponents/Typography";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -17,7 +16,7 @@ export const SubjectListingTextTile: Story = {
   },
   render: (args) => (
     <Component {...args}>
-      <Span>Content dropped in as children</Span>
+      <OakSpan>Content dropped in as children</OakSpan>
     </Component>
   ),
 };

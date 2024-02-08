@@ -2,6 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
+import { OakP } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -20,7 +21,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
 import Flex from "@/components/SharedComponents/Flex";
-import { P } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
@@ -156,7 +156,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         $justifyContent={"center"}
       >
         <BoxBorders />
-        <P $textAlign="center">Loading...</P>
+        <OakP $textAlign="center">Loading...</OakP>
       </Flex>
     );
   }

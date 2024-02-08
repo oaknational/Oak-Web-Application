@@ -1,7 +1,7 @@
 import React, { FC } from "react";
+import { OakHeading, OakLI, OakUL } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import { Heading, LI, UL } from "@/components/SharedComponents/Typography";
 import { CurriculumDownloadsTabData } from "@/node-lib/curriculum-api-2023";
 
 type DownloadsTabProps = {
@@ -11,14 +11,14 @@ type DownloadsTabProps = {
 const DownloadsTab: FC<DownloadsTabProps> = (props: DownloadsTabProps) => {
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Heading tag="h1" $font={"heading-2"} data-testid="downloads-heading">
+      <OakHeading tag="h1" $font={"heading-2"} data-testid="downloads-heading">
         Downloads
-      </Heading>
-      <UL>
+      </OakHeading>
+      <OakUL>
         {props.data.urls.map((url) => (
-          <LI key={url}>{url}</LI>
+          <OakLI key={url}>{url}</OakLI>
         ))}
-      </UL>
+      </OakUL>
     </Box>
   );
 };

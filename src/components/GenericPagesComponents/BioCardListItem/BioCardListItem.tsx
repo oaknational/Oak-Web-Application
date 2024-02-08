@@ -1,10 +1,10 @@
 import { FC, MutableRefObject } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import { BioData } from "@/components/GenericPagesComponents/BioCardListModal/BioCardListModal";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";
@@ -33,13 +33,17 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
       <Flex $alignItems={"flex-start"} $mb={"auto"}>
         <AvatarImage image={image} $mr={12} size={[56, 72]} />
         <Flex $flexDirection="column" $alignSelf={["center", "flex-start"]}>
-          <Heading tag="h3" $font={["heading-7", "heading-6"]}>
+          <OakHeading tag="h3" $font={["heading-7", "heading-6"]}>
             {name}
-          </Heading>
+          </OakHeading>
           {role && (
-            <P $mt={4} $font={["body-3", "heading-light-7"]} $color={"grey60"}>
+            <OakP
+              $mt="space-between-sssx"
+              $font={["body-3", "heading-light-7"]}
+              $color={"grey60"}
+            >
               {role}
-            </P>
+            </OakP>
           )}
         </Flex>
       </Flex>

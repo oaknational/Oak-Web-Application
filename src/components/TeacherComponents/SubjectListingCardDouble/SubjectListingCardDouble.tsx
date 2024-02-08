@@ -1,14 +1,14 @@
 import { FC } from "react";
+import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardDoubleCountCard";
-import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type SubjectListingCardDoubleProps = Omit<CardProps, "children"> & {
-  titleTag?: HeadingTag;
+  titleTag?: OakHeadingTag;
 } & {
   subject: Subjects[number];
   subjectSlug: string;
@@ -53,13 +53,13 @@ const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
           $alignItems={["start", "center"]}
           $minHeight={[0, 72]}
         >
-          <Heading
+          <OakHeading
             $textAlign={["start", "center"]}
             $font={["heading-6", "heading-5"]}
             tag={titleTag}
           >
             {subject.new?.subjectTitle || subject.old?.subjectTitle}
-          </Heading>
+          </OakHeading>
         </Flex>
       </Flex>
       <Flex role={"list"} $pb={12} $ph={12} $gap={12} $width={"100%"}>

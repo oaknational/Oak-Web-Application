@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
@@ -69,9 +69,9 @@ export const LessonOverviewHeaderShareAllButton: FC<
       />
       <Flex $mt={[12, 0]}>
         {!isShareable && (
-          <Span $color={"grey50"} $font={"body-3"}>
+          <OakSpan $color={"grey50"} $font={"body-3"}>
             Share function coming soon...
-          </Span>
+          </OakSpan>
         )}
       </Flex>
     </Flex>

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Heading, { HeadingProps } from "./Heading";
+import Heading, { HeadingProps } from "./Heading.deprecated";
 
 import Svg from "@/components/SharedComponents/Svg";
 

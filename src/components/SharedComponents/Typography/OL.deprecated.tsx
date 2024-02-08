@@ -13,6 +13,7 @@ import { box, BoxProps } from "@/components/SharedComponents/Box";
  *
  * Use where we have an ordered list to ensure numbers are styled
  *
+ * @deprecated use OakOL from oak-components instead
  * */
 type OLProps = MarginProps;
 

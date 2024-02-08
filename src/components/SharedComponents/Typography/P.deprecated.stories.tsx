@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./P";
+import Component from "./P.deprecated";
 
 export default {
   component: Component,

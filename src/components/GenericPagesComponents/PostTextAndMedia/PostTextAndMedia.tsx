@@ -1,4 +1,5 @@
 import type { PortableTextComponentProps } from "@portabletext/react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
 import { OmitKeepDiscriminated } from "@/utils/generics";
@@ -7,7 +8,6 @@ import Box from "@/components/SharedComponents/Box";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading } from "@/components/SharedComponents/Typography";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -35,9 +35,9 @@ const PostTextAndMedia = (
   return (
     <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
       <div>
-        <Heading $font={["heading-5", "heading-4"]} tag="h2">
+        <OakHeading $font={["heading-5", "heading-4"]} tag="h2">
           {params.title}
-        </Heading>
+        </OakHeading>
         <Box $mt={32}>
           <PortableTextWithDefaults value={params.body} />
         </Box>

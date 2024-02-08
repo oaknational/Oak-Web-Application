@@ -1,3 +1,57 @@
+# [1.342.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.341.0...v1.342.0) (2024-02-07)
+
+
+### Bug Fixes
+
+* remove `min-width` from lesson page ([7411e55](https://github.com/oaknational/Oak-Web-Application/commit/7411e556eb6c572086d0963202d4122b34b06b2f))
+
+
+### Features
+
+* **PUPIL-291:** add a fallback state for a missing video ([768113e](https://github.com/oaknational/Oak-Web-Application/commit/768113e5d662b685dccdbe738946ccbb0e002952))
+* **PUPIL-291:** add video related fields to the pupil lesson query ([9cc20f3](https://github.com/oaknational/Oak-Web-Application/commit/9cc20f3e720fbd4597fff949ad310000ffeddc25))
+* **PUPIL-291:** apply final styling to the video page ([f40c68c](https://github.com/oaknational/Oak-Web-Application/commit/f40c68cf46cd6bd9f1b5f133fa522cffc41d65a9))
+* **PUPIL-291:** lift fetching of the transcript file out of the query ([cef4a9e](https://github.com/oaknational/Oak-Web-Application/commit/cef4a9e9237ce3c0f8536cf6c7a15d2eef1da172))
+* **PUPIL-291:** use `OakVideoTranscript` ([e34aa18](https://github.com/oaknational/Oak-Web-Application/commit/e34aa1861f8b8c04c6e81d368b190974e3ca558f))
+
+# [1.341.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.340.0...v1.341.0) (2024-02-07)
+
+
+### Features
+
+* **lessonIntro:** add oak-components to intro page ([ad22981](https://github.com/oaknational/Oak-Web-Application/commit/ad2298107bf057edc2808ce39b122c414ca2d3c5))
+* **lessonIntro:** add oak-components to intro page ([2552a29](https://github.com/oaknational/Oak-Web-Application/commit/2552a291022358eb830c7848e8dd7a60bbe550c4))
+* **lessonIntro:** add oak-components to intro page ([e0861d1](https://github.com/oaknational/Oak-Web-Application/commit/e0861d1f77478c183ca4c3c07442977d0d9b47c9))
+* **lessonIntro:** fix lint errors ([43718d7](https://github.com/oaknational/Oak-Web-Application/commit/43718d7939ae06d80e0a9d5d2a5bfcfbf7f3ab40))
+* **lessonIntro:** remove sonar exclusions ([b547b04](https://github.com/oaknational/Oak-Web-Application/commit/b547b04bf71934fce2250658e0d13f6435304aa6))
+
+# [1.340.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.339.0...v1.340.0) (2024-02-07)
+
+
+### Features
+
+* update subject listing query ([8de932b](https://github.com/oaknational/Oak-Web-Application/commit/8de932b2d01c7a903f9c8b921a2d3b360f9e971e))
+* update unit listing mv ([f9ce363](https://github.com/oaknational/Oak-Web-Application/commit/f9ce3638140014f9ee68a59dde8c17e2e55fbf4e))
+
+# [1.339.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.3...v1.339.0) (2024-02-07)
+
+
+### Features
+
+* deprecate relevant Typography components ([bf7ebe0](https://github.com/oaknational/Oak-Web-Application/commit/bf7ebe0c8097bed0348a40d8e5e4f30a6c547cd3))
+* fix typescript 'Map maximum size exceeded' error ([2beb427](https://github.com/oaknational/Oak-Web-Application/commit/2beb427660b1c42dce14bfa406ed6103dc29d9bd))
+* update Typography related components with oak-components ([c2ace51](https://github.com/oaknational/Oak-Web-Application/commit/c2ace5133485accea5d4011fa0985eb6155a9c35))
+* update Typography related components with oak-components - part 2 ([2995fd3](https://github.com/oaknational/Oak-Web-Application/commit/2995fd38599bea0b3db28a5f66ad50249e898f50))
+* update Typography related components with oak-components - part 3 ([f6bf745](https://github.com/oaknational/Oak-Web-Application/commit/f6bf7457a2a095f5cf3c206be92674b10cfde49b))
+* update Typography related components with oak-components - part 4 ([3819596](https://github.com/oaknational/Oak-Web-Application/commit/38195969411740c7f071aaf7d51052207048fb50))
+
+## [1.338.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.2...v1.338.3) (2024-02-06)
+
+
+### Bug Fixes
+
+* responsive width ([2afae66](https://github.com/oaknational/Oak-Web-Application/commit/2afae66eb8309a17938a4233233b53b257cbfa72))
+
 ## [1.338.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.1...v1.338.2) (2024-02-06)
 
 ## [1.338.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.338.0...v1.338.1) (2024-02-05)
