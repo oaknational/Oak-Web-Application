@@ -10,7 +10,6 @@ const lessonOverviewQuery =
     lessonSlug: string;
     unitSlug: string;
     programmeSlug: string;
-    lessonCohort: string;
   }) => {
     const res = await sdk.lessonOverview(args);
     const [lesson] = res.lesson;

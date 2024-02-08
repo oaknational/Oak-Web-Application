@@ -37,7 +37,7 @@ import { useCurrentSection } from "@/components/TeacherComponents/helpers/lesson
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
-import { LEGACY_COHORT } from "@/config/cohort";
+import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 
 export type LessonOverviewProps = {
   lesson:
@@ -141,6 +141,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
 
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
@@ -165,7 +166,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
-        isLegacyLesson={isLegacyLicense}
+        isNew={isNew}
+        isShareable={isLegacyLicense}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
