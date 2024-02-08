@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export interface LessonOverviewTranscriptViewerProps {
   transcriptSentences: string[] | null;

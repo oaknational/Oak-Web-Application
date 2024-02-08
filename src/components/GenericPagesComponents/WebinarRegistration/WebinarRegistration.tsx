@@ -7,7 +7,7 @@ import NewsletterForm, {
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type WebinarRegistrationProps = {
   headingTag?: OakHeadingTag;

@@ -4,7 +4,7 @@ import { OakFlex } from "@oaknational/oak-components";
 import { LandingPage } from "@/common-lib/cms-types";
 import LandingPageHeroTitle from "@/components/GenericPagesComponents/LandingPageHeroTitle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type LandingPageHeroProps = Pick<LandingPage, "hero">;
 

@@ -4,7 +4,7 @@ import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectLi
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import {
   SpecialistProgrammeListingLinkProps,

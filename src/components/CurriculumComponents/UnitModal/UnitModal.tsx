@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";

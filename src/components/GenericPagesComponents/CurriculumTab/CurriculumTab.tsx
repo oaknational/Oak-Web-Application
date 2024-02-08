@@ -12,7 +12,7 @@ import {
 import Box from "@/components/SharedComponents/Box";
 import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 

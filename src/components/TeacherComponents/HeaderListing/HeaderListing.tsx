@@ -7,7 +7,7 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { OakColorName } from "@/styles/theme";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 

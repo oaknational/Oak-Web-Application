@@ -9,7 +9,7 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import Box from "@/components/SharedComponents/Box";

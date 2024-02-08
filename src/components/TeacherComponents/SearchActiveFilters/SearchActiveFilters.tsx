@@ -2,7 +2,7 @@ import { FC } from "react";
 import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   UseSearchFiltersReturnType,
   KeyStage,

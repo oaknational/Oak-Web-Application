@@ -1,6 +1,6 @@
 import { OakFlex } from "@oaknational/oak-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import HomePageTabImageButton from "@/components/GenericPagesComponents/HomepageTabImageButton";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { HomePageTab } from "@/pages";

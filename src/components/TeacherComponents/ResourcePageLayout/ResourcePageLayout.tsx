@@ -31,7 +31,7 @@ import { P } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Input from "@/components/SharedComponents/Input";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";

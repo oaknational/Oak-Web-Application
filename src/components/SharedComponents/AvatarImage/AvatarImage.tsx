@@ -6,7 +6,7 @@ import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import Circle from "@/components/SharedComponents/Circle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const DEFAULT_AVATAR_SIZE = 56;
 

@@ -3,7 +3,7 @@ import { useFocusWithin } from "react-aria";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import Svg from "@/components/SharedComponents/Svg";

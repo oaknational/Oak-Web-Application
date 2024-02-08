@@ -9,7 +9,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

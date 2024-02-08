@@ -2,7 +2,7 @@ import { VisuallyHidden } from "react-aria";
 import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 

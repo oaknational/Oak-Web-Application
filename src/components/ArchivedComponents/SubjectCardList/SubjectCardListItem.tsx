@@ -15,7 +15,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {

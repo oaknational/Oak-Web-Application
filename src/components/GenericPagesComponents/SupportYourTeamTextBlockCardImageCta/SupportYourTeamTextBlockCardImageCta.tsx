@@ -10,7 +10,7 @@ import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,
 } from "@/components/SharedComponents/Card/CardComponents/CardImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 

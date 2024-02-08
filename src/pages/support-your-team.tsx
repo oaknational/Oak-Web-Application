@@ -20,7 +20,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type SupportPageProps = {
   pageData: SupportPage;

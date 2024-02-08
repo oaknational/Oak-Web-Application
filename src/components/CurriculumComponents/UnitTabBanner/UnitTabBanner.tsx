@@ -1,6 +1,6 @@
 import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
