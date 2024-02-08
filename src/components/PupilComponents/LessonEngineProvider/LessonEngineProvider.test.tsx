@@ -67,7 +67,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.currentSection).toEqual("starter-quiz");
   });
 
-  it("returns to the first section when proceedToNextSection is called when all sections are complete", () => {
+  it("returns to the review when proceedToNextSection is called and all sections are complete", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
     });
@@ -83,7 +83,7 @@ describe("LessonEngineProvider", () => {
       result.current.proceedToNextSection();
     });
 
-    expect(result.current.currentSection).toEqual(allLessonReviewSections[0]);
+    expect(result.current.currentSection).toEqual("review");
   });
 
   it("returns to overview on completeSection when not all sections are complete", () => {
@@ -154,6 +154,23 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults).toEqual({
       overview: expect.objectContaining({ grade: 0, numQuestions: 0 }),
     });
+  });
+
+  it('marks the section as incomplete when "updateQuizResult" is called', () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    act(() => {
+      result.current.updateCurrentSection("starter-quiz");
+      result.current.updateQuizResult({ grade: 2, numQuestions: 4 });
+    });
+
+    // This ensures that when a pupil starts to retake a quiz the lesson
+    // returns to the incomplete state so that partial results are not displayed
+    expect(result.current.sectionResults["starter-quiz"]?.isComplete).toEqual(
+      false,
+    );
   });
 });
 

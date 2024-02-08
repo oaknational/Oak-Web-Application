@@ -94,14 +94,11 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
       return newState;
     }
     case "proceedToNextSection": {
+      // Go to the lesson review when the lesson is complete
       const nextSection =
         currentState.lessonReviewSections.find(
           (section) => !currentState.sections[section]?.isComplete,
-        ) ?? currentState.lessonReviewSections[0];
-
-      if (!nextSection) {
-        throw new Error("Lesson contains no sections to proceed to");
-      }
+        ) ?? "review";
 
       return { ...currentState, currentSection: nextSection };
     }
@@ -119,6 +116,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
           [currentState.currentSection]: {
             ...currentState.sections[currentState.currentSection],
             ...action.result,
+            isComplete: false,
           },
         },
       };
