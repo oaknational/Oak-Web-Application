@@ -201,7 +201,7 @@ const LayoutSiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
-          {!displaySignpost && (
+          {displaySignpost && (
             <OakFlex
               $wordWrap={"initial"}
               $mb={["space-between-s", "space-between-xl"]}
