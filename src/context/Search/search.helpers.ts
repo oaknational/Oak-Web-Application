@@ -200,7 +200,7 @@ export function getLessonObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
-    legacy: hit.legacy,
+    cohort: hit._source.cohort,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),
@@ -250,7 +250,7 @@ export function getUnitObject(props: {
     keyStageTitle: keyStage?.title?.toString() || "",
     keyStageSlug: keyStage?.slug?.toString() || "",
     buttonLinkProps: buttonLinkProps,
-    legacy: hit.legacy,
+    cohort: hit._source.cohort,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),
