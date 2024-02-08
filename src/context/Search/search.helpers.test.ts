@@ -13,6 +13,8 @@ import {
 import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 
+import { LEGACY_COHORT } from "@/config/cohort";
+
 const lessonHit = lessonSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson"),
 );
@@ -52,13 +54,19 @@ describe("search helpers", () => {
 
   test("getProgrammeSlug returns a correct slug", () => {
     const unitListObjectLegacy = getUnitObject({
-      hit: { ...unitHit, legacy: true },
+      hit: {
+        ...unitHit,
+        _source: { ...unitHit._source, cohort: LEGACY_COHORT },
+      },
       allKeyStages,
     });
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
     const lessonListObject = getLessonObject({ hit: lessonHit, allKeyStages });
     const lessonListObjectLegacy = getLessonObject({
-      hit: { ...lessonHit, legacy: true },
+      hit: {
+        ...lessonHit,
+        _source: { ...lessonHit._source, cohort: LEGACY_COHORT },
+      },
       allKeyStages,
     });
     expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
@@ -89,13 +97,20 @@ describe("search helpers", () => {
   });
   test("legacy suffix is only added when legacy flag is true ", () => {
     const unitListObject = getUnitObject({
-      hit: { ...unitHit, legacy: true },
+      hit: {
+        ...unitHit,
+        _source: { ...unitHit._source, cohort: LEGACY_COHORT },
+      },
       allKeyStages,
     });
     const lessonListObject = getLessonObject({
-      hit: { ...lessonHit, legacy: true },
+      hit: {
+        ...lessonHit,
+        _source: { ...lessonHit._source, cohort: LEGACY_COHORT },
+      },
       allKeyStages,
     });
+
     expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
       "english-primary-ks2-l",
     );
