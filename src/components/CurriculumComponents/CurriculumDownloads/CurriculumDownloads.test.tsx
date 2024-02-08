@@ -19,6 +19,7 @@ const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {
+    jest.resetModules();
     jest.clearAllMocks();
   });
 
