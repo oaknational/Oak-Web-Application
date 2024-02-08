@@ -104,7 +104,8 @@ export const getStaticProps: GetStaticProps<
         isLegacy: isEyfs,
       });
 
-      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData2023;
+      const { keyStageSlug, keyStages } = curriculumData2023;
+      let keyStageTitle = curriculumData2023.keyStageTitle;
 
       const subjectSlugs2023 =
         curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
@@ -151,6 +152,8 @@ export const getStaticProps: GetStaticProps<
             notFound: true,
           };
         }
+
+        keyStageTitle = curriculumData.keyStageTitle;
 
         const subjectSlugs = curriculumData.subjects.map((s) =>
           removeLegacySlugSuffix(s.subjectSlug),
