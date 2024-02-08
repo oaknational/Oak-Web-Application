@@ -34647,7 +34647,6 @@ export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
-  lessonCohort: Scalars['String']['input'];
 }>;
 
 
@@ -34890,9 +34889,9 @@ export const LessonOverviewCanonicalDocument = gql`
 }
     `;
 export const LessonShareDocument = gql`
-    query lessonShare($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!, $lessonCohort: String!) {
+    query lessonShare($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   share: published_mv_share_1_0_1(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}, lessonCohort: {_eq: $lessonCohort}}
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     shareableResources
     programmeSlug

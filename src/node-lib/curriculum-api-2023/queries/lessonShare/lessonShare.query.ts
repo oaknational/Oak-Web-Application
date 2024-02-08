@@ -12,7 +12,6 @@ const lessonShareQuery =
     programmeSlug: string;
     unitSlug: string;
     lessonSlug: string;
-    lessonCohort: string;
   }) => {
     const res = await sdk.lessonShare(args);
     const pages = res.share;

@@ -16,7 +16,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { NEW_COHORT } from "@/config/cohort";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type LessonSharePageProps = {
@@ -86,7 +85,6 @@ export const getStaticProps: GetStaticProps<
             programmeSlug,
             unitSlug,
             lessonSlug,
-            lessonCohort: NEW_COHORT,
           });
 
       if (!curriculumData) {

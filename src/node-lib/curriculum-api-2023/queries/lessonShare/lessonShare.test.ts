@@ -2,8 +2,6 @@ import sdk from "../../sdk";
 
 import lessonShare from "./lessonShare.query";
 
-import { NEW_COHORT } from "@/config/cohort";
-
 describe("lessonShare()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
@@ -14,7 +12,6 @@ describe("lessonShare()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        lessonCohort: NEW_COHORT,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -46,7 +43,6 @@ describe("lessonShare()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        lessonCohort: NEW_COHORT,
       });
     }).rejects.toThrow(`shareableResources`);
   });
