@@ -4,9 +4,9 @@ import {
   OakHeading,
   OakHeadingTag,
   OakSpan,
+  OakFlex,
 } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
@@ -41,20 +41,20 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
   const examBoardHeadingTag = getNextHeadingTag(unitHeadingTag);
 
   return (
-    <Flex $flexDirection={["column"]}>
+    <OakFlex $flexDirection={["column"]}>
       <OakHeading $font={"heading-5"} tag={headingTag}>
         Lesson appears in
       </OakHeading>
       {subjects.map(({ subjectTitle, subjectSlug, units }) => {
         return units.map(({ unitTitle, unitSlug, examBoards }) => {
           return (
-            <Flex
+            <OakFlex
               key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}`}
               $flexDirection={["column"]}
-              $mt={48}
+              $mt="space-between-l"
             >
               <OakHeading tag={unitHeadingTag} $mb="space-between-s">
-                <Flex $flexDirection={["row"]} $alignItems="baseline">
+                <OakFlex $flexDirection={["row"]} $alignItems="baseline">
                   <TagFunctional
                     text="Unit"
                     color="grey"
@@ -63,7 +63,7 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
                   <OakSpan $font="heading-light-6">
                     {subjectTitle} / {unitTitle}
                   </OakSpan>
-                </Flex>
+                </OakFlex>
               </OakHeading>
               <OakGrid $rg={"all-spacing-4"} $cg={"all-spacing-4"}>
                 {examBoards.map((examBoard, index) => {
@@ -86,10 +86,10 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
                   );
                 })}
               </OakGrid>
-            </Flex>
+            </OakFlex>
           );
         });
       })}
-    </Flex>
+    </OakFlex>
   );
 }

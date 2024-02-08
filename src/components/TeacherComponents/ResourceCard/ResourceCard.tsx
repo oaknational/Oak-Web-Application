@@ -5,7 +5,7 @@ import { OakP } from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";

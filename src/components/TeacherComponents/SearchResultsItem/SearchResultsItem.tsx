@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -7,7 +12,7 @@ import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
   LessonListingLinkProps,
@@ -86,23 +91,23 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       $mb={56}
       $maxWidth={734}
     >
-      <Flex $mb={16} $alignItems={"center"}>
+      <OakFlex $mb="space-between-s" $alignItems={"center"}>
         <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
-        <Flex $ml={12} $flexDirection={"column"}>
-          <Flex>
+        <OakFlex $ml="space-between-xs" $flexDirection={"column"}>
+          <OakFlex>
             <OakHeading $mb="space-between-sssx" tag={"h2"} $font={"heading-7"}>
               {subjectTitle}
             </OakHeading>
             {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
-          </Flex>
+          </OakFlex>
           <LessonMetadata
             $font={"heading-light-7"}
             $color={"grey60"}
             metadataArray={metadataArray}
           />
-        </Flex>
-      </Flex>
-      <Flex $mb={32} $flexDirection={"column"}>
+        </OakFlex>
+      </OakFlex>
+      <OakFlex $mb="space-between-m2" $flexDirection={"column"}>
         <OakHeading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </OakHeading>
@@ -115,8 +120,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
             $font={"body-2"}
           />
         )}
-      </Flex>
-      <Flex $mb={20}>
+      </OakFlex>
+      <OakFlex $mb="space-between-m">
         {isPathwaySearchHit ? (
           <SearchDropdown {...props} />
         ) : (
@@ -130,15 +135,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
             $color={"navy"}
             $focusStyles={["underline"]}
           >
-            <Flex $justifyContent={"center"} $alignItems={"center"}>
+            <OakFlex $justifyContent={"center"} $alignItems={"center"}>
               <OakSpan $font={"heading-7"}>
                 {type === "unit" ? "See unit" : "See lesson"}
               </OakSpan>
               <Icon $ml={4} name={"arrow-right"} />
-            </Flex>
+            </OakFlex>
           </OwaLink>
         )}
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };

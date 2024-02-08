@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 
 type FieldErrorVariant = "large";
@@ -22,15 +21,15 @@ const FieldError = (props: FieldErrorProps) => {
     return null;
   }
   return (
-    <Flex
-      $mt={4}
+    <OakFlex
+      $mt="space-between-sssx"
       $alignItems={"center"}
       $flexDirection={"row"}
-      $mb={withoutMarginBottom ? 0 : 24}
+      $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
     >
-      <Flex $alignSelf={"flex-start"} $mr={4}>
+      <OakFlex $alignSelf={"flex-start"} $mr="space-between-sssx">
         <Icon name="content-guidance" $color={"red"} />
-      </Flex>
+      </OakFlex>
       <OakSpan
         $color="red"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
@@ -38,7 +37,7 @@ const FieldError = (props: FieldErrorProps) => {
       >
         {children}
       </OakSpan>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,4 +1,5 @@
 import { FC, useRef } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -8,7 +9,6 @@ import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 import { ActiveLinkUnderline } from "@/components/SharedComponents/OwaLink/OwaLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
@@ -35,12 +35,12 @@ const AppHeader: FC<HeaderProps> = () => {
       $zIndex="fixedHeader"
       $position={"relative"}
     >
-      <Flex
+      <OakFlex
         $justifyContent={"space-between"}
         $flexGrow={1}
         $alignItems={"center"}
       >
-        <Flex $justifyContent={"center"} $alignItems={"center"}>
+        <OakFlex $justifyContent={"center"} $alignItems={"center"}>
           <OwaLink page={"home"}>
             <Box $display={["block", "none"]}>
               <Logo height={48} width={31} variant="without text" />
@@ -49,8 +49,8 @@ const AppHeader: FC<HeaderProps> = () => {
               <Logo variant="with text" height={48} width={104} />
             </Box>
           </OwaLink>
-        </Flex>
-        <Flex $alignItems={"center"} $gap={24} $font="heading-7">
+        </OakFlex>
+        <OakFlex $alignItems={"center"} $gap="all-spacing-6" $font="heading-7">
           <OwaLink
             page={"home"}
             $focusStyles={["underline"]}
@@ -59,7 +59,7 @@ const AppHeader: FC<HeaderProps> = () => {
             Teachers
             <ActiveLinkUnderline name="horizontal-rule" />
           </OwaLink>
-          <Flex $alignItems="center" $gap={4}>
+          <OakFlex $alignItems="center" $gap="all-spacing-1">
             <OwaLink
               page="classroom"
               $focusStyles={["underline"]}
@@ -72,7 +72,7 @@ const AppHeader: FC<HeaderProps> = () => {
               Pupils
             </OwaLink>
             <Icon name="external" />
-          </Flex>
+          </OakFlex>
           <IconButton
             aria-label="Menu"
             icon={"hamburger"}
@@ -82,12 +82,12 @@ const AppHeader: FC<HeaderProps> = () => {
             onClick={openMenu}
             aria-expanded={open}
           />
-        </Flex>
+        </OakFlex>
 
         <AppHeaderMenu menuButtonRef={menuButtonRef}>
           <AppHeaderBurgerMenuSections menuSections={betaMenuSections} />
         </AppHeaderMenu>
-      </Flex>
+      </OakFlex>
       <AppHeaderUnderline />
     </StyledHeader>
   );

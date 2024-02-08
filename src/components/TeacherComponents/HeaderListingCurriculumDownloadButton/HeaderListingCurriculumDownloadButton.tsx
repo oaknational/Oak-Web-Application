@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
 import { capitalize } from "lodash";
+import { OakFlex } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import downloadZip from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton/helpers/downloadZip";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -69,7 +69,7 @@ const HeaderListingCurriculumDownloadButton: FC<
 
   return (
     <>
-      <Flex>
+      <OakFlex>
         {isMathsKs4ProgrammesPage ? ( // if on a maths programmes page, we want to download a zip of tier.pdf curriculum maps
           <Button
             icon={"download"}
@@ -95,7 +95,7 @@ const HeaderListingCurriculumDownloadButton: FC<
             />
           </>
         )}
-      </Flex>
+      </OakFlex>
       <Box>
         {downloadResourceError && (
           <FieldError id={"download-resource-error"}>

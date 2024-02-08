@@ -1,7 +1,7 @@
 import { PortableTextComponentProps } from "@portabletext/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
-import Flex from "@/components/SharedComponents/Flex";
 
 type FormBlock = {
   title: string;
@@ -15,9 +15,9 @@ const PostForm = (props: PortableTextComponentProps<FormBlock>) => {
   const params = props.value;
 
   return (
-    <Flex $mv={56}>
+    <OakFlex $mv="space-between-xl">
       <LandingPageSignUpForm formTitle={params.title} />
-    </Flex>
+    </OakFlex>
   );
 };
 

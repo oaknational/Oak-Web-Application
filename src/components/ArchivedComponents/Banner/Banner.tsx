@@ -3,7 +3,7 @@ import { OakTypography } from "@oaknational/oak-components";
 
 import { Hr } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Tag from "@/components/SharedComponents/TagPromotional";
 

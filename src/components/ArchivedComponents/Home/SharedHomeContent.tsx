@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import HomeAboutCard from "./HomeAboutCard";
@@ -18,7 +19,6 @@ import { useNewsletterForm } from "@/components/GenericPagesComponents/Newslette
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
 type SharedHomePageProps = {
@@ -37,7 +37,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
 
   return (
     <>
-      <Flex $background={"lemon50"} $justifyContent={"center"}>
+      <OakFlex $background={"lemon50"} $justifyContent={"center"}>
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <OakGrid
             $cg={["space-between-s", "space-between-m2"]}
@@ -72,11 +72,11 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                 $pv={24}
                 $height={"100%"}
               >
-                <Flex
+                <OakFlex
                   $width={"100%"}
                   $alignItems={["flex-start", "center"]}
                   $justifyContent="space-between"
-                  $mb={48}
+                  $mb="space-between-l"
                   $flexDirection={["column", "row"]}
                 >
                   <OakHeading
@@ -86,21 +86,21 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                   >
                     Stay up to date!
                   </OakHeading>
-                  <Flex $flexDirection={"row"}>
+                  <OakFlex $flexDirection={"row"}>
                     <OakTypography $mr="space-between-s" $font="heading-7">
                       <OwaLink page={"webinar-index"}>All webinars</OwaLink>
                     </OakTypography>
                     <OakTypography $font="heading-7">
                       <OwaLink page={"blog-index"}>All blogs</OwaLink>
                     </OakTypography>
-                  </Flex>
-                </Flex>
+                  </OakFlex>
+                </OakFlex>
                 <PostList {...blogListProps} />
               </Box>
             </OakGridArea>
           </OakGrid>
         </MaxWidth>
-      </Flex>
+      </OakFlex>
     </>
   );
 };

@@ -3,6 +3,7 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+import { OakFlex } from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -15,7 +16,6 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
-import Flex from "@/components/SharedComponents/Flex";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import curriculumApi from "@/node-lib/curriculum-api";
@@ -44,11 +44,11 @@ export default function LessonOverviewCanonicalPage({
       }}
     >
       <LessonOverview lesson={{ ...lesson, isCanonical: true }} />
-      <Flex $background={"pink50"} $width={"100%"}>
+      <OakFlex $background={"pink50"} $width={"100%"}>
         <MaxWidth $pv={96}>
           <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
         </MaxWidth>
-      </Flex>
+      </OakFlex>
     </AppLayout>
   );
 }

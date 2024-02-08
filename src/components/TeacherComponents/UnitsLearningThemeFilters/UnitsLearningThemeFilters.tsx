@@ -1,3 +1,5 @@
+import { OakFlex } from "@oaknational/oak-components";
+
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
@@ -6,7 +8,6 @@ import CategoryFilterList, {
   LearningThemeSelectedTrackingProps,
 } from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type LearningTheme = {
   themeSlug?: string | null;
@@ -69,7 +70,7 @@ const UnitsLearningThemeFilters = ({
     : [];
 
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <CategoryFilterList
         {...listStateProps}
         labelledBy={labelledBy}
@@ -91,7 +92,7 @@ const UnitsLearningThemeFilters = ({
         ]}
         trackingProps={trackingProps}
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

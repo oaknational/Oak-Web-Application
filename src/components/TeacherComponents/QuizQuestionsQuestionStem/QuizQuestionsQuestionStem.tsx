@@ -1,11 +1,10 @@
-import { OakTypography } from "@oaknational/oak-components";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import {
   shortAnswerTitleFormatter,
   removeMarkdown,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
-import Flex from "@/components/SharedComponents/Flex";
 import {
   StemImageObject,
   StemTextObject,
@@ -22,8 +21,8 @@ export const QuizQuestionsQuestionStem = ({
 }) => {
   const displayNumber = `Q${index + 1}.`;
   return (
-    <Flex $flexDirection={"column"} $gap={4}>
-      <Flex key="stem-header">
+    <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
+      <OakFlex key="stem-header">
         {showIndex && (
           <OakTypography
             $font={["body-2-bold", "body-1-bold"]}
@@ -40,7 +39,7 @@ export const QuizQuestionsQuestionStem = ({
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
           </OakTypography>
         )}
-      </Flex>
+      </OakFlex>
 
       {questionStem.map((stemItem, i) => {
         if (stemItem.type === "text" && i > 0) {
@@ -54,12 +53,15 @@ export const QuizQuestionsQuestionStem = ({
           );
         } else if (stemItem.type === "image") {
           return (
-            <Flex $pv={24} key={`q-${displayNumber}-stem-element-${i}`}>
+            <OakFlex
+              $pv="inner-padding-xl"
+              key={`q-${displayNumber}-stem-element-${i}`}
+            >
               <QuizImage src={stemItem.image_object} />
-            </Flex>
+            </OakFlex>
           );
         }
       })}
-    </Flex>
+    </OakFlex>
   );
 };

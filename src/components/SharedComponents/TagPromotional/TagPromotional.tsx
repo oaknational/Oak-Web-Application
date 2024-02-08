@@ -2,7 +2,7 @@ import { FC } from "react";
 import { OakSpan, OakColorToken } from "@oaknational/oak-components";
 
 import Svg from "@/components/SharedComponents/Svg";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const tagDimMap = {
   small: {

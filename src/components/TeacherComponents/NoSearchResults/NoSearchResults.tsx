@@ -1,6 +1,9 @@
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
+import {
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 interface NoSearchResultsProps {
   searchTerm: string;
@@ -10,7 +13,7 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
   const { searchTerm } = props;
 
   return (
-    <Flex $flexDirection="column" $pl={24}>
+    <OakFlex $flexDirection="column" $pl="inner-padding-xl">
       <OakHeading
         tag={"h4"}
         $mt="space-between-m"
@@ -19,15 +22,15 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
       >
         No search results
       </OakHeading>
-      <Flex $flexDirection="column">
+      <OakFlex $flexDirection="column">
         <OakP $font={"body-1"} $mb="space-between-xs">
           Sorry, we could not find any results for{" "}
           <OakSpan $wordWrap={"break-word"}>“{searchTerm}”</OakSpan>.
           <br /> <br /> Please enter a topic you wish to explore in the search
           bar above.
         </OakP>
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };
 

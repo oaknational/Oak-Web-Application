@@ -8,7 +8,7 @@ import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated
 import { IconName } from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex

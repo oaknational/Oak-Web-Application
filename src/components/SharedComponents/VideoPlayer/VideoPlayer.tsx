@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -20,7 +20,6 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
@@ -148,16 +147,16 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <Flex
+      <OakFlex
         $flexDirection={"column"}
         $width={"100%"}
-        $height={[240]}
+        $height={["all-spacing-19"]}
         $alignItems={"center"}
         $justifyContent={"center"}
       >
         <BoxBorders />
         <OakP $textAlign="center">Loading...</OakP>
-      </Flex>
+      </OakFlex>
     );
   }
 
@@ -172,10 +171,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $width={"100%"}
-      $ba={[3]}
+      $ba={["border-solid-l"]}
       $borderColor={"black"}
     >
       <MuxPlayer
@@ -201,7 +200,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           overflow: "hidden",
         }}
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

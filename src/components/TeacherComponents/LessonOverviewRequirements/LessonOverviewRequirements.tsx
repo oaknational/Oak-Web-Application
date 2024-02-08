@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { OakP, OakLI, OakUL } from "@oaknational/oak-components";
+import { OakP, OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "../LessonRequirementsHeading/LessonRequirementsHeading";
 
 import { IconName } from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
 
 type LessonOverviewRequirementsProps = {
   helperIcon: IconName;
@@ -44,7 +43,11 @@ const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
   );
 
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"} $gap={8}>
+    <OakFlex
+      $flexDirection={"column"}
+      $justifyContent={"center"}
+      $gap="all-spacing-2"
+    >
       <LessonRequirementsHeading helperIcon={helperIcon} heading={heading} />
       {contentGuidance && (
         <OakUL $reset>
@@ -66,7 +69,7 @@ const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
             </OakP>
           );
         })}
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -5,14 +5,13 @@ import {
   MissingComponentHandler,
   PortableTextComponents,
 } from "@portabletext/react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Box from "@/components/SharedComponents/Box";
@@ -87,7 +86,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
           $font={["body-2", "body-1"]}
         >
           <BrushBorders hideOnMobileH color={"pink50"} />
-          <Flex
+          <OakFlex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
           >
@@ -106,7 +105,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
                 $ml: 64,
               }}
             />
-          </Flex>
+          </OakFlex>
         </Card>
         <NewsletterFormWrap
           {...newsletterFormProps}

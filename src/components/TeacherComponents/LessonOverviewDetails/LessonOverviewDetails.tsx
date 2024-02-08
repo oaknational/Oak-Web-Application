@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
@@ -13,7 +14,6 @@ import LessonOverviewTeacherTips, {
   LessonOverviewTeacherTipProps,
 } from "@/components/TeacherComponents/LessonOverviewTeacherTips";
 import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
@@ -44,18 +44,18 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
 }) => {
   return (
     <MathJaxWrap>
-      <Flex
+      <OakFlex
         $flexDirection={"row"}
         $flexWrap={["wrap", "nowrap"]}
         $justifyContent={["center", "normal"]}
         $alignItems={"flex-start"}
       >
-        <Flex
+        <OakFlex
           $flexDirection={"column"}
           $flexGrow={1}
-          $mr={16}
-          $gap={48}
-          $mb={24}
+          $mr="space-between-s"
+          $gap="all-spacing-9"
+          $mb="space-between-m"
         >
           {keyLearningPoints && (
             <Box>
@@ -76,8 +76,13 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
               <LessonOverviewKeywords keyWords={keyWords} />
             </Box>
           )}
-        </Flex>
-        <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
+        </OakFlex>
+        <OakFlex
+          $flexDirection={"column"}
+          $mt={["space-between-l", "space-between-none"]}
+          $gap={"all-spacing-9"}
+          $mb={"space-between-m"}
+        >
           {teacherTips && (
             <Box>
               <LessonOverviewTeacherTips teacherTips={teacherTips} />
@@ -96,8 +101,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
               />
             </Box>
           ) : null}
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </MathJaxWrap>
   );
 };

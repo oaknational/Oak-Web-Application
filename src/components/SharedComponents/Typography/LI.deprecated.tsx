@@ -6,7 +6,7 @@ import typography, { TypographyProps } from "@/styles/utils/typography";
 import { box } from "@/components/SharedComponents/Box";
 import { GridAreaProps } from "@/components/SharedComponents/Grid.deprecated";
 import { gridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type ListItemProps = {
   listStyle?: ResponsiveValues<CSSProperties["listStyle"]>;

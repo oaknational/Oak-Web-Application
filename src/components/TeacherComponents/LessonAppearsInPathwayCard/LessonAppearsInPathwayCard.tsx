@@ -2,10 +2,10 @@ import {
   OakHeading,
   OakHeadingTag,
   OakSpan,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
 
@@ -36,9 +36,13 @@ export function LessonAppearsInPathwayCard(
   } = props;
 
   return (
-    <Flex $flexDirection={["column"]} $background="white" $borderRadius={4}>
+    <OakFlex
+      $flexDirection={["column"]}
+      $background="white"
+      $borderRadius="border-radius-s"
+    >
       <OakHeading tag={headingTag}>
-        <Flex $flexDirection={["row"]} $pa={16}>
+        <OakFlex $flexDirection={["row"]} $pa="inner-padding-m">
           {examBoardTitle && (
             <TagFunctional
               text={examBoardTitle}
@@ -47,9 +51,9 @@ export function LessonAppearsInPathwayCard(
             />
           )}
           <OakSpan $font="heading-5">{subjectTitle}</OakSpan>
-        </Flex>
+        </OakFlex>
       </OakHeading>
-      <Flex $flexDirection={["row"]} $pa={16} $flexWrap="wrap">
+      <OakFlex $flexDirection={["row"]} $pa="inner-padding-m" $flexWrap="wrap">
         {tiers.map(({ tierTitle, programmeSlug }, i) => {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";
           return (
@@ -68,7 +72,7 @@ export function LessonAppearsInPathwayCard(
             />
           );
         })}
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 }

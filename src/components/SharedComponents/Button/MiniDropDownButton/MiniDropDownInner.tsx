@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
 
 type MiniDropDownInnerProps = {
   label: string;
@@ -18,16 +18,16 @@ const MiniDropDownInner: FC<MiniDropDownInnerProps> = ({
   isExpanded,
 }) => {
   return (
-    <Flex
+    <OakFlex
       $alignItems={"center"}
       $textDecoration={isHovered ? "underline" : "none"}
-      $zIndex={"inFront"}
+      $zIndex={"in-front"}
     >
       <ButtonLabel $color={isExpanded ? "navy120" : "navy"}>
         {label}
       </ButtonLabel>
       <Icon $color={isExpanded ? "navy120" : "navy"} name={icon} />
-    </Flex>
+    </OakFlex>
   );
 };
 

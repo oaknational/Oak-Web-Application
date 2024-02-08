@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import Circle from "@/components/SharedComponents/Circle";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type SearchResultsSubjectIconProps = {
   type: "unit" | "lesson";
@@ -19,16 +19,16 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
       <SubjectIcon $height={40} $width={40} subjectSlug={subjectSlug} />
     </Circle>
   ) : (
-    <Flex
+    <OakFlex
       $alignItems={"center"}
       $justifyContent={"center"}
-      $borderRadius={4}
+      $borderRadius="border-radius-s"
       $background={"lavender50"}
-      $height={56}
-      $width={56}
+      $height="all-spacing-10"
+      $width="all-spacing-10"
     >
       <SubjectIcon $height={40} $width={40} subjectSlug={subjectSlug} />
-    </Flex>
+    </OakFlex>
   );
 };
 

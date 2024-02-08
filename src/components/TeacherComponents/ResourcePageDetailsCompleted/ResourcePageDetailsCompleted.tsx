@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 
@@ -35,21 +34,30 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       $background="grey30"
     >
       <BrushBorders color="grey30" />
-      <Flex $flexDirection="column" $gap={24} $pa={24} $alignItems="flex-start">
-        <Flex $flexDirection="column" $gap={16}>
-          <Flex $flexDirection="column" $gap={4}>
+      <OakFlex
+        $flexDirection="column"
+        $gap="all-spacing-6"
+        $pa="inner-padding-xl"
+        $alignItems="flex-start"
+      >
+        <OakFlex $flexDirection="column" $gap="all-spacing-4">
+          <OakFlex $flexDirection="column" $gap="all-spacing-1">
             <OakHeading tag="h3" $font="heading-7">
               School
             </OakHeading>
             <OakP $font={"body-2"}>{getSchoolName(school)}</OakP>
-          </Flex>
-          <Flex $flexDirection="column" $gap={4} $overflowWrap={"anywhere"}>
+          </OakFlex>
+          <OakFlex
+            $flexDirection="column"
+            $gap="all-spacing-1"
+            $overflow={"anywhere"}
+          >
             <OakHeading tag="h3" $font="heading-7">
               Email
             </OakHeading>
             <OakP $font={"body-2"}>{email ? email : "Not provided"}</OakP>
-          </Flex>
-        </Flex>
+          </OakFlex>
+        </OakFlex>
         <Button
           label="Edit"
           variant="minimal"
@@ -62,7 +70,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
           $mt={8}
           aria-label="Edit details"
         />
-      </Flex>
+      </OakFlex>
     </Box>
   );
 };

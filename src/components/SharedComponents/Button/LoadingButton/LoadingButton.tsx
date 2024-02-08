@@ -1,6 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { Spinner } from "./Spinner";
 
@@ -9,7 +10,6 @@ import { DoubleButtonBorders } from "@/components/SharedComponents/SpriteSheet/B
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
 
@@ -93,7 +93,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
   const disabled = props.isLoading || props.disabled;
   return (
     <>
-      <Flex $gap={8} $justifyContent="center">
+      <OakFlex $gap="all-spacing-2" $justifyContent="center">
         <ButtonLabel $color="white">
           {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
@@ -104,7 +104,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
         ) : (
           <Icon name={props.success ? "tick" : props.icon} $color="white" />
         )}
-      </Flex>
+      </OakFlex>
       <FocusDoubleBorder
         background={disabled ? "grey50" : props.success ? "oakGreen" : "black"}
       />

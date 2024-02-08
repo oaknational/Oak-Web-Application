@@ -6,21 +6,23 @@ import {
   OakLI,
   OakUL,
   OakTypography,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 const CurriculumTab: FC = () => {
   return (
-    <Flex $background={"aqua"} $pv={24}>
+    <OakFlex $background={"aqua"} $pv="inner-padding-xl">
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
+            {/* @todo replace with OakFlex - work out $flex prop */}
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -35,7 +37,7 @@ const CurriculumTab: FC = () => {
               <OakHeading $font={"heading-3"} tag={"h2"}>
                 New curriculum plans
               </OakHeading>
-              <Flex $flexDirection={"column"}>
+              <OakFlex $flexDirection={"column"}>
                 {" "}
                 <OakTypography $font={"body-1"}>
                   Explore our new curriculum plans.
@@ -45,9 +47,13 @@ const CurriculumTab: FC = () => {
                   <OakLI>Primary and secondary sequences</OakLI>
                   <OakLI>Designed by curriculum experts</OakLI>
                 </OakUL>
-              </Flex>
+              </OakFlex>
 
-              <Flex $gap={24} $flexWrap={"wrap"} $pb={24}>
+              <OakFlex
+                $gap="all-spacing-6"
+                $flexWrap={"wrap"}
+                $pb="inner-padding-xl"
+              >
                 <ButtonAsLink
                   label={"View curriculum plans"}
                   variant={"brushNav"}
@@ -56,10 +62,11 @@ const CurriculumTab: FC = () => {
                   $iconPosition={"trailing"}
                   iconBackground="black"
                 />
-              </Flex>
+              </OakFlex>
             </Flex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
+            {/* @todo replace with OakFlex - work out $flex prop */}
             <Flex
               $pv={64}
               $flexDirection={"column"}
@@ -72,7 +79,7 @@ const CurriculumTab: FC = () => {
               $maxWidth={524}
               $pl={20}
             >
-              <Flex $flexDirection={"column"} $gap={10}>
+              <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
                 <Illustration
                   slug={"teacher-whiteboard"}
                   noCrop
@@ -85,7 +92,7 @@ const CurriculumTab: FC = () => {
                 <OakTypography $font={"body-1"} $color={"black"}>
                   50% of teachers feel more confident in curriculum design.
                 </OakTypography>
-              </Flex>
+              </OakFlex>
 
               <Box
                 $position={"absolute"}
@@ -100,7 +107,7 @@ const CurriculumTab: FC = () => {
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

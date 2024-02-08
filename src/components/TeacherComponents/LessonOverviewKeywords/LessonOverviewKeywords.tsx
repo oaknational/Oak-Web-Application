@@ -5,9 +5,8 @@ import {
   OakSpan,
   OakUL,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
 
 export type LessonOverviewKeywordProps = {
   keyword: string;
@@ -20,7 +19,7 @@ export type LessonOverviewKeywordsProps = {
 
 const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
@@ -53,7 +52,7 @@ const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
           );
         })}
       </OakUL>
-    </Flex>
+    </OakFlex>
   );
 };
 
