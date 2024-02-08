@@ -98,5 +98,8 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         },
       );
     });
+    it("should throw error when not provided context params", async () => {
+      await expect(getStaticProps({})).rejects.toThrowError("No keyStageSlug");
+    });
   });
 });
