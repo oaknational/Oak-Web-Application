@@ -1,6 +1,5 @@
 import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
 import { Controller } from "react-hook-form";
-import { debounce } from "lodash";
 import styled from "styled-components";
 import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
@@ -108,80 +107,68 @@ function CurriculumDownloads(
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
     await onHubspotSubmit(data);
-    try {
-      const debouncedFunction = debounce(
-        async () => {
-          setIsAttemptingDownload(true);
-          const email = data?.email;
-          const schoolId = data?.school;
-          const schoolName = data?.schoolName;
-          const terms = data?.terms;
-          const downloads = data?.resources;
+    setIsAttemptingDownload(true);
+    const email = data?.email;
+    const schoolId = data?.school;
+    const terms = data?.terms;
+    const url = data?.resources[0];
 
-          if (email) {
-            setEmailInLocalStorage(email);
-          }
-          if (schoolId) {
-            if (schoolId === "homeschool" || schoolId === "notListed") {
-              setSchoolInLocalStorage({
-                schoolId,
-                schoolName: schoolId,
-              });
-            } else {
-              if (schoolName && schoolId) {
-                setSchoolInLocalStorage({ schoolId, schoolName });
-              }
-            }
-          }
-          if (terms) {
-            setTermsInLocalStorage(terms);
-          }
-          const downloadResourcesLink = downloads[0];
-          if (downloadResourcesLink) {
-            createAndClickHiddenDownloadLink(downloadResourcesLink);
-          }
-          setIsAttemptingDownload(false);
-          setEditDetailsClicked(false);
-        },
-        4000,
-        { leading: true },
-      );
-      await debouncedFunction();
+    const {
+      schoolOption,
+      schoolName,
+      schoolUrn,
+      selectedResourcesForTracking,
+    } = getFormattedDetailsForTracking({
+      school: data.school,
+      selectedResources,
+    });
 
-      if (editDetailsClicked && !data.email) {
-        setEmailInLocalStorage("");
-      }
-
-      const {
-        schoolOption,
-        schoolName,
-        schoolUrn,
-        selectedResourcesForTracking,
-      } = getFormattedDetailsForTracking({
-        school: data.school,
-        selectedResources,
-      });
-
-      const selectedDownload = downloads.filter((download) => {
-        return download.url === selectedResources[0];
-      })[0];
-
-      track.curriculumResourcesDownloaded({
-        category: category,
-        subject: selectedDownload ? selectedDownload.label : "None Specified",
-        resourceType: selectedResourcesForTracking,
-        analyticsUseCase,
-        schoolUrn,
-        schoolName,
-        schoolOption,
-        emailSupplied: data?.email ? true : false,
-      });
-    } catch (error) {
+    if (url == undefined) {
       setIsAttemptingDownload(false);
-      setApiError(
-        "There was an error downloading your files. Please try again.",
-      );
+      return;
     }
+
+    if (email) {
+      setEmailInLocalStorage(email);
+    }
+    if (schoolId) {
+      if (schoolId === "homeschool" || schoolId === "notListed") {
+        setSchoolInLocalStorage({
+          schoolId,
+          schoolName: schoolId,
+        });
+      } else {
+        if (schoolName && schoolId) {
+          setSchoolInLocalStorage({ schoolId, schoolName });
+        }
+      }
+    }
+    if (terms) {
+      setTermsInLocalStorage(terms);
+    }
+    const downloadResourcesLink = downloads[0];
+    if (downloadResourcesLink) {
+      createAndClickHiddenDownloadLink(url);
+    }
+    setIsAttemptingDownload(false);
+    setEditDetailsClicked(false);
+    if (editDetailsClicked && !data.email) {
+      setEmailInLocalStorage("");
+    }
+    const selectedDownload = downloads.filter((download) => {
+      return url === download.url;
+    })[0];
+
+    track.curriculumResourcesDownloaded({
+      category: category,
+      subject: selectedDownload ? selectedDownload.label : "None Specified",
+      resourceType: selectedResourcesForTracking,
+      analyticsUseCase,
+      schoolUrn,
+      schoolName,
+      schoolOption,
+      emailSupplied: data?.email ? true : false,
+    });
   };
 
   const getFormErrorMessages = () => {
