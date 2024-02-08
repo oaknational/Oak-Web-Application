@@ -45,10 +45,10 @@ async function run() {
       PERCY_DEBUG: "*",
     });
 
-    // Logs system usage statistics to the console, run in the background.
-    await exec.exec("sar -u ALL 3 1000 &");
+
     await exec.exec(
-      "npx percy snapshot --verbose percy.snapshot.list.js -c percy.config.js ",
+      //"npx percy snapshot --verbose percy.snapshot.list.js -c percy.config.js ",
+      "npm run percy-with-analysis",
     );
 
     // The script ran to completion, a success state for this action

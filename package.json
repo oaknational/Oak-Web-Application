@@ -49,7 +49,8 @@
     "wdio": "wdio run ./e2e_tests/browser/wdio.conf.local.ts",
     "wdio:ci": "wdio run ./e2e_tests/browser/wdio.conf.ci.ts",
     "use-local-components": "$npm_execpath remove @oaknational/oak-components && yalc add @oaknational/oak-components",
-    "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components"
+    "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components",
+    "percy-with-analysis": "sar -u ALL 3 1000 & percy snapshot --verbose percy.snapshot.list.js -c percy.config.js"
   },
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
