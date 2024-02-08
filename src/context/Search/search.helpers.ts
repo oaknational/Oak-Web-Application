@@ -174,6 +174,7 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
+
   const buttonLinkProps: LessonOverviewLinkProps = {
     page: "lesson-overview",
     lessonSlug: highlightedHit.slug?.toString(),
@@ -233,6 +234,7 @@ export function getUnitObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
+
   const buttonLinkProps: LessonListingLinkProps = {
     page: "lesson-index",
     programmeSlug:
