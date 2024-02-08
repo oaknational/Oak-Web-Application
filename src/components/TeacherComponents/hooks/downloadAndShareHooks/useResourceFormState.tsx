@@ -24,10 +24,8 @@ import {
   preselectedShareType,
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
-import {
-  LessonDownloadsData,
-  LessonShareData,
-} from "@/node-lib/curriculum-api";
+import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }

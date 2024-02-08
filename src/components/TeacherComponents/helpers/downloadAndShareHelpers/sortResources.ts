@@ -2,10 +2,8 @@ import {
   ResourceType,
   Resources,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import {
-  LessonDownloadsData,
-  LessonShareData,
-} from "@/node-lib/curriculum-api";
+import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export const sortDownloadResources = (
   resources: LessonDownloadsData["downloads"],
