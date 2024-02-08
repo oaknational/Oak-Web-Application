@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
@@ -8,11 +9,9 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Flex from "@/components/SharedComponents/Flex/Flex";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
-import Heading from "@/components/SharedComponents/Typography/Heading";
 import Icon from "@/components/SharedComponents/Icon/Icon";
 import Hr from "@/components/SharedComponents/Typography/Hr";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import P from "@/components/SharedComponents/Typography/P";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
   CurriculumDownload,
@@ -135,20 +134,20 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               />
             </Box>
             <Box $ml={32}>
-              <Heading
+              <OakHeading
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
-                $mb={24}
+                $mb={"space-between-m"}
                 data-testid="heading"
               >
                 Previously released curricula
-              </Heading>
+              </OakHeading>
               <Box $maxWidth={720}>
-                <P $font="body-1" data-testid="description">
+                <OakP $font="body-1" data-testid="description">
                   Download our curricula from previous academic years to explore
                   our curriculum sequences, lesson information and the
                   curriculum principles that underpin them.
-                </P>
+                </OakP>
               </Box>
             </Box>
           </Flex>
@@ -187,9 +186,9 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           $ph={28}
           $pt={32}
         >
-          <P $color="grey80" $font="heading-7" $mb={20}>
+          <OakP $color="grey70" $font="heading-7" $mb={"space-between-m"}>
             Select a category:
-          </P>
+          </OakP>
           <TabularNav
             $font={"heading-6"}
             $maxWidth={1280}
