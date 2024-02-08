@@ -26,7 +26,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
     subjectTitle,
     track,
     analyticsUseCase,
-    isLegacyLesson,
+    isShareable,
     onClickShareAll,
     ...boxProps
   } = props;
@@ -59,16 +59,16 @@ export const LessonOverviewHeaderShareAllButton: FC<
         {...linkProps}
         data-testid={"share-all-button"}
         variant="brush"
-        iconBackground={isLegacyLesson ? "black" : "grey60"}
+        iconBackground={isShareable ? "black" : "grey60"}
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
         label={`Share activities with pupils`}
-        disabled={!isLegacyLesson}
+        disabled={!isShareable}
         onClick={onClickShareAll}
       />
       <OakFlex $mt={["space-between-xs", "space-between-none"]}>
-        {!isLegacyLesson && (
+        {!isShareable && (
           <OakSpan $color={"grey50"} $font={"body-3"}>
             Share function coming soon...
           </OakSpan>

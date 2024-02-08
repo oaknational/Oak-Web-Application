@@ -25,7 +25,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     tierTitle,
     examBoardTitle,
     lessonTitle,
-    isLegacyLesson,
+    isNew,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
   } = props;
@@ -43,7 +43,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               $maxWidth={140}
               $ma={"auto"}
               color={subjectIconBackgroundColor}
-              isLegacyLesson={isLegacyLesson}
+              isNew={isNew}
             />
           </Flex>
         </OakGridArea>

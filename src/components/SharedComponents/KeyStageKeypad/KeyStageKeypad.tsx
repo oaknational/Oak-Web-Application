@@ -63,6 +63,10 @@ const KeypadLink: FC<KeypadItem> = (props) => {
  * Used on teachers home page and menu.
  */
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
+  const ksButtonSpan = keyStages.length > 4 ? 2 : 3;
+  keyStages.sort((a, b) =>
+    a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
+  );
   return (
     <nav aria-label="key stages and year groups">
       <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
@@ -75,7 +79,10 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
         $maxWidth={"all-spacing-22"}
       >
         {keyStages.map((keyStage) => (
-          <OakGridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
+          <OakGridArea
+            $colSpan={[ksButtonSpan]}
+            key={`key-stage:${keyStage.title}`}
+          >
             <KeypadLink {...keyStage} />
           </OakGridArea>
         ))}

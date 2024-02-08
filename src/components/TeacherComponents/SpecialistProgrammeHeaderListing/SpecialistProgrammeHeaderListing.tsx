@@ -58,7 +58,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
                 containerMinWidth={[40, 60]}
                 subjectSlug={subjectSlug}
                 $ma={"auto"}
-                isLegacyLesson={true}
+                isNew={false}
                 color={subjectIconBackgroundColor}
               />
             </OakFlex>

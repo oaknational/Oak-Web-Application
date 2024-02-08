@@ -24,7 +24,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     tierTitle,
     lessonTitle,
     pupilLessonOutcome,
-    isLegacyLesson,
+    isNew,
     subjectIconBackgroundColor,
   } = props;
 
@@ -37,7 +37,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
             height={20}
             width={20}
             $ma={"auto"}
-            isLegacyLesson={isLegacyLesson}
+            isNew={isNew}
             color={subjectIconBackgroundColor}
           />
         </Box>
