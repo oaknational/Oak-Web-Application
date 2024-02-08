@@ -35,6 +35,7 @@ export async function fetchResults(query: SearchQuery) {
             lessonSlug?: string;
             unitTitle?: string;
             unitSlug?: string;
+            cohort?: string;
           };
         }) => {
           const source = hit._source;
@@ -42,10 +43,9 @@ export async function fetchResults(query: SearchQuery) {
             source.type === "lesson" ? source.lessonTitle : source.unitTitle;
           const slug =
             source.type === "lesson" ? source.lessonSlug : source.unitSlug;
-
           return {
             ...hit,
-            legacy: false,
+
             _source: {
               ...source,
               title,

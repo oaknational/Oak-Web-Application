@@ -132,8 +132,8 @@ describe("useSearch()", () => {
         _id: "5KnzTocBd235CCw7oqe1",
         _index: "lessons_production",
         _score: 121.737686,
-        legacy: true,
         _source: {
+          cohort: "2020-2023",
           expired: false,
           has_copyright_material: false,
           id: 211319,
