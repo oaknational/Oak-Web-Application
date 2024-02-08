@@ -1,9 +1,13 @@
 import { FC } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export const LandingPageSignupPrompt: FC<{
@@ -13,28 +17,32 @@ export const LandingPageSignupPrompt: FC<{
 }> = ({ title, bodyPortableText, form }) => {
   return (
     <>
-      <Grid $mb={[120, 92]} $cg={[8]}>
-        <GridArea
+      <OakGrid $mb={["space-between-xxxl"]} $cg={["all-spacing-2"]}>
+        <OakGridArea
           $colSpan={[12, 5]}
           $colStart={[1, 2]}
           $width={"100%"}
           $alignItems={"flex-start"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={[16, 0]}
-          $mb={[56, 0]}
+          $ph={["inner-padding-m", "inner-padding-none"]}
+          $mb={["space-between-xl", "space-between-none"]}
         >
-          <Heading $font={["heading-4", "heading-5"]} tag={"h4"} $mb={[32]}>
+          <OakHeading
+            $font={["heading-4", "heading-5"]}
+            tag={"h4"}
+            $mb={["space-between-m2"]}
+          >
             {title}
-          </Heading>
-          <Typography $font={["body-2", "body-1"]}>
+          </OakHeading>
+          <OakTypography $font={["body-2", "body-1"]}>
             <PortableTextWithDefaults value={bodyPortableText} />
-          </Typography>
-        </GridArea>
-        <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
+          </OakTypography>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
           <LandingPageSignUpForm formTitle={form.title} />
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </>
   );
 };

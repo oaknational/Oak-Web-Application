@@ -1,4 +1,12 @@
 import { FC } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakLI,
+  OakP,
+  OakUL,
+} from "@oaknational/oak-components";
 
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -7,8 +15,6 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import { Heading, UL, LI, P } from "@/components/SharedComponents/Typography";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -45,7 +51,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
         });
       }}
     >
-      <P $font={"heading-7"}>{shortCode}</P>
+      <OakP $font={"heading-7"}>{shortCode}</OakP>
       <BrushBorders color={backgroundColour} />
     </OwaLink>
   );
@@ -59,34 +65,48 @@ const KeypadLink: FC<KeypadItem> = (props) => {
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <P $color={"black"} $mb={16} $font={"heading-7"}>
+      <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
         Select key stage
-      </P>
-      <Grid $mb={years ? 48 : 24} $ph={8} $gap={24} $maxWidth={580}>
+      </OakP>
+      <OakGrid
+        $mb={years ? "space-between-l" : "space-between-m"}
+        $ph={"inner-padding-xs"}
+        $cg={"all-spacing-6"}
+        $maxWidth={"all-spacing-22"}
+      >
         {keyStages.map((keyStage) => (
-          <GridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
+          <OakGridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
             <KeypadLink {...keyStage} />
-          </GridArea>
+          </OakGridArea>
         ))}
-      </Grid>
+      </OakGrid>
 
       {years && (
         <>
-          <Heading
+          <OakHeading
             $color={"grey60"}
-            $mb={20}
+            $mb={"space-between-m"}
             tag="h3"
             $font={"heading-light-7"}
           >
             Year
-          </Heading>
-          <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8}>
+          </OakHeading>
+          <OakUL
+            $reset
+            $display={"flex"}
+            $mb={years ? "space-between-l" : "space-between-m"}
+            $ph="inner-padding-xs"
+          >
             {years.map((years) => (
-              <LI $width={"100%"} key={`year:${years.title}`} $mr={24}>
+              <OakLI
+                $width={"100%"}
+                key={`year:${years.title}`}
+                $mr={"space-between-m"}
+              >
                 <KeypadLink key={`year:${years.title}`} {...years} />
-              </LI>
+              </OakLI>
             ))}
-          </UL>
+          </OakUL>
         </>
       )}
     </nav>

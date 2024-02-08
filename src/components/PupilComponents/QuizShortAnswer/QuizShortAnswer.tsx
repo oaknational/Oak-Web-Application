@@ -2,7 +2,7 @@ import {
   OakFlex,
   OakLabel,
   OakQuizTextInput,
-} from "@oak-academy/oak-components";
+} from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
@@ -54,6 +54,7 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
         name={`short-answer-${questionUid}`}
         onChange={handleOnChange}
         feedback={feedback}
+        wrapperWidth={["100%", "all-spacing-22"]}
       />
     </OakFlex>
   );

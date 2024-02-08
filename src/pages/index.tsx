@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
+import { OakTypography, OakHeading } from "@oaknational/oak-components";
 
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
@@ -142,16 +142,20 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             $mb={48}
             $flexDirection={["column", "row"]}
           >
-            <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
+            <OakHeading
+              $mb={["space-between-m", "space-between-none"]}
+              tag={"h2"}
+              $font={"heading-5"}
+            >
               Stay up to date
-            </Heading>
+            </OakHeading>
             <Flex $flexDirection={"row"}>
-              <Typography $mr={16} $font="heading-7">
+              <OakTypography $mr="space-between-s" $font="heading-7">
                 <OwaLink page={"webinar-index"}>All webinars</OwaLink>
-              </Typography>
-              <Typography $font="heading-7">
+              </OakTypography>
+              <OakTypography $font="heading-7">
                 <OwaLink page={"blog-index"}>All blogs</OwaLink>
-              </Typography>
+              </OakTypography>
             </Flex>
           </Flex>
           <PostList showImageOnTablet={true} {...blogListProps} />

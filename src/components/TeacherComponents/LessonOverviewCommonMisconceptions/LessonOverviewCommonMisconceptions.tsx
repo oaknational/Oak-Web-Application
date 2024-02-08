@@ -1,6 +1,6 @@
 import React from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type LessonOverviewCommonMisconceptionsAndResponses = {
@@ -29,17 +29,22 @@ const LessonOverviewCommonMisconceptions = ({
       $position={"relative"}
       $justifyContent={"center"}
     >
-      <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
-        Common misconceptions
-      </Heading>
+      <OakHeading
+        $font={"heading-5"}
+        $mb="space-between-m"
+        data-testid={"heading"}
+        tag="h3"
+      >
+        Common misconception
+      </OakHeading>
       {commonMisconceptions?.map(
         (commonMisconception: LessonOverviewCommonMisconception, i: number) => {
           return (
             <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
-              <P $mb={24} $font={"body-1-bold"}>
+              <OakP $mb="space-between-m" $font={"body-1-bold"}>
                 {commonMisconception.misconception}
-              </P>
-              <P $font={"body-1"}>{commonMisconception.response}</P>
+              </OakP>
+              <OakP $font={"body-1"}>{commonMisconception.response}</OakP>
             </Flex>
           );
         },

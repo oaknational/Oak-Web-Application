@@ -1,10 +1,9 @@
 import { VisuallyHidden } from "react-aria";
+import { OakP, OakSpan } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMatchAnswers = ({
@@ -15,7 +14,13 @@ export const QuizQuestionsMatchAnswers = ({
   questionNumber: number;
 }) => {
   return (
-    <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"} role="list">
+    <Flex
+      $flexDirection={"column"}
+      $gap={4}
+      $alignItems={"start"}
+      role="list"
+      $width={"100%"}
+    >
       {answers.map((item, i) => {
         const match_option = item.match_option[0];
         const correct_choice = item.correct_choice[0];
@@ -23,35 +28,33 @@ export const QuizQuestionsMatchAnswers = ({
           match_option &&
           correct_choice && (
             <Flex
+              $ph={8}
+              $borderRadius={8}
+              role="listitem"
               key={`q-${questionNumber}-answer${i}`}
               $background={"lemon50"}
-              $borderRadius={8}
-              $ph={8}
-              $alignItems={"center"}
-              $gap={8}
-              role="listitem"
             >
               <VisuallyHidden>
                 Correct Answer:
                 {removeMarkdown(match_option.text)},
                 {removeMarkdown(correct_choice.text)}
               </VisuallyHidden>
-
-              <Box $minWidth={32} aria-hidden>
-                <Icon name={"tick"} />
-              </Box>
-
-              <Typography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
-                {removeMarkdown(match_option.text)}
-              </Typography>
-
-              <Flex $gap={6}>
-                <Typography $font={["body-2", "body-1"]} aria-hidden>
-                  -
-                </Typography>
-                <Typography $font={["body-2", "body-1"]} aria-hidden>
+              <Icon $mr={8} name={"tick"} />
+              <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
+                <OakP
+                  $whiteSpace={"nowrap"}
+                  $font={["body-2-bold", "body-1-bold"]}
+                  aria-hidden
+                >
+                  {removeMarkdown(match_option.text)}
+                  <OakSpan>{" -"}&nbsp;</OakSpan>
+                </OakP>
+                <OakP
+                  $whiteSpace={["break-spaces", "nowrap"]}
+                  $font={["body-2", "body-1"]}
+                >
                   {removeMarkdown(correct_choice.text)}
-                </Typography>
+                </OakP>
               </Flex>
             </Flex>
           )

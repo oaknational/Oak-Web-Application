@@ -1,10 +1,10 @@
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCardDouble";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import { Heading } from "@/components/SharedComponents/Typography";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex";
 
@@ -14,9 +14,14 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
-        <Heading $font={"heading-3"} tag={"h1"} $mt={[32, 40]} $mb={40}>
+        <OakHeading
+          $font={"heading-3"}
+          tag={"h1"}
+          $mt={["space-between-m2", "space-between-l"]}
+          $mb="space-between-l"
+        >
           {`${keyStageTitle} subjects`}
-        </Heading>
+        </OakHeading>
         <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"} $mb={72}>
           {subjects.map((subject, i) => {
             return (

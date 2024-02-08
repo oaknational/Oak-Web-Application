@@ -1,12 +1,17 @@
 import { FC } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * This is a header for the specialist listing pages (programme).
@@ -37,11 +42,11 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <Grid>
-        <GridArea $colSpan={[12, 6]}>
-          <Span $mb={16} $color={"grey60"} $font={"heading-7"}>
+      <OakGrid>
+        <OakGridArea $colSpan={[12, 6]}>
+          <OakSpan $mb="space-between-s" $color={"grey60"} $font={"heading-7"}>
             {title}
-          </Span>
+          </OakSpan>
           <Flex $flexDirection={["column", "row", "row"]}>
             <Flex $gap={[16, 0]} $maxWidth={60} $mr={16}>
               <SubjectIconBrushBorders
@@ -54,14 +59,14 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               />
             </Flex>
             <Flex $flexDirection={"column"}>
-              <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
+              <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
-              </Heading>
+              </OakHeading>
             </Flex>
           </Flex>
-          <P $mb={16} $mt={16} $font={"body-1"}>
+          <OakP $mb="space-between-s" $mt="space-between-s" $font={"body-1"}>
             {description}
-          </P>
+          </OakP>
           {/* Commented out until - I want to be able to download specialist curriculum maps LESQ-586 */}
           {/* {hasCurriculumDownload && (
             <HeaderListingCurriculumDownloadButton
@@ -71,8 +76,8 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               subjectTitle={subjectTitle}
             />
           )} */}
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </LessonHeaderWrapper>
   );
 };

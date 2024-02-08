@@ -1,16 +1,20 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
-import { OakFlex } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
@@ -32,7 +36,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo } = pageData;
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
           image={{
@@ -42,21 +49,28 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           }}
           bodyPortableText={pageData.introPortableText}
         />
-        <Grid $mb={[72, 92]} $cg={28} $rg={[0, 40]}>
+        <OakGrid
+          $mb={["space-between-xxl", "space-between-xxxl"]}
+          $cg={"space-between-m"}
+          $rg={["space-between-none", "space-between-m2"]}
+        >
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
-              <GridArea $colSpan={[12, 6]}>
+              <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
-                  <Heading
+                  <OakHeading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
-                    $mb={24}
+                    $mb={"space-between-m"}
                   >
                     {card.title}
-                  </Heading>
-                  <Typography $mb={32} $font={["body-2", "body-1"]}>
+                  </OakHeading>
+                  <OakTypography
+                    $mb={"space-between-m2"}
+                    $font={["body-2", "body-1"]}
+                  >
                     <PortableTextWithDefaults value={card.bodyPortableText} />
-                  </Typography>
+                  </OakTypography>
                   {card.cta?.linkType == "external" && (
                     <OakFlex>
                       <ButtonAsLink
@@ -74,13 +88,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   )}
                   <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>
-              </GridArea>
+              </OakGridArea>
             </Fragment>
           ))}
-        </Grid>
+        </OakGrid>
 
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

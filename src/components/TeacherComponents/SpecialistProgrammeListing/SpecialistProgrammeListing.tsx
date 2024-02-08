@@ -1,14 +1,12 @@
 import React, { FC } from "react";
+import { OakGridArea, OakHeading } from "@oaknational/oak-components";
 
-import ProgrammeListContainer from "../ProgrammeListContainer";
-import SpecialistProgrammeListItem from "../SpecialistProgrammeListItem";
-
-import { Heading } from "@/components/SharedComponents/Typography";
+import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
+import SpecialistProgrammeListItem from "@/components/TeacherComponents/SpecialistProgrammeListItem";
 import {
   SpecialistProgramme,
   SpecialistProgrammes,
 } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
-import { GridArea } from "@/components/SharedComponents/Grid";
 
 const SpecialistProgrammeListing: FC<{
   onClick: (props: SpecialistProgramme) => void;
@@ -22,13 +20,13 @@ const SpecialistProgrammeListing: FC<{
       $background="aqua"
       $colSpan={[12, 6, programmeColSpan]}
     >
-      <Heading tag="h2" $font="heading-5" $mb={30}>
+      <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
         Developmental stages
-      </Heading>
+      </OakHeading>
       {programmes.map((programme) => {
         return (
-          <GridArea
-            $mb={16}
+          <OakGridArea
+            $mb={"space-between-s"}
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
@@ -36,7 +34,7 @@ const SpecialistProgrammeListing: FC<{
               programme={programme}
               onClick={onClick}
             />
-          </GridArea>
+          </OakGridArea>
         );
       })}
     </ProgrammeListContainer>

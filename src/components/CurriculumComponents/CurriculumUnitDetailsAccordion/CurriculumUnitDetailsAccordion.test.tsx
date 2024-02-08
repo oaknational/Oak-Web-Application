@@ -1,17 +1,17 @@
 import userEvent from "@testing-library/user-event";
+import { OakP } from "@oaknational/oak-components";
 
 import CurriculumUnitDetailsAccordion from "./CurriculumUnitDetailsAccordion";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";
-import { P } from "@/components/SharedComponents/Typography";
 
 describe("CurriculumUnitDetailsAccordion", () => {
   test("component renders with correct title", () => {
     const { getByText } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card>
-          <P>Test child</P>
+          <OakP>Test child</OakP>
         </Card>
       </CurriculumUnitDetailsAccordion>,
     );
@@ -23,7 +23,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
-          <P>Test child</P>
+          <OakP>Test child</OakP>
         </Card>
       </CurriculumUnitDetailsAccordion>,
     );
@@ -35,7 +35,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
-          <P>Test child</P>
+          <OakP>Test child</OakP>
         </Card>
       </CurriculumUnitDetailsAccordion>,
     );
@@ -51,7 +51,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     const { getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid={"test-child"}>
-          <P>Test child</P>
+          <OakP>Test child</OakP>
         </Card>
       </CurriculumUnitDetailsAccordion>,
     );
@@ -69,7 +69,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
     const { getByText, getByTestId } = renderWithTheme(
       <CurriculumUnitDetailsAccordion title={"Lessons in unit"}>
         <Card data-testid="test-child">
-          <P>Test child</P>
+          <OakP>Test child</OakP>
         </Card>
       </CurriculumUnitDetailsAccordion>,
     );

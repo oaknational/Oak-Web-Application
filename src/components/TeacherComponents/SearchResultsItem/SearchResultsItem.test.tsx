@@ -8,6 +8,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
 import { searchResultsHitSchema } from "@/context/Search/search.schema";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const searchResultClicked = jest.fn();
 
@@ -18,7 +19,10 @@ const hitLesson = searchResultsHitSchema.parse(
 const hitUnit = searchResultsHitSchema.parse(
   elasticResponseFixture.hits.hits[3],
 );
-const legacyHit = { ...hitLesson, legacy: true };
+const legacyHit = {
+  ...hitLesson,
+  _source: { ...hitLesson._source, cohort: LEGACY_COHORT },
+};
 
 const hitObjectLesson = getSearchHitObject(hitLesson, allKeyStages);
 const hitObjectUnit = getSearchHitObject(hitUnit, allKeyStages);
@@ -189,7 +193,7 @@ describe("SearchResultsItem", () => {
           programmeSlug: "drama-primary-ks2",
           unitSlug: "dipping-into-shakespeare-da5e",
         },
-        legacy: undefined,
+        cohort: "2023-2024",
       });
     } else {
       throw new Error("hitObjectLesson is undefined");

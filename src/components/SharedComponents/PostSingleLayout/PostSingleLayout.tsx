@@ -1,4 +1,5 @@
 import { FC, ReactNode, useId } from "react";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -7,10 +8,9 @@ import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
@@ -37,8 +37,8 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   return (
     <>
       <MaxWidth>
-        <Grid $ph={[12, 0]}>
-          <GridArea $colSpan={[12, 0]}>
+        <OakGrid $ph={["inner-padding-s", "inner-padding-none"]}>
+          <OakGridArea $colSpan={[12, 0]}>
             <MobileFilters page={page} withBackButton label={"Categories"}>
               <PostCategoryList
                 labelledBy={triggerId}
@@ -48,17 +48,17 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
                 page={page}
               />
             </MobileFilters>
-          </GridArea>
-          <GridArea
+          </OakGridArea>
+          <OakGridArea
             $colSpan={[0, 12]}
             $display={["none", "flex"]}
             $flexDirection="column"
-            $mv={20}
-            $gap={20}
+            $mv={"space-between-s"}
+            $gap={"space-between-m"}
           >
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <Svg name="header-underline" $color="grey40" $height={4} />
-          </GridArea>
+          </OakGridArea>
           <GridArea
             $order={[0, 2]}
             $colSpan={[12, 3]}
@@ -67,13 +67,13 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             $position={[null, "sticky"]}
             $top={[null, HEADER_HEIGHT]}
           >
-            <Heading
+            <OakHeading
               tag="h3"
               $font="body-3"
               id={postCategoriesListProps.labelId}
             >
               Categories
-            </Heading>
+            </OakHeading>
             <PostCategoryList
               labelledBy={postCategoriesListProps.labelId}
               $mt={24}
@@ -81,12 +81,16 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
               page={page}
             />
           </GridArea>
-          <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
-          <GridArea $order={[1, 0]} $colSpan={[12, 7]} $mt={[40, 12]}>
+          <OakGridArea $order={[0, 1]} $colSpan={[12, 2]} />
+          <OakGridArea
+            $order={[1, 0]}
+            $colSpan={[12, 7]}
+            $mt={["space-between-l", "space-between-xs"]}
+          >
             <BlogHeader post={post} page={page} />
             {children}
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </>
   );

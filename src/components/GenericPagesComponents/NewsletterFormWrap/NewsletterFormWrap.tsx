@@ -1,14 +1,13 @@
 import { FC, useId } from "react";
+import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import NewsletterForm, {
   NewsletterFormProps,
 } from "@/components/GenericPagesComponents/NewsletterForm";
-import { P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * Newsletter Form wrapper adds copy around around NewsletterForm.
@@ -37,14 +36,17 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       {...containerProps}
     >
       <AnchorTarget id={anchorTargetId} />
-      <Grid>
-        <GridArea $colSpan={[12, desktopColSpan]}>
+      <OakGrid>
+        <OakGridArea $colSpan={[12, desktopColSpan]}>
           <CardTitle tag="h2" icon="magic-carpet" iconSize={56}>
             Don’t miss out
           </CardTitle>
-          <P
-            $mr={[0, desktopColSpan === 6 ? 24 : 0]}
-            $mb={24}
+          <OakP
+            $mr={[
+              "space-between-none",
+              desktopColSpan === 6 ? "space-between-m" : "space-between-none",
+            ]}
+            $mb="space-between-m"
             color={"black"}
             id={descriptionId}
           >
@@ -54,12 +56,12 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
               privacy policy
             </OwaLink>
             .
-          </P>
-        </GridArea>
-        <GridArea $colSpan={[12, desktopColSpan]} $mt={12}>
+          </OakP>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"space-between-xs"}>
           <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
-        </GridArea>
-      </Grid>
+        </OakGridArea>
+      </OakGrid>
     </Card>
   );
 };

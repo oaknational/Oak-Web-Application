@@ -32,6 +32,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allSubjects,
     allContentTypes,
     allExamBoards,
+    legacy: "filterOutAll",
   });
   const { results } = searchProps;
 

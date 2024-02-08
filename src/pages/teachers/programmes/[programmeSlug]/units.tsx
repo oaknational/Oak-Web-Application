@@ -7,6 +7,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -20,11 +21,9 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import { Heading } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -165,8 +164,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
-        <Grid>
-          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
+        <OakGrid>
+          <OakGridArea
+            $order={[0, 2]}
+            $colSpan={[12, 4, 3]}
+            $pl={["inner-padding-xl"]}
+          >
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -176,15 +179,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             >
               {learningThemes?.length > 1 && (
                 <Flex $flexDirection={"column"}>
-                  <Heading
+                  <OakHeading
                     id={learningThemesId}
                     tag="h3"
                     $font="body-3"
-                    $mb={16}
+                    $mb="space-between-s"
                   >
                     {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
                     Filter by thread
-                  </Heading>
+                  </OakHeading>
                   <UnitsLearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
@@ -203,9 +206,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 </Flex>
               )}
             </Box>
-          </GridArea>
+          </OakGridArea>
 
-          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={32}>
+          <OakGridArea
+            $order={[1, 0]}
+            $colSpan={[12, 8, 9]}
+            $mt={"space-between-m2"}
+          >
             <Flex $flexDirection={["column-reverse", "column"]}>
               <Flex
                 $flexDirection={"row"}
@@ -216,9 +223,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 {tiers.length === 0 && (
                   <Flex $minWidth={120} $mb={16} $position={"relative"}>
-                    <Heading $font={"heading-5"} tag={"h2"}>
+                    <OakHeading $font={"heading-5"} tag={"h2"}>
                       {`Units (${unitsFilteredByLearningTheme.length})`}
-                    </Heading>
+                    </OakHeading>
                   </Flex>
                 )}
 
@@ -276,8 +283,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               paginationProps={paginationProps}
               onClick={trackUnitSelected}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </AppLayout>
   );
@@ -318,6 +325,7 @@ export const getStaticProps: GetStaticProps<
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
+            isLegacy: false,
           });
 
       if (!curriculumData) {

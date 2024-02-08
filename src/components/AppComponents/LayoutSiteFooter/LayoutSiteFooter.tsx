@@ -1,19 +1,21 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+  OakLI,
+  OakP,
+} from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";
-import Typography, {
-  Heading,
-  LI,
-  P,
-} from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -68,10 +70,9 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={showConsentManager}
+        labelColor={"black"}
         $hoverStyles={["underline-link-text"]}
-      >
-        {props.text}
-      </Button>
+      />
     );
   }
 
@@ -145,18 +146,23 @@ export type FooterSection = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <Flex $flexDirection="column" $mt={[32, 0]}>
-      <Heading $mb={8} $font="heading-7" $color="black" tag="h2">
+      <OakHeading
+        $mb="space-between-ssx"
+        $font="heading-7"
+        $color="black"
+        tag="h2"
+      >
         {title}
-      </Heading>
-      <Typography $color={"black"} $font={"body-2"}>
+      </OakHeading>
+      <OakTypography $color={"black"} $font={"body-2"}>
         <ul role="list">
           {links.map((link) => (
-            <LI key={link.text} $mt={12}>
+            <OakLI key={link.text} $mt="space-between-xs">
               <FooterLink {...link} />
-            </LI>
+            </OakLI>
           ))}
         </ul>
-      </Typography>
+      </OakTypography>
     </Flex>
   );
 };
@@ -201,19 +207,19 @@ const LayoutSiteFooter: FC = () => {
               <LayoutSiteFooterSignpost />
             </Flex>
           )}
-          <Grid>
-            <GridArea $colSpan={[12, 3]}>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <Box $mt={[0, 32]} />
               <FooterSectionLinks {...sections.teachers} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.oak} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.legal} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <Flex $justifyContent={["left", "right"]} $mt={[32, 0]}>
                 <Box $display={["none", "block"]}>
                   <Logo variant="with text" height={66} width={150} />
@@ -224,8 +230,8 @@ const LayoutSiteFooter: FC = () => {
                   {...OAK_SOCIALS}
                 />
               </Flex>
-            </GridArea>
-          </Grid>
+            </OakGridArea>
+          </OakGrid>
           <Flex
             $mb={56}
             $mt={[32, 64]}
@@ -244,12 +250,12 @@ const LayoutSiteFooter: FC = () => {
               <Logo variant="with text" height={66} width={150} />
             </Box>
             <Flex $mt={[32, 0]} $flexDirection={"column"}>
-              <P $font={"body-3-bold"}>
+              <OakP $font={"body-3-bold"}>
                 © Oak National Academy Limited, No 14174888
-              </P>
-              <P $font={["body-4"]}>
+              </OakP>
+              <OakP $font={["body-4"]}>
                 1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
-              </P>
+              </OakP>
             </Flex>
           </Flex>
         </MaxWidth>

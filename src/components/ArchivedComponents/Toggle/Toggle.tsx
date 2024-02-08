@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { OakP } from "@oaknational/oak-components";
 
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import { OakColorName } from "@/styles/theme/types";
-import P from "@/components/SharedComponents/Typography/P";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type ToggleStyleConfig = {
@@ -75,7 +75,7 @@ const ToggleSwitch = styled.div`
   }
 `;
 
-const LabelText = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
+const LabelText = styled(OakP)<Pick<ToggleProps, "checked" | "disabled">>`
   color: ${(props) =>
     props.checked &&
     getColorByLocation(({ theme }) => theme.toggle.on.labelColor)};
@@ -107,7 +107,12 @@ const Toggle: FC<ToggleProps> = ({
   return (
     <label>
       <Flex $justifyContent={"center"}>
-        <LabelText checked={!checked} disabled={disabled} $mt={4} $mr={8}>
+        <LabelText
+          checked={!checked}
+          disabled={disabled}
+          $mt="space-between-sssx"
+          $mr="space-between-ssx"
+        >
           {labelOff}
         </LabelText>
 
@@ -122,7 +127,12 @@ const Toggle: FC<ToggleProps> = ({
           <SwitchSlider disabled={disabled} />
         </ToggleSwitch>
 
-        <LabelText checked={checked} disabled={disabled} $mt={4} $ml={8}>
+        <LabelText
+          checked={checked}
+          disabled={disabled}
+          $mt="space-between-sssx"
+          $mr="space-between-ssx"
+        >
           {labelOn}
         </LabelText>
       </Flex>

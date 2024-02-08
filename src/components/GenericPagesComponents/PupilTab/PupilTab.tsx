@@ -1,19 +1,23 @@
 import { FC } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Svg from "@/components/SharedComponents/Svg";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 
 const PupilTab: FC = () => {
   return (
     <Flex $background={"lemon"} $pv={24} $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
-        <Grid $cg={16}>
-          <GridArea $colSpan={[12, 6]}>
+        <OakGrid $cg={"all-spacing-4"}>
+          <OakGridArea $colSpan={[12, 6]}>
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -22,16 +26,16 @@ const PupilTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Pupils
-              </Heading>
-              <Heading $font={"heading-3"} tag={"h2"}>
+              </OakHeading>
+              <OakHeading $font={"heading-3"} tag={"h2"}>
                 Learn online
-              </Heading>
+              </OakHeading>
 
-              <Typography $font={"body-1"}>
+              <OakTypography $font={"body-1"}>
                 Use our online lessons and quizzes to learn and revise.
-              </Typography>
+              </OakTypography>
 
               <ButtonAsLink
                 label={"Learn with Oak"}
@@ -44,8 +48,8 @@ const PupilTab: FC = () => {
                 $mb={24}
               />
             </Flex>
-          </GridArea>
-          <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"pupils-with-worksheet"}>
               <Svg
                 $position={"absolute"}
@@ -56,8 +60,8 @@ const PupilTab: FC = () => {
                 $transform={"scale(1.5)"}
               />
             </ImageContainer>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </Flex>
   );

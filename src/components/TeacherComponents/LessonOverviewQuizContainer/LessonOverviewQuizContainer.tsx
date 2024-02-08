@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import QuizQuestionsList from "@/components/TeacherComponents/QuizQuestionsList";
-import { Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/SharedComponents/Flex";
@@ -28,8 +28,8 @@ const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
         <Box $mt={24}>
           {props.imageAttribution.map(({ attribution, questionNumber }) => (
             <>
-              <Span $font={"body-3-bold"}>{`${questionNumber} `}</Span>
-              <Span $font={"body-3"}>{`${attribution} `}</Span>
+              <OakSpan $font={"body-3-bold"}>{`${questionNumber} `}</OakSpan>
+              <OakSpan $font={"body-3"}>{`${attribution} `}</OakSpan>
             </>
           ))}
         </Box>

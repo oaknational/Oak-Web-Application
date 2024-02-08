@@ -5,7 +5,7 @@ import subjectListingSchema from "./subjectListing.schema";
 import OakError from "@/errors/OakError";
 
 const subjectListingQuery =
-  (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
+  (sdk: Sdk) => async (args: { keyStageSlug: string; isLegacy: boolean }) => {
     const res = await sdk.subjectListing(args);
     const [keyStageSubjects] = res.keyStageSubjects;
 

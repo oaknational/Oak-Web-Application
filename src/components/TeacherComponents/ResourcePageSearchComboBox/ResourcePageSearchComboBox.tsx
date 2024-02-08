@@ -5,6 +5,7 @@ import {
 } from "@react-stately/combobox";
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
+import { OakSpan } from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
@@ -15,7 +16,6 @@ import {
 import { DropdownFocusUnderline } from "@/components/GenericPagesComponents/Select/Select";
 import { School } from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import { OakColorName } from "@/styles/theme/types";
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -79,9 +79,10 @@ const ResourcePageSearchComboBox = <T extends School>(
             background={labelBackground}
           >
             {required ? (
-              <Span>
-                {props.label} <Span $font={"heading-light-7"}>(required)</Span>
-              </Span>
+              <OakSpan>
+                {props.label}{" "}
+                <OakSpan $font={"heading-light-7"}>(required)</OakSpan>
+              </OakSpan>
             ) : (
               props.label
             )}

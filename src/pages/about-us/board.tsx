@@ -1,18 +1,19 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { OakFlex } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakHeading,
+  OakP,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import Typography, {
-  Heading,
-  Hr,
-  P,
-} from "@/components/SharedComponents/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
@@ -21,8 +22,8 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -41,7 +42,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
           image={{
@@ -53,14 +57,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         />
         {boardMembers && (
           <>
-            <Heading
-              $mb={[40, 32]}
+            <OakHeading
+              $mb={["space-between-l", "space-between-m2"]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
               $textAlign={["center"]}
             >
               {boardHeader}
-            </Heading>
+            </OakHeading>
             <BioCardList
               $mb={[80, 60]}
               $ph={[16, 0]}
@@ -69,16 +73,20 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             />
           </>
         )}
-        <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
+        <OakHeading
+          $font={"heading-5"}
+          tag={"h2"}
+          $textAlign={["center", "left"]}
+        >
           Documents
-        </Heading>
+        </OakHeading>
         <OakFlex
           $mh={["space-between-s", "space-between-none"]}
           $flexDirection={"column"}
         >
-          <Typography $width={"100%"}>
+          <OakTypography $width={"100%"}>
             <Hr $color={"aqua"} $mv={32} />
-          </Typography>
+          </OakTypography>
 
           <GridList $rg={[16]} $cg={[12, 20]}>
             {documents.map((doc) => {
@@ -94,14 +102,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       $flexDirection={"column"}
                       $height={"100%"}
                     >
-                      <Heading $font={"heading-7"} tag={"h3"}>
+                      <OakHeading $font={"heading-7"} tag={"h3"}>
                         {doc.title}
-                      </Heading>
+                      </OakHeading>
                       <OakFlex
                         $alignItems={"center"}
                         $justifyContent={"space-between"}
                       >
-                        <P>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
+                        <OakP>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</OakP>
                         <IconButtonAsLink
                           icon={"download"}
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
@@ -116,9 +124,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               );
             })}
           </GridList>
-          <Typography $width={"100%"}>
+          <OakTypography $width={"100%"}>
             <Hr $color={"aqua"} $mv={0} $mt={32} />
-          </Typography>
+          </OakTypography>
         </OakFlex>
         <Card
           $mh="auto"
@@ -127,18 +135,18 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           $pv={0}
           $width={["100%", "70%"]}
         >
-          <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
+          <OakHeading $mb={"space-between-m"} $font={"heading-5"} tag={"h2"}>
             Governance
-          </Heading>
-          <Typography $font={["body-1", "body-2"]}>
+          </OakHeading>
+          <OakTypography $font={["body-1", "body-2"]}>
             <PortableTextWithDefaults
               value={governancePortableText}
               withoutDefaultComponents
             />
-          </Typography>
+          </OakTypography>
         </Card>
         <GenericContactCard {...pageData.contactSection} />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

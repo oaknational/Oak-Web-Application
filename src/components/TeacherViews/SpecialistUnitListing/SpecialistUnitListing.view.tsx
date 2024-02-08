@@ -1,14 +1,18 @@
 import { FC, useId } from "react";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
@@ -119,8 +123,12 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
       />
 
       <MaxWidth $ph={16}>
-        <Grid data-testid="specialist-unit-grid">
-          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
+        <OakGrid data-testid="specialist-unit-grid">
+          <OakGridArea
+            $order={[0, 2]}
+            $colSpan={[12, 4, 3]}
+            $pl={["inner-padding-xl"]}
+          >
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -130,9 +138,14 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             >
               {themes?.length > 1 && (
                 <Flex $flexDirection={"column"}>
-                  <P id={themeId} $color={"black"} $font="body-3" $mb={16}>
+                  <OakP
+                    id={themeId}
+                    $color={"black"}
+                    $font="body-3"
+                    $mb="space-between-s"
+                  >
                     Filter by thread
-                  </P>
+                  </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={themes}
@@ -145,17 +158,17 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 </Flex>
               )}
             </Box>
-          </GridArea>
-          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
+          </OakGridArea>
+          <OakGridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
             <Flex
               $flexDirection={["column-reverse", "column"]}
               $pt={[48]}
               $mt={[0, 32]}
             >
               <Flex $minWidth={120} $mb={24} $position={"relative"}>
-                <Heading $font={"heading-5"} tag={"h2"}>
+                <OakHeading $font={"heading-5"} tag={"h2"}>
                   {`Units`}
-                </Heading>
+                </OakHeading>
               </Flex>
               {developmentalStage.length > 0 && (
                 <nav aria-label="tiers" data-testid="developmental-nav">
@@ -201,8 +214,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               paginationProps={paginationProps}
               onClick={() => {}}
             />
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
     </>
   );
