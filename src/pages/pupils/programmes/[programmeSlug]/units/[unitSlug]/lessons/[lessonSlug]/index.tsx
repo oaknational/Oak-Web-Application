@@ -186,10 +186,13 @@ export const getStaticProps: GetStaticProps<
 
       // For new content we need to fetch the captions file from gCloud and parse the result to generate
       // the transcript sentences.
-      const resolveTranscriptSentences =
-        curriculumData.videoTitle && !curriculumData.isLegacyLicense
-          ? getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`)
-          : curriculumData.transcriptSentences;
+      const resolveTranscriptSentences = (() => {
+        if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
+          return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
+        }
+
+        return curriculumData.transcriptSentences;
+      })();
 
       // Resolve the requests for the transcript and worksheet existence in parallel
       const [transcriptSentences, downloadExistence] = await Promise.all([
