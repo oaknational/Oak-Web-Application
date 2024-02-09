@@ -210,7 +210,9 @@ export const getStaticProps: GetStaticProps<
             ...curriculumData,
             transcriptSentences: transcriptSentences ?? [],
           },
-          hasWorksheet: !!downloadExistence.resources?.[0]?.[1].exists,
+          hasWorksheet: downloadExistence.resources.some(
+            ([type, result]) => type === "worksheet-pdf" && result.exists,
+          ),
         },
       };
 
