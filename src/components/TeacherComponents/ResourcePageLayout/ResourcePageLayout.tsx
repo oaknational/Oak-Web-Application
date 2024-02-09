@@ -47,6 +47,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
+    hideSelectAll?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormProps>;
     control: Control<ResourceFormProps>;
@@ -93,17 +94,19 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             <FieldError id={"downloads-error"} withoutMarginBottom>
               {props.errors?.resources?.message}
             </FieldError>
-            <Box $maxWidth="max-content">
-              <Checkbox
-                checked={props.selectAllChecked}
-                onChange={props.handleToggleSelectAll}
-                id="select-all"
-                name="select-all"
-                variant="withLabel"
-                labelText="Select all"
-                labelFontWeight={600}
-              />
-            </Box>
+            {!props.hideSelectAll && (
+              <Box $maxWidth="max-content">
+                <Checkbox
+                  checked={props.selectAllChecked}
+                  onChange={props.handleToggleSelectAll}
+                  id="select-all"
+                  name="select-all"
+                  variant="withLabel"
+                  labelText="Select all"
+                  labelFontWeight={600}
+                />
+              </Box>
+            )}
             {props.cardGroup}
           </Flex>
           <Flex

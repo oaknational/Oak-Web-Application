@@ -21,6 +21,7 @@ export const sortDownloadResources = (
     "supplementary-pdf": 8,
     "supplementary-docx": 9,
     video: 10,
+    "curriculum-pdf": 11,
   };
   return sortResourcesByOrder(
     resources,
@@ -42,6 +43,7 @@ export const sortShareResources = (
     "exit-quiz-answers": 100,
     "supplementary-pdf": 100,
     "supplementary-docx": 100,
+    "curriculum-pdf": 100,
   };
   return sortResourcesByOrder(
     resources,

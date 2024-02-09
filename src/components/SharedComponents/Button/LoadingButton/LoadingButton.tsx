@@ -130,6 +130,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       aria-disabled={disabled}
       aria-label={props.ariaLabel ?? props.text}
       color={props.success ? "oakGreen" : "black"}
+      data-testid="loadingButton"
     >
       <ButtonContent {...props} />
     </StyledButton>

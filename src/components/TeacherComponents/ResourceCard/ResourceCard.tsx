@@ -10,12 +10,17 @@ import Checkbox from "@/components/SharedComponents/Checkbox";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { LessonShareSchema } from "@/node-lib/curriculum-api";
+import Radio from "@/components/SharedComponents/RadioButtons/Radio";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import zIndex from "@/styles/utils/zIndex";
 
 export type ResourceCardProps = CheckboxProps & {
   label: string;
   resourceType: DownloadResourceType | LessonShareSchema["type"];
   subtitle: string;
   hasError?: boolean;
+  useRadio?: boolean;
+  subjectIcon?: string;
 };
 
 type ResourceCardLabelProps = ResourceCardProps & {
@@ -36,6 +41,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "supplementary-pdf": "additional-material",
   "supplementary-docx": "additional-material",
   video: "video",
+  "curriculum-pdf": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`
@@ -44,11 +50,33 @@ const BoxWithFocusState = styled.div`
   flex-direction: "row";
 `;
 
+const RadioContainer = styled.div`
+  z-index: 1;
+  width: 100%;
+  label > div {
+    width: 100%;
+    overflow: auto;
+    p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: calc(100% - 36px);
+    }
+  }
+  label > span {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 10px);
+    ${zIndex}
+  }
+`;
+
 const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   isHovered,
   resourceType,
   label,
   subtitle,
+  subjectIcon,
 }) => {
   return (
     <BoxWithFocusState>
@@ -59,14 +87,24 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $background={"lemon"}
         $width={66}
       >
-        <Icon
-          name={RESOURCE_TYPE_ICON_MAP[resourceType]}
-          $display={"flex"}
-          $pa={8}
-          height={50}
-          $width={50}
-          $objectPosition={"center"}
-        />
+        {resourceType == "curriculum-pdf" && subjectIcon ? (
+          <SubjectIcon
+            subjectSlug={subjectIcon}
+            $display={"flex"}
+            $minWidth={50}
+            $minHeight={50}
+            $objectPosition={"center"}
+          />
+        ) : (
+          <Icon
+            name={RESOURCE_TYPE_ICON_MAP[resourceType]}
+            $display={"flex"}
+            $pa={8}
+            height={50}
+            $width={50}
+            $objectPosition={"center"}
+          />
+        )}
       </Flex>
 
       <BoxBorders gapPosition="rightTop" />
@@ -76,6 +114,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $width={["100%"]}
         $maxWidth={320}
         $background={isHovered ? "grey20" : "white"}
+        $overflow="hidden"
       >
         <Flex
           $flexDirection="column"
@@ -107,32 +146,40 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     label,
     onBlur,
     hasError = false,
+    useRadio = false,
   } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
   return (
     <Flex
-      $minWidth={320}
       $maxHeight={72}
-      $width={"fit-content"}
+      $width={320}
       $position={"relative"}
       {...hoverProps}
-      data-testid="lessonResourcesCheckbox"
+      data-testid="resourceCard"
     >
-      <Checkbox
-        id={id}
-        name={name}
-        checked={checked}
-        onChange={onChange}
-        variant={"withoutLabel"}
-        slim={true}
-        ariaLabel={label}
-        onBlur={onBlur}
-        hasError={hasError}
-      >
-        <ResourceCardLabel isHovered={isHovered} {...props} />
-      </Checkbox>
+      {useRadio ? (
+        <RadioContainer $zIndex={"inFront"}>
+          <Radio id={id} value={id} aria-label={label}>
+            <ResourceCardLabel isHovered={isHovered} {...props} />
+          </Radio>
+        </RadioContainer>
+      ) : (
+        <Checkbox
+          id={id}
+          name={name}
+          checked={checked}
+          onChange={onChange}
+          variant={"withoutLabel"}
+          slim={true}
+          ariaLabel={label}
+          onBlur={onBlur}
+          hasError={hasError}
+        >
+          <ResourceCardLabel isHovered={isHovered} {...props} />
+        </Checkbox>
+      )}
     </Flex>
   );
 };
