@@ -1,3 +1,35 @@
+# [1.346.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.345.0...v1.346.0) (2024-02-09)
+
+
+### Bug Fixes
+
+* add hubspot submit, add tests ([746db52](https://github.com/oaknational/Oak-Web-Application/commit/746db521f8cb37a265bf2ed0872f6877f81b8ffb))
+* add mobile dropdown, update spacing, tweak error behaviour ([ffcaa36](https://github.com/oaknational/Oak-Web-Application/commit/ffcaa365d2f9f3c65ddfb20a1896b5b3a1a2c52e))
+* merge, update ui-components ([3aac36c](https://github.com/oaknational/Oak-Web-Application/commit/3aac36cb1898aadd7226e6c8cdadef615a4ae289))
+* refactor curriculum downloads and add tests ([339b2b8](https://github.com/oaknational/Oak-Web-Application/commit/339b2b884ea87fae60d2c2518db074776ebdcdf3))
+* refactor curriculum downloads page ([7c917cf](https://github.com/oaknational/Oak-Web-Application/commit/7c917cfb096783f31551160da2bc64b5cc5d7a45))
+* remove debounce from curriclum downloads ([d41c0d2](https://github.com/oaknational/Oak-Web-Application/commit/d41c0d2aa4dc85cb24b2aa0181c8fe1fc1320e59))
+* remove problematic test ([289be7f](https://github.com/oaknational/Oak-Web-Application/commit/289be7fdf82804ab36ba4f82d0b146113b54c2de))
+* remove test ([4fce9a7](https://github.com/oaknational/Oak-Web-Application/commit/4fce9a77f4625f487d669b653ade52f6c8e70108))
+* repair downloads tests ([2af0af6](https://github.com/oaknational/Oak-Web-Application/commit/2af0af6c73975da8d737e1f8a2cec8d4c2255621))
+* reset modules in tests ([43c65d5](https://github.com/oaknational/Oak-Web-Application/commit/43c65d53c7b505bfbca0825a756c922778bf545e))
+* reset resources on tab change ([b7c4b26](https://github.com/oaknational/Oak-Web-Application/commit/b7c4b26f86e1d01fc3a96fa39efd1b6530a35fb1))
+* resolve merge conflicts ([783a368](https://github.com/oaknational/Oak-Web-Application/commit/783a3684f5e685222ae0ccb4dc9e3c87d4b65af9))
+* resolve merge conflicts ([76c773f](https://github.com/oaknational/Oak-Web-Application/commit/76c773fc7c466c892bdfdeeb933e0c2414777e51))
+* restrict legacy downloads to a single file ([8223995](https://github.com/oaknational/Oak-Web-Application/commit/82239957489c156c2c9ad3abf49f4e82e2090aeb))
+* set consistent resource card width ([3365e93](https://github.com/oaknational/Oak-Web-Application/commit/3365e931d281611fc49fa554a8f62de9616bc64e))
+* switch to new UI components ([925ac82](https://github.com/oaknational/Oak-Web-Application/commit/925ac82024c03149f94c2e6e4052c5d9f0bc0917))
+* update curriculum download  tests ([001dabe](https://github.com/oaknational/Oak-Web-Application/commit/001dabea38091b4c1a32935dcf687bbbdb38e6b3))
+* update formatting ([f09c2be](https://github.com/oaknational/Oak-Web-Application/commit/f09c2be451e77e4f1072bd87bd9b599137df90d8))
+* update type ([54200d0](https://github.com/oaknational/Oak-Web-Application/commit/54200d0d967e95914ab598d06ffd7c8d8cdd8984))
+
+
+### Features
+
+* add legacy curriculum downloads ([f5afc17](https://github.com/oaknational/Oak-Web-Application/commit/f5afc171a284ccf3fa8f703afa44d70dfe52d909))
+* integrate legacy downloads URLs ([0dd3701](https://github.com/oaknational/Oak-Web-Application/commit/0dd370116d76c01f7b681866a6adc8eade02233c))
+* use radio and add subject icons to legacy downloads ([fb05925](https://github.com/oaknational/Oak-Web-Application/commit/fb05925cafa6ef6a009abe35d0a7e1b5b52be273))
+
 # [1.345.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.344.0...v1.345.0) (2024-02-08)
 
 
