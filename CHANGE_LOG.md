@@ -1,3 +1,18 @@
+# [1.347.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.346.1...v1.347.0) (2024-02-09)
+
+
+### Bug Fixes
+
+* incorrect count of questions being displayed on the pupil lesson overview page ([974c973](https://github.com/oaknational/Oak-Web-Application/commit/974c9734c8cabcd6444c36a6011c655a475bdfbd))
+* non-deterministic tests failing periodically ([f37344d](https://github.com/oaknational/Oak-Web-Application/commit/f37344d08cbe1667933bd6b48d3cdb23acfa2dfb))
+* proceed to review when lesson is complete and mark quiz as incomplete when it is being retaken ([8dbadaf](https://github.com/oaknational/Oak-Web-Application/commit/8dbadafa68ef473d6ea22eb0e4e2ad649ee052e3))
+
+
+### Features
+
+* **PUPIL-317:** allow the available review sections of a lesson to be configured ([f9a455e](https://github.com/oaknational/Oak-Web-Application/commit/f9a455e7faacb41abd43bc4d9b219bb610431374))
+* **PUPIL-317:** don't display sections in a lesson when they have no content ([3681d54](https://github.com/oaknational/Oak-Web-Application/commit/3681d54d56b80ac55869fac49555897efb14781b))
+
 ## [1.346.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.346.0...v1.346.1) (2024-02-09)
 
 
