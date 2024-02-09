@@ -1,3 +1,10 @@
+## [1.346.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.346.0...v1.346.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* icon color to white on home page ([3e50058](https://github.com/oaknational/Oak-Web-Application/commit/3e50058de7b18724e3ce1dfd8afaab2511e942cd))
+
 # [1.346.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.345.0...v1.346.0) (2024-02-09)
 
 
