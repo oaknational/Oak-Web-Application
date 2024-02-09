@@ -33,14 +33,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     contentGuidance,
     supervisionLevel,
     lessonEquipmentAndResources,
-    isLegacyLicense,
+    isLegacy,
     lessonSlug,
     hasWorksheet,
   } = props;
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
-    isLegacyLicense,
+    isLegacy,
   );
 
   const topNavSlot = (

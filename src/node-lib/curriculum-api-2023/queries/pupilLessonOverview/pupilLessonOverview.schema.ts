@@ -29,7 +29,7 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
   )
   .extend({
     yearTitle: z.string().nullable().optional(),
-    isLegacyLicense: z.boolean(),
+    isLegacy: z.boolean(),
     transcriptSentences: z
       .union([z.array(z.string()), z.string()])
       .optional()

@@ -144,7 +144,7 @@ describe("PupilIntro", () => {
         expect(downloadLessonResources.default).toHaveBeenCalledWith(
           curriculumData.lessonSlug,
           ["worksheet-pdf"],
-          curriculumData.isLegacyLicense,
+          curriculumData.isLegacy,
         );
       });
     });

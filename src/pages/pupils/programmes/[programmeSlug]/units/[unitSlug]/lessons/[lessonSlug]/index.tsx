@@ -62,7 +62,7 @@ const PupilPageContent = ({
     pupilLessonOutcome,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
-    isLegacyLicense,
+    isLegacy,
   } = curriculumData;
 
   switch (currentSection) {
@@ -93,7 +93,7 @@ const PupilPageContent = ({
             videoWithSignLanguageMuxPlaybackId ?? undefined
           }
           transcriptSentences={curriculumData.transcriptSentences ?? []}
-          isLegacyLicense={isLegacyLicense}
+          isLegacy={isLegacy}
         />
       );
     case "exit-quiz":
@@ -187,7 +187,7 @@ export const getStaticProps: GetStaticProps<
       // For new content we need to fetch the captions file from gCloud and parse the result to generate
       // the transcript sentences.
       const resolveTranscriptSentences = (() => {
-        if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
+        if (curriculumData.videoTitle && !curriculumData.isLegacy) {
           return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
         }
 
@@ -200,7 +200,7 @@ export const getStaticProps: GetStaticProps<
         getDownloadResourcesExistence(
           lessonSlug,
           "worksheet-pdf",
-          curriculumData.isLegacyLicense,
+          curriculumData.isLegacy,
         ),
       ]);
 

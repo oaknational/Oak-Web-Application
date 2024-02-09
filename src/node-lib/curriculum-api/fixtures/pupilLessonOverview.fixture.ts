@@ -18,7 +18,7 @@ const pupilLessonOverviewFixture = (
     videoWithSignLanguageMuxPlaybackId: "signed-mux-id",
     transcriptSentences: ["This is a sentence.", "This is another sentence"],
     videoTitle: "Introduction to Islamic Geometry",
-    isLegacyLicense: false,
+    isLegacy: false,
     pupilLessonOutcome: undefined,
     ...partial,
   };
