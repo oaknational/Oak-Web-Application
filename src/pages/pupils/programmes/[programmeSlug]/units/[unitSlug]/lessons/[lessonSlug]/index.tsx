@@ -184,26 +184,30 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      let transcriptSentences = curriculumData.transcriptSentences;
+      // For new content we need to fetch the captions file from gCloud and parse the result to generate
+      // the transcript sentences.
+      const resolveTranscriptSentences =
+        curriculumData.videoTitle && !curriculumData.isLegacyLicense
+          ? getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`)
+          : curriculumData.transcriptSentences;
 
-      if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
-        // For new content we need to fetch the captions file from gCloud and parse the result to generate
-        // the transcript sentences.
-        const fileName = `${curriculumData.videoTitle}.vtt`;
-        transcriptSentences = (await getCaptionsFromFile(fileName)) ?? [];
-      }
-
-      // Check if the lesson has a worksheet available for download
-      const { resources } = await getDownloadResourcesExistence(
-        lessonSlug,
-        "worksheet-pdf",
-        curriculumData.isLegacyLicense,
-      );
+      // Resolve the requests for the transcript and worksheet existence in parallel
+      const [transcriptSentences, downloadExistence] = await Promise.all([
+        resolveTranscriptSentences,
+        getDownloadResourcesExistence(
+          lessonSlug,
+          "worksheet-pdf",
+          curriculumData.isLegacyLicense,
+        ),
+      ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
-          curriculumData: { ...curriculumData, transcriptSentences },
-          hasWorksheet: !!resources?.[0]?.[1].exists,
+          curriculumData: {
+            ...curriculumData,
+            transcriptSentences: transcriptSentences ?? [],
+          },
+          hasWorksheet: !!downloadExistence.resources?.[0]?.[1].exists,
         },
       };
 
