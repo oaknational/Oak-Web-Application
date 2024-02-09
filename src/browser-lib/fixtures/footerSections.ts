@@ -16,6 +16,10 @@ const footerSections: FooterSections = {
     title: "Teachers",
     links: [
       {
+        text: "EYFS",
+        href: "/teachers/key-stages/eyfs/subjects",
+      },
+      {
         text: "Key stage 1",
         href: "/teachers/key-stages/ks1/subjects",
       },

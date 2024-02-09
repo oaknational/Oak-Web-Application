@@ -48,11 +48,12 @@ export const betaMenuSections: Array<AppHeaderBurgerMenuSection> = [
       },
       {
         linkTo: {
-          href: "https://teachers.thenational.academy/key-stages/early-years-foundation-stage",
+          page: "subject-index",
+          keyStageSlug: "eyfs",
         },
         text: "EYFS",
         new: false,
-        external: true,
+        external: false,
       },
       {
         linkTo: { href: "https://teachers.thenational.academy/specialist" },
