@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import downloadLessonResources from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import errorReporter from "@/common-lib/error-reporter";
 
 type WorksheetDownload = {

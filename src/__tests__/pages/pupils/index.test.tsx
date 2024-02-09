@@ -9,11 +9,11 @@ import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/ind
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import * as getDownloadResourcesExistence from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import * as getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 
 jest.mock("@/utils/handleTranscript");
 jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
 );
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {

@@ -31,7 +31,7 @@ import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOve
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
-import getDownloadResourcesExistence from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
   hasWorksheet: boolean;

@@ -2,10 +2,10 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
-import * as downloadLessonResources from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
 window.alert = jest.fn();
