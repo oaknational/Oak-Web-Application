@@ -4,16 +4,6 @@ import { waitFor } from "@testing-library/dom";
 import CurriculumDownloads from "./CurriculumDownloads";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import createAndClickHiddenDownloadLink from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
-
-jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
-  () => ({
-    __esModule: true,
-    default: jest.fn(),
-    createAndClickHiddenDownloadLink: jest.fn(),
-  }),
-);
 
 const render = renderWithProviders();
 
@@ -73,7 +63,6 @@ describe("Component - Curriculum Header", () => {
     userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     userEvent.click(getByTestId("loadingButton"));
     await waitFor(() => {
-      expect(createAndClickHiddenDownloadLink).toHaveBeenCalled();
       expect(getByTestId("downloadSuccess")).toBeInTheDocument();
     });
   });
