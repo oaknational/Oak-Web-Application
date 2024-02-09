@@ -37,7 +37,7 @@ describe("Component - Curriculum Header", () => {
   test("generates school error", async () => {
     const { getByTestId } = renderComponent();
     const schoolInput = getByTestId("search-combobox-input");
-    userEvent.type(schoolInput, "notavalidschool!?{enter}");
+    await userEvent.type(schoolInput, "notavalidschool!?{enter}");
     await waitFor(() => {
       expect(getByTestId("errorList")).toBeInTheDocument();
     });
@@ -45,8 +45,8 @@ describe("Component - Curriculum Header", () => {
 
   test("generates download error", async () => {
     const { getByTestId } = renderComponent();
-    userEvent.click(getByTestId("checkbox-download"));
-    userEvent.click(getByTestId("loadingButton"));
+    await userEvent.click(getByTestId("checkbox-download"));
+    await userEvent.click(getByTestId("loadingButton"));
     await waitFor(() => {
       expect(getByTestId("errorList")).toBeInTheDocument();
     });
@@ -58,10 +58,10 @@ describe("Component - Curriculum Header", () => {
     if (resourceCard === undefined) {
       throw new Error("Resource card not found");
     }
-    userEvent.click(resourceCard.querySelector("label")!);
-    userEvent.click(getByTestId("checkbox-download"));
-    userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
-    userEvent.click(getByTestId("loadingButton"));
+    await userEvent.click(resourceCard.querySelector("label")!);
+    await userEvent.click(getByTestId("checkbox-download"));
+    await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
+    await userEvent.click(getByTestId("loadingButton"));
     await waitFor(() => {
       expect(getByTestId("downloadSuccess")).toBeInTheDocument();
     });
