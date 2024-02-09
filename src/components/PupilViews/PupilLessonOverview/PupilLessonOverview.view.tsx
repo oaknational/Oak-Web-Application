@@ -17,7 +17,7 @@ import {
 } from "@oaknational/oak-components";
 
 import {
-  LessonSection,
+  LessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
@@ -41,15 +41,15 @@ export const PupilViewsLessonOverview = ({
   starterQuizNumQuestions,
 }: PupilViewsLessonOverviewProps) => {
   const {
-    completedSections,
     sectionResults,
     updateCurrentSection,
     proceedToNextSection,
+    lessonReviewSections,
   } = useLessonEngineContext();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
 
-  function pickProgressForSection(section: LessonSection) {
-    if (completedSections.includes(section)) {
+  function pickProgressForSection(section: LessonReviewSection) {
+    if (sectionResults[section]?.isComplete) {
       return "complete";
     }
 
@@ -163,35 +163,45 @@ export const PupilViewsLessonOverview = ({
             $ph={["inner-padding-m", "inner-padding-none"]}
           >
             <OakFlex $gap="space-between-s" $flexDirection="column">
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="intro"
-                onClick={() => updateCurrentSection("intro")}
-                progress={pickProgressForSection("intro")}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="starter-quiz"
-                onClick={() => updateCurrentSection("starter-quiz")}
-                progress={pickProgressForSection("starter-quiz")}
-                numQuestions={exitQuizNumQuestions}
-                grade={sectionResults["starter-quiz"]?.grade ?? 0}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="video"
-                onClick={() => updateCurrentSection("video")}
-                progress={pickProgressForSection("video")}
-                videoLength={0}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="exit-quiz"
-                onClick={() => updateCurrentSection("exit-quiz")}
-                progress={pickProgressForSection("exit-quiz")}
-                numQuestions={starterQuizNumQuestions}
-                grade={sectionResults["exit-quiz"]?.grade ?? 0}
-              />
+              {lessonReviewSections.includes("intro") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="intro"
+                  onClick={() => updateCurrentSection("intro")}
+                  progress={pickProgressForSection("intro")}
+                />
+              )}
+              {lessonReviewSections.includes("starter-quiz") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="starter-quiz"
+                  onClick={() => updateCurrentSection("starter-quiz")}
+                  progress={pickProgressForSection("starter-quiz")}
+                  numQuestions={starterQuizNumQuestions}
+                  grade={sectionResults["starter-quiz"]?.grade ?? 0}
+                  data-testid="starter-quiz"
+                />
+              )}
+              {lessonReviewSections.includes("video") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="video"
+                  onClick={() => updateCurrentSection("video")}
+                  progress={pickProgressForSection("video")}
+                  videoLength={0}
+                />
+              )}
+              {lessonReviewSections.includes("exit-quiz") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="exit-quiz"
+                  onClick={() => updateCurrentSection("exit-quiz")}
+                  progress={pickProgressForSection("exit-quiz")}
+                  numQuestions={exitQuizNumQuestions}
+                  grade={sectionResults["exit-quiz"]?.grade ?? 0}
+                  data-testid="exit-quiz"
+                />
+              )}
             </OakFlex>
           </OakGridArea>
         </OakGrid>

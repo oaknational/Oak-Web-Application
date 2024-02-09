@@ -10,10 +10,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import {
-  lessonReviewSections,
-  useLessonEngineContext,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -21,10 +18,13 @@ type PupilViewsReviewProps = {
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const { lessonTitle } = props;
-  const { updateCurrentSection, sectionResults, completedSections } =
-    useLessonEngineContext();
+  const {
+    updateCurrentSection,
+    sectionResults,
+    isLessonComplete,
+    lessonReviewSections,
+  } = useLessonEngineContext();
 
-  const completed = completedSections.length === lessonReviewSections.length;
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
@@ -91,7 +91,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             return (
               <OakLessonReviewItem
                 lessonSectionName={lessonSection}
-                completed={completedSections.includes(lessonSection)}
+                completed={!!sectionResults[lessonSection]?.isComplete}
                 grade={sectionResults[lessonSection]?.grade ?? 0}
                 numQuestions={sectionResults[lessonSection]?.numQuestions ?? 0}
               />
@@ -109,7 +109,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $alignItems={"center"}
           >
             <OakFlex $font="heading-5" $textAlign={["center", "left", "left"]}>
-              {completed
+              {isLessonComplete
                 ? "Fantastic learning - well done!"
                 : "Well done, you're Oaking it!"}
             </OakFlex>

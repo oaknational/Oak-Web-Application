@@ -4,10 +4,8 @@ import userEvent from "@testing-library/user-event";
 import { PupilViewsVideo } from "./PupilVideo.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
   return () => <span data-testid="video-player" />;
@@ -142,19 +140,3 @@ describe(PupilViewsVideo, () => {
     expect(queryByText("Hide sign language")).toBeInTheDocument();
   });
 });
-
-function createLessonEngineContext(
-  overrides?: Partial<LessonEngineContextType>,
-): NonNullable<LessonEngineContextType> {
-  return {
-    currentSection: "video",
-    completedSections: [],
-    sectionResults: {},
-    getIsComplete: jest.fn(),
-    completeSection: jest.fn(),
-    updateCurrentSection: jest.fn(),
-    proceedToNextSection: jest.fn(),
-    updateQuizResult: jest.fn(),
-    ...overrides,
-  };
-}

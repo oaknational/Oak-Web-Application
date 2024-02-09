@@ -1,6 +1,8 @@
 import React from "react";
 import { renderHook, act } from "@testing-library/react";
 
+import { createLessonEngineContext } from "../LessonEngineProvider/LessonEngineProvider.test";
+
 import {
   QuizEngineProps,
   QuizEngineProvider,
@@ -12,17 +14,6 @@ import {
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
-
 describe("QuizEngineContext", () => {
   const wrapper = (
     { children, questionsArray }: QuizEngineProps,
@@ -31,7 +22,9 @@ describe("QuizEngineContext", () => {
     return (
       <LessonEngineContext.Provider
         value={
-          lessonEngineContext ? lessonEngineContext : getLessonEngineContext()
+          lessonEngineContext
+            ? lessonEngineContext
+            : createLessonEngineContext()
         }
       >
         <QuizEngineProvider questionsArray={questionsArray}>
@@ -174,7 +167,7 @@ describe("QuizEngineContext", () => {
   });
 
   it("should update the section as complete when currentQuestionIndex is > numQuestions", () => {
-    const lessonEngineContext = getLessonEngineContext();
+    const lessonEngineContext = createLessonEngineContext();
 
     const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>

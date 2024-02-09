@@ -8,10 +8,8 @@ import { PupilViewsIntro } from "./PupilIntro.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
 
 const curriculumData = {
   ...pupilLessonOverviewFixture(),
@@ -27,22 +25,11 @@ const contentGuidance = [
 ];
 const supervisionLevel = "supervision level";
 
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
-
 describe("PupilIntro", () => {
   it("displays the section title: what will you need for this lesson?", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumData} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -54,7 +41,7 @@ describe("PupilIntro", () => {
   it("displays the question card: are you ready to learn?", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumData} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -68,7 +55,7 @@ describe("PupilIntro", () => {
     };
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumDataWithEquipment} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -83,7 +70,7 @@ describe("PupilIntro", () => {
     };
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumDataWithContentGuidance} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -97,7 +84,7 @@ describe("PupilIntro", () => {
     };
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumDataWithSupervision} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -112,7 +99,7 @@ describe("PupilIntro", () => {
     };
     const { getByText, getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumDataWithWorksheet} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -126,7 +113,7 @@ describe("PupilIntro", () => {
   it("displays I'm ready button which completed section", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro {...curriculumData} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -134,7 +121,7 @@ describe("PupilIntro", () => {
     expect(getByRole("button", { name: /I'm ready/i })).toBeInTheDocument();
   });
   it("completes the section when I'm ready button is clicked", () => {
-    const context = getLessonEngineContext();
+    const context = createLessonEngineContext();
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
