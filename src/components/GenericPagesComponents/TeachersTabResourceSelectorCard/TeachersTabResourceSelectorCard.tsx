@@ -35,7 +35,13 @@ const TeachersTabResourceSelectorCard: FC<
           $pa="inner-padding-xs"
         >
           {" "}
-          <Icon name={icon} $objectPosition={"center"} size={50} $pa={3} />
+          <Icon
+            $color={"white"}
+            name={icon}
+            $objectPosition={"center"}
+            size={50}
+            $pa={3}
+          />
         </OakFlex>
         <OakFlex $height={"100%"} $alignItems={"center"}>
           <OakTypography $font={"heading-light-7"} $color={"black"}>
