@@ -56,7 +56,7 @@ const searchResultsSourceUnitSchema = searchResultsSourceCommon.extend({
 
 const searchResultsHighlightLessonSchema = z.object({
   lesson_description: z.coerce.string(),
-  pupil_lesson_outcomes: z.coerce.string(),
+  pupil_lesson_outcome: z.coerce.string(),
   topic_title: z.coerce.string(),
 });
 
