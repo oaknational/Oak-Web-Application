@@ -5,7 +5,10 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { LessonEngineProvider } from "../LessonEngineProvider";
+import {
+  LessonEngineProvider,
+  allLessonReviewSections,
+} from "../LessonEngineProvider";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
@@ -25,7 +28,9 @@ const meta = {
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineProvider>
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+        >
           <Story />
         </LessonEngineProvider>
       </OakThemeProvider>

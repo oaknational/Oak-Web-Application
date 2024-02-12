@@ -24,12 +24,14 @@ import {
   preselectedShareType,
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
+import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
-  | { downloadResources: LessonDownloadsData["downloads"]; type: "download" };
+  | { downloadResources: LessonDownloadsData["downloads"]; type: "download" }
+  | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const {
@@ -49,18 +51,32 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState(0);
 
-  const resources =
-    props.type === "share" ? props.shareResources : props.downloadResources;
+  const resources = (() => {
+    switch (props.type) {
+      case "share":
+        return props.shareResources;
+      case "download":
+        return props.downloadResources;
+      case "curriculum":
+        return props.curriculumResources;
+    }
+  })();
 
   const getInitialResourcesState = useCallback(() => {
     if (props.type === "share") {
       return (resources as LessonShareData["shareableResources"])
         .filter((resource) => resource.exists)
         .map((resource) => resource.type);
-    } else {
+    } else if (props.type === "download") {
       return (resources as LessonDownloadsData["downloads"])
         .filter((resource) => resource.exists && !resource.forbidden)
         .map((resource) => resource.type);
+    } else if (props.type === "curriculum") {
+      return (resources as CurriculumDownload[]).map(
+        (resource) => resource.url,
+      );
+    } else {
+      throw new Error("Invalid resource type");
     }
   }, [resources, props.type]);
 
@@ -144,7 +160,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = (watch().resources || []) as ResourceType[];
 
-  const [activeResources, setActiveResources] = useState<ResourceType[]>(
+  const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
   );
 
@@ -189,8 +205,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (isPreselectedDownloadType(queryResults)) {
       preselected = getPreselectedDownloadResourceTypes(queryResults);
     }
-
-    if (preselected) {
+    if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
       preselected === "all"
         ? setValue("resources", getInitialResourcesState())
