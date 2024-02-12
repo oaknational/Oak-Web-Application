@@ -1,3 +1,10 @@
+## [1.347.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.347.0...v1.347.1) (2024-02-12)
+
+
+### Bug Fixes
+
+* schema for search highlight ([d87450d](https://github.com/oaknational/Oak-Web-Application/commit/d87450ddbf13be8b877142f2949c9993b7be6047))
+
 # [1.347.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.346.1...v1.347.0) (2024-02-09)
 
 
