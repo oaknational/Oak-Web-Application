@@ -1,3 +1,10 @@
+# [1.348.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.347.1...v1.348.0) (2024-02-12)
+
+
+### Features
+
+* 2023 lesson share page ([2c748e1](https://github.com/oaknational/Oak-Web-Application/commit/2c748e122e1fd5013f1f850febbf2bd96244368e))
+
 ## [1.347.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.347.0...v1.347.1) (2024-02-12)
 
 

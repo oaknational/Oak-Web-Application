@@ -5,8 +5,11 @@ import { OakFlex } from "@oaknational/oak-components";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import {
+  LessonShareData,
+  LessonShareResourceData,
+} from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type LessonShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
@@ -50,7 +53,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                     } else {
                       onChange(
                         fieldValue.filter(
-                          (val: LessonShareSchema["type"] | string) =>
+                          (val: LessonShareResourceData["type"] | string) =>
                             val !== resource.type,
                         ),
                       );
