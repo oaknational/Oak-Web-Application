@@ -1,3 +1,10 @@
+# [1.350.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.349.0...v1.350.0) (2024-02-13)
+
+
+### Features
+
+* **PUPIL-421:** enable worksheet downloads in the pupil intro ([4beaa97](https://github.com/oaknational/Oak-Web-Application/commit/4beaa9798dc1d688e61d4e83c9d6919f8b92a17e))
+
 # [1.349.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.348.1...v1.349.0) (2024-02-13)
 
 
