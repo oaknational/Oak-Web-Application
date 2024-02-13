@@ -169,7 +169,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {hasWorksheet && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="worksheet" tag="h1">
+                <OakCardHeader iconName="worksheet-3" tag="h1">
                   Worksheet
                 </OakCardHeader>
                 <OakP $font={"body-1"}>Optional</OakP>
