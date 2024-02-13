@@ -1,13 +1,13 @@
 import React from "react";
+import {
+  OakLI,
+  OakP,
+  OakSpan,
+  OakUL,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
-import {
-  LI,
-  P,
-  Span,
-  UL,
-  Heading,
-} from "@/components/SharedComponents/Typography";
 
 export type LessonOverviewKeywordProps = {
   keyword: string;
@@ -25,29 +25,34 @@ const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
       $position={"relative"}
       $justifyContent={"center"}
     >
-      <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
+      <OakHeading
+        $font={"heading-5"}
+        $mb="space-between-m"
+        data-testid={"heading"}
+        tag="h3"
+      >
         Keywords
-      </Heading>
-      <UL $reset>
+      </OakHeading>
+      <OakUL $reset>
         {keyWords.map((keyWord: LessonOverviewKeywordProps, i: number) => {
           const capitalisedKeyword =
             keyWord.keyword.charAt(0).toUpperCase() + keyWord.keyword.slice(1);
 
           const description = `- ${keyWord.description}`;
           return (
-            <LI key={`${keyWord.keyword}-${i}`} $mb={12}>
-              <P>
-                <Span $font={["body-2", "body-1"]}>
-                  <Span $font={["body-2-bold", "body-1-bold"]}>
+            <OakLI key={`${keyWord.keyword}-${i}`} $mb="space-between-xs">
+              <OakP>
+                <OakSpan $font={["body-2", "body-1"]}>
+                  <OakSpan $font={["body-2-bold", "body-1-bold"]}>
                     {capitalisedKeyword}
-                  </Span>{" "}
+                  </OakSpan>{" "}
                   {!keyWord.description ? null : description}
-                </Span>
-              </P>
-            </LI>
+                </OakSpan>
+              </OakP>
+            </OakLI>
           );
         })}
-      </UL>
+      </OakUL>
     </Flex>
   );
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import Component from "./Icon";
 
 import { ICON_NAMES } from "@/image-data";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 export default {
   component: Component,
@@ -13,9 +13,9 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <>
-    <Heading $font={"heading-5"} $mb={24} tag="h2">
+    <OakHeading $font={"heading-5"} $mb={"space-between-m"} tag="h2">
       Icons
-    </Heading>
+    </OakHeading>
     {ICON_NAMES.map((name) => {
       return <Component {...args} name={name} />;
     })}

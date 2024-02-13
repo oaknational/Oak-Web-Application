@@ -1,6 +1,11 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakP,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
@@ -8,6 +13,7 @@ import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
+import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
@@ -18,8 +24,6 @@ import Icon from "@/components/SharedComponents/Icon";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
-import { P, Heading } from "@/components/SharedComponents/Typography";
-import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -424,13 +428,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         />
       </Box>
       <Box $ml={16} $mt={32} $display={["block", "none"]}>
-        <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+        <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-m">
           Highlight a thread
-        </Heading>
-        <P $mb={12}>
+        </OakHeading>
+        <OakP $mb="space-between-m">
           Threads are groups of units across the curriculum that build a common
           body of knowledge
-        </P>
+        </OakP>
         <RadioGroup
           aria-label="Highlight a thread"
           value={selectedThread ? selectedThread.slug : ""}
@@ -511,14 +515,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   ) : (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
-        <Heading
+        <OakHeading
           tag="h2"
-          $mb={[0, 24]}
-          $ml={[16, 0]}
+          $mb="space-between-m"
+          $ml="space-between-xs"
           $font={["heading-5", "heading-4"]}
         >
           Unit sequence
-        </Heading>
+        </OakHeading>
         <Card
           $background={"lemon30"}
           $pa={0}
@@ -544,18 +548,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             />
           </Box>
           <Box $pa={20}>
-            <Heading
+            <OakHeading
               tag="h3"
               $font={"heading-7"}
-              $mb={12}
+              $mb="space-between-xs"
               data-testid="units-heading"
             >
               Introducing our new curriculum sequence for 2023/2024!
-            </Heading>
-            <P>
+            </OakHeading>
+            <OakP>
               Units that make up our curricula are fully sequenced, and aligned
               to the national curriculum.
-            </P>
+            </OakP>
           </Box>
         </Card>
         <Box
@@ -634,13 +638,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32} $ml={16} $display={["none", "block"]}>
-              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </Heading>
-              <P $mb={12}>
+              </OakHeading>
+              <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
-              </P>
+              </OakP>
               <RadioGroup
                 aria-label="Highlight a thread"
                 value={selectedThread ? selectedThread.slug : ""}
@@ -694,9 +698,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               </RadioGroup>
             </Box>
             <Box $mr={16} $mb={32} $display={["none", "block"]}>
-              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </Heading>
+              </OakHeading>
               <RadioGroup
                 aria-label="Select a year group"
                 value={selectedYear ?? ""}
@@ -742,14 +746,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     $borderRadius={4}
                     id={`units-year-${year}`}
                   >
-                    <Heading
+                    <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5"]}
-                      $mb={32}
+                      $mb="space-between-m2"
                       data-testid="year-heading"
                     >
                       Year {year}
-                    </Heading>
+                    </OakHeading>
                     {childSubjects.length > 0 && (
                       <Box>
                         {childSubjects.map((subject) => (
@@ -844,10 +848,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                 >
                                   {index + 1}
                                 </OutlineHeading>
-                                <Heading
+                                <OakHeading
                                   tag={"h4"}
                                   $font={"heading-7"}
-                                  $mb={16}
+                                  $mb="space-between-s"
                                 >
                                   {isHighlighted && (
                                     <VisuallyHidden>
@@ -855,7 +859,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                     </VisuallyHidden>
                                   )}
                                   {unit.title}
-                                </Heading>
+                                </OakHeading>
                                 {unit.unit_options.length > 1 && (
                                   <Box
                                     $mt={12}

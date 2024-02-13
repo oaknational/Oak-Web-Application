@@ -1,8 +1,7 @@
 import { PortableTextComponentProps } from "@portabletext/react";
+import { OakP } from "@oaknational/oak-components";
 
-import { Quote } from "../../../common-lib/cms-types";
-
-import { P } from "@/components/SharedComponents/Typography";
+import { Quote } from "@/common-lib/cms-types";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 
@@ -17,10 +16,10 @@ const PostQuote = (props: PortableTextComponentProps<Quote>) => {
         <blockquote>&ldquo;{props.value.text.trim()}&rdquo;</blockquote>
       </Box>
       <div>
-        <P $font={"body-1"} $mt={[16]}>
+        <OakP $font={"body-1"} $mt={["space-between-s"]}>
           <cite>{props.value?.attribution}</cite>
           {props.value.role && `, ${props.value.role}`}
-        </P>
+        </OakP>
       </div>
     </Flex>
   );

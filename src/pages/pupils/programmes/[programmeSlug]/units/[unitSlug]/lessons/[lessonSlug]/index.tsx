@@ -29,7 +29,7 @@ import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo/PupilVideo.v
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
-
+import { getCaptionsFromFile } from "@/utils/handleTranscript";
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
 };
@@ -58,6 +58,9 @@ const PupilPageContent = ({
     subjectSlug,
     yearTitle,
     pupilLessonOutcome,
+    videoMuxPlaybackId,
+    videoWithSignLanguageMuxPlaybackId,
+    isLegacyLicense,
   } = curriculumData;
 
   switch (currentSection) {
@@ -74,11 +77,21 @@ const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro />;
+      return <PupilViewsIntro {...curriculumData} />;
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
-      return <PupilViewsVideo />;
+      return (
+        <PupilViewsVideo
+          lessonTitle={lessonTitle}
+          videoMuxPlaybackId={videoMuxPlaybackId ?? undefined}
+          videoWithSignLanguageMuxPlaybackId={
+            videoWithSignLanguageMuxPlaybackId ?? undefined
+          }
+          transcriptSentences={curriculumData.transcriptSentences ?? []}
+          isLegacyLicense={isLegacyLicense}
+        />
+      );
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
@@ -94,7 +107,7 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider>
-        <OakBox $height={"100vh"} $minWidth={"100vw"}>
+        <OakBox $height={"100vh"}>
           <PupilPageContent curriculumData={curriculumData} />
         </OakBox>
       </LessonEngineProvider>
@@ -145,9 +158,18 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      let transcriptSentences = curriculumData.transcriptSentences;
+
+      if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
+        // For new content we need to fetch the captions file from gCloud and parse the result to generate
+        // the transcript sentences.
+        const fileName = `${curriculumData.videoTitle}.vtt`;
+        transcriptSentences = (await getCaptionsFromFile(fileName)) ?? [];
+      }
+
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: { ...curriculumData, transcriptSentences },
         },
       };
 

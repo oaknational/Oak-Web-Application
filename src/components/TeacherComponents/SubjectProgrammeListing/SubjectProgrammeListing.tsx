@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { OakGrid } from "@oaknational/oak-components";
+import { OakGrid, OakHeading } from "@oaknational/oak-components";
 
 import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 const SubjectProgrammeListing: FC<
   ProgrammeListingPageData & {
@@ -35,9 +34,9 @@ const SubjectProgrammeListing: FC<
       <OakGrid $cg={"all-spacing-4"} $rg={"all-spacing-4"}>
         {examBoards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
-            <Heading tag="h2" $font="heading-5" $mb={30}>
+            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
               Select tier of learning
-            </Heading>
+            </OakHeading>
             <SubjectProgrammeList
               {...props}
               programmes={tierProgrammes}
@@ -47,9 +46,9 @@ const SubjectProgrammeListing: FC<
         )}
         {tiers.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
-            <Heading tag="h2" $font="heading-5" $mb={30}>
+            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
               Select exam board
-            </Heading>
+            </OakHeading>
             <SubjectProgrammeList
               {...props}
               programmes={examBoardProgrammes}
@@ -68,9 +67,9 @@ const SubjectProgrammeListing: FC<
                   key={`${examBoard}-${index}`}
                   $colSpan={[12, 4]}
                 >
-                  <Heading tag="h2" $font="heading-5" $mb={30}>
+                  <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
                     {examBoard}
-                  </Heading>
+                  </OakHeading>
                   <SubjectProgrammeList
                     {...props}
                     programmes={programmeOfexamBoard}

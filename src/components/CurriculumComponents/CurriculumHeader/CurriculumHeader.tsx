@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, Hr, P } from "@/components/SharedComponents/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -125,20 +126,20 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               </Box>
               <Flex $justifyContent={"center"} $flexDirection={"column"}>
                 {phase.slug === "secondary" && (
-                  <P
+                  <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
                     {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
-                  </P>
+                  </OakP>
                 )}
-                <Heading
+                <OakHeading
                   tag={"h1"}
                   $font={["heading-4", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
-                </Heading>
+                </OakHeading>
               </Flex>
             </Flex>
           </Box>

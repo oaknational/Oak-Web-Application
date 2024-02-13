@@ -7,7 +7,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -24,7 +24,6 @@ import UnitList from "@/components/TeacherComponents/UnitList";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import { Heading } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -36,6 +35,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -54,6 +54,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     examBoardTitle,
+    hasNewContent,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -160,7 +161,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
-        isLegacyLesson={isSlugLegacy(programmeSlug)}
+        isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
@@ -180,15 +181,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             >
               {learningThemes?.length > 1 && (
                 <Flex $flexDirection={"column"}>
-                  <Heading
+                  <OakHeading
                     id={learningThemesId}
                     tag="h3"
                     $font="body-3"
-                    $mb={16}
+                    $mb="space-between-s"
                   >
                     {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
                     Filter by thread
-                  </Heading>
+                  </OakHeading>
                   <UnitsLearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
@@ -224,9 +225,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 {tiers.length === 0 && (
                   <Flex $minWidth={120} $mb={16} $position={"relative"}>
-                    <Heading $font={"heading-5"} tag={"h2"}>
+                    <OakHeading $font={"heading-5"} tag={"h2"}>
                       {`Units (${unitsFilteredByLearningTheme.length})`}
-                    </Heading>
+                    </OakHeading>
                   </Flex>
                 )}
 
@@ -326,6 +327,7 @@ export const getStaticProps: GetStaticProps<
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
           });
 
       if (!curriculumData) {
@@ -334,9 +336,17 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const unitsCohorts = curriculumData.units.flatMap((unit) =>
+        unit.flatMap((u) => u.cohort ?? "2020-2023"),
+      );
+      const hasNewContent = unitsCohorts.includes(NEW_COHORT);
+
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            hasNewContent,
+          },
         },
       };
 

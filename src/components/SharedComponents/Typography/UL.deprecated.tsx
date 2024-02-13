@@ -16,6 +16,7 @@ type ULProps = BoxProps & {
  *
  * Resets browser spacing and other styles, accepts BoxProps' style props.
  *
+ * @deprecated use OakUL from oak-components instead
  * */
 const UL = styled.ul<ULProps>`
   ${(props) =>

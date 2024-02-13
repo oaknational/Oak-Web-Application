@@ -1,6 +1,6 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
-import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type ExpiredProps = {
@@ -12,9 +12,13 @@ const Expired: FC<ExpiredProps> = (props) => {
 
   return (
     <Flex $alignItems={"center"}>
-      <Span $mr={[0, 24]} $color={"grey70"} $font={["body-3", "body-2"]}>
+      <OakSpan
+        $mr={["space-between-none", "space-between-m"]}
+        $color={"grey70"}
+        $font={["body-3", "body-2"]}
+      >
         {`Unfortunately this ${page} is now unavailable.`}
-      </Span>
+      </OakSpan>
     </Flex>
   );
 };

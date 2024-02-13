@@ -11,7 +11,6 @@ const lessonDownloadsQuery =
     programmeSlug: string;
     unitSlug: string;
     lessonSlug: string;
-    lessonCohort: string;
   }) => {
     const res = await sdk.lessonDownloads(args);
     const pages = res.downloads;

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakLI, OakUL } from "@oaknational/oak-components";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
 
@@ -6,7 +7,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
-import { Hr, LI, UL } from "@/components/SharedComponents/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
@@ -78,9 +79,9 @@ const PostList: FC<PostListProps> = (props) => {
       )}
       {currentPageItems.length ? (
         <>
-          <UL $reset>
+          <OakUL $reset>
             {currentPageItems.map((item, i) => (
-              <LI key={`PostList-PostListItem-${i}`}>
+              <OakLI key={`PostList-PostListItem-${i}`}>
                 {i !== 0 && <Hr thickness={4} $mv={32} />}
                 <PostListItem
                   {...item}
@@ -88,9 +89,9 @@ const PostList: FC<PostListProps> = (props) => {
                   firstItemRef={i === 0 ? firstItemRef : null}
                   showImageOnTablet={showImageOnTablet}
                 />
-              </LI>
+              </OakLI>
             ))}
-          </UL>
+          </OakUL>
           {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
         </>
       ) : null}

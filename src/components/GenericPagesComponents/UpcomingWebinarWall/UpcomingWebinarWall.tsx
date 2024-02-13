@@ -1,13 +1,13 @@
 import { FC } from "react";
+import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
-import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type UpcomingWebinarWallProps = {
-  headingTag?: HeadingTag;
+  headingTag?: OakHeadingTag;
   headingText: string;
   buttonOnClick: () => void;
   buttonHref: string;
@@ -46,9 +46,9 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
       $cover
     >
       <Box $maxWidth={320} $zIndex="inFront">
-        <Heading tag={headingTag} $font={["heading-6", "heading-5"]}>
+        <OakHeading tag={headingTag} $font={["heading-6", "heading-5"]}>
           {headingText}
-        </Heading>
+        </OakHeading>
         <ButtonAsLink
           $mt={28}
           background="blue"

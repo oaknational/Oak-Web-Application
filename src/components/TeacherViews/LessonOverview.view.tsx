@@ -1,5 +1,10 @@
 import React, { useRef } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import {
   getCommonPathway,
@@ -15,7 +20,6 @@ import {
 } from "@/components/TeacherComponents/types/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
@@ -33,7 +37,7 @@ import { useCurrentSection } from "@/components/TeacherComponents/helpers/lesson
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
-import { LEGACY_COHORT } from "@/config/cohort";
+import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 
 export type LessonOverviewProps = {
   lesson:
@@ -137,6 +141,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
 
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
@@ -161,7 +166,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
-        isLegacyLesson={isLegacyLicense}
+        isNew={isNew}
+        isShareable={isLegacyLicense}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -172,12 +178,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
           <Box $pa={16} $mb={64}>
-            <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
+            <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
-            </Heading>
-            <Typography $font={"body-1"}>
+            </OakHeading>
+            <OakTypography $font={"body-1"}>
               Sorry, this lesson no longer exists.
-            </Typography>
+            </OakTypography>
           </Box>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
@@ -360,10 +366,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks.length - 1
                     }
                   >
-                    <Typography $font={"body-1"}>
+                    <OakTypography $font={"body-1"}>
                       We're sorry, but preview is not currently available.
                       Download to see additional material.
-                    </Typography>
+                    </OakTypography>
                     {/* 
                     Temporary fix for additional material due to unexpected poor rendering of google docs
                     <OverviewPresentation

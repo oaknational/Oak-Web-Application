@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Svg from "@/components/SharedComponents/Svg";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
@@ -101,14 +101,14 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             />
           )}
 
-          <Heading tag="h1" $font={["heading-4", "heading-3"]}>
+          <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
             Thanks for downloading
-          </Heading>
+          </OakHeading>
 
-          <P $font={"body-1"}>
+          <OakP $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.
-          </P>
+          </OakP>
         </Flex>
       </Flex>
 

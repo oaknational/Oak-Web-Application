@@ -1,5 +1,5 @@
-import { MarginProps } from "@/styles/utils/spacing";
-import { Span } from "@/components/SharedComponents/Typography";
+import { OakSpan, OakSpanProps } from "@oaknational/oak-components";
+
 import { ColorProps } from "@/styles/utils/color";
 
 const TAG_COLOR_MAP = {
@@ -30,7 +30,7 @@ const TAG_COLOR_MAP = {
 } as const;
 
 export type TagColor = keyof typeof TAG_COLOR_MAP;
-type TagFunctionalProps = MarginProps &
+type TagFunctionalProps = OakSpanProps &
   ColorProps & {
     text: string;
     color: TagColor;
@@ -39,18 +39,18 @@ type TagFunctionalProps = MarginProps &
 export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
   const { background, borderColor } = TAG_COLOR_MAP[styleProps.color];
   return (
-    <Span
+    <OakSpan
       $background={background}
       $borderColor={borderColor}
-      $borderRadius={4}
-      $ba={1}
-      $pv={4}
-      $ph={8}
+      $borderRadius="border-radius-s"
+      $ba="border-solid-s"
+      $pv="inner-padding-ssx"
+      $ph="inner-padding-xs"
       $font="heading-light-7"
       {...styleProps}
       $color={"grey70"}
     >
       {text}
-    </Span>
+    </OakSpan>
   );
 }

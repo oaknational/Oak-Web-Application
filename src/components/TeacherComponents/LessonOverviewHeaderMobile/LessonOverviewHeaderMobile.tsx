@@ -1,11 +1,11 @@
 import { FC } from "react";
+import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
@@ -19,7 +19,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     tierTitle,
     lessonTitle,
     pupilLessonOutcome,
-    isLegacyLesson,
+    isNew,
     subjectIconBackgroundColor,
   } = props;
 
@@ -32,29 +32,29 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
             height={20}
             width={20}
             $ma={"auto"}
-            isLegacyLesson={isLegacyLesson}
+            isNew={isNew}
             color={subjectIconBackgroundColor}
           />
         </Box>
         <Flex $flexDirection={"column"} $gap={8}>
           {(examBoardTitle || yearTitle || tierTitle) && (
-            <Span $color={"grey60"} $font={"heading-light-7"}>
+            <OakSpan $color={"grey60"} $font={"heading-light-7"}>
               <LessonMetadata
                 examBoardTitle={examBoardTitle}
                 yearTitle={yearTitle}
                 tierTitle={tierTitle}
               />
-            </Span>
+            </OakSpan>
           )}
 
-          <Heading tag={"h1"} $font={"heading-5"}>
+          <OakHeading tag={"h1"} $font={"heading-5"}>
             {lessonTitle}
-          </Heading>
+          </OakHeading>
         </Flex>
       </Flex>
       {pupilLessonOutcome && (
         <Box>
-          <P $font={"body-3"}>{pupilLessonOutcome}</P>
+          <OakP $font={"body-3"}>{pupilLessonOutcome}</OakP>
         </Box>
       )}
       <LessonOverviewHeaderDownloadAllButton {...props} />

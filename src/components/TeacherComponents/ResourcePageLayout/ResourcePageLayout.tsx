@@ -6,6 +6,7 @@ import {
   UseFormRegister,
   UseFormTrigger,
 } from "react-hook-form";
+import { OakHeading, OakLI, OakP, OakUL } from "@oaknational/oak-components";
 
 import {
   ErrorKeysType,
@@ -20,7 +21,7 @@ import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponen
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
-import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
+import { P } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
@@ -70,9 +71,9 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
         $flexDirection={"column"}
         $gap={[24, 32]}
       >
-        <Heading tag="h1" $font={["heading-5", "heading-4"]}>
+        <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
-        </Heading>
+        </OakHeading>
         <Flex
           $justifyContent="space-between"
           $width="100%"
@@ -80,9 +81,9 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           $gap={48}
         >
           <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
-            <Heading tag="h2" $font={["heading-6", "heading-5"]}>
+            <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
               {props.resourcesHeader}
-            </Heading>
+            </OakHeading>
             <FieldError id={"downloads-error"} withoutMarginBottom>
               {props.errors?.resources?.message}
             </FieldError>
@@ -105,9 +106,13 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             $gap={16}
             $maxWidth={420}
           >
-            <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[24, 32]}>
+            <OakHeading
+              tag="h2"
+              $font={["heading-6", "heading-5"]}
+              $mb={["space-between-m", "space-between-m2"]}
+            >
               Your details
-            </Heading>
+            </OakHeading>
             {props.errors.school && (
               <FieldError id="school-error">
                 {props.errors.school?.message}
@@ -122,7 +127,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             ) : (
               <>
                 {props.showLoading ? (
-                  <P $mt={24}>Loading...</P>
+                  <OakP $mt="space-between-m">Loading...</OakP>
                 ) : (
                   <Flex $flexDirection="column" $gap={24}>
                     {props.showSavedDetails ? (
@@ -218,14 +223,14 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               <Flex $flexDirection={"row"}>
                 <Icon name="content-guidance" $color={"red"} />
                 <Flex $flexDirection={"column"}>
-                  <P $ml={4} $color={"red"}>
+                  <OakP $ml="space-between-sssx" $color={"red"}>
                     To complete correct the following:
-                  </P>
-                  <UL $mr={24}>
+                  </OakP>
+                  <OakUL $mr="space-between-m">
                     {getFormErrorMessages().map((err) => {
-                      return <LI $color={"red"}>{err}</LI>;
+                      return <OakLI $color={"red"}>{err}</OakLI>;
                     })}
-                  </UL>
+                  </OakUL>
                 </Flex>
               </Flex>
             )}

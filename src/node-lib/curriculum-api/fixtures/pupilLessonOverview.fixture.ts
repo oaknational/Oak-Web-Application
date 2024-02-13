@@ -11,6 +11,16 @@ const pupilLessonOverviewFixture = (
     subjectTitle: "Maths",
     starterQuiz: quizQuestions,
     lessonSlug: "lesson-slug",
+    supervisionLevel: null,
+    contentGuidance: null,
+    lessonEquipmentAndResources: null,
+    worksheetUrl: null,
+    videoMuxPlaybackId: "mux-id",
+    videoWithSignLanguageMuxPlaybackId: "signed-mux-id",
+    transcriptSentences: ["This is a sentence.", "This is another sentence"],
+    videoTitle: "Introduction to Islamic Geometry",
+    isLegacyLicense: false,
+    pupilLessonOutcome: undefined,
     ...partial,
   };
 };

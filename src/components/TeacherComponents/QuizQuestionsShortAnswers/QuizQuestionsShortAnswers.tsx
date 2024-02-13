@@ -1,10 +1,10 @@
 import { VisuallyHidden } from "react-aria";
+import { OakTypography } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsShortAnswers = ({
@@ -39,9 +39,9 @@ export const QuizQuestionsShortAnswers = ({
           <Icon name={"tick"} />
         </Box>
 
-        <Typography $font={["body-2", "body-1"]} aria-hidden>
+        <OakTypography $font={["body-2", "body-1"]} aria-hidden>
           {removeMarkdown(answerString)}
-        </Typography>
+        </OakTypography>
       </Flex>
     </Flex>
   );

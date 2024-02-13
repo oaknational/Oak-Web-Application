@@ -1,4 +1,4 @@
-import P from "./P";
+import P from "./P.deprecated";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
