@@ -26,6 +26,7 @@ import { getSdk } from "./generated/sdk";
 
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 import argsRemoveLegacySlugSuffix from "@/utils/slugModifiers/argsRemoveLegacySlugSuffix";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
@@ -594,6 +595,7 @@ const curriculumApi = {
       ...share,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
+      lessonCohort: LEGACY_COHORT,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {

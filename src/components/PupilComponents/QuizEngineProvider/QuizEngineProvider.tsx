@@ -12,7 +12,10 @@ import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  isLessonReviewSection,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -208,7 +211,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleNextQuestion = useCallback(() => {
     setCurrentQuestionIndex((prev) => {
       const _currentQuestionIndex = Math.min(prev + 1, numQuestions);
-      if (_currentQuestionIndex === numQuestions) {
+      if (
+        _currentQuestionIndex === numQuestions &&
+        isLessonReviewSection(currentSection)
+      ) {
         completeSection(currentSection);
       }
       return _currentQuestionIndex;

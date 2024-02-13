@@ -4,7 +4,6 @@ import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
@@ -24,11 +23,11 @@ const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
 ) => {
   const { menuSections } = props;
   return (
-    <Flex $flexDirection="column" $gap={32}>
+    <OakFlex $flexDirection="column" $gap="all-spacing-7">
       {menuSections.map((section, i) => (
-        <Flex
+        <OakFlex
           $flexDirection="column"
-          $gap={12}
+          $gap="all-spacing-3"
           data-testid="menu-section"
           key={`menu-item-${i}`}
         >
@@ -48,9 +47,9 @@ const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
               </OakLI>
             ))}
           </OakFlex>
-        </Flex>
+        </OakFlex>
       ))}
-    </Flex>
+    </OakFlex>
   );
 };
 

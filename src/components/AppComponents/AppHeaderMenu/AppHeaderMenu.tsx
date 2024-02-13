@@ -15,7 +15,7 @@ import Svg from "@/components/SharedComponents/Svg";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import flex from "@/styles/utils/flex";
 import Box, { BoxProps, box } from "@/components/SharedComponents/Box";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export type MenuConfig = {
   width: PixelSpacing;

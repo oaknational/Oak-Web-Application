@@ -1,9 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Component from "./LandingPageHero";
-
-import Flex from "@/components/SharedComponents/Flex";
 
 export default {
   component: Component,
@@ -11,9 +10,9 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Flex $background={"lavender50"} $justifyContent={"center"} $width="100%">
+  <OakFlex $background={"lavender50"} $justifyContent={"center"} $width="100%">
     <Component {...args} />
-  </Flex>
+  </OakFlex>
 );
 
 export const LandingPagesHero = Template.bind({});

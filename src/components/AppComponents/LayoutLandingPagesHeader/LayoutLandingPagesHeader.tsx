@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakTypography } from "@oaknational/oak-components";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
@@ -7,7 +7,6 @@ import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type LayoutLandingPagesHeaderProps = {
   headerCta?: CTA | null;
@@ -20,7 +19,7 @@ export type LayoutLandingPagesHeaderProps = {
 const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
   return (
     <LayoutFixedHeader $background={"white"}>
-      <Flex
+      <OakFlex
         $alignItems={"center"}
         $width={"100%"}
         $justifyContent={"space-between"}
@@ -30,8 +29,8 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
         </OwaLink>
         {props.headerCta?.linkType && (
           <OwaLink page={null} href={getLinkHref(props.headerCta)}>
-            <Flex
-              $width={[200, "100%"]}
+            <OakFlex
+              $width={["all-spacing-19", "100%"]}
               $justifyContent={"flex-end"}
               $alignItems={"center"}
             >
@@ -47,10 +46,10 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
                 variant={"brush"}
                 size={28}
               />
-            </Flex>
+            </OakFlex>
           </OwaLink>
         )}
-      </Flex>
+      </OakFlex>
     </LayoutFixedHeader>
   );
 };

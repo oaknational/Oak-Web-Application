@@ -3,6 +3,7 @@ import {
   OakTypography,
   OakHeading,
   OakHeadingTag,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import { KeyStageSubject } from "./SubjectCardList";
@@ -14,7 +15,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
@@ -52,11 +53,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
       $pa={[0, 0]}
       $mb={[16, 0]}
     >
-      <Flex
+      <OakFlex
         $background={backgroundColor}
         $position={"relative"}
         $width={"100%"}
-        $pv={16}
+        $pv="inner-padding-m"
       >
         <SubjectIcon
           subjectSlug={subjectSlug}
@@ -66,7 +67,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           $ma={"auto"}
           $transform={isHovered ? "scale(1)" : "scale(0.8)"}
         />
-      </Flex>
+      </OakFlex>
+      {/* @todo replace with OakFlex - translate drop shadow names to correct names */}
       <Flex
         $flexDirection={"column"}
         $position={"relative"}

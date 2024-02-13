@@ -66,8 +66,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               {boardHeader}
             </OakHeading>
             <BioCardList
-              $mb={[80, 60]}
-              $ph={[16, 0]}
+              $mb={["space-between-xxxl", "space-between-xl"]}
+              $ph={["inner-padding-m", "inner-padding-none"]}
               bios={boardMembers}
               withModals={bioModalsEnabled}
             />

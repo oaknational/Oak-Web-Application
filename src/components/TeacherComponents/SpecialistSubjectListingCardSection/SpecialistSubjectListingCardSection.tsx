@@ -3,9 +3,9 @@ import {
   OakGridArea,
   OakHeading,
   OakP,
+  OakFlex,
 } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
@@ -27,7 +27,7 @@ const SpecialistSubjectCardSection = (props: {
   subjects: Array<SpecialistSubject>;
 }) => {
   return (
-    <Flex $flexDirection="column" $gap={24}>
+    <OakFlex $flexDirection="column" $gap="all-spacing-6">
       <OakGrid $rg={"all-spacing-4"}>
         <OakGridArea $colSpan={[12]}>
           <OakHeading tag="h2" $font="heading-3">
@@ -53,7 +53,7 @@ const SpecialistSubjectCardSection = (props: {
           </GridAreaListItem>
         ))}
       </GridList>
-    </Flex>
+    </OakFlex>
   );
 };
 

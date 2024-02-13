@@ -6,7 +6,13 @@ import {
   UseFormRegister,
   UseFormTrigger,
 } from "react-hook-form";
-import { OakHeading, OakLI, OakP, OakUL } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakLI,
+  OakP,
+  OakUL,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import {
   ErrorKeysType,
@@ -25,7 +31,7 @@ import { P } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Input from "@/components/SharedComponents/Input";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
@@ -41,6 +47,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
+    hideSelectAll?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormProps>;
     control: Control<ResourceFormProps>;
@@ -66,19 +73,19 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   };
   return (
     <Box $width="100%">
-      <Flex
+      <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
-        $gap={[24, 32]}
+        $gap={["all-spacing-6", "all-spacing-7"]}
       >
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
         </OakHeading>
-        <Flex
+        <OakFlex
           $justifyContent="space-between"
           $width="100%"
           $flexDirection={["column", "column", "row"]}
-          $gap={48}
+          $gap="all-spacing-9"
         >
           <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
             <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
@@ -87,17 +94,19 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             <FieldError id={"downloads-error"} withoutMarginBottom>
               {props.errors?.resources?.message}
             </FieldError>
-            <Box $maxWidth="max-content">
-              <Checkbox
-                checked={props.selectAllChecked}
-                onChange={props.handleToggleSelectAll}
-                id="select-all"
-                name="select-all"
-                variant="withLabel"
-                labelText="Select all"
-                labelFontWeight={600}
-              />
-            </Box>
+            {!props.hideSelectAll && (
+              <Box $maxWidth="max-content">
+                <Checkbox
+                  checked={props.selectAllChecked}
+                  onChange={props.handleToggleSelectAll}
+                  id="select-all"
+                  name="select-all"
+                  variant="withLabel"
+                  labelText="Select all"
+                  labelFontWeight={600}
+                />
+              </Box>
+            )}
             {props.cardGroup}
           </Flex>
           <Flex
@@ -129,7 +138,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 {props.showLoading ? (
                   <OakP $mt="space-between-m">Loading...</OakP>
                 ) : (
-                  <Flex $flexDirection="column" $gap={24}>
+                  <OakFlex $flexDirection="column" $gap="all-spacing-6">
                     {props.showSavedDetails ? (
                       <ResourcePageDetailsCompleted
                         email={props.email}
@@ -215,14 +224,14 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                       showPostAlbCopyright={props.showPostAlbCopyright}
                       openLinksExternally={true}
                     />
-                  </Flex>
+                  </OakFlex>
                 )}
               </>
             )}
             {hasFormErrors && (
-              <Flex $flexDirection={"row"}>
+              <OakFlex $flexDirection={"row"}>
                 <Icon name="content-guidance" $color={"red"} />
-                <Flex $flexDirection={"column"}>
+                <OakFlex $flexDirection={"column"}>
                   <OakP $ml="space-between-sssx" $color={"red"}>
                     To complete correct the following:
                   </OakP>
@@ -231,8 +240,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                       return <OakLI $color={"red"}>{err}</OakLI>;
                     })}
                   </OakUL>
-                </Flex>
-              </Flex>
+                </OakFlex>
+              </OakFlex>
             )}
             {props.cta}
 
@@ -247,8 +256,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </FieldError>
             )}
           </Flex>
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </Box>
   );
 };

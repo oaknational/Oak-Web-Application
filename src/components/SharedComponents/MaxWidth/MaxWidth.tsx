@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 /**
  * This component will provide a default maxWidth and ph value, it take Flex props.

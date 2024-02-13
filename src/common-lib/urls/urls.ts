@@ -239,8 +239,10 @@ type CurriculumUnitsLinkProps = {
 };
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
-
   subjectPhaseSlug: string;
+};
+type CurriculumPreviousDownloadsLinkProps = {
+  page: "curriculum-previous-downloads";
 };
 
 export type OakLinkProps =
@@ -288,7 +290,8 @@ export type OakLinkProps =
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
-  | CurriculumDownloadsLinkProps;
+  | CurriculumDownloadsLinkProps
+  | CurriculumPreviousDownloadsLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -705,6 +708,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
+  }),
+  "curriculum-previous-downloads": createOakPageConfig({
+    pathPattern: "/teachers/curriculum/previous-downloads",
+    analyticsPageName: "Curriculum Previous Downloads",
+    configType: "internal",
+    pageType: "curriculum-previous-downloads",
   }),
 };
 

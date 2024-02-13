@@ -22,6 +22,7 @@ import {
 import {
   LessonEngineProvider,
   isLessonSection,
+  allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
@@ -104,9 +105,11 @@ const PupilPageContent = ({
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
 }) => {
+  const availableSections = pickAvailableSectionsForLesson(curriculumData);
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider>
+      <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
           <PupilPageContent curriculumData={curriculumData} />
         </OakBox>
@@ -120,6 +123,22 @@ export type PupilPageURLParams = {
   unitSlug: string;
   programmeSlug: string;
 };
+
+export const pickAvailableSectionsForLesson = (
+  curriculumData: PupilLessonOverviewData,
+) =>
+  allLessonReviewSections.filter((section) => {
+    switch (section) {
+      case "starter-quiz":
+        return !!curriculumData?.starterQuiz?.length;
+      case "exit-quiz":
+        return !!curriculumData?.exitQuiz?.length;
+      case "video":
+        return !!curriculumData.videoMuxPlaybackId;
+      default:
+        return true;
+    }
+  });
 
 export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {

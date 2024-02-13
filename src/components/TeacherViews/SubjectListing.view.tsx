@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
 
@@ -9,7 +9,7 @@ import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { P } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;
@@ -21,7 +21,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
     : `${keyStageTitle} subjects`;
 
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <Flex $flexDirection="column" $gap={16} $mb={isEyfs ? 26 : 40}>
           <OakHeading
@@ -67,7 +67,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           })}
         </GridList>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

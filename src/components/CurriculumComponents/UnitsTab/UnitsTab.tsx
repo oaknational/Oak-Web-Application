@@ -5,10 +5,10 @@ import {
   OakGridArea,
   OakP,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
@@ -811,7 +811,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                         ))}
                       </Box>
                     )}
-                    <Flex $flexWrap={"wrap"} $mt={12} data-testid="unit-cards">
+                    <OakFlex
+                      $flexWrap={"wrap"}
+                      $mt="space-between-xs"
+                      data-testid="unit-cards"
+                    >
                       {units
                         .filter((unit) => isVisibleUnit(year, unit))
                         .map((unit, index) => {
@@ -879,7 +883,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                 />
                               </Box>
 
-                              <Flex
+                              <OakFlex
                                 $flexDirection={"row"}
                                 $justifyContent={"flex-end"}
                               >
@@ -900,7 +904,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                   }}
                                   ref={modalButtonRef}
                                 />
-                              </Flex>
+                              </OakFlex>
                             </Card>
                           );
                         })}
@@ -928,7 +932,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                           }
                         />
                       </UnitsTabSidebar>
-                    </Flex>
+                    </OakFlex>
                   </Box>
                 );
               })}

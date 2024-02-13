@@ -1,12 +1,15 @@
 import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
+import { OakFlex } from "@oaknational/oak-components";
 
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
-import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import {
+  LessonShareData,
+  LessonShareResourceData,
+} from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type LessonShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
@@ -20,9 +23,13 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
   const sortedResources = sortShareResources(props.shareableResources);
 
   return (
-    <Flex $flexDirection="column" $gap={[16, 24]} $alignItems="flex-start">
-      <Flex
-        $gap={16}
+    <OakFlex
+      $flexDirection="column"
+      $gap={["all-spacing-4", "all-spacing-6"]}
+      $alignItems="flex-start"
+    >
+      <OakFlex
+        $gap={"all-spacing-4"}
         $flexDirection={["column", "row"]}
         $flexWrap={["nowrap", "wrap"]}
       >
@@ -46,7 +53,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                     } else {
                       onChange(
                         fieldValue.filter(
-                          (val: LessonShareSchema["type"] | string) =>
+                          (val: LessonShareResourceData["type"] | string) =>
                             val !== resource.type,
                         ),
                       );
@@ -75,7 +82,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
               />
             ),
         )}
-      </Flex>
+      </OakFlex>
       <ButtonAsLink
         label="Preview as a pupil"
         icon="external"
@@ -86,7 +93,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
         iconBackground="black"
         disabled={props.hasError}
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

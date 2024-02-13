@@ -8,7 +8,7 @@ import {
 } from "@/components/GenericPagesComponents/Select";
 import { Label } from "@/components/SharedComponents/ListBox/ListBox";
 import { IconName } from "@/components/SharedComponents/Icon";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type SelectChangeHandler = (e: {
   target: { name: string; value: string };
@@ -23,6 +23,7 @@ type DropdownSelectProps = FlexProps & {
   placeholder?: string;
   icon?: IconName;
   onChange: SelectChangeHandler;
+  selectedValue?: string;
 };
 
 const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
@@ -38,6 +39,7 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
     label,
     onChange,
     icon,
+    selectedValue,
     ...containerProps
   } = props;
 
@@ -59,6 +61,7 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
         containerProps={containerProps}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
+        selectedValue={selectedValue}
       >
         {(item) => (
           <Item key={item.value} textValue={item.label}>
