@@ -17526,7 +17526,7 @@ export type Published_Mv_Lesson_Overview_3_0_3 = {
   exitQuizId?: Maybe<Scalars['Int']['output']>;
   hasDownloadableResources?: Maybe<Scalars['Boolean']['output']>;
   isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  isWorksheetLandscape?: Maybe<Scalars['String']['output']>;
+  isWorksheetLandscape?: Maybe<Scalars['Boolean']['output']>;
   keyLearningPoints?: Maybe<Scalars['jsonb']['output']>;
   keyStageSlug?: Maybe<Scalars['String']['output']>;
   keyStageTitle?: Maybe<Scalars['String']['output']>;
@@ -17669,7 +17669,7 @@ export type Published_Mv_Lesson_Overview_3_0_3_Bool_Exp = {
   exitQuizId?: InputMaybe<Int_Comparison_Exp>;
   hasDownloadableResources?: InputMaybe<Boolean_Comparison_Exp>;
   isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  isWorksheetLandscape?: InputMaybe<String_Comparison_Exp>;
+  isWorksheetLandscape?: InputMaybe<Boolean_Comparison_Exp>;
   keyLearningPoints?: InputMaybe<Jsonb_Comparison_Exp>;
   keyStageSlug?: InputMaybe<String_Comparison_Exp>;
   keyStageTitle?: InputMaybe<String_Comparison_Exp>;
@@ -17711,7 +17711,6 @@ export type Published_Mv_Lesson_Overview_3_0_3_Max_Fields = {
   examBoardSlug?: Maybe<Scalars['String']['output']>;
   examBoardTitle?: Maybe<Scalars['String']['output']>;
   exitQuizId?: Maybe<Scalars['Int']['output']>;
-  isWorksheetLandscape?: Maybe<Scalars['String']['output']>;
   keyStageSlug?: Maybe<Scalars['String']['output']>;
   keyStageTitle?: Maybe<Scalars['String']['output']>;
   lessonCohort?: Maybe<Scalars['String']['output']>;
@@ -17747,7 +17746,6 @@ export type Published_Mv_Lesson_Overview_3_0_3_Min_Fields = {
   examBoardSlug?: Maybe<Scalars['String']['output']>;
   examBoardTitle?: Maybe<Scalars['String']['output']>;
   exitQuizId?: Maybe<Scalars['Int']['output']>;
-  isWorksheetLandscape?: Maybe<Scalars['String']['output']>;
   keyStageSlug?: Maybe<Scalars['String']['output']>;
   keyStageTitle?: Maybe<Scalars['String']['output']>;
   lessonCohort?: Maybe<Scalars['String']['output']>;
@@ -17959,7 +17957,7 @@ export type Published_Mv_Lesson_Overview_3_0_3_Stream_Cursor_Value_Input = {
   exitQuizId?: InputMaybe<Scalars['Int']['input']>;
   hasDownloadableResources?: InputMaybe<Scalars['Boolean']['input']>;
   isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  isWorksheetLandscape?: InputMaybe<Scalars['String']['input']>;
+  isWorksheetLandscape?: InputMaybe<Scalars['Boolean']['input']>;
   keyLearningPoints?: InputMaybe<Scalars['jsonb']['input']>;
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
   keyStageTitle?: InputMaybe<Scalars['String']['input']>;
@@ -35207,7 +35205,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_3', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: string | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_3', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: boolean | null }> };
 
 export type LessonOverviewCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
