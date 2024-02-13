@@ -1,5 +1,5 @@
-import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
+import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
@@ -24,8 +24,6 @@ const downloadLessonResources = async (
   if (downloadResourcesLink) {
     createAndClickHiddenDownloadLink(downloadResourcesLink);
   }
-
-  return;
 };
 
 export default downloadLessonResources;

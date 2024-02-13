@@ -3,7 +3,6 @@ import { PupilLessonOverviewQuery } from "../../generated/sdk";
 
 import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
 
-import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 
@@ -24,26 +23,6 @@ describe("pupilLessonOverview()", () => {
     ]);
 
     expect(lesson.starterQuiz?.[0]?.questionId).toEqual(985);
-  });
-
-  describe("when the lesson is for the 2020-2023 cohort", () => {
-    const mockLesson = mockQueryLesson({ lessonCohort: LEGACY_COHORT });
-
-    test("isLegacyLicense is true", async () => {
-      const lesson = await executeLessonOverviewQuery([mockLesson]);
-
-      expect(lesson.starterQuiz?.[0]?.questionId).toEqual(985);
-    });
-  });
-
-  describe("when the lesson is for the 2023-2024 cohort", () => {
-    const mockLesson = mockQueryLesson({ lessonCohort: NEW_COHORT });
-
-    test("isLegacyLicense is false", async () => {
-      const lesson = await executeLessonOverviewQuery([mockLesson]);
-
-      expect(lesson.isLegacyLicense).toBe(false);
-    });
   });
 });
 
@@ -66,19 +45,12 @@ async function executeLessonOverviewQuery(
 function mockQueryLesson(
   partial?: Partial<Omit<PupilLessonOverviewData, "transcriptSentences">> & {
     transcriptSentences?: string | null;
-    lessonCohort?: string;
   },
 ): PupilLessonOverviewQuery["lesson"][0] {
-  const {
-    transcriptSentences = null,
-    isLegacyLicense,
-    lessonCohort,
-    ...rest
-  } = partial ?? {};
+  const { transcriptSentences = null, ...rest } = partial ?? {};
 
   return {
     ...pupilLessonOverviewFixture(rest),
     transcriptSentences,
-    lessonCohort,
   };
 }

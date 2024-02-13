@@ -31,15 +31,16 @@ import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOve
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
+  hasWorksheet: boolean;
 };
 
 const PupilPageContent = ({
   curriculumData,
-}: {
-  curriculumData: PupilLessonOverviewData;
-}) => {
+  hasWorksheet,
+}: PupilLessonOverviewPageProps) => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const searchParams = useSearchParams();
   const [overrideApplied, setOverrideApplied] = useState(false);
@@ -61,7 +62,7 @@ const PupilPageContent = ({
     pupilLessonOutcome,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
-    isLegacyLicense,
+    isLegacy,
   } = curriculumData;
 
   switch (currentSection) {
@@ -78,7 +79,9 @@ const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro {...curriculumData} />;
+      return (
+        <PupilViewsIntro {...curriculumData} hasWorksheet={hasWorksheet} />
+      );
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
@@ -90,7 +93,7 @@ const PupilPageContent = ({
             videoWithSignLanguageMuxPlaybackId ?? undefined
           }
           transcriptSentences={curriculumData.transcriptSentences ?? []}
-          isLegacyLicense={isLegacyLicense}
+          isLegacy={isLegacy}
         />
       );
     case "exit-quiz":
@@ -104,6 +107,7 @@ const PupilPageContent = ({
 
 const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   curriculumData,
+  hasWorksheet,
 }) => {
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
@@ -111,7 +115,10 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
-          <PupilPageContent curriculumData={curriculumData} />
+          <PupilPageContent
+            curriculumData={curriculumData}
+            hasWorksheet={hasWorksheet}
+          />
         </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>
@@ -177,18 +184,35 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      let transcriptSentences = curriculumData.transcriptSentences;
+      // For new content we need to fetch the captions file from gCloud and parse the result to generate
+      // the transcript sentences.
+      const resolveTranscriptSentences = (() => {
+        if (curriculumData.videoTitle && !curriculumData.isLegacy) {
+          return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
+        }
 
-      if (curriculumData.videoTitle && !curriculumData.isLegacyLicense) {
-        // For new content we need to fetch the captions file from gCloud and parse the result to generate
-        // the transcript sentences.
-        const fileName = `${curriculumData.videoTitle}.vtt`;
-        transcriptSentences = (await getCaptionsFromFile(fileName)) ?? [];
-      }
+        return curriculumData.transcriptSentences;
+      })();
+
+      // Resolve the requests for the transcript and worksheet existence in parallel
+      const [transcriptSentences, downloadExistence] = await Promise.all([
+        resolveTranscriptSentences,
+        getDownloadResourcesExistence(
+          lessonSlug,
+          "worksheet-pdf",
+          curriculumData.isLegacy,
+        ),
+      ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
-          curriculumData: { ...curriculumData, transcriptSentences },
+          curriculumData: {
+            ...curriculumData,
+            transcriptSentences: transcriptSentences ?? [],
+          },
+          hasWorksheet: downloadExistence.resources.some(
+            ([type, result]) => type === "worksheet-pdf" && result.exists,
+          ),
         },
       };
 
