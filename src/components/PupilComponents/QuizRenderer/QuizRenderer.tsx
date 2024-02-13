@@ -1,6 +1,8 @@
 import { FormEvent } from "react";
 import { OakFlex, OakForm } from "@oaknational/oak-components";
 
+import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
+
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -94,6 +96,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
             showIndex={true}
           />
           {answerRender}
+          <QuizAttribution questionStem={questionStem} />
         </OakFlex>
       </OakForm>
     );
