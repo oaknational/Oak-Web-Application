@@ -238,7 +238,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonDetails
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
-                    keyWords={lessonKeywords}
+                    keyWords={
+                      lessonKeywords?.length ? lessonKeywords : undefined
+                    }
                     teacherTips={teacherTips}
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
