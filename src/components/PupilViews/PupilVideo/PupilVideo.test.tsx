@@ -21,7 +21,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={[]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -39,7 +39,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -64,7 +64,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -87,7 +87,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -109,7 +109,7 @@ describe(PupilViewsVideo, () => {
             videoMuxPlaybackId={undefined}
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense
+            isLegacy
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -129,7 +129,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,

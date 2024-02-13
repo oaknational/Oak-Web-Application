@@ -1,3 +1,19 @@
+# [1.351.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.350.0...v1.351.0) (2024-02-13)
+
+
+### Features
+
+* add arrow to "I'm ready" button ([205597b](https://github.com/oaknational/Oak-Web-Application/commit/205597bc7faea02b092bd7faac24394837d1ad8f))
+* **PUPIL-285:** add copyright notice to lesson PupilIntro ([b613dd2](https://github.com/oaknational/Oak-Web-Application/commit/b613dd2951866462844f5d08bcd49631e5981077))
+* use newer worksheet icon in pupil intro ([a250fa8](https://github.com/oaknational/Oak-Web-Application/commit/a250fa83e180ca0c33795c0223d5da448765b808))
+
+# [1.350.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.349.0...v1.350.0) (2024-02-13)
+
+
+### Features
+
+* **PUPIL-421:** enable worksheet downloads in the pupil intro ([4beaa97](https://github.com/oaknational/Oak-Web-Application/commit/4beaa9798dc1d688e61d4e83c9d6919f8b92a17e))
+
 # [1.349.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.348.1...v1.349.0) (2024-02-13)
 
 

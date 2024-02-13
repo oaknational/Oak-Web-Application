@@ -4,7 +4,7 @@ import type {
   DownloadResourceType,
   ResourceFormProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import downloadLessonResources from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
