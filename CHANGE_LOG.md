@@ -1,3 +1,15 @@
+# [1.349.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.348.1...v1.349.0) (2024-02-13)
+
+
+### Bug Fixes
+
+* updating sdk ([1b6abeb](https://github.com/oaknational/Oak-Web-Application/commit/1b6abeb5c6fd412d6673850c90e1a6f905077bef))
+
+
+### Features
+
+* switch to curriculum_units_0_1 ([db712fc](https://github.com/oaknational/Oak-Web-Application/commit/db712fc9d58dba7f93942821e8f1dcc9bcd31e4a))
+
 ## [1.348.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.348.0...v1.348.1) (2024-02-13)
 
 
