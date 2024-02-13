@@ -1,3 +1,10 @@
+## [1.348.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.348.0...v1.348.1) (2024-02-13)
+
+
+### Bug Fixes
+
+* convert empty keywords array to undefined ([3147019](https://github.com/oaknational/Oak-Web-Application/commit/3147019da00f0962116d1fac5fdab3950d6b2e53))
+
 # [1.348.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.347.1...v1.348.0) (2024-02-12)
 
 
