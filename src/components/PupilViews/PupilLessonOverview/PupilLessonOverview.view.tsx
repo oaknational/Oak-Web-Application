@@ -29,6 +29,7 @@ type PupilViewsLessonOverviewProps = {
   pupilLessonOutcome?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
+  backUrl?: string;
 };
 
 export const PupilViewsLessonOverview = ({
@@ -39,6 +40,7 @@ export const PupilViewsLessonOverview = ({
   pupilLessonOutcome,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
+  backUrl,
 }: PupilViewsLessonOverviewProps) => {
   const {
     sectionResults,
@@ -46,6 +48,7 @@ export const PupilViewsLessonOverview = ({
     proceedToNextSection,
     lessonReviewSections,
   } = useLessonEngineContext();
+
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
 
   function pickProgressForSection(section: LessonReviewSection) {
@@ -85,9 +88,20 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakTertiaryButton disabled iconName="arrow-left">
-            View all lessons
-          </OakTertiaryButton>
+          {backUrl ? (
+            <OakTertiaryButton
+              $display={"inline-block"} // TODO: Remove when OakTertiaryButton is fixed
+              iconName="arrow-left"
+              href={backUrl}
+              element="a"
+            >
+              View all lessons
+            </OakTertiaryButton>
+          ) : (
+            <OakTertiaryButton disabled iconName="arrow-left">
+              View all lessons
+            </OakTertiaryButton>
+          )}
         </OakGridArea>
       </OakGrid>
       <OakFlex

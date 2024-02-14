@@ -1,5 +1,3 @@
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 import {
   OakBox,
   OakThemeProvider,
@@ -10,7 +8,6 @@ import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   LessonEngineProvider,
   allLessonReviewSections,
-  isLessonSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro";
@@ -46,16 +43,7 @@ const PupilPageContent = ({
   hasWorksheet,
   backUrl,
 }: PupilExperienceViewProps) => {
-  const { currentSection, updateCurrentSection } = useLessonEngineContext();
-  const searchParams = useSearchParams();
-  const [overrideApplied, setOverrideApplied] = useState(false);
-
-  // temporary hack to allow overriding the current section - will be removed on moving to page navigation
-  const overrideSection = searchParams.get("section");
-  if (overrideSection && isLessonSection(overrideSection) && !overrideApplied) {
-    setOverrideApplied(true);
-    updateCurrentSection(overrideSection);
-  }
+  const { currentSection } = useLessonEngineContext();
 
   const {
     starterQuiz,
@@ -81,6 +69,7 @@ const PupilPageContent = ({
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
           starterQuizNumQuestions={starterQuiz?.length ?? 0}
           exitQuizNumQuestions={exitQuiz?.length ?? 0}
+          backUrl={backUrl}
         />
       );
     case "intro":
@@ -115,7 +104,6 @@ export const PupilExperienceView = ({
   hasWorksheet,
   backUrl,
 }: PupilExperienceViewProps) => {
-  console.log("backUrl", backUrl);
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
   return (
@@ -125,6 +113,7 @@ export const PupilExperienceView = ({
           <PupilPageContent
             curriculumData={curriculumData}
             hasWorksheet={hasWorksheet}
+            backUrl={backUrl}
           />
         </OakBox>
       </LessonEngineProvider>

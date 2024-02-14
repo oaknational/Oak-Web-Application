@@ -17,7 +17,7 @@ import getDownloadResourcesExistence from "@/components/SharedComponents/helpers
 import {
   PupilExperienceView,
   PupilExperienceViewProps,
-} from "@/components/PupilViews/PupilExperience/PupilExperience.view";
+} from "@/components/PupilViews/PupilExperience";
 
 /**
  * Test URLs:
