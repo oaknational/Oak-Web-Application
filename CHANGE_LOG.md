@@ -1,3 +1,10 @@
+# [1.352.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.1...v1.352.0) (2024-02-14)
+
+
+### Features
+
+* update lesson overview query ([567d9d7](https://github.com/oaknational/Oak-Web-Application/commit/567d9d7c372aa84c81d004b9b176e0c7dbad7a24))
+
 ## [1.351.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.0...v1.351.1) (2024-02-14)
 
 
