@@ -1,0 +1,28 @@
+query pupilLessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  lesson: published_mv_lesson_overview_3_0_2(
+    where: { lessonSlug: { _eq: $lessonSlug } }
+  ) {
+    lessonTitle
+    yearTitle
+    lessonKeywords
+    subjectSlug
+    subjectTitle
+    pupilLessonOutcome
+    starterQuiz
+    exitQuiz
+    lessonSlug
+    lessonTitle
+    supervisionLevel
+    contentGuidance
+    lessonEquipmentAndResources
+    videoTitle
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
+    isLegacy
+  }
+}

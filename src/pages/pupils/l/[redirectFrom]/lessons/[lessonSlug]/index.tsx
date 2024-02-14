@@ -5,6 +5,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type PupilsLegacyCanonicalPageProps = {};
 
@@ -16,8 +17,7 @@ const PupilsLegacyCanonicalPage: NextPage<
 
 export type PupilLegacyCanonicalPageURLParams = {
   lessonSlug: string;
-  unitSlug: string;
-  programmeSlug: string;
+  redirectFrom: string;
 };
 
 export const getStaticPaths = async () => {
@@ -43,12 +43,10 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context.params");
       }
-      const { lessonSlug, unitSlug, programmeSlug } = context.params;
+      const { lessonSlug, redirectFrom } = context.params;
 
       const curriculumData = await curriculumApi2023.pupilLessonOverview({
-        programmeSlug,
         lessonSlug,
-        unitSlug,
       });
 
       if (!curriculumData) {
@@ -59,25 +57,25 @@ export const getStaticProps: GetStaticProps<
 
       // For new content we need to fetch the captions file from gCloud and parse the result to generate
       // the transcript sentences.
-      //   const resolveTranscriptSentences = (() => {
-      //     if (curriculumData.videoTitle && !curriculumData.isLegacy) {
-      //       return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
-      //     }
+      const resolveTranscriptSentences = (() => {
+        if (curriculumData.videoTitle && !curriculumData.isLegacy) {
+          return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
+        }
 
-      //     return curriculumData.transcriptSentences;
-      //   })();
+        return curriculumData.transcriptSentences;
+      })();
 
       // Resolve the requests for the transcript and worksheet existence in parallel
-      //   const [transcriptSentences, downloadExistence] = await Promise.all([
-      //     resolveTranscriptSentences,
-      //     curriculumData.isLegacy
-      //       ? { resources: [] }
-      //       : getDownloadResourcesExistence(
-      //           lessonSlug,
-      //           "worksheet-pdf",
-      //           curriculumData.isLegacy,
-      //         ),
-      //   ]);
+      const [transcriptSentences, downloadExistence] = await Promise.all([
+        resolveTranscriptSentences,
+        curriculumData.isLegacy
+          ? { resources: [] }
+          : getDownloadResourcesExistence(
+              lessonSlug,
+              "worksheet-pdf",
+              curriculumData.isLegacy,
+            ),
+      ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
         props: {
@@ -85,9 +83,7 @@ export const getStaticProps: GetStaticProps<
             ...curriculumData,
             transcriptSentences: transcriptSentences ?? [],
           },
-          hasWorksheet: downloadExistence.resources.some(
-            ([type, result]) => type === "worksheet-pdf" && result.exists,
-          ),
+          hasWorksheet: false,
         },
       };
 
