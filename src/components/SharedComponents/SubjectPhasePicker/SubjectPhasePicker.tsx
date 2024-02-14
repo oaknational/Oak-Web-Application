@@ -448,9 +448,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </Box>
                 <Box $mt={24}>
                   <OwaLink
-                    page={"oak-curriculum"}
+                    page={"curriculum-previous-downloads"}
                     $textDecoration={"underline"}
                     $font={"heading-7"}
+                    data-testid="previousPlansLink"
                   >
                     Previously released plans
                     <Icon
