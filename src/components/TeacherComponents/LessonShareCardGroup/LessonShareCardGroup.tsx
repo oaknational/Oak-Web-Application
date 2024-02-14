@@ -24,6 +24,26 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
     (r) => r.exists && r.metadata !== null,
   );
 
+  const removeFieldValue = (fieldValue: string[], resourceType: string) =>
+    fieldValue.filter(
+      (val: LessonShareResourceData["type"] | string) => val !== resourceType,
+    );
+
+  const checkboxOnChangeHandler = (
+    e: ChangeEvent<HTMLInputElement>,
+    onChange: (val: string[]) => void,
+    fieldValue: string[],
+    resourceType: string,
+  ) => {
+    if (e.target.checked) {
+      onChange([...fieldValue, resourceType]);
+    } else {
+      onChange(removeFieldValue(fieldValue, resourceType));
+    }
+    // Trigger the form to reevaluate errors
+    props.triggerForm();
+  };
+
   return (
     <OakFlex
       $flexDirection="column"
@@ -45,20 +65,6 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
             render={({
               field: { value: fieldValue, onChange, name, onBlur },
             }) => {
-              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                if (e.target.checked) {
-                  onChange([...fieldValue, resource.type]);
-                } else {
-                  onChange(
-                    fieldValue.filter(
-                      (val: LessonShareResourceData["type"] | string) =>
-                        val !== resource.type,
-                    ),
-                  );
-                }
-                // Trigger the form to reevaluate errors
-                props.triggerForm();
-              };
               return (
                 <ResourceCard
                   id={resource.type}
@@ -70,7 +76,14 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                       : resource.metadata! // this cannot be null here
                   }
                   resourceType={resource.type}
-                  onChange={onChangeHandler}
+                  onChange={(e) =>
+                    checkboxOnChangeHandler(
+                      e,
+                      onChange,
+                      fieldValue,
+                      resource.type,
+                    )
+                  }
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}
