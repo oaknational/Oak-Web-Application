@@ -1,3 +1,10 @@
+## [1.351.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.0...v1.351.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* update subject phase options request ([8a18148](https://github.com/oaknational/Oak-Web-Application/commit/8a18148bd0647a1ac202cacb2f90214b4c28c22f))
+
 # [1.351.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.350.0...v1.351.0) (2024-02-13)
 
 
