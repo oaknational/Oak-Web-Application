@@ -1,4 +1,10 @@
-import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
+import { OakHeading } from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import {
@@ -6,13 +12,22 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 
-type PupilsLegacyCanonicalPageProps = {};
+type PupilsLegacyCanonicalPageProps = {
+  curriculumData: PupilLessonOverviewData;
+  hasWorksheet: boolean;
+};
 
-const PupilsLegacyCanonicalPage: NextPage<
-  PupilsLegacyCanonicalPageProps
-> = () => {
-  return <div>PupilsLegacyCanonicalPage</div>;
+const PupilsLegacyCanonicalPage: NextPage<PupilsLegacyCanonicalPageProps> = ({
+  curriculumData,
+  hasWorksheet,
+}) => {
+  console.log("curriculumData", curriculumData);
+
+  return <OakHeading tag="h1">Legacy Canonical Page</OakHeading>;
 };
 
 export type PupilLegacyCanonicalPageURLParams = {
@@ -45,15 +60,25 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, redirectFrom } = context.params;
 
-      const curriculumData = await curriculumApi2023.pupilLessonOverview({
-        lessonSlug,
-      });
+      const curriculumData = await curriculumApi2023
+        .pupilLessonOverviewCanonical({
+          lessonSlug,
+        })
+        .catch((error) => {
+          console.error("Error fetching pupilLessonOverviewCanonical", {
+            lessonSlug,
+            error,
+          });
+          return null;
+        });
 
       if (!curriculumData) {
         return {
           notFound: true,
         };
       }
+
+      console.log("curriculumData", curriculumData.isLegacy);
 
       // For new content we need to fetch the captions file from gCloud and parse the result to generate
       // the transcript sentences.
@@ -77,7 +102,7 @@ export const getStaticProps: GetStaticProps<
             ),
       ]);
 
-      const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
+      const results: GetStaticPropsResult<PupilsLegacyCanonicalPageProps> = {
         props: {
           curriculumData: {
             ...curriculumData,

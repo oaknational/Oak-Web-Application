@@ -30061,9 +30061,7 @@ export type PupilLessonOverviewQueryVariables = Exact<{
 export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
 
 export type PupilLessonOverviewCanonicalQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
   lessonSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
 }>;
 
 
@@ -30352,7 +30350,7 @@ export const PupilLessonOverviewDocument = gql`
 }
     `;
 export const PupilLessonOverviewCanonicalDocument = gql`
-    query pupilLessonOverviewCanonical($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
+    query pupilLessonOverviewCanonical($lessonSlug: String!) {
   lesson: published_mv_lesson_overview_3_0_2(
     where: {lessonSlug: {_eq: $lessonSlug}}
   ) {
