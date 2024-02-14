@@ -4,7 +4,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakHeading } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
@@ -15,7 +14,10 @@ import {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
 import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
+import {
+  PupilExperienceView,
+  PupilExperienceViewProps,
+} from "@/components/PupilViews/PupilExperience/PupilExperience.view";
 
 /**
  * Test URLs:
@@ -29,25 +31,21 @@ import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
  *
  */
 
-type PupilsLegacyCanonicalPageProps = {
-  curriculumData: PupilLessonOverviewData;
-  hasWorksheet: boolean;
-  backUrl: string;
-};
-
-const PupilsLegacyCanonicalPage: NextPage<PupilsLegacyCanonicalPageProps> = ({
+const PupilsLegacyCanonicalPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
   hasWorksheet,
   backUrl,
 }) => {
-  console.log("curriculumData", curriculumData);
-  console.log("hasWorksheet", hasWorksheet);
-  console.log("backUrl", backUrl);
-
-  return <OakHeading tag="h1">Legacy Canonical Page</OakHeading>;
+  return (
+    <PupilExperienceView
+      curriculumData={curriculumData}
+      hasWorksheet={hasWorksheet}
+      backUrl={backUrl}
+    />
+  );
 };
 
-export type PupilLegacyCanonicalPageURLParams = {
+type PupilLegacyCanonicalPageURLParams = {
   lessonSlug: string;
   redirectFrom: string;
 };
@@ -65,7 +63,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  PupilsLegacyCanonicalPageProps,
+  PupilExperienceViewProps,
   PupilLegacyCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
@@ -124,7 +122,7 @@ export const getStaticProps: GetStaticProps<
             ),
       ]);
 
-      const results: GetStaticPropsResult<PupilsLegacyCanonicalPageProps> = {
+      const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
           curriculumData: {
             ...curriculumData,
