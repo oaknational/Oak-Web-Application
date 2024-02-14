@@ -35,7 +35,8 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
       >
         {sortedResources.map(
           (resource, i) =>
-            resource.exists && (
+            resource.exists &&
+            resource.metadata && (
               <Controller
                 data-testid="lessonResourcesToShare"
                 control={props.control}
@@ -67,9 +68,9 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                       name={name}
                       label={resource.label}
                       subtitle={
-                        resource.metadata.toLowerCase() === "pdf"
+                        resource.metadata?.toLowerCase() === "pdf"
                           ? "PDF"
-                          : resource.metadata
+                          : resource.metadata! // this cannot be null here
                       }
                       resourceType={resource.type}
                       onChange={onChangeHandler}
