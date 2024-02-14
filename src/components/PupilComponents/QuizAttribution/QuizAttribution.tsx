@@ -1,37 +1,55 @@
 import { OakP } from "@oaknational/oak-components";
+import { isNull, negate } from "lodash";
 
 import { isImage } from "../QuizUtils/stemUtils";
 
-import { LessonOverviewQuizQuestion } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type QuizAttributionProps = {
-  questionStem: LessonOverviewQuizQuestion["questionStem"];
+  questionData: NonNullable<LessonOverviewQuizData>[number];
 };
 
 /**
- * Displays the attribution for the image in the question stem if present
+ * Displays the attributions for the images in the question stem and answers
  */
-export const QuizAttribution = ({ questionStem }: QuizAttributionProps) => {
-  return (
-    <>
-      {questionStem.filter(isImage).map((stem) => {
-        if (
-          "attribution" in stem.image_object.metadata &&
-          stem.image_object.metadata.attribution
-        ) {
-          return (
-            <OakP
-              key={stem.image_object.secure_url}
-              $color="text-subdued"
-              $font="body-3"
-            >
-              {stem.image_object.metadata.attribution}
-            </OakP>
-          );
-        }
+export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
+  const questionImages = questionData.questionStem.filter(isImage);
+  const answerImages =
+    questionData.answers?.["multiple-choice"]?.flatMap((choice) =>
+      choice.answer.filter(isImage),
+    ) ?? [];
+  const questionAttribution = questionImages.map((stem) => {
+    if ("attribution" in stem.image_object.metadata) {
+      return stem.image_object.metadata.attribution ?? null;
+    }
 
-        return null;
-      })}
-    </>
+    return null;
+  });
+  const answerAttributions = answerImages.map((stem, i) => {
+    if ("attribution" in stem.image_object.metadata) {
+      return (
+        <span key={i}>
+          <strong>{i + 1}</strong> {stem.image_object.metadata.attribution}
+        </span>
+      );
+    }
+
+    return null;
+  });
+  const allAttributions = [
+    ...questionAttribution,
+    ...answerAttributions,
+  ].filter(negate(isNull));
+
+  if (allAttributions.length === 0) {
+    return null;
+  }
+
+  return (
+    <OakP $color="text-subdued" $font="body-3" data-testid="quiz-attribution">
+      {allAttributions
+        .flatMap((attribution) => [attribution, ", "])
+        .slice(0, -1)}
+    </OakP>
   );
 };

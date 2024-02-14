@@ -3,7 +3,7 @@ import { OakFlex, OakForm } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
@@ -96,7 +96,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
             showIndex={true}
           />
           {answerRender}
-          <QuizAttribution questionStem={questionStem} />
+          <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
       </OakForm>
     );
