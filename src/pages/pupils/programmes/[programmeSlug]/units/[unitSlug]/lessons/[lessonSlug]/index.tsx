@@ -164,7 +164,7 @@ export const getStaticProps: GetStaticProps<
   PupilPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "lesson-overview::getStaticProps",
+    page: "pupils-lesson-overview::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
