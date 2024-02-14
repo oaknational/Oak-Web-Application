@@ -38,12 +38,24 @@ import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOver
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
+import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonOverviewProps = {
   lesson:
     | LessonOverviewCanonical
     | LessonOverviewInPathway
     | SpecialistLessonOverview;
+};
+
+// helper function to dedupe key learning points from the header in legacy lessons
+export const isPupilLessonOutcomeInKeyLearningPoints = (
+  plo: string | null | undefined,
+  klp: keyLearningPoint[] | null | undefined,
+) => {
+  if (klp && plo) {
+    return klp.some((klpItem) => klpItem.keyLearningPoint === plo);
+  }
+  return false;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
@@ -66,6 +78,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     exitQuiz,
     expired,
     keyLearningPoints,
+    pupilLessonOutcome,
     lessonCohort,
   } = lesson;
 
@@ -174,6 +187,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           });
         }}
         onClickShareAll={trackShareAll}
+        pupilLessonOutcome={
+          isPupilLessonOutcomeInKeyLearningPoints(
+            pupilLessonOutcome,
+            keyLearningPoints,
+          )
+            ? undefined
+            : pupilLessonOutcome
+        }
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
