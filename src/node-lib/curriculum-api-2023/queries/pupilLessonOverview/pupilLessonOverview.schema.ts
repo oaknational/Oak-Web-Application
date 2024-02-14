@@ -15,7 +15,6 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     supervisionLevel: true,
     contentGuidance: true,
     lessonEquipmentAndResources: true,
-    worksheetUrl: true,
     videoWithSignLanguageMuxPlaybackId: true,
     videoMuxPlaybackId: true,
     videoTitle: true,
@@ -30,7 +29,7 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
   )
   .extend({
     yearTitle: z.string().nullable().optional(),
-    isLegacyLicense: z.boolean(),
+    isLegacy: z.boolean(),
     transcriptSentences: z
       .union([z.array(z.string()), z.string()])
       .optional()
