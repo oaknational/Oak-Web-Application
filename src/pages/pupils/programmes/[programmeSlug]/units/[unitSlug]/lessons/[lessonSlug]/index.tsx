@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new Error("context.params is undefined");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
