@@ -197,11 +197,13 @@ export const getStaticProps: GetStaticProps<
       // Resolve the requests for the transcript and worksheet existence in parallel
       const [transcriptSentences, downloadExistence] = await Promise.all([
         resolveTranscriptSentences,
-        getDownloadResourcesExistence(
-          lessonSlug,
-          "worksheet-pdf",
-          curriculumData.isLegacy,
-        ),
+        curriculumData.isLegacy
+          ? { resources: [] }
+          : getDownloadResourcesExistence(
+              lessonSlug,
+              "worksheet-pdf",
+              curriculumData.isLegacy,
+            ),
       ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
