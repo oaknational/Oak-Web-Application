@@ -1,3 +1,10 @@
+## [1.353.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.0...v1.353.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* lesson page blowing up when a download existence check fails ([ca0ae2e](https://github.com/oaknational/Oak-Web-Application/commit/ca0ae2ea597c9ecded51fc2be5ed5a6850a2a619))
+
 # [1.353.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.352.1...v1.353.0) (2024-02-14)
 
 
