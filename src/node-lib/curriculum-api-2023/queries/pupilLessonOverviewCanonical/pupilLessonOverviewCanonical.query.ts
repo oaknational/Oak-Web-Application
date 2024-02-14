@@ -1,4 +1,4 @@
-import { pupilLessonOverviewSchema } from "./pupilLessonOverviewCanonical.schema";
+import { pupilLessonOverviewCanonicalSchema } from "./pupilLessonOverviewCanonical.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -24,5 +24,5 @@ export const pupilLessonOverviewCanonicalQuery =
       });
     }
 
-    return pupilLessonOverviewSchema.parse(lesson);
+    return pupilLessonOverviewCanonicalSchema.parse(lesson);
   };

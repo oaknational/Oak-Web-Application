@@ -1,4 +1,4 @@
-query pupilLessonOverview(
+query pupilLessonOverviewCanonical(
   $programmeSlug: String!
   $lessonSlug: String!
   $unitSlug: String!

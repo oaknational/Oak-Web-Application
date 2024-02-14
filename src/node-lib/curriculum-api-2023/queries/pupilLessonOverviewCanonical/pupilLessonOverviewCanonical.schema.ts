@@ -45,6 +45,6 @@ export const pupilLessonOverviewCanonicalSchema = baseLessonOverviewSchema
     };
   });
 
-export type PupilLessonOverviewPageData = z.infer<
-  typeof pupilLessonOverviewSchema
+export type PupilLessonOverviewCanonicalPageData = z.infer<
+  typeof pupilLessonOverviewCanonicalSchema
 >;

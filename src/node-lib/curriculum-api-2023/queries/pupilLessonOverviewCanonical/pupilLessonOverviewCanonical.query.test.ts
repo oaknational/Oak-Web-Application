@@ -29,13 +29,11 @@ describe("pupilLessonOverview()", () => {
 async function executeLessonOverviewQuery(
   lesson: ReturnType<typeof mockQueryLesson>[],
 ) {
-  return pupilLessonOverviewQuery({
+  return pupilLessonOverviewCanonicalQuery({
     ...sdk,
     pupilLessonOverview: async () => ({ lesson }),
   })({
     lessonSlug: "lesson-slug",
-    unitSlug: "unit-slug",
-    programmeSlug: "programme-slug",
   });
 }
 
