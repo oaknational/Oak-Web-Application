@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new Error("context.params is undefined");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
@@ -197,11 +197,13 @@ export const getStaticProps: GetStaticProps<
       // Resolve the requests for the transcript and worksheet existence in parallel
       const [transcriptSentences, downloadExistence] = await Promise.all([
         resolveTranscriptSentences,
-        getDownloadResourcesExistence(
-          lessonSlug,
-          "worksheet-pdf",
-          curriculumData.isLegacy,
-        ),
+        curriculumData.isLegacy
+          ? { resources: [] }
+          : getDownloadResourcesExistence(
+              lessonSlug,
+              "worksheet-pdf",
+              curriculumData.isLegacy,
+            ),
       ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
