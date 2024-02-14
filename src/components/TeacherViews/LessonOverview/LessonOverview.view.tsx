@@ -47,15 +47,15 @@ export type LessonOverviewProps = {
     | SpecialistLessonOverview;
 };
 
-// helper function to dedupe key learning points from the header in legacy lessons
-export const isPupilLessonOutcomeInKeyLearningPoints = (
+// helper function to remove key learning points from the header in legacy lessons
+export const getDedupedPupilLessonOutcome = (
   plo: string | null | undefined,
   klp: keyLearningPoint[] | null | undefined,
 ) => {
   if (klp && plo) {
-    return klp.some((klpItem) => klpItem.keyLearningPoint === plo);
+    return klp.some((klpItem) => klpItem.keyLearningPoint === plo) ? null : plo;
   }
-  return false;
+  return plo;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
@@ -187,14 +187,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           });
         }}
         onClickShareAll={trackShareAll}
-        pupilLessonOutcome={
-          isPupilLessonOutcomeInKeyLearningPoints(
-            pupilLessonOutcome,
-            keyLearningPoints,
-          )
-            ? undefined
-            : pupilLessonOutcome
-        }
+        pupilLessonOutcome={getDedupedPupilLessonOutcome(
+          pupilLessonOutcome,
+          keyLearningPoints,
+        )}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
