@@ -1,3 +1,26 @@
+# [1.352.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.1...v1.352.0) (2024-02-14)
+
+
+### Features
+
+* update lesson overview query ([567d9d7](https://github.com/oaknational/Oak-Web-Application/commit/567d9d7c372aa84c81d004b9b176e0c7dbad7a24))
+
+## [1.351.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.0...v1.351.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* update subject phase options request ([8a18148](https://github.com/oaknational/Oak-Web-Application/commit/8a18148bd0647a1ac202cacb2f90214b4c28c22f))
+
+# [1.351.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.350.0...v1.351.0) (2024-02-13)
+
+
+### Features
+
+* add arrow to "I'm ready" button ([205597b](https://github.com/oaknational/Oak-Web-Application/commit/205597bc7faea02b092bd7faac24394837d1ad8f))
+* **PUPIL-285:** add copyright notice to lesson PupilIntro ([b613dd2](https://github.com/oaknational/Oak-Web-Application/commit/b613dd2951866462844f5d08bcd49631e5981077))
+* use newer worksheet icon in pupil intro ([a250fa8](https://github.com/oaknational/Oak-Web-Application/commit/a250fa83e180ca0c33795c0223d5da448765b808))
+
 # [1.350.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.349.0...v1.350.0) (2024-02-13)
 
 
