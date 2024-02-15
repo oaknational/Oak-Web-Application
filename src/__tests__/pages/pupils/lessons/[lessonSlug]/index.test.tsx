@@ -9,7 +9,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 
 jest.mock(
-  "@/components/pupilComponents/pupilUtils/requestLessonResources",
+  "@/components/PupilComponents/pupilUtils/requestLessonResources",
   () => ({
     requestLessonResources: jest
       .fn()
