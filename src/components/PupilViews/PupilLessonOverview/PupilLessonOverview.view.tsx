@@ -197,7 +197,6 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="video"
                   onClick={() => updateCurrentSection("video")}
                   progress={pickProgressForSection("video")}
-                  videoLength={0}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
