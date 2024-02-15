@@ -1,3 +1,10 @@
+# [1.354.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.1...v1.354.0) (2024-02-15)
+
+
+### Features
+
+* add method to remove plo from header when in klps ([f097648](https://github.com/oaknational/Oak-Web-Application/commit/f0976483c4f18fcbbe57a8a7c4e31d8f3e2bd78d))
+
 ## [1.353.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.0...v1.353.1) (2024-02-14)
 
 
