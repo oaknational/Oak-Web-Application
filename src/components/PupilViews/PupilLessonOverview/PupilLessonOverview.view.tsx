@@ -29,7 +29,7 @@ type PupilViewsLessonOverviewProps = {
   pupilLessonOutcome?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
-  backUrl?: string;
+  backUrl?: string | null;
 };
 
 export const PupilViewsLessonOverview = ({
