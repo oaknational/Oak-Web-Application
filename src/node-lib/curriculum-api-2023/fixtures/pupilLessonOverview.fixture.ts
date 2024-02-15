@@ -12,6 +12,7 @@ export const pupilLessonOverviewFixture = (
     lessonTitle: "Adverbial complex sentences",
     subjectSlug: "english",
     subjectTitle: "English",
+    unitSlug: "grammar-1",
     yearTitle: "Year 3",
     lessonEquipmentAndResources: null,
     pupilLessonOutcome:
