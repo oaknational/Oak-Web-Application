@@ -93,9 +93,10 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
   );
 
-  const keyStagesMobileOrder: KeypadItem[] = keyStages[0]
-    ? [...keyStages.slice(1), keyStages[0]]
-    : keyStages;
+  const keyStagesMobileOrder: KeypadItem[] =
+    keyStages.length > 4 && keyStages[0]
+      ? [...keyStages.slice(1), keyStages[0]]
+      : keyStages;
 
   return (
     <nav aria-label="key stages and year groups">
