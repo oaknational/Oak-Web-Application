@@ -16,7 +16,7 @@ import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
 
-const pickAvailableSectionsForLesson = (
+export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
 ) =>
   allLessonReviewSections.filter((section) => {
