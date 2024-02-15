@@ -44,6 +44,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       page={"subject-index"}
       $isSelected={isCurrent}
       aria-label={title}
+      role="button"
       onClick={() => {
         track.keyStageSelected({
           keyStageTitle: title as KeyStageTitleValueType,
