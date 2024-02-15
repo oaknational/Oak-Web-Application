@@ -8,7 +8,10 @@ import { PupilViewsQuiz } from "./PupilQuiz.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  LessonEngineContext,
+  LessonSection,
+} from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
 
 describe("PupilQuizView", () => {
@@ -36,7 +39,7 @@ describe("PupilQuizView", () => {
   });
 
   it("renders Next button when questionState.mode is feedback", () => {
-    const { getByLabelText, getByRole, container } = renderWithTheme(
+    const { getByLabelText, getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsQuiz questionsArray={quizQuestions} />
@@ -47,7 +50,6 @@ describe("PupilQuizView", () => {
 
     act(() => {
       fireEvent.click(getByLabelText(/a group of letters/));
-      console.log(container.innerHTML);
       fireEvent.click(getByRole("button", { name: /Check/ }));
     });
     expect(getByRole("button", { name: /Next question/ })).toBeInTheDocument();
@@ -64,23 +66,29 @@ describe("PupilQuizView", () => {
     expect(queryByText(/Next Question/)).not.toBeInTheDocument();
   });
 
-  it("displays the 'Continue lesson' button when on the last question in the exit-quiz", () => {
-    const { getByLabelText, getByRole } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider
-          value={createLessonEngineContext({ currentSection: "exit-quiz" })}
-        >
-          <PupilViewsQuiz questionsArray={quizQuestions.slice(0, 1)} />
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-    expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+  it.each([
+    ["exit-quiz", /Lesson review/],
+    ["starter-quiz", /Continue lesson/],
+  ] satisfies Array<[LessonSection, RegExp]>)(
+    "for the %p section the button label for the last question is %p",
+    (currentSection, label) => {
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({ currentSection })}
+          >
+            <PupilViewsQuiz questionsArray={quizQuestions.slice(0, 1)} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
 
-    act(() => {
-      fireEvent.click(getByLabelText(/a group of letters/));
-      fireEvent.click(getByRole("button", { name: /Check/ }));
-    });
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByRole("button", { name: /Check/ }));
+      });
 
-    expect(getByRole("button", { name: /Lesson review/ })).toBeInTheDocument();
-  });
+      expect(getByRole("button", { name: label })).toBeInTheDocument();
+    },
+  );
 });
