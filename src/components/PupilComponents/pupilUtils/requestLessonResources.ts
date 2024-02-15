@@ -1,3 +1,4 @@
+import errorReporter from "@/common-lib/error-reporter";
 import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
@@ -31,7 +32,16 @@ export const requestLessonResources = async ({
       // there appear to be two ways the `getDownloadResourcesExistence` will report a missing
       // resource. Either by returning an object in the form `{ resources: ["worksheet-pdf", { exists: false }] }`
       // or by throwing. Catching and reporting the error matches the behaviour of the teachers downloads page
-      reportError(error);
+      errorReporter(
+        "pupils::requestLessonResources::getDownloadResourcesExistence",
+      )(error, {
+        severity: "warning",
+        ...{
+          lessonSlug,
+          type: "worksheet-pdf",
+          isLegacy: curriculumData.isLegacy,
+        },
+      });
 
       return {
         resources: [],
