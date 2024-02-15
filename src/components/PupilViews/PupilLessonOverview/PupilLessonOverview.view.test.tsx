@@ -34,7 +34,7 @@ describe(PupilViewsLessonOverview, () => {
     [/Intro/, "intro"],
     [/Starter quiz/, "starter-quiz"],
     [/Exit quiz/, "exit-quiz"],
-    [/Watch video/, "video"],
+    [/Lesson video/, "video"],
   ].forEach(([name, section]) => {
     it(`allows navigation to the "${section}" section of the quiz`, () => {
       const updateCurrentSection = jest.fn();
@@ -77,7 +77,7 @@ describe(PupilViewsLessonOverview, () => {
     );
 
     expect(getByTestId("starter-quiz")).toHaveTextContent("4 Questions");
-    expect(getByTestId("exit-quiz")).toHaveTextContent("Practice 5 questions");
+    expect(getByTestId("exit-quiz")).toHaveTextContent("5 questions");
   });
 
   it.each([

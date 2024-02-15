@@ -28,7 +28,7 @@ describe("PupilReview", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByText("Intro")).toBeInTheDocument();
+    expect(getByText("Introduction")).toBeInTheDocument();
     expect(getByText("Starter quiz")).toBeInTheDocument();
     expect(getByText("Watch video")).toBeInTheDocument();
     expect(getByText("Exit quiz")).toBeInTheDocument();
