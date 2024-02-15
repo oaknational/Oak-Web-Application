@@ -1,3 +1,18 @@
+## [1.353.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.0...v1.353.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* lesson page blowing up when a download existence check fails ([ca0ae2e](https://github.com/oaknational/Oak-Web-Application/commit/ca0ae2ea597c9ecded51fc2be5ed5a6850a2a619))
+
+# [1.353.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.352.1...v1.353.0) (2024-02-14)
+
+
+### Features
+
+* **PUPIL-166:** add image attribution for images in answers ([4d4244b](https://github.com/oaknational/Oak-Web-Application/commit/4d4244bc99c4c772514a7dd153546a979480043c))
+* **PUPIL-166:** display attribution for quiz images ([f1f88ec](https://github.com/oaknational/Oak-Web-Application/commit/f1f88ece48c0e46a4f84648ef2909bef9e3882fc))
+
 ## [1.352.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.352.0...v1.352.1) (2024-02-14)
 
 

@@ -160,5 +160,20 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       assert("props" in res);
       expect(res.props.hasWorksheet).toBe(false);
     });
+
+    it("does not blow up if the `getDownloadResourcesExistence` check fails", async () => {
+      getDownloadResourcesExistenceSpy.mockRejectedValue(new Error("oh no!"));
+
+      const res = await getStaticProps({
+        params: {
+          programmeSlug: "ks123",
+          unitSlug: "unitSlug",
+          lessonSlug: "lessonSlug",
+        },
+      });
+
+      assert("props" in res);
+      expect(res.props.hasWorksheet).toBe(false);
+    });
   });
 });

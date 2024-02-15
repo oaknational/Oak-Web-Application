@@ -32,10 +32,14 @@ import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilRevie
 import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
 import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import errorReporter from "@/common-lib/error-reporter";
+
 export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
   hasWorksheet: boolean;
 };
+
+const reportError = errorReporter("PupilPageContent");
 
 const PupilPageContent = ({
   curriculumData,
@@ -197,13 +201,21 @@ export const getStaticProps: GetStaticProps<
       // Resolve the requests for the transcript and worksheet existence in parallel
       const [transcriptSentences, downloadExistence] = await Promise.all([
         resolveTranscriptSentences,
-        curriculumData.isLegacy
-          ? { resources: [] }
-          : getDownloadResourcesExistence(
-              lessonSlug,
-              "worksheet-pdf",
-              curriculumData.isLegacy,
-            ),
+        getDownloadResourcesExistence(
+          lessonSlug,
+          "worksheet-pdf",
+          curriculumData.isLegacy,
+        ).catch((error) => {
+          // If the download existence check fails, we should not block the page from rendering
+          // there appear to be two ways the `getDownloadResourcesExistence` will report a missing
+          // resource. Either by returning an object in the form `{ resources: ["worksheet-pdf", { exists: false }] }`
+          // or by throwing. Catching and reporting the error matches the behaviour of the teachers downloads page
+          reportError(error);
+
+          return {
+            resources: [],
+          };
+        }),
       ]);
 
       const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
