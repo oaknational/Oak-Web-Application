@@ -28,6 +28,6 @@ describe("pupilLessonOverviewCanonical()", () => {
       })({
         lessonSlug: "lesson-slug",
       });
-    }).rejects.toThrow(`subjectSlug`);
+    }).rejects.toThrow(`lessonSlug`);
   });
 });

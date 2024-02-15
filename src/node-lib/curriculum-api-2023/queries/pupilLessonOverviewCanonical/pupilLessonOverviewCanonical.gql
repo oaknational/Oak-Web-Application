@@ -12,6 +12,7 @@ query pupilLessonOverviewCanonical($lessonSlug: String!) {
     exitQuiz
     lessonSlug
     lessonTitle
+    unitSlug
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
