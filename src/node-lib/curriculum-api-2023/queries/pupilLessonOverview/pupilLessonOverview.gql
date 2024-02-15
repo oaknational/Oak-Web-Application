@@ -15,6 +15,7 @@ query pupilLessonOverview(
     lessonKeywords
     subjectSlug
     subjectTitle
+    unitSlug
     pupilLessonOutcome
     starterQuiz
     exitQuiz

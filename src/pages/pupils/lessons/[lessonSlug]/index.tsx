@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps<
         ? `${resolveOakHref({
             page: "classroom",
           })}/units/${curriculumData.unitSlug}`
-        : undefined;
+        : null;
 
       const { transcriptSentences, hasWorksheet } =
         await requestLessonResources({ curriculumData });
