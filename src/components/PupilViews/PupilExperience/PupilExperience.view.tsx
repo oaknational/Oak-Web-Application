@@ -35,7 +35,7 @@ export const pickAvailableSectionsForLesson = (
 export type PupilExperienceViewProps = {
   curriculumData: PupilLessonOverviewData;
   hasWorksheet: boolean;
-  backUrl?: string;
+  backUrl?: string | null;
 };
 
 const PupilPageContent = ({
