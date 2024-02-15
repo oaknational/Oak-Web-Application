@@ -20,7 +20,29 @@ export type LessonShareCardGroupProps = {
 };
 
 const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
-  const sortedResources = sortShareResources(props.shareableResources);
+  const sortedResources = sortShareResources(props.shareableResources).filter(
+    (r) => r.exists && r.metadata !== null,
+  );
+
+  const removeFieldValue = (fieldValue: string[], resourceType: string) =>
+    fieldValue.filter(
+      (val: LessonShareResourceData["type"] | string) => val !== resourceType,
+    );
+
+  const checkboxOnChangeHandler = (
+    e: ChangeEvent<HTMLInputElement>,
+    onChange: (val: string[]) => void,
+    fieldValue: string[],
+    resourceType: string,
+  ) => {
+    if (e.target.checked) {
+      onChange([...fieldValue, resourceType]);
+    } else {
+      onChange(removeFieldValue(fieldValue, resourceType));
+    }
+    // Trigger the form to reevaluate errors
+    props.triggerForm();
+  };
 
   return (
     <OakFlex
@@ -33,55 +55,43 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
         $flexDirection={["column", "row"]}
         $flexWrap={["nowrap", "wrap"]}
       >
-        {sortedResources.map(
-          (resource, i) =>
-            resource.exists && (
-              <Controller
-                data-testid="lessonResourcesToShare"
-                control={props.control}
-                name="resources"
-                defaultValue={[]}
-                key={`${resource.type}-${i}`}
-                render={({
-                  field: { value: fieldValue, onChange, name, onBlur },
-                }) => {
-                  const onChangeHandler = (
-                    e: ChangeEvent<HTMLInputElement>,
-                  ) => {
-                    if (e.target.checked) {
-                      onChange([...fieldValue, resource.type]);
-                    } else {
-                      onChange(
-                        fieldValue.filter(
-                          (val: LessonShareResourceData["type"] | string) =>
-                            val !== resource.type,
-                        ),
-                      );
-                    }
-                    // Trigger the form to reevaluate errors
-                    props.triggerForm();
-                  };
-                  return (
-                    <ResourceCard
-                      id={resource.type}
-                      name={name}
-                      label={resource.label}
-                      subtitle={
-                        resource.metadata.toLowerCase() === "pdf"
-                          ? "PDF"
-                          : resource.metadata
-                      }
-                      resourceType={resource.type}
-                      onChange={onChangeHandler}
-                      checked={fieldValue.includes(resource.type)}
-                      onBlur={onBlur}
-                      hasError={props.hasError}
-                    />
-                  );
-                }}
-              />
-            ),
-        )}
+        {sortedResources.map((resource, i) => (
+          <Controller
+            data-testid="lessonResourcesToShare"
+            control={props.control}
+            name="resources"
+            defaultValue={[]}
+            key={`${resource.type}-${i}`}
+            render={({
+              field: { value: fieldValue, onChange, name, onBlur },
+            }) => {
+              return (
+                <ResourceCard
+                  id={resource.type}
+                  name={name}
+                  label={resource.label}
+                  subtitle={
+                    resource.metadata?.toLowerCase() === "pdf"
+                      ? "PDF"
+                      : resource.metadata! // this cannot be null here
+                  }
+                  resourceType={resource.type}
+                  onChange={(e) =>
+                    checkboxOnChangeHandler(
+                      e,
+                      onChange,
+                      fieldValue,
+                      resource.type,
+                    )
+                  }
+                  checked={fieldValue.includes(resource.type)}
+                  onBlur={onBlur}
+                  hasError={props.hasError}
+                />
+              );
+            }}
+          />
+        ))}
       </OakFlex>
       <ButtonAsLink
         label="Preview as a pupil"
