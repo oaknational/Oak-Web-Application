@@ -6,11 +6,11 @@ import {
 } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
 import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import {
@@ -18,20 +18,37 @@ import {
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
 
-const PupilsPage: NextPage<PupilExperienceViewProps> = ({
+/**
+ * Test URLs:
+ *
+ * Non-published legacy lesson - should result in 404:
+ * http://localhost:3000/pupils/lessons/what-is-video-c4v68d
+ *
+ * Published legacy lesson:
+ * http://localhost:3000/pupils/lessons/myths-and-folktales-6cwk0c
+ *
+ * Published lesson:
+ * http://localhost:3000/pupils/lessons/transverse-waves
+ *
+ *
+ */
+
+const PupilsCanonicalPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
   hasWorksheet,
-}) => (
-  <PupilExperienceView
-    curriculumData={curriculumData}
-    hasWorksheet={hasWorksheet}
-  />
-);
+  backUrl,
+}) => {
+  return (
+    <PupilExperienceView
+      curriculumData={curriculumData}
+      hasWorksheet={hasWorksheet}
+      backUrl={backUrl}
+    />
+  );
+};
 
-export type PupilPageURLParams = {
+type PupilCanonicalPageURLParams = {
   lessonSlug: string;
-  unitSlug: string;
-  programmeSlug: string;
 };
 
 export const getStaticPaths = async () => {
@@ -39,7 +56,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const config: GetStaticPathsResult<PupilPageURLParams> = {
+  const config: GetStaticPathsResult<PupilCanonicalPageURLParams> = {
     fallback: "blocking",
     paths: [],
   };
@@ -48,22 +65,21 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   PupilExperienceViewProps,
-  PupilPageURLParams
+  PupilCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "pupils-lesson-overview::getStaticProps",
+    page: "pupils-lesson-overview-legacy-canonical::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
         throw new Error("No context.params");
       }
-      const { lessonSlug, unitSlug, programmeSlug } = context.params;
+      const { lessonSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.pupilLessonOverview({
-        programmeSlug,
-        lessonSlug,
-        unitSlug,
-      });
+      const curriculumData =
+        await curriculumApi2023.pupilLessonOverviewCanonical({
+          lessonSlug,
+        });
 
       if (!curriculumData) {
         return {
@@ -110,4 +126,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default PupilsPage;
+export default PupilsCanonicalPage;
