@@ -89,12 +89,7 @@ export const PupilViewsLessonOverview = ({
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           {backUrl ? (
-            <OakTertiaryButton
-              $display={"inline-block"} // TODO: Remove when OakTertiaryButton is fixed
-              iconName="arrow-left"
-              href={backUrl}
-              element="a"
-            >
+            <OakTertiaryButton iconName="arrow-left" href={backUrl} element="a">
               View all lessons
             </OakTertiaryButton>
           ) : (
