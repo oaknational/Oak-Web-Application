@@ -37,13 +37,16 @@ describe("components/Key Stage keypad", () => {
   );
 
   test("calls tracking.keyStageSelected once, with correct props", async () => {
-    const { getByText } = renderWithTheme(
+    const { getAllByText } = renderWithTheme(
       <KeyStageKeypad {...keyStageKeypad} />,
     );
-    const keyStageButton = getByText("KS1");
-
+    const keyStageButton = getAllByText("KS1");
+    const ks1Button = keyStageButton[0];
+    if (!ks1Button) {
+      throw new Error("failed to find ks1 button");
+    }
     const user = userEvent.setup();
-    await user.click(keyStageButton);
+    await user.click(ks1Button);
 
     expect(keyStageSelected).toHaveBeenCalledTimes(1);
     expect(keyStageSelected).toHaveBeenCalledWith({
