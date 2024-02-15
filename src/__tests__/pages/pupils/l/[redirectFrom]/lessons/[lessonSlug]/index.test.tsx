@@ -7,7 +7,7 @@ import OakError from "@/errors/OakError";
 import { resolveOakHref } from "@/common-lib/urls";
 
 jest.mock(
-  "@/components/pupilComponents/pupilUtils/requestLessonResources",
+  "@/components/PupilComponents/pupilUtils/requestLessonResources",
   () => ({
     requestLessonResources: jest
       .fn()
