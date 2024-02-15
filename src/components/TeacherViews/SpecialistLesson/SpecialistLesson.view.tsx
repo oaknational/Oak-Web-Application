@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 type SpecialistLessonProps = {
