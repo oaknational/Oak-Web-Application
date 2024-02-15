@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new Error("context.params is undefined");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
@@ -84,13 +84,21 @@ export const getStaticProps: GetStaticProps<
       // Resolve the requests for the transcript and worksheet existence in parallel
       const [transcriptSentences, downloadExistence] = await Promise.all([
         resolveTranscriptSentences,
-        curriculumData.isLegacy
-          ? { resources: [] }
-          : getDownloadResourcesExistence(
-              lessonSlug,
-              "worksheet-pdf",
-              curriculumData.isLegacy,
-            ),
+        getDownloadResourcesExistence(
+          lessonSlug,
+          "worksheet-pdf",
+          curriculumData.isLegacy,
+        ).catch((error) => {
+          // If the download existence check fails, we should not block the page from rendering
+          // there appear to be two ways the `getDownloadResourcesExistence` will report a missing
+          // resource. Either by returning an object in the form `{ resources: ["worksheet-pdf", { exists: false }] }`
+          // or by throwing. Catching and reporting the error matches the behaviour of the teachers downloads page
+          reportError(error);
+
+          return {
+            resources: [],
+          };
+        }),
       ]);
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
