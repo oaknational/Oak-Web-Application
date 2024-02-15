@@ -16,6 +16,7 @@ import {
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
+import { resolveOakHref } from "@/common-lib/urls";
 
 /**
  * Test URLs:
@@ -86,6 +87,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const backUrl = curriculumData.isLegacy
+        ? `${resolveOakHref({
+            page: "classroom",
+          })}/units/${curriculumData.unitSlug}`
+        : undefined;
+
       const { transcriptSentences, hasWorksheet } =
         await requestLessonResources({ curriculumData });
 
@@ -96,6 +103,7 @@ export const getStaticProps: GetStaticProps<
             transcriptSentences: transcriptSentences ?? [],
           },
           hasWorksheet,
+          backUrl,
         },
       };
 

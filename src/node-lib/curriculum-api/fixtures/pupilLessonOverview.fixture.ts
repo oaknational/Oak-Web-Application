@@ -9,6 +9,7 @@ const pupilLessonOverviewFixture = (
     lessonTitle: "Islamic Geometry",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    unitSlug: "geometry",
     starterQuiz: quizQuestions,
     lessonSlug: "lesson-slug",
     supervisionLevel: null,

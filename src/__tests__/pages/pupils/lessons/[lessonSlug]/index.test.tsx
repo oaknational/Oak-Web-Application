@@ -4,6 +4,9 @@ import {
 } from "@/pages/pupils/lessons/[lessonSlug]";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
+import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
+import { resolveOakHref } from "@/common-lib/urls";
+import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 
 jest.mock(
   "@/components/pupilComponents/pupilUtils/requestLessonResources",
@@ -38,6 +41,31 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       ).toHaveBeenCalledWith({
         lessonSlug: "lessonSlug",
       });
+    });
+
+    it("should return props", async () => {
+      const curriculumData = pupilLessonOverviewFixture({
+        isLegacy: true,
+        unitSlug: "test-unit-slug",
+      });
+
+      (
+        curriculumApi2023.pupilLessonOverviewCanonical as jest.Mock
+      ).mockResolvedValueOnce(curriculumData);
+
+      const res = (await getStaticProps({
+        params: {
+          lessonSlug: "lessonSlug",
+        },
+      })) as {
+        props: PupilExperienceViewProps;
+      };
+
+      const backUrl = `${resolveOakHref({
+        page: "classroom",
+      })}/units/${curriculumData.unitSlug}`;
+
+      expect(res.props.backUrl).toEqual(backUrl);
     });
 
     it("should return 404 if lesson not found", async () => {

@@ -1,13 +1,15 @@
 import { z } from "zod";
 import { isString } from "lodash";
 
-import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  baseLessonOverviewSchema,
+  lessonPathwaySchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const pupilLessonOverviewCanonicalSchema = baseLessonOverviewSchema
   .pick({
     lessonTitle: true,
     lessonSlug: true,
-    unitSlug: true,
     starterQuiz: true,
     exitQuiz: true,
     supervisionLevel: true,
@@ -19,6 +21,13 @@ export const pupilLessonOverviewCanonicalSchema = baseLessonOverviewSchema
     transcriptSentences: true,
     pupilLessonOutcome: true,
   })
+  .merge(
+    lessonPathwaySchema.pick({
+      subjectSlug: true,
+      subjectTitle: true,
+      unitSlug: true,
+    }),
+  )
   .extend({
     yearTitle: z.string().nullable().optional(),
     isLegacy: z.boolean(),
