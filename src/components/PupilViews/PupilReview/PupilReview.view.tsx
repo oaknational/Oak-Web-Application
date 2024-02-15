@@ -90,6 +90,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
           {lessonReviewSections.map((lessonSection) => {
             return (
               <OakLessonReviewItem
+                key={lessonSection}
                 lessonSectionName={lessonSection}
                 completed={!!sectionResults[lessonSection]?.isComplete}
                 grade={sectionResults[lessonSection]?.grade ?? 0}
@@ -110,7 +111,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
           >
             <OakFlex $font="heading-5" $textAlign={["center", "left", "left"]}>
               {isLessonComplete
-                ? "Fantastic learning - well done!"
+                ? "Fantastic job, well done!"
                 : "Well done, you're Oaking it!"}
             </OakFlex>
           </OakHandDrawnCard>

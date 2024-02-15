@@ -80,43 +80,45 @@ describe(PupilViewsLessonOverview, () => {
     expect(getByTestId("exit-quiz")).toHaveTextContent("Practice 5 questions");
   });
 
-  (
-    [
-      {
-        context: {},
-        label: "Let's get ready",
+  it.each([
+    {
+      context: {},
+      label: "Let's get ready",
+    },
+    {
+      context: {
+        sectionResults: { intro: { isComplete: true } },
       },
-      {
-        context: {
-          sectionResults: { intro: { isComplete: true } },
-        },
-        label: "Start lesson",
+      label: "Start lesson",
+    },
+    {
+      context: {
+        sectionResults: { "starter-quiz": { isComplete: true } },
       },
-      {
-        context: {
-          sectionResults: { "starter-quiz": { isComplete: true } },
-        },
-        label: "Continue lesson",
+      label: "Continue lesson",
+    },
+    {
+      context: {
+        sectionResults: { "exit-quiz": { isComplete: true } },
       },
-      {
-        context: {
-          sectionResults: { "exit-quiz": { isComplete: true } },
-        },
-        label: "Continue lesson",
+      label: "Continue lesson",
+    },
+    {
+      context: {
+        isLessonComplete: true,
       },
-      {
-        context: {
-          isLessonComplete: true,
-        },
-        label: "Lesson review",
-      },
-    ] satisfies { context: Partial<LessonEngineContextType>; label: string }[]
-  ).forEach((example) => {
-    it(`displays '${example.label}' for the proceed to next section button`, () => {
+      label: "Lesson review",
+    },
+  ] satisfies Array<{
+    context: Partial<LessonEngineContextType>;
+    label: string;
+  }>)(
+    'renders "$label" for the proceed to next section button',
+    ({ label, context }) => {
       const { getByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
-            value={createLessonEngineContext(example.context)}
+            value={createLessonEngineContext(context)}
           >
             <PupilViewsLessonOverview
               lessonTitle="Introduction to The Canterbury Tales"
@@ -129,9 +131,7 @@ describe(PupilViewsLessonOverview, () => {
         </OakThemeProvider>,
       );
 
-      expect(getByTestId("proceed-to-next-section")).toHaveTextContent(
-        example.label,
-      );
-    });
-  });
+      expect(getByTestId("proceed-to-next-section")).toHaveTextContent(label);
+    },
+  );
 });
