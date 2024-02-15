@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<
 
       const redirectUrl = `${resolveOakHref({
         page: "classroom",
-      })}/${redirectFrom}`;
+      })}/units/${redirectFrom}`;
 
       const curriculumData = await curriculumApi2023
         .pupilLessonOverviewCanonical({
