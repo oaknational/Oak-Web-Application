@@ -178,7 +178,7 @@ export const matchAnswers: MatchAnswer[] = [
   },
 ];
 
-export const quizQuestions: LessonOverviewQuizData = [
+export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
   {
     hint: "Main clause is the most powerful of the clauses.",
     active: false,
