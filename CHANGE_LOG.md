@@ -1,3 +1,11 @@
+## [1.355.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.0...v1.355.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* add check for metadata null ([c6a05b8](https://github.com/oaknational/Oak-Web-Application/commit/c6a05b8d13da13b93fb4fcf3bbd834ee21ff8b7b))
+* make shareable resource metadata schema nullable ([c6c39ef](https://github.com/oaknational/Oak-Web-Application/commit/c6c39ef529136e807f31218218431505bbcd90ab))
+
 # [1.355.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.354.0...v1.355.0) (2024-02-15)
 
 
