@@ -11,12 +11,11 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { getCaptionsFromFile } from "@/utils/handleTranscript";
-import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import {
   PupilExperienceView,
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
+import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 
 const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
@@ -71,35 +70,8 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      // For new content we need to fetch the captions file from gCloud and parse the result to generate
-      // the transcript sentences.
-      const resolveTranscriptSentences = (() => {
-        if (curriculumData.videoTitle && !curriculumData.isLegacy) {
-          return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
-        }
-
-        return curriculumData.transcriptSentences;
-      })();
-
-      // Resolve the requests for the transcript and worksheet existence in parallel
-      const [transcriptSentences, downloadExistence] = await Promise.all([
-        resolveTranscriptSentences,
-        getDownloadResourcesExistence(
-          lessonSlug,
-          "worksheet-pdf",
-          curriculumData.isLegacy,
-        ).catch((error) => {
-          // If the download existence check fails, we should not block the page from rendering
-          // there appear to be two ways the `getDownloadResourcesExistence` will report a missing
-          // resource. Either by returning an object in the form `{ resources: ["worksheet-pdf", { exists: false }] }`
-          // or by throwing. Catching and reporting the error matches the behaviour of the teachers downloads page
-          reportError(error);
-
-          return {
-            resources: [],
-          };
-        }),
-      ]);
+      const { transcriptSentences, hasWorksheet } =
+        await requestLessonResources({ curriculumData });
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
@@ -107,9 +79,7 @@ export const getStaticProps: GetStaticProps<
             ...curriculumData,
             transcriptSentences: transcriptSentences ?? [],
           },
-          hasWorksheet: downloadExistence.resources.some(
-            ([type, result]) => type === "worksheet-pdf" && result.exists,
-          ),
+          hasWorksheet,
         },
       };
 
