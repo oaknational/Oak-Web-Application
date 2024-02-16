@@ -1,3 +1,33 @@
+## [1.355.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.1...v1.355.2) (2024-02-15)
+
+## [1.355.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.0...v1.355.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* add check for metadata null ([c6a05b8](https://github.com/oaknational/Oak-Web-Application/commit/c6a05b8d13da13b93fb4fcf3bbd834ee21ff8b7b))
+* make shareable resource metadata schema nullable ([c6c39ef](https://github.com/oaknational/Oak-Web-Application/commit/c6c39ef529136e807f31218218431505bbcd90ab))
+
+# [1.355.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.354.0...v1.355.0) (2024-02-15)
+
+
+### Bug Fixes
+
+* container height ([2351680](https://github.com/oaknational/Oak-Web-Application/commit/235168013b9d3ebfe9aba9c0274737406a609ede))
+* only change order when eyfs present ([c2c0d4f](https://github.com/oaknational/Oak-Web-Application/commit/c2c0d4fb4cc3e7f1692fd7ed370266ba308a89a2))
+
+
+### Features
+
+* adjust layout of keystage keypad on mobile ([d3e0398](https://github.com/oaknational/Oak-Web-Application/commit/d3e03985a67e7684cfa83abb2e17c4506981d10d))
+
+# [1.354.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.1...v1.354.0) (2024-02-15)
+
+
+### Features
+
+* add method to remove plo from header when in klps ([f097648](https://github.com/oaknational/Oak-Web-Application/commit/f0976483c4f18fcbbe57a8a7c4e31d8f3e2bd78d))
+
 ## [1.353.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.0...v1.353.1) (2024-02-14)
 
 

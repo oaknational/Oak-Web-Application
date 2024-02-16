@@ -41,6 +41,7 @@ export type SubjectListingPageProps = {
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
+  const containerHeight = keyStages.length > 4 ? 172 : 120;
   return (
     <AppLayout
       seoProps={{
@@ -52,11 +53,9 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box $background={"lavender50"} $height={[120, 140]}>
-        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
-          <Box $pv={32}>
-            <KeyStageKeypad keyStages={keyStages} />
-          </Box>
+      <Box $background={"lavender50"} $height={[containerHeight, 140]}>
+        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]} $pv={32}>
+          <KeyStageKeypad keyStages={keyStages} />
         </MaxWidth>
       </Box>
       <SubjectListingPage
