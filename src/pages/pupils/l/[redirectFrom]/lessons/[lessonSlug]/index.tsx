@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps<
 
       const redirectUrl = `${resolveOakHref({
         page: "classroom",
-      })}/units/${redirectFrom}`;
+      })}/lessons/${lessonSlug}`;
 
       const curriculumData = await curriculumApi2023
         .pupilLessonOverviewCanonical({
@@ -99,6 +99,10 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const backUrl = `${resolveOakHref({
+        page: "classroom",
+      })}/units/${redirectFrom}`;
+
       const { transcriptSentences, hasWorksheet } =
         await requestLessonResources({ curriculumData });
 
@@ -109,7 +113,7 @@ export const getStaticProps: GetStaticProps<
             transcriptSentences: transcriptSentences ?? [],
           },
           hasWorksheet,
-          backUrl: redirectUrl,
+          backUrl,
         },
       };
 

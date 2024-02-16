@@ -57,7 +57,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     const redirectUrl = `${resolveOakHref({
       page: "classroom",
-    })}/units/redirectFrom`;
+    })}/lessons/lessonSlug`;
 
     expect(res).toEqual({
       redirect: {
@@ -81,7 +81,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     const redirectUrl = `${resolveOakHref({
       page: "classroom",
-    })}/units/redirectFrom`;
+    })}/lessons/lessonSlug`;
 
     expect(res).toEqual({
       redirect: {
