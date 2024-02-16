@@ -45,6 +45,7 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
     proceedToNextSection,
     lessonReviewSections,
+    isLessonComplete,
   } = useLessonEngineContext();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
 
@@ -71,8 +72,9 @@ export const PupilViewsLessonOverview = ({
             width={["100%", "auto", "auto"]}
             iconName="arrow-right"
             isTrailingIcon
+            data-testid="proceed-to-next-section"
           >
-            Let's get ready
+            {pickProceedToNextSectionLabel(isLessonComplete, sectionResults)}
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
@@ -188,7 +190,6 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="video"
                   onClick={() => updateCurrentSection("video")}
                   progress={pickProgressForSection("video")}
-                  videoLength={0}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
@@ -209,3 +210,22 @@ export const PupilViewsLessonOverview = ({
     </OakLessonLayout>
   );
 };
+
+function pickProceedToNextSectionLabel(
+  isLessonComplete: boolean,
+  results: ReturnType<typeof useLessonEngineContext>["sectionResults"],
+) {
+  if (isLessonComplete) {
+    return "Lesson review";
+  }
+
+  if (results["starter-quiz"]?.isComplete || results["exit-quiz"]?.isComplete) {
+    return "Continue lesson";
+  }
+
+  if (results["intro"]?.isComplete) {
+    return "Start lesson";
+  }
+
+  return "Let's get ready";
+}
