@@ -1,3 +1,10 @@
+# [1.358.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.357.0...v1.358.0) (2024-02-16)
+
+
+### Features
+
+* **PUPIL-338:** disable Gleap for pupils ([5825580](https://github.com/oaknational/Oak-Web-Application/commit/58255801314f53f47b5755749f2e64977ed4e784))
+
 # [1.357.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.356.1...v1.357.0) (2024-02-16)
 
 
