@@ -1,3 +1,11 @@
+## [1.356.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.356.0...v1.356.1) (2024-02-16)
+
+
+### Bug Fixes
+
+* change font size to 20px and revert margin ([26bd62b](https://github.com/oaknational/Oak-Web-Application/commit/26bd62b46b8320efa9910a6fb16003a4e60e8381))
+* remove margin from subject card ([7255fe1](https://github.com/oaknational/Oak-Web-Application/commit/7255fe171f36d02bac5c4f0adce362185a8f080f))
+
 # [1.356.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.2...v1.356.0) (2024-02-16)
 
 
