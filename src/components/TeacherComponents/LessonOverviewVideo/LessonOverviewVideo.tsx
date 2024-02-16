@@ -9,7 +9,7 @@ export interface LessonOverviewVideoProps {
   video: string | null;
   signLanguageVideo: string | null;
   title: string;
-  transcriptSentences?: string[] | null;
+  transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
 }
 
@@ -107,7 +107,11 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         transcriptSentences.length > 0 &&
         transcriptOn && (
           <LessonOverviewTranscriptViewer
-            transcriptSentences={transcriptSentences}
+            transcriptSentences={
+              Array.isArray(transcriptSentences)
+                ? transcriptSentences
+                : [transcriptSentences]
+            }
           />
         )}
     </OakFlex>
