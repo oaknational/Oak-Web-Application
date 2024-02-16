@@ -3,11 +3,17 @@ import {
   pickAvailableSectionsForLesson,
 } from "./PupilExperience.view";
 
+import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { PupilLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
+
+jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
+  ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
+  useLessonEngineContext: jest.fn(),
+}));
 
 describe("PupilExperienceView", () => {
   describe("pickAvailableSectionsForLesson", () => {
@@ -46,13 +52,57 @@ describe("PupilExperienceView", () => {
     });
   });
 
-  const lessonData: PupilLessonOverviewPageData = pupilLessonOverviewFixture();
+  describe("PupilPageContent", () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
 
-  it("should render", () => {
-    const { getByText } = renderWithTheme(
-      <PupilExperienceView curriculumData={lessonData} hasWorksheet={false} />,
-    );
+    it("should render", () => {
+      const lessonData = pupilLessonOverviewFixture();
 
-    expect(getByText(lessonData.lessonTitle)).toBeInTheDocument();
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+      const { getByText } = renderWithTheme(
+        <PupilExperienceView
+          curriculumData={lessonData}
+          hasWorksheet={false}
+        />,
+      );
+
+      expect(getByText(lessonData.lessonTitle)).toBeInTheDocument();
+    });
+
+    // we don't render the video section as it crashes without a valid mux id
+    [
+      [/Introduction/, "intro"],
+      [/Starter Quiz/, "starter-quiz"],
+      [/Exit Quiz/, "exit-quiz"],
+    ].forEach(([name, section]) => {
+      it("renders the current section", () => {
+        const lessonData = pupilLessonOverviewFixture();
+
+        jest
+          .spyOn(LessonEngineProvider, "useLessonEngineContext")
+          .mockReturnValue(
+            createLessonEngineContext({
+              currentSection: section as LessonEngineProvider.LessonSection,
+            }),
+          );
+
+        const { getByText } = renderWithTheme(
+          <PupilExperienceView
+            curriculumData={lessonData}
+            hasWorksheet={false}
+          />,
+        );
+
+        expect(getByText(name as RegExp)).toBeInTheDocument();
+      });
+    });
   });
 });

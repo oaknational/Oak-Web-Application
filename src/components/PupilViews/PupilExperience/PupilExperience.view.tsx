@@ -38,12 +38,14 @@ export type PupilExperienceViewProps = {
   backUrl?: string | null;
 };
 
-const PupilPageContent = ({
+export const PupilPageContent = ({
   curriculumData,
   hasWorksheet,
   backUrl,
 }: PupilExperienceViewProps) => {
   const { currentSection } = useLessonEngineContext();
+
+  console.log("currentSection", currentSection);
 
   const {
     starterQuiz,

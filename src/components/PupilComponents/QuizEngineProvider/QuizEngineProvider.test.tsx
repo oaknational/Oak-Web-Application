@@ -1,8 +1,7 @@
 import React from "react";
 import { renderHook, act } from "@testing-library/react";
 
-import { createLessonEngineContext } from "../LessonEngineProvider/LessonEngineProvider.test";
-
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineProps,
   QuizEngineProvider,

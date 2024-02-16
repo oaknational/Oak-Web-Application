@@ -10,7 +10,7 @@ import { PupilViewsIntro } from "./PupilIntro.view";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 jest.mock(

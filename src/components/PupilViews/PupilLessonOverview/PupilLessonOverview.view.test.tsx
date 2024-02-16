@@ -7,7 +7,7 @@ import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 describe(PupilViewsLessonOverview, () => {
   it("displays the lesson title", () => {
