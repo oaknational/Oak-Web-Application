@@ -16,6 +16,7 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
+  | "pupilLessonOverviewCanonical"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -30,6 +31,9 @@ const curriculumApi: Pick<
     return teachersHomePageFixture();
   }),
   pupilLessonOverview: jest.fn(async () => {
+    return pupilLessonOverviewFixture();
+  }),
+  pupilLessonOverviewCanonical: jest.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
   lessonOverviewCanonical: jest.fn(async () => {

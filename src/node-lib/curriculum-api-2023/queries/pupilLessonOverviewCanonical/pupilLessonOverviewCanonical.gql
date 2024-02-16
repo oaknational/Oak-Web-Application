@@ -1,26 +1,18 @@
-query pupilLessonOverview(
-  $programmeSlug: String!
-  $lessonSlug: String!
-  $unitSlug: String!
-) {
+query pupilLessonOverviewCanonical($lessonSlug: String!) {
   lesson: published_mv_lesson_overview_3_0_2(
-    where: {
-      lessonSlug: { _eq: $lessonSlug }
-      programmeSlug: { _eq: $programmeSlug }
-      unitSlug: { _eq: $unitSlug }
-    }
+    where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     lessonTitle
     yearTitle
     lessonKeywords
     subjectSlug
     subjectTitle
-    unitSlug
     pupilLessonOutcome
     starterQuiz
     exitQuiz
     lessonSlug
     lessonTitle
+    unitSlug
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources

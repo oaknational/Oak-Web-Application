@@ -5,7 +5,7 @@ import { PupilViewsVideo } from "./PupilVideo.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
   return () => <span data-testid="video-player" />;
