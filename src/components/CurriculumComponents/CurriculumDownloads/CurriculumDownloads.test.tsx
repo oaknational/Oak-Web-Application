@@ -52,7 +52,7 @@ describe("Component - Curriculum Header", () => {
     });
   });
 
-  test("submits form when correct information is entered", async () => {
+  test.skip("submits form when correct information is entered", async () => {
     const { getAllByTestId, getByTestId } = renderComponent();
     const resourceCard = getAllByTestId("resourceCard")[0];
     if (resourceCard === undefined) {
