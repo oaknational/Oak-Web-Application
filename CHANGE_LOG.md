@@ -1,3 +1,12 @@
+# [1.356.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.2...v1.356.0) (2024-02-16)
+
+
+### Features
+
+* **PUPIL-351:** tailor the proceed to next section button label ([a0ba3c2](https://github.com/oaknational/Oak-Web-Application/commit/a0ba3c2beab2ece26096dbbecf862cd033531e97))
+* **PUPIL-351:** update lesson review message ([d445193](https://github.com/oaknational/Oak-Web-Application/commit/d4451930cff7cd0ffcb0f877e8972c905f4afd91))
+* **PUPIL-351:** update quiz button labels ([e3c30e4](https://github.com/oaknational/Oak-Web-Application/commit/e3c30e4777efbb9d5c752a51df75b813e0dff2ed))
+
 ## [1.355.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.1...v1.355.2) (2024-02-15)
 
 ## [1.355.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.0...v1.355.1) (2024-02-15)
