@@ -1,5 +1,4 @@
-import { pupilLessonOverviewCanonicalSchema } from "./pupilLessonOverviewCanonical.schema";
-
+import { pupilLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
@@ -13,5 +12,5 @@ export const pupilLessonOverviewCanonicalQuery =
 
     // currently we assume that all lessons returned by the mv are identical for the same lessonSlug
     // this may change in future
-    return pupilLessonOverviewCanonicalSchema.parse(lessons[0]);
+    return pupilLessonOverviewSchema.parse(lessons[0]);
   };
