@@ -48,10 +48,14 @@ const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
         >
           <SubjectIcon subjectSlug={subjectSlug} $ma={"auto"} />
         </Flex>
-        <Flex $alignItems={["start", "center"]} $minHeight={[0, 72]}>
+        <Flex
+          $mh={[0, 12]}
+          $alignItems={["start", "center"]}
+          $minHeight={[0, 72]}
+        >
           <OakHeading
             $textAlign={["start", "center"]}
-            $font={["heading-6", "heading-5"]}
+            $font={"heading-6"}
             tag={titleTag}
           >
             {subject.new?.subjectTitle || subject.old?.subjectTitle}
