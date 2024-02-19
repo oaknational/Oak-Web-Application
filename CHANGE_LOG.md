@@ -1,3 +1,10 @@
+# [1.361.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.360.1...v1.361.0) (2024-02-19)
+
+
+### Features
+
+* console log errors on legacy canonical so that it appears in datadog ([19ffae3](https://github.com/oaknational/Oak-Web-Application/commit/19ffae3f9bcc8adfcd22d5acac07d6a872d327ea))
+
 ## [1.360.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.360.0...v1.360.1) (2024-02-19)
 
 # [1.360.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.359.1...v1.360.0) (2024-02-19)
