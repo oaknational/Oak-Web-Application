@@ -1,3 +1,18 @@
+## [1.359.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.359.0...v1.359.1) (2024-02-19)
+
+
+### Bug Fixes
+
+* **PUPIL-274:** footer button wrapping in lessons ([fcc1a9b](https://github.com/oaknational/Oak-Web-Application/commit/fcc1a9bdbdf551f5036a75cfebaf1a7e243106cc))
+* update expection in pupil review test ([3033812](https://github.com/oaknational/Oak-Web-Application/commit/303381241ecf55f1314b74d56ef97d2b6d3aa663))
+
+# [1.359.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.358.0...v1.359.0) (2024-02-19)
+
+
+### Features
+
+* **PUPIL-412:** disable buttons on the lesson overview until hydration is complete ([70b4690](https://github.com/oaknational/Oak-Web-Application/commit/70b46906f965d09d796a66fbf3763a61bb71fa1f))
+
 # [1.358.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.357.0...v1.358.0) (2024-02-16)
 
 
