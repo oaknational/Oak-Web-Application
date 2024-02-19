@@ -147,7 +147,7 @@ export const useLessonEngineContext = () => {
   return context;
 };
 
-type LessonEngineProviderProps = {
+export type LessonEngineProviderProps = {
   children: ReactNode;
   initialLessonReviewSections: Readonly<LessonReviewSection[]>;
 };

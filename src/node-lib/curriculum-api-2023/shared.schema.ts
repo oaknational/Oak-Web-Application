@@ -23,6 +23,8 @@ const keyLearningPointsSchema = z.object({
   keyLearningPoint: z.string().nullable(),
 });
 
+export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
+
 const copyrightContentSchema = z.object({
   copyrightInfo: z.string(),
 });

@@ -3,7 +3,6 @@ import { act, render, renderHook } from "@testing-library/react";
 import { OakSpan } from "@oaknational/oak-components";
 
 import {
-  LessonEngineContextType,
   LessonEngineProvider,
   allLessonReviewSections,
   useLessonEngineContext,
@@ -173,19 +172,3 @@ describe("LessonEngineProvider", () => {
     );
   });
 });
-
-export function createLessonEngineContext(
-  overrides?: Partial<LessonEngineContextType>,
-): NonNullable<LessonEngineContextType> {
-  return {
-    isLessonComplete: false,
-    currentSection: "starter-quiz",
-    sectionResults: {},
-    lessonReviewSections: allLessonReviewSections,
-    completeSection: jest.fn(),
-    updateCurrentSection: jest.fn(),
-    proceedToNextSection: jest.fn(),
-    updateQuizResult: jest.fn(),
-    ...overrides,
-  };
-}

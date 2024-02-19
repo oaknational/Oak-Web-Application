@@ -1,3 +1,126 @@
+# [1.359.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.358.0...v1.359.0) (2024-02-19)
+
+
+### Features
+
+* **PUPIL-412:** disable buttons on the lesson overview until hydration is complete ([70b4690](https://github.com/oaknational/Oak-Web-Application/commit/70b46906f965d09d796a66fbf3763a61bb71fa1f))
+
+# [1.358.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.357.0...v1.358.0) (2024-02-16)
+
+
+### Features
+
+* **PUPIL-338:** disable Gleap for pupils ([5825580](https://github.com/oaknational/Oak-Web-Application/commit/58255801314f53f47b5755749f2e64977ed4e784))
+
+# [1.357.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.356.1...v1.357.0) (2024-02-16)
+
+
+### Bug Fixes
+
+* capitalization typo ([9b55029](https://github.com/oaknational/Oak-Web-Application/commit/9b55029a5e4a8e2f341bd7e0b5f24468f89c074c))
+* capitalization typo ([c812f6f](https://github.com/oaknational/Oak-Web-Application/commit/c812f6f7cf3e9404518d470d8bc87f9c48c15a7c))
+* legacy redirect goes to lesson not unit ([8a7184a](https://github.com/oaknational/Oak-Web-Application/commit/8a7184a061728a5ccc3cadce29a4cca77f97f133))
+* make sure backUrl is null ([3c4ce06](https://github.com/oaknational/Oak-Web-Application/commit/3c4ce061d4ff0f434af783c537dff488438a9ee5))
+* make sure backUrl is null ([164fabb](https://github.com/oaknational/Oak-Web-Application/commit/164fabb3ea0385391c55ba9f86282996f553035c))
+* make sure backUrl is null ([1eb9bff](https://github.com/oaknational/Oak-Web-Application/commit/1eb9bff1d598b1079f41298260409183d4cc5fd9))
+* missing type ([069de7c](https://github.com/oaknational/Oak-Web-Application/commit/069de7c85cbc86ca7286fc27937e9a0b27ece7f4))
+* pupilLessonOverviewCanonical tests ([6915123](https://github.com/oaknational/Oak-Web-Application/commit/6915123c86beb742c1b0361ee82585a8a1866136))
+* remove display override now that oak-component is modified ([c718adb](https://github.com/oaknational/Oak-Web-Application/commit/c718adb4d1f20d215b1291d59338006127eb61f5))
+* removed unnecessary prop ([3ea3ebe](https://github.com/oaknational/Oak-Web-Application/commit/3ea3ebec8643509eadf2be4c9eef45a5e6cc585c))
+* resolve conflicts ([d92d8c5](https://github.com/oaknational/Oak-Web-Application/commit/d92d8c5ee431e8225740800274c1ec7655371e11))
+* resolved conflicts ([e06a344](https://github.com/oaknational/Oak-Web-Application/commit/e06a3445d880f0bedc473f7ec6e63253b263b334))
+* updated tests to work with new copy ([042c623](https://github.com/oaknational/Oak-Web-Application/commit/042c623541a0b584235ee968bcfe355b3bbf7207))
+
+
+### Features
+
+* add unitSlug to canonical query ([1a87d0f](https://github.com/oaknational/Oak-Web-Application/commit/1a87d0f9d6e8b91700fcb83a67d02e4787280b17))
+* added page tests ([01433e5](https://github.com/oaknational/Oak-Web-Application/commit/01433e5c97ebc1fa4e58090d1e2199a1c88fd6d1))
+* adding tests ([3b2d1f3](https://github.com/oaknational/Oak-Web-Application/commit/3b2d1f3efe3a65bc9840d4ecd9b1b765c393f6c9))
+* backUrl for canonical lesson page ([fccae2c](https://github.com/oaknational/Oak-Web-Application/commit/fccae2c425f1eeaf7adfeea5bf09decd633ededb))
+* canonical page without redirect ([983b29d](https://github.com/oaknational/Oak-Web-Application/commit/983b29d71892b03175290d872b7fbee9ecceb36c))
+* canonical query for PE ([013c7c2](https://github.com/oaknational/Oak-Web-Application/commit/013c7c2f3737aa6494c071f83312c80ae2493db2))
+* created experience view ([e28016e](https://github.com/oaknational/Oak-Web-Application/commit/e28016ed553d132d5eefbe97dc8614cdf8806d81))
+* new page wip ([fd32053](https://github.com/oaknational/Oak-Web-Application/commit/fd32053ce05445011d8725555bfe1a5b9f83dad1))
+* piping query to page ([8f29cc2](https://github.com/oaknational/Oak-Web-Application/commit/8f29cc2cc4d94b1fa00b25bd25ef72057de42a20))
+* redirect working ([66b13bd](https://github.com/oaknational/Oak-Web-Application/commit/66b13bdc6cb0b76da857016337303b2b48af8e6b))
+* tests for refactored utils ([3fa9304](https://github.com/oaknational/Oak-Web-Application/commit/3fa930477dec4cc868cf6f7e9edf0038e1ece305))
+* wip ([396a248](https://github.com/oaknational/Oak-Web-Application/commit/396a248bc1eee7580324eafcc875b3ace196b36a))
+
+## [1.356.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.356.0...v1.356.1) (2024-02-16)
+
+
+### Bug Fixes
+
+* change font size to 20px and revert margin ([26bd62b](https://github.com/oaknational/Oak-Web-Application/commit/26bd62b46b8320efa9910a6fb16003a4e60e8381))
+* remove margin from subject card ([7255fe1](https://github.com/oaknational/Oak-Web-Application/commit/7255fe171f36d02bac5c4f0adce362185a8f080f))
+
+# [1.356.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.2...v1.356.0) (2024-02-16)
+
+
+### Features
+
+* **PUPIL-351:** tailor the proceed to next section button label ([a0ba3c2](https://github.com/oaknational/Oak-Web-Application/commit/a0ba3c2beab2ece26096dbbecf862cd033531e97))
+* **PUPIL-351:** update lesson review message ([d445193](https://github.com/oaknational/Oak-Web-Application/commit/d4451930cff7cd0ffcb0f877e8972c905f4afd91))
+* **PUPIL-351:** update quiz button labels ([e3c30e4](https://github.com/oaknational/Oak-Web-Application/commit/e3c30e4777efbb9d5c752a51df75b813e0dff2ed))
+
+## [1.355.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.1...v1.355.2) (2024-02-15)
+
+## [1.355.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.355.0...v1.355.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* add check for metadata null ([c6a05b8](https://github.com/oaknational/Oak-Web-Application/commit/c6a05b8d13da13b93fb4fcf3bbd834ee21ff8b7b))
+* make shareable resource metadata schema nullable ([c6c39ef](https://github.com/oaknational/Oak-Web-Application/commit/c6c39ef529136e807f31218218431505bbcd90ab))
+
+# [1.355.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.354.0...v1.355.0) (2024-02-15)
+
+
+### Bug Fixes
+
+* container height ([2351680](https://github.com/oaknational/Oak-Web-Application/commit/235168013b9d3ebfe9aba9c0274737406a609ede))
+* only change order when eyfs present ([c2c0d4f](https://github.com/oaknational/Oak-Web-Application/commit/c2c0d4fb4cc3e7f1692fd7ed370266ba308a89a2))
+
+
+### Features
+
+* adjust layout of keystage keypad on mobile ([d3e0398](https://github.com/oaknational/Oak-Web-Application/commit/d3e03985a67e7684cfa83abb2e17c4506981d10d))
+
+# [1.354.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.1...v1.354.0) (2024-02-15)
+
+
+### Features
+
+* add method to remove plo from header when in klps ([f097648](https://github.com/oaknational/Oak-Web-Application/commit/f0976483c4f18fcbbe57a8a7c4e31d8f3e2bd78d))
+
+## [1.353.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.353.0...v1.353.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* lesson page blowing up when a download existence check fails ([ca0ae2e](https://github.com/oaknational/Oak-Web-Application/commit/ca0ae2ea597c9ecded51fc2be5ed5a6850a2a619))
+
+# [1.353.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.352.1...v1.353.0) (2024-02-14)
+
+
+### Features
+
+* **PUPIL-166:** add image attribution for images in answers ([4d4244b](https://github.com/oaknational/Oak-Web-Application/commit/4d4244bc99c4c772514a7dd153546a979480043c))
+* **PUPIL-166:** display attribution for quiz images ([f1f88ec](https://github.com/oaknational/Oak-Web-Application/commit/f1f88ece48c0e46a4f84648ef2909bef9e3882fc))
+
+## [1.352.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.352.0...v1.352.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* superficial change ([eaec653](https://github.com/oaknational/Oak-Web-Application/commit/eaec65356e693a4b0cfbdf4f8047ebf2cfaa935f))
+
+
+### Reverts
+
+* temp suspend download existence check ([5f86e83](https://github.com/oaknational/Oak-Web-Application/commit/5f86e83589fa5d3aee7aa3bf675fa1478d5b7138))
+
 # [1.352.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.351.1...v1.352.0) (2024-02-14)
 
 
