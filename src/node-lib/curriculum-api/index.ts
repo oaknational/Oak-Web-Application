@@ -19,12 +19,14 @@ import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
 } from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import getNextLessonsInUnit from "../curriculum-api-2023/queries/lessonDownloads/getNextLessonsInUnit";
+import { pupilLessonOverviewSchema } from "../curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
 
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 import argsRemoveLegacySlugSuffix from "@/utils/slugModifiers/argsRemoveLegacySlugSuffix";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
@@ -108,6 +110,7 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
+  cohort: z.string().nullish(),
   learningThemes: z
     .array(
       z.object({
@@ -134,6 +137,7 @@ const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
+  displayOrder: z.number().optional(),
 });
 
 const subjectSchema = z.object({
@@ -157,6 +161,7 @@ const teachersHomePageData = z.object({
 });
 
 export const lessonOverviewData = lessonOverviewSchema;
+export const pupilLessonOverviewData = pupilLessonOverviewSchema;
 
 export const programmesData = z.object({
   subjectSlug: z.string(),
@@ -197,6 +202,7 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
+  hasNewContent: z.boolean().nullish(),
   learningThemes: z
     .array(
       z.object({
@@ -236,6 +242,7 @@ export const lessonShareSchema = z.intersection(
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
+export type PupilLessonOverviewData = z.infer<typeof pupilLessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
 export type LessonShareSchema = z.infer<typeof lessonShareListSchema>;
@@ -308,11 +315,11 @@ const curriculumApi = {
     const filteredByActiveKeyStages = programmesAvailable?.filter(
       (subject) => keyStageSlugs?.includes(subject.keyStageSlug),
     );
-    const uniqueProgrammes = filteredByActiveKeyStages
-      ?.filter((subject, index, self) => {
+    const uniqueProgrammes = filteredByActiveKeyStages?.filter(
+      (subject, index, self) => {
         return index === self.findIndex((s) => s.slug === subject.slug);
-      })
-      .filter((subject) => subject.slug !== "physics"); // I don't know why physics is in programmesAvailable
+      },
+    );
 
     return searchPageData.parse({
       keyStages,
@@ -588,6 +595,7 @@ const curriculumApi = {
       ...share,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
+      lessonCohort: LEGACY_COHORT,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {

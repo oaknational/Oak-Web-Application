@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",
@@ -22,6 +22,8 @@ module.exports = {
     NEXT_PUBLIC_GLEAP_API_KEY: "NEXT_PUBLIC_GLEAP_API_KEY",
     NEXT_PUBLIC_GLEAP_API_URL: "NEXT_PUBLIC_GLEAP_API_URL",
     NEXT_PUBLIC_GLEAP_FRAME_URL: "NEXT_PUBLIC_GLEAP_FRAME_URL",
+    NEXT_PUBLIC_OAK_ASSETS_HOST: process.env.NEXT_PUBLIC_OAK_ASSETS_HOST,
+    NEXT_PUBLIC_OAK_ASSETS_PATH: process.env.NEXT_PUBLIC_OAK_ASSETS_PATH,
   }),
   stories: [
     "../src/components/Intro.stories.mdx",
@@ -36,7 +38,6 @@ module.exports = {
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
     "@storybook/addon-mdx-gfm",
-    "storybook-addon-next",
   ],
   framework: {
     name: "@storybook/nextjs",

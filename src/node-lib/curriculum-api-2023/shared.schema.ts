@@ -23,6 +23,8 @@ const keyLearningPointsSchema = z.object({
   keyLearningPoint: z.string().nullable(),
 });
 
+export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
+
 const copyrightContentSchema = z.object({
   copyrightInfo: z.string(),
 });
@@ -46,7 +48,13 @@ const stemImageObjectSchema = z.object({
     url: z.string().url().optional(),
     height: z.number().optional(),
     width: z.number().optional(),
-    metadata: z.union([z.array(z.any()), z.object({})]),
+    metadata: z.union([
+      z.array(z.any()),
+      z.object({
+        attribution: z.string().optional(),
+        usageRestriction: z.string().optional(),
+      }),
+    ]),
     public_id: z.string().optional(),
     version: z.number().optional(),
   }),
@@ -54,6 +62,8 @@ const stemImageObjectSchema = z.object({
 });
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
+
+export type StemObject = StemTextObject | StemImageObject;
 
 const mcAnswer = z.object({
   answer: z
@@ -103,33 +113,38 @@ export const lessonPathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  lessonCohort: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
 });
 
+export const lessonOverviewQuizQuestionSchema = z.object({
+  questionId: z.number(),
+  questionUid: z.string(),
+  questionType: z.enum([
+    "multiple-choice",
+    "match",
+    "order",
+    "short-answer",
+    "explanatory-text",
+  ]),
+  questionStem: z
+    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+    .min(1),
+  answers: answersSchema.nullable().optional(),
+  feedback: z.string(),
+  hint: z.string(),
+  active: z.boolean(),
+});
+
+export type LessonOverviewQuizQuestion = z.infer<
+  typeof lessonOverviewQuizQuestionSchema
+>;
+
 export const lessonOverviewQuizData = z
-  .array(
-    z.object({
-      questionId: z.number(),
-      questionUid: z.string(),
-      questionType: z.enum([
-        "multiple-choice",
-        "match",
-        "order",
-        "short-answer",
-        "explanatory-text",
-      ]),
-      questionStem: z
-        .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
-        .min(1),
-      answers: answersSchema.nullable().optional(),
-      feedback: z.string(),
-      hint: z.string(),
-      active: z.boolean(),
-    }),
-  )
+  .array(lessonOverviewQuizQuestionSchema)
   .nullable()
   .optional();
 
@@ -169,6 +184,7 @@ export const baseLessonOverviewSchema = z.object({
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
+  lessonCohort: z.string().nullish(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -185,6 +201,7 @@ const lessonDownloadsListSchema = z.array(
       "worksheet-pptx",
       "supplementary-pdf",
       "supplementary-docx",
+      "curriculum-pdf",
     ]),
     label: z.string(),
     ext: z.string(),
@@ -215,5 +232,6 @@ export const lessonListSchema = z.array(
     worksheetCount: z.number().nullish(),
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
+    lessonCohort: z.string().nullish(),
   }),
 );

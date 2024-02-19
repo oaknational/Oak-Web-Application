@@ -10,7 +10,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import LessonSharePage, {
   LessonSharePageProps,
   URLParams,
@@ -26,7 +26,7 @@ const props: LessonSharePageProps = {
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
@@ -94,9 +94,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
       // Lesson resources to share
-      const lessonResourcesToShare = screen.getAllByTestId(
-        "lessonResourcesCheckbox",
-      );
+      const lessonResourcesToShare = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToShare.length).toEqual(
         props.curriculumData.shareableResources.length,
       );

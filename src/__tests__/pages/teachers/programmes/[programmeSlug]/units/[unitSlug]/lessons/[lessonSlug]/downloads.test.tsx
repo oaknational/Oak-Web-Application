@@ -10,8 +10,9 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+import lessonDownloadsFixtures2023 from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
   URLParams,
@@ -33,7 +34,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -41,7 +42,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
     default: () => {
@@ -51,7 +52,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
@@ -135,9 +136,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
       // Lesson resources to download
-      const lessonResourcesToDownload = screen.getAllByTestId(
-        "lessonResourcesCheckbox",
-      );
+      const lessonResourcesToDownload = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToDownload.length).toEqual(2);
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
 
@@ -332,9 +331,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   describe("Copyright notice", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: true })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
       );
 
       const copyrightNotice = await screen.findByText(
@@ -347,13 +344,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: false })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures2023()} />,
       );
 
       const copyrightNotice = await screen.findByText(
-        "This content is © Oak National Academy (2023), licensed on",
+        "This content is © Oak National Academy Limited (2023), licensed on",
         { exact: false },
       );
 

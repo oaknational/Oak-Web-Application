@@ -1,0 +1,1 @@
+export { QuizRenderer } from "./QuizRenderer";

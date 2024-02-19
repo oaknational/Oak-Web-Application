@@ -5,15 +5,18 @@ import {
   GetStaticPropsResult,
 } from "next";
 
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi, { LessonShareData } from "@/node-lib/curriculum-api";
+import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
-import { LessonShare } from "@/components/Lesson/LessonShare/LessonShare.page";
+import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -70,11 +73,19 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = await curriculumApi.lessonShare({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
+      const isLegacy = isSlugLegacy(programmeSlug);
+
+      const curriculumData = isLegacy
+        ? await curriculumApi.lessonShare({
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          })
+        : await curriculumApi2023.lessonShare({
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          });
 
       if (!curriculumData) {
         return {

@@ -1,4 +1,5 @@
 import mockRouter from "next-router-mock";
+import userEvent from "@testing-library/user-event";
 
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
@@ -18,11 +19,23 @@ jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
+const unitSelected = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitSelected: (...args: unknown[]) => unitSelected(...args),
+    },
+  }),
+}));
+
 const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.resetModules();
   });
 
   it("renders title from props ", () => {
@@ -47,7 +60,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
   });
-  it("title card renderd correct title when exam board is present", () => {
+  it("title card rendered correct title when exam board is present", () => {
     const { getByRole } = render(
       <UnitListingPage
         curriculumData={{
@@ -123,7 +136,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
   });
 
-  it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
+  it("unitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
     mockRouter.push({
       pathname: "/teachers/programmes/art-primary-ks1/units",
       query: {
@@ -160,6 +173,30 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       expect(curriculumApi.unitListing).toHaveBeenCalledWith({
         programmeSlug: "art-primary-ks1-l",
       });
+    });
+  });
+});
+
+describe("tracking", () => {
+  test("It calls tracking.unitSelected with correct props when clicked", async () => {
+    const { getByRole } = render(
+      <UnitListingPage curriculumData={unitListingFixture()} />,
+    );
+
+    const unit = getByRole("link", { name: "1. Data Representation" });
+
+    await userEvent.click(unit);
+
+    expect(unitSelected).toHaveBeenCalledTimes(1);
+
+    expect(unitSelected).toHaveBeenCalledWith({
+      keyStageTitle: "Key stage 4",
+      keyStageSlug: "ks4",
+      analyticsUseCase: "Teacher",
+      subjectTitle: "Computing",
+      subjectSlug: "computing",
+      unitName: "Data Representation",
+      unitSlug: "data-representation-618b",
     });
   });
 });

@@ -3,9 +3,9 @@ import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout/AppLayout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import SubjectTierListing from "@/components/SubjectProgrammeListing/SubjectProgrammeListing";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import SubjectProgrammeListing from "@/components/TeacherComponents/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -13,17 +13,42 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import HeaderListing from "@/components/HeaderListing/HeaderListing";
+import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
+import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
+import { generateProgrammeListing } from "@/components/TeacherComponents/helpers/programmeHelpers/generateCorrectProgrammes";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
     props;
-
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
+  const keyStageSentenceCase = keyStageToSentenceCase(keyStageTitle);
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const handleProgrammeClick = (
+    programme: ProgrammeListingPageData["programmes"][number],
+  ) => {
+    "tierTitle" in programme &&
+      keyStageSentenceCase &&
+      programme.tierTitle !== null &&
+      isKeyStageTitleValueType(keyStageSentenceCase) &&
+      track.tierSelected({
+        subjectTitle,
+        subjectSlug,
+        keyStageTitle: keyStageSentenceCase,
+        keyStageSlug,
+        tierName: programme.tierTitle,
+        analyticsUseCase,
+      });
+  };
 
   const tiersSEO = {
     ...getSeoProps({
@@ -66,10 +91,10 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         hasCurriculumDownload={isSlugLegacy(subjectSlug)}
         {...props}
         subjectSlug={removeLegacySlugSuffix(subjectSlug)}
-        isNew={!isSlugLegacy(subjectSlug)}
+        isNew={!isSlugLegacy(subjectSlug)} // we have no way to know if it's new based on cohort information at this level
       />
       <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
-        <SubjectTierListing {...props} />
+        <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />
       </MaxWidth>
     </AppLayout>
   );
@@ -103,7 +128,6 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context params");
       }
-
       const curriculumData = isSlugLegacy(context.params?.subjectSlug)
         ? await curriculumApi.tierListing({
             keyStageSlug: context.params?.keyStageSlug,
@@ -114,9 +138,14 @@ export const getStaticProps: GetStaticProps<
             subjectSlug: context.params?.subjectSlug,
           });
 
+      const generatedCurriculumData = generateProgrammeListing(
+        curriculumData,
+        isSlugLegacy(context.params?.subjectSlug),
+      );
+
       const results = {
         props: {
-          ...curriculumData,
+          ...generatedCurriculumData,
         },
       };
 

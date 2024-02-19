@@ -1,24 +1,29 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakHeading,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutPartnersPage } from "../../common-lib/cms-types";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import AboutContactCard from "../../components/AboutContactCard";
-import { Heading } from "../../components/Typography";
-import Flex from "../../components/Flex";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import AspectRatio from "../../components/AspectRatio";
-import CMSImage from "../../components/CMSImage";
-import { CMSImageProps } from "../../components/CMSImage/CMSImage";
-import { SpacingProps } from "../../styles/utils/spacing";
-import Illustration from "../../components/Illustration";
-import { getSizes } from "../../components/CMSImage/getSizes";
-import getPageProps from "../../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { AboutPartnersPage } from "@/common-lib/cms-types";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
+import getPageProps from "@/node-lib/getPageProps";
+import { SpacingProps } from "@/styles/utils/spacing";
+import Layout from "@/components/AppComponents/Layout";
+import Illustration from "@/components/SharedComponents/Illustration";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import CMSImage, {
+  CMSImageProps,
+} from "@/components/SharedComponents/CMSImage";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -28,28 +33,29 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
   props,
 ) => {
   return (
-    <Flex $mb={32} $minWidth={"20%"}>
-      <AspectRatio ratio={["3:2", "16:9"]}>
-        <CMSImage
-          {...props}
-          width={440}
-          height={220}
-          noCrop
-          alt={props.name}
-          $objectFit="contain"
-          $objectPosition={"center center"}
-        />
-      </AspectRatio>
-    </Flex>
+    <AspectRatio ratio={["3:2", "16:9"]}>
+      <CMSImage
+        {...props}
+        width={440}
+        height={220}
+        noCrop
+        alt={props.name}
+        $objectFit="contain"
+        $objectPosition={"center center"}
+      />
+    </AspectRatio>
   );
 };
 
 const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -58,15 +64,19 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
 
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Meet our teachers
-        </Heading>
-        <Flex
+        </OakHeading>
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"center"}
           $minWidth={"100%"}
-          $minHeight={[160, 300]}
-          $mb={48}
+          $minHeight={["all-spacing-17", "all-spacing-19"]}
+          $mb={"space-between-l"}
           $position={"relative"}
         >
           <Illustration
@@ -76,7 +86,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             fill
             $objectFit="contain"
           />
-        </Flex>
+        </OakFlex>
         <ButtonAsLink
           icon={"arrow-right"}
           $iconPosition={"trailing"}
@@ -86,24 +96,49 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $mb={[80, 92]}
         />
 
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Curriculum partners
-        </Heading>
-        <Flex $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
+        </OakHeading>
+        <OakGrid
+          $mb={"space-between-xl"}
+          data-testid="curriculum-partners-list"
+        >
           {pageData.curriculumPartners.map((partner) => (
-            <ImageContainer $pa={[4, 16]} name={partner.name} image={partner} />
+            <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
+              <ImageContainer
+                $pa={[16, 24, 16]}
+                name={partner.name}
+                image={partner}
+              />
+            </OakGridArea>
           ))}
-        </Flex>
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
+        </OakGrid>
+
+        <OakHeading
+          $mb={["space-between-l", "space-between-m2"]}
+          $font={["heading-6", "heading-5"]}
+          tag={"h2"}
+        >
           Tech partners
-        </Heading>
-        <Flex $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
+        </OakHeading>
+        <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
           {pageData.techPartners.map((partner) => (
-            <ImageContainer $pa={[8, 32]} name={partner.name} image={partner} />
+            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
+              <ImageContainer
+                $pa={[16, 24, 32]}
+                name={partner.name}
+                image={partner}
+              />
+            </OakGridArea>
           ))}
-        </Flex>
-        <AboutContactCard {...pageData.contactSection} />
-      </MaxWidth>
+        </OakGrid>
+
+        <GenericContactCard {...pageData.contactSection} />
+      </OakMaxWidth>
     </Layout>
   );
 };

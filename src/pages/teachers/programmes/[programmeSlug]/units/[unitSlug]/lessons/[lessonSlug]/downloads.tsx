@@ -5,7 +5,7 @@ import {
   GetStaticPropsResult,
 } from "next";
 
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi, {
   type LessonDownloadsData,
@@ -16,7 +16,7 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonDownloads } from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
+import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonDownloadsPageProps = {

@@ -1,78 +1,87 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import {
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakGridAreaProps,
+  OakMaxWidth,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Flex, { FlexProps } from "@/components/Flex";
-import Card from "@/components/Card";
-import Box from "@/components/Box";
-import Typography, { Heading } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import OutlineHeading from "@/components/OutlineHeading";
-import Grid, { GridArea } from "@/components/Grid";
-import AboutContactCard from "@/components/AboutContactCard";
+import Layout from "@/components/AppComponents/Layout";
+import Card from "@/components/SharedComponents/Card";
+import Box from "@/components/SharedComponents/Box";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/CMSVideo";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
 };
 
-type TimeLineProps = TextBlock & FlexProps;
+type TimeLineProps = TextBlock & OakGridAreaProps;
 
 const TimeLineCard: FC<TimeLineProps> = ({
   title,
   bodyPortableText,
-  $alignItems,
+  $colStart,
+  $colSpan,
   cta,
-  ...props
 }) => {
   return (
-    <Flex
-      $pv={0}
-      $ph={[16]}
-      $alignItems={$alignItems}
+    <OakFlex
+      $pv={"inner-padding-none"}
+      $ph={["inner-padding-m"]}
       $flexDirection={"column"}
-      $mb={[80, 92]}
-      {...props}
+      $mb={"space-between-xxxl"}
     >
-      <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
-        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
-          {title}
-        </OutlineHeading>
-        <Typography $font={["body-2", "body-1"]}>
-          <PortableTextWithDefaults value={bodyPortableText} />
-        </Typography>
-        {cta && (
-          <Flex>
-            <ButtonAsLink
-              $mt={[36]}
-              icon={"arrow-right"}
-              $iconPosition={"trailing"}
-              label={cta.label}
-              page={null}
-              href={getLinkHref(cta)}
-            />
-          </Flex>
-        )}
-      </Flex>
-    </Flex>
+      <OakGrid>
+        <OakGridArea $colSpan={$colSpan} $colStart={$colStart}>
+          <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
+            {title}
+          </OutlineHeading>
+          <OakTypography $font={["body-2", "body-1"]}>
+            <PortableTextWithDefaults value={bodyPortableText} />
+          </OakTypography>
+          {cta && (
+            <OakFlex>
+              <ButtonAsLink
+                $mt={[36]}
+                icon={"arrow-right"}
+                $iconPosition={"trailing"}
+                label={cta.label}
+                page={null}
+                href={getLinkHref(cta)}
+              />
+            </OakFlex>
+          )}
+        </OakGridArea>
+      </OakGrid>
+    </OakFlex>
   );
 };
 
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]} $alignItems={"center"}>
-        <AboutUsSummaryCard {...pageData} />
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+        $alignItems={"center"}
+      >
+        <GenericSummaryCard {...pageData} />
         <Card
           $pv={32}
           $ph={[16, 24]}
@@ -83,77 +92,86 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           $mt={92}
         >
           <BrushBorders hideOnMobileH color={"pink50"} />
-          <Flex
-            $justifyContent={"center"}
-            $alignItems={"center"}
-            $pb={[24, 24, 0]}
-            $pr={[0, 0, 72]}
-            $minWidth={["50%"]}
+          <OakFlex
+            $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
+            $flexDirection={["column", "column", "row"]}
           >
-            {pageData.intro.mediaType == "video" && (
-              <CMSVideo video={pageData.intro.video} location="marketing" />
-            )}
-          </Flex>
-          <Box $minWidth={["50%"]}>
-            <Typography $mb={36} $font={["body-2", "body-1"]}>
-              <PortableTextWithDefaults
-                value={pageData.intro.bodyPortableText}
-              />
-            </Typography>
-            <Flex $justifyContent={"flex-start"}>
-              {pageData.intro.cta && (
-                <ButtonAsLink
-                  icon={"arrow-right"}
-                  $iconPosition="trailing"
-                  label={pageData.intro.cta.label}
-                  page={null}
-                  href={getLinkHref(pageData.intro.cta)}
-                />
+            <OakFlex $justifyContent={"center"} $alignItems={"center"}>
+              {pageData.intro.mediaType == "video" && (
+                <CMSVideo video={pageData.intro.video} location="marketing" />
               )}
-            </Flex>
-          </Box>
+            </OakFlex>
+            <Box $width={["100%", "100%", "50%"]}>
+              <OakTypography
+                $mb={"space-between-m2"}
+                $font={["body-2", "body-1"]}
+              >
+                <PortableTextWithDefaults
+                  value={pageData.intro.bodyPortableText}
+                />
+              </OakTypography>
+              <OakFlex $justifyContent={"flex-start"}>
+                {pageData.intro.cta && (
+                  <ButtonAsLink
+                    icon={"arrow-right"}
+                    $iconPosition="trailing"
+                    label={pageData.intro.cta.label}
+                    page={null}
+                    href={getLinkHref(pageData.intro.cta)}
+                  />
+                )}
+              </OakFlex>
+            </Box>
+          </OakFlex>
         </Card>
         <TimeLineCard
           bodyPortableText={pageData.timeline.from.bodyPortableText}
           title={pageData.timeline.from.title}
-          $alignItems={"flex-start"}
+          $colStart={[1, 1]}
+          $colSpan={[12, 6]}
         />
         <TimeLineCard
           bodyPortableText={pageData.timeline.to.bodyPortableText}
           title={pageData.timeline.to.title}
-          $alignItems={["flex-start", "center"]}
+          $colStart={[1, 4]}
+          $colSpan={[12, 6]}
         />
         <TimeLineCard
           bodyPortableText={pageData.timeline.beyond.bodyPortableText}
           title={pageData.timeline.beyond.title}
           cta={pageData.timeline.beyond.cta}
-          $alignItems={["flex-start", "flex-end"]}
+          $colStart={[1, 7]}
+          $colSpan={[12, 6]}
         />
-        <Grid $mb={80} $cg={28} $rg={32}>
+        <OakGrid
+          $mb={"space-between-xxxl"}
+          $cg={"space-between-m"}
+          $rg={"space-between-m2"}
+        >
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
-              <GridArea $colSpan={[12, 6]}>
+              <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $background={"aqua"}>
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
-                  <Heading
+                  <OakHeading
                     $font={["heading-5", "heading-4"]}
-                    tag={"h2"}
-                    $mb={[24]}
+                    tag={"h3"}
+                    $mb={["space-between-m"]}
                   >
                     {principle.title}
-                  </Heading>
-                  <Typography $font={["body-2", "body-1"]}>
+                  </OakHeading>
+                  <OakTypography $font={["body-2", "body-1"]}>
                     <PortableTextWithDefaults
                       value={principle.bodyPortableText}
                     />
-                  </Typography>
+                  </OakTypography>
                 </Card>
-              </GridArea>
+              </OakGridArea>
             </Fragment>
           ))}
-        </Grid>
-        <AboutContactCard {...pageData.contactSection} />
-      </MaxWidth>
+        </OakGrid>
+        <GenericContactCard {...pageData.contactSection} />
+      </OakMaxWidth>
     </Layout>
   );
 };
