@@ -9,10 +9,10 @@ import {
   OakLessonLayout,
   OakLessonReviewItem,
   OakPrimaryButton,
-  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -58,15 +58,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          {backUrl ? (
-            <OakTertiaryButton iconName="arrow-left" href={backUrl} element="a">
-              View all lessons
-            </OakTertiaryButton>
-          ) : (
-            <OakTertiaryButton disabled iconName="arrow-left">
-              View all lessons
-            </OakTertiaryButton>
-          )}
+          <ViewAllLessonsButton href={backUrl} />
 
           <OakFlex $mv="space-between-xl">
             <OakFlex
