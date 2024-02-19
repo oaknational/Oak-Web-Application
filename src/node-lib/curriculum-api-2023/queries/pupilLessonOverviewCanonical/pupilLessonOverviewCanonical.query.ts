@@ -6,6 +6,7 @@ export const pupilLessonOverviewCanonicalQuery =
   (sdk: Sdk) => async (args: { lessonSlug: string }) => {
     const res = await sdk.pupilLessonOverviewCanonical(args);
     const lessons = res.lesson;
+
     if (lessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
