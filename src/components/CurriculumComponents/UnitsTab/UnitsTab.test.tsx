@@ -721,4 +721,65 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       );
     });
   });
+
+  const resizeWindow = (x: number, y: number) => {
+    window.innerWidth = x;
+    window.innerHeight = y;
+    window.dispatchEvent(new Event("resize"));
+  };
+  test("mobile: clicking on 'filter by thread' shows thread modal", async () => {
+    resizeWindow(390, 844);
+    const unitData = {
+      planned_number_of_lessons: 5,
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      units: [],
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "cellular-respiration-and-atp",
+      subject: "Combined Science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      subject_slug: "combined-science",
+      threads: [],
+      tier: "Foundation",
+      tier_slug: "foundation",
+      title: "Aerobic and anaerobic cellular respiration",
+      unit_options: [],
+      year: "11",
+    };
+    const { findByTestId } = render(
+      <UnitsTab data={unitData} examboardSlug="aqa" />,
+    );
+    const filterThreadsButton = await findByTestId("mobile-highlight-thread");
+
+    waitFor(async () => {
+      await userEvent.click(filterThreadsButton);
+    });
+    const mobileThreadModal = await findByTestId("mobile-thread-modal");
+    expect(mobileThreadModal).toBeInTheDocument();
+  });
+  test("mobile: mobile filter options visible", async () => {
+    resizeWindow(390, 844);
+
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+    const mobileThreadButton = await findByTestId("mobile-highlight-thread");
+    const mobileYearFilter = await findByTestId("year-selection-mobile");
+    const mobileYearFilterButtons = await findAllByTestId(
+      "year-group-filter-button",
+    );
+    expect(mobileThreadButton).toBeInTheDocument();
+    expect(mobileYearFilter).toBeInTheDocument();
+    expect(mobileYearFilterButtons).toHaveLength(9);
+  });
 });

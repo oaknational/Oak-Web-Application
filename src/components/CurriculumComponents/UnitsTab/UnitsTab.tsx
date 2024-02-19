@@ -414,7 +414,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       $height={"100%"}
       $width={"100%"}
       $zIndex={"modalDialog"}
-      // $overflow={"auto"}
     >
       <Box $position={"fixed"} $top={20} $right={16}>
         <Button
@@ -427,7 +426,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           aria-expanded={open}
         />
       </Box>
-      <Box $ml={16} $mt={32} $display={["block", "none"]}>
+      <Box
+        $ml={16}
+        $mt={32}
+        $display={["block", "none"]}
+        data-testid="mobile-thread-modal"
+      >
         <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-m">
           Highlight a thread
         </OakHeading>
@@ -440,9 +444,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           value={selectedThread ? selectedThread.slug : ""}
           onChange={handleSelectThread}
         >
-          <Box
-          // $overflow={"scroll"}
-          >
+          <Box>
             <Box $mv={16}>
               <Radio
                 aria-label={"None highlighted"}
@@ -583,6 +585,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                   variant="buttonStyledAsLink"
                   $mt={16}
                   onClick={handleMobileThreadModal}
+                  data-testid="mobile-highlight-thread"
                 />
                 {selectedThread && (
                   <Box
@@ -600,6 +603,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                 $dropShadow="mobileFilterSelector"
                 $width={"100%"}
                 $ph={[16, 0]}
+                data-testid={"year-selection-mobile"}
               >
                 <ButtonGroup
                   aria-label="Select a year group"
@@ -612,7 +616,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                       <ButtonAsLink
                         variant="brush"
                         aria-label={`Year ${yearOption}`}
-                        data-testid={"year-selection-mobile"}
                         background={
                           mobileYearSelection === yearOption
                             ? "grey20"
@@ -627,6 +630,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                           setMobileYearSelection(yearOption);
                           trackSelectYear(yearOption);
                         }}
+                        data-testid="year-group-filter-button"
                       />
                     </Box>
                   ))}
