@@ -52,7 +52,7 @@ describe("Component - Curriculum Header", () => {
     });
   });
 
-  test.skip("submits form when correct information is entered", async () => {
+  test("submits form when correct information is entered", async () => {
     const { getAllByTestId, getByTestId } = renderComponent();
     const resourceCard = getAllByTestId("resourceCard")[0];
     if (resourceCard === undefined) {
@@ -62,9 +62,12 @@ describe("Component - Curriculum Header", () => {
     await userEvent.click(getByTestId("checkbox-download"));
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
-    await waitFor(() => {
-      expect(getByTestId("downloadSuccess")).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(getByTestId("downloadSuccess")).toBeInTheDocument();
+      },
+      { interval: 1000, timeout: 10000 },
+    );
   });
 
   afterEach(() => {
