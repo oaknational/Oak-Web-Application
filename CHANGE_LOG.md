@@ -1,3 +1,10 @@
+# [1.359.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.358.0...v1.359.0) (2024-02-19)
+
+
+### Features
+
+* **PUPIL-412:** disable buttons on the lesson overview until hydration is complete ([70b4690](https://github.com/oaknational/Oak-Web-Application/commit/70b46906f965d09d796a66fbf3763a61bb71fa1f))
+
 # [1.358.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.357.0...v1.358.0) (2024-02-16)
 
 
