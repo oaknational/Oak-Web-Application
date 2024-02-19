@@ -760,10 +760,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab data={unitData} examboardSlug="aqa" />,
     );
     const filterThreadsButton = await findByTestId("mobile-highlight-thread");
-
-    waitFor(async () => {
-      await userEvent.click(filterThreadsButton);
-    });
+    await userEvent.click(filterThreadsButton);
     const mobileThreadModal = await findByTestId("mobile-thread-modal");
     expect(mobileThreadModal).toBeInTheDocument();
   });
