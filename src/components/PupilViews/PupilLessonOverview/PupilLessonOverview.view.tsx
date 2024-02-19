@@ -77,7 +77,7 @@ export const PupilViewsLessonOverview = ({
         <OakLessonBottomNav>
           <OakPrimaryButton
             onClick={proceedToNextSection}
-            width={["100%", "auto", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
             data-testid="proceed-to-next-section"
