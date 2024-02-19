@@ -28,6 +28,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 // Types and interfaces
 
@@ -117,8 +118,22 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     null,
   );
 
+  const [yearGroupScrollOffset, setYearGroupScrollOffset] = useState<number>();
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
+
+  // Add padding offset for mobile year group filter scroll
+  useEffect(() => {
+    if (mobileHeaderRef.current) {
+      const boundingRect = mobileHeaderRef.current.getBoundingClientRect();
+      if (!yearGroupScrollOffset) {
+        setYearGroupScrollOffset(boundingRect.height);
+      }
+    }
+  }, [setYearGroupScrollOffset, yearGroupScrollOffset, mobileYearSelection]);
+
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
     yearData = {};
@@ -569,6 +584,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           $position={["sticky", "static"]}
           $top={0}
           $zIndex={"fixedHeader"}
+          ref={mobileHeaderRef}
         >
           <Box
             $width={"100%"}
@@ -745,11 +761,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     key={year}
                     $background={"pink30"}
                     $pt={32}
+                    $position={"relative"}
                     $pl={30}
                     $mb={32}
                     $borderRadius={4}
-                    id={`units-year-${year}`}
+                    onTouchStartCapture={() => {
+                      setMobileYearSelection(null);
+                    }}
                   >
+                    <AnchorTarget
+                      $paddingTop={yearGroupScrollOffset}
+                      id={`units-year-${year}`}
+                    />
                     <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5"]}
