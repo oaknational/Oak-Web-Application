@@ -68,7 +68,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     <OakLessonBottomNav>
       <OakPrimaryButton
         type="button"
-        width={["100%", "auto"]}
+        width={["100%", "max-content"]}
         isTrailingIcon
         iconName="arrow-right"
         onClick={() => {
