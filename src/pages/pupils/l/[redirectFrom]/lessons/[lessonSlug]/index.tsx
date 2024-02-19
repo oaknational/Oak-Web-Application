@@ -17,6 +17,8 @@ import {
   PupilExperienceView,
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 
 /**
  * Test URLs:
@@ -70,7 +72,7 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new OakError({ code: "urls/failed-to-resolve" });
       }
       const { lessonSlug, redirectFrom } = context.params;
 
@@ -83,10 +85,19 @@ export const getStaticProps: GetStaticProps<
           lessonSlug,
         })
         .catch((error) => {
-          console.error("Error fetching pupilLessonOverviewCanonical", {
+          const forwardError: OakError = { ...error };
+          if (forwardError.code === "curriculum-api/not-found") {
+            forwardError.config.shouldNotify = true;
+          }
+
+          errorReporter(
+            "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonOverviewCanonical",
+          )(forwardError, {
+            severity: "warning",
             lessonSlug,
-            error,
+            redirectFrom,
           });
+
           return null;
         });
 
