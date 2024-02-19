@@ -1,3 +1,12 @@
+## [1.360.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.360.0...v1.360.1) (2024-02-19)
+
+# [1.360.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.359.1...v1.360.0) (2024-02-19)
+
+
+### Features
+
+* reporting legacy canonical 404s to bugsnag before redirect ([f2f30c5](https://github.com/oaknational/Oak-Web-Application/commit/f2f30c5ee2df14db6dda4b477c4978e31710aff7))
+
 ## [1.359.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.359.0...v1.359.1) (2024-02-19)
 
 
