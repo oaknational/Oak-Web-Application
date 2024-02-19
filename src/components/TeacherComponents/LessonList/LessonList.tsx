@@ -61,7 +61,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         </OakHeading>
       </OakFlex>
 
-      {currentPageItems.length ? (
+      {currentPageItems?.length ? (
         <>
           <OakUL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
