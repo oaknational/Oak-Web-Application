@@ -31,7 +31,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         iconName="arrow-right"
         isTrailingIcon
         type="button"
-        width={["100%", "auto"]}
+        width={["100%", "max-content"]}
         onClick={() => {
           updateCurrentSection("overview");
         }}

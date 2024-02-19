@@ -61,7 +61,7 @@ export const PupilViewsVideo = ({
             onClick={() => {
               completeSection("video");
             }}
-            width={["100%", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
           >

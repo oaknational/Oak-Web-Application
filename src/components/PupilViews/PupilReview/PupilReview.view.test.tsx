@@ -30,7 +30,7 @@ describe("PupilReview", () => {
     );
     expect(getByText("Introduction")).toBeInTheDocument();
     expect(getByText("Starter quiz")).toBeInTheDocument();
-    expect(getByText("Watch video")).toBeInTheDocument();
+    expect(getByText("Lesson video")).toBeInTheDocument();
     expect(getByText("Exit quiz")).toBeInTheDocument();
   });
   it("displays the lesson overview button", () => {
