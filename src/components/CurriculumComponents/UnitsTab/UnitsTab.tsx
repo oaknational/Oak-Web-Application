@@ -494,12 +494,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         </RadioGroup>
       </Box>
 
-      <Flex
+      <OakFlex
         $position={"fixed"}
-        $bottom={0}
         $width={"100%"}
         $background={"white"}
-        $right={0}
+        $bottom={["all-spacing-0"]}
+        $right={["all-spacing-0"]}
         $justifyContent={"right"}
       >
         <Button
@@ -510,7 +510,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           iconBackground="black"
           onClick={handleMobileThreadModal}
         />
-      </Flex>
+      </OakFlex>
     </Box>
   ) : (
     <Box>
