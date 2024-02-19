@@ -779,4 +779,32 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(mobileYearFilter).toBeInTheDocument();
     expect(mobileYearFilterButtons).toHaveLength(9);
   });
+  test("desktop filters are not visible in mobile", async () => {
+    resizeWindow(390, 844);
+
+    const { findByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+
+    const yearsRadio = await findByTestId("year-group-filter-desktop");
+    expect(yearsRadio).toHaveStyle({ display: "none" });
+
+    const threadsFilter = await findByTestId("threads-filter-desktop");
+    expect(threadsFilter).toHaveStyle({ display: "none" });
+  });
+
+  test("mobile: anchor links for year group filters match", async () => {
+    resizeWindow(390, 844);
+
+    const { findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+
+    const yearFilterButtons = await findAllByTestId("year-group-filter-button");
+    const yearHeadings = await findAllByTestId("year-heading");
+    const year2Button = yearFilterButtons[1];
+    expect(year2Button).toHaveAttribute("href", "/#units-year-2");
+    expect(year2Button).toHaveTextContent("Year 2");
+    expect(yearHeadings[1]).toHaveTextContent("Year 2");
+  });
 });

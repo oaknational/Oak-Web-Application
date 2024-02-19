@@ -657,7 +657,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         </Box>
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
-            <Box $mr={16} $mb={32} $ml={16} $display={["none", "block"]}>
+            <Box
+              $mr={16}
+              $mb={32}
+              $ml={16}
+              $display={["none", "block"]}
+              data-testid="threads-filter-desktop"
+            >
               <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
               </OakHeading>
@@ -717,7 +723,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                 })}
               </RadioGroup>
             </Box>
-            <Box $mr={16} $mb={32} $display={["none", "block"]}>
+            <Box
+              $mr={16}
+              $mb={32}
+              $display={["none", "block"]}
+              data-testid="year-group-filter-desktop"
+            >
               <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Year group
               </OakHeading>
