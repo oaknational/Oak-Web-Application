@@ -94,10 +94,8 @@ export const getStaticProps: GetStaticProps<
             "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonOverviewCanonical",
           )(forwardError, {
             severity: "warning",
-            ...{
-              lessonSlug,
-              redirectFrom,
-            },
+            lessonSlug,
+            redirectFrom,
           });
 
           return null;
