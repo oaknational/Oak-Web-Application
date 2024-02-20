@@ -13,6 +13,7 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import { extractCloudinaryIdFromURL } from "@/browser-lib/cloudinary/extractCloudinaryIdFromURL";
 
 export const QuizQuestionStem = ({
   questionStem,
@@ -58,7 +59,9 @@ export const QuizQuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
             >
               <OakCloudinaryImage
-                cloudinaryId={stemItem.image_object.secure_url}
+                cloudinaryId={extractCloudinaryIdFromURL(
+                  stemItem.image_object.secure_url,
+                )}
                 height={stemItem.image_object.height}
                 width={stemItem.image_object.width}
                 alt={""}

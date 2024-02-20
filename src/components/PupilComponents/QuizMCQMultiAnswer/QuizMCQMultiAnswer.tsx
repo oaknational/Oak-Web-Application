@@ -24,6 +24,7 @@ import {
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import { extractCloudinaryIdFromURL } from "@/browser-lib/cloudinary/extractCloudinaryIdFromURL";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;
@@ -73,7 +74,9 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
 
           const answerImage = answerImageData ? (
             <OakCloudinaryImage
-              cloudinaryId={answerImageData.secure_url}
+              cloudinaryId={extractCloudinaryIdFromURL(
+                answerImageData.secure_url,
+              )}
               alt=""
               width={answerImageData.width}
               height={answerImageData.height}

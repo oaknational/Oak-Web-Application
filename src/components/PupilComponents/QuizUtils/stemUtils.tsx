@@ -9,6 +9,7 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import { extractCloudinaryIdFromURL } from "@/browser-lib/cloudinary/extractCloudinaryIdFromURL";
 
 export const isImage = (obj: StemObject): obj is StemImageObject =>
   obj.type === "image";
@@ -37,7 +38,7 @@ export const getStemImage = ({
   if (data)
     return (
       <OakCloudinaryImage
-        cloudinaryId={data.image_object.secure_url}
+        cloudinaryId={extractCloudinaryIdFromURL(data.image_object.secure_url)}
         alt={""} // TODO: add alt text
         width={data.image_object.width}
         height={data.image_object.height}
