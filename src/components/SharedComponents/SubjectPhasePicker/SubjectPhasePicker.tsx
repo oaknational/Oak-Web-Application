@@ -456,7 +456,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     Previously released plans
                     <Icon
                       $color={"black"}
-                      name="external"
+                      name="arrow-right"
                       verticalAlign="bottom"
                     />
                   </OwaLink>
