@@ -1,3 +1,10 @@
+## [1.361.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.361.0...v1.361.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **PUPIL-398:** correct spacing around "View all lessons" button in lesson review ([466d4bc](https://github.com/oaknational/Oak-Web-Application/commit/466d4bcb55285b750539a1948d19860e034ce71c))
+
 # [1.361.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.360.1...v1.361.0) (2024-02-19)
 
 
