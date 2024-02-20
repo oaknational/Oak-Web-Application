@@ -55,7 +55,7 @@ const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
         >
           <OakHeading
             $textAlign={["start", "center"]}
-            $font={["heading-6", "heading-5"]}
+            $font={"heading-6"}
             tag={titleTag}
           >
             {subject.new?.subjectTitle || subject.old?.subjectTitle}

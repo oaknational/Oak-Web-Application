@@ -9,7 +9,7 @@ const lessonShareResourceSchema = z.object({
     "video",
   ]),
   label: z.string(),
-  metadata: z.string(),
+  metadata: z.string().nullable(),
 });
 
 export const lessonShareSchema = z.object({

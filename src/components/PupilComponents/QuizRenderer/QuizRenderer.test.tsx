@@ -8,8 +8,7 @@ import {
 } from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
-import { createLessonEngineContext } from "../LessonEngineProvider/LessonEngineProvider.test";
-
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineContextType,
   QuizEngineContext,

@@ -7,7 +7,7 @@ import { PupilViewsReview } from "./PupilReview.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 describe("PupilReview", () => {
   it("displays the lesson title", () => {
@@ -28,9 +28,9 @@ describe("PupilReview", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByText("Intro")).toBeInTheDocument();
+    expect(getByText("Introduction")).toBeInTheDocument();
     expect(getByText("Starter quiz")).toBeInTheDocument();
-    expect(getByText("Watch video")).toBeInTheDocument();
+    expect(getByText("Lesson video")).toBeInTheDocument();
     expect(getByText("Exit quiz")).toBeInTheDocument();
   });
   it("displays the lesson overview button", () => {
@@ -57,6 +57,6 @@ describe("PupilReview", () => {
       </OakThemeProvider>,
     );
 
-    expect(queryByText("Fantastic learning - well done!")).toBeInTheDocument();
+    expect(queryByText("Fantastic job, well done!")).toBeInTheDocument();
   });
 });

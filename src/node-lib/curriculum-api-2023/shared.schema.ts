@@ -23,6 +23,8 @@ const keyLearningPointsSchema = z.object({
   keyLearningPoint: z.string().nullable(),
 });
 
+export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
+
 const copyrightContentSchema = z.object({
   copyrightInfo: z.string(),
 });
@@ -174,7 +176,7 @@ export const baseLessonOverviewSchema = z.object({
   presentationUrl: z.string().nullable(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.array(z.string()).nullable(),
+  transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
   hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
