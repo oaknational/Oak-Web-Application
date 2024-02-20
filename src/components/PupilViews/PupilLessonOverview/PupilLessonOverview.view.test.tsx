@@ -7,7 +7,7 @@ import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 describe(PupilViewsLessonOverview, () => {
   it("displays the lesson title", () => {
@@ -61,6 +61,29 @@ describe(PupilViewsLessonOverview, () => {
     });
   });
 
+  it("displays in-progress for in progress sections", () => {
+    const { getByTestId } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({
+            currentSection: "starter-quiz",
+            sectionResults: { "starter-quiz": { grade: 1, isComplete: false } },
+          })}
+        >
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            subjectTitle="English"
+            subjectSlug="english"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(getByTestId("starter-quiz")).toHaveTextContent(/In progress/);
+  });
+
   it("displays the number of questions for each quiz", () => {
     const { getByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -76,8 +99,8 @@ describe(PupilViewsLessonOverview, () => {
       </OakThemeProvider>,
     );
 
-    expect(getByTestId("starter-quiz")).toHaveTextContent("4 Questions");
-    expect(getByTestId("exit-quiz")).toHaveTextContent("5 questions");
+    expect(getByTestId("starter-quiz")).toHaveTextContent(/4 Questions/);
+    expect(getByTestId("exit-quiz")).toHaveTextContent(/5 questions/);
   });
 
   it.each([

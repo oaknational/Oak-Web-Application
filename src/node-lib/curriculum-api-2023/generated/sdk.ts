@@ -30629,7 +30629,14 @@ export type PupilLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
+export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
+
+export type PupilLessonOverviewCanonicalQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type PupilLessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonTitle?: string | null, yearTitle?: string | null, lessonKeywords?: any | null, subjectSlug?: string | null, subjectTitle?: string | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonSlug?: string | null, unitSlug?: string | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30898,11 +30905,39 @@ export const PupilLessonOverviewDocument = gql`
     lessonKeywords
     subjectSlug
     subjectTitle
+    unitSlug
     pupilLessonOutcome
     starterQuiz
     exitQuiz
     lessonSlug
     lessonTitle
+    supervisionLevel
+    contentGuidance
+    lessonEquipmentAndResources
+    videoTitle
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
+    isLegacy
+  }
+}
+    `;
+export const PupilLessonOverviewCanonicalDocument = gql`
+    query pupilLessonOverviewCanonical($lessonSlug: String!) {
+  lesson: published_mv_lesson_overview_3_0_2(
+    where: {lessonSlug: {_eq: $lessonSlug}}
+  ) {
+    lessonTitle
+    yearTitle
+    lessonKeywords
+    subjectSlug
+    subjectTitle
+    pupilLessonOutcome
+    starterQuiz
+    exitQuiz
+    lessonSlug
+    lessonTitle
+    unitSlug
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
@@ -31011,6 +31046,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pupilLessonOverview(variables: PupilLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonOverviewQuery>(PupilLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonOverview', 'query');
+    },
+    pupilLessonOverviewCanonical(variables: PupilLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonOverviewCanonicalQuery>(PupilLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonOverviewCanonical', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

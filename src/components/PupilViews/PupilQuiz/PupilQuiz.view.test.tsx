@@ -12,7 +12,7 @@ import {
   LessonEngineContext,
   LessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { createLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 describe("PupilQuizView", () => {
   it("renders heading, mode and answer when there is currentQuestionData", () => {

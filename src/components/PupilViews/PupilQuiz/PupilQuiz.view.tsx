@@ -96,14 +96,14 @@ const QuizInner = () => {
           type="submit"
           isTrailingIcon
           iconName="arrow-right"
-          width={["100%", "auto"]}
+          width={["100%", "max-content"]}
         >
           Check
         </OakPrimaryButton>
       )}
       {isFeedbackMode && (
         <OakPrimaryButton
-          width={["100%", "auto"]}
+          width={["100%", "max-content"]}
           onClick={handleNextQuestion}
           isTrailingIcon
           iconName="arrow-right"

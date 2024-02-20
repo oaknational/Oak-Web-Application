@@ -12,14 +12,15 @@ import {
   OakPrimaryButton,
   OakSpan,
   OakSubjectIcon,
-  OakTertiaryButton,
   isValidIconName,
 } from "@oaknational/oak-components";
+import { useEffect, useState } from "react";
 
 import {
   LessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
@@ -29,6 +30,7 @@ type PupilViewsLessonOverviewProps = {
   pupilLessonOutcome?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
+  backUrl?: string | null;
 };
 
 export const PupilViewsLessonOverview = ({
@@ -39,6 +41,7 @@ export const PupilViewsLessonOverview = ({
   pupilLessonOutcome,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
+  backUrl,
 }: PupilViewsLessonOverviewProps) => {
   const {
     sectionResults,
@@ -47,7 +50,12 @@ export const PupilViewsLessonOverview = ({
     lessonReviewSections,
     isLessonComplete,
   } = useLessonEngineContext();
+
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {
@@ -69,10 +77,11 @@ export const PupilViewsLessonOverview = ({
         <OakLessonBottomNav>
           <OakPrimaryButton
             onClick={proceedToNextSection}
-            width={["100%", "auto", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
             data-testid="proceed-to-next-section"
+            disabled={!isMounted}
           >
             {pickProceedToNextSectionLabel(isLessonComplete, sectionResults)}
           </OakPrimaryButton>
@@ -87,9 +96,7 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakTertiaryButton disabled iconName="arrow-left">
-            View all lessons
-          </OakTertiaryButton>
+          <ViewAllLessonsButton href={backUrl} />
         </OakGridArea>
       </OakGrid>
       <OakFlex
@@ -171,6 +178,7 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="intro"
                   onClick={() => updateCurrentSection("intro")}
                   progress={pickProgressForSection("intro")}
+                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("starter-quiz") && (
@@ -182,6 +190,7 @@ export const PupilViewsLessonOverview = ({
                   numQuestions={starterQuizNumQuestions}
                   grade={sectionResults["starter-quiz"]?.grade ?? 0}
                   data-testid="starter-quiz"
+                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("video") && (
@@ -190,6 +199,7 @@ export const PupilViewsLessonOverview = ({
                   lessonSectionName="video"
                   onClick={() => updateCurrentSection("video")}
                   progress={pickProgressForSection("video")}
+                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
@@ -201,6 +211,7 @@ export const PupilViewsLessonOverview = ({
                   numQuestions={exitQuizNumQuestions}
                   grade={sectionResults["exit-quiz"]?.grade ?? 0}
                   data-testid="exit-quiz"
+                  disabled={!isMounted}
                 />
               )}
             </OakFlex>
