@@ -98,6 +98,8 @@ export const getStaticProps: GetStaticProps<
             redirectFrom,
           });
 
+          console.error("Error in getStaticProps", error);
+
           return null;
         });
 
