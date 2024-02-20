@@ -132,7 +132,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         setYearGroupScrollOffset(boundingRect.height);
       }
     }
-  }, [setYearGroupScrollOffset, yearGroupScrollOffset, mobileYearSelection]);
+  }, [setYearGroupScrollOffset, yearGroupScrollOffset]);
 
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
@@ -776,9 +776,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     $pl={30}
                     $mb={32}
                     $borderRadius={4}
-                    onTouchStartCapture={() => {
-                      setMobileYearSelection(null);
-                    }}
                   >
                     <AnchorTarget
                       $paddingTop={yearGroupScrollOffset}
