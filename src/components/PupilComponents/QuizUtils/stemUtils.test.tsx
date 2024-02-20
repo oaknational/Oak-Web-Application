@@ -3,16 +3,15 @@ import { OakCloudinaryImage } from "@oaknational/oak-components";
 import { getStemImage, getStemImageData } from "./stemUtils";
 
 import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { extractCloudinaryIdFromURL } from "@/browser-lib/cloudinary/extractCloudinaryIdFromURL";
 
 describe("stemUtils", () => {
-  const stemImageURL =
-    "https://res.cloudinary.com/mockcloudinary/image/upload/image.png";
   const stem: StemObject[] = [
     {
       type: "image",
       image_object: {
-        secure_url: stemImageURL,
+        secure_url:
+          "https://res.cloudinary.com/mockcloudinary/image/upload/image.png",
+        public_id: "image",
         metadata: {},
       },
     },
@@ -36,9 +35,7 @@ describe("stemUtils", () => {
     it("should return an OakImage with src from the stem", () => {
       const result = getStemImage({ stem, minWidth: "all-spacing-19" });
       expect(result?.type).toEqual(OakCloudinaryImage);
-      expect(result?.props.cloudinaryId).toEqual(
-        extractCloudinaryIdFromURL(stemImageURL),
-      );
+      expect(result?.props.cloudinaryId).toEqual("image");
     });
   });
 });

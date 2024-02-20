@@ -24,7 +24,6 @@ import {
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import { extractCloudinaryIdFromURL } from "@/browser-lib/cloudinary/extractCloudinaryIdFromURL";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;
@@ -72,19 +71,18 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
           const answerImageData =
             filterByImage.length > 0 && filterByImage[0]?.image_object;
 
-          const answerImage = answerImageData ? (
-            <OakCloudinaryImage
-              cloudinaryId={extractCloudinaryIdFromURL(
-                answerImageData.secure_url,
-              )}
-              alt=""
-              width={answerImageData.width}
-              height={answerImageData.height}
-              $minWidth={"all-spacing-19"}
-              placeholder="oak"
-              sizes={getSizes(["100vw", 1200])}
-            />
-          ) : undefined;
+          const answerImage =
+            answerImageData && answerImageData.public_id ? (
+              <OakCloudinaryImage
+                cloudinaryId={answerImageData.public_id}
+                alt=""
+                width={answerImageData.width}
+                height={answerImageData.height}
+                $minWidth={"all-spacing-19"}
+                placeholder="oak"
+                sizes={getSizes(["100vw", 1200])}
+              />
+            ) : undefined;
 
           const feedback =
             isFeedbackMode && Array.isArray(questionState.feedback)
