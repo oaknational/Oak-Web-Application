@@ -1,3 +1,10 @@
+# [1.362.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.361.1...v1.362.0) (2024-02-20)
+
+
+### Features
+
+* update lesson overview mv and transcript schema ([3472204](https://github.com/oaknational/Oak-Web-Application/commit/34722040dc4d4fdadd41fd6721cbc45a1ffcceee))
+
 ## [1.361.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.361.0...v1.361.1) (2024-02-20)
 
 
