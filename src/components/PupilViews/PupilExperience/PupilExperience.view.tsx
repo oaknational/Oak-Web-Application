@@ -45,8 +45,6 @@ export const PupilPageContent = ({
 }: PupilExperienceViewProps) => {
   const { currentSection } = useLessonEngineContext();
 
-  console.log("currentSection", currentSection);
-
   const {
     starterQuiz,
     exitQuiz,
@@ -95,7 +93,7 @@ export const PupilPageContent = ({
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
-      return <PupilViewsReview lessonTitle={lessonTitle} />;
+      return <PupilViewsReview lessonTitle={lessonTitle} backUrl={backUrl} />;
     default:
       return null;
   }
