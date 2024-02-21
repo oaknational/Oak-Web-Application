@@ -1,3 +1,10 @@
+## [1.363.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.0...v1.363.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* missing subject icon for psed ([0901833](https://github.com/oaknational/Oak-Web-Application/commit/09018330d5e67e8ebf71340e2e4a27dc8058b653))
+
 # [1.363.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.362.0...v1.363.0) (2024-02-20)
 
 
