@@ -7,6 +7,7 @@ import {
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   LessonEngineProvider,
+  LessonReviewSection,
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
@@ -110,9 +111,17 @@ export const PupilExperienceView = ({
 }: PupilExperienceViewProps) => {
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
+  const sectionCompletedTrackingCB = (section: LessonReviewSection) => {
+    console.log("Section completed: ", section);
+    // send tracking here
+  };
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider initialLessonReviewSections={availableSections}>
+      <LessonEngineProvider
+        initialLessonReviewSections={availableSections}
+        sectionCompletedTrackingCB={sectionCompletedTrackingCB}
+      >
         <OakBox $height={"100vh"}>
           <PupilPageContent
             curriculumData={curriculumData}
