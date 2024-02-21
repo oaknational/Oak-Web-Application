@@ -727,6 +727,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     window.innerHeight = y;
     window.dispatchEvent(new Event("resize"));
   };
+
   test("mobile: clicking on 'filter by thread' shows thread modal", async () => {
     resizeWindow(390, 844);
     const unitData = {
@@ -794,6 +795,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("mobile: anchor links for year group filters match", async () => {
+    window.HTMLElement.prototype.scrollIntoView = function () {};
     resizeWindow(390, 844);
 
     const { findAllByTestId } = render(
@@ -803,8 +805,16 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const yearFilterButtons = await findAllByTestId("year-group-filter-button");
     const yearHeadings = await findAllByTestId("year-heading");
     const year2Button = yearFilterButtons[1];
-    expect(year2Button).toHaveAttribute("href", "/#units-year-2");
-    expect(year2Button).toHaveTextContent("Year 2");
-    expect(yearHeadings[1]).toHaveTextContent("Year 2");
+    if (year2Button) {
+      await userEvent.click(year2Button);
+      // Selected button background colour should change
+      expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
+      // Unselected button background colour shouldn't change
+      expect(yearFilterButtons[0]).toHaveStyle(
+        "background-color: rgb(242, 242, 242);",
+      );
+      expect(year2Button).toHaveTextContent("Year 2");
+      expect(yearHeadings[1]).toHaveTextContent("Year 2");
+    }
   });
 });
