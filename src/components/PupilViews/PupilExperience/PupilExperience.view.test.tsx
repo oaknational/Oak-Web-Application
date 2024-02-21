@@ -53,10 +53,6 @@ describe("PupilExperienceView", () => {
   });
 
   describe("PupilPageContent", () => {
-    beforeEach(() => {
-      jest.resetModules();
-    });
-
     afterEach(() => {
       jest.clearAllMocks();
     });
