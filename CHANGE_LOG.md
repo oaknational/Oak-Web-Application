@@ -1,3 +1,15 @@
+# [1.364.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.1...v1.364.0) (2024-02-21)
+
+
+### Bug Fixes
+
+* remove unecessary mock reset ([fcad1b4](https://github.com/oaknational/Oak-Web-Application/commit/fcad1b476ff5b9481d44d07c25b44e63acb77160))
+
+
+### Features
+
+* quiz question counts exclude explanatory text type ([16e462e](https://github.com/oaknational/Oak-Web-Application/commit/16e462ef80ca17977286e183dae2a22369a0e750))
+
 ## [1.363.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.0...v1.363.1) (2024-02-21)
 
 
