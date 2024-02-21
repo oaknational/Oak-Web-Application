@@ -61,6 +61,8 @@ const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
   ],
   score: 0,
   numQuestions: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   updateQuestionMode: () => {},
   handleSubmitMCAnswer: () => {},
   handleSubmitShortAnswer: () => {},
