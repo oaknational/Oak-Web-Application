@@ -728,42 +728,32 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     window.dispatchEvent(new Event("resize"));
   };
 
-  test("mobile: clicking on 'filter by thread' shows thread modal", async () => {
+  test("mobile: highlighting threads updates the number of threads highlighted", async () => {
     resizeWindow(390, 844);
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks4",
-      lessons: [],
-      units: [],
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-      threads: [],
-      tier: "Foundation",
-      tier_slug: "foundation",
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "11",
-    };
-    const { findByTestId } = render(
-      <UnitsTab data={unitData} examboardSlug="aqa" />,
+
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
     );
+    // Open thread modal
     const filterThreadsButton = await findByTestId("mobile-highlight-thread");
     await userEvent.click(filterThreadsButton);
-    const mobileThreadModal = await findByTestId("mobile-thread-modal");
-    expect(mobileThreadModal).toBeInTheDocument();
+
+    const threadRadios = await findAllByTestId("thread-radio-mobile");
+    const doneButton = await findByTestId("mobile-done-thread-modal-button");
+    const aspectsOfNarrativeThread = threadRadios[0];
+    if (aspectsOfNarrativeThread && doneButton) {
+      // Select the first thread
+      await userEvent.click(aspectsOfNarrativeThread);
+      await userEvent.click(doneButton);
+
+      const highlightedThreadsBox = await findByTestId(
+        "highlighted-threads-mobile",
+      );
+      expect(highlightedThreadsBox).toBeInTheDocument();
+      expect(highlightedThreadsBox).toHaveTextContent(
+        "Aspects of narrative • 1 units highlighted",
+      );
+    }
   });
   test("mobile: mobile filter options visible", async () => {
     resizeWindow(390, 844);

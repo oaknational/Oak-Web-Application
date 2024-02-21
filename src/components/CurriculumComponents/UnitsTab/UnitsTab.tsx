@@ -521,6 +521,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         <Button
           $ma={16}
           label="Done"
+          data-testid="mobile-done-thread-modal-button"
           icon="arrow-right"
           $iconPosition="trailing"
           iconBackground="black"
@@ -607,6 +608,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     $textOverflow={"ellipsis"}
                     $whiteSpace={"nowrap"}
                     $overflow={"hidden"}
+                    data-testid="highlighted-threads-mobile"
                   >
                     {selectedThread?.title} • {highlightedUnitCount()} units
                     highlighted
