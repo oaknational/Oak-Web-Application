@@ -114,28 +114,29 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [yearSelection, setYearSelection] = useState<YearSelection>({});
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
-  const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
-    null,
-  );
-
-  const [yearGroupScrollOffset, setYearGroupScrollOffset] = useState<number>();
-  const mobileHeaderRef = useRef<HTMLDivElement>(null);
 
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
+  const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
+    null,
+  );
+  const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
+    useState<number>(0);
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
 
   // Add padding offset for mobile year group filter scroll
   useEffect(() => {
     if (mobileHeaderRef.current) {
       const boundingRect = mobileHeaderRef.current.getBoundingClientRect();
-      if (!yearGroupScrollOffset) {
-        setYearGroupScrollOffset(boundingRect.height);
+      if (!mobileHeaderScrollOffset) {
+        setMobileHeaderScrollOffset(boundingRect.height);
       }
     }
-  }, [setYearGroupScrollOffset, yearGroupScrollOffset]);
+  }, [setMobileHeaderScrollOffset, mobileHeaderScrollOffset]);
 
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
+    console.log(data);
     yearData = {};
     threadOptions = [];
     yearOptions = [];
@@ -638,10 +639,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                             : "black"
                         }
                         key={yearOption}
-                        $transition={"all 0.3s ease"}
                         page={null}
                         label={`Year ${yearOption}`}
                         href={`#units-year-${yearOption}`}
+                        shallow={true}
                         onClick={() => {
                           setMobileYearSelection(yearOption);
                           trackSelectYear(yearOption);
@@ -777,10 +778,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     $mb={32}
                     $borderRadius={4}
                   >
+                    {/* {mobileHeaderScrollOffset && ( */}
                     <AnchorTarget
-                      $paddingTop={yearGroupScrollOffset}
+                      $paddingTop={mobileHeaderScrollOffset}
                       id={`units-year-${year}`}
                     />
+                    {/* )} */}
                     <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5"]}
