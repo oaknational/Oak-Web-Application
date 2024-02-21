@@ -1,3 +1,22 @@
+# [1.363.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.362.0...v1.363.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* update previous downloads icon ([0eb4cf1](https://github.com/oaknational/Oak-Web-Application/commit/0eb4cf1c0c0626b2afb5123f66a4ffb06d370dc9))
+
+
+### Features
+
+* update link to legacy curriculum maps ([4307c90](https://github.com/oaknational/Oak-Web-Application/commit/4307c9046db7489a3a361660bd78d29422fdd872))
+
+# [1.362.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.361.1...v1.362.0) (2024-02-20)
+
+
+### Features
+
+* update lesson overview mv and transcript schema ([3472204](https://github.com/oaknational/Oak-Web-Application/commit/34722040dc4d4fdadd41fd6721cbc45a1ffcceee))
+
 ## [1.361.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.361.0...v1.361.1) (2024-02-20)
 
 
