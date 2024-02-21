@@ -115,17 +115,7 @@ const QuizInner = () => {
           Check
         </OakPrimaryButton>
       )}
-      {isFeedbackMode && (
-        <OakPrimaryButton
-          width={["100%", "max-content"]}
-          onClick={handleNextQuestion}
-          isTrailingIcon
-          iconName="arrow-right"
-        >
-          {navigationButtonCopy}
-        </OakPrimaryButton>
-      )}
-      {isExplanatoryText && (
+      {(isFeedbackMode || isExplanatoryText) && (
         <OakPrimaryButton
           width={["100%", "max-content"]}
           onClick={handleNextQuestion}
@@ -149,18 +139,22 @@ const QuizInner = () => {
         />
       }
       counterSlot={
-        <OakQuizCounter
-          counter={currentQuestionDisplayIndex + 1}
-          total={numInteractiveQuestions}
-        />
+        !isExplanatoryText && (
+          <OakQuizCounter
+            counter={currentQuestionDisplayIndex + 1}
+            total={numInteractiveQuestions}
+          />
+        )
       }
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       lessonSectionName={currentSection}
       mobileSummary={
-        <OakSpan $color={"text-primary"} $font={"body-3"}>
-          Question {currentQuestionDisplayIndex + 1} of{" "}
-          {numInteractiveQuestions}
-        </OakSpan>
+        !isExplanatoryText && (
+          <OakSpan $color={"text-primary"} $font={"body-3"}>
+            Question {currentQuestionDisplayIndex + 1} of{" "}
+            {numInteractiveQuestions}
+          </OakSpan>
+        )
       }
     />
   );
