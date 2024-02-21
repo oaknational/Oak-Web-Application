@@ -27,7 +27,6 @@ import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 // Types and interfaces
@@ -136,7 +135,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
-    console.log(data);
     yearData = {};
     threadOptions = [];
     yearOptions = [];
@@ -626,25 +624,26 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                   aria-label="Select a year group"
                   $overflowX={"auto"}
                   $overflowY={"hidden"}
-                  $pb={2}
+                  $pb={8}
                 >
                   {yearOptions.map((yearOption) => (
                     <Box key={yearOption} $pt={8} $ml={5}>
-                      <ButtonAsLink
+                      <Button
                         variant="brush"
                         aria-label={`Year ${yearOption}`}
                         background={
                           mobileYearSelection === yearOption
-                            ? "grey20"
-                            : "black"
+                            ? "black"
+                            : "grey20"
                         }
                         key={yearOption}
-                        page={null}
                         label={`Year ${yearOption}`}
-                        href={`#units-year-${yearOption}`}
-                        shallow={true}
                         onClick={() => {
                           setMobileYearSelection(yearOption);
+                          // Scroll into view used also in Lesson Overview - prevents rerender
+                          document
+                            .getElementById(`year-${yearOption}`)
+                            ?.scrollIntoView();
                           trackSelectYear(yearOption);
                         }}
                         data-testid="year-group-filter-button"
@@ -762,218 +761,222 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             </Box>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 9]}>
-            {Object.keys(yearData)
-              .filter((year) => !selectedYear || selectedYear === year)
-              .map((year) => {
-                const { units, childSubjects, domains, tiers } = yearData[
-                  year
-                ] as (typeof yearData)[string];
-                return (
-                  <Box
-                    key={year}
-                    $background={"pink30"}
-                    $pt={32}
-                    $position={"relative"}
-                    $pl={30}
-                    $mb={32}
-                    $borderRadius={4}
-                  >
-                    {/* {mobileHeaderScrollOffset && ( */}
-                    <AnchorTarget
-                      $paddingTop={mobileHeaderScrollOffset}
-                      id={`units-year-${year}`}
-                    />
-                    {/* )} */}
-                    <OakHeading
-                      tag="h3"
-                      $font={["heading-6", "heading-5"]}
-                      $mb="space-between-m2"
-                      data-testid="year-heading"
+            {yearData &&
+              Object.keys(yearData)
+                .filter((year) => !selectedYear || selectedYear === year)
+                .map((year) => {
+                  const { units, childSubjects, domains, tiers } = yearData[
+                    year
+                  ] as (typeof yearData)[string];
+                  return (
+                    <Box
+                      key={year}
+                      $background={"pink30"}
+                      $pt={32}
+                      $position={"relative"}
+                      $pl={30}
+                      $mb={32}
+                      $borderRadius={4}
                     >
-                      Year {year}
-                    </OakHeading>
-                    {childSubjects.length > 0 && (
-                      <Box>
-                        {childSubjects.map((subject) => (
-                          <Button
-                            $mb={20}
-                            $mr={20}
-                            background={
-                              isSelectedSubject(year, subject)
-                                ? "black"
-                                : "white"
-                            }
-                            key={subject.subject_slug}
-                            label={subject.subject}
-                            onClick={() => handleSelectSubject(year, subject)}
-                            size="small"
-                            data-testid="subject-button"
-                          />
-                        ))}
-                      </Box>
-                    )}
-                    {domains.length > 0 && (
-                      <Box>
-                        {domains.map((domain) => (
-                          <Button
-                            $mb={20}
-                            $mr={20}
-                            background={
-                              isSelectedDomain(year, domain) ? "black" : "white"
-                            }
-                            key={domain.domain_id}
-                            label={domain.domain}
-                            onClick={() => handleSelectDomain(year, domain)}
-                            size="small"
-                            data-testid="domain-button"
-                          />
-                        ))}
-                      </Box>
-                    )}
-                    {tiers.length > 0 && (
-                      <Box>
-                        {tiers.map((tier) => (
-                          <Button
-                            $font={"heading-6"}
-                            $mb={20}
-                            $mr={24}
-                            key={tier.tier_slug}
-                            label={tier.tier}
-                            onClick={() => handleSelectTier(year, tier)}
-                            size="small"
-                            variant="minimal"
-                            isCurrent={isSelectedTier(year, tier)}
-                            currentStyles={["underline"]}
-                            data-testid="tier-button"
-                          />
-                        ))}
-                      </Box>
-                    )}
-                    <OakFlex
-                      $flexWrap={"wrap"}
-                      $mt="space-between-xs"
-                      data-testid="unit-cards"
-                    >
-                      {units
-                        .filter((unit) => isVisibleUnit(year, unit))
-                        .map((unit, index) => {
-                          const isHighlighted = isHighlightedUnit(unit);
-                          const unitOptions = unit.unit_options.length >= 1;
+                      <AnchorTarget
+                        $paddingTop={mobileHeaderScrollOffset}
+                        id={`year-${year}`}
+                      />
 
-                          return (
-                            <Card
-                              key={unit.slug + index}
-                              $background={isHighlighted ? "black" : "white"}
-                              $color={isHighlighted ? "white" : "black"}
-                              $flexGrow={"unset"}
-                              $mb={32}
-                              $mr={28}
-                              $position={"relative"}
-                              $width={[
-                                "100%",
-                                "calc(50% - 28px)",
-                                "calc(33% - 26px)",
-                              ]}
-                              data-testid={
-                                isHighlighted
-                                  ? "highlighted-unit-card"
-                                  : "unit-card"
-                              }
-                              $justifyContent={"space-between"}
-                            >
-                              <Box>
-                                <OutlineHeading
-                                  tag={"div"}
-                                  $font={"heading-5"}
-                                  $fontSize={24}
-                                  $mb={12}
-                                >
-                                  {index + 1}
-                                </OutlineHeading>
-                                <OakHeading
-                                  tag={"h4"}
-                                  $font={"heading-7"}
-                                  $mb="space-between-s"
-                                >
-                                  {isHighlighted && (
-                                    <VisuallyHidden>
-                                      Highlighted:&nbsp;
-                                    </VisuallyHidden>
-                                  )}
-                                  {unit.title}
-                                </OakHeading>
-                                {unit.unit_options.length > 1 && (
-                                  <Box
-                                    $mt={12}
-                                    $mb={20}
-                                    $zIndex={"inFront"}
-                                    data-testid="options-tag"
-                                    $position={"relative"}
-                                  >
-                                    <TagFunctional
-                                      color="lavender"
-                                      text={`${unit.unit_options.length} unit options`}
-                                    />
-                                  </Box>
-                                )}
-                                <BrushBorders
-                                  color={isHighlighted ? "black" : "white"}
-                                />
-                              </Box>
-
-                              <OakFlex
-                                $flexDirection={"row"}
-                                $justifyContent={"flex-end"}
-                              >
-                                <Button
-                                  icon="chevron-right"
-                                  $iconPosition="trailing"
-                                  data-testid="unit-modal-button"
-                                  variant={isHighlighted ? "brush" : "minimal"}
-                                  background={
-                                    isHighlighted ? "black" : undefined
-                                  }
-                                  label="Unit info"
-                                  onClick={() => {
-                                    handleOpenModal();
-                                    setUnitOptionsAvailable(unitOptions);
-                                    setUnitData({ ...unit });
-                                    setCurrentUnitLessons(unit.lessons ?? []);
-                                  }}
-                                  ref={modalButtonRef}
-                                />
-                              </OakFlex>
-                            </Card>
-                          );
-                        })}
-                      <UnitsTabSidebar
-                        displayModal={displayModal}
-                        onClose={handleCloseModal}
-                        lessons={currentUnitLessons}
-                        programmeSlug={createProgrammeSlug(
-                          unitData,
-                          examboardSlug,
-                        )}
-                        unitOptionsAvailable={unitOptionsAvailable}
-                        unitSlug={unitData?.slug}
-                        unitVariantID={unitVariantID}
+                      <OakHeading
+                        tag="h3"
+                        $font={["heading-6", "heading-5"]}
+                        $mb="space-between-m2"
+                        data-testid="year-heading"
                       >
-                        <UnitModal
-                          setCurrentUnitLessons={setCurrentUnitLessons}
-                          setUnitVariantID={setUnitVariantID}
-                          unitData={unitData}
+                        Year {year}
+                      </OakHeading>
+                      {childSubjects.length > 0 && (
+                        <Box>
+                          {childSubjects.map((subject) => (
+                            <Button
+                              $mb={20}
+                              $mr={20}
+                              background={
+                                isSelectedSubject(year, subject)
+                                  ? "black"
+                                  : "white"
+                              }
+                              key={subject.subject_slug}
+                              label={subject.subject}
+                              onClick={() => handleSelectSubject(year, subject)}
+                              size="small"
+                              data-testid="subject-button"
+                            />
+                          ))}
+                        </Box>
+                      )}
+                      {domains.length > 0 && (
+                        <Box>
+                          {domains.map((domain) => (
+                            <Button
+                              $mb={20}
+                              $mr={20}
+                              background={
+                                isSelectedDomain(year, domain)
+                                  ? "black"
+                                  : "white"
+                              }
+                              key={domain.domain_id}
+                              label={domain.domain}
+                              onClick={() => handleSelectDomain(year, domain)}
+                              size="small"
+                              data-testid="domain-button"
+                            />
+                          ))}
+                        </Box>
+                      )}
+                      {tiers.length > 0 && (
+                        <Box>
+                          {tiers.map((tier) => (
+                            <Button
+                              $font={"heading-6"}
+                              $mb={20}
+                              $mr={24}
+                              key={tier.tier_slug}
+                              label={tier.tier}
+                              onClick={() => handleSelectTier(year, tier)}
+                              size="small"
+                              variant="minimal"
+                              isCurrent={isSelectedTier(year, tier)}
+                              currentStyles={["underline"]}
+                              data-testid="tier-button"
+                            />
+                          ))}
+                        </Box>
+                      )}
+                      <OakFlex
+                        $flexWrap={"wrap"}
+                        $mt="space-between-xs"
+                        data-testid="unit-cards"
+                      >
+                        {units
+                          .filter((unit) => isVisibleUnit(year, unit))
+                          .map((unit, index) => {
+                            const isHighlighted = isHighlightedUnit(unit);
+                            const unitOptions = unit.unit_options.length >= 1;
+
+                            return (
+                              <Card
+                                key={unit.slug + index}
+                                $background={isHighlighted ? "black" : "white"}
+                                $color={isHighlighted ? "white" : "black"}
+                                $flexGrow={"unset"}
+                                $mb={32}
+                                $mr={28}
+                                $position={"relative"}
+                                $width={[
+                                  "100%",
+                                  "calc(50% - 28px)",
+                                  "calc(33% - 26px)",
+                                ]}
+                                data-testid={
+                                  isHighlighted
+                                    ? "highlighted-unit-card"
+                                    : "unit-card"
+                                }
+                                $justifyContent={"space-between"}
+                              >
+                                <Box>
+                                  <OutlineHeading
+                                    tag={"div"}
+                                    $font={"heading-5"}
+                                    $fontSize={24}
+                                    $mb={12}
+                                  >
+                                    {index + 1}
+                                  </OutlineHeading>
+                                  <OakHeading
+                                    tag={"h4"}
+                                    $font={"heading-7"}
+                                    $mb="space-between-s"
+                                  >
+                                    {isHighlighted && (
+                                      <VisuallyHidden>
+                                        Highlighted:&nbsp;
+                                      </VisuallyHidden>
+                                    )}
+                                    {unit.title}
+                                  </OakHeading>
+                                  {unit.unit_options.length > 1 && (
+                                    <Box
+                                      $mt={12}
+                                      $mb={20}
+                                      $zIndex={"inFront"}
+                                      data-testid="options-tag"
+                                      $position={"relative"}
+                                    >
+                                      <TagFunctional
+                                        color="lavender"
+                                        text={`${unit.unit_options.length} unit options`}
+                                      />
+                                    </Box>
+                                  )}
+                                  <BrushBorders
+                                    color={isHighlighted ? "black" : "white"}
+                                  />
+                                </Box>
+
+                                <OakFlex
+                                  $flexDirection={"row"}
+                                  $justifyContent={"flex-end"}
+                                >
+                                  <Button
+                                    icon="chevron-right"
+                                    $iconPosition="trailing"
+                                    data-testid="unit-modal-button"
+                                    variant={
+                                      isHighlighted ? "brush" : "minimal"
+                                    }
+                                    background={
+                                      isHighlighted ? "black" : undefined
+                                    }
+                                    label="Unit info"
+                                    onClick={() => {
+                                      handleOpenModal();
+                                      setUnitOptionsAvailable(unitOptions);
+                                      setUnitData({ ...unit });
+                                      setCurrentUnitLessons(unit.lessons ?? []);
+                                    }}
+                                    ref={modalButtonRef}
+                                  />
+                                </OakFlex>
+                              </Card>
+                            );
+                          })}
+                        <UnitsTabSidebar
                           displayModal={displayModal}
-                          setUnitOptionsAvailable={setUnitOptionsAvailable}
+                          onClose={handleCloseModal}
+                          lessons={currentUnitLessons}
+                          programmeSlug={createProgrammeSlug(
+                            unitData,
+                            examboardSlug,
+                          )}
                           unitOptionsAvailable={unitOptionsAvailable}
-                          isHighlighted={
-                            unitData ? isHighlightedUnit(unitData) : false
-                          }
-                        />
-                      </UnitsTabSidebar>
-                    </OakFlex>
-                  </Box>
-                );
-              })}
+                          unitSlug={unitData?.slug}
+                          unitVariantID={unitVariantID}
+                        >
+                          <UnitModal
+                            setCurrentUnitLessons={setCurrentUnitLessons}
+                            setUnitVariantID={setUnitVariantID}
+                            unitData={unitData}
+                            displayModal={displayModal}
+                            setUnitOptionsAvailable={setUnitOptionsAvailable}
+                            unitOptionsAvailable={unitOptionsAvailable}
+                            isHighlighted={
+                              unitData ? isHighlightedUnit(unitData) : false
+                            }
+                          />
+                        </UnitsTabSidebar>
+                      </OakFlex>
+                    </Box>
+                  );
+                })}
           </OakGridArea>
         </OakGrid>
       </Box>
