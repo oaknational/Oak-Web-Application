@@ -9,15 +9,19 @@ import {
 } from "./LessonEngineProvider";
 
 describe("LessonEngineProvider", () => {
+  const sectionCompletedTrackingCB = jest.fn();
+
   const ProviderWrapper = ({ children }: { children: ReactNode }) => {
     return (
       <LessonEngineProvider
         initialLessonReviewSections={allLessonReviewSections}
+        sectionCompletedTrackingCB={sectionCompletedTrackingCB}
       >
         {children}
       </LessonEngineProvider>
     );
   };
+
   it("renders children correctly", () => {
     const { getByText } = render(
       <LessonEngineProvider
@@ -113,9 +117,23 @@ describe("LessonEngineProvider", () => {
     allLessonReviewSections.forEach((section) => {
       expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
-        result.current.completeSection("intro");
+        result.current.completeSection(section);
       });
       expect(result.current.sectionResults.intro?.isComplete).toEqual(true);
+    });
+  });
+
+  it("calls the sectionCompleted tracking callback when the section is completed", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    allLessonReviewSections.forEach((section) => {
+      expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
+      act(() => {
+        result.current.completeSection("intro");
+      });
+      expect(sectionCompletedTrackingCB).toHaveBeenCalledWith(section);
     });
   });
 

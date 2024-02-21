@@ -150,16 +150,22 @@ export const useLessonEngineContext = () => {
 export type LessonEngineProviderProps = {
   children: ReactNode;
   initialLessonReviewSections: Readonly<LessonReviewSection[]>;
+  sectionCompletedTrackingCB?: (section: LessonReviewSection) => void;
 };
 
 export const LessonEngineProvider = memo(
-  ({ children, initialLessonReviewSections }: LessonEngineProviderProps) => {
+  ({
+    children,
+    initialLessonReviewSections,
+    sectionCompletedTrackingCB,
+  }: LessonEngineProviderProps) => {
     const [state, dispatch] = useReducer(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
       currentSection: "overview",
       sections: {},
     });
     const completeSection = (section: LessonReviewSection) => {
+      if (sectionCompletedTrackingCB) sectionCompletedTrackingCB(section);
       dispatch({ type: "completeSection", section });
     };
     const updateCurrentSection = (section: LessonSection) =>
