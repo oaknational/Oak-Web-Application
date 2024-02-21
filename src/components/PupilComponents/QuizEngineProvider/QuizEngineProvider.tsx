@@ -1,7 +1,6 @@
 import React, {
   ReactNode,
   createContext,
-  useMemo,
   memo,
   useCallback,
   useContext,
@@ -63,14 +62,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { updateQuizResult, completeSection, currentSection } =
     useLessonEngineContext();
 
-  const filteredQuestions = useMemo(
-    () =>
-      questionsArray.filter(
-        (question) =>
-          question.questionType === "multiple-choice" ||
-          question.questionType === "short-answer",
-      ),
-    [questionsArray],
+  const filteredQuestions = questionsArray.filter((question) =>
+    ["multiple-choice", "short-answer"].includes(question.questionType),
   );
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage

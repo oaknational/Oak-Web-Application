@@ -53,6 +53,10 @@ describe("PupilExperienceView", () => {
   });
 
   describe("PupilPageContent", () => {
+    beforeEach(() => {
+      jest.resetModules();
+    });
+
     afterEach(() => {
       jest.clearAllMocks();
     });
@@ -105,4 +109,6 @@ describe("PupilExperienceView", () => {
       });
     });
   });
+
+  it("should render the overview section", () => {});
 });
