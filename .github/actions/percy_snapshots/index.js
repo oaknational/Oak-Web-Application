@@ -45,7 +45,6 @@ async function run() {
       PERCY_DEBUG: "*",
     });
 
-
     await exec.exec(
       //"npx percy snapshot --verbose percy.snapshot.list.js -c percy.config.js ",
       "npm run percy-with-analysis",
