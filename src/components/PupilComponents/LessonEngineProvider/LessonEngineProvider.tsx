@@ -7,6 +7,8 @@ import {
   Reducer,
 } from "react";
 
+// import { usePupilAnalytics } from "@/components/PupilComponents/pupilAnalytics/usePupilAnalytics";
+
 export const lessonSections = [
   "overview",
   "intro",
@@ -159,7 +161,11 @@ export const LessonEngineProvider = memo(
       currentSection: "overview",
       sections: {},
     });
+
+    // const { track } = usePupilAnalytics();
+
     const completeSection = (section: LessonReviewSection) => {
+      // track.lessonSelected({ section });
       dispatch({ type: "completeSection", section });
     };
     const updateCurrentSection = (section: LessonSection) =>
