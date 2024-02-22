@@ -90,9 +90,8 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-
       const { videoTitle, transcriptSentences } = curriculumData;
-      if (videoTitle && !isSlugLegacy(programmeSlug)) {
+      if (videoTitle && !isSlugLegacy(programmeSlug) && !transcriptSentences) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
@@ -102,7 +101,6 @@ export const getStaticProps: GetStaticProps<
         }
       } else if (transcriptSentences && !Array.isArray(transcriptSentences)) {
         const splitTranscript = transcriptSentences.split(/\r?\n/);
-
         curriculumData.transcriptSentences = splitTranscript;
       }
 
