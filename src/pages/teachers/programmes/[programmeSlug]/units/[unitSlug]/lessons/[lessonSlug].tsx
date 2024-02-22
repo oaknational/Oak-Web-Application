@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { videoTitle } = curriculumData;
+      const { videoTitle, transcriptSentences } = curriculumData;
       if (videoTitle && !isSlugLegacy(programmeSlug)) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
@@ -100,6 +100,10 @@ export const getStaticProps: GetStaticProps<
         if (transcript) {
           curriculumData.transcriptSentences = transcript;
         }
+      } else if (transcriptSentences && !Array.isArray(transcriptSentences)) {
+        const splitTranscript = transcriptSentences.split(/\r?\n/);
+
+        curriculumData.transcriptSentences = splitTranscript;
       }
 
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
