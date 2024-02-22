@@ -176,7 +176,7 @@ export const baseLessonOverviewSchema = z.object({
   presentationUrl: z.string().nullable(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
+  transcriptSentences: z.array(z.string()).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
   hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),

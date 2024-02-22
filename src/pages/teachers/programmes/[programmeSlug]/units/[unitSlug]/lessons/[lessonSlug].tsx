@@ -91,8 +91,8 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { videoTitle } = curriculumData;
-      if (videoTitle && !isSlugLegacy(programmeSlug)) {
+      const { videoTitle, transcriptSentences } = curriculumData;
+      if (videoTitle && !isSlugLegacy(programmeSlug) && !transcriptSentences) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
