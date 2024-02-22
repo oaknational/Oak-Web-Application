@@ -1179,6 +1179,7 @@ export const PageName = {
   'CURRICULUM_OVERVIEW': 'Curriculum Overview',
   'CURRICULUM_UNIT_SEQUENCE': 'Curriculum Unit Sequence',
   'CURRICULUM_DOWNLOADS': 'Curriculum Downloads',
+  'CURRICULUM_PREVIOUS_DOWNLOADS': 'Curriculum Previous Downloads',
   'LESSON_SHARE': 'Lesson Share',
 } as const;
 export type PageNameType = typeof PageName;
@@ -2056,6 +2057,78 @@ export function lessonResourcesDownloaded(
   }
 }
 
+export interface CurriculumResourcesDownloadedProperties {
+  category: string;
+  subject: string;
+  schoolUrn: number;
+  schoolName: string;
+  schoolOption: SchoolOptionValueType;
+  resourceType: ResourceTypeValueType[];
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  emailSupplied: boolean;
+}
+/**
+ * Curriculum Resources Downloaded: A user downloaded one or more resources for a curriculum.
+ *
+ * When to trigger this event:
+ * 1. The download .zip button is clicked on a curriculum download page and submission passes validation checks
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/GVRljNr4u/events/k9ZQJai7ws/trigger/sAqordxVG
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.category: Category of the curriculum resource (eg. key stage, specialist, etc)
+ * @param properties.subject: Subject of the curriculum resource
+ * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.schoolName: Name of the school chosen from the school picker
+ * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
+ * @param properties.resourceType: The curriculum resources a teacher selected for download.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * @param properties.emailSupplied: A user has signed up for updates on the downloads page
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/GVRljNr4u/events/k9ZQJai7ws}
+ */
+
+// TODO: Set up correct Avo IDs for properties below
+export function curriculumResourcesDownloaded(
+  properties: CurriculumResourcesDownloadedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "G1iO4wRoL5", name: "Category", value: properties.category});
+  eventPropertiesArray.push({id: "G1iO4wRoL5", name: "Subject", value: properties.subject});
+  eventPropertiesArray.push({id: "G1iO4wRoL5", name: "School URN", value: properties.schoolUrn});
+  eventPropertiesArray.push({id: "54PPZ-gkS", name: "School Name", value: properties.schoolName});
+  eventPropertiesArray.push({id: "CrzKvLBC3", name: "School Option", value: properties.schoolOption});
+  eventPropertiesArray.push({id: "H_kc7WuVNP", name: "Resource Type", value: properties.resourceType});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "3wxlGffcE", name: "Email Supplied", value: properties.emailSupplied});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "6cf56c1c3531c474a056b19f8b2861a4099b770e43772e95b835bee4a1059e17", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("k9ZQJai7ws", "Curriculum Resources Downloaded", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "k9ZQJai7ws", "6cf56c1c3531c474a056b19f8b2861a4099b770e43772e95b835bee4a1059e17");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Curriculum Resources Downloaded", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export interface KeyStageSelectedProperties {
   keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
@@ -2089,28 +2162,29 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
   let userPropertiesArray: array = [];
   let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
   // assert properties
-  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
-    let messages: AvoAssertMessage[] = [];
-    // debug console in Avo
-    if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "7ONADbQPez", "c5505b4b5e94b6eed4d6b49ff8d8d1852022ecd316f3dc3c71dd4f060a24c2e6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
-    }
-    InternalAvoLogger.logEventSent("Key Stage Selected", eventProperties, userProperties);
-    if (__WEB_DEBUGGER__) {
-      // Avo web debugger
-      _avo_debugger_log("7ONADbQPez", "Key Stage Selected", messages, eventPropertiesArray, userPropertiesArray, []);
-    }
-  }
-  if (!__AVO_NOOP__) {
-    if (__INSPECTOR__ != null) {
-      // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Key Stage Selected", eventProperties, "7ONADbQPez", "c5505b4b5e94b6eed4d6b49ff8d8d1852022ecd316f3dc3c71dd4f060a24c2e6");
-    }
-    // destination PostHogEU
-    PostHogEU.logEvent("Key Stage Selected", (Object as any).assign({}, eventProperties));
-  } else {
-    // do nothing
-  }
+  // TODO: Uncomment code below when Avo IDs are set up
+  // if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+  //   let messages: AvoAssertMessage[] = [];
+  //   // debug console in Avo
+  //   if (!__AVO_NOOP__) {
+  //     _avo_invoke(__AVO_ENV__, "7ONADbQPez", "c5505b4b5e94b6eed4d6b49ff8d8d1852022ecd316f3dc3c71dd4f060a24c2e6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+  //   }
+  //   InternalAvoLogger.logEventSent("Key Stage Selected", eventProperties, userProperties);
+  //   if (__WEB_DEBUGGER__) {
+  //     // Avo web debugger
+  //     _avo_debugger_log("7ONADbQPez", "Key Stage Selected", messages, eventPropertiesArray, userPropertiesArray, []);
+  //   }
+  // }
+  // if (!__AVO_NOOP__) {
+  //   if (__INSPECTOR__ != null) {
+  //     // @ts-ignore
+  //     __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Key Stage Selected", eventProperties, "7ONADbQPez", "c5505b4b5e94b6eed4d6b49ff8d8d1852022ecd316f3dc3c71dd4f060a24c2e6");
+  //   }
+  //   // destination PostHogEU
+  //   PostHogEU.logEvent("Key Stage Selected", (Object as any).assign({}, eventProperties));
+  // } else {
+  //   // do nothing
+  // }
 }
 
 export interface SubjectSelectedProperties {
@@ -3730,6 +3804,7 @@ export default {
   videoPlayed,
   videoFinished,
   lessonResourcesDownloaded,
+  curriculumResourcesDownloaded,
   keyStageSelected,
   subjectSelected,
   unitSelected,

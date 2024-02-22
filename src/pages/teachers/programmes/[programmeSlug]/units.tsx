@@ -15,7 +15,7 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
@@ -35,6 +35,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -53,6 +54,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     examBoardTitle,
+    hasNewContent,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -159,7 +161,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
-        isLegacyLesson={isSlugLegacy(programmeSlug)}
+        isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
@@ -325,7 +327,7 @@ export const getStaticProps: GetStaticProps<
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
-            isLegacy: false,
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
           });
 
       if (!curriculumData) {
@@ -334,9 +336,17 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const unitsCohorts = curriculumData.units.flatMap((unit) =>
+        unit.flatMap((u) => u.cohort ?? "2020-2023"),
+      );
+      const hasNewContent = unitsCohorts.includes(NEW_COHORT);
+
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            hasNewContent,
+          },
         },
       };
 

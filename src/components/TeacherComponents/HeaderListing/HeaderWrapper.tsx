@@ -5,7 +5,7 @@ import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { OakColorName } from "@/styles/theme";
 

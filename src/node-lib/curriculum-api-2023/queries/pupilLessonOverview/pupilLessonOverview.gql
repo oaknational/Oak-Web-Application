@@ -3,7 +3,7 @@ query pupilLessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_3_0_1(
+  lesson: published_mv_lesson_overview_3_0_2(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -15,6 +15,7 @@ query pupilLessonOverview(
     lessonKeywords
     subjectSlug
     subjectTitle
+    unitSlug
     pupilLessonOutcome
     starterQuiz
     exitQuiz
@@ -23,11 +24,10 @@ query pupilLessonOverview(
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
-    worksheetUrl
     videoTitle
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
-    lessonCohort
+    isLegacy
   }
 }

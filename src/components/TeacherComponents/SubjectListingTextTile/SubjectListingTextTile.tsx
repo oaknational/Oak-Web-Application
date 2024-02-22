@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import Svg from "@/components/SharedComponents/Svg";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 

@@ -12,7 +12,12 @@ export type FlexProps = FlexCssProps & BoxProps;
  * ## Usage
  * Before adding props to this component, think about whether it makes sense
  * to add it to Box instead, as this component extends that.
+ *
  */
+
+/**
+ * @deprecated use OakFlex from oak-components instead
+ * */
 const Flex = styled(Box)<FlexProps>`
   ${flex}
 `;

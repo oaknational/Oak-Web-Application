@@ -20,7 +20,7 @@ type PupilViewsVideoProps = {
   videoMuxPlaybackId?: string;
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptSentences: string[];
-  isLegacyLicense: boolean;
+  isLegacy: boolean;
 };
 
 export const PupilViewsVideo = ({
@@ -28,7 +28,7 @@ export const PupilViewsVideo = ({
   videoMuxPlaybackId,
   videoWithSignLanguageMuxPlaybackId,
   transcriptSentences,
-  isLegacyLicense,
+  isLegacy,
 }: PupilViewsVideoProps) => {
   const { completeSection, updateCurrentSection } = useLessonEngineContext();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
@@ -61,7 +61,7 @@ export const PupilViewsVideo = ({
             onClick={() => {
               completeSection("video");
             }}
-            width={["100%", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
           >
@@ -86,7 +86,7 @@ export const PupilViewsVideo = ({
               playbackPolicy="signed"
               title={lessonTitle}
               location="lesson"
-              isLegacy={isLegacyLicense}
+              isLegacy={isLegacy}
             />
           ) : (
             "This lesson does not contain a video"

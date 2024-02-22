@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan } from "@oaknational/oak-components";
+import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -10,7 +10,6 @@ import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/le
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
@@ -131,15 +130,19 @@ const LessonListItem: FC<
         expired={expired}
       />
 
-      <Flex
+      <OakFlex
         $flexDirection={"column"}
         $width={"100%"}
-        $gap={[4, 12]}
-        $pa={[0, 24]}
+        $gap={["all-spacing-1", "all-spacing-3"]}
+        $pa={["inner-padding-none", "inner-padding-xl"]}
       >
-        <Flex $alignItems={"flex-start"}>
+        <OakFlex $alignItems={"flex-start"}>
           <ListItemIndexMobile background={background} index={index + 1} />
-          <Flex $flexDirection={"column"} $height={"100%"} $pa={[16, 0]}>
+          <OakFlex
+            $flexDirection={"column"}
+            $height={"100%"}
+            $pa={["inner-padding-m", "inner-padding-none"]}
+          >
             <ListItemHeader
               {...props}
               primaryTargetProps={primaryTargetProps}
@@ -154,17 +157,20 @@ const LessonListItem: FC<
                   This lesson is currently unavailable.
                 </OakP>
               )} */}
-          </Flex>
-        </Flex>
-        <Flex
+          </OakFlex>
+        </OakFlex>
+        <OakFlex
           $flexDirection={"column"}
-          $gap={[12]}
-          $pl={[16, 0]}
-          $pr={[16, 0]}
-          $pt={[12, 0]}
-          $pb={[12, 0]}
+          $gap={["all-spacing-3"]}
+          $pl={["inner-padding-m", "inner-padding-none"]}
+          $pr={["inner-padding-m", "inner-padding-none"]}
+          $pt={["inner-padding-s", "inner-padding-none"]}
+          $pb={["inner-padding-s", "inner-padding-none"]}
         >
-          <Flex $mt={[8, 0]} $mr={[16, 0]}>
+          <OakFlex
+            $mt={["space-between-ssx", "space-between-none"]}
+            $mr={["space-between-s", "space-between-none"]}
+          >
             {expired ? (
               <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                 This lesson is currently unavailable.
@@ -186,14 +192,14 @@ const LessonListItem: FC<
                 )}
               </>
             )}
-          </Flex>
+          </OakFlex>
           {resources.length > 0 && !expired && (
             <Box>
               <LessonResourceGraphics items={resources} />
             </Box>
           )}
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </ListItemCard>
   );
 };

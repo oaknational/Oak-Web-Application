@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import QuizQuestionsList from "@/components/TeacherComponents/QuizQuestionsList";
 import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type QuizProps = {
@@ -15,7 +14,7 @@ export type QuizProps = {
 const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
   return props.questions && props.questions.length > 0 ? (
     <>
-      <Flex
+      <OakFlex
         $flexDirection={"column"}
         $justifyContent={"center"}
         $width={"100%"}
@@ -23,7 +22,7 @@ const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
       >
         <QuizQuestionsList {...props} />
         <BoxBorders />
-      </Flex>
+      </OakFlex>
       {props.imageAttribution.length > 0 && (
         <Box $mt={24}>
           {props.imageAttribution.map(({ attribution, questionNumber }) => (

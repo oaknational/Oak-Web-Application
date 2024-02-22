@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const Group = styled(Flex)`
   & > *:not(:last-child) {

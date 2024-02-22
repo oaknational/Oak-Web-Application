@@ -5,7 +5,7 @@ import { OakTypography, OakHeading } from "@oaknational/oak-components";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";

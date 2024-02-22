@@ -94,16 +94,30 @@ const QuizInner = () => {
           form={formId}
           disabled={questionState[currentQuestionIndex]?.mode === "init"}
           type="submit"
-          width={["100%", "auto"]}
+          isTrailingIcon
+          iconName="arrow-right"
+          width={["100%", "max-content"]}
         >
-          Submit
+          Check
         </OakPrimaryButton>
       )}
       {isFeedbackMode && (
-        <OakPrimaryButton width={["100%", "auto"]} onClick={handleNextQuestion}>
-          {currentQuestionIndex + 1 === numQuestions
-            ? "Continue lesson"
-            : "Next question"}
+        <OakPrimaryButton
+          width={["100%", "max-content"]}
+          onClick={handleNextQuestion}
+          isTrailingIcon
+          iconName="arrow-right"
+        >
+          {(() => {
+            if (currentQuestionIndex + 1 !== numQuestions) {
+              return "Next question";
+            }
+
+            // This is the last question in the quiz, show the appropriate button label
+            return currentSection === "exit-quiz"
+              ? "Lesson review"
+              : "Continue lesson";
+          })()}
         </OakPrimaryButton>
       )}
     </OakLessonBottomNav>

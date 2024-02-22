@@ -2,7 +2,7 @@ import { FC } from "react";
 import { OakSpan } from "@oaknational/oak-components";
 
 import Svg from "@/components/SharedComponents/Svg";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type LessonOverviewSpeechBubbleProps = {

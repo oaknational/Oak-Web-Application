@@ -4,7 +4,7 @@ import { OakP } from "@oaknational/oak-components";
 import { OakColorName } from "@/styles/theme/types";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Svg from "@/components/SharedComponents/Svg";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type SupportYourTeamBubbleMessageProps = {

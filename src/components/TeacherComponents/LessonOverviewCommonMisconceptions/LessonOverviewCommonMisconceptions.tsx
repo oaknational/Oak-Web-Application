@@ -1,7 +1,5 @@
 import React from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
-
-import Flex from "@/components/SharedComponents/Flex";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 export type LessonOverviewCommonMisconceptionsAndResponses = {
   commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
@@ -24,7 +22,7 @@ const LessonOverviewCommonMisconceptions = ({
   }
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
@@ -40,16 +38,19 @@ const LessonOverviewCommonMisconceptions = ({
       {commonMisconceptions?.map(
         (commonMisconception: LessonOverviewCommonMisconception, i: number) => {
           return (
-            <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
+            <OakFlex
+              $flexDirection={"column"}
+              key={`common-misconception-${i}`}
+            >
               <OakP $mb="space-between-m" $font={"body-1-bold"}>
                 {commonMisconception.misconception}
               </OakP>
               <OakP $font={"body-1"}>{commonMisconception.response}</OakP>
-            </Flex>
+            </OakFlex>
           );
         },
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

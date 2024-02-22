@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import Icon from "@/components/SharedComponents/Icon";
@@ -8,7 +9,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -61,6 +62,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
 
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
+      {/* @todo replace with OakFlex - translate drop shadow names to correct names */}
       <Flex
         $position={"relative"}
         $width={"100%"}
@@ -69,9 +71,9 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         $dropShadow={isHovered ? "expandableContainerHover" : "subjectCard"}
         $pa={20}
       >
-        <Flex $justifyContent={"space-between"}>
+        <OakFlex $justifyContent={"space-between"}>
           <Card $pa={0} {...containerProps} $flexGrow={0}>
-            <Flex $position="relative" $alignItems={"center"}>
+            <OakFlex $position="relative" $alignItems={"center"}>
               <Button
                 {...primaryTargetProps}
                 data-testid={"expand-button"}
@@ -94,9 +96,9 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 $color="black"
                 name={toggleOpen ? "chevron-down" : "chevron-up"}
               />
-            </Flex>
+            </OakFlex>
           </Card>
-          <Flex>
+          <OakFlex>
             {downloadable === true && (
               <>
                 <Box $display={["none", "block"]}>
@@ -162,10 +164,11 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 variant="brush"
               />
             )}
-          </Flex>
-        </Flex>
+          </OakFlex>
+        </OakFlex>
         <BoxBorders gapPosition="rightTop" />
       </Flex>
+      {/* @todo replace with OakFlex - work out solution for $maxHeight */}
       <Flex
         data-testid={"expanded-container"}
         $maxHeight={toggleOpen ? 0 : 9600}

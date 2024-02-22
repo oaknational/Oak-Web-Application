@@ -10,7 +10,7 @@ import {
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";

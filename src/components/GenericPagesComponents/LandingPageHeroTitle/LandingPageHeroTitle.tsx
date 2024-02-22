@@ -4,7 +4,7 @@ import { OakHeading } from "@oaknational/oak-components";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageHeroTitle: FC<{
   title: string;

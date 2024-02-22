@@ -10,9 +10,9 @@ import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContai
 import { ExpandingContainerTitle } from "@/components/ArchivedComponents/ExpandingContainer/ExpandingContainer";
 import {
   LessonDownloadsData,
-  LessonShareData,
   LessonShareSchema,
 } from "@/node-lib/curriculum-api";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 // Resource types
 

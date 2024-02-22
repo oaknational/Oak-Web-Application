@@ -1,7 +1,6 @@
 import React, {
   ReactNode,
   createContext,
-  useMemo,
   memo,
   useCallback,
   useContext,
@@ -12,7 +11,10 @@ import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  isLessonReviewSection,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -60,14 +62,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { updateQuizResult, completeSection, currentSection } =
     useLessonEngineContext();
 
-  const filteredQuestions = useMemo(
-    () =>
-      questionsArray.filter(
-        (question) =>
-          question.questionType === "multiple-choice" ||
-          question.questionType === "short-answer",
-      ),
-    [questionsArray],
+  const filteredQuestions = questionsArray.filter((question) =>
+    ["multiple-choice", "short-answer"].includes(question.questionType),
   );
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
@@ -208,7 +204,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleNextQuestion = useCallback(() => {
     setCurrentQuestionIndex((prev) => {
       const _currentQuestionIndex = Math.min(prev + 1, numQuestions);
-      if (_currentQuestionIndex === numQuestions) {
+      if (
+        _currentQuestionIndex === numQuestions &&
+        isLessonReviewSection(currentSection)
+      ) {
         completeSection(currentSection);
       }
       return _currentQuestionIndex;

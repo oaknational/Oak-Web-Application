@@ -1,8 +1,8 @@
 import { VisuallyHidden } from "react-aria";
-import { OakP, OakSpan } from "@oaknational/oak-components";
+import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -14,9 +14,9 @@ export const QuizQuestionsMatchAnswers = ({
   questionNumber: number;
 }) => {
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
-      $gap={4}
+      $gap="all-spacing-1"
       $alignItems={"start"}
       role="list"
       $width={"100%"}
@@ -27,9 +27,9 @@ export const QuizQuestionsMatchAnswers = ({
         return (
           match_option &&
           correct_choice && (
-            <Flex
-              $ph={8}
-              $borderRadius={8}
+            <OakFlex
+              $ph="inner-padding-xs"
+              $borderRadius="border-radius-m2"
               role="listitem"
               key={`q-${questionNumber}-answer${i}`}
               $background={"lemon50"}
@@ -56,10 +56,10 @@ export const QuizQuestionsMatchAnswers = ({
                   {removeMarkdown(correct_choice.text)}
                 </OakP>
               </Flex>
-            </Flex>
+            </OakFlex>
           )
         );
       })}
-    </Flex>
+    </OakFlex>
   );
 };

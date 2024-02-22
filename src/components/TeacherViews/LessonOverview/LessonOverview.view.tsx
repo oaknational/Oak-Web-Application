@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import {
@@ -18,7 +19,6 @@ import {
   LessonOverviewInPathway,
   SpecialistLessonOverview,
 } from "@/components/TeacherComponents/types/lesson.types";
-import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -37,13 +37,25 @@ import { useCurrentSection } from "@/components/TeacherComponents/helpers/lesson
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
-import { LEGACY_COHORT } from "@/config/cohort";
+import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
+import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonOverviewProps = {
   lesson:
     | LessonOverviewCanonical
     | LessonOverviewInPathway
     | SpecialistLessonOverview;
+};
+
+// helper function to remove key learning points from the header in legacy lessons
+export const getDedupedPupilLessonOutcome = (
+  plo: string | null | undefined,
+  klp: keyLearningPoint[] | null | undefined,
+) => {
+  if (klp && plo) {
+    return klp.some((klpItem) => klpItem.keyLearningPoint === plo) ? null : plo;
+  }
+  return plo;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
@@ -66,6 +78,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     exitQuiz,
     expired,
     keyLearningPoints,
+    pupilLessonOutcome,
     lessonCohort,
   } = lesson;
 
@@ -141,6 +154,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
 
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
@@ -165,13 +179,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
-        isLegacyLesson={isLegacyLicense}
+        isNew={isNew}
+        isShareable={isLegacyLicense}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
           });
         }}
         onClickShareAll={trackShareAll}
+        pupilLessonOutcome={getDedupedPupilLessonOutcome(
+          pupilLessonOutcome,
+          keyLearningPoints,
+        )}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
@@ -192,22 +211,22 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               $display={["none", "block"]}
               $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
-              <Flex
+              <OakFlex
                 as="nav"
                 aria-label="page navigation"
                 $flexDirection={"column"}
                 $alignItems={"flex-start"}
-                $gap={[8]}
-                $pr={[16]}
+                $gap={["all-spacing-2"]}
+                $pr={["inner-padding-m"]}
               >
                 <LessonOverviewAnchorLinks
                   links={pageLinks}
                   currentSectionId={currentSectionId}
                 />
-              </Flex>
+              </OakFlex>
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
-              <Flex $flexDirection={"column"} $position={"relative"}>
+              <OakFlex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
                     ref={slideDeckSectionRef}
@@ -236,7 +255,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonDetails
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
-                    keyWords={lessonKeywords}
+                    keyWords={
+                      lessonKeywords?.length ? lessonKeywords : undefined
+                    }
                     teacherTips={teacherTips}
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
@@ -379,7 +400,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   /> */}
                   </LessonItemContainer>
                 )}
-              </Flex>
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
         )}

@@ -8,6 +8,8 @@ import {
   OakUL,
 } from "@oaknational/oak-components";
 
+import Box from "../Box";
+
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -42,6 +44,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       page={"subject-index"}
       $isSelected={isCurrent}
       aria-label={title}
+      role="button"
       onClick={() => {
         track.keyStageSelected({
           keyStageTitle: title as KeyStageTitleValueType,
@@ -57,30 +60,63 @@ const KeypadLink: FC<KeypadItem> = (props) => {
   );
 };
 
+const KeyPadGrid = (props: KeyStageKeypadProps & { ksButtonSpan: 2 | 3 }) => {
+  return (
+    <OakGrid
+      $mb={props.years ? "space-between-l" : "space-between-m"}
+      $ph={"inner-padding-xs"}
+      $cg={"all-spacing-6"}
+      $rg="all-spacing-6"
+      $maxWidth={"all-spacing-22"}
+    >
+      {props.keyStages.map((keyStage) => (
+        <OakGridArea
+          $colSpan={[3, props.ksButtonSpan]}
+          key={`key-stage:${keyStage.title}`}
+        >
+          <KeypadLink {...keyStage} />
+        </OakGridArea>
+      ))}
+    </OakGrid>
+  );
+};
+
 /**
  * Navigation to keystage and years.
  * ## Usage
  * Used on teachers home page and menu.
  */
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
+  const ksButtonSpanDesktop = keyStages.length > 4 ? 2 : 3;
+
+  keyStages.sort((a, b) =>
+    a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
+  );
+
+  const keyStagesMobileOrder: KeypadItem[] =
+    keyStages.length > 4 && keyStages[0]
+      ? [...keyStages.slice(1), keyStages[0]]
+      : keyStages;
+
   return (
     <nav aria-label="key stages and year groups">
       <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
         Select key stage
       </OakP>
-      <OakGrid
-        $mb={years ? "space-between-l" : "space-between-m"}
-        $ph={"inner-padding-xs"}
-        $cg={"all-spacing-6"}
-        $maxWidth={"all-spacing-22"}
-      >
-        {keyStages.map((keyStage) => (
-          <OakGridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
-            <KeypadLink {...keyStage} />
-          </OakGridArea>
-        ))}
-      </OakGrid>
-
+      <Box $display={["none", "block"]}>
+        <KeyPadGrid
+          keyStages={keyStages}
+          years={years}
+          ksButtonSpan={ksButtonSpanDesktop}
+        />
+      </Box>
+      <Box $display={["block", "none"]}>
+        <KeyPadGrid
+          keyStages={keyStagesMobileOrder}
+          years={years}
+          ksButtonSpan={3}
+        />
+      </Box>
       {years && (
         <>
           <OakHeading

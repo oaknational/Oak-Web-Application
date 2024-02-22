@@ -4,7 +4,14 @@ import {
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
-jest.mock("@/utils/handleTranscript");
+jest.mock(
+  "@/components/PupilComponents/pupilUtils/requestLessonResources",
+  () => ({
+    requestLessonResources: jest
+      .fn()
+      .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
+  }),
+);
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("getStaticPaths", () => {
@@ -18,7 +25,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   describe("getStaticProps", () => {
-    it("Should call API:pupilLessonOverview on 'pupil'", async () => {
+    it("Should call API:pupilLessonOverview", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "ks123",
@@ -27,31 +34,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
 
-      expect(
-        curriculumApi2023.default.pupilLessonOverview,
-      ).toHaveBeenCalledWith({
-        programmeSlug: "ks123",
-        unitSlug: "unitSlug",
-        lessonSlug: "lessonSlug",
-      });
-      expect(curriculumApi2023.default.pupilLessonOverview).toHaveBeenCalled();
-    });
-    it("Should call both API::pupilLessonOverview on 'teachers-2023'", async () => {
-      await getStaticProps({
-        params: {
-          programmeSlug: "ks123",
-          unitSlug: "unitSlug",
-          lessonSlug: "lessonSlug",
-        },
-      });
-
-      expect(
-        curriculumApi2023.default.pupilLessonOverview,
-      ).toHaveBeenCalledWith({
-        programmeSlug: "ks123",
-        unitSlug: "unitSlug",
-        lessonSlug: "lessonSlug",
-      });
       expect(
         curriculumApi2023.default.pupilLessonOverview,
       ).toHaveBeenCalledWith({

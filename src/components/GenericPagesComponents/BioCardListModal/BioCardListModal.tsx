@@ -18,7 +18,7 @@ import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import BioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog";
 import useBioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog";
@@ -75,6 +75,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
 
   return (
     <BioCardListModalDialog {...modalDialogProps}>
+      {/* @todo replace with OakFlex - work out the padding */}
       <Flex $width={"100%"} $ph={[0, 72]}>
         <Box
           $position={"absolute"}

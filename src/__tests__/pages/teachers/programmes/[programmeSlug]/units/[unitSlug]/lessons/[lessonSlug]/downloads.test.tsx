@@ -34,7 +34,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -136,9 +136,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
       // Lesson resources to download
-      const lessonResourcesToDownload = screen.getAllByTestId(
-        "lessonResourcesCheckbox",
-      );
+      const lessonResourcesToDownload = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToDownload.length).toEqual(2);
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
 

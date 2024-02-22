@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { CSSProperties } from "styled-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
@@ -8,7 +9,6 @@ import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Heading, {
   HeadingTag,
 } from "@/components/SharedComponents/Typography/Heading.deprecated";
-import Flex from "@/components/SharedComponents/Flex";
 
 export const getIconFlexPosition = (
   $iconPosition: IconPosition | null,
@@ -51,12 +51,12 @@ const CardTitle: FC<CardTitleProps> = ({
     : [$iconPosition];
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={iconPositionArray.map(getIconFlexPosition)}
       $alignItems={iconPositionArray.map((pos) =>
         pos === "aboveTitle" ? "flex-start" : "center",
       )}
-      $mb={24}
+      $mb="space-between-m"
     >
       {icon && (
         <Icon
@@ -95,7 +95,7 @@ const CardTitle: FC<CardTitleProps> = ({
       <Heading $font={$font} tag={tag}>
         {children}
       </Heading>
-    </Flex>
+    </OakFlex>
   );
 };
 

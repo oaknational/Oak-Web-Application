@@ -101,7 +101,7 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 #### Required Github Secrets for Workflows
 
-## TO DO
+## TODO
 
 - `A_SECRET_VALUE` - Some config or tool auth.
 

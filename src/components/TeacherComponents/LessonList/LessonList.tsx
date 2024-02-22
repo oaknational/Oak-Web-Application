@@ -4,13 +4,13 @@ import {
   OakLI,
   OakUL,
   OakHeadingTag,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
@@ -50,8 +50,8 @@ const LessonList: FC<LessonListProps> = (props) => {
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
-    <Flex $flexDirection="column">
-      <Flex $flexDirection={["column-reverse", "column"]}>
+    <OakFlex $flexDirection="column">
+      <OakFlex $flexDirection={["column-reverse", "column"]}>
         <OakHeading
           $font={["heading-6", "heading-5"]}
           $mb="space-between-m"
@@ -59,9 +59,9 @@ const LessonList: FC<LessonListProps> = (props) => {
         >
           {`Lessons (${lessonCount})`}
         </OakHeading>
-      </Flex>
+      </OakFlex>
 
-      {currentPageItems.length ? (
+      {currentPageItems?.length ? (
         <>
           <OakUL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
@@ -89,7 +89,7 @@ const LessonList: FC<LessonListProps> = (props) => {
       ) : (
         <Box $pb={32} />
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

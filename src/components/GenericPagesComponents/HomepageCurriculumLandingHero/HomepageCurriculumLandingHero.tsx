@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakFlex, OakBox } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
@@ -19,8 +18,8 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
 ) => {
   const { subjectPhaseOptions } = props;
   return (
-    <Flex $position={"relative"} $flexDirection={"row"} $width={"100%"}>
-      <Flex $flexDirection={"column"} $width={"100%"}>
+    <OakBox $position={"relative"} $width={"100%"}>
+      <OakFlex $flexDirection={"column"} $width={"100%"}>
         <Box $maxWidth={["100%", "50%"]} $mb={[48, 80]} $position={"relative"}>
           <OakHeading
             tag="h1"
@@ -39,13 +38,13 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
         <Box $maxWidth={["100%", 960]}>
           <SubjectPhasePicker {...subjectPhaseOptions} />
         </Box>
-      </Flex>
+      </OakFlex>
       <Cover
         $top={[48, 48, 0]}
         $right={[0, 12, 0]}
         $display={["none", "block"]}
       >
-        <Flex $justifyContent={"flex-end"}>
+        <OakFlex $justifyContent={"flex-end"}>
           <Illustration
             noCrop
             $width={"40%"}
@@ -55,9 +54,9 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
             sizes={getSizes([400, 600])}
             slug="planning-curriculum"
           />
-        </Flex>
+        </OakFlex>
       </Cover>
-    </Flex>
+    </OakBox>
   );
 };
 

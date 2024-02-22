@@ -3,13 +3,13 @@ import {
   OakHeading,
   OakHeadingTag,
   OakSpan,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { SpacingProps } from "@/styles/utils/spacing";
-import Flex from "@/components/SharedComponents/Flex";
 
 type SubjectErrorCardProps = {
   heading: string;
@@ -27,12 +27,12 @@ type SubjectErrorCardProps = {
 const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
   const { heading, headingTag, text, buttonProps } = props;
   return (
-    <Flex
-      $ph={16}
-      $pv={12}
+    <OakFlex
+      $ph="inner-padding-m"
+      $pv="inner-padding-s"
       $background={"mint"}
       $alignItems={["flex-start", "center"]}
-      $borderRadius={3}
+      $borderRadius="border-radius-s"
       $flexDirection={["column", "row"]}
       $width={["100%", "auto"]}
     >
@@ -60,7 +60,7 @@ const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
         $iconPosition={"trailing"}
         iconBackground="black"
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

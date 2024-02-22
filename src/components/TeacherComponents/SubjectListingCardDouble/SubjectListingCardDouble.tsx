@@ -5,7 +5,7 @@ import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardDoubleCountCard";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type SubjectListingCardDoubleProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
@@ -55,7 +55,7 @@ const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
         >
           <OakHeading
             $textAlign={["start", "center"]}
-            $font={["heading-6", "heading-5"]}
+            $font={"heading-6"}
             tag={titleTag}
           >
             {subject.new?.subjectTitle || subject.old?.subjectTitle}

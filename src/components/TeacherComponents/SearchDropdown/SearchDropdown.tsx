@@ -3,7 +3,7 @@ import { OakLI, OakFlex } from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 

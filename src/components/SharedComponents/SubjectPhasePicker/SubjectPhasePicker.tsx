@@ -9,7 +9,7 @@ import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/SharedComponents/Button/Button";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   Examboard,
   Phase,
@@ -448,14 +448,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </Box>
                 <Box $mt={24}>
                   <OwaLink
-                    page={"oak-curriculum"}
+                    page={"curriculum-previous-downloads"}
                     $textDecoration={"underline"}
                     $font={"heading-7"}
+                    data-testid="previousPlansLink"
                   >
                     Previously released plans
                     <Icon
                       $color={"black"}
-                      name="external"
+                      name="arrow-right"
                       verticalAlign="bottom"
                     />
                   </OwaLink>
