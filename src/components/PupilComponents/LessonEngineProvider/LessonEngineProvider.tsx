@@ -7,7 +7,7 @@ import {
   Reducer,
 } from "react";
 
-// import { usePupilAnalytics } from "@/components/PupilComponents/pupilAnalytics/usePupilAnalytics";
+import { usePupilAnalytics } from "@/components/PupilComponents/pupilUtils/usePupilAnalytics";
 
 export const lessonSections = [
   "overview",
@@ -162,10 +162,21 @@ export const LessonEngineProvider = memo(
       sections: {},
     });
 
-    // const { track } = usePupilAnalytics();
+    const { track } = usePupilAnalytics();
 
     const completeSection = (section: LessonReviewSection) => {
-      // track.lessonSelected({ section });
+      track.lessonSectionCompleted({
+        lessonName: "lesson",
+        lessonSlug: "lesson",
+        analyticsUseCase: "Pupil",
+        pupilExperienceLessonSection: section,
+        unitName: undefined,
+        unitSlug: undefined,
+        subjectSlug: undefined,
+        subjectTitle: undefined,
+        keyStageSlug: undefined,
+        keyStageTitle: undefined,
+      });
       dispatch({ type: "completeSection", section });
     };
     const updateCurrentSection = (section: LessonSection) =>
