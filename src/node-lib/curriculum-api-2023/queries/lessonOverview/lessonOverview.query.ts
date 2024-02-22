@@ -29,7 +29,7 @@ const lessonOverviewQuery =
         res,
       });
     }
-    let transformedTranscript;
+    let transformedTranscript = null;
     if (
       lesson.transcriptSentences &&
       !Array.isArray(lesson.transcriptSentences)
