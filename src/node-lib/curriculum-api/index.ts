@@ -636,6 +636,7 @@ const curriculumApi = {
         ...downloads[0],
         pathways: [],
         isLegacy: true,
+        hasDownloadableResources: true,
       } as LessonDownloadsCanonical,
     );
 
