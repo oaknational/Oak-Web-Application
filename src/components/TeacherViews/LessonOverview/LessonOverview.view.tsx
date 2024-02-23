@@ -81,18 +81,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     pupilLessonOutcome,
     lessonCohort,
     hasDownloadableResources,
-    copyrightContent,
   } = lesson;
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-
-  const isCopyrightedMaterial = copyrightContent
-    ? copyrightContent.some(
-        (item) =>
-          item.copyrightInfo === "This lesson contains copyright material.",
-      )
-    : false;
 
   const commonPathway = getCommonPathway(
     lesson.isCanonical ? lesson.pathways : [lesson],
@@ -189,7 +181,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={isLegacyLicense && !isCopyrightedMaterial}
+        isShareable={isLegacyLicense}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -202,7 +194,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         )}
       />
       <MaxWidth $ph={16} $pb={80}>
-        {expired || isCopyrightedMaterial ? (
+        {expired ? (
           <Box $pa={16} $mb={64}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
