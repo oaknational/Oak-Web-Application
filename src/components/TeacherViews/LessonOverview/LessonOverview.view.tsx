@@ -80,10 +80,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyLearningPoints,
     pupilLessonOutcome,
     lessonCohort,
+    hasDownloadableResources,
+    copyrightContent,
   } = lesson;
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const isCopyrightedMaterial = copyrightContent
+    ? copyrightContent.some(
+        (item) =>
+          item.copyrightInfo === "This lesson contains copyright material.",
+      )
+    : false;
 
   const commonPathway = getCommonPathway(
     lesson.isCanonical ? lesson.pathways : [lesson],
@@ -180,7 +189,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={isLegacyLicense}
+        isShareable={isLegacyLicense && !isCopyrightedMaterial}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -193,7 +202,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         )}
       />
       <MaxWidth $ph={16} $pb={80}>
-        {expired ? (
+        {expired || isCopyrightedMaterial ? (
           <Box $pa={16} $mb={64}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
@@ -231,7 +240,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     ref={slideDeckSectionRef}
                     title={"Slide deck"}
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "slide deck",
@@ -292,7 +301,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -319,7 +328,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
                     anchorId="starter-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
@@ -344,7 +353,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -370,7 +379,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({

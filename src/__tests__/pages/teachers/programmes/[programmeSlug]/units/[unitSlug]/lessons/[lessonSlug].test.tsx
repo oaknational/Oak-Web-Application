@@ -170,6 +170,22 @@ describe("pages/teachers/lessons", () => {
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
+  it("does not render lesson if copyrighted material", async () => {
+    const copyrightLesson = {
+      ...props,
+      curriculumData: {
+        ...props.curriculumData,
+        copyrightContent: [
+          {
+            copyrightInfo: "This lesson contains copyright material.",
+          },
+        ],
+      },
+    };
+    const { getByText } = render(<LessonOverviewPage {...copyrightLesson} />);
+    const message = getByText("No lesson available");
+    expect(message).toBeInTheDocument();
+  });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {

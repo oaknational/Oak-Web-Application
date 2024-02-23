@@ -615,6 +615,7 @@ const curriculumApi = {
       nextLessons,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
+      hasDownloadableResources: true,
     });
   },
   lessonDownloadsCanonical: async (

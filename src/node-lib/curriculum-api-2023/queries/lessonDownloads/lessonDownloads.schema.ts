@@ -16,6 +16,7 @@ export const lessonDownloadsSchema = z.object({
   ...baseLessonDownloadsSchema.shape,
   ...lessonPathwaySchema.shape,
   ...nextLessonSchema.shape,
+  hasDownloadableResources: z.boolean().nullish(),
 });
 
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
