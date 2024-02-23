@@ -28,16 +28,6 @@ const lessonOverviewQuery =
         res,
       });
     }
-    // let transformedTranscript = null;
-    // if (
-    //   lesson.transcriptSentences &&
-    //   !Array.isArray(lesson.transcriptSentences)
-    // ) {
-    //   const splitTranscript = lesson.transcriptSentences.split(/\r?\n/);
-    //   const formattedTranscript = formatSentences(splitTranscript);
-
-    //   transformedTranscript = formattedTranscript;
-    // }
 
     return lessonOverviewSchema.parse({
       ...lesson,
