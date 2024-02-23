@@ -17,7 +17,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -91,8 +91,8 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { videoTitle } = curriculumData;
-      if (videoTitle && !isSlugLegacy(programmeSlug)) {
+      const { videoTitle, transcriptSentences } = curriculumData;
+      if (videoTitle && !isSlugLegacy(programmeSlug) && !transcriptSentences) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
@@ -100,6 +100,11 @@ export const getStaticProps: GetStaticProps<
         if (transcript) {
           curriculumData.transcriptSentences = transcript;
         }
+      } else if (transcriptSentences && !Array.isArray(transcriptSentences)) {
+        const splitTranscript = transcriptSentences.split(/\r?\n/);
+        const formattedTranscript = formatSentences(splitTranscript);
+
+        curriculumData.transcriptSentences = formattedTranscript;
       }
 
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
