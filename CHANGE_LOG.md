@@ -1,3 +1,10 @@
+# [1.365.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.364.0...v1.365.0) (2024-02-23)
+
+
+### Features
+
+* **PUPIL-348:** serve quiz images from new Cloudinary distribution ([db68c2a](https://github.com/oaknational/Oak-Web-Application/commit/db68c2a09178b94c825054652cdf4eb9b388a7f1))
+
 # [1.364.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.1...v1.364.0) (2024-02-21)
 
 

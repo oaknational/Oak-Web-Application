@@ -57,16 +57,18 @@ export const QuizQuestionStem = ({
               $pv={"inner-padding-xl"}
               key={`q-${displayNumber}-stem-element-${i}`}
             >
-              <OakCloudinaryImage
-                cloudinaryId={stemItem.image_object.secure_url}
-                height={stemItem.image_object.height}
-                width={stemItem.image_object.width}
-                alt={""}
-                $minWidth={"all-spacing-19"}
-                placeholder="oak"
-                sizes={getSizes(["100vw", 1200])}
-                $background={"white"}
-              />
+              {stemItem.image_object.public_id && (
+                <OakCloudinaryImage
+                  cloudinaryId={stemItem.image_object.public_id}
+                  height={stemItem.image_object.height}
+                  width={stemItem.image_object.width}
+                  alt={""}
+                  $minWidth={"all-spacing-19"}
+                  placeholder="oak"
+                  sizes={getSizes(["100vw", 1200])}
+                  $background={"white"}
+                />
+              )}
             </OakFlex>
           );
         }
