@@ -9,7 +9,7 @@ export interface LessonOverviewVideoProps {
   video: string | null;
   signLanguageVideo: string | null;
   title: string;
-  transcriptSentences?: string[] | null;
+  transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
 }
 
