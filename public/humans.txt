@@ -126,8 +126,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Site: https://capeflair.com
   From: Guildford, UK
 
-  Verity Roberts (Product Manager)
-  From: Cambridge, UK
+  
 
   Will Gayne (Head of Product Strategy)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
@@ -186,6 +185,9 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Site: https://putty.studio
   LinkedIn: https://www.linkedin.com/in/tom-wise1234/
   From: Brighton, UK
+
+  Verity Roberts (Product Manager)
+  From: Cambridge, UK
 
   Weronika Szalas (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/szalasw/
