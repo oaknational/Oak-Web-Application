@@ -217,6 +217,7 @@ export const baseLessonDownloadsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  hasDownloadableResources: z.boolean(),
 });
 
 export const lessonListSchema = z.array(
