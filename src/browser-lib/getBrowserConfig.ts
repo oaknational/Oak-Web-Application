@@ -316,6 +316,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "The secure Cloudinary instance serving user generated content",
   },
+  cloudinarySecureDistribution: {
+    value: process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION,
+    envName: "NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description:
+      "The private Cloudinary origin from which to serve user generated content",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
