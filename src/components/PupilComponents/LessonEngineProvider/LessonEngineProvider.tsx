@@ -167,7 +167,6 @@ export const LessonEngineProvider = memo(
     const completeSection = (section: LessonReviewSection) => {
       if (track.lessonSectionCompleted) {
         track.lessonSectionCompleted({
-          analyticsUseCase: "Pupil",
           pupilExperienceLessonSection: section,
         });
       }

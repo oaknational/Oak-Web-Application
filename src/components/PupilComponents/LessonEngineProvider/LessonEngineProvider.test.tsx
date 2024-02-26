@@ -10,7 +10,7 @@ import {
 
 const usePupilAnalyticsMock = {
   track: {
-    lessonSectionCompleted: jest.fn().mockReturnValue("global"),
+    lessonSectionCompleted: jest.fn(),
   },
   identify: jest.fn(),
   posthogDistinctId: "123",

@@ -27,7 +27,8 @@ type NavigationEventProps =
   | "keyStageSlug"
   | "keyStageTitle"
   | "subjectTitle"
-  | "subjectSlug";
+  | "subjectSlug"
+  | "analyticsUseCase";
 
 export const trackingEvents = [
   "lessonStarted",
@@ -57,7 +58,6 @@ export type PupilPathwayData = {
   keyStageTitle: KeyStageTitleValueType | null;
   subjectTitle: string;
   subjectSlug: string;
-  analyticsUseCase?: AnalyticsUseCaseValueType;
 };
 
 export const PupilAnalyticsProvider = ({
@@ -69,7 +69,9 @@ export const PupilAnalyticsProvider = ({
 }) => {
   const { track } = useAnalytics();
 
-  const additionalArgs: PupilPathwayData = {
+  const additionalArgs: PupilPathwayData & {
+    analyticsUseCase: AnalyticsUseCaseValueType;
+  } = {
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
   };
