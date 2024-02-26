@@ -1,3 +1,10 @@
+## [1.368.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.0...v1.368.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* migration copyright bugs ([27d162a](https://github.com/oaknational/Oak-Web-Application/commit/27d162a3bb5b051be61c2a9edd2766f80f743912))
+
 # [1.368.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.1...v1.368.0) (2024-02-26)
 
 
