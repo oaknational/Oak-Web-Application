@@ -75,6 +75,12 @@ export const getStaticProps: GetStaticProps<
 
       const isLegacy = isSlugLegacy(programmeSlug);
 
+      if (!isLegacy) {
+        return {
+          notFound: true,
+        };
+      }
+
       const curriculumData = isLegacy
         ? await curriculumApi.lessonShare({
             programmeSlug,
@@ -87,7 +93,7 @@ export const getStaticProps: GetStaticProps<
             lessonSlug,
           });
 
-      if (!curriculumData || !isLegacy) {
+      if (!curriculumData) {
         return {
           notFound: true,
         };
