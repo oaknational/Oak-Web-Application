@@ -1,3 +1,10 @@
+## [1.367.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.0...v1.367.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **PUPIL-425:** set a height for the `VideoPlayer` loading state ([349fffa](https://github.com/oaknational/Oak-Web-Application/commit/349fffaecbf16400ce829b6140eb83b2e7dbd896))
+
 # [1.367.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.366.0...v1.367.0) (2024-02-26)
 
 
