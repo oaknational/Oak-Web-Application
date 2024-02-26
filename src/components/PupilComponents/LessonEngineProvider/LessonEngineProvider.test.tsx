@@ -16,11 +16,14 @@ const usePupilAnalyticsMock = {
   posthogDistinctId: "123",
 };
 
-jest.mock("@/components/PupilComponents/pupilUtils/usePupilAnalytics", () => {
-  return {
-    usePupilAnalytics: () => usePupilAnalyticsMock,
-  };
-});
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 
 describe("LessonEngineProvider", () => {
   const ProviderWrapper = ({ children }: { children: ReactNode }) => {

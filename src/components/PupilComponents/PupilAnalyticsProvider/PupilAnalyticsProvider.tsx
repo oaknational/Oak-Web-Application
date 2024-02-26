@@ -5,7 +5,10 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
   KeyStageTitleValueType,
+  KeyStageTitle,
 } from "@/browser-lib/avo/Avo";
+import { PupilLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
+import errorReporter from "@/common-lib/error-reporter";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -45,33 +48,29 @@ export const pupilAnalyticsContext = createContext<{
   track: PupilAnalyticsTrack;
 } | null>(null);
 
-type BrowseData = {
+export type PupilPathwayData = {
   unitName: string;
   unitSlug: string;
   lessonSlug: string;
   lessonName: string;
   keyStageSlug: string;
-  keyStageTitle: KeyStageTitleValueType;
+  keyStageTitle: KeyStageTitleValueType | null;
   subjectTitle: string;
   subjectSlug: string;
   analyticsUseCase?: AnalyticsUseCaseValueType;
 };
 
-export const PupilAnalyticsProvider = (props: {
+export const PupilAnalyticsProvider = ({
+  children,
+  pupilPathwayData,
+}: {
   children: React.ReactNode;
+  pupilPathwayData: PupilPathwayData;
 }) => {
-  const { children } = props;
   const { track } = useAnalytics();
 
-  const additionalArgs: BrowseData = {
-    unitName: "foo",
-    unitSlug: "bar",
-    lessonSlug: "baz",
-    lessonName: "qux",
-    keyStageSlug: "quux",
-    keyStageTitle: "Key stage 1",
-    subjectTitle: "quuz",
-    subjectSlug: "corge",
+  const additionalArgs: PupilPathwayData = {
+    ...pupilPathwayData,
     analyticsUseCase: "Pupil",
   };
 
@@ -103,4 +102,43 @@ export const PupilAnalyticsProvider = (props: {
       {children}
     </pupilAnalyticsContext.Provider>
   );
+};
+
+const isKeyStageTitle = (
+  keyStageTitle: string,
+): keyStageTitle is KeyStageTitleValueType => {
+  return Object.values(KeyStageTitle).includes(
+    keyStageTitle as KeyStageTitleValueType,
+  );
+};
+
+export const getPupilPathwayData = (
+  curriculumData: PupilLessonOverviewPageData,
+): PupilPathwayData => {
+  const keyStageTitle = isKeyStageTitle(curriculumData.keyStageTitle)
+    ? curriculumData.keyStageTitle
+    : null;
+
+  if (!isKeyStageTitle(curriculumData.keyStageTitle)) {
+    console.error("Invalid key stage title", curriculumData.keyStageTitle);
+    const error = new Error("Invalid key stage title");
+
+    errorReporter(
+      "pupils::pupilAnalyticsProvider::getPupilPathwayData::invalidKeyStageTitle",
+    )(error, {
+      severity: "warning",
+      keyStageTitle: curriculumData.keyStageTitle,
+    });
+  }
+
+  return {
+    unitName: curriculumData.unitTitle,
+    unitSlug: curriculumData.unitSlug,
+    lessonSlug: curriculumData.lessonSlug,
+    lessonName: curriculumData.lessonTitle,
+    keyStageSlug: curriculumData.keyStageSlug,
+    keyStageTitle,
+    subjectTitle: curriculumData.subjectTitle,
+    subjectSlug: curriculumData.subjectSlug,
+  };
 };

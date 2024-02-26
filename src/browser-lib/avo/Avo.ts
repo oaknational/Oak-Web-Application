@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "MXNGUMJIIjc9A3s3ZONi",
+          "ac": "5aj1nNOmktDJ4x1Ft67S",
           "br": "ZnZhxgYCK",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "MXNGUMJIIjc9A3s3ZONi",
+          "ac": "5aj1nNOmktDJ4x1Ft67S",
           "br": "ZnZhxgYCK",
           "en": env,
           "ty": type,
@@ -3882,7 +3882,7 @@ export function lessonSectionCompleted(
 }
 
 export interface LessonStartedProperties {
-  keyStageTitle: KeyStageTitleValueType;
+  keyStageTitle: KeyStageTitleValueType | null | undefined;
   keyStageSlug: string;
   unitName: string;
   unitSlug: string;
@@ -3911,7 +3911,9 @@ export interface LessonStartedProperties {
 export function lessonStarted(properties: LessonStartedProperties) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
-  eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
+  properties.keyStageTitle !== undefined && properties.keyStageTitle !== null ?
+    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle}) :
+    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: null});
   eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
   eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
   eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
@@ -3929,7 +3931,7 @@ export function lessonStarted(properties: LessonStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "9zz1OCsT2", "8209ca94c98120f557d57f28cc8cd587bd9800d122de526692883c622e1925b7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "9zz1OCsT2", "4bdeda5471554687827b9c80499522302f796299a2baf774afbdcaf25332cea1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3940,7 +3942,7 @@ export function lessonStarted(properties: LessonStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Started", eventProperties, "9zz1OCsT2", "8209ca94c98120f557d57f28cc8cd587bd9800d122de526692883c622e1925b7");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Started", eventProperties, "9zz1OCsT2", "4bdeda5471554687827b9c80499522302f796299a2baf774afbdcaf25332cea1");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Started", (Object as any).assign({}, eventProperties));
@@ -3956,7 +3958,7 @@ export interface LessonSectionStartedProperties {
   unitSlug: string;
   subjectTitle: string;
   subjectSlug: string;
-  keyStageTitle: KeyStageTitleValueType;
+  keyStageTitle: KeyStageTitleValueType | null | undefined;
   keyStageSlug: string;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonSection: PupilExperienceLessonSectionValueType;
@@ -3988,7 +3990,9 @@ export function lessonSectionStarted(
   eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
   eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
   eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
-  eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
+  properties.keyStageTitle !== undefined && properties.keyStageTitle !== null ?
+    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle}) :
+    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: null});
   eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Section", value: properties.pupilExperienceLessonSection});
@@ -4001,7 +4005,7 @@ export function lessonSectionStarted(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl", "634db996d0ca6b84cb8e6e97f8c0bf9796161d84b76374983b80f6498cdf51f2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl", "9889fc67b4f181ff4d0edaee3e38d5b5c7a55dd312422ba1da4ce5fe02c0e072", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Section Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4012,7 +4016,7 @@ export function lessonSectionStarted(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Section Started", eventProperties, "8LfOc60dl", "634db996d0ca6b84cb8e6e97f8c0bf9796161d84b76374983b80f6498cdf51f2");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Section Started", eventProperties, "8LfOc60dl", "9889fc67b4f181ff4d0edaee3e38d5b5c7a55dd312422ba1da4ce5fe02c0e072");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Section Started", (Object as any).assign({}, eventProperties));
