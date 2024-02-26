@@ -96,6 +96,36 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     expect(screen.getByText("No downloads available")).toBeInTheDocument();
   });
+  it("Renders 'no downloads available' message if hasDownloadableResources is false", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByText("No downloads available")).toBeInTheDocument();
+  });
+  it("Does not render check boxes if hasDownloadableResources is false (copyright material)", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
+  });
 
   describe("download form", () => {
     it("Renders download form with correct elements", () => {

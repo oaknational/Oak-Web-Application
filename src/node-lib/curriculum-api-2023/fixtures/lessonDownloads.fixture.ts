@@ -19,6 +19,7 @@ const lessonDownloadsFixture2023 = (
     tierTitle: "Foundation",
     examBoardSlug: "edexcel",
     examBoardTitle: "Edexcel",
+    hasDownloadableResources: true,
     nextLessons: [
       {
         lessonSlug: "representing-transverse-waves",

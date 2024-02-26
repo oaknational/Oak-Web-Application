@@ -20,7 +20,6 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -148,13 +147,16 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
       <OakFlex
-        $flexDirection={"column"}
-        $width={"100%"}
-        $height={["all-spacing-19"]}
         $alignItems={"center"}
         $justifyContent={"center"}
+        $ba={"border-solid-l"}
+        $minWidth={"100%"}
+        $borderColor={"black"}
+        style={{
+          aspectRatio: "16/9",
+          boxSizing: "content-box",
+        }}
       >
-        <BoxBorders />
         <OakP $textAlign="center">Loading...</OakP>
       </OakFlex>
     );
@@ -173,9 +175,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   return (
     <OakFlex
       $flexDirection={"column"}
-      $width={"100%"}
-      $ba={["border-solid-l"]}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
       $borderColor={"black"}
+      style={{
+        boxSizing: "content-box",
+      }}
     >
       <MuxPlayer
         preload="metadata"
