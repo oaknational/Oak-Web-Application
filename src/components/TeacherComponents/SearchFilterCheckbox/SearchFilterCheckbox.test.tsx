@@ -1,6 +1,6 @@
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const props = {
@@ -10,7 +10,7 @@ const props = {
   onChange: jest.fn(),
   checked: false,
   name: "Key stage",
-  filterType: "Key stage filter" as FilterTypeValueType,
+  filterType: FilterType.KEY_STAGE_FILTER,
   searchRefined: jest.fn(),
 };
 
