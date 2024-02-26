@@ -1,3 +1,10 @@
+# [1.368.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.1...v1.368.0) (2024-02-26)
+
+
+### Features
+
+* **PUPIL-413:** bump oak-components@0.0.37 to apply Next13 image placeholders ([abe7ea9](https://github.com/oaknational/Oak-Web-Application/commit/abe7ea99f353092c58abb7e8660ee7c777fad87d))
+
 ## [1.367.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.0...v1.367.1) (2024-02-26)
 
 
