@@ -16,6 +16,7 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
   },
   {
     programmeSlug: "programme-slug-1",
@@ -28,6 +29,7 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
   },
 ];
 
@@ -90,6 +92,7 @@ describe("lessonDownloads()", () => {
       unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
     });
+
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
   test("throws a Zod error if the response is invalid", async () => {

@@ -33,6 +33,7 @@ describe("lessonDownloadsCanonical()", () => {
               keyStageTitle: "key-stage-title",
               lessonCohort: "2023-2024",
               downloads: [],
+              hasDownloadableResources: true,
             },
             {
               programmeSlug: "programme-slug-1",
@@ -46,6 +47,7 @@ describe("lessonDownloadsCanonical()", () => {
               keyStageTitle: "key-stage-title",
               lessonCohort: "2023-2024",
               downloads: [],
+              hasDownloadableResources: true,
             },
           ],
         }),
