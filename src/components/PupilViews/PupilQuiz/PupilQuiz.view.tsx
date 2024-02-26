@@ -174,8 +174,14 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   return (
     <OakCloudinaryConfigProvider
       value={{
-        cloud: { cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME },
-        url: { privateCdn: true },
+        cloud: {
+          cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+        },
+        url: {
+          secureDistribution:
+            process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION,
+          privateCdn: true,
+        },
       }}
     >
       <QuizEngineProvider questionsArray={questionsArray}>
