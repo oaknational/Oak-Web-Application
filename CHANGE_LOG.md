@@ -1,3 +1,19 @@
+# [1.366.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.365.1...v1.366.0) (2024-02-26)
+
+
+### Features
+
+* commit lint allows wip ([7abb5af](https://github.com/oaknational/Oak-Web-Application/commit/7abb5affb6ac408038bdfd1b37e55d13ee7c4a06))
+
+## [1.365.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.365.0...v1.365.1) (2024-02-23)
+
+# [1.365.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.364.0...v1.365.0) (2024-02-23)
+
+
+### Features
+
+* **PUPIL-348:** serve quiz images from new Cloudinary distribution ([db68c2a](https://github.com/oaknational/Oak-Web-Application/commit/db68c2a09178b94c825054652cdf4eb9b388a7f1))
+
 # [1.364.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.1...v1.364.0) (2024-02-21)
 
 

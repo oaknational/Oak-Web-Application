@@ -85,15 +85,19 @@ export const QuizRenderer = (props: QuizRenderProps) => {
         $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
         $minWidth={["100%", "all-spacing-21", "all-spacing-23"]}
         $ph={["inner-padding-m", "inner-padding-none", "inner-padding-xl"]}
+        $height={"100%"}
       >
         <OakFlex
           $flexDirection={"column"}
           $gap={["space-between-m", "space-between-l", "space-between-xl"]}
+          $height={"100%"}
         >
           <QuizQuestionStem
             questionStem={questionStem}
             index={currentQuestionIndex}
-            showIndex={true}
+            takeFullHeight={
+              currentQuestionData?.questionType === "explanatory-text"
+            }
           />
           {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
@@ -105,11 +109,11 @@ export const QuizRenderer = (props: QuizRenderProps) => {
   return (
     <OakFlex
       $flexDirection={"column"}
+      $alignItems={"center"}
       $color="text-subdued"
       $pa={["inner-padding-none", "inner-padding-xl"]}
-      $alignItems={"center"}
-      $gap={"all-spacing-5"}
       $width={"100%"}
+      $height={"100%"}
     >
       {innerRender}
     </OakFlex>

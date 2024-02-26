@@ -20,6 +20,8 @@ const shortAnswerQuestion = quizQuestions?.find(
 const getContext = (): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: shortAnswerQuestion,
   currentQuestionIndex: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   questionState: [
     {
       mode: "init",
