@@ -117,19 +117,18 @@ const isKeyStageTitle = (
 export const getPupilPathwayData = (
   curriculumData: PupilLessonOverviewPageData,
 ): PupilPathwayData => {
-  const keyStageTitle = isKeyStageTitle(curriculumData.keyStageTitle)
-    ? curriculumData.keyStageTitle
-    : null;
+  const k = curriculumData.keyStageTitle.replace("Stage", "stage");
 
-  if (!isKeyStageTitle(curriculumData.keyStageTitle)) {
-    console.error("Invalid key stage title", curriculumData.keyStageTitle);
+  const keyStageTitle = isKeyStageTitle(k) ? k : null;
+
+  if (!keyStageTitle) {
+    console.error("Invalid key stage title", k);
     const error = new Error("Invalid key stage title");
-
     errorReporter(
       "pupils::pupilAnalyticsProvider::getPupilPathwayData::invalidKeyStageTitle",
     )(error, {
       severity: "warning",
-      keyStageTitle: curriculumData.keyStageTitle,
+      keyStageTitle: k,
     });
   }
 

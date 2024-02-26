@@ -8,10 +8,10 @@ import {
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+
 const usePupilAnalyticsMock = {
-  track: {
-    lessonSectionCompleted: jest.fn(),
-  },
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
   identify: jest.fn(),
   posthogDistinctId: "123",
 };
