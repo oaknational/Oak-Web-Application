@@ -32,7 +32,6 @@ export const PupilAnalyticsProvider = (props: {
 
   for (const key in pupilTrack) {
     const wrapper = pupilTrack[key as PupilAnalytics];
-    //@ts-ignore
     pupilTrack[key as PupilAnalytics] = (args: ArgType) => {
       wrapper({ ...args });
     };
