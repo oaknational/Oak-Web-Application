@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<
             lessonSlug,
           });
 
-      if (!curriculumData) {
+      if (!curriculumData || !isLegacy) {
         return {
           notFound: true,
         };
