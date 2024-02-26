@@ -15,6 +15,7 @@ import {
   isLessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -37,9 +38,11 @@ type QuestionState = {
 export type QuizEngineContextType = {
   currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
+  currentQuestionDisplayIndex: number; // this excludes explanatory-text questions
   questionState: QuestionState[];
   score: number;
   numQuestions: number;
+  numInteractiveQuestions: number;
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
@@ -63,7 +66,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     useLessonEngineContext();
 
   const filteredQuestions = questionsArray.filter((question) =>
-    ["multiple-choice", "short-answer"].includes(question.questionType),
+    ["multiple-choice", "short-answer", "explanatory-text"].includes(
+      question.questionType,
+    ),
   );
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
@@ -79,6 +84,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const numQuestions = filteredQuestions.length;
+  const numInteractiveQuestions =
+    getInteractiveQuestions(filteredQuestions).length;
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
@@ -86,10 +93,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     (_questionState: QuestionState[]) => {
       updateQuizResult({
         grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
-        numQuestions,
+        numQuestions: numInteractiveQuestions,
       });
     },
-    [numQuestions, updateQuizResult],
+    [numInteractiveQuestions, updateQuizResult],
   );
 
   const updateQuestionMode = useCallback(
@@ -214,14 +221,19 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     });
   }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
 
+  const currentQuestionDisplayIndex =
+    currentQuestionIndex - (numQuestions - numInteractiveQuestions);
+
   return (
     <QuizEngineContext.Provider
       value={{
         currentQuestionData,
         currentQuestionIndex,
+        currentQuestionDisplayIndex,
         questionState,
         score,
         numQuestions,
+        numInteractiveQuestions,
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,

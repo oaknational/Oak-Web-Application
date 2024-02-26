@@ -17,6 +17,8 @@ const questionsArrayFixture = quizQuestions || [];
 const getContext = (): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: questionsArrayFixture[0],
   currentQuestionIndex: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   questionState: [
     {
       mode: "init",

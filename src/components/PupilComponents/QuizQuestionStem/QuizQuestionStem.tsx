@@ -17,10 +17,11 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 export const QuizQuestionStem = ({
   questionStem,
   index,
+  takeFullHeight,
 }: {
   questionStem: (StemImageObject | StemTextObject)[];
   index: number;
-  showIndex?: boolean;
+  takeFullHeight?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
 
@@ -29,8 +30,17 @@ export const QuizQuestionStem = ({
       $flexDirection={"column"}
       $gap={"space-between-s"}
       $color={"text-primary"}
+      $height={takeFullHeight ? "100%" : "auto"}
+      $justifyContent={["center", "flex-start"]}
     >
-      <OakFlex key="stem-header">
+      <OakFlex
+        key="stem-header"
+        $mt={
+          takeFullHeight
+            ? ["space-between-none", "space-between-xl", "space-between-xxl"]
+            : "space-between-none"
+        }
+      >
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
