@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "ozL4NuRTFPKUbh8yWitn",
+          "ac": "QCo7KSF9t8SM9y1kWV71",
           "br": "ZnZhxgYCK",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "ozL4NuRTFPKUbh8yWitn",
+          "ac": "QCo7KSF9t8SM9y1kWV71",
           "br": "ZnZhxgYCK",
           "en": env,
           "ty": type,
@@ -4020,6 +4020,73 @@ export function lessonSectionStarted(
   }
 }
 
+export interface CurriculumResourcesDownloadedProperties {
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  emailSupplied: boolean;
+  resourceType: ResourceTypeValueType[];
+  schoolOption: SchoolOptionValueType;
+  subject: string;
+  schoolUrn: number;
+  category: string;
+}
+/**
+ * Curriculum Resources Downloaded: Curriculum Resources Downloaded: A user downloaded one or more resources for a curriculum.
+ *
+ * When to trigger this event:
+ * 1. The download .zip button is clicked on a curriculum download page and submission passes validation checks
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/ZnZhxgYCK/events/L7-HOgqfOB/trigger/sRDz6cOhH
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * @param properties.emailSupplied: A user has signed up for updates on the downloads page
+ * @param properties.resourceType: The lesson resources a teacher selected for download.
+ * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
+ * @param properties.subject: no description
+ * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.category: no description
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/ZnZhxgYCK/events/L7-HOgqfOB}
+ */
+export function curriculumResourcesDownloaded(
+  properties: CurriculumResourcesDownloadedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "3wxlGffcE", name: "Email Supplied", value: properties.emailSupplied});
+  eventPropertiesArray.push({id: "H_kc7WuVNP", name: "Resource Type", value: properties.resourceType});
+  eventPropertiesArray.push({id: "CrzKvLBC3", name: "School Option", value: properties.schoolOption});
+  eventPropertiesArray.push({id: "n6BWjte-D", name: "Subject", value: properties.subject});
+  eventPropertiesArray.push({id: "G1iO4wRoL5", name: "School URN", value: properties.schoolUrn});
+  eventPropertiesArray.push({id: "Qroiexjd4", name: "Category", value: properties.category});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "fced3df78d1271774b66c84e20d2b0ed0a2d59c3cda720269cfa411b070fb07d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("L7-HOgqfOB", "Curriculum Resources Downloaded", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "fced3df78d1271774b66c84e20d2b0ed0a2d59c3cda720269cfa411b070fb07d");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Curriculum Resources Downloaded", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -4083,7 +4150,8 @@ export default {
   lessonSectionCompleted,
   lessonStarted,
   lessonSectionStarted,
+  curriculumResourcesDownloaded,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultOpened","searchResultsDisplayed","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultOpened","searchResultsDisplayed","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted","curriculumResourcesDownloaded"]
