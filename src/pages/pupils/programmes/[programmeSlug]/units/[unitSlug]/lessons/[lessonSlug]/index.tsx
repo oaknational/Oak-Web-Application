@@ -21,10 +21,12 @@ const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
   hasWorksheet,
 }) => (
-  <PupilExperienceView
-    curriculumData={curriculumData}
-    hasWorksheet={hasWorksheet}
-  />
+  <PupilAnalyticsProvider>
+    <PupilExperienceView
+      curriculumData={curriculumData}
+      hasWorksheet={hasWorksheet}
+    />
+  </PupilAnalyticsProvider>
 );
 
 export type PupilPageURLParams = {

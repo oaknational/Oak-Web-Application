@@ -15,13 +15,6 @@ jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   useLessonEngineContext: jest.fn(),
 }));
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {},
-  }),
-}));
-
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {

@@ -165,18 +165,20 @@ export const LessonEngineProvider = memo(
     const { track } = usePupilAnalytics();
 
     const completeSection = (section: LessonReviewSection) => {
-      track.lessonSectionCompleted({
-        lessonName: "lesson",
-        lessonSlug: "lesson",
-        analyticsUseCase: "Pupil",
-        pupilExperienceLessonSection: section,
-        unitName: undefined,
-        unitSlug: undefined,
-        subjectSlug: undefined,
-        subjectTitle: undefined,
-        keyStageSlug: undefined,
-        keyStageTitle: undefined,
-      });
+      if (track.lessonSectionCompleted) {
+        const s = track.lessonSectionCompleted({
+          lessonName: "lesson",
+          lessonSlug: "lesson",
+          analyticsUseCase: "Pupil",
+          pupilExperienceLessonSection: section,
+          unitName: undefined,
+          unitSlug: undefined,
+          subjectSlug: undefined,
+          subjectTitle: undefined,
+          keyStageSlug: undefined,
+          keyStageTitle: undefined,
+        });
+      }
       dispatch({ type: "completeSection", section });
     };
     const updateCurrentSection = (section: LessonSection) =>

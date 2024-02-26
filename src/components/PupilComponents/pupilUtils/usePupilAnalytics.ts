@@ -32,10 +32,10 @@ export const usePupilAnalytics = () => {
   }
 
   // wrap the track function
-  const pupilTrack = pick<TrackFns, PupilAnalytics>(
-    analytics.track,
-    trackingEvents,
-  );
+  const pupilTrack: Partial<Pick<TrackFns, PupilAnalytics>> = pick<
+    TrackFns,
+    PupilAnalytics
+  >(analytics.track, trackingEvents);
 
   return { ...analytics, track: pupilTrack };
 };

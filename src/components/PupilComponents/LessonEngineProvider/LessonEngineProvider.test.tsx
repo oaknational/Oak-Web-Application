@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { act, render, renderHook } from "@testing-library/react";
+import { act, renderHook, render } from "@testing-library/react";
 import { OakSpan } from "@oaknational/oak-components";
 
 import {
@@ -7,6 +7,20 @@ import {
   allLessonReviewSections,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
+
+const usePupilAnalyticsMock = {
+  track: {
+    lessonSectionCompleted: jest.fn().mockReturnValue("global"),
+  },
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock("@/components/PupilComponents/pupilUtils/usePupilAnalytics", () => {
+  return {
+    usePupilAnalytics: () => usePupilAnalyticsMock,
+  };
+});
 
 describe("LessonEngineProvider", () => {
   const ProviderWrapper = ({ children }: { children: ReactNode }) => {
@@ -18,6 +32,11 @@ describe("LessonEngineProvider", () => {
       </LessonEngineProvider>
     );
   };
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   it("renders children correctly", () => {
     const { getByText } = render(
       <LessonEngineProvider
@@ -170,5 +189,22 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults["starter-quiz"]?.isComplete).toEqual(
       false,
     );
+  });
+
+  it("sends tracking data when a lesson section is completed", () => {
+    const lessonSectionCompleted = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
+      .mockImplementation(lessonSectionCompleted);
+
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    act(() => {
+      result.current.completeSection("intro");
+    });
+    expect(lessonSectionCompleted).toHaveBeenCalled();
   });
 });
