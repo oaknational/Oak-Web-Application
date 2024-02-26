@@ -1,3 +1,16 @@
+# [1.367.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.366.0...v1.367.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* update tests and storybook to match new context provider intertace ([b109c59](https://github.com/oaknational/Oak-Web-Application/commit/b109c599e2e13f24948b5c9603868da4e1f14ce7))
+
+
+### Features
+
+* rendering explanatory text ([a77d7aa](https://github.com/oaknational/Oak-Web-Application/commit/a77d7aa50401d6bed52ffcb8b46820796307968b))
+* working on rendering explanatory text ([ca83328](https://github.com/oaknational/Oak-Web-Application/commit/ca83328c4c97d457a298f1169a984a06cb5327b8))
+
 # [1.366.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.365.1...v1.366.0) (2024-02-26)
 
 
