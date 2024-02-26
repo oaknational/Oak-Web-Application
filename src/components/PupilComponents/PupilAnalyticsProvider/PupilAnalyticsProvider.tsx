@@ -1,8 +1,30 @@
-import {
-  TrackFns,
-  analyticsContext,
-} from "@/context/Analytics/AnalyticsProvider";
+import { createContext } from "react";
+
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  AnalyticsUseCaseValueType,
+  KeyStageTitleValueType,
+} from "@/browser-lib/avo/Avo";
+
+/**
+ * This file is used to wrap the track function from the analytics context
+ * and only expose the functions that are relevant to the pupil experience.
+ * It ensures that we keep all of our tracking events in one neat little file.
+ *
+ * You can find the source code for the tracking events in src/browser-lib/avo/Avo.ts
+ *
+ */
+
+type NavigationEventProps =
+  | "unitName"
+  | "unitSlug"
+  | "lessonSlug"
+  | "lessonName"
+  | "keyStageSlug"
+  | "keyStageTitle"
+  | "subjectTitle"
+  | "subjectSlug";
 
 export const trackingEvents = [
   "lessonStarted",
@@ -11,37 +33,74 @@ export const trackingEvents = [
   "lessonSectionCompleted",
 ] as const;
 
-export type PupilAnalytics = (typeof trackingEvents)[number];
+export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
+
+type PupilAnalyticsTrack = {
+  [eventName in PupilAnalyticsEvents]: (
+    props: Omit<Parameters<TrackFns[eventName]>[0], NavigationEventProps>,
+  ) => void;
+};
+
+export const pupilAnalyticsContext = createContext<{
+  track: PupilAnalyticsTrack;
+} | null>(null);
+
+type BrowseData = {
+  unitName: string;
+  unitSlug: string;
+  lessonSlug: string;
+  lessonName: string;
+  keyStageSlug: string;
+  keyStageTitle: KeyStageTitleValueType;
+  subjectTitle: string;
+  subjectSlug: string;
+  analyticsUseCase?: AnalyticsUseCaseValueType;
+};
 
 export const PupilAnalyticsProvider = (props: {
   children: React.ReactNode;
 }) => {
   const { children } = props;
+  const { track } = useAnalytics();
 
-  const { track, ...rest } = useAnalytics();
+  const additionalArgs: BrowseData = {
+    unitName: "foo",
+    unitSlug: "bar",
+    lessonSlug: "baz",
+    lessonName: "qux",
+    keyStageSlug: "quux",
+    keyStageTitle: "Key stage 1",
+    subjectTitle: "quuz",
+    subjectSlug: "corge",
+    analyticsUseCase: "Pupil",
+  };
 
-  // wrap the track function
-  const pupilTrack: TrackFns = { ...track };
-
-  for (const event of trackingEvents) {
-    pupilTrack[event] = (args) =>
-      track[event]({
+  const pupilTrack: PupilAnalyticsTrack = {
+    lessonCompleted: (args) =>
+      track.lessonCompleted({
         ...args,
-        unitName: "foo",
-        unitSlug: "bar",
-        lessonSlug: "baz",
-        lessonName: "qux",
-        keyStageSlug: "quux",
-        subjectTitle: "quuz",
-        subjectSlug: "corge",
-        keyStageTitle: "Key stage 1",
-        pupilExperienceLessonSection: "exit-quiz",
-      });
-  }
+        ...additionalArgs,
+      }),
+    lessonSectionCompleted: (args) =>
+      track.lessonSectionCompleted({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonSectionStarted: (args) =>
+      track.lessonSectionStarted({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonStarted: (args) =>
+      track.lessonStarted({
+        ...additionalArgs,
+        ...args,
+      }),
+  };
 
   return (
-    <analyticsContext.Provider value={{ track, ...rest }}>
+    <pupilAnalyticsContext.Provider value={{ track: pupilTrack }}>
       {children}
-    </analyticsContext.Provider>
+    </pupilAnalyticsContext.Provider>
   );
 };

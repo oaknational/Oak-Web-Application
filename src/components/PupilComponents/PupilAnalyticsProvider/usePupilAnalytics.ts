@@ -8,27 +8,15 @@
  */
 
 import { useContext } from "react";
-import { pick } from "lodash";
 
-import { trackingEvents, PupilAnalytics } from "./PupilAnalyticsProvider";
-
-import {
-  TrackFns,
-  analyticsContext,
-} from "@/context/Analytics/AnalyticsProvider";
+import { pupilAnalyticsContext } from "./PupilAnalyticsProvider";
 
 export const usePupilAnalytics = () => {
-  const analytics = useContext(analyticsContext);
+  const analytics = useContext(pupilAnalyticsContext);
 
   if (!analytics) {
     throw new Error("usePupilAnalytics called outside of AnalyticsProvider");
   }
 
-  // wrap the track function
-  const pupilTrack: Partial<Pick<TrackFns, PupilAnalytics>> = pick<
-    TrackFns,
-    PupilAnalytics
-  >(analytics.track, trackingEvents);
-
-  return { ...analytics, track: pupilTrack };
+  return analytics;
 };

@@ -7,7 +7,7 @@ import {
   Reducer,
 } from "react";
 
-import { usePupilAnalytics } from "@/components/PupilComponents/pupilUtils/usePupilAnalytics";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 export const lessonSections = [
   "overview",
@@ -166,17 +166,9 @@ export const LessonEngineProvider = memo(
 
     const completeSection = (section: LessonReviewSection) => {
       if (track.lessonSectionCompleted) {
-        const s = track.lessonSectionCompleted({
-          lessonName: "lesson",
-          lessonSlug: "lesson",
+        track.lessonSectionCompleted({
           analyticsUseCase: "Pupil",
           pupilExperienceLessonSection: section,
-          unitName: undefined,
-          unitSlug: undefined,
-          subjectSlug: undefined,
-          subjectTitle: undefined,
-          keyStageSlug: undefined,
-          keyStageTitle: undefined,
         });
       }
       dispatch({ type: "completeSection", section });
