@@ -4,7 +4,7 @@ import {
 } from "./PupilExperience.view";
 
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
@@ -14,6 +14,15 @@ jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
   useLessonEngineContext: jest.fn(),
 }));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {},
+  }),
+}));
+
+const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
   describe("pickAvailableSectionsForLesson", () => {
@@ -67,7 +76,7 @@ describe("PupilExperienceView", () => {
             currentSection: "overview",
           }),
         );
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <PupilExperienceView
           curriculumData={lessonData}
           hasWorksheet={false}
@@ -94,7 +103,7 @@ describe("PupilExperienceView", () => {
             }),
           );
 
-        const { getByText } = renderWithTheme(
+        const { getByText } = render(
           <PupilExperienceView
             curriculumData={lessonData}
             hasWorksheet={false}
