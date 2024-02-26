@@ -39,14 +39,18 @@ const QuizInner = () => {
   const {
     currentQuestionData,
     currentQuestionIndex,
+    currentQuestionDisplayIndex,
     questionState,
     handleNextQuestion,
     numQuestions,
+    numInteractiveQuestions,
   } = quizEngineContext;
 
   const formId = "quiz-form";
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
+  const isExplanatoryText =
+    currentQuestionData?.questionType === "explanatory-text";
 
   const grade = questionState[currentQuestionIndex]?.grade;
   const isPartiallyCorrect =
@@ -58,6 +62,7 @@ const QuizInner = () => {
       Well done!
     </OakSpan>
   );
+
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
     if (answers) {
       return pickFeedBackComponent(answers);
@@ -78,6 +83,15 @@ const QuizInner = () => {
     }
   }
 
+  const navigationButtonCopy = (() => {
+    if (currentQuestionIndex + 1 !== numQuestions) {
+      return "Next question";
+    }
+
+    // This is the last question in the quiz, show the appropriate button label
+    return currentSection === "exit-quiz" ? "Lesson review" : "Continue lesson";
+  })();
+
   const bottomNavSlot = (
     <OakLessonBottomNav
       feedback={
@@ -89,7 +103,7 @@ const QuizInner = () => {
           : incorrectFeedback(currentQuestionData?.answers)
       }
     >
-      {!isFeedbackMode && (
+      {!isFeedbackMode && !isExplanatoryText && (
         <OakPrimaryButton
           form={formId}
           disabled={questionState[currentQuestionIndex]?.mode === "init"}
@@ -101,23 +115,14 @@ const QuizInner = () => {
           Check
         </OakPrimaryButton>
       )}
-      {isFeedbackMode && (
+      {(isFeedbackMode || isExplanatoryText) && (
         <OakPrimaryButton
           width={["100%", "max-content"]}
           onClick={handleNextQuestion}
           isTrailingIcon
           iconName="arrow-right"
         >
-          {(() => {
-            if (currentQuestionIndex + 1 !== numQuestions) {
-              return "Next question";
-            }
-
-            // This is the last question in the quiz, show the appropriate button label
-            return currentSection === "exit-quiz"
-              ? "Lesson review"
-              : "Continue lesson";
-          })()}
+          {navigationButtonCopy}
         </OakPrimaryButton>
       )}
     </OakLessonBottomNav>
@@ -134,17 +139,22 @@ const QuizInner = () => {
         />
       }
       counterSlot={
-        <OakQuizCounter
-          counter={currentQuestionIndex + 1}
-          total={numQuestions}
-        />
+        !isExplanatoryText && (
+          <OakQuizCounter
+            counter={currentQuestionDisplayIndex + 1}
+            total={numInteractiveQuestions}
+          />
+        )
       }
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       lessonSectionName={currentSection}
       mobileSummary={
-        <OakSpan $color={"text-primary"} $font={"body-3"}>
-          Question {currentQuestionIndex + 1} of {numQuestions}
-        </OakSpan>
+        !isExplanatoryText && (
+          <OakSpan $color={"text-primary"} $font={"body-3"}>
+            Question {currentQuestionDisplayIndex + 1} of{" "}
+            {numInteractiveQuestions}
+          </OakSpan>
+        )
       }
     />
   );
