@@ -211,6 +211,9 @@ async function main() {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
       oakConfig.cloudinary?.cloudName,
+    NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION:
+      process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION ||
+      oakConfig.cloudinary?.secureDistribution,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
