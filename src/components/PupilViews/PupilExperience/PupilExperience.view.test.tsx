@@ -9,6 +9,10 @@ import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngi
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
@@ -61,6 +65,7 @@ describe("PupilExperienceView", () => {
 
     it("should render", () => {
       const lessonData = pupilLessonOverviewFixture();
+      const pupilPathwayData = getPupilPathwayData(lessonData);
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -70,10 +75,12 @@ describe("PupilExperienceView", () => {
           }),
         );
       const { getByText } = render(
-        <PupilExperienceView
-          curriculumData={lessonData}
-          hasWorksheet={false}
-        />,
+        <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+          <PupilExperienceView
+            curriculumData={lessonData}
+            hasWorksheet={false}
+          />
+        </PupilAnalyticsProvider>,
       );
 
       expect(getByText(lessonData.lessonTitle)).toBeInTheDocument();
@@ -96,17 +103,19 @@ describe("PupilExperienceView", () => {
             }),
           );
 
+        const pupilPathwayData = getPupilPathwayData(lessonData);
+
         const { getByText } = render(
-          <PupilExperienceView
-            curriculumData={lessonData}
-            hasWorksheet={false}
-          />,
+          <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+            <PupilExperienceView
+              curriculumData={lessonData}
+              hasWorksheet={false}
+            />
+          </PupilAnalyticsProvider>,
         );
 
         expect(getByText(name as RegExp)).toBeInTheDocument();
       });
     });
   });
-
-  it("should render the overview section", () => {});
 });
