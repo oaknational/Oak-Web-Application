@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "5aj1nNOmktDJ4x1Ft67S",
+          "ac": "rm2mChWaPYBjRCa9X76n",
           "br": "ZnZhxgYCK",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "5aj1nNOmktDJ4x1Ft67S",
+          "ac": "rm2mChWaPYBjRCa9X76n",
           "br": "ZnZhxgYCK",
           "en": env,
           "ty": type,
@@ -3806,6 +3806,13 @@ export interface LessonSectionCompletedProperties {
   subjectSlug: string | null | undefined;
   keyStageTitle: KeyStageTitleValueType | null | undefined;
   keyStageSlug: string | null | undefined;
+  pupilQuizGrade: number | null | undefined;
+  pupilQuizNumQuestions: number | null | undefined;
+  pupilWorksheetAvailable: boolean | null | undefined;
+  pupilWorksheetDownloaded: boolean | null | undefined;
+  pupilVideoPlayed: boolean | null | undefined;
+  pupilVideoDurationSeconds: number | null | undefined;
+  pupilVideoTimeEllapsedSeconds: number | null | undefined;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonSection: PupilExperienceLessonSectionValueType;
 }
@@ -3821,6 +3828,13 @@ export interface LessonSectionCompletedProperties {
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
+ * @param properties.pupilQuizGrade: no description
+ * @param properties.pupilQuizNumQuestions: no description
+ * @param properties.pupilWorksheetAvailable: no description
+ * @param properties.pupilWorksheetDownloaded: no description
+ * @param properties.pupilVideoPlayed: True if the play button has been pressed at all during the session
+ * @param properties.pupilVideoDurationSeconds: no description
+ * @param properties.pupilVideoTimeEllapsedSeconds: no description
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.pupilExperienceLessonSection: no description
  *
@@ -3850,6 +3864,27 @@ export function lessonSectionCompleted(
   properties.keyStageSlug !== undefined && properties.keyStageSlug !== null ?
     eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug}) :
     eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: null});
+  properties.pupilQuizGrade !== undefined && properties.pupilQuizGrade !== null ?
+    eventPropertiesArray.push({id: "12xmn1uQF", name: "Pupil Quiz Grade", value: properties.pupilQuizGrade}) :
+    eventPropertiesArray.push({id: "12xmn1uQF", name: "Pupil Quiz Grade", value: null});
+  properties.pupilQuizNumQuestions !== undefined && properties.pupilQuizNumQuestions !== null ?
+    eventPropertiesArray.push({id: "y28SwSKr9", name: "Pupil Quiz Num Questions", value: properties.pupilQuizNumQuestions}) :
+    eventPropertiesArray.push({id: "y28SwSKr9", name: "Pupil Quiz Num Questions", value: null});
+  properties.pupilWorksheetAvailable !== undefined && properties.pupilWorksheetAvailable !== null ?
+    eventPropertiesArray.push({id: "rNM1I8vY_", name: "Pupil Worksheet Available", value: properties.pupilWorksheetAvailable}) :
+    eventPropertiesArray.push({id: "rNM1I8vY_", name: "Pupil Worksheet Available", value: null});
+  properties.pupilWorksheetDownloaded !== undefined && properties.pupilWorksheetDownloaded !== null ?
+    eventPropertiesArray.push({id: "AbY2tLMm3", name: "Pupil Worksheet Downloaded", value: properties.pupilWorksheetDownloaded}) :
+    eventPropertiesArray.push({id: "AbY2tLMm3", name: "Pupil Worksheet Downloaded", value: null});
+  properties.pupilVideoPlayed !== undefined && properties.pupilVideoPlayed !== null ?
+    eventPropertiesArray.push({id: "hmpQPI6sI", name: "Pupil Video Played", value: properties.pupilVideoPlayed}) :
+    eventPropertiesArray.push({id: "hmpQPI6sI", name: "Pupil Video Played", value: null});
+  properties.pupilVideoDurationSeconds !== undefined && properties.pupilVideoDurationSeconds !== null ?
+    eventPropertiesArray.push({id: "4Ei7ce0ZP", name: "Pupil Video Duration (Seconds)", value: properties.pupilVideoDurationSeconds}) :
+    eventPropertiesArray.push({id: "4Ei7ce0ZP", name: "Pupil Video Duration (Seconds)", value: null});
+  properties.pupilVideoTimeEllapsedSeconds !== undefined && properties.pupilVideoTimeEllapsedSeconds !== null ?
+    eventPropertiesArray.push({id: "cOQ8T6zw3", name: "Pupil Video Time Ellapsed (Seconds)", value: properties.pupilVideoTimeEllapsedSeconds}) :
+    eventPropertiesArray.push({id: "cOQ8T6zw3", name: "Pupil Video Time Ellapsed (Seconds)", value: null});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Section", value: properties.pupilExperienceLessonSection});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
@@ -3861,7 +3896,7 @@ export function lessonSectionCompleted(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz", "3739003102f08d3ecfd0e689db95df52d09ee9d5093ace9a844973123fe18ce4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz", "974ec4bfd027437ae8a34c3672c05abbcaecf32ed25d57d1f83fe7f6daf547f3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Section Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3872,7 +3907,7 @@ export function lessonSectionCompleted(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Section Completed", eventProperties, "sBllxa-nuz", "3739003102f08d3ecfd0e689db95df52d09ee9d5093ace9a844973123fe18ce4");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Section Completed", eventProperties, "sBllxa-nuz", "974ec4bfd027437ae8a34c3672c05abbcaecf32ed25d57d1f83fe7f6daf547f3");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Section Completed", (Object as any).assign({}, eventProperties));
