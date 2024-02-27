@@ -78,7 +78,7 @@ export function LessonShare(props: LessonShareProps) {
 
   // Temporary - integrate with the new pupil experience for select units and lessons only
   const shareToNewPupilExperience =
-    unitSlug && pupilUnitsLive.includes(unitSlug);
+    unitSlug !== null && pupilUnitsLive.includes(unitSlug);
 
   const {
     form,
