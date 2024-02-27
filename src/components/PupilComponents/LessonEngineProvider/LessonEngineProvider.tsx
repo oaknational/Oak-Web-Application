@@ -187,6 +187,13 @@ export const LessonEngineProvider = memo(
       if (track.lessonSectionCompleted) {
         track.lessonSectionCompleted({
           pupilExperienceLessonSection: section,
+          pupilQuizGrade: state.sections[section]?.grade,
+          pupilQuizNumQuestions: state.sections[section]?.numQuestions,
+          pupilVideoPlayed: undefined,
+          pupilVideoDurationSeconds: undefined,
+          pupilVideoTimeEllapsedSeconds: undefined,
+          pupilWorksheetAvailable: undefined,
+          pupilWorksheetDownloaded: undefined,
         });
       }
       if (
