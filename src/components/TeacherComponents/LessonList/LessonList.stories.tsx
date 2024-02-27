@@ -20,6 +20,7 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
 }));
 
 const currentPageItems: LessonListProps = {
+  isNew: false,
   lessonCount: lessons.length,
   currentPageItems: lessonsWithUnitData,
   keyStageSlug: "4",
