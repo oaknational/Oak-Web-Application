@@ -52,29 +52,30 @@ export const getSharingMetadata = ({
 
   let link = usePupils ? pupilsPath(lessonSlug) : classroomPath(lessonSlug);
 
-  if (link.endsWith("#")) {
-    link = link.slice(0, -1);
-  }
-  link = `${link}?utm_campaign=sharing-button${activityQueryString}`;
+  if (!usePupils) {
+    if (link.endsWith("#")) {
+      link = link.slice(0, -1);
+    }
+    link = `${link}?utm_campaign=sharing-button${activityQueryString}`;
 
-  if (linkConfig.network) {
-    link = link + `&utm_source=${linkConfig.network}`;
-  }
+    if (linkConfig.network) {
+      link = link + `&utm_source=${linkConfig.network}`;
+    }
 
-  if (linkConfig.medium) {
-    link = link + `&utm_medium=${linkConfig.medium}`;
-  }
+    if (linkConfig.medium) {
+      link = link + `&utm_medium=${linkConfig.medium}`;
+    }
 
-  if (schoolUrn) {
-    link = link + `&schoolUrn=${schoolUrn}`;
+    if (schoolUrn) {
+      link = link + `&schoolUrn=${schoolUrn}`;
+    }
   }
-
   const urlEncodedLink = encodeURIComponent(link);
   const pageTitle =
     typeof window === "undefined" ? "Oak National Academy" : document.title;
-  const urlEncodedPageTitle = encodeURIComponent(pageTitle);
   const shareStr = `${pageTitle} - ${link}`;
   const urlEncodedShareStr = encodeURIComponent(shareStr);
+  const urlEncodedPageTitle = encodeURIComponent(pageTitle);
 
   return {
     link,
