@@ -95,6 +95,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     });
   };
 
+  const isNew = hasNewContent ?? false;
+
   return (
     <AppLayout
       seoProps={{
@@ -144,7 +146,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={hasNewContent ?? false}
+        isNew={isNew}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
@@ -162,6 +164,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               headingTag={"h2"}
               unitTitle={unitTitle}
               onClick={trackLessonSelected}
+              isNew={isNew}
             />
           </OakGridArea>
         </OakGrid>
