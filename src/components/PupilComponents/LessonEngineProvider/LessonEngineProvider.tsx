@@ -68,7 +68,7 @@ type LessonEngineAction =
     }
   | {
       type: "updateSectionResult";
-      result: QuizResult | VideoResult;
+      result: QuizResult | VideoResult | IntroResult;
     }
   | {
       type: "proceedToNextSection";
