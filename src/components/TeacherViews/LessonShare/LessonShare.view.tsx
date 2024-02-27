@@ -62,6 +62,9 @@ const classroomActivityMap: Partial<
   video: "video",
 };
 
+// Temporary - list of lessons live on pupil experience for sharing
+const pupilUnitsLive = ["shakespearean-comedy-the-tempest-88f0"];
+
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
@@ -75,7 +78,7 @@ export function LessonShare(props: LessonShareProps) {
 
   // Temporary - integrate with the new pupil experience for select units and lessons only
   const shareToNewPupilExperience =
-    unitSlug === "shakespearean-comedy-the-tempest-88f0"; // TODO: check actual units
+    unitSlug && pupilUnitsLive.includes(unitSlug);
 
   const {
     form,
