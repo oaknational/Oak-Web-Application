@@ -190,6 +190,7 @@ export function LessonShare(props: LessonShareProps) {
                 selectedActivities: selectedResources,
                 schoolUrn: schoolUrn,
                 linkConfig: shareLinkConfig.copy,
+                usePupils: shareToNewPupilExperience,
               })}
             />
           }
@@ -208,6 +209,7 @@ export function LessonShare(props: LessonShareProps) {
                     onFormSubmit(data, shareMedium);
                   })() // https://github.com/orgs/react-hook-form/discussions/8622
               }
+              usePupils={shareToNewPupilExperience}
             />
           }
         />
