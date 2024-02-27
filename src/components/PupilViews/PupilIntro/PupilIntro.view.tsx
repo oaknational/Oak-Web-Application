@@ -57,7 +57,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     startDownload();
   };
 
-  if (sectionResults.intro?.worksheetAvailable && hasWorksheet) {
+  if (!sectionResults.intro?.worksheetAvailable && hasWorksheet) {
     sectionResults.intro?.worksheetDownloaded ||
       updateSectionResult({
         worksheetDownloaded: sectionResults.intro?.worksheetDownloaded || false,

@@ -12,7 +12,7 @@ const pupilLessonOverviewFixture = (
     unitSlug: "geometry",
     unitTitle: "Geometry",
     keyStageSlug: "ks3",
-    keyStageTitle: "KS3",
+    keyStageTitle: "Key Stage 3",
     programmeSlug: "programme-slug",
     starterQuiz: quizQuestions,
     lessonSlug: "lesson-slug",
