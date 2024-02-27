@@ -3,16 +3,20 @@ import { waitFor } from "@testing-library/dom";
 
 import CurriculumDownloads from "./CurriculumDownloads";
 
+import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
+  () => ({
+    __esModule: true,
+    default: jest.fn(),
+  }),
+);
 
 const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
-  beforeEach(() => {
-    jest.resetModules();
-    jest.clearAllMocks();
-  });
-
   const renderComponent = () => {
     const defaultProps = {
       category: "test-category",
@@ -64,14 +68,16 @@ describe("Component - Curriculum Header", () => {
     await userEvent.click(getByTestId("loadingButton"));
     await waitFor(
       () => {
+        expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
+          "https://test-url.com",
+        );
         expect(getByTestId("downloadSuccess")).toBeInTheDocument();
       },
-      { interval: 1000, timeout: 10000 },
+      { interval: 100, timeout: 1000 },
     );
   });
 
   afterEach(() => {
     jest.clearAllMocks();
-    jest.useRealTimers();
   });
 });

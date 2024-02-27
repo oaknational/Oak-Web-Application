@@ -1,4 +1,11 @@
-import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
+import {
+  ChangeEvent,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
+import { useRouter } from "next/router";
 import { Controller } from "react-hook-form";
 import styled from "styled-components";
 import {
@@ -66,6 +73,7 @@ function CurriculumDownloads(
   props: CurriculumDownloadsProps,
   ref: React.ForwardedRef<CurriculumDownloadsRef>,
 ) {
+  const router = useRouter();
   const { category, downloads } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -117,10 +125,12 @@ function CurriculumDownloads(
     useState<boolean>(false);
   const [hasSuccessfullyDownloaded, setHasSuccessfullyDownloaded] =
     useState<boolean>(false);
-
-  const { onHubspotSubmit } = useHubspotSubmit();
+  const [hasSetPreselectedDownload, setHasSetPreselectedDownload] =
+    useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [selectedUrl, setSelectedUrl] = useState<string>("");
+
+  const { onHubspotSubmit } = useHubspotSubmit();
 
   const clearSelection = () => {
     setSelectedUrl("");
@@ -132,7 +142,7 @@ function CurriculumDownloads(
   }));
 
   const handleDownload = (url: string) => {
-    if (!url) return false; // Early return if no URL
+    if (!url) return false;
     createAndClickHiddenDownloadLink(url);
     return true;
   };
@@ -209,6 +219,19 @@ function CurriculumDownloads(
     );
     return errorMessage;
   };
+
+  useEffect(() => {
+    const subject = router.query.subject as string;
+    if (subject) {
+      const selectedDownload = downloads.find(
+        (download) => download.label.toLowerCase() === subject,
+      );
+      if (selectedDownload && !hasSetPreselectedDownload) {
+        setHasSetPreselectedDownload(true);
+        setSelectedUrl(selectedDownload.url);
+      }
+    }
+  }, [router.query.subject, downloads, hasSetPreselectedDownload]);
 
   return (
     <Box

@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
@@ -19,6 +20,7 @@ import CurriculumDownloads, {
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
+  const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<string>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
@@ -34,24 +36,16 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     return documents;
   }, [data.documents]);
 
-  useEffect(() => {
-    const hashTab = window.location.hash.slice(1);
-    if (hashTab && categoryDocuments[hashTab]) {
-      setActiveTab(hashTab);
-    }
-  }, [categoryDocuments]);
-
   const updateTab = (category: string) => {
     setActiveTab(category);
-    const newUrl = `#${category}`;
+    const newUrl = `${window.location.pathname}#${category}`;
     window.history.replaceState(
       { ...window.history.state, as: newUrl, url: newUrl },
       "",
       newUrl,
     );
-    if (downloadsRef.current) {
-      downloadsRef.current.clearSelection();
-    }
+    delete router.query.keystage;
+    downloadsRef.current?.clearSelection();
   };
 
   const downloads: CurriculumDownload[] = [];
@@ -78,6 +72,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       },
     });
   }
+
+  useEffect(() => {
+    const keystage = router.query.keystage as string;
+    const hashTab = keystage?.toUpperCase() || window.location.hash.slice(1);
+    if (hashTab && categoryDocuments[hashTab]) {
+      setActiveTab(hashTab);
+    }
+  }, [categoryDocuments, router.query.keystage]);
 
   return (
     <AppLayout
