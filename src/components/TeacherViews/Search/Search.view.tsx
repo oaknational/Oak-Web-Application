@@ -1,17 +1,21 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import MobileFilters from "@/components/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SharedComponents/SearchForm";
@@ -160,14 +164,17 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   return (
-    <Flex $background="white" $flexDirection={"column"}>
+    <OakFlex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
-        <Grid $mt={48} $cg={16}>
-          <GridArea $colSpan={[12, 12, 7]} $mt={24}>
-            <Flex $flexDirection={["column"]} $mb={[48, 72]}>
-              <Heading tag="h1" $font={"heading-4"} $mb={32}>
+        <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
+          <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
+            <OakFlex
+              $flexDirection={["column"]}
+              $mb={["space-between-l", "space-between-xxl"]}
+            >
+              <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
                 Search
-              </Heading>
+              </OakHeading>
               <SearchForm
                 searchContext="search"
                 searchTerm={query.term}
@@ -177,10 +184,10 @@ const Search: FC<SearchProps> = (props) => {
                 }}
                 analyticsSearchSource={"search page search box"}
               />
-            </Flex>
+            </OakFlex>
             <SearchActiveFilters searchFilters={searchFilters} />
-          </GridArea>
-          <GridArea $colSpan={[12, 9]} $pr={16}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 9]} $pr={"inner-padding-m"}>
             <div role="status">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
@@ -190,7 +197,7 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
             </div>
-            <Flex $mb={32}>
+            <OakFlex $mb="space-between-m2">
               <MobileFilters
                 $mt={0}
                 label="Filters"
@@ -205,7 +212,7 @@ const Search: FC<SearchProps> = (props) => {
                   searchRefined={searchRefined}
                 />
               </MobileFilters>
-            </Flex>
+            </OakFlex>
             {shouldShowResults && (
               <SearchResults
                 hits={results}
@@ -224,15 +231,15 @@ const Search: FC<SearchProps> = (props) => {
                 }
               />
             )}
-          </GridArea>
-          <GridArea $colSpan={[12, 3]} $pr={16}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
               <SearchFilters {...searchFilters} searchRefined={searchRefined} />
             </Flex>
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakP } from "@oaknational/oak-components";
 
-import P from "@/components/SharedComponents/Typography/P";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
 import Icon from "@/components/SharedComponents/Icon";
@@ -25,10 +25,10 @@ const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
 const PreAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
-  <P $font="body-3" {...props}>
+  <OakP $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
-    <OakLink
+    <OwaLink
       page={"legal"}
       legalSlug="terms-and-conditions"
       $isInline
@@ -41,9 +41,9 @@ const PreAlbCopyright = (
     >
       terms &amp; conditions{" "}
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>{" "}
+    </OwaLink>{" "}
     (Collection 1), except where otherwise stated.
-  </P>
+  </OakP>
 );
 
 const StyledLink = styled.a`
@@ -55,7 +55,7 @@ const StyledLink = styled.a`
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
-  <P $font="body-3" {...props}>
+  <OakP $font="body-3" {...props}>
     This content is © Oak National Academy Limited (2023), licensed on{" "}
     <StyledLink
       aria-label={`Open Government License version 3.0${
@@ -69,7 +69,7 @@ const PostAlbCopyright = (
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </StyledLink>{" "}
     except where otherwise stated. See{" "}
-    <OakLink
+    <OwaLink
       page={"legal"}
       legalSlug="terms-and-conditions"
       $isInline
@@ -82,9 +82,9 @@ const PostAlbCopyright = (
     >
       Oak's terms & conditions
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>{" "}
+    </OwaLink>{" "}
     (Collection 2).
-  </P>
+  </OakP>
 );
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({

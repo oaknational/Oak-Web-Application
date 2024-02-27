@@ -6,6 +6,7 @@ import {
 } from "next";
 import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -18,10 +19,9 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
-import Flex from "@/components/SharedComponents/Flex";
 import WebinarVideo from "@/components/GenericPagesComponents/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
@@ -70,9 +70,9 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           "Webinars",
         )}
       >
-        <Flex $position={"relative"} $mt={56}>
+        <OakFlex $position={"relative"} $mt="space-between-xl">
           <WebinarVideo webinar={webinar} />
-        </Flex>
+        </OakFlex>
         <Box $mt={[48]}>
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </Box>

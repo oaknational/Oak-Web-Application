@@ -1,13 +1,19 @@
 import { FC } from "react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
@@ -19,15 +25,15 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     tierTitle,
     examBoardTitle,
     lessonTitle,
-    isLegacyLesson,
+    isNew,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
   } = props;
 
   return (
     <Box $display={["none", "grid"]}>
-      <Grid>
-        <GridArea $justifyContent={"center"} $colSpan={[12, 3]}>
+      <OakGrid>
+        <OakGridArea $justifyContent={"center"} $colSpan={[12, 3]}>
           <Flex $height={[172, 172, 200]} $width={[172, 172, 200]}>
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
@@ -37,43 +43,43 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               $maxWidth={140}
               $ma={"auto"}
               color={subjectIconBackgroundColor}
-              isLegacyLesson={isLegacyLesson}
+              isNew={isNew}
             />
           </Flex>
-        </GridArea>
-        <GridArea
+        </OakGridArea>
+        <OakGridArea
           $justifyContent={"center"}
           $colSpan={[12, 9]}
           $alignItems={"flex-start"}
         >
-          <Flex $flexDirection={"column"} $gap={8}>
+          <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
             {(examBoardTitle || yearTitle || tierTitle) && (
-              <Span $color={"grey60"} $font={"heading-light-7"}>
+              <OakSpan $color={"grey60"} $font={"heading-light-7"}>
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}
                   yearTitle={yearTitle}
                   tierTitle={tierTitle}
                 />
-              </Span>
+              </OakSpan>
             )}
 
-            <Flex $flexDirection={"column"} $gap={24}>
-              <Heading tag={"h1"} $font={"heading-3"}>
+            <OakFlex $flexDirection={"column"} $gap="all-spacing-6">
+              <OakHeading tag={"h1"} $font={"heading-3"}>
                 {lessonTitle}
-              </Heading>
+              </OakHeading>
               {pupilLessonOutcome && (
                 <Box $maxWidth={740}>
-                  <P $font={"body-2"}>{pupilLessonOutcome}</P>
+                  <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
                 </Box>
               )}
-              <Flex $gap={24}>
+              <OakFlex $gap="all-spacing-6">
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 <LessonOverviewHeaderShareAllButton {...props} />
-              </Flex>
-            </Flex>
-          </Flex>
-        </GridArea>
-      </Grid>
+              </OakFlex>
+            </OakFlex>
+          </OakFlex>
+        </OakGridArea>
+      </OakGrid>
     </Box>
   );
 };

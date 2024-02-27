@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import background from "@/styles/utils/background";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const Root = styled(Flex)`
   position: relative;

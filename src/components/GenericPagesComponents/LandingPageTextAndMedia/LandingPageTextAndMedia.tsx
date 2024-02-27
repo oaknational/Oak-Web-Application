@@ -1,5 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
+import { OakLI, OakFlex } from "@oaknational/oak-components";
 
 import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
@@ -8,15 +9,14 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { LI } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <LandingPageOlOutline $color={"lemon50"} $mh={0}>
+      <LandingPageOlOutline $color={"lemon50"} $mh={"space-between-none"}>
         {children}
       </LandingPageOlOutline>
     ),
@@ -27,9 +27,13 @@ const landingPortableTextComponent: PortableTextComponents = {
       const listItemText = props?.value?.children[0]?.text;
 
       return (
-        <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
-          <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
-        </Flex>
+        <OakFlex
+          $position={"relative"}
+          $mb="space-between-l"
+          $alignItems={"center"}
+        >
+          <OakLI $font={["heading-7", "heading-6"]}>{listItemText}</OakLI>
+        </OakFlex>
       );
     },
   },
@@ -65,9 +69,9 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           />
         )}
         {props.mediaType == "video" && (
-          <Flex $alignItems={"center"} $ph={20}>
+          <OakFlex $alignItems={"center"} $ph="inner-padding-l">
             <CMSVideo video={props.video} location="marketing" />
-          </Flex>
+          </OakFlex>
         )}
       </Flex>
       <Flex

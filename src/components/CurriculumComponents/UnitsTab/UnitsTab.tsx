@@ -1,22 +1,28 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
+import {
+  OakGrid,
+  OakGridArea,
+  OakP,
+  OakHeading,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/SharedComponents/Icon";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
-import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
-import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal, {
+  Lesson,
+} from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
-import { P, Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -25,6 +31,7 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
+  examboardSlug: string | null;
 };
 
 export type Unit = CurriculumUnitsTabData["units"][number];
@@ -58,166 +65,194 @@ interface YearSelection {
   };
 }
 
+export function createProgrammeSlug(
+  unitData?: Unit | null,
+  examboardSlug?: string | null,
+) {
+  if (unitData?.keystage_slug === "ks4") {
+    return `${unitData.subject_slug}-${unitData.phase_slug}-${
+      unitData.keystage_slug
+    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+      examboardSlug ? "-" + examboardSlug : ""
+    }`;
+  }
+  return unitData
+    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+    : "";
+}
+// Initialize data structure for displaying units by year
+let yearData: {
+  [key: string]: {
+    units: Unit[];
+    childSubjects: Subject[];
+    domains: Domain[];
+    tiers: Tier[];
+  };
+} = {};
+let threadOptions: Thread[] = [];
+let yearOptions: string[] = [];
+const unitSlugs = new Set<string>();
+const duplicateUnitSlugs = new Set<string>();
+
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
+const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   // Initialize constants
-
-  const threadOptions: Thread[] = [];
-  const yearOptions: string[] = [];
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
+  const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
+  const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
-  const unitSlugs = new Set<string>();
-  const duplicateUnitSlugs = new Set<string>();
 
-  // Initialize data structure for displaying units by year
+  const [yearSelection, setYearSelection] = useState<YearSelection>({});
+  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
-  const yearData: {
-    [key: string]: {
-      units: Unit[];
-      childSubjects: Subject[];
-      domains: Domain[];
-      tiers: Tier[];
-    };
-  } = {};
+  // Put data formatting code in useEffect to avoid unnecessary re-renders
+  useEffect(() => {
+    yearData = {};
+    threadOptions = [];
+    yearOptions = [];
+    unitSlugs.clear();
+    duplicateUnitSlugs.clear();
 
-  data.units.forEach((unit) => {
-    // Populate years object
+    data.units.forEach((unit) => {
+      // Populate years object
 
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
-    }
+      if (yearOptions.every((yo) => yo !== unit.year)) {
+        yearOptions.push(unit.year);
+      }
 
-    // Populate threads object
+      // Populate threads object
 
-    unit.threads.forEach((thread) => {
-      if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
-        threadOptions.push(thread);
+      unit.threads.forEach((thread) => {
+        if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
+          threadOptions.push(thread);
+        }
+      });
+
+      // Check if the yearData object has an entry for the unit's year
+      // If not, initialize it with default values
+
+      let currentYearData = yearData[unit.year];
+      if (!currentYearData) {
+        currentYearData = {
+          units: [],
+          childSubjects: [],
+          domains: [],
+          tiers: [],
+        };
+        yearData[unit.year] = currentYearData;
+      }
+
+      // Add the current unit
+
+      currentYearData.units.push(unit);
+
+      // Populate list of child subject filter values
+
+      if (
+        unit.subject_parent &&
+        unit.subject_parent_slug &&
+        currentYearData.childSubjects.every(
+          (c) => c.subject_slug !== unit.subject_slug,
+        )
+      ) {
+        currentYearData.childSubjects.push({
+          subject: unit.subject,
+          subject_slug: unit.subject_slug,
+        });
+      }
+
+      // Populate list of domain filter values
+
+      if (
+        unit.domain &&
+        unit.domain_id &&
+        currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
+      ) {
+        currentYearData.domains.push({
+          domain: unit.domain,
+          domain_id: unit.domain_id,
+        });
+      }
+
+      // Populate list of tier filter values
+
+      if (
+        unit.tier &&
+        unit.tier_slug &&
+        currentYearData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
+      ) {
+        currentYearData.tiers.push({
+          tier: unit.tier,
+          tier_slug: unit.tier_slug,
+        });
+      }
+
+      // Check for duplicate unit slugs
+
+      if (unitSlugs.has(unit.slug)) {
+        duplicateUnitSlugs.add(unit.slug);
+      } else {
+        unitSlugs.add(unit.slug);
       }
     });
 
-    // Check if the yearData object has an entry for the unit's year
-    // If not, initialize it with default values
+    // Sort year data
 
-    let currentYearData = yearData[unit.year];
-    if (!currentYearData) {
-      currentYearData = {
-        units: [],
-        childSubjects: [],
-        domains: [],
-        tiers: [],
-      };
-      yearData[unit.year] = currentYearData;
-    }
+    yearOptions.sort((a, b) => Number(a) - Number(b));
 
-    // Add the current unit
+    // Sort threads
 
-    currentYearData.units.push(unit);
+    const threadOrders = new Set(threadOptions.map((to) => to.order));
+    if (threadOptions.length > threadOrders.size) {
+      // In secondary science multiple threads can have the same order value due
+      // to multiple subjects (eg biology, chemistry, physics) being shown, so
+      // if orders are not unique, sort alphabetically by slug
 
-    // Populate list of child subject filter values
-
-    if (
-      unit.subject_parent &&
-      unit.subject_parent_slug &&
-      currentYearData.childSubjects.every(
-        (c) => c.subject_slug !== unit.subject_slug,
-      )
-    ) {
-      currentYearData.childSubjects.push({
-        subject: unit.subject,
-        subject_slug: unit.subject_slug,
-      });
-    }
-
-    // Populate list of domain filter values
-
-    if (
-      unit.domain &&
-      unit.domain_id &&
-      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
-    ) {
-      currentYearData.domains.push({
-        domain: unit.domain,
-        domain_id: unit.domain_id,
-      });
-    }
-
-    // Populate list of tier filter values
-
-    if (
-      unit.tier &&
-      unit.tier_slug &&
-      currentYearData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
-    ) {
-      currentYearData.tiers.push({
-        tier: unit.tier,
-        tier_slug: unit.tier_slug,
-      });
-    }
-
-    // Check for duplicate unit slugs
-
-    if (unitSlugs.has(unit.slug)) {
-      duplicateUnitSlugs.add(unit.slug);
+      threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
     } else {
-      unitSlugs.add(unit.slug);
+      // If orders are unique, use them to sort
+
+      threadOptions.sort((a, b) => a.order - b.order);
     }
-  });
 
-  // Sort year data
+    // Set up year-specific filters (domains, child subjects, tiers):
+    // populate options and select defaults
 
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+    const initialYearSelection = {} as YearSelection;
+    Object.keys(yearData).forEach((year) => {
+      const filters = yearData[year];
+      if (!filters) {
+        throw new Error("year filters missing");
+      }
+      if (filters.domains.length > 0) {
+        filters.domains.sort((a, b) => a.domain_id - b.domain_id);
+        filters.domains.unshift({
+          domain: "All",
+          domain_id: 0,
+        });
+      }
+      filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+      initialYearSelection[year] = {
+        subject:
+          filters.childSubjects.find(
+            (s) => s.subject_slug === "combined-science",
+          ) ?? null,
+        domain: filters.domains.length ? filters.domains[0] : null,
+        tier: filters.tiers.length ? filters.tiers[0] : null,
+      };
+    });
 
-  // Sort threads
-
-  const threadOrders = new Set(threadOptions.map((to) => to.order));
-  if (threadOptions.length > threadOrders.size) {
-    // In secondary science multiple threads can have the same order value due
-    // to multiple subjects (eg biology, chemistry, physics) being shown, so
-    // if orders are not unique, sort alphabetically by slug
-
-    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
-  } else {
-    // If orders are unique, use them to sort
-
-    threadOptions.sort((a, b) => a.order - b.order);
-  }
-
-  // Set up year-specific filters (domains, child subjects, tiers):
-  // populate options and select defaults
-
-  const initialYearSelection = {} as YearSelection;
-  Object.keys(yearData).forEach((year) => {
-    const data = yearData[year];
-    if (!data) {
-      throw new Error("year data missing");
-    }
-    if (data.domains.length > 0) {
-      data.domains.sort((a, b) => a.domain_id - b.domain_id);
-      data.domains.unshift({
-        domain: "All",
-        domain_id: 0,
-      });
-    }
-    data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
-    initialYearSelection[year] = {
-      subject:
-        data.childSubjects.find((s) => s.subject_slug === "combined-science") ??
-        null,
-      domain: data.domains.length ? data.domains[0] : null,
-      tier: data.tiers.length ? data.tiers[0] : null,
-    };
-  });
-
-  const [yearSelection, setYearSelection] =
-    useState<YearSelection>(initialYearSelection);
-  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+    setYearSelection(initialYearSelection);
+    setSelectedThread(null);
+    setSelectedYear(null);
+  }, [data]);
 
   // Filter interaction handlers
 
@@ -271,9 +306,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   function highlightedUnitCount(): number {
     let count = 0;
     Object.keys(yearData).forEach((year) => {
-      const data = yearData[year];
-      if (data && (!selectedYear || selectedYear === year)) {
-        data.units.forEach((unit) => {
+      const units = yearData[year]?.units;
+      if (units && (!selectedYear || selectedYear === year)) {
+        units.forEach((unit) => {
           if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
             count++;
           }
@@ -297,7 +332,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   function isVisibleUnit(year: string, unit: Unit) {
     const s = yearSelection[year];
     if (!s) {
-      throw new Error("year selection missing");
+      return false;
     }
     const filterBySubject =
       !s.subject || s.subject.subject_slug === unit.subject_slug;
@@ -327,6 +362,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const handleCloseModal = () => {
     setDisplayModal(false);
+    setCurrentUnitLessons([]);
   };
 
   // Analytics handlers
@@ -361,9 +397,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-        <Heading tag="h2" $mb={24} $font={["heading-5", "heading-4"]}>
+        <OakHeading
+          tag="h2"
+          $mb="space-between-m"
+          $font={["heading-5", "heading-4"]}
+        >
           Unit sequence
-        </Heading>
+        </OakHeading>
         <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
           <Box
             $background={"lemon"}
@@ -383,30 +423,30 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             />
           </Box>
           <Box $pa={20}>
-            <Heading
+            <OakHeading
               tag="h3"
               $font={"heading-7"}
-              $mb={12}
+              $mb="space-between-xs"
               data-testid="units-heading"
             >
               Introducing our new curriculum sequence for 2023/2024!
-            </Heading>
-            <P>
+            </OakHeading>
+            <OakP>
               Units that make up our curricula are fully sequenced, and aligned
               to the national curriculum.
-            </P>
+            </OakP>
           </Box>
         </Card>
-        <Grid>
-          <GridArea $colSpan={[12, 3]}>
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </Heading>
-              <P $mb={12}>
+              </OakHeading>
+              <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
-              </P>
+              </OakP>
               <RadioGroup
                 aria-label="Highlight a thread"
                 value={selectedThread ? selectedThread.slug : ""}
@@ -460,9 +500,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               </RadioGroup>
             </Box>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </Heading>
+              </OakHeading>
               <RadioGroup
                 aria-label="Select a year group"
                 value={selectedYear ?? ""}
@@ -490,8 +530,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                 ))}
               </RadioGroup>
             </Box>
-          </GridArea>
-          <GridArea $colSpan={[12, 9]}>
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 9]}>
             {Object.keys(yearData)
               .filter((year) => !selectedYear || selectedYear === year)
               .map((year) => {
@@ -507,14 +547,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     $mb={32}
                     $borderRadius={4}
                   >
-                    <Heading
+                    <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5"]}
-                      $mb={32}
+                      $mb="space-between-m2"
                       data-testid="year-heading"
                     >
                       Year {year}
-                    </Heading>
+                    </OakHeading>
                     {childSubjects.length > 0 && (
                       <Box>
                         {childSubjects.map((subject) => (
@@ -572,7 +612,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         ))}
                       </Box>
                     )}
-                    <Flex $flexWrap={"wrap"} $mt={12} data-testid="unit-cards">
+                    <OakFlex
+                      $flexWrap={"wrap"}
+                      $mt="space-between-xs"
+                      data-testid="unit-cards"
+                    >
                       {units
                         .filter((unit) => isVisibleUnit(year, unit))
                         .map((unit, index) => {
@@ -609,10 +653,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                 >
                                   {index + 1}
                                 </OutlineHeading>
-                                <Heading
+                                <OakHeading
                                   tag={"h4"}
                                   $font={"heading-7"}
-                                  $mb={16}
+                                  $mb="space-between-s"
                                 >
                                   {isHighlighted && (
                                     <VisuallyHidden>
@@ -620,7 +664,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                     </VisuallyHidden>
                                   )}
                                   {unit.title}
-                                </Heading>
+                                </OakHeading>
                                 {unit.unit_options.length > 1 && (
                                   <Box
                                     $mt={12}
@@ -639,7 +683,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   color={isHighlighted ? "black" : "white"}
                                 />
                               </Box>
-                              <Flex
+
+                              <OakFlex
                                 $flexDirection={"row"}
                                 $justifyContent={"flex-end"}
                               >
@@ -656,20 +701,29 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                     handleOpenModal();
                                     setUnitOptionsAvailable(unitOptions);
                                     setUnitData({ ...unit });
+                                    setCurrentUnitLessons(unit.lessons ?? []);
                                   }}
                                   ref={modalButtonRef}
                                 />
-                              </Flex>
+                              </OakFlex>
                             </Card>
                           );
                         })}
                       <UnitsTabSidebar
                         displayModal={displayModal}
                         onClose={handleCloseModal}
-                        unitData={unitData}
+                        lessons={currentUnitLessons}
+                        programmeSlug={createProgrammeSlug(
+                          unitData,
+                          examboardSlug,
+                        )}
                         unitOptionsAvailable={unitOptionsAvailable}
+                        unitSlug={unitData?.slug}
+                        unitVariantID={unitVariantID}
                       >
                         <UnitModal
+                          setCurrentUnitLessons={setCurrentUnitLessons}
+                          setUnitVariantID={setUnitVariantID}
                           unitData={unitData}
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
@@ -679,12 +733,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           }
                         />
                       </UnitsTabSidebar>
-                    </Flex>
+                    </OakFlex>
                   </Box>
                 );
               })}
-          </GridArea>
-        </Grid>
+          </OakGridArea>
+        </OakGrid>
       </Box>
       <UnitTabBanner />
     </Box>

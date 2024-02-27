@@ -26,6 +26,7 @@ import { getSdk } from "./generated/sdk";
 
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 import argsRemoveLegacySlugSuffix from "@/utils/slugModifiers/argsRemoveLegacySlugSuffix";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
@@ -109,6 +110,7 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
+  cohort: z.string().nullish(),
   learningThemes: z
     .array(
       z.object({
@@ -135,6 +137,7 @@ const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
+  displayOrder: z.number().optional(),
 });
 
 const subjectSchema = z.object({
@@ -199,6 +202,7 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
+  hasNewContent: z.boolean().nullish(),
   learningThemes: z
     .array(
       z.object({
@@ -591,6 +595,7 @@ const curriculumApi = {
       ...share,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
+      lessonCohort: LEGACY_COHORT,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
@@ -610,6 +615,7 @@ const curriculumApi = {
       nextLessons,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
+      hasDownloadableResources: true,
     });
   },
   lessonDownloadsCanonical: async (
@@ -630,6 +636,7 @@ const curriculumApi = {
         ...downloads[0],
         pathways: [],
         isLegacy: true,
+        hasDownloadableResources: true,
       } as LessonDownloadsCanonical,
     );
 

@@ -1,11 +1,10 @@
 import { FC } from "react";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";
-import { Span } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -71,7 +70,7 @@ const SubjectListingCardDoubleCountCard: FC<
           size={"small"}
         />
       )}
-      <OakLink
+      <OwaLink
         {...oakLinkProps}
         aria-label={ariaLabel}
         $hideDefaultFocus
@@ -85,15 +84,17 @@ const SubjectListingCardDoubleCountCard: FC<
           });
         }}
       >
-        <Flex $flexDirection={"column"} $pa={16}>
-          <Flex>
-            <Span>{`${unitCount} ${unitCount > 1 ? "units" : "unit"}`} </Span>
-          </Flex>
-          <Span>{`${lessonCount} ${
+        <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+          <OakFlex>
+            <OakSpan>
+              {`${unitCount} ${unitCount > 1 ? "units" : "unit"}`}{" "}
+            </OakSpan>
+          </OakFlex>
+          <OakSpan>{`${lessonCount} ${
             lessonCount > 1 ? "lessons" : "lesson"
-          }`}</Span>
-        </Flex>
-      </OakLink>
+          }`}</OakSpan>
+        </OakFlex>
+      </OwaLink>
     </SubjectListingTextTile>
   );
 };

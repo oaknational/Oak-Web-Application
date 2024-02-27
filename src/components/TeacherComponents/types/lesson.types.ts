@@ -2,8 +2,8 @@ import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonPathway = {
-  keyStageTitle: string;
-  keyStageSlug: string;
+  keyStageTitle?: string;
+  keyStageSlug?: string;
   subjectTitle: string;
   subjectSlug: string;
   unitTitle: string;
@@ -15,6 +15,7 @@ export type LessonPathway = {
   tierSlug?: string | null;
   examBoardTitle?: string | null;
   examBoardSlug?: string | null;
+  lessonCohort?: string | null;
 };
 
 export type LessonOverviewCanonical = LessonBase & {
@@ -32,3 +33,6 @@ export type LessonOverviewInPathway = LessonBase & {
   unitSlug: string;
   programmeSlug: string;
 };
+
+export type SpecialistLessonOverview = LessonBase &
+  Omit<LessonOverviewInPathway, "keyStageTitle" | "keyStageSlug">;

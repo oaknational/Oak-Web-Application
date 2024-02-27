@@ -1,24 +1,25 @@
 import { FC } from "react";
-
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
-import useClickableCard from "../../../hooks/useClickableCard";
-import OakLink from "../../OakLink";
-import SubjectIcon from "../../SharedComponents/SubjectIcon";
-import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
+import {
+  OakTypography,
+  OakHeading,
+  OakHeadingTag,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { KeyStageSubject } from "./SubjectCardList";
 
-import Typography, {
-  Heading,
-  HeadingTag,
-} from "@/components/SharedComponents/Typography";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useClickableCard from "@/hooks/useClickableCard";
+import OwaLink from "@/components/SharedComponents/OwaLink";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
-  titleTag?: HeadingTag;
+  titleTag?: OakHeadingTag;
 } & {
   subject: KeyStageSubject;
   keyStageSlug: string;
@@ -52,11 +53,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
       $pa={[0, 0]}
       $mb={[16, 0]}
     >
-      <Flex
+      <OakFlex
         $background={backgroundColor}
         $position={"relative"}
         $width={"100%"}
-        $pv={16}
+        $pv="inner-padding-m"
       >
         <SubjectIcon
           subjectSlug={subjectSlug}
@@ -66,7 +67,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           $ma={"auto"}
           $transform={isHovered ? "scale(1)" : "scale(0.8)"}
         />
-      </Flex>
+      </OakFlex>
+      {/* @todo replace with OakFlex - translate drop shadow names to correct names */}
       <Flex
         $flexDirection={"column"}
         $position={"relative"}
@@ -82,17 +84,21 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
       >
         {isAvailable ? (
           <>
-            <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+            <OakHeading
+              $font={["heading-7"]}
+              tag={titleTag}
+              $textAlign={"center"}
+            >
               {subject.length === 1 ? (
-                <OakLink
+                <OwaLink
                   {...primaryTargetProps}
                   page="unit-index"
                   programmeSlug={programmeSlug}
                 >
                   {subjectTitle}
-                </OakLink>
+                </OwaLink>
               ) : (
-                <OakLink
+                <OwaLink
                   {...primaryTargetProps}
                   page="programme-index"
                   keyStageSlug={keyStageSlug}
@@ -108,22 +114,26 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   }}
                 >
                   {subjectTitle}
-                </OakLink>
+                </OwaLink>
               )}
-            </Heading>
-            <Typography
+            </OakHeading>
+            <OakTypography
               $font={"body-2"}
               $color={"grey60"}
-            >{`${unitCount} units`}</Typography>
-            <Typography
+            >{`${unitCount} units`}</OakTypography>
+            <OakTypography
               $font={"body-2"}
               $color={"grey60"}
-            >{`${lessonCount} lessons`}</Typography>
+            >{`${lessonCount} lessons`}</OakTypography>
           </>
         ) : (
-          <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+          <OakHeading
+            $font={["heading-7"]}
+            tag={titleTag}
+            $textAlign={"center"}
+          >
             {subjectTitle}
-          </Heading>
+          </OakHeading>
         )}
       </Flex>
       <BoxBorders gapPosition="rightTop" />

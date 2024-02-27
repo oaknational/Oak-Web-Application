@@ -1,10 +1,13 @@
-import Flex from "@/components/SharedComponents/Flex";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Heading from "@/components/SharedComponents/Typography/Heading";
-import P from "@/components/SharedComponents/Typography/P";
 
 const UnitTabBanner = () => {
+  {
+    /* @todo replace with OakFlex - work out padding value */
+  }
   return (
     <Flex
       $flexDirection={["column", "row"]}
@@ -13,14 +16,14 @@ const UnitTabBanner = () => {
       $pa={48}
       $gap={24}
     >
-      <Flex
+      <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "flex-end"]}
         $ma={"auto"}
         $justifyContent={["space-evenly"]}
-        $gap={24}
+        $gap="all-spacing-6"
       >
-        <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
+        <OakFlex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
           <Icon
             name="books"
             size={92}
@@ -30,21 +33,22 @@ const UnitTabBanner = () => {
             $color={"black"}
           />
 
+          {/* @todo replace with OakFlex - work out width value */}
           <Flex
             $width={["100%", "70%"]}
             $gap={16}
             $flexDirection={"column"}
             $alignItems={"flex-start"}
           >
-            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+            <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
               Need help with our new curriculum?
-            </Heading>
-            <P $font={["body-2", "body-1"]}>
+            </OakHeading>
+            <OakP $font={["body-2", "body-1"]}>
               Visit our help centre for technical support as well as tips and
               ideas to help you make the most of Oak.
-            </P>
+            </OakP>
           </Flex>
-        </Flex>
+        </OakFlex>
         <ButtonAsLink
           label="Go to help centre"
           variant={"brush"}
@@ -54,7 +58,7 @@ const UnitTabBanner = () => {
           iconBackground="black"
           $iconPosition="trailing"
         />
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };

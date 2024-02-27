@@ -1,13 +1,15 @@
 import { FC } from "react";
+import {
+  OakP,
+  OakHeading,
+  OakUL,
+  OakLI,
+  OakTypography,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
-import Typography, {
-  P,
-  Heading,
-  UL,
-  LI,
-} from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card/Card";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -41,8 +43,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { subjectSlug } = curriculumSelectionSlugs;
 
   const createBullet = (item: string, i: number) => (
-    <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
-      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+    <OakLI
+      $mb={["space-between-xs"]}
+      key={`principle-${i + 1}`}
+      data-testid="subject-principles"
+    >
+      <OakFlex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+        {/* @todo replace with OakFlex - work out $borderRadius */}
         <Flex
           $background={"mint"}
           $borderRadius={"50%"}
@@ -52,8 +59,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           <Icon name="arrow-right" $ma={"auto"} $pa={2} />
         </Flex>
         {item}
-      </Flex>
-    </LI>
+      </OakFlex>
+    </OakLI>
   );
   const itemiseSubjectPrinciples = (item: string, i: number) => {
     if (item.includes(" • ")) {
@@ -62,22 +69,25 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         const firstItem = sublist[0];
         const bulletItems = sublist.slice(1);
         const bullets = bulletItems.map((listItem, li) => (
-          <LI
-            listStyle={"disc"}
+          <OakLI
+            $listStyle={"disc"}
             data-testid="sp-subbullet"
             key={`${firstItem.split(" ").join("-")}-sb-${li}`}
-            $ml={10}
-            $mt={4}
-            $mb={6}
+            $ml="space-between-ssx"
+            $mt="space-between-sssx"
+            $mb="space-between-sssx"
           >
             {listItem}
-          </LI>
+          </OakLI>
         ));
         return (
-          <LI $mb={10} key={`${firstItem.split(" ").join("-")}`}>
+          <OakLI
+            $mb="space-between-sssx"
+            key={`${firstItem.split(" ").join("-")}`}
+          >
             {createBullet(firstItem, i)}
-            <UL>{bullets}</UL>
-          </LI>
+            <OakUL>{bullets}</OakUL>
+          </OakLI>
         );
       }
     } else {
@@ -86,34 +96,38 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Flex $mb={10}>
+      <OakFlex $mb="space-between-ssx">
         <Box
           $mr={16}
           $pb={48}
           $maxWidth={["100%", "100%", "65%"]}
           $textAlign={"left"}
         >
-          <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={24}>
+          <OakHeading
+            tag="h2"
+            $font={["heading-5", "heading-4"]}
+            $mb="space-between-m"
+          >
             Overview
-          </Heading>
-          <Heading
+          </OakHeading>
+          <OakHeading
             tag="h3"
             $font={["heading-6", "heading-5"]}
             data-testid="intent-heading"
-            $mb={20}
+            $mb="space-between-s"
             line-height={48}
           >
             Curriculum explainer
-          </Heading>
-          <Typography
+          </OakHeading>
+          <OakTypography
             $font={["body-2", "body-1"]}
             style={{ fontWeight: "light" }}
-            $mt={10}
-            $mr={12}
+            $mt="space-between-ssx"
+            $mr="space-between-xs"
             $whiteSpace={"break-spaces"}
           >
             {curriculaDesc}
-          </Typography>
+          </OakTypography>
         </Box>
 
         <Card
@@ -135,7 +149,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $background={"lemon50"}
           />
         </Card>
-      </Flex>
+      </OakFlex>
       <Card
         $maxWidth={"100%"}
         $background={"mint30"}
@@ -144,37 +158,42 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"mint30"} />
         <Box $ma={16}>
-          <Heading tag="h3" $font={["heading-6", "heading-5"]}>
+          <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
             Subject principles
-          </Heading>
-          <UL $font={["body-2", "body-1"]} $mt={24} $reset={true}>
+          </OakHeading>
+          <OakUL
+            $font={["body-2", "body-1"]}
+            $mt="space-between-m"
+            $reset={true}
+          >
             {subjectPrinciples.map((item, i) =>
               itemiseSubjectPrinciples(item, i),
             )}
-          </UL>
+          </OakUL>
         </Box>
       </Card>
       {video && videoExplainer && (
-        <Flex
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"flex-start"}
           $flexDirection={["column-reverse", "row"]}
-          $gap={[24, 120]}
-          $mb={[48, 80]}
+          $gap={["all-spacing-6", "all-spacing-16"]}
+          $mb={["space-between-l", "space-between-xxxl"]}
         >
           <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
             <CMSVideo video={video} location="lesson" />
           </Box>
+          {/* @todo replace with OakFlex - work out $maxWidth */}
           <Flex
             $flexDirection={"column"}
             $maxWidth={["100%", "30%"]}
             $alignItems={"flex-start"}
             $gap={[16, 24]}
           >
-            <Heading tag="h3" $font={["heading-6", "heading-5"]}>
+            <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
               Video guide
-            </Heading>
-            <P $font={"body-1"}>{videoExplainer}</P>
+            </OakHeading>
+            <OakP $font={"body-1"}>{videoExplainer}</OakP>
             <ButtonAsLink
               variant="buttonStyledAsLink"
               label="Read more about our new curriculum"
@@ -187,16 +206,16 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $textAlign={"start"}
             />
           </Flex>
-        </Flex>
+        </OakFlex>
       )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
-        <Flex
+        <OakFlex
           $justifyContent={"center"}
           $alignItems={"center"}
-          $pa={16}
+          $pa="inner-padding-m"
           $flexDirection={["column", "row"]}
-          $gap={[16, 32]}
+          $gap={["all-spacing-4", "all-spacing-7"]}
         >
           <CMSImage
             $background={"grey20"}
@@ -211,12 +230,16 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             }}
           />
           <Box>
-            <Heading tag="h3" $font={["heading-6", "heading-5"]} $mb={20}>
+            <OakHeading
+              tag="h3"
+              $font={["heading-6", "heading-5"]}
+              $mb="space-between-s"
+            >
               Our curriculum partner
-            </Heading>
-            <Typography $font={"body-1"}>{partnerBio}</Typography>
+            </OakHeading>
+            <OakTypography $font={"body-1"}>{partnerBio}</OakTypography>
           </Box>
-        </Flex>
+        </OakFlex>
       </Card>
     </Box>
   );

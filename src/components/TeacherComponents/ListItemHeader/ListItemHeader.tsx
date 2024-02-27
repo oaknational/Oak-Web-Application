@@ -1,16 +1,17 @@
 import { FC, MutableRefObject } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
 import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponents/ListItemHeaderExpemplarCategoryHeading";
-import { Heading } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -21,13 +22,29 @@ interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
-  onClick?: () => void;
+  onClick: () => void;
 }
+
+type SpecialistListItemProps = (IndividualSpecialistUnit | SpecialistLesson) &
+  CommonProps & {
+    title: string;
+    slug: string;
+    subjectTitle: string;
+    programmeSlug: string;
+    expired: boolean | null;
+    index?: number;
+  };
+
+export const isSpecialistUnit = (
+  x: ListItemHeadingProps | SpecialistListItemProps,
+): x is SpecialistListItemProps => {
+  return "developmentalStageTitle" in x;
+};
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
-    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
-    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    title: string;
+    slug: string;
     expired: boolean | null;
     index?: number;
     isExemplarUnit?: boolean;
@@ -40,32 +57,31 @@ export const ListTitle: FC<{
   index?: number;
 }> = ({ children, expired, index }) => {
   return (
-    <Heading
+    <OakHeading
       $color={expired ? "grey60" : "black"}
       $font={["heading-7", expired ? "heading-light-6" : "heading-6"]}
       tag={"h3"}
       ariaLabel={index !== undefined ? `${index + 1}. ${children}` : undefined}
     >
       {children}
-    </Heading>
+    </OakHeading>
   );
 };
 
-const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
+const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
+  props,
+) => {
   const {
     title,
     slug,
     subjectTitle,
     hideTopHeading,
-    keyStageTitle,
     primaryTargetProps,
     page,
     expired,
     onClick,
     programmeSlug,
     index,
-    isExemplarUnit,
-    yearTitle,
   } = props;
 
   const itemTitle = title;
@@ -82,36 +98,40 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
 
   if (expired) {
     return (
-      <Flex $flexDirection={"column"}>
+      <OakFlex $flexDirection={"column"}>
         <ListTitle expired={true} index={index}>
           {itemTitle}
         </ListTitle>
-      </Flex>
+      </OakFlex>
     );
   }
 
   return (
-    <Flex>
-      <Flex $mb={2} $flexDirection={"column"}>
-        {!hideTopHeading && !isExemplarUnit && (
-          <ListItemHeaderCategoryHeading
-            keyStageTitle={keyStageTitle}
-            subjectTitle={subjectTitle}
-            page={page}
-          />
-        )}
-        {!hideTopHeading && isExemplarUnit && (
-          <ListItemHeaderExpemplarCategoryHeading
-            keyStageTitle={keyStageTitle}
-            subjectTitle={subjectTitle}
-            yearTitle={yearTitle}
-          />
-        )}
-        <OakLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
+    <OakFlex>
+      <OakFlex $mb="space-between-sssx" $flexDirection={"column"}>
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          !props.isExemplarUnit && (
+            <ListItemHeaderCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              page={page}
+            />
+          )}
+        {!hideTopHeading &&
+          !isSpecialistUnit(props) &&
+          props.isExemplarUnit && (
+            <ListItemHeaderExpemplarCategoryHeading
+              keyStageTitle={props.keyStageTitle}
+              subjectTitle={subjectTitle}
+              yearTitle={props.yearTitle}
+            />
+          )}
+        <OwaLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
           <ListTitle index={index}>{itemTitle}</ListTitle>
-        </OakLink>
-      </Flex>
-    </Flex>
+        </OwaLink>
+      </OakFlex>
+    </OakFlex>
   );
 };
 

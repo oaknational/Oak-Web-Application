@@ -1,16 +1,21 @@
 import React, { FC } from "react";
+import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import UnitListItem, {
   UnitListItemProps,
+  SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
+import {
+  SpecialistUnit,
+  SpecialistUnitListingData,
+} from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
 
 export type Tier = {
   title: string;
@@ -21,23 +26,37 @@ export type Tier = {
 type PageSize = { pageSize: number };
 type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
-export type UnitListProps = UnitListingData & {
-  currentPageItems: CurrenPageItemsProps[];
+export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
+  currentPageItems: CurrenPageItemsProps[] | SpecialistUnit[];
   paginationProps: PaginationProps & PageSize;
-  onClick: (props: UnitListItemProps) => void;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
+
+  const isUnitOption = (
+    x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit,
+  ): x is UnitOption[] => {
+    if (x[0]) {
+      return "keyStageTitle" in x[0];
+    } else {
+      return false;
+    }
+  };
+
   return (
-    <Flex $flexDirection="column">
+    <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
         <>
-          <UL aria-label="A list of units" $reset>
+          <OakUL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
-              <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
-                {item.length > 1 ? (
+              <OakLI
+                key={`UnitList-UnitListItem-${item[0]?.slug}`}
+                data-testid="unit-list-item"
+              >
+                {item.length > 1 && isUnitOption(item) ? (
                   <>
                     <UnitListOptionalityCard
                       unitOptions={item}
@@ -46,7 +65,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     />
                   </>
                 ) : (
-                  <Flex>
+                  <OakFlex>
                     {" "}
                     {item.map((unitOption) => {
                       return (
@@ -59,11 +78,11 @@ const UnitList: FC<UnitListProps> = (props) => {
                         />
                       );
                     })}
-                  </Flex>
+                  </OakFlex>
                 )}
-              </LI>
+              </OakLI>
             ))}
-          </UL>
+          </OakUL>
         </>
       ) : null}
       {units.length > 5 ? (
@@ -77,7 +96,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <Box $pb={32} />
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

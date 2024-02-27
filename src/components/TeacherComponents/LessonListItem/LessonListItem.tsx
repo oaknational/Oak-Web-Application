@@ -1,4 +1,5 @@
 import { FC, MutableRefObject } from "react";
+import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -8,10 +9,9 @@ import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
-import { P, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
+import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -26,7 +26,17 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   index: number;
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
-  onClick: (props: LessonListItemProps) => void;
+  onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+};
+
+export type SpecialistLessonListItemProps = SpecialistLesson & {
+  unitTitle: string;
+  hideTopHeading?: boolean;
+  hitCount?: number;
+  index: number;
+  currentPage?: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+  onClick: (props: SpecialistLessonListItemProps | LessonListItemProps) => void;
 };
 
 function getAvailableResourceList({
@@ -35,7 +45,7 @@ function getAvailableResourceList({
   presentationCount,
   worksheetCount,
   hasCopyrightMaterial,
-}: LessonListItemProps) {
+}: LessonListItemProps | SpecialistLessonListItemProps) {
   const resources: LessonResourceGraphicsItemProps[] = [];
 
   if (presentationCount && !hasCopyrightMaterial) {
@@ -81,7 +91,9 @@ function getAvailableResourceList({
  * Contains a lesson title, description, icon, and icons for resources
  * Links to a lesson-index page
  */
-const LessonListItem: FC<LessonListItemProps> = (props) => {
+const LessonListItem: FC<
+  LessonListItemProps | SpecialistLessonListItemProps
+> = (props) => {
   const {
     lessonTitle,
     lessonSlug,
@@ -118,15 +130,19 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         expired={expired}
       />
 
-      <Flex
+      <OakFlex
         $flexDirection={"column"}
         $width={"100%"}
-        $gap={[4, 12]}
-        $pa={[0, 24]}
+        $gap={["all-spacing-1", "all-spacing-3"]}
+        $pa={["inner-padding-none", "inner-padding-xl"]}
       >
-        <Flex $alignItems={"flex-start"}>
+        <OakFlex $alignItems={"flex-start"}>
           <ListItemIndexMobile background={background} index={index + 1} />
-          <Flex $flexDirection={"column"} $height={"100%"} $pa={[16, 0]}>
+          <OakFlex
+            $flexDirection={"column"}
+            $height={"100%"}
+            $pa={["inner-padding-m", "inner-padding-none"]}
+          >
             <ListItemHeader
               {...props}
               primaryTargetProps={primaryTargetProps}
@@ -137,29 +153,32 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
               slug={lessonSlug}
             />
             {/* {expired && (
-                <P $mt={8} $font={["body-3", "body-2"]}>
+                <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                   This lesson is currently unavailable.
-                </P>
+                </OakP>
               )} */}
-          </Flex>
-        </Flex>
-        <Flex
+          </OakFlex>
+        </OakFlex>
+        <OakFlex
           $flexDirection={"column"}
-          $gap={[12]}
-          $pl={[16, 0]}
-          $pr={[16, 0]}
-          $pt={[12, 0]}
-          $pb={[12, 0]}
+          $gap={["all-spacing-3"]}
+          $pl={["inner-padding-m", "inner-padding-none"]}
+          $pr={["inner-padding-m", "inner-padding-none"]}
+          $pt={["inner-padding-s", "inner-padding-none"]}
+          $pb={["inner-padding-s", "inner-padding-none"]}
         >
-          <Flex $mt={[8, 0]} $mr={[16, 0]}>
+          <OakFlex
+            $mt={["space-between-ssx", "space-between-none"]}
+            $mr={["space-between-s", "space-between-none"]}
+          >
             {expired ? (
-              <P $mt={8} $font={["body-3", "body-2"]}>
+              <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                 This lesson is currently unavailable.
-              </P>
+              </OakP>
             ) : (
               <>
                 {description ? (
-                  <Span
+                  <OakSpan
                     dangerouslySetInnerHTML={{
                       __html: description,
                     }}
@@ -167,20 +186,20 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                     $color={"grey70"}
                   />
                 ) : (
-                  <P $font={["body-3", "body-2"]} $color={"grey70"}>
+                  <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
                     {pupilLessonOutcome}
-                  </P>
+                  </OakP>
                 )}
               </>
             )}
-          </Flex>
+          </OakFlex>
           {resources.length > 0 && !expired && (
             <Box>
               <LessonResourceGraphics items={resources} />
             </Box>
           )}
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </ListItemCard>
   );
 };

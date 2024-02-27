@@ -1,6 +1,9 @@
-query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_3_0_0(
-    where: { programmeSlug: { _eq: $programmeSlug } }
+query unitListing($programmeSlug: String!, $isLegacy: Boolean!) {
+  programme: published_mv_unit_listing_page_3_1_0(
+    where: {
+      programmeSlug: { _eq: $programmeSlug }
+      isLegacy: { _eq: $isLegacy }
+    }
   ) {
     programmeSlug
     keyStageSlug

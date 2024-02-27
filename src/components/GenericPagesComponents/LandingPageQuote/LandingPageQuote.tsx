@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
 import { Quote as QuoteSchema } from "@/common-lib/cms-types";
-import Typography from "@/components/SharedComponents/Typography";
 import Blockquote from "@/components/SharedComponents/Typography/Blockquote";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (
@@ -20,7 +20,7 @@ export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
         &ldquo;{text}&rdquo;
       </Blockquote>
 
-      <Typography $font={"body-2"}>{attribution}</Typography>
+      <OakTypography $font={"body-2"}>{attribution}</OakTypography>
     </Flex>
   );
 };

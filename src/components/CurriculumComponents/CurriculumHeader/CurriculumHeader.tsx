@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
-import { Heading, Hr, P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { Hr } from "@/components/SharedComponents/Typography";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -71,6 +72,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
 
   return (
     <Box $mb={40}>
+      {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
           <Breadcrumbs
@@ -105,9 +107,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </Box>
       </Flex>
       <Box $background={color2}>
+        {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pv={32}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-            <Flex>
+            <OakFlex>
               <Box
                 $background={color1}
                 $borderRadius={6}
@@ -123,24 +126,24 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Flex $justifyContent={"center"} $flexDirection={"column"}>
+              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
                 {phase.slug === "secondary" && (
-                  <P
+                  <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
                     {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
-                  </P>
+                  </OakP>
                 )}
-                <Heading
+                <OakHeading
                   tag={"h1"}
                   $font={["heading-4", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
-                </Heading>
-              </Flex>
-            </Flex>
+                </OakHeading>
+              </OakFlex>
+            </OakFlex>
           </Box>
         </Flex>
         <TabularNav

@@ -1,16 +1,16 @@
 import { FC } from "react";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
 import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
 import BioCardListModal, {
   BioData,
 } from "@/components/GenericPagesComponents/BioCardListModal";
 import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
-type BioCardListProps = FlexProps & {
+type BioCardListProps = OakFlexProps & {
   bios: BioData[];
   withModals?: boolean;
   firstBioHasOwnRow?: boolean;
@@ -24,7 +24,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
   const [firstBio, ...otherBios] = bios;
 
   return (
-    <Flex $flexDirection="column" {...flexProps}>
+    <OakFlex $flexDirection="column" {...flexProps}>
       <GridList $cg={16} $gridAutoRows={[null, "1fr"]}>
         {firstBio && firstBioHasOwnRow && (
           <>
@@ -82,7 +82,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
         ))}
       </GridList>
       <BioCardListModal {...modal} />
-    </Flex>
+    </OakFlex>
   );
 };
 

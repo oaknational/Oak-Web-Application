@@ -11,7 +11,6 @@ const curriculumUnitsQuery =
     examboardSlug: string | null;
   }) => {
     const { subjectSlug, phaseSlug, examboardSlug } = args;
-
     if (!subjectSlug || !phaseSlug) {
       throw new OakError({ code: "curriculum-api/params-incorrect" });
     }

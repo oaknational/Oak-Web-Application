@@ -1,14 +1,15 @@
 import { FC } from "react";
+import { OakHeading, OakSpan } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { OakColorName } from "@/styles/theme";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -22,14 +23,14 @@ export type HeaderListingProps = {
   subjectSlug: string;
   subjectIconBackgroundColor: OakColorName;
   year?: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
+  keyStageSlug?: string;
+  keyStageTitle?: string;
   tierSlug?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
   yearTitle?: string | null;
   lessonDescription?: string;
-  isLegacyLesson?: boolean;
+  isNew: boolean;
   title: string;
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
@@ -42,7 +43,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
-    isLegacyLesson,
+    isNew,
     programmeFactor,
     subjectIconBackgroundColor,
     breadcrumbs,
@@ -53,6 +54,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
   } = props;
+
+  const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
+  const specialistDownloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=${subjectSlug}&extension=pdf`;
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -65,12 +69,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               height={15}
               width={20}
               $ma={"auto"}
-              isLegacyLesson={isLegacyLesson}
+              isNew={isNew}
               color={subjectIconBackgroundColor}
             />
           </Box>
           <Flex $flexDirection={"column"}>
-            <Span $mb={8} $color={"grey60"} $font={"heading-light-7"}>
+            <OakSpan
+              $mb="space-between-ssx"
+              $color={"grey60"}
+              $font={"heading-light-7"}
+            >
               {yearTitle ? (
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}
@@ -80,12 +88,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               ) : (
                 programmeFactor
               )}
-            </Span>
-            <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
+            </OakSpan>
+            <OakHeading
+              $mb={"space-between-m"}
+              tag={"h1"}
+              $font={["heading-5", "heading-3"]}
+            >
               {title}
-            </Heading>
+            </OakHeading>
             <Flex $display={["none", "flex"]}>
-              {hasCurriculumDownload && (
+              {hasCurriculumDownload && isKeyStagesAvailable && (
                 <HeaderListingCurriculumDownloadButton
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={keyStageTitle}
@@ -94,18 +106,42 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   tier={tierSlug}
                 />
               )}
+              {hasCurriculumDownload && !isKeyStagesAvailable && (
+                <ButtonAsLink
+                  icon={"download"}
+                  iconBackground="black"
+                  label={"Curriculum download (PDF)"}
+                  href={specialistDownloadLink}
+                  page={null}
+                  size="large"
+                  variant="minimal"
+                  $iconPosition={"trailing"}
+                />
+              )}
             </Flex>
           </Flex>
         </Flex>
       </Flex>
       <Flex $background={background} $display={["inline", "none"]}>
-        {hasCurriculumDownload && (
+        {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             subjectSlug={subjectSlug}
             subjectTitle={subjectTitle}
             tier={tierSlug}
+          />
+        )}
+        {hasCurriculumDownload && !isKeyStagesAvailable && (
+          <ButtonAsLink
+            icon={"download"}
+            iconBackground="black"
+            label={"Curriculum download (PDF)"}
+            href={specialistDownloadLink}
+            page={null}
+            size="large"
+            variant="minimal"
+            $iconPosition={"trailing"}
           />
         )}
       </Flex>

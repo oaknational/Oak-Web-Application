@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import { Span } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   UseSearchFiltersReturnType,
   KeyStage,
@@ -41,10 +41,10 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
       $minHeight={44}
       $display={activeFilters.length ? "flex" : "none"}
     >
-      <Span $font="heading-light-7" $mr={16}>
+      <OakSpan $font="heading-light-7" $mr="space-between-s">
         Active filters:
-      </Span>
-      <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+      </OakSpan>
+      <OakFlex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button
             label={"shortCode" in props ? props.shortCode : title}
@@ -60,9 +60,9 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
           />
         ))}
         {activeFilters.length > maxActiveFilters && (
-          <Span $font="body-1-bold">...</Span>
+          <OakSpan $font="body-1-bold">...</OakSpan>
         )}
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };

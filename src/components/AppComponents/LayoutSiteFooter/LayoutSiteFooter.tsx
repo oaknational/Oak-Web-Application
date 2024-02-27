@@ -1,23 +1,25 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+  OakLI,
+  OakP,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";
-import Typography, {
-  Heading,
-  LI,
-  P,
-} from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Flex from "@/components/SharedComponents/Flex";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -48,10 +50,10 @@ type FooterLinkIconWrapperProps = {
 const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
   const { containerProps, icon, children } = props;
   return (
-    <Flex $display={"inline-flex"} {...containerProps}>
+    <OakFlex $display={"inline-flex"} {...containerProps}>
       {children}
       {icon && <Icon name={icon} $ml={8} />}
-    </Flex>
+    </OakFlex>
   );
 };
 
@@ -68,17 +70,16 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={showConsentManager}
+        labelColor={"black"}
         $hoverStyles={["underline-link-text"]}
-      >
-        {props.text}
-      </Button>
+      />
     );
   }
 
   if (props.type === "page" && props.page == "classroom") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...props}
           {...primaryTargetProps}
           $focusStyles={["underline"]}
@@ -87,7 +88,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           }}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
@@ -95,7 +96,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   if (props.type === "page" && props.page == "teacher-hub") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...props}
           {...primaryTargetProps}
           $focusStyles={["underline"]}
@@ -105,34 +106,34 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           }}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
   if (props.type === "page") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           {...props}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
   if (props.href) {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OakLink
+        <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           page={null}
           href={props.href}
         >
           {props.text}
-        </OakLink>
+        </OwaLink>
       </FooterLinkIconWrapper>
     );
   }
@@ -144,20 +145,28 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <Flex $flexDirection="column" $mt={[32, 0]}>
-      <Heading $mb={8} $font="heading-7" $color="black" tag="h2">
+    <OakFlex
+      $flexDirection="column"
+      $mt={["space-between-m2", "space-between-none"]}
+    >
+      <OakHeading
+        $mb="space-between-ssx"
+        $font="heading-7"
+        $color="black"
+        tag="h2"
+      >
         {title}
-      </Heading>
-      <Typography $color={"black"} $font={"body-2"}>
+      </OakHeading>
+      <OakTypography $color={"black"} $font={"body-2"}>
         <ul role="list">
           {links.map((link) => (
-            <LI key={link.text} $mt={12}>
+            <OakLI key={link.text} $mt="space-between-xs">
               <FooterLink {...link} />
-            </LI>
+            </OakLI>
           ))}
         </ul>
-      </Typography>
-    </Flex>
+      </OakTypography>
+    </OakFlex>
   );
 };
 
@@ -180,9 +189,9 @@ const LayoutSiteFooter: FC = () => {
       $position={"relative"}
       $overflow={"hidden"}
     >
-      <Flex $height={4} $position="relative">
+      <OakFlex $height="all-spacing-1" $position="relative">
         <Svg name="header-underline" $color="black" />
-      </Flex>
+      </OakFlex>
       <nav>
         <MaxWidth
           $pt={[16, 80]}
@@ -193,28 +202,31 @@ const LayoutSiteFooter: FC = () => {
           $width={"100%"}
         >
           {displaySignpost && (
-            <Flex
+            <OakFlex
               $wordWrap={"initial"}
-              $mb={[16, 64]}
-              $maxWidth={[360, 720, 740]}
+              $mb={["space-between-s", "space-between-xl"]}
+              $maxWidth={["all-spacing-21", "all-spacing-22", "all-spacing-22"]}
             >
               <LayoutSiteFooterSignpost />
-            </Flex>
+            </OakFlex>
           )}
-          <Grid>
-            <GridArea $colSpan={[12, 3]}>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <Box $mt={[0, 32]} />
               <FooterSectionLinks {...sections.teachers} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.oak} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.legal} />
-            </GridArea>
-            <GridArea $colSpan={[12, 3]}>
-              <Flex $justifyContent={["left", "right"]} $mt={[32, 0]}>
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]}>
+              <OakFlex
+                $justifyContent={["left", "right"]}
+                $mt={["space-between-m2", "space-between-none"]}
+              >
                 <Box $display={["none", "block"]}>
                   <Logo variant="with text" height={66} width={150} />
                 </Box>
@@ -223,17 +235,17 @@ const LayoutSiteFooter: FC = () => {
                   for="Oak National Academy"
                   {...OAK_SOCIALS}
                 />
-              </Flex>
-            </GridArea>
-          </Grid>
-          <Flex
-            $mb={56}
-            $mt={[32, 64]}
+              </OakFlex>
+            </OakGridArea>
+          </OakGrid>
+          <OakFlex
+            $mb="space-between-xl"
+            $mt={["space-between-m2", "space-between-xl"]}
             $width={"100%"}
             $justifyContent={["flex-start", "space-between"]}
             $flexDirection={["column", "row"]}
             $alignItems={["flex-start", "center"]}
-            $pt={[12, 0]}
+            $pt={["inner-padding-s", "inner-padding-none"]}
           >
             <SocialButtons
               $display={["none", "flex"]}
@@ -243,15 +255,18 @@ const LayoutSiteFooter: FC = () => {
             <Box $ml={-4} $display={["block", "none"]}>
               <Logo variant="with text" height={66} width={150} />
             </Box>
-            <Flex $mt={[32, 0]} $flexDirection={"column"}>
-              <P $font={"body-3-bold"}>
+            <OakFlex
+              $mt={["space-between-m2", "space-between-none"]}
+              $flexDirection={"column"}
+            >
+              <OakP $font={"body-3-bold"}>
                 © Oak National Academy Limited, No 14174888
-              </P>
-              <P $font={["body-4"]}>
+              </OakP>
+              <OakP $font={["body-4"]}>
                 1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
-              </P>
-            </Flex>
-          </Flex>
+              </OakP>
+            </OakFlex>
+          </OakFlex>
         </MaxWidth>
       </nav>
       <Svg

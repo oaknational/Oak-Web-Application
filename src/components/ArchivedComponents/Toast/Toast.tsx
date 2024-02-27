@@ -1,14 +1,13 @@
 import { FC, useEffect, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import { useToastContext, SHOW_DURATION } from "@/context/Toast";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import theme from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
 
 const TRANSITION_DURATION = 500;
 
@@ -72,7 +71,7 @@ const Toast: FC = () => {
           role={role}
         >
           <BrushBorders color="lemon50" />
-          <Flex $alignItems={"center"}>
+          <OakFlex $alignItems={"center"}>
             <Icon
               name="tick"
               size={36}
@@ -80,10 +79,14 @@ const Toast: FC = () => {
               $background={"white"}
               $color={"oakGreen"}
             />
-            <Typography $color={"black"} $font={"heading-7"} $ml={16}>
+            <OakTypography
+              $color={"black"}
+              $font={"heading-7"}
+              $ml="space-between-s"
+            >
               {message}
-            </Typography>
-          </Flex>
+            </OakTypography>
+          </OakFlex>
         </ToastCard>
       )}
     </Transition>

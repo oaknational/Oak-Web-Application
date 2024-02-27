@@ -83,13 +83,12 @@ export type ProgrammeListingLinkProps = {
   subjectSlug: string;
 };
 
-type SpecialistProgrammeListingLinkProps = Omit<
+export type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
-  "page"
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-programme-index";
 };
-
 export type UnitListingLinkProps = {
   page: "unit-index";
   programmeSlug: string;
@@ -97,10 +96,13 @@ export type UnitListingLinkProps = {
     ["learning-theme"]?: string | null;
   };
 };
-type SpecialistUnitListingLinkProps = Omit<UnitListingLinkProps, "page"> & {
+
+export type SpecialistUnitListingLinkProps = Omit<
+  UnitListingLinkProps,
+  "page"
+> & {
   page: "specialist-unit-index";
 };
-
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
   keyStageSlug: string;
@@ -188,8 +190,8 @@ type SubjectListingLinkProps = {
 };
 
 type SpecialistSubjectListingLinkProps = Omit<
-  LessonDownloadsLinkProps,
-  "page"
+  SubjectListingLinkProps,
+  "page" | "keyStageSlug"
 > & {
   page: "specialist-subject-index";
 };
@@ -237,8 +239,10 @@ type CurriculumUnitsLinkProps = {
 };
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
-
   subjectPhaseSlug: string;
+};
+type CurriculumPreviousDownloadsLinkProps = {
+  page: "curriculum-previous-downloads";
 };
 
 export type OakLinkProps =
@@ -286,7 +290,8 @@ export type OakLinkProps =
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
-  | CurriculumDownloadsLinkProps;
+  | CurriculumDownloadsLinkProps
+  | CurriculumPreviousDownloadsLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -703,6 +708,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
+  }),
+  "curriculum-previous-downloads": createOakPageConfig({
+    pathPattern: "/teachers/curriculum/previous-downloads",
+    analyticsPageName: "Curriculum Previous Downloads",
+    configType: "internal",
+    pageType: "curriculum-previous-downloads",
   }),
 };
 

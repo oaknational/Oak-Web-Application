@@ -20,8 +20,8 @@ export type LessonOverviewHeaderProps = {
   examBoardTitle?: string | null;
   tierTitle?: string | null;
   unitSlug: string | null;
-  keyStageSlug: string | null;
-  keyStageTitle: string | null;
+  keyStageSlug?: string | null;
+  keyStageTitle?: string | null;
   unitTitle: string | null;
   subjectTitle: string | null;
   programmeSlug: string | null;
@@ -34,7 +34,8 @@ export type LessonOverviewHeaderProps = {
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
-  isLegacyLesson?: boolean;
+  isNew: boolean;
+  isShareable: boolean;
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;

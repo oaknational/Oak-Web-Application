@@ -1,8 +1,7 @@
 import { FC } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Heading from "@/components/SharedComponents/Typography/Heading";
 import Box from "@/components/SharedComponents/Box";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
@@ -35,25 +34,29 @@ const DownloadConfirmationNextLessonCard: FC<
       $minHeight={[160, 120, 160]}
       data-testid={`next-lesson-card`}
     >
-      <Flex
-        $pa={[16, 16, 24]}
+      <OakFlex
+        $pa={["inner-padding-m", "inner-padding-m", "inner-padding-xl"]}
         $flexDirection={"column"}
-        $minHeight={[160, 120, 160]}
+        $minHeight={["all-spacing-17", "all-spacing-16", "all-spacing-17"]}
         $height={"100%"}
         $position={"relative"}
         $justifyContent={"space-between"}
         $wordWrap={"break-word"}
-        $gap={16}
+        $gap="all-spacing-4"
       >
-        <Heading tag="h3" $font={"heading-6"} $mb={[16, "auto"]}>
+        <OakHeading
+          tag="h3"
+          $font={"heading-6"}
+          $mb={["space-between-s", "auto"]}
+        >
           {lessonTitle}
-        </Heading>
+        </OakHeading>
 
-        <Flex
+        <OakFlex
           $flexDirection={["column", "row", "row"]}
           $alignItems={["flex-start"]}
           $flexWrap={"wrap"}
-          $gap={24}
+          $gap="all-spacing-6"
         >
           <ButtonAsLink
             page={"lesson-overview"}
@@ -100,8 +103,8 @@ const DownloadConfirmationNextLessonCard: FC<
               });
             }}
           />
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </Box>
   );
 };

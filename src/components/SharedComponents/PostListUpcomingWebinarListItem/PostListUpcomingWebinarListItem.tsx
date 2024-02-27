@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { useHover } from "react-aria";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type PostListUpcomingWebinarListItemProps = PostListItemProps & {
   signUpHref: string;
@@ -52,9 +52,13 @@ const PostListUpcomingWebinarListItem: FC<
       $font={["body-4", "body-3"]}
     >
       <Box $mr="auto">
-        <P>Coming soon, {formatDate(date, { month: "short" })}</P>
-        <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
-          <OakLink
+        <OakP>Coming soon, {formatDate(date, { month: "short" })}</OakP>
+        <OakHeading
+          tag={titleTag}
+          $font={["heading-6", "heading-5"]}
+          $mt={"space-between-ssx"}
+        >
+          <OwaLink
             {...primaryTargetProps}
             page={"webinar-single"}
             webinarSlug={slug}
@@ -62,11 +66,11 @@ const PostListUpcomingWebinarListItem: FC<
             $isHovered={cardIsHovered && !buttonIsHovered}
           >
             {title}
-          </OakLink>
-        </Heading>
-        <P $mt={8}>
+          </OwaLink>
+        </OakHeading>
+        <OakP $mt="space-between-ssx">
           <LineClamp lines={2}>{summary}</LineClamp>
-        </P>
+        </OakP>
       </Box>
       <ButtonAsLink
         {...buttonHoverProps}

@@ -9,7 +9,7 @@ import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
 import background, { BackgroundProps } from "@/styles/utils/background";
 import { OakColorName } from "@/styles/theme";
-import PreviewControls from "@/components/PreviewControls";
+import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import LayoutClientErrorHeader from "@/components/AppComponents/LayoutClientErrorHeader";
 import LayoutClientErrorFooter from "@/components/AppComponents/LayoutClientErrorFooter";
 import LandingPagesHeader, {
@@ -90,7 +90,7 @@ const Layout: FC<LayoutProps> = (props) => {
         <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
         <StyledLayout>{children}</StyledLayout>
         <Footer />
-        {isPreview && <PreviewControls />}
+        {isPreview && <LayoutPreviewControls />}
       </Container>
     </>
   );

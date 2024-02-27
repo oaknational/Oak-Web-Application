@@ -29,7 +29,5 @@ export const pupilLessonOverviewQuery =
       });
     }
 
-    return pupilLessonOverviewSchema.parse({
-      ...lesson,
-    });
+    return pupilLessonOverviewSchema.parse(lesson);
   };

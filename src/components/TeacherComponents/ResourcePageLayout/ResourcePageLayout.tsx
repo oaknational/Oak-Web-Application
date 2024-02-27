@@ -6,6 +6,13 @@ import {
   UseFormRegister,
   UseFormTrigger,
 } from "react-hook-form";
+import {
+  OakHeading,
+  OakLI,
+  OakP,
+  OakUL,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import {
   ErrorKeysType,
@@ -20,13 +27,13 @@ import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponen
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
-import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
-import FieldError from "@/components/FormFields/FieldError";
+import { P } from "@/components/SharedComponents/Typography";
+import FieldError from "@/components/SharedComponents/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Input from "@/components/SharedComponents/Input";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 
 /** Generic layout component for Downloads and Share page */
@@ -40,6 +47,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
+    hideSelectAll?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormProps>;
     control: Control<ResourceFormProps>;
@@ -65,38 +73,40 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   };
   return (
     <Box $width="100%">
-      <Flex
+      <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
-        $gap={[24, 32]}
+        $gap={["all-spacing-6", "all-spacing-7"]}
       >
-        <Heading tag="h1" $font={["heading-5", "heading-4"]}>
+        <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
-        </Heading>
-        <Flex
+        </OakHeading>
+        <OakFlex
           $justifyContent="space-between"
           $width="100%"
           $flexDirection={["column", "column", "row"]}
-          $gap={48}
+          $gap="all-spacing-9"
         >
           <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
-            <Heading tag="h2" $font={["heading-6", "heading-5"]}>
+            <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
               {props.resourcesHeader}
-            </Heading>
+            </OakHeading>
             <FieldError id={"downloads-error"} withoutMarginBottom>
               {props.errors?.resources?.message}
             </FieldError>
-            <Box $maxWidth="max-content">
-              <Checkbox
-                checked={props.selectAllChecked}
-                onChange={props.handleToggleSelectAll}
-                id="select-all"
-                name="select-all"
-                variant="withLabel"
-                labelText="Select all"
-                labelFontWeight={600}
-              />
-            </Box>
+            {!props.hideSelectAll && (
+              <Box $maxWidth="max-content">
+                <Checkbox
+                  checked={props.selectAllChecked}
+                  onChange={props.handleToggleSelectAll}
+                  id="select-all"
+                  name="select-all"
+                  variant="withLabel"
+                  labelText="Select all"
+                  labelFontWeight={600}
+                />
+              </Box>
+            )}
             {props.cardGroup}
           </Flex>
           <Flex
@@ -105,9 +115,13 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             $gap={16}
             $maxWidth={420}
           >
-            <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[24, 32]}>
+            <OakHeading
+              tag="h2"
+              $font={["heading-6", "heading-5"]}
+              $mb={["space-between-m", "space-between-m2"]}
+            >
               Your details
-            </Heading>
+            </OakHeading>
             {props.errors.school && (
               <FieldError id="school-error">
                 {props.errors.school?.message}
@@ -122,9 +136,9 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             ) : (
               <>
                 {props.showLoading ? (
-                  <P $mt={24}>Loading...</P>
+                  <OakP $mt="space-between-m">Loading...</OakP>
                 ) : (
-                  <Flex $flexDirection="column" $gap={24}>
+                  <OakFlex $flexDirection="column" $gap="all-spacing-6">
                     {props.showSavedDetails ? (
                       <ResourcePageDetailsCompleted
                         email={props.email}
@@ -159,7 +173,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                           Join over 100k teachers and get free resources and
                           other helpful content by email. Unsubscribe at any
                           time. Read our{" "}
-                          <OakLink
+                          <OwaLink
                             page="legal"
                             legalSlug="privacy-policy"
                             $isInline
@@ -176,7 +190,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                               size={20}
                               data-testid="external-link-icon"
                             />
-                          </OakLink>
+                          </OwaLink>
                           .
                         </P>
                         <Controller
@@ -210,24 +224,24 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                       showPostAlbCopyright={props.showPostAlbCopyright}
                       openLinksExternally={true}
                     />
-                  </Flex>
+                  </OakFlex>
                 )}
               </>
             )}
             {hasFormErrors && (
-              <Flex $flexDirection={"row"}>
+              <OakFlex $flexDirection={"row"}>
                 <Icon name="content-guidance" $color={"red"} />
-                <Flex $flexDirection={"column"}>
-                  <P $ml={4} $color={"red"}>
+                <OakFlex $flexDirection={"column"}>
+                  <OakP $ml="space-between-sssx" $color={"red"}>
                     To complete correct the following:
-                  </P>
-                  <UL $mr={24}>
+                  </OakP>
+                  <OakUL $mr="space-between-m">
                     {getFormErrorMessages().map((err) => {
-                      return <LI $color={"red"}>{err}</LI>;
+                      return <OakLI $color={"red"}>{err}</OakLI>;
                     })}
-                  </UL>
-                </Flex>
-              </Flex>
+                  </OakUL>
+                </OakFlex>
+              </OakFlex>
             )}
             {props.cta}
 
@@ -242,8 +256,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </FieldError>
             )}
           </Flex>
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </Box>
   );
 };

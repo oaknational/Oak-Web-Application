@@ -23,6 +23,8 @@ const keyLearningPointsSchema = z.object({
   keyLearningPoint: z.string().nullable(),
 });
 
+export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
+
 const copyrightContentSchema = z.object({
   copyrightInfo: z.string(),
 });
@@ -111,6 +113,7 @@ export const lessonPathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  lessonCohort: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
@@ -173,7 +176,7 @@ export const baseLessonOverviewSchema = z.object({
   presentationUrl: z.string().nullable(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.array(z.string()).nullable(),
+  transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
   hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
@@ -181,6 +184,7 @@ export const baseLessonOverviewSchema = z.object({
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
+  lessonCohort: z.string().nullish(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -197,6 +201,7 @@ const lessonDownloadsListSchema = z.array(
       "worksheet-pptx",
       "supplementary-pdf",
       "supplementary-docx",
+      "curriculum-pdf",
     ]),
     label: z.string(),
     ext: z.string(),
@@ -212,6 +217,7 @@ export const baseLessonDownloadsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  hasDownloadableResources: z.boolean(),
 });
 
 export const lessonListSchema = z.array(
@@ -227,5 +233,6 @@ export const lessonListSchema = z.array(
     worksheetCount: z.number().nullish(),
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
+    lessonCohort: z.string().nullish(),
   }),
 );

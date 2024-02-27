@@ -10,6 +10,7 @@ describe("unitListing()", () => {
         unitListing: jest.fn(() => Promise.resolve({ programme: [] })),
       })({
         programmeSlug: "programme-slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -54,6 +55,7 @@ describe("unitListing()", () => {
       ),
     })({
       programmeSlug: "programme-slug",
+      isLegacy: false,
     });
     expect(programme.programmeSlug).toEqual("programme-slug-0");
   });
@@ -78,6 +80,7 @@ describe("unitListing()", () => {
         ),
       })({
         programmeSlug: "programme-slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`programmeSlug`);
   });

@@ -1,36 +1,27 @@
 import { FC } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading } from "@/components/SharedComponents/Typography";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-const SubjectProgrammeListItem: FC<
-  Pick<
-    ProgrammeListingPageData,
-    "subjectSlug" | "keyStageSlug" | "keyStageTitle"
-  > &
-    ProgrammeListingPageData["programmes"][number]
-> = (props) => {
-  const {
-    subjectSlug,
-    subjectTitle,
-    tierTitle,
-    examBoardTitle,
-    keyStageSlug,
-    keyStageTitle,
-    programmeSlug,
-  } = props;
+export type SubjectProgrammeListItemProps = {
+  programme: ProgrammeListingPageData["programmes"][number];
+  onClick: (props: ProgrammeListingPageData["programmes"][number]) => void;
+};
+
+const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
+  const { programme, onClick } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const heading = programme.tierTitle ?? programme.examBoardTitle;
+
+  const ariaLabel = `${programme.tierTitle ? programme.tierTitle : ""} ${
+    programme.examBoardTitle ? programme.examBoardTitle : ""
+  }`;
 
   return (
     <Card
@@ -41,34 +32,18 @@ const SubjectProgrammeListItem: FC<
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
     >
-      <Flex $pa={16}>
-        <OakLink
+      <OakFlex $pa="inner-padding-m">
+        <OwaLink
+          page="unit-index"
           {...primaryTargetProps}
-          page={"unit-index"}
-          programmeSlug={programmeSlug}
-          onClick={() => {
-            tierTitle !== null &&
-              track.tierSelected({
-                subjectTitle,
-                subjectSlug,
-                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                keyStageSlug,
-                tierName: tierTitle,
-                analyticsUseCase,
-              });
-          }}
+          {...props.programme}
+          onClick={() => onClick(programme)}
         >
-          <Heading
-            $font={"heading-7"}
-            tag="h3"
-            ariaLabel={`${tierTitle ? tierTitle : ""} ${
-              examBoardTitle ? examBoardTitle : ""
-            }`}
-          >
-            {tierTitle ?? examBoardTitle}
-          </Heading>
-        </OakLink>
-      </Flex>
+          <OakHeading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
+            {heading}
+          </OakHeading>
+        </OwaLink>
+      </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />
     </Card>

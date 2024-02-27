@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
+import { OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
-import SchoolPicker from "@/components/SchoolPicker";
-import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
+import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
+import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 
 export type ResourcePageSchoolDetailsProps = {
@@ -73,7 +73,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
   };
   return (
     <>
-      <SchoolPicker
+      <ResourcePageSchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}
@@ -82,7 +82,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         setSelectedSchool={setSelectedSchool}
         required={true}
       />
-      <Flex $mt={12} $mb={32}>
+      <OakFlex $mt="space-between-xs" $mb="space-between-m2">
         <Checkbox
           checked={checkboxValue}
           onChange={onCheckboxChange}
@@ -93,7 +93,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
         />
-      </Flex>
+      </OakFlex>
     </>
   );
 };

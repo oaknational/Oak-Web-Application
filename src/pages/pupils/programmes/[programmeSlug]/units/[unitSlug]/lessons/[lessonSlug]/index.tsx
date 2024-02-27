@@ -4,48 +4,28 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import {
-  oakDefaultTheme,
-  OakFlex,
-  OakThemeProvider,
-} from "@oak-academy/oak-components";
 
-import { QuizEngineProvider } from "@/components/PupilJourneyComponents/QuizEngineProvider/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer/QuizRenderer";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
+import {
+  PupilExperienceView,
+  PupilExperienceViewProps,
+} from "@/components/PupilViews/PupilExperience";
+import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 
-export type PupilLessonOverviewPageProps = {
-  curriculumData: PupilLessonOverviewData;
-};
-
-const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
+const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
-}) => {
-  const { starterQuiz } = curriculumData;
-
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <QuizEngineProvider questionsArray={starterQuiz ?? []}>
-        <OakFlex
-          $width={"100vw"}
-          $height={"100vh"}
-          $background={"bg-decorative1–main"}
-          $flexDirection={"column"}
-          $alignItems={"center"}
-          $pt="inner-padding-xl"
-        >
-          <QuizRenderer />
-        </OakFlex>
-      </QuizEngineProvider>
-    </OakThemeProvider>
-  );
-};
+  hasWorksheet,
+}) => (
+  <PupilExperienceView
+    curriculumData={curriculumData}
+    hasWorksheet={hasWorksheet}
+  />
+);
 
 export type PupilPageURLParams = {
   lessonSlug: string;
@@ -66,15 +46,15 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  PupilLessonOverviewPageProps,
+  PupilExperienceViewProps,
   PupilPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "lesson-overview::getStaticProps",
+    page: "pupils-lesson-overview::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new Error("context.params is undefined");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
@@ -90,9 +70,16 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
+      const { transcriptSentences, hasWorksheet } =
+        await requestLessonResources({ curriculumData });
+
+      const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            transcriptSentences: transcriptSentences ?? [],
+          },
+          hasWorksheet,
         },
       };
 

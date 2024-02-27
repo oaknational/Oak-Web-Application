@@ -24,6 +24,7 @@ describe("getCommonPathway()", () => {
         tierSlug: "tier-a",
         examBoardTitle: "ExamBoard 1",
         examBoardSlug: "examBoard-1",
+        lessonCohort: "2023-2024",
       },
     ];
 
@@ -43,6 +44,7 @@ describe("getCommonPathway()", () => {
       examBoardSlug: "examBoard-1",
       yearSlug: null,
       yearTitle: null,
+      lessonCohort: "2023-2024",
     };
 
     expect(result).toEqual(expected);
@@ -62,6 +64,7 @@ describe("getCommonPathway()", () => {
         tierSlug: "tier-a",
         examBoardTitle: "ExamBoard 1",
         examBoardSlug: "examBoard-1",
+        lessonCohort: "2023-2024",
       },
       {
         keyStageTitle: "KS2",
@@ -75,6 +78,7 @@ describe("getCommonPathway()", () => {
         tierSlug: "tier-b",
         examBoardTitle: "ExamBoard 2",
         examBoardSlug: "examBoard-2",
+        lessonCohort: "2023-2024",
       },
     ];
 
@@ -94,6 +98,7 @@ describe("getCommonPathway()", () => {
       examBoardSlug: null,
       yearSlug: null,
       yearTitle: null,
+      lessonCohort: "2023-2024",
     };
 
     expect(result).toEqual(expected);

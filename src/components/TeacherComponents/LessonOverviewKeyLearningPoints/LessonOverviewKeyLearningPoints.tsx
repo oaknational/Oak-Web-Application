@@ -1,7 +1,5 @@
 import React from "react";
-
-import { OL, LI, Heading } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import { OakOL, OakLI, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 export type LessonOverviewKeyLearningPointProps = {
   keyLearningPoint: string | null;
@@ -21,20 +19,20 @@ const LessonOverviewKeyLearningPoints = ({
   );
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
     >
-      <Heading
+      <OakHeading
         $font={["heading-6", "heading-5"]}
-        $mb={24}
+        $mb="space-between-m"
         data-testid={"heading"}
         tag="h3"
       >
         Key learning points
-      </Heading>
-      <OL $mb={0} $mt={0}>
+      </OakHeading>
+      <OakOL $mb="space-between-none" $mt="space-between-none">
         {filteredKeyLearningPoints.map(
           (
             keyLearningPoint: LessonOverviewKeyLearningPointProps,
@@ -44,18 +42,18 @@ const LessonOverviewKeyLearningPoints = ({
               return null;
             } else {
               return (
-                <LI
+                <OakLI
                   key={`key-learning-point-${i}`}
                   $font={["list-item-2", "list-item-1"]}
                 >
                   {`${keyLearningPoint.keyLearningPoint}`}
-                </LI>
+                </OakLI>
               );
             }
           },
         )}
-      </OL>
-    </Flex>
+      </OakOL>
+    </OakFlex>
   );
 };
 

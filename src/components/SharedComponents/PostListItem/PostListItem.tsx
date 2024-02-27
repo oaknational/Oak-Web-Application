@@ -1,22 +1,23 @@
 import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
+import {
+  OakP,
+  OakHeading,
+  OakHeadingTag,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
 
 import { BlogWebinarCategory, Image } from "@/common-lib/cms-types";
 import useClickableCard from "@/hooks/useClickableCard";
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";
-import {
-  P,
-  Heading,
-  HeadingTag,
-} from "@/components/SharedComponents/Typography";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type PostListItemContentType = "blog-post" | "webinar";
@@ -53,7 +54,7 @@ const getItemCategoryLinkProps = (
 };
 
 export type PostListItemProps = {
-  titleTag: HeadingTag;
+  titleTag: OakHeadingTag;
   title: string;
   summary: string;
   slug: string;
@@ -131,14 +132,14 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
-        <Flex
+      <OakFlex $flexDirection="column" $alignItems="flex-start" $width="100%">
+        <OakFlex
           $width="100%"
           $alignItems={["flex-start", "flex-end"]}
           $justifyContent="space-between"
           $flexDirection={["column", "row"]}
         >
-          <OakLink
+          <OwaLink
             {...categoryHoverProps}
             {...getItemCategoryLinkProps(props)}
             $focusStyles={["underline"]}
@@ -146,13 +147,16 @@ const PostListItem: FC<PostListItemProps> = (props) => {
             $color="navy"
           >
             {category.title}
-          </OakLink>
-          <P $font={"body-3"} $mt={[8, 0]}>
+          </OwaLink>
+          <OakP
+            $font={"body-3"}
+            $mt={["space-between-ssx", "space-between-none"]}
+          >
             {blogDate}
-          </P>
-        </Flex>
-        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
-          <OakLink
+          </OakP>
+        </OakFlex>
+        <OakHeading tag={titleTag} $font={"heading-5"} $mt="space-between-ssx">
+          <OwaLink
             {...primaryTargetProps}
             {...getItemLinkProps(props)}
             htmlAnchorProps={{ title }}
@@ -160,12 +164,16 @@ const PostListItem: FC<PostListItemProps> = (props) => {
             $isHovered={cardIsHovered && !categoryIsHovered}
           >
             {title}
-          </OakLink>
-        </Heading>
-        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
+          </OwaLink>
+        </OakHeading>
+        <OakP
+          $font={"body-3"}
+          $mt={"space-between-ssx"}
+          $mb={["space-between-ssx", "space-between-none"]}
+        >
           <LineClamp lines={2}>{summary}</LineClamp>
-        </P>
-      </Flex>
+        </OakP>
+      </OakFlex>
     </Flex>
   );
 };

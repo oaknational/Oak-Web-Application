@@ -1,36 +1,16 @@
 import React, { FC } from "react";
+import { OakGrid, OakHeading } from "@oaknational/oak-components";
 
+import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import Grid, {
-  GridArea,
-  GridAreaProps,
-} from "@/components/SharedComponents/Grid";
-import { Heading } from "@/components/SharedComponents/Typography";
 
-export type LessonItemContainerProps = {
-  children?: React.ReactNode;
-  numberOfProgrammes?: number;
-} & GridAreaProps;
-
-const ProgrammeListContainer: FC<LessonItemContainerProps> = (props) => {
-  const { children, numberOfProgrammes, ...gridAreaProps } = props;
-  return (
-    <GridArea
-      $background={"lavender30"}
-      $pa={16}
-      $borderRadius={4}
-      {...gridAreaProps}
-    >
-      {children}
-    </GridArea>
-  );
-};
-
-const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
-  ...props
-}) => {
-  const { programmes } = props;
+const SubjectProgrammeListing: FC<
+  ProgrammeListingPageData & {
+    onClick: (props: ProgrammeListingPageData["programmes"][number]) => void;
+  }
+> = ({ ...props }) => {
+  const { programmes, onClick } = props;
 
   const examBoards = Array.from(
     new Set(programmes.map((programme) => programme.examBoardTitle)),
@@ -51,21 +31,29 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
 
   return (
     <>
-      <Grid $cg={16} $rg={16}>
+      <OakGrid $cg={"all-spacing-4"} $rg={"all-spacing-4"}>
         {examBoards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
-            <Heading tag="h2" $font="heading-5" $mb={30}>
+            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
               Select tier of learning
-            </Heading>
-            <SubjectProgrammeList {...props} programmes={tierProgrammes} />
+            </OakHeading>
+            <SubjectProgrammeList
+              {...props}
+              programmes={tierProgrammes}
+              onClick={onClick}
+            />
           </ProgrammeListContainer>
         )}
         {tiers.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
-            <Heading tag="h2" $font="heading-5" $mb={30}>
+            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
               Select exam board
-            </Heading>
-            <SubjectProgrammeList {...props} programmes={examBoardProgrammes} />
+            </OakHeading>
+            <SubjectProgrammeList
+              {...props}
+              programmes={examBoardProgrammes}
+              onClick={onClick}
+            />
           </ProgrammeListContainer>
         )}
         {tiers.length > 1 && examBoards.length > 1 && (
@@ -79,26 +67,22 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
                   key={`${examBoard}-${index}`}
                   $colSpan={[12, 4]}
                 >
-                  <Heading tag="h2" $font="heading-5" $mb={30}>
+                  <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
                     {examBoard}
-                  </Heading>
+                  </OakHeading>
                   <SubjectProgrammeList
                     {...props}
                     programmes={programmeOfexamBoard}
+                    onClick={onClick}
                   />
                 </ProgrammeListContainer>
               );
             })}
           </>
         )}
-      </Grid>
+      </OakGrid>
     </>
   );
-};
-
-export type URLParams = {
-  subjectSlug: string;
-  keyStageSlug: string;
 };
 
 export default SubjectProgrammeListing;

@@ -16,7 +16,8 @@ import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
-} from "@/components/UnstyledButton";
+} from "@/components/SharedComponents/UnstyledButton";
+import { OakColorName } from "@/styles/theme";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
@@ -34,6 +35,7 @@ export type ButtonProps = CommonButtonProps & {
   isCurrent?: boolean;
   currentStyles?: ButtonCurrentStyles;
   role?: string;
+  labelColor?: OakColorName;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -90,6 +92,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         disabled={disabled}
         isCurrent={isCurrent}
         currentStyles={currentStyles}
+        labelColor={props.labelColor}
       />
     </StyledButton>
   );

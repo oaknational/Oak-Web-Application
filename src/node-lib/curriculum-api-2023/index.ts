@@ -18,6 +18,8 @@ import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/less
 import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
+import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
+import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -112,9 +114,11 @@ const curriculumApi2023 = {
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
+  lessonShare: lessonShareQuery(sdk),
   lessonDownloadsCanonical: lessonDownloadsCanonicalQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonOverview: pupilLessonOverviewQuery(sdk),
+  pupilLessonOverviewCanonical: pupilLessonOverviewCanonicalQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),

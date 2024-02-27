@@ -1,12 +1,12 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const createSearchResult = (): SearchHit => {
   return {
@@ -28,6 +28,7 @@ const createSearchResult = (): SearchHit => {
       key_stage_title: "key stage 1",
       key_stage_slug: "key-stage-1",
       pathways: [],
+      cohort: LEGACY_COHORT,
     },
   };
 };
@@ -245,10 +246,8 @@ describe("Search.page.tsx", () => {
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
     getByRole("searchbox").focus();
-    await act(async () => {
-      await user.keyboard("macb");
-      await user.keyboard("{Enter}");
-    });
+    await user.keyboard("macb");
+    await user.keyboard("{Enter}");
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("query is set on submit button click", async () => {
@@ -257,28 +256,22 @@ describe("Search.page.tsx", () => {
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
     const submit = getByRole("button", { name: "Submit" });
-    await act(async () => {
-      await user.click(submit);
-    });
+    await user.click(submit);
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("tab order, 1: search input", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
-    await act(async () => {
-      await user.tab();
-    });
+    await user.tab();
     expect(searchInput).toHaveFocus();
   });
   test("tab order, 2: submit button", async () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
 
     const user = userEvent.setup();
-    await act(async () => {
-      await user.tab();
-      await user.tab();
-    });
+    await user.tab();
+    await user.tab();
     expect(getByRole("button", { name: "Submit" })).toHaveFocus();
   });
   test("clicking result description clicks the link", async () => {
@@ -299,9 +292,7 @@ describe("Search.page.tsx", () => {
       },
       false,
     );
-    await act(async () => {
-      await user.click(description);
-    });
+    await user.click(description);
 
     expect(onLinkClick).toHaveBeenCalled();
   });
@@ -335,9 +326,7 @@ describe("Search.page.tsx", () => {
     const { getByText } = render(<Search {...props} {...resultsProps} />);
     const description = getByText("lesson title");
     const user = userEvent.setup();
-    await act(async () => {
-      await user.click(description);
-    });
+    await user.click(description);
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
@@ -363,14 +352,10 @@ describe("Search.page.tsx", () => {
     );
     const dropdown = getByText("Select exam board");
     const user = userEvent.setup();
-    await act(async () => {
-      await user.click(dropdown);
-    });
+    await user.click(dropdown);
 
     const link = getByText("Exam Board 1 Higher");
-    await act(async () => {
-      await user.click(link);
-    });
+    await user.click(link);
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
@@ -396,9 +381,7 @@ describe("Search.page.tsx", () => {
     );
     const dropdown = getByText("Select exam board");
     const user = userEvent.setup();
-    await act(async () => {
-      await user.click(dropdown);
-    });
+    await user.click(dropdown);
 
     expect(searchResultExpanded).toHaveBeenCalledTimes(1);
     expect(searchResultExpanded).toHaveBeenCalledWith({

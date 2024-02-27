@@ -1,13 +1,14 @@
 import { FC, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
+import {
+  OakHeading,
+  OakHeadingTag,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { IconName } from "@/components/SharedComponents/Icon";
-import Heading, {
-  HeadingTag,
-} from "@/components/SharedComponents/Typography/Heading";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex";
 
 const Summary = styled.summary`
   list-style: none;
@@ -17,7 +18,7 @@ const Summary = styled.summary`
   }
 `;
 
-const SummaryHeading = styled(Heading)`
+const SummaryHeading = styled(OakHeading)`
   cursor: pointer;
 
   &:focus-within {
@@ -35,7 +36,7 @@ type CollapsibleSectionProps = {
   children?: React.ReactNode;
   startOpen: boolean;
   title: string;
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   buttons?: SummaryButton[];
 };
 /**
@@ -73,8 +74,8 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
           e.preventDefault();
         }}
       >
-        <Flex
-          $pa={24}
+        <OakFlex
+          $pa="inner-padding-xl"
           $flexDirection={"row"}
           $justifyContent={"space-between"}
           $background={"white"}
@@ -87,7 +88,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
               label={title}
             />
           </SummaryHeading>
-          <Flex>
+          <OakFlex>
             {buttons?.map((button) => (
               <IconButton
                 key={button.icon}
@@ -108,13 +109,17 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
               rotate={open ? 180 : 0}
               aria-expanded={open}
             />
-          </Flex>
-        </Flex>
+          </OakFlex>
+        </OakFlex>
       </Summary>
       {open && (
-        <Flex $background={"white"} $ph={16} $pb={16}>
+        <OakFlex
+          $background={"white"}
+          $ph="inner-padding-m"
+          $pb="inner-padding-m"
+        >
           {children}
-        </Flex>
+        </OakFlex>
       )}
     </details>
   );

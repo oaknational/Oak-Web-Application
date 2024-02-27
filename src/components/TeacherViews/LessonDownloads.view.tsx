@@ -30,37 +30,43 @@ import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirm
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { LEGACY_COHORT } from "@/config/cohort";
+
+type BaseLessonDownload = {
+  isLegacy: boolean;
+  lessonTitle: string;
+  lessonSlug: string;
+  lessonCohort?: string | null;
+  downloads: LessonDownloadsData["downloads"];
+  hasDownloadableResources?: boolean;
+};
+
+type CanonicalLesson = BaseLessonDownload & {
+  pathways: LessonPathway[];
+  nextLessons?: NextLesson[];
+};
+
+type NonCanonicalLesson = BaseLessonDownload & {
+  nextLessons: NextLesson[];
+} & LessonPathway;
 
 type LessonDownloadsProps =
   | {
       isCanonical: true;
-      lesson: {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
-        pathways: LessonPathway[];
-        nextLessons?: NextLesson[];
-      };
+      lesson: CanonicalLesson;
     }
   | {
       isCanonical: false;
-      lesson: LessonPathway & {
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
-        nextLessons: NextLesson[];
-      };
+      lesson: NonCanonicalLesson;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, downloads, hasDownloadableResources } =
+    lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-
   const {
     programmeSlug,
     keyStageTitle,
@@ -69,11 +75,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     subjectTitle,
     unitSlug,
     unitTitle,
+    lessonCohort,
   } = commonPathway;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const isLegacyDownload = isLegacy;
+  const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const onwardContent = lesson.nextLessons
     ? lesson.nextLessons?.map((nextLesson) => {
@@ -122,6 +128,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
+    await onHubspotSubmit(data);
+
     try {
       await debouncedSubmit({
         data,
@@ -130,8 +138,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setEditDetailsClicked,
         onSubmit,
       });
-      setIsDownloadSuccessful(true);
 
+      setIsDownloadSuccessful(true);
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
       }
@@ -163,8 +171,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onwardContent,
         emailSupplied: data?.email ? true : false,
       });
-
-      onHubspotSubmit(data);
     } catch (error) {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);
@@ -178,7 +184,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
     onComplete: setActiveResources,
-    isLegacyDownload: isLegacy,
+    isLegacyDownload: isLegacyDownload,
   });
 
   return (
@@ -225,7 +231,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             handleToggleSelectAll={handleToggleSelectAll}
             selectAllChecked={selectAllChecked}
             header="Download"
-            showNoResources={!hasResources}
+            showNoResources={!hasResources || !hasDownloadableResources}
             showLoading={isLocalStorageLoading}
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
@@ -235,17 +241,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             onEditClick={handleEditDetailsCompletedClick}
             register={form.register}
             control={form.control}
-            showPostAlbCopyright={!isLegacy}
+            showPostAlbCopyright={!isLegacyDownload}
             resourcesHeader="Lesson resources"
             triggerForm={form.trigger}
             apiError={apiError}
             cardGroup={
-              <DownloadCardGroup
-                control={form.control}
-                downloads={downloads}
-                hasError={form.errors?.resources ? true : false}
-                triggerForm={form.trigger}
-              />
+              hasDownloadableResources && (
+                <DownloadCardGroup
+                  control={form.control}
+                  downloads={downloads}
+                  hasError={form.errors?.resources ? true : false}
+                  triggerForm={form.trigger}
+                />
+              )
             }
             cta={
               <LoadingButton
@@ -258,6 +266,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
+                  !hasDownloadableResources ||
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 loadingText={"Downloading..."}

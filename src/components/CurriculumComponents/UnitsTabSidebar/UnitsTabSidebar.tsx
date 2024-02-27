@@ -1,22 +1,25 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
-import Flex from "@/components/SharedComponents/Flex";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { Hr } from "@/components/SharedComponents/Typography";
-import Button from "@/components/SharedComponents/Button";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
-  unitData?: Unit | null;
   unitOptionsAvailable?: boolean;
+  programmeSlug?: string;
+  lessons: Lesson[] | [];
+  unitSlug?: string;
+  unitVariantID?: number | null;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
@@ -24,11 +27,25 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   onClose,
   children,
   unitOptionsAvailable,
+  programmeSlug,
+  lessons,
+  unitSlug,
+  unitVariantID,
 }) => {
+  const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
+    return (
+      (lessons &&
+        lessons.some((lesson: Lesson) => lesson._state === "published")) ||
+      false
+    );
+  };
+
+  const lessonsAvailable = getLessonsAvailable(lessons);
+
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
-        <Box $position={"absolute"}>
+        <Box $position={"absolute"} data-testid="sidebar-modal-wrapper">
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
           <FocusOn
             enabled={displayModal}
@@ -48,7 +65,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               $zIndex={"modalDialog"}
               $overflowY={"scroll"}
             >
-              <Flex $flexDirection={"column"} $minWidth={"100%"}>
+              <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
                 <Box $position={"fixed"} $top={20} $right={16}>
                   <IconButton
                     aria-label="Close Menu"
@@ -60,43 +77,56 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                     aria-expanded={displayModal}
                   />
                 </Box>
-
-                <Flex $overflowY={"auto"} $flexGrow={1}>
+                <OakFlex $overflowY={"auto"} $flexGrow={1}>
                   {children}
-                </Flex>
+                </OakFlex>
 
                 {!unitOptionsAvailable && (
-                  <Flex $flexDirection={"column"}>
+                  <OakFlex $flexDirection={"column"}>
                     <Hr $color={"grey30"} $mt={0} $mb={24} />
-                    <Flex
+                    <OakFlex
                       $justifyContent={"space-between"}
                       $alignItems={["flex-end"]}
-                      $ph={16}
-                      $pb={16}
+                      $ph="inner-padding-m"
+                      $pb="inner-padding-m"
                     >
-                      <Flex
+                      <OakFlex
                         $flexDirection={["column", "row"]}
                         $alignItems={"flex-start"}
-                        $gap={8}
+                        $gap="all-spacing-2"
                       >
-                        <TagFunctional text={"Coming soon"} color="grey" />
-                        <Button
-                          data-testid="unit-lessons-button"
-                          disabled={true}
-                          label="See lessons in unit"
-                          $font={"heading-7"}
-                          isCurrent={true}
-                          currentStyles={["color"]}
-                          icon="chevron-right"
-                          iconBackground="grey60"
-                          $iconPosition="trailing"
-                          variant="buttonStyledAsLink"
-                        />
-                      </Flex>
-                    </Flex>
-                  </Flex>
+                        {lessonsAvailable === false && (
+                          <TagFunctional
+                            data-testid="coming-soon-flag"
+                            text={"Coming soon"}
+                            color="grey"
+                          />
+                        )}
+                        {lessons && programmeSlug && unitSlug && (
+                          <ButtonAsLink
+                            data-testid="unit-lessons-button"
+                            label="See lessons in unit"
+                            $font={"heading-7"}
+                            disabled={!lessonsAvailable}
+                            currentStyles={["color"]}
+                            icon="chevron-right"
+                            iconBackground="black"
+                            $iconPosition="trailing"
+                            variant="buttonStyledAsLink"
+                            page="lesson-index"
+                            unitSlug={
+                              unitVariantID
+                                ? `${unitSlug}-${unitVariantID}`
+                                : unitSlug
+                            }
+                            programmeSlug={programmeSlug}
+                          />
+                        )}
+                      </OakFlex>
+                    </OakFlex>
+                  </OakFlex>
                 )}
-              </Flex>
+              </OakFlex>
             </SideMenu>
           </FocusOn>
         </Box>

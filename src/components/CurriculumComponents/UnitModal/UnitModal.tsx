@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
-import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -19,6 +19,8 @@ type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
+  setCurrentUnitLessons: (x: Lesson[]) => void;
+  setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
   isHighlighted: boolean;
 };
@@ -26,12 +28,15 @@ type UnitModalProps = {
 export type Lesson = {
   title: string;
   slug?: string;
+  _state?: string;
 };
 
 const UnitModal: FC<UnitModalProps> = ({
   unitData,
   displayModal,
   setUnitOptionsAvailable,
+  setCurrentUnitLessons,
+  setUnitVariantID,
   unitOptionsAvailable,
   isHighlighted,
 }) => {
@@ -52,12 +57,18 @@ const UnitModal: FC<UnitModalProps> = ({
       setCurriculumUnitDetails(null);
       setOptionalityModalOpen(false);
       setUnitOptionsAvailable(false);
+      setUnitVariantID(null);
     }
 
     if (optionalityModalOpen) {
       setUnitOptionsAvailable(false);
     }
-  }, [displayModal, setUnitOptionsAvailable, optionalityModalOpen]);
+  }, [
+    displayModal,
+    setUnitOptionsAvailable,
+    optionalityModalOpen,
+    setUnitVariantID,
+  ]);
 
   useEffect(() => {
     // For tracking open model events
@@ -72,6 +83,7 @@ const UnitModal: FC<UnitModalProps> = ({
           yearGroupSlug: unitData.year,
           unitHighlighted: isHighlighted,
           analyticsUseCase: analyticsUseCase,
+          //update to include optionality units
         });
       }
     }
@@ -80,13 +92,13 @@ const UnitModal: FC<UnitModalProps> = ({
   return (
     <>
       {unitData && (
-        <Flex
+        <OakFlex
           $flexDirection={"column"}
           $maxWidth={"100%"}
           $justifyContent={"space-between"}
           $width={"100%"}
           $overflowY={"scroll"}
-          $mt={72}
+          $mt="space-between-xxl"
         >
           <Box $ph={[24, 72]}>
             <Box $display={optionalityModalOpen ? "block" : "none"} $mb={16}>
@@ -102,6 +114,7 @@ const UnitModal: FC<UnitModalProps> = ({
                   handleOptionalityModal();
                   setUnitOptionsAvailable(true);
                   setCurriculumUnitDetails(null);
+                  setUnitVariantID(null);
                 }}
               />
             </Box>
@@ -109,11 +122,11 @@ const UnitModal: FC<UnitModalProps> = ({
               subjectTitle={unitData.subject}
               yearTitle={`Year ${unitData.year}`}
             />
-            <Heading tag="h2" $font={"heading-5"}>
+            <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
                 : curriculumUnitDetails.unitTitle}
-            </Heading>
+            </OakHeading>
             {!unitOptionsAvailable && (
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
@@ -131,6 +144,7 @@ const UnitModal: FC<UnitModalProps> = ({
               </Box>
             )}
 
+            {/* @todo replace with OakFlex once display is fixed in OakFlex - currently display: flex overwrites "none" */}
             <Flex
               $flexDirection={"column"}
               $display={optionalityModalOpen ? "none" : "flex"}
@@ -144,17 +158,17 @@ const UnitModal: FC<UnitModalProps> = ({
                   data-testid="unit-options-card"
                   $borderRadius={4}
                 >
-                  <Heading
+                  <OakHeading
                     tag="h4"
                     $font={"heading-6"}
-                    $mb={24}
+                    $mb="space-between-m"
                     data-testid="unit-options-heading"
                   >
                     Unit options
-                  </Heading>
-                  <Flex
+                  </OakHeading>
+                  <OakFlex
                     $flexDirection={["column", "row"]}
-                    $gap={24}
+                    $gap="all-spacing-6"
                     $flexWrap={"wrap"}
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
@@ -172,22 +186,22 @@ const UnitModal: FC<UnitModalProps> = ({
                         >
                           <Box>
                             <BrushBorders color="white" />
-                            <Heading
+                            <OakHeading
                               tag="h5"
                               $font={"heading-7"}
-                              $mb={16}
+                              $mb="space-between-s"
                               $wordWrap={"normal"}
                             >
                               {optionalUnit.title}
-                            </Heading>
+                            </OakHeading>
                           </Box>
 
-                          <Flex
+                          <OakFlex
                             $flexDirection={"row"}
                             $justifyContent={"flex-end"}
                             $alignSelf={"flex-end"}
                           >
-                            <Flex
+                            <OakFlex
                               $flexDirection={"row"}
                               $alignItems={"flex-start"}
                               $width={"100%"}
@@ -205,6 +219,8 @@ const UnitModal: FC<UnitModalProps> = ({
                                 onClick={() => {
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
+                                  setUnitVariantID(optionalUnit.unitvariant_id);
+                                  setCurrentUnitLessons(optionalUnit.lessons);
                                   setCurriculumUnitDetails({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
@@ -220,12 +236,12 @@ const UnitModal: FC<UnitModalProps> = ({
                                   });
                                 }}
                               />
-                            </Flex>
-                          </Flex>
+                            </OakFlex>
+                          </OakFlex>
                         </Card>
                       );
                     })}
-                  </Flex>
+                  </OakFlex>
                 </Box>
               )}
             </Flex>
@@ -236,7 +252,7 @@ const UnitModal: FC<UnitModalProps> = ({
               </Box>
             )}
           </Box>
-        </Flex>
+        </OakFlex>
       )}
     </>
   );

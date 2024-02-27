@@ -1,5 +1,6 @@
 import { FC, forwardRef } from "react";
 import styled from "styled-components";
+import { OakSpan } from "@oaknational/oak-components";
 
 import InputIcon from "./InputIcon";
 
@@ -7,7 +8,7 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import { margin, MarginProps } from "@/styles/utils/spacing";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { IconName } from "@/components/SharedComponents/Icon";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import UnstyledInput, {
@@ -17,8 +18,7 @@ import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import Svg from "@/components/SharedComponents/Svg";
-import FieldError from "@/components/FormFields/FieldError";
-import { Span } from "@/components/SharedComponents/Typography";
+import FieldError from "@/components/SharedComponents/FieldError";
 import Label from "@/components/SharedComponents/Typography/Label";
 
 export type StyledInputProps = MarginProps & {
@@ -157,16 +157,16 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 data-testid="rotated-input-label"
               >
                 {isRequired && (
-                  <Span>
+                  <OakSpan>
                     {props.label}{" "}
-                    <Span $font={"heading-light-7"}>(required)</Span>
-                  </Span>
+                    <OakSpan $font={"heading-light-7"}>(required)</OakSpan>
+                  </OakSpan>
                 )}
                 {isOptional && (
-                  <Span>
+                  <OakSpan>
                     {props.label}{" "}
-                    <Span $font={"heading-light-7"}>(optional)</Span>
-                  </Span>
+                    <OakSpan $font={"heading-light-7"}>(optional)</OakSpan>
+                  </OakSpan>
                 )}
                 {!isRequired && !isOptional && props.label}
               </RotatedInputLabel>

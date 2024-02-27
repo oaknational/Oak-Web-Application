@@ -12,6 +12,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+import lessonDownloadsFixtures2023 from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
   URLParams,
@@ -33,7 +34,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -95,6 +96,36 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     expect(screen.getByText("No downloads available")).toBeInTheDocument();
   });
+  it("Renders 'no downloads available' message if hasDownloadableResources is false", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByText("No downloads available")).toBeInTheDocument();
+  });
+  it("Does not render check boxes if hasDownloadableResources is false (copyright material)", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
+  });
 
   describe("download form", () => {
     it("Renders download form with correct elements", () => {
@@ -135,9 +166,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
       // Lesson resources to download
-      const lessonResourcesToDownload = screen.getAllByTestId(
-        "lessonResourcesCheckbox",
-      );
+      const lessonResourcesToDownload = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToDownload.length).toEqual(2);
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
 
@@ -332,9 +361,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   describe("Copyright notice", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: true })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
       );
 
       const copyrightNotice = await screen.findByText(
@@ -347,9 +374,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: false })}
-        />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures2023()} />,
       );
 
       const copyrightNotice = await screen.findByText(

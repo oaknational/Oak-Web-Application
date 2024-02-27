@@ -1,13 +1,12 @@
 import { FC } from "react";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
-import Typography from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type LayoutLandingPagesHeaderProps = {
   headerCta?: CTA | null;
@@ -20,24 +19,24 @@ export type LayoutLandingPagesHeaderProps = {
 const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
   return (
     <LayoutFixedHeader $background={"white"}>
-      <Flex
+      <OakFlex
         $alignItems={"center"}
         $width={"100%"}
         $justifyContent={"space-between"}
       >
-        <OakLink page={"home"}>
+        <OwaLink page={"home"}>
           <Logo variant="with text" height={48} width={104} />
-        </OakLink>
+        </OwaLink>
         {props.headerCta?.linkType && (
-          <OakLink page={null} href={getLinkHref(props.headerCta)}>
-            <Flex
-              $width={[200, "100%"]}
+          <OwaLink page={null} href={getLinkHref(props.headerCta)}>
+            <OakFlex
+              $width={["all-spacing-19", "100%"]}
               $justifyContent={"flex-end"}
               $alignItems={"center"}
             >
-              <Typography $textAlign="right" $font={"heading-7"}>
+              <OakTypography $textAlign="right" $font={"heading-7"}>
                 {props.headerCta.label}
-              </Typography>
+              </OakTypography>
               <Icon
                 $ml={12}
                 aria-label={"arrow-right"}
@@ -47,10 +46,10 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
                 variant={"brush"}
                 size={28}
               />
-            </Flex>
-          </OakLink>
+            </OakFlex>
+          </OwaLink>
         )}
-      </Flex>
+      </OakFlex>
     </LayoutFixedHeader>
   );
 };

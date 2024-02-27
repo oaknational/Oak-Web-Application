@@ -25,11 +25,13 @@ describe("Unit modal", () => {
   test("renders with correct heading", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
+        setCurrentUnitLessons={stateFn}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
@@ -38,11 +40,13 @@ describe("Unit modal", () => {
   test("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
       <UnitModal
+        setCurrentUnitLessons={stateFn}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
@@ -56,11 +60,13 @@ describe("Unit modal", () => {
   test("lesson metadata renders correct data", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
+        setCurrentUnitLessons={stateFn}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
+        setUnitVariantID={stateFn}
       />,
     );
 
@@ -72,11 +78,13 @@ describe("Unit modal", () => {
     test("does not render optionality card", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -86,11 +94,13 @@ describe("Unit modal", () => {
     test("renders CurriculumUnitDetails component", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -102,11 +112,13 @@ describe("Unit modal", () => {
     test("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -117,11 +129,13 @@ describe("Unit modal", () => {
     test("does not render CurriculumUnitDetails component", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -131,11 +145,13 @@ describe("Unit modal", () => {
     test("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -145,11 +161,13 @@ describe("Unit modal", () => {
     test("optionality cards render correct unit titles", () => {
       const { getByText } = renderWithTheme(
         <UnitModal
+          setCurrentUnitLessons={stateFn}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
+          setUnitVariantID={stateFn}
         />,
       );
 
@@ -162,11 +180,13 @@ describe("Unit modal", () => {
       const { getAllByTestId, getByTestId, getByText, queryByTestId } =
         renderWithTheme(
           <UnitModal
+            setCurrentUnitLessons={stateFn}
             displayModal={true}
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
             setUnitOptionsAvailable={stateFn}
             isHighlighted={false}
+            setUnitVariantID={stateFn}
           />,
         );
 
@@ -188,10 +208,12 @@ describe("Unit modal", () => {
   test("calls tracking.unitInformationViewed once, with correct props", async () => {
     renderWithTheme(
       <UnitModal
+        setCurrentUnitLessons={stateFn}
         displayModal={true}
         unitData={mockOptionalityUnit}
         unitOptionsAvailable={true}
         setUnitOptionsAvailable={stateFn}
+        setUnitVariantID={stateFn}
         isHighlighted={false}
       />,
     );

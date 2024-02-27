@@ -1,12 +1,12 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
+import { OakTypography, OakHeading } from "@oaknational/oak-components";
 
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import Card from "@/components/SharedComponents/Card";
 import { SupportYourTeamTextBlockCardULTick } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardULTick/SupportYourTeamTextBlockCardULTick";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const supportYourTeamTextBlockCardPortableText: PortableTextComponents = {
@@ -14,7 +14,9 @@ const supportYourTeamTextBlockCardPortableText: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
-        <Typography $font={["body-2", "body-1"]}>{props.children}</Typography>
+        <OakTypography $font={["body-2", "body-1"]}>
+          {props.children}
+        </OakTypography>
       );
     },
   },
@@ -33,9 +35,13 @@ export const SupportYourTeamTextBlockCard: FC<
   const { title, bodyPortableText, portableTextComponents, background } = props;
   return (
     <Card $pt={24} $ph={[16, 24]} $background={background}>
-      <Heading $mb={32} tag="h2" $font={["heading-5", "heading-4"]}>
+      <OakHeading
+        $mb={"space-between-m2"}
+        tag="h2"
+        $font={["heading-5", "heading-4"]}
+      >
         {title}
-      </Heading>
+      </OakHeading>
       <PortableTextWithDefaults
         components={{
           ...supportYourTeamTextBlockCardPortableText,

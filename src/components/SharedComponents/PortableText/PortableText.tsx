@@ -8,15 +8,15 @@ import {
 import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
 import { merge } from "lodash/fp";
+import { OakLI, OakP, OakSpan, OakOL } from "@oaknational/oak-components";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
 import errorReporter from "@/common-lib/error-reporter";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { LI, OL, P, Span } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
 
@@ -86,9 +86,9 @@ export const PTInternalLink: PortableTextMarkComponent<{
   href = getProxiedSanityAssetUrl(href);
 
   return (
-    <OakLink href={href} page={null} $isInline>
+    <OwaLink href={href} page={null} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 
@@ -103,9 +103,9 @@ export const PTExternalLink: PortableTextMarkComponent<{
   const { href } = props.value;
 
   return (
-    <OakLink href={href} page={null} $isInline>
+    <OwaLink href={href} page={null} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 
@@ -118,9 +118,9 @@ export const PTAnchorLink: PortableTextMarkComponent<{
   }
 
   return (
-    <OakLink page={null} href={`#${props.value.anchor}`} $isInline>
+    <OwaLink page={null} href={`#${props.value.anchor}`} $isInline>
       {props.children}
-    </OakLink>
+    </OwaLink>
   );
 };
 
@@ -141,7 +141,7 @@ export const PTAnchorTarget: PortableTextMarkComponent<{
   );
 };
 
-const BodyP = styled(P)`
+const BodyP = styled(OakP)`
   &:first-child {
     margin-top: 0;
   }
@@ -151,7 +151,10 @@ export const basePortableTextComponents: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
-        <BodyP $font={["body-2", "body-1"]} $mt={[16, 20]}>
+        <BodyP
+          $font={["body-2", "body-1"]}
+          $mt={["space-between-s", "space-between-m"]}
+        >
           {props.children}
         </BodyP>
       );
@@ -159,22 +162,26 @@ export const basePortableTextComponents: PortableTextComponents = {
   },
   list: {
     bullet: (props) => <ul>{props.children}</ul>,
-    number: (props) => <OL $ml={[16, 28]}>{props.children}</OL>,
+    number: (props) => (
+      <OakOL $ml={["space-between-s", "space-between-m"]}>
+        {props.children}
+      </OakOL>
+    ),
   },
   listItem: {
     bullet: (props) => (
-      <LI $font={["list-item-2", "list-item-1"]}>{props.children}</LI>
+      <OakLI $font={["list-item-2", "list-item-1"]}>{props.children}</OakLI>
     ),
     number: (props) => (
-      <LI $font={["list-item-2", "list-item-1"]}>{props.children}</LI>
+      <OakLI $font={["list-item-2", "list-item-1"]}>{props.children}</OakLI>
     ),
   },
   marks: {
     strong: (props) => {
-      return <Span as="strong">{props.children}</Span>;
+      return <OakSpan as="strong">{props.children}</OakSpan>;
     },
     em: (props) => {
-      return <Span as="em">{props.children}</Span>;
+      return <OakSpan as="em">{props.children}</OakSpan>;
     },
     internalLink: PTInternalLink,
     link: PTExternalLink,

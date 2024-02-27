@@ -1,5 +1,4 @@
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
 
 import SearchDropdown from "./SearchDropdown";
 
@@ -53,9 +52,7 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select exam board" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     expect(getByTestId("search-dropdown-content")).toBeVisible();
     expect(button).toHaveAttribute("aria-expanded", "true");
@@ -67,9 +64,7 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select exam board" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -82,9 +77,7 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select tier" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -97,9 +90,7 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select exam board" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -125,9 +116,7 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select exam board" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -153,15 +142,11 @@ describe("SearchDropdown component", () => {
 
     const button = getByRole("button", { name: "Select exam board" });
 
-    await act(async () => {
-      await userEvent.click(button);
-    });
+    await userEvent.click(button);
 
     const link = getByText("Exam Board 1 Higher");
 
-    await act(async () => {
-      await userEvent.click(link);
-    });
+    await userEvent.click(link);
 
     expect(onClickSearchHit).toHaveBeenCalled();
   });

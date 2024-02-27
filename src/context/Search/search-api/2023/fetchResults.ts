@@ -3,8 +3,6 @@ import snakecaseKeys from "snakecase-keys";
 import { searchResultsSchema } from "../../search.schema";
 import { SearchHit, SearchQuery } from "../../search.types";
 
-import { constructElasticQuery } from "./constructElasticQuery";
-
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
 
@@ -16,7 +14,7 @@ export async function fetchResults(query: SearchQuery) {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructElasticQuery(query)),
+    body: JSON.stringify(query),
   };
 
   const response = await fetch(getBrowserConfig("searchApiUrl2023"), options);
@@ -37,6 +35,7 @@ export async function fetchResults(query: SearchQuery) {
             lessonSlug?: string;
             unitTitle?: string;
             unitSlug?: string;
+            cohort?: string;
           };
         }) => {
           const source = hit._source;
@@ -44,10 +43,9 @@ export async function fetchResults(query: SearchQuery) {
             source.type === "lesson" ? source.lessonTitle : source.unitTitle;
           const slug =
             source.type === "lesson" ? source.lessonSlug : source.unitSlug;
-
           return {
             ...hit,
-            legacy: false,
+
             _source: {
               ...source,
               title,

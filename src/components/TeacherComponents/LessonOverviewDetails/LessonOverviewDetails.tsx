@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
@@ -13,12 +14,12 @@ import LessonOverviewTeacherTips, {
   LessonOverviewTeacherTipProps,
 } from "@/components/TeacherComponents/LessonOverviewTeacherTips";
 import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 type LessonOverviewDetailsProps = {
   keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
@@ -42,54 +43,67 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   isLegacyLicense,
 }) => {
   return (
-    <Flex
-      $flexDirection={"row"}
-      $flexWrap={["wrap", "nowrap"]}
-      $justifyContent={["center", "normal"]}
-      $alignItems={"flex-start"}
-    >
-      <Flex $flexDirection={"column"} $flexGrow={1} $mr={16} $gap={48} $mb={24}>
-        {keyLearningPoints && (
-          <Box>
-            <LessonOverviewKeyLearningPoints
-              keyLearningPoints={keyLearningPoints}
-            />
-          </Box>
-        )}
-        {commonMisconceptions && (
-          <Box>
-            <LessonOverviewCommonMisconceptions
-              commonMisconceptions={commonMisconceptions}
-            />
-          </Box>
-        )}
-        {keyWords && (
-          <Box>
-            <LessonOverviewKeywords keyWords={keyWords} />
-          </Box>
-        )}
-      </Flex>
-      <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
-        {teacherTips && (
-          <Box>
-            <LessonOverviewTeacherTips teacherTips={teacherTips} />
-          </Box>
-        )}
-        {(equipmentAndResources && equipmentAndResources.length > 0) ||
-        (contentGuidance && contentGuidance.length > 0) ||
-        supervisionLevel ||
-        isLegacyLicense !== undefined ? (
-          <Box>
-            <LessonOverviewHelper
-              equipment={equipmentAndResources}
-              contentGuidance={contentGuidance}
-              supervisionLevel={supervisionLevel}
-              isLegacyLicense={isLegacyLicense}
-            />
-          </Box>
-        ) : null}
-      </Flex>
-    </Flex>
+    <MathJaxWrap>
+      <OakFlex
+        $flexDirection={"row"}
+        $flexWrap={["wrap", "nowrap"]}
+        $justifyContent={["center", "normal"]}
+        $alignItems={"flex-start"}
+      >
+        <OakFlex
+          $flexDirection={"column"}
+          $flexGrow={1}
+          $mr="space-between-s"
+          $gap="all-spacing-9"
+          $mb="space-between-m"
+        >
+          {keyLearningPoints && (
+            <Box>
+              <LessonOverviewKeyLearningPoints
+                keyLearningPoints={keyLearningPoints}
+              />
+            </Box>
+          )}
+          {commonMisconceptions && (
+            <Box>
+              <LessonOverviewCommonMisconceptions
+                commonMisconceptions={commonMisconceptions}
+              />
+            </Box>
+          )}
+          {keyWords && (
+            <Box>
+              <LessonOverviewKeywords keyWords={keyWords} />
+            </Box>
+          )}
+        </OakFlex>
+        <OakFlex
+          $flexDirection={"column"}
+          $mt={["space-between-l", "space-between-none"]}
+          $gap={"all-spacing-9"}
+          $mb={"space-between-m"}
+        >
+          {teacherTips && (
+            <Box>
+              <LessonOverviewTeacherTips teacherTips={teacherTips} />
+            </Box>
+          )}
+          {(equipmentAndResources && equipmentAndResources.length > 0) ||
+          (contentGuidance && contentGuidance.length > 0) ||
+          supervisionLevel ||
+          isLegacyLicense !== undefined ? (
+            <Box>
+              <LessonOverviewHelper
+                equipment={equipmentAndResources}
+                contentGuidance={contentGuidance}
+                supervisionLevel={supervisionLevel}
+                isLegacyLicense={isLegacyLicense}
+              />
+            </Box>
+          ) : null}
+        </OakFlex>
+      </OakFlex>
+    </MathJaxWrap>
   );
 };
 

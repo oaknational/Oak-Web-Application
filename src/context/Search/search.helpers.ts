@@ -17,6 +17,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const reportError = errorReporter("search/helpers");
 
@@ -66,7 +67,9 @@ export const getSortedSearchFiltersSelected = (
   return combinedFilters.split(",").sort((a, b) => (a < b ? -1 : 1));
 };
 
-const keyStageToSentenceCase = (keyStage?: string): string | undefined => {
+export const keyStageToSentenceCase = (
+  keyStage?: string,
+): string | undefined => {
   if (!keyStage) {
     return undefined;
   }
@@ -165,19 +168,21 @@ export function getLessonObject(props: {
   allKeyStages: KeyStage[];
 }): SearchResultsItemProps | null {
   const { hit, allKeyStages } = props;
-  const { _source, highlight, legacy } = hit;
+  const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
   const keyStage = elasticKeyStageSlugToKeyStage({
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
+
   const buttonLinkProps: LessonOverviewLinkProps = {
     page: "lesson-overview",
     lessonSlug: highlightedHit.slug?.toString(),
-    programmeSlug: legacy
-      ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
-        getProgrammeSlug(hit, allKeyStages)
-      : getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      _source.cohort === LEGACY_COHORT
+        ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+          getProgrammeSlug(hit, allKeyStages)
+        : getProgrammeSlug(hit, allKeyStages),
     unitSlug:
       highlightedHit.unit_slug?.toString() ||
       highlightedHit.topic_slug?.toString() ||
@@ -198,7 +203,7 @@ export function getLessonObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
-    legacy: hit.legacy,
+    cohort: hit._source.cohort,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),
@@ -223,18 +228,20 @@ export function getUnitObject(props: {
   allKeyStages: KeyStage[];
 }): SearchResultsItemProps | null {
   const { hit, allKeyStages } = props;
-  const { _source, highlight, legacy } = hit;
+  const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
   const keyStage = elasticKeyStageSlugToKeyStage({
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
+
   const buttonLinkProps: LessonListingLinkProps = {
     page: "lesson-index",
-    programmeSlug: legacy
-      ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
-        getProgrammeSlug(hit, allKeyStages)
-      : getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      _source.cohort === LEGACY_COHORT
+        ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+          getProgrammeSlug(hit, allKeyStages)
+        : getProgrammeSlug(hit, allKeyStages),
     unitSlug: highlightedHit.slug?.toString(),
   };
 
@@ -248,7 +255,7 @@ export function getUnitObject(props: {
     keyStageTitle: keyStage?.title?.toString() || "",
     keyStageSlug: keyStage?.slug?.toString() || "",
     buttonLinkProps: buttonLinkProps,
-    legacy: hit.legacy,
+    cohort: hit._source.cohort,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),

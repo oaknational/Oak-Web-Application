@@ -12,7 +12,7 @@ import {
 
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
@@ -75,6 +75,7 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
+  labelColor?: OakColorName;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
@@ -91,6 +92,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     isCurrent,
     currentStyles,
     $font,
+    labelColor,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
 
@@ -138,7 +140,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $alignItems="center"
           $mr={$iconPosition === "leading" ? 8 : 0}
           $ml={$iconPosition === "trailing" ? 8 : 0}
-          $color={color}
+          $color={color ?? labelColor}
         >
           <Icon
             variant="brush"
@@ -180,7 +182,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
               : undefined
           }
         >
-          <ButtonLabel $font={$font}>
+          <ButtonLabel $font={$font} $color={labelColor}>
             {label}
             {labelSuffixA11y && (
               <ScreenReaderOnly> {labelSuffixA11y}</ScreenReaderOnly>

@@ -1,25 +1,60 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient from "../../../node-lib/cms";
-import { AboutPartnersPage } from "../../../common-lib/cms-types";
-import AboutPartners, {
-  getStaticProps,
-} from "../../../pages/about-us/partners";
-import { mockSeoResult } from "../../__helpers__/cms";
-
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-jest.mock("../../../node-lib/cms");
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import CMSClient from "@/node-lib/cms";
+import { AboutPartnersPage } from "@/common-lib/cms-types";
+import AboutPartners, { getStaticProps } from "@/pages/about-us/partners";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+
+jest.mock("@/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 const testPartnersPageData: AboutPartnersPage = {
   ...testAboutPageBaseData,
   heading: "Partners",
-  curriculumPartners: [],
-  techPartners: [],
+  curriculumPartners: [
+    {
+      name: "Fox Federation",
+      asset: {
+        url: "https://cdn.sanity.io/images/cuvjke51/production/52c7f59477bf3642d6123e20a7d4e94bfaf6d74f-300x50.png",
+        _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
+      },
+    },
+    {
+      name: "Future Academies",
+      asset: {
+        url: "https://cdn.sanity.io/images/cuvjke51/production/52c7f59477bf3642d6123e20a7d4e94bfaf6d74f-300x50.png",
+        _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
+      },
+    },
+    {
+      name: "Pearson",
+      asset: {
+        url: "https://cdn.sanity.io/images/cuvjke51/production/52c7f59477bf3642d6123e20a7d4e94bfaf6d74f-300x50.png",
+        _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
+      },
+    },
+  ],
+  techPartners: [
+    {
+      name: "GitHub",
+      asset: {
+        url: "https://cdn.sanity.io/images/cuvjke51/production/52c7f59477bf3642d6123e20a7d4e94bfaf6d74f-300x50.png",
+        _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
+      },
+    },
+    {
+      name: "Google",
+      asset: {
+        url: "https://cdn.sanity.io/images/cuvjke51/production/52c7f59477bf3642d6123e20a7d4e94bfaf6d74f-300x50.png",
+        _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
+      },
+    },
+  ],
   title: "About us",
   introPortableText: [
     {
@@ -46,6 +81,22 @@ describe("pages/about-us/board.tsx", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us",
     );
+  });
+
+  it("Renders curriculum partners", async () => {
+    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
+
+    const curriculumPartnersList = screen.getByTestId(
+      "curriculum-partners-list",
+    );
+    expect(curriculumPartnersList.childElementCount).toBe(3);
+  });
+
+  it("Renders tech partners", async () => {
+    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
+
+    const curriculumPartnersList = screen.getByTestId("tech-partners-list");
+    expect(curriculumPartnersList.childElementCount).toBe(2);
   });
 
   describe("SEO", () => {
