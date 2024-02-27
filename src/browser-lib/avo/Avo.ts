@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "rm2mChWaPYBjRCa9X76n",
+          "ac": "FCUIaD4p4aHkz3g4mMYD",
           "br": "ZnZhxgYCK",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "rm2mChWaPYBjRCa9X76n",
+          "ac": "FCUIaD4p4aHkz3g4mMYD",
           "br": "ZnZhxgYCK",
           "en": env,
           "ty": type,
@@ -1092,6 +1092,7 @@ export const VideoLocation = {
   'MARKETING': 'marketing',
   'LESSON': 'lesson',
   'BLOG': 'blog',
+  'PUPIL': 'pupil',
 } as const;
 export type VideoLocationType = typeof VideoLocation;
 export type VideoLocationValueType = VideoLocationType[keyof VideoLocationType];
@@ -1754,7 +1755,7 @@ export function videoStarted(properties: VideoStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "2b5c8cdd4482d41aa64aaaf058fbaf804f1581e7c704b50660b0898916511d2c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "c013df98ba39b93a964e8570ace140aea7d6d99e1bcd09add0f286b2d92165ea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -1765,7 +1766,7 @@ export function videoStarted(properties: VideoStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "2b5c8cdd4482d41aa64aaaf058fbaf804f1581e7c704b50660b0898916511d2c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "c013df98ba39b93a964e8570ace140aea7d6d99e1bcd09add0f286b2d92165ea");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Started", (Object as any).assign({}, eventProperties));
@@ -1820,7 +1821,7 @@ export function videoPaused(properties: VideoPausedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "z91WauKeVB", "c84d0eddbbb651d7d493336764a805e000e62df700291ced0dbaf8f906a5d18f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "z91WauKeVB", "fb2a077f4f082acefc3e236c58f47cd89694c4e681b4d77165b4bbfec0376b4c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Paused", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -1831,7 +1832,7 @@ export function videoPaused(properties: VideoPausedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "c84d0eddbbb651d7d493336764a805e000e62df700291ced0dbaf8f906a5d18f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "fb2a077f4f082acefc3e236c58f47cd89694c4e681b4d77165b4bbfec0376b4c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Paused", (Object as any).assign({}, eventProperties));
@@ -1886,7 +1887,7 @@ export function videoPlayed(properties: VideoPlayedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "r4DFADUHFh", "3235d55d1a50ad238554af0635321dacae7298e7c398100b7f08b98df6d0cff1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "r4DFADUHFh", "f69f9c23cb4d083662ec3204e467484c449526448c420d245898ad73e498f0de", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Played", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -1897,7 +1898,7 @@ export function videoPlayed(properties: VideoPlayedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Played", eventProperties, "r4DFADUHFh", "3235d55d1a50ad238554af0635321dacae7298e7c398100b7f08b98df6d0cff1");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Played", eventProperties, "r4DFADUHFh", "f69f9c23cb4d083662ec3204e467484c449526448c420d245898ad73e498f0de");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Played", (Object as any).assign({}, eventProperties));
@@ -1952,7 +1953,7 @@ export function videoFinished(properties: VideoFinishedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "NP9klWkaki", "b696e4e7bde832e224c24133aa1c310a2a0f6d22a0014cfcd915899aa2bb5c78", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "NP9klWkaki", "cca1e8596a28b4f16879f127992256c28e0db2b9e77856c669f7af6bd1d818ff", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Finished", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -1963,7 +1964,7 @@ export function videoFinished(properties: VideoFinishedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "b696e4e7bde832e224c24133aa1c310a2a0f6d22a0014cfcd915899aa2bb5c78");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "cca1e8596a28b4f16879f127992256c28e0db2b9e77856c669f7af6bd1d818ff");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Finished", (Object as any).assign({}, eventProperties));

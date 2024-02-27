@@ -40,10 +40,18 @@ export function isLessonReviewSection(
   return lessonSections.includes(section as LessonReviewSection);
 }
 
-type QuizResult = { grade: number; numQuestions: number };
+export type QuizResult = { grade: number; numQuestions: number };
+export type VideoResult = {
+  played: boolean;
+  duration: number;
+  timeElapsed: number;
+};
+
 type LessonSectionState = {
   isComplete: boolean;
-} & Partial<QuizResult>;
+} & Partial<QuizResult> &
+  Partial<VideoResult>;
+
 type LessonEngineAction =
   | {
       type: "setCurrentSection";
@@ -55,7 +63,7 @@ type LessonEngineAction =
     }
   | {
       type: "updateSectionResult";
-      result: QuizResult;
+      result: QuizResult | VideoResult;
     }
   | {
       type: "proceedToNextSection";
@@ -146,7 +154,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateSectionResult: (vals: QuizResult) => void;
+  updateSectionResult: (vals: QuizResult | VideoResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
 } | null;
 
@@ -189,9 +197,9 @@ export const LessonEngineProvider = memo(
           pupilExperienceLessonSection: section,
           pupilQuizGrade: state.sections[section]?.grade,
           pupilQuizNumQuestions: state.sections[section]?.numQuestions,
-          pupilVideoPlayed: undefined,
-          pupilVideoDurationSeconds: undefined,
-          pupilVideoTimeEllapsedSeconds: undefined,
+          pupilVideoPlayed: state.sections[section]?.played,
+          pupilVideoDurationSeconds: state.sections[section]?.duration,
+          pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
           pupilWorksheetAvailable: undefined,
           pupilWorksheetDownloaded: undefined,
         });

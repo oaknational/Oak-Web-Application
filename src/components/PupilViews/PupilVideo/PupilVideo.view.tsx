@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   OakBackLink,
   OakGrid,
@@ -12,8 +12,13 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import {
+  VideoResult,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
+import VideoPlayer, {
+  VideoEventCallbackArgs,
+} from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -30,12 +35,30 @@ export const PupilViewsVideo = ({
   transcriptSentences,
   isLegacy,
 }: PupilViewsVideoProps) => {
-  const { completeSection, updateCurrentSection } = useLessonEngineContext();
+  const { completeSection, updateCurrentSection, updateSectionResult } =
+    useLessonEngineContext();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
     signLanguageOn && videoWithSignLanguageMuxPlaybackId
       ? videoWithSignLanguageMuxPlaybackId
       : videoMuxPlaybackId;
+
+  const videoResult = useRef<VideoResult>({
+    played: false,
+    duration: 0,
+    timeElapsed: 0,
+  });
+
+  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
+    videoResult.current.played = true;
+    videoResult.current.duration = event.duration || 0;
+    const t = event.timeElapsed || 0;
+    // throttling updates to every 10 seconds to avoid overloading state updates
+    if (event.event !== "playing" || t - videoResult.current.timeElapsed > 10) {
+      videoResult.current.timeElapsed = t;
+      updateSectionResult(videoResult.current);
+    }
+  };
 
   return (
     <OakLessonLayout
@@ -85,8 +108,9 @@ export const PupilViewsVideo = ({
               playbackId={playbackId}
               playbackPolicy="signed"
               title={lessonTitle}
-              location="lesson"
+              location="pupil"
               isLegacy={isLegacy}
+              userEventCallback={handleVideoEvent}
             />
           ) : (
             "This lesson does not contain a video"
