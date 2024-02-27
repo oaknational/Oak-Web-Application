@@ -73,6 +73,10 @@ export function LessonShare(props: LessonShareProps) {
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
+  // Temporary - integrate with the new pupil experience for select units and lessons only
+  const shareToNewPupilExperience =
+    unitSlug === "shakespearean-comedy-the-tempest-88f0"; // TODO: check actual units
+
   const {
     form,
     hasResources,
@@ -173,12 +177,14 @@ export function LessonShare(props: LessonShareProps) {
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
+          hideSelectAll={shareToNewPupilExperience}
           cardGroup={
             <LessonShareCardGroup
               control={form.control}
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}
               shareableResources={shareableResources}
+              hideCheckboxes={shareToNewPupilExperience}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
                 selectedActivities: selectedResources,
