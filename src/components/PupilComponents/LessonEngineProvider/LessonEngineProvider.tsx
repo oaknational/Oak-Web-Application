@@ -236,7 +236,7 @@ export const LessonEngineProvider = memo(
       trackSectionStarted(state.currentSection);
       dispatch({ type: "proceedToNextSection" });
     };
-    const updateSectionResult = (result: QuizResult) => {
+    const updateSectionResult = (result: QuizResult | VideoResult) => {
       trackLessonStarted();
       dispatch({ type: "updateSectionResult", result });
     };
