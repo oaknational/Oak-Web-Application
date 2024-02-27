@@ -15,6 +15,7 @@ import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOve
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
+import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -58,6 +59,9 @@ export const PupilPageContent = ({
     isLegacy,
   } = curriculumData;
 
+  const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
+  const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
+
   switch (currentSection) {
     case "overview":
       return (
@@ -67,8 +71,8 @@ export const PupilPageContent = ({
           subjectSlug={subjectSlug}
           yearTitle={yearTitle ?? undefined}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
-          starterQuizNumQuestions={starterQuiz?.length ?? 0}
-          exitQuizNumQuestions={exitQuiz?.length ?? 0}
+          starterQuizNumQuestions={starterQuizNumQuestions}
+          exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
         />
       );

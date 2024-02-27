@@ -71,17 +71,18 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
           const answerImageData =
             filterByImage.length > 0 && filterByImage[0]?.image_object;
 
-          const answerImage = answerImageData ? (
-            <OakCloudinaryImage
-              cloudinaryId={answerImageData.secure_url}
-              alt=""
-              width={answerImageData.width}
-              height={answerImageData.height}
-              $minWidth={"all-spacing-19"}
-              placeholder="oak"
-              sizes={getSizes(["100vw", 1200])}
-            />
-          ) : undefined;
+          const answerImage =
+            answerImageData && answerImageData.public_id ? (
+              <OakCloudinaryImage
+                cloudinaryId={answerImageData.public_id}
+                alt=""
+                width={answerImageData.width}
+                height={answerImageData.height}
+                $minWidth={"all-spacing-19"}
+                placeholder="oak"
+                sizes={getSizes(["100vw", 1200])}
+              />
+            ) : undefined;
 
           const feedback =
             isFeedbackMode && Array.isArray(questionState.feedback)

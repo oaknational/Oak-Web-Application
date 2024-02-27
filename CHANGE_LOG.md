@@ -1,3 +1,74 @@
+## [1.368.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.1...v1.368.2) (2024-02-27)
+
+## [1.368.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.0...v1.368.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* migration copyright bugs ([27d162a](https://github.com/oaknational/Oak-Web-Application/commit/27d162a3bb5b051be61c2a9edd2766f80f743912))
+
+# [1.368.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.1...v1.368.0) (2024-02-26)
+
+
+### Features
+
+* **PUPIL-413:** bump oak-components@0.0.37 to apply Next13 image placeholders ([abe7ea9](https://github.com/oaknational/Oak-Web-Application/commit/abe7ea99f353092c58abb7e8660ee7c777fad87d))
+
+## [1.367.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.367.0...v1.367.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **PUPIL-425:** set a height for the `VideoPlayer` loading state ([349fffa](https://github.com/oaknational/Oak-Web-Application/commit/349fffaecbf16400ce829b6140eb83b2e7dbd896))
+
+# [1.367.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.366.0...v1.367.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* update tests and storybook to match new context provider intertace ([b109c59](https://github.com/oaknational/Oak-Web-Application/commit/b109c599e2e13f24948b5c9603868da4e1f14ce7))
+
+
+### Features
+
+* rendering explanatory text ([a77d7aa](https://github.com/oaknational/Oak-Web-Application/commit/a77d7aa50401d6bed52ffcb8b46820796307968b))
+* working on rendering explanatory text ([ca83328](https://github.com/oaknational/Oak-Web-Application/commit/ca83328c4c97d457a298f1169a984a06cb5327b8))
+
+# [1.366.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.365.1...v1.366.0) (2024-02-26)
+
+
+### Features
+
+* commit lint allows wip ([7abb5af](https://github.com/oaknational/Oak-Web-Application/commit/7abb5affb6ac408038bdfd1b37e55d13ee7c4a06))
+
+## [1.365.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.365.0...v1.365.1) (2024-02-23)
+
+# [1.365.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.364.0...v1.365.0) (2024-02-23)
+
+
+### Features
+
+* **PUPIL-348:** serve quiz images from new Cloudinary distribution ([db68c2a](https://github.com/oaknational/Oak-Web-Application/commit/db68c2a09178b94c825054652cdf4eb9b388a7f1))
+
+# [1.364.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.1...v1.364.0) (2024-02-21)
+
+
+### Bug Fixes
+
+* remove unecessary mock reset ([fcad1b4](https://github.com/oaknational/Oak-Web-Application/commit/fcad1b476ff5b9481d44d07c25b44e63acb77160))
+
+
+### Features
+
+* quiz question counts exclude explanatory text type ([16e462e](https://github.com/oaknational/Oak-Web-Application/commit/16e462ef80ca17977286e183dae2a22369a0e750))
+
+## [1.363.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.363.0...v1.363.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* missing subject icon for psed ([0901833](https://github.com/oaknational/Oak-Web-Application/commit/09018330d5e67e8ebf71340e2e4a27dc8058b653))
+
 # [1.363.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.362.0...v1.363.0) (2024-02-20)
 
 

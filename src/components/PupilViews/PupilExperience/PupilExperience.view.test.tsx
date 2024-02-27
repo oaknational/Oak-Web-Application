@@ -105,4 +105,6 @@ describe("PupilExperienceView", () => {
       });
     });
   });
+
+  it("should render the overview section", () => {});
 });
