@@ -516,7 +516,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         $background={"white"}
         $bottom={["all-spacing-0"]}
         $right={["all-spacing-0"]}
-        $justifyContent={"right"}
+        $justifyContent={"center"}
       >
         <Button
           $ma={16}
@@ -583,7 +583,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           $display={["block", "none"]}
           $position={["sticky", "static"]}
           $top={0}
-          $zIndex={"fixedHeader"}
+          $zIndex={"inFront"}
           ref={mobileHeaderRef}
         >
           <Box
