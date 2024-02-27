@@ -17,7 +17,6 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 
 const meta = {
   component: QuizShortAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
