@@ -169,7 +169,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults).toEqual({});
 
     act(() => {
-      result.current.updateQuizResult({ grade: 0, numQuestions: 0 });
+      result.current.updateSectionResult({ grade: 0, numQuestions: 0 });
     });
 
     expect(result.current.sectionResults).toEqual({
@@ -177,14 +177,14 @@ describe("LessonEngineProvider", () => {
     });
   });
 
-  it('marks the section as incomplete when "updateQuizResult" is called', () => {
+  it('marks the section as incomplete when "updateSectionResult" is called', () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
     });
 
     act(() => {
       result.current.updateCurrentSection("starter-quiz");
-      result.current.updateQuizResult({ grade: 2, numQuestions: 4 });
+      result.current.updateSectionResult({ grade: 2, numQuestions: 4 });
     });
 
     // This ensures that when a pupil starts to retake a quiz the lesson
@@ -246,7 +246,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.currentSection).toEqual("starter-quiz");
 
     act(() => {
-      result.current.updateQuizResult({
+      result.current.updateSectionResult({
         grade: 2,
         numQuestions: 4,
       });

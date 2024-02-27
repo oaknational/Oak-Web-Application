@@ -54,7 +54,7 @@ type LessonEngineAction =
       section: LessonReviewSection;
     }
   | {
-      type: "updateQuizResult";
+      type: "updateSectionResult";
       result: QuizResult;
     }
   | {
@@ -114,7 +114,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         lessonStarted: true,
       };
     }
-    case "updateQuizResult": {
+    case "updateSectionResult": {
       if (!isLessonReviewSection(currentState.currentSection)) {
         throw new Error(
           `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
@@ -146,7 +146,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateQuizResult: (vals: QuizResult) => void;
+  updateSectionResult: (vals: QuizResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
 } | null;
 
@@ -228,9 +228,9 @@ export const LessonEngineProvider = memo(
       trackSectionStarted(state.currentSection);
       dispatch({ type: "proceedToNextSection" });
     };
-    const updateQuizResult = (result: QuizResult) => {
+    const updateSectionResult = (result: QuizResult) => {
       trackLessonStarted();
-      dispatch({ type: "updateQuizResult", result });
+      dispatch({ type: "updateSectionResult", result });
     };
 
     const isLessonComplete = state.lessonReviewSections.every(
@@ -246,7 +246,7 @@ export const LessonEngineProvider = memo(
           completeSection,
           updateCurrentSection,
           proceedToNextSection,
-          updateQuizResult,
+          updateSectionResult,
           lessonReviewSections: state.lessonReviewSections,
         }}
       >
