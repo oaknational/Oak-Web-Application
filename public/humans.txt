@@ -23,6 +23,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
 
+  Carl Whittaker (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/carlmw 
+  From: London, UK
+  
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
   From: Bristol, UK
@@ -203,9 +207,5 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Weronika Szalas (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/szalasw/
   From: Katowice, Poland
-
-  Carl Whittaker (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/carlmw 
-  From: London, UK
 
 There are many other humans and organisations that have supported Oak National Academy. We've listed out a number of the key partner organisations at https://www.thenational.academy/about-us/partners
