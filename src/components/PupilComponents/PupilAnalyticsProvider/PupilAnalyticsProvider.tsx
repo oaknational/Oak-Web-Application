@@ -35,6 +35,7 @@ export const trackingEvents = [
   "lessonCompleted",
   "lessonSectionStarted",
   "lessonSectionCompleted",
+  "lessonSectionAbandoned",
 ] as const;
 
 export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
@@ -88,6 +89,11 @@ export const PupilAnalyticsProvider = ({
         ...additionalArgs,
       }),
     lessonSectionStarted: (args) =>
+      track.lessonSectionStarted({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonSectionAbandoned: (args) =>
       track.lessonSectionStarted({
         ...additionalArgs,
         ...args,

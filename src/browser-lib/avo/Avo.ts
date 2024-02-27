@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "FCUIaD4p4aHkz3g4mMYD",
+          "ac": "7YOV6OTzmZbSnbVaop5x",
           "br": "ZnZhxgYCK",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "FCUIaD4p4aHkz3g4mMYD",
+          "ac": "7YOV6OTzmZbSnbVaop5x",
           "br": "ZnZhxgYCK",
           "en": env,
           "ty": type,
@@ -4131,6 +4131,113 @@ export function curriculumResourcesDownloaded(
   }
 }
 
+export interface LessonSectionAbandonedProperties {
+  lessonName: string;
+  lessonSlug: string;
+  unitName: string;
+  unitSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
+  pupilQuizGrade: number | null | undefined;
+  pupilQuizNumQuestions: number | null | undefined;
+  pupilWorksheetAvailable: boolean | null | undefined;
+  pupilWorksheetDownloaded: boolean | null | undefined;
+  pupilVideoPlayed: boolean | null | undefined;
+  pupilVideoDurationSeconds: number | null | undefined;
+  pupilVideoTimeEllapsedSeconds: number | null | undefined;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  pupilExperienceLessonSection: PupilExperienceLessonSectionValueType;
+}
+/**
+ * Lesson Section Abandoned: When a pupil leaves a lesson section before completing it
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.lessonName: Name of the current lesson.
+ * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
+ * @param properties.unitName: Title of the current unit.
+ * @param properties.unitSlug: Human-readable unique ID of the current unit.
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.keyStageTitle: Title of the current key stage.
+ * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
+ * @param properties.pupilQuizGrade: no description
+ * @param properties.pupilQuizNumQuestions: no description
+ * @param properties.pupilWorksheetAvailable: no description
+ * @param properties.pupilWorksheetDownloaded: no description
+ * @param properties.pupilVideoPlayed: True if the play button has been pressed at all during the session
+ * @param properties.pupilVideoDurationSeconds: no description
+ * @param properties.pupilVideoTimeEllapsedSeconds: no description
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * @param properties.pupilExperienceLessonSection: no description
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/ZnZhxgYCK/events/lucA3x3s4}
+ */
+export function lessonSectionAbandoned(
+  properties: LessonSectionAbandonedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName});
+  eventPropertiesArray.push({id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug});
+  eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
+  eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
+  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+  eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
+  eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
+  properties.pupilQuizGrade !== undefined && properties.pupilQuizGrade !== null ?
+    eventPropertiesArray.push({id: "12xmn1uQF", name: "Pupil Quiz Grade", value: properties.pupilQuizGrade}) :
+    eventPropertiesArray.push({id: "12xmn1uQF", name: "Pupil Quiz Grade", value: null});
+  properties.pupilQuizNumQuestions !== undefined && properties.pupilQuizNumQuestions !== null ?
+    eventPropertiesArray.push({id: "y28SwSKr9", name: "Pupil Quiz Num Questions", value: properties.pupilQuizNumQuestions}) :
+    eventPropertiesArray.push({id: "y28SwSKr9", name: "Pupil Quiz Num Questions", value: null});
+  properties.pupilWorksheetAvailable !== undefined && properties.pupilWorksheetAvailable !== null ?
+    eventPropertiesArray.push({id: "rNM1I8vY_", name: "Pupil Worksheet Available", value: properties.pupilWorksheetAvailable}) :
+    eventPropertiesArray.push({id: "rNM1I8vY_", name: "Pupil Worksheet Available", value: null});
+  properties.pupilWorksheetDownloaded !== undefined && properties.pupilWorksheetDownloaded !== null ?
+    eventPropertiesArray.push({id: "AbY2tLMm3", name: "Pupil Worksheet Downloaded", value: properties.pupilWorksheetDownloaded}) :
+    eventPropertiesArray.push({id: "AbY2tLMm3", name: "Pupil Worksheet Downloaded", value: null});
+  properties.pupilVideoPlayed !== undefined && properties.pupilVideoPlayed !== null ?
+    eventPropertiesArray.push({id: "hmpQPI6sI", name: "Pupil Video Played", value: properties.pupilVideoPlayed}) :
+    eventPropertiesArray.push({id: "hmpQPI6sI", name: "Pupil Video Played", value: null});
+  properties.pupilVideoDurationSeconds !== undefined && properties.pupilVideoDurationSeconds !== null ?
+    eventPropertiesArray.push({id: "4Ei7ce0ZP", name: "Pupil Video Duration (Seconds)", value: properties.pupilVideoDurationSeconds}) :
+    eventPropertiesArray.push({id: "4Ei7ce0ZP", name: "Pupil Video Duration (Seconds)", value: null});
+  properties.pupilVideoTimeEllapsedSeconds !== undefined && properties.pupilVideoTimeEllapsedSeconds !== null ?
+    eventPropertiesArray.push({id: "cOQ8T6zw3", name: "Pupil Video Time Ellapsed (Seconds)", value: properties.pupilVideoTimeEllapsedSeconds}) :
+    eventPropertiesArray.push({id: "cOQ8T6zw3", name: "Pupil Video Time Ellapsed (Seconds)", value: null});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Section", value: properties.pupilExperienceLessonSection});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4", "f476e484381ec6ce0c4d3f4d497109d7489bb531c3a5b08e40f8c80c8942ae2b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Lesson Section Abandoned", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("lucA3x3s4", "Lesson Section Abandoned", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Section Abandoned", eventProperties, "lucA3x3s4", "f476e484381ec6ce0c4d3f4d497109d7489bb531c3a5b08e40f8c80c8942ae2b");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Lesson Section Abandoned", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -4195,7 +4302,8 @@ export default {
   lessonStarted,
   lessonSectionStarted,
   curriculumResourcesDownloaded,
+  lessonSectionAbandoned,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultOpened","searchResultsDisplayed","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted","curriculumResourcesDownloaded"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultOpened","searchResultsDisplayed","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted","curriculumResourcesDownloaded","lessonSectionAbandoned"]

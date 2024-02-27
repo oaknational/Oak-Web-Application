@@ -195,20 +195,21 @@ export const LessonEngineProvider = memo(
       }
     };
 
+    const getSectionTrackingData = (section: LessonReviewSection) => ({
+      pupilExperienceLessonSection: section,
+      pupilQuizGrade: state.sections[section]?.grade,
+      pupilQuizNumQuestions: state.sections[section]?.numQuestions,
+      pupilVideoPlayed: state.sections[section]?.played,
+      pupilVideoDurationSeconds: state.sections[section]?.duration,
+      pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
+      pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
+      pupilWorksheetDownloaded: state.sections[section]?.worksheetDownloaded,
+    });
+
     const completeSection = (section: LessonReviewSection) => {
       trackLessonStarted();
       if (track.lessonSectionCompleted) {
-        track.lessonSectionCompleted({
-          pupilExperienceLessonSection: section,
-          pupilQuizGrade: state.sections[section]?.grade,
-          pupilQuizNumQuestions: state.sections[section]?.numQuestions,
-          pupilVideoPlayed: state.sections[section]?.played,
-          pupilVideoDurationSeconds: state.sections[section]?.duration,
-          pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
-          pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
-          pupilWorksheetDownloaded:
-            state.sections[section]?.worksheetDownloaded,
-        });
+        track.lessonSectionCompleted(getSectionTrackingData(section));
       }
       if (
         state.lessonReviewSections.every(
@@ -225,15 +226,28 @@ export const LessonEngineProvider = memo(
     const trackSectionStarted = (section: LessonSection) => {
       trackLessonStarted();
       if (isLessonReviewSection(section)) {
-        track.lessonSectionStarted({
-          pupilExperienceLessonSection: section,
-        });
+        if (track.lessonSectionStarted) {
+          track.lessonSectionStarted({
+            pupilExperienceLessonSection: section,
+          });
+        }
       }
     };
 
     const updateCurrentSection = (section: LessonSection) => {
       trackLessonStarted();
       trackSectionStarted(section);
+
+      if (
+        isLessonReviewSection(state.currentSection) &&
+        !state.sections[state.currentSection]?.isComplete
+      ) {
+        if (track.lessonSectionAbandoned) {
+          track.lessonSectionAbandoned(
+            getSectionTrackingData(state.currentSection),
+          );
+        }
+      }
       dispatch({ type: "setCurrentSection", section });
     };
 
@@ -242,6 +256,7 @@ export const LessonEngineProvider = memo(
       trackSectionStarted(state.currentSection);
       dispatch({ type: "proceedToNextSection" });
     };
+
     const updateSectionResult = (
       result: QuizResult | VideoResult | IntroResult,
     ) => {
