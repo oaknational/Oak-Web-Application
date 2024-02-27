@@ -75,6 +75,6 @@ export default {
   },
 
   docs: {
-    autodocs: true,
+    autodocs: false,
   },
 };
