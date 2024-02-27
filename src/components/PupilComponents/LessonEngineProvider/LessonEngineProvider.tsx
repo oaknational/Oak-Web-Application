@@ -46,11 +46,16 @@ export type VideoResult = {
   duration: number;
   timeElapsed: number;
 };
+export type IntroResult = {
+  worksheetAvailable: boolean;
+  worksheetDownloaded: boolean;
+};
 
 type LessonSectionState = {
   isComplete: boolean;
 } & Partial<QuizResult> &
-  Partial<VideoResult>;
+  Partial<VideoResult> &
+  Partial<IntroResult>;
 
 type LessonEngineAction =
   | {
@@ -154,7 +159,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateSectionResult: (vals: QuizResult | VideoResult) => void;
+  updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
 } | null;
 
@@ -200,8 +205,9 @@ export const LessonEngineProvider = memo(
           pupilVideoPlayed: state.sections[section]?.played,
           pupilVideoDurationSeconds: state.sections[section]?.duration,
           pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
-          pupilWorksheetAvailable: undefined,
-          pupilWorksheetDownloaded: undefined,
+          pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
+          pupilWorksheetDownloaded:
+            state.sections[section]?.worksheetDownloaded,
         });
       }
       if (
@@ -236,7 +242,9 @@ export const LessonEngineProvider = memo(
       trackSectionStarted(state.currentSection);
       dispatch({ type: "proceedToNextSection" });
     };
-    const updateSectionResult = (result: QuizResult | VideoResult) => {
+    const updateSectionResult = (
+      result: QuizResult | VideoResult | IntroResult,
+    ) => {
       trackLessonStarted();
       dispatch({ type: "updateSectionResult", result });
     };

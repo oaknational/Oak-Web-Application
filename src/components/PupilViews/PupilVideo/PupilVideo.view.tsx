@@ -54,6 +54,7 @@ export const PupilViewsVideo = ({
     videoResult.current.duration = event.duration || 0;
     const t = event.timeElapsed || 0;
     // throttling updates to every 10 seconds to avoid overloading state updates
+    // also prevents timeElapsed from being updated when the skips to an earlier moment
     if (event.event !== "playing" || t - videoResult.current.timeElapsed > 10) {
       videoResult.current.timeElapsed = t;
       updateSectionResult(videoResult.current);
