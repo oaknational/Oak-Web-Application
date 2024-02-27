@@ -1,7 +1,5 @@
 import React from "react";
-
-import { Heading, P } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
 export type LessonOverviewCommonMisconceptionsAndResponses = {
   commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
@@ -24,27 +22,35 @@ const LessonOverviewCommonMisconceptions = ({
   }
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
     >
-      <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
+      <OakHeading
+        $font={"heading-5"}
+        $mb="space-between-m"
+        data-testid={"heading"}
+        tag="h3"
+      >
         Common misconception
-      </Heading>
+      </OakHeading>
       {commonMisconceptions?.map(
         (commonMisconception: LessonOverviewCommonMisconception, i: number) => {
           return (
-            <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
-              <P $mb={24} $font={"body-1-bold"}>
+            <OakFlex
+              $flexDirection={"column"}
+              key={`common-misconception-${i}`}
+            >
+              <OakP $mb="space-between-m" $font={"body-1-bold"}>
                 {commonMisconception.misconception}
-              </P>
-              <P $font={"body-1"}>{commonMisconception.response}</P>
-            </Flex>
+              </OakP>
+              <OakP $font={"body-1"}>{commonMisconception.response}</OakP>
+            </OakFlex>
           );
         },
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

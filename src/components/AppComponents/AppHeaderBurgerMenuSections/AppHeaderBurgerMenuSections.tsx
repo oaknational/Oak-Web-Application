@@ -1,11 +1,9 @@
 import { FC } from "react";
+import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
 
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
-import { Heading, LI } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
@@ -25,33 +23,33 @@ const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
 ) => {
   const { menuSections } = props;
   return (
-    <Flex $flexDirection="column" $gap={32}>
+    <OakFlex $flexDirection="column" $gap="all-spacing-7">
       {menuSections.map((section, i) => (
-        <Flex
+        <OakFlex
           $flexDirection="column"
-          $gap={12}
+          $gap="all-spacing-3"
           data-testid="menu-section"
           key={`menu-item-${i}`}
         >
-          <Heading tag="h4" $font="heading-4">
+          <OakHeading tag="h4" $font="heading-4">
             {section.header}
-          </Heading>
-          <FlexList
-            $reset={true}
+          </OakHeading>
+          <OakFlex
+            as="ul"
             role="list"
             $display="flex"
             $flexDirection="column"
-            $gap={4}
+            $gap="all-spacing-1"
           >
             {section.links.map((link, i) => (
-              <LI listStyle="none" key={`${link.text}-${i}`}>
+              <OakLI $listStyle="none" key={`${link.text}-${i}`}>
                 <AppHeaderBurgerMenuLink link={link} />
-              </LI>
+              </OakLI>
             ))}
-          </FlexList>
-        </Flex>
+          </OakFlex>
+        </OakFlex>
       ))}
-    </Flex>
+    </OakFlex>
   );
 };
 

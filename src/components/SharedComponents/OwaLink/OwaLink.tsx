@@ -19,7 +19,7 @@ import NewFocusUnderline, {
 } from "@/components/SharedComponents/NewFocusUnderline";
 import flex from "@/styles/utils/flex";
 import Svg from "@/components/SharedComponents/Svg";
-import { FlexProps } from "@/components/SharedComponents/Flex";
+import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type FocusStyle = "underline" | "new-underline";
 type FocusStylesProps = {

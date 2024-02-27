@@ -1,15 +1,16 @@
+import {
+  OakHeading,
+  OakHeadingTag,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
+
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
-import {
-  Heading,
-  HeadingTag,
-  Span,
-} from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInPathwayCardProps = {
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   examBoardTagColor: TagColor;
   unitSlug: string;
   examBoardTitle?: string | null;
@@ -35,20 +36,24 @@ export function LessonAppearsInPathwayCard(
   } = props;
 
   return (
-    <Flex $flexDirection={["column"]} $background="white" $borderRadius={4}>
-      <Heading tag={headingTag}>
-        <Flex $flexDirection={["row"]} $pa={16}>
+    <OakFlex
+      $flexDirection={["column"]}
+      $background="white"
+      $borderRadius="border-radius-s"
+    >
+      <OakHeading tag={headingTag}>
+        <OakFlex $flexDirection={["row"]} $pa="inner-padding-m">
           {examBoardTitle && (
             <TagFunctional
               text={examBoardTitle}
               color={examBoardTagColor}
-              $mr={10}
+              $mr="space-between-ssx"
             />
           )}
-          <Span $font="heading-5">{subjectTitle}</Span>
-        </Flex>
-      </Heading>
-      <Flex $flexDirection={["row"]} $pa={16} $flexWrap="wrap">
+          <OakSpan $font="heading-5">{subjectTitle}</OakSpan>
+        </OakFlex>
+      </OakHeading>
+      <OakFlex $flexDirection={["row"]} $pa="inner-padding-m" $flexWrap="wrap">
         {tiers.map(({ tierTitle, programmeSlug }, i) => {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";
           return (
@@ -67,7 +72,7 @@ export function LessonAppearsInPathwayCard(
             />
           );
         })}
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 }

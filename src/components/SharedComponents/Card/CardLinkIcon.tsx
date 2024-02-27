@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
 import Card from "./Card";
 import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
@@ -6,7 +7,6 @@ import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 import { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 
 type RemoveField<Type, Key extends keyof Type> = {
   [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
@@ -14,7 +14,7 @@ type RemoveField<Type, Key extends keyof Type> = {
 
 type CardLinkIconProps = RemoveField<CardLinkProps, "children"> & {
   title: string;
-  titleTag: HeadingTag;
+  titleTag: OakHeadingTag;
   icon?: IconName;
   background?: OakColorName;
 };
@@ -36,7 +36,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       $borderRadius={0}
     >
       <BoxBorders gapPosition="rightTop" />
-      <Heading $font={["heading-6", "heading-5"]} tag={titleTag}>
+      <OakHeading $font={["heading-6", "heading-5"]} tag={titleTag}>
         <CardLink
           {...cardLinkProps}
           $hoverStyles={["underline-link-text", "drop-shadow"]}
@@ -45,7 +45,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
           {title}
         </CardLink>
         <CardLinkFocusUnderline />
-      </Heading>
+      </OakHeading>
       <Icon name={icon} size={[32, 48]} $ml="auto" />
     </Card>
   );

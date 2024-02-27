@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
+import { OakTypography } from "@oaknational/oak-components";
 
-import Typography, { Hr } from "@/components/SharedComponents/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Tag from "@/components/SharedComponents/TagPromotional";
 
@@ -17,9 +18,9 @@ const HomePageBanner: ReactNode = (
     >
       <Flex $alignItems={"center"} $gap={16} $display={["none", "flex"]}>
         <Tag />
-        <Typography $font={"heading-7"}>
+        <OakTypography $font={"heading-7"}>
           Interactive curriculum plans
-        </Typography>
+        </OakTypography>
       </Flex>
       <ButtonAsLink
         label={"View curriculum plans"}

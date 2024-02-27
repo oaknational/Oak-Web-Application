@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
-import { P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export interface LessonOverviewTranscriptViewerProps {
   transcriptSentences: string[] | null;
@@ -12,7 +12,7 @@ export interface LessonOverviewTranscriptViewerProps {
 export const LessonOverviewTranscriptViewer: FC<
   LessonOverviewTranscriptViewerProps
 > = ({ transcriptSentences }) => (
-  <Flex $width={"100%"} $justifyContent={"center"}>
+  <OakFlex $width={"100%"} $justifyContent={"center"}>
     <Box
       role="article"
       aria-label="The video transcript"
@@ -34,14 +34,18 @@ export const LessonOverviewTranscriptViewer: FC<
       >
         <Box $maxWidth={[640]}>
           {transcriptSentences?.map((transcriptSentence: string) => (
-            <P $mb={[24, 16]} $font={"body-1"} key={uuidv4()}>
+            <OakP
+              $mb={["space-between-m", "space-between-s"]}
+              $font={"body-1"}
+              key={uuidv4()}
+            >
               {transcriptSentence}
-            </P>
+            </OakP>
           ))}
         </Box>
       </Flex>
     </Box>
-  </Flex>
+  </OakFlex>
 );
 
 export default LessonOverviewTranscriptViewer;

@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
@@ -13,8 +19,6 @@ import { useNewsletterForm } from "@/components/GenericPagesComponents/Newslette
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
 type SharedHomePageProps = {
@@ -33,7 +37,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
 
   return (
     <>
-      <Flex $background={"lemon50"} $justifyContent={"center"}>
+      <OakFlex $background={"lemon50"} $justifyContent={"center"}>
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <OakGrid
             $cg={["space-between-s", "space-between-m2"]}
@@ -68,31 +72,35 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                 $pv={24}
                 $height={"100%"}
               >
-                <Flex
+                <OakFlex
                   $width={"100%"}
                   $alignItems={["flex-start", "center"]}
                   $justifyContent="space-between"
-                  $mb={48}
+                  $mb="space-between-l"
                   $flexDirection={["column", "row"]}
                 >
-                  <Heading $mb={[36, 0]} tag={"h2"} $font={"heading-5"}>
+                  <OakHeading
+                    $mb={["space-between-m2", "space-between-none"]}
+                    tag={"h2"}
+                    $font={"heading-5"}
+                  >
                     Stay up to date!
-                  </Heading>
-                  <Flex $flexDirection={"row"}>
-                    <Typography $mr={16} $font="heading-7">
+                  </OakHeading>
+                  <OakFlex $flexDirection={"row"}>
+                    <OakTypography $mr="space-between-s" $font="heading-7">
                       <OwaLink page={"webinar-index"}>All webinars</OwaLink>
-                    </Typography>
-                    <Typography $font="heading-7">
+                    </OakTypography>
+                    <OakTypography $font="heading-7">
                       <OwaLink page={"blog-index"}>All blogs</OwaLink>
-                    </Typography>
-                  </Flex>
-                </Flex>
+                    </OakTypography>
+                  </OakFlex>
+                </OakFlex>
                 <PostList {...blogListProps} />
               </Box>
             </OakGridArea>
           </OakGrid>
         </MaxWidth>
-      </Flex>
+      </OakFlex>
     </>
   );
 };

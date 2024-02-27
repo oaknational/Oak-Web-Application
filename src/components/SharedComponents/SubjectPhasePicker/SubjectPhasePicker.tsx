@@ -2,14 +2,14 @@ import { FC, useEffect, useState, useRef } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Svg from "@/components/SharedComponents/Svg";
-import { Heading, Span, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/SharedComponents/Button/Button";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   Examboard,
   Phase,
@@ -351,15 +351,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               onClick={toggleShowSubjects}
               title="Subject"
             >
-              <Heading
+              <OakHeading
                 tag={"h3"}
                 $font={"heading-light-7"}
-                $mb={4}
+                $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
               >
                 Subject
-              </Heading>
-              <P $font={"body-2"} $color={!showSubjectError ? "black" : "red"}>
+              </OakHeading>
+              <OakP
+                $font={"body-2"}
+                $color={!showSubjectError ? "black" : "red"}
+              >
                 {showSubjectError && (
                   <>
                     <Icon
@@ -367,12 +370,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    <span>Select a subject</span>
+                    <OakSpan>Select a subject</OakSpan>
                   </>
                 )}
                 {selectedSubject && <>{selectedSubject.title}</>}
                 {!showSubjectError && !selectedSubject && "Select"}
-              </P>
+              </OakP>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
           </Box>
@@ -403,18 +406,26 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    <P $color={"red"}>Select a subject to view a curriculum</P>
+                    <OakP $color={"red"}>
+                      Select a subject to view a curriculum
+                    </OakP>
                   </Flex>
                 )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
-                  <Heading tag={"h4"} $font={"heading-6"} $mr={12}>
+                  <OakHeading
+                    tag={"h4"}
+                    $font={"heading-6"}
+                    $mr="space-between-xs"
+                  >
                     New curriculum plans
-                  </Heading>
+                  </OakHeading>
                   <Box $pt={6}>
                     <TagPromotional size={"medium"} $alignSelf={"flex-end"} />
                   </Box>
                 </Flex>
-                <P $mb={16}>Explore our new curricula for 2023/2024.</P>
+                <OakP $mb="space-between-s">
+                  Explore our new curricula for 2023/2024.
+                </OakP>
                 <Box aria-label="Subject" role="radiogroup">
                   {subjects.map((subject) => (
                     <ButtonContainer
@@ -437,14 +448,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </Box>
                 <Box $mt={24}>
                   <OwaLink
-                    page={"oak-curriculum"}
+                    page={"curriculum-previous-downloads"}
                     $textDecoration={"underline"}
                     $font={"heading-7"}
+                    data-testid="previousPlansLink"
                   >
                     Previously released plans
                     <Icon
                       $color={"black"}
-                      name="external"
+                      name="arrow-right"
                       verticalAlign="bottom"
                     />
                   </OwaLink>
@@ -483,14 +495,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               onClick={toggleShowPhases}
               title="Phase"
             >
-              <Heading
+              <OakHeading
                 tag={"h3"}
                 $font={"heading-light-7"}
-                $mb={4}
+                $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
               >
                 School phase
-              </Heading>
+              </OakHeading>
               <Box
                 $font={"body-2"}
                 $color={
@@ -524,9 +536,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $whiteSpace={"nowrap"}
                       $overflowX={"hidden"}
                     >
-                      <Span>{selectedPhase.title}</Span>
+                      <OakSpan>{selectedPhase.title}</OakSpan>
                       {selectedExamboard && (
-                        <Span>, {selectedExamboard.title}</Span>
+                        <OakSpan>, {selectedExamboard.title}</OakSpan>
                       )}
                     </Box>
                   </>
@@ -563,9 +575,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         name="content-guidance"
                         verticalAlign="bottom"
                       />
-                      <P $color={"red"}>
+                      <OakP $color={"red"}>
                         Select a school phase to view the curriculum
-                      </P>
+                      </OakP>
                     </Flex>
                   )}
                   {showExamboardError ? (
@@ -575,16 +587,20 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         name="content-guidance"
                         verticalAlign="bottom"
                       />
-                      <P $color={"red"}>
+                      <OakP $color={"red"}>
                         Select an exam board to view the curriculum
-                      </P>
+                      </OakP>
                     </Flex>
                   ) : (
                     ""
                   )}
-                  <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
+                  <OakHeading
+                    tag={"h4"}
+                    $font={"heading-6"}
+                    $mb="space-between-s"
+                  >
                     Choose a school phase:
-                  </Heading>
+                  </OakHeading>
                   <Box aria-label="School phase" radioGroup="radiogroup">
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
                       <ButtonContainer className="multi-line" key={phase.slug}>
@@ -605,14 +621,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
-                        <Heading
-                          $mb={16}
-                          $mt={20}
+                        <OakHeading
+                          $mb="space-between-s"
+                          $mt="space-between-m"
                           tag={"h4"}
                           $font={"heading-6"}
                         >
                           Choose an exam board for KS4:
-                        </Heading>
+                        </OakHeading>
 
                         <Box aria-label="Exam board" role="radiogroup">
                           {selectedSubject.examboards.map(

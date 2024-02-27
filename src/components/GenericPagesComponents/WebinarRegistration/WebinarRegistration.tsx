@@ -1,16 +1,16 @@
 import { FC, useId } from "react";
+import { OakHeadingTag, OakP, OakFlex } from "@oaknational/oak-components";
 
 import NewsletterForm, {
   useNewsletterForm,
 } from "@/components/GenericPagesComponents/NewsletterForm";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import { HeadingTag, P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type WebinarRegistrationProps = {
-  headingTag?: HeadingTag;
+  headingTag?: OakHeadingTag;
   onSubmit: () => void;
 };
 
@@ -50,7 +50,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
       $ph={20}
     >
       <BoxBorders />
-      <Flex $flexGrow={1}>
+      <OakFlex $flexGrow={1}>
         <Flex
           $maxWidth={[360, 300]}
           $pr={20}
@@ -65,9 +65,9 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           >
             Almost there!
           </CardTitle>
-          <P
+          <OakP
             $font={["body-3", "body-2"]}
-            $mb={[36, 0]}
+            $mb={["space-between-m2", "space-between-none"]}
             color={"black"}
             id={descriptionId}
           >
@@ -77,16 +77,20 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
               Privacy policy
             </OwaLink>
             .
-          </P>
+          </OakP>
         </Flex>
-      </Flex>
-      <Flex $width={["100%", 360]} $maxWidth={360} $ma="auto">
+      </OakFlex>
+      <OakFlex
+        $width={["100%", "all-spacing-20"]}
+        $maxWidth={"all-spacing-20"}
+        $ma="auto"
+      >
         <NewsletterForm
           id={id}
           descriptionId={descriptionId}
           {...newsletterForm}
         />
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };

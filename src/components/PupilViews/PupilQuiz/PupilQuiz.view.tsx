@@ -39,15 +39,22 @@ const QuizInner = () => {
   const {
     currentQuestionData,
     currentQuestionIndex,
+    currentQuestionDisplayIndex,
     questionState,
     handleNextQuestion,
     numQuestions,
+    numInteractiveQuestions,
   } = quizEngineContext;
 
   const formId = "quiz-form";
   const isFeedbackMode =
     questionState[currentQuestionIndex]?.mode === "feedback";
+  const isExplanatoryText =
+    currentQuestionData?.questionType === "explanatory-text";
+
   const grade = questionState[currentQuestionIndex]?.grade;
+  const isPartiallyCorrect =
+    questionState[currentQuestionIndex]?.isPartiallyCorrect;
   const isCorrect = grade === 1;
 
   const correctFeedback = (
@@ -55,6 +62,7 @@ const QuizInner = () => {
       Well done!
     </OakSpan>
   );
+
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
     if (answers) {
       return pickFeedBackComponent(answers);
@@ -62,43 +70,59 @@ const QuizInner = () => {
     return null;
   };
 
-  function pickFeedback(grade: number | undefined) {
-    switch (grade) {
-      case 1:
+  function pickFeedback(isCorrect: boolean, isPartiallyCorrect?: boolean) {
+    switch (true) {
+      case isCorrect:
         return "correct";
-      case 0:
+      case !isCorrect && !isPartiallyCorrect:
         return "incorrect";
-      case 0.5:
+      case !isCorrect && isPartiallyCorrect:
         return "partially-correct";
       default:
         return null;
     }
   }
 
+  const navigationButtonCopy = (() => {
+    if (currentQuestionIndex + 1 !== numQuestions) {
+      return "Next question";
+    }
+
+    // This is the last question in the quiz, show the appropriate button label
+    return currentSection === "exit-quiz" ? "Lesson review" : "Continue lesson";
+  })();
+
   const bottomNavSlot = (
     <OakLessonBottomNav
-      feedback={isFeedbackMode ? pickFeedback(grade) : null}
+      feedback={
+        isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
+      }
       answerFeedback={
         isCorrect
           ? correctFeedback
           : incorrectFeedback(currentQuestionData?.answers)
       }
     >
-      {!isFeedbackMode && (
+      {!isFeedbackMode && !isExplanatoryText && (
         <OakPrimaryButton
           form={formId}
           disabled={questionState[currentQuestionIndex]?.mode === "init"}
           type="submit"
-          width={["100%", "auto"]}
+          isTrailingIcon
+          iconName="arrow-right"
+          width={["100%", "max-content"]}
         >
-          Submit
+          Check
         </OakPrimaryButton>
       )}
-      {isFeedbackMode && (
-        <OakPrimaryButton width={["100%", "auto"]} onClick={handleNextQuestion}>
-          {currentQuestionIndex + 1 === numQuestions
-            ? "Continue lesson"
-            : "Next question"}
+      {(isFeedbackMode || isExplanatoryText) && (
+        <OakPrimaryButton
+          width={["100%", "max-content"]}
+          onClick={handleNextQuestion}
+          isTrailingIcon
+          iconName="arrow-right"
+        >
+          {navigationButtonCopy}
         </OakPrimaryButton>
       )}
     </OakLessonBottomNav>
@@ -115,17 +139,22 @@ const QuizInner = () => {
         />
       }
       counterSlot={
-        <OakQuizCounter
-          counter={currentQuestionIndex + 1}
-          total={numQuestions}
-        />
+        !isExplanatoryText && (
+          <OakQuizCounter
+            counter={currentQuestionDisplayIndex + 1}
+            total={numInteractiveQuestions}
+          />
+        )
       }
       heading={currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
       lessonSectionName={currentSection}
       mobileSummary={
-        <OakSpan $color={"text-primary"} $font={"body-3"}>
-          Question {currentQuestionIndex + 1} of {numQuestions}
-        </OakSpan>
+        !isExplanatoryText && (
+          <OakSpan $color={"text-primary"} $font={"body-3"}>
+            Question {currentQuestionDisplayIndex + 1} of{" "}
+            {numInteractiveQuestions}
+          </OakSpan>
+        )
       }
     />
   );
@@ -145,8 +174,14 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   return (
     <OakCloudinaryConfigProvider
       value={{
-        cloud: { cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME },
-        url: { privateCdn: true },
+        cloud: {
+          cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+        },
+        url: {
+          secureDistribution:
+            process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION,
+          privateCdn: true,
+        },
       }}
     >
       <QuizEngineProvider questionsArray={questionsArray}>

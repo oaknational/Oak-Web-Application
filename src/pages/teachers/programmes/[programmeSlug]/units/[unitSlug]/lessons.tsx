@@ -19,7 +19,10 @@ import {
 import curriculumApi from "@/node-lib/curriculum-api";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import {
+  LessonListingPageData,
+  lessonListingSchema,
+} from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
@@ -28,6 +31,7 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { NEW_COHORT } from "@/config/cohort";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -41,7 +45,7 @@ export type LessonListingPageProps = {
  * This data gets stored in the browser and is used to render the lesson list,
  * so it's important to keep it as small as possible.
  */
-function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
+function getHydratedLessonsFromUnit(unit: lessonListingSchema) {
   const { lessons, ...rest } = unit;
   return lessons.map((lesson) => ({
     ...lesson,
@@ -59,6 +63,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     unitTitle,
     subjectTitle,
     programmeSlug,
+    hasNewContent,
   } = curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
@@ -139,7 +144,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isLegacyLesson={isSlugLegacy(programmeSlug)}
+        isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
@@ -208,9 +213,14 @@ export const getStaticProps: GetStaticProps<
             unitSlug,
           });
 
+      const lessonsCohorts = curriculumData.lessons.map(
+        (l) => l.lessonCohort ?? "2020-2023",
+      );
+      const hasNewContent = lessonsCohorts.includes(NEW_COHORT);
+
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: { ...curriculumData, hasNewContent },
         },
       };
       return results;

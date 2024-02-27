@@ -1,8 +1,13 @@
 import { FC } from "react";
+import {
+  OakHeading,
+  OakLI,
+  OakP,
+  OakOL,
+  OakFlex,
+} from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { Heading, LI, P, OL } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
@@ -41,25 +46,25 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   }`;
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $width={"100%"}
-      $mb={24}
+      $mb="space-between-m"
       data-testid="curriculum-unit-details"
     >
-      <P $mb={32} $font={"body-2"}>
+      <OakP $mb="space-between-m2" $font={"body-2"}>
         {lessonsInUnit}
-      </P>
+      </OakP>
 
       {uniqueThreadsArray.length >= 1 && (
         <Box $mb={[24, 32]}>
-          <Heading tag="h3" $font={"heading-6"} $mb={8}>
+          <OakHeading tag="h3" $font={"heading-6"} $mb="space-between-ssx">
             Threads
-          </Heading>
-          <Flex
+          </OakHeading>
+          <OakFlex
             $flexDirection={["column", "row"]}
             $flexWrap={"wrap"}
-            $gap={8}
+            $gap="all-spacing-2"
             $alignItems={"flex-start"}
           >
             {uniqueThreadsArray.map((thread) => (
@@ -70,29 +75,29 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                 data-testid="thread-tag"
               />
             ))}
-          </Flex>
+          </OakFlex>
         </Box>
       )}
-      <Flex $flexDirection={"column"}>
+      <OakFlex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
           <CurriculumUnitDetailsAccordion title="Lessons in unit">
-            <OL $mt={0} data-testid="lesson-title-list">
+            <OakOL $mt="space-between-none" data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
-                  return <LI key={lesson}>{lesson}</LI>;
+                  return <OakLI key={lesson}>{lesson}</OakLI>;
                 })}
-            </OL>
+            </OakOL>
           </CurriculumUnitDetailsAccordion>
         )}
 
         {priorUnitDescription && (
           <CurriculumUnitDetailsAccordion title="Previous unit description">
-            <P $mb={12} $font={"body-2-bold"}>
+            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
               {priorUnitTitle}
-            </P>
-            <P $mb={12} $font={"body-2"}>
+            </OakP>
+            <OakP $mb="space-between-xs" $font={"body-2"}>
               {priorUnitDescription}
-            </P>
+            </OakP>
           </CurriculumUnitDetailsAccordion>
         )}
 
@@ -101,15 +106,15 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             title="Following unit description"
             lastAccordion={true}
           >
-            <P $mb={12} $font={"body-2-bold"}>
+            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
               {futureUnitTitle}
-            </P>
-            <P $mb={12} $font={"body-2"}>
+            </OakP>
+            <OakP $mb="space-between-xs" $font={"body-2"}>
               {futureUnitDescription}
-            </P>
+            </OakP>
           </CurriculumUnitDetailsAccordion>
         )}
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
   );
 };

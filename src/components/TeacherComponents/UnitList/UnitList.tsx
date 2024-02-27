@@ -1,15 +1,14 @@
 import React, { FC } from "react";
+import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 import {
@@ -48,12 +47,12 @@ const UnitList: FC<UnitListProps> = (props) => {
   };
 
   return (
-    <Flex $flexDirection="column">
+    <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
         <>
-          <UL aria-label="A list of units" $reset>
+          <OakUL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
-              <LI
+              <OakLI
                 key={`UnitList-UnitListItem-${item[0]?.slug}`}
                 data-testid="unit-list-item"
               >
@@ -66,7 +65,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     />
                   </>
                 ) : (
-                  <Flex>
+                  <OakFlex>
                     {" "}
                     {item.map((unitOption) => {
                       return (
@@ -79,11 +78,11 @@ const UnitList: FC<UnitListProps> = (props) => {
                         />
                       );
                     })}
-                  </Flex>
+                  </OakFlex>
                 )}
-              </LI>
+              </OakLI>
             ))}
-          </UL>
+          </OakUL>
         </>
       ) : null}
       {units.length > 5 ? (
@@ -97,7 +96,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <Box $pb={32} />
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

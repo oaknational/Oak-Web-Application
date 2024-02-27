@@ -2,8 +2,6 @@ import sdk from "../../sdk";
 
 import lessonOverview from "./lessonOverview.query";
 
-import { NEW_COHORT } from "@/config/cohort";
-
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
@@ -14,7 +12,6 @@ describe("lessonOverview()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        lessonCohort: NEW_COHORT,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -74,7 +71,6 @@ describe("lessonOverview()", () => {
       lessonSlug: "lesson-slug",
       unitSlug: "unit-slug",
       programmeSlug: "programme-slug",
-      lessonCohort: NEW_COHORT,
     });
     expect(lesson.programmeSlug).toEqual("programme-slug-0");
   });
@@ -117,7 +113,6 @@ describe("lessonOverview()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        lessonCohort: NEW_COHORT,
       });
     }).rejects.toThrow(`subjectSlug`);
   });

@@ -1,13 +1,17 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Layout from "@/components/AppComponents/Layout";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import LessonPlanningElementLinks from "@/components/TeacherComponents/LessonPlanningElementLinks";
@@ -28,8 +32,8 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
-import { GridOrderedList } from "@/components/SharedComponents/Typography/OL";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
+import { GridOrderedList } from "@/components/SharedComponents/Typography/OL.deprecated";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -146,7 +150,7 @@ const SectionTitle: FC<{ children?: React.ReactNode }> = (props) => {
       $ph={16}
       $mt={12}
     >
-      <Heading
+      <OakHeading
         $font={["heading-6", "heading-5"]}
         $textAlign="center"
         tag="h2"
@@ -198,10 +202,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $pb={48}
               $ph={12}
             >
-              <Heading $font="heading-5" $textAlign="center" tag="h2">
+              <OakHeading $font="heading-5" $textAlign="center" tag="h2">
                 Learn more about our different resources and how they can
                 support your planning
-              </Heading>
+              </OakHeading>
             </Flex>
             <Flex
               $flexDirection="column"
@@ -237,12 +241,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     <CardTitle $font={["heading-5", "heading-4"]} tag="h3">
                       {title}
                     </CardTitle>
-                    <Typography $font="body-1">
+                    <OakTypography $font="body-1">
                       <PortableTextWithDefaults
                         value={portableText}
                         withoutDefaultComponents
                       />
-                    </Typography>
+                    </OakTypography>
                   </LessonElementsCard>
                 </OakGridArea>
               ),
@@ -332,16 +336,16 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                       </Box>
 
                       <Flex $flexDirection={"column"}>
-                        <Heading
-                          $mb={24}
+                        <OakHeading
+                          $mb="space-between-m"
                           tag={"h3"}
                           $font={["heading-5", "heading-6"]}
                         >
                           {title}
-                        </Heading>
-                        <Typography $font={"body-1"}>
+                        </OakHeading>
+                        <OakTypography $font={"body-1"}>
                           <PortableTextWithDefaults value={portableText} />
-                        </Typography>
+                        </OakTypography>
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
@@ -404,11 +408,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
-              <Typography $font={["body-2", "body-1"]}>
+              <OakTypography $font={["body-2", "body-1"]}>
                 <PortableTextWithDefaults
                   value={pageData.learnMoreBlock1.bodyPortableText}
                 />
-              </Typography>
+              </OakTypography>
             </Flex>
           </Card>
           <Card
@@ -429,11 +433,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <CardTitle $font={["heading-5", "heading-4"]} tag={"h2"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
-              <Typography $font={["body-2", "body-1"]}>
+              <OakTypography $font={["body-2", "body-1"]}>
                 <PortableTextWithDefaults
                   value={pageData.learnMoreBlock2.bodyPortableText}
                 />
-              </Typography>
+              </OakTypography>
             </Box>
             <Card
               $position="relative"

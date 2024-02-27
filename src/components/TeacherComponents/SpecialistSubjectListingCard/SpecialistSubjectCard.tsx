@@ -1,10 +1,10 @@
-import { SpecialistSubject } from "../../TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
+import { OakHeading, OakSpan, OakFlex } from "@oaknational/oak-components";
 
+import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
-import Flex from "@/components/SharedComponents/Flex";
-import { Heading, Span } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import {
   SpecialistProgrammeListingLinkProps,
@@ -46,12 +46,12 @@ const SpecialistSubjectCard = (props: {
     $pa={16}
     $height="100%"
   >
-    <Flex
+    <OakFlex
       $flexDirection="column"
       $alignItems={"stretch"}
       $justifyContent="space-between"
       $height="100%"
-      $gap={20}
+      $gap="all-spacing-5"
     >
       <Flex
         $flexDirection={["row", "column"]}
@@ -66,14 +66,14 @@ const SpecialistSubjectCard = (props: {
           $width={[60, 80]}
         />
 
-        <Heading
+        <OakHeading
           $textAlign={["start", "center"]}
           $font={["heading-6", "heading-5"]}
           tag={"h6"}
-          $ma={0}
+          $ma="space-between-none"
         >
           {getSentenceCase(props.subject.subjectTitle)}
-        </Heading>
+        </OakHeading>
       </Flex>
       <OwaLink
         {...getOakLinkProps(props.subject)}
@@ -81,21 +81,21 @@ const SpecialistSubjectCard = (props: {
         $hideDefaultFocus
       >
         <SubjectListingTextTile>
-          <Flex $flexDirection={"column"} $pa={16}>
-            <Flex>
-              <Span>
+          <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+            <OakFlex>
+              <OakSpan>
                 {`${props.subject.unitCount} ${
                   props.subject.unitCount > 1 ? "units" : "unit"
                 }`}
-              </Span>
-            </Flex>
-            <Span>{`${props.subject.lessonCount} ${
+              </OakSpan>
+            </OakFlex>
+            <OakSpan>{`${props.subject.lessonCount} ${
               props.subject.lessonCount > 1 ? "lessons" : "lesson"
-            }`}</Span>
-          </Flex>
+            }`}</OakSpan>
+          </OakFlex>
         </SubjectListingTextTile>
       </OwaLink>
-    </Flex>
+    </OakFlex>
   </Card>
 );
 

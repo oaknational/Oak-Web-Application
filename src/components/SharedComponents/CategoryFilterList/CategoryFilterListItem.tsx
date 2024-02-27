@@ -1,3 +1,5 @@
+import { OakLI } from "@oaknational/oak-components";
+
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -6,8 +8,7 @@ import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PixelSpacing } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
-import { LI } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -57,14 +58,14 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   ];
 
   return (
-    <LI
+    <OakLI
       $display="flex"
       $font={"heading-7"}
-      $opacity={isSelected ? 0.6 : 1}
+      $opacity={isSelected ? "semi-opaque" : "opaque"}
       $position="relative"
-      $overflow="visisble"
+      $overflow="visible"
       $alignItems="center"
-      $mb={12}
+      $mb="space-between-xs"
     >
       <OwaLink
         $display="flex"
@@ -103,7 +104,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
           {label}
         </Flex>
       </OwaLink>
-    </LI>
+    </OakLI>
   );
 };
 

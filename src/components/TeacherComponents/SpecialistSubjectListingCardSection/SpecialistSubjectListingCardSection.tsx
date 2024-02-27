@@ -1,9 +1,13 @@
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+  OakFlex,
+} from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/SharedComponents/Typography";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import SpecialistSubjectCard from "@/components/TeacherComponents/SpecialistSubjectListingCard/SpecialistSubjectCard";
 
@@ -23,15 +27,15 @@ const SpecialistSubjectCardSection = (props: {
   subjects: Array<SpecialistSubject>;
 }) => {
   return (
-    <Flex $flexDirection="column" $gap={24}>
+    <OakFlex $flexDirection="column" $gap="all-spacing-6">
       <OakGrid $rg={"all-spacing-4"}>
         <OakGridArea $colSpan={[12]}>
-          <Heading tag="h2" $font="heading-3">
+          <OakHeading tag="h2" $font="heading-3">
             {props.heading}
-          </Heading>
+          </OakHeading>
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 9]}>
-          <P>{props.summary}</P>
+          <OakP>{props.summary}</OakP>
         </OakGridArea>
       </OakGrid>
       <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>
@@ -49,7 +53,7 @@ const SpecialistSubjectCardSection = (props: {
           </GridAreaListItem>
         ))}
       </GridList>
-    </Flex>
+    </OakFlex>
   );
 };
 

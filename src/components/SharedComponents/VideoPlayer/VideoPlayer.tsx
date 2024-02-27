@@ -2,6 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -19,9 +20,6 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import Flex from "@/components/SharedComponents/Flex";
-import { P } from "@/components/SharedComponents/Typography";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -148,16 +146,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <Flex
-        $flexDirection={"column"}
-        $width={"100%"}
-        $height={[240]}
+      <OakFlex
         $alignItems={"center"}
         $justifyContent={"center"}
+        $ba={"border-solid-l"}
+        $minWidth={"100%"}
+        $borderColor={"black"}
+        style={{
+          aspectRatio: "16/9",
+          boxSizing: "content-box",
+        }}
       >
-        <BoxBorders />
-        <P $textAlign="center">Loading...</P>
-      </Flex>
+        <OakP $textAlign="center">Loading...</OakP>
+      </OakFlex>
     );
   }
 
@@ -172,11 +173,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
-      $width={"100%"}
-      $ba={[3]}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
       $borderColor={"black"}
+      style={{
+        boxSizing: "content-box",
+      }}
     >
       <MuxPlayer
         preload="metadata"
@@ -201,7 +205,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           overflow: "hidden",
         }}
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

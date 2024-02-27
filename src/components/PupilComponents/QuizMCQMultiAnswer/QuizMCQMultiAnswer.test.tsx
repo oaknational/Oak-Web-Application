@@ -63,6 +63,8 @@ describe("QuizMCQMultiAnswer", () => {
     ],
     score: 0,
     numQuestions: 0,
+    numInteractiveQuestions: 0,
+    currentQuestionDisplayIndex: 0,
     updateQuestionMode: jest.fn(),
     handleSubmitMCAnswer: jest.fn(),
     handleNextQuestion: jest.fn(),

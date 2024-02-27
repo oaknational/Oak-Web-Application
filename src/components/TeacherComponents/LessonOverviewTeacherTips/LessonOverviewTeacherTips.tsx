@@ -1,7 +1,7 @@
 import React from "react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import LessonOverviewSpeechBubble from "@/components/TeacherComponents/LessonOverviewSpeechBubble";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type LessonOverviewTeacherTipProps = {
   teacherTip: string | null;
@@ -16,12 +16,12 @@ const LessonOverviewTeacherTips = ({
 }: LessonOverviewTeacherTipsProps) => {
   const [teacherTip] = teacherTips;
   return (
-    <Flex>
+    <OakFlex>
       <LessonOverviewSpeechBubble
         text={teacherTip?.teacherTip}
         label={"Teacher tip"}
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -94,9 +94,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
       // Lesson resources to share
-      const lessonResourcesToShare = screen.getAllByTestId(
-        "lessonResourcesCheckbox",
-      );
+      const lessonResourcesToShare = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToShare.length).toEqual(
         props.curriculumData.shareableResources.length,
       );

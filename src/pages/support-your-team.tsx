@@ -1,6 +1,12 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { SupportPage } from "@/common-lib/cms-types";
@@ -11,11 +17,10 @@ import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesCompo
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type SupportPageProps = {
   pageData: SupportPage;
@@ -34,16 +39,16 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $pb={96}
           $ph={12}
         >
-          <Heading
+          <OakHeading
             $font={["heading-5", "heading-4"]}
             $textAlign="center"
             tag="h2"
           >
             Using Oak in your school could have a big impact
-          </Heading>
+          </OakHeading>
         </Flex>
-        <Flex $justifyContent={"center"}>
-          <Flex $flexDirection={["column", "row", "row"]}>
+        <OakFlex $justifyContent={"center"}>
+          <OakFlex $flexDirection={["column", "row", "row"]}>
             <SupportYourTeamBubbleMessage
               background={"aqua"}
               variant="bubble-1"
@@ -59,9 +64,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               subHeading={"in curriculum design"}
               $mr={[0, -8, 8]}
             />
-          </Flex>
-        </Flex>
-        <Flex $justifyContent={"center"}>
+          </OakFlex>
+        </OakFlex>
+        <OakFlex $justifyContent={"center"}>
           <ButtonAsLink
             $mt={32}
             $mb={92}
@@ -70,7 +75,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             icon={"arrow-right"}
             $iconPosition={"trailing"}
           />
-        </Flex>
+        </OakFlex>
         <OakGrid
           $mb={"space-between-xl"}
           $rg={"all-spacing-10"}
@@ -108,26 +113,26 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $maxHeight: [null, null, 150],
           }}
         />
-        <Flex
+        <OakFlex
           $alignItems={"center"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $mt={48}
+          $mt="space-between-l"
         >
           <Box $maxWidth={["100%", 380, 380]}>
-            <Heading
+            <OakHeading
               $textAlign={"center"}
               $font={["heading-5", "heading-4"]}
-              $mb={20}
+              $mb="space-between-m"
               tag={"h2"}
             >
               Start using Oak today
-            </Heading>
-            <P $textAlign={"center"} $font={"body-2"}>
+            </OakHeading>
+            <OakP $textAlign={"center"} $font={"body-2"}>
               Search our lessons to find all the resources you need to support
               your team.
-            </P>
-            <Flex $justifyContent={"center"}>
+            </OakP>
+            <OakFlex $justifyContent={"center"}>
               <ButtonAsLink
                 $mt={32}
                 $mb={92}
@@ -136,9 +141,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
                 icon={"arrow-right"}
                 $iconPosition={"trailing"}
               />
-            </Flex>
+            </OakFlex>
           </Box>
-        </Flex>
+        </OakFlex>
       </MaxWidth>
     </Layout>
   );

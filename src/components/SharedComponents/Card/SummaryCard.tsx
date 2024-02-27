@@ -1,4 +1,9 @@
 import { FC } from "react";
+import {
+  OakTypography,
+  OakHeading,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Card from "./Card";
 
@@ -7,9 +12,8 @@ import { OakColorName } from "@/styles/theme/types";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
-import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export type SummaryCardProps = {
   children?: React.ReactNode;
@@ -48,28 +52,36 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $pv={[24]}
       $ph={[16, 24]}
     >
-      <Flex $flexDirection={"column"} $width="100%">
-        <Flex>
-          <Flex $justifyContent={"center"} $flexDirection={"column"} $mr={48}>
-            <Heading
-              $mb={8}
+      <OakFlex $flexDirection={"column"} $width="100%">
+        <OakFlex>
+          <OakFlex
+            $justifyContent={"center"}
+            $flexDirection={"column"}
+            $mr="space-between-l"
+          >
+            <OakHeading
+              $mb={"space-between-ssx"}
               tag={"h1"}
               $font={["heading-6", "heading-5"]}
               $color={"grey60"}
             >
               {title}
-            </Heading>
-            <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
+            </OakHeading>
+            <OakHeading
+              $mb={"space-between-s"}
+              $font={["heading-5", "heading-4"]}
+              tag={"h2"}
+            >
               {heading}
-            </Heading>
-            <Typography $font={["body-2", "body-1"]}>
+            </OakHeading>
+            <OakTypography $font={["body-2", "body-1"]}>
               {typeof summaryPortableText === "string" ? (
                 <p>{summaryPortableText}</p>
               ) : (
                 <PortableTextWithDefaults value={summaryPortableText} />
               )}
-            </Typography>
-          </Flex>
+            </OakTypography>
+          </OakFlex>
           {summaryCardImage && (
             <Flex
               $display={["none", "flex"]}
@@ -96,9 +108,9 @@ const SummaryCard: FC<SummaryCardProps> = ({
               </Cover>
             </Flex>
           )}
-        </Flex>
+        </OakFlex>
         {children}
-      </Flex>
+      </OakFlex>
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );

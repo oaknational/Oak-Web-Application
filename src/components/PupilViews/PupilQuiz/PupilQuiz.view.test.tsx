@@ -10,28 +10,16 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import {
   LessonEngineContext,
-  LessonEngineContextType,
+  LessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
-
-const questionsArrayFixture = quizQuestions || [];
-
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 describe("PupilQuizView", () => {
   it("renders heading, mode and answer when there is currentQuestionData", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -42,19 +30,19 @@ describe("PupilQuizView", () => {
   it("disables submit button when mode is init", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByRole("button", { name: "Submit" })).toBeDisabled();
+    expect(getByRole("button", { name: /Check/ })).toBeDisabled();
   });
 
   it("renders Next button when questionState.mode is feedback", () => {
     const { getByLabelText, getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -62,19 +50,45 @@ describe("PupilQuizView", () => {
 
     act(() => {
       fireEvent.click(getByLabelText(/a group of letters/));
-      fireEvent.click(getByRole("button", { name: "Submit" }));
+      fireEvent.click(getByRole("button", { name: /Check/ }));
     });
-    expect(getByRole("button", { name: "Next question" })).toBeInTheDocument();
+    expect(getByRole("button", { name: /Next question/ })).toBeInTheDocument();
   });
 
   it("does not render Next button when questionState.mode is not feedback", () => {
     const { queryByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
-          <PupilViewsQuiz questionsArray={questionsArrayFixture ?? []} />
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(queryByText("Next Question")).not.toBeInTheDocument();
+    expect(queryByText(/Next Question/)).not.toBeInTheDocument();
   });
+
+  it.each([
+    ["exit-quiz", /Lesson review/],
+    ["starter-quiz", /Continue lesson/],
+  ] satisfies Array<[LessonSection, RegExp]>)(
+    "for the %p section the button label for the last question is %p",
+    (currentSection, label) => {
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({ currentSection })}
+          >
+            <PupilViewsQuiz questionsArray={quizQuestions.slice(0, 1)} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByRole("button", { name: /Check/ }));
+      });
+
+      expect(getByRole("button", { name: label })).toBeInTheDocument();
+    },
+  );
 });

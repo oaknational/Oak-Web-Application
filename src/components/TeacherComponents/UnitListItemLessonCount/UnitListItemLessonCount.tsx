@@ -1,6 +1,6 @@
-import Flex from "@/components/SharedComponents/Flex";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
+
 import Icon from "@/components/SharedComponents/Icon";
-import { Span } from "@/components/SharedComponents/Typography";
 
 export interface IUnitListItemLessonCountProps {
   lessonCount: number | null;
@@ -17,21 +17,21 @@ export const UnitListItemLessonCount = ({
 
   return (
     <>
-      <Flex $alignItems={"end"}>
+      <OakFlex $alignItems={"end"}>
         {lessonCount && expiredLessonCount ? (
-          <Span $font={["body-3", "heading-light-7"]} $color={textColor}>
+          <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
             {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
-          </Span>
+          </OakSpan>
         ) : (
-          <Span $font={["body-3", "heading-light-7"]} $color={textColor}>
+          <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
             {!!lessonCount &&
               `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
             {expired && ` Coming soon`}
-          </Span>
+          </OakSpan>
         )}
 
         {!expired && lessonCount && <Icon name="chevron-right" size={20} />}
-      </Flex>
+      </OakFlex>
     </>
   );
 };

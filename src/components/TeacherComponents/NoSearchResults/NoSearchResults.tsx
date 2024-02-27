@@ -1,5 +1,9 @@
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import {
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 interface NoSearchResultsProps {
   searchTerm: string;
@@ -9,19 +13,24 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
   const { searchTerm } = props;
 
   return (
-    <Flex $flexDirection="column" $pl={24}>
-      <Heading tag={"h4"} $mt={24} $mb={16} $font={"heading-7"}>
+    <OakFlex $flexDirection="column" $pl="inner-padding-xl">
+      <OakHeading
+        tag={"h4"}
+        $mt="space-between-m"
+        $mb="space-between-s"
+        $font={"heading-7"}
+      >
         No search results
-      </Heading>
-      <Flex $flexDirection="column">
-        <P $font={"body-1"} $mb={12}>
+      </OakHeading>
+      <OakFlex $flexDirection="column">
+        <OakP $font={"body-1"} $mb="space-between-xs">
           Sorry, we could not find any results for{" "}
-          <Span $wordWrap={"break-word"}>“{searchTerm}”</Span>.
+          <OakSpan $wordWrap={"break-word"}>“{searchTerm}”</OakSpan>.
           <br /> <br /> Please enter a topic you wish to explore in the search
           bar above.
-        </P>
-      </Flex>
-    </Flex>
+        </OakP>
+      </OakFlex>
+    </OakFlex>
   );
 };
 

@@ -1,11 +1,11 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
-import Flex from "@/components/SharedComponents/Flex";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { Hr } from "@/components/SharedComponents/Typography";
@@ -65,7 +65,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               $zIndex={"modalDialog"}
               $overflowY={"scroll"}
             >
-              <Flex $flexDirection={"column"} $minWidth={"100%"}>
+              <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
                 <Box $position={"fixed"} $top={20} $right={16}>
                   <IconButton
                     aria-label="Close Menu"
@@ -77,23 +77,23 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                     aria-expanded={displayModal}
                   />
                 </Box>
-                <Flex $overflowY={"auto"} $flexGrow={1}>
+                <OakFlex $overflowY={"auto"} $flexGrow={1}>
                   {children}
-                </Flex>
+                </OakFlex>
 
                 {!unitOptionsAvailable && (
-                  <Flex $flexDirection={"column"}>
+                  <OakFlex $flexDirection={"column"}>
                     <Hr $color={"grey30"} $mt={0} $mb={24} />
-                    <Flex
+                    <OakFlex
                       $justifyContent={"space-between"}
                       $alignItems={["flex-end"]}
-                      $ph={16}
-                      $pb={16}
+                      $ph="inner-padding-m"
+                      $pb="inner-padding-m"
                     >
-                      <Flex
+                      <OakFlex
                         $flexDirection={["column", "row"]}
                         $alignItems={"flex-start"}
-                        $gap={8}
+                        $gap="all-spacing-2"
                       >
                         {lessonsAvailable === false && (
                           <TagFunctional
@@ -122,11 +122,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             programmeSlug={programmeSlug}
                           />
                         )}
-                      </Flex>
-                    </Flex>
-                  </Flex>
+                      </OakFlex>
+                    </OakFlex>
+                  </OakFlex>
                 )}
-              </Flex>
+              </OakFlex>
             </SideMenu>
           </FocusOn>
         </Box>

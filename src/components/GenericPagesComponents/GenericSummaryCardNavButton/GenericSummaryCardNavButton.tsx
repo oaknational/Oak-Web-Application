@@ -1,11 +1,10 @@
 import { FC } from "react";
+import { OakLI, OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
-import { FlexList } from "@/components/SharedComponents/Typography/UL";
-import { LI } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type LinkProps = {
@@ -21,7 +20,7 @@ type GenericSummaryCardNavButtonProps = {
   buttons: LinkProps[];
   arrowSuffix?: boolean;
   shallow?: boolean;
-} & FlexProps;
+} & OakFlexProps;
 
 export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
@@ -30,7 +29,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   };
 
   return (
-    <LI listStyle="none">
+    <OakLI $listStyle="none">
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
@@ -65,7 +64,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           $mr={[0, 36]}
         />
       </Flex>
-    </LI>
+    </OakLI>
   );
 };
 
@@ -86,11 +85,12 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
 }) => {
   return (
     <nav aria-label={ariaLabel}>
-      <FlexList
+      <OakFlex
+        as={"ul"}
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
-        $pa={0}
+        $pa="inner-padding-none"
         {...props}
       >
         {buttons.map((button) => (
@@ -101,7 +101,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
             arrowSuffix={arrowSuffix}
           />
         ))}
-      </FlexList>
+      </OakFlex>
     </nav>
   );
 };

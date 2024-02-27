@@ -1,19 +1,19 @@
 import { FC } from "react";
+import {
+  OakHeading,
+  OakHeadingTag,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { SpacingProps } from "@/styles/utils/spacing";
-import {
-  Heading,
-  HeadingTag,
-  Span,
-} from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 
 type SubjectErrorCardProps = {
   heading: string;
-  headingTag: HeadingTag;
+  headingTag: OakHeadingTag;
   text: string;
   buttonProps: ButtonAsLinkProps;
 };
@@ -27,21 +27,30 @@ type SubjectErrorCardProps = {
 const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
   const { heading, headingTag, text, buttonProps } = props;
   return (
-    <Flex
-      $ph={16}
-      $pv={12}
+    <OakFlex
+      $ph="inner-padding-m"
+      $pv="inner-padding-s"
       $background={"mint"}
       $alignItems={["flex-start", "center"]}
-      $borderRadius={3}
+      $borderRadius="border-radius-s"
       $flexDirection={["column", "row"]}
       $width={["100%", "auto"]}
     >
-      <Heading $mr={12} $mb={[8, 0]} $font={"heading-7"} tag={headingTag}>
+      <OakHeading
+        $mr={"space-between-xs"}
+        $mb={["space-between-ssx", "space-between-none"]}
+        $font={"heading-7"}
+        tag={headingTag}
+      >
         {heading}
-      </Heading>
-      <Span $mr={12} $mb={[20, 0]} $font={"body-3"}>
+      </OakHeading>
+      <OakSpan
+        $mr={"space-between-xs"}
+        $mb={["space-between-m", "space-between-none"]}
+        $font={"body-3"}
+      >
         {text}
-      </Span>
+      </OakSpan>
 
       <ButtonAsLink
         $ph={0}
@@ -51,7 +60,7 @@ const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
         $iconPosition={"trailing"}
         iconBackground="black"
       />
-    </Flex>
+    </OakFlex>
   );
 };
 

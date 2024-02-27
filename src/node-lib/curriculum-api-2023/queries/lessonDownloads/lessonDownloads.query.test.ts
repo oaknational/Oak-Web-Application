@@ -16,6 +16,7 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
   },
   {
     programmeSlug: "programme-slug-1",
@@ -28,6 +29,7 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
   },
 ];
 
@@ -41,7 +43,7 @@ describe("lessonDownloads()", () => {
             downloads: [],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_0",
+                __typename: "published_mv_lesson_listing_3_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
@@ -51,7 +53,6 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
-        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -69,7 +70,6 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
-        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -81,7 +81,7 @@ describe("lessonDownloads()", () => {
           downloads: downloads,
           unit: [
             {
-              __typename: "published_mv_lesson_listing_3_0_0",
+              __typename: "published_mv_lesson_listing_3_0_1",
               lessons: lessonListingFixture().lessons,
             },
           ],
@@ -91,8 +91,8 @@ describe("lessonDownloads()", () => {
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
-      lessonCohort: "2023-2024",
     });
+
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
   test("throws a Zod error if the response is invalid", async () => {
@@ -126,7 +126,6 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
-        lessonCohort: "2023-2024",
       });
     }).rejects.toThrow(`unitSlug`);
   });

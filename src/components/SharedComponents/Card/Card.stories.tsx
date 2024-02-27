@@ -1,13 +1,12 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Component from ".";
 
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import CardImage from "@/components/SharedComponents/Card/CardComponents/CardImage";
-import { P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
 
 export default {
   component: Component,
@@ -40,9 +39,9 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       >
         Title
       </CardTitle>
-      <P $font={"body-2"} $mb={24} $color={"grey50"}>
+      <OakP $font={"body-2"} $mb={"space-between-m"} $color={"grey50"}>
         Short snappy description of what this card is about.
-      </P>
+      </OakP>
       <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
     </Component>
   </div>
@@ -52,11 +51,11 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
   <div style={{ width: "300px" }}>
     <Component {...args}>
       <CardImage illustration="magic-carpet" />
-      <Flex $pa={24} $flexDirection={"column"}>
+      <OakFlex $pa="inner-padding-xl" $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
-        <P $font={"body-2"} $mb={24} $color={"grey50"}>
+        <OakP $font={"body-2"} $mb={"space-between-m"} $color={"grey50"}>
           Short snappy description of what this card is about.
-        </P>
+        </OakP>
         <ButtonAsLink
           $mt={"auto"}
           $mb={16}
@@ -64,7 +63,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
           $fullWidth
           page={"home"}
         />
-      </Flex>
+      </OakFlex>
     </Component>
   </div>
 );
@@ -85,9 +84,14 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       >
         Title
       </CardTitle>
-      <P $textAlign="center" $font={"body-2"} $mb={24} $color={"grey50"}>
+      <OakP
+        $textAlign="center"
+        $font={"body-2"}
+        $mb={"space-between-m"}
+        $color={"grey50"}
+      >
         Short snappy description of what this card is about.
-      </P>
+      </OakP>
       <ButtonAsLink
         $mb={16}
         $mt={"auto"}

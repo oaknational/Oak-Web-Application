@@ -52,7 +52,7 @@ describe("Component - subject phase picker", () => {
     );
     const control = getByTitle("Subject");
     expect(control).toBeTruthy();
-    userEvent.click(control);
+    await userEvent.click(control);
     const buttons = await findAllByTitle("English");
     expect(buttons).toHaveLength(1);
   });
@@ -62,13 +62,13 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
-    userEvent.click(control);
+    await userEvent.click(control);
     const buttons = await findAllByTitle("Science");
     const button = buttons[0];
     if (!button) {
       throw new Error("Button not found");
     }
-    userEvent.click(button);
+    await userEvent.click(button);
     await waitFor(() => {
       expect(control).toHaveTextContent("Science");
     });
@@ -80,7 +80,7 @@ describe("Component - subject phase picker", () => {
     );
     const control = getByTitle("Phase");
     expect(control).toBeTruthy();
-    userEvent.click(control);
+    await userEvent.click(control);
     const button = await findByTitle("Primary");
     expect(button).toBeInTheDocument();
   });
@@ -90,11 +90,11 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Phase");
-    userEvent.click(control);
+    await userEvent.click(control);
     await userEvent.click(await findByTitle("Primary"));
     expect(control).toHaveTextContent("Primary");
     expect(queryByTitle("Exam board")).toBeNull();
-    userEvent.click(getByTitle("Subject"));
+    await userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("Music"))[0];
     if (!button) {
       throw new Error("Could not find button");
@@ -107,14 +107,14 @@ describe("Component - subject phase picker", () => {
     const { findByText, findByTitle, getByTitle, findAllByTitle } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    userEvent.click(getByTitle("Subject"));
+    await userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("English"))[0];
     if (!button) {
       throw new Error("Could not find button");
     }
-    userEvent.click(button);
+    await userEvent.click(button);
     const control = getByTitle("Phase");
-    userEvent.click(await findByTitle("Secondary"));
+    await userEvent.click(await findByTitle("Secondary"));
     const examboardTitle = await findByText("Choose an exam board for KS4:");
     expect(examboardTitle).toBeTruthy();
     const aqa = (await findAllByTitle("AQA"))[0];
@@ -157,16 +157,17 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(viewButton);
     expect(queryByText("Select a subject")).toBeNull();
     expect(queryByText("Select a school phase")).toBeTruthy();
-    userEvent.click(getByTitle("Secondary"));
+    await userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
     expect(queryByText("Select an exam board option")).toBeTruthy();
   });
+
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
     const { findAllByTitle, getByTitle, findByTitle, getByText } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    userEvent.click(getByTitle("Subject"));
+    await userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("English"))[0];
     if (!button) {
       throw new Error("Could not find button");
@@ -185,5 +186,17 @@ describe("Component - subject phase picker", () => {
       phase: "primary",
       analyticsUseCase: null,
     });
+  });
+
+  test("User can navigate to previous curriculum plans", async () => {
+    const { getByTestId, getByTitle } = render(
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
+    );
+    await userEvent.click(getByTitle("Subject"));
+    const link = getByTestId("previousPlansLink");
+    expect(link).toHaveAttribute(
+      "href",
+      "/teachers/curriculum/previous-downloads",
+    );
   });
 });

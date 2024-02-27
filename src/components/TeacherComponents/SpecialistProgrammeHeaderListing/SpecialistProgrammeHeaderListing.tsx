@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
 
 /**
@@ -39,29 +44,33 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakGrid>
         <OakGridArea $colSpan={[12, 6]}>
-          <Span $mb={16} $color={"grey60"} $font={"heading-7"}>
+          <OakSpan $mb="space-between-s" $color={"grey60"} $font={"heading-7"}>
             {title}
-          </Span>
-          <Flex $flexDirection={["column", "row", "row"]}>
-            <Flex $gap={[16, 0]} $maxWidth={60} $mr={16}>
+          </OakSpan>
+          <OakFlex $flexDirection={["column", "row", "row"]}>
+            <OakFlex
+              $gap={["all-spacing-4", "all-spacing-0"]}
+              $maxWidth="all-spacing-11"
+              $mr={"space-between-s"}
+            >
               <SubjectIconBrushBorders
                 $pa={4}
                 containerMinWidth={[40, 60]}
                 subjectSlug={subjectSlug}
                 $ma={"auto"}
-                isLegacyLesson={true}
+                isNew={false}
                 color={subjectIconBackgroundColor}
               />
-            </Flex>
-            <Flex $flexDirection={"column"}>
-              <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
+            </OakFlex>
+            <OakFlex $flexDirection={"column"}>
+              <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
-              </Heading>
-            </Flex>
-          </Flex>
-          <P $mb={16} $mt={16} $font={"body-1"}>
+              </OakHeading>
+            </OakFlex>
+          </OakFlex>
+          <OakP $mb="space-between-s" $mt="space-between-s" $font={"body-1"}>
             {description}
-          </P>
+          </OakP>
           {/* Commented out until - I want to be able to download specialist curriculum maps LESQ-586 */}
           {/* {hasCurriculumDownload && (
             <HeaderListingCurriculumDownloadButton

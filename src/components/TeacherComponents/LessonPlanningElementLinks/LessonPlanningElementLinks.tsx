@@ -1,13 +1,14 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakLI } from "@oaknational/oak-components";
 
 import GraphiCircleIcon from "@/components/SharedComponents/Icon/GraphicCircleIcon";
 import { zIndexMap } from "@/styles/utils/zIndex";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { IconName } from "@/components/SharedComponents/Icon";
-import Typography, { LI } from "@/components/SharedComponents/Typography";
+import Typography from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex
@@ -128,7 +129,7 @@ const LessonPlanningElementLinks: FC<LessonProgressionGraphicProps> = (
       $width="min-content"
     >
       {elementList.map((element) => (
-        <LI key={element.id} $pa={0} listStyle="none">
+        <OakLI key={element.id} $pa={"inner-padding-none"} $listStyle="none">
           <GraphicContainer $zIndex="neutral">
             <ElementIcon icon={element.icon} />
             <LinkText>
@@ -137,7 +138,7 @@ const LessonPlanningElementLinks: FC<LessonProgressionGraphicProps> = (
               </AnchorLink>
             </LinkText>
           </GraphicContainer>
-        </LI>
+        </OakLI>
       ))}
     </GridList>
   );

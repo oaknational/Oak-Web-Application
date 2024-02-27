@@ -1,24 +1,28 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakLI,
+  OakUL,
+  OakTypography,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Typography, {
-  Heading,
-  LI,
-  UL,
-} from "@/components/SharedComponents/Typography";
 
 const CurriculumTab: FC = () => {
   return (
-    <Flex $background={"aqua"} $pv={24}>
+    <OakFlex $background={"aqua"} $pv="inner-padding-xl">
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
+            {/* @todo replace with OakFlex - work out $flex prop */}
             <Flex
               $flexDirection={"column"}
               $maxWidth={[640]}
@@ -27,25 +31,29 @@ const CurriculumTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers & subject leads
-              </Heading>
-              <Heading $font={"heading-3"} tag={"h2"}>
+              </OakHeading>
+              <OakHeading $font={"heading-3"} tag={"h2"}>
                 New curriculum plans
-              </Heading>
-              <Flex $flexDirection={"column"}>
+              </OakHeading>
+              <OakFlex $flexDirection={"column"}>
                 {" "}
-                <Typography $font={"body-1"}>
+                <OakTypography $font={"body-1"}>
                   Explore our new curriculum plans.
-                </Typography>
-                <UL $mt={16} $font={"body-1"}>
-                  <LI>National curriculum-aligned</LI>
-                  <LI>Primary and secondary sequences</LI>
-                  <LI>Designed by curriculum experts</LI>
-                </UL>
-              </Flex>
+                </OakTypography>
+                <OakUL $mt="space-between-s" $font={"body-1"}>
+                  <OakLI>National curriculum-aligned</OakLI>
+                  <OakLI>Primary and secondary sequences</OakLI>
+                  <OakLI>Designed by curriculum experts</OakLI>
+                </OakUL>
+              </OakFlex>
 
-              <Flex $gap={24} $flexWrap={"wrap"} $pb={24}>
+              <OakFlex
+                $gap="all-spacing-6"
+                $flexWrap={"wrap"}
+                $pb="inner-padding-xl"
+              >
                 <ButtonAsLink
                   label={"View curriculum plans"}
                   variant={"brushNav"}
@@ -54,10 +62,11 @@ const CurriculumTab: FC = () => {
                   $iconPosition={"trailing"}
                   iconBackground="black"
                 />
-              </Flex>
+              </OakFlex>
             </Flex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
+            {/* @todo replace with OakFlex - work out $flex prop */}
             <Flex
               $pv={64}
               $flexDirection={"column"}
@@ -70,7 +79,7 @@ const CurriculumTab: FC = () => {
               $maxWidth={524}
               $pl={20}
             >
-              <Flex $flexDirection={"column"} $gap={10}>
+              <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
                 <Illustration
                   slug={"teacher-whiteboard"}
                   noCrop
@@ -80,10 +89,10 @@ const CurriculumTab: FC = () => {
                   $borderStyle={"solid"}
                   $borderColor={"black"}
                 />
-                <Typography $font={"body-1"} $color={"black"}>
+                <OakTypography $font={"body-1"} $color={"black"}>
                   50% of teachers feel more confident in curriculum design.
-                </Typography>
-              </Flex>
+                </OakTypography>
+              </OakFlex>
 
               <Box
                 $position={"absolute"}
@@ -98,7 +107,7 @@ const CurriculumTab: FC = () => {
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

@@ -1,8 +1,7 @@
 import { FC } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading } from "@/components/SharedComponents/Typography";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
@@ -33,18 +32,18 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
     >
-      <Flex $pa={16}>
+      <OakFlex $pa="inner-padding-m">
         <OwaLink
           page="unit-index"
           {...primaryTargetProps}
           {...props.programme}
           onClick={() => onClick(programme)}
         >
-          <Heading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
+          <OakHeading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
             {heading}
-          </Heading>
+          </OakHeading>
         </OwaLink>
-      </Flex>
+      </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />
     </Card>

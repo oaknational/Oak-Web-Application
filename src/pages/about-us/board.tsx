@@ -22,8 +22,8 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { GridList } from "@/components/SharedComponents/Typography/UL";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -66,8 +66,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               {boardHeader}
             </OakHeading>
             <BioCardList
-              $mb={[80, 60]}
-              $ph={[16, 0]}
+              $mb={["space-between-xxxl", "space-between-xl"]}
+              $ph={["inner-padding-m", "inner-padding-none"]}
               bios={boardMembers}
               withModals={bioModalsEnabled}
             />

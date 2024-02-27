@@ -1,5 +1,6 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled, { css, useTheme } from "styled-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import HopePageTabButtonLabelWithScreenReaderTitle from "@/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle";
 import {
@@ -17,7 +18,6 @@ import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/SharedComponents/UnstyledButton";
 import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
-import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import {
@@ -122,10 +122,10 @@ const HomePageTabImageButton = forwardRef<
       isCurrent={isCurrent}
       disabled={disabled}
     >
-      <Flex $flexDirection={"column"} $alignItems={"center"}>
-        <Flex
-          $width={[50, 96, 96]}
-          $height={[50, 96, 96]}
+      <OakFlex $flexDirection={"column"} $alignItems={"center"}>
+        <OakFlex
+          $width={["all-spacing-9", "all-spacing-14", "all-spacing-14"]}
+          $height={["all-spacing-9", "all-spacing-14", "all-spacing-14"]}
           $justifyContent={"center"}
         >
           <Illustration
@@ -135,9 +135,9 @@ const HomePageTabImageButton = forwardRef<
             $width={"auto"}
             data-testid={imageSlug}
           />
-        </Flex>
+        </OakFlex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>
-          <Flex $alignItems={"center"} $minHeight={44}>
+          <OakFlex $alignItems={"center"} $minHeight="all-spacing-9">
             <HopePageTabButtonLabelWithScreenReaderTitle
               $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
@@ -153,14 +153,14 @@ const HomePageTabImageButton = forwardRef<
                 $display={["none", "flex"]}
               />
             )}
-          </Flex>
+          </OakFlex>
           {isCurrent && <HomePageTabBrushUnderline name="horizontal-rule" />}
           <HomePageTabFocusUnderline
             $color={underlineColor}
             data-testid={`${defaultTitle} underline`}
           />
         </Box>
-      </Flex>
+      </OakFlex>
     </StyledButton>
   );
 });

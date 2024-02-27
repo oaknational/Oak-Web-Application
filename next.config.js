@@ -215,6 +215,11 @@ module.exports = async (phase) => {
           hostname: "oaknationalacademy-res.cloudinary.com",
           pathname: "/**",
         },
+        {
+          protocol: "https",
+          hostname: "res.cloudinary.com",
+          pathname: "/**",
+        },
       ],
       // Allow static builds with the default image loader.
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION

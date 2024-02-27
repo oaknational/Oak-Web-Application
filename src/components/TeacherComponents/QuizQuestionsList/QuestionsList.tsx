@@ -1,10 +1,9 @@
 import React, { FC } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { QuizProps } from "@/components/TeacherComponents/LessonOverviewQuizContainer/LessonOverviewQuizContainer";
 import QuizQuestionsListItem from "@/components/TeacherComponents/QuizQuestionsListItem";
-import { Heading } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Flex from "@/components/SharedComponents/Flex";
 
 export type QuizQuestionListProps = QuizProps;
 
@@ -14,11 +13,11 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
 
   return (
     <MaxWidth $maxWidth={[360, 580, 720]} $ph={10} $pv={56} $gap={40}>
-      <Heading $font={"heading-5"} tag={"h3"}>
+      <OakHeading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
-      </Heading>
+      </OakHeading>
 
-      <Flex $flexDirection={"column"} $gap={56} role="list">
+      <OakFlex $flexDirection={"column"} $gap={"all-spacing-10"} role="list">
         {questions.map((question, i) => {
           return (
             <QuizQuestionsListItem
@@ -28,7 +27,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
             />
           );
         })}
-      </Flex>
+      </OakFlex>
     </MaxWidth>
   );
 };

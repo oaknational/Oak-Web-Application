@@ -147,7 +147,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   searchApiUrl2023: {
-    value: process.env.NEXT_PUBLIC_SEARCH_API_URL_2023,
+    value: `${process.env.NEXT_PUBLIC_SEARCH_API_URL_2023}/v2`,
     envName: "NEXT_PUBLIC_SEARCH_API_URL_2023",
     required: true,
     availableInBrowser: true,
@@ -315,6 +315,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
     description:
       "The secure Cloudinary instance serving user generated content",
+  },
+  cloudinarySecureDistribution: {
+    value: process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION,
+    envName: "NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description:
+      "The private Cloudinary origin from which to serve user generated content",
   },
 });
 

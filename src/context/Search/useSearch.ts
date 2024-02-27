@@ -122,9 +122,11 @@ type UseSearchProps = {
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
+  legacy?: SearchQuery["legacy"];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
-  const { allKeyStages, allSubjects, allContentTypes, allExamBoards } = props;
+  const { allKeyStages, allSubjects, allContentTypes, allExamBoards, legacy } =
+    props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
     allSubjects,
@@ -141,7 +143,10 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
      * Searches both 2020 and 2023 content, and merges the results
      */
     performSearch({
-      query,
+      query: {
+        ...query,
+        legacy: legacy,
+      },
       onStart: () => {
         setStatus("loading");
         setSearchStartTime(performance.now());

@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import Svg from "@/components/SharedComponents/Svg";
-import { Span } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type LessonOverviewSpeechBubbleProps = {
@@ -35,13 +35,13 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
           $zIndex={"inFront"}
           $mb={12}
         >
-          <Span
+          <OakSpan
             $textAlign={"center"}
             $font={"heading-7"}
             data-testid={"heading"}
           >
             {text}
-          </Span>
+          </OakSpan>
         </Flex>
         <Svg
           $position={"absolute"}
@@ -51,9 +51,9 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
         />
       </Flex>
       <Flex $justifyContent={"end"}>
-        <Span $mt={24} $font={"heading-7"}>
+        <OakSpan $mt="space-between-m" $font={"heading-7"}>
           {label}
-        </Span>
+        </OakSpan>
       </Flex>
     </Box>
   );

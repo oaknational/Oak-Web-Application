@@ -1,5 +1,11 @@
 import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
+import {
+  OakP,
+  OakHeading,
+  OakHeadingTag,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
 
@@ -10,13 +16,8 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";
-import {
-  P,
-  Heading,
-  HeadingTag,
-} from "@/components/SharedComponents/Typography";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 
 type PostListItemContentType = "blog-post" | "webinar";
@@ -53,7 +54,7 @@ const getItemCategoryLinkProps = (
 };
 
 export type PostListItemProps = {
-  titleTag: HeadingTag;
+  titleTag: OakHeadingTag;
   title: string;
   summary: string;
   slug: string;
@@ -131,8 +132,8 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
-        <Flex
+      <OakFlex $flexDirection="column" $alignItems="flex-start" $width="100%">
+        <OakFlex
           $width="100%"
           $alignItems={["flex-start", "flex-end"]}
           $justifyContent="space-between"
@@ -147,11 +148,14 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           >
             {category.title}
           </OwaLink>
-          <P $font={"body-3"} $mt={[8, 0]}>
+          <OakP
+            $font={"body-3"}
+            $mt={["space-between-ssx", "space-between-none"]}
+          >
             {blogDate}
-          </P>
-        </Flex>
-        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
+          </OakP>
+        </OakFlex>
+        <OakHeading tag={titleTag} $font={"heading-5"} $mt="space-between-ssx">
           <OwaLink
             {...primaryTargetProps}
             {...getItemLinkProps(props)}
@@ -161,11 +165,15 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           >
             {title}
           </OwaLink>
-        </Heading>
-        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
+        </OakHeading>
+        <OakP
+          $font={"body-3"}
+          $mt={"space-between-ssx"}
+          $mb={["space-between-ssx", "space-between-none"]}
+        >
           <LineClamp lines={2}>{summary}</LineClamp>
-        </P>
-      </Flex>
+        </OakP>
+      </OakFlex>
     </Flex>
   );
 };

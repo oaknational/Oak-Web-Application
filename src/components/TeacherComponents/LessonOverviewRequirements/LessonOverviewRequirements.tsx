@@ -1,10 +1,9 @@
 import React, { FC } from "react";
+import { OakP, OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "../LessonRequirementsHeading/LessonRequirementsHeading";
 
 import { IconName } from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex";
-import { P, UL, LI } from "@/components/SharedComponents/Typography";
 
 type LessonOverviewRequirementsProps = {
   helperIcon: IconName;
@@ -44,29 +43,33 @@ const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
   );
 
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"} $gap={8}>
+    <OakFlex
+      $flexDirection={"column"}
+      $justifyContent={"center"}
+      $gap="all-spacing-2"
+    >
       <LessonRequirementsHeading helperIcon={helperIcon} heading={heading} />
       {contentGuidance && (
-        <UL $reset>
+        <OakUL $reset>
           {removedGuidanceDuplicates.map((guidance: string) => {
             return (
-              <LI $font={"body-2"} key={guidance}>
+              <OakLI $font={"body-2"} key={guidance}>
                 {guidance}
-              </LI>
+              </OakLI>
             );
           })}
-        </UL>
+        </OakUL>
       )}
-      {supervisionLevel && <P $font={"body-2"}>{supervisionLevel}</P>}
+      {supervisionLevel && <OakP $font={"body-2"}>{supervisionLevel}</OakP>}
       {equipment &&
         equipment.map(({ equipment }) => {
           return (
-            <P $font={"body-2"} key={equipment}>
+            <OakP $font={"body-2"} key={equipment}>
               {equipment}
-            </P>
+            </OakP>
           );
         })}
-    </Flex>
+    </OakFlex>
   );
 };
 

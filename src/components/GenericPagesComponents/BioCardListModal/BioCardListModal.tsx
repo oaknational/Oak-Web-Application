@@ -1,5 +1,10 @@
 import { FC, MutableRefObject, useRef } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import { ModalControllerRefs } from "./useBioCardListModal";
 
@@ -13,14 +18,13 @@ import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import BioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog";
 import useBioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Svg from "@/components/SharedComponents/Svg";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type BioData = {
@@ -71,6 +75,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
 
   return (
     <BioCardListModalDialog {...modalDialogProps}>
+      {/* @todo replace with OakFlex - work out the padding */}
       <Flex $width={"100%"} $ph={[0, 72]}>
         <Box
           $position={"absolute"}
@@ -109,26 +114,26 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
           >
             <OakGridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
               <Box $position={"relative"} $zIndex={"inFront"}>
-                <Heading
+                <OakHeading
                   {...titleProps}
                   tag="h2"
                   $font={["heading-5", "heading-4"]}
-                  $mr={[0, 16]}
-                  $mb={[0, 8]}
+                  $mr={["space-between-none", "space-between-s"]}
+                  $mb={["space-between-none", "space-between-ssx"]}
                   $textAlign={["center", "left"]}
                   // If 'next' or 'prev' buttons are clicked, read out the new name
                   aria-live="polite"
                 >
                   {name}
-                </Heading>
-                <P
+                </OakHeading>
+                <OakP
                   $font={["heading-light-7", "heading-light-6"]}
                   $color="grey60"
-                  $mb={[32, 0]}
+                  $mb={["space-between-m2", "space-between-none"]}
                   $textAlign={["center", "left"]}
                 >
                   {role}
-                </P>
+                </OakP>
               </Box>
             </OakGridArea>
             <OakGridArea

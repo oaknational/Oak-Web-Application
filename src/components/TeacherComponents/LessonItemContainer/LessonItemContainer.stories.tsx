@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import {
   LessonItemContainer,
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
-import { P } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
@@ -29,9 +28,13 @@ type Story = StoryObj<typeof LessonItemContainer>;
 export const Standard: Story = {
   render: ({ ...args }) => (
     <LessonItemContainer {...args}>
-      <Flex $justifyContent={"center"} $alignItems={"center"} $height={[110]}>
-        <P>Inner content here</P>
-      </Flex>
+      <OakFlex
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $height="all-spacing-16"
+      >
+        <OakP>Inner content here</OakP>
+      </OakFlex>
     </LessonItemContainer>
   ),
   args: { ...props },

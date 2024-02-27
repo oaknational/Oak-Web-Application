@@ -1,8 +1,7 @@
 import { FC } from "react";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import SearchFilterCheckbox from "@/components/TeacherComponents/SearchFilterCheckbox";
-import { P } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 type SearchFiltersProps = {
@@ -19,10 +18,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   } = props;
   return (
     <>
-      <P $mb={16} $font={"heading-7"}>
+      <OakP $mb="space-between-s" $font={"heading-7"}>
         Type
-      </P>
-      <Flex $mb={36} $flexWrap={"wrap"}>
+      </OakP>
+      <OakFlex $mb="space-between-m2" $flexWrap={"wrap"}>
         {contentTypeFilters.map((contentType) => (
           <SearchFilterCheckbox
             name={"typeFilters"}
@@ -34,11 +33,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {...contentType}
           />
         ))}
-      </Flex>
-      <P $mb={16} $font={"heading-7"}>
+      </OakFlex>
+      <OakP $mb="space-between-s" $font={"heading-7"}>
         Exam board
-      </P>
-      <Flex $mb={36} $flexWrap={"wrap"}>
+      </OakP>
+      <OakFlex $mb="space-between-m2" $flexWrap={"wrap"}>
         {examBoardFilters.map((examBoard) => (
           <SearchFilterCheckbox
             name={"examBoardFilters"}
@@ -50,11 +49,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {...examBoard}
           />
         ))}
-      </Flex>
-      <P $mb={16} $font={"heading-7"}>
+      </OakFlex>
+      <OakP $mb="space-between-s" $font={"heading-7"}>
         Key stage
-      </P>
-      <Flex $mb={36} $flexDirection={"row"} $flexWrap={"wrap"}>
+      </OakP>
+      <OakFlex $mb="space-between-m2" $flexDirection={"row"} $flexWrap={"wrap"}>
         {keyStageFilters.map((keyStageFilter) => (
           <SearchFilterCheckbox
             name={"keyStageFilters"}
@@ -65,11 +64,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {...keyStageFilter}
           />
         ))}
-      </Flex>
-      <P $mb={16} $font={"heading-7"}>
+      </OakFlex>
+      <OakP $mb="space-between-s" $font={"heading-7"}>
         Subjects
-      </P>
-      <Flex $flexDirection={"column"}>
+      </OakP>
+      <OakFlex $flexDirection={"column"}>
         {subjectFilters.map((subjectFilter) => (
           <SearchFilterCheckbox
             width={"100%"}
@@ -81,7 +80,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {...subjectFilter}
           />
         ))}
-      </Flex>
+      </OakFlex>
     </>
   );
 };

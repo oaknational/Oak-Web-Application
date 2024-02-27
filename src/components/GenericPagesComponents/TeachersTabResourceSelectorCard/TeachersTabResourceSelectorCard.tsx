@@ -1,10 +1,9 @@
 import { FC } from "react";
+import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Typography from "@/components/SharedComponents/Typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Card from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex";
 import { PositionProps } from "@/styles/utils/position";
 import { DisplayProps } from "@/styles/utils/display";
 
@@ -28,22 +27,28 @@ const TeachersTabResourceSelectorCard: FC<
       $background={"white"}
       {...positionAndDisplayProps}
     >
-      <Flex $gap={16}>
-        <Flex
+      <OakFlex $gap="all-spacing-4">
+        <OakFlex
           $height={"100%"}
           $width={"fit-content"}
           $background={"oakGreen"}
-          $pa={8}
+          $pa="inner-padding-xs"
         >
           {" "}
-          <Icon name={icon} $objectPosition={"center"} size={50} $pa={3} />
-        </Flex>
-        <Flex $height={"100%"} $alignItems={"center"}>
-          <Typography $font={"heading-light-7"} $color={"black"}>
+          <Icon
+            $color={"white"}
+            name={icon}
+            $objectPosition={"center"}
+            size={50}
+            $pa={3}
+          />
+        </OakFlex>
+        <OakFlex $height={"100%"} $alignItems={"center"}>
+          <OakTypography $font={"heading-light-7"} $color={"black"}>
             {title}
-          </Typography>
-        </Flex>
-      </Flex>
+          </OakTypography>
+        </OakFlex>
+      </OakFlex>
 
       <BoxBorders $color={"black"} gapPosition={"rightTop"} />
     </Card>

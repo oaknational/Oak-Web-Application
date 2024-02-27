@@ -29,7 +29,9 @@ const getGridArea = (
   presentationExists: boolean,
   worksheetsLength?: number,
 ) => {
-  if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
+  if (type === "curriculum-pdf") {
+    return "auto";
+  } else if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
     return type;
   } else if (worksheetsLength === 2 || !presentationExists) {
     return type;

@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { Span } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
-import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * A small toast-like banner in the bottom left corner to inform
@@ -33,16 +32,16 @@ const LayoutPreviewControls: FC = () => {
   }
 
   return (
-    <Flex
+    <OakFlex
       $position="fixed"
-      $bottom={20}
-      $left={20}
-      $pa={6}
+      $bottom="all-spacing-5"
+      $left="all-spacing-5"
+      $pa="inner-padding-ssx"
       $alignItems="center"
       $color="black"
       $background="white"
     >
-      <Span $mr={24}>Preview mode enabled</Span>
+      <OakSpan $mr="space-between-m">Preview mode enabled</OakSpan>
 
       <ButtonAsLink
         page={null}
@@ -55,7 +54,7 @@ const LayoutPreviewControls: FC = () => {
       {secretParam && <CopyLinkButton href={previewURL} />}
 
       <BrushBorders color="white" />
-    </Flex>
+    </OakFlex>
   );
 };
 

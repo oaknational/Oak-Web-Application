@@ -5,7 +5,10 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { LessonEngineProvider } from "../LessonEngineProvider";
+import {
+  LessonEngineProvider,
+  allLessonReviewSections,
+} from "../LessonEngineProvider";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
@@ -21,11 +24,12 @@ import {
 
 const meta = {
   component: QuizMCQMultiAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineProvider>
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+        >
           <Story />
         </LessonEngineProvider>
       </OakThemeProvider>
@@ -56,6 +60,8 @@ const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
   ],
   score: 0,
   numQuestions: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   updateQuestionMode: () => {},
   handleSubmitMCAnswer: () => {},
   handleSubmitShortAnswer: () => {},

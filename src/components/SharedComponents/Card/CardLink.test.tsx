@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import Card from "./Card";
 import CardLink from "./CardLink";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { Heading, P } from "@/components/SharedComponents/Typography";
 
 describe("CardLink", () => {
   it("is a link if clicked", async () => {
@@ -14,15 +14,19 @@ describe("CardLink", () => {
         $justifyContent={"center"}
         $alignItems="center"
       >
-        <Heading $mt={24} $mb={0} tag={"h5"}>
+        <OakHeading
+          $mt={"space-between-m"}
+          $mb={"space-between-none"}
+          tag={"h5"}
+        >
           <CardLink page={null} href="https://www.test.com">
             Click Me
           </CardLink>
-        </Heading>
-        <P>
+        </OakHeading>
+        <OakP>
           Drop a CardLink component into a Card and pass in href. The whole card
           becomes a link.
-        </P>
+        </OakP>
       </Card>,
     );
 

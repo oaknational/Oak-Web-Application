@@ -1,4 +1,5 @@
 import { watchModals } from "@react-aria/aria-modal-polyfill";
+import { useRouter } from "next/router";
 
 import useAxe from "@/browser-lib/axe/useAxe";
 import useBugsnag from "@/browser-lib/bugsnag/useBugsnag";
@@ -24,11 +25,16 @@ if (isBrowser) {
 const useAppHooks = () => {
   const { hasConsentedTo } = useCookieConsent();
   const { posthogDistinctId } = useAnalytics();
+  const router = useRouter();
   useBugsnag({
     enabled: hasConsentedTo("bugsnag") === "enabled",
     userId: posthogDistinctId,
   });
-  useGleap({ enabled: hasConsentedTo("gleap") === "enabled" });
+  useGleap({
+    enabled:
+      hasConsentedTo("gleap") === "enabled" &&
+      !router.pathname.startsWith("/pupils"), // Disable Gleap for pupils
+  });
   useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
 };
 

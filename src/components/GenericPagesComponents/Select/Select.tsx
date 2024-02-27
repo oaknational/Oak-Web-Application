@@ -4,6 +4,7 @@ import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
+import { OakSpan } from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import {
@@ -16,8 +17,7 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import ellipsis from "@/styles/ellipsis";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import { Span } from "@/components/SharedComponents/Typography";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export { Item } from "react-stately";
@@ -43,6 +43,7 @@ type SelectProps = {
   myRef: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
+  selectedValue?: string;
 };
 
 const SelectContainer = styled(Flex)`
@@ -92,7 +93,7 @@ const SelectInner = styled(Flex)`
  * Contains either the selected value or the placeholder if no value is
  * selected
  */
-const SelectSpan = styled(Span)`
+const SelectSpan = styled(OakSpan)`
   ${ellipsis}
 `;
 
@@ -102,7 +103,11 @@ export function Select<T extends object>(
   const { myRef, containerProps } = props;
 
   // Create state based on the incoming props
-  const state = useSelectState(props);
+  const state = useSelectState({
+    ...props,
+    selectedKey:
+      props.selectedValue === undefined ? undefined : props.selectedValue,
+  });
   const ref = useObjectRef(myRef);
 
   // Get props for child elements from useSelect

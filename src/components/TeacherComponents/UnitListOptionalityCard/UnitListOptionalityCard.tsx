@@ -1,8 +1,8 @@
 import React, { FC } from "react";
+import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import UnitListItem, {
   SpecialistListItemProps,
   UnitListItemProps,
@@ -43,9 +43,14 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
           $pb={[0, 12]}
           $maxWidth={[64, 80]}
         >
-          <Heading tag="h6" $font={"heading-7"} $textAlign={"center"} $mv={0}>
+          <OakHeading
+            tag="h6"
+            $font={"heading-7"}
+            $textAlign={"center"}
+            $mv="space-between-none"
+          >
             Unit options
-          </Heading>
+          </OakHeading>
           <OutlineHeading
             tag={"div"}
             $fontSize={[24, 32]}
@@ -64,12 +69,17 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
           $width={"100%"}
         >
           <Flex $mb={16} $flexDirection={"column"}>
-            <P $font={"heading-light-7"} $mt={4} $color={"grey60"} $mb={8}>
+            <OakP
+              $font={"heading-light-7"}
+              $mt="space-between-sssx"
+              $color={"grey60"}
+              $mb="space-between-ssx"
+            >
               {unitYear}
-            </P>
-            <Heading tag="h6" $font={"heading-6"} $mv={0}>
+            </OakP>
+            <OakHeading tag="h6" $font={"heading-6"} $mv="space-between-none">
               {unitTitle}
-            </Heading>
+            </OakHeading>
           </Flex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {

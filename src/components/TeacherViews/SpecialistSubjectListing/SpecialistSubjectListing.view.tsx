@@ -1,10 +1,8 @@
 import { FC } from "react";
+import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import SpecialistSubjectCardSection from "../../TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
-
-import Flex from "@/components/SharedComponents/Flex";
+import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Heading } from "@/components/SharedComponents/Typography";
 
 export type SpecialistSubject = {
   subjectSlug: string;
@@ -26,12 +24,20 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
   const { specialist, therapies } = props;
 
   return (
-    <Flex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
-        <Heading $font={"heading-1"} tag={"h1"} $mt={[32, 56]} $mb={[48, 56]}>
+        <OakHeading
+          $font={"heading-1"}
+          tag={"h1"}
+          $mt={["space-between-m2", "space-between-xl"]}
+          $mb={["space-between-l", "space-between-xl"]}
+        >
           Specialist and therapies
-        </Heading>
-        <Flex $flexDirection="column" $gap={[24, 48]}>
+        </OakHeading>
+        <OakFlex
+          $flexDirection="column"
+          $gap={["all-spacing-6", "all-spacing-9"]}
+        >
           <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"
@@ -42,9 +48,9 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
             heading="Therapies"
             summary="These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' developmental needs."
           />
-        </Flex>
+        </OakFlex>
       </MaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };
 

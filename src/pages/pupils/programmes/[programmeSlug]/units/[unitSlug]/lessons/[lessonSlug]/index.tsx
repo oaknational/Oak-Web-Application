@@ -1,88 +1,31 @@
-import { useState } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { useSearchParams } from "next/navigation";
-import {
-  oakDefaultTheme,
-  OakThemeProvider,
-  OakBox,
-} from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import {
-  LessonEngineProvider,
-  isLessonSection,
-  useLessonEngineContext,
-} from "@/components/PupilComponents/LessonEngineProvider";
-import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
-import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo/PupilVideo.view";
-import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
-import { PupilViewsReview } from "@/components/PupilViews/PupilReview/PupilReview.view";
-import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro/PupilIntro.view";
+  PupilExperienceView,
+  PupilExperienceViewProps,
+} from "@/components/PupilViews/PupilExperience";
+import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 
-export type PupilLessonOverviewPageProps = {
-  curriculumData: PupilLessonOverviewData;
-};
-
-const PupilPageContent = ({
+const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
-}: {
-  curriculumData: PupilLessonOverviewData;
-}) => {
-  const { currentSection, updateCurrentSection } = useLessonEngineContext();
-  const searchParams = useSearchParams();
-  const [overrideApplied, setOverrideApplied] = useState(false);
-
-  // temporary hack to allow overriding the current section - will be removed on moving to page navigation
-  const overrideSection = searchParams.get("section");
-  if (overrideSection && isLessonSection(overrideSection) && !overrideApplied) {
-    setOverrideApplied(true);
-    updateCurrentSection(overrideSection);
-  }
-
-  const { starterQuiz, exitQuiz } = curriculumData;
-
-  switch (currentSection) {
-    case "overview":
-      return <PupilViewsLessonOverview />;
-    case "intro":
-      return <PupilViewsIntro />;
-    case "starter-quiz":
-      return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
-    case "video":
-      return <PupilViewsVideo />;
-    case "exit-quiz":
-      return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
-    case "review":
-      return <PupilViewsReview />;
-    default:
-      return null;
-  }
-};
-
-const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
-  curriculumData,
-}) => {
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider>
-        <OakBox $height={"100vh"} $minWidth={"100vw"}>
-          <PupilPageContent curriculumData={curriculumData} />
-        </OakBox>
-      </LessonEngineProvider>
-    </OakThemeProvider>
-  );
-};
+  hasWorksheet,
+}) => (
+  <PupilExperienceView
+    curriculumData={curriculumData}
+    hasWorksheet={hasWorksheet}
+  />
+);
 
 export type PupilPageURLParams = {
   lessonSlug: string;
@@ -103,15 +46,15 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  PupilLessonOverviewPageProps,
+  PupilExperienceViewProps,
   PupilPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "lesson-overview::getStaticProps",
+    page: "pupils-lesson-overview::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("No context.params");
+        throw new Error("context.params is undefined");
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
@@ -127,9 +70,16 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<PupilLessonOverviewPageProps> = {
+      const { transcriptSentences, hasWorksheet } =
+        await requestLessonResources({ curriculumData });
+
+      const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            transcriptSentences: transcriptSentences ?? [],
+          },
+          hasWorksheet,
         },
       };
 

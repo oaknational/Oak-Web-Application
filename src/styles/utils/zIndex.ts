@@ -7,6 +7,7 @@ export const zIndexMap = {
   neutral: 0,
   inFront: 1,
   mobileFilters: 2,
+  dropdownMenu: 5,
   fixedHeader: 100,
   modalCloseButton: 150,
   modalDialog: 300,

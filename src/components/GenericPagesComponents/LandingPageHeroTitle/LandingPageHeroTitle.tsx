@@ -1,11 +1,10 @@
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
-import { CTA } from "../../../common-lib/cms-types";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-
-import { Heading } from "@/components/SharedComponents/Typography";
+import { CTA } from "@/common-lib/cms-types";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageHeroTitle: FC<{
   title: string;
@@ -21,23 +20,23 @@ export const LandingPageHeroTitle: FC<{
       $alignItems={["flex-start", leftAlign ? "flex-start" : "center"]}
       $ph={16}
     >
-      <Heading
-        $mb={[8]}
+      <OakHeading
+        $mb={["space-between-ssx"]}
         $font={["heading-6", "heading-5"]}
         $color={"grey50"}
         tag="h1"
       >
         {title}
-      </Heading>
+      </OakHeading>
       {heading && (
-        <Heading
+        <OakHeading
           $font={["heading-4", "heading-5"]}
-          $mv={[0]}
+          $mv={["space-between-none"]}
           tag="h2"
           $textAlign={["left", leftAlign ? "start" : "center"]}
         >
           {heading}
-        </Heading>
+        </OakHeading>
       )}
       {cta && (
         <ButtonAsLink

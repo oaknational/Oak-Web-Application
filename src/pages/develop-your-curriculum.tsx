@@ -1,17 +1,19 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Typography, {
-  Heading,
-  P,
-} from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
@@ -48,15 +50,19 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $pt={0}
           $ph={[16, 0]}
         >
-          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h2"}>
+          <OakHeading
+            $mb={["space-between-l", "space-between-m2"]}
+            $font={["heading-5", "heading-4"]}
+            tag={"h2"}
+          >
             {pageData.info.title}
-          </Heading>
+          </OakHeading>
           <Flex $minWidth={"50%"} $flexDirection={["column-reverse", "row"]}>
-            <Typography $font={["body-2", "body-1"]}>
+            <OakTypography $font={["body-2", "body-1"]}>
               <PortableTextWithDefaults
                 value={pageData.info.bodyPortableText}
               />
-            </Typography>
+            </OakTypography>
             <Flex
               $position="relative"
               $alignItems={"center"}
@@ -87,9 +93,13 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $font="list-item-1"
           >
             <BrushBorders hideOnMobileH color={"pink50"} />
-            <Heading $mb={20} $font={["heading-6", "heading-5"]} tag={"h3"}>
+            <OakHeading
+              $mb="space-between-m"
+              $font={["heading-6", "heading-5"]}
+              tag={"h3"}
+            >
               {pageData.gettingStarted.title}
-            </Heading>
+            </OakHeading>
             <PortableTextWithDefaults
               value={pageData.gettingStarted.bodyPortableText}
               withoutDefaultComponents
@@ -98,14 +108,14 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
         </Flex>
         <Card $mb={[56, 80]} $width={"100%"} $background={"lemon50"} $ph={0}>
           <Box $ph={[16, 24]} $width={["100%", "50%"]}>
-            <Heading
-              $mt={[24, 0]}
-              $mb={[56, 32]}
+            <OakHeading
+              $mt={["space-between-m", "space-between-none"]}
+              $mb={["space-between-xl", "space-between-m2"]}
               $font={["heading-5", "heading-4"]}
               tag="h4"
             >
               {pageData.elements.title}
-            </Heading>
+            </OakHeading>
           </Box>
           <OakGrid
             $ph={["inner-padding-none", "inner-padding-xl"]}
@@ -115,9 +125,12 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
               <OakGridArea key={`${index}-${heading}`} $colSpan={[12, 4]}>
                 <Box $ph={[16, 0]} $display={["none", "block"]}>
-                  <P $mb={[24, 16]} $font={"heading-light-6"}>
+                  <OakP
+                    $mb={["space-between-m", "space-between-s"]}
+                    $font={"heading-light-6"}
+                  >
                     {heading}
-                  </P>
+                  </OakP>
                 </Box>
               </OakGridArea>
             ))}
@@ -126,9 +139,12 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 <OakGridArea $colSpan={[12, 4]}>
                   <BrushBorders hideOnMobileH color={"lemon50"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
-                    <P $mb={[24, 16]} $font={"heading-light-6"}>
+                    <OakP
+                      $mb={["space-between-m", "space-between-s"]}
+                      $font={"heading-light-6"}
+                    >
                       {elementsOfCurriculumDesignHeadings[index]}
-                    </P>
+                    </OakP>
                   </Box>
                   <Card
                     $flexDirection={"column"}
@@ -141,7 +157,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                   >
                     <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
-                      <Heading $font={"heading-7"} tag={"h5"}>
+                      <OakHeading $font={"heading-7"} tag={"h5"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
                           <CardLink
@@ -151,7 +167,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                             {element.title}
                           </CardLink>
                         </Box>
-                      </Heading>
+                      </OakHeading>
                     </Box>
                   </Card>
                 </OakGridArea>
@@ -186,18 +202,18 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             </Cover>
           </Flex>
           <Flex $flexDirection={"column"}>
-            <Heading
-              $mb={[48, 32]}
+            <OakHeading
+              $mb={["space-between-l", "space-between-m2"]}
               $font={["heading-5", "heading-4"]}
               tag={"h2"}
             >
               {pageData.ourApproach.title}
-            </Heading>
-            <Typography $mb={16} $font={"body-1"}>
+            </OakHeading>
+            <OakTypography $mb="space-between-s" $font={"body-1"}>
               <PortableTextWithDefaults
                 value={pageData.ourApproach.bodyPortableText}
               />
-            </Typography>
+            </OakTypography>
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink

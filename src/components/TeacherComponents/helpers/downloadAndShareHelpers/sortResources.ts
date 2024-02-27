@@ -2,10 +2,8 @@ import {
   ResourceType,
   Resources,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import {
-  LessonDownloadsData,
-  LessonShareData,
-} from "@/node-lib/curriculum-api";
+import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export const sortDownloadResources = (
   resources: LessonDownloadsData["downloads"],
@@ -21,6 +19,7 @@ export const sortDownloadResources = (
     "supplementary-pdf": 8,
     "supplementary-docx": 9,
     video: 10,
+    "curriculum-pdf": 11,
   };
   return sortResourcesByOrder(
     resources,
@@ -42,6 +41,7 @@ export const sortShareResources = (
     "exit-quiz-answers": 100,
     "supplementary-pdf": 100,
     "supplementary-docx": 100,
+    "curriculum-pdf": 100,
   };
   return sortResourcesByOrder(
     resources,

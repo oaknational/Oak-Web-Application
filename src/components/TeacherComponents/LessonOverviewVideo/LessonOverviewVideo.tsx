@@ -1,16 +1,15 @@
 import { FC, useState } from "react";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import { P } from "@/components/SharedComponents/Typography";
 import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
-import Flex from "@/components/SharedComponents/Flex";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
   signLanguageVideo: string | null;
   title: string;
-  transcriptSentences?: string[] | null;
+  transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
 }
 
@@ -41,7 +40,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   };
 
   return (
-    <Flex $flexDirection={"column"} $gap={[24]}>
+    <OakFlex $flexDirection={"column"} $gap={["all-spacing-6"]}>
       {video && (
         <VideoPlayer
           playbackId={
@@ -54,10 +53,10 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         />
       )}
 
-      <Flex
+      <OakFlex
         $flexDirection={["column-reverse", "row"]}
         $alignItems={["start", "center"]}
-        $gap={[16, 0]}
+        $gap={["all-spacing-4", "all-spacing-0"]}
       >
         {hasCaptions && !transcriptOn && (
           <Button
@@ -77,7 +76,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
             {...buttonParams}
           />
         )}
-        <Flex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
+        <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
           {signLanguageVideo && !signLanguageOn && (
             <Button
               label="Show sign language"
@@ -95,23 +94,27 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
               {...buttonParams}
             />
           )}
-        </Flex>
+        </OakFlex>
         {!hasCaptions && !signLanguageVideo && (
-          <P $mt={24} $textAlign="center">
+          <OakP $mt="space-between-m" $textAlign="center">
             Some of our videos, including non-English language videos, do not
             have captions.
-          </P>
+          </OakP>
         )}
-      </Flex>
+      </OakFlex>
 
       {transcriptSentences &&
         transcriptSentences.length > 0 &&
         transcriptOn && (
           <LessonOverviewTranscriptViewer
-            transcriptSentences={transcriptSentences}
+            transcriptSentences={
+              Array.isArray(transcriptSentences)
+                ? transcriptSentences
+                : [transcriptSentences]
+            }
           />
         )}
-    </Flex>
+    </OakFlex>
   );
 };
 

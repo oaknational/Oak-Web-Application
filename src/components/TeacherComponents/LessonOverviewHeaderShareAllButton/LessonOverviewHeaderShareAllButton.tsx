@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
-import { Span } from "@/components/SharedComponents/Typography";
-import Flex from "@/components/SharedComponents/Flex";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonShareCanonicalLinkProps,
@@ -26,7 +26,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
     subjectTitle,
     track,
     analyticsUseCase,
-    isLegacyLesson,
+    isShareable,
     onClickShareAll,
     ...boxProps
   } = props;
@@ -59,21 +59,21 @@ export const LessonOverviewHeaderShareAllButton: FC<
         {...linkProps}
         data-testid={"share-all-button"}
         variant="brush"
-        iconBackground={isLegacyLesson ? "black" : "grey60"}
+        iconBackground={isShareable ? "black" : "grey60"}
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
         label={`Share activities with pupils`}
-        disabled={!isLegacyLesson}
+        disabled={!isShareable}
         onClick={onClickShareAll}
       />
-      <Flex $mt={[12, 0]}>
-        {!isLegacyLesson && (
-          <Span $color={"grey50"} $font={"body-3"}>
+      <OakFlex $mt={["space-between-xs", "space-between-none"]}>
+        {!isShareable && (
+          <OakSpan $color={"grey50"} $font={"body-3"}>
             Share function coming soon...
-          </Span>
+          </OakSpan>
         )}
-      </Flex>
+      </OakFlex>
     </Flex>
   );
 };
