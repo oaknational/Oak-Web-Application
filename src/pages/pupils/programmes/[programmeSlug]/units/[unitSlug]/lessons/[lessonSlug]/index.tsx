@@ -16,16 +16,26 @@ import {
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
   hasWorksheet,
-}) => (
-  <PupilExperienceView
-    curriculumData={curriculumData}
-    hasWorksheet={hasWorksheet}
-  />
-);
+}) => {
+  return (
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(curriculumData)}
+    >
+      <PupilExperienceView
+        curriculumData={curriculumData}
+        hasWorksheet={hasWorksheet}
+      />
+    </PupilAnalyticsProvider>
+  );
+};
 
 export type PupilPageURLParams = {
   lessonSlug: string;
