@@ -17,6 +17,7 @@ export type LessonShareCardGroupProps = {
   triggerForm: () => void;
   hasError?: boolean;
   shareLink: string;
+  hideCheckboxes: boolean;
 };
 
 const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
@@ -87,6 +88,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}
+                  hideCheckbox={props.hideCheckboxes}
                 />
               );
             }}
