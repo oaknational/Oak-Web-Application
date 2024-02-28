@@ -227,7 +227,7 @@ function CurriculumDownloads(
     const subject = router.query.subject as string;
     if (subject) {
       const selectedDownload = downloads.find((download) =>
-        new RegExp(`${subject}$`).test(download.url),
+        download.url.endsWith(subject),
       );
       if (selectedDownload) {
         setHasSetPreselectedDownload(true);
