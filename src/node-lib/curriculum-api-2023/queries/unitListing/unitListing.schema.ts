@@ -25,6 +25,7 @@ const unitSchema = z.array(
       themeTitle: z.string().nullable(),
       yearTitle: z.string().nullable(),
       learningThemes: z.array(learningThemesSchema).nullable(),
+      cohort: z.string().nullable(),
     }),
   ),
 );

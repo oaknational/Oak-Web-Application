@@ -13,6 +13,7 @@ const lessonOverviewQuery =
   }) => {
     const res = await sdk.lessonOverview(args);
     const [lesson] = res.lesson;
+
     if (!lesson) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
@@ -31,7 +32,6 @@ const lessonOverviewQuery =
     return lessonOverviewSchema.parse({
       ...lesson,
       isLegacy: false,
-      isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
       expired: false,
     });

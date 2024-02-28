@@ -6,24 +6,24 @@ import {
 } from "next";
 import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
-import Box from "@/components/Box";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
+import Box from "@/components/SharedComponents/Box";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
-import Flex from "@/components/Flex";
-import WebinarVideo from "@/components/Posts/WebinarVideo";
+import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
+import WebinarVideo from "@/components/GenericPagesComponents/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
@@ -70,9 +70,9 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           "Webinars",
         )}
       >
-        <Flex $position={"relative"} $mt={56}>
+        <OakFlex $position={"relative"} $mt="space-between-xl">
           <WebinarVideo webinar={webinar} />
-        </Flex>
+        </OakFlex>
         <Box $mt={[48]}>
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </Box>

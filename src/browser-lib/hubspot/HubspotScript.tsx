@@ -1,9 +1,9 @@
 import { FC, useCallback } from "react";
 
-import errorReporter from "../../common-lib/error-reporter";
-import ConditionalScript from "../../components/ConditionalScript";
-import OakError from "../../errors/OakError";
-import isBrowser from "../../utils/isBrowser";
+import errorReporter from "@/common-lib/error-reporter";
+import ConditionalScript from "@/components/GenericPagesComponents/ConditionalScript";
+import OakError from "@/errors/OakError";
+import isBrowser from "@/utils/isBrowser";
 
 if (isBrowser) {
   window._hsq = window._hsq || [];

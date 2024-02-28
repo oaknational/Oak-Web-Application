@@ -3,7 +3,7 @@ query lessonShare(
   $programmeSlug: String!
   $unitSlug: String!
 ) {
-  mv_share: mv_share(
+  mv_share: mv_share_1(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }

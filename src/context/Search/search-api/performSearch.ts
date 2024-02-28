@@ -10,13 +10,11 @@ const reportError = errorReporter("search");
 
 export async function performSearch({
   query,
-  apiVersion,
   onStart,
   onSuccess,
   onFail,
 }: {
   query: SearchQuery;
-  apiVersion: "2020" | "2023";
   onStart: () => void;
   onSuccess: (hits: SearchHit[]) => void;
   onFail: () => void;
@@ -24,10 +22,10 @@ export async function performSearch({
   try {
     onStart();
 
-    const results =
-      apiVersion === "2023"
-        ? await fetchResults2023(query)
-        : await fetchResults2020(query);
+    const results = [
+      ...(await fetchResults2023(query)),
+      ...(await fetchResults2020(query)),
+    ];
 
     onSuccess(results);
   } catch (error) {

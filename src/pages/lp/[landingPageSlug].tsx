@@ -1,17 +1,17 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import CMSClient from "../../node-lib/cms";
-import { LandingPage } from "../../common-lib/cms-types/landingPage";
-import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
-import { Quote } from "../../components/pages/LandingPages/Quote";
-import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
-import { LandingPageTextBlock } from "../../components/pages/LandingPages/LandingPageTextBlock";
-import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
-import getPageProps from "../../node-lib/getPageProps";
-import { getABTestedLandingPage } from "../../node-lib/cms/ab-testing";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import CMSClient from "@/node-lib/cms";
+import { LandingPage } from "@/common-lib/cms-types/landingPage";
+import { LandingPageTextAndMedia } from "@/components/GenericPagesComponents/LandingPageTextAndMedia";
+import { LandingPageQuote } from "@/components/GenericPagesComponents/LandingPageQuote";
+import { LandingPageSignupPrompt } from "@/components/GenericPagesComponents/LandingPageSignupPrompt";
+import { LandingPageTextBlock } from "@/components/GenericPagesComponents/LandingPageTextBlock";
+import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero";
+import getPageProps from "@/node-lib/getPageProps";
+import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
+import Layout from "@/components/AppComponents/Layout";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -25,7 +25,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
       seoProps={getSeoProps(pageData.seo)}
     >
       <>
-        <MaxWidth $justifyContent={"flex-start"}>
+        <OakMaxWidth $justifyContent={"flex-start"}>
           <LandingPageHero hero={pageData.hero} />
           <>
             {pageData.content.map((content, index) => {
@@ -39,7 +39,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
               }
               if (content.type == "LandingPageQuoteBlock") {
                 return (
-                  <Quote
+                  <LandingPageQuote
                     key={`${index}:${content.quote.text}`}
                     {...content.quote}
                   />
@@ -47,7 +47,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
               }
               if (content.type == "LandingPageFormBlock") {
                 return (
-                  <SignupPrompt
+                  <LandingPageSignupPrompt
                     key={`${index}:${content.title}`}
                     {...content}
                   />
@@ -63,7 +63,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
               }
             })}
           </>
-        </MaxWidth>
+        </OakMaxWidth>
       </>
     </Layout>
   );

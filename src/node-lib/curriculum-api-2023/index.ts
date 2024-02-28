@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import sdk from "./sdk";
 import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
+import { pupilLessonOverviewQuery } from "./queries/pupilLessonOverview/pupilLessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.query";
@@ -16,8 +17,11 @@ import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.sch
 import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
 import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
+import searchPageQuery from "./queries/searchPage/searchPage.query";
+import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
+import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
 
-const keyStageSchema = z.object({
+export const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
@@ -28,7 +32,7 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const subjectSchema = z.object({
+export const subjectSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -38,19 +42,22 @@ const phaseSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
-const examboardSchema = z.object({
+export const examboardSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
+
 const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),
   title: z.union([z.literal("Units"), z.literal("Lessons")]),
 });
-const searchPageSchema = z.object({
+
+export const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
   contentTypes: z.array(contentTypesSchema),
+  examBoards: z.array(examboardSchema),
 });
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
@@ -75,9 +82,9 @@ export type Phase = z.infer<typeof phaseSchema>;
 export type Subject = z.infer<typeof subjectSchema>;
 export type Examboard = z.infer<typeof examboardSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
-export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
+export type SearchPageData = z.infer<typeof searchPageSchema>;
 
 export type CurriculumDownloadsTabData = z.infer<
   typeof curriculumDownloadsTabData
@@ -107,15 +114,14 @@ const curriculumApi2023 = {
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
+  lessonShare: lessonShareQuery(sdk),
   lessonDownloadsCanonical: lessonDownloadsCanonicalQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
+  pupilLessonOverview: pupilLessonOverviewQuery(sdk),
+  pupilLessonOverviewCanonical: pupilLessonOverviewCanonicalQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
-  searchPage: async () => {
-    const res = await sdk.searchPage();
-    const searchPage = getFirstResultOrNull()({ results: res.searchPage });
-    return searchPageSchema.parse(searchPage);
-  },
+  searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
   teachersHomePage: async () => {

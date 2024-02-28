@@ -1,23 +1,26 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Card from "@/components/Card";
-import AboutContactCard from "@/components/AboutContactCard";
-import { Heading } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import Layout from "@/components/AppComponents/Layout";
+import Card from "@/components/SharedComponents/Card";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -33,9 +36,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo } = pageData;
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -43,23 +49,30 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           }}
           bodyPortableText={pageData.introPortableText}
         />
-        <Grid $mb={[72, 92]} $cg={28} $rg={[0, 40]}>
+        <OakGrid
+          $mb={["space-between-xxl", "space-between-xxxl"]}
+          $cg={"space-between-m"}
+          $rg={["space-between-none", "space-between-m2"]}
+        >
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
-              <GridArea $colSpan={[12, 6]}>
+              <OakGridArea $colSpan={[12, 6]}>
                 <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
-                  <Heading
+                  <OakHeading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
-                    $mb={24}
+                    $mb={"space-between-m"}
                   >
                     {card.title}
-                  </Heading>
-                  <Typography $mb={32} $font={["body-2", "body-1"]}>
+                  </OakHeading>
+                  <OakTypography
+                    $mb={"space-between-m2"}
+                    $font={["body-2", "body-1"]}
+                  >
                     <PortableTextWithDefaults value={card.bodyPortableText} />
-                  </Typography>
+                  </OakTypography>
                   {card.cta?.linkType == "external" && (
-                    <Flex>
+                    <OakFlex>
                       <ButtonAsLink
                         background="blue"
                         label={card.cta.label}
@@ -71,17 +84,17 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       >
                         {card.cta.label}
                       </ButtonAsLink>
-                    </Flex>
+                    </OakFlex>
                   )}
                   <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>
-              </GridArea>
+              </OakGridArea>
             </Fragment>
           ))}
-        </Grid>
+        </OakGrid>
 
-        <AboutContactCard {...pageData.contactSection} />
-      </MaxWidth>
+        <GenericContactCard {...pageData.contactSection} />
+      </OakMaxWidth>
     </Layout>
   );
 };

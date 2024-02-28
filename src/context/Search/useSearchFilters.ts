@@ -9,7 +9,7 @@ const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects" | "contentTypes",
+  name: "keyStages" | "subjects" | "contentTypes" | "examBoards",
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
@@ -32,7 +32,14 @@ const getCheckboxFilters = <T extends { slug: string }>(
 const useSearchFilters = (
   props: UseSearchFiltersProps,
 ): UseSearchFiltersReturnType => {
-  const { allKeyStages, allSubjects, allContentTypes, query, setQuery } = props;
+  const {
+    allKeyStages,
+    allSubjects,
+    allContentTypes,
+    allExamBoards,
+    query,
+    setQuery,
+  } = props;
 
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     const filters = getCheckboxFilters(
@@ -54,9 +61,9 @@ const useSearchFilters = (
     return filters;
   });
 
-  const ContentTypeCheckboxFilters = allContentTypes.map((ContentType) => {
+  const contentTypeCheckboxFilters = allContentTypes.map((contentType) => {
     const filters = getCheckboxFilters(
-      ContentType,
+      contentType,
       query.contentTypes || [],
       setQuery,
       "contentTypes",
@@ -64,10 +71,21 @@ const useSearchFilters = (
     return filters;
   });
 
+  const examBoardCheckboxFilters = allExamBoards?.map((examBoard) => {
+    const filters = getCheckboxFilters(
+      examBoard,
+      query.examBoards || [],
+      setQuery,
+      "examBoards",
+    );
+    return filters;
+  });
+
   return {
     subjectFilters: subjectCheckboxFilters,
     keyStageFilters: keyStageCheckboxFilters,
-    contentTypeFilters: ContentTypeCheckboxFilters,
+    contentTypeFilters: contentTypeCheckboxFilters,
+    examBoardFilters: examBoardCheckboxFilters,
   };
 };
 

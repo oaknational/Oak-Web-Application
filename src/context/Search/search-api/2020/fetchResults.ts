@@ -1,8 +1,9 @@
 import { searchResultsSchema } from "../../search.schema";
-import { SearchQuery } from "../../search.types";
+import { SearchHit, SearchQuery } from "../../search.types";
 
 import constructElasticQuery from "./constructElasticQuery";
 
+import { LEGACY_COHORT } from "@/config/cohort";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
 
@@ -21,9 +22,20 @@ export async function fetchResults(query: SearchQuery) {
   handleFetchError(response);
 
   const unparsedData = await response.json();
+  const unparsedDataWithLegacyFlag = {
+    ...unparsedData,
+    hits: {
+      ...unparsedData.hits,
+      hits: unparsedData.hits.hits.map((hit: SearchHit) => {
+        return {
+          ...hit,
+          _source: { ...hit._source, pathways: [], cohort: LEGACY_COHORT },
+        };
+      }),
+    },
+  };
 
-  const data = searchResultsSchema.parse(unparsedData);
-
+  const data = searchResultsSchema.parse(unparsedDataWithLegacyFlag);
   const { hits } = data;
   const hitList = hits.hits;
 

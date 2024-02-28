@@ -43,9 +43,9 @@ describe("pages/contact-us.tsx", () => {
 
     expect(
       getByRole("button", {
-        name: /sign up/i,
+        name: /Sign up to the newsletter/i,
       }),
-    ).toHaveAccessibleName("Sign up");
+    ).toHaveAccessibleName("Sign up to the newsletter");
   });
 
   describe("SEO", () => {

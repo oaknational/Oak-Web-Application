@@ -1,0 +1,8 @@
+query searchPage {
+  searchPage: published_mv_search_page_3 {
+    contentTypes: content_type
+    keyStages: key_stages
+    subjects
+    examBoards: exam_boards
+  }
+}

@@ -72,6 +72,10 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
+
 const allKeyStages = searchPageFixture().keyStages;
 
 const providers = { router: { url: "?term=test-term" } };
@@ -129,6 +133,7 @@ describe("useSearch()", () => {
         _index: "lessons_production",
         _score: 121.737686,
         _source: {
+          cohort: "2020-2023",
           expired: false,
           has_copyright_material: false,
           id: 211319,
@@ -146,6 +151,7 @@ describe("useSearch()", () => {
           type: "lesson",
           tier: null,
           phase: "primary",
+          pathways: [],
         },
         highlight: {
           lesson_description:

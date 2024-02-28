@@ -1,23 +1,29 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakHeading,
+  OakP,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Card from "@/components/Card";
-import AboutContactCard from "@/components/AboutContactCard";
-import Typography, { Heading, Hr, P } from "@/components/Typography";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
-import IconButtonAsLink from "@/components/Button/IconButtonAsLink";
+import Layout from "@/components/AppComponents/Layout";
+import Card from "@/components/SharedComponents/Card";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import { Hr } from "@/components/SharedComponents/Typography";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import BioCardList from "@/components/BioCardList";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import BioCardList from "@/components/GenericPagesComponents/BioCardList";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -30,14 +36,18 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     boardMembers,
     documents,
     governancePortableText,
+    boardHeader,
   } = pageData;
 
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
+      >
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -47,52 +57,59 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         />
         {boardMembers && (
           <>
-            <Heading
-              $mb={[40, 32]}
+            <OakHeading
+              $mb={["space-between-l", "space-between-m2"]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
               $textAlign={["center"]}
             >
-              Our interim board
-            </Heading>
+              {boardHeader}
+            </OakHeading>
             <BioCardList
-              $mb={[80, 92]}
-              $ph={[16, 0]}
+              $mb={["space-between-xxxl", "space-between-xl"]}
+              $ph={["inner-padding-m", "inner-padding-none"]}
               bios={boardMembers}
               withModals={bioModalsEnabled}
             />
           </>
         )}
-        <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
+        <OakHeading
+          $font={"heading-5"}
+          tag={"h2"}
+          $textAlign={["center", "left"]}
+        >
           Documents
-        </Heading>
-        <Flex $mh={[16, 0]} $flexDirection={"column"}>
-          <Typography $width={"100%"}>
+        </OakHeading>
+        <OakFlex
+          $mh={["space-between-s", "space-between-none"]}
+          $flexDirection={"column"}
+        >
+          <OakTypography $width={"100%"}>
             <Hr $color={"aqua"} $mv={32} />
-          </Typography>
+          </OakTypography>
 
-          <Grid $rg={[16]} $cg={[12, 20]}>
+          <GridList $rg={[16]} $cg={[12, 20]}>
             {documents.map((doc) => {
               const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
                 1,
               );
               return (
-                <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
+                <GridAreaListItem key={doc.title} $colSpan={[6, 3, 2]}>
                   <Card $height={220} $pa={16}>
                     <BoxBorders gapPosition="rightTop" />
-                    <Flex
+                    <OakFlex
                       $justifyContent={"space-between"}
-                      $height={"100%"}
                       $flexDirection={"column"}
+                      $height={"100%"}
                     >
-                      <Heading $font={"heading-7"} tag={"h3"}>
+                      <OakHeading $font={"heading-7"} tag={"h3"}>
                         {doc.title}
-                      </Heading>
-                      <Flex
+                      </OakHeading>
+                      <OakFlex
                         $alignItems={"center"}
                         $justifyContent={"space-between"}
                       >
-                        <P>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
+                        <OakP>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</OakP>
                         <IconButtonAsLink
                           icon={"download"}
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
@@ -100,17 +117,17 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                           href={`${doc.file.asset.url}?dl`}
                           background={"blue"}
                         />
-                      </Flex>
-                    </Flex>
+                      </OakFlex>
+                    </OakFlex>
                   </Card>
-                </GridArea>
+                </GridAreaListItem>
               );
             })}
-          </Grid>
-          <Typography $width={"100%"}>
+          </GridList>
+          <OakTypography $width={"100%"}>
             <Hr $color={"aqua"} $mv={0} $mt={32} />
-          </Typography>
-        </Flex>
+          </OakTypography>
+        </OakFlex>
         <Card
           $mh="auto"
           $mv={[80, 92]}
@@ -118,18 +135,18 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           $pv={0}
           $width={["100%", "70%"]}
         >
-          <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
+          <OakHeading $mb={"space-between-m"} $font={"heading-5"} tag={"h2"}>
             Governance
-          </Heading>
-          <Typography $font={["body-1", "body-2"]}>
+          </OakHeading>
+          <OakTypography $font={["body-1", "body-2"]}>
             <PortableTextWithDefaults
               value={governancePortableText}
               withoutDefaultComponents
             />
-          </Typography>
+          </OakTypography>
         </Card>
-        <AboutContactCard {...pageData.contactSection} />
-      </MaxWidth>
+        <GenericContactCard {...pageData.contactSection} />
+      </OakMaxWidth>
     </Layout>
   );
 };

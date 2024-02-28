@@ -1,13 +1,19 @@
+import { ParsedUrlQuery } from "querystring";
+
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 import {
   getFilterForQuery,
+  getFiltersFromQuery,
   getLessonObject,
+  getSortedSearchFiltersSelected,
   getUnitObject,
   isFilterItem,
 } from "./search.helpers";
 import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
+
+import { LEGACY_COHORT } from "@/config/cohort";
 
 const lessonHit = lessonSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson"),
@@ -47,10 +53,34 @@ describe("search helpers", () => {
   });
 
   test("getProgrammeSlug returns a correct slug", () => {
+    const unitListObjectLegacy = getUnitObject({
+      hit: {
+        ...unitHit,
+        _source: { ...unitHit._source, cohort: LEGACY_COHORT },
+      },
+      allKeyStages,
+    });
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
     const lessonListObject = getLessonObject({ hit: lessonHit, allKeyStages });
-    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2-l");
-    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2-l");
+    const lessonListObjectLegacy = getLessonObject({
+      hit: {
+        ...lessonHit,
+        _source: { ...lessonHit._source, cohort: LEGACY_COHORT },
+      },
+      allKeyStages,
+    });
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-primary-ks2",
+    );
+    expect(unitListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
+      "english-primary-ks2-l",
+    );
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "drama-primary-ks2",
+    );
+    expect(lessonListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
+      "drama-primary-ks2-l",
+    );
   });
   test("getProgrammeSlug returns a correct slug with tier", () => {
     const unitListObject = getUnitObject({ hit: unitHitTier, allKeyStages });
@@ -58,11 +88,34 @@ describe("search helpers", () => {
       hit: lessonHitTier,
       allKeyStages,
     });
-    expect(unitListObject?.programmeSlug).toEqual(
-      "english-secondary-ks4-core-l",
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-secondary-ks4-core",
     );
-    expect(lessonListObject?.programmeSlug).toEqual(
-      "english-secondary-ks4-higher-l",
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-secondary-ks4-higher",
+    );
+  });
+  test("legacy suffix is only added when legacy flag is true ", () => {
+    const unitListObject = getUnitObject({
+      hit: {
+        ...unitHit,
+        _source: { ...unitHit._source, cohort: LEGACY_COHORT },
+      },
+      allKeyStages,
+    });
+    const lessonListObject = getLessonObject({
+      hit: {
+        ...lessonHit,
+        _source: { ...lessonHit._source, cohort: LEGACY_COHORT },
+      },
+      allKeyStages,
+    });
+
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-primary-ks2-l",
+    );
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "drama-primary-ks2-l",
     );
   });
   test("isFilterItem returns true if slug is a filter item", () => {
@@ -79,5 +132,35 @@ describe("search helpers", () => {
   });
   test("getFilterForQuery return array from string", () => {
     expect(getFilterForQuery("ks2", allKeyStages)).toEqual(["ks2"]);
+  });
+
+  test("gets expected filters from query", () => {
+    const query = {
+      term: "macbeth",
+      keyStages: "ks2",
+      subjects: "english-grammar",
+      contentTypes: "lesson",
+      examBoards: "wjec",
+    } as ParsedUrlQuery;
+
+    const result = getFiltersFromQuery(query);
+    expect(result).toEqual(["ks2", "lesson", "wjec", "english-grammar"]);
+  });
+  test("gets expected filters from query with empty filters", () => {
+    const query = { term: "macbeth" };
+    const result = getFiltersFromQuery(query);
+    expect(result).toEqual([]);
+  });
+  test("gets sorted filters with multiple filters", () => {
+    const query = {
+      term: "macbeth",
+      keyStages: "ks2",
+      subjects: "english-grammar",
+      contentTypes: "lesson",
+      examBoards: "wjec",
+    } as ParsedUrlQuery;
+
+    const result = getSortedSearchFiltersSelected(query);
+    expect(result).toEqual(["english-grammar", "ks2", "lesson", "wjec"]);
   });
 });
