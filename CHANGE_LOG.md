@@ -1,3 +1,18 @@
+# [1.369.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.2...v1.369.0) (2024-02-28)
+
+
+### Bug Fixes
+
+* check for null value ([5c60c9e](https://github.com/oaknational/Oak-Web-Application/commit/5c60c9e2e3739b983a2ccc0085973b4abb485aee))
+* missing param in test ([cc5d14d](https://github.com/oaknational/Oak-Web-Application/commit/cc5d14de370aa8a8c265934bd1408b0b946667ee))
+
+
+### Features
+
+* enable hiding checkbox on resource card ([1a30c5c](https://github.com/oaknational/Oak-Web-Application/commit/1a30c5c997ce7b48af6e46a6baa12bda3f0e0cef))
+* hide select all and checkboxes based on unit slug ([c840f69](https://github.com/oaknational/Oak-Web-Application/commit/c840f696db7265c98779b502e99f5f83d58ea5cd))
+* use new pupils link for share ([ebd3564](https://github.com/oaknational/Oak-Web-Application/commit/ebd35645640eab1804b18427ee7871b34aa348f0))
+
 ## [1.368.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.1...v1.368.2) (2024-02-27)
 
 ## [1.368.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.0...v1.368.1) (2024-02-26)
