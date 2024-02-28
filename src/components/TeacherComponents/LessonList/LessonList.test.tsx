@@ -15,6 +15,22 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
+const expiredLesson = [
+  {
+    expired: true,
+    lessonSlug: "new-lesson-test",
+    lessonTitle: "New Lesson test",
+    description: "Test for a lesson that is expired",
+    quizCount: 2,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    orderInUnit: 5,
+    ...unit,
+  },
+];
+
 const onClick = jest.fn();
 
 describe("components/ Lesson List", () => {
@@ -45,7 +61,7 @@ describe("components/ Lesson List", () => {
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h2"}
-        currentPageItems={lessonsWithUnitData}
+        currentPageItems={expiredLesson}
         unitTitle={"Unit title"}
         lessonCount={lessons.length}
         onClick={onClick}

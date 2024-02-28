@@ -52,7 +52,6 @@ const LessonList: FC<LessonListProps> = (props) => {
     isNew,
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
-  console.log("currentPageItems", currentPageItems);
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $flexDirection={["column-reverse", "column"]}>
