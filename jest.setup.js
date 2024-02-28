@@ -3,11 +3,6 @@ import "@testing-library/jest-dom/extend-expect";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 
-jest.mock("@react-aria/ssr/dist/main", () => ({
-  ...jest.requireActual("@react-aria/ssr/dist/main"),
-  useSSRSafeId: () => "react-aria-generated-id",
-}));
-
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useId: () => "react-use-id-test-result",
