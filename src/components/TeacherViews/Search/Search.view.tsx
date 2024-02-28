@@ -22,6 +22,7 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -154,7 +155,10 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  const searchRefined = (filterType: string, filterValue: string) => {
+  const searchRefined = (
+    filterType: FilterTypeValueType,
+    filterValue: string,
+  ) => {
     track.searchRefined({
       context: "search",
       searchResultCount: hitCount,

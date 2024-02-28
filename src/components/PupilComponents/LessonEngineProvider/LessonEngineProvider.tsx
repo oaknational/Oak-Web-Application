@@ -7,6 +7,8 @@ import {
   Reducer,
 } from "react";
 
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+
 export const lessonSections = [
   "overview",
   "intro",
@@ -38,10 +40,23 @@ export function isLessonReviewSection(
   return lessonSections.includes(section as LessonReviewSection);
 }
 
-type QuizResult = { grade: number; numQuestions: number };
+export type QuizResult = { grade: number; numQuestions: number };
+export type VideoResult = {
+  played: boolean;
+  duration: number;
+  timeElapsed: number;
+};
+export type IntroResult = {
+  worksheetAvailable: boolean;
+  worksheetDownloaded: boolean;
+};
+
 type LessonSectionState = {
   isComplete: boolean;
-} & Partial<QuizResult>;
+} & Partial<QuizResult> &
+  Partial<VideoResult> &
+  Partial<IntroResult>;
+
 type LessonEngineAction =
   | {
       type: "setCurrentSection";
@@ -52,8 +67,8 @@ type LessonEngineAction =
       section: LessonReviewSection;
     }
   | {
-      type: "updateQuizResult";
-      result: QuizResult;
+      type: "updateSectionResult";
+      result: QuizResult | VideoResult | IntroResult;
     }
   | {
       type: "proceedToNextSection";
@@ -63,6 +78,7 @@ type LessonEngineState = {
   currentSection: LessonSection;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
   sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
+  lessonStarted: boolean;
 };
 
 const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
@@ -71,10 +87,15 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
 ) => {
   switch (action.type) {
     case "setCurrentSection":
-      return { ...currentState, currentSection: action.section };
+      return {
+        ...currentState,
+        currentSection: action.section,
+        lessonStarted: true,
+      };
     case "completeSection": {
       const newState = {
         ...currentState,
+        lessonStarted: true,
         sections: {
           ...currentState.sections,
           [action.section]: {
@@ -100,9 +121,13 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
           (section) => !currentState.sections[section]?.isComplete,
         ) ?? "review";
 
-      return { ...currentState, currentSection: nextSection };
+      return {
+        ...currentState,
+        currentSection: nextSection,
+        lessonStarted: true,
+      };
     }
-    case "updateQuizResult": {
+    case "updateSectionResult": {
       if (!isLessonReviewSection(currentState.currentSection)) {
         throw new Error(
           `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
@@ -111,6 +136,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
 
       return {
         ...currentState,
+        lessonStarted: true,
         sections: {
           ...currentState.sections,
           [currentState.currentSection]: {
@@ -133,7 +159,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateQuizResult: (vals: QuizResult) => void;
+  updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
 } | null;
 
@@ -157,18 +183,87 @@ export const LessonEngineProvider = memo(
     const [state, dispatch] = useReducer(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
       currentSection: "overview",
+      lessonStarted: false,
       sections: {},
     });
+
+    const { track } = usePupilAnalytics();
+
+    const trackLessonStarted = () => {
+      if (!state.lessonStarted && track.lessonStarted) {
+        track.lessonStarted({});
+      }
+    };
+
+    const getSectionTrackingData = (section: LessonReviewSection) => ({
+      pupilExperienceLessonSection: section,
+      pupilQuizGrade: state.sections[section]?.grade,
+      pupilQuizNumQuestions: state.sections[section]?.numQuestions,
+      pupilVideoPlayed: state.sections[section]?.played,
+      pupilVideoDurationSeconds: state.sections[section]?.duration,
+      pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
+      pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
+      pupilWorksheetDownloaded: state.sections[section]?.worksheetDownloaded,
+    });
+
     const completeSection = (section: LessonReviewSection) => {
+      trackLessonStarted();
+      if (track.lessonSectionCompleted) {
+        track.lessonSectionCompleted(getSectionTrackingData(section));
+      }
+      if (
+        state.lessonReviewSections.every(
+          (section) => state.sections[section]?.isComplete,
+        )
+      ) {
+        if (track.lessonCompleted) {
+          track.lessonCompleted({});
+        }
+      }
       dispatch({ type: "completeSection", section });
     };
-    const updateCurrentSection = (section: LessonSection) =>
-      dispatch({ type: "setCurrentSection", section });
-    const proceedToNextSection = () =>
-      dispatch({ type: "proceedToNextSection" });
-    const updateQuizResult = (result: QuizResult) => {
-      dispatch({ type: "updateQuizResult", result });
+
+    const trackSectionStarted = (section: LessonSection) => {
+      trackLessonStarted();
+      if (isLessonReviewSection(section)) {
+        if (track.lessonSectionStarted) {
+          track.lessonSectionStarted({
+            pupilExperienceLessonSection: section,
+          });
+        }
+      }
     };
+
+    const updateCurrentSection = (section: LessonSection) => {
+      trackLessonStarted();
+      trackSectionStarted(section);
+
+      if (
+        isLessonReviewSection(state.currentSection) &&
+        !state.sections[state.currentSection]?.isComplete
+      ) {
+        if (track.lessonSectionAbandoned) {
+          track.lessonSectionAbandoned(
+            getSectionTrackingData(state.currentSection),
+          );
+        }
+      }
+      dispatch({ type: "setCurrentSection", section });
+    };
+
+    const proceedToNextSection = () => {
+      trackLessonStarted();
+      trackSectionStarted(state.currentSection);
+      dispatch({ type: "proceedToNextSection" });
+    };
+
+    const updateSectionResult = (
+      result: QuizResult | VideoResult | IntroResult,
+    ) => {
+      trackLessonStarted();
+      dispatch({ type: "updateSectionResult", result });
+    };
+
     const isLessonComplete = state.lessonReviewSections.every(
       (section) => state.sections[section]?.isComplete,
     );
@@ -182,7 +277,7 @@ export const LessonEngineProvider = memo(
           completeSection,
           updateCurrentSection,
           proceedToNextSection,
-          updateQuizResult,
+          updateSectionResult,
           lessonReviewSections: state.lessonReviewSections,
         }}
       >

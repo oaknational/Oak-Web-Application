@@ -1,3 +1,28 @@
+# [1.370.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.1...v1.370.0) (2024-02-28)
+
+
+### Bug Fixes
+
+* added provider to tests ([3397c72](https://github.com/oaknational/Oak-Web-Application/commit/3397c723fec28d134cb7e838094f26f2fe4cb20b))
+* missing fields from fixture ([8bb3a7f](https://github.com/oaknational/Oak-Web-Application/commit/8bb3a7fac5499d08cb016c07c7abd940d08b0256))
+* resolved type issues ([993bd50](https://github.com/oaknational/Oak-Web-Application/commit/993bd504a1cc3b5f8b1f8342b2f92526b6de4bc0))
+* type errors ([e9cb843](https://github.com/oaknational/Oak-Web-Application/commit/e9cb8434514aa9912c05977eb61368c609cbe74b))
+* type issue ([85b8391](https://github.com/oaknational/Oak-Web-Application/commit/85b83912102e18ca8050b53ed899e885cd7ff61f))
+* types resolved between Avo and OWA ([81337c4](https://github.com/oaknational/Oak-Web-Application/commit/81337c4813bd7b8d8f29f8116c75d70220788f82))
+
+
+### Features
+
+* add missing functions to mock ([0de2eb8](https://github.com/oaknational/Oak-Web-Application/commit/0de2eb836b10727725426418503e95ccf25b7b4e))
+* added lessonSectionAbandoned ([8694bb3](https://github.com/oaknational/Oak-Web-Application/commit/8694bb30ac48def834c5ce4d553fcb1463b0dfb2))
+* avo extra props ([412acce](https://github.com/oaknational/Oak-Web-Application/commit/412acce41e14dab1955cef8345bed4f7c52a5d78))
+* callback for various video events ([ba50b18](https://github.com/oaknational/Oak-Web-Application/commit/ba50b18b303a4a8d508bc4be84fbe688725e3c6c))
+* implement test ([b72d69e](https://github.com/oaknational/Oak-Web-Application/commit/b72d69ec4f7a0ef07a2ddbe973fa1dfd828a84bc))
+* make updateQuizResult into a generic action ([5ea66c3](https://github.com/oaknational/Oak-Web-Application/commit/5ea66c35aa5ba19d2a5a707ed41979d771380e44))
+* tracking for worksheet download ([5e7e5ea](https://github.com/oaknational/Oak-Web-Application/commit/5e7e5ead0194fd4abacda2743e6f187437fd4cd5))
+* use pupil analytics hook ([7bff7b0](https://github.com/oaknational/Oak-Web-Application/commit/7bff7b0eded005838b4b314a803c68dcc745df74))
+* wip avo tracking ([11cf9a3](https://github.com/oaknational/Oak-Web-Application/commit/11cf9a311b89b87dca120fc7869e87cf0c66b911))
+
 ## [1.369.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.0...v1.369.1) (2024-02-28)
 
 

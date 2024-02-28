@@ -25,7 +25,11 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     lessonPathwaySchema.pick({
       subjectSlug: true,
       subjectTitle: true,
+      keyStageSlug: true,
+      keyStageTitle: true,
       unitSlug: true,
+      unitTitle: true,
+      programmeSlug: true,
     }),
   )
   .extend({

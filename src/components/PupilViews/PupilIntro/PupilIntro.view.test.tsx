@@ -187,4 +187,37 @@ describe("PupilIntro", () => {
     fireEvent.click(getByRole("button", { name: /I'm ready/i }));
     expect(context.completeSection).toHaveBeenCalledWith("intro");
   });
+
+  it("updates the section results when the worksheet is downloaded", async () => {
+    const context = createLessonEngineContext();
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro hasWorksheet={true} {...curriculumData} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    await userEvent.click(getByRole("button", { name: /Download worksheet/i }));
+    expect(context.updateSectionResult).toHaveBeenCalledWith({
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
+  });
+
+  it("updates the section results when the worksheet is available", async () => {
+    const context = createLessonEngineContext();
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro hasWorksheet={true} {...curriculumData} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(context.updateSectionResult).toHaveBeenCalledWith({
+      worksheetDownloaded: false,
+      worksheetAvailable: true,
+    });
+  });
 });
