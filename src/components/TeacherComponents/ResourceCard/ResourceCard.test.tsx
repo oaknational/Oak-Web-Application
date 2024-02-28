@@ -68,5 +68,26 @@ describe("ResourceCard", () => {
     expect(input).toBeChecked();
   });
 
+  it("does not render a checkbox when showCheckbox is false", () => {
+    renderWithTheme(
+      <ResourceCard
+        id="unique-123"
+        name="downloadResources"
+        label="Worksheet"
+        subtitle="PDF"
+        checked
+        onChange={jest.fn()}
+        resourceType="worksheet-pdf"
+        hideCheckbox={true}
+      />,
+    );
+
+    const input = screen.queryByRole("checkbox");
+
+    expect(input).not.toBeInTheDocument();
+    expect(screen.getByText("Worksheet")).toBeInTheDocument();
+    expect(screen.getByText("PDF")).toBeInTheDocument();
+  });
+
   it;
 });

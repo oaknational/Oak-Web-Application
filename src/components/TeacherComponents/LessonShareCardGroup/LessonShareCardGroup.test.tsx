@@ -22,6 +22,7 @@ const ComponentWrapper = (props: {
       triggerForm={trigger}
       shareableResources={props.shareableResources}
       shareLink={props.shareLink}
+      hideCheckboxes={false}
     />
   );
 };
