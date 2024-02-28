@@ -17,6 +17,10 @@ import {
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 /**
  * Test URLs:
@@ -39,11 +43,15 @@ const PupilsCanonicalPage: NextPage<PupilExperienceViewProps> = ({
   backUrl,
 }) => {
   return (
-    <PupilExperienceView
-      curriculumData={curriculumData}
-      hasWorksheet={hasWorksheet}
-      backUrl={backUrl}
-    />
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(curriculumData)}
+    >
+      <PupilExperienceView
+        curriculumData={curriculumData}
+        hasWorksheet={hasWorksheet}
+        backUrl={backUrl}
+      />
+    </PupilAnalyticsProvider>
   );
 };
 

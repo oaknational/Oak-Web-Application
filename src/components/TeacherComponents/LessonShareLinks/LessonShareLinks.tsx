@@ -23,6 +23,7 @@ const LessonShareLinks: FC<{
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: number;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
+  usePupils: boolean;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
 
@@ -57,6 +58,7 @@ const LessonShareLinks: FC<{
                 selectedActivities: props.selectedActivities,
                 schoolUrn: props.schoolUrn,
                 linkConfig: shareLinkConfig.copy,
+                usePupils: props.usePupils,
               }),
               () => {
                 setIsShareSuccessful(true);
@@ -87,6 +89,7 @@ const LessonShareLinks: FC<{
               lessonSlug: props.lessonSlug,
               selectedActivities: props.selectedActivities,
               linkConfig: link,
+              usePupils: props.usePupils,
             })}
             onClick={() => {
               props.onSubmit(link.avoMedium);
