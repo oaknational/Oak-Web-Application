@@ -104,16 +104,16 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
               </Radio>
             </Box>
             {threadOptions.map((threadOption) => {
-              const isSelected = isSelectedThread(threadOption);
-              const highlightedCount = highlightedUnitCount();
+              const isSelectedMobile = isSelectedThread(threadOption);
+              const highlightedUnits = highlightedUnitCount();
               return (
                 <Box
                   $ba={1}
-                  $background={isSelected ? "black" : "white"}
-                  $borderColor={isSelected ? "black" : "grey40"}
+                  $background={isSelectedMobile ? "black" : "white"}
+                  $borderColor={isSelectedMobile ? "black" : "grey40"}
                   $borderRadius={4}
-                  $color={isSelected ? "white" : "black"}
-                  $font={isSelected ? "heading-light-7" : "body-2"}
+                  $color={isSelectedMobile ? "white" : "black"}
+                  $font={isSelectedMobile ? "heading-light-7" : "body-2"}
                   $ph={12}
                   $pt={12}
                   $mb={8}
@@ -123,17 +123,17 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                     aria-label={threadOption.title}
                     value={threadOption.slug}
                     data-testid={
-                      isSelected
+                      isSelectedMobile
                         ? "selected-thread-radio-mobile"
                         : "thread-radio-mobile"
                     }
                   >
                     {threadOption.title}
-                    {isSelected && (
+                    {isSelectedMobile && (
                       <>
                         <br />
-                        {highlightedCount}
-                        {highlightedCount === 1 ? " unit " : " units "}
+                        {highlightedUnits}
+                        {highlightedUnits === 1 ? " unit " : " units "}
                         highlighted
                       </>
                     )}
