@@ -198,6 +198,22 @@ async function main() {
     NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE:
       process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE ||
       oakConfig.seo?.appTwitterHandle,
+
+    // oak-components
+    NEXT_PUBLIC_OAK_ASSETS_HOST:
+      process.env.NEXT_PUBLIC_OAK_ASSETS_HOST ||
+      oakConfig.oakComponents?.assetsHost,
+    NEXT_PUBLIC_OAK_ASSETS_PATH:
+      process.env.NEXT_PUBLIC_OAK_ASSETS_PATH ||
+      oakConfig.oakComponents?.assetsPath,
+
+    // Cloudinary
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
+      process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
+      oakConfig.cloudinary?.cloudName,
+    NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION:
+      process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION ||
+      oakConfig.cloudinary?.secureDistribution,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

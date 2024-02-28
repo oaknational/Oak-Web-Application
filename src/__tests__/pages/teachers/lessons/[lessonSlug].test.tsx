@@ -6,7 +6,7 @@ import LessonOverviewCanonicalPage, {
 } from "@/pages/teachers/lessons/[lessonSlug]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import { LessonOverviewCanonical } from "@/components/Lesson/lesson.types";
+import { LessonOverviewCanonical } from "@/components/TeacherComponents/types/lesson.types";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";

@@ -1,4 +1,6 @@
-import { SearchPageData } from "..";
+import { SearchPageData } from "../";
+
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 
 const searchPageFixture = (
   partial?: Partial<SearchPageData>,
@@ -40,7 +42,229 @@ const searchPageFixture = (
       { slug: "unit", title: "Units" },
       { slug: "lesson", title: "Lessons" },
     ],
+    examBoards: [
+      { slug: "aqa", title: "AQA", displayOrder: 1 },
+      { slug: "edexcel", title: "Edexcel", displayOrder: 2 },
+      { slug: "eduqas", title: "Eduqas", displayOrder: 3 },
+      { slug: "ocr", title: "OCR", displayOrder: 4 },
+    ],
     ...partial,
   },
 ];
 export default searchPageFixture;
+
+export const searchResultsItem = (
+  partial?: Partial<SearchResultsItemProps[]>,
+): SearchResultsItemProps[] => [
+  {
+    type: "lesson",
+    title: "The FDE cycle",
+    description:
+      "In this lesson, we will extend our knowledge of the components that make up the <b>CPU</b> by introducing the fetch-decode-execute cycle (FDE). We will observe a program running and will connect the parts of the <b>CPU</b> to their role in executing instructions.",
+    subjectSlug: "computing",
+    keyStageShortCode: "KS4",
+    keyStageTitle: "Key stage 4",
+    keyStageSlug: "ks4",
+    subjectTitle: "Computing",
+    unitTitle: "Computer systems",
+    onClick: () => {
+      console.log("click");
+    },
+
+    buttonLinkProps: {
+      page: "lesson-overview",
+      lessonSlug: "the-fde-cycle-68w3ct",
+      programmeSlug: "computing-secondary-ks4-l",
+      unitSlug: "computer-systems-e17a",
+    },
+
+    pathways: [
+      {
+        programmeSlug: "maths-program-1",
+        unitSlug: "algebra-unit",
+        unitTitle: "Algebra",
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjectSlug: "maths",
+        subjectTitle: "Mathematics",
+        tierSlug: "higher",
+        tierTitle: "Higher",
+        examBoardSlug: "exam-board-1",
+        examBoardTitle: "Exam Board 1",
+        yearSlug: "2023",
+        yearTitle: "2023-2024",
+      },
+      {
+        programmeSlug: "maths-program-2",
+        unitSlug: "biology-unit",
+        unitTitle: "Biology",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key Stage 4",
+        subjectSlug: "science",
+        subjectTitle: "Science",
+        tierSlug: null,
+        tierTitle: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+        yearSlug: null,
+        yearTitle: null,
+      },
+      {
+        programmeSlug: "maths-program-3",
+        unitSlug: "world-wars-unit",
+        unitTitle: "World Wars",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        subjectSlug: "history",
+        subjectTitle: "History",
+        tierSlug: "foundation",
+        tierTitle: "Foundation",
+        examBoardSlug: "exam-board-2",
+        examBoardTitle: "Exam Board 2",
+        yearSlug: "2022",
+        yearTitle: "2022-2023",
+      },
+    ],
+    firstItemRef: null,
+  },
+  {
+    type: "unit",
+    title: "Computing systems",
+    nullTitle: "Computing systems",
+    subjectSlug: "computing",
+    subjectTitle: "Computing",
+    keyStageShortCode: "KS3",
+    keyStageTitle: "Key stage 3",
+    keyStageSlug: "ks3",
+    onClick: () => {
+      console.log("click");
+    },
+    buttonLinkProps: {
+      page: "lesson-index",
+      programmeSlug: "computing-secondary-ks3-l",
+      unitSlug: "computing-systems-1558",
+    },
+
+    pathways: [
+      {
+        programmeSlug: "maths-program-1",
+        unitSlug: "algebra-unit",
+        unitTitle: "Algebra",
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjectSlug: "maths",
+        subjectTitle: "Mathematics",
+        tierSlug: "higher",
+        tierTitle: "Higher",
+        examBoardSlug: "exam-board-1",
+        examBoardTitle: "Exam Board 1",
+        yearSlug: "2023",
+        yearTitle: "2023-2024",
+      },
+      {
+        programmeSlug: "maths-program-2",
+        unitSlug: "biology-unit",
+        unitTitle: "Biology",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key Stage 4",
+        subjectSlug: "science",
+        subjectTitle: "Science",
+        tierSlug: null,
+        tierTitle: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+        yearSlug: null,
+        yearTitle: null,
+      },
+      {
+        programmeSlug: "maths-program-3",
+        unitSlug: "world-wars-unit",
+        unitTitle: "World Wars",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        subjectSlug: "history",
+        subjectTitle: "History",
+        tierSlug: "foundation",
+        tierTitle: "Foundation",
+        examBoardSlug: "exam-board-2",
+        examBoardTitle: "Exam Board 2",
+        yearSlug: "2022",
+        yearTitle: "2022-2023",
+      },
+    ],
+    firstItemRef: {
+      current: null,
+    },
+  },
+  {
+    type: "unit",
+    title: "Computing systems",
+    nullTitle: "Computing systems",
+    subjectSlug: "computing",
+    subjectTitle: "Computing",
+    keyStageShortCode: "KS3",
+    keyStageTitle: "Key stage 3",
+    keyStageSlug: "ks3",
+    onClick: () => {
+      console.log("click");
+    },
+    buttonLinkProps: {
+      page: "lesson-index",
+      programmeSlug: "computing-secondary-ks3-l",
+      unitSlug: "computing-systems-1558",
+    },
+
+    pathways: [
+      {
+        programmeSlug: "maths-program-1",
+        unitSlug: "algebra-unit",
+        unitTitle: "Algebra",
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjectSlug: "maths",
+        subjectTitle: "Mathematics",
+        tierSlug: "higher",
+        tierTitle: "Higher",
+        examBoardSlug: null,
+        examBoardTitle: null,
+        yearSlug: "2023",
+        yearTitle: "2023-2024",
+      },
+      {
+        programmeSlug: "maths-program-2",
+        unitSlug: "biology-unit",
+        unitTitle: "Biology",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key Stage 4",
+        subjectSlug: "science",
+        subjectTitle: "Science",
+        tierSlug: null,
+        tierTitle: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+        yearSlug: null,
+        yearTitle: null,
+      },
+      {
+        programmeSlug: "maths-program-3",
+        unitSlug: "world-wars-unit",
+        unitTitle: "World Wars",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        subjectSlug: "history",
+        subjectTitle: "History",
+        tierSlug: "foundation",
+        tierTitle: "Foundation",
+        examBoardSlug: null,
+        examBoardTitle: null,
+        yearSlug: "2022",
+        yearTitle: "2022-2023",
+      },
+    ],
+    firstItemRef: {
+      current: null,
+    },
+
+    ...partial,
+  },
+];

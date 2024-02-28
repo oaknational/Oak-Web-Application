@@ -1,39 +1,38 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
+import { OakTypography, OakHeading } from "@oaknational/oak-components";
 
-import Typography, { Heading } from "@/components/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import AppLayout from "@/components/AppLayout";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import OakLink from "@/components/OakLink";
-import usePostList from "@/components/Posts/PostList/usePostList";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import OwaLink from "@/components/SharedComponents/OwaLink";
+import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
-import PostList from "@/components/Posts/PostList";
-import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
-import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
-import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
-import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
-import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
-import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
-import HomePageBanner from "@/components/Banner/Banner";
+import PostList from "@/components/SharedComponents/PostList";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
+import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
+import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
+import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
+import PupilTab from "@/components/GenericPagesComponents/PupilTab";
+import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.view";
 import {
   SerializedWebinarPreview,
   webinarToPostListItem,
-} from "@/components/pages/WebinarsIndex.page";
+} from "@/components/GenericPagesViews/WebinarsIndex.view";
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
-import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
-import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
+import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -125,11 +124,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   };
 
   return (
-    <AppLayout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background={"white"}
-      banner={HomePageBanner}
-    >
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <HomePageTabImageNav current={current} setCurrent={setActiveTab} />
       {current === "teachers" && (
         <TeachersTab keyStages={curriculumData.keyStages} />
@@ -147,16 +142,20 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             $mb={48}
             $flexDirection={["column", "row"]}
           >
-            <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
+            <OakHeading
+              $mb={["space-between-m", "space-between-none"]}
+              tag={"h2"}
+              $font={"heading-5"}
+            >
               Stay up to date
-            </Heading>
+            </OakHeading>
             <Flex $flexDirection={"row"}>
-              <Typography $mr={16} $font="heading-7">
-                <OakLink page={"webinar-index"}>All webinars</OakLink>
-              </Typography>
-              <Typography $font="heading-7">
-                <OakLink page={"blog-index"}>All blogs</OakLink>
-              </Typography>
+              <OakTypography $mr="space-between-s" $font="heading-7">
+                <OwaLink page={"webinar-index"}>All webinars</OwaLink>
+              </OakTypography>
+              <OakTypography $font="heading-7">
+                <OwaLink page={"blog-index"}>All blogs</OwaLink>
+              </OakTypography>
             </Flex>
           </Flex>
           <PostList showImageOnTablet={true} {...blogListProps} />

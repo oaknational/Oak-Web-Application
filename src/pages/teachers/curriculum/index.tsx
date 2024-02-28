@@ -1,30 +1,36 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import {
+  OakHeading,
+  OakTypography,
+  OakUL,
+  OakLI,
+  OakP,
+} from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, UL, LI, P, Hr } from "@/components/Typography";
-import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import { Hr } from "@/components/SharedComponents/Typography";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import Illustration from "@/components/Illustration/Illustration";
-import Cover from "@/components/Cover/Cover";
-import { getSizes } from "@/components/CMSImage/getSizes";
-import OakLink from "@/components/OakLink/OakLink";
-import Typography from "@/components/Typography/Typography";
-import Icon from "@/components/Icon/Icon";
+import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
+import Cover from "@/components/SharedComponents/Cover/Cover";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
+import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import {
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.view";
 import { serializeDate } from "@/utils/serializeDate";
-import PostListItem from "@/components/Posts/PostList/PostListItem/PostListItem";
+import PostListItem from "@/components/SharedComponents/PostListItem";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -66,7 +72,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
+            <HomepageCurriculumLandingHero
+              subjectPhaseOptions={subjectPhaseOptions}
+            />
           </Flex>
         </MaxWidth>
       </Flex>
@@ -96,35 +104,45 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $objectFit="contain"
                   $objectPosition={"center"}
                   fill
+                  alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>
             </Box>
 
             <Box $height={"100%"}>
-              <Heading tag="h2" $font={["heading-5", "heading-4"]} $mt={12}>
+              <OakHeading
+                tag="h2"
+                $font={["heading-5", "heading-4"]}
+                $mt="space-between-xs"
+              >
                 Our approach to curriculum
-              </Heading>
-              <P $mv={[16, 24]} $font={"body-1"}>
+              </OakHeading>
+              <OakP
+                $mv={["space-between-s", "space-between-m"]}
+                $font={"body-1"}
+              >
                 Every school’s approach to curriculum design is different.
                 Whether you are starting from scratch or refreshing your
                 existing curricula, it can be helpful to see examples to inspire
                 your own. Explore our curriculum sequences and learn about the
                 six curriculum principles that guide our lesson and curriculum
                 design. See how we have:
-              </P>
-              <UL $mb={24} $font={"list-item-1"}>
-                <LI>
+              </OakP>
+              <OakUL $mb="space-between-m" $font={"list-item-1"}>
+                <OakLI>
                   Sequenced subject units across year groups, including
                   alternative sequences
-                </LI>
-                <LI>Built coherence through the curricula, using threads</LI>
-                <LI>
+                </OakLI>
+                <OakLI>
+                  Built coherence through the curricula, using threads
+                </OakLI>
+                <OakLI>
                   Summarised the core content pupils will learn, in our
                   curriculum statements
-                </LI>
-              </UL>
-              <Typography $font={"heading-7"} $mb={12}>
-                <OakLink
+                </OakLI>
+              </OakUL>
+              <OakTypography $font={"heading-7"} $mb="space-between-xs">
+                <OwaLink
                   page={"blog-single"}
                   blogSlug="our-approach-to-curriculum"
                   $display={"flex"}
@@ -132,8 +150,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 >
                   Read more about our approach
                   <Icon name={"chevron-right"} />
-                </OakLink>
-              </Typography>
+                </OwaLink>
+              </OakTypography>
             </Box>
           </Flex>
           <Flex
@@ -150,14 +168,14 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               $mb={[48, 0]}
               $position={"relative"}
             >
-              <Heading tag="h2" $font={"heading-4"} $mb={24}>
+              <OakHeading tag="h2" $font={"heading-4"} $mb="space-between-m">
                 Our blogs on curriculum design
-              </Heading>
+              </OakHeading>
               {curriculumBlogs.length ? (
                 <>
-                  <UL $reset data-testid="blog-list">
+                  <OakUL $reset data-testid="blog-list">
                     {curriculumBlogs.map((item, i) => (
-                      <LI
+                      <OakLI
                         key={`PostList-PostListItem-${i}`}
                         data-testid="blog-list-item"
                       >
@@ -168,9 +186,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                           withImage={true}
                           firstItemRef={null}
                         />
-                      </LI>
+                      </OakLI>
                     ))}
-                  </UL>
+                  </OakUL>
                   {<Hr thickness={4} $mt={32} $mb={0} />}
                 </>
               ) : null}

@@ -31,7 +31,9 @@ describe("lessonDownloadsCanonical()", () => {
               subjectTitle: "subject-title",
               keyStageSlug: "key-stage-slug",
               keyStageTitle: "key-stage-title",
+              lessonCohort: "2023-2024",
               downloads: [],
+              hasDownloadableResources: true,
             },
             {
               programmeSlug: "programme-slug-1",
@@ -43,7 +45,9 @@ describe("lessonDownloadsCanonical()", () => {
               subjectTitle: "subject-title",
               keyStageSlug: "key-stage-slug",
               keyStageTitle: "key-stage-title",
+              lessonCohort: "2023-2024",
               downloads: [],
+              hasDownloadableResources: true,
             },
           ],
         }),
@@ -60,6 +64,7 @@ describe("lessonDownloadsCanonical()", () => {
         subjectTitle: "subject-title",
         keyStageSlug: "key-stage-slug",
         keyStageTitle: "key-stage-title",
+        lessonCohort: "2023-2024",
       },
       {
         programmeSlug: "programme-slug-1",
@@ -69,6 +74,7 @@ describe("lessonDownloadsCanonical()", () => {
         subjectTitle: "subject-title",
         keyStageSlug: "key-stage-slug",
         keyStageTitle: "key-stage-title",
+        lessonCohort: "2023-2024",
       },
     ]);
   });

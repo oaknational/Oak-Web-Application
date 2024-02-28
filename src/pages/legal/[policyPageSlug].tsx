@@ -5,6 +5,14 @@ import {
   NextPage,
 } from "next";
 import { PortableTextComponents } from "@portabletext/react";
+import {
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+  OakMaxWidth,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { PolicyPage } from "@/common-lib/cms-types";
@@ -12,15 +20,11 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Typography, { Heading, P } from "@/components/Typography";
+import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
-import OakLink from "@/components/OakLink";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -33,39 +37,39 @@ export type PolicyPageProps = {
 const customPolicyComponent: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <Heading
-        $mb={[32, 48]}
-        $mt={[64, 80]}
+      <OakHeading
+        $mb={["space-between-m2", "space-between-l"]}
+        $mt={["space-between-xl", "space-between-xxxl"]}
         tag={"h2"}
         $font={["heading-5", "heading-4"]}
       >
         {children}
-      </Heading>
+      </OakHeading>
     ),
     h3: ({ children }) => (
-      <Heading
-        $mb={[24, 32]}
-        $mt={[32, 64]}
+      <OakHeading
+        $mb={["space-between-m", "space-between-m2"]}
+        $mt={["space-between-m2", "space-between-xl"]}
         tag={"h3"}
         $font={["heading-6", "heading-5"]}
       >
         {children}
-      </Heading>
+      </OakHeading>
     ),
     h4: ({ children }) => (
-      <Heading
-        $mb={[24, 32]}
-        $mt={[32, 48]}
+      <OakHeading
+        $mb={["space-between-m", "space-between-m2"]}
+        $mt={["space-between-m2", "space-between-l"]}
         tag={"h4"}
         $font={["heading-7", "heading-6"]}
       >
         {children}
-      </Heading>
+      </OakHeading>
     ),
     normal: ({ children }) => (
-      <P $font={["body-2", "body-1"]} $mb={[24]}>
+      <OakP $font={["body-2", "body-1"]} $mb={["space-between-m"]}>
         {children}
-      </P>
+      </OakP>
     ),
   },
   marks: {
@@ -75,14 +79,14 @@ const customPolicyComponent: PortableTextComponents = {
         ariaLabel = children[0];
       }
       return (
-        <OakLink
+        <OwaLink
           href={value?.href}
           aria-label={ariaLabel}
           $textDecoration={"underline"}
           page={null}
         >
           {children}
-        </OakLink>
+        </OwaLink>
       );
     },
   },
@@ -97,16 +101,21 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
       })}
       $background={"white"}
     >
-      <MaxWidth $ph={[16, 24]} $maxWidth={[720]}>
-        <Grid>
-          <GridArea $colSpan={[12, 12, 12]}>
-            {/* change flex justify center to textAlign when PR fix is in */}
-            <Flex $alignItems={"center"}>
-              <Heading $mt={80} $mb={32} $font={"heading-3"} tag={"h1"}>
-                {policy.title}
-              </Heading>
-            </Flex>
-            <P $mb={16} $font={"body-3"}>
+      <OakMaxWidth
+        $ph={["inner-padding-m", "inner-padding-xl"]}
+        $maxWidth={["all-spacing-22"]}
+      >
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 12, 12]}>
+            <OakHeading
+              $mt={"space-between-xxxl"}
+              $mb={"space-between-m2"}
+              $font={"heading-3"}
+              tag={"h1"}
+            >
+              {policy.title}
+            </OakHeading>
+            <OakP $mb={"space-between-s"} $font={"body-3"}>
               Updated{" "}
               <time dateTime={policy.lastUpdatedAt}>
                 {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
@@ -115,17 +124,17 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
                   year: "numeric",
                 })}
               </time>
-            </P>
-            <Typography>
+            </OakP>
+            <OakTypography>
               <PortableTextWithDefaults
                 value={policy.bodyPortableText}
                 components={customPolicyComponent}
                 withoutDefaultComponents
               />
-            </Typography>
-          </GridArea>
-        </Grid>
-      </MaxWidth>
+            </OakTypography>
+          </OakGridArea>
+        </OakGrid>
+      </OakMaxWidth>
     </Layout>
   );
 };

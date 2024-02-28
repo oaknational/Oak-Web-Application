@@ -15,6 +15,7 @@ describe("subjectListing()", () => {
         ),
       })({
         keyStageSlug: "key-stage-slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -48,6 +49,7 @@ describe("subjectListing()", () => {
         ),
       })({
         keyStageSlug: "slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`keyStageTitle`);
   });

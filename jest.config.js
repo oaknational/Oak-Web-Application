@@ -27,6 +27,7 @@ const customJestConfig = {
     "/node_modules/",
     "node-lib/sanity-graphql/generated/*",
     "src/storybook-decorators/*",
+    "src/components/ArchivedComponents/*",
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/", "src"],
@@ -43,6 +44,9 @@ const customJestConfig = {
     "^@/(.*)$": "<rootDir>/src/$1",
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
     "^uuid$": require.resolve("uuid"),
+    "^@oaknational/oak-components$": require.resolve(
+      "@oaknational/oak-components",
+    ),
   },
   slowTestThreshold: 2,
 };
