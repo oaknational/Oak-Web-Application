@@ -79,6 +79,18 @@ const lessonListingFixture = (
         hasCopyrightMaterial: false,
         orderInUnit: 5,
       },
+      {
+        expired: true,
+        lessonSlug: "new-lesson-test",
+        lessonTitle: "New Lesson test",
+        description: "Test for a lesson that is expired",
+        quizCount: 2,
+        videoCount: 1,
+        presentationCount: 1,
+        worksheetCount: 1,
+        hasCopyrightMaterial: false,
+        orderInUnit: 5,
+      },
     ],
     ...partial,
   };

@@ -47,7 +47,11 @@ const ComingSoonListItem: FC<ComingSoonListItemProps> = ({
         $height={"100%"}
         $pl="inner-padding-xl"
       >
-        <OakSpan $font={"heading-7"} $color={"grey60"}>
+        <OakSpan
+          $font={"heading-7"}
+          $color={"grey60"}
+          data-testid={"coming-soon"}
+        >
           Coming Soon!
         </OakSpan>
       </OakFlex>

@@ -73,7 +73,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                 key={`LessonList-LessonListItem-${item.lessonSlug}`}
                 data-testid={"lesson-list-item"}
               >
-                {isNew && item.expired ? (
+                {item.expired && isNew ? (
                   <ComingSoonListItem
                     {...item}
                     index={index + pageSize * (currentPage - 1)}

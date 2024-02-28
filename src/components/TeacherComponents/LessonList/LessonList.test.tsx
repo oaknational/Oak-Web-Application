@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { within } from "@testing-library/dom";
 
 import LessonList from ".";
 
@@ -36,6 +37,30 @@ describe("components/ Lesson List", () => {
 
     expect(listHeading).toBeInTheDocument();
   });
+
+  test("it renders coming soon component with a new and expired lesson", () => {
+    const { getAllByRole } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={lessons.length}
+        onClick={onClick}
+        isNew={true}
+      />,
+    );
+    const comingSoonLI = getAllByRole("listitem")[5];
+
+    if (comingSoonLI) {
+      const comingSoonText =
+        within(comingSoonLI).getByTestId("coming-soon").textContent;
+      expect(comingSoonText).toBe("Coming Soon!");
+    }
+  });
+
   test("it renders pagination if lesson count is greater than 5 ", () => {
     const { getByTestId } = render(
       <LessonList
