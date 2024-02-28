@@ -1,3 +1,10 @@
+# [1.371.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.370.0...v1.371.0) (2024-02-28)
+
+
+### Features
+
+* update mv versions ([37906ea](https://github.com/oaknational/Oak-Web-Application/commit/37906ead9382f20c054dd06eac6170161261969a))
+
 # [1.370.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.1...v1.370.0) (2024-02-28)
 
 
