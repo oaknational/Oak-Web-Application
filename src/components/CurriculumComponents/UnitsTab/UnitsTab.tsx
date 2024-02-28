@@ -411,7 +411,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             <Box
               $mr={16}
               $mb={32}
-              $ml={16}
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
