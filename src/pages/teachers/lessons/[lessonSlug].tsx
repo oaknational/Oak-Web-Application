@@ -93,9 +93,22 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          lesson = await curriculumApi.lessonOverviewCanonical({
-            lessonSlug,
-          });
+          try {
+            lesson = await curriculumApi.lessonOverviewCanonical({
+              lessonSlug,
+            });
+          } catch {
+            if (
+              error instanceof OakError &&
+              error.code === "curriculum-api/not-found"
+            ) {
+              return {
+                notFound: true,
+              };
+            } else {
+              throw error;
+            }
+          }
         } else {
           throw error;
         }
