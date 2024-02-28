@@ -77,43 +77,41 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       }
       const { lessonSlug } = context.params;
 
-      let lesson;
+      /**
+       * If the lesson is not found in the 2023 curriculum, try the 2020 api
+       * instead. Otherwise rethrow the error.
+       * This is temporary logic until the migration.
+       */
+      let newLesson;
+      let legacyLesson;
 
       try {
-        lesson = await curriculumApi2023.lessonOverviewCanonical({
+        newLesson = await curriculumApi2023.lessonOverviewCanonical({
           lessonSlug,
         });
       } catch (error) {
-        /**
-         * If the lesson is not found in the 2023 curriculum, try the 2020 api
-         * instead. Otherwise rethrow the error.
-         * This is temporary logic until the migration.
-         */
         if (
-          error instanceof OakError &&
-          error.code === "curriculum-api/not-found"
+          !(error instanceof OakError) ||
+          error.code !== "curriculum-api/not-found"
         ) {
-          try {
-            lesson = await curriculumApi.lessonOverviewCanonical({
-              lessonSlug,
-            });
-          } catch {
-            if (
-              error instanceof OakError &&
-              error.code === "curriculum-api/not-found"
-            ) {
-              return {
-                notFound: true,
-              };
-            } else {
-              throw error;
-            }
-          }
-        } else {
           throw error;
         }
       }
 
+      try {
+        legacyLesson = await curriculumApi.lessonOverviewCanonical({
+          lessonSlug,
+        });
+      } catch (error) {
+        if (
+          !(error instanceof OakError) ||
+          error.code !== "curriculum-api/not-found"
+        ) {
+          throw error;
+        }
+      }
+
+      const lesson = newLesson ?? legacyLesson;
       if (!lesson) {
         return {
           notFound: true,
