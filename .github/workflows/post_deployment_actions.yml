@@ -150,7 +150,7 @@ jobs:
           # https://github.com/percy/cli/issues/1425
           # Percy network idle timeout override in ms
           PERCY_NETWORK_IDLE_WAIT_TIMEOUT: 60000
-          PERCY_PAGE_LOAD_TIMEOUT: 120000
+          PERCY_PAGE_LOAD_TIMEOUT: 60000
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit

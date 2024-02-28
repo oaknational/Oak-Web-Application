@@ -32,6 +32,7 @@ module.exports = {
   discovery: {
     // Debug for Percy analysis.
     // concurrency: 1,
+    retry: true,
     // Standard config.
     networkIdleTimeout: 750,
     allowedHostnames: [
