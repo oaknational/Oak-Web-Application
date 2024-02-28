@@ -13,7 +13,11 @@ export const pupilLessonOverviewFixture = (
     subjectSlug: "english",
     subjectTitle: "English",
     unitSlug: "grammar-1",
+    unitTitle: "Grammar 1",
+    keyStageSlug: "ks2",
+    keyStageTitle: "Key stage 2",
     yearTitle: "Year 3",
+    programmeSlug: "national-curriculum",
     lessonEquipmentAndResources: null,
     pupilLessonOutcome:
       "You understand that a complex sentence is formed of at least one main clause and any type of subordinate clause.",

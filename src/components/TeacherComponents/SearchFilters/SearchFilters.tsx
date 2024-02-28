@@ -3,9 +3,10 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import SearchFilterCheckbox from "@/components/TeacherComponents/SearchFilterCheckbox";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type SearchFiltersProps = {
-  searchRefined: (filterType: string, filterValue: string) => void;
+  searchRefined: (filterType: FilterTypeValueType, filterValue: string) => void;
 } & UseSearchFiltersReturnType;
 
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
