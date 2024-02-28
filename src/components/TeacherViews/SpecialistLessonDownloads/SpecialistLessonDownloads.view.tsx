@@ -16,6 +16,7 @@ export type SpecialistLessonDownloadsProps = {
     lessonSlug: string;
     downloads: LessonDownloadsData["downloads"];
     nextLessons: NextLesson[];
+    hasDownloadableResources: boolean;
   };
 };
 

@@ -13,5 +13,6 @@ query lessonDownloadsCanonical($lessonSlug: String!) {
     unitSlug
     unitTitle
     lessonCohort
+    hasDownloadableResources
   }
 }

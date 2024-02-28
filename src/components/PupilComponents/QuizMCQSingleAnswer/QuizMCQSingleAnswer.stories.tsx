@@ -19,7 +19,6 @@ import {
 
 const meta = {
   component: QuizMCQSingleAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -45,6 +44,8 @@ const getContext = (params?: {
 }): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: quizQuestions?.[0],
   currentQuestionIndex: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   questionState: [
     {
       mode: params?.mode ?? "init",

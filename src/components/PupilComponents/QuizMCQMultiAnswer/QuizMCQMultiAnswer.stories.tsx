@@ -24,7 +24,6 @@ import {
 
 const meta = {
   component: QuizMCQMultiAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -61,6 +60,8 @@ const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
   ],
   score: 0,
   numQuestions: 0,
+  numInteractiveQuestions: 0,
+  currentQuestionDisplayIndex: 0,
   updateQuestionMode: () => {},
   handleSubmitMCAnswer: () => {},
   handleSubmitShortAnswer: () => {},

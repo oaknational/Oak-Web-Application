@@ -80,6 +80,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyLearningPoints,
     pupilLessonOutcome,
     lessonCohort,
+    hasDownloadableResources,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -231,7 +232,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     ref={slideDeckSectionRef}
                     title={"Slide deck"}
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "slide deck",
@@ -292,7 +293,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -319,7 +320,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
                     anchorId="starter-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
@@ -344,7 +345,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -370,7 +371,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({

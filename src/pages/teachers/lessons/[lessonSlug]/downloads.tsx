@@ -13,11 +13,11 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import curriculumApi from "@/node-lib/curriculum-api";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import OakError from "@/errors/OakError";
+import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
