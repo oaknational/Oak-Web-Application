@@ -7,6 +7,7 @@ describe("getSharingMetadata", () => {
       selectedActivities: ["exit-quiz-questions", "video"],
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.copy,
+      usePupils: false,
     });
 
     expect(result.link).toBe(
@@ -17,6 +18,7 @@ describe("getSharingMetadata", () => {
     const result = getSharingMetadata({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.microsoftTeams,
+      usePupils: false,
     });
 
     expect(result.link).toBe(
@@ -31,7 +33,18 @@ describe("getSharingMetadata", () => {
       lessonSlug: "lesson-slug",
       selectedActivities: ["exit-quiz-questions", "video"],
       linkConfig: shareLinkConfig.copy,
+      usePupils: false,
     });
     expect(result.link).toContain("activities=exit_quiz+video");
+  });
+  it("uses the correct url for the new pupils experience", () => {
+    const result = getSharingMetadata({
+      lessonSlug: "lesson-slug",
+      linkConfig: shareLinkConfig.copy,
+      usePupils: true,
+    });
+    expect(result.link).toBe(
+      "https://thenational.academy/pupils/lessons/lesson-slug?share=true",
+    );
   });
 });
