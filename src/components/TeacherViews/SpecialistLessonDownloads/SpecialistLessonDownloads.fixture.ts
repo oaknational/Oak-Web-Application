@@ -53,6 +53,7 @@ const specialistLessonDownloadsFixtures = (
       unitTitle: "Test unit",
       nextLessons: nextLessons,
       downloads: downloads,
+      hasDownloadableResources: true,
     },
     ...partial,
   };

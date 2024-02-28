@@ -19,6 +19,10 @@ import {
 } from "@/components/PupilViews/PupilExperience";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 /**
  * Test URLs:
@@ -38,11 +42,15 @@ const PupilsLegacyCanonicalPage: NextPage<PupilExperienceViewProps> = ({
   backUrl,
 }) => {
   return (
-    <PupilExperienceView
-      curriculumData={curriculumData}
-      hasWorksheet={hasWorksheet}
-      backUrl={backUrl}
-    />
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(curriculumData)}
+    >
+      <PupilExperienceView
+        curriculumData={curriculumData}
+        hasWorksheet={hasWorksheet}
+        backUrl={backUrl}
+      />
+    </PupilAnalyticsProvider>
   );
 };
 

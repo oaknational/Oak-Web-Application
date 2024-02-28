@@ -10,17 +10,21 @@ query pupilLessonOverview(
       unitSlug: { _eq: $unitSlug }
     }
   ) {
+    lessonSlug
     lessonTitle
-    yearTitle
-    lessonKeywords
+    unitSlug
+    unitTitle
+    programmeSlug
     subjectSlug
     subjectTitle
-    unitSlug
+    yearSlug
+    yearTitle
+    keyStageSlug
+    keyStageTitle
+    lessonKeywords
     pupilLessonOutcome
     starterQuiz
     exitQuiz
-    lessonSlug
-    lessonTitle
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
