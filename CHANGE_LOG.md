@@ -1,3 +1,11 @@
+## [1.369.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.0...v1.369.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* add required prop to useComboBox ([87ee0b3](https://github.com/oaknational/Oak-Web-Application/commit/87ee0b3848ed7f2ca708d127ed5203006772232f))
+* remove out of date mock ([c40a873](https://github.com/oaknational/Oak-Web-Application/commit/c40a87362918d028e1ed968688b4f654d33a3d08))
+
 # [1.369.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.368.2...v1.369.0) (2024-02-28)
 
 
