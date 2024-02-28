@@ -1,4 +1,5 @@
-import { screen, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
 
 import CurriculumPreviousDownloadsPage from "@/pages/teachers/curriculum/previous-downloads";
@@ -6,48 +7,59 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn().mockReturnValue({
+    query: { subject: "" },
+    asPath: "",
+    pathname: "",
+  }),
+}));
+
 describe("CurriculumPreviousDownloadsPage", () => {
-  beforeEach(() => {
-    window.location.hash = "";
-    render(<CurriculumPreviousDownloadsPage />);
+  const renderComponent = () => {
+    return render(<CurriculumPreviousDownloadsPage />);
+  };
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
   });
 
   it("renders the correct tab based on the location hash", async () => {
-    // Has the correct tab based on the location hash
     window.location.hash = "#KS3";
-    waitFor(async () => {
-      const heading = screen.getByTestId("heading");
+    const { getByTestId } = renderComponent();
+    await waitFor(async () => {
+      const heading = getByTestId("heading2");
       expect(heading).toHaveTextContent("KS3");
     });
   });
 
   it("renders the heading and description", () => {
-    // Has the correct heading
-    expect(screen.getByTestId("heading")).toHaveTextContent(
+    const { getByTestId } = renderComponent();
+    expect(getByTestId("heading1")).toHaveTextContent(
       "Previously released curricula",
     );
-    // Has the correct description
-    expect(screen.getByTestId("description")).toBeInTheDocument();
+    expect(getByTestId("description")).toBeInTheDocument();
   });
 
   it("renders the breadcrumbs", async () => {
-    // Has breadcrumbs with 3 links
-    waitFor(async () => {
-      const breadcrumbs = screen.getByTestId("breadcrumbs");
-      const linkItems = breadcrumbs.querySelectorAll("li");
+    const { getByTestId } = renderComponent();
+    await waitFor(async () => {
+      const container = getByTestId("breadcrumbsContainer");
+      const linkItems = container.querySelectorAll("li");
       expect(linkItems.length).toBe(3);
     });
   });
 
   it("renders the dropdown navigation for mobile", () => {
-    // Has the dropdown navigation
-    const dropdownNav = screen.getByTestId("dropdownNav");
+    const { getByTestId } = renderComponent();
+    const dropdownNav = getByTestId("dropdownNav");
     expect(dropdownNav).toBeInTheDocument();
   });
 
   it("renders tab navigation for desktop", () => {
-    // Has the tab navigation
-    const tabularNav = screen.getByTestId("tabularNav");
+    const { getByTestId } = renderComponent();
+    const tabularNav = getByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
 
     const tabItems = tabularNav.querySelectorAll("a");
@@ -59,41 +71,47 @@ describe("CurriculumPreviousDownloadsPage", () => {
   });
 
   it("renders the downloadable curriculum document cards", async () => {
-    // Has the downloadable documents
-    waitFor(async () => {
-      const cards = screen.getAllByTestId("downloadCard");
+    const { getAllByTestId } = renderComponent();
+    await waitFor(async () => {
+      const cards = getAllByTestId("resourceCard");
       expect(cards.length).toBeGreaterThan(0);
     });
   });
 
   it("allows user to select a card and clears selection on navigation", async () => {
-    // Allows user to navigate to new tab
-    waitFor(async () => {
-      const card = screen.getAllByTestId("downloadCard")[0];
-      if (card === undefined) {
-        throw new Error("No cards found");
-      }
-      userEvent.click(card);
-      waitFor(async () => {
-        const input = card.querySelector("input") as HTMLInputElement;
-        expect(input?.checked).toBeTruthy();
-        const link = screen
-          .getAllByTestId("tabularNav")[0]
-          ?.querySelector('a[text="KS2"]');
-        if (!link) {
-          throw new Error("Link not found");
-        }
-        userEvent.click(link);
-        waitFor(async () => {
-          const heading = screen.getByTestId("heading");
-          expect(heading).toHaveTextContent("KS2");
-          expect(
-            screen
-              .getByTestId("downloadCardsContainer")
-              .querySelector("input:checked"),
-          ).toBeNull();
-        });
-      });
+    const { getByTestId, getAllByTestId } = renderComponent();
+    const card = getAllByTestId("resourceCard")[0];
+    if (card === undefined) {
+      throw new Error("No cards found");
+    }
+    await userEvent.click(card.querySelector("label")!);
+    const input = card.querySelector("input") as HTMLInputElement;
+    expect(input?.checked).toBeTruthy();
+    const link =
+      getAllByTestId("tabularNav")[0]?.querySelector('a[title="KS2"]');
+    if (!link) {
+      throw new Error("Link not found");
+    }
+    await userEvent.click(link);
+    await waitFor(async () => {
+      const heading = getByTestId("heading2");
+      expect(heading).toHaveTextContent("KS2");
+      expect(
+        getByTestId("cardsContainer").querySelector("input:checked"),
+      ).toBeNull();
+    });
+  });
+
+  test("selects the correct tab based on URL params", async () => {
+    (useRouter as jest.Mock).mockReturnValue({
+      query: { keystage: "ks4" },
+      asPath: "/some-path",
+      pathname: "",
+    });
+    const { getByTestId } = renderComponent();
+    await waitFor(async () => {
+      const heading = getByTestId("heading2");
+      expect(heading).toHaveTextContent("KS4");
     });
   });
 });

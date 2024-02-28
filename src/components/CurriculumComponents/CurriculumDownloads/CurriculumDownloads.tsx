@@ -221,17 +221,21 @@ function CurriculumDownloads(
   };
 
   useEffect(() => {
+    if (hasSetPreselectedDownload) {
+      return;
+    }
     const subject = router.query.subject as string;
     if (subject) {
-      const selectedDownload = downloads.find(
-        (download) => download.label.toLowerCase() === subject,
+      const selectedDownload = downloads.find((download) =>
+        new RegExp(`${subject}$`).test(download.url),
       );
-      if (selectedDownload && !hasSetPreselectedDownload) {
+      if (selectedDownload) {
         setHasSetPreselectedDownload(true);
         setSelectedUrl(selectedDownload.url);
+        form.setValue("resources", [selectedDownload.url]);
       }
     }
-  }, [router.query.subject, downloads, hasSetPreselectedDownload]);
+  }, [downloads, router.query.subject, hasSetPreselectedDownload, form]);
 
   return (
     <Box
@@ -248,7 +252,11 @@ function CurriculumDownloads(
           $flexDirection={"column"}
           $gap={["space-between-m", "space-between-m2"]}
         >
-          <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
+          <OakHeading
+            tag="h2"
+            $font={["heading-5", "heading-4"]}
+            data-testid="heading2"
+          >
             {category}
           </OakHeading>
           <form onChange={() => setHasSuccessfullyDownloaded(false)}>
@@ -268,7 +276,7 @@ function CurriculumDownloads(
                 >
                   {form.errors?.resources?.message}
                 </FieldError>
-                <CardsContainer data-testid="downloadCardsContainer">
+                <CardsContainer data-testid="cardsContainer">
                   <RadioGroup
                     aria-label="Subject Download Options"
                     value={selectedUrl}
@@ -297,7 +305,6 @@ function CurriculumDownloads(
                         checked={false}
                         onBlur={() => {}}
                         hasError={form.errors?.resources ? true : false}
-                        data-testid={`downloadCard`}
                         useRadio={true}
                         subjectIcon={download.icon}
                       />
@@ -455,7 +462,6 @@ function CurriculumDownloads(
                 {apiError && !hasFormErrors && (
                   <FieldError
                     id="download-error"
-                    data-testid="downloadError"
                     variant={"large"}
                     withoutMarginBottom
                   >

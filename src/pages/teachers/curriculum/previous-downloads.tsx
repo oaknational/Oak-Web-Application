@@ -55,7 +55,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
           label: document.subject,
-          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&id=${document.slug}&extension=pdf`,
+          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
           icon: document.icon,
         });
       });
@@ -92,7 +92,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       $background={"white"}
     >
       <Box $background={"mint"} $pt={[20]}>
-        <Box $maxWidth={1280} $mh={"auto"} $ph={28} $pb={56} $width={"100%"}>
+        <Box
+          $maxWidth={1280}
+          $mh={"auto"}
+          $ph={28}
+          $pb={56}
+          $width={"100%"}
+          data-testid="breadcrumbsContainer"
+        >
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -111,11 +118,10 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 oakLinkProps: {
                   page: "curriculum-previous-downloads",
                 },
-                label: "Previous Downloads",
+                label: "Previous downloads",
                 disabled: true,
               },
             ]}
-            data-testid="breadcrumbs"
           />
           <Hr $color={"white"} />
           <OakFlex>
@@ -139,7 +145,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
                 $mb={"space-between-m"}
-                data-testid="heading"
+                data-testid="heading1"
               >
                 Previously released curricula
               </OakHeading>
