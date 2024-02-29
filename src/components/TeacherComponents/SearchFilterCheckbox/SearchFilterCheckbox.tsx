@@ -3,6 +3,7 @@ import { FC } from "react";
 import { SizeProps } from "@/styles/utils/size";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Box from "@/components/SharedComponents/Box";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type SearchFilterCheckboxProps = {
   name: string;
@@ -11,8 +12,8 @@ type SearchFilterCheckboxProps = {
   checked: boolean;
   width?: SizeProps["$width"];
   onChange: () => void;
-  filterType: string;
-  searchRefined: (filterType: string, filterValue: string) => void;
+  filterType: FilterTypeValueType;
+  searchRefined: (filterType: FilterTypeValueType, filterValue: string) => void;
 };
 
 const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {

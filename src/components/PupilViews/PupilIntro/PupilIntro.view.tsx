@@ -38,11 +38,32 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     lessonSlug,
     hasWorksheet,
   } = props;
-  const { completeSection, updateCurrentSection } = useLessonEngineContext();
+  const {
+    completeSection,
+    updateCurrentSection,
+    updateSectionResult,
+    sectionResults,
+  } = useLessonEngineContext();
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
     isLegacy,
   );
+
+  const handleDownloadClicked = () => {
+    updateSectionResult({
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
+    startDownload();
+  };
+
+  if (!sectionResults.intro?.worksheetAvailable && hasWorksheet) {
+    sectionResults.intro?.worksheetDownloaded ||
+      updateSectionResult({
+        worksheetDownloaded: sectionResults.intro?.worksheetDownloaded || false,
+        worksheetAvailable: true,
+      });
+  }
 
   const topNavSlot = (
     <OakLessonTopNav
@@ -175,7 +196,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                 <OakP $font={"body-1"}>Optional</OakP>
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
-                    onClick={startDownload}
+                    onClick={handleDownloadClicked}
                     isLoading={isDownloading}
                     iconName="download"
                     isTrailingIcon
