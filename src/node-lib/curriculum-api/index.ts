@@ -236,6 +236,7 @@ export const lessonShareSchema = z.intersection(
     lessonSlug: z.string(),
     lessonTitle: z.string(),
     shareableResources: z.array(lessonShareListSchema),
+    expired: z.boolean().nullable(),
   }),
 );
 

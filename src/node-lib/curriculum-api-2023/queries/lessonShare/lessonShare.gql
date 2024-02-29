@@ -3,7 +3,7 @@ query lessonShare(
   $programmeSlug: String!
   $unitSlug: String!
 ) {
-  share: published_mv_share_3_0_2(
+  share: published_mv_share_3_0_3(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -25,5 +25,6 @@ query lessonShare(
     lessonCohort
     examBoardTitle
     examBoardSlug
+    expired
   }
 }
