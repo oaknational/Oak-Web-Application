@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, MutableRefObject } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -63,6 +63,7 @@ let yearData: {
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
+    ref?: MutableRefObject<HTMLDivElement>;
   };
 } = {};
 let threadOptions: Thread[] = [];
@@ -82,6 +83,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
+  const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
+    string | null
+  >(null);
+  // const itemEls = useRef([]);
+  // yearOptions.map((item) => (
+  //   <p key={item} ref={(element) => itemEls.current.push(element)}>
+  //     {item}
+  //   </p>
+  // ));
 
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
@@ -405,6 +415,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           highlightedUnitCount={highlightedUnitCount}
           trackSelectYear={trackSelectYear}
           yearOptions={yearOptions}
+          visibleMobileYearRefID={visibleMobileYearRefID}
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
@@ -523,6 +534,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}
             setUnitData={setUnitData}
             selectedThread={selectedThread}
+            numYears={yearOptions.length}
+            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
           />
         </OakGrid>
       </Box>

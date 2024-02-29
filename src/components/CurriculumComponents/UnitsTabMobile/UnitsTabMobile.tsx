@@ -20,6 +20,7 @@ type UnitsTabMobileProps = {
   trackSelectYear: (year: string) => void;
   yearOptions: string[];
   updateMobileHeaderScroll: (height: number) => void;
+  visibleMobileYearRefID: string | null;
 };
 
 // Function component
@@ -33,6 +34,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
   highlightedUnitCount,
   trackSelectYear,
   yearOptions,
+  visibleMobileYearRefID,
 }) => {
   // Initialize constants
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
@@ -40,6 +42,12 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
   const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
     "7",
   );
+
+  useEffect(() => {
+    if (visibleMobileYearRefID !== mobileYearSelection) {
+      setMobileYearSelection(visibleMobileYearRefID);
+    }
+  }, [visibleMobileYearRefID, mobileYearSelection]);
 
   const mobileHeaderRef = useRef<HTMLDivElement>(null);
   // Add padding offset for mobile year group filter scroll
@@ -222,14 +230,14 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                       background={
                         mobileYearSelection === yearOption ? "black" : "grey20"
                       }
+                      isCurrent={yearOption === mobileYearSelection}
                       key={yearOption}
                       label={`Year ${yearOption}`}
                       onClick={() => {
-                        setMobileYearSelection(yearOption);
                         // Scroll into view used also in Lesson Overview - prevents rerender
                         document
                           .getElementById(`year-${yearOption}`)
-                          ?.scrollIntoView();
+                          ?.scrollIntoView({ behavior: "smooth" });
                         trackSelectYear(yearOption);
                       }}
                       data-testid="year-group-filter-button"

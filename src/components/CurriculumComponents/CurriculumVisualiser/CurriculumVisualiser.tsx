@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
@@ -68,6 +68,8 @@ type CurriculumVisualiserProps = {
   duplicateUnitSlugs: Set<string>;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
+  numYears: number;
+  setVisibleMobileYearRefID: (refID: string) => void;
 };
 
 export function createProgrammeSlug(
@@ -101,6 +103,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   mobileHeaderScrollOffset,
   setUnitData,
   selectedThread,
+  setVisibleMobileYearRefID,
 }) => {
   // Selection state helpers
   const [displayModal, setDisplayModal] = useState(false);
@@ -109,6 +112,30 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const modalButtonRef = useRef<HTMLButtonElement>(null);
+
+  const itemEls = useRef<(HTMLDivElement | null)[]>([]);
+
+  /* Intersection observer to update year filter selection when 
+  scrolling through the visualiser on mobile */
+  useEffect(() => {
+    const options = {
+      root: null,
+      threshold: [0.18],
+    };
+
+    const yearsLoaded = Object.keys(yearData).length;
+    // only add IO once elements & data have loaded
+    if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleMobileYearRefID(entry.target.id);
+          }
+        });
+      }, options);
+      itemEls.current.forEach((el) => io.observe(el as Element));
+    }
+  }, [setVisibleMobileYearRefID, yearData]);
 
   function isSelectedDomain(year: string, domain: Domain) {
     return yearSelection[year]?.domain?.domain_id === domain.domain_id;
@@ -171,7 +198,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       {yearData &&
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
-          .map((year) => {
+          .map((year, index) => {
             const { units, childSubjects, domains, tiers } = yearData[
               year
             ] as YearData[string];
@@ -184,6 +211,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 $pl={30}
                 $mb={32}
                 $borderRadius={4}
+                className="mobileYearDisplay"
+                id={year}
+                ref={(element) => (itemEls.current[index] = element)}
               >
                 <AnchorTarget
                   $paddingTop={mobileHeaderScrollOffset}
