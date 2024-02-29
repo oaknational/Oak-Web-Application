@@ -61,6 +61,13 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
   });
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {

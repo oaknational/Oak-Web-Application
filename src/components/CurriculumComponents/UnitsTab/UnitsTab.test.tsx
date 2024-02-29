@@ -24,6 +24,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
@@ -798,13 +805,15 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     if (year2Button) {
       await userEvent.click(year2Button);
       // Selected button background colour should change
-      expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
-      // Unselected button background colour shouldn't change
-      expect(yearFilterButtons[0]).toHaveStyle(
-        "background-color: rgb(242, 242, 242);",
-      );
-      expect(year2Button).toHaveTextContent("Year 2");
-      expect(yearHeadings[1]).toHaveTextContent("Year 2");
+      waitFor(() => {
+        expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
+        // Unselected button background colour shouldn't change
+        expect(yearFilterButtons[0]).toHaveStyle(
+          "background-color: rgb(242, 242, 242);",
+        );
+        expect(year2Button).toHaveTextContent("Year 2");
+        expect(yearHeadings[1]).toHaveTextContent("Year 2");
+      });
     }
   });
 });

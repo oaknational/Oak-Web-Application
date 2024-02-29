@@ -122,10 +122,19 @@ const curriculumVisualiserFixture = {
   duplicateUnitSlugs: new Set("unit-1"),
   mobileHeaderScrollOffset: 148,
   selectedThread: null,
+  numYears: 1,
+  setVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
   beforeEach(() => {
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
     jest.clearAllMocks();
   });
 

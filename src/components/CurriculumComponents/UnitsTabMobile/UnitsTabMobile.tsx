@@ -234,6 +234,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                       key={yearOption}
                       label={`Year ${yearOption}`}
                       onClick={() => {
+                        setMobileYearSelection(yearOption);
                         // Scroll into view used also in Lesson Overview - prevents rerender
                         document
                           .getElementById(`year-${yearOption}`)

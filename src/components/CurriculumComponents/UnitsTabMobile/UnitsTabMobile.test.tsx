@@ -59,11 +59,19 @@ const unitsTabMobileFixture = {
     },
   ],
   yearOptions: ["7", "8", "9", "10", "11"],
+  visibleMobileYearRefID: "8",
 };
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
   });
 
   const resizeWindow = (x: number, y: number) => {
