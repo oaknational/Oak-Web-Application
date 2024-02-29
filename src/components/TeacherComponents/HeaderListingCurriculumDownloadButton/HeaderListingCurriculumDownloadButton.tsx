@@ -15,7 +15,7 @@ const HeaderListingCurriculumDownloadButton: FC<
     <>
       <OakFlex>
         <ButtonAsLink
-          icon={"download"}
+          icon={"arrow-right"}
           iconBackground="black"
           label={"Curriculum download"}
           page={"curriculum-previous-downloads"}
