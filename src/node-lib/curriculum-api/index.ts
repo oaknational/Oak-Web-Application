@@ -594,6 +594,7 @@ const curriculumApi = {
 
     return lessonShareSchema.parse({
       ...share,
+      expired: false,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
       lessonCohort: LEGACY_COHORT,
@@ -613,6 +614,7 @@ const curriculumApi = {
 
     return lessonDownloadsSchema.parse({
       ...download,
+      expired: false,
       nextLessons,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
