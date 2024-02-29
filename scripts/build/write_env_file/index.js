@@ -83,9 +83,10 @@ async function main() {
     NEXT_PUBLIC_GLEAP_API_KEY:
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
     NEXT_PUBLIC_GLEAP_API_URL:
-      process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl13,
+      process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+    // TO DO: If this works, rename to oakConfig.gleap.frameUrl13
     NEXT_PUBLIC_GLEAP_FRAME_URL:
-      process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
+      process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.apiUrl13,
 
     // Hubspot
     NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL:
