@@ -86,12 +86,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
     string | null
   >(null);
-  // const itemEls = useRef([]);
-  // yearOptions.map((item) => (
-  //   <p key={item} ref={(element) => itemEls.current.push(element)}>
-  //     {item}
-  //   </p>
-  // ));
 
   // Put data formatting code in useEffect to avoid unnecessary re-renders
   useEffect(() => {
@@ -534,7 +528,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}
             setUnitData={setUnitData}
             selectedThread={selectedThread}
-            numYears={yearOptions.length}
             setVisibleMobileYearRefID={setVisibleMobileYearRefID}
           />
         </OakGrid>

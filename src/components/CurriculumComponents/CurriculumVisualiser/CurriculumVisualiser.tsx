@@ -68,7 +68,6 @@ type CurriculumVisualiserProps = {
   duplicateUnitSlugs: Set<string>;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
-  numYears: number;
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
