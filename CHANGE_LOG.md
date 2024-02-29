@@ -1,3 +1,11 @@
+## [1.372.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.0...v1.372.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* update canonical lesson mv version ([d96688f](https://github.com/oaknational/Oak-Web-Application/commit/d96688f075cb510b4717c86b26956320da371734))
+* wrap request in try catch and throw error when no results ([dc8d234](https://github.com/oaknational/Oak-Web-Application/commit/dc8d234705b38d6df9bd7328ed5c5039fa3b3594))
+
 # [1.372.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.371.0...v1.372.0) (2024-02-29)
 
 
