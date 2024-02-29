@@ -183,7 +183,7 @@ describe("Component - Curriculum Header", () => {
 
   test("selects subject when specified in URL", async () => {
     (useRouter as jest.Mock).mockReturnValue({
-      query: { subject: "test-subject" },
+      query: { subject: "test-subject", keystage: "test-category" },
       asPath: "/some-path",
     });
     const { getByText } = renderComponent();
