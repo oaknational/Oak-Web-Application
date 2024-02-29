@@ -71,6 +71,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                       return (
                         <UnitListItem
                           {...unitOption}
+                          key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
                           hideTopHeading
                           index={index + pageSize * (currentPage - 1)}
                           firstItemRef={index === 0 ? firstItemRef : null}

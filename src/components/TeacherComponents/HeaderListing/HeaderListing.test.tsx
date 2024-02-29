@@ -24,10 +24,29 @@ describe("HeaderListing", () => {
     expect(subjectHeading[0]).toHaveTextContent("English");
   });
 
-  it("renders the curriculum download button", () => {
-    const { queryAllByText } = renderWithTheme(<HeaderListing {...props} />);
-    const downloadLink = queryAllByText("Curriculum download (PDF)");
+  it("renders the curriculum download buttons by default", () => {
+    const { queryAllByTestId } = renderWithTheme(<HeaderListing {...props} />);
+    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    expect(downloadLinks).toHaveLength(2);
+  });
 
-    expect(downloadLink[0]).toBeInTheDocument();
+  it("does not renders the curriculum download button when no download is available", () => {
+    const { queryAllByTestId } = renderWithTheme(
+      <HeaderListing hasCurriculumDownload={false} {...props} />,
+    );
+    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    expect(downloadLinks).toHaveLength(0);
+  });
+
+  it("renders the curriculum download button when key stages are available", () => {
+    const { queryAllByTestId } = renderWithTheme(
+      <HeaderListing
+        keyStageSlug={"ks1"}
+        keyStageTitle={"Key Stage 1"}
+        {...props}
+      />,
+    );
+    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    expect(downloadLinks).toHaveLength(2);
   });
 });
