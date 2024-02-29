@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
@@ -19,6 +20,7 @@ import CurriculumDownloads, {
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
+  const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<string>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
@@ -34,24 +36,16 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     return documents;
   }, [data.documents]);
 
-  useEffect(() => {
-    const hashTab = window.location.hash.slice(1);
-    if (hashTab && categoryDocuments[hashTab]) {
-      setActiveTab(hashTab);
-    }
-  }, [categoryDocuments]);
-
   const updateTab = (category: string) => {
     setActiveTab(category);
-    const newUrl = `#${category}`;
+    const newUrl = `${window.location.pathname}#${category}`;
     window.history.replaceState(
       { ...window.history.state, as: newUrl, url: newUrl },
       "",
       newUrl,
     );
-    if (downloadsRef.current) {
-      downloadsRef.current.clearSelection();
-    }
+    delete router.query.keystage;
+    downloadsRef.current?.clearSelection();
   };
 
   const downloads: CurriculumDownload[] = [];
@@ -61,7 +55,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
           label: document.subject,
-          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&id=${document.slug}&extension=pdf`,
+          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
           icon: document.icon,
         });
       });
@@ -79,6 +73,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     });
   }
 
+  useEffect(() => {
+    const keystage = router.query.keystage as string;
+    const hashTab = keystage?.toUpperCase() || window.location.hash.slice(1);
+    if (hashTab && categoryDocuments[hashTab]) {
+      setActiveTab(hashTab);
+    }
+  }, [categoryDocuments, router.query.keystage]);
+
   return (
     <AppLayout
       seoProps={{
@@ -90,7 +92,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       $background={"white"}
     >
       <Box $background={"mint"} $pt={[20]}>
-        <Box $maxWidth={1280} $mh={"auto"} $ph={28} $pb={56} $width={"100%"}>
+        <Box
+          $maxWidth={1280}
+          $mh={"auto"}
+          $ph={28}
+          $pb={56}
+          $width={"100%"}
+          data-testid="breadcrumbsContainer"
+        >
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -109,11 +118,10 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 oakLinkProps: {
                   page: "curriculum-previous-downloads",
                 },
-                label: "Previous Downloads",
+                label: "Previous downloads",
                 disabled: true,
               },
             ]}
-            data-testid="breadcrumbs"
           />
           <Hr $color={"white"} />
           <OakFlex>
@@ -137,7 +145,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
                 $mb={"space-between-m"}
-                data-testid="heading"
+                data-testid="heading1"
               >
                 Previously released curricula
               </OakHeading>

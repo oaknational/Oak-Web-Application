@@ -42,13 +42,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     title,
     keyStageSlug,
     keyStageTitle,
-    subjectTitle,
     isNew,
     programmeFactor,
     subjectIconBackgroundColor,
     breadcrumbs,
     background,
-    tierSlug,
     hasCurriculumDownload = true,
     examBoardTitle,
     tierTitle,
@@ -56,7 +54,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
-  const specialistDownloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=${subjectSlug}&extension=pdf`;
+  const specialistDownloadLink = `/teachers/curriculum/previous-downloads#Specialist`;
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -100,22 +98,20 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               {hasCurriculumDownload && isKeyStagesAvailable && (
                 <HeaderListingCurriculumDownloadButton
                   keyStageSlug={keyStageSlug}
-                  keyStageTitle={keyStageTitle}
                   subjectSlug={subjectSlug}
-                  subjectTitle={subjectTitle}
-                  tier={tierSlug}
                 />
               )}
               {hasCurriculumDownload && !isKeyStagesAvailable && (
                 <ButtonAsLink
                   icon={"download"}
                   iconBackground="black"
-                  label={"Curriculum download (PDF)"}
+                  label={"Curriculum download"}
                   href={specialistDownloadLink}
                   page={null}
                   size="large"
                   variant="minimal"
                   $iconPosition={"trailing"}
+                  data-testid="curriculum-download-link"
                 />
               )}
             </Flex>
@@ -126,22 +122,20 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
         {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
-            keyStageTitle={keyStageTitle}
             subjectSlug={subjectSlug}
-            subjectTitle={subjectTitle}
-            tier={tierSlug}
           />
         )}
         {hasCurriculumDownload && !isKeyStagesAvailable && (
           <ButtonAsLink
             icon={"download"}
             iconBackground="black"
-            label={"Curriculum download (PDF)"}
+            label={"Curriculum download"}
             href={specialistDownloadLink}
             page={null}
             size="large"
             variant="minimal"
             $iconPosition={"trailing"}
+            data-testid="curriculum-download-link"
           />
         )}
       </Flex>
