@@ -1,3 +1,19 @@
+# [1.372.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.371.0...v1.372.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* remove risky regex ([18f19ed](https://github.com/oaknational/Oak-Web-Application/commit/18f19ed517e628b373a82c7678482c94d5a7781b))
+* update curriculum downloads icon ([c78525f](https://github.com/oaknational/Oak-Web-Application/commit/c78525f1a030016b37b1d6ce555b303b2b1ae05b))
+* update curriculum downloads test ([e815f98](https://github.com/oaknational/Oak-Web-Application/commit/e815f98d096aa59c018c14c411e4b2a2b51f27b1))
+* update subject selection logic in previous downloads ([39599ca](https://github.com/oaknational/Oak-Web-Application/commit/39599cadd6e179d1d198127d093b0f5a34dd7790))
+* updating tests ([baafb4a](https://github.com/oaknational/Oak-Web-Application/commit/baafb4a1f1b29f1766d3a063330c6afb2782cbd8))
+
+
+### Features
+
+* update curriculum links on unit listing pages ([f06a3be](https://github.com/oaknational/Oak-Web-Application/commit/f06a3bed42fd5174ef92d19257cbc41392c7b79d))
+
 # [1.371.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.370.0...v1.371.0) (2024-02-28)
 
 
