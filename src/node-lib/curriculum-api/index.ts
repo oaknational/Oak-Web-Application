@@ -496,6 +496,10 @@ const curriculumApi = {
     const res = await sdk.lessonOverviewCanonical(...args);
     const { lessons = [] } = transformMVCase(res);
 
+    if (lessons.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     const { introQuiz, exitQuiz } = res;
 
     // Transform quizzes here because the schema is not the same as the one returned by the API

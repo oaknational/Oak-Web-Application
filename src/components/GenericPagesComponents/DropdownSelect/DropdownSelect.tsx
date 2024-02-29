@@ -64,7 +64,11 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
         selectedValue={selectedValue}
       >
         {(item) => (
-          <Item key={item.value} textValue={item.label}>
+          <Item
+            key={item.value}
+            textValue={item.label}
+            data-testid={"selectItem"}
+          >
             <div>
               <Label>{item.label}</Label>
             </div>

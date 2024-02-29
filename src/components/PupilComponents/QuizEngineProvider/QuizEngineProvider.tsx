@@ -62,7 +62,7 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateQuizResult, completeSection, currentSection } =
+  const { updateSectionResult, completeSection, currentSection } =
     useLessonEngineContext();
 
   const filteredQuestions = questionsArray.filter((question) =>
@@ -91,12 +91,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   const handleScoreUpdate = useCallback(
     (_questionState: QuestionState[]) => {
-      updateQuizResult({
+      updateSectionResult({
         grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
         numQuestions: numInteractiveQuestions,
       });
     },
-    [numInteractiveQuestions, updateQuizResult],
+    [numInteractiveQuestions, updateSectionResult],
   );
 
   const updateQuestionMode = useCallback(
