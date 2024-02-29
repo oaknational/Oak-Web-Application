@@ -1,0 +1,16 @@
+query specialistUnitsAndLessonCount($_contains: jsonb) {
+  unitCount: published_mv_specialist_1_0_0_aggregate(
+    where: { combined_programme_fields: { _contains: $_contains } }
+  ) {
+    aggregate {
+      count(distinct: true, columns: unit_slug)
+    }
+  }
+  lessonCount: published_mv_specialist_1_0_0_aggregate(
+    where: { combined_programme_fields: { _contains: $_contains } }
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+  }
+}

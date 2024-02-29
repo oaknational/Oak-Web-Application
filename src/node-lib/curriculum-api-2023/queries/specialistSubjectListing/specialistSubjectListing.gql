@@ -1,0 +1,18 @@
+query specialistSubjectListing {
+  therapyProgrammes: published_mv_specialist_1_0_0(
+    distinct_on: synthetic_programme_slug
+    where: {
+      combined_programme_fields: { _contains: { subject_parent: "Therapies" } }
+    }
+  ) {
+    combined_programme_fields
+  }
+  specialistProgrammes: published_mv_specialist_1_0_0(
+    distinct_on: synthetic_programme_slug
+    where: {
+      combined_programme_fields: { _contains: { subject_parent: "Specialist" } }
+    }
+  ) {
+    combined_programme_fields
+  }
+}
