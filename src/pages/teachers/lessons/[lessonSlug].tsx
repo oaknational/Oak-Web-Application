@@ -82,36 +82,37 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
        * instead. Otherwise rethrow the error.
        * This is temporary logic until the migration.
        */
-      let newLesson;
-      let legacyLesson;
+
+      let lesson;
 
       try {
-        newLesson = await curriculumApi2023.lessonOverviewCanonical({
+        lesson = await curriculumApi2023.lessonOverviewCanonical({
           lessonSlug,
         });
       } catch (error) {
         if (
-          !(error instanceof OakError) ||
-          error.code !== "curriculum-api/not-found"
+          error instanceof OakError &&
+          error.code === "curriculum-api/not-found"
         ) {
+          try {
+            lesson = await curriculumApi.lessonOverviewCanonical({
+              lessonSlug,
+            });
+          } catch (error) {
+            if (
+              error instanceof OakError &&
+              error.code === "curriculum-api/not-found"
+            ) {
+              return {
+                notFound: true,
+              };
+            }
+          }
+        } else {
           throw error;
         }
       }
 
-      try {
-        legacyLesson = await curriculumApi.lessonOverviewCanonical({
-          lessonSlug,
-        });
-      } catch (error) {
-        if (
-          !(error instanceof OakError) ||
-          error.code !== "curriculum-api/not-found"
-        ) {
-          throw error;
-        }
-      }
-
-      const lesson = newLesson ?? legacyLesson;
       if (!lesson) {
         return {
           notFound: true,
