@@ -229,13 +229,20 @@ function CurriculumDownloads(
       const selectedDownload = downloads.find((download) =>
         download.url.endsWith(subject),
       );
-      if (selectedDownload) {
+      if (selectedDownload && category.toLowerCase() == router.query.keystage) {
         setHasSetPreselectedDownload(true);
         setSelectedUrl(selectedDownload.url);
         form.setValue("resources", [selectedDownload.url]);
       }
     }
-  }, [downloads, router.query.subject, hasSetPreselectedDownload, form]);
+  }, [
+    downloads,
+    router.query.subject,
+    hasSetPreselectedDownload,
+    form,
+    category,
+    router.query.keystage,
+  ]);
 
   return (
     <Box
