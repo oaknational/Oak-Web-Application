@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { act, render, renderHook } from "@testing-library/react";
+import { act, renderHook, render } from "@testing-library/react";
 import { OakSpan } from "@oaknational/oak-components";
 
 import {
@@ -7,6 +7,23 @@ import {
   allLessonReviewSections,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
+
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 
 describe("LessonEngineProvider", () => {
   const ProviderWrapper = ({ children }: { children: ReactNode }) => {
@@ -18,6 +35,11 @@ describe("LessonEngineProvider", () => {
       </LessonEngineProvider>
     );
   };
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   it("renders children correctly", () => {
     const { getByText } = render(
       <LessonEngineProvider
@@ -147,7 +169,7 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults).toEqual({});
 
     act(() => {
-      result.current.updateQuizResult({ grade: 0, numQuestions: 0 });
+      result.current.updateSectionResult({ grade: 0, numQuestions: 0 });
     });
 
     expect(result.current.sectionResults).toEqual({
@@ -155,14 +177,14 @@ describe("LessonEngineProvider", () => {
     });
   });
 
-  it('marks the section as incomplete when "updateQuizResult" is called', () => {
+  it('marks the section as incomplete when "updateSectionResult" is called', () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
     });
 
     act(() => {
       result.current.updateCurrentSection("starter-quiz");
-      result.current.updateQuizResult({ grade: 2, numQuestions: 4 });
+      result.current.updateSectionResult({ grade: 2, numQuestions: 4 });
     });
 
     // This ensures that when a pupil starts to retake a quiz the lesson
@@ -170,5 +192,85 @@ describe("LessonEngineProvider", () => {
     expect(result.current.sectionResults["starter-quiz"]?.isComplete).toEqual(
       false,
     );
+  });
+
+  it("sends tracking data when a lesson section is completed", () => {
+    const lessonSectionCompleted = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
+      .mockImplementation(lessonSectionCompleted);
+
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    act(() => {
+      result.current.completeSection("intro");
+    });
+    expect(lessonSectionCompleted).toHaveBeenCalled();
+  });
+
+  it("sends tracking data when the lesson is started", () => {
+    const lessonStarted = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonStarted")
+      .mockImplementation(lessonStarted);
+
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    act(() => {
+      result.current.proceedToNextSection();
+    });
+    expect(lessonStarted).toHaveBeenCalled();
+  });
+
+  it("sends quiz result data when a quiz section is complete", () => {
+    const lessonSectionCompleted = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
+      .mockImplementation(lessonSectionCompleted);
+
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ProviderWrapper,
+    });
+
+    act(() => {
+      result.current.updateCurrentSection("starter-quiz");
+    });
+
+    expect(result.current.currentSection).toEqual("starter-quiz");
+
+    act(() => {
+      result.current.updateSectionResult({
+        grade: 2,
+        numQuestions: 4,
+      });
+    });
+
+    expect(result.current.sectionResults["starter-quiz"]).toEqual({
+      grade: 2,
+      numQuestions: 4,
+      isComplete: false,
+    });
+
+    act(() => {
+      result.current.completeSection("starter-quiz");
+    });
+
+    expect(lessonSectionCompleted).toHaveBeenCalledWith({
+      pupilExperienceLessonSection: "starter-quiz",
+      pupilQuizGrade: 2,
+      pupilQuizNumQuestions: 4,
+      pupilVideoPlayed: undefined,
+      pupilVideoDurationSeconds: undefined,
+      pupilVideoTimeEllapsedSeconds: undefined,
+      pupilWorksheetAvailable: undefined,
+      pupilWorksheetDownloaded: undefined,
+    });
   });
 });

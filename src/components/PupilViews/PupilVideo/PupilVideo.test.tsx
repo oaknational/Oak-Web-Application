@@ -6,9 +6,19 @@ import { PupilViewsVideo } from "./PupilVideo.view";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
+import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+
+const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
+  if (userEventCallback) {
+    userEventCallback({ event: "play", timeElapsed: 0, duration: 0 });
+  }
+  return <span data-testid="video-player" />;
+};
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return () => <span data-testid="video-player" />;
+  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+    <VideoPlayerMock userEventCallback={userEventCallback} />
+  );
 });
 
 describe(PupilViewsVideo, () => {
@@ -138,5 +148,31 @@ describe(PupilViewsVideo, () => {
     await userEvent.click(getByText("Show sign language"));
 
     expect(queryByText("Hide sign language")).toBeInTheDocument();
+  });
+
+  it("updates the section result when the video plays", () => {
+    const updateSectionResult = jest.fn();
+
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ updateSectionResult })}
+        >
+          <PupilViewsVideo
+            videoMuxPlaybackId="123"
+            videoWithSignLanguageMuxPlaybackId="234"
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacy={false}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(updateSectionResult).toHaveBeenCalledWith({
+      played: true,
+      duration: 0,
+      timeElapsed: 0,
+    });
   });
 });

@@ -1,3 +1,61 @@
+## [1.372.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.1...v1.372.2) (2024-02-29)
+
+## [1.372.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.0...v1.372.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* update canonical lesson mv version ([d96688f](https://github.com/oaknational/Oak-Web-Application/commit/d96688f075cb510b4717c86b26956320da371734))
+* wrap request in try catch and throw error when no results ([dc8d234](https://github.com/oaknational/Oak-Web-Application/commit/dc8d234705b38d6df9bd7328ed5c5039fa3b3594))
+
+# [1.372.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.371.0...v1.372.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* remove risky regex ([18f19ed](https://github.com/oaknational/Oak-Web-Application/commit/18f19ed517e628b373a82c7678482c94d5a7781b))
+* update curriculum downloads icon ([c78525f](https://github.com/oaknational/Oak-Web-Application/commit/c78525f1a030016b37b1d6ce555b303b2b1ae05b))
+* update curriculum downloads test ([e815f98](https://github.com/oaknational/Oak-Web-Application/commit/e815f98d096aa59c018c14c411e4b2a2b51f27b1))
+* update subject selection logic in previous downloads ([39599ca](https://github.com/oaknational/Oak-Web-Application/commit/39599cadd6e179d1d198127d093b0f5a34dd7790))
+* updating tests ([baafb4a](https://github.com/oaknational/Oak-Web-Application/commit/baafb4a1f1b29f1766d3a063330c6afb2782cbd8))
+
+
+### Features
+
+* update curriculum links on unit listing pages ([f06a3be](https://github.com/oaknational/Oak-Web-Application/commit/f06a3bed42fd5174ef92d19257cbc41392c7b79d))
+
+# [1.371.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.370.0...v1.371.0) (2024-02-28)
+
+
+### Features
+
+* update mv versions ([37906ea](https://github.com/oaknational/Oak-Web-Application/commit/37906ead9382f20c054dd06eac6170161261969a))
+
+# [1.370.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.1...v1.370.0) (2024-02-28)
+
+
+### Bug Fixes
+
+* added provider to tests ([3397c72](https://github.com/oaknational/Oak-Web-Application/commit/3397c723fec28d134cb7e838094f26f2fe4cb20b))
+* missing fields from fixture ([8bb3a7f](https://github.com/oaknational/Oak-Web-Application/commit/8bb3a7fac5499d08cb016c07c7abd940d08b0256))
+* resolved type issues ([993bd50](https://github.com/oaknational/Oak-Web-Application/commit/993bd504a1cc3b5f8b1f8342b2f92526b6de4bc0))
+* type errors ([e9cb843](https://github.com/oaknational/Oak-Web-Application/commit/e9cb8434514aa9912c05977eb61368c609cbe74b))
+* type issue ([85b8391](https://github.com/oaknational/Oak-Web-Application/commit/85b83912102e18ca8050b53ed899e885cd7ff61f))
+* types resolved between Avo and OWA ([81337c4](https://github.com/oaknational/Oak-Web-Application/commit/81337c4813bd7b8d8f29f8116c75d70220788f82))
+
+
+### Features
+
+* add missing functions to mock ([0de2eb8](https://github.com/oaknational/Oak-Web-Application/commit/0de2eb836b10727725426418503e95ccf25b7b4e))
+* added lessonSectionAbandoned ([8694bb3](https://github.com/oaknational/Oak-Web-Application/commit/8694bb30ac48def834c5ce4d553fcb1463b0dfb2))
+* avo extra props ([412acce](https://github.com/oaknational/Oak-Web-Application/commit/412acce41e14dab1955cef8345bed4f7c52a5d78))
+* callback for various video events ([ba50b18](https://github.com/oaknational/Oak-Web-Application/commit/ba50b18b303a4a8d508bc4be84fbe688725e3c6c))
+* implement test ([b72d69e](https://github.com/oaknational/Oak-Web-Application/commit/b72d69ec4f7a0ef07a2ddbe973fa1dfd828a84bc))
+* make updateQuizResult into a generic action ([5ea66c3](https://github.com/oaknational/Oak-Web-Application/commit/5ea66c35aa5ba19d2a5a707ed41979d771380e44))
+* tracking for worksheet download ([5e7e5ea](https://github.com/oaknational/Oak-Web-Application/commit/5e7e5ead0194fd4abacda2743e6f187437fd4cd5))
+* use pupil analytics hook ([7bff7b0](https://github.com/oaknational/Oak-Web-Application/commit/7bff7b0eded005838b4b314a803c68dcc745df74))
+* wip avo tracking ([11cf9a3](https://github.com/oaknational/Oak-Web-Application/commit/11cf9a311b89b87dca120fc7869e87cf0c66b911))
+
 ## [1.369.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.369.0...v1.369.1) (2024-02-28)
 
 

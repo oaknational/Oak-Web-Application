@@ -39,6 +39,13 @@ export type VideoPlayerProps = {
   title: string;
   location: VideoLocationValueType;
   isLegacy: boolean;
+  userEventCallback?: (event: VideoEventCallbackArgs) => void;
+};
+
+export type VideoEventCallbackArgs = {
+  event: "play" | "playing" | "pause" | "end";
+  timeElapsed: number | null;
+  duration: number | null;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -49,7 +56,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     playbackId,
     playbackPolicy,
     isLegacy,
+    userEventCallback = () => {},
   } = props;
+
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
@@ -109,17 +118,38 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
     videoTracking.onPlay();
+    userEventCallback({
+      event: "play",
+      duration: getDuration(mediaElRef),
+      timeElapsed: getTimeElapsed(mediaElRef),
+    });
   };
 
   const onPause = () => {
     mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
     videoTracking.onPause();
+    userEventCallback({
+      event: "pause",
+      duration: getDuration(mediaElRef),
+      timeElapsed: getTimeElapsed(mediaElRef),
+    });
   };
 
   const onTimeUpdate = () => {
     if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
       videoTracking.onEnd();
       hasTrackedEndRef.current = true;
+      userEventCallback({
+        event: "end",
+        duration: getDuration(mediaElRef),
+        timeElapsed: getTimeElapsed(mediaElRef),
+      });
+    } else if (mediaElRef.current?.classList.contains(PLAYING_CLASSNAME)) {
+      userEventCallback({
+        event: "playing",
+        duration: getDuration(mediaElRef),
+        timeElapsed: getTimeElapsed(mediaElRef),
+      });
     }
   };
   const onError = (evt: Event) => {
