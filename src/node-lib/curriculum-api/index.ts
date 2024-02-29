@@ -635,6 +635,7 @@ const curriculumApi = {
       },
       {
         ...downloads[0],
+        expired: false,
         pathways: [],
         isLegacy: true,
         hasDownloadableResources: true,
