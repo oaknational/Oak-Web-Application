@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import type { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -61,6 +61,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
             const a = answers?.["multiple-choice"]?.[i];
             a && selectedAnswers.push(a);
           }
+
           handleSubmitMCAnswer(selectedAnswers);
           break;
         }
@@ -79,7 +80,8 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     };
 
     innerRender = (
-      <OakForm
+      <OakBox
+        as="form"
         id={formId}
         onSubmit={handleSubmit}
         $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
@@ -102,7 +104,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
-      </OakForm>
+      </OakBox>
     );
   }
 

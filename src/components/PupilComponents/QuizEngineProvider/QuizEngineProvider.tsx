@@ -66,7 +66,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     useLessonEngineContext();
 
   const filteredQuestions = questionsArray.filter((question) =>
-    ["multiple-choice", "short-answer", "explanatory-text"].includes(
+    ["multiple-choice", "short-answer", "explanatory-text", "order"].includes(
       question.questionType,
     ),
   );
