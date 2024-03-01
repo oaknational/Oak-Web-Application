@@ -21,6 +21,10 @@ const headers: Headers = {
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const sdk = getSdk(graphqlClient);
 
+/*
+ * batched queries not currently supported with the sdk
+ * see https://github.com/dotansimha/graphql-code-generator-community/issues/204
+ */
 export const getBatchedRequests = async (
   requests: Array<{
     document: DocumentNode;
