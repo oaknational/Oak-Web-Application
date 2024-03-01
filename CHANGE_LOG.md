@@ -1,3 +1,10 @@
+# [1.373.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.2...v1.373.0) (2024-03-01)
+
+
+### Features
+
+* add expired ([fc14a46](https://github.com/oaknational/Oak-Web-Application/commit/fc14a464f1a67684689b0c92e2ca9ea06588fc12))
+
 ## [1.372.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.1...v1.372.2) (2024-02-29)
 
 ## [1.372.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.0...v1.372.1) (2024-02-29)
