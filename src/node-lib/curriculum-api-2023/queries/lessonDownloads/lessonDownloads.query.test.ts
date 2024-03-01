@@ -17,6 +17,7 @@ const downloads = [
     keyStageTitle: "key-stage-title",
     downloads: [],
     hasDownloadableResources: true,
+    expired: true,
   },
   {
     programmeSlug: "programme-slug-1",
@@ -30,6 +31,7 @@ const downloads = [
     keyStageTitle: "key-stage-title",
     downloads: [],
     hasDownloadableResources: true,
+    expired: true,
   },
 ];
 

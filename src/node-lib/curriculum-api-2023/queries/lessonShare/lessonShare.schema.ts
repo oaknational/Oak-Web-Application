@@ -29,6 +29,7 @@ export const lessonShareSchema = z.object({
   lessonCohort: z.string().nullish(),
   shareableResources: z.array(lessonShareResourceSchema),
   isLegacy: z.boolean(),
+  expired: z.boolean().nullable(),
 });
 
 export type LessonShareData = z.infer<typeof lessonShareSchema>;

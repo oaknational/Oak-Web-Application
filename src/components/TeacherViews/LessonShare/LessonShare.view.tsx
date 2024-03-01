@@ -36,6 +36,7 @@ type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
+        expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
@@ -46,6 +47,7 @@ type LessonShareProps =
   | {
       isCanonical: false;
       lesson: LessonPathway & {
+        expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
@@ -67,7 +69,8 @@ const pupilUnitsLive = ["shakespearean-comedy-the-tempest-88f0"];
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, shareableResources, isLegacy, expired } =
+    lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -167,7 +170,7 @@ export function LessonShare(props: LessonShareProps) {
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
           header="Share"
-          showNoResources={!hasResources}
+          showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
           email={emailFromLocalStorage}
           school={schoolNameFromLocalStorage}
