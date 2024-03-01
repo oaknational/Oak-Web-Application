@@ -48,7 +48,11 @@ export const specialistUnitsAndLessonCountSchema = z.object({
 });
 
 export type SpecialistSubject = z.infer<typeof specialistSubjectSchema>;
-export type SubjectListingPageData = z.infer<typeof subjectListingSchema>;
-export type SubjectListingProgrammes = z.infer<typeof programmesSchema>;
+export type SpecialistSubjectListingPageData = z.infer<
+  typeof subjectListingSchema
+>;
+export type SpecialistSubjectListingProgrammes = z.infer<
+  typeof programmesSchema
+>;
 export type SpecialistProgramme = z.infer<typeof specialistProgrammeSchema>;
 export default subjectListingSchema;

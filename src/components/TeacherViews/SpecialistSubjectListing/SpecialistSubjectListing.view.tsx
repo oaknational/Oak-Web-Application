@@ -3,26 +3,12 @@ import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import { SpecialistSubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
-export type SpecialistSubject = {
-  subjectSlug: string;
-  subjectTitle: string;
-  unitCount: number;
-  lessonCount: number;
-  programmeSlug: string;
-  programmeCount: number;
-};
-
-export type SpecialistSubjectListingPageData = {
-  therapies: Array<SpecialistSubject>;
-  specialist: Array<SpecialistSubject>;
-};
-
-const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
+const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
   props,
 ) => {
   const { specialist, therapies } = props;
-
   return (
     <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
@@ -54,4 +40,4 @@ const SpecialistSubjectListingPage: FC<SpecialistSubjectListingPageData> = (
   );
 };
 
-export default SpecialistSubjectListingPage;
+export default SpecialistSubjectListing;

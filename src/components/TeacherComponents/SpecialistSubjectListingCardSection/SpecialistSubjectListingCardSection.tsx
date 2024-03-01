@@ -8,8 +8,8 @@ import {
 
 import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
-import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import SpecialistSubjectCard from "@/components/TeacherComponents/SpecialistSubjectListingCard/SpecialistSubjectCard";
+import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
 const getSpecialistCardBackgroundColour = (heading: string) => {
   switch (heading) {

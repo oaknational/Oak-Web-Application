@@ -36676,7 +36676,7 @@ export type SpecialistUnitsAndLessonCountQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_0_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_0_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_0_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_0_aggregate_fields', count: number } | null } };
+export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_0_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_0_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_0_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_0_aggregate_fields', count: number } | null }, programmeCount: { __typename?: 'published_mv_specialist_1_0_0_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_0_aggregate_fields', count: number } | null } };
 
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
@@ -37034,6 +37034,13 @@ export const SpecialistUnitsAndLessonCountDocument = gql`
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
+    }
+  }
+  programmeCount: published_mv_specialist_1_0_0_aggregate(
+    where: {combined_programme_fields: {_contains: $_contains}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: synthetic_programme_slug)
     }
   }
 }
