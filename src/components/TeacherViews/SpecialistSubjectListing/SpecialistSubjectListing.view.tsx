@@ -10,7 +10,7 @@ const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
 ) => {
   const { specialist, therapies } = props;
   return (
-    <OakFlex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"} $mv="space-between-xl">
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
         <OakHeading
           $font={"heading-1"}
