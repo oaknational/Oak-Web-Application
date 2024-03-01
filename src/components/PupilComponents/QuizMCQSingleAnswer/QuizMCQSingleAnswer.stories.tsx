@@ -19,7 +19,6 @@ import {
 
 const meta = {
   component: QuizMCQSingleAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>

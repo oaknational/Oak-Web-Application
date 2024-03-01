@@ -96,7 +96,7 @@ describe("pages/teachers/lessons", () => {
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
           hasDownloadableResources: false,
-          expired: true,
+          expired: false,
           lessonCohort: null,
         })}
       />,
@@ -117,7 +117,7 @@ describe("pages/teachers/lessons", () => {
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
           hasDownloadableResources: false,
-          expired: true,
+          expired: false,
           lessonCohort: LEGACY_COHORT,
         })}
       />,

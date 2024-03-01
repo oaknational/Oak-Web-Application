@@ -34,6 +34,7 @@ describe("lessonDownloadsCanonical()", () => {
               lessonCohort: "2023-2024",
               downloads: [],
               hasDownloadableResources: true,
+              expired: false,
             },
             {
               programmeSlug: "programme-slug-1",
@@ -48,6 +49,7 @@ describe("lessonDownloadsCanonical()", () => {
               lessonCohort: "2023-2024",
               downloads: [],
               hasDownloadableResources: true,
+              expired: false,
             },
           ],
         }),
