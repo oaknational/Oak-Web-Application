@@ -6,6 +6,7 @@ const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>,
 ): LessonOverviewPageData => {
   return {
+    expired: false,
     isLegacy: true,
     unitTitle: "Simple, Compound and Adverbial Complex Sentences",
     programmeSlug: "english-primary-ks2",

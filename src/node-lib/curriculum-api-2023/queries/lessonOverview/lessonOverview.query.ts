@@ -33,7 +33,6 @@ const lessonOverviewQuery =
       ...lesson,
       isLegacy: false,
       hasCopyrightMaterial: false,
-      expired: false,
     });
   };
 

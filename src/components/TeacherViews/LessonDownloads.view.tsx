@@ -33,6 +33,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 
 type BaseLessonDownload = {
+  expired: boolean | null;
   isLegacy: boolean;
   lessonTitle: string;
   lessonSlug: string;
@@ -62,8 +63,13 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, hasDownloadableResources } =
-    lesson;
+  const {
+    lessonTitle,
+    lessonSlug,
+    downloads,
+    hasDownloadableResources,
+    expired,
+  } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -231,7 +237,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             handleToggleSelectAll={handleToggleSelectAll}
             selectAllChecked={selectAllChecked}
             header="Download"
-            showNoResources={!hasResources || !hasDownloadableResources}
+            showNoResources={
+              !hasResources || !hasDownloadableResources || Boolean(expired)
+            }
             showLoading={isLocalStorageLoading}
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
@@ -245,8 +253,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             resourcesHeader="Lesson resources"
             triggerForm={form.trigger}
             apiError={apiError}
+            hideSelectAll={Boolean(expired)}
             cardGroup={
-              hasDownloadableResources && (
+              hasDownloadableResources &&
+              !expired && (
                 <DownloadCardGroup
                   control={form.control}
                   downloads={downloads}
@@ -266,6 +276,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
+                  expired ||
                   !hasDownloadableResources ||
                   (!form.formState.isValid && !localStorageDetails)
                 }
