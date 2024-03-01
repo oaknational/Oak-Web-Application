@@ -43,6 +43,7 @@ const specialistLessonDownloadsFixtures = (
 ): SpecialistLessonDownloadsProps => {
   return {
     lesson: {
+      expired: false,
       isLegacy: true,
       lessonSlug: "test-lesson-1",
       lessonTitle: "Test lesson",
