@@ -10,14 +10,14 @@ const specialistUnitsAndLessonCountsQuery =
       _contains: { subject_slug: args.subject },
     });
 
-    const { unitCount, lessonCount } =
+    const { unitCount, lessonCount, programmeCount } =
       specialistUnitsAndLessonCountSchema.parse(res);
 
-    if (!unitCount || !lessonCount) {
+    if (!unitCount || !lessonCount || !programmeCount) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    return { unitCount, lessonCount };
+    return { unitCount, lessonCount, programmeCount };
   };
 
 export default specialistUnitsAndLessonCountsQuery;

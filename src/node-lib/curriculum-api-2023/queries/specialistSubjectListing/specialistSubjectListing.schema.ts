@@ -21,6 +21,7 @@ export const specialistSubjectSchema = z.object({
   subjectTitle: z.string(),
   unitCount: z.number(),
   lessonCount: z.number(),
+  programmeCount: z.number(),
 });
 
 const subjectListingSchema = z.object({
@@ -35,6 +36,11 @@ export const specialistUnitsAndLessonCountSchema = z.object({
     }),
   }),
   lessonCount: z.object({
+    aggregate: z.object({
+      count: z.number(),
+    }),
+  }),
+  programmeCount: z.object({
     aggregate: z.object({
       count: z.number(),
     }),

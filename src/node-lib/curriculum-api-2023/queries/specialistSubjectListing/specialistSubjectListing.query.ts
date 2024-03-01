@@ -25,6 +25,7 @@ const getSubjects = async (sdk: Sdk, programmes: SpecialistProgramme[]) => {
           subjectTitle: programme.combined_programme_fields.subject,
           unitCount: unitCount.aggregate.count,
           lessonCount: lessonCount.aggregate.count,
+          programmeCount: programmeCount.aggregate.count,
         };
         awaitedSubjects.push(subject);
       }
