@@ -17,7 +17,6 @@ import Pagination, {
 import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import ComingSoonListItem from "@/components/TeacherComponents/ComingSoonListItem";
 
 export type LessonListProps = {
   lessonCount: number;
@@ -30,7 +29,6 @@ export type LessonListProps = {
   headingTag: OakHeadingTag;
   unitTitle: string;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
-  isNew: boolean;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -49,7 +47,6 @@ const LessonList: FC<LessonListProps> = (props) => {
     currentPageItems,
     unitTitle,
     onClick,
-    isNew,
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
@@ -72,22 +69,16 @@ const LessonList: FC<LessonListProps> = (props) => {
                 key={`LessonList-LessonListItem-${item.lessonSlug}`}
                 data-testid={"lesson-list-item"}
               >
-                {isNew && item.expired ? (
-                  <ComingSoonListItem
-                    {...item}
-                    index={index + pageSize * (currentPage - 1)}
-                    firstItemRef={index === 0 ? firstItemRef : null}
-                  />
-                ) : (
-                  <LessonListItem
-                    {...item}
-                    unitTitle={unitTitle}
-                    hideTopHeading
-                    index={index + pageSize * (currentPage - 1)}
-                    firstItemRef={index === 0 ? firstItemRef : null}
-                    onClick={onClick}
-                  />
-                )}
+                (
+                <LessonListItem
+                  {...item}
+                  unitTitle={unitTitle}
+                  hideTopHeading
+                  index={index + pageSize * (currentPage - 1)}
+                  firstItemRef={index === 0 ? firstItemRef : null}
+                  onClick={onClick}
+                />
+                )
               </OakLI>
             ))}
           </OakUL>
