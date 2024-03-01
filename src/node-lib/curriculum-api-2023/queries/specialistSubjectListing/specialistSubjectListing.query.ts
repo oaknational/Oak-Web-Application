@@ -1,6 +1,4 @@
-import { GraphQLClient } from "graphql-request";
-
-import { Sdk } from "../../sdk";
+import { Sdk, getBatchedRequests } from "../../sdk";
 import { SpecialistUnitsAndLessonCountDocument } from "../../generated/sdk";
 
 import {
@@ -11,9 +9,8 @@ import {
 } from "./specialistSubjectListing.schema";
 
 import OakError from "@/errors/OakError";
-import getServerConfig from "@/node-lib/getServerConfig";
 
-const getCountVariables = (programmes: SpecialistProgramme[]) => {
+const getBatchRequestVariables = (programmes: SpecialistProgramme[]) => {
   return programmes.reduce((acc, programme) => {
     const subjectSlug = programme.combined_programme_fields.subject_slug;
     if (!acc.find((s) => s.subjectSlug === subjectSlug)) {
@@ -30,18 +27,10 @@ const getCountVariables = (programmes: SpecialistProgramme[]) => {
   }, [] as Array<SpecialistSubject>);
 };
 
-const populateSubjectCounts = async (programmes: SpecialistProgramme[]) => {
-  const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
-  const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
-  const curriculumApiAuthKey = getServerConfig("curriculumApi2023AuthKey");
-  type Headers = { "x-oak-auth-type": string; "x-oak-auth-key": string };
-  const headers: Headers = {
-    "x-oak-auth-type": curriculumApiAuthType,
-    "x-oak-auth-key": curriculumApiAuthKey,
-  };
-  const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-
-  const counts = getCountVariables(programmes);
+const populateSubjectsWithBatchResponses = async (
+  programmes: SpecialistProgramme[],
+) => {
+  const counts = getBatchRequestVariables(programmes);
   const batchRequests = counts.map((c) => {
     return {
       document: SpecialistUnitsAndLessonCountDocument,
@@ -49,7 +38,7 @@ const populateSubjectCounts = async (programmes: SpecialistProgramme[]) => {
     };
   });
 
-  const data = await graphqlClient.batchRequests(batchRequests);
+  const data = await getBatchedRequests(batchRequests);
 
   return counts.map((p, i) => {
     const res = data[i]?.data;
@@ -66,6 +55,17 @@ const populateSubjectCounts = async (programmes: SpecialistProgramme[]) => {
   });
 };
 
+const getProgrammesFromList = (
+  programmes: SpecialistSubject[],
+  source: SpecialistProgramme[],
+) => {
+  return programmes.filter((p) =>
+    source.find(
+      (s) => s.combined_programme_fields.subject_slug === p.subjectSlug,
+    ),
+  );
+};
+
 const specialistSubjectListingQuery = (sdk: Sdk) => async () => {
   const res = await sdk.specialistSubjectListing();
   const { therapyProgrammes, specialistProgrammes } =
@@ -75,21 +75,13 @@ const specialistSubjectListingQuery = (sdk: Sdk) => async () => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  const programmes = await populateSubjectCounts(
+  const programmes = await populateSubjectsWithBatchResponses(
     therapyProgrammes.concat(specialistProgrammes),
   );
 
   return {
-    therapies: programmes.filter((p) =>
-      therapyProgrammes.find(
-        (t) => t.combined_programme_fields.subject_slug === p.subjectSlug,
-      ),
-    ),
-    specialist: programmes.filter((p) =>
-      specialistProgrammes.find(
-        (s) => s.combined_programme_fields.subject_slug === p.subjectSlug,
-      ),
-    ),
+    therapies: getProgrammesFromList(programmes, therapyProgrammes),
+    specialist: getProgrammesFromList(programmes, specialistProgrammes),
   };
 };
 

@@ -1,4 +1,5 @@
 import { GraphQLClient } from "graphql-request";
+import { DocumentNode } from "graphql";
 
 import getServerConfig from "../getServerConfig";
 
@@ -16,8 +17,19 @@ const headers: Headers = {
   "x-oak-auth-type": curriculumApiAuthType,
   "x-oak-auth-key": curriculumApiAuthKey,
 };
+
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const sdk = getSdk(graphqlClient);
+
+export const getBatchedRequests = async (
+  requests: Array<{
+    document: DocumentNode;
+    variables: Record<string, unknown>;
+  }>,
+) => {
+  const data = await graphqlClient.batchRequests(requests);
+  return data;
+};
 
 export type Sdk = typeof sdk;
 export default sdk;
