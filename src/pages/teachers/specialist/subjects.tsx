@@ -47,6 +47,17 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      // TODO: remove this once specialist is published
+      const therapiesAndSpecialistExist =
+        curriculumData.therapies.length > 0 &&
+        curriculumData.specialist.length > 0;
+
+      if (!therapiesAndSpecialistExist) {
+        return {
+          notFound: true,
+        };
+      }
+
       const results: GetStaticPropsResult<SpecialistSubjectistingPageProps> = {
         props: {
           curriculumData,
