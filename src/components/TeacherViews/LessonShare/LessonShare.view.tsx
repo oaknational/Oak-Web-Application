@@ -204,6 +204,7 @@ export function LessonShare(props: LessonShareProps) {
             <LessonShareLinks
               disabled={
                 hasFormErrors ||
+                expired ||
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
