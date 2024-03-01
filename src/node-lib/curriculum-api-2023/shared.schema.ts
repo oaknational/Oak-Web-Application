@@ -180,7 +180,7 @@ export const baseLessonOverviewSchema = z.object({
   isWorksheetLandscape: z.boolean().optional().nullable(),
   hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
-  expired: z.boolean().optional().nullable(),
+  expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
@@ -218,6 +218,7 @@ export const baseLessonDownloadsSchema = z.object({
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
   hasDownloadableResources: z.boolean(),
+  expired: z.boolean().nullable(),
 });
 
 export const lessonListSchema = z.array(
@@ -226,7 +227,7 @@ export const lessonListSchema = z.array(
     lessonTitle: z.string(),
     description: z.string(),
     pupilLessonOutcome: z.string().nullish(),
-    expired: z.boolean(),
+    expired: z.boolean().nullable(),
     quizCount: z.number().nullish(),
     videoCount: z.number().nullish(),
     presentationCount: z.number().nullish(),
