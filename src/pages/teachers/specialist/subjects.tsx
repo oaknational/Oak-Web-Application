@@ -6,9 +6,18 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { SpecialistSubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 import SpecialistSubjectListing from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 export type SpecialistSubjectistingPageProps = {
   curriculumData: SpecialistSubjectListingPageData;
+};
+
+const SEO = {
+  ...getSeoProps({
+    title: `Free Specialist Teaching Resources for Lesson Planning`,
+    description: "Specialist subjects",
+  }),
+  ...{ noFollow: true, noIndex: true },
 };
 
 const SpecialistSubjectListingPage: NextPage<
@@ -16,11 +25,8 @@ const SpecialistSubjectListingPage: NextPage<
 > = ({ curriculumData }) => {
   const { therapies, specialist } = curriculumData;
 
-  //   const { track } = useAnalytics();
-  //   const { analyticsUseCase } = useAnalyticsPageProps();
-
   return (
-    <AppLayout seoProps={{ title: "", description: "" }}>
+    <AppLayout seoProps={SEO}>
       <SpecialistSubjectListing therapies={therapies} specialist={specialist} />
     </AppLayout>
   );
