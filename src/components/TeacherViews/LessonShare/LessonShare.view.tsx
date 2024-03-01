@@ -183,13 +183,13 @@ export function LessonShare(props: LessonShareProps) {
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
-          hideSelectAll={shareToNewPupilExperience}
+          hideSelectAll={shareToNewPupilExperience || Boolean(expired)}
           cardGroup={
             <LessonShareCardGroup
               control={form.control}
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}
-              shareableResources={shareableResources}
+              shareableResources={expired ? [] : shareableResources}
               hideCheckboxes={shareToNewPupilExperience}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
@@ -204,6 +204,7 @@ export function LessonShare(props: LessonShareProps) {
             <LessonShareLinks
               disabled={
                 hasFormErrors ||
+                expired ||
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
