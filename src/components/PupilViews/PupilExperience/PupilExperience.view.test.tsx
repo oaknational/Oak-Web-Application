@@ -4,16 +4,22 @@ import {
 } from "./PupilExperience.view";
 
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
   useLessonEngineContext: jest.fn(),
 }));
+
+const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
   describe("pickAvailableSectionsForLesson", () => {
@@ -59,6 +65,7 @@ describe("PupilExperienceView", () => {
 
     it("should render", () => {
       const lessonData = pupilLessonOverviewFixture();
+      const pupilPathwayData = getPupilPathwayData(lessonData);
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -67,11 +74,13 @@ describe("PupilExperienceView", () => {
             currentSection: "overview",
           }),
         );
-      const { getByText } = renderWithTheme(
-        <PupilExperienceView
-          curriculumData={lessonData}
-          hasWorksheet={false}
-        />,
+      const { getByText } = render(
+        <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+          <PupilExperienceView
+            curriculumData={lessonData}
+            hasWorksheet={false}
+          />
+        </PupilAnalyticsProvider>,
       );
 
       expect(getByText(lessonData.lessonTitle)).toBeInTheDocument();
@@ -94,17 +103,19 @@ describe("PupilExperienceView", () => {
             }),
           );
 
-        const { getByText } = renderWithTheme(
-          <PupilExperienceView
-            curriculumData={lessonData}
-            hasWorksheet={false}
-          />,
+        const pupilPathwayData = getPupilPathwayData(lessonData);
+
+        const { getByText } = render(
+          <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+            <PupilExperienceView
+              curriculumData={lessonData}
+              hasWorksheet={false}
+            />
+          </PupilAnalyticsProvider>,
         );
 
         expect(getByText(name as RegExp)).toBeInTheDocument();
       });
     });
   });
-
-  it("should render the overview section", () => {});
 });

@@ -25,6 +25,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -84,6 +85,23 @@ const customPolicyComponent: PortableTextComponents = {
           aria-label={ariaLabel}
           $textDecoration={"underline"}
           page={null}
+        >
+          {children}
+        </OwaLink>
+      );
+    },
+    internalLink: ({ children, value }) => {
+      let ariaLabel = "";
+      if (Array.isArray(children)) {
+        ariaLabel = children[0];
+      }
+
+      return (
+        <OwaLink
+          aria-label={ariaLabel}
+          href={resolveInternalHref(value.reference)}
+          page={null}
+          $textDecoration={"underline"}
         >
           {children}
         </OwaLink>
