@@ -1,6 +1,8 @@
 import { screen } from "@testing-library/dom";
 
-import SpecialistSubjectListingPage, { getStaticProps } from "@/pages/teachers/specialist/subjects";
+import SpecialistSubjectListingPage, {
+  getStaticProps,
+} from "@/pages/teachers/specialist/subjects";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
@@ -8,11 +10,6 @@ import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2
 const render = renderWithProviders();
 
 describe("pages/specialist/subjects", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-  });
-
   it("renders therapies and specialist", () => {
     render(
       <SpecialistSubjectListingPage
@@ -64,11 +61,37 @@ describe("pages/specialist/subjects", () => {
   });
 });
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  specialistSubjectListing: jest.fn(),
+}));
+
 describe("getStaticProps", () => {
-  it("Should fetch the correct data", async () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+  it("should return  404 page when there are no specialist or tharpies", async () => {
+    const result = await getStaticProps({});
+    expect(result).toEqual({ notFound: true });
+  });
+  it("Should call the api", async () => {
     await getStaticProps({});
 
     expect(curriculumApi.specialistSubjectListing).toHaveBeenCalledTimes(1);
     expect(curriculumApi.specialistSubjectListing).toHaveBeenCalledWith();
+  });
+  it("should fetch the data and return the props", async () => {
+    const curriculumData = specialistSubjectListingFixture2023();
+    (curriculumApi.specialistSubjectListing as jest.Mock).mockResolvedValue(
+      curriculumData,
+    );
+
+    const result = await getStaticProps({});
+
+    expect(result).toEqual({
+      props: {
+        curriculumData,
+      },
+    });
   });
 });

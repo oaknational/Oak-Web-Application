@@ -5,26 +5,27 @@ import {
   SpecialistProgramme,
   SpecialistSubject,
   programmesSchema,
+  specialistSubjectSchema,
   specialistUnitsAndLessonCountSchema,
 } from "./specialistSubjectListing.schema";
 
 import OakError from "@/errors/OakError";
 
 const getBatchRequestVariables = (programmes: SpecialistProgramme[]) => {
-  return programmes.reduce((acc, programme) => {
-    const subjectSlug = programme.combined_programme_fields.subject_slug;
-    if (!acc.find((s) => s.subjectSlug === subjectSlug)) {
-      const subject = {
-        subjectSlug: subjectSlug,
-        subjectTitle: programme.combined_programme_fields.subject,
-        unitCount: 0,
-        lessonCount: 0,
-        programmeCount: 0,
-      };
-      acc.push(subject);
-    }
-    return acc;
-  }, [] as Array<SpecialistSubject>);
+  return programmes.reduce(
+    (acc, programme) => {
+      const subjectSlug = programme.combined_programme_fields.subject_slug;
+      if (!acc.find((s) => s.subjectSlug === subjectSlug)) {
+        const subject = {
+          subjectSlug: subjectSlug,
+          subjectTitle: programme.combined_programme_fields.subject,
+        };
+        acc.push(subject);
+      }
+      return acc;
+    },
+    [] as Array<Partial<SpecialistSubject>>,
+  );
 };
 
 const populateSubjectsWithBatchResponses = async (
@@ -40,7 +41,7 @@ const populateSubjectsWithBatchResponses = async (
 
   const data = await getBatchedRequests(batchRequests);
 
-  return counts.map((p, i) => {
+  const expandedSubjects = counts.map((p, i) => {
     const res = data[i]?.data;
     if (res) {
       const { unitCount, lessonCount, programmeCount } =
@@ -48,14 +49,17 @@ const populateSubjectsWithBatchResponses = async (
       p.lessonCount = lessonCount.aggregate.count;
       p.unitCount = unitCount.aggregate.count;
       p.programmeCount = programmeCount.aggregate.count;
-      return p;
+      const parsedSubject = specialistSubjectSchema.parse(p);
+      return parsedSubject;
     } else {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
   });
+
+  return expandedSubjects;
 };
 
-const getProgrammesFromList = (
+const filterProgrammesBySubject = (
   programmes: SpecialistSubject[],
   source: SpecialistProgramme[],
 ) => {
@@ -75,13 +79,13 @@ const specialistSubjectListingQuery = (sdk: Sdk) => async () => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  const programmes = await populateSubjectsWithBatchResponses(
+  const allSubjects = await populateSubjectsWithBatchResponses(
     therapyProgrammes.concat(specialistProgrammes),
   );
 
   return {
-    therapies: getProgrammesFromList(programmes, therapyProgrammes),
-    specialist: getProgrammesFromList(programmes, specialistProgrammes),
+    therapies: filterProgrammesBySubject(allSubjects, therapyProgrammes),
+    specialist: filterProgrammesBySubject(allSubjects, specialistProgrammes),
   };
 };
 
