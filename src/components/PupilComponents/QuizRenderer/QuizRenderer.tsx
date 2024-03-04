@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
-import { OakBox, OakFlex } from "@oaknational/oak-components";
 import type { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -23,6 +23,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     updateQuestionMode,
     handleSubmitMCAnswer,
     handleSubmitShortAnswer,
+    handleSubmitOrderAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
@@ -72,7 +73,14 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           handleSubmitShortAnswer(answer);
           break;
         }
-        case "order":
+        case "order": {
+          const answers = formData.getAll(
+            `order-${currentQuestionData?.questionUid}`,
+          );
+          handleSubmitOrderAnswer(answers.map(Number));
+
+          break;
+        }
         case "match":
         default:
           break;

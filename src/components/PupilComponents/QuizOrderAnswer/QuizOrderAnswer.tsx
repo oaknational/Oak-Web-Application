@@ -1,10 +1,18 @@
 import {
-  OakFlex,
+  OakBox,
+  OakDraggableFeedback,
+  OakDroppable,
   OakQuizOrder,
   OakQuizOrderProps,
 } from "@oaknational/oak-components";
+import { useMemo, useState } from "react";
+import { isArray } from "lodash";
+
+import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
+import OakError from "@/errors/OakError";
 
 export type QuizOrderAnswerProps = {
   onInitialChange?: () => void;
@@ -12,52 +20,98 @@ export type QuizOrderAnswerProps = {
 };
 
 export const QuizOrderAnswer = (props: QuizOrderAnswerProps) => {
-  const { onInitialChange, onChange } = props;
+  const { handleOnChange: handleInitialChange } = useInitialChange(props);
+  const { currentQuestionData, questionState, currentQuestionIndex } =
+    useQuizEngineContext();
+  invariant(currentQuestionData, "currentQuestionData is not defined");
+  const answers = currentQuestionData.answers;
+  const questionUid = currentQuestionData.questionUid;
+  const feedback = questionState[currentQuestionIndex]?.feedback;
 
-  const quizEngineContext = useQuizEngineContext();
-  const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
-  const questionState = quizEngineContext?.questionState[currentQuestionIndex];
-  // const questionUid = currentQuestionData?.questionUid;
+  invariant(
+    answers && isOrderAnswer(answers),
+    `current '${questionUid}' is not an order question`,
+  );
 
-  console.log("currentQuestionData", currentQuestionData);
+  /**
+   * Memoise the randomised order of items to preserve it across renders
+   *
+   * TODO ensure that the random order does not match the initial order!
+   */
+  const initialItems = useMemo(() => {
+    return answers.order
+      .map((item, index) => {
+        const label = item?.answer?.[0]?.text;
+        invariant(
+          label,
+          `label is missing for option in question '${questionUid}'`,
+        );
 
-  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
-
-  if (!questionState || !currentQuestionData) {
-    return null;
-  }
-
-  let initialItems = [] as OakQuizOrderProps["initialItems"];
-
-  if (currentQuestionData?.answers) {
-    const answers = currentQuestionData.answers;
-    if (answers["order"]) {
-      const order = answers["order"];
-      initialItems = order.map((item, index) => {
         return {
-          id: index.toString(),
-          label:
-            item["answer"][0] && item["answer"][0]["type"] === "text"
-              ? item["answer"][0]["text"]
-              : "",
+          id: (index + 1).toString(),
+          label,
         };
-      });
-    }
-  }
+      })
+      .sort(() => 0.5 - Math.random());
+  }, [answers.order, questionUid]);
+  const [currentOrder, setCurrentOrder] = useState(initialItems);
 
-  // const feedback =
-  //   questionState.mode === "feedback" &&
-  //   typeof questionState.feedback === "string"
-  //     ? questionState.feedback
-  //     : undefined;
+  const handleOrderChange = (items: OakQuizOrderProps["initialItems"]) => {
+    handleInitialChange();
+    setCurrentOrder(items);
+  };
+
+  if (feedback) {
+    invariant(isArray(feedback), "question feedback is not an array");
+
+    return (
+      <OakBox>
+        {currentOrder.map((item, i) => {
+          const currentFeedback = feedback.at(i);
+          invariant(currentFeedback, "feedback is missing");
+
+          return (
+            <OakDroppable key={item.id}>
+              <OakDraggableFeedback
+                feedback={currentFeedback}
+                data-testid="order-item-feedback"
+              >
+                {item.label}
+              </OakDraggableFeedback>
+            </OakDroppable>
+          );
+        })}
+      </OakBox>
+    );
+  }
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap={"space-between-m"}
-      $font={"body-1"}
-    >
-      <OakQuizOrder initialItems={initialItems} onChange={handleOnChange} />
-    </OakFlex>
+    <OakBox>
+      <OakQuizOrder initialItems={initialItems} onChange={handleOrderChange} />
+      {currentOrder.map((item) => {
+        return (
+          <input
+            key={item.id}
+            type="hidden"
+            name={`order-${questionUid}`}
+            value={item.id}
+            data-testid="order-input"
+          />
+        );
+      })}
+    </OakBox>
   );
 };
+
+/**
+ * Throws if condition is false
+ * while narrowing the type to something truthy
+ */
+function invariant(condition: unknown, message: string): asserts condition {
+  if (!condition) {
+    throw new OakError({
+      code: "misc/unexpected-type",
+      meta: { message },
+    });
+  }
+}

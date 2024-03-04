@@ -1,47 +1,82 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
-import { act, fireEvent } from "@testing-library/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { act } from "@testing-library/react";
+import * as oakComponents from "@oaknational/oak-components";
+
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
 import { QuizOrderAnswer } from "./QuizOrderAnswer";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import {
-  QuizEngineContextType,
-  QuizEngineContext,
-} from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const shortAnswerQuestion = quizQuestions?.find(
-  (q) => q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
-);
-
-const getContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: shortAnswerQuestion,
-  currentQuestionIndex: 0,
-  numInteractiveQuestions: 0,
-  currentQuestionDisplayIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
-  score: 0,
-  numQuestions: 1,
+jest.mock("@oaknational/oak-components", () => {
+  return {
+    ...jest.requireActual("@oaknational/oak-components"),
+    OakQuizOrder: jest.fn().mockReturnValue(null),
+  };
 });
 
-describe("QuizOrderAnswer", () => {
-  it("renders a text input", () => {
-    const context = getContext();
+window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
 
-    const { getByRole } = renderWithTheme(
+describe(QuizOrderAnswer, () => {
+  const mouse: OrderAnswer = {
+    answer: [
+      {
+        type: "text",
+        text: "Mouse",
+      },
+    ],
+    correct_order: 1,
+  };
+  const cat: OrderAnswer = {
+    answer: [
+      {
+        type: "text",
+        text: "Cat",
+      },
+    ],
+    correct_order: 2,
+  };
+  const elephant: OrderAnswer = {
+    answer: [
+      {
+        type: "text",
+        text: "Elephant",
+      },
+    ],
+    correct_order: 3,
+  };
+  const context = createQuizEngineContext({
+    currentQuestionData: {
+      questionId: 1,
+      questionUid: "test-question",
+      questionType: "order",
+      questionStem: [
+        {
+          type: "text",
+          text: "Put the animals in order by weight, lightest to heaviest",
+        },
+      ],
+      feedback: "",
+      hint: "",
+      active: true,
+      answers: {
+        order: [mouse, cat, elephant],
+      },
+    },
+  });
+  const newOrder = [
+    { label: "Cat", id: "2" },
+    { label: "Mouse", id: "1" },
+    { label: "Elephant", id: "3" },
+  ];
+
+  it("renders a hidden input for each item", () => {
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
           <QuizOrderAnswer />
@@ -49,15 +84,24 @@ describe("QuizOrderAnswer", () => {
       </OakThemeProvider>,
     );
 
-    const input = getByRole("textbox");
-    expect(input).toBeInTheDocument();
+    const input = getAllByTestId("order-input");
+
+    expect(input.length).toBe(3);
+    expect(input.at(0)).toHaveAttribute("name", "order-test-question");
+    expect(input.at(1)).toHaveAttribute("name", "order-test-question");
+    expect(input.at(2)).toHaveAttribute("name", "order-test-question");
   });
 
-  it("calls onInitialChange when there is user input", () => {
-    const context = getContext();
+  it("calls onInitialChange when items are re-ordered", () => {
+    let onItemOrderChange: oakComponents.OakQuizOrderProps["onChange"];
+
+    jest.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
+      onItemOrderChange = props.onChange;
+      return <div />;
+    });
     const onInitialChange = jest.fn();
 
-    const { getByRole } = renderWithTheme(
+    renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
           <QuizOrderAnswer onInitialChange={onInitialChange} />
@@ -66,50 +110,59 @@ describe("QuizOrderAnswer", () => {
     );
 
     act(() => {
-      const input = getByRole("textbox");
-      fireEvent.change(input, { target: { value: "test" } });
+      onItemOrderChange?.(newOrder);
     });
 
     expect(onInitialChange).toHaveBeenCalled();
   });
 
-  it("sets the name to the `short-answer-${questionUid}`", () => {
-    const context = getContext();
+  describe("when feedback is present", () => {
+    const feedbackContext = createQuizEngineContext({
+      ...context,
+      questionState: [
+        {
+          mode: "feedback",
+          grade: 0,
+          feedback: ["correct", "correct", "incorrect"],
+          offerHint: false,
+          isPartiallyCorrect: true,
+        },
+      ],
+    });
 
-    const { getByRole } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
+    it('displays the feedback when "feedback" is present', () => {
+      let onItemOrderChange: oakComponents.OakQuizOrderProps["onChange"];
 
-    const input = getByRole("textbox");
-    expect(input).toHaveAttribute(
-      "name",
-      `short-answer-${shortAnswerQuestion?.questionUid}`,
-    );
-  });
+      jest.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
+        onItemOrderChange = props.onChange;
+        return <div />;
+      });
 
-  it("renders feedback when in feedback mode", () => {
-    const context = getContext();
+      const { getAllByTestId, rerender } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizOrderAnswer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
 
-    if (!context.questionState[0]) {
-      throw new Error("questionState[0] is undefined");
-    }
+      act(() => {
+        onItemOrderChange?.(newOrder);
+      });
 
-    context.questionState[0].mode = "feedback";
-    context.questionState[0].feedback = "correct";
+      rerender(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={feedbackContext}>
+            <QuizOrderAnswer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
 
-    const { getByAltText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
+      const items = getAllByTestId("order-item-feedback");
 
-    const feedback = getByAltText(/correct/i);
-    expect(feedback).toBeInTheDocument();
+      expect(items.at(0)!.textContent).toContain("Cat");
+      expect(items.at(1)!.textContent).toContain("Mouse");
+      expect(items.at(2)!.textContent).toContain("Elephant");
+    });
   });
 });

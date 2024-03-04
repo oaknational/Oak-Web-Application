@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { QuizOrderAnswer } from "./QuizOrderAnswer";
-
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
+import { QuizOrderAnswer } from "./QuizOrderAnswer";
+
 import {
   QuestionFeedbackType,
   QuestionModeType,

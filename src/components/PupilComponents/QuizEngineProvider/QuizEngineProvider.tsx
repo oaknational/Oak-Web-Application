@@ -7,6 +7,8 @@ import React, {
   useState,
 } from "react";
 
+import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+
 import {
   LessonOverviewQuizData,
   MCAnswer,
@@ -16,6 +18,7 @@ import {
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import OakError from "@/errors/OakError";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -46,6 +49,7 @@ export type QuizEngineContextType = {
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
+  handleSubmitOrderAnswer: (pupilAnswers: number[]) => void;
   handleNextQuestion: () => void;
 } | null;
 
@@ -65,11 +69,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { updateSectionResult, completeSection, currentSection } =
     useLessonEngineContext();
 
-  const filteredQuestions = questionsArray.filter((question) =>
-    ["multiple-choice", "short-answer", "explanatory-text", "order"].includes(
-      question.questionType,
-    ),
-  );
+  const filteredQuestions = questionsArray.filter((question) => {
+    return [
+      "multiple-choice",
+      "short-answer",
+      "explanatory-text",
+      "order",
+    ].includes(question.questionType);
+  });
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -208,6 +215,45 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     ],
   );
 
+  /**
+   * Receives an array containing the order of the answers given
+   * The order is 1-indexed like `correct_order` in the question data
+   * for ease of comparison
+   */
+  const handleSubmitOrderAnswer = useCallback(
+    (pupilAnswers: number[]) => {
+      const answers = currentQuestionData?.answers;
+      if (!answers || !isOrderAnswer(answers)) {
+        throw new OakError({ code: "misc/unexpected-type" });
+      }
+
+      const correctAnswers = answers.order.map(
+        (answer) => answer.correct_order,
+      );
+
+      const feedback: QuestionFeedbackType[] = pupilAnswers.map(
+        (pupilAnswer, i) =>
+          correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
+      );
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
+          mode: "feedback",
+          grade: feedback.every((feedback) => feedback === "correct") ? 1 : 0,
+          feedback,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          isPartiallyCorrect: feedback.some(
+            (feedback) => feedback === "correct",
+          ),
+        };
+        handleScoreUpdate(newState);
+        return newState;
+      });
+    },
+    [currentQuestionData?.answers, currentQuestionIndex, handleScoreUpdate],
+  );
+
   const handleNextQuestion = useCallback(() => {
     setCurrentQuestionIndex((prev) => {
       const _currentQuestionIndex = Math.min(prev + 1, numQuestions);
@@ -237,6 +283,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,
+        handleSubmitOrderAnswer,
         handleNextQuestion,
       }}
     >
