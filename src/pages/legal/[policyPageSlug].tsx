@@ -91,7 +91,6 @@ const customPolicyComponent: PortableTextComponents = {
     },
     internalLink: ({ children, value }) => {
       let ariaLabel = "";
-      console.log("value", value);
       if (Array.isArray(children)) {
         ariaLabel = children[0];
       }
