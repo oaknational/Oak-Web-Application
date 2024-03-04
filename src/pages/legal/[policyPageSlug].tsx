@@ -25,6 +25,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -94,12 +95,12 @@ const customPolicyComponent: PortableTextComponents = {
       if (Array.isArray(children)) {
         ariaLabel = children[0];
       }
+
       return (
         <OwaLink
           aria-label={ariaLabel}
-          legalSlug={value?.reference?.slug}
-          // It doesn't feel great that this is hard-coded to "legal".
-          page={"legal"}
+          href={resolveInternalHref(value.reference)}
+          page={null}
           $textDecoration={"underline"}
         >
           {children}
