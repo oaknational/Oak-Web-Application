@@ -1,3 +1,10 @@
+## [1.374.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.3...v1.374.4) (2024-03-04)
+
+
+### Bug Fixes
+
+* **policy:** allow general internal links ([536d087](https://github.com/oaknational/Oak-Web-Application/commit/536d087863630d915b1fa823f147ad7c9d45b383))
+
 ## [1.374.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.2...v1.374.3) (2024-03-04)
 
 
