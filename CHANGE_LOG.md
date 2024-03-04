@@ -1,3 +1,22 @@
+## [1.374.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.0...v1.374.1) (2024-03-01)
+
+# [1.374.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.373.0...v1.374.0) (2024-03-01)
+
+
+### Features
+
+* disable buttons and hide downloads ([c78d0c6](https://github.com/oaknational/Oak-Web-Application/commit/c78d0c66f95850a9a764de9b5b47406d9d991414))
+* hide share button hide resources ([6d68571](https://github.com/oaknational/Oak-Web-Application/commit/6d68571025c6d6ab049ae0b5ad092d28231c391a))
+
+# [1.373.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.2...v1.373.0) (2024-03-01)
+
+
+### Features
+
+* add expired ([fc14a46](https://github.com/oaknational/Oak-Web-Application/commit/fc14a464f1a67684689b0c92e2ca9ea06588fc12))
+
+## [1.372.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.1...v1.372.2) (2024-02-29)
+
 ## [1.372.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.372.0...v1.372.1) (2024-02-29)
 
 
