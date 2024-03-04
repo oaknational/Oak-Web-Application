@@ -89,6 +89,24 @@ const customPolicyComponent: PortableTextComponents = {
         </OwaLink>
       );
     },
+    internalLink: ({ children, value }) => {
+      let ariaLabel = "";
+      console.log("value", value);
+      if (Array.isArray(children)) {
+        ariaLabel = children[0];
+      }
+      return (
+        <OwaLink
+          aria-label={ariaLabel}
+          legalSlug={value?.reference?.slug}
+          // It doesn't feel great that this is hard-coded to "legal".
+          page={"legal"}
+          $textDecoration={"underline"}
+        >
+          {children}
+        </OwaLink>
+      );
+    },
   },
 };
 
