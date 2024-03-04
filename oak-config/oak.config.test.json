@@ -5,6 +5,7 @@
   "gleap": {
     "apiKey": "gleap-api-key",
     "apiUrl": "gleap-api-url",
+    "frameUrl13": "gleap13-api-url",
     "widgetUrl": "gleap-widget-url",
     "frameUrl": "gleap-frame-url"
   },
