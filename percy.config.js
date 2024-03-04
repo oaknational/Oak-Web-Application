@@ -30,15 +30,14 @@ module.exports = {
     `,
   },
   discovery: {
-    // Debug for Percy analysis.
-    // concurrency: 1,
+    concurrency: 6,
     retry: true,
     // Standard config.
     networkIdleTimeout: 750,
     allowedHostnames: [
       "docs.google.com",
-      "gstatic-fonts.thenational.academy",
-      "sanity-asset-cdn.thenational.academy",
+      // "gstatic-fonts.thenational.academy",
+      // "sanity-asset-cdn.thenational.academy",
     ],
     userAgent: "oak testing Percy",
     requestHeaders: {
