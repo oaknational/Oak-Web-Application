@@ -4,9 +4,18 @@ import specialistSubjectListingQuery, {
   getBatchRequestVariables,
 } from "./specialistSubjectListing.query";
 
-jest.mock("../../generated/sdk", () => ({
-  __esModule: true,
-  getSdk: () => ({
+jest.mock("../../sdk", () => {
+  return {
+    ...jest.requireActual("../../sdk"),
+    getBatchedRequests: jest.fn(() =>
+      Promise.resolve([
+        {
+          unitCount: { aggregate: { count: 0 } },
+          lessonCount: { aggregate: { count: 0 } },
+          programmeCount: { aggregate: { count: 0 } },
+        },
+      ]),
+    ),
     specialistSubjectListing: jest.fn(() =>
       Promise.resolve({ therapyProgrammes: [], specialistProgrammes: [] }),
     ),
@@ -17,17 +26,8 @@ jest.mock("../../generated/sdk", () => ({
         programmeCount: { aggregate: { count: 0 } },
       }),
     ),
-    batchRequests: jest.fn(() =>
-      Promise.resolve([
-        {
-          unitCount: { aggregate: { count: 0 } },
-          lessonCount: { aggregate: { count: 0 } },
-          programmeCount: { aggregate: { count: 0 } },
-        },
-      ]),
-    ),
-  }),
-}));
+  };
+});
 
 describe("specialist subject listing", () => {
   test("it runs", async () => {
