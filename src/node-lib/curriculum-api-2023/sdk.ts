@@ -18,8 +18,6 @@ const headers: Headers = {
   "x-oak-auth-key": curriculumApiAuthKey,
 };
 
-console.log("todo: remove this log", curriculumApiUrl);
-
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const sdk = getSdk(graphqlClient);
 
