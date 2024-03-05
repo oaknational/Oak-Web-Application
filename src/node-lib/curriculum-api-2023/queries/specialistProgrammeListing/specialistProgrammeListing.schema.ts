@@ -26,6 +26,9 @@ const SpecialistProgrammesListingSchema = z.object({
 
 const SpecialistProgrammesSchema = z.array(SpecialistProgrammeSchema);
 
+export type SpecialistProgrammeQueryResponseSchema = z.infer<
+  typeof specialistProgrammeQueryResponseSchema
+>;
 export type SpecialistProgramme = z.infer<typeof SpecialistProgrammeSchema>;
 export type SpecialistProgrammes = z.infer<typeof SpecialistProgrammesSchema>;
 export type SpecialistProgrammeListingPageData = z.infer<
