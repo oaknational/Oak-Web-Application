@@ -11,7 +11,7 @@ import {
 
 import OakError from "@/errors/OakError";
 
-const getBatchRequestVariables = (programmes: SpecialistProgramme[]) => {
+export const getBatchRequestVariables = (programmes: SpecialistProgramme[]) => {
   return programmes.reduce(
     (acc, programme) => {
       const subjectSlug = programme.combined_programme_fields.subject_slug;
