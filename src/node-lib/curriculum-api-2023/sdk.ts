@@ -35,5 +35,12 @@ export const getBatchedRequests = async (
   return data;
 };
 
+/*types not exported from graphql-request library */
+interface Result<Data extends object = object> {
+  data: Data;
+}
+
+export type BatchResult = [Result, ...Result[]];
+
 export type Sdk = typeof sdk;
 export default sdk;

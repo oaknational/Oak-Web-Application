@@ -1,4 +1,4 @@
-import { Sdk, getBatchedRequests } from "../../sdk";
+import { BatchResult, Sdk, getBatchedRequests } from "../../sdk";
 import { SpecialistUnitsAndLessonCountDocument } from "../../generated/sdk";
 
 import {
@@ -28,20 +28,11 @@ export const getBatchRequestVariables = (programmes: SpecialistProgramme[]) => {
   );
 };
 
-const populateSubjectsWithBatchResponses = async (
-  programmes: SpecialistProgramme[],
+export const getExpandedSubjects = (
+  batchRequestVariables: Array<Partial<SpecialistSubject>>,
+  data: BatchResult,
 ) => {
-  const counts = getBatchRequestVariables(programmes);
-  const batchRequests = counts.map((c) => {
-    return {
-      document: SpecialistUnitsAndLessonCountDocument,
-      variables: { _contains: { subject_slug: c.subjectSlug } },
-    };
-  });
-
-  const data = await getBatchedRequests(batchRequests);
-
-  const expandedSubjects = counts.map((p, i) => {
+  const expandedSubjects = batchRequestVariables.map((p, i) => {
     const res = data[i]?.data;
     if (res) {
       const { unitCount, lessonCount, programmeCount } =
@@ -57,6 +48,22 @@ const populateSubjectsWithBatchResponses = async (
   });
 
   return expandedSubjects;
+};
+
+const populateSubjectsWithBatchResponses = async (
+  programmes: SpecialistProgramme[],
+) => {
+  const variables = getBatchRequestVariables(programmes);
+  const batchRequests = variables.map((c) => {
+    return {
+      document: SpecialistUnitsAndLessonCountDocument,
+      variables: { _contains: { subject_slug: c.subjectSlug } },
+    };
+  });
+
+  const data = await getBatchedRequests(batchRequests);
+
+  return getExpandedSubjects(variables, data);
 };
 
 export const filterProgrammesBySubject = (

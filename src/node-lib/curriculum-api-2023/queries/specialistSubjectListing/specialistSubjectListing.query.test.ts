@@ -1,6 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistSubjectListingQuery, {
+  getExpandedSubjects,
   filterProgrammesBySubject,
   getBatchRequestVariables,
 } from "./specialistSubjectListing.query";
@@ -138,5 +139,55 @@ describe("filterProgrammesBySubject", () => {
     );
     expect(res.length).toBe(1);
     expect(res[0]?.subjectSlug).toBe("a");
+  });
+});
+
+describe("getExpandedSubjects", () => {
+  test("it throws an error when no corresponding data", () => {
+    expect(() =>
+      getExpandedSubjects(
+        [
+          { subjectSlug: "a", subjectTitle: "A" },
+          { subjectSlug: "b", subjectTitle: "B" },
+        ],
+        [
+          {
+            data: {
+              unitCount: { aggregate: { count: 0 } },
+              lessonCount: { aggregate: { count: 0 } },
+              programmeCount: { aggregate: { count: 0 } },
+            },
+          },
+        ],
+      ),
+    ).toThrow();
+  });
+  test("it returns correct expanded subjects", () => {
+    const res = getExpandedSubjects(
+      [
+        { subjectSlug: "a", subjectTitle: "A" },
+        { subjectSlug: "b", subjectTitle: "B" },
+      ],
+      [
+        {
+          data: {
+            unitCount: { aggregate: { count: 0 } },
+            lessonCount: { aggregate: { count: 0 } },
+            programmeCount: { aggregate: { count: 0 } },
+          },
+        },
+        {
+          data: {
+            unitCount: { aggregate: { count: 0 } },
+            lessonCount: { aggregate: { count: 0 } },
+            programmeCount: { aggregate: { count: 0 } },
+          },
+        },
+      ],
+    );
+
+    expect(res.length).toBe(2);
+    expect(res[0]?.subjectSlug).toBe("a");
+    expect(res[1]?.subjectSlug).toBe("b");
   });
 });
