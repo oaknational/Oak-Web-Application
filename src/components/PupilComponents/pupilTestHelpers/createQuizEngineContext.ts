@@ -1,5 +1,8 @@
 import { QuizEngineContextType } from "../QuizEngineProvider";
 
+import { LessonOverviewQuizQuestion } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+
 export function createQuizEngineContext(
   overrides?: Partial<QuizEngineContextType>,
 ): NonNullable<QuizEngineContextType> {
@@ -21,6 +24,15 @@ export function createQuizEngineContext(
     handleNextQuestion: jest.fn(),
     handleSubmitShortAnswer: jest.fn(),
     handleSubmitOrderAnswer: jest.fn(),
+    ...overrides,
+  };
+}
+
+export function createQuestionData(
+  overrides: Partial<LessonOverviewQuizQuestion>,
+): LessonOverviewQuizQuestion {
+  return {
+    ...quizQuestions[0]!,
     ...overrides,
   };
 }

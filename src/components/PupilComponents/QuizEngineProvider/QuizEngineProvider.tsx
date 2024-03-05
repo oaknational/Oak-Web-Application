@@ -236,16 +236,17 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
       );
 
+      const isCorrect = feedback.every((feedback) => feedback === "correct");
+      const isPartiallyCorrect =
+        !isCorrect && feedback.some((feedback) => feedback === "correct");
       setQuestionState((prev) => {
         const newState = [...prev];
         newState[currentQuestionIndex] = {
           mode: "feedback",
-          grade: feedback.every((feedback) => feedback === "correct") ? 1 : 0,
+          grade: isCorrect ? 1 : 0,
           feedback,
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          isPartiallyCorrect: feedback.some(
-            (feedback) => feedback === "correct",
-          ),
+          isPartiallyCorrect,
         };
         handleScoreUpdate(newState);
         return newState;

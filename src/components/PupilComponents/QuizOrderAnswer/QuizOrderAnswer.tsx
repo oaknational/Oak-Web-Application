@@ -78,7 +78,7 @@ export const QuizOrderAnswer = (props: QuizOrderAnswerProps) => {
           invariant(currentFeedback, "feedback is missing");
 
           return (
-            <OakDroppable key={item.id}>
+            <OakDroppable key={item.id} $mb="space-between-xs">
               <OakDraggableFeedback
                 feedback={currentFeedback}
                 data-testid="order-item-feedback"

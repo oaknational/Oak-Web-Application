@@ -1,9 +1,11 @@
 import { QuizMCQMultiAnswerFeedback } from "../QuizMCQMultiAnswerFeedback";
 import { QuizMCQSingleAnswerFeedback } from "../QuizMCQSingleAnswerFeedback";
+import { QuizOrderAnswerFeedback } from "../QuizOrderAnswerFeedback/QuizOrderAnswerFeedback";
 import { QuizShortAnswerFeedback } from "../QuizShortAnswerFeedback";
 
 import { pickFeedBackComponent } from "./pickFeedback";
 
+import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("pickFeedbackComponent", () => {
@@ -46,6 +48,12 @@ describe("pickFeedbackComponent", () => {
       const result = pickFeedBackComponent(shortAnswer);
       expect(result).toStrictEqual(<QuizShortAnswerFeedback />);
     });
+
+    it("should return QuizShortAnswer if isOrderAnswer is true", () => {
+      const result = pickFeedBackComponent({ order: orderAnswers });
+      expect(result).toStrictEqual(<QuizOrderAnswerFeedback />);
+    });
+
     it("should return null if all are false", () => {
       const result = pickFeedBackComponent({});
       expect(result).toBe(null);
