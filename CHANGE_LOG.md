@@ -1,3 +1,10 @@
+# [1.375.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.5...v1.375.0) (2024-03-04)
+
+
+### Features
+
+* reinstate latest mv versions for downloads and lesson overview ([3fa2938](https://github.com/oaknational/Oak-Web-Application/commit/3fa2938ac147846522f57ff5d61ed0753ce05c50))
+
 ## [1.374.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.4...v1.374.5) (2024-03-04)
 
 
