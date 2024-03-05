@@ -17,6 +17,15 @@ jest.mock("../../generated/sdk", () => ({
         programmeCount: { aggregate: { count: 0 } },
       }),
     ),
+    batchRequests: jest.fn(() =>
+      Promise.resolve([
+        {
+          unitCount: { aggregate: { count: 0 } },
+          lessonCount: { aggregate: { count: 0 } },
+          programmeCount: { aggregate: { count: 0 } },
+        },
+      ]),
+    ),
   }),
 }));
 
