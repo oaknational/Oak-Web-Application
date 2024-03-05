@@ -59,8 +59,8 @@ describe("SpecialistProgrammeListing", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith({
-      developmentalStageSlug: "early-development-1",
-      developmentalStageTitle: "Early development 1",
+      developmentStageSlug: "early-development-1",
+      developmentStageTitle: "Early development 1",
       programmeSlug: "early-development",
     });
   });

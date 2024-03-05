@@ -38,9 +38,9 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
           <OakHeading
             $font={"heading-7"}
             tag="h3"
-            ariaLabel={props.programme.developmentalStageTitle}
+            ariaLabel={props.programme.developmentStageTitle}
           >
-            {props.programme.developmentalStageTitle}
+            {props.programme.developmentStageTitle}
           </OakHeading>
         </OwaLink>
       </OakFlex>
