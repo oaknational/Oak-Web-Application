@@ -41221,6 +41221,18 @@ export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_3', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null, examBoards?: any | null }> };
 
+export type SpecialistSubjectListingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SpecialistSubjectListingQuery = { __typename?: 'query_root', therapyProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null }> };
+
+export type SpecialistUnitsAndLessonCountQueryVariables = Exact<{
+  _contains?: InputMaybe<Scalars['jsonb']['input']>;
+}>;
+
+
+export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, programmeCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
   isLegacy: Scalars['Boolean']['input'];
@@ -41552,6 +41564,47 @@ export const SearchPageDocument = gql`
   }
 }
     `;
+export const SpecialistSubjectListingDocument = gql`
+    query specialistSubjectListing {
+  therapyProgrammes: published_mv_specialist_1_0_1(
+    distinct_on: synthetic_programme_slug
+    where: {combined_programme_fields: {_contains: {subject_parent: "Therapies"}}}
+  ) {
+    combined_programme_fields
+  }
+  specialistProgrammes: published_mv_specialist_1_0_1(
+    distinct_on: synthetic_programme_slug
+    where: {combined_programme_fields: {_contains: {subject_parent: "Specialist"}}}
+  ) {
+    combined_programme_fields
+  }
+}
+    `;
+export const SpecialistUnitsAndLessonCountDocument = gql`
+    query specialistUnitsAndLessonCount($_contains: jsonb) {
+  unitCount: published_mv_specialist_1_0_1_aggregate(
+    where: {combined_programme_fields: {_contains: $_contains}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: unit_slug)
+    }
+  }
+  lessonCount: published_mv_specialist_1_0_1_aggregate(
+    where: {combined_programme_fields: {_contains: $_contains}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+  }
+  programmeCount: published_mv_specialist_1_0_1_aggregate(
+    where: {combined_programme_fields: {_contains: $_contains}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: synthetic_programme_slug)
+    }
+  }
+}
+    `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String!, $isLegacy: Boolean!) {
   keyStageSubjects: published_mv_subject_listing_3_0_3(
@@ -41645,6 +41698,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
+    },
+    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query');
+    },
+    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitsAndLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query');
     },
     subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
