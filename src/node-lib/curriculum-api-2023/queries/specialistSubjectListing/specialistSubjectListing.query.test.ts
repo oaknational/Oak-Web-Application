@@ -1,6 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistSubjectListingQuery, {
+  filterProgrammesBySubject,
   getBatchRequestVariables,
 } from "./specialistSubjectListing.query";
 
@@ -79,5 +80,63 @@ describe("getBatchRequestVariables", () => {
     subjects.forEach((s, i) => {
       expect(subjects.indexOf(s)).toBe(i);
     });
+  });
+});
+
+describe("filterProgrammesBySubject", () => {
+  test("it returns an empty array when no programmes provided", () => {
+    const res = filterProgrammesBySubject([], []);
+
+    expect(res.length).toBe(0);
+  });
+  test("it returns an empty array when no subjects provided", () => {
+    const res = filterProgrammesBySubject(
+      [
+        {
+          subjectSlug: "a",
+          subjectTitle: "A",
+          unitCount: 0,
+          lessonCount: 0,
+          programmeCount: 0,
+        },
+      ],
+      [],
+    );
+
+    expect(res.length).toBe(0);
+  });
+  test("it returns correct programmes based on subjects", () => {
+    const res = filterProgrammesBySubject(
+      [
+        {
+          subjectSlug: "a",
+          subjectTitle: "A",
+          unitCount: 0,
+          lessonCount: 0,
+          programmeCount: 0,
+        },
+        {
+          subjectSlug: "b",
+          subjectTitle: "B",
+          unitCount: 0,
+          lessonCount: 0,
+          programmeCount: 0,
+        },
+      ],
+      [
+        {
+          combined_programme_fields: {
+            subject_slug: "a",
+            subject_parent: "specialist",
+            subject_type: "specialist",
+            developmentstage: "Early Development",
+            developmentstage_slug: "early-development",
+            subject: "A",
+          },
+        },
+      ],
+    );
+    expect(res.length).toBe(1);
+    expect(res[0]?.subjectSlug).toBe("a");
   });
 });

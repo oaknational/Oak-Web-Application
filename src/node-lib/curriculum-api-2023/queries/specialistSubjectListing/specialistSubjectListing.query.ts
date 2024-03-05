@@ -59,7 +59,7 @@ const populateSubjectsWithBatchResponses = async (
   return expandedSubjects;
 };
 
-const filterProgrammesBySubject = (
+export const filterProgrammesBySubject = (
   programmes: SpecialistSubject[],
   source: SpecialistProgramme[],
 ) => {
