@@ -1,3 +1,35 @@
+# [1.375.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.5...v1.375.0) (2024-03-04)
+
+
+### Features
+
+* reinstate latest mv versions for downloads and lesson overview ([3fa2938](https://github.com/oaknational/Oak-Web-Application/commit/3fa2938ac147846522f57ff5d61ed0753ce05c50))
+
+## [1.374.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.4...v1.374.5) (2024-03-04)
+
+
+### Bug Fixes
+
+* rollback mv versions for lesson downloads and overview ([9b233ef](https://github.com/oaknational/Oak-Web-Application/commit/9b233ef3829c67b42a7f659e77c95e9212a7636a))
+
+## [1.374.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.3...v1.374.4) (2024-03-04)
+
+
+### Bug Fixes
+
+* **policy:** allow general internal links ([536d087](https://github.com/oaknational/Oak-Web-Application/commit/536d087863630d915b1fa823f147ad7c9d45b383))
+
+## [1.374.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.2...v1.374.3) (2024-03-04)
+
+
+### Bug Fixes
+
+* **policy pages:** make internal links work ([51acd4e](https://github.com/oaknational/Oak-Web-Application/commit/51acd4e03d44d3143ea2f4c20704e503816fc1fb))
+
+## [1.374.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.1...v1.374.2) (2024-03-04)
+
+## [1.374.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.0...v1.374.1) (2024-03-01)
+
 # [1.374.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.373.0...v1.374.0) (2024-03-01)
 
 
