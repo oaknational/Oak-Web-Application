@@ -108,7 +108,6 @@ const LessonListItem: FC<
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
-
   const resources = getAvailableResourceList(props);
 
   const background = expired ? "grey30" : "pink";
