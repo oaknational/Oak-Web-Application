@@ -35,24 +35,31 @@ export const QuizOrderAnswer = (props: QuizOrderAnswerProps) => {
 
   /**
    * Memoise the randomised order of items to preserve it across renders
-   *
-   * TODO ensure that the random order does not match the initial order!
    */
   const initialItems = useMemo(() => {
-    return answers.order
-      .map((item, index) => {
-        const label = item?.answer?.[0]?.text;
-        invariant(
-          label,
-          `label is missing for option in question '${questionUid}'`,
-        );
+    const originalItems = answers.order.map((item, index) => {
+      const label = item?.answer?.[0]?.text;
+      invariant(
+        label,
+        `label is missing for option in question '${questionUid}'`,
+      );
 
-        return {
-          id: (index + 1).toString(),
-          label,
-        };
-      })
-      .sort(() => 0.5 - Math.random());
+      return {
+        id: (index + 1).toString(),
+        label,
+      };
+    });
+    let currentItems = originalItems.slice();
+
+    // Randomise items while ensuring that the random order is not the same as the original order
+    while (
+      originalItems.length > 1 &&
+      JSON.stringify(originalItems) === JSON.stringify(currentItems)
+    ) {
+      currentItems = currentItems.sort(() => 0.5 - Math.random());
+    }
+
+    return currentItems;
   }, [answers.order, questionUid]);
   const [currentOrder, setCurrentOrder] = useState(initialItems);
 
