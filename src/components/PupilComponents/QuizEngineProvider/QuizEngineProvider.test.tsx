@@ -123,7 +123,8 @@ describe("QuizEngineContext", () => {
         questionsArrayFixture?.filter(
           (q) =>
             q.questionType === "multiple-choice" ||
-            q.questionType === "short-answer",
+            q.questionType === "short-answer" ||
+            q.questionType === "order",
         ).length,
       );
     });
