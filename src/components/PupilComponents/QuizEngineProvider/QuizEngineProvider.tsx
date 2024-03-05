@@ -223,6 +223,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleSubmitOrderAnswer = useCallback(
     (pupilAnswers: number[]) => {
       const answers = currentQuestionData?.answers;
+
       if (!answers || !isOrderAnswer(answers)) {
         throw new OakError({ code: "misc/unexpected-type" });
       }
@@ -230,15 +231,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       const correctAnswers = answers.order.map(
         (answer) => answer.correct_order,
       );
-
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
         (pupilAnswer, i) =>
           correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
       );
-
       const isCorrect = feedback.every((feedback) => feedback === "correct");
       const isPartiallyCorrect =
         !isCorrect && feedback.some((feedback) => feedback === "correct");
+
       setQuestionState((prev) => {
         const newState = [...prev];
         newState[currentQuestionIndex] = {

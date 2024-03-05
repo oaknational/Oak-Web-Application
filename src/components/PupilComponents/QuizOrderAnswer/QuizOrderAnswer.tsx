@@ -19,8 +19,14 @@ export type QuizOrderAnswerProps = {
   onChange?: () => void;
 };
 
-export const QuizOrderAnswer = (props: QuizOrderAnswerProps) => {
-  const { handleOnChange: handleInitialChange } = useInitialChange(props);
+export const QuizOrderAnswer = ({
+  onChange,
+  onInitialChange,
+}: QuizOrderAnswerProps) => {
+  const { handleOnChange: handleInitialChange } = useInitialChange({
+    onChange,
+    onInitialChange,
+  });
   const { currentQuestionData, questionState, currentQuestionIndex } =
     useQuizEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
