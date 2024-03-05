@@ -152,14 +152,15 @@ describe("getPageLinksForLesson()", () => {
       videoMuxPlaybackId: "video-mux-playback-id",
       worksheetUrl: "worksheet-url",
       additionalMaterialUrl: "additional-material-url",
-      starterQuiz: ["bar"],
-      exitQuiz: ["foo"],
+      starterQuiz: ["foo"],
+      exitQuiz: ["bar"],
+      hasCopyrightMaterial: false,
+      hasDownloadableResources: true,
     };
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const result = getPageLinksForLesson(lesson);
-
     const expected = [
       {
         anchorId: "slide-deck",
