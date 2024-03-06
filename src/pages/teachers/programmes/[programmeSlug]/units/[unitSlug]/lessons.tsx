@@ -205,15 +205,17 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = isSlugLegacy(programmeSlug)
-        ? await curriculumApi.lessonListing({
-            programmeSlug,
-            unitSlug,
-          })
-        : await curriculumApi2023.lessonListing({
-            programmeSlug,
-            unitSlug,
-          });
+      const curriculumData =
+        isSlugLegacy(programmeSlug) &&
+        !programmeSlug.endsWith("early-years-foundation-stage-l")
+          ? await curriculumApi.lessonListing({
+              programmeSlug,
+              unitSlug,
+            })
+          : await curriculumApi2023.lessonListing({
+              programmeSlug,
+              unitSlug,
+            });
 
       const lessonsCohorts = curriculumData.lessons.map(
         (l) => l.lessonCohort ?? "2020-2023",

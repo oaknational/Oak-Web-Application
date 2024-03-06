@@ -73,7 +73,9 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const isLegacy = isSlugLegacy(programmeSlug);
+      const isLegacy =
+        isSlugLegacy(programmeSlug) &&
+        !programmeSlug.endsWith("early-years-foundation-stage-l");
 
       const curriculumData = isLegacy
         ? await curriculumApi.lessonShare({

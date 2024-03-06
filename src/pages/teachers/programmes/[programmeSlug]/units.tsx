@@ -321,14 +321,18 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = isSlugLegacy(programmeSlug)
-        ? await curriculumApi.unitListing({
-            programmeSlug,
-          })
-        : await curriculumApi2023.unitListing({
-            programmeSlug,
-            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
-          });
+      const curriculumData =
+        isSlugLegacy(programmeSlug) &&
+        !programmeSlug.endsWith("early-years-foundation-stage-l")
+          ? await curriculumApi.unitListing({
+              programmeSlug,
+            })
+          : await curriculumApi2023.unitListing({
+              programmeSlug,
+              isLegacy: programmeSlug.endsWith(
+                "early-years-foundation-stage-l",
+              ),
+            });
 
       if (!curriculumData) {
         return {
