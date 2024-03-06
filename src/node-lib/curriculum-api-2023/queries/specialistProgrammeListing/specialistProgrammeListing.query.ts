@@ -74,9 +74,10 @@ const specialistProgrammeListingQuery =
     }
 
     const sortedProgrammes = parsedProgrammes.sort((a, b) => {
+      // The 'order' values are in reverse, for some reason
       return (
-        a.combined_programme_fields.developmentstage_id -
-        b.combined_programme_fields.developmentstage_id
+        b.combined_programme_fields.developmentstage_display_order -
+        a.combined_programme_fields.developmentstage_display_order
       );
     });
 
