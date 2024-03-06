@@ -12,6 +12,19 @@ export const specialistProgrammeQueryResponseSchema = z.array(
   }),
 );
 
+export const specialistProgrammeListingCountSchema = z.object({
+  unitCount: z.object({
+    aggregate: z.object({
+      count: z.number(),
+    }),
+  }),
+  lessonCount: z.object({
+    aggregate: z.object({
+      count: z.number(),
+    }),
+  }),
+});
+
 const SpecialistProgrammeSchema = z.object({
   programmeSlug: z.string(),
   developmentStageSlug: z.string(),

@@ -1,36 +1,61 @@
-import { Sdk } from "../../sdk";
+import { SpecialistProgrammeListingCountsDocument } from "../../generated/sdk";
+import { Sdk, getBatchedRequests } from "../../sdk";
 
 import {
-  SpecialistProgrammeListingPageData,
   SpecialistProgrammeQueryResponseSchema,
+  specialistProgrammeListingCountSchema,
   specialistProgrammeQueryResponseSchema,
 } from "./specialistProgrammeListing.schema";
 
-export const transformProgrammes = (
+export const transformProgrammes = async (
   rawprogrammes: SpecialistProgrammeQueryResponseSchema,
 ) => {
-  return rawprogrammes.reduce((acc, programme) => {
-    if (!acc.subjectSlug) {
-      acc.subjectSlug = programme.combined_programme_fields.subject_slug;
-    }
-    if (!acc.subjectTitle) {
-      acc.subjectTitle = programme.combined_programme_fields.subject;
-    }
-    const newProgramme = {
+  const subjectSlug = rawprogrammes[0]?.combined_programme_fields.subject_slug;
+  const subjectTitle = rawprogrammes[0]?.combined_programme_fields.subject;
+
+  if (!subjectSlug || !subjectTitle) {
+    throw new Error("curriculum-api/not-found");
+  }
+  const programmesWithoutCounts = rawprogrammes.map((programme) => {
+    return {
       programmeSlug: programme.synthetic_programme_slug,
       developmentStageSlug:
         programme.combined_programme_fields.developmentstage_slug,
       developmentStageTitle:
         programme.combined_programme_fields.developmentstage,
     };
-    if (acc.programmes) {
-      acc.programmes.push(newProgramme);
-    } else {
-      acc.programmes = [newProgramme];
-    }
+  });
 
-    return acc;
-  }, {} as SpecialistProgrammeListingPageData);
+  const batchRequests = programmesWithoutCounts.map((programme) => {
+    return {
+      document: SpecialistProgrammeListingCountsDocument,
+      variables: { programmeSlug: programme.programmeSlug },
+    };
+  });
+
+  const counts = await getBatchedRequests(batchRequests);
+
+  const programmesWithCounts = programmesWithoutCounts.map((programme, i) => {
+    const count = counts[i]?.data;
+    if (count) {
+      const { unitCount, lessonCount } =
+        specialistProgrammeListingCountSchema.parse(count);
+
+      return {
+        ...programme,
+        unitCount: unitCount.aggregate.count,
+        lessonCount: lessonCount.aggregate.count,
+      };
+    } else {
+      throw new Error("curriculum-api/not-found");
+    }
+  });
+
+  return {
+    subjectSlug,
+    subjectTitle,
+    programmes: programmesWithCounts,
+  };
 };
 
 const specialistProgrammeListingQuery =
@@ -49,7 +74,6 @@ const specialistProgrammeListingQuery =
     }
 
     const programmes = transformProgrammes(parsedProgrammes);
-
     return programmes;
   };
 

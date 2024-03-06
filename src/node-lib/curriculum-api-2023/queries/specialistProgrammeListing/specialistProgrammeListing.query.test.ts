@@ -21,6 +21,34 @@ jest.mock("../../sdk", () => {
         ],
       }),
     ),
+    specialistProgrammeListingCounts: jest.fn(() =>
+      Promise.resolve({
+        unitCount: { aggregate: { count: 1 } },
+        lessonCount: { aggregate: { count: 12 } },
+      }),
+    ),
+    getBatchedRequests: jest.fn(() =>
+      Promise.resolve([
+        {
+          data: {
+            unitCount: { aggregate: { count: 1 } },
+            lessonCount: { aggregate: { count: 12 } },
+          },
+        },
+        {
+          data: {
+            unitCount: { aggregate: { count: 2 } },
+            lessonCount: { aggregate: { count: 24 } },
+          },
+        },
+        {
+          data: {
+            unitCount: { aggregate: { count: 3 } },
+            lessonCount: { aggregate: { count: 36 } },
+          },
+        },
+      ]),
+    ),
   };
 });
 
@@ -52,37 +80,50 @@ describe("specialist programme listing", () => {
       })({ subjectSlug: "creative-arts" });
     }).rejects.toThrow("invalid");
   });
-  test("transforms data", () => {
-    const res = transformProgrammes([
-      {
-        synthetic_programme_slug: "creative-arts",
-        combined_programme_fields: {
-          subject: "Creative arts",
-          subject_slug: "creative-arts",
-          developmentstage: "Early development",
-          developmentstage_slug: "early-development",
-        },
-      },
-      {
-        synthetic_programme_slug: "creative-arts",
-        combined_programme_fields: {
-          subject: "Creative arts",
-          subject_slug: "creative-arts",
-          developmentstage: "Applying Learning",
-          developmentstage_slug: "applying-learning",
-        },
-      },
-      {
-        synthetic_programme_slug: "creative-arts",
-        combined_programme_fields: {
-          subject: "Creative arts",
-          subject_slug: "creative-arts",
-          developmentstage: "Building Understanding",
-          developmentstage_slug: "building-understanding",
-        },
-      },
-    ]);
+});
+
+const queryResponse = [
+  {
+    synthetic_programme_slug: "creative-arts",
+    combined_programme_fields: {
+      subject: "Creative arts",
+      subject_slug: "creative-arts",
+      developmentstage: "Early development",
+      developmentstage_slug: "early-development",
+    },
+  },
+  {
+    synthetic_programme_slug: "creative-arts",
+    combined_programme_fields: {
+      subject: "Creative arts",
+      subject_slug: "creative-arts",
+      developmentstage: "Applying Learning",
+      developmentstage_slug: "applying-learning",
+    },
+  },
+  {
+    synthetic_programme_slug: "creative-arts",
+    combined_programme_fields: {
+      subject: "Creative arts",
+      subject_slug: "creative-arts",
+      developmentstage: "Building Understanding",
+      developmentstage_slug: "building-understanding",
+    },
+  },
+];
+
+describe("transform programms", () => {
+  test("transforms data", async () => {
+    const res = await transformProgrammes(queryResponse);
 
     expect(res.subjectSlug).toBe("creative-arts");
+    expect(res.subjectTitle).toBe("Creative arts");
+    expect(res.programmes.length).toBe(3);
+  });
+  test("fetches counts and applies to programmes", async () => {
+    const res = await transformProgrammes(queryResponse);
+    const programmes = res.programmes;
+
+    programmes.forEach((p) => expect(p.unitCount).toBeDefined());
   });
 });
