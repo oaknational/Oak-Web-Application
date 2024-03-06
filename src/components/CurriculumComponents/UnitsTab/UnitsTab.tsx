@@ -11,7 +11,6 @@ import {
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
-import Icon from "@/components/SharedComponents/Icon";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -404,39 +403,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         >
           Unit sequence
         </OakHeading>
-        <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
-          <Box
-            $background={"lemon"}
-            $height={"100%"}
-            $left={0}
-            $position={"absolute"}
-            $top={0}
-            $width={[64, 96]}
-            $textAlign={"center"}
-          >
-            <Icon
-              name={"bell"}
-              size={[48]}
-              $position={"relative"}
-              $transform={"translateY(-50%)"}
-              $top={"50%"}
-            />
-          </Box>
-          <Box $pa={20}>
-            <OakHeading
-              tag="h3"
-              $font={"heading-7"}
-              $mb="space-between-xs"
-              data-testid="units-heading"
-            >
-              Introducing our new curriculum sequence for 2023/2024!
-            </OakHeading>
-            <OakP>
-              Units that make up our curricula are fully sequenced, and aligned
-              to the national curriculum.
-            </OakP>
-          </Box>
-        </Card>
+        <OakP $mb={"space-between-xl"}>
+          Units that make up our curricula are fully sequenced, and aligned to
+          the national curriculum.
+        </OakP>
         <OakGrid>
           <OakGridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
