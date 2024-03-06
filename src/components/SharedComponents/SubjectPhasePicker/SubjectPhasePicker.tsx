@@ -355,6 +355,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $font={"heading-light-7"}
                 $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
+                data-testid="selectSubjectHeading"
               >
                 Subject
               </OakHeading>
@@ -415,6 +416,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     tag={"h4"}
                     $font={"heading-6"}
                     $mr="space-between-xs"
+                    data-testid="subjectDropdownHeading"
                   >
                     Curriculum plans
                   </OakHeading>
@@ -496,6 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $font={"heading-light-7"}
                 $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
+                data-testid="selectPhaseHeading"
               >
                 School phase
               </OakHeading>
@@ -594,6 +597,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     tag={"h4"}
                     $font={"heading-6"}
                     $mb="space-between-s"
+                    data-testid="phaseDropdownHeading"
                   >
                     Choose a school phase:
                   </OakHeading>
