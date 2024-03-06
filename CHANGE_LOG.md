@@ -1,3 +1,34 @@
+# [1.376.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.375.0...v1.376.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* update imports ([dd06232](https://github.com/oaknational/Oak-Web-Application/commit/dd062329cf6b2ae4fdce09cf54813cab9af8b26b))
+
+
+### Features
+
+* add programme count to query ([ea33aa8](https://github.com/oaknational/Oak-Web-Application/commit/ea33aa89c199121ed52f74b11909512b4ac62a37))
+* add queries required for specialist subject listing page ([975de5b](https://github.com/oaknational/Oak-Web-Application/commit/975de5b3557ad56bcad87d9d2233fac61df6cfac))
+* add SEO ([7d2d1cd](https://github.com/oaknational/Oak-Web-Application/commit/7d2d1cdff58f824756422fe769e32f763edb9517))
+* add specialist subject listing page and queries ([bcffe5a](https://github.com/oaknational/Oak-Web-Application/commit/bcffe5a53229e026f11ddf0fb83444527a196d39))
+* don't count expired lessons and units ([061cdf7](https://github.com/oaknational/Oak-Web-Application/commit/061cdf7412091301ef3536d19ed33f760a5a0407))
+* show 404 page when no specialist published ([7c01f97](https://github.com/oaknational/Oak-Web-Application/commit/7c01f97d9f9528daf80d0d2c0c020eb536de590b))
+
+# [1.375.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.5...v1.375.0) (2024-03-04)
+
+
+### Features
+
+* reinstate latest mv versions for downloads and lesson overview ([3fa2938](https://github.com/oaknational/Oak-Web-Application/commit/3fa2938ac147846522f57ff5d61ed0753ce05c50))
+
+## [1.374.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.4...v1.374.5) (2024-03-04)
+
+
+### Bug Fixes
+
+* rollback mv versions for lesson downloads and overview ([9b233ef](https://github.com/oaknational/Oak-Web-Application/commit/9b233ef3829c67b42a7f659e77c95e9212a7636a))
+
 ## [1.374.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.374.3...v1.374.4) (2024-03-04)
 
 

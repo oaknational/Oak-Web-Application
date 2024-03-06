@@ -19,6 +19,7 @@ import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/le
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
+import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
 
 export const keyStageSchema = z.object({
@@ -132,6 +133,7 @@ const curriculumApi2023 = {
     return teachersHomePageData.parse(teachersHomePage);
   },
   unitListing: unitListingQuery(sdk),
+  specialistSubjectListing: specialistSubjectListingQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
