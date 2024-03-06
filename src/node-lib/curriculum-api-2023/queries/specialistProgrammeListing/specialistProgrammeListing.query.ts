@@ -74,11 +74,18 @@ const specialistProgrammeListingQuery =
     }
 
     const sortedProgrammes = parsedProgrammes.sort((a, b) => {
-      // The 'order' values are in reverse, for some reason
-      return (
-        b.combined_programme_fields.developmentstage_display_order -
-        a.combined_programme_fields.developmentstage_display_order
-      );
+      // The 'order' values are in reverse, for some reason, except for masterclass
+      if (a.combined_programme_fields.developmentstage_slug === "masterclass") {
+        return 1;
+      } else if (
+        b.combined_programme_fields.developmentstage_slug === "masterclass"
+      ) {
+        return -1;
+      } else
+        return (
+          b.combined_programme_fields.developmentstage_display_order -
+          a.combined_programme_fields.developmentstage_display_order
+        );
     });
 
     const programmes = await transformProgrammes(sortedProgrammes);
