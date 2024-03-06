@@ -161,6 +161,7 @@ export type LessonEngineContextType = {
   proceedToNextSection: () => void;
   updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
+  lessonStarted: boolean;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -279,6 +280,7 @@ export const LessonEngineProvider = memo(
           proceedToNextSection,
           updateSectionResult,
           lessonReviewSections: state.lessonReviewSections,
+          lessonStarted: state.lessonStarted,
         }}
       >
         {children}
