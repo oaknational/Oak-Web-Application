@@ -16,6 +16,8 @@ const SpecialistProgrammeSchema = z.object({
   programmeSlug: z.string(),
   developmentStageSlug: z.string(),
   developmentStageTitle: z.string(),
+  unitCount: z.number(),
+  lessonCount: z.number(),
 });
 
 const SpecialistProgrammesListingSchema = z.object({

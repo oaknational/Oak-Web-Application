@@ -6,6 +6,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
+import { P } from "@/components/SharedComponents/Typography";
 
 export type SpecialistProgrammeListItemProps = {
   programme: SpecialistProgramme;
@@ -44,6 +45,11 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
           >
             {props.programme.developmentStageTitle}
           </OakHeading>
+          <OakFlex $gap="all-spacing-1">
+            <P>{props.programme.unitCount} units</P>
+            <P>•</P>
+            <P>{props.programme.lessonCount} lessons</P>
+          </OakFlex>
         </OwaLink>
       </OakFlex>
 
