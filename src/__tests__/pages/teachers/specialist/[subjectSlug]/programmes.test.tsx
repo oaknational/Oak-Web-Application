@@ -9,8 +9,8 @@ import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum
 
 const render = renderWithProviders();
 
-describe("pages/specialist/subjects", () => {
-  it("renders therapies and specialist", () => {
+describe("pages/specialist/subjects/[subjectSlug]/programmes", () => {
+  it("renders programmes", () => {
     render(
       <SpecialistProgrammeListingPage
         curriculumData={specialistProgrammeListingPageDataFixture()}
