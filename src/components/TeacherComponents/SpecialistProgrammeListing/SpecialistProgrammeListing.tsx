@@ -24,7 +24,7 @@ const SpecialistProgrammeListing: FC<{
         Developmental stages
       </OakHeading>
       <OakFlex
-        $justifyContent="space-between"
+        $justifyContent="flex-start"
         $flexDirection={["column", "row", "row"]}
         $gap={"all-spacing-3"}
       >
