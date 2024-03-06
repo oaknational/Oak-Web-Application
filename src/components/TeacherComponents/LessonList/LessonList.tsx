@@ -69,7 +69,6 @@ const LessonList: FC<LessonListProps> = (props) => {
                 key={`LessonList-LessonListItem-${item.lessonSlug}`}
                 data-testid={"lesson-list-item"}
               >
-                (
                 <LessonListItem
                   {...item}
                   unitTitle={unitTitle}
@@ -78,7 +77,6 @@ const LessonList: FC<LessonListProps> = (props) => {
                   firstItemRef={index === 0 ? firstItemRef : null}
                   onClick={onClick}
                 />
-                )
               </OakLI>
             ))}
           </OakUL>

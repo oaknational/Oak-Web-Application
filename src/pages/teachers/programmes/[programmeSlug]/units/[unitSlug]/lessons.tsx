@@ -164,7 +164,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               headingTag={"h2"}
               unitTitle={unitTitle}
               onClick={trackLessonSelected}
-              isNew={isNew}
             />
           </OakGridArea>
         </OakGrid>
