@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OakGridArea, OakHeading } from "@oaknational/oak-components";
+import { OakFlex, OakHeading } from "@oaknational/oak-components";
 
 import ProgrammeListContainer from "@/components/TeacherComponents/ProgrammeListContainer";
 import SpecialistProgrammeListItem from "@/components/TeacherComponents/SpecialistProgrammeListItem";
@@ -14,7 +14,7 @@ const SpecialistProgrammeListing: FC<{
 }> = ({ ...props }) => {
   const { programmes, onClick } = props;
   const programmeColSpan = programmes.length === 2 ? 6 : 9;
-  const colSpan = programmes.length === 2 ? 6 : 4;
+
   return (
     <ProgrammeListContainer
       $background="aqua"
@@ -23,20 +23,20 @@ const SpecialistProgrammeListing: FC<{
       <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
         Developmental stages
       </OakHeading>
-      {programmes.map((programme) => {
-        return (
-          <OakGridArea
-            $mb={"space-between-s"}
-            $colSpan={[12, 12, colSpan]}
-            key={programme.programmeSlug}
-          >
+      <OakFlex
+        $justifyContent="space-between"
+        $flexDirection={["column", "row", "row"]}
+        $gap={"all-spacing-3"}
+      >
+        {programmes.map((programme) => {
+          return (
             <SpecialistProgrammeListItem
               programme={programme}
               onClick={onClick}
             />
-          </OakGridArea>
-        );
-      })}
+          );
+        })}
+      </OakFlex>
     </ProgrammeListContainer>
   );
 };

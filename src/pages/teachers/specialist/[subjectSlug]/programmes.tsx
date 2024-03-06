@@ -11,11 +11,11 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { SpecialistProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
-import SpecialistProgrammeListing from "@/components/TeacherComponents/SpecialistProgrammeListing";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
+import SpecialistProgrammeListingView from "@/components/TeacherViews/SpecialistProgrammeListing/SpecialistProgrammeListing.view";
 
 export type SpecialistProgrammeListingPageProps = {
   curriculumData: SpecialistProgrammeListingPageData;
@@ -32,12 +32,13 @@ const SEO = {
 const SpecialistProgrammeListingPage: NextPage<
   SpecialistProgrammeListingPageProps
 > = ({ curriculumData }) => {
-  const { programmes } = curriculumData;
+  const { programmes, subjectSlug, subjectTitle } = curriculumData;
   return (
     <AppLayout seoProps={SEO}>
-      <SpecialistProgrammeListing
+      <SpecialistProgrammeListingView
         programmes={programmes}
-        onClick={() => console.log("todo: implement what this is")}
+        subjectSlug={subjectSlug}
+        subjectTitle={subjectTitle}
       />
     </AppLayout>
   );
@@ -80,7 +81,7 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-
+      console.log("diego", curriculumData.subjectSlug);
       const results: GetStaticPropsResult<SpecialistProgrammeListingPageProps> =
         {
           props: {

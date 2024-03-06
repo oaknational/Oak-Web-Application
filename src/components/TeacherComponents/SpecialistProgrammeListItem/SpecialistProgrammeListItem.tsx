@@ -27,6 +27,8 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
       data-testid={"programme-list-item"}
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
+      $width={["100%", "100%", 400]}
+      $flexGrow={0}
     >
       <OakFlex $pa="inner-padding-m">
         <OwaLink
