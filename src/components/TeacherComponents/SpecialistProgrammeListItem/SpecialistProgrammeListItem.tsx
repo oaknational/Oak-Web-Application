@@ -1,12 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakBulletList,
+} from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
-import { P } from "@/components/SharedComponents/Typography";
 
 export type SpecialistProgrammeListItemProps = {
   programme: SpecialistProgramme;
@@ -38,17 +41,20 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
           {...props.programme}
           onClick={() => onClick(programme)}
         >
-          <OakHeading
-            $font={"heading-7"}
-            tag="h3"
-            ariaLabel={props.programme.developmentStageTitle}
-          >
-            {props.programme.developmentStageTitle}
-          </OakHeading>
-          <OakFlex $gap="all-spacing-1">
-            <P>{props.programme.unitCount} units</P>
-            <P>•</P>
-            <P>{props.programme.lessonCount} lessons</P>
+          <OakFlex $flexDirection="column" $gap={"all-spacing-1"}>
+            <OakHeading
+              $font={"heading-7"}
+              tag="h3"
+              ariaLabel={props.programme.developmentStageTitle}
+            >
+              {props.programme.developmentStageTitle}
+            </OakHeading>
+            <OakBulletList
+              listItems={[
+                `${props.programme.unitCount} units`,
+                `${props.programme.lessonCount} lessons`,
+              ]}
+            />
           </OakFlex>
         </OwaLink>
       </OakFlex>
