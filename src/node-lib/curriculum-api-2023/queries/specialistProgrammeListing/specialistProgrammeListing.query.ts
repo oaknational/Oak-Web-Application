@@ -58,6 +58,25 @@ export const transformProgrammes = async (
   };
 };
 
+export const sortProgrammesByDevelopmentStage = (
+  programmes: SpecialistProgrammeQueryResponseSchema,
+) => {
+  return programmes.sort((a, b) => {
+    // The 'order' values are in reverse, for some reason, except for masterclass
+    if (a.combined_programme_fields.developmentstage_slug === "masterclass") {
+      return 1;
+    } else if (
+      b.combined_programme_fields.developmentstage_slug === "masterclass"
+    ) {
+      return -1;
+    } else
+      return (
+        b.combined_programme_fields.developmentstage_display_order -
+        a.combined_programme_fields.developmentstage_display_order
+      );
+  });
+};
+
 const specialistProgrammeListingQuery =
   (sdk: Sdk) => async (args: { subjectSlug: string }) => {
     const { specialistProgrammeListing } = await sdk.specialistProgrammeListing(
@@ -73,22 +92,9 @@ const specialistProgrammeListingQuery =
       throw new Error("curriculum-api/not-found");
     }
 
-    const sortedProgrammes = parsedProgrammes.sort((a, b) => {
-      // The 'order' values are in reverse, for some reason, except for masterclass
-      if (a.combined_programme_fields.developmentstage_slug === "masterclass") {
-        return 1;
-      } else if (
-        b.combined_programme_fields.developmentstage_slug === "masterclass"
-      ) {
-        return -1;
-      } else
-        return (
-          b.combined_programme_fields.developmentstage_display_order -
-          a.combined_programme_fields.developmentstage_display_order
-        );
-    });
-
-    const programmes = await transformProgrammes(sortedProgrammes);
+    const programmes = await transformProgrammes(
+      sortProgrammesByDevelopmentStage(parsedProgrammes),
+    );
 
     return programmes;
   };

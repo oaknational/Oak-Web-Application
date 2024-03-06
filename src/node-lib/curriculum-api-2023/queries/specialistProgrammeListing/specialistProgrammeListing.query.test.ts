@@ -1,6 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistProgrammeListingQuery, {
+  sortProgrammesByDevelopmentStage,
   transformProgrammes,
 } from "./specialistProgrammeListing.query";
 
@@ -116,7 +117,7 @@ const queryResponse = [
   },
 ];
 
-describe("transform programms", () => {
+describe("transform programmes", () => {
   test("transforms data", async () => {
     const res = await transformProgrammes(queryResponse);
 
@@ -129,5 +130,40 @@ describe("transform programms", () => {
     const programmes = res.programmes;
 
     programmes.forEach((p) => expect(p.unitCount).toBeDefined());
+  });
+});
+
+describe("sort programmes by development stage", () => {
+  test("sorts by development stage", () => {
+    const res = sortProgrammesByDevelopmentStage(queryResponse);
+
+    expect(res[0]?.combined_programme_fields.developmentstage_slug).toBe(
+      "early-development",
+    );
+    expect(res[1]?.combined_programme_fields.developmentstage_slug).toBe(
+      "building-understanding",
+    );
+    expect(res[2]?.combined_programme_fields.developmentstage_slug).toBe(
+      "applying-learning",
+    );
+  });
+  test("puts masterclass last", () => {
+    const res = sortProgrammesByDevelopmentStage([
+      ...queryResponse,
+      {
+        synthetic_programme_slug: "creative-arts",
+        combined_programme_fields: {
+          subject: "Creative arts",
+          subject_slug: "creative-arts",
+          developmentstage: "Masterclass",
+          developmentstage_slug: "masterclass",
+          developmentstage_display_order: 1,
+        },
+      },
+    ]);
+
+    expect(res[3]?.combined_programme_fields.developmentstage_slug).toBe(
+      "masterclass",
+    );
   });
 });
