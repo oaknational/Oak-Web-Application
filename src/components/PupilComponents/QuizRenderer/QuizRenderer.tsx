@@ -99,7 +99,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
       >
         <OakFlex
           $flexDirection={"column"}
-          $gap={["space-between-m", "space-between-l", "space-between-xl"]}
+          $gap={"space-between-m"}
           $height={"100%"}
         >
           <QuizQuestionStem
