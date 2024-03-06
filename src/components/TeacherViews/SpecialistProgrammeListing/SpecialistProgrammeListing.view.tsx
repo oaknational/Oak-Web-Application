@@ -6,6 +6,19 @@ import SpecialistProgrammeHeaderListing from "@/components/TeacherComponents/Spe
 import SpecialistProgrammeListing from "@/components/TeacherComponents/SpecialistProgrammeListing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
+const specialistProgrammeDescriptions: Record<string, string> = {
+  "creative-arts":
+    "Explore art, drama, dance and music through everyday activities while supporting the development of pupils’ communication, interaction, and fine and gross motor skills.",
+  numeracy:
+    "Teach your pupils important mathematical knowledge about numbers, shapes, measurement, time, positioning and money.",
+  "physical-development":
+    "Use different physical activities with your pupils to explore movements and help them develop and refine skills needed to play different sports.",
+  "independant-living":
+    "Support your pupils to develop their independence with daily living activities, including personal care, the world of work and staying safe.",
+  "communication-and-language":
+    "Help your pupils with their communication and language development, including sentence composition, writing and word reading skills by exploring topics including holidays and the seasons.",
+};
+
 const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
   props,
 ) => {
@@ -16,7 +29,7 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
         title="Specialist and therapies"
-        description="Help your pupils with their communication and language development, including sentence composition, writing and word reading skills by exploring topics including holidays and the seasons."
+        description={specialistProgrammeDescriptions[subjectSlug] ?? ""}
         breadcrumbs={[
           {
             oakLinkProps: { page: "home" },

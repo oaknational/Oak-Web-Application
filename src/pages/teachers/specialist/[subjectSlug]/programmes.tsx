@@ -72,24 +72,28 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { subjectSlug } = context.params;
-      const curriculumData = await curriculumApi2023.specialistProgrammeListing(
-        { subjectSlug },
-      );
+      try {
+        const curriculumData =
+          await curriculumApi2023.specialistProgrammeListing({ subjectSlug });
+        if (!curriculumData) {
+          return {
+            notFound: true,
+          };
+        }
 
-      if (!curriculumData) {
+        const results: GetStaticPropsResult<SpecialistProgrammeListingPageProps> =
+          {
+            props: {
+              curriculumData,
+            },
+          };
+
+        return results;
+      } catch {
         return {
           notFound: true,
         };
       }
-      console.log("diego", curriculumData.subjectSlug);
-      const results: GetStaticPropsResult<SpecialistProgrammeListingPageProps> =
-        {
-          props: {
-            curriculumData,
-          },
-        };
-
-      return results;
     },
   });
 };
