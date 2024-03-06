@@ -403,7 +403,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         >
           Unit sequence
         </OakHeading>
-        <OakP $mb={"space-between-xl"}>
+        <OakP $mb={"space-between-xl"} data-testid="units-heading">
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
