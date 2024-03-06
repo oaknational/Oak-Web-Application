@@ -6,6 +6,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/su
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
+import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -17,6 +18,7 @@ const curriculumApi: Pick<
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
   | "pupilLessonOverviewCanonical"
+  | "specialistSubjectListing"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -46,6 +48,11 @@ const curriculumApi: Pick<
     return {
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
+    };
+  }),
+  specialistSubjectListing: jest.fn(async () => {
+    return {
+      ...specialistSubjectListingFixture2023(),
     };
   }),
 };
