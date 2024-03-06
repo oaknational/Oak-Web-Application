@@ -11,7 +11,7 @@ describe("SpecialistSubjectListing", () => {
       <SpecialistProgrammeListingView {...specialistProgrammeListing} />,
     );
     const heading = screen.getByRole("heading", {
-      name: /Maths/i,
+      name: /Communication and language/i,
       level: 1,
     });
     expect(heading).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("SpecialistSubjectListing", () => {
     expect(programmeLink).toBeInTheDocument();
     expect(programmeLink).toHaveAttribute(
       "href",
-      "/teachers/specialist/programmes/maths-ks1/units",
+      "/teachers/specialist/programmes/communication-and-language-ks1/units",
     );
   });
 });
