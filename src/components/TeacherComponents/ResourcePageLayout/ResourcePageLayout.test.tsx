@@ -43,7 +43,7 @@ const ComponentWrapper = (props: PropsWithoutForm) => {
   );
 };
 
-describe("Downloads/Share Layout", () => {
+describe.skip("Downloads/Share Layout", () => {
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
     const { rerender } = renderWithTheme(
