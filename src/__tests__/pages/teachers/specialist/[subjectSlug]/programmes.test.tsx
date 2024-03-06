@@ -4,7 +4,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import SpecialistProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/teachers/specialist/[subjectSlug]/programmes";
+} from "@/pages/teachers/specialist/subjects/[subjectSlug]/programmes";
 import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistProgrammes.fixture";
 
 const render = renderWithProviders();
