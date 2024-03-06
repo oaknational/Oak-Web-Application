@@ -8,6 +8,7 @@ export const specialistProgrammeQueryResponseSchema = z.array(
       subject_slug: z.string(),
       developmentstage: z.string(),
       developmentstage_slug: z.string(),
+      developmentstage_display_order: z.number(),
     }),
   }),
 );

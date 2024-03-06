@@ -73,7 +73,16 @@ const specialistProgrammeListingQuery =
       throw new Error("curriculum-api/not-found");
     }
 
-    const programmes = transformProgrammes(parsedProgrammes);
+    const sortedProgrammes = parsedProgrammes.sort((a, b) => {
+      // The 'order' values are in reverse, for some reason
+      return (
+        b.combined_programme_fields.developmentstage_display_order -
+        a.combined_programme_fields.developmentstage_display_order
+      );
+    });
+
+    const programmes = await transformProgrammes(sortedProgrammes);
+
     return programmes;
   };
 
