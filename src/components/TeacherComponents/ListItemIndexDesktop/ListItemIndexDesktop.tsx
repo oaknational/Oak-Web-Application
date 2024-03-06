@@ -27,7 +27,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
     >
       <OutlineHeading
         tag={"div"}
-        $fontSize={40}
+        $fontSize={32}
         $lightShadow={expired}
         ariaHidden={true}
       >
