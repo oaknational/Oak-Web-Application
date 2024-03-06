@@ -90,6 +90,7 @@ const queryResponse = [
       subject_slug: "creative-arts",
       developmentstage: "Early development",
       developmentstage_slug: "early-development",
+      developmentstage_display_order: 3,
     },
   },
   {
@@ -99,6 +100,7 @@ const queryResponse = [
       subject_slug: "creative-arts",
       developmentstage: "Applying Learning",
       developmentstage_slug: "applying-learning",
+      developmentstage_display_order: 1,
     },
   },
   {
@@ -108,6 +110,7 @@ const queryResponse = [
       subject_slug: "creative-arts",
       developmentstage: "Building Understanding",
       developmentstage_slug: "building-understanding",
+      developmentstage_display_order: 2,
     },
   },
 ];
