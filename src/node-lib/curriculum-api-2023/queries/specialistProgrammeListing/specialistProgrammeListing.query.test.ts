@@ -16,6 +16,7 @@ jest.mock("../../sdk", () => {
               subject_slug: "creative-arts",
               developmentstage: "Early development",
               developmentstage_slug: "early-development",
+              developmentstage_display_order: 3,
             },
           },
         ],
