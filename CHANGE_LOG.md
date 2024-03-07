@@ -1,3 +1,18 @@
+# [1.378.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.377.1...v1.378.0) (2024-03-07)
+
+
+### Bug Fixes
+
+* copy changes ([52ac673](https://github.com/oaknational/Oak-Web-Application/commit/52ac673d1e9108d3d8c9b8a4cca972823c8ede78))
+* fixture ts changes ([dd10041](https://github.com/oaknational/Oak-Web-Application/commit/dd10041e4230f6539b3a844b21ef9e85acefd17b))
+* no separate tab ([892bf02](https://github.com/oaknational/Oak-Web-Application/commit/892bf026110739f304e3d9151293afbcd1d8d36c))
+
+
+### Features
+
+* handle expired lessons ([b2c683a](https://github.com/oaknational/Oak-Web-Application/commit/b2c683a004366c2e8dc63a694371e172d77cdf37))
+* updated tests and storybook ([7cef5d0](https://github.com/oaknational/Oak-Web-Application/commit/7cef5d02a1615c23923677defa4c70a3ca0b9810))
+
 ## [1.377.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.377.0...v1.377.1) (2024-03-07)
 
 # [1.377.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.376.1...v1.377.0) (2024-03-07)
