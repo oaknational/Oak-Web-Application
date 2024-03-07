@@ -9,13 +9,17 @@ export const specialistProgrammeListingPageDataFixture = (
     programmes: [
       {
         programmeSlug: "early-development",
-        developmentalStageSlug: "early-development-1",
-        developmentalStageTitle: "Early development 1",
+        developmentStageSlug: "early-development-1",
+        developmentStageTitle: "Early development 1",
+        unitCount: 10,
+        lessonCount: 100,
       },
       {
         programmeSlug: "creative-arts",
-        developmentalStageSlug: "creative-arts-1",
-        developmentalStageTitle: "Creative arts 1",
+        developmentStageSlug: "creative-arts-1",
+        developmentStageTitle: "Creative arts 1",
+        unitCount: 10,
+        lessonCount: 100,
       },
     ],
 
