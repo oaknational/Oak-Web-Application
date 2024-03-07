@@ -45006,14 +45006,14 @@ export type PupilLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonSlug?: string | null, lessonTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, yearSlug?: string | null, yearTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonKeywords?: any | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
+export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_0', lessonSlug?: string | null, lessonTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, yearSlug?: string | null, yearTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonKeywords?: any | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null, expired?: boolean | null }> };
 
 export type PupilLessonOverviewCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type PupilLessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_2', lessonSlug?: string | null, lessonTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, yearSlug?: string | null, yearTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonKeywords?: any | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null }> };
+export type PupilLessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_0', lessonSlug?: string | null, lessonTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, yearSlug?: string | null, yearTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonKeywords?: any | null, pupilLessonOutcome?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, supervisionLevel?: string | null, contentGuidance?: any | null, lessonEquipmentAndResources?: any | null, videoTitle?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, isLegacy?: boolean | null, expired?: boolean | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -45307,7 +45307,7 @@ export const ProgrammeListingDocument = gql`
     `;
 export const PupilLessonOverviewDocument = gql`
     query pupilLessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
-  lesson: published_mv_lesson_overview_3_0_2(
+  lesson: published_mv_lesson_overview_5_0_0(
     where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     lessonSlug
@@ -45333,12 +45333,13 @@ export const PupilLessonOverviewDocument = gql`
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
     isLegacy
+    expired
   }
 }
     `;
 export const PupilLessonOverviewCanonicalDocument = gql`
     query pupilLessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_3_0_2(
+  lesson: published_mv_lesson_overview_5_0_0(
     where: {lessonSlug: {_eq: $lessonSlug}}
   ) {
     lessonSlug
@@ -45364,6 +45365,7 @@ export const PupilLessonOverviewCanonicalDocument = gql`
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
     isLegacy
+    expired
   }
 }
     `;
