@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -74,7 +75,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = isSlugLegacy(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.lessonOverview({
             programmeSlug,
             lessonSlug,

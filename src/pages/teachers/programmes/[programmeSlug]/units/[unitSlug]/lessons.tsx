@@ -32,6 +32,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -95,6 +96,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     });
   };
 
+  const isNew = hasNewContent ?? false;
+
   return (
     <AppLayout
       seoProps={{
@@ -144,7 +147,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={hasNewContent ?? false}
+        isNew={isNew}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
@@ -203,7 +206,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = isSlugLegacy(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.lessonListing({
             programmeSlug,
             unitSlug,
