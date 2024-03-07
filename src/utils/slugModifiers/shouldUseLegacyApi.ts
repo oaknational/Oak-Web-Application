@@ -1,8 +1,8 @@
 import isSlugEYFS from "./isSlugEYFS";
 import isSlugLegacy from "./isSlugLegacy";
 
-const isSlugLegacyOrEYFS = (slug: string) => {
+const shouldUseLegacyApi = (slug: string) => {
   return isSlugLegacy(slug) && !isSlugEYFS(slug);
 };
 
-export default isSlugLegacyOrEYFS;
+export default shouldUseLegacyApi;

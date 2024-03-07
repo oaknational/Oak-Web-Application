@@ -32,7 +32,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { NEW_COHORT } from "@/config/cohort";
-import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -206,7 +206,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.lessonListing({
             programmeSlug,
             unitSlug,

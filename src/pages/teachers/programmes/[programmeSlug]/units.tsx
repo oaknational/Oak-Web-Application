@@ -36,7 +36,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { NEW_COHORT } from "@/config/cohort";
-import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -322,7 +322,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.unitListing({
             programmeSlug,
           })

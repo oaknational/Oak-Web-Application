@@ -16,7 +16,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.lessonShare({
             programmeSlug,
             unitSlug,

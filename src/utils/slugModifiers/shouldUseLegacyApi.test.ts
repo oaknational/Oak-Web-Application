@@ -1,15 +1,15 @@
-import isSlugLegacyOrEYFS from "./isSlugLegacyOrEYFS";
+import shouldUseLegacyApi from "./shouldUseLegacyApi";
 
-describe("isSlugLegacyOrEYFS", () => {
+describe("shouldUseLegacyApi", () => {
   it(`returns true if slug has suffix and is not a EYFS`, () => {
-    expect(isSlugLegacyOrEYFS(`chemistry-secondary-ks4-l`)).toBe(true);
+    expect(shouldUseLegacyApi(`chemistry-secondary-ks4-l`)).toBe(true);
   });
   it(`returns false if slug does not have suffix`, () => {
-    expect(isSlugLegacyOrEYFS("chemistry-secondary-ks4")).toBe(false);
+    expect(shouldUseLegacyApi("chemistry-secondary-ks4")).toBe(false);
   });
   it(`returns false if slug is eyfs and has -l suffix`, () => {
     expect(
-      isSlugLegacyOrEYFS(
+      shouldUseLegacyApi(
         `personal-social-and-emotional-development-foundation-early-years-foundation-stage-l`,
       ),
     ).toBe(false);
