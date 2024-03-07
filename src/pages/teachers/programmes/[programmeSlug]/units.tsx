@@ -36,6 +36,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -321,18 +322,14 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData =
-        isSlugLegacy(programmeSlug) &&
-        !programmeSlug.endsWith("early-years-foundation-stage-l")
-          ? await curriculumApi.unitListing({
-              programmeSlug,
-            })
-          : await curriculumApi2023.unitListing({
-              programmeSlug,
-              isLegacy: programmeSlug.endsWith(
-                "early-years-foundation-stage-l",
-              ),
-            });
+      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+        ? await curriculumApi.unitListing({
+            programmeSlug,
+          })
+        : await curriculumApi2023.unitListing({
+            programmeSlug,
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage-l"),
+          });
 
       if (!curriculumData) {
         return {

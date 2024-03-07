@@ -32,6 +32,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -205,17 +206,15 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData =
-        isSlugLegacy(programmeSlug) &&
-        !programmeSlug.endsWith("early-years-foundation-stage-l")
-          ? await curriculumApi.lessonListing({
-              programmeSlug,
-              unitSlug,
-            })
-          : await curriculumApi2023.lessonListing({
-              programmeSlug,
-              unitSlug,
-            });
+      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+        ? await curriculumApi.lessonListing({
+            programmeSlug,
+            unitSlug,
+          })
+        : await curriculumApi2023.lessonListing({
+            programmeSlug,
+            unitSlug,
+          });
 
       const lessonsCohorts = curriculumData.lessons.map(
         (l) => l.lessonCohort ?? "2020-2023",

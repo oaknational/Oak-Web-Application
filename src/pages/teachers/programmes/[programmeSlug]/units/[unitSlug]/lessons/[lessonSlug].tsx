@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
+import isSlugLegacyOrEYFS from "@/utils/slugModifiers/isSlugLegacyOrEYFS";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -74,19 +75,17 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData =
-        isSlugLegacy(programmeSlug) &&
-        !programmeSlug.endsWith("early-years-foundation-stage-l")
-          ? await curriculumApi.lessonOverview({
-              programmeSlug,
-              lessonSlug,
-              unitSlug,
-            })
-          : await curriculumApi2023.lessonOverview({
-              programmeSlug,
-              lessonSlug,
-              unitSlug,
-            });
+      const curriculumData = isSlugLegacyOrEYFS(programmeSlug)
+        ? await curriculumApi.lessonOverview({
+            programmeSlug,
+            lessonSlug,
+            unitSlug,
+          })
+        : await curriculumApi2023.lessonOverview({
+            programmeSlug,
+            lessonSlug,
+            unitSlug,
+          });
       if (!curriculumData) {
         return {
           notFound: true,
