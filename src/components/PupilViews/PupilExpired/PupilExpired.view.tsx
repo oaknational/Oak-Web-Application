@@ -60,7 +60,6 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
           <OakPrimaryButton
             width={["100%", "max-content"]}
             element="a"
-            target="_blank"
             href="/"
           >
             Go to homepage
