@@ -30,8 +30,8 @@ import { LessonListItemProps } from "@/components/TeacherComponents/LessonListIt
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;

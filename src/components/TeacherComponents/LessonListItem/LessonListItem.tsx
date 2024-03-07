@@ -11,7 +11,7 @@ import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMob
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
 import Box from "@/components/SharedComponents/Box";
 import { OakColorName } from "@/styles/theme";
-import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
