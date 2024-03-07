@@ -1,3 +1,11 @@
+## [1.376.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.376.0...v1.376.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* **lessonOverviewView:** fix next section label so say continue when lesson in progress ([709b07c](https://github.com/oaknational/Oak-Web-Application/commit/709b07c8cd672a682dc10c177a1991b5eb87fafb))
+* **lessonOverviewView:** set default lesson context ([13db4b0](https://github.com/oaknational/Oak-Web-Application/commit/13db4b0a15525388eb8f746748011a39b0fbd369))
+
 # [1.376.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.375.0...v1.376.0) (2024-03-05)
 
 

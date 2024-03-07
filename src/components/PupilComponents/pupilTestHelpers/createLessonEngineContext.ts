@@ -7,6 +7,7 @@ export function createLessonEngineContext(
   overrides?: Partial<LessonEngineContextType>,
 ): NonNullable<LessonEngineContextType> {
   return {
+    lessonStarted: false,
     isLessonComplete: false,
     currentSection: "starter-quiz",
     sectionResults: {},

@@ -105,30 +105,34 @@ describe(PupilViewsLessonOverview, () => {
 
   it.each([
     {
-      context: {},
+      context: { lessonStarted: false },
       label: "Let's get ready",
     },
     {
       context: {
         sectionResults: { intro: { isComplete: true } },
+        lessonStarted: false,
       },
       label: "Start lesson",
     },
     {
       context: {
         sectionResults: { "starter-quiz": { isComplete: true } },
+        lessonStarted: true,
       },
       label: "Continue lesson",
     },
     {
       context: {
         sectionResults: { "exit-quiz": { isComplete: true } },
+        lessonStarted: true,
       },
       label: "Continue lesson",
     },
     {
       context: {
         isLessonComplete: true,
+        lessonStarted: true,
       },
       label: "Lesson review",
     },
