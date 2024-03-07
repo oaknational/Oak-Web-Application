@@ -20,6 +20,7 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     videoTitle: true,
     transcriptSentences: true,
     pupilLessonOutcome: true,
+    expired: true,
   })
   .merge(
     lessonPathwaySchema.pick({

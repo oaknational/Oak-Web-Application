@@ -1,3 +1,43 @@
+# [1.378.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.377.1...v1.378.0) (2024-03-07)
+
+
+### Bug Fixes
+
+* copy changes ([52ac673](https://github.com/oaknational/Oak-Web-Application/commit/52ac673d1e9108d3d8c9b8a4cca972823c8ede78))
+* fixture ts changes ([dd10041](https://github.com/oaknational/Oak-Web-Application/commit/dd10041e4230f6539b3a844b21ef9e85acefd17b))
+* no separate tab ([892bf02](https://github.com/oaknational/Oak-Web-Application/commit/892bf026110739f304e3d9151293afbcd1d8d36c))
+
+
+### Features
+
+* handle expired lessons ([b2c683a](https://github.com/oaknational/Oak-Web-Application/commit/b2c683a004366c2e8dc63a694371e172d77cdf37))
+* updated tests and storybook ([7cef5d0](https://github.com/oaknational/Oak-Web-Application/commit/7cef5d02a1615c23923677defa4c70a3ca0b9810))
+
+## [1.377.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.377.0...v1.377.1) (2024-03-07)
+
+# [1.377.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.376.1...v1.377.0) (2024-03-07)
+
+
+### Bug Fixes
+
+* a little finagling to get masterclass in the right position ([5d80f98](https://github.com/oaknational/Oak-Web-Application/commit/5d80f989c5f64fa40335ed6838193d0a8c415e7e))
+* add counts to fixture ([5148eb1](https://github.com/oaknational/Oak-Web-Application/commit/5148eb17e57348f102222ef00dbee13249c75504))
+* flex alignment ([553b94e](https://github.com/oaknational/Oak-Web-Application/commit/553b94ea5958f42a010aa38460cdd2a646f321d2))
+* import ([2c6d98c](https://github.com/oaknational/Oak-Web-Application/commit/2c6d98c82192746db4a81e7fd22f07f64277deac))
+* include subjects in url for specialist programmes ([5067b2e](https://github.com/oaknational/Oak-Web-Application/commit/5067b2e566f2baf939c9781ddff9ef6e7297774b))
+* use correct ordering for development stages ([bb8a815](https://github.com/oaknational/Oak-Web-Application/commit/bb8a815009aa2ac632733b2bc5c12ddb00e8573f))
+
+
+### Features
+
+* add descriptions for each subject ([35e53a0](https://github.com/oaknational/Oak-Web-Application/commit/35e53a06861a78c9d818aad55403a8be8732e5ab))
+* add method to transform programmes ([6dff8e3](https://github.com/oaknational/Oak-Web-Application/commit/6dff8e386ea84165e6433e28d4986e0dbe803723))
+* add programme listing page for specialist ([ec6ab2b](https://github.com/oaknational/Oak-Web-Application/commit/ec6ab2b1366faf2ba15a0634642a4aa84b373a4d))
+* add specialist programme listing query ([9569275](https://github.com/oaknational/Oak-Web-Application/commit/9569275e21da6d12e7d98ac393939cdc87ed32c3))
+* add unit and lesson counts query ([955262b](https://github.com/oaknational/Oak-Web-Application/commit/955262b1542a8d2ec48e665e8e6fa705b96faa93))
+* add unit and lesson counts to programme cards ([672b3d3](https://github.com/oaknational/Oak-Web-Application/commit/672b3d3327e243200dcc6c46f0428c551a50060c))
+* create view for programme listing page ([896d1c4](https://github.com/oaknational/Oak-Web-Application/commit/896d1c4871124f3da2718c93a1ed31de49d0bfe2))
+
 ## [1.376.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.376.0...v1.376.1) (2024-03-06)
 
 

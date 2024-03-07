@@ -3,7 +3,7 @@ query lessonDownloads(
   $programmeSlug: String!
   $unitSlug: String!
 ) {
-  downloads: published_mv_downloads_3_0_9(
+  downloads: published_mv_downloads_5_0_0(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -25,7 +25,7 @@ query lessonDownloads(
     expired
   }
 
-  unit: published_mv_lesson_listing_3_0_1(
+  unit: published_mv_lesson_listing_5_0_1(
     where: {
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }
