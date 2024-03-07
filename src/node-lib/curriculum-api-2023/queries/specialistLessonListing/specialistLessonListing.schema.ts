@@ -25,7 +25,7 @@ export const specialistLessonQueryResponseSchema = z.array(
     }),
     unit_slug: z.string(),
     unit_title: z.string(),
-    expired: z.boolean(),
+    expired: z.boolean().nullish(),
     contains_copyright_content: z.boolean(),
     exit_quiz: z.number().nullable(),
     starter_quiz: z.number().nullable(),
