@@ -45020,6 +45020,14 @@ export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_3', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null, examBoards?: any | null }> };
 
+export type SpecialistLessonListingQueryVariables = Exact<{
+  programmeSlug?: InputMaybe<Scalars['String']['input']>;
+  unitSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type SpecialistLessonListingQuery = { __typename?: 'query_root', specialistLessonListing: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_slug?: string | null, lesson_title?: string | null, combined_programme_fields?: any | null, unit_slug?: string | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null }> };
+
 export type SpecialistProgrammeListingQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
@@ -45379,6 +45387,28 @@ export const SearchPageDocument = gql`
   }
 }
     `;
+export const SpecialistLessonListingDocument = gql`
+    query specialistLessonListing($programmeSlug: String, $unitSlug: String) {
+  specialistLessonListing: published_mv_specialist_1_0_1(
+    where: {unit_slug: {_eq: $unitSlug}, synthetic_programme_slug: {_eq: $programmeSlug}}
+  ) {
+    lesson_slug
+    lesson_title
+    combined_programme_fields
+    unit_slug
+    unit_title
+    expired
+    contains_copyright_content
+    exit_quiz
+    starter_quiz
+    pupil_lesson_outcome
+    worksheet_asset_object
+    worksheet_url
+    video_mux_playback_id
+    video_title
+  }
+}
+    `;
 export const SpecialistProgrammeListingDocument = gql`
     query specialistProgrammeListing($_contains: jsonb = "") {
   specialistProgrammeListing: published_mv_specialist_1_0_1(
@@ -45542,6 +45572,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
+    },
+    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query');
     },
     specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query');
