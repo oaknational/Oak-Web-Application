@@ -1,3 +1,20 @@
+# [1.379.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.378.0...v1.379.0) (2024-03-07)
+
+
+### Bug Fixes
+
+* labelling in the header ([ce3f7c9](https://github.com/oaknational/Oak-Web-Application/commit/ce3f7c95b39cee6b1a44c8c4d2708999642f78c8))
+* subject icon ([11b7d2b](https://github.com/oaknational/Oak-Web-Application/commit/11b7d2bc8839af80cbce30f54175a1bcc0fceff6))
+* update breadcrumbs again ([8a322dc](https://github.com/oaknational/Oak-Web-Application/commit/8a322dc1d879494f12feb756e8cc7787faf90b8a))
+
+
+### Features
+
+* add specialist lesson query and schema ([5e3c04b](https://github.com/oaknational/Oak-Web-Application/commit/5e3c04bb8d2fada13c69e8283dcf9109ff8a50cc))
+* add specialist lessons page ([5e2eb19](https://github.com/oaknational/Oak-Web-Application/commit/5e2eb19b636bca8f0ee81597924460c48826bfa7))
+* add transformation fnction ([2fb118c](https://github.com/oaknational/Oak-Web-Application/commit/2fb118ca96279caacca20d3287eab1c619093c28))
+* update breadcrumbs for page ([cf177aa](https://github.com/oaknational/Oak-Web-Application/commit/cf177aaf9faa5640efcbc022463c1cbbd83a9cdd))
+
 # [1.378.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.377.1...v1.378.0) (2024-03-07)
 
 
