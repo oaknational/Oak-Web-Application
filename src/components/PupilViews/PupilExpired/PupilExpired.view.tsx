@@ -2,6 +2,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakLink,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
@@ -46,7 +47,10 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
             tag="h2"
             $font={["body-2", "body-1"]}
           >
-            Sorry, this lesson is no longer available
+            Sorry, this lesson is no longer available.{" "}
+            <OakLink href="https://support.thenational.academy/lesson-unavailable">
+              Find out why here
+            </OakLink>
           </OakHeading>
         </OakFlex>
         <OakBox
@@ -56,10 +60,10 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
           <OakPrimaryButton
             width={["100%", "max-content"]}
             element="a"
-            href="https://support.thenational.academy/lesson-unavailable"
             target="_blank"
+            href="/"
           >
-            Find out why
+            Go to homepage
           </OakPrimaryButton>
         </OakBox>
       </OakFlex>
