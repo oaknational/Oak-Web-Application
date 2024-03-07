@@ -23,7 +23,7 @@ function getHydratedLessonsFromUnit(unit: SpecialistLessonListingData) {
 const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
   curriculumData,
 }) => {
-  const { subjectSlug, subjectTitle, unitTitle, unitSlug, programmeTitle } =
+  const { subjectSlug, subjectTitle, unitTitle, programmeTitle } =
     curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
@@ -46,25 +46,24 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
           },
           {
             oakLinkProps: {
-              page: "specialist-programme-index",
-              subjectSlug,
+              page: "specialist-subject-index",
             },
-            label: "Specialist programmes",
+            label: "Specialist and therapies",
           },
           {
             oakLinkProps: {
-              page: "specialist-unit-index",
-              programmeSlug: unitSlug,
+              page: "specialist-programme-index",
+              subjectSlug,
             },
-            label: unitTitle,
+            label: subjectTitle,
           },
         ]}
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
         subjectSlug={subjectSlug}
-        subjectTitle={unitTitle}
+        subjectTitle={subjectTitle}
         programmeFactor={programmeTitle}
-        title={subjectTitle}
+        title={unitTitle}
         isNew={false}
       />
       <MaxWidth $ph={16}>
