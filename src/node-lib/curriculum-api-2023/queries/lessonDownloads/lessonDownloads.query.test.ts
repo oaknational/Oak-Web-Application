@@ -45,7 +45,7 @@ describe("lessonDownloads()", () => {
             downloads: [],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_1",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
@@ -83,7 +83,7 @@ describe("lessonDownloads()", () => {
           downloads: downloads,
           unit: [
             {
-              __typename: "published_mv_lesson_listing_3_0_1",
+              __typename: "published_mv_lesson_listing_5_0_1",
               lessons: lessonListingFixture().lessons,
             },
           ],
@@ -118,7 +118,7 @@ describe("lessonDownloads()", () => {
             ],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_0",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
