@@ -46,10 +46,16 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
           },
           {
             oakLinkProps: {
+              page: "specialist-subject-index",
+            },
+            label: "Specialist and therapies",
+          },
+          {
+            oakLinkProps: {
               page: "specialist-programme-index",
               subjectSlug,
             },
-            label: "Specialist programmes",
+            label: programmeTitle,
           },
           {
             oakLinkProps: {
