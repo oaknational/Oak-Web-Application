@@ -65,7 +65,7 @@ const classroomActivityMap: Partial<
 };
 
 // Temporary - list of lessons live on pupil experience for sharing
-const pupilUnitsLive = ["shakespearean-comedy-the-tempest-88f0"];
+const pupilSubjectsLive = ["english"];
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
@@ -74,14 +74,14 @@ export function LessonShare(props: LessonShareProps) {
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-  const { programmeSlug, unitSlug } = commonPathway;
+  const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
   // Temporary - integrate with the new pupil experience for select units and lessons only
   const shareToNewPupilExperience =
-    unitSlug !== null && pupilUnitsLive.includes(unitSlug);
+    subjectSlug !== null && pupilSubjectsLive.includes(subjectSlug);
 
   const {
     form,
