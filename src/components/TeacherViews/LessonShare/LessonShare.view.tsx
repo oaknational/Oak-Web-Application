@@ -64,7 +64,7 @@ const classroomActivityMap: Partial<
   video: "video",
 };
 
-// Temporary - list of lessons live on pupil experience for sharing
+// Temporary - list of subjects live on pupil experience for sharing
 const pupilSubjectsLive = ["english"];
 
 export function LessonShare(props: LessonShareProps) {
@@ -79,7 +79,7 @@ export function LessonShare(props: LessonShareProps) {
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
-  // Temporary - integrate with the new pupil experience for select units and lessons only
+  // Temporary - integrate with the new pupil experience for select subjects only
   const shareToNewPupilExperience =
     subjectSlug !== null && pupilSubjectsLive.includes(subjectSlug);
 
