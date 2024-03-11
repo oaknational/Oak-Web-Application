@@ -44090,6 +44090,15 @@ export type SpecialistLessonListingQueryVariables = Exact<{
 
 export type SpecialistLessonListingQuery = { __typename?: 'query_root', specialistLessonListing: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_slug?: string | null, lesson_title?: string | null, combined_programme_fields?: any | null, unit_slug?: string | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null }> };
 
+export type SpecialistLessonShareQueryVariables = Exact<{
+  programmeSlug?: InputMaybe<Scalars['String']['input']>;
+  unitSlug?: InputMaybe<Scalars['String']['input']>;
+  lessonSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type SpecialistLessonShareQuery = { __typename?: 'query_root', specialistLessonShare: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_title?: string | null, combined_programme_fields?: any | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null, exit_quiz_asset_object?: any | null, presentation_url?: string | null, slidedeck_asset_object?: any | null, starter_quiz_asset_object?: any | null }> };
+
 export type SpecialistProgrammeListingQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
@@ -44495,6 +44504,30 @@ export const SpecialistLessonListingDocument = gql`
   }
 }
     `;
+export const SpecialistLessonShareDocument = gql`
+    query specialistLessonShare($programmeSlug: String, $unitSlug: String, $lessonSlug: String) {
+  specialistLessonShare: published_mv_specialist_1_0_1(
+    where: {unit_slug: {_eq: $unitSlug}, synthetic_programme_slug: {_eq: $programmeSlug}, lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_title
+    combined_programme_fields
+    unit_title
+    expired
+    contains_copyright_content
+    exit_quiz
+    starter_quiz
+    pupil_lesson_outcome
+    worksheet_asset_object
+    worksheet_url
+    video_mux_playback_id
+    video_title
+    exit_quiz_asset_object
+    presentation_url
+    slidedeck_asset_object
+    starter_quiz_asset_object
+  }
+}
+    `;
 export const SpecialistProgrammeListingDocument = gql`
     query specialistProgrammeListing($_contains: jsonb = "") {
   specialistProgrammeListing: published_mv_specialist_1_0_1(
@@ -44664,6 +44697,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query');
+    },
+    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query');
     },
     specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query');

@@ -252,3 +252,15 @@ export const legacyAssetObjectSchema = z
       .nullish(),
   })
   .nullish();
+
+export const lessonShareResourceSchema = z.object({
+  exists: z.boolean().nullable(),
+  type: z.enum([
+    "intro-quiz-questions",
+    "exit-quiz-questions",
+    "worksheet-pdf",
+    "video",
+  ]),
+  label: z.string(),
+  metadata: z.string().nullable(),
+});
