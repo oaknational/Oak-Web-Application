@@ -72,4 +72,18 @@ describe("constructDownloadsArray", () => {
     if (!slidedeck) throw new Error("Slide deck not found");
     expect(slidedeck.forbidden).toBe(true);
   });
+  it("returns exists false when no downloads", () => {
+    const res = constructDownloadsArray(
+      SpecialistLessonDownloadRawFixture({
+        worksheet_asset_object: null,
+        presentation_url: null,
+        starter_quiz_asset_object: null,
+        exit_quiz_asset_object: null,
+      }),
+    );
+
+    res.forEach((d) => {
+      expect(d.exists).toBe(false);
+    });
+  });
 });
