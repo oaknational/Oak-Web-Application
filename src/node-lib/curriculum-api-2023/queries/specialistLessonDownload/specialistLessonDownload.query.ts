@@ -133,7 +133,7 @@ export const specialistLessonDownloadQuery =
         lessonTitle: lesson.lesson_title,
         lessonSlug: lessonSlug,
         downloads: downloads,
-        nextLessons: [],
+        nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
         hasDownloadableResources: hasDownloadableResources,
         expired: lesson.expired ?? false,
       },
