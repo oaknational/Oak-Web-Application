@@ -65,7 +65,12 @@ const classroomActivityMap: Partial<
 };
 
 // Temporary - list of subjects live on pupil experience for sharing
-const pupilSubjectsLive = ["english"];
+const pupilSubjectsLive = [
+  "english",
+  "english-grammar",
+  "english-reading-for-pleasure",
+  "english-spelling",
+];
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
