@@ -18,13 +18,9 @@ query specialistLessonShare(
     exit_quiz
     starter_quiz
     pupil_lesson_outcome
-    worksheet_asset_object
     worksheet_url
     video_mux_playback_id
-    video_title
-    exit_quiz_asset_object
     presentation_url
-    slidedeck_asset_object
-    starter_quiz_asset_object
+    synthetic_programme_slug
   }
 }
