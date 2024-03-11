@@ -70,21 +70,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { updateSectionResult, completeSection, currentSection } =
     useLessonEngineContext();
 
-  const filteredQuestions = questionsArray.filter((question) => {
-    return [
-      "multiple-choice",
-      "short-answer",
-      "explanatory-text",
-      "order",
-      "match",
-    ].includes(question.questionType);
-  });
-
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const currentQuestionData = filteredQuestions[currentQuestionIndex];
+  const currentQuestionData = questionsArray[currentQuestionIndex];
   const [questionState, setQuestionState] = useState<QuestionState[]>(
-    filteredQuestions.map(() => ({
+    questionsArray.map(() => ({
       mode: "init",
       offerHint: false,
       grade: 0,
@@ -92,9 +82,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     })),
   );
 
-  const numQuestions = filteredQuestions.length;
+  const numQuestions = questionsArray.length;
   const numInteractiveQuestions =
-    getInteractiveQuestions(filteredQuestions).length;
+    getInteractiveQuestions(questionsArray).length;
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
