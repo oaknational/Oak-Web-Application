@@ -1,6 +1,5 @@
-import errorReporter from "@/common-lib/error-reporter";
-import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export const requestLessonResources = async ({
@@ -21,38 +20,15 @@ export const requestLessonResources = async ({
   })();
 
   // Resolve the requests for the transcript and worksheet existence in parallel
-  const [transcriptSentences, downloadExistence] = await Promise.all([
+  const [transcriptSentences, lessonDownloads] = await Promise.all([
     resolveTranscriptSentences,
-    getDownloadResourcesExistence(
-      lessonSlug,
-      "worksheet-pdf",
-      curriculumData.isLegacy,
-    ).catch((error) => {
-      // If the download existence check fails, we should not block the page from rendering
-      // there appear to be two ways the `getDownloadResourcesExistence` will report a missing
-      // resource. Either by returning an object in the form `{ resources: ["worksheet-pdf", { exists: false }] }`
-      // or by throwing. Catching and reporting the error matches the behaviour of the teachers downloads page
-      errorReporter(
-        "pupils::requestLessonResources::getDownloadResourcesExistence",
-      )(error, {
-        severity: "warning",
-        ...{
-          lessonSlug,
-          type: "worksheet-pdf",
-          isLegacy: curriculumData.isLegacy,
-        },
-      });
-
-      return {
-        resources: [],
-      };
-    }),
+    curriculumApi2023.lessonDownloadsCanonical({ lessonSlug }),
   ]);
 
   return {
     transcriptSentences,
-    hasWorksheet: downloadExistence.resources.some(
-      ([type, result]) => type === "worksheet-pdf" && result.exists,
+    hasWorksheet: lessonDownloads.downloads.some(
+      ({ type, exists }) => type === "worksheet-pdf" && exists,
     ),
   };
 };
