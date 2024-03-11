@@ -8,6 +8,7 @@ import React, {
 } from "react";
 
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+import { invariant } from "../pupilUtils/invariant";
 
 import {
   LessonOverviewQuizData,
@@ -18,7 +19,6 @@ import {
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
-import OakError from "@/errors/OakError";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -50,6 +50,7 @@ export type QuizEngineContextType = {
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
   handleSubmitOrderAnswer: (pupilAnswers: number[]) => void;
+  handleSubmitMatchAnswer: (matches: string[], choices: string[]) => void;
   handleNextQuestion: () => void;
 } | null;
 
@@ -75,6 +76,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       "short-answer",
       "explanatory-text",
       "order",
+      "match",
     ].includes(question.questionType);
   });
 
@@ -224,9 +226,10 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     (pupilAnswers: number[]) => {
       const answers = currentQuestionData?.answers;
 
-      if (!answers || !isOrderAnswer(answers)) {
-        throw new OakError({ code: "misc/unexpected-type" });
-      }
+      invariant(
+        answers && isOrderAnswer(answers),
+        "answers are not for an order question",
+      );
 
       const correctAnswers = answers.order.map(
         (answer) => answer.correct_order,
@@ -253,6 +256,38 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       });
     },
     [currentQuestionData?.answers, currentQuestionIndex, handleScoreUpdate],
+  );
+
+  /**
+   * Receives two arrays one contains the id of the match and the other the id of the choice made by the pupil
+   *
+   * the indexes for the two arrays correspond to each other.
+   *
+   * E.g. if the first item in the `matches` array is "1" and the first item in the `choices` array is "1" then the choice was correct
+   */
+  const handleSubmitMatchAnswer = useCallback(
+    (matches: string[], choices: string[]) => {
+      const feedback: QuestionFeedbackType[] = matches.map((matchId, i) =>
+        choices[i] === matchId ? "correct" : "incorrect",
+      );
+      const isCorrect = feedback.every((feedback) => feedback === "correct");
+      const isPartiallyCorrect =
+        !isCorrect && feedback.some((feedback) => feedback === "correct");
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
+          mode: "feedback",
+          grade: isCorrect ? 1 : 0,
+          feedback,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          isPartiallyCorrect,
+        };
+        handleScoreUpdate(newState);
+        return newState;
+      });
+    },
+    [currentQuestionIndex, handleScoreUpdate],
   );
 
   const handleNextQuestion = useCallback(() => {
@@ -285,6 +320,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,
         handleSubmitOrderAnswer,
+        handleSubmitMatchAnswer,
         handleNextQuestion,
       }}
     >
