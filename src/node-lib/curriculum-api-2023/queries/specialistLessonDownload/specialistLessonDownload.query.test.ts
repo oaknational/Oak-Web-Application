@@ -8,6 +8,16 @@ import {
 } from "./specialistLessonDownload.query";
 import { SpecialistLessonDownloadSchema } from "./specialistLessonDownload.schema";
 
+jest.mock("../../sdk", () => {
+  return {
+    specialistLessonDownloads: jest.fn(() =>
+      Promise.resolve({
+        specialistLessonDownloads: [SpecialistLessonDownloadRawFixture()],
+      }),
+    ),
+  };
+});
+
 describe("specialistLessonDownload.query", () => {
   it("runs", async () => {
     const res = await specialistLessonDownloadQuery(sdk)({
@@ -23,9 +33,9 @@ describe("specialistLessonDownload.query", () => {
       async () =>
         await specialistLessonDownloadQuery({
           ...sdk,
-          specialistLessonListing: jest.fn(() =>
+          specialistLessonDownloads: jest.fn(() =>
             Promise.resolve({
-              specialistLessonListing: [],
+              specialistLessonDownloads: [],
             }),
           ),
         })({
