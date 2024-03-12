@@ -1,3 +1,11 @@
+# [1.381.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.380.0...v1.381.0) (2024-03-12)
+
+
+### Features
+
+* add lesson share query and schema and initial tests ([d0a1d8d](https://github.com/oaknational/Oak-Web-Application/commit/d0a1d8d772913041c8fb8255fa192696b5874ef1))
+* add specialist lesson share page ([24f1978](https://github.com/oaknational/Oak-Web-Application/commit/24f1978c445464c40e0eb6cbcc8ac306d0b909ec))
+
 # [1.380.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.379.1...v1.380.0) (2024-03-12)
 
 
