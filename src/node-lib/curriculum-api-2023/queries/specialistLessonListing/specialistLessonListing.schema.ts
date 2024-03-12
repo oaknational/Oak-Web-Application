@@ -1,17 +1,6 @@
 import { z } from "zod";
 
-const assetObjectSchema = z
-  .object({
-    google_drive: z.object({
-      id: z.string(),
-      url: z.string(),
-    }),
-    google_drive_downloadable_version: z.object({
-      id: z.string(),
-      url: z.string(),
-    }),
-  })
-  .nullish();
+import { legacyAssetObjectSchema } from "../../shared.schema";
 
 export const specialistLessonQueryResponseSchema = z.array(
   z.object({
@@ -30,7 +19,7 @@ export const specialistLessonQueryResponseSchema = z.array(
     exit_quiz: z.number().nullable(),
     starter_quiz: z.number().nullable(),
     pupil_lesson_outcome: z.string().nullish(),
-    worksheet_asset_object: assetObjectSchema,
+    worksheet_asset_object: legacyAssetObjectSchema,
     worksheet_url: z.string().nullish(),
     video_mux_playback_id: z.string().nullish(),
     video_title: z.string().nullish(),
