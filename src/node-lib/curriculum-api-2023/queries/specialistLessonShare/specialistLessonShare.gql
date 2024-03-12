@@ -1,0 +1,26 @@
+query specialistLessonShare(
+  $programmeSlug: String
+  $unitSlug: String
+  $lessonSlug: String
+) {
+  specialistLessonShare: published_mv_specialist_1_0_1(
+    where: {
+      unit_slug: { _eq: $unitSlug }
+      synthetic_programme_slug: { _eq: $programmeSlug }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+  ) {
+    lesson_title
+    combined_programme_fields
+    unit_title
+    expired
+    contains_copyright_content
+    exit_quiz
+    starter_quiz
+    pupil_lesson_outcome
+    worksheet_url
+    video_mux_playback_id
+    presentation_url
+    synthetic_programme_slug
+  }
+}
