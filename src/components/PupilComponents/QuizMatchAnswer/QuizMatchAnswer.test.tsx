@@ -2,13 +2,13 @@ import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
+import * as oakComponents from "@oaknational/oak-components";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
 import { QuizMatchAnswer } from "./QuizMatchAnswer";
 
-import * as oakComponents from "@oaknational/oak-components";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -195,8 +195,14 @@ describe(QuizMatchAnswer, () => {
       expect(feedback.at(0)!.textContent).toContain("Mouse");
       expect(feedback.at(1)!.textContent).toContain("Likes to be petted");
       expect(feedback.at(1)!.textContent).toContain("Elephant");
+      expect(feedback.at(1)!.textContent).toContain(
+        "Correct answer: Cat - Likes to be petted",
+      );
       expect(feedback.at(2)!.textContent).toContain("Never forgets");
       expect(feedback.at(2)!.textContent).toContain("Cat");
+      expect(feedback.at(2)!.textContent).toContain(
+        "Correct answer: Elephant - Never forgets",
+      );
     });
   });
 });

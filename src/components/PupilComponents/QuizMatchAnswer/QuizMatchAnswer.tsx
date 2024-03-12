@@ -1,18 +1,25 @@
 import { Fragment, useState } from "react";
 import { isArray } from "lodash";
-
-import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
-import { getStemTextData } from "../QuizUtils/stemUtils";
-
+import styled from "styled-components";
 import {
   OakBox,
   OakDraggableFeedback,
   OakDroppable,
   OakQuizMatch,
   OakQuizMatchProps,
+  OakUL,
 } from "@oaknational/oak-components";
+
+import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
+import { getStemTextData } from "../QuizUtils/stemUtils";
+
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+
+const StyledUL = styled(OakUL)`
+  list-style: none;
+  padding-inline: 0;
+`;
 
 export const QuizMatchAnswer = () => {
   const {
@@ -71,32 +78,40 @@ export const QuizMatchAnswer = () => {
     invariant(isArray(feedback), "question feedback is not an array");
 
     return (
-      <OakBox>
+      <StyledUL>
         {matchItems.map(({ id, label }, i) => {
           const currentFeedback = feedback.at(i);
           const choice = choiceItems.find(
             (choice) => choice.id === currentMatches[i],
           );
+          const correctChoice = choiceItems.at(i);
           invariant(
             currentFeedback,
             `feedback is missing for match '${label}'`,
           );
           invariant(choice, `choice is missing for match '${label}'`);
+          invariant(
+            correctChoice,
+            `correctChoice is missing for match '${label}'`,
+          );
 
           return (
-            <OakDroppable
-              key={id}
-              $mb="space-between-s"
-              labelSlot={label}
-              data-testid="match-feedback"
-            >
-              <OakDraggableFeedback feedback={currentFeedback}>
-                {choice.label}
-              </OakDraggableFeedback>
-            </OakDroppable>
+            <li key={id} data-testid="match-feedback">
+              <OakDroppable key={id} $mb="space-between-s" labelSlot={label}>
+                <OakDraggableFeedback feedback={currentFeedback}>
+                  {choice.label}
+                </OakDraggableFeedback>
+              </OakDroppable>
+              {currentFeedback === "incorrect" && (
+                <OakBox $mb="space-between-m" $pl="inner-padding-l">
+                  <strong>Correct answer:</strong> {correctChoice.label} -{" "}
+                  {label}
+                </OakBox>
+              )}
+            </li>
           );
         })}
-      </OakBox>
+      </StyledUL>
     );
   }
 
