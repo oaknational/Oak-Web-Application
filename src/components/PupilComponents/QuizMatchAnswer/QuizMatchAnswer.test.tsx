@@ -84,11 +84,20 @@ describe(QuizMatchAnswer, () => {
       },
     },
   });
-  const newMatches = {
+  const completeMatches = {
     "0": { label: "Mouse", id: "0" },
     "1": { label: "Elephant", id: "2" },
     "2": { label: "Cat", id: "1" },
   };
+
+  let onChange: oakComponents.OakQuizMatchProps["onChange"];
+
+  beforeEach(() => {
+    jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
+      onChange = props.onChange;
+      return <div />;
+    });
+  });
 
   it("renders a hidden input for each item", () => {
     const { getAllByTestId } = renderWithTheme(
@@ -99,36 +108,50 @@ describe(QuizMatchAnswer, () => {
       </OakThemeProvider>,
     );
 
-    const input = getAllByTestId("order-input");
+    act(() => {
+      onChange!(completeMatches);
+    });
 
-    expect(input.length).toBe(3);
-    expect(input.at(0)).toHaveAttribute("name", "order-test-question");
-    expect(input.at(1)).toHaveAttribute("name", "order-test-question");
-    expect(input.at(2)).toHaveAttribute("name", "order-test-question");
+    const matches = getAllByTestId("match-input");
+    const choices = getAllByTestId("choice-input");
+
+    expect(matches.length).toBe(3);
+    expect(choices.length).toBe(3);
+    expect(matches.at(1)).toHaveAttribute("name", "match-test-question-match");
+    expect(matches.at(1)).toHaveAttribute("value", "1");
+    expect(choices.at(1)).toHaveAttribute("name", "match-test-question-choice");
+    expect(choices.at(1)).toHaveAttribute("value", "2");
   });
 
-  it("calls onInitialChange when items are re-ordered", () => {
-    let onChange: oakComponents.OakQuizMatchProps["onChange"];
-
-    jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
-      onChange = props.onChange;
-      return <div />;
-    });
-    const onInitialChange = jest.fn();
+  it('sets the question mode to "input" when all matches are made', () => {
+    const contextWithUpdateSpy = {
+      ...context,
+      updateQuestionMode: jest.fn(),
+    };
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizMatchAnswer onInitialChange={onInitialChange} />
+        <QuizEngineContext.Provider value={contextWithUpdateSpy}>
+          <QuizMatchAnswer />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
 
     act(() => {
-      onChange?.(newMatches);
+      onChange!({ "0": { label: "Mouse", id: "0" } });
     });
 
-    expect(onChange).toHaveBeenCalled();
+    expect(contextWithUpdateSpy.updateQuestionMode).toHaveBeenLastCalledWith(
+      "init",
+    );
+
+    act(() => {
+      onChange?.(completeMatches);
+    });
+
+    expect(contextWithUpdateSpy.updateQuestionMode).toHaveBeenLastCalledWith(
+      "input",
+    );
   });
 
   describe("when feedback is present", () => {
@@ -146,13 +169,6 @@ describe(QuizMatchAnswer, () => {
     });
 
     it("displays the feedback", () => {
-      let onChange: oakComponents.OakQuizMatchProps["onChange"];
-
-      jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
-        onChange = props.onChange;
-        return <div />;
-      });
-
       const { getAllByTestId, rerender } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={context}>
@@ -162,7 +178,7 @@ describe(QuizMatchAnswer, () => {
       );
 
       act(() => {
-        onChange?.(newMatches);
+        onChange!(completeMatches);
       });
 
       rerender(

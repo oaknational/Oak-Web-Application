@@ -12,24 +12,15 @@ import {
   OakQuizMatchProps,
 } from "@oaknational/oak-components";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 
-export type QuizMatchAnswerProps = {
-  onInitialChange?: () => void;
-  onChange?: () => void;
-};
-
-export const QuizMatchAnswer = ({
-  onChange,
-  onInitialChange,
-}: QuizMatchAnswerProps) => {
-  const { handleOnChange: handleInitialChange } = useInitialChange({
-    onChange,
-    onInitialChange,
-  });
-  const { currentQuestionData, questionState, currentQuestionIndex } =
-    useQuizEngineContext();
+export const QuizMatchAnswer = () => {
+  const {
+    currentQuestionData,
+    questionState,
+    currentQuestionIndex,
+    updateQuestionMode,
+  } = useQuizEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
   const questionUid = currentQuestionData.questionUid;
   const feedback = questionState[currentQuestionIndex]?.feedback;
@@ -42,13 +33,13 @@ export const QuizMatchAnswer = ({
   const answers = Object.fromEntries(
     currentQuestionData.answers.match.map(
       ({ correct_choice, match_option }) => {
-        const matchText = getStemTextData(match_option)?.text;
-        const choiceText = getStemTextData(correct_choice)?.text;
+        const match = getStemTextData(match_option);
+        const choice = getStemTextData(correct_choice);
 
-        invariant(matchText, "match_text is missing");
-        invariant(choiceText, "choice_text is missing");
+        invariant(match?.text, "match_text is missing");
+        invariant(choice?.text, "choice_text is missing");
 
-        return [matchText, choiceText];
+        return [match.text, choice.text];
       },
     ),
   );
@@ -60,13 +51,15 @@ export const QuizMatchAnswer = ({
     id: index.toString(),
     label,
   }));
-
   const [currentMatches, setCurrentMatches] = useState<{
     [matchId: string]: string;
   }>({});
-
-  const handleOrderChange: OakQuizMatchProps["onChange"] = (matches) => {
-    handleInitialChange();
+  const handleChange: OakQuizMatchProps["onChange"] = (matches) => {
+    // Update the question mode to input if all matches have been made
+    // to enable the question to be submitted
+    updateQuestionMode(
+      Object.keys(matches).length === matchItems.length ? "input" : "init",
+    );
     setCurrentMatches(
       Object.fromEntries(
         Object.entries(matches).map(([matchId, item]) => [matchId, item.id]),
@@ -81,10 +74,14 @@ export const QuizMatchAnswer = ({
       <OakBox>
         {matchItems.map(({ id, label }, i) => {
           const currentFeedback = feedback.at(i);
-          invariant(currentFeedback, "feedback is missing");
           const choice = choiceItems.find(
             (choice) => choice.id === currentMatches[i],
           );
+          invariant(
+            currentFeedback,
+            `feedback is missing for match '${label}'`,
+          );
+          invariant(choice, `choice is missing for match '${label}'`);
 
           return (
             <OakDroppable
@@ -94,7 +91,7 @@ export const QuizMatchAnswer = ({
               data-testid="match-feedback"
             >
               <OakDraggableFeedback feedback={currentFeedback}>
-                {choice?.label}
+                {choice.label}
               </OakDraggableFeedback>
             </OakDroppable>
           );
@@ -108,7 +105,7 @@ export const QuizMatchAnswer = ({
       <OakQuizMatch
         initialOptions={choiceItems}
         initialSlots={matchItems}
-        onChange={handleOrderChange}
+        onChange={handleChange}
       />
       {Object.entries(currentMatches).map(([matchId, choiceId]) => {
         return (
