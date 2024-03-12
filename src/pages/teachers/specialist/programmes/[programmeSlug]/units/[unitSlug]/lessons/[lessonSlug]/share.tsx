@@ -29,8 +29,8 @@ const SpecialistLessonSharePage: NextPage<SpecialistLessonSharePageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Share: ${lessonTitle} | ${subjectTitle}`,
-          description: "Lesson share",
+          title: `Specialist Lesson Share: ${lessonTitle} | ${subjectTitle}`,
+          description: "Specialist Lesson share",
         }),
         ...{ noFollow: true, noIndex: true },
       }}
@@ -40,7 +40,7 @@ const SpecialistLessonSharePage: NextPage<SpecialistLessonSharePageProps> = ({
   );
 };
 
-export type URLParams = {
+export type SpecialistShareURLParams = {
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
@@ -51,7 +51,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const config: GetStaticPathsResult<URLParams> = {
+  const config: GetStaticPathsResult<SpecialistShareURLParams> = {
     fallback: "blocking",
     paths: [],
   };
@@ -60,10 +60,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   SpecialistLessonSharePageProps,
-  URLParams
+  SpecialistShareURLParams
 > = async (context) => {
   return getPageProps({
-    page: "downloads::getStaticProps",
+    page: "specialist-share::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
@@ -71,24 +71,30 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.specialistLessonShare({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
+      try {
+        const curriculumData = await curriculumApi2023.specialistLessonShare({
+          programmeSlug,
+          unitSlug,
+          lessonSlug,
+        });
 
-      if (!curriculumData) {
+        if (!curriculumData) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const results: GetStaticPropsResult<SpecialistLessonSharePageProps> = {
+          props: {
+            curriculumData,
+          },
+        };
+        return results;
+      } catch {
         return {
           notFound: true,
         };
       }
-
-      const results: GetStaticPropsResult<SpecialistLessonSharePageProps> = {
-        props: {
-          curriculumData,
-        },
-      };
-      return results;
     },
   });
 };
