@@ -73,8 +73,8 @@ export const batchResultResponseArray = z.array(batchResultResponse);
 export type BatchResultResponseArray = z.infer<typeof batchResultResponseArray>;
 
 const themeSchema = z.object({
-  themeSlug: z.string().nullish(),
-  themeTitle: z.string().nullish(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
 });
 
 export const developmentalStageSchema = z.object({

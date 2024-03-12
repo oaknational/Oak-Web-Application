@@ -1,12 +1,15 @@
-import { UnitListingData } from "@/node-lib/curriculum-api";
-import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+type GenericUnitListingData<U> = {
+  units: U[][];
+};
 
-export const filterLearningTheme = (
+function filterLearningTheme<
+  U extends { learningThemes: { themeSlug: string | null }[] | null },
+>(
   themeSlug: string | undefined,
-  units: UnitListingData["units"],
-): UnitListingData["units"] => {
+  units: GenericUnitListingData<U>["units"],
+): GenericUnitListingData<U>["units"] {
   if (themeSlug) {
-    const filteredUnits = units.filter((unitVariant) =>
+    return units.filter((unitVariant) =>
       unitVariant.some(
         (unit) =>
           unit.learningThemes?.some(
@@ -14,29 +17,9 @@ export const filterLearningTheme = (
           ),
       ),
     );
-
-    return filteredUnits;
   } else {
     return units;
   }
-};
+}
 
-export const filterSpecialistLearningTheme = (
-  themeSlug: string | undefined,
-  units: SpecialistUnitListingData["units"],
-): SpecialistUnitListingData["units"] => {
-  if (themeSlug) {
-    const filteredUnits = units.filter((unitVariant) =>
-      unitVariant.some(
-        (unit) =>
-          unit.learningThemes?.some(
-            (learningTheme) => learningTheme.themeSlug === themeSlug,
-          ),
-      ),
-    );
-
-    return filteredUnits;
-  } else {
-    return units;
-  }
-};
+export default filterLearningTheme;

@@ -19,7 +19,7 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import { filterSpecialistLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 type SpecialistPageData = {
@@ -42,10 +42,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterSpecialistLearningTheme(
-    themeSlug,
-    units,
-  );
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
 
   const theme = useTheme();
 
