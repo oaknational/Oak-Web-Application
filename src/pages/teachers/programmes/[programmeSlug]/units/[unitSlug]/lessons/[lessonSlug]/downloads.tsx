@@ -17,7 +17,7 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -74,9 +74,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const isLegacy = isSlugLegacy(programmeSlug);
-
-      const curriculumData = isLegacy
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.lessonDownloads({
             programmeSlug,
             unitSlug,

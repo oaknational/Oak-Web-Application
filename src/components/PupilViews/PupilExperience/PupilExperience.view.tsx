@@ -16,6 +16,7 @@ import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import { PupilExpiredView } from "@/components/PupilViews/PupilExpired/PupilExpired.view";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -114,11 +115,15 @@ export const PupilExperienceView = ({
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
-          <PupilPageContent
-            curriculumData={curriculumData}
-            hasWorksheet={hasWorksheet}
-            backUrl={backUrl}
-          />
+          {curriculumData.expired ? (
+            <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+          ) : (
+            <PupilPageContent
+              curriculumData={curriculumData}
+              hasWorksheet={hasWorksheet}
+              backUrl={backUrl}
+            />
+          )}
         </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>

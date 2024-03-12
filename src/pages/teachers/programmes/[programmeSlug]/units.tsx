@@ -36,6 +36,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -321,13 +322,13 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = isSlugLegacy(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.unitListing({
             programmeSlug,
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
-            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage-l"),
           });
 
       if (!curriculumData) {
