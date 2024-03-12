@@ -1,8 +1,48 @@
 import sdk from "../../sdk";
 
 import specialistUnitListingQuery, {
+  getExpandedDevelopmentalStages,
   getExpandedSpecialistUnits,
+  getPartialDevelopmentStages,
+  getThemes,
 } from "./specialistUnitListing.query";
+
+const specialistUnits = [
+  {
+    contains_copyright_content: false,
+    expired: null,
+    synthetic_programme_slug: "communication-and-language-applying-learning",
+    unit_slug: "celebrations-and-festivals-primary-1f8f",
+    unit_title: "Celebrations and Festivals (Primary)",
+    combined_programme_fields: {
+      subject: "Communication and language",
+      subject_slug: "communication-and-language",
+      subject_type: "specialist",
+      subject_parent: "Specialist",
+      developmentstage: "Applying learning",
+      developmentstage_slug: "applying-learning",
+      phase_slug: "primary",
+      phase: "primary",
+    },
+  },
+  {
+    contains_copyright_content: false,
+    expired: null,
+    synthetic_programme_slug: "communication-and-language-applying-learning",
+    unit_slug: "our-world-secondary-1102",
+    unit_title: "Our World (Secondary)",
+    combined_programme_fields: {
+      subject: "Communication and language",
+      subject_slug: "communication-and-language",
+      subject_type: "specialist",
+      subject_parent: "Specialist",
+      developmentstage: "Applying learning",
+      developmentstage_slug: "applying-learning",
+      phase_slug: "secondary",
+      phase: "secondary",
+    },
+  },
+];
 
 jest.mock("../../sdk", () => {
   return {
@@ -10,16 +50,20 @@ jest.mock("../../sdk", () => {
     getBatchedRequests: jest.fn(() =>
       Promise.resolve([
         {
-          specialistUnitLessonCount: { aggregate: { count: 0 } },
-          specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
-          developmentStageUnitCount: { aggregate: { count: 0 } },
-          developmentStageLessonCount: { aggregate: { count: 0 } },
+          data: {
+            specialistUnitLessonCount: { aggregate: { count: 0 } },
+            specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
+          },
+        },
+        {
+          data: {
+            developmentStageUnitCount: { aggregate: { count: 0 } },
+            developmentStageLessonCount: { aggregate: { count: 0 } },
+          },
         },
       ]),
     ),
-    specialistUnitListing: jest.fn(() =>
-      Promise.resolve({ specialistUnits: [{ data: {} }] }),
-    ),
+    specialistUnitListing: jest.fn(() => Promise.resolve([])),
     specialistLessonCount: jest.fn(() =>
       Promise.resolve({
         specialistUnitLessonCount: { aggregate: { count: 0 } },
@@ -70,57 +114,71 @@ describe("specialist unit listing", () => {
   });
 });
 
+describe("getThemes", () => {
+  test("it returns correct themes", () => {
+    const themes = getThemes(specialistUnits);
+    expect(themes).toEqual([
+      { themeSlug: "primary", themeTitle: "primary" },
+      { themeSlug: "secondary", themeTitle: "secondary" },
+    ]);
+  });
+});
+
+describe("getPartialDevelopmentStages", () => {
+  test("it returns correct stages", () => {
+    const stages = getPartialDevelopmentStages(specialistUnits);
+    expect(stages).toEqual([
+      {
+        slug: "applying-learning",
+        title: "Applying learning",
+        programmeSlug: "communication-and-language-applying-learning",
+      },
+    ]);
+  });
+});
+
+describe("getExpandedDevelopmentalStages", () => {
+  test("it returns correct expanded stages", () => {
+    const DevelopmentalStages = getExpandedDevelopmentalStages(
+      [
+        {
+          slug: "applying-learning",
+          title: "Applying learning",
+          programmeSlug: "communication-and-language-applying-learning",
+        },
+      ],
+      [
+        {
+          data: {
+            developmentStageUnitCount: { aggregate: { count: 3 } },
+            developmentStageLessonCount: { aggregate: { count: 10 } },
+          },
+        },
+      ],
+    );
+    expect(DevelopmentalStages).toEqual([
+      {
+        slug: "applying-learning",
+        title: "Applying learning",
+        programmeSlug: "communication-and-language-applying-learning",
+        unitCount: 3,
+        lessonCount: 10,
+      },
+    ]);
+  });
+});
+
 describe("getExpandedUnits", () => {
   test("it throws an error when no corresponding data", () => {
     expect(() =>
-      getExpandedSpecialistUnits(
-        [
-          {
-            contains_copyright_content: false,
-            expired: null,
-            synthetic_programme_slug:
-              "communication-and-language-applying-learning",
-            unit_slug: "celebrations-and-festivals-primary-1f8f",
-            unit_title: "Celebrations and Festivals (Primary)",
-            combined_programme_fields: {
-              subject: "Communication and language",
-              subject_slug: "communication-and-language",
-              subject_type: "specialist",
-              subject_parent: "Specialist",
-              developmentstage: "Applying learning",
-              developmentstage_slug: "applying-learning",
-              phase_slug: "primary",
-              phase: "primary",
-            },
+      getExpandedSpecialistUnits(specialistUnits, [
+        {
+          data: {
+            specialistUnitLessonCount: { aggregate: { count: 0 } },
+            specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
           },
-          {
-            contains_copyright_content: false,
-            expired: null,
-            synthetic_programme_slug:
-              "communication-and-language-applying-learning",
-            unit_slug: "our-world-secondary-1102",
-            unit_title: "Our World (Secondary)",
-            combined_programme_fields: {
-              subject: "Communication and language",
-              subject_slug: "communication-and-language",
-              subject_type: "specialist",
-              subject_parent: "Specialist",
-              developmentstage: "Applying learning",
-              developmentstage_slug: "applying-learning",
-              phase_slug: "secondary",
-              phase: "secondary",
-            },
-          },
-        ],
-        [
-          {
-            data: {
-              specialistUnitLessonCount: { aggregate: { count: 0 } },
-              specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
-            },
-          },
-        ],
-      ),
+        },
+      ]),
     ).toThrow();
   });
   test("it returns correct expanded subjects", () => {

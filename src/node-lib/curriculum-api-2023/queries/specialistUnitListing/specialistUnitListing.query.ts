@@ -73,7 +73,7 @@ export const getExpandedDevelopmentalStages = (
   });
 };
 
-const getUnitBatchRequests = (
+export const getUnitBatchRequests = (
   specialistUnits: SpecialistUnitListRequestSchema,
 ) => {
   return specialistUnits.map((c) => {
@@ -84,7 +84,7 @@ const getUnitBatchRequests = (
   });
 };
 
-const getDevelopmentStagesBatchRequests = (
+export const getDevelopmentStagesBatchRequests = (
   developmentalStages: Partial<DevelopmentalStage>[],
 ) => {
   return developmentalStages.map((c) => {
@@ -100,7 +100,7 @@ const getDevelopmentStagesBatchRequests = (
   });
 };
 
-const getPartialDevelopmentStages = (
+export const getPartialDevelopmentStages = (
   specialistUnits: SpecialistUnitListRequestSchema,
 ) => {
   return specialistUnits.reduce(
@@ -121,7 +121,7 @@ const getPartialDevelopmentStages = (
   );
 };
 
-const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
+export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   return specialistUnits.reduce(
     (acc, unit) => {
       const themeSlug = unit.combined_programme_fields.phase_slug;
@@ -143,7 +143,7 @@ const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   );
 };
 
-const populateUnitsWithBatchResponses = async (
+export const populateUnitsWithBatchResponses = async (
   specialistUnits: SpecialistUnitListRequestSchema,
 ) => {
   const unitBatchRequests = getUnitBatchRequests(specialistUnits);
@@ -192,6 +192,7 @@ const populateUnitsWithBatchResponses = async (
 const specialistUnitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.specialistUnitListing(args);
+
     if (res.specialistUnits.length < 1) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
