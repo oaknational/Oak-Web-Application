@@ -26,7 +26,7 @@ export const constructShareableResources = (
     exists: lesson.video_mux_playback_id !== null,
     type: "video" as const,
     label: "Video",
-    metadata: "", // TODO: get video duration
+    metadata: "mp4", // TODO: get video duration
   };
   const worksheet = {
     exists: lesson.worksheet_url !== null,
