@@ -1,0 +1,121 @@
+import React from "react";
+import { useRouter } from "next/router";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
+
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "@/node-lib/isr";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import SpecialistUnitListing from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+
+export type SpecialistUnitListingPageProps = {
+  curriculumData: SpecialistUnitListingData;
+};
+
+const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
+  curriculumData,
+}) => {
+  const {
+    programmeSlug,
+    subjectTitle,
+    developmentalStageSlug,
+    developmentalStage,
+  } = curriculumData;
+
+  const router = useRouter();
+  const themeSlug = router.query["learning-theme"]?.toString();
+
+  const developmentalStagesSEO = {
+    ...getSeoProps({
+      title: `Specialist ${subjectTitle} developmental stage : ${themeSlug}`,
+      description: `We have resources for developmental stages: ${developmentalStage
+        .map((stage) => stage.title)
+        .join(", ")}`,
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
+
+  const unitsSEO = {
+    ...getSeoProps({
+      title: `Free Specialist ${subjectTitle} Teaching Resources for Lesson Planning`,
+      description: "Programme units",
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
+
+  return (
+    <AppLayout
+      seoProps={
+        themeSlug
+          ? programmeSlug.includes(developmentalStageSlug)
+            ? unitsSEO
+            : developmentalStagesSEO
+          : unitsSEO
+      }
+    >
+      <SpecialistUnitListing curriculumData={curriculumData} />
+    </AppLayout>
+  );
+};
+
+export type URLParams = {
+  programmeSlug: string;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths: [],
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
+  SpecialistUnitListingPageProps,
+  URLParams
+> = async (context) => {
+  return getPageProps({
+    page: "specialist-unit-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { programmeSlug } = context.params;
+
+      const curriculumData = await curriculumApi2023.specialistUnitListing({
+        programmeSlug,
+      });
+
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const results: GetStaticPropsResult<SpecialistUnitListingPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+
+      return results;
+    },
+  });
+};
+
+export default SpecialistUnitListingPage;

@@ -19,75 +19,39 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
+import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
+import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
-};
-
-export type SpecialistUnitListingData = {
-  units: SpecialistUnit[];
-  developmentalStage: DevelopmentalStage[];
-  programmeSlug: string;
-  subjectSlug: string;
-  subjectTitle: string;
-  themes: Theme[];
-  developmentalStageSlug: string;
-};
-export type DevelopmentalStage = {
-  slug: string;
-  title: string;
-  unitCount: number;
-  lessonCount: number;
-};
-
-export type SpecialistUnit = IndividualSpecialistUnit[];
-
-export type IndividualSpecialistUnit = {
-  slug: string;
-  title: string;
-  nullTitle: string;
-  programmeSlug: string;
-  subjectSlug: string;
-  subjectTitle: string;
-  lessonCount: number;
-  unitStudyOrder: number;
-  expired: boolean;
-  expiredLessonCount: number;
-  themeSlug: string | null;
-  themeTitle: string | null;
-  developmentalStageSlug?: string;
-  developmentalStageTitle?: string;
-};
-
-export type Theme = {
-  themeSlug: string | null;
-  themeTitle: string | null;
 };
 
 const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const {
     units,
     developmentalStage,
-    themes,
+    learningThemes,
     developmentalStageSlug,
     subjectSlug,
     subjectTitle,
+    programmeSlug,
   } = curriculumData;
-
   const themeId = useId();
   const learningThemesId = useId();
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+
   const theme = useTheme();
 
   const HEADER_HEIGHT = theme.header.height;
 
   const paginationProps = usePagination({
-    totalResults: 10, //unitsFilteredByLearningTheme.length,
+    totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
-    items: units, //unitsFilteredByLearningTheme,
+    items: unitsFilteredByLearningTheme,
   });
 
   const { currentPageItems } = paginationProps;
@@ -138,7 +102,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               $mt={[0, 32]}
               $pt={[48]}
             >
-              {themes?.length > 1 && (
+              {learningThemes?.length > 1 && (
                 <OakFlex $flexDirection={"column"}>
                   <OakP
                     id={themeId}
@@ -150,11 +114,11 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
-                    learningThemes={themes}
+                    learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
-                      programmeSlug: subjectSlug,
+                      programmeSlug: programmeSlug,
                     }}
                   />
                 </OakFlex>
@@ -185,7 +149,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     links={developmentalStage.map(
                       ({ title, slug, lessonCount }) => ({
                         label: `${title} (${lessonCount})`,
-                        programmeSlug: slug,
+                        programmeSlug: programmeSlug,
                         page: "specialist-unit-index",
                         isCurrent: developmentalStageSlug === slug,
                         currentStyles: ["underline"],
@@ -194,7 +158,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
-              {themes.length > 1 && (
+              {learningThemes.length > 1 && (
                 <MobileFilters
                   providedId={learningThemesId}
                   label="Filter by thread"
@@ -204,11 +168,11 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 >
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
-                    learningThemes={themes}
+                    learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
-                      programmeSlug: subjectSlug,
+                      programmeSlug: programmeSlug,
                     }}
                   />
                 </MobileFilters>

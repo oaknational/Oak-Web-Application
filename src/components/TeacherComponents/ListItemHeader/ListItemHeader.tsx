@@ -10,8 +10,8 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
-import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -25,7 +25,7 @@ interface CommonProps {
   onClick: () => void;
 }
 
-type SpecialistListItemProps = (IndividualSpecialistUnit | SpecialistLesson) &
+type SpecialistListItemProps = (SpecialistUnit | SpecialistLesson) &
   CommonProps & {
     title: string;
     slug: string;

@@ -36,6 +36,7 @@ export const SpecialistUnitListingPage: Story = {
             unitStudyOrder: 1,
             developmentalStageSlug: "applying-learning",
             developmentalStageTitle: "Applying learning",
+            learningThemes: [],
           },
         ],
         [
@@ -54,6 +55,7 @@ export const SpecialistUnitListingPage: Story = {
             unitStudyOrder: 1,
             developmentalStageSlug: "early-development",
             developmentalStageTitle: "Early development",
+            learningThemes: [],
           },
         ],
       ],
@@ -64,15 +66,17 @@ export const SpecialistUnitListingPage: Story = {
           title: "Early development",
           unitCount: 6,
           lessonCount: 13,
+          programmeSlug: "changes-and-transtions-123a",
         },
         {
           slug: "applying-learning",
           title: "Applying Learning",
           unitCount: 10,
           lessonCount: 20,
+          programmeSlug: "changes-and-transtions-123a",
         },
       ],
-      themes: [
+      learningThemes: [
         { themeSlug: "test-theme-primary", themeTitle: "Test Theme Primary" },
         {
           themeSlug: "test-theme-secondary",

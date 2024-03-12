@@ -1,4 +1,4 @@
-import { SpecialistUnitListingData } from "./SpecialistUnitListing.view";
+import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 const testDevelopmentalStages = [
   {
@@ -6,12 +6,14 @@ const testDevelopmentalStages = [
     title: "Building Understanding",
     unitCount: 10,
     lessonCount: 20,
+    programmeSlug: "building-understanding",
   },
   {
     slug: "applying-learning",
     title: "Applying Learning",
     unitCount: 10,
     lessonCount: 20,
+    programmeSlug: "applying-learning",
   },
 ];
 
@@ -27,7 +29,7 @@ const specialistUnitListingFixture = (
     programmeSlug: "test-specialist-unit",
     subjectSlug: "commuinication-and-language",
     subjectTitle: "Communication and Language",
-    themes: testThemes,
+    learningThemes: testThemes,
     developmentalStage: testDevelopmentalStages,
     developmentalStageSlug: "building-understanding",
     units: [
@@ -47,6 +49,7 @@ const specialistUnitListingFixture = (
           unitStudyOrder: 3,
           developmentalStageSlug: "early-development",
           developmentalStageTitle: "Early development",
+          learningThemes: [],
         },
       ],
       [
@@ -65,6 +68,7 @@ const specialistUnitListingFixture = (
           unitStudyOrder: 1,
           developmentalStageSlug: "building-understanding",
           developmentalStageTitle: "Building Understanding",
+          learningThemes: [],
         },
       ],
       [
@@ -83,6 +87,7 @@ const specialistUnitListingFixture = (
           unitStudyOrder: 4,
           developmentalStageSlug: "applying-learning",
           developmentalStageTitle: "Applying learning",
+          learningThemes: [],
         },
       ],
     ],

@@ -34,8 +34,8 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -102,11 +102,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const trackUnitSelected = ({
     ...props
-  }: UnitListItemProps | IndividualSpecialistUnit) => {
+  }: UnitListItemProps | SpecialistUnit) => {
     // Temporary until tracking for specialist units
     const isSpecialistUnit = (
-      x: UnitListItemProps | IndividualSpecialistUnit,
-    ): x is IndividualSpecialistUnit => {
+      x: UnitListItemProps | SpecialistUnit,
+    ): x is SpecialistUnit => {
       return "developmentalStageTitle" in x;
     };
 
