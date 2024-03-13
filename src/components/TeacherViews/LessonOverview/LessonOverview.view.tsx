@@ -85,7 +85,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-
   const commonPathway = getCommonPathway(
     lesson.isCanonical ? lesson.pathways : [lesson],
   );

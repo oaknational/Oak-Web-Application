@@ -1,4 +1,4 @@
-import { SpecialistLessonOverviewData } from "./SpecialistLesson.view";
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 
 const specialistLessonOverviewFixture = (
   partial?: Partial<SpecialistLessonOverviewData>,
@@ -10,6 +10,11 @@ const specialistLessonOverviewFixture = (
     programmeSlug: "specialist-programme",
     subjectSlug: "specialist-subject",
     subjectTitle: "Specialist subject",
+    developmentStageSlug: "specialist-developmental-stage",
+    developmentStageTitle: "Specialist developmental stage",
+    phaseSlug: "specialist-phase",
+    phaseTitle: "Specialist phase",
+    isCanonical: false,
     unitTitle: "Specialist unit",
     unitSlug: "specialist-unit",
     keyLearningPoints: [

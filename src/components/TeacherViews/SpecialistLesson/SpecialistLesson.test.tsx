@@ -10,7 +10,7 @@ const render = renderWithProviders();
 describe("SpecialistLessonDownloads", () => {
   test("renders component", () => {
     const { getByText } = render(
-      <SpecialistLesson curriculumData={specialistLessonOverviewFixture()} />,
+      <SpecialistLesson lesson={specialistLessonOverviewFixture()} />,
     );
     const title = getByText("Specialist subject");
 
@@ -18,9 +18,7 @@ describe("SpecialistLessonDownloads", () => {
   });
 
   test("renders with the correct resources", () => {
-    render(
-      <SpecialistLesson curriculumData={specialistLessonOverviewFixture()} />,
-    );
+    render(<SpecialistLesson lesson={specialistLessonOverviewFixture()} />);
 
     const slideDeck = screen.getAllByText("Slide deck");
     const lessonDetails = screen.getAllByText("Lesson details");
