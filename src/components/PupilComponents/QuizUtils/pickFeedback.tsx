@@ -1,9 +1,11 @@
 import { QuizMCQMultiAnswerFeedback } from "../QuizMCQMultiAnswerFeedback";
 import { QuizMCQSingleAnswerFeedback } from "../QuizMCQSingleAnswerFeedback";
+import { QuizOrderAnswerFeedback } from "../QuizOrderAnswerFeedback/QuizOrderAnswerFeedback";
 import { QuizShortAnswerFeedback } from "../QuizShortAnswerFeedback";
 
 import {
   isMultiAnswerMCQ,
+  isOrderAnswer,
   isShortAnswer,
   isSingleAnswerMCQ,
 } from "./answerTypeDiscriminators";
@@ -18,6 +20,8 @@ export const pickFeedBackComponent = (answers: AnswersSchema) => {
       return <QuizMCQSingleAnswerFeedback />;
     case isShortAnswer(answers):
       return <QuizShortAnswerFeedback />;
+    case isOrderAnswer(answers):
+      return <QuizOrderAnswerFeedback />;
     default:
       return null;
   }
