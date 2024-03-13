@@ -14,6 +14,7 @@ const specialistUnits = [
     synthetic_programme_slug: "communication-and-language-applying-learning",
     unit_slug: "celebrations-and-festivals-primary-1f8f",
     unit_title: "Celebrations and Festivals (Primary)",
+    threads: [{ themeSlug: "primary", themeTitle: "primary" }],
     combined_programme_fields: {
       subject: "Communication and language",
       subject_slug: "communication-and-language",
@@ -31,6 +32,7 @@ const specialistUnits = [
     synthetic_programme_slug: "communication-and-language-applying-learning",
     unit_slug: "our-world-secondary-1102",
     unit_title: "Our World (Secondary)",
+    threads: [{ themeSlug: "secondary", themeTitle: "secondary" }],
     combined_programme_fields: {
       subject: "Communication and language",
       subject_slug: "communication-and-language",
