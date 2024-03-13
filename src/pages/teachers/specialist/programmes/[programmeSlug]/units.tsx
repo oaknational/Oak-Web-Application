@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -25,19 +24,12 @@ export type SpecialistUnitListingPageProps = {
 const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
   curriculumData,
 }) => {
-  const {
-    programmeSlug,
-    subjectTitle,
-    developmentalStageSlug,
-    developmentalStage,
-  } = curriculumData;
-
-  const router = useRouter();
-  const themeSlug = router.query["learning-theme"]?.toString();
+  const { subjectTitle, developmentalStageSlug, developmentalStage } =
+    curriculumData;
 
   const developmentalStagesSEO = {
     ...getSeoProps({
-      title: `Specialist ${subjectTitle} developmental stage : ${themeSlug}`,
+      title: `Free Specialist ${subjectTitle} Teaching Resources for Lesson Planning`,
       description: `We have resources for developmental stages: ${developmentalStage
         .map((stage) => stage.title)
         .join(", ")}`,
@@ -48,20 +40,14 @@ const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
   const unitsSEO = {
     ...getSeoProps({
       title: `Free Specialist ${subjectTitle} Teaching Resources for Lesson Planning`,
-      description: "Programme units",
+      description: "Specialist programme units",
     }),
     ...{ noFollow: true, noIndex: true },
   };
 
   return (
     <AppLayout
-      seoProps={
-        themeSlug
-          ? programmeSlug.includes(developmentalStageSlug)
-            ? unitsSEO
-            : developmentalStagesSEO
-          : unitsSEO
-      }
+      seoProps={developmentalStageSlug ? developmentalStagesSEO : unitsSEO}
     >
       <SpecialistUnitListing curriculumData={curriculumData} />
     </AppLayout>

@@ -47,9 +47,14 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 4,
           unitStudyOrder: 3,
-          developmentalStageSlug: "early-development",
-          developmentalStageTitle: "Early development",
-          learningThemes: [],
+          developmentalStageSlug: "applying-learning",
+          developmentalStageTitle: "Applying Learning",
+          learningThemes: [
+            {
+              themeSlug: "test-theme-primary",
+              themeTitle: "Test Theme Primary",
+            },
+          ],
         },
       ],
       [

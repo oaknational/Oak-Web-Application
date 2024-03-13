@@ -141,7 +141,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 </OakHeading>
               </OakFlex>
               {developmentalStage.length > 0 && (
-                <nav aria-label="tiers" data-testid="developmental-nav">
+                <nav
+                  aria-label="developmental stages"
+                  data-testid="developmental-nav"
+                >
                   <TabularNav
                     $mb={[10, 24]}
                     label="themes"
