@@ -3,7 +3,7 @@ type GenericUnitListingData<U> = {
 };
 
 function filterLearningTheme<
-  U extends { learningThemes: { themeSlug: string | null }[] | null },
+  U extends { learningThemes?: { themeSlug?: string | null }[] | null },
 >(
   themeSlug: string | undefined,
   units: GenericUnitListingData<U>["units"],

@@ -15,6 +15,7 @@ export const combinedProgrammeFields = z.object({
   phase_slug: z.string().nullish(),
   phase: z.string().nullish(),
 });
+
 export const specialistUnitListRequestSchema = z.array(
   z.object({
     contains_copyright_content: z.boolean(),
@@ -60,6 +61,17 @@ export const developmentStageUnitCount = z.object({
     }),
   }),
 });
+
+export const developmentStageCombinedProgrammeFields = z.array(
+  z.object({
+    combined_programme_fields: combinedProgrammeFields,
+    synthetic_programme_slug: z.string(),
+  }),
+);
+
+export type DevelopmentStageCombinedProgrammeFields = z.infer<
+  typeof developmentStageCombinedProgrammeFields
+>;
 
 export type DevelopmentalStageUnitCount = z.infer<
   typeof developmentStageUnitCount

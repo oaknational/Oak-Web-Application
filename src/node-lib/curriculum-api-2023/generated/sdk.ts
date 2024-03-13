@@ -44947,12 +44947,12 @@ export type DevelopmentStageUnitCountQueryVariables = Exact<{
 
 export type DevelopmentStageUnitCountQuery = { __typename?: 'query_root', developmentStageUnitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, developmentStageLessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
 
-export type DevelopmentalStagesUnitCountQueryVariables = Exact<{
+export type DevelopmentalStagesQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
 
 
-export type DevelopmentalStagesUnitCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+export type DevelopmentalStagesQuery = { __typename?: 'query_root', developmentStages: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null, synthetic_programme_slug?: string | null }> };
 
 export type SpecialistLessonCountQueryVariables = Exact<{
   unit_slug: Scalars['String']['input'];
@@ -45455,14 +45455,13 @@ export const DevelopmentStageUnitCountDocument = gql`
   }
 }
     `;
-export const DevelopmentalStagesUnitCountDocument = gql`
-    query developmentalStagesUnitCount($_contains: jsonb) {
-  unitCount: published_mv_specialist_1_0_1_aggregate(
-    where: {combined_programme_fields: {_contains: $_contains}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+export const DevelopmentalStagesDocument = gql`
+    query developmentalStages($_contains: jsonb) {
+  developmentStages: published_mv_specialist_1_0_1(
+    where: {combined_programme_fields: {_contains: $_contains}}
   ) {
-    aggregate {
-      count(distinct: true, columns: unit_slug)
-    }
+    combined_programme_fields
+    synthetic_programme_slug
   }
 }
     `;
@@ -45618,8 +45617,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStageUnitCountQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query');
     },
-    developmentalStagesUnitCount(variables?: DevelopmentalStagesUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentalStagesUnitCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentalStagesUnitCountQuery>(DevelopmentalStagesUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentalStagesUnitCount', 'query');
+    developmentalStages(variables?: DevelopmentalStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentalStagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentalStagesQuery>(DevelopmentalStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentalStages', 'query');
     },
     specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonCountQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query');

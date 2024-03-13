@@ -6,10 +6,12 @@ import {
 
 import {
   BatchResultResponseArray,
+  DevelopmentStageCombinedProgrammeFields,
   DevelopmentalStage,
   SpecialistUnitListRequestSchema,
   SpecialistUnitListingData,
   batchResultResponseArray,
+  developmentStageCombinedProgrammeFields,
   developmentStageUnitCount,
   specialistUnitLessonCount,
   specialistUnitListRequestSchema,
@@ -140,11 +142,32 @@ export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   );
 };
 
+const getDevelopmentStages = async (
+  developmentStages: DevelopmentStageCombinedProgrammeFields,
+) => {
+  return developmentStages.reduce(
+    (acc, stage) => {
+      const stageSlug = stage.combined_programme_fields.developmentstage_slug;
+      const stageTitle = stage.combined_programme_fields.developmentstage;
+      if (stageSlug && stageTitle && !acc.find((s) => s?.slug === stageSlug)) {
+        const developmentStage = {
+          slug: stageSlug,
+          title: stageTitle,
+          programmeSlug: stage.synthetic_programme_slug,
+        };
+        acc.push(developmentStage);
+      }
+      return acc;
+    },
+    [] as Array<Partial<DevelopmentalStage>>,
+  );
+};
+
 export const populateUnitsWithBatchResponses = async (
   specialistUnits: SpecialistUnitListRequestSchema,
+  partialDevelopmentStages: Array<Partial<DevelopmentalStage>>,
 ) => {
   const unitBatchRequests = getUnitBatchRequests(specialistUnits);
-  const partialDevelopmentStages = getPartialDevelopmentStages(specialistUnits);
   const developmentStagesBatchRequest = getDevelopmentStagesBatchRequests(
     partialDevelopmentStages,
   );
@@ -187,6 +210,26 @@ export const populateUnitsWithBatchResponses = async (
   };
 };
 
+const fetchDevelopmentStages = async (
+  sdk: Sdk,
+  specialistUnits: SpecialistUnitListRequestSchema,
+) => {
+  const subjectSlug =
+    specialistUnits[0]?.combined_programme_fields.subject_slug;
+  let developmentalStages: Array<Partial<DevelopmentalStage>> = [];
+  if (subjectSlug) {
+    const stagesRes = await sdk.developmentalStages({
+      _contains: { subject_slug: subjectSlug },
+    });
+
+    const parsedStagesRes = developmentStageCombinedProgrammeFields.parse(
+      stagesRes.developmentStages,
+    );
+    developmentalStages = await getDevelopmentStages(parsedStagesRes);
+  }
+  return developmentalStages;
+};
+
 const specialistUnitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.specialistUnitListing(args);
@@ -198,9 +241,16 @@ const specialistUnitListingQuery =
       res.specialistUnits,
     );
 
-    const specialistUnitsPageData =
-      await populateUnitsWithBatchResponses(specialistUnits);
-    console.log(specialistUnitsPageData);
+    const developmentalStages = await fetchDevelopmentStages(
+      sdk,
+      specialistUnits,
+    );
+
+    const specialistUnitsPageData = await populateUnitsWithBatchResponses(
+      specialistUnits,
+      developmentalStages,
+    );
+
     return specialistUnitListingSchema.parse(specialistUnitsPageData);
   };
 

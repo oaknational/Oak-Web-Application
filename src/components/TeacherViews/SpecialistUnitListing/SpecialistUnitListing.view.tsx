@@ -150,7 +150,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     label="themes"
                     $gap={[12, 0]}
                     links={developmentalStage.map(
-                      ({ title, slug, lessonCount }) => ({
+                      ({ title, slug, lessonCount, programmeSlug }) => ({
                         label: `${title} (${lessonCount})`,
                         programmeSlug: programmeSlug,
                         page: "specialist-unit-index",
