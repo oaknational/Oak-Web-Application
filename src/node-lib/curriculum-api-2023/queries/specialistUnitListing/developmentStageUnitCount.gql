@@ -1,10 +1,6 @@
-query developmentStageUnitCount(
-  $_contains: jsonb
-  $syntheticProgrammeSlug: String!
-) {
+query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageUnitCount: published_mv_specialist_1_0_1_aggregate(
     where: {
-      combined_programme_fields: { _contains: $_contains }
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
       contains_copyright_content: { _eq: false }
       expired: { _is_null: true }
@@ -16,7 +12,6 @@ query developmentStageUnitCount(
   }
   developmentStageLessonCount: published_mv_specialist_1_0_1_aggregate(
     where: {
-      combined_programme_fields: { _contains: $_contains }
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
       contains_copyright_content: { _eq: false }
       expired: { _is_null: true }

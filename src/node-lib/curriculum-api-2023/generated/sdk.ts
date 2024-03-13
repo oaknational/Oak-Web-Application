@@ -44941,7 +44941,6 @@ export type SpecialistUnitsAndLessonCountQueryVariables = Exact<{
 export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, programmeCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
 
 export type DevelopmentStageUnitCountQueryVariables = Exact<{
-  _contains?: InputMaybe<Scalars['jsonb']['input']>;
   syntheticProgrammeSlug: Scalars['String']['input'];
 }>;
 
@@ -45439,16 +45438,16 @@ export const SpecialistUnitsAndLessonCountDocument = gql`
 }
     `;
 export const DevelopmentStageUnitCountDocument = gql`
-    query developmentStageUnitCount($_contains: jsonb, $syntheticProgrammeSlug: String!) {
+    query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageUnitCount: published_mv_specialist_1_0_1_aggregate(
-    where: {combined_programme_fields: {_contains: $_contains}, synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   developmentStageLessonCount: published_mv_specialist_1_0_1_aggregate(
-    where: {combined_programme_fields: {_contains: $_contains}, synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)

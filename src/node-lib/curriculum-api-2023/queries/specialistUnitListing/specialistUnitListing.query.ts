@@ -91,9 +91,6 @@ export const getDevelopmentStagesBatchRequests = (
     return {
       document: DevelopmentStageUnitCountDocument,
       variables: {
-        _contains: {
-          developmentstage_slug: c?.slug,
-        },
         syntheticProgrammeSlug: c?.programmeSlug,
       },
     };
