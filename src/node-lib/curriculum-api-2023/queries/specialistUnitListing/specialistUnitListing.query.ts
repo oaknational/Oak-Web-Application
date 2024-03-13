@@ -41,14 +41,14 @@ export const getExpandedSpecialistUnits = (
           themeTitle: unit.combined_programme_fields.phase || null,
           learningThemes: [
             {
-              themeSlug: unit.combined_programme_fields.phase_slug,
-              themeTitle: unit.combined_programme_fields.phase,
+              themeSlug: unit.combined_programme_fields.phase_slug || null,
+              themeTitle: unit.combined_programme_fields.phase || null,
             },
           ],
           developmentalStageSlug:
-            unit.combined_programme_fields.developmentstage_slug,
+            unit.combined_programme_fields.developmentstage_slug || null,
           developmentalStageTitle:
-            unit.combined_programme_fields.developmentstage,
+            unit.combined_programme_fields.developmentstage || null,
         },
       ];
     }
@@ -124,8 +124,8 @@ export const getPartialDevelopmentStages = (
 export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   return specialistUnits.reduce(
     (acc, unit) => {
-      const themeSlug = unit.combined_programme_fields.phase_slug;
-      const themeTitle = unit.combined_programme_fields.phase;
+      const themeSlug = unit.threads?.[0]?.themeSlug || null;
+      const themeTitle = unit.threads?.[0]?.themeTitle || null;
       if (
         themeSlug &&
         themeTitle &&
@@ -185,7 +185,8 @@ export const populateUnitsWithBatchResponses = async (
     subjectTitle: specialistUnits[0]?.combined_programme_fields.subject,
     learningThemes: themes,
     developmentalStageSlug:
-      specialistUnits[0]?.combined_programme_fields.developmentstage_slug,
+      specialistUnits[0]?.combined_programme_fields.developmentstage_slug ||
+      null,
   };
 };
 
@@ -202,6 +203,7 @@ const specialistUnitListingQuery =
 
     const specialistUnitsPageData =
       await populateUnitsWithBatchResponses(specialistUnits);
+    console.log(specialistUnitsPageData);
     return specialistUnitListingSchema.parse(specialistUnitsPageData);
   };
 

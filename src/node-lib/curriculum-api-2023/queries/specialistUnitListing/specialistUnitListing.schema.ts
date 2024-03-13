@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const themeSchema = z.object({
+  themeSlug: z.string().nullish(),
+  themeTitle: z.string().nullish(),
+});
+
 export const combinedProgrammeFields = z.object({
   subject: z.string(),
   subject_slug: z.string(),
@@ -18,6 +23,7 @@ export const specialistUnitListRequestSchema = z.array(
     unit_slug: z.string(),
     unit_title: z.string(),
     combined_programme_fields: combinedProgrammeFields,
+    threads: z.array(themeSchema).nullish(),
   }),
 );
 
@@ -72,11 +78,6 @@ export const batchResultResponseArray = z.array(batchResultResponse);
 
 export type BatchResultResponseArray = z.infer<typeof batchResultResponseArray>;
 
-const themeSchema = z.object({
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
-});
-
 export const developmentalStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
@@ -98,7 +99,7 @@ const individualSpecialistUnitSchema = z.object({
   unitStudyOrder: z.number().nullish(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
-  learningThemes: z.array(themeSchema).nullable(),
+  learningThemes: z.array(themeSchema).nullish(),
   themeSlug: z.string().nullish(),
   themeTitle: z.string().nullish(),
   developmentalStageSlug: z.string().nullish(),
@@ -115,7 +116,7 @@ export const specialistUnitListingSchema = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   learningThemes: z.array(themeSchema),
-  developmentalStageSlug: z.string(),
+  developmentalStageSlug: z.string().nullable(),
 });
 
 export type SpecialistUnitListingData = z.infer<
