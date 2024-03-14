@@ -235,6 +235,7 @@ describe("getExpandedUnits", () => {
             "communication-and-language-applying-learning",
           unit_slug: "celebrations-and-festivals-primary-1f8f",
           unit_title: "Celebrations and Festivals (Primary)",
+          threads: [{ themeSlug: "primary", themeTitle: "primary" }],
           combined_programme_fields: {
             subject: "Communication and language",
             subject_slug: "communication-and-language",

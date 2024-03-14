@@ -39,12 +39,12 @@ export const getExpandedSpecialistUnits = (
           expired: unit.expired || false,
           expiredLessonCount:
             batchRes.specialistUnitExpiredLessonCount.aggregate.count,
-          themeSlug: unit.combined_programme_fields.phase_slug || null,
-          themeTitle: unit.combined_programme_fields.phase || null,
+          themeSlug: unit.threads ? unit.threads[0]?.themeSlug : null,
+          themeTitle: unit.threads ? unit.threads[0]?.themeTitle : null,
           learningThemes: [
             {
-              themeSlug: unit.combined_programme_fields.phase_slug || null,
-              themeTitle: unit.combined_programme_fields.phase || null,
+              themeSlug: unit.threads ? unit.threads[0]?.themeSlug : null,
+              themeTitle: unit.threads ? unit.threads[0]?.themeTitle : null,
             },
           ],
           developmentStageSlug:
