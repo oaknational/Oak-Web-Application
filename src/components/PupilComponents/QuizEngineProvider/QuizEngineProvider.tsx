@@ -85,35 +85,34 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const numQuestions = questionsArray.length;
   const numInteractiveQuestions =
     getInteractiveQuestions(questionsArray).length;
-
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
-  const handleScoreUpdate = useCallback(
-    (_questionState: QuestionState[]) => {
-      updateSectionResult({
-        grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
-        numQuestions: numInteractiveQuestions,
+  const updateCurrentQuestion = useCallback(
+    (incomingQuestionState: Partial<QuestionState>) => {
+      setQuestionState((currentState) => {
+        const newState = [...currentState];
+        newState[currentQuestionIndex] = {
+          offerHint: false,
+          grade: 0,
+          mode: "init",
+          ...currentState[currentQuestionIndex],
+          ...incomingQuestionState,
+        };
+        updateSectionResult({
+          grade: newState.reduce((pv, v) => pv + v.grade, 0),
+          numQuestions: numInteractiveQuestions,
+        });
+        return newState;
       });
     },
-    [numInteractiveQuestions, updateSectionResult],
+    [currentQuestionIndex, numInteractiveQuestions, updateSectionResult],
   );
 
   const updateQuestionMode = useCallback(
     (mode: QuestionModeType) => {
-      setQuestionState((prev) => {
-        const newState = [...prev];
-
-        newState[currentQuestionIndex] = {
-          mode,
-          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          grade: prev[currentQuestionIndex]?.grade ?? 0,
-          feedback: prev[currentQuestionIndex]?.feedback,
-        };
-
-        return newState;
-      });
+      updateCurrentQuestion({ mode });
     },
-    [currentQuestionIndex, setQuestionState],
+    [updateCurrentQuestion],
   );
 
   const handleSubmitMCAnswer = useCallback(
@@ -127,50 +126,39 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         ? pupilAnswer
         : [pupilAnswer];
 
-      setQuestionState((prev) => {
-        const feedback = questionAnswers?.map((answer) => {
-          // every answer receives feedback whether the student has selected it or not
-          // which are the correct choices are implied by the combination of whether it is selected and the feedback
-          if (pupilAnswerArray.includes(answer)) {
-            // Where pupils have selected an answer
-            return correctAnswers?.includes(answer) ? "correct" : "incorrect";
-          } else {
-            // where pupils have not selected an answer
-            return correctAnswers?.includes(answer) ? "incorrect" : "correct";
-          }
-        });
+      const feedback = questionAnswers?.map((answer) => {
+        // every answer receives feedback whether the student has selected it or not
+        // which are the correct choices are implied by the combination of whether it is selected and the feedback
+        if (pupilAnswerArray.includes(answer)) {
+          // Where pupils have selected an answer
+          return correctAnswers?.includes(answer) ? "correct" : "incorrect";
+        } else {
+          // where pupils have not selected an answer
+          return correctAnswers?.includes(answer) ? "incorrect" : "correct";
+        }
+      });
 
-        const grade = !feedback?.includes("incorrect") ? 1 : 0;
+      const grade = !feedback?.includes("incorrect") ? 1 : 0;
 
-        const isPartiallyCorrect =
-          (grade === 0 &&
-            currentQuestionData?.answers?.["multiple-choice"]?.some(
-              (answer, index) => {
-                return (
-                  answer.answer_is_correct && feedback?.[index] === "correct"
-                );
-              },
-            )) ??
-          false;
+      const isPartiallyCorrect =
+        (grade === 0 &&
+          currentQuestionData?.answers?.["multiple-choice"]?.some(
+            (answer, index) => {
+              return (
+                answer.answer_is_correct && feedback?.[index] === "correct"
+              );
+            },
+          )) ??
+        false;
 
-        const newState = [...prev];
-        newState[currentQuestionIndex] = {
-          mode: "feedback",
-          grade,
-          feedback,
-          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          isPartiallyCorrect,
-        };
-        handleScoreUpdate(newState);
-        return newState;
+      updateCurrentQuestion({
+        mode: "feedback",
+        grade,
+        feedback,
+        isPartiallyCorrect,
       });
     },
-    [
-      currentQuestionData,
-      currentQuestionIndex,
-      setQuestionState,
-      handleScoreUpdate,
-    ],
+    [currentQuestionData?.answers, updateCurrentQuestion],
   );
 
   const handleSubmitShortAnswer = useCallback(
@@ -187,24 +175,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
       const grade = feedback === "correct" ? 1 : 0;
 
-      setQuestionState((prev) => {
-        const newState = [...prev];
-        newState[currentQuestionIndex] = {
-          mode: "feedback",
-          grade,
-          feedback,
-          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-        };
-        handleScoreUpdate(newState);
-        return newState;
+      updateCurrentQuestion({
+        mode: "feedback",
+        grade,
+        feedback,
       });
     },
-    [
-      currentQuestionData,
-      currentQuestionIndex,
-      setQuestionState,
-      handleScoreUpdate,
-    ],
+    [currentQuestionData?.answers, updateCurrentQuestion],
   );
 
   /**
@@ -232,20 +209,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       const isPartiallyCorrect =
         !isCorrect && feedback.some((feedback) => feedback === "correct");
 
-      setQuestionState((prev) => {
-        const newState = [...prev];
-        newState[currentQuestionIndex] = {
-          mode: "feedback",
-          grade: isCorrect ? 1 : 0,
-          feedback,
-          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          isPartiallyCorrect,
-        };
-        handleScoreUpdate(newState);
-        return newState;
+      updateCurrentQuestion({
+        mode: "feedback",
+        grade: isCorrect ? 1 : 0,
+        feedback,
+        isPartiallyCorrect,
       });
     },
-    [currentQuestionData?.answers, currentQuestionIndex, handleScoreUpdate],
+    [currentQuestionData?.answers, updateCurrentQuestion],
   );
 
   /**
@@ -264,20 +235,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       const isPartiallyCorrect =
         !isCorrect && feedback.some((feedback) => feedback === "correct");
 
-      setQuestionState((prev) => {
-        const newState = [...prev];
-        newState[currentQuestionIndex] = {
-          mode: "feedback",
-          grade: isCorrect ? 1 : 0,
-          feedback,
-          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
-          isPartiallyCorrect,
-        };
-        handleScoreUpdate(newState);
-        return newState;
+      updateCurrentQuestion({
+        mode: "feedback",
+        grade: isCorrect ? 1 : 0,
+        feedback,
+        isPartiallyCorrect,
       });
     },
-    [currentQuestionIndex, handleScoreUpdate],
+    [updateCurrentQuestion],
   );
 
   const handleNextQuestion = useCallback(() => {
