@@ -1,4 +1,4 @@
-import sdk from "../../sdk";
+import sdk, { BatchResult } from "../../sdk";
 
 import specialistUnitListingQuery, {
   fetchSubjectDevelopmentStages,
@@ -6,6 +6,7 @@ import specialistUnitListingQuery, {
   getExpandedSpecialistUnits,
   getPartialDevelopmentStageArray,
   getThemes,
+  getUnitListingPageData,
 } from "./specialistUnitListing.query";
 
 const specialistUnits = [
@@ -54,18 +55,19 @@ jest.mock("../../sdk", () => {
       Promise.resolve([
         {
           data: {
-            specialistUnitLessonCount: { aggregate: { count: 0 } },
-            specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
+            specialistUnitLessonCount: { aggregate: { count: 4 } },
+            specialistUnitExpiredLessonCount: { aggregate: { count: 4 } },
           },
         },
         {
           data: {
-            developmentStageUnitCount: { aggregate: { count: 0 } },
-            developmentStageLessonCount: { aggregate: { count: 0 } },
+            specialistUnitLessonCount: { aggregate: { count: 4 } },
+            specialistUnitExpiredLessonCount: { aggregate: { count: 4 } },
           },
         },
       ]),
     ),
+
     specialistUnitListing: jest.fn(() => Promise.resolve([])),
     developmentStages: jest.fn(() =>
       Promise.resolve({ developmentStages: [{}] }),
@@ -225,6 +227,7 @@ describe("getExpandedUnits", () => {
       ]),
     ).toThrow();
   });
+
   test("it returns correct expanded subjects", () => {
     const res = getExpandedSpecialistUnits(
       [
@@ -277,5 +280,114 @@ describe("getExpandedUnits", () => {
         developmentStageTitle: "Applying learning",
       },
     ]);
+  });
+  describe("populateUnitsWithBatchResponses", () => {
+    const data = [
+      {
+        data: {
+          specialistUnitLessonCount: { aggregate: { count: 4 } },
+          specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
+        },
+      },
+      {
+        data: {
+          specialistUnitLessonCount: { aggregate: { count: 4 } },
+          specialistUnitExpiredLessonCount: { aggregate: { count: 0 } },
+        },
+      },
+      {
+        data: {
+          developmentStageUnitCount: { aggregate: { count: 4 } },
+          developmentStageLessonCount: { aggregate: { count: 4 } },
+        },
+      },
+      {
+        data: {
+          developmentStageUnitCount: { aggregate: { count: 4 } },
+          developmentStageLessonCount: { aggregate: { count: 4 } },
+        },
+      },
+    ] as unknown as BatchResult;
+    const pageData = getUnitListingPageData(data, specialistUnits, [
+      {
+        slug: "applying-learning",
+        title: "Applying learning",
+        programmeSlug: "communication-and-language-applying-learning",
+      },
+    ]);
+
+    expect(pageData).toEqual({
+      developmentStage: [
+        {
+          lessonCount: 4,
+          programmeSlug: "communication-and-language-applying-learning",
+          slug: "applying-learning",
+          title: "Applying learning",
+          unitCount: 4,
+        },
+      ],
+      developmentStageSlug: "applying-learning",
+      learningThemes: [
+        {
+          themeSlug: "primary",
+          themeTitle: "primary",
+        },
+        {
+          themeSlug: "secondary",
+          themeTitle: "secondary",
+        },
+      ],
+      programmeSlug: "communication-and-language-applying-learning",
+      subjectSlug: "communication-and-language",
+      subjectTitle: "Communication and language",
+      units: [
+        [
+          {
+            developmentStageSlug: "applying-learning",
+            developmentStageTitle: "Applying learning",
+            expired: false,
+            expiredLessonCount: 0,
+            learningThemes: [
+              {
+                themeSlug: "primary",
+                themeTitle: "primary",
+              },
+            ],
+            lessonCount: 4,
+            nullTitle: "Celebrations and Festivals (Primary)",
+            programmeSlug: "communication-and-language-applying-learning",
+            slug: "celebrations-and-festivals-primary-1f8f",
+            subjectSlug: "communication-and-language",
+            subjectTitle: "Communication and language",
+            themeSlug: "primary",
+            themeTitle: "primary",
+            title: "Celebrations and Festivals (Primary)",
+          },
+        ],
+        [
+          {
+            developmentStageSlug: "applying-learning",
+            developmentStageTitle: "Applying learning",
+            expired: false,
+            expiredLessonCount: 0,
+            learningThemes: [
+              {
+                themeSlug: "secondary",
+                themeTitle: "secondary",
+              },
+            ],
+            lessonCount: 4,
+            nullTitle: "Our World (Secondary)",
+            programmeSlug: "communication-and-language-applying-learning",
+            slug: "our-world-secondary-1102",
+            subjectSlug: "communication-and-language",
+            subjectTitle: "Communication and language",
+            themeSlug: "secondary",
+            themeTitle: "secondary",
+            title: "Our World (Secondary)",
+          },
+        ],
+      ],
+    });
   });
 });

@@ -1,4 +1,4 @@
-import { Sdk, getBatchedRequests } from "../../sdk";
+import { BatchResult, Sdk, getBatchedRequests } from "../../sdk";
 import {
   SpecialistLessonCountDocument,
   DevelopmentStageUnitCountDocument,
@@ -142,22 +142,13 @@ export const getPartialDevelopmentStageArray = (
   );
 };
 
-export const populateUnitsWithBatchResponses = async (
+export const getUnitListingPageData = (
+  data: BatchResult,
   specialistUnits: SpecialistUnitListRequestSchema,
   partialDevelopmentStages: Array<Partial<DevelopmentStage>>,
 ) => {
-  const unitBatchRequests = getUnitBatchRequests(specialistUnits);
-  const developmentStagesBatchRequest = getDevelopmentStagesBatchRequests(
-    partialDevelopmentStages,
-  );
-
-  const combinedBatchRequests = [
-    ...unitBatchRequests,
-    ...developmentStagesBatchRequest,
-  ];
-  const data = await getBatchedRequests(combinedBatchRequests);
-
   const parsedData = batchResultResponseArray.parse(data);
+
   const specialistData = parsedData.filter(
     (item) => "specialistUnitLessonCount" in item.data,
   );
@@ -189,6 +180,28 @@ export const populateUnitsWithBatchResponses = async (
   };
 };
 
+export const populateUnitsWithBatchResponses = async (
+  specialistUnits: SpecialistUnitListRequestSchema,
+  partialDevelopmentStages: Array<Partial<DevelopmentStage>>,
+) => {
+  const unitBatchRequests = getUnitBatchRequests(specialistUnits);
+  const developmentStagesBatchRequest = getDevelopmentStagesBatchRequests(
+    partialDevelopmentStages,
+  );
+
+  const combinedBatchRequests = [
+    ...unitBatchRequests,
+    ...developmentStagesBatchRequest,
+  ];
+  const data = await getBatchedRequests(combinedBatchRequests);
+
+  return getUnitListingPageData(
+    data,
+    specialistUnits,
+    partialDevelopmentStages,
+  );
+};
+
 export const fetchSubjectDevelopmentStages = async (
   sdk: Sdk,
   specialistUnits: SpecialistUnitListRequestSchema,
@@ -205,8 +218,7 @@ export const fetchSubjectDevelopmentStages = async (
       const parsedStagesRes = developmentStageCombinedProgrammeFields.parse(
         stagesRes.developmentStages,
       );
-      developmentStages =
-        await getPartialDevelopmentStageArray(parsedStagesRes);
+      developmentStages = getPartialDevelopmentStageArray(parsedStagesRes);
     }
     return developmentStages;
   } catch (error) {
