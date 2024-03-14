@@ -1,9 +1,10 @@
 import sdk from "../../sdk";
 
 import specialistUnitListingQuery, {
+  fetchSubjectDevelopmentStages,
   getExpandedDevelopmentStages,
   getExpandedSpecialistUnits,
-  getPartialDevelopmentStages,
+  getPartialDevelopmentStageArray,
   getThemes,
 } from "./specialistUnitListing.query";
 
@@ -66,6 +67,9 @@ jest.mock("../../sdk", () => {
       ]),
     ),
     specialistUnitListing: jest.fn(() => Promise.resolve([])),
+    developmentStages: jest.fn(() =>
+      Promise.resolve({ developmentStages: [{}] }),
+    ),
     specialistLessonCount: jest.fn(() =>
       Promise.resolve({
         specialistUnitLessonCount: { aggregate: { count: 0 } },
@@ -76,7 +80,7 @@ jest.mock("../../sdk", () => {
 });
 
 describe("specialist unit listing", () => {
-  test("throws a Zod error if the response is invalid", async () => {
+  test("throws a Zod error if the response is invalid (units)", async () => {
     await expect(async () => {
       await specialistUnitListingQuery({
         ...sdk,
@@ -102,6 +106,16 @@ describe("specialist unit listing", () => {
       });
     }).rejects.toThrow(`combined_programme_fields`);
   });
+  test("throws a error if the response is invalid (development stages)", async () => {
+    await expect(async () => {
+      await fetchSubjectDevelopmentStages(
+        {
+          ...sdk,
+        },
+        specialistUnits,
+      );
+    }).rejects.toThrow(`Resource not found`);
+  });
   test("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await specialistUnitListingQuery({
@@ -126,14 +140,42 @@ describe("getThemes", () => {
   });
 });
 
-describe("getPartialDevelopmentStages", () => {
-  test("it returns correct stages", () => {
-    const stages = getPartialDevelopmentStages(specialistUnits);
-    expect(stages).toEqual([
+describe("getPartialDevelopmentStageArray", () => {
+  test("it returns correct partial stages", () => {
+    const developmentalStages = getPartialDevelopmentStageArray([
       {
-        slug: "applying-learning",
-        title: "Applying learning",
-        programmeSlug: "communication-and-language-applying-learning",
+        combined_programme_fields: {
+          subject: "Independent living",
+          subject_slug: "independent-living",
+          subject_type: "specialist",
+          subject_parent: "Specialist",
+          developmentstage: "A",
+          developmentstage_slug: "a",
+        },
+        synthetic_programme_slug: "independent-living-building-understanding",
+      },
+      {
+        combined_programme_fields: {
+          subject: "Independent living",
+          subject_slug: "independent-living",
+          subject_type: "specialist",
+          subject_parent: "Specialist",
+          developmentstage: "B",
+          developmentstage_slug: "b",
+        },
+        synthetic_programme_slug: "independent-living-building-understanding",
+      },
+    ]);
+    expect(developmentalStages).toEqual([
+      {
+        programmeSlug: "independent-living-building-understanding",
+        slug: "a",
+        title: "A",
+      },
+      {
+        programmeSlug: "independent-living-building-understanding",
+        slug: "b",
+        title: "B",
       },
     ]);
   });

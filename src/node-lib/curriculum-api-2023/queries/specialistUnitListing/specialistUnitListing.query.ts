@@ -99,27 +99,6 @@ export const getDevelopmentStagesBatchRequests = (
   });
 };
 
-export const getPartialDevelopmentStages = (
-  specialistUnits: SpecialistUnitListRequestSchema,
-) => {
-  return specialistUnits.reduce(
-    (acc, stage) => {
-      const stageSlug = stage.combined_programme_fields.developmentstage_slug;
-      const stageTitle = stage.combined_programme_fields.developmentstage;
-      if (stageSlug && stageTitle && !acc.find((s) => s?.slug === stageSlug)) {
-        const developmentStage = {
-          slug: stageSlug,
-          title: stageTitle,
-          programmeSlug: stage.synthetic_programme_slug,
-        };
-        acc.push(developmentStage);
-      }
-      return acc;
-    },
-    [] as Array<Partial<DevelopmentStage>>,
-  );
-};
-
 export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   return specialistUnits.reduce(
     (acc, unit) => {
@@ -142,7 +121,7 @@ export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
   );
 };
 
-const getDevelopmentStages = async (
+export const getPartialDevelopmentStageArray = (
   developmentStages: DevelopmentStageCombinedProgrammeFields,
 ) => {
   return developmentStages.reduce(
@@ -210,24 +189,32 @@ export const populateUnitsWithBatchResponses = async (
   };
 };
 
-const fetchDevelopmentStages = async (
+export const fetchSubjectDevelopmentStages = async (
   sdk: Sdk,
   specialistUnits: SpecialistUnitListRequestSchema,
 ) => {
-  const subjectSlug =
-    specialistUnits[0]?.combined_programme_fields.subject_slug;
-  let developmentStages: Array<Partial<DevelopmentStage>> = [];
-  if (subjectSlug) {
-    const stagesRes = await sdk.developmentStages({
-      _contains: { subject_slug: subjectSlug },
-    });
+  try {
+    const subjectSlug =
+      specialistUnits[0]?.combined_programme_fields.subject_slug;
+    let developmentStages: Array<Partial<DevelopmentStage>> = [];
+    if (subjectSlug) {
+      const stagesRes = await sdk.developmentStages({
+        _contains: { subject_slug: subjectSlug },
+      });
 
-    const parsedStagesRes = developmentStageCombinedProgrammeFields.parse(
-      stagesRes.developmentStages,
-    );
-    developmentStages = await getDevelopmentStages(parsedStagesRes);
+      const parsedStagesRes = developmentStageCombinedProgrammeFields.parse(
+        stagesRes.developmentStages,
+      );
+      developmentStages =
+        await getPartialDevelopmentStageArray(parsedStagesRes);
+    }
+    return developmentStages;
+  } catch (error) {
+    throw new OakError({
+      code: "curriculum-api/not-found",
+      originalError: error,
+    });
   }
-  return developmentStages;
 };
 
 const specialistUnitListingQuery =
@@ -241,14 +228,14 @@ const specialistUnitListingQuery =
       res.specialistUnits,
     );
 
-    const developmentStages = await fetchDevelopmentStages(
+    const partialDevelopmentStages = await fetchSubjectDevelopmentStages(
       sdk,
       specialistUnits,
     );
 
     const specialistUnitsPageData = await populateUnitsWithBatchResponses(
       specialistUnits,
-      developmentStages,
+      partialDevelopmentStages,
     );
 
     return specialistUnitListingSchema.parse(specialistUnitsPageData);
