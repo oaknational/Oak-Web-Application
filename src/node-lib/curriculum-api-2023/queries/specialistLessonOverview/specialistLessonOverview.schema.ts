@@ -4,12 +4,6 @@ import { LessonOverviewPageData } from "../lessonOverview/lessonOverview.schema"
 import {
   baseLessonOverviewSchema,
   lessonOverviewQuizData,
-  contentGuidanceSchema,
-  misconceptionsAndCommonMistakesSchema,
-  teacherTipsSchema,
-  lessonEquipmentAndResourcesSchema,
-  keyLearningPointsSchema,
-  keywordsSchema,
 } from "../../shared.schema";
 
 export type SpecialistLessonOverviewData = Omit<
@@ -108,46 +102,6 @@ export const specialistLessonOverviewRawSchema = z.array(
 
 export type SpecialistLessonDataRaw = z.infer<
   typeof specialistLessonOverviewRawSchema
->;
-
-// CAN DELETE ????
-export const specialistBaseLessonOverviewSchema = z.object({
-  isLegacy: z.boolean(),
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
-  misconceptionsAndCommonMistakes: z
-    .array(misconceptionsAndCommonMistakesSchema)
-    .nullable()
-    .optional(),
-  teacherTips: z.array(teacherTipsSchema).nullable().optional(),
-  lessonEquipmentAndResources: z
-    .array(lessonEquipmentAndResourcesSchema)
-    .nullable()
-    .optional(),
-  additionalMaterialUrl: z.string().nullable().optional(),
-  keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
-  pupilLessonOutcome: z.string().nullable().optional(),
-  lessonKeywords: z.array(keywordsSchema).nullable().optional(),
-  copyrightContent: z.boolean().nullable().optional(),
-  supervisionLevel: z.string().nullable(),
-  worksheetUrl: z.string().nullable(),
-  presentationUrl: z.string().nullable(),
-  videoMuxPlaybackId: z.string().nullable(),
-  videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
-  isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasDownloadableResources: z.boolean(),
-  hasCopyrightMaterial: z.boolean().optional().nullable(),
-  expired: z.boolean().nullable(),
-  starterQuiz: lessonOverviewQuizData,
-  exitQuiz: lessonOverviewQuizData,
-  videoTitle: z.string().nullish(),
-  lessonCohort: z.string().nullish(),
-});
-
-export type SpecialistBaseLesson = z.infer<
-  typeof specialistBaseLessonOverviewSchema
 >;
 
 const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({

@@ -2,8 +2,8 @@ import specialistLessonOverviewSchema, {
   SpecialistLessonOverviewData,
   specialistLessonOverviewRawSchema,
 } from "./specialistLessonOverview.schema";
-import keysToCamelCase from "./snakeCaseConverter";
 
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -38,7 +38,7 @@ const specialistLessonOverview =
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
-      errorReporter("curriculum-api-2023::lessonOverview")(error, {
+      errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
         severity: "warning",
         ...args,
         parsedLessonOverview,
@@ -48,7 +48,6 @@ const specialistLessonOverview =
     /**
      * 
      ! - FIXME: Tracking events avo
-     !- Create test file
      !- Downloadable resources????
      */
 

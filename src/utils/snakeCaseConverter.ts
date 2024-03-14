@@ -11,7 +11,7 @@ type ConvertKeysToCamelCase<T> = T extends Array<infer U>
         >;
       }
     : T;
-function convertKey(key: string): string {
+export function convertKey(key: string): string {
   return key.replace(/(_\w)/g, (_, m) => m[1].toUpperCase());
 }
 function keysToCamelCase<T>(obj: T): ConvertKeysToCamelCase<T> {
