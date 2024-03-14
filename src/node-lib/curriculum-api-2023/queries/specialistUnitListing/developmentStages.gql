@@ -1,4 +1,4 @@
-query developmentalStages($_contains: jsonb) {
+query developmentStages($_contains: jsonb) {
   developmentStages: published_mv_specialist_1_0_1(
     where: { combined_programme_fields: { _contains: $_contains } }
   ) {

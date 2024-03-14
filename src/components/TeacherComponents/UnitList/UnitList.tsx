@@ -70,6 +70,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     {item.map((unitOption) => {
                       return (
                         <UnitListItem
+                          {...props}
                           {...unitOption}
                           key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
                           hideTopHeading

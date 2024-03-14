@@ -60,6 +60,8 @@ const specialistLessonListingQuery =
             worksheetCount: lesson.worksheet_url ? 1 : 0,
             hasCurriculumDownload: false, // TODO: curriculum download
             orderInUnit: 1, // TODO: order in unit
+            developmentStage:
+              lesson.combined_programme_fields.developmentstage || null,
           };
 
           acc.lessons.push(lessonDetails);

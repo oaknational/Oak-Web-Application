@@ -2,7 +2,7 @@ import { screen } from "@testing-library/dom";
 
 import SpecialistSubjectListingPage, {
   getStaticProps,
-} from "@/pages/teachers/specialist/subjects/subjects";
+} from "@/pages/teachers/specialist/subjects";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";

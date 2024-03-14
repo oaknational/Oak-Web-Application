@@ -6,8 +6,8 @@ import {
 
 import {
   BatchResultResponseArray,
+  DevelopmentStage,
   DevelopmentStageCombinedProgrammeFields,
-  DevelopmentalStage,
   SpecialistUnitListRequestSchema,
   SpecialistUnitListingData,
   batchResultResponseArray,
@@ -47,9 +47,9 @@ export const getExpandedSpecialistUnits = (
               themeTitle: unit.combined_programme_fields.phase || null,
             },
           ],
-          developmentalStageSlug:
+          developmentStageSlug:
             unit.combined_programme_fields.developmentstage_slug || null,
-          developmentalStageTitle:
+          developmentStageTitle:
             unit.combined_programme_fields.developmentstage || null,
         },
       ];
@@ -59,8 +59,8 @@ export const getExpandedSpecialistUnits = (
   return units;
 };
 
-export const getExpandedDevelopmentalStages = (
-  partialDevelopmentStages: Array<Partial<DevelopmentalStage>>,
+export const getExpandedDevelopmentStages = (
+  partialDevelopmentStages: Array<Partial<DevelopmentStage>>,
   data: BatchResultResponseArray,
 ) => {
   return partialDevelopmentStages.map((stage, i) => {
@@ -87,9 +87,9 @@ export const getUnitBatchRequests = (
 };
 
 export const getDevelopmentStagesBatchRequests = (
-  developmentalStages: Partial<DevelopmentalStage>[],
+  developmentStages: Partial<DevelopmentStage>[],
 ) => {
-  return developmentalStages.map((c) => {
+  return developmentStages.map((c) => {
     return {
       document: DevelopmentStageUnitCountDocument,
       variables: {
@@ -116,7 +116,7 @@ export const getPartialDevelopmentStages = (
       }
       return acc;
     },
-    [] as Array<Partial<DevelopmentalStage>>,
+    [] as Array<Partial<DevelopmentStage>>,
   );
 };
 
@@ -159,13 +159,13 @@ const getDevelopmentStages = async (
       }
       return acc;
     },
-    [] as Array<Partial<DevelopmentalStage>>,
+    [] as Array<Partial<DevelopmentStage>>,
   );
 };
 
 export const populateUnitsWithBatchResponses = async (
   specialistUnits: SpecialistUnitListRequestSchema,
-  partialDevelopmentStages: Array<Partial<DevelopmentalStage>>,
+  partialDevelopmentStages: Array<Partial<DevelopmentStage>>,
 ) => {
   const unitBatchRequests = getUnitBatchRequests(specialistUnits);
   const developmentStagesBatchRequest = getDevelopmentStagesBatchRequests(
@@ -190,7 +190,7 @@ export const populateUnitsWithBatchResponses = async (
     specialistUnits,
     specialistData,
   );
-  const expandedDevelopmentStage = getExpandedDevelopmentalStages(
+  const expandedDevelopmentStage = getExpandedDevelopmentStages(
     partialDevelopmentStages,
     developmentData,
   );
@@ -199,12 +199,12 @@ export const populateUnitsWithBatchResponses = async (
 
   return {
     units: expandedUnits,
-    developmentalStage: expandedDevelopmentStage,
+    developmentStage: expandedDevelopmentStage,
     programmeSlug: specialistUnits[0]?.synthetic_programme_slug,
     subjectSlug: specialistUnits[0]?.combined_programme_fields.subject_slug,
     subjectTitle: specialistUnits[0]?.combined_programme_fields.subject,
     learningThemes: themes,
-    developmentalStageSlug:
+    developmentStageSlug:
       specialistUnits[0]?.combined_programme_fields.developmentstage_slug ||
       null,
   };
@@ -216,18 +216,18 @@ const fetchDevelopmentStages = async (
 ) => {
   const subjectSlug =
     specialistUnits[0]?.combined_programme_fields.subject_slug;
-  let developmentalStages: Array<Partial<DevelopmentalStage>> = [];
+  let developmentStages: Array<Partial<DevelopmentStage>> = [];
   if (subjectSlug) {
-    const stagesRes = await sdk.developmentalStages({
+    const stagesRes = await sdk.developmentStages({
       _contains: { subject_slug: subjectSlug },
     });
 
     const parsedStagesRes = developmentStageCombinedProgrammeFields.parse(
       stagesRes.developmentStages,
     );
-    developmentalStages = await getDevelopmentStages(parsedStagesRes);
+    developmentStages = await getDevelopmentStages(parsedStagesRes);
   }
-  return developmentalStages;
+  return developmentStages;
 };
 
 const specialistUnitListingQuery =
@@ -241,14 +241,14 @@ const specialistUnitListingQuery =
       res.specialistUnits,
     );
 
-    const developmentalStages = await fetchDevelopmentStages(
+    const developmentStages = await fetchDevelopmentStages(
       sdk,
       specialistUnits,
     );
 
     const specialistUnitsPageData = await populateUnitsWithBatchResponses(
       specialistUnits,
-      developmentalStages,
+      developmentStages,
     );
 
     return specialistUnitListingSchema.parse(specialistUnitsPageData);

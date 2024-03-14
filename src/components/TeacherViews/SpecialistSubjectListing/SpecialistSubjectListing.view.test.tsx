@@ -66,7 +66,7 @@ describe("SpecialistSubjectListing", () => {
     expect(therapiesHeading).toBeInTheDocument();
 
     const therapiesSummary = screen.getByText(
-      "These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' developmental needs.",
+      "These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' development needs.",
     );
     expect(therapiesSummary).toBeInTheDocument();
 

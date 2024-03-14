@@ -73,7 +73,7 @@ export type DevelopmentStageCombinedProgrammeFields = z.infer<
   typeof developmentStageCombinedProgrammeFields
 >;
 
-export type DevelopmentalStageUnitCount = z.infer<
+export type DevelopmentStageUnitCount = z.infer<
   typeof developmentStageUnitCount
 >;
 
@@ -90,7 +90,7 @@ export const batchResultResponseArray = z.array(batchResultResponse);
 
 export type BatchResultResponseArray = z.infer<typeof batchResultResponseArray>;
 
-export const developmentalStageSchema = z.object({
+export const developmentStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   unitCount: z.number().nullable(),
@@ -98,7 +98,7 @@ export const developmentalStageSchema = z.object({
   programmeSlug: z.string(),
 });
 
-export type DevelopmentalStage = z.infer<typeof developmentalStageSchema>;
+export type DevelopmentStage = z.infer<typeof developmentStageSchema>;
 
 const individualSpecialistUnitSchema = z.object({
   slug: z.string(),
@@ -114,8 +114,8 @@ const individualSpecialistUnitSchema = z.object({
   learningThemes: z.array(themeSchema).nullish(),
   themeSlug: z.string().nullish(),
   themeTitle: z.string().nullish(),
-  developmentalStageSlug: z.string().nullish(),
-  developmentalStageTitle: z.string().nullish(),
+  developmentStageSlug: z.string().nullish(),
+  developmentStageTitle: z.string().nullish(),
 });
 const specialistUnitArray = z.array(individualSpecialistUnitSchema);
 
@@ -123,12 +123,12 @@ export type SpecialistUnit = z.infer<typeof individualSpecialistUnitSchema>;
 
 export const specialistUnitListingSchema = z.object({
   units: z.array(specialistUnitArray),
-  developmentalStage: z.array(developmentalStageSchema),
+  developmentStage: z.array(developmentStageSchema),
   programmeSlug: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   learningThemes: z.array(themeSchema),
-  developmentalStageSlug: z.string().nullable(),
+  developmentStageSlug: z.string().nullable(),
 });
 
 export type SpecialistUnitListingData = z.infer<

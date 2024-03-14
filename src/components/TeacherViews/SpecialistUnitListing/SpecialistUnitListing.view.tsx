@@ -29,9 +29,9 @@ type SpecialistPageData = {
 const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const {
     units,
-    developmentalStage,
+    developmentStage,
     learningThemes,
-    developmentalStageSlug,
+    developmentStageSlug,
     subjectSlug,
     subjectTitle,
     programmeSlug,
@@ -74,7 +74,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           {
             oakLinkProps: {
               page: "specialist-unit-index",
-              programmeSlug: subjectSlug,
+              programmeSlug: programmeSlug,
             },
             label: subjectTitle,
           },
@@ -140,21 +140,21 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   {`Units`}
                 </OakHeading>
               </OakFlex>
-              {developmentalStage.length > 0 && (
+              {developmentStage.length > 0 && (
                 <nav
-                  aria-label="developmental stages"
-                  data-testid="developmental-nav"
+                  aria-label="development stages"
+                  data-testid="development-nav"
                 >
                   <TabularNav
                     $mb={[10, 24]}
                     label="themes"
                     $gap={[12, 0]}
-                    links={developmentalStage.map(
+                    links={developmentStage.map(
                       ({ title, slug, lessonCount, programmeSlug }) => ({
                         label: `${title} (${lessonCount})`,
                         programmeSlug: programmeSlug,
                         page: "specialist-unit-index",
-                        isCurrent: developmentalStageSlug === slug,
+                        isCurrent: developmentStageSlug === slug,
                         currentStyles: ["underline"],
                       }),
                     )}

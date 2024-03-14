@@ -32,14 +32,14 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
     );
   });
 
-  it("renders nav for developmental stages for programme that included developmental stages", () => {
+  it("renders nav for development stages for programme that included development stages", () => {
     const { getByTestId } = render(
       <SpecialistUnitListingPage
         curriculumData={specialistUnitListingFixture()}
       />,
     );
 
-    expect(getByTestId("developmental-nav")).toBeInTheDocument();
+    expect(getByTestId("development-nav")).toBeInTheDocument();
   });
   it("title card render correct title", () => {
     const { getByRole } = render(
@@ -54,7 +54,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details for developmental stages programme", async () => {
+    it("renders the correct SEO details for development stages programme", async () => {
       const { seo } = renderWithSeo()(
         <SpecialistUnitListingPage
           curriculumData={specialistUnitListingFixture()}
@@ -66,23 +66,23 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
         title:
           "Free Specialist Communication and Language Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         description:
-          "We have resources for developmental stages: Building Understanding, Applying Learning",
+          "We have resources for development stages: Building Understanding, Applying Learning",
         ogTitle:
           "Free Specialist Communication and Language Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
-          "We have resources for developmental stages: Building Understanding, Applying Learning",
+          "We have resources for development stages: Building Understanding, Applying Learning",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
     });
-    it("renders the correct SEO details when no developmental stages programme", async () => {
+    it("renders the correct SEO details when no development stages programme", async () => {
       const { seo } = renderWithSeo()(
         <SpecialistUnitListingPage
           curriculumData={{
             ...specialistUnitListingFixture(),
-            developmentalStage: [],
-            developmentalStageSlug: "",
+            developmentStage: [],
+            developmentStageSlug: "",
           }}
         />,
       );

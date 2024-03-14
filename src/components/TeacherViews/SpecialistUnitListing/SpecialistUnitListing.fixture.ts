@@ -30,8 +30,8 @@ const specialistUnitListingFixture = (
     subjectSlug: "commuinication-and-language",
     subjectTitle: "Communication and Language",
     learningThemes: testThemes,
-    developmentalStage: testDevelopmentalStages,
-    developmentalStageSlug: "building-understanding",
+    developmentStage: testDevelopmentalStages,
+    developmentStageSlug: "building-understanding",
     units: [
       [
         {
@@ -47,8 +47,8 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 4,
           unitStudyOrder: 3,
-          developmentalStageSlug: "applying-learning",
-          developmentalStageTitle: "Applying Learning",
+          developmentStageSlug: "applying-learning",
+          developmentStageTitle: "Applying Learning",
           learningThemes: [
             {
               themeSlug: "test-theme-primary",
@@ -71,8 +71,8 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 4,
           unitStudyOrder: 1,
-          developmentalStageSlug: "building-understanding",
-          developmentalStageTitle: "Building Understanding",
+          developmentStageSlug: "building-understanding",
+          developmentStageTitle: "Building Understanding",
           learningThemes: [],
         },
       ],
@@ -90,8 +90,8 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 7,
           unitStudyOrder: 4,
-          developmentalStageSlug: "applying-learning",
-          developmentalStageTitle: "Applying learning",
+          developmentStageSlug: "applying-learning",
+          developmentStageTitle: "Applying learning",
           learningThemes: [],
         },
       ],

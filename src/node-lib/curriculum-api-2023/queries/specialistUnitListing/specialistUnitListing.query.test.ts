@@ -1,7 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistUnitListingQuery, {
-  getExpandedDevelopmentalStages,
+  getExpandedDevelopmentStages,
   getExpandedSpecialistUnits,
   getPartialDevelopmentStages,
   getThemes,
@@ -141,7 +141,7 @@ describe("getPartialDevelopmentStages", () => {
 
 describe("getExpandedDevelopmentalStages", () => {
   test("it returns correct expanded stages", () => {
-    const DevelopmentalStages = getExpandedDevelopmentalStages(
+    const DevelopmentalStages = getExpandedDevelopmentStages(
       [
         {
           slug: "applying-learning",
@@ -230,8 +230,8 @@ describe("getExpandedUnits", () => {
         themeSlug: "primary",
         themeTitle: "primary",
         learningThemes: [{ themeSlug: "primary", themeTitle: "primary" }],
-        developmentalStageSlug: "applying-learning",
-        developmentalStageTitle: "Applying learning",
+        developmentStageSlug: "applying-learning",
+        developmentStageTitle: "Applying learning",
       },
     ]);
   });

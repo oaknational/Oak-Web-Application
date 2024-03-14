@@ -108,7 +108,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     const isSpecialistUnit = (
       x: UnitListItemProps | SpecialistUnit,
     ): x is SpecialistUnit => {
-      return "developmentalStageTitle" in x;
+      return "developmentStageTitle" in x;
     };
 
     if (!isSpecialistUnit(props)) {

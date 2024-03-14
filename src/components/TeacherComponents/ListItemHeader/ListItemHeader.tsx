@@ -9,6 +9,8 @@ import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponen
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
+  SpecialistLessonListingLinkProps,
+  SpecialistLessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
@@ -38,7 +40,7 @@ type SpecialistListItemProps = (SpecialistUnit | SpecialistLesson) &
 export const isSpecialistUnit = (
   x: ListItemHeadingProps | SpecialistListItemProps,
 ): x is SpecialistListItemProps => {
-  return "developmentalStageTitle" in x;
+  return "developmentStage" in x;
 };
 
 type ListItemHeadingProps = CommonProps &
@@ -86,15 +88,27 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
 
   const itemTitle = title;
 
-  const linkProps: LessonOverviewLinkProps | LessonListingLinkProps =
+  const linkProps:
+    | LessonOverviewLinkProps
+    | LessonListingLinkProps
+    | SpecialistLessonListingLinkProps
+    | SpecialistLessonOverviewLinkProps =
     "unitSlug" in props
       ? {
           lessonSlug: slug,
-          page: "lesson-overview",
+          page: isSpecialistUnit(props)
+            ? "specialist-lesson-overview"
+            : "lesson-overview",
           unitSlug: props.unitSlug,
           programmeSlug: programmeSlug,
         }
-      : { page: "lesson-index", unitSlug: slug, programmeSlug: programmeSlug };
+      : {
+          page: isSpecialistUnit(props)
+            ? "specialist-lesson-index"
+            : "lesson-index",
+          unitSlug: slug,
+          programmeSlug: programmeSlug,
+        };
 
   if (expired) {
     return (

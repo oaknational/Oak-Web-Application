@@ -24,13 +24,13 @@ export type SpecialistUnitListingPageProps = {
 const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
   curriculumData,
 }) => {
-  const { subjectTitle, developmentalStageSlug, developmentalStage } =
+  const { subjectTitle, developmentStageSlug, developmentStage } =
     curriculumData;
 
-  const developmentalStagesSEO = {
+  const developmentStagesSEO = {
     ...getSeoProps({
       title: `Free Specialist ${subjectTitle} Teaching Resources for Lesson Planning`,
-      description: `We have resources for developmental stages: ${developmentalStage
+      description: `We have resources for development stages: ${developmentStage
         .map((stage) => stage.title)
         .join(", ")}`,
     }),
@@ -47,7 +47,7 @@ const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
 
   return (
     <AppLayout
-      seoProps={developmentalStageSlug ? developmentalStagesSEO : unitsSEO}
+      seoProps={developmentStageSlug ? developmentStagesSEO : unitsSEO}
     >
       <SpecialistUnitListing curriculumData={curriculumData} />
     </AppLayout>
