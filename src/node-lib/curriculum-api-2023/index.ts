@@ -23,6 +23,8 @@ import specialistSubjectListingQuery from "./queries/specialistSubjectListing/sp
 import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
 import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
 import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
+import { specialistLessonDownloadQuery } from "./queries/specialistLessonDownload/specialistLessonDownload.query";
+import { specialistLessonShareQuery } from "./queries/specialistLessonShare/specialistLessonShare.query";
 import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 
 export const keyStageSchema = z.object({
@@ -139,6 +141,8 @@ const curriculumApi2023 = {
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
   specialistLessonListing: specialistLessonListingQuery(sdk),
+  specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
+  specialistLessonShare: specialistLessonShareQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
 };
 

@@ -1,16 +1,6 @@
 import { z } from "zod";
 
-const lessonShareResourceSchema = z.object({
-  exists: z.boolean().nullable(),
-  type: z.enum([
-    "intro-quiz-questions",
-    "exit-quiz-questions",
-    "worksheet-pdf",
-    "video",
-  ]),
-  label: z.string(),
-  metadata: z.string().nullable(),
-});
+import { lessonShareResourceSchema } from "../../shared.schema";
 
 export const lessonShareSchema = z.object({
   programmeSlug: z.string(),

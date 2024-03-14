@@ -8,6 +8,8 @@ import {
 } from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineContextType,
@@ -20,25 +22,11 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: questionsArrayFixture[0],
-  currentQuestionIndex: 0,
-  numInteractiveQuestions: 0,
-  currentQuestionDisplayIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: (mode) => mode,
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
-  handleSubmitShortAnswer: () => {},
-  score: 0,
-  numQuestions: 1,
-});
+const getQuizEngineContext = (): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: questionsArrayFixture[0],
+    numQuestions: 1,
+  });
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {

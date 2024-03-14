@@ -3,6 +3,7 @@
 import {
   AnswersSchema,
   MCAnswer,
+  OrderAnswer,
   ShortAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -28,4 +29,10 @@ export const isShortAnswer = (
   answers: AnswersSchema,
 ): answers is { "short-answer": ShortAnswer[] } => {
   return !!answers["short-answer"];
+};
+
+export const isOrderAnswer = (
+  answers: AnswersSchema,
+): answers is { order: OrderAnswer[] } => {
+  return !!answers["order"];
 };

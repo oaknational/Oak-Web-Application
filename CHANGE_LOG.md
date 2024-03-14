@@ -1,3 +1,44 @@
+# [1.382.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.381.1...v1.382.0) (2024-03-13)
+
+
+### Bug Fixes
+
+* **PUPIL-204:** guarantee that randomised order questions do not match the correct order ([c5972cb](https://github.com/oaknational/Oak-Web-Application/commit/c5972cb28b661f98afe005af68e182bc2ee6615d))
+
+
+### Features
+
+* **order-questions:** enable order questions on the quiz ([fcd8123](https://github.com/oaknational/Oak-Web-Application/commit/fcd8123629db4cde036dd82141dfcdc8325d49b4))
+* **PUPIL-204:** handle answering order questions ([06ae214](https://github.com/oaknational/Oak-Web-Application/commit/06ae21479ad867fec945ad18cd3fdc29136805c0))
+* **PUPIL-204:** present feedback for order questions ([d76b87f](https://github.com/oaknational/Oak-Web-Application/commit/d76b87f151388fc81dd9d519e5e310aa28eee07a))
+* **PUPIL-204:** reduce padding between question stem and answer UI ([bd7e010](https://github.com/oaknational/Oak-Web-Application/commit/bd7e010308291b5706fef8f516be6d43689d0fd1))
+
+## [1.381.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.381.0...v1.381.1) (2024-03-12)
+
+# [1.381.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.380.0...v1.381.0) (2024-03-12)
+
+
+### Features
+
+* add lesson share query and schema and initial tests ([d0a1d8d](https://github.com/oaknational/Oak-Web-Application/commit/d0a1d8d772913041c8fb8255fa192696b5874ef1))
+* add specialist lesson share page ([24f1978](https://github.com/oaknational/Oak-Web-Application/commit/24f1978c445464c40e0eb6cbcc8ac306d0b909ec))
+
+# [1.380.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.379.1...v1.380.0) (2024-03-12)
+
+
+### Bug Fixes
+
+* imports ([3f5f89f](https://github.com/oaknational/Oak-Web-Application/commit/3f5f89f904d30c93254e18ef227a16ac11a6f21c))
+
+
+### Features
+
+* add lesson downloads page ([48d65f6](https://github.com/oaknational/Oak-Web-Application/commit/48d65f6a27ebba47e115faa92e9979e557638451))
+* add lesson downloads query, schema and intiial tests ([16f11f8](https://github.com/oaknational/Oak-Web-Application/commit/16f11f8e0a23e43d31bf667a76bf454b43bd3791))
+* add transformation logic ([dc5060b](https://github.com/oaknational/Oak-Web-Application/commit/dc5060b5b2cacc91f6f575dd7590a271c1c302c8))
+
+## [1.379.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.379.0...v1.379.1) (2024-03-11)
+
 # [1.379.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.378.0...v1.379.0) (2024-03-07)
 
 
