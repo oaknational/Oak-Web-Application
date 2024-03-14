@@ -24,8 +24,14 @@ const specialistLessonListingQuery =
     const transformedLessonLising: SpecialistLessonListingData =
       parsedLessonListing.reduce(
         (acc, lesson) => {
+          const developmentStage =
+            lesson.combined_programme_fields.developmentstage;
           if (!acc.programmeTitle) {
-            acc.programmeTitle = `${lesson.combined_programme_fields.subject} - ${lesson.combined_programme_fields.developmentstage}`;
+            acc.programmeTitle = `${lesson.combined_programme_fields.subject} ${
+              developmentStage
+                ? `- ${lesson.combined_programme_fields.developmentstage}`
+                : ""
+            }`;
           }
           if (!acc.subjectSlug) {
             acc.subjectSlug = lesson.combined_programme_fields.subject_slug;
@@ -60,8 +66,7 @@ const specialistLessonListingQuery =
             worksheetCount: lesson.worksheet_url ? 1 : 0,
             hasCurriculumDownload: false, // TODO: curriculum download
             orderInUnit: 1, // TODO: order in unit
-            developmentStage:
-              lesson.combined_programme_fields.developmentstage || null,
+            developmentStage: developmentStage || null,
           };
 
           acc.lessons.push(lessonDetails);

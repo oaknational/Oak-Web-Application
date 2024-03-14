@@ -66,10 +66,9 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           },
           {
             oakLinkProps: {
-              page: "specialist-programme-index",
-              subjectSlug,
+              page: "specialist-subject-index",
             },
-            label: "Specialist programmes",
+            label: "Specialist and therapies",
           },
           {
             oakLinkProps: {
@@ -77,6 +76,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               programmeSlug: programmeSlug,
             },
             label: subjectTitle,
+            disabled: true,
           },
         ]}
         background={"lavender30"}
