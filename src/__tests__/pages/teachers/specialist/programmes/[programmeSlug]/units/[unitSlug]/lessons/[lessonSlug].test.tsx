@@ -31,7 +31,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const render = renderWithProviders();
 
-describe.only("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonSlug]", () => {
+describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonSlug]", () => {
   it("Renders title from the props", async () => {
     render(<SpecialistLessonOverviewPage {...props} />);
 

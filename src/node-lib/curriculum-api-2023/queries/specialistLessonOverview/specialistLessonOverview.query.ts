@@ -45,12 +45,6 @@ const specialistLessonOverview =
       });
     }
 
-    /**
-     * 
-     ! - FIXME: Tracking events avo
-     !- Downloadable resources????
-     */
-
     const lesson = parsedLessonOverview[0];
 
     const transformedLesson: SpecialistLessonOverviewData = {
@@ -67,7 +61,7 @@ const specialistLessonOverview =
       developmentStageTitle: lesson.combined_programme_fields.developmentstage,
       subjectSlug: lesson.combined_programme_fields.subject_slug,
       subjectTitle: lesson.combined_programme_fields.subject,
-      expired: lesson.expired ? true : false,
+      expired: lesson.expired,
       pupilLessonOutcome: lesson.pupil_lesson_outcome,
       videoTitle: lesson.video_title,
       worksheetUrl: lesson.worksheet_url,
