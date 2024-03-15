@@ -137,13 +137,13 @@ const curriculumApi2023 = {
     });
     return teachersHomePageData.parse(teachersHomePage);
   },
+  specialistLessonOverview: specialistLessonOverview(sdk),
   unitListing: unitListingQuery(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
   specialistLessonListing: specialistLessonListingQuery(sdk),
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
-  specialistLessonOverview: specialistLessonOverview(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
