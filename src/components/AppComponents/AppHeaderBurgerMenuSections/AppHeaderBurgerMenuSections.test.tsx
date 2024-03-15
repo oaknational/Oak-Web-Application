@@ -3,20 +3,21 @@ import { screen, within } from "@testing-library/react";
 import AppHeaderBurgerMenuSections from "./AppHeaderBurgerMenuSections";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { menuSections } from "@/browser-lib/fixtures/menuSections";
+import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 
-describe("AppHeaderBurgerMenuSections", () => {
-  it("renders 3 menu sections", () => {
+describe("AppHeaderBurgerburgerMenuSections", () => {
+  it("renders 3 burger menu sections", () => {
     renderWithTheme(
-      <AppHeaderBurgerMenuSections menuSections={menuSections} />,
+      <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
     );
 
     const menuSection = screen.getAllByTestId("menu-section");
     expect(menuSection).toHaveLength(3);
   });
+
   it("renders a heading and a list in each section", () => {
     renderWithTheme(
-      <AppHeaderBurgerMenuSections menuSections={menuSections} />,
+      <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
     );
 
     const menuSections = screen.getAllByTestId("menu-section");

@@ -1,6 +1,6 @@
 import { AppHeaderBurgerMenuSection } from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 
-export const menuSections: Array<AppHeaderBurgerMenuSection> = [
+export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
   {
     header: "Teachers",
     links: [

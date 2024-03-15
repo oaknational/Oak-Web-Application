@@ -12,7 +12,7 @@ import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Box from "@/components/SharedComponents/Box";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
-import { menuSections } from "@/browser-lib/fixtures/menuSections";
+import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import Icon from "@/components/SharedComponents/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -85,7 +85,9 @@ const AppHeader: FC<HeaderProps> = () => {
         </OakFlex>
 
         <AppHeaderMenu menuButtonRef={menuButtonRef}>
-          <AppHeaderBurgerMenuSections menuSections={menuSections} />
+          <AppHeaderBurgerMenuSections
+            burgerMenuSections={burgerMenuSections}
+          />
         </AppHeaderMenu>
       </OakFlex>
       <AppHeaderUnderline />

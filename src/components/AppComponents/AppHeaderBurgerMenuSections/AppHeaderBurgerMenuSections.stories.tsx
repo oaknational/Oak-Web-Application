@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Component from "./AppHeaderBurgerMenuSections";
 
-import { menuSections } from "@/browser-lib/fixtures/menuSections";
+import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 
 export default {
   component: Component,
@@ -15,5 +15,5 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const NewMenuLinks = Template.bind({});
 NewMenuLinks.args = {
-  menuSections: menuSections,
+  burgerMenuSections: burgerMenuSections,
 };
