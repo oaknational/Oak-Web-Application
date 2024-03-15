@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 
-import specialistLessonOverviewFixture from "./SpecialistLesson.fixture";
 import SpecialistLesson from "./SpecialistLesson.view";
 
+import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
@@ -12,7 +12,7 @@ describe("SpecialistLessonDownloads", () => {
     const { getByText } = render(
       <SpecialistLesson lesson={specialistLessonOverviewFixture()} />,
     );
-    const title = getByText("Specialist subject");
+    const title = getByText("Communication and language");
 
     expect(title).toBeInTheDocument();
   });
