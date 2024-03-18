@@ -14,7 +14,7 @@ export const combinedProgrammeFields = z.object({
   developmentstage_slug: z.string().nullish(),
   phase_slug: z.string().nullish(),
   phase: z.string().nullish(),
-  developmentstage_display_order: z.number(),
+  developmentstage_display_order: z.number().nullish(),
 });
 
 export const specialistUnitListRequestSchema = z.array(

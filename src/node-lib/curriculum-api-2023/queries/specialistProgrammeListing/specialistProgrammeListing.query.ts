@@ -62,7 +62,7 @@ export const sortByDevelopmentStage = <
   T extends Array<{
     combined_programme_fields: {
       developmentstage_slug?: string | null;
-      developmentstage_display_order: number;
+      developmentstage_display_order?: number | null;
     };
   }>,
 >(
@@ -78,8 +78,8 @@ export const sortByDevelopmentStage = <
       return -1;
     } else
       return (
-        b.combined_programme_fields.developmentstage_display_order -
-        a.combined_programme_fields.developmentstage_display_order
+        (b.combined_programme_fields.developmentstage_display_order ?? 0) -
+        (a.combined_programme_fields.developmentstage_display_order ?? 0)
       );
   });
 };
