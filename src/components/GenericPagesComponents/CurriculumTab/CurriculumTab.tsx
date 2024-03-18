@@ -40,7 +40,7 @@ const CurriculumTab: FC = () => {
               <OakFlex $flexDirection={"column"}>
                 {" "}
                 <OakTypography $font={"body-1"}>
-                  All our curriculum plans are:
+                  All of our curriculum plans are:
                 </OakTypography>
                 <OakUL $mt="space-between-s" $font={"body-1"}>
                   <OakLI>National curriculum-aligned</OakLI>

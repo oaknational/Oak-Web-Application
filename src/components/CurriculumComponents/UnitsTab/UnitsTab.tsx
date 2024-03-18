@@ -410,7 +410,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         <OakGrid>
           <OakGridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
-              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
+              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
               </OakHeading>
               <OakP $mb="space-between-xs">
@@ -470,7 +470,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               </RadioGroup>
             </Box>
             <Box $mr={16} $mb={32}>
-              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
+              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
                 Year group
               </OakHeading>
               <RadioGroup
