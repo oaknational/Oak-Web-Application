@@ -76,10 +76,16 @@ export const sortByDevelopmentStage = <
       b.combined_programme_fields.developmentstage_slug === "masterclass"
     ) {
       return -1;
+    }
+    if (
+      !a.combined_programme_fields.developmentstage_display_order ||
+      !b.combined_programme_fields.developmentstage_display_order
+    ) {
+      return 0;
     } else
       return (
-        (b.combined_programme_fields.developmentstage_display_order ?? 0) -
-        (a.combined_programme_fields.developmentstage_display_order ?? 0)
+        b.combined_programme_fields.developmentstage_display_order -
+        a.combined_programme_fields.developmentstage_display_order
       );
   });
 };

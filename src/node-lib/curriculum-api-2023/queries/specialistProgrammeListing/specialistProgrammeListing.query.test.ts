@@ -166,4 +166,24 @@ describe("sort programmes by development stage", () => {
       "masterclass",
     );
   });
+  test('handles data without "developmentstage_display_order"', () => {
+    const res = sortByDevelopmentStage([
+      ...queryResponse,
+      {
+        synthetic_programme_slug: "creative-arts",
+        combined_programme_fields: {
+          subject: "Creative arts",
+          subject_slug: "creative-arts",
+          developmentstage: "early-development",
+          developmentstage_slug: "early-development",
+        },
+      },
+    ]);
+    expect(res[0]?.combined_programme_fields.developmentstage_slug).toBe(
+      "early-development",
+    );
+    expect(res[3]?.combined_programme_fields.developmentstage_slug).toBe(
+      "early-development",
+    );
+  });
 });
