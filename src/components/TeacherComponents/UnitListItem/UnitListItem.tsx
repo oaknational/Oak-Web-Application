@@ -1,8 +1,6 @@
 import React, { FC, MutableRefObject } from "react";
 import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import UnitListItemIconMobile from "@/components/TeacherComponents/UnitListItemIconMobile";
-import UnitListItemIconDesktop from "@/components/TeacherComponents/UnitListItemIconDesktop";
 import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
 import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
@@ -11,7 +9,7 @@ import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
-import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -32,7 +30,7 @@ type UnitListProps = {
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
 
-export type SpecialistListItemProps = IndividualSpecialistUnit & UnitListProps;
+export type SpecialistListItemProps = SpecialistUnit & UnitListProps;
 
 /**
  * Contains an title, icon, learning theme, number of lessons and optional Unit Quiz .
@@ -135,19 +133,6 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
           />
         </OakFlex>
       </OakFlex>
-      {isExemplarUnit && (
-        <>
-          <UnitListItemIconDesktop
-            title={title}
-            background={isHovered ? backgroundOnHover : background}
-            subjectSlug={subjectSlug}
-          />
-          <UnitListItemIconMobile
-            background={background}
-            subjectSlug={subjectSlug}
-          />
-        </>
-      )}
     </ListItemCard>
   );
 };

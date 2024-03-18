@@ -38,11 +38,15 @@ describe("SpecialistProgrammeListing", () => {
       <SpecialistProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(getByRole("link", { name: "Early development 1" })).toHaveAttribute(
+    expect(
+      getByRole("link", { name: "Early development 1 10 units • 100 lessons" }),
+    ).toHaveAttribute(
       "href",
       "/teachers/specialist/programmes/early-development/units",
     );
-    expect(getByRole("link", { name: "Creative arts 1" })).toHaveAttribute(
+    expect(
+      getByRole("link", { name: "Creative arts 1 10 units • 100 lessons" }),
+    ).toHaveAttribute(
       "href",
       "/teachers/specialist/programmes/creative-arts/units",
     );
@@ -59,9 +63,11 @@ describe("SpecialistProgrammeListing", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith({
-      developmentalStageSlug: "early-development-1",
-      developmentalStageTitle: "Early development 1",
+      developmentStageSlug: "early-development-1",
+      developmentStageTitle: "Early development 1",
       programmeSlug: "early-development",
+      unitCount: 10,
+      lessonCount: 100,
     });
   });
 });

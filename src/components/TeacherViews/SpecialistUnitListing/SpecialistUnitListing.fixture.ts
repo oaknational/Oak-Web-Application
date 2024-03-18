@@ -1,4 +1,4 @@
-import { SpecialistUnitListingData } from "./SpecialistUnitListing.view";
+import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 const testDevelopmentalStages = [
   {
@@ -6,12 +6,14 @@ const testDevelopmentalStages = [
     title: "Building Understanding",
     unitCount: 10,
     lessonCount: 20,
+    programmeSlug: "building-understanding",
   },
   {
     slug: "applying-learning",
     title: "Applying Learning",
     unitCount: 10,
     lessonCount: 20,
+    programmeSlug: "applying-learning",
   },
 ];
 
@@ -27,9 +29,9 @@ const specialistUnitListingFixture = (
     programmeSlug: "test-specialist-unit",
     subjectSlug: "commuinication-and-language",
     subjectTitle: "Communication and Language",
-    themes: testThemes,
-    developmentalStage: testDevelopmentalStages,
-    developmentalStageSlug: "building-understanding",
+    learningThemes: testThemes,
+    developmentStage: testDevelopmentalStages,
+    developmentStageSlug: "building-understanding",
     units: [
       [
         {
@@ -45,8 +47,14 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 4,
           unitStudyOrder: 3,
-          developmentalStageSlug: "early-development",
-          developmentalStageTitle: "Early development",
+          developmentStageSlug: "applying-learning",
+          developmentStageTitle: "Applying Learning",
+          learningThemes: [
+            {
+              themeSlug: "test-theme-primary",
+              themeTitle: "Test Theme Primary",
+            },
+          ],
         },
       ],
       [
@@ -57,14 +65,15 @@ const specialistUnitListingFixture = (
           programmeSlug: "out-and-about-623s",
           subjectSlug: "communication-and-language",
           subjectTitle: "Communication and Language",
-          themeSlug: "primary",
-          themeTitle: "Primary",
+          themeSlug: "a",
+          themeTitle: "b",
           expired: false,
           expiredLessonCount: 0,
           lessonCount: 4,
           unitStudyOrder: 1,
-          developmentalStageSlug: "building-understanding",
-          developmentalStageTitle: "Building Understanding",
+          developmentStageSlug: "building-understanding",
+          developmentStageTitle: "Building Understanding",
+          learningThemes: [],
         },
       ],
       [
@@ -81,8 +90,9 @@ const specialistUnitListingFixture = (
           expiredLessonCount: 0,
           lessonCount: 7,
           unitStudyOrder: 4,
-          developmentalStageSlug: "applying-learning",
-          developmentalStageTitle: "Applying learning",
+          developmentStageSlug: "applying-learning",
+          developmentStageTitle: "Applying learning",
+          learningThemes: [],
         },
       ],
     ],

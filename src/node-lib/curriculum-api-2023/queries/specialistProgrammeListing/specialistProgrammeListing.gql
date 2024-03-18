@@ -1,0 +1,9 @@
+query specialistProgrammeListing($_contains: jsonb = "") {
+  specialistProgrammeListing: published_mv_specialist_1_0_1(
+    where: { combined_programme_fields: { _contains: $_contains } }
+    distinct_on: synthetic_programme_slug
+  ) {
+    synthetic_programme_slug
+    combined_programme_fields
+  }
+}

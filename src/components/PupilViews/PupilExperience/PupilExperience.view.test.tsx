@@ -19,6 +19,10 @@ jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   useLessonEngineContext: jest.fn(),
 }));
 
+jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
+  PupilExpiredView: jest.fn(() => "PupilExpiredView"),
+}));
+
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
@@ -117,5 +121,27 @@ describe("PupilExperienceView", () => {
         expect(getByText(name as RegExp)).toBeInTheDocument();
       });
     });
+  });
+
+  it("should render the expired view if the lesson is expired", () => {
+    const lessonData = pupilLessonOverviewFixture({
+      expired: true,
+    });
+
+    const pupilPathwayData = getPupilPathwayData(lessonData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+
+    const { getByText } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView curriculumData={lessonData} hasWorksheet={false} />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(getByText("PupilExpiredView", { exact: false })).toBeInTheDocument();
   });
 });

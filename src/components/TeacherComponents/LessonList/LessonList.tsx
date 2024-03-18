@@ -15,8 +15,8 @@ import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
 import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import { SpecialistLesson } from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
+import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 export type LessonListProps = {
   lessonCount: number;
@@ -70,6 +70,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                 data-testid={"lesson-list-item"}
               >
                 <LessonListItem
+                  {...props}
                   {...item}
                   unitTitle={unitTitle}
                   hideTopHeading

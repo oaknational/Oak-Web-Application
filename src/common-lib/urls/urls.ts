@@ -113,7 +113,10 @@ export type LessonListingLinkProps = {
   programmeSlug: string;
   unitSlug: string;
 };
-type SpecialistLessonListingLinkProps = Omit<LessonListingLinkProps, "page"> & {
+export type SpecialistLessonListingLinkProps = Omit<
+  LessonListingLinkProps,
+  "page"
+> & {
   page: "specialist-lesson-index";
 };
 
@@ -124,7 +127,7 @@ export type LessonOverviewLinkProps = {
   lessonSlug: string;
 };
 
-type SpecialistLessonOverviewLinkProps = Omit<
+export type SpecialistLessonOverviewLinkProps = Omit<
   LessonOverviewLinkProps,
   "page"
 > & {
