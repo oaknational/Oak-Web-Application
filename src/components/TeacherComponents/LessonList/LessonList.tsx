@@ -70,6 +70,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                 data-testid={"lesson-list-item"}
               >
                 <LessonListItem
+                  {...props}
                   {...item}
                   unitTitle={unitTitle}
                   hideTopHeading

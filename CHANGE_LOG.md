@@ -1,3 +1,17 @@
+# [1.383.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.382.0...v1.383.0) (2024-03-18)
+
+
+### Bug Fixes
+
+* breadcrumb and meta data ([dee0be3](https://github.com/oaknational/Oak-Web-Application/commit/dee0be3043b2535a99d7eb290375dd51917a3e00))
+* themes on specilaist filter ([1f07b50](https://github.com/oaknational/Oak-Web-Application/commit/1f07b50e628c6bb7f1c6ce6bfbbb5cd317fe31e9))
+* url structure and lesson and unit card links ([67d431f](https://github.com/oaknational/Oak-Web-Application/commit/67d431f7e974eeb874adfb2a2abb35ba9ec90b96))
+
+
+### Features
+
+* unit listing specialist ([bb296e4](https://github.com/oaknational/Oak-Web-Application/commit/bb296e464b8f2c1532db92d7029cd4ad85029978))
+
 # [1.382.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.381.1...v1.382.0) (2024-03-13)
 
 
