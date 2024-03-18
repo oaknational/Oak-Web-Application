@@ -1,0 +1,30 @@
+query lessonShare(
+  $lessonSlug: String!
+  $programmeSlug: String!
+  $unitSlug: String!
+) {
+  share: published_mv_share_5_0_0(
+    where: {
+      lessonSlug: { _eq: $lessonSlug }
+      programmeSlug: { _eq: $programmeSlug }
+      unitSlug: { _eq: $unitSlug }
+    }
+  ) {
+    shareableResources
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    lessonSlug
+    lessonTitle
+    subjectSlug
+    subjectTitle
+    tierSlug
+    tierTitle
+    unitSlug
+    unitTitle
+    lessonCohort
+    examBoardTitle
+    examBoardSlug
+    expired
+  }
+}

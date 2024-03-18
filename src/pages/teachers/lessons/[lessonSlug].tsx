@@ -17,7 +17,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import OakError from "@/errors/OakError";
 
@@ -77,6 +77,12 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       }
       const { lessonSlug } = context.params;
 
+      /**
+       * If the lesson is not found in the 2023 curriculum, try the 2020 api
+       * instead. Otherwise rethrow the error.
+       * This is temporary logic until the migration.
+       */
+
       let lesson;
 
       try {
@@ -84,18 +90,24 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lessonSlug,
         });
       } catch (error) {
-        /**
-         * If the lesson is not found in the 2023 curriculum, try the 2020 api
-         * instead. Otherwise rethrow the error.
-         * This is temporary logic until the migration.
-         */
         if (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          lesson = await curriculumApi.lessonOverviewCanonical({
-            lessonSlug,
-          });
+          try {
+            lesson = await curriculumApi.lessonOverviewCanonical({
+              lessonSlug,
+            });
+          } catch (error) {
+            if (
+              error instanceof OakError &&
+              error.code === "curriculum-api/not-found"
+            ) {
+              return {
+                notFound: true,
+              };
+            }
+          }
         } else {
           throw error;
         }

@@ -4,13 +4,21 @@ import userEvent from "@testing-library/user-event";
 import { PupilViewsVideo } from "./PupilVideo.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
+import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+
+const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
+  if (userEventCallback) {
+    userEventCallback({ event: "play", timeElapsed: 0, duration: 0 });
+  }
+  return <span data-testid="video-player" />;
+};
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return () => <span data-testid="video-player" />;
+  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+    <VideoPlayerMock userEventCallback={userEventCallback} />
+  );
 });
 
 describe(PupilViewsVideo, () => {
@@ -23,7 +31,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={[]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -41,7 +49,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -66,7 +74,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -89,7 +97,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -111,7 +119,7 @@ describe(PupilViewsVideo, () => {
             videoMuxPlaybackId={undefined}
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense
+            isLegacy
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -131,7 +139,7 @@ describe(PupilViewsVideo, () => {
             videoWithSignLanguageMuxPlaybackId="234"
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
-            isLegacyLicense={false}
+            isLegacy={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -141,20 +149,30 @@ describe(PupilViewsVideo, () => {
 
     expect(queryByText("Hide sign language")).toBeInTheDocument();
   });
-});
 
-function createLessonEngineContext(
-  overrides?: Partial<LessonEngineContextType>,
-): NonNullable<LessonEngineContextType> {
-  return {
-    currentSection: "video",
-    completedSections: [],
-    sectionResults: {},
-    getIsComplete: jest.fn(),
-    completeSection: jest.fn(),
-    updateCurrentSection: jest.fn(),
-    proceedToNextSection: jest.fn(),
-    updateQuizResult: jest.fn(),
-    ...overrides,
-  };
-}
+  it("updates the section result when the video plays", () => {
+    const updateSectionResult = jest.fn();
+
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({ updateSectionResult })}
+        >
+          <PupilViewsVideo
+            videoMuxPlaybackId="123"
+            videoWithSignLanguageMuxPlaybackId="234"
+            lessonTitle="Introduction to The Canterbury Tales"
+            transcriptSentences={["hello there"]}
+            isLegacy={false}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(updateSectionResult).toHaveBeenCalledWith({
+      played: true,
+      duration: 0,
+      timeElapsed: 0,
+    });
+  });
+});

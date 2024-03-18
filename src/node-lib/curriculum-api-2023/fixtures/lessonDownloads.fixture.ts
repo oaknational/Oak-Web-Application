@@ -4,6 +4,7 @@ const lessonDownloadsFixture2023 = (
   partial?: Partial<LessonDownloadsPageData>,
 ): LessonDownloadsPageData => {
   return {
+    expired: false,
     isLegacy: false,
     lessonCohort: "2023-2024",
     lessonSlug: "transverse-waves",
@@ -19,6 +20,7 @@ const lessonDownloadsFixture2023 = (
     tierTitle: "Foundation",
     examBoardSlug: "edexcel",
     examBoardTitle: "Edexcel",
+    hasDownloadableResources: true,
     nextLessons: [
       {
         lessonSlug: "representing-transverse-waves",

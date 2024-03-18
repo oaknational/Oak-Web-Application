@@ -34,10 +34,10 @@ export const getStemImage = ({
   minWidth: OakAllSpacingToken;
 }) => {
   const data = getStemImageData(stem);
-  if (data)
+  if (data?.image_object?.public_id)
     return (
       <OakCloudinaryImage
-        cloudinaryId={data.image_object.secure_url}
+        cloudinaryId={data.image_object.public_id}
         alt={""} // TODO: add alt text
         width={data.image_object.width}
         height={data.image_object.height}

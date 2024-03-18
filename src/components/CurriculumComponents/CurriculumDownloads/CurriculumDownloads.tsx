@@ -1,4 +1,11 @@
-import { ChangeEvent, forwardRef, useImperativeHandle, useState } from "react";
+import {
+  ChangeEvent,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
+import { useRouter } from "next/router";
 import { Controller } from "react-hook-form";
 import styled from "styled-components";
 import {
@@ -32,7 +39,7 @@ import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
-import createAndClickHiddenDownloadLink from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
@@ -66,6 +73,7 @@ function CurriculumDownloads(
   props: CurriculumDownloadsProps,
   ref: React.ForwardedRef<CurriculumDownloadsRef>,
 ) {
+  const router = useRouter();
   const { category, downloads } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -117,10 +125,12 @@ function CurriculumDownloads(
     useState<boolean>(false);
   const [hasSuccessfullyDownloaded, setHasSuccessfullyDownloaded] =
     useState<boolean>(false);
-
-  const { onHubspotSubmit } = useHubspotSubmit();
+  const [hasSetPreselectedDownload, setHasSetPreselectedDownload] =
+    useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [selectedUrl, setSelectedUrl] = useState<string>("");
+
+  const { onHubspotSubmit } = useHubspotSubmit();
 
   const clearSelection = () => {
     setSelectedUrl("");
@@ -132,7 +142,7 @@ function CurriculumDownloads(
   }));
 
   const handleDownload = (url: string) => {
-    if (!url) return false; // Early return if no URL
+    if (!url) return false;
     createAndClickHiddenDownloadLink(url);
     return true;
   };
@@ -210,6 +220,30 @@ function CurriculumDownloads(
     return errorMessage;
   };
 
+  useEffect(() => {
+    if (hasSetPreselectedDownload) {
+      return;
+    }
+    const subject = router.query.subject as string;
+    if (subject) {
+      const selectedDownload = downloads.find((download) =>
+        download.url.endsWith(subject),
+      );
+      if (selectedDownload && category.toLowerCase() == router.query.keystage) {
+        setHasSetPreselectedDownload(true);
+        setSelectedUrl(selectedDownload.url);
+        form.setValue("resources", [selectedDownload.url]);
+      }
+    }
+  }, [
+    downloads,
+    router.query.subject,
+    hasSetPreselectedDownload,
+    form,
+    category,
+    router.query.keystage,
+  ]);
+
   return (
     <Box
       $maxWidth={1280}
@@ -225,7 +259,11 @@ function CurriculumDownloads(
           $flexDirection={"column"}
           $gap={["space-between-m", "space-between-m2"]}
         >
-          <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
+          <OakHeading
+            tag="h2"
+            $font={["heading-5", "heading-4"]}
+            data-testid="heading2"
+          >
             {category}
           </OakHeading>
           <form onChange={() => setHasSuccessfullyDownloaded(false)}>
@@ -245,7 +283,7 @@ function CurriculumDownloads(
                 >
                   {form.errors?.resources?.message}
                 </FieldError>
-                <CardsContainer data-testid="downloadCardsContainer">
+                <CardsContainer data-testid="cardsContainer">
                   <RadioGroup
                     aria-label="Subject Download Options"
                     value={selectedUrl}
@@ -274,7 +312,6 @@ function CurriculumDownloads(
                         checked={false}
                         onBlur={() => {}}
                         hasError={form.errors?.resources ? true : false}
-                        data-testid={`downloadCard`}
                         useRadio={true}
                         subjectIcon={download.icon}
                       />
@@ -432,7 +469,6 @@ function CurriculumDownloads(
                 {apiError && !hasFormErrors && (
                   <FieldError
                     id="download-error"
-                    data-testid="downloadError"
                     variant={"large"}
                     withoutMarginBottom
                   >

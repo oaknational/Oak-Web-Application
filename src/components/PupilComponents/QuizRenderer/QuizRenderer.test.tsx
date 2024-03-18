@@ -8,6 +8,9 @@ import {
 } from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineContextType,
   QuizEngineContext,
@@ -15,41 +18,15 @@ import {
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import {
-  LessonEngineContext,
-  LessonEngineContextType,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: questionsArrayFixture[0],
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: (mode) => mode,
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
-  handleSubmitShortAnswer: () => {},
-  score: 0,
-  numQuestions: 1,
-});
-
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
+const getQuizEngineContext = (): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: questionsArrayFixture[0],
+    numQuestions: 1,
+  });
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
@@ -63,7 +40,7 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
@@ -79,7 +56,7 @@ describe("QuizRenderer", () => {
 
     const { getByLabelText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer formId="formId" />
           </QuizEngineContext.Provider>
@@ -99,7 +76,7 @@ describe("QuizRenderer", () => {
 
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={getLessonEngineContext()}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="formId" />
               <OakPrimaryButton form={"formId"} type="submit">
@@ -124,7 +101,7 @@ describe("QuizRenderer", () => {
 
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={getLessonEngineContext()}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="formId" />
               <OakPrimaryButton onClick={handleNextQuestion}>
@@ -149,7 +126,7 @@ describe("QuizRenderer", () => {
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={getLessonEngineContext()}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="form-id" />
               <OakPrimaryButton form="form-id" type="submit">
@@ -189,7 +166,7 @@ describe("QuizRenderer", () => {
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={getLessonEngineContext()}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="form-id" />
               <OakPrimaryButton form="form-id" type="submit">
@@ -226,7 +203,7 @@ describe("QuizRenderer", () => {
     if (context?.currentQuestionData) {
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={getLessonEngineContext()}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <QuizEngineContext.Provider value={context}>
               <QuizRenderer formId="form-id" />
             </QuizEngineContext.Provider>
@@ -253,7 +230,7 @@ describe("QuizRenderer", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider value={getLessonEngineContext()}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer formId="form-id" />
             <OakPrimaryButton form="form-id" type="submit">

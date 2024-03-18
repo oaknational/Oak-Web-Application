@@ -1,6 +1,5 @@
 import { OakHeading, OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import { SpecialistSubject } from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
@@ -11,6 +10,7 @@ import {
   SpecialistUnitListingLinkProps,
 } from "@/common-lib/urls";
 import { OakColorName } from "@/styles/theme";
+import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
 const getOakLinkProps = (
   subject: SpecialistSubject,
@@ -24,7 +24,7 @@ const getOakLinkProps = (
     : // If there is only one programme, link to the unit listing page for that programme
       {
         page: "specialist-unit-index",
-        programmeSlug: subject.programmeSlug,
+        programmeSlug: subject.subjectSlug,
       };
 
 const getAriaLabel = (subject: SpecialistSubject) => {

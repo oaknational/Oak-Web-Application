@@ -1,4 +1,4 @@
-import { SpecialistLessonListingData } from "./SpecialistLessonListing.view";
+import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 const specialistLessonListingFixture = (
   partial?: Partial<SpecialistLessonListingData>,

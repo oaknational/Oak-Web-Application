@@ -3,31 +3,36 @@ query pupilLessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_3_0_1(
+  lesson: published_mv_lesson_overview_5_0_0(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }
     }
   ) {
+    lessonSlug
     lessonTitle
-    yearTitle
-    lessonKeywords
+    unitSlug
+    unitTitle
+    programmeSlug
     subjectSlug
     subjectTitle
+    yearSlug
+    yearTitle
+    keyStageSlug
+    keyStageTitle
+    lessonKeywords
     pupilLessonOutcome
     starterQuiz
     exitQuiz
-    lessonSlug
-    lessonTitle
     supervisionLevel
     contentGuidance
     lessonEquipmentAndResources
-    worksheetUrl
     videoTitle
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
-    lessonCohort
+    isLegacy
+    expired
   }
 }

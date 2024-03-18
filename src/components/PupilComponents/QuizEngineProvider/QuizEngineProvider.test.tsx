@@ -1,27 +1,22 @@
 import React from "react";
 import { renderHook, act } from "@testing-library/react";
 
+import { createQuestionData } from "../pupilTestHelpers/createQuizEngineContext";
+
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineProps,
   QuizEngineProvider,
   useQuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
-import { quizQuestions as questionsArrayFixture } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import {
+  orderAnswers,
+  quizQuestions as questionsArrayFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
-
-const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
-  currentSection: "starter-quiz",
-  completedSections: [],
-  sectionResults: {},
-  getIsComplete: jest.fn(),
-  completeSection: jest.fn(),
-  updateCurrentSection: jest.fn(),
-  proceedToNextSection: jest.fn(),
-  updateQuizResult: jest.fn(),
-});
 
 describe("QuizEngineContext", () => {
   const wrapper = (
@@ -31,7 +26,9 @@ describe("QuizEngineContext", () => {
     return (
       <LessonEngineContext.Provider
         value={
-          lessonEngineContext ? lessonEngineContext : getLessonEngineContext()
+          lessonEngineContext
+            ? lessonEngineContext
+            : createLessonEngineContext()
         }
       >
         <QuizEngineProvider questionsArray={questionsArray}>
@@ -131,7 +128,8 @@ describe("QuizEngineContext", () => {
         questionsArrayFixture?.filter(
           (q) =>
             q.questionType === "multiple-choice" ||
-            q.questionType === "short-answer",
+            q.questionType === "short-answer" ||
+            q.questionType === "order",
         ).length,
       );
     });
@@ -174,7 +172,7 @@ describe("QuizEngineContext", () => {
   });
 
   it("should update the section as complete when currentQuestionIndex is > numQuestions", () => {
-    const lessonEngineContext = getLessonEngineContext();
+    const lessonEngineContext = createLessonEngineContext();
 
     const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
@@ -432,6 +430,102 @@ describe("QuizEngineContext", () => {
       grade: 0,
       feedback: "incorrect",
       offerHint: false,
+    });
+  });
+
+  describe("handleSubmitOrderAnser", () => {
+    const orderQuestion = createQuestionData({
+      answers: {
+        order: orderAnswers,
+      },
+      questionType: "order",
+    });
+
+    it("should be graded as correct if items are in the correct order", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [orderQuestion],
+          }),
+      });
+      const { handleSubmitOrderAnswer } = result.current;
+
+      act(() => {
+        handleSubmitOrderAnswer([1, 2, 3, 4]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(1);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
+        "correct",
+        "correct",
+        "correct",
+        "correct",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        false,
+      );
+    });
+
+    it("should be graded as incorrect if all items are not in the correct order", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [orderQuestion],
+          }),
+      });
+      const { handleSubmitOrderAnswer } = result.current;
+
+      act(() => {
+        handleSubmitOrderAnswer([2, 3, 4, 1]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(0);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
+        "incorrect",
+        "incorrect",
+        "incorrect",
+        "incorrect",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        false,
+      );
+    });
+
+    it("should be graded as incorrect if some items are in the correct order", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [orderQuestion],
+          }),
+      });
+      const { handleSubmitOrderAnswer } = result.current;
+
+      act(() => {
+        handleSubmitOrderAnswer([1, 4, 3, 2]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(0);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
+        "correct",
+        "incorrect",
+        "correct",
+        "incorrect",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        true,
+      );
     });
   });
 });

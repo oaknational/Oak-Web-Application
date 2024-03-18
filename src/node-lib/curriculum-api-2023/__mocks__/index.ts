@@ -1,3 +1,5 @@
+import { specialistSubjectListingFixture2023 } from "../fixtures/specialistSubjectListing.fixture";
+
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
@@ -6,6 +8,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/su
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
+import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -16,6 +19,9 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
+  | "pupilLessonOverviewCanonical"
+  | "specialistSubjectListing"
+  | "specialistUnitListing"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -32,6 +38,9 @@ const curriculumApi: Pick<
   pupilLessonOverview: jest.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
+  pupilLessonOverviewCanonical: jest.fn(async () => {
+    return pupilLessonOverviewFixture();
+  }),
   lessonOverviewCanonical: jest.fn(async () => {
     return {
       ...lessonOverviewFixture(),
@@ -42,6 +51,16 @@ const curriculumApi: Pick<
     return {
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
+    };
+  }),
+  specialistSubjectListing: jest.fn(async () => {
+    return {
+      ...specialistSubjectListingFixture2023(),
+    };
+  }),
+  specialistUnitListing: jest.fn(async () => {
+    return {
+      ...specialistUnitListingFixture(),
     };
   }),
 };

@@ -4,6 +4,7 @@ const lessonShareFixtures = (
   partial?: Partial<LessonShareData>,
 ): LessonShareData => {
   return {
+    expired: false,
     isLegacy: true,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
@@ -18,6 +19,7 @@ const lessonShareFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
+    lessonCohort: "2020-2023",
     shareableResources: [
       {
         type: "exit-quiz-questions",

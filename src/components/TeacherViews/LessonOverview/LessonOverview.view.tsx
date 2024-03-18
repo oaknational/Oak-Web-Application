@@ -38,12 +38,24 @@ import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOver
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
+import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonOverviewProps = {
   lesson:
     | LessonOverviewCanonical
     | LessonOverviewInPathway
     | SpecialistLessonOverview;
+};
+
+// helper function to remove key learning points from the header in legacy lessons
+export const getDedupedPupilLessonOutcome = (
+  plo: string | null | undefined,
+  klp: keyLearningPoint[] | null | undefined,
+) => {
+  if (klp && plo) {
+    return klp.some((klpItem) => klpItem.keyLearningPoint === plo) ? null : plo;
+  }
+  return plo;
 };
 
 export function LessonOverview({ lesson }: LessonOverviewProps) {
@@ -66,7 +78,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     exitQuiz,
     expired,
     keyLearningPoints,
+    pupilLessonOutcome,
     lessonCohort,
+    hasDownloadableResources,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -167,13 +181,17 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={isLegacyLicense}
+        isShareable={isLegacyLicense && !expired}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
           });
         }}
         onClickShareAll={trackShareAll}
+        pupilLessonOutcome={getDedupedPupilLessonOutcome(
+          pupilLessonOutcome,
+          keyLearningPoints,
+        )}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
@@ -210,26 +228,27 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
-                {pageLinks.find((p) => p.label === "Slide deck") && (
-                  <LessonItemContainer
-                    ref={slideDeckSectionRef}
-                    title={"Slide deck"}
-                    downloadable={true}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "slide deck",
-                      });
-                    }}
-                    slugs={slugs}
-                    anchorId="slide-deck"
-                  >
-                    <LessonOverviewPresentation
-                      asset={presentationUrl}
-                      title={lessonTitle}
-                      isWorksheet={false}
-                    />
-                  </LessonItemContainer>
-                )}
+                {pageLinks.find((p) => p.label === "Slide deck") &&
+                  hasDownloadableResources && (
+                    <LessonItemContainer
+                      ref={slideDeckSectionRef}
+                      title={"Slide deck"}
+                      downloadable={hasDownloadableResources}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "slide deck",
+                        });
+                      }}
+                      slugs={slugs}
+                      anchorId="slide-deck"
+                    >
+                      <LessonOverviewPresentation
+                        asset={presentationUrl}
+                        title={lessonTitle}
+                        isWorksheet={false}
+                      />
+                    </LessonItemContainer>
+                  )}
                 <LessonItemContainer
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
@@ -238,7 +257,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonDetails
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
-                    keyWords={lessonKeywords}
+                    keyWords={
+                      lessonKeywords?.length ? lessonKeywords : undefined
+                    }
                     teacherTips={teacherTips}
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
@@ -273,7 +294,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -300,7 +321,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
                     anchorId="starter-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
@@ -325,7 +346,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -351,7 +372,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
-                    downloadable={true}
+                    downloadable={hasDownloadableResources}
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({

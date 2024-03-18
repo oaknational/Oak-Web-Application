@@ -16,6 +16,8 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
+    expired: true,
   },
   {
     programmeSlug: "programme-slug-1",
@@ -28,6 +30,8 @@ const downloads = [
     keyStageSlug: "key-stage-slug",
     keyStageTitle: "key-stage-title",
     downloads: [],
+    hasDownloadableResources: true,
+    expired: true,
   },
 ];
 
@@ -41,7 +45,7 @@ describe("lessonDownloads()", () => {
             downloads: [],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_1",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
@@ -79,7 +83,7 @@ describe("lessonDownloads()", () => {
           downloads: downloads,
           unit: [
             {
-              __typename: "published_mv_lesson_listing_3_0_1",
+              __typename: "published_mv_lesson_listing_5_0_1",
               lessons: lessonListingFixture().lessons,
             },
           ],
@@ -90,6 +94,7 @@ describe("lessonDownloads()", () => {
       unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
     });
+
     expect(unit.programmeSlug).toEqual("programme-slug-0");
   });
   test("throws a Zod error if the response is invalid", async () => {
@@ -113,7 +118,7 @@ describe("lessonDownloads()", () => {
             ],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_0",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],

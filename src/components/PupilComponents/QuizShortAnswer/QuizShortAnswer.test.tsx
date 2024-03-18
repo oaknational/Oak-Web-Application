@@ -4,6 +4,8 @@ import "@testing-library/jest-dom";
 import { act, fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { QuizShortAnswer } from "./QuizShortAnswer";
 
 import {
@@ -17,23 +19,11 @@ const shortAnswerQuestion = quizQuestions?.find(
   (q) => q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
 );
 
-const getContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: shortAnswerQuestion,
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
-  score: 0,
-  numQuestions: 1,
-});
+const getContext = (): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: shortAnswerQuestion,
+    numQuestions: 1,
+  });
 
 describe("QuizShortAnswer", () => {
   it("renders a text input", () => {

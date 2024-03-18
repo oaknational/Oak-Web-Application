@@ -1,18 +1,24 @@
 import React, {
   ReactNode,
   createContext,
-  useMemo,
   memo,
   useCallback,
   useContext,
   useState,
 } from "react";
 
+import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+
 import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  isLessonReviewSection,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
+import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import OakError from "@/errors/OakError";
 
 export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -35,12 +41,15 @@ type QuestionState = {
 export type QuizEngineContextType = {
   currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
+  currentQuestionDisplayIndex: number; // this excludes explanatory-text questions
   questionState: QuestionState[];
   score: number;
   numQuestions: number;
+  numInteractiveQuestions: number;
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
+  handleSubmitOrderAnswer: (pupilAnswers: number[]) => void;
   handleNextQuestion: () => void;
 } | null;
 
@@ -57,18 +66,17 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateQuizResult, completeSection, currentSection } =
+  const { updateSectionResult, completeSection, currentSection } =
     useLessonEngineContext();
 
-  const filteredQuestions = useMemo(
-    () =>
-      questionsArray.filter(
-        (question) =>
-          question.questionType === "multiple-choice" ||
-          question.questionType === "short-answer",
-      ),
-    [questionsArray],
-  );
+  const filteredQuestions = questionsArray.filter((question) => {
+    return [
+      "multiple-choice",
+      "short-answer",
+      "explanatory-text",
+      "order",
+    ].includes(question.questionType);
+  });
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -83,17 +91,19 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const numQuestions = filteredQuestions.length;
+  const numInteractiveQuestions =
+    getInteractiveQuestions(filteredQuestions).length;
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
   const handleScoreUpdate = useCallback(
     (_questionState: QuestionState[]) => {
-      updateQuizResult({
+      updateSectionResult({
         grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
-        numQuestions,
+        numQuestions: numInteractiveQuestions,
       });
     },
-    [numQuestions, updateQuizResult],
+    [numInteractiveQuestions, updateSectionResult],
   );
 
   const updateQuestionMode = useCallback(
@@ -205,27 +215,76 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     ],
   );
 
+  /**
+   * Receives an array containing the order of the answers given
+   * The order is 1-indexed like `correct_order` in the question data
+   * for ease of comparison
+   */
+  const handleSubmitOrderAnswer = useCallback(
+    (pupilAnswers: number[]) => {
+      const answers = currentQuestionData?.answers;
+
+      if (!answers || !isOrderAnswer(answers)) {
+        throw new OakError({ code: "misc/unexpected-type" });
+      }
+
+      const correctAnswers = answers.order.map(
+        (answer) => answer.correct_order,
+      );
+      const feedback: QuestionFeedbackType[] = pupilAnswers.map(
+        (pupilAnswer, i) =>
+          correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
+      );
+      const isCorrect = feedback.every((feedback) => feedback === "correct");
+      const isPartiallyCorrect =
+        !isCorrect && feedback.some((feedback) => feedback === "correct");
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
+          mode: "feedback",
+          grade: isCorrect ? 1 : 0,
+          feedback,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          isPartiallyCorrect,
+        };
+        handleScoreUpdate(newState);
+        return newState;
+      });
+    },
+    [currentQuestionData?.answers, currentQuestionIndex, handleScoreUpdate],
+  );
+
   const handleNextQuestion = useCallback(() => {
     setCurrentQuestionIndex((prev) => {
       const _currentQuestionIndex = Math.min(prev + 1, numQuestions);
-      if (_currentQuestionIndex === numQuestions) {
+      if (
+        _currentQuestionIndex === numQuestions &&
+        isLessonReviewSection(currentSection)
+      ) {
         completeSection(currentSection);
       }
       return _currentQuestionIndex;
     });
   }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
 
+  const currentQuestionDisplayIndex =
+    currentQuestionIndex - (numQuestions - numInteractiveQuestions);
+
   return (
     <QuizEngineContext.Provider
       value={{
         currentQuestionData,
         currentQuestionIndex,
+        currentQuestionDisplayIndex,
         questionState,
         score,
         numQuestions,
+        numInteractiveQuestions,
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,
+        handleSubmitOrderAnswer,
         handleNextQuestion,
       }}
     >

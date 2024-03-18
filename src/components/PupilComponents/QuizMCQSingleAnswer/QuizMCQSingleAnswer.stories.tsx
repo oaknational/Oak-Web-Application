@@ -5,6 +5,8 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 
 import {
@@ -19,7 +21,6 @@ import {
 
 const meta = {
   component: QuizMCQSingleAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -42,24 +43,18 @@ type Story = StoryObj<typeof meta>;
 const getContext = (params?: {
   feedback?: QuestionFeedbackType[];
   mode?: "init" | "feedback";
-}): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: quizQuestions?.[0],
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: params?.mode ?? "init",
-      grade: 0,
-      offerHint: false,
-      feedback: params?.feedback,
-    },
-  ],
-  score: 0,
-  numQuestions: 0,
-  updateQuestionMode: () => {},
-  handleSubmitMCAnswer: () => {},
-  handleSubmitShortAnswer: () => {},
-  handleNextQuestion: () => {},
-});
+}): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: quizQuestions?.[0],
+    questionState: [
+      {
+        mode: params?.mode ?? "init",
+        grade: 0,
+        offerHint: false,
+        feedback: params?.feedback,
+      },
+    ],
+  });
 
 const mcqMultiImageAnswers = [...mcqImageAnswers];
 if (mcqMultiImageAnswers[0]) {

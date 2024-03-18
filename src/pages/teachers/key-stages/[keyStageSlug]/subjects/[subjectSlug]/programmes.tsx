@@ -128,19 +128,21 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context params");
       }
-      const curriculumData = isSlugLegacy(context.params?.subjectSlug)
+
+      const { subjectSlug, keyStageSlug } = context.params;
+      const curriculumData = isSlugLegacy(subjectSlug)
         ? await curriculumApi.tierListing({
-            keyStageSlug: context.params?.keyStageSlug,
-            subjectSlug: context.params?.subjectSlug,
+            keyStageSlug: keyStageSlug,
+            subjectSlug: subjectSlug,
           })
         : await curriculumApi2023.programmeListingPage({
-            keyStageSlug: context.params?.keyStageSlug,
-            subjectSlug: context.params?.subjectSlug,
+            keyStageSlug: keyStageSlug,
+            subjectSlug: subjectSlug,
           });
 
       const generatedCurriculumData = generateProgrammeListing(
         curriculumData,
-        isSlugLegacy(context.params?.subjectSlug),
+        isSlugLegacy(subjectSlug),
       );
 
       const results = {

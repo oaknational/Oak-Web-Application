@@ -5,6 +5,7 @@ const lessonDownloadsFixtures = (
 ): LessonDownloadsData => {
   return {
     isLegacy: true,
+    expired: false,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
     programmeSlug: "maths-higher-ks4-l",
@@ -18,6 +19,7 @@ const lessonDownloadsFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
+    hasDownloadableResources: true,
     nextLessons: [
       { lessonSlug: "macbeth-lesson-2", lessonTitle: "Macbeth" },
       { lessonSlug: "macbeth-lesson-3", lessonTitle: "Macbeth" },

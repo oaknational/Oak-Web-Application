@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   OakBackLink,
   OakGrid,
@@ -12,15 +12,20 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import {
+  VideoResult,
+  useLessonEngineContext,
+} from "@/components/PupilComponents/LessonEngineProvider";
+import VideoPlayer, {
+  VideoEventCallbackArgs,
+} from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
   videoMuxPlaybackId?: string;
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptSentences: string[];
-  isLegacyLicense: boolean;
+  isLegacy: boolean;
 };
 
 export const PupilViewsVideo = ({
@@ -28,14 +33,33 @@ export const PupilViewsVideo = ({
   videoMuxPlaybackId,
   videoWithSignLanguageMuxPlaybackId,
   transcriptSentences,
-  isLegacyLicense,
+  isLegacy,
 }: PupilViewsVideoProps) => {
-  const { completeSection, updateCurrentSection } = useLessonEngineContext();
+  const { completeSection, updateCurrentSection, updateSectionResult } =
+    useLessonEngineContext();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
     signLanguageOn && videoWithSignLanguageMuxPlaybackId
       ? videoWithSignLanguageMuxPlaybackId
       : videoMuxPlaybackId;
+
+  const videoResult = useRef<VideoResult>({
+    played: false,
+    duration: 0,
+    timeElapsed: 0,
+  });
+
+  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
+    videoResult.current.played = true;
+    videoResult.current.duration = event.duration || 0;
+    const t = event.timeElapsed || 0;
+    // throttling updates to every 10 seconds to avoid overloading state updates
+    // also prevents timeElapsed from being updated when the skips to an earlier moment
+    if (event.event !== "playing" || t - videoResult.current.timeElapsed > 10) {
+      videoResult.current.timeElapsed = t;
+      updateSectionResult(videoResult.current);
+    }
+  };
 
   return (
     <OakLessonLayout
@@ -61,7 +85,7 @@ export const PupilViewsVideo = ({
             onClick={() => {
               completeSection("video");
             }}
-            width={["100%", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
           >
@@ -85,8 +109,9 @@ export const PupilViewsVideo = ({
               playbackId={playbackId}
               playbackPolicy="signed"
               title={lessonTitle}
-              location="lesson"
-              isLegacy={isLegacyLicense}
+              location="pupil"
+              isLegacy={isLegacy}
+              userEventCallback={handleVideoEvent}
             />
           ) : (
             "This lesson does not contain a video"

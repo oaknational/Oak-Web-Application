@@ -3,6 +3,8 @@ import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
 import {
@@ -37,37 +39,32 @@ describe("QuizMCQMultiAnswer", () => {
   }
 
   // mock the QuizEngineContext
-  const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
-    currentQuestionData: {
-      questionUid: "test",
-      questionId: 0,
-      questionType: "multiple-choice",
-      questionStem: [
+  const mockQuizEngineContext: NonNullable<QuizEngineContextType> =
+    createQuizEngineContext({
+      currentQuestionData: {
+        questionUid: "test",
+        questionId: 0,
+        questionType: "multiple-choice",
+        questionStem: [
+          {
+            type: "text",
+            text: "Test question",
+          },
+        ],
+        answers: { "multiple-choice": multiMcqTextAnswers },
+        feedback: "",
+        hint: "",
+        active: true,
+      },
+      currentQuestionIndex: 0,
+      questionState: [
         {
-          type: "text",
-          text: "Test question",
+          mode: "input",
+          grade: 0,
+          offerHint: false,
         },
       ],
-      answers: { "multiple-choice": multiMcqTextAnswers },
-      feedback: "",
-      hint: "",
-      active: true,
-    },
-    currentQuestionIndex: 0,
-    questionState: [
-      {
-        mode: "input",
-        grade: 0,
-        offerHint: false,
-      },
-    ],
-    score: 0,
-    numQuestions: 0,
-    updateQuestionMode: jest.fn(),
-    handleSubmitMCAnswer: jest.fn(),
-    handleNextQuestion: jest.fn(),
-    handleSubmitShortAnswer: jest.fn(),
-  };
+    });
 
   const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {
     ...mockQuizEngineContext,

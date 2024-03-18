@@ -46,6 +46,7 @@ const ResourcePageSearchComboBox = <T extends School>(
       inputRef,
       listBoxRef,
       popoverRef,
+      children: [],
     },
     state,
   );

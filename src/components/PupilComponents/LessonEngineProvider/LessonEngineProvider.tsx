@@ -1,4 +1,13 @@
-import { ReactNode, createContext, useContext, memo, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  memo,
+  useReducer,
+  Reducer,
+} from "react";
+
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 export const lessonSections = [
   "overview",
@@ -9,7 +18,7 @@ export const lessonSections = [
   "review",
 ] as const;
 
-export const lessonReviewSections = [
+export const allLessonReviewSections = [
   "intro",
   "starter-quiz",
   "video",
@@ -17,6 +26,7 @@ export const lessonReviewSections = [
 ] as const;
 
 export type LessonSection = (typeof lessonSections)[number];
+export type LessonReviewSection = (typeof allLessonReviewSections)[number];
 
 export const isLessonSection = (
   currentSection: string,
@@ -24,19 +34,134 @@ export const isLessonSection = (
   return lessonSections.includes(currentSection as LessonSection);
 };
 
-export type LessonSectionResult = { grade: number; numQuestions: number };
+export function isLessonReviewSection(
+  section: string,
+): section is LessonReviewSection {
+  return lessonSections.includes(section as LessonReviewSection);
+}
 
-type LessonSectionResults = Partial<Record<LessonSection, LessonSectionResult>>;
+export type QuizResult = { grade: number; numQuestions: number };
+export type VideoResult = {
+  played: boolean;
+  duration: number;
+  timeElapsed: number;
+};
+export type IntroResult = {
+  worksheetAvailable: boolean;
+  worksheetDownloaded: boolean;
+};
+
+type LessonSectionState = {
+  isComplete: boolean;
+} & Partial<QuizResult> &
+  Partial<VideoResult> &
+  Partial<IntroResult>;
+
+type LessonEngineAction =
+  | {
+      type: "setCurrentSection";
+      section: LessonSection;
+    }
+  | {
+      type: "completeSection";
+      section: LessonReviewSection;
+    }
+  | {
+      type: "updateSectionResult";
+      result: QuizResult | VideoResult | IntroResult;
+    }
+  | {
+      type: "proceedToNextSection";
+    };
+
+type LessonEngineState = {
+  currentSection: LessonSection;
+  lessonReviewSections: Readonly<LessonReviewSection[]>;
+  sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
+  lessonStarted: boolean;
+};
+
+const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
+  currentState,
+  action,
+) => {
+  switch (action.type) {
+    case "setCurrentSection":
+      return {
+        ...currentState,
+        currentSection: action.section,
+        lessonStarted: true,
+      };
+    case "completeSection": {
+      const newState = {
+        ...currentState,
+        lessonStarted: true,
+        sections: {
+          ...currentState.sections,
+          [action.section]: {
+            ...currentState.sections[action.section],
+            isComplete: true,
+          },
+        },
+      };
+
+      // redirect the user according to what sections have been completed
+      newState.currentSection = currentState.lessonReviewSections.every(
+        (section) => newState.sections[section]?.isComplete,
+      )
+        ? "review"
+        : "overview";
+
+      return newState;
+    }
+    case "proceedToNextSection": {
+      // Go to the lesson review when the lesson is complete
+      const nextSection =
+        currentState.lessonReviewSections.find(
+          (section) => !currentState.sections[section]?.isComplete,
+        ) ?? "review";
+
+      return {
+        ...currentState,
+        currentSection: nextSection,
+        lessonStarted: true,
+      };
+    }
+    case "updateSectionResult": {
+      if (!isLessonReviewSection(currentState.currentSection)) {
+        throw new Error(
+          `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
+        );
+      }
+
+      return {
+        ...currentState,
+        lessonStarted: true,
+        sections: {
+          ...currentState.sections,
+          [currentState.currentSection]: {
+            ...currentState.sections[currentState.currentSection],
+            ...action.result,
+            isComplete: false,
+          },
+        },
+      };
+    }
+    default:
+      return currentState;
+  }
+};
 
 export type LessonEngineContextType = {
   currentSection: LessonSection;
-  completedSections: LessonSection[];
-  sectionResults: LessonSectionResults;
-  getIsComplete: (section: LessonSection) => boolean;
-  completeSection: (section: LessonSection) => void;
+  sectionResults: LessonEngineState["sections"];
+  isLessonComplete: boolean;
+  completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
-  updateQuizResult: (vals: { grade: number; numQuestions: number }) => void;
+  updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
+  lessonReviewSections: Readonly<LessonReviewSection[]>;
+  lessonStarted: boolean;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -49,76 +174,117 @@ export const useLessonEngineContext = () => {
   return context;
 };
 
-export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
-  // consolidate into a single stateful object
-  const [currentSection, setCurrentSection] =
-    useState<LessonSection>("overview");
+export type LessonEngineProviderProps = {
+  children: ReactNode;
+  initialLessonReviewSections: Readonly<LessonReviewSection[]>;
+};
 
-  const [completedSections, setCompletedSections] = useState<LessonSection[]>(
-    [],
-  );
-
-  const [sectionResults, setSectionResults] = useState<LessonSectionResults>(
-    {},
-  );
-
-  const getIsComplete = (section: LessonSection) =>
-    completedSections.includes(section);
-
-  const completeSection = (section: LessonSection) => {
-    // concatenate and dedupe the array
-    setCompletedSections((prev) => {
-      const _completedSections = [...prev, section].filter(
-        (item, index, array) => array.indexOf(item) === index,
-      );
-
-      // redirect the user according to what sections have been completed
-      if (
-        _completedSections.length ===
-        lessonSections.filter((s) => s !== "overview" && s !== "review").length
-      ) {
-        setCurrentSection("review");
-      } else {
-        setCurrentSection("overview");
-      }
-
-      return _completedSections;
+export const LessonEngineProvider = memo(
+  ({ children, initialLessonReviewSections }: LessonEngineProviderProps) => {
+    const [state, dispatch] = useReducer(lessonEngineReducer, {
+      lessonReviewSections: initialLessonReviewSections,
+      currentSection: "overview",
+      lessonStarted: false,
+      sections: {},
     });
-  };
 
-  const updateCurrentSection = (section: LessonSection) => {
-    setCurrentSection(section);
-  };
+    const { track } = usePupilAnalytics();
 
-  const proceedToNextSection = () => {
-    const remainingSections = lessonSections.filter(
-      (s) => !completedSections.includes(s) && s !== "overview",
+    const trackLessonStarted = () => {
+      if (!state.lessonStarted && track.lessonStarted) {
+        track.lessonStarted({});
+      }
+    };
+
+    const getSectionTrackingData = (section: LessonReviewSection) => ({
+      pupilExperienceLessonSection: section,
+      pupilQuizGrade: state.sections[section]?.grade,
+      pupilQuizNumQuestions: state.sections[section]?.numQuestions,
+      pupilVideoPlayed: state.sections[section]?.played,
+      pupilVideoDurationSeconds: state.sections[section]?.duration,
+      pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
+      pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
+      pupilWorksheetDownloaded: state.sections[section]?.worksheetDownloaded,
+    });
+
+    const completeSection = (section: LessonReviewSection) => {
+      trackLessonStarted();
+      if (track.lessonSectionCompleted) {
+        track.lessonSectionCompleted(getSectionTrackingData(section));
+      }
+      if (
+        state.lessonReviewSections.every(
+          (section) => state.sections[section]?.isComplete,
+        )
+      ) {
+        if (track.lessonCompleted) {
+          track.lessonCompleted({});
+        }
+      }
+      dispatch({ type: "completeSection", section });
+    };
+
+    const trackSectionStarted = (section: LessonSection) => {
+      trackLessonStarted();
+      if (isLessonReviewSection(section)) {
+        if (track.lessonSectionStarted) {
+          track.lessonSectionStarted({
+            pupilExperienceLessonSection: section,
+          });
+        }
+      }
+    };
+
+    const updateCurrentSection = (section: LessonSection) => {
+      trackLessonStarted();
+      trackSectionStarted(section);
+
+      if (
+        isLessonReviewSection(state.currentSection) &&
+        !state.sections[state.currentSection]?.isComplete
+      ) {
+        if (track.lessonSectionAbandoned) {
+          track.lessonSectionAbandoned(
+            getSectionTrackingData(state.currentSection),
+          );
+        }
+      }
+      dispatch({ type: "setCurrentSection", section });
+    };
+
+    const proceedToNextSection = () => {
+      trackLessonStarted();
+      trackSectionStarted(state.currentSection);
+      dispatch({ type: "proceedToNextSection" });
+    };
+
+    const updateSectionResult = (
+      result: QuizResult | VideoResult | IntroResult,
+    ) => {
+      trackLessonStarted();
+      dispatch({ type: "updateSectionResult", result });
+    };
+
+    const isLessonComplete = state.lessonReviewSections.every(
+      (section) => state.sections[section]?.isComplete,
     );
-    if (remainingSections.length === 0 || remainingSections[0] === undefined) {
-      // if there is no next section, we are at the end of the lesson
-      return;
-    }
-    setCurrentSection(remainingSections[0]);
-  };
 
-  const updateQuizResult = (vals: { grade: number; numQuestions: number }) => {
-    setSectionResults((prev) => ({ ...prev, [currentSection]: vals }));
-  };
-
-  return (
-    <LessonEngineContext.Provider
-      value={{
-        currentSection,
-        completedSections,
-        sectionResults,
-        getIsComplete,
-        completeSection,
-        updateCurrentSection,
-        proceedToNextSection,
-        updateQuizResult,
-      }}
-    >
-      {props.children}
-    </LessonEngineContext.Provider>
-  );
-});
+    return (
+      <LessonEngineContext.Provider
+        value={{
+          currentSection: state.currentSection,
+          sectionResults: state.sections,
+          isLessonComplete,
+          completeSection,
+          updateCurrentSection,
+          proceedToNextSection,
+          updateSectionResult,
+          lessonReviewSections: state.lessonReviewSections,
+          lessonStarted: state.lessonStarted,
+        }}
+      >
+        {children}
+      </LessonEngineContext.Provider>
+    );
+  },
+);

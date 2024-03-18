@@ -34,7 +34,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -95,6 +95,36 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     );
 
     expect(screen.getByText("No downloads available")).toBeInTheDocument();
+  });
+  it("Renders 'no downloads available' message if hasDownloadableResources is false", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByText("No downloads available")).toBeInTheDocument();
+  });
+  it("Does not render check boxes if hasDownloadableResources is false (copyright material)", () => {
+    render(
+      <LessonDownloadsPage
+        {...{
+          ...props,
+          curriculumData: {
+            ...props.curriculumData,
+            hasDownloadableResources: false,
+          },
+        }}
+      />,
+    );
+
+    expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
   });
 
   describe("download form", () => {

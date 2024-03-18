@@ -12,14 +12,15 @@ import {
   OakPrimaryButton,
   OakSpan,
   OakSubjectIcon,
-  OakTertiaryButton,
   isValidIconName,
 } from "@oaknational/oak-components";
+import { useEffect, useState } from "react";
 
 import {
-  LessonSection,
+  LessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
@@ -29,6 +30,7 @@ type PupilViewsLessonOverviewProps = {
   pupilLessonOutcome?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
+  backUrl?: string | null;
 };
 
 export const PupilViewsLessonOverview = ({
@@ -39,17 +41,25 @@ export const PupilViewsLessonOverview = ({
   pupilLessonOutcome,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
+  backUrl,
 }: PupilViewsLessonOverviewProps) => {
   const {
-    completedSections,
     sectionResults,
     updateCurrentSection,
     proceedToNextSection,
+    lessonReviewSections,
+    isLessonComplete,
+    lessonStarted,
   } = useLessonEngineContext();
-  const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
 
-  function pickProgressForSection(section: LessonSection) {
-    if (completedSections.includes(section)) {
+  const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  function pickProgressForSection(section: LessonReviewSection) {
+    if (sectionResults[section]?.isComplete) {
       return "complete";
     }
 
@@ -68,11 +78,17 @@ export const PupilViewsLessonOverview = ({
         <OakLessonBottomNav>
           <OakPrimaryButton
             onClick={proceedToNextSection}
-            width={["100%", "auto", "auto"]}
+            width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
+            data-testid="proceed-to-next-section"
+            disabled={!isMounted}
           >
-            Let's get ready
+            {pickProceedToNextSectionLabel(
+              lessonStarted,
+              isLessonComplete,
+              sectionResults,
+            )}
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
@@ -85,9 +101,7 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakTertiaryButton disabled iconName="arrow-left">
-            View all lessons
-          </OakTertiaryButton>
+          <ViewAllLessonsButton href={backUrl} />
         </OakGridArea>
       </OakGrid>
       <OakFlex
@@ -163,35 +177,48 @@ export const PupilViewsLessonOverview = ({
             $ph={["inner-padding-m", "inner-padding-none"]}
           >
             <OakFlex $gap="space-between-s" $flexDirection="column">
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="intro"
-                onClick={() => updateCurrentSection("intro")}
-                progress={pickProgressForSection("intro")}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="starter-quiz"
-                onClick={() => updateCurrentSection("starter-quiz")}
-                progress={pickProgressForSection("starter-quiz")}
-                numQuestions={exitQuizNumQuestions}
-                grade={sectionResults["starter-quiz"]?.grade ?? 0}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="video"
-                onClick={() => updateCurrentSection("video")}
-                progress={pickProgressForSection("video")}
-                videoLength={0}
-              />
-              <OakLessonNavItem
-                as="button"
-                lessonSectionName="exit-quiz"
-                onClick={() => updateCurrentSection("exit-quiz")}
-                progress={pickProgressForSection("exit-quiz")}
-                numQuestions={starterQuizNumQuestions}
-                grade={sectionResults["exit-quiz"]?.grade ?? 0}
-              />
+              {lessonReviewSections.includes("intro") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="intro"
+                  onClick={() => updateCurrentSection("intro")}
+                  progress={pickProgressForSection("intro")}
+                  disabled={!isMounted}
+                />
+              )}
+              {lessonReviewSections.includes("starter-quiz") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="starter-quiz"
+                  onClick={() => updateCurrentSection("starter-quiz")}
+                  progress={pickProgressForSection("starter-quiz")}
+                  numQuestions={starterQuizNumQuestions}
+                  grade={sectionResults["starter-quiz"]?.grade ?? 0}
+                  data-testid="starter-quiz"
+                  disabled={!isMounted}
+                />
+              )}
+              {lessonReviewSections.includes("video") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="video"
+                  onClick={() => updateCurrentSection("video")}
+                  progress={pickProgressForSection("video")}
+                  disabled={!isMounted}
+                />
+              )}
+              {lessonReviewSections.includes("exit-quiz") && (
+                <OakLessonNavItem
+                  as="button"
+                  lessonSectionName="exit-quiz"
+                  onClick={() => updateCurrentSection("exit-quiz")}
+                  progress={pickProgressForSection("exit-quiz")}
+                  numQuestions={exitQuizNumQuestions}
+                  grade={sectionResults["exit-quiz"]?.grade ?? 0}
+                  data-testid="exit-quiz"
+                  disabled={!isMounted}
+                />
+              )}
             </OakFlex>
           </OakGridArea>
         </OakGrid>
@@ -199,3 +226,23 @@ export const PupilViewsLessonOverview = ({
     </OakLessonLayout>
   );
 };
+
+function pickProceedToNextSectionLabel(
+  lessonStarted: boolean,
+  isLessonComplete: boolean,
+  results: ReturnType<typeof useLessonEngineContext>["sectionResults"],
+) {
+  if (isLessonComplete) {
+    return "Lesson review";
+  }
+
+  if (lessonStarted) {
+    return "Continue lesson";
+  }
+
+  if (results["intro"]?.isComplete) {
+    return "Start lesson";
+  }
+
+  return "Let's get ready";
+}

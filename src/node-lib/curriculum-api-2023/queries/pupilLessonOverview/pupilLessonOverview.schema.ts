@@ -15,22 +15,27 @@ export const pupilLessonOverviewSchema = baseLessonOverviewSchema
     supervisionLevel: true,
     contentGuidance: true,
     lessonEquipmentAndResources: true,
-    worksheetUrl: true,
     videoWithSignLanguageMuxPlaybackId: true,
     videoMuxPlaybackId: true,
     videoTitle: true,
     transcriptSentences: true,
     pupilLessonOutcome: true,
+    expired: true,
   })
   .merge(
     lessonPathwaySchema.pick({
       subjectSlug: true,
       subjectTitle: true,
+      keyStageSlug: true,
+      keyStageTitle: true,
+      unitSlug: true,
+      unitTitle: true,
+      programmeSlug: true,
     }),
   )
   .extend({
     yearTitle: z.string().nullable().optional(),
-    isLegacyLicense: z.boolean(),
+    isLegacy: z.boolean(),
     transcriptSentences: z
       .union([z.array(z.string()), z.string()])
       .optional()

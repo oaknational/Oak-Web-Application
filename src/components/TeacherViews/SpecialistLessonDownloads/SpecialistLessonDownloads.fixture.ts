@@ -1,6 +1,5 @@
-import { SpecialistLessonDownloadsProps } from "./SpecialistLessonDownloads.view";
-
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 
 export const downloads: LessonDownloadsData["downloads"] = [
   {
@@ -39,10 +38,11 @@ export const nextLessons = [
 ];
 
 const specialistLessonDownloadsFixtures = (
-  partial?: Partial<SpecialistLessonDownloadsProps>,
-): SpecialistLessonDownloadsProps => {
+  partial?: Partial<SpecialistLessonDownloads>,
+): SpecialistLessonDownloads => {
   return {
     lesson: {
+      expired: false,
       isLegacy: true,
       lessonSlug: "test-lesson-1",
       lessonTitle: "Test lesson",
@@ -53,6 +53,7 @@ const specialistLessonDownloadsFixtures = (
       unitTitle: "Test unit",
       nextLessons: nextLessons,
       downloads: downloads,
+      hasDownloadableResources: true,
     },
     ...partial,
   };
