@@ -1,7 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistProgrammeListingQuery, {
-  sortProgrammesByDevelopmentStage,
+  sortByDevelopmentStage,
   transformProgrammes,
 } from "./specialistProgrammeListing.query";
 
@@ -135,7 +135,7 @@ describe("transform programmes", () => {
 
 describe("sort programmes by development stage", () => {
   test("sorts by development stage", () => {
-    const res = sortProgrammesByDevelopmentStage(queryResponse);
+    const res = sortByDevelopmentStage(queryResponse);
 
     expect(res[0]?.combined_programme_fields.developmentstage_slug).toBe(
       "early-development",
@@ -148,7 +148,7 @@ describe("sort programmes by development stage", () => {
     );
   });
   test("puts masterclass last", () => {
-    const res = sortProgrammesByDevelopmentStage([
+    const res = sortByDevelopmentStage([
       ...queryResponse,
       {
         synthetic_programme_slug: "creative-arts",
