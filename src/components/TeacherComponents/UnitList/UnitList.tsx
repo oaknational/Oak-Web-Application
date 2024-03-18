@@ -11,11 +11,11 @@ import Pagination, {
 } from "@/components/SharedComponents/Pagination";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
+import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
-} from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
-import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
+} from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 export type Tier = {
   title: string;
@@ -27,7 +27,7 @@ type PageSize = { pageSize: number };
 type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
 export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
-  currentPageItems: CurrenPageItemsProps[] | SpecialistUnit[];
+  currentPageItems: CurrenPageItemsProps[] | SpecialistUnit[][];
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
@@ -37,7 +37,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   const { currentPage, pageSize, firstItemRef } = paginationProps;
 
   const isUnitOption = (
-    x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit,
+    x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
   ): x is UnitOption[] => {
     if (x[0]) {
       return "keyStageTitle" in x[0];
@@ -70,6 +70,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     {item.map((unitOption) => {
                       return (
                         <UnitListItem
+                          {...props}
                           {...unitOption}
                           key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
                           hideTopHeading
