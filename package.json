@@ -102,6 +102,7 @@
     "react-dom": "^18.2.0",
     "react-focus-on": "^3.6.0",
     "react-hook-form": "^7.45.4",
+    "react-lottie-player": "^2.0.0",
     "react-stately": "^3.26.0",
     "react-string-replace": "^1.1.1",
     "react-transition-group": "^4.4.5",
