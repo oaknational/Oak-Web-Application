@@ -28,6 +28,7 @@ export const pupilLessonOverviewFixture = (
     transcriptSentences: [],
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
+    expired: false,
     ...partial,
   };
 };

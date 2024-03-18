@@ -1,5 +1,5 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_lesson_listing_3_0_2(
+  unit: published_mv_lesson_listing_5_0_1(
     where: {
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }

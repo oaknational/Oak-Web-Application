@@ -1,19 +1,26 @@
 import { requestLessonResources } from "./requestLessonResources";
 
-import * as getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { pupilLessonOverviewFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilLessonOverview.fixture";
 
 jest.mock("@/utils/handleTranscript");
-jest.mock(
-  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
-);
 
 describe("requestLessonResources", () => {
+  const lessonDownloadsCanonicalResponse = {
+    downloads: [],
+    isLegacy: false,
+    lessonSlug: "lessonSlug",
+    lessonTitle: "lessonTitle",
+    hasDownloadableResources: false,
+    expired: false,
+    pathways: [],
+  };
+
   let getDownloadResourcesExistenceSpy: jest.SpyInstance;
   beforeEach(() => {
     getDownloadResourcesExistenceSpy = jest
-      .spyOn(getDownloadResourcesExistence, "default")
-      .mockResolvedValue({ resources: [] });
+      .spyOn(curriculumApi2023, "lessonDownloadsCanonical")
+      .mockResolvedValue(lessonDownloadsCanonicalResponse);
   });
   afterEach(() => {
     getDownloadResourcesExistenceSpy.mockRestore();
@@ -21,7 +28,7 @@ describe("requestLessonResources", () => {
 
   it("sets `hasWorksheet` to `true` when a worksheet exists", async () => {
     getDownloadResourcesExistenceSpy.mockResolvedValue({
-      resources: [["worksheet-pdf", { exists: true }]],
+      downloads: [{ type: "worksheet-pdf", exists: true }],
     });
 
     const res = await requestLessonResources({
@@ -35,7 +42,8 @@ describe("requestLessonResources", () => {
 
   it("sets `hasWorksheet` to `false` when a worksheet does not exist", async () => {
     getDownloadResourcesExistenceSpy.mockResolvedValue({
-      resources: [["worksheet-pdf", { exists: false }]],
+      ...lessonDownloadsCanonicalResponse,
+      downloads: [["worksheet-pdf", { exists: false }]],
     });
 
     const res = await requestLessonResources({
@@ -58,22 +66,8 @@ describe("requestLessonResources", () => {
       },
     });
 
-    expect(getDownloadResourcesExistence.default).toHaveBeenCalledWith(
-      "lessonSlug",
-      "worksheet-pdf",
-      false,
-    );
-  });
-
-  it("does not blow up if the `getDownloadResourcesExistence` check fails", async () => {
-    getDownloadResourcesExistenceSpy.mockRejectedValue(new Error("oh no!"));
-
-    const res = await requestLessonResources({
-      curriculumData: {
-        ...pupilLessonOverviewFixture(),
-      },
+    expect(getDownloadResourcesExistenceSpy).toHaveBeenCalledWith({
+      lessonSlug: "lessonSlug",
     });
-
-    expect(res.hasWorksheet).toBe(false);
   });
 });

@@ -23,6 +23,7 @@ const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
       $background={$background}
       $pa={"inner-padding-m"}
       $borderRadius={"border-radius-s"}
+      $width="100%"
       {...gridAreaProps}
     >
       {children}

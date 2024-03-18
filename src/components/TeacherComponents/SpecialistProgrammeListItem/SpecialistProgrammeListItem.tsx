@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakBulletList,
+} from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -27,6 +31,8 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
       data-testid={"programme-list-item"}
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
+      $width={["100%", "100%", 400]}
+      $flexGrow={0}
     >
       <OakFlex $pa="inner-padding-m">
         <OwaLink
@@ -35,13 +41,21 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
           {...props.programme}
           onClick={() => onClick(programme)}
         >
-          <OakHeading
-            $font={"heading-7"}
-            tag="h3"
-            ariaLabel={props.programme.developmentalStageTitle}
-          >
-            {props.programme.developmentalStageTitle}
-          </OakHeading>
+          <OakFlex $flexDirection="column" $gap={"all-spacing-1"}>
+            <OakHeading
+              $font={"heading-7"}
+              tag="h3"
+              ariaLabel={props.programme.developmentStageTitle}
+            >
+              {props.programme.developmentStageTitle}
+            </OakHeading>
+            <OakBulletList
+              listItems={[
+                `${props.programme.unitCount} units`,
+                `${props.programme.lessonCount} lessons`,
+              ]}
+            />
+          </OakFlex>
         </OwaLink>
       </OakFlex>
 

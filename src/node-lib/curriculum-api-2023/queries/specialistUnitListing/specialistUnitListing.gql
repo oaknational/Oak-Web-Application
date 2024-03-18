@@ -1,0 +1,14 @@
+query specialistUnitListing($programmeSlug: String!) {
+  specialistUnits: published_mv_specialist_1_0_1(
+    distinct_on: unit_slug
+    where: { synthetic_programme_slug: { _eq: $programmeSlug } }
+  ) {
+    synthetic_programme_slug
+    unit_slug
+    unit_title
+    combined_programme_fields
+    contains_copyright_content
+    expired
+    threads
+  }
+}

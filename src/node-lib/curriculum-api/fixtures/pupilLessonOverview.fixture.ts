@@ -25,6 +25,7 @@ const pupilLessonOverviewFixture = (
     videoTitle: "Introduction to Islamic Geometry",
     isLegacy: false,
     pupilLessonOutcome: undefined,
+    expired: false,
     ...partial,
   };
 };
