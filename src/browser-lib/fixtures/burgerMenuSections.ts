@@ -49,7 +49,7 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
       {
         linkTo: {
           page: "subject-index",
-          keyStageSlug: "eyfs",
+          keyStageSlug: "early-years-foundation-stage",
         },
         text: "EYFS",
         new: false,
