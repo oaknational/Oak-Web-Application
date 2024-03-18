@@ -1,7 +1,7 @@
 import sdk from "../../sdk";
 
 import specialistProgrammeListingQuery, {
-  sortProgrammesByDevelopmentStage,
+  sortByDevelopmentStage,
   transformProgrammes,
 } from "./specialistProgrammeListing.query";
 
@@ -135,7 +135,7 @@ describe("transform programmes", () => {
 
 describe("sort programmes by development stage", () => {
   test("sorts by development stage", () => {
-    const res = sortProgrammesByDevelopmentStage(queryResponse);
+    const res = sortByDevelopmentStage(queryResponse);
 
     expect(res[0]?.combined_programme_fields.developmentstage_slug).toBe(
       "early-development",
@@ -148,7 +148,7 @@ describe("sort programmes by development stage", () => {
     );
   });
   test("puts masterclass last", () => {
-    const res = sortProgrammesByDevelopmentStage([
+    const res = sortByDevelopmentStage([
       ...queryResponse,
       {
         synthetic_programme_slug: "creative-arts",
@@ -164,6 +164,26 @@ describe("sort programmes by development stage", () => {
 
     expect(res[3]?.combined_programme_fields.developmentstage_slug).toBe(
       "masterclass",
+    );
+  });
+  test('handles data without "developmentstage_display_order"', () => {
+    const res = sortByDevelopmentStage([
+      ...queryResponse,
+      {
+        synthetic_programme_slug: "creative-arts",
+        combined_programme_fields: {
+          subject: "Creative arts",
+          subject_slug: "creative-arts",
+          developmentstage: "early-development",
+          developmentstage_slug: "early-development",
+        },
+      },
+    ]);
+    expect(res[0]?.combined_programme_fields.developmentstage_slug).toBe(
+      "early-development",
+    );
+    expect(res[3]?.combined_programme_fields.developmentstage_slug).toBe(
+      "early-development",
     );
   });
 });
