@@ -44,6 +44,7 @@ export const SpecialistLessonSchema = z.object({
   hasCurriculumDownload: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   hasCopyrightMaterial: z.boolean().nullish(),
+  developmentStage: z.string().nullish(),
 });
 
 export type SpecialistLesson = z.infer<typeof SpecialistLessonSchema>;

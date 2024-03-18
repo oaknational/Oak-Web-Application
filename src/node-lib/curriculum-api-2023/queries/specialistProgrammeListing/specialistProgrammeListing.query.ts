@@ -58,8 +58,15 @@ export const transformProgrammes = async (
   };
 };
 
-export const sortProgrammesByDevelopmentStage = (
-  programmes: SpecialistProgrammeQueryResponseSchema,
+export const sortByDevelopmentStage = <
+  T extends Array<{
+    combined_programme_fields: {
+      developmentstage_slug?: string | null;
+      developmentstage_display_order?: number | null;
+    };
+  }>,
+>(
+  programmes: T,
 ) => {
   return programmes.sort((a, b) => {
     // The 'order' values are in reverse, for some reason, except for masterclass
@@ -69,6 +76,12 @@ export const sortProgrammesByDevelopmentStage = (
       b.combined_programme_fields.developmentstage_slug === "masterclass"
     ) {
       return -1;
+    }
+    if (
+      !a.combined_programme_fields.developmentstage_display_order ||
+      !b.combined_programme_fields.developmentstage_display_order
+    ) {
+      return 0;
     } else
       return (
         b.combined_programme_fields.developmentstage_display_order -
@@ -93,7 +106,7 @@ const specialistProgrammeListingQuery =
     }
 
     const programmes = await transformProgrammes(
-      sortProgrammesByDevelopmentStage(parsedProgrammes),
+      sortByDevelopmentStage(parsedProgrammes),
     );
 
     return programmes;
