@@ -89,6 +89,7 @@ export type SpecialistProgrammeListingLinkProps = Omit<
 > & {
   page: "specialist-programme-index";
 };
+
 export type UnitListingLinkProps = {
   page: "unit-index";
   programmeSlug: string;

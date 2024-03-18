@@ -87,6 +87,7 @@ export const getLessonOverviewBreadCrumb = ({
     };
   }
 };
+
 export const getLessonDownloadsBreadCrumb = ({
   lessonSlug,
   programmeSlug,
@@ -153,6 +154,72 @@ export const getLessonShareBreadCrumb = ({
     };
   }
 };
+
+export const getBreadcrumbsForSpecialistLessonPathway = (
+  lesson: {
+    lessonSlug: string;
+    lessonTitle: string;
+    programmeSlug: string;
+    unitSlug: string;
+    unitTitle: string;
+    disabled?: boolean;
+    subjectTitle: string;
+    subjectSlug: string;
+    disable?: boolean;
+  } | null,
+): Breadcrumb[] | [] => {
+  if (!lesson) return [];
+  const {
+    programmeSlug,
+    subjectTitle,
+    subjectSlug,
+    unitSlug,
+    unitTitle,
+    disabled,
+    lessonSlug,
+    lessonTitle,
+  } = lesson;
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    {
+      oakLinkProps: {
+        page: "home",
+      },
+      label: "Home",
+    },
+    subjectSlug && subjectTitle
+      ? {
+          oakLinkProps: {
+            page: "specialist-programme-index",
+            subjectSlug: subjectSlug,
+          },
+          label: subjectTitle,
+        }
+      : null,
+    programmeSlug && unitTitle
+      ? {
+          oakLinkProps: {
+            page: "specialist-unit-index",
+            programmeSlug,
+          },
+          label: unitTitle,
+        }
+      : null,
+    programmeSlug && unitSlug && lessonSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-overview",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: lessonTitle,
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
 export const getBreadcrumbsForLessonPathway = (
   lesson: ShallowNullable<LessonPathway>,
 ): Breadcrumb[] => {

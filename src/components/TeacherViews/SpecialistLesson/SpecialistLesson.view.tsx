@@ -10,7 +10,7 @@ type SpecialistLessonProps = {
 const SpecialistLesson: FC<SpecialistLessonProps> = (props) => {
   return (
     <>
-      <LessonOverview lesson={{ ...props.lesson, isCanonical: false }} />
+      <LessonOverview lesson={{ ...props.lesson }} />
     </>
   );
 };

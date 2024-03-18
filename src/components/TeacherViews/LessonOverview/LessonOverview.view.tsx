@@ -13,12 +13,13 @@ import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
+  getBreadcrumbsForSpecialistLessonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
-  SpecialistLessonOverview,
 } from "@/components/TeacherComponents/types/lesson.types";
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -44,7 +45,7 @@ export type LessonOverviewProps = {
   lesson:
     | LessonOverviewCanonical
     | LessonOverviewInPathway
-    | SpecialistLessonOverview;
+    | SpecialistLessonOverviewData;
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -81,6 +82,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     pupilLessonOutcome,
     lessonCohort,
     hasDownloadableResources,
+    isSpecialist,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -88,6 +90,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const commonPathway = getCommonPathway(
     lesson.isCanonical ? lesson.pathways : [lesson],
   );
+
+  const specialistPathway = isSpecialist
+    ? {
+        lessonSlug,
+        lessonTitle,
+        unitSlug: lesson.unitSlug,
+        programmeSlug: lesson.programmeSlug,
+        unitTitle: lesson.unitTitle,
+        subjectTitle: lesson.subjectTitle,
+        subjectSlug: lesson.subjectSlug,
+        disabled: true,
+      }
+    : null;
 
   const {
     keyStageSlug,
@@ -165,16 +180,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <HeaderLesson
         {...lesson}
         {...commonPathway}
-        breadcrumbs={[
-          ...getBreadcrumbsForLessonPathway(commonPathway),
-          getLessonOverviewBreadCrumb({
-            lessonTitle,
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            disabled: true,
-          }),
-        ]}
+        breadcrumbs={
+          !isSpecialist
+            ? [
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  unitSlug,
+                  programmeSlug,
+                  disabled: true,
+                }),
+              ]
+            : [...getBreadcrumbsForSpecialistLessonPathway(specialistPathway)]
+        }
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
         track={track}

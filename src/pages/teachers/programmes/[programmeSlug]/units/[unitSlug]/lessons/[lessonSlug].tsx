@@ -39,7 +39,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <LessonOverview lesson={{ ...curriculumData, isCanonical: false }} />
+      <LessonOverview
+        lesson={{ ...curriculumData, isCanonical: false, isSpecialist: false }}
+      />
     </AppLayout>
   );
 };

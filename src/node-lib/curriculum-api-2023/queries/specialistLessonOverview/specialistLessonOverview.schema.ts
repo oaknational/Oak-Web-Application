@@ -15,18 +15,19 @@ export type SpecialistLessonOverviewData = Omit<
   | "yearTitle"
   | "examBoardTitle"
 > & {
+  isSpecialist: true;
+  isCanonical: false;
   developmentStageTitle: string;
-  developmentStageSlug: string;
-  phaseTitle: string;
-  phaseSlug: string;
-  isCanonical?: boolean;
+  developmentStageSlug: string | null;
+  phaseTitle: string | null;
+  phaseSlug: string | null;
   threads?: Threads[] | null;
 };
 
 const content_guidance_schema = z.object({
-  content_guidance_label: z.string(),
-  content_guidance_description: z.string(),
-  content_guidance_area: z.string(),
+  contentGuidanceLabel: z.string(),
+  contentGuidanceDescription: z.string(),
+  contentGuidanceArea: z.string(),
 });
 
 const misconceptions_and_commom_mistakes_schema = z.object({
@@ -47,8 +48,8 @@ const key_learning_points_schema = z.object({
 });
 
 const threads = z.object({
-  threadSlug: z.string(),
-  threadTitle: z.string(),
+  threadSlug: z.string().optional(),
+  threadTitle: z.string().optional(),
 });
 
 type Threads = z.infer<typeof threads>;
@@ -56,10 +57,10 @@ type Threads = z.infer<typeof threads>;
 const combined_programme_fields = z.object({
   subject: z.string(),
   subject_slug: z.string(),
-  developmentstage: z.string(),
-  developmentstage_slug: z.string(),
-  phase_description: z.string(),
-  phase_slug: z.string(),
+  developmentstage: z.string().nullable(),
+  developmentstage_slug: z.string().nullable(),
+  phase_description: z.string().nullable().optional(),
+  phase_slug: z.string().nullable().optional(),
 });
 
 export const copyright_content_schema = z.object({
@@ -87,7 +88,7 @@ export const specialistLessonOverviewRawSchema = z.array(
       .optional(),
     teacher_tips: z.array(teacher_tips_schema).nullable(),
     content_guidance: z.array(content_guidance_schema).nullable(),
-    supervision_level: z.string(),
+    supervision_level: z.string().nullable(),
     threads: z.array(threads).nullable(),
     video_mux_playback_id: z.string().nullable(),
     video_with_sign_language_mux_playback_id: z.string().nullable(),
@@ -110,10 +111,12 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   unitTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  phaseSlug: z.string(),
-  phaseTitle: z.string(),
-  developmentStageSlug: z.string(),
+  phaseSlug: z.string().nullable(),
+  phaseTitle: z.string().nullable(),
+  developmentStageSlug: z.string().nullable(),
   developmentStageTitle: z.string(),
+  isSpecialist: z.literal(true),
+  isCanonical: z.literal(false),
 });
 
 export type SpecialistLessonOverview = z.infer<

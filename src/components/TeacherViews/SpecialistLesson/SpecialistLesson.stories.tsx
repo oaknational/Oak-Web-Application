@@ -17,6 +17,7 @@ export const SpecialistLessonPage: Story = {
   args: {
     lesson: {
       isLegacy: true,
+      isSpecialist: true,
       lessonSlug: "a-birthday-sensory-story",
       lessonTitle: "A birthday sensory story",
       programmeSlug: "changes-and-transtions-123a",

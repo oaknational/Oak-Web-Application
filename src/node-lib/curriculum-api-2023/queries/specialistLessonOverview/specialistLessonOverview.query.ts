@@ -49,16 +49,19 @@ const specialistLessonOverview =
 
     const transformedLesson: SpecialistLessonOverviewData = {
       isLegacy: true,
+      isSpecialist: true,
+      isCanonical: false,
       lessonSlug: lesson.lesson_slug,
       lessonTitle: lesson.lesson_title,
       programmeSlug: lesson.synthetic_programme_slug,
       unitTitle: lesson.unit_title,
       unitSlug: lesson.unit_slug,
-      phaseSlug: lesson.combined_programme_fields.phase_slug,
-      phaseTitle: lesson.combined_programme_fields.phase_description,
+      phaseSlug: lesson.combined_programme_fields.phase_slug ?? "",
+      phaseTitle: lesson.combined_programme_fields.phase_description ?? "",
       developmentStageSlug:
-        lesson.combined_programme_fields.developmentstage_slug,
-      developmentStageTitle: lesson.combined_programme_fields.developmentstage,
+        lesson.combined_programme_fields.developmentstage_slug ?? "",
+      developmentStageTitle:
+        lesson.combined_programme_fields.developmentstage ?? "",
       subjectSlug: lesson.combined_programme_fields.subject_slug,
       subjectTitle: lesson.combined_programme_fields.subject,
       expired: lesson.expired,

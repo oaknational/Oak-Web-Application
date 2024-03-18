@@ -60,6 +60,7 @@ const specialistLessonOverviewFixture = (
   partial?: Partial<SpecialistLessonOverviewData>,
 ): SpecialistLessonOverviewData => {
   return {
+    isSpecialist: true,
     isLegacy: true,
     isCanonical: false,
     hasDownloadableResources: true,
