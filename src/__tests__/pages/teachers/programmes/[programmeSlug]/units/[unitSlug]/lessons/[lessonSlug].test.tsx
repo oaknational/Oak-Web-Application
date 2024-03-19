@@ -20,6 +20,23 @@ const props = {
   }),
 };
 
+const propsWithTier = {
+  curriculumData: lessonOverviewFixture({
+    tierTitle: "Higher",
+  }),
+};
+const propsWithExamBoard = {
+  curriculumData: lessonOverviewFixture({
+    examBoardTitle: "AQA",
+  }),
+};
+const propsWithTierAndExamBoard = {
+  curriculumData: lessonOverviewFixture({
+    tierTitle: "Higher",
+    examBoardTitle: "AQA",
+  }),
+};
+
 const downloadResourceButtonClicked = jest.fn();
 const lessonShareStarted = jest.fn();
 
@@ -180,14 +197,79 @@ describe("pages/teachers/lessons", () => {
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
           "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Overview of lesson",
+        description:
+          "View lesson content and choose resources to download or share",
         ogTitle:
           "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Overview of lesson",
+        ogDescription:
+          "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
+    });
+    it("includes tier information in SEO", async () => {
+      const { seo } = renderWithSeo()(
+        <LessonOverviewPage {...propsWithTier} />,
+      );
+
+      expect(seo).toEqual(
+        expect.objectContaining({
+          title:
+            "Lesson: Islamic Geometry | Higher | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          description:
+            "View lesson content and choose resources to download or share",
+          ogTitle:
+            "Lesson: Islamic Geometry | Higher | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription:
+            "View lesson content and choose resources to download or share",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          robots: "noindex,nofollow",
+        }),
+      );
+    });
+    it("includes examboard information in SEO", async () => {
+      const { seo } = renderWithSeo()(
+        <LessonOverviewPage {...propsWithExamBoard} />,
+      );
+
+      expect(seo).toEqual(
+        expect.objectContaining({
+          title:
+            "Lesson: Islamic Geometry | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          description:
+            "View lesson content and choose resources to download or share",
+          ogTitle:
+            "Lesson: Islamic Geometry | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription:
+            "View lesson content and choose resources to download or share",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          robots: "noindex,nofollow",
+        }),
+      );
+    });
+    it("includes tier and examboard information in SEO", async () => {
+      const { seo } = renderWithSeo()(
+        <LessonOverviewPage {...propsWithTierAndExamBoard} />,
+      );
+
+      expect(seo).toEqual(
+        expect.objectContaining({
+          title:
+            "Lesson: Islamic Geometry | Higher | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          description:
+            "View lesson content and choose resources to download or share",
+          ogTitle:
+            "Lesson: Islamic Geometry | Higher | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription:
+            "View lesson content and choose resources to download or share",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          robots: "noindex,nofollow",
+        }),
+      );
     });
   });
   describe("tracking events", () => {
