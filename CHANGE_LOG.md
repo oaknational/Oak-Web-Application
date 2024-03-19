@@ -1,3 +1,15 @@
+# [1.386.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.385.0...v1.386.0) (2024-03-19)
+
+
+### Bug Fixes
+
+* eyfs slug ([f9b9ef3](https://github.com/oaknational/Oak-Web-Application/commit/f9b9ef30abfffb30f72aa916aed16169dd16c913))
+
+
+### Features
+
+* update footer and menu with eyfs ([e1433a3](https://github.com/oaknational/Oak-Web-Application/commit/e1433a3c7f38750769196ad65ed655161d600980))
+
 # [1.385.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.384.1...v1.385.0) (2024-03-19)
 
 
