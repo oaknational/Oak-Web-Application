@@ -83,19 +83,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
-  const tiersSEO = {
-    ...getSeoProps({
-      title: `${keyStageTitle} ${subjectTitle} tiers${paginationTitle}`,
-      description: `We have resources for tiers: ${tiers
-        .map((tier) => tier.tierTitle)
-        .join(", ")}`,
-    }),
-  };
-
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning${paginationTitle}`,
-      description: "Programme units",
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources${paginationTitle}`,
+      description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
   };
 
@@ -123,15 +114,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   return (
-    <AppLayout
-      seoProps={
-        tierSlug
-          ? programmeSlug.includes(tierSlug)
-            ? unitsSEO
-            : tiersSEO
-          : unitsSEO
-      }
-    >
+    <AppLayout seoProps={unitsSEO}>
       <HeaderListing
         breadcrumbs={[
           {

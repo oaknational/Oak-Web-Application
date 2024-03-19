@@ -26,6 +26,7 @@ import specialistProgrammeListingQuery from "./queries/specialistProgrammeListin
 import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
 import { specialistLessonDownloadQuery } from "./queries/specialistLessonDownload/specialistLessonDownload.query";
 import { specialistLessonShareQuery } from "./queries/specialistLessonShare/specialistLessonShare.query";
+import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -137,6 +138,7 @@ const curriculumApi2023 = {
     });
     return teachersHomePageData.parse(teachersHomePage);
   },
+  specialistLessonOverview: specialistLessonOverview(sdk),
   unitListing: unitListingQuery(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistUnitListing: specialistUnitListingQuery(sdk),
