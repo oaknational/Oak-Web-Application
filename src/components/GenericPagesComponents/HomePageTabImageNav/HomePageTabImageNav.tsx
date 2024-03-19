@@ -32,7 +32,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="teacher-carrying-stuff-1023-oakgrey4"
           label={"Teaching resources"}
           isCurrent={current === "teachers"}
-          isLegacyLesson={true}
+          showNewIcon={false}
           onClick={() => setCurrent("teachers")}
         />
         <HomePageTabImageButton
@@ -40,7 +40,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="teacher-reading-map-1023-oakgrey4"
           label={"Curriculum plans"}
           isCurrent={current === "curriculum"}
-          isLegacyLesson={false}
+          showNewIcon={false}
           onClick={() => setCurrent("curriculum")}
           data-testid="curriculum-plans-button"
         />
@@ -49,7 +49,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="juggling-teacher-1023-oakgrey4"
           label={"AI Experiments"}
           isCurrent={current === "ai"}
-          isLegacyLesson={false}
+          showNewIcon={true}
           onClick={() => setCurrent("ai")}
         />
         <HomePageTabImageButton
@@ -57,7 +57,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="three-pupils-standing-1023-oakgrey4"
           label={"Pupils"}
           isCurrent={current === "pupils"}
-          isLegacyLesson={true}
+          showNewIcon={false}
           onClick={() => setCurrent("pupils")}
         />
       </Flex>

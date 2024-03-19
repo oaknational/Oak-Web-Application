@@ -1,5 +1,5 @@
 query developmentStages($_contains: jsonb) {
-  developmentStages: published_mv_specialist_1_0_1(
+  developmentStages: published_mv_specialist_1_0_2(
     where: { combined_programme_fields: { _contains: $_contains } }
   ) {
     combined_programme_fields

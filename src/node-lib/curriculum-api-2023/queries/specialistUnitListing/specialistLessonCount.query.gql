@@ -1,5 +1,5 @@
 query specialistLessonCount($unit_slug: String!) {
-  specialistUnitLessonCount: published_mv_specialist_1_0_1_aggregate(
+  specialistUnitLessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {
       unit_slug: { _eq: $unit_slug }
       contains_copyright_content: { _eq: false }
@@ -10,7 +10,7 @@ query specialistLessonCount($unit_slug: String!) {
       count(distinct: true, columns: lesson_slug)
     }
   }
-  specialistUnitExpiredLessonCount: published_mv_specialist_1_0_1_aggregate(
+  specialistUnitExpiredLessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {
       unit_slug: { _eq: $unit_slug }
       contains_copyright_content: { _eq: false }

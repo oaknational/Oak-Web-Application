@@ -3,7 +3,7 @@ query specialistLessonDownloads(
   $unitSlug: String
   $lessonSlug: String
 ) {
-  specialistLessonDownloads: published_mv_specialist_1_0_1(
+  specialistLessonDownloads: published_mv_specialist_1_0_2(
     where: {
       unit_slug: { _eq: $unitSlug }
       synthetic_programme_slug: { _eq: $programmeSlug }
