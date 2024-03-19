@@ -39072,7 +39072,7 @@ export type SpecialistLessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistLessonDownloadsQuery = { __typename?: 'query_root', specialistLessonDownloads: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_title?: string | null, combined_programme_fields?: any | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null, exit_quiz_asset_object?: any | null, presentation_url?: string | null, slidedeck_asset_object?: any | null, starter_quiz_asset_object?: any | null }> };
+export type SpecialistLessonDownloadsQuery = { __typename?: 'query_root', specialistLessonDownloads: Array<{ __typename?: 'published_mv_specialist_1_0_2', lesson_title?: string | null, combined_programme_fields?: any | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null, exit_quiz_asset_object?: any | null, presentation_url?: string | null, slidedeck_asset_object?: any | null, starter_quiz_asset_object?: any | null }> };
 
 export type SpecialistLessonListingQueryVariables = Exact<{
   programmeSlug?: InputMaybe<Scalars['String']['input']>;
@@ -39080,7 +39080,7 @@ export type SpecialistLessonListingQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistLessonListingQuery = { __typename?: 'query_root', specialistLessonListing: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_slug?: string | null, lesson_title?: string | null, combined_programme_fields?: any | null, unit_slug?: string | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null }> };
+export type SpecialistLessonListingQuery = { __typename?: 'query_root', specialistLessonListing: Array<{ __typename?: 'published_mv_specialist_1_0_2', lesson_slug?: string | null, lesson_title?: string | null, combined_programme_fields?: any | null, unit_slug?: string | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_asset_object?: any | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, video_title?: string | null }> };
 
 export type SpecialistLessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -39098,61 +39098,61 @@ export type SpecialistLessonShareQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistLessonShareQuery = { __typename?: 'query_root', specialistLessonShare: Array<{ __typename?: 'published_mv_specialist_1_0_1', lesson_title?: string | null, combined_programme_fields?: any | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, presentation_url?: string | null, synthetic_programme_slug?: string | null }> };
+export type SpecialistLessonShareQuery = { __typename?: 'query_root', specialistLessonShare: Array<{ __typename?: 'published_mv_specialist_1_0_2', lesson_title?: string | null, combined_programme_fields?: any | null, unit_title?: string | null, expired?: boolean | null, contains_copyright_content?: boolean | null, exit_quiz?: any | null, starter_quiz?: any | null, pupil_lesson_outcome?: string | null, worksheet_url?: string | null, video_mux_playback_id?: string | null, presentation_url?: string | null, synthetic_programme_slug?: string | null }> };
 
 export type SpecialistProgrammeListingQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
 
 
-export type SpecialistProgrammeListingQuery = { __typename?: 'query_root', specialistProgrammeListing: Array<{ __typename?: 'published_mv_specialist_1_0_1', synthetic_programme_slug?: string | null, combined_programme_fields?: any | null }> };
+export type SpecialistProgrammeListingQuery = { __typename?: 'query_root', specialistProgrammeListing: Array<{ __typename?: 'published_mv_specialist_1_0_2', synthetic_programme_slug?: string | null, combined_programme_fields?: any | null }> };
 
 export type SpecialistProgrammeListingCountsQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type SpecialistProgrammeListingCountsQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+export type SpecialistProgrammeListingCountsQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null } };
 
 export type SpecialistSubjectListingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SpecialistSubjectListingQuery = { __typename?: 'query_root', therapyProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null }> };
+export type SpecialistSubjectListingQuery = { __typename?: 'query_root', therapyProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_2', combined_programme_fields?: any | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_2', combined_programme_fields?: any | null }> };
 
 export type SpecialistUnitsAndLessonCountQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
 
 
-export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, programmeCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+export type SpecialistUnitsAndLessonCountQuery = { __typename?: 'query_root', unitCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null }, lessonCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null }, programmeCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null } };
 
 export type DevelopmentStageUnitCountQueryVariables = Exact<{
   syntheticProgrammeSlug: Scalars['String']['input'];
 }>;
 
 
-export type DevelopmentStageUnitCountQuery = { __typename?: 'query_root', developmentStageUnitCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, developmentStageLessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+export type DevelopmentStageUnitCountQuery = { __typename?: 'query_root', developmentStageUnitCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null }, developmentStageLessonCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null } };
 
 export type DevelopmentStagesQueryVariables = Exact<{
   _contains?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
 
 
-export type DevelopmentStagesQuery = { __typename?: 'query_root', developmentStages: Array<{ __typename?: 'published_mv_specialist_1_0_1', combined_programme_fields?: any | null, synthetic_programme_slug?: string | null }> };
+export type DevelopmentStagesQuery = { __typename?: 'query_root', developmentStages: Array<{ __typename?: 'published_mv_specialist_1_0_2', combined_programme_fields?: any | null, synthetic_programme_slug?: string | null }> };
 
 export type SpecialistLessonCountQueryVariables = Exact<{
   unit_slug: Scalars['String']['input'];
 }>;
 
 
-export type SpecialistLessonCountQuery = { __typename?: 'query_root', specialistUnitLessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null }, specialistUnitExpiredLessonCount: { __typename?: 'published_mv_specialist_1_0_1_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_1_aggregate_fields', count: number } | null } };
+export type SpecialistLessonCountQuery = { __typename?: 'query_root', specialistUnitLessonCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null }, specialistUnitExpiredLessonCount: { __typename?: 'published_mv_specialist_1_0_2_aggregate', aggregate?: { __typename?: 'published_mv_specialist_1_0_2_aggregate_fields', count: number } | null } };
 
 export type SpecialistUnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_1', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, threads?: any | null }> };
+export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_2', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, threads?: any | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
@@ -39489,7 +39489,7 @@ export const SearchPageDocument = gql`
     `;
 export const SpecialistLessonDownloadsDocument = gql`
     query specialistLessonDownloads($programmeSlug: String, $unitSlug: String, $lessonSlug: String) {
-  specialistLessonDownloads: published_mv_specialist_1_0_1(
+  specialistLessonDownloads: published_mv_specialist_1_0_2(
     where: {unit_slug: {_eq: $unitSlug}, synthetic_programme_slug: {_eq: $programmeSlug}, lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_title
@@ -39513,7 +39513,7 @@ export const SpecialistLessonDownloadsDocument = gql`
     `;
 export const SpecialistLessonListingDocument = gql`
     query specialistLessonListing($programmeSlug: String, $unitSlug: String) {
-  specialistLessonListing: published_mv_specialist_1_0_1(
+  specialistLessonListing: published_mv_specialist_1_0_2(
     where: {unit_slug: {_eq: $unitSlug}, synthetic_programme_slug: {_eq: $programmeSlug}}
   ) {
     lesson_slug
@@ -39567,7 +39567,7 @@ export const SpecialistLessonOverviewDocument = gql`
     `;
 export const SpecialistLessonShareDocument = gql`
     query specialistLessonShare($programmeSlug: String, $unitSlug: String, $lessonSlug: String) {
-  specialistLessonShare: published_mv_specialist_1_0_1(
+  specialistLessonShare: published_mv_specialist_1_0_2(
     where: {unit_slug: {_eq: $unitSlug}, synthetic_programme_slug: {_eq: $programmeSlug}, lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_title
@@ -39587,7 +39587,7 @@ export const SpecialistLessonShareDocument = gql`
     `;
 export const SpecialistProgrammeListingDocument = gql`
     query specialistProgrammeListing($_contains: jsonb = "") {
-  specialistProgrammeListing: published_mv_specialist_1_0_1(
+  specialistProgrammeListing: published_mv_specialist_1_0_2(
     where: {combined_programme_fields: {_contains: $_contains}}
     distinct_on: synthetic_programme_slug
   ) {
@@ -39598,14 +39598,14 @@ export const SpecialistProgrammeListingDocument = gql`
     `;
 export const SpecialistProgrammeListingCountsDocument = gql`
     query specialistProgrammeListingCounts($programmeSlug: String!) {
-  unitCount: published_mv_specialist_1_0_1_aggregate(
+  unitCount: published_mv_specialist_1_0_2_aggregate(
     where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
-  lessonCount: published_mv_specialist_1_0_1_aggregate(
+  lessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
@@ -39616,13 +39616,13 @@ export const SpecialistProgrammeListingCountsDocument = gql`
     `;
 export const SpecialistSubjectListingDocument = gql`
     query specialistSubjectListing {
-  therapyProgrammes: published_mv_specialist_1_0_1(
+  therapyProgrammes: published_mv_specialist_1_0_2(
     distinct_on: synthetic_programme_slug
     where: {combined_programme_fields: {_contains: {subject_parent: "Therapies"}}}
   ) {
     combined_programme_fields
   }
-  specialistProgrammes: published_mv_specialist_1_0_1(
+  specialistProgrammes: published_mv_specialist_1_0_2(
     distinct_on: synthetic_programme_slug
     where: {combined_programme_fields: {_contains: {subject_parent: "Specialist"}}}
   ) {
@@ -39632,21 +39632,21 @@ export const SpecialistSubjectListingDocument = gql`
     `;
 export const SpecialistUnitsAndLessonCountDocument = gql`
     query specialistUnitsAndLessonCount($_contains: jsonb) {
-  unitCount: published_mv_specialist_1_0_1_aggregate(
+  unitCount: published_mv_specialist_1_0_2_aggregate(
     where: {combined_programme_fields: {_contains: $_contains}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
-  lessonCount: published_mv_specialist_1_0_1_aggregate(
+  lessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {combined_programme_fields: {_contains: $_contains}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
     }
   }
-  programmeCount: published_mv_specialist_1_0_1_aggregate(
+  programmeCount: published_mv_specialist_1_0_2_aggregate(
     where: {combined_programme_fields: {_contains: $_contains}}
   ) {
     aggregate {
@@ -39657,14 +39657,14 @@ export const SpecialistUnitsAndLessonCountDocument = gql`
     `;
 export const DevelopmentStageUnitCountDocument = gql`
     query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
-  developmentStageUnitCount: published_mv_specialist_1_0_1_aggregate(
+  developmentStageUnitCount: published_mv_specialist_1_0_2_aggregate(
     where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
-  developmentStageLessonCount: published_mv_specialist_1_0_1_aggregate(
+  developmentStageLessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
@@ -39675,7 +39675,7 @@ export const DevelopmentStageUnitCountDocument = gql`
     `;
 export const DevelopmentStagesDocument = gql`
     query developmentStages($_contains: jsonb) {
-  developmentStages: published_mv_specialist_1_0_1(
+  developmentStages: published_mv_specialist_1_0_2(
     where: {combined_programme_fields: {_contains: $_contains}}
   ) {
     combined_programme_fields
@@ -39685,14 +39685,14 @@ export const DevelopmentStagesDocument = gql`
     `;
 export const SpecialistLessonCountDocument = gql`
     query specialistLessonCount($unit_slug: String!) {
-  specialistUnitLessonCount: published_mv_specialist_1_0_1_aggregate(
+  specialistUnitLessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {unit_slug: {_eq: $unit_slug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
     }
   }
-  specialistUnitExpiredLessonCount: published_mv_specialist_1_0_1_aggregate(
+  specialistUnitExpiredLessonCount: published_mv_specialist_1_0_2_aggregate(
     where: {unit_slug: {_eq: $unit_slug}, contains_copyright_content: {_eq: false}, expired: {_is_null: false}}
   ) {
     aggregate {
@@ -39703,7 +39703,7 @@ export const SpecialistLessonCountDocument = gql`
     `;
 export const SpecialistUnitListingDocument = gql`
     query specialistUnitListing($programmeSlug: String!) {
-  specialistUnits: published_mv_specialist_1_0_1(
+  specialistUnits: published_mv_specialist_1_0_2(
     distinct_on: unit_slug
     where: {synthetic_programme_slug: {_eq: $programmeSlug}}
   ) {
