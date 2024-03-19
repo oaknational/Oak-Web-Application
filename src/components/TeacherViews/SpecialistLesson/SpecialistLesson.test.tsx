@@ -12,7 +12,7 @@ describe("SpecialistLessonDownloads", () => {
     const { getByText } = render(
       <SpecialistLesson lesson={specialistLessonOverviewFixture()} />,
     );
-    const title = getByText("Communication and language");
+    const title = getByText("Communication and language - Applying learning");
 
     expect(title).toBeInTheDocument();
   });
