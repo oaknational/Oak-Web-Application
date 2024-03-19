@@ -20,6 +20,7 @@ export type LessonPathway = {
 
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
+  isSpecialist: false;
   pathways: LessonPathway[];
 };
 
@@ -32,7 +33,5 @@ export type LessonOverviewInPathway = LessonBase & {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
+  isSpecialist: false;
 };
-
-export type SpecialistLessonOverview = LessonBase &
-  Omit<LessonOverviewInPathway, "keyStageTitle" | "keyStageSlug">;

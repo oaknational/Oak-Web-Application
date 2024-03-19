@@ -1,0 +1,38 @@
+query specialistLessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  lesson: published_mv_specialist_1_0_2(
+    where: {
+      lesson_slug: { _eq: $lessonSlug }
+      synthetic_programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
+    }
+  ) {
+    lesson_slug
+    lesson_title
+    synthetic_programme_slug
+    unit_slug
+    unit_title
+    combined_programme_fields
+    pupil_lesson_outcome
+    key_learning_points
+    contains_copyright_content
+    expired
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    content_guidance
+    supervision_level
+    threads
+    video_mux_playback_id
+    video_with_sign_language_mux_playback_id
+    video_title
+    worksheet_url
+    presentation_url
+    starter_quiz
+    exit_quiz
+    transcript_sentences
+  }
+}

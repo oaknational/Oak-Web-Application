@@ -13,14 +13,20 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SpecialistLessonDownloadsPage: Story = {
+export const SpecialistLessonPage: Story = {
   args: {
-    curriculumData: {
+    lesson: {
       isLegacy: true,
+      isSpecialist: true,
       lessonSlug: "a-birthday-sensory-story",
       lessonTitle: "A birthday sensory story",
       programmeSlug: "changes-and-transtions-123a",
       subjectSlug: "communication-and-language",
+      developmentStageSlug: "specialist-developmental-stage",
+      developmentStageTitle: "Specialist developmental stage",
+      phaseSlug: "specialist-phase",
+      phaseTitle: "Specialist phase",
+      isCanonical: false,
       subjectTitle: "Specialist",
       unitTitle: "Creative Arts",
       unitSlug: "creative-art",
