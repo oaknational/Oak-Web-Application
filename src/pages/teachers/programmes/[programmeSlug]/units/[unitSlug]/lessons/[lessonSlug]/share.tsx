@@ -34,7 +34,7 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
         ...getSeoProps({
           title: `Lesson Share: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description:
-            "Select and share free lesson resources, including slide decks, worksheets and quizzes",
+            "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
             curriculumData.programmeSlug
           }/units/${curriculumData.unitSlug}/lessons/${

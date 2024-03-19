@@ -47,10 +47,12 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
           "Free KS4 Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Key stage by subject",
+        description:
+          "Search by subject for free KS4 teaching resources to download and share",
         ogTitle:
           "Free KS4 Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Key stage by subject",
+        ogDescription:
+          "Search by subject for free KS4 teaching resources to download and share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
