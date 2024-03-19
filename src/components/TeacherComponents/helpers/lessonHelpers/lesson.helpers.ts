@@ -200,7 +200,10 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
             page: "specialist-unit-index",
             programmeSlug: programmeSlug,
           },
-          label: `${subjectTitle} - ${developmentStageTitle}`,
+          label:
+            developmentStageTitle !== ""
+              ? `${subjectTitle} - ${developmentStageTitle}`
+              : `${subjectTitle}`,
         }
       : null,
     programmeSlug && unitSlug && unitTitle
