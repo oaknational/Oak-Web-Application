@@ -60,13 +60,6 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
     }
   });
 
-  // useEffect(() => {
-  //   if (mobileThreadModalOpen) {
-  //     document.body.style.overflow = "hidden";
-  //   }
-  //   return () => (document.body.style.overflow = "unset");
-  // }, [mobileThreadModalOpen]);
-
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
