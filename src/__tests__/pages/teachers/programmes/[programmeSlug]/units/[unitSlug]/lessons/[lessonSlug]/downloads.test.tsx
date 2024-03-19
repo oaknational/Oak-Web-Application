@@ -404,7 +404,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

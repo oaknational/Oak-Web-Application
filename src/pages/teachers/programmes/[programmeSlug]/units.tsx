@@ -88,7 +88,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources${paginationTitle}`,
       description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   const trackUnitSelected = ({

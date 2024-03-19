@@ -94,7 +94,6 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
       title: getSEOTitle(),
       description: getSEODescription(),
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   return (

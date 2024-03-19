@@ -49,7 +49,6 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
           title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
           description: `Search by subject for free ${keyStageSlug.toUpperCase()} teaching resources to download and share`,
         }),
-        ...{ noFollow: false, noIndex: false },
       }}
       $background="white"
     >

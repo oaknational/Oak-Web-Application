@@ -42,7 +42,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             curriculumData.lessonSlug
           }`,
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonDownloads isCanonical={false} lesson={curriculumData} />

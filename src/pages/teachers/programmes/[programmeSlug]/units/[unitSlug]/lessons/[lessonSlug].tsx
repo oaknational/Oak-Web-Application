@@ -48,7 +48,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           description:
             "View lesson content and choose resources to download or share",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonOverview

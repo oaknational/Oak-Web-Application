@@ -64,7 +64,7 @@ describe("Lesson listing page", () => {
         ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders the correct SEO details with pagination", async () => {
@@ -83,7 +83,7 @@ describe("Lesson listing page", () => {
         ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

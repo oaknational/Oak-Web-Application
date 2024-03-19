@@ -105,7 +105,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
       $background="white"
     >
