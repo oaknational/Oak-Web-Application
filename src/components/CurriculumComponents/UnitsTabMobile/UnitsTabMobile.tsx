@@ -214,11 +214,14 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                     $whiteSpace={"nowrap"}
                     $overflow={"hidden"}
                     data-testid="highlighted-threads-mobile"
-                    $width={"50%"}
+                    $maxWidth={"50%"}
                   >
                     {selectedThread?.title}
                   </Box>
-                  <Box>• {highlightedUnitCount()} units highlighted</Box>
+                  <Box $mh={6}> • </Box>
+                  <Box data-testid="highlighted-units-box-mobile">
+                    {highlightedUnitCount()} units highlighted
+                  </Box>
                 </OakFlex>
               )}
             </Box>

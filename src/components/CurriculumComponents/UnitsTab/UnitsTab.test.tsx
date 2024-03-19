@@ -756,10 +756,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       const highlightedThreadsBox = await findByTestId(
         "highlighted-threads-mobile",
       );
-      expect(highlightedThreadsBox).toBeInTheDocument();
-      expect(highlightedThreadsBox).toHaveTextContent(
-        "Aspects of narrative • 1 units highlighted",
+      const highlightedUnitsBox = await findByTestId(
+        "highlighted-units-box-mobile",
       );
+      expect(highlightedThreadsBox).toBeInTheDocument();
+      expect(highlightedThreadsBox).toHaveTextContent("Aspects of narrative");
+      expect(highlightedUnitsBox).toHaveTextContent("1 units highlighted");
     }
   });
   test("mobile: mobile filter options visible", async () => {
