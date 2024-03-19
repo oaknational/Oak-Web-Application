@@ -57,8 +57,8 @@ type Threads = z.infer<typeof threads>;
 const combined_programme_fields = z.object({
   subject: z.string(),
   subject_slug: z.string(),
-  developmentstage: z.string().nullable(),
-  developmentstage_slug: z.string().nullable(),
+  developmentstage: z.string().nullish(),
+  developmentstage_slug: z.string().nullish(),
   phase_description: z.string().nullable().optional(),
   phase_slug: z.string().nullable().optional(),
 });
