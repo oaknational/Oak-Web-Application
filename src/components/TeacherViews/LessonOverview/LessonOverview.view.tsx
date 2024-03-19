@@ -181,7 +181,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={isLegacyLicense}
+        isShareable={isLegacyLicense && !expired}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -228,26 +228,27 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
-                {pageLinks.find((p) => p.label === "Slide deck") && (
-                  <LessonItemContainer
-                    ref={slideDeckSectionRef}
-                    title={"Slide deck"}
-                    downloadable={hasDownloadableResources}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "slide deck",
-                      });
-                    }}
-                    slugs={slugs}
-                    anchorId="slide-deck"
-                  >
-                    <LessonOverviewPresentation
-                      asset={presentationUrl}
-                      title={lessonTitle}
-                      isWorksheet={false}
-                    />
-                  </LessonItemContainer>
-                )}
+                {pageLinks.find((p) => p.label === "Slide deck") &&
+                  hasDownloadableResources && (
+                    <LessonItemContainer
+                      ref={slideDeckSectionRef}
+                      title={"Slide deck"}
+                      downloadable={hasDownloadableResources}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "slide deck",
+                        });
+                      }}
+                      slugs={slugs}
+                      anchorId="slide-deck"
+                    >
+                      <LessonOverviewPresentation
+                        asset={presentationUrl}
+                        title={lessonTitle}
+                        isWorksheet={false}
+                      />
+                    </LessonItemContainer>
+                  )}
                 <LessonItemContainer
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}

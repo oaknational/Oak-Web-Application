@@ -40,6 +40,9 @@ async function run() {
       // PERCY_TARGET_BRANCH: 'main',
       // The Percy project token.
       PERCY_TOKEN: percyToken,
+      // DEBUG logging for Percy
+      LOG_LEVEL: "debug",
+      PERCY_DEBUG: "*",
     });
 
     await exec.exec(

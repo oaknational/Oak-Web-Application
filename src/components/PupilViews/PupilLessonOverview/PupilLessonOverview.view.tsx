@@ -49,6 +49,7 @@ export const PupilViewsLessonOverview = ({
     proceedToNextSection,
     lessonReviewSections,
     isLessonComplete,
+    lessonStarted,
   } = useLessonEngineContext();
 
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
@@ -83,7 +84,11 @@ export const PupilViewsLessonOverview = ({
             data-testid="proceed-to-next-section"
             disabled={!isMounted}
           >
-            {pickProceedToNextSectionLabel(isLessonComplete, sectionResults)}
+            {pickProceedToNextSectionLabel(
+              lessonStarted,
+              isLessonComplete,
+              sectionResults,
+            )}
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
@@ -223,6 +228,7 @@ export const PupilViewsLessonOverview = ({
 };
 
 function pickProceedToNextSectionLabel(
+  lessonStarted: boolean,
   isLessonComplete: boolean,
   results: ReturnType<typeof useLessonEngineContext>["sectionResults"],
 ) {
@@ -230,7 +236,7 @@ function pickProceedToNextSectionLabel(
     return "Lesson review";
   }
 
-  if (results["starter-quiz"]?.isComplete || results["exit-quiz"]?.isComplete) {
+  if (lessonStarted) {
     return "Continue lesson";
   }
 

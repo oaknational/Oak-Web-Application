@@ -36,6 +36,7 @@ type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
+        expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
@@ -46,6 +47,7 @@ type LessonShareProps =
   | {
       isCanonical: false;
       lesson: LessonPathway & {
+        expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
@@ -62,23 +64,29 @@ const classroomActivityMap: Partial<
   video: "video",
 };
 
-// Temporary - list of lessons live on pupil experience for sharing
-const pupilUnitsLive = ["shakespearean-comedy-the-tempest-88f0"];
+// Temporary - list of subjects live on pupil experience for sharing
+const pupilSubjectsLive = [
+  "english",
+  "english-grammar",
+  "english-reading-for-pleasure",
+  "english-spelling",
+];
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, shareableResources, isLegacy, expired } =
+    lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-  const { programmeSlug, unitSlug } = commonPathway;
+  const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
-  // Temporary - integrate with the new pupil experience for select units and lessons only
+  // Temporary - integrate with the new pupil experience for select subjects only
   const shareToNewPupilExperience =
-    unitSlug !== null && pupilUnitsLive.includes(unitSlug);
+    subjectSlug !== null && pupilSubjectsLive.includes(subjectSlug);
 
   const {
     form,
@@ -167,7 +175,7 @@ export function LessonShare(props: LessonShareProps) {
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
           header="Share"
-          showNoResources={!hasResources}
+          showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
           email={emailFromLocalStorage}
           school={schoolNameFromLocalStorage}
@@ -180,13 +188,13 @@ export function LessonShare(props: LessonShareProps) {
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
-          hideSelectAll={shareToNewPupilExperience}
+          hideSelectAll={shareToNewPupilExperience || Boolean(expired)}
           cardGroup={
             <LessonShareCardGroup
               control={form.control}
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}
-              shareableResources={shareableResources}
+              shareableResources={expired ? [] : shareableResources}
               hideCheckboxes={shareToNewPupilExperience}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
@@ -201,6 +209,7 @@ export function LessonShare(props: LessonShareProps) {
             <LessonShareLinks
               disabled={
                 hasFormErrors ||
+                expired ||
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}

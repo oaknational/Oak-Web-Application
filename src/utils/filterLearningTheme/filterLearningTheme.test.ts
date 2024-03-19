@@ -1,6 +1,6 @@
 import unitListingFixture from "../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 
-import { filterLearningTheme } from "./filterLearningTheme";
+import filterLearningTheme from "./filterLearningTheme";
 
 describe("filterLearningTheme", () => {
   it("should return units if themeSlug is undefined", () => {

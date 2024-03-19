@@ -17,6 +17,7 @@ const downloads = [
     keyStageTitle: "key-stage-title",
     downloads: [],
     hasDownloadableResources: true,
+    expired: true,
   },
   {
     programmeSlug: "programme-slug-1",
@@ -30,6 +31,7 @@ const downloads = [
     keyStageTitle: "key-stage-title",
     downloads: [],
     hasDownloadableResources: true,
+    expired: true,
   },
 ];
 
@@ -43,7 +45,7 @@ describe("lessonDownloads()", () => {
             downloads: [],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_1",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
@@ -81,7 +83,7 @@ describe("lessonDownloads()", () => {
           downloads: downloads,
           unit: [
             {
-              __typename: "published_mv_lesson_listing_3_0_1",
+              __typename: "published_mv_lesson_listing_5_0_1",
               lessons: lessonListingFixture().lessons,
             },
           ],
@@ -116,7 +118,7 @@ describe("lessonDownloads()", () => {
             ],
             unit: [
               {
-                __typename: "published_mv_lesson_listing_3_0_0",
+                __typename: "published_mv_lesson_listing_5_0_1",
                 lessons: lessonListingFixture().lessons,
               },
             ],
