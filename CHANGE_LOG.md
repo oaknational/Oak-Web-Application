@@ -1,3 +1,39 @@
+# [1.386.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.385.0...v1.386.0) (2024-03-19)
+
+
+### Bug Fixes
+
+* eyfs slug ([f9b9ef3](https://github.com/oaknational/Oak-Web-Application/commit/f9b9ef30abfffb30f72aa916aed16169dd16c913))
+
+
+### Features
+
+* update footer and menu with eyfs ([e1433a3](https://github.com/oaknational/Oak-Web-Application/commit/e1433a3c7f38750769196ad65ed655161d600980))
+
+# [1.385.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.384.1...v1.385.0) (2024-03-19)
+
+
+### Features
+
+* **PUPIL-205:** add match question support to the quiz ([ff16c4d](https://github.com/oaknational/Oak-Web-Application/commit/ff16c4dc38f786bfc3463610faed0a178ecf1561))
+* **PUPIL-205:** display incorrect answer feedback beside the matched options ([d7f7518](https://github.com/oaknational/Oak-Web-Application/commit/d7f7518cbb9a961214a32d874eff9beabccf19d4))
+* **PUPIL-205:** only enable submission of a match question when all answers are matched ([c6bdcb0](https://github.com/oaknational/Oak-Web-Application/commit/c6bdcb00fecf10038455fbd5771736bec77da8b2))
+
+## [1.384.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.384.0...v1.384.1) (2024-03-18)
+
+# [1.384.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.383.0...v1.384.0) (2024-03-18)
+
+
+### Bug Fixes
+
+* handle no developmentstage case ([1a0303c](https://github.com/oaknational/Oak-Web-Application/commit/1a0303c12431fb264c7bd811343f6e9b1d28b873))
+* test for missing display order case ([9ec26bb](https://github.com/oaknational/Oak-Web-Application/commit/9ec26bbf50d31ad37aa5f2e69f5c9231fbdc5fef))
+
+
+### Features
+
+* use developmentstage sorting method on unit listing page ([1f7a4c1](https://github.com/oaknational/Oak-Web-Application/commit/1f7a4c10308735978db9a06b436339a498dee68f))
+
 # [1.383.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.382.0...v1.383.0) (2024-03-18)
 
 

@@ -3,6 +3,7 @@ import {
   SpecialistLessonCountDocument,
   DevelopmentStageUnitCountDocument,
 } from "../../generated/sdk";
+import { sortByDevelopmentStage } from "../specialistProgrammeListing/specialistProgrammeListing.query";
 
 import {
   BatchResultResponseArray,
@@ -124,7 +125,7 @@ export const getThemes = (specialistUnits: SpecialistUnitListRequestSchema) => {
 export const getPartialDevelopmentStageArray = (
   developmentStages: DevelopmentStageCombinedProgrammeFields,
 ) => {
-  return developmentStages.reduce(
+  return sortByDevelopmentStage(developmentStages).reduce(
     (acc, stage) => {
       const stageSlug = stage.combined_programme_fields.developmentstage_slug;
       const stageTitle = stage.combined_programme_fields.developmentstage;
