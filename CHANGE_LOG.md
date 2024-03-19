@@ -1,3 +1,16 @@
+## [1.386.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.4...v1.386.5) (2024-03-19)
+
+
+### Bug Fixes
+
+* another change to copy ([f43a295](https://github.com/oaknational/Oak-Web-Application/commit/f43a2950a526614c5a05c95d60ff0b346db99a7d))
+* broken storyboard args for HomePageTabImageButton ([4327a78](https://github.com/oaknational/Oak-Web-Application/commit/4327a78d60061c198850015802d2b3ccb64f01b2))
+* broken SubjectPhasePicker tests ([c9c1e20](https://github.com/oaknational/Oak-Web-Application/commit/c9c1e207a5b39958ba414684f9acd7ff47f27944))
+* broken UnitTab test ([1347ddf](https://github.com/oaknational/Oak-Web-Application/commit/1347ddfc0d5875d05e380cf02b7534ad3bb65dc5))
+* removing new icon from home page tab and added some tests ([53a9f71](https://github.com/oaknational/Oak-Web-Application/commit/53a9f7166d2809c4a011665e607df00147beeada))
+* update copy to remove usage of 'new' ([a8dbaef](https://github.com/oaknational/Oak-Web-Application/commit/a8dbaefcb7b3a1137b1ac9316b5c6ce2614da4fd))
+* updated copy and heading hierarchy ([09d01bd](https://github.com/oaknational/Oak-Web-Application/commit/09d01bd19a9cc4549d57c3413ccbc72536d7e3c3))
+
 ## [1.386.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.3...v1.386.4) (2024-03-19)
 
 ## [1.386.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.2...v1.386.3) (2024-03-19)
