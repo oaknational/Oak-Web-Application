@@ -50,7 +50,7 @@ describe("programmes listing page", () => {
         ogDescription: "We have resources for tiers: Foundation, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

@@ -36,7 +36,7 @@ describe("pages/teachers/search.tsx", () => {
       ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
       ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
       canonical: "NEXT_PUBLIC_SEO_APP_URL",
-      robots: "noindex,nofollow",
+      robots: "index,follow",
     });
   });
 

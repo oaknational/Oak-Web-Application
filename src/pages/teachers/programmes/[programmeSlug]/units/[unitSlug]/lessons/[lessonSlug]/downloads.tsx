@@ -35,7 +35,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lesson downloads",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonDownloads isCanonical={false} lesson={curriculumData} />

@@ -34,7 +34,6 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
           title: `Lesson Share: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lesson share",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonShare isCanonical={false} lesson={curriculumData} />

@@ -401,7 +401,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogDescription: "Lesson downloads",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

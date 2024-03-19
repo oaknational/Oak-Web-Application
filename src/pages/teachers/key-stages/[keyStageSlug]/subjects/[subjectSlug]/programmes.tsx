@@ -58,7 +58,6 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         .map((programme) => programme.tierTitle)
         .join(", ")}`,
     }),
-    ...{ noFollow: true, noIndex: true },
   };
   return (
     <AppLayout seoProps={tiersSEO}>

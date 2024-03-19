@@ -90,7 +90,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         .map((tier) => tier.tierTitle)
         .join(", ")}`,
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   const unitsSEO = {
@@ -98,7 +97,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning${paginationTitle}`,
       description: "Programme units",
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   const trackUnitSelected = ({

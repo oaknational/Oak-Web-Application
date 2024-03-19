@@ -36,7 +36,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           title: `Lesson: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Overview of lesson",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonOverview lesson={{ ...curriculumData, isCanonical: false }} />

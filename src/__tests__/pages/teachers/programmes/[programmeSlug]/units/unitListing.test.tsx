@@ -89,7 +89,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ogDescription: "We have resources for tiers: Foundation, Core, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders the correct SEO details for non tiered programme", async () => {
@@ -107,7 +107,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ogDescription: "Programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
 
@@ -131,7 +131,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ogDescription: "Programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });
