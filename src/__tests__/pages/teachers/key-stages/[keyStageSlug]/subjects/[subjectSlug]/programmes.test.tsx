@@ -50,7 +50,7 @@ describe("programmes listing page", () => {
         ogDescription: "Choose foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("correctly formats more than 2 tiers", async () => {
@@ -102,7 +102,7 @@ describe("programmes listing page", () => {
         ogDescription: "Choose core, foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders the correct SEO details for programmes with only examboards", async () => {
@@ -144,7 +144,7 @@ describe("programmes listing page", () => {
         ogDescription: "Choose from the most popular exam boards in GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders correct SEO for programmes with tiers and examboards", async () => {

@@ -225,7 +225,7 @@ describe("pages/teachers/lessons", () => {
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
-          robots: "noindex,nofollow",
+          robots: "index,follow",
         }),
       );
     });
@@ -246,7 +246,7 @@ describe("pages/teachers/lessons", () => {
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
-          robots: "noindex,nofollow",
+          robots: "index,follow",
         }),
       );
     });
@@ -267,7 +267,7 @@ describe("pages/teachers/lessons", () => {
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
-          robots: "noindex,nofollow",
+          robots: "index,follow",
         }),
       );
     });
