@@ -1,3 +1,15 @@
+# [1.387.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.5...v1.387.0) (2024-03-19)
+
+
+### Features
+
+* update lesson listing SEO ([d6c8f67](https://github.com/oaknational/Oak-Web-Application/commit/d6c8f674112a4ce493d2eae4c777acce2571680a))
+* update lesson overview page seo ([c2656b2](https://github.com/oaknational/Oak-Web-Application/commit/c2656b2605366c2bbb99c8537b9c3c9f71ff9a2e))
+* update SEO for share and download pages ([4b403a0](https://github.com/oaknational/Oak-Web-Application/commit/4b403a0a7361619814daa59ac0645ceb36b89e8f))
+* update share page copy ([f4b4200](https://github.com/oaknational/Oak-Web-Application/commit/f4b4200480305251b8e4ab2ef315cd45b5f4073a))
+* update subject and programme page SEO ([5a5edee](https://github.com/oaknational/Oak-Web-Application/commit/5a5edeea57d95c8b62fe5d59d7d87f8cdc64ac0b))
+* update unit listing page seo ([1e143c8](https://github.com/oaknational/Oak-Web-Application/commit/1e143c870a03499b08b143150d87e1024dd10528))
+
 ## [1.386.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.4...v1.386.5) (2024-03-19)
 
 
