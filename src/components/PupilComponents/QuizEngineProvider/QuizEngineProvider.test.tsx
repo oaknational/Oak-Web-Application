@@ -10,6 +10,7 @@ import {
   useQuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
 import {
+  matchAnswers,
   orderAnswers,
   quizQuestions as questionsArrayFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
@@ -126,10 +127,7 @@ describe("QuizEngineContext", () => {
 
       expect(numQuestions).toBe(
         questionsArrayFixture?.filter(
-          (q) =>
-            q.questionType === "multiple-choice" ||
-            q.questionType === "short-answer" ||
-            q.questionType === "order",
+          (q) => q.questionType !== "explanatory-text",
         ).length,
       );
     });
@@ -518,6 +516,98 @@ describe("QuizEngineContext", () => {
       expect(questionState[currentQuestionIndex]?.grade).toEqual(0);
       expect(questionState[currentQuestionIndex]?.feedback).toEqual([
         "correct",
+        "incorrect",
+        "correct",
+        "incorrect",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        true,
+      );
+    });
+  });
+
+  describe("handleSubmitMatchAnser", () => {
+    const matchQuestion = createQuestionData({
+      answers: {
+        match: matchAnswers,
+      },
+      questionType: "match",
+    });
+
+    it("should be graded as correct if all choices are correct", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [matchQuestion],
+          }),
+      });
+      const { handleSubmitMatchAnswer } = result.current;
+
+      act(() => {
+        handleSubmitMatchAnswer(["0", "1", "2"], ["0", "1", "2"]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(1);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
+        "correct",
+        "correct",
+        "correct",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        false,
+      );
+    });
+
+    it("should be graded as incorrect if all choices are incorrect", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [matchQuestion],
+          }),
+      });
+      const { handleSubmitMatchAnswer } = result.current;
+
+      act(() => {
+        handleSubmitMatchAnswer(["0", "1"], ["1", "0"]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(0);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
+        "incorrect",
+        "incorrect",
+      ]);
+      expect(questionState[currentQuestionIndex]?.mode).toEqual("feedback");
+      expect(questionState[currentQuestionIndex]?.isPartiallyCorrect).toEqual(
+        false,
+      );
+    });
+
+    it("should be graded as incorrect if some choices are correct", () => {
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: [matchQuestion],
+          }),
+      });
+      const { handleSubmitMatchAnswer } = result.current;
+
+      act(() => {
+        handleSubmitMatchAnswer(["0", "1", "2"], ["2", "1", "0"]);
+      });
+
+      const { questionState, currentQuestionIndex } = result.current;
+
+      expect(questionState[currentQuestionIndex]?.grade).toEqual(0);
+      expect(questionState[currentQuestionIndex]?.feedback).toEqual([
         "incorrect",
         "correct",
         "incorrect",

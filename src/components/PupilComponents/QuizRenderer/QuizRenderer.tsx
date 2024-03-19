@@ -24,6 +24,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     handleSubmitMCAnswer,
     handleSubmitShortAnswer,
     handleSubmitOrderAnswer,
+    handleSubmitMatchAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
@@ -81,7 +82,17 @@ export const QuizRenderer = (props: QuizRenderProps) => {
 
           break;
         }
-        case "match":
+        case "match": {
+          const matches = formData.getAll(
+            `match-${currentQuestionData?.questionUid}-match`,
+          );
+          const choices = formData.getAll(
+            `match-${currentQuestionData?.questionUid}-choice`,
+          );
+          handleSubmitMatchAnswer(matches.map(String), choices.map(String));
+
+          break;
+        }
         default:
           break;
       }

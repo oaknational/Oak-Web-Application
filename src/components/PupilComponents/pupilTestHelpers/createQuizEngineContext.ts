@@ -24,6 +24,7 @@ export function createQuizEngineContext(
     handleNextQuestion: jest.fn(),
     handleSubmitShortAnswer: jest.fn(),
     handleSubmitOrderAnswer: jest.fn(),
+    handleSubmitMatchAnswer: jest.fn(),
     ...overrides,
   };
 }
