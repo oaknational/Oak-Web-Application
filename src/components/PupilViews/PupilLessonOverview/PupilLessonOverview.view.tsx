@@ -12,7 +12,6 @@ import {
   OakPrimaryButton,
   OakSpan,
   OakSubjectIcon,
-  OakTertiaryButton,
   isValidIconName,
 } from "@oaknational/oak-components";
 import { useEffect, useState } from "react";
@@ -21,6 +20,7 @@ import {
   LessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
@@ -49,6 +49,7 @@ export const PupilViewsLessonOverview = ({
     proceedToNextSection,
     lessonReviewSections,
     isLessonComplete,
+    lessonStarted,
   } = useLessonEngineContext();
 
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
@@ -83,7 +84,11 @@ export const PupilViewsLessonOverview = ({
             data-testid="proceed-to-next-section"
             disabled={!isMounted}
           >
-            {pickProceedToNextSectionLabel(isLessonComplete, sectionResults)}
+            {pickProceedToNextSectionLabel(
+              lessonStarted,
+              isLessonComplete,
+              sectionResults,
+            )}
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
@@ -96,15 +101,7 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          {backUrl ? (
-            <OakTertiaryButton iconName="arrow-left" href={backUrl} element="a">
-              View all lessons
-            </OakTertiaryButton>
-          ) : (
-            <OakTertiaryButton disabled iconName="arrow-left">
-              View all lessons
-            </OakTertiaryButton>
-          )}
+          <ViewAllLessonsButton href={backUrl} />
         </OakGridArea>
       </OakGrid>
       <OakFlex
@@ -231,6 +228,7 @@ export const PupilViewsLessonOverview = ({
 };
 
 function pickProceedToNextSectionLabel(
+  lessonStarted: boolean,
   isLessonComplete: boolean,
   results: ReturnType<typeof useLessonEngineContext>["sectionResults"],
 ) {
@@ -238,7 +236,7 @@ function pickProceedToNextSectionLabel(
     return "Lesson review";
   }
 
-  if (results["starter-quiz"]?.isComplete || results["exit-quiz"]?.isComplete) {
+  if (lessonStarted) {
     return "Continue lesson";
   }
 

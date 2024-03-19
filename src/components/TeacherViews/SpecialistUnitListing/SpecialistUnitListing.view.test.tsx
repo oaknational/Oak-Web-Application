@@ -14,12 +14,12 @@ describe("SpecialistUnitListing", () => {
 
     expect(unit).toBeInTheDocument();
   });
-  test("renders developmental stage navigation tabs", () => {
+  test("renders development stage navigation tabs", () => {
     const { getByTestId } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
-    const developmentalNav = getByTestId("developmental-nav");
-    expect(developmentalNav).toBeInTheDocument();
+    const developmentNav = getByTestId("development-nav");
+    expect(developmentNav).toBeInTheDocument();
   });
 
   test("renders themes filters ", () => {

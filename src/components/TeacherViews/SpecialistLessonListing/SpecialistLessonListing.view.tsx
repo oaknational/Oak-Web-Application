@@ -6,39 +6,10 @@ import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
+import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 type SpecialistLessonListingProps = {
   curriculumData: SpecialistLessonListingData;
-};
-
-export type SpecialistLessonListingData = {
-  lessons: SpecialistLesson[];
-  programmeSlug: string;
-  programmeTitle: string;
-  subjectSlug: string;
-  subjectTitle: string;
-  unitSlug: string;
-  unitTitle: string;
-};
-
-export type SpecialistLesson = {
-  lessonSlug: string;
-  lessonTitle: string;
-  subjectSlug: string;
-  subjectTitle: string;
-  unitSlug: string;
-  programmeSlug: string;
-  programmeTitle: string;
-  description: string;
-  expired: boolean;
-  pupilLessonOutcome?: string | null;
-  quizCount?: number | null;
-  videoCount?: number | null;
-  presentationCount?: number | null;
-  worksheetCount?: number | null;
-  hasCurriculumDownload?: boolean | null;
-  orderInUnit?: number | null;
-  hasCopyrightMaterial?: boolean | null;
 };
 
 function getHydratedLessonsFromUnit(unit: SpecialistLessonListingData) {
@@ -52,8 +23,14 @@ function getHydratedLessonsFromUnit(unit: SpecialistLessonListingData) {
 const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
   curriculumData,
 }) => {
-  const { subjectSlug, subjectTitle, unitTitle, unitSlug, programmeTitle } =
-    curriculumData;
+  const {
+    subjectSlug,
+    subjectTitle,
+    unitTitle,
+    programmeTitle,
+    programmeSlug,
+    unitSlug,
+  } = curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
 
@@ -75,25 +52,33 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
           },
           {
             oakLinkProps: {
-              page: "specialist-programme-index",
-              subjectSlug,
+              page: "specialist-subject-index",
             },
-            label: "Specialist programmes",
+            label: "Specialist and therapies",
           },
           {
             oakLinkProps: {
               page: "specialist-unit-index",
-              programmeSlug: unitSlug,
+              programmeSlug,
+            },
+            label: programmeTitle,
+          },
+          {
+            oakLinkProps: {
+              page: "specialist-lesson-index",
+              programmeSlug,
+              unitSlug,
             },
             label: unitTitle,
+            disabled: true,
           },
         ]}
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
-        subjectSlug={unitSlug}
-        subjectTitle={unitTitle}
+        subjectSlug={subjectSlug}
+        subjectTitle={subjectTitle}
         programmeFactor={programmeTitle}
-        title={subjectTitle}
+        title={unitTitle}
         isNew={false}
       />
       <MaxWidth $ph={16}>

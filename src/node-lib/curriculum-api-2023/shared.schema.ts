@@ -176,11 +176,11 @@ export const baseLessonOverviewSchema = z.object({
   presentationUrl: z.string().nullable(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.array(z.string()).nullable(),
+  transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
   hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
-  expired: z.boolean().optional().nullable(),
+  expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
@@ -188,7 +188,7 @@ export const baseLessonOverviewSchema = z.object({
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
-const lessonDownloadsListSchema = z.array(
+export const lessonDownloadsListSchema = z.array(
   z.object({
     exists: z.boolean().nullable(),
     type: z.enum([
@@ -217,6 +217,8 @@ export const baseLessonDownloadsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  hasDownloadableResources: z.boolean(),
+  expired: z.boolean().nullable(),
 });
 
 export const lessonListSchema = z.array(
@@ -225,7 +227,7 @@ export const lessonListSchema = z.array(
     lessonTitle: z.string(),
     description: z.string(),
     pupilLessonOutcome: z.string().nullish(),
-    expired: z.boolean(),
+    expired: z.boolean().nullable(),
     quizCount: z.number().nullish(),
     videoCount: z.number().nullish(),
     presentationCount: z.number().nullish(),
@@ -235,3 +237,30 @@ export const lessonListSchema = z.array(
     lessonCohort: z.string().nullish(),
   }),
 );
+
+export const legacyAssetObjectSchema = z
+  .object({
+    google_drive: z.object({
+      id: z.string(),
+      url: z.string(),
+    }),
+    google_drive_downloadable_version: z
+      .object({
+        id: z.string(),
+        url: z.string(),
+      })
+      .nullish(),
+  })
+  .nullish();
+
+export const lessonShareResourceSchema = z.object({
+  exists: z.boolean().nullable(),
+  type: z.enum([
+    "intro-quiz-questions",
+    "exit-quiz-questions",
+    "worksheet-pdf",
+    "video",
+  ]),
+  label: z.string(),
+  metadata: z.string().nullable(),
+});

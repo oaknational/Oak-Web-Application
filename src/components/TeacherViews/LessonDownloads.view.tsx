@@ -33,11 +33,13 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 
 type BaseLessonDownload = {
+  expired: boolean | null;
   isLegacy: boolean;
   lessonTitle: string;
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsData["downloads"];
+  hasDownloadableResources?: boolean;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -61,7 +63,13 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads } = lesson;
+  const {
+    lessonTitle,
+    lessonSlug,
+    downloads,
+    hasDownloadableResources,
+    expired,
+  } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -229,7 +237,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             handleToggleSelectAll={handleToggleSelectAll}
             selectAllChecked={selectAllChecked}
             header="Download"
-            showNoResources={!hasResources}
+            showNoResources={
+              !hasResources || !hasDownloadableResources || Boolean(expired)
+            }
             showLoading={isLocalStorageLoading}
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
@@ -243,13 +253,17 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             resourcesHeader="Lesson resources"
             triggerForm={form.trigger}
             apiError={apiError}
+            hideSelectAll={Boolean(expired)}
             cardGroup={
-              <DownloadCardGroup
-                control={form.control}
-                downloads={downloads}
-                hasError={form.errors?.resources ? true : false}
-                triggerForm={form.trigger}
-              />
+              hasDownloadableResources &&
+              !expired && (
+                <DownloadCardGroup
+                  control={form.control}
+                  downloads={downloads}
+                  hasError={form.errors?.resources ? true : false}
+                  triggerForm={form.trigger}
+                />
+              )
             }
             cta={
               <LoadingButton
@@ -262,6 +276,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
+                  expired ||
+                  !hasDownloadableResources ||
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 loadingText={"Downloading..."}

@@ -91,6 +91,38 @@ const lessonOverview = jest.fn(() => ({
   starterQuiz: lessonOverviewFixture().starterQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
+const lessonOverviewCanonical = jest.fn(() => ({
+  mv_lessons: [
+    {
+      lessonSlug: lessonOverviewFixture().lessonSlug,
+      lessonTitle: lessonOverviewFixture().lessonTitle,
+      programmeSlug: lessonOverviewFixture().programmeSlug,
+      keyStageSlug: lessonOverviewFixture().keyStageSlug,
+      keyStageTitle: lessonOverviewFixture().keyStageTitle,
+      unitSlug: lessonOverviewFixture().unitSlug,
+      unitTitle: lessonOverviewFixture().unitTitle,
+      subjectSlug: lessonOverviewFixture().subjectSlug,
+      subjectTitle: lessonOverviewFixture().subjectTitle,
+      keyLearningPoints: lessonOverviewFixture().keyLearningPoints,
+      additionalMaterialUrl: lessonOverviewFixture().additionalMaterialUrl,
+      lessonEquipmentAndResources:
+        lessonOverviewFixture().lessonEquipmentAndResources,
+      supervisionLevel: lessonOverviewFixture().supervisionLevel,
+      contentGuidance: lessonOverviewFixture().contentGuidance,
+      presentationUrl: lessonOverviewFixture().presentationUrl,
+      worksheetUrl: lessonOverviewFixture().worksheetUrl,
+      isWorksheetLandscape: lessonOverviewFixture().isWorksheetLandscape,
+      hasCopyrightMaterial: lessonOverviewFixture().hasCopyrightMaterial,
+      videoMuxPlaybackId: lessonOverviewFixture().videoMuxPlaybackId,
+      videoWithSignLanguageMuxPlaybackId:
+        lessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
+      transcriptSentences: lessonOverviewFixture().transcriptSentences,
+      expired: lessonOverviewFixture().expired,
+      hasDownloadableResources:
+        lessonOverviewFixture().hasDownloadableResources,
+    },
+  ],
+}));
 const tierListing = jest.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
@@ -120,8 +152,10 @@ jest.mock("./generated/sdk", () => ({
     subjectListing: (...args: []) => subjectListing(...args),
     lessonShare: (...args: []) => lessonShares(...args),
     searchPage: (...args: []) => searchPage(...args),
+    lessonOverviewCanonical: (...args: []) => lessonOverviewCanonical(...args),
   }),
 }));
+
 describe("curriculum-api", () => {
   test("teachersHomePage", async () => {
     await curriculumApi.teachersHomePage();
@@ -208,6 +242,14 @@ describe("curriculum-api", () => {
       },
       undefined,
     );
+  });
+  test("canonical lesson overview", async () => {
+    await curriculumApi.lessonOverviewCanonical({
+      lessonSlug: "Geometry fundamentals",
+    });
+    expect(lessonOverviewCanonical).toHaveBeenCalledWith({
+      lessonSlug: "Geometry fundamentals",
+    });
   });
   test("tierListing", async () => {
     await curriculumApi.tierListing({

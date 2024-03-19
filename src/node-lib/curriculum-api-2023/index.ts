@@ -19,7 +19,13 @@ import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/le
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
+import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
+import specialistUnitListingQuery from "./queries/specialistUnitListing/specialistUnitListing.query";
+import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
+import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
+import { specialistLessonDownloadQuery } from "./queries/specialistLessonDownload/specialistLessonDownload.query";
+import { specialistLessonShareQuery } from "./queries/specialistLessonShare/specialistLessonShare.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -132,6 +138,12 @@ const curriculumApi2023 = {
     return teachersHomePageData.parse(teachersHomePage);
   },
   unitListing: unitListingQuery(sdk),
+  specialistSubjectListing: specialistSubjectListingQuery(sdk),
+  specialistUnitListing: specialistUnitListingQuery(sdk),
+  specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
+  specialistLessonListing: specialistLessonListingQuery(sdk),
+  specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
+  specialistLessonShare: specialistLessonShareQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

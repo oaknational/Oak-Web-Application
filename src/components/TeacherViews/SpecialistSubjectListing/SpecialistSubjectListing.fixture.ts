@@ -1,4 +1,4 @@
-import { SpecialistSubject } from "./SpecialistSubjectListing.view";
+import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
 export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
   {
@@ -7,7 +7,6 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 10,
     lessonCount: 20,
     programmeCount: 1,
-    programmeSlug: "occupational-therapy",
   },
   {
     subjectSlug: "physical-therapy",
@@ -15,7 +14,6 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 8,
     lessonCount: 20,
     programmeCount: 1,
-    programmeSlug: "physical-therapy",
   },
   {
     subjectSlug: "speech-and-language-therapy",
@@ -23,7 +21,6 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 10,
     lessonCount: 11,
     programmeCount: 1,
-    programmeSlug: "speech-and-language-therapy",
   },
   {
     subjectSlug: "sensory-integration",
@@ -31,7 +28,6 @@ export const therapiesSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 10,
     lessonCount: 20,
     programmeCount: 1,
-    programmeSlug: "sensory-integration-early-development",
   },
 ];
 
@@ -42,7 +38,6 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 8,
     lessonCount: 20,
     programmeCount: 3,
-    programmeSlug: "communication-and-language-early-development",
   },
   {
     subjectSlug: "creative-arts",
@@ -50,7 +45,6 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 5,
     lessonCount: 17,
     programmeCount: 4,
-    programmeSlug: "creative-arts-early-development",
   },
   {
     subjectSlug: "independent-living",
@@ -58,7 +52,6 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 4,
     lessonCount: 15,
     programmeCount: 2,
-    programmeSlug: "independent-living-early-development",
   },
   {
     subjectSlug: "numeracy",
@@ -66,7 +59,6 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 10,
     lessonCount: 20,
     programmeCount: 1,
-    programmeSlug: "numeracy",
   },
   {
     subjectSlug: "physical-development",
@@ -74,6 +66,5 @@ export const specialistSubjectListingFixture: Array<SpecialistSubject> = [
     unitCount: 8,
     lessonCount: 40,
     programmeCount: 2,
-    programmeSlug: "physical-development-early-development",
   },
 ];

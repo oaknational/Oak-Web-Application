@@ -236,6 +236,7 @@ export const lessonShareSchema = z.intersection(
     lessonSlug: z.string(),
     lessonTitle: z.string(),
     shareableResources: z.array(lessonShareListSchema),
+    expired: z.boolean().nullable(),
   }),
 );
 
@@ -496,6 +497,10 @@ const curriculumApi = {
     const res = await sdk.lessonOverviewCanonical(...args);
     const { lessons = [] } = transformMVCase(res);
 
+    if (lessons.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     const { introQuiz, exitQuiz } = res;
 
     // Transform quizzes here because the schema is not the same as the one returned by the API
@@ -565,7 +570,6 @@ const curriculumApi = {
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...argsRemoveLegacySlugSuffix(args));
     const { units = [], lessons = [] } = transformMVCase(res);
-
     const unit = getFirstResultOrWarnOrFail()({
       results: units,
     });
@@ -593,6 +597,7 @@ const curriculumApi = {
 
     return lessonShareSchema.parse({
       ...share,
+      expired: false,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
       lessonCohort: LEGACY_COHORT,
@@ -612,9 +617,11 @@ const curriculumApi = {
 
     return lessonDownloadsSchema.parse({
       ...download,
+      expired: false,
       nextLessons,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
+      hasDownloadableResources: true,
     });
   },
   lessonDownloadsCanonical: async (
@@ -633,8 +640,10 @@ const curriculumApi = {
       },
       {
         ...downloads[0],
+        expired: false,
         pathways: [],
         isLegacy: true,
+        hasDownloadableResources: true,
       } as LessonDownloadsCanonical,
     );
 

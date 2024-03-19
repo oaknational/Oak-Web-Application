@@ -21,6 +21,7 @@ export type ResourceCardProps = CheckboxProps & {
   hasError?: boolean;
   useRadio?: boolean;
   subjectIcon?: string;
+  hideCheckbox?: boolean;
 };
 
 type ResourceCardLabelProps = ResourceCardProps & {
@@ -48,6 +49,7 @@ const BoxWithFocusState = styled.div`
   position: relative;
   display: flex;
   flex-direction: "row";
+  width: 100%;
 `;
 
 const RadioContainer = styled.div`
@@ -147,6 +149,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     onBlur,
     hasError = false,
     useRadio = false,
+    hideCheckbox = false,
   } = props;
 
   const { hoverProps, isHovered } = useHover({});
@@ -165,7 +168,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
             <ResourceCardLabel isHovered={isHovered} {...props} />
           </Radio>
         </RadioContainer>
-      ) : (
+      ) : !hideCheckbox ? (
         <Checkbox
           id={id}
           name={name}
@@ -179,6 +182,8 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         >
           <ResourceCardLabel isHovered={isHovered} {...props} />
         </Checkbox>
+      ) : (
+        <ResourceCardLabel isHovered={false} {...props} />
       )}
     </Flex>
   );

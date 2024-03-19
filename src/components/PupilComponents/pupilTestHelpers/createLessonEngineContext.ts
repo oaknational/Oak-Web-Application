@@ -7,6 +7,7 @@ export function createLessonEngineContext(
   overrides?: Partial<LessonEngineContextType>,
 ): NonNullable<LessonEngineContextType> {
   return {
+    lessonStarted: false,
     isLessonComplete: false,
     currentSection: "starter-quiz",
     sectionResults: {},
@@ -14,7 +15,7 @@ export function createLessonEngineContext(
     completeSection: jest.fn(),
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),
-    updateQuizResult: jest.fn(),
+    updateSectionResult: jest.fn(),
     ...overrides,
   };
 }

@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
@@ -23,6 +23,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     updateQuestionMode,
     handleSubmitMCAnswer,
     handleSubmitShortAnswer,
+    handleSubmitOrderAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
@@ -61,6 +62,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
             const a = answers?.["multiple-choice"]?.[i];
             a && selectedAnswers.push(a);
           }
+
           handleSubmitMCAnswer(selectedAnswers);
           break;
         }
@@ -71,7 +73,14 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           handleSubmitShortAnswer(answer);
           break;
         }
-        case "order":
+        case "order": {
+          const answers = formData.getAll(
+            `order-${currentQuestionData?.questionUid}`,
+          );
+          handleSubmitOrderAnswer(answers.map(Number));
+
+          break;
+        }
         case "match":
         default:
           break;
@@ -79,37 +88,42 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     };
 
     innerRender = (
-      <OakForm
+      <OakBox
+        as="form"
         id={formId}
         onSubmit={handleSubmit}
         $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
         $minWidth={["100%", "all-spacing-21", "all-spacing-23"]}
         $ph={["inner-padding-m", "inner-padding-none", "inner-padding-xl"]}
+        $height={"100%"}
       >
         <OakFlex
           $flexDirection={"column"}
-          $gap={["space-between-m", "space-between-l", "space-between-xl"]}
+          $gap={"space-between-m"}
+          $height={"100%"}
         >
           <QuizQuestionStem
             questionStem={questionStem}
             index={currentQuestionIndex}
-            showIndex={true}
+            takeFullHeight={
+              currentQuestionData?.questionType === "explanatory-text"
+            }
           />
           {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
-      </OakForm>
+      </OakBox>
     );
   }
 
   return (
     <OakFlex
       $flexDirection={"column"}
+      $alignItems={"center"}
       $color="text-subdued"
       $pa={["inner-padding-none", "inner-padding-xl"]}
-      $alignItems={"center"}
-      $gap={"all-spacing-5"}
       $width={"100%"}
+      $height={"100%"}
     >
       {innerRender}
     </OakFlex>

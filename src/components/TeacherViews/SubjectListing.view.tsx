@@ -23,7 +23,12 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   return (
     <OakFlex $flexDirection={"column"}>
       <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
-        <Flex $flexDirection="column" $gap={16} $mb={isEyfs ? 26 : 40}>
+        <Flex
+          $flexDirection="column"
+          $gap={16}
+          $mb={isEyfs ? 26 : 40}
+          $maxWidth={960}
+        >
           <OakHeading
             $font={"heading-3"}
             tag={"h1"}

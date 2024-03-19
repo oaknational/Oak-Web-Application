@@ -14,17 +14,17 @@ export type AppHeaderBurgerMenuSection = {
   links: Array<BurgerMenuLink>;
 };
 
-export type AppHeaderBurgerMenuSectionsProps = {
-  menuSections: Array<AppHeaderBurgerMenuSection>;
+export type AppHeaderBurgerburgerMenuSectionsProps = {
+  burgerMenuSections: Array<AppHeaderBurgerMenuSection>;
 };
 
-const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
-  props,
-) => {
-  const { menuSections } = props;
+const AppHeaderBurgerburgerMenuSections: FC<
+  AppHeaderBurgerburgerMenuSectionsProps
+> = (props) => {
+  const { burgerMenuSections } = props;
   return (
     <OakFlex $flexDirection="column" $gap="all-spacing-7">
-      {menuSections.map((section, i) => (
+      {burgerMenuSections.map((section, i) => (
         <OakFlex
           $flexDirection="column"
           $gap="all-spacing-3"
@@ -53,4 +53,4 @@ const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
   );
 };
 
-export default AppHeaderBurgerMenuSections;
+export default AppHeaderBurgerburgerMenuSections;

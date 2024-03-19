@@ -28,14 +28,15 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -102,12 +103,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const trackUnitSelected = ({
     ...props
-  }: UnitListItemProps | IndividualSpecialistUnit) => {
+  }: UnitListItemProps | SpecialistUnit) => {
     // Temporary until tracking for specialist units
     const isSpecialistUnit = (
-      x: UnitListItemProps | IndividualSpecialistUnit,
-    ): x is IndividualSpecialistUnit => {
-      return "developmentalStageTitle" in x;
+      x: UnitListItemProps | SpecialistUnit,
+    ): x is SpecialistUnit => {
+      return "developmentStageTitle" in x;
     };
 
     if (!isSpecialistUnit(props)) {
@@ -321,13 +322,13 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = isSlugLegacy(programmeSlug)
+      const curriculumData = shouldUseLegacyApi(programmeSlug)
         ? await curriculumApi.unitListing({
             programmeSlug,
           })
         : await curriculumApi2023.unitListing({
             programmeSlug,
-            isLegacy: programmeSlug.endsWith("early-years-foundation-stage"),
+            isLegacy: programmeSlug.endsWith("early-years-foundation-stage-l"),
           });
 
       if (!curriculumData) {

@@ -1,32 +1,12 @@
 import { FC } from "react";
 
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
-import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { SpecialistLessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 
-type SpecialistLessonDownloadsView = {
-  curriculumData: SpecialistLessonDownloadsProps;
-};
-
-export type SpecialistLessonDownloadsProps = {
-  lesson: LessonPathway & {
-    isLegacy: boolean;
-    lessonTitle: string;
-    lessonSlug: string;
-    downloads: LessonDownloadsData["downloads"];
-    nextLessons: NextLesson[];
-  };
-};
-
-const SpecialistLessonDownloads: FC<SpecialistLessonDownloadsView> = ({
+const SpecialistLessonDownloads: FC<SpecialistLessonDownloadsPageData> = ({
   curriculumData,
 }) => {
-  return (
-    <>
-      <LessonDownloads isCanonical={false} lesson={curriculumData.lesson} />
-    </>
-  );
+  return <LessonDownloads isCanonical={false} lesson={curriculumData.lesson} />;
 };
 
 export default SpecialistLessonDownloads;

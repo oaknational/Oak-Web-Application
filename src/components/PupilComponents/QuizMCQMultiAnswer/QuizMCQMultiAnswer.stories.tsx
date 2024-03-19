@@ -9,6 +9,7 @@ import {
   LessonEngineProvider,
   allLessonReviewSections,
 } from "../LessonEngineProvider";
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
@@ -24,7 +25,6 @@ import {
 
 const meta = {
   component: QuizMCQMultiAnswer,
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -48,24 +48,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // mock the QuizEngineContext
-const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
-  currentQuestionData: quizQuestions?.[0],
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: "feedback",
-      grade: 0,
-      feedback: ["correct", "incorrect", "correct", "correct"],
-      offerHint: false,
-    },
-  ],
-  score: 0,
-  numQuestions: 0,
-  updateQuestionMode: () => {},
-  handleSubmitMCAnswer: () => {},
-  handleSubmitShortAnswer: () => {},
-  handleNextQuestion: () => {},
-};
+const mockQuizEngineContext: NonNullable<QuizEngineContextType> =
+  createQuizEngineContext({
+    currentQuestionData: quizQuestions?.[0],
+    questionState: [
+      {
+        mode: "feedback",
+        grade: 0,
+        feedback: ["correct", "incorrect", "correct", "correct"],
+        offerHint: false,
+      },
+    ],
+  });
 
 const mcqMultiImageAnswers = [...mcqImageAnswers];
 if (mcqMultiImageAnswers[0]) {

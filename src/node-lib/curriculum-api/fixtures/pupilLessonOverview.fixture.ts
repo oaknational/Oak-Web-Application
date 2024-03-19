@@ -10,6 +10,10 @@ const pupilLessonOverviewFixture = (
     subjectSlug: "maths",
     subjectTitle: "Maths",
     unitSlug: "geometry",
+    unitTitle: "Geometry",
+    keyStageSlug: "ks3",
+    keyStageTitle: "Key Stage 3",
+    programmeSlug: "programme-slug",
     starterQuiz: quizQuestions,
     lessonSlug: "lesson-slug",
     supervisionLevel: null,
@@ -21,6 +25,7 @@ const pupilLessonOverviewFixture = (
     videoTitle: "Introduction to Islamic Geometry",
     isLegacy: false,
     pupilLessonOutcome: undefined,
+    expired: false,
     ...partial,
   };
 };

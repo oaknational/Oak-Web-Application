@@ -15,6 +15,8 @@ import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOve
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
+import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import { PupilExpiredView } from "@/components/PupilViews/PupilExpired/PupilExpired.view";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -45,8 +47,6 @@ export const PupilPageContent = ({
 }: PupilExperienceViewProps) => {
   const { currentSection } = useLessonEngineContext();
 
-  console.log("currentSection", currentSection);
-
   const {
     starterQuiz,
     exitQuiz,
@@ -60,6 +60,9 @@ export const PupilPageContent = ({
     isLegacy,
   } = curriculumData;
 
+  const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
+  const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
+
   switch (currentSection) {
     case "overview":
       return (
@@ -69,8 +72,8 @@ export const PupilPageContent = ({
           subjectSlug={subjectSlug}
           yearTitle={yearTitle ?? undefined}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
-          starterQuizNumQuestions={starterQuiz?.length ?? 0}
-          exitQuizNumQuestions={exitQuiz?.length ?? 0}
+          starterQuizNumQuestions={starterQuizNumQuestions}
+          exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
         />
       );
@@ -95,7 +98,7 @@ export const PupilPageContent = ({
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
-      return <PupilViewsReview lessonTitle={lessonTitle} />;
+      return <PupilViewsReview lessonTitle={lessonTitle} backUrl={backUrl} />;
     default:
       return null;
   }
@@ -112,11 +115,15 @@ export const PupilExperienceView = ({
     <OakThemeProvider theme={oakDefaultTheme}>
       <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
-          <PupilPageContent
-            curriculumData={curriculumData}
-            hasWorksheet={hasWorksheet}
-            backUrl={backUrl}
-          />
+          {curriculumData.expired ? (
+            <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+          ) : (
+            <PupilPageContent
+              curriculumData={curriculumData}
+              hasWorksheet={hasWorksheet}
+              backUrl={backUrl}
+            />
+          )}
         </OakBox>
       </LessonEngineProvider>
     </OakThemeProvider>

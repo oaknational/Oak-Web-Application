@@ -20,7 +20,6 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -40,6 +39,13 @@ export type VideoPlayerProps = {
   title: string;
   location: VideoLocationValueType;
   isLegacy: boolean;
+  userEventCallback?: (event: VideoEventCallbackArgs) => void;
+};
+
+export type VideoEventCallbackArgs = {
+  event: "play" | "playing" | "pause" | "end";
+  timeElapsed: number | null;
+  duration: number | null;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -50,7 +56,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     playbackId,
     playbackPolicy,
     isLegacy,
+    userEventCallback = () => {},
   } = props;
+
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
@@ -110,17 +118,38 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
     videoTracking.onPlay();
+    userEventCallback({
+      event: "play",
+      duration: getDuration(mediaElRef),
+      timeElapsed: getTimeElapsed(mediaElRef),
+    });
   };
 
   const onPause = () => {
     mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
     videoTracking.onPause();
+    userEventCallback({
+      event: "pause",
+      duration: getDuration(mediaElRef),
+      timeElapsed: getTimeElapsed(mediaElRef),
+    });
   };
 
   const onTimeUpdate = () => {
     if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
       videoTracking.onEnd();
       hasTrackedEndRef.current = true;
+      userEventCallback({
+        event: "end",
+        duration: getDuration(mediaElRef),
+        timeElapsed: getTimeElapsed(mediaElRef),
+      });
+    } else if (mediaElRef.current?.classList.contains(PLAYING_CLASSNAME)) {
+      userEventCallback({
+        event: "playing",
+        duration: getDuration(mediaElRef),
+        timeElapsed: getTimeElapsed(mediaElRef),
+      });
     }
   };
   const onError = (evt: Event) => {
@@ -148,13 +177,16 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
       <OakFlex
-        $flexDirection={"column"}
-        $width={"100%"}
-        $height={["all-spacing-19"]}
         $alignItems={"center"}
         $justifyContent={"center"}
+        $ba={"border-solid-l"}
+        $minWidth={"100%"}
+        $borderColor={"black"}
+        style={{
+          aspectRatio: "16/9",
+          boxSizing: "content-box",
+        }}
       >
-        <BoxBorders />
         <OakP $textAlign="center">Loading...</OakP>
       </OakFlex>
     );
@@ -173,9 +205,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   return (
     <OakFlex
       $flexDirection={"column"}
-      $width={"100%"}
-      $ba={["border-solid-l"]}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
       $borderColor={"black"}
+      style={{
+        boxSizing: "content-box",
+      }}
     >
       <MuxPlayer
         preload="metadata"

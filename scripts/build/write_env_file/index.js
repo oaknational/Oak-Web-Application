@@ -85,7 +85,7 @@ async function main() {
     NEXT_PUBLIC_GLEAP_API_URL:
       process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
     NEXT_PUBLIC_GLEAP_FRAME_URL:
-      process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
+      process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl13,
 
     // Hubspot
     NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL:
@@ -211,6 +211,9 @@ async function main() {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
       oakConfig.cloudinary?.cloudName,
+    NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION:
+      process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION ||
+      oakConfig.cloudinary?.secureDistribution,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
