@@ -59,12 +59,12 @@ describe("Lesson listing page", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title: "Unit: Adding surds | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Lessons in Unit",
+        description: "Free lessons and teaching resources about adding surds",
         ogTitle: "Unit: Adding surds | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Lessons in Unit",
+        ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders the correct SEO details with pagination", async () => {
@@ -77,13 +77,13 @@ describe("Lesson listing page", () => {
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
           "Unit: Adding surds | KS4 Maths | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Lessons in Unit",
+        description: "Free lessons and teaching resources about adding surds",
         ogTitle:
           "Unit: Adding surds | KS4 Maths | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Lessons in Unit",
+        ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

@@ -32,7 +32,6 @@ const SpecialistLessonSharePage: NextPage<SpecialistLessonSharePageProps> = ({
           title: `Specialist Lesson Share: ${lessonTitle} | ${subjectTitle}`,
           description: "Specialist Lesson share",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonShare isCanonical={false} lesson={curriculumData} />

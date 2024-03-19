@@ -44,7 +44,6 @@ const LessonDownloadsCanonicalPage: NextPage<
           title: seoTitle,
           description: "Lesson downloads",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonDownloads isCanonical lesson={curriculumData} />

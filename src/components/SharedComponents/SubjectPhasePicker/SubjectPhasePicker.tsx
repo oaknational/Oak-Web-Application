@@ -20,7 +20,6 @@ import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
@@ -356,6 +355,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $font={"heading-light-7"}
                 $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
+                data-testid="selectSubjectHeading"
               >
                 Subject
               </OakHeading>
@@ -416,12 +416,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     tag={"h4"}
                     $font={"heading-6"}
                     $mr="space-between-xs"
+                    data-testid="subjectDropdownHeading"
                   >
-                    New curriculum plans
+                    Curriculum plans
                   </OakHeading>
-                  <Box $pt={6}>
-                    <TagPromotional size={"medium"} $alignSelf={"flex-end"} />
-                  </Box>
                 </Flex>
                 <OakP $mb="space-between-s">
                   Explore our new curricula for 2023/2024.
@@ -500,6 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $font={"heading-light-7"}
                 $mb="space-between-sssx"
                 $color={!showSubjectError ? "black" : "red"}
+                data-testid="selectPhaseHeading"
               >
                 School phase
               </OakHeading>
@@ -598,6 +597,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     tag={"h4"}
                     $font={"heading-6"}
                     $mb="space-between-s"
+                    data-testid="phaseDropdownHeading"
                   >
                     Choose a school phase:
                   </OakHeading>
