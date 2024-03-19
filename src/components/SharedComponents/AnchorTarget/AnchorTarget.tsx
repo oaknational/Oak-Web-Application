@@ -16,6 +16,7 @@ import theme from "@/styles/theme";
  */
 type AnchorTargetProps = {
   $paddingTop?: number;
+  id: string;
 };
 
 const anchorTarget = css<AnchorTargetProps>`
