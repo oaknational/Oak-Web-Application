@@ -148,7 +148,7 @@ export type LessonDownloadsLinkProps = {
   };
 };
 
-type SpecialistLessonDownloadsLinkProps = Omit<
+export type SpecialistLessonDownloadsLinkProps = Omit<
   LessonDownloadsLinkProps,
   "page"
 > & {
@@ -172,7 +172,10 @@ export type LessonShareLinkProps = {
   };
 };
 
-type SpecialistLessonShareLinkProps = Omit<LessonDownloadsLinkProps, "page"> & {
+export type SpecialistLessonShareLinkProps = Omit<
+  LessonDownloadsLinkProps,
+  "page"
+> & {
   page: "specialist-lesson-share";
 };
 

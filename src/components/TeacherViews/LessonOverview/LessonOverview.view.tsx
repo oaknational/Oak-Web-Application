@@ -100,6 +100,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         unitTitle: lesson.unitTitle,
         subjectTitle: lesson.subjectTitle,
         subjectSlug: lesson.subjectSlug,
+        developmentStageTitle: lesson.developmentStageTitle,
         disabled: true,
       }
     : null;

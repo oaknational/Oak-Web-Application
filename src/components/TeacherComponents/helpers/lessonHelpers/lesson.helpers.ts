@@ -165,6 +165,7 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
     disabled?: boolean;
     subjectTitle: string;
     subjectSlug: string;
+    developmentStageTitle: string;
     disable?: boolean;
   } | null,
 ): Breadcrumb[] | [] => {
@@ -173,6 +174,7 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
     programmeSlug,
     subjectTitle,
     subjectSlug,
+    developmentStageTitle,
     unitSlug,
     unitTitle,
     disabled,
@@ -186,20 +188,27 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
       },
       label: "Home",
     },
-    subjectSlug && subjectTitle
-      ? {
-          oakLinkProps: {
-            page: "specialist-programme-index",
-            subjectSlug: subjectSlug,
-          },
-          label: subjectTitle,
-        }
-      : null,
-    programmeSlug && unitTitle
+    {
+      oakLinkProps: {
+        page: "specialist-subject-index",
+      },
+      label: "Specialist and therapies",
+    },
+    subjectSlug && subjectTitle && programmeSlug
       ? {
           oakLinkProps: {
             page: "specialist-unit-index",
+            programmeSlug: programmeSlug,
+          },
+          label: `${subjectTitle} - ${developmentStageTitle}`,
+        }
+      : null,
+    programmeSlug && unitSlug && unitTitle
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-index",
             programmeSlug,
+            unitSlug,
           },
           label: unitTitle,
         }
