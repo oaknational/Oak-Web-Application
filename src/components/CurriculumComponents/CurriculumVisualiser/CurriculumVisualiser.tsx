@@ -87,6 +87,37 @@ export function createProgrammeSlug(
     : "";
 }
 
+function isSelectedDomain(
+  yearSelection: YearSelection,
+  year: string,
+  domain: Domain,
+) {
+  return yearSelection[year]?.domain?.domain_id === domain.domain_id;
+}
+
+function isSelectedSubject(
+  yearSelection: YearSelection,
+  year: string,
+  subject: Subject,
+) {
+  return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
+}
+
+function isSelectedTier(
+  yearSelection: YearSelection,
+  year: string,
+  tier: Tier,
+) {
+  return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
+}
+
+function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
+  if (!selectedThread) {
+    return false;
+  }
+  return unit.threads.some((t) => t.slug === selectedThread.slug);
+}
+
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -113,47 +144,35 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-
+  const visibleYears = useRef<Set<number>>(new Set());
+  const visualiserRef = useRef<HTMLDivElement>(null);
   /* Intersection observer to update year filter selection when 
   scrolling through the visualiser on mobile */
   useEffect(() => {
-    const options = {
-      root: null,
-      threshold: [0.18],
-    };
-
+    const options = { rootMargin: "-50% 0px 0px 0px" };
     const yearsLoaded = Object.keys(yearData).length;
-    // only add IO once elements & data have loaded
+    // All refs have been created for year groups & data is loaded
     if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+          const year = parseInt(entry.target.id, 10);
           if (entry.isIntersecting) {
-            setVisibleMobileYearRefID(entry.target.id);
+            visibleYears.current.add(year);
+          } else {
+            visibleYears.current.delete(year);
+          }
+          if (visibleYears.current.size > 0) {
+            const lowestYear = Math.min(...visibleYears.current).toString();
+            setVisibleMobileYearRefID(lowestYear);
           }
         });
       }, options);
       itemEls.current.forEach((el) => io.observe(el as Element));
+      return () => {
+        io.disconnect();
+      };
     }
   }, [setVisibleMobileYearRefID, yearData]);
-
-  function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.domain_id === domain.domain_id;
-  }
-
-  function isSelectedSubject(year: string, subject: Subject) {
-    return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
-  }
-
-  function isSelectedTier(year: string, tier: Tier) {
-    return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
-  }
-
-  function isHighlightedUnit(unit: Unit) {
-    if (!selectedThread) {
-      return false;
-    }
-    return unit.threads.some((t) => t.slug === selectedThread.slug);
-  }
 
   // Visibility helpers
   function isVisibleUnit(year: string, unit: Unit) {
@@ -193,7 +212,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   };
 
   return (
-    <OakGridArea $colSpan={[12, 9]} data-testid="curriculum-visualiser">
+    <OakGridArea
+      $colSpan={[12, 9]}
+      data-testid="curriculum-visualiser"
+      ref={visualiserRef}
+    >
       {yearData &&
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
@@ -234,7 +257,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         $mb={20}
                         $mr={20}
                         background={
-                          isSelectedSubject(year, subject) ? "black" : "white"
+                          isSelectedSubject(yearSelection, year, subject)
+                            ? "black"
+                            : "white"
                         }
                         key={subject.subject_slug}
                         label={subject.subject}
@@ -252,7 +277,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         $mb={20}
                         $mr={20}
                         background={
-                          isSelectedDomain(year, domain) ? "black" : "white"
+                          isSelectedDomain(yearSelection, year, domain)
+                            ? "black"
+                            : "white"
                         }
                         key={domain.domain_id}
                         label={domain.domain}
@@ -275,7 +302,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         onClick={() => handleSelectTier(year, tier)}
                         size="small"
                         variant="minimal"
-                        isCurrent={isSelectedTier(year, tier)}
+                        isCurrent={isSelectedTier(yearSelection, year, tier)}
                         currentStyles={["underline"]}
                         data-testid="tier-button"
                       />
@@ -290,7 +317,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   {units
                     .filter((unit: Unit) => isVisibleUnit(year, unit))
                     .map((unit: Unit, index: number) => {
-                      const isHighlighted = isHighlightedUnit(unit);
+                      const isHighlighted = isHighlightedUnit(
+                        unit,
+                        selectedThread,
+                      );
                       const unitOptions = unit.unit_options.length >= 1;
 
                       return (
@@ -391,7 +421,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       setUnitOptionsAvailable={setUnitOptionsAvailable}
                       unitOptionsAvailable={unitOptionsAvailable}
                       isHighlighted={
-                        unitData ? isHighlightedUnit(unitData) : false
+                        unitData
+                          ? isHighlightedUnit(unitData, selectedThread)
+                          : false
                       }
                     />
                   </UnitsTabSidebar>

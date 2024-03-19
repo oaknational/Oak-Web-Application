@@ -37,10 +37,12 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
   visibleMobileYearRefID,
 }) => {
   // Initialize constants
+  const defaultMobileYearSelection = "7";
+
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
   const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
-    "7",
+    defaultMobileYearSelection,
   );
 
   useEffect(() => {
@@ -159,7 +161,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
         $background={"white"}
         $bottom={["all-spacing-0"]}
         $right={["all-spacing-0"]}
-        $justifyContent={"center"}
+        $justifyContent={"left"}
       >
         <Button
           $ma={16}
@@ -234,7 +236,6 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                       key={yearOption}
                       label={`Year ${yearOption}`}
                       onClick={() => {
-                        setMobileYearSelection(yearOption);
                         // Scroll into view used also in Lesson Overview - prevents rerender
                         document
                           .getElementById(`year-${yearOption}`)
