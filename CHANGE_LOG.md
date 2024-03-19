@@ -1,3 +1,11 @@
+# [1.388.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.387.0...v1.388.0) (2024-03-19)
+
+
+### Features
+
+* index follow teacher journey ([68c98b4](https://github.com/oaknational/Oak-Web-Application/commit/68c98b49a7b1d9dd0f8710ac59ed5edf28460186))
+* remove next site map teacher journey exclusions ([6c993ba](https://github.com/oaknational/Oak-Web-Application/commit/6c993ba9093531a60d37bc4621e7ea986d4ce142))
+
 # [1.387.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.5...v1.387.0) (2024-03-19)
 
 
