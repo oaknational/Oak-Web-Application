@@ -1,4 +1,4 @@
-import Button from "./HomePageTabImageButton";
+import HomePageTabImageButton from "./HomePageTabImageButton";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -7,7 +7,7 @@ describe("HomePageTabImageButton", () => {
     const spy = jest.fn();
 
     const { getByRole } = renderWithTheme(
-      <Button
+      <HomePageTabImageButton
         label="Click me"
         onClick={spy}
         title={""}
@@ -22,7 +22,7 @@ describe("HomePageTabImageButton", () => {
 
   it("renders active image when isCurrent is true", () => {
     const { getByTestId } = renderWithTheme(
-      <Button
+      <HomePageTabImageButton
         label="Click me"
         title={""}
         activeImageSlug={"magic-carpet"}
@@ -36,7 +36,7 @@ describe("HomePageTabImageButton", () => {
 
   it("renders passive image when isCurrent is false", () => {
     const { getByTestId } = renderWithTheme(
-      <Button
+      <HomePageTabImageButton
         label="Click me"
         title={""}
         activeImageSlug={"magic-carpet"}
@@ -52,7 +52,7 @@ describe("HomePageTabImageButton", () => {
     const spy = jest.fn();
 
     const { getByRole } = renderWithTheme(
-      <Button
+      <HomePageTabImageButton
         label="Click me"
         onClick={spy}
         title={""}
@@ -71,7 +71,7 @@ describe("HomePageTabImageButton", () => {
     const spy = jest.fn();
 
     const { getByRole } = renderWithTheme(
-      <Button
+      <HomePageTabImageButton
         label="Click me"
         disabled={true}
         onClick={spy}
@@ -85,5 +85,32 @@ describe("HomePageTabImageButton", () => {
     button.click();
 
     expect(spy).toHaveBeenCalledTimes(0);
+  });
+
+  test("shows the new icon when showNewIcon prop set to true", async () => {
+    const { queryByTestId } = renderWithTheme(
+      <HomePageTabImageButton
+        label="Click me"
+        title={""}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
+        showNewIcon={true}
+      />,
+    );
+    const newIcon = queryByTestId("new-icon");
+    expect(newIcon).toBeInTheDocument();
+    // Would check visibility, but the new icon is not visible on smaller viewports.
+  });
+
+  test("Doesn't show a new icon when showNewIcon prop omitted", () => {
+    const { queryAllByTestId } = renderWithTheme(
+      <HomePageTabImageButton
+        label="Click me"
+        title={""}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
+      />,
+    );
+    expect(queryAllByTestId("new-icon")).toHaveLength(0);
   });
 });

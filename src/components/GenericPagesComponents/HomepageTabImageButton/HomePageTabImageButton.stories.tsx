@@ -22,7 +22,7 @@ export const HomePageTabImageButton: Story = {
     passiveImageSlug: "teacher-carrying-stuff-1023-oakgrey4",
     label: "Teaching Resources",
     isCurrent: false,
-    isLegacyLesson: false,
+    showNewIcon: false,
   },
   render: (args) => <Component {...args} />,
 };
