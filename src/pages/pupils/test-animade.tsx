@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import Lottie from "react-lottie-player";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { OakFlex, OakHeading } from "@oaknational/oak-components";
 import { useState } from "react";
@@ -23,7 +22,7 @@ const TestPage: NextPage = () => {
         Decrease size
       </button>
       <OakHeading tag="h1">local asset</OakHeading>
-      <Lottie loop animationData={lottieJson} play style={{ width }} />
+      <Player loop src={lottieJson} autoplay style={{ width }} />
       <OakHeading tag="h1">cloudinary asset loop</OakHeading>
       <Player
         src="https://res.cloudinary.com/oak-web-application/raw/upload/v1710780142/lotties/08_Ambient_HeadTilt_du99fc.json"
