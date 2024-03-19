@@ -60,6 +60,13 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
     }
   });
 
+  // useEffect(() => {
+  //   if (mobileThreadModalOpen) {
+  //     document.body.style.overflow = "hidden";
+  //   }
+  //   return () => (document.body.style.overflow = "unset");
+  // }, [mobileThreadModalOpen]);
+
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
@@ -69,12 +76,11 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
       $background={"white"}
       $position="fixed"
       $top={0}
-      $right={0}
       $height={"100%"}
-      $width={"100%"}
       $zIndex={"modalDialog"}
+      $display={["block", "none"]}
     >
-      <Box $position={"fixed"} $top={20} $right={16}>
+      <Box $position={"absolute"} $top={20} $right={16} $zIndex={"inFront"}>
         <Button
           label=""
           aria-label="Close Menu"
@@ -88,8 +94,10 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
       <Box
         $ml={16}
         $mt={32}
-        $display={["block", "none"]}
+        $mr={16}
         data-testid="mobile-thread-modal"
+        $height={"85%"}
+        $overflow={"scroll"}
       >
         <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-m">
           Highlight a thread
@@ -104,7 +112,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           onChange={handleSelectThread}
         >
           <Box>
-            <Box $mv={16}>
+            <Box $mv={16} $position={"relative"}>
               <Radio
                 aria-label={"None highlighted"}
                 value={""}
@@ -118,6 +126,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
               const highlightedUnits = highlightedUnitCount();
               return (
                 <Box
+                  $position={"relative"}
                   $ba={1}
                   $background={isSelectedMobile ? "black" : "white"}
                   $borderColor={isSelectedMobile ? "black" : "grey40"}
@@ -154,7 +163,6 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           </Box>
         </RadioGroup>
       </Box>
-
       <OakFlex
         $position={"fixed"}
         $width={"100%"}
@@ -200,15 +208,18 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                 data-testid="mobile-highlight-thread"
               />
               {selectedThread && (
-                <Box
-                  $textOverflow={"ellipsis"}
-                  $whiteSpace={"nowrap"}
-                  $overflow={"hidden"}
-                  data-testid="highlighted-threads-mobile"
-                >
-                  {selectedThread?.title} • {highlightedUnitCount()} units
-                  highlighted
-                </Box>
+                <OakFlex>
+                  <Box
+                    $textOverflow={"ellipsis"}
+                    $whiteSpace={"nowrap"}
+                    $overflow={"hidden"}
+                    data-testid="highlighted-threads-mobile"
+                    $width={"50%"}
+                  >
+                    {selectedThread?.title}
+                  </Box>
+                  <Box>• {highlightedUnitCount()} units highlighted</Box>
+                </OakFlex>
               )}
             </Box>
             <Box
