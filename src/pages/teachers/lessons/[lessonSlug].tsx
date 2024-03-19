@@ -43,7 +43,9 @@ export default function LessonOverviewCanonicalPage({
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <LessonOverview lesson={{ ...lesson, isCanonical: true }} />
+      <LessonOverview
+        lesson={{ ...lesson, isCanonical: true, isSpecialist: false }}
+      />
       <OakFlex $background={"pink50"} $width={"100%"}>
         <MaxWidth $pv={96}>
           <LessonAppearsIn headingTag="h2" {...pathwayGroups} />

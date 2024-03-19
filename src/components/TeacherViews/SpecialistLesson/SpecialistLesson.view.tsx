@@ -1,21 +1,16 @@
 import { FC } from "react";
 
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 
 type SpecialistLessonProps = {
-  curriculumData: SpecialistLessonOverviewData;
+  lesson: SpecialistLessonOverviewData;
 };
 
-export type SpecialistLessonOverviewData = Omit<
-  LessonOverviewPageData,
-  "keyStageSlug" | "keyStageTitle"
->;
-
-const SpecialistLesson: FC<SpecialistLessonProps> = ({ curriculumData }) => {
+const SpecialistLesson: FC<SpecialistLessonProps> = (props) => {
   return (
     <>
-      <LessonOverview lesson={{ ...curriculumData, isCanonical: false }} />
+      <LessonOverview lesson={{ ...props.lesson }} />
     </>
   );
 };
