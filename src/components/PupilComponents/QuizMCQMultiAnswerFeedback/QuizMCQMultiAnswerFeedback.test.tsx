@@ -4,6 +4,7 @@ import {
   QuizEngineContext,
   QuizEngineContextType,
 } from "../QuizEngineProvider";
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
 import { QuizMCQMultiAnswerFeedback } from "./QuizMCQMultiAnswerFeedback";
 
@@ -12,25 +13,11 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getQuizEngineContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: questionsArrayFixture[0],
-  currentQuestionIndex: 0,
-  numInteractiveQuestions: 0,
-  currentQuestionDisplayIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: (mode) => mode,
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
-  handleSubmitShortAnswer: () => {},
-  score: 0,
-  numQuestions: 1,
-});
+const getQuizEngineContext = (): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: questionsArrayFixture[0],
+    numQuestions: 1,
+  });
 
 describe("QuizMCQMultiAnswerFeedback", () => {
   it("renders all answers when currentQuestionData.question type is multiple choice", () => {

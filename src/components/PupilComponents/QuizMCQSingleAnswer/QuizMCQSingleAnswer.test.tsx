@@ -3,6 +3,8 @@ import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 
 import {
@@ -14,25 +16,11 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getContext = (): NonNullable<QuizEngineContextType> => ({
-  currentQuestionData: questionsArrayFixture[0],
-  currentQuestionIndex: 0,
-  numInteractiveQuestions: 0,
-  currentQuestionDisplayIndex: 0,
-  questionState: [
-    {
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    },
-  ],
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
-  score: 0,
-  numQuestions: 1,
-});
+const getContext = (): NonNullable<QuizEngineContextType> =>
+  createQuizEngineContext({
+    currentQuestionData: questionsArrayFixture[0],
+    numQuestions: 1,
+  });
 
 describe("QuizMCQSingleAnswer", () => {
   it("renders the question answers", () => {

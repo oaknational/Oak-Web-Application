@@ -16,6 +16,10 @@ const footerSections: FooterSections = {
     title: "Teachers",
     links: [
       {
+        text: "EYFS",
+        href: "/teachers/key-stages/early-years-foundation-stage/subjects",
+      },
+      {
         text: "Key stage 1",
         href: "/teachers/key-stages/ks1/subjects",
       },
@@ -39,13 +43,6 @@ const footerSections: FooterSections = {
       },
       { text: "Plan a lesson", type: "page", page: "lesson-planning" },
       { text: "Support your team", type: "page", page: "support-your-team" },
-      {
-        // text: "Teacher Hub (old)",
-        text: "Teacher Hub",
-        type: "page",
-        page: "teacher-hub",
-        icon: "external",
-      },
     ],
   },
   oak: {

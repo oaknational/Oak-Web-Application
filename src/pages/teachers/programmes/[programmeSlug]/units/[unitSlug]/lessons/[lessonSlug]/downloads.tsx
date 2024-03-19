@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -33,9 +34,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       seoProps={{
         ...getSeoProps({
           title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-          description: "Lesson downloads",
+          description:
+            "Select and download free lesson resources, including slide decks, worksheets and quizzes",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
+            curriculumData.programmeSlug
+          }/units/${curriculumData.unitSlug}/lessons/${
+            curriculumData.lessonSlug
+          }`,
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonDownloads isCanonical={false} lesson={curriculumData} />

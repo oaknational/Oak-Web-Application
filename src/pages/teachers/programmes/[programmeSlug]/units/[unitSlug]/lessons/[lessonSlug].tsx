@@ -27,19 +27,32 @@ export type LessonOverviewPageProps = {
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
+  const { lessonTitle, keyStageSlug, subjectTitle, tierTitle, examBoardTitle } =
+    curriculumData;
+
+  const getLessonData = () => {
+    if (tierTitle && examBoardTitle) {
+      return ` | ${tierTitle} | ${examBoardTitle}`;
+    } else if (tierTitle) {
+      return ` | ${tierTitle}`;
+    } else if (examBoardTitle) {
+      return ` | ${examBoardTitle}`;
+    } else return "";
+  };
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-          description: "Overview of lesson",
+          title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          description:
+            "View lesson content and choose resources to download or share",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
-      <LessonOverview lesson={{ ...curriculumData, isCanonical: false }} />
+      <LessonOverview
+        lesson={{ ...curriculumData, isCanonical: false, isSpecialist: false }}
+      />
     </AppLayout>
   );
 };

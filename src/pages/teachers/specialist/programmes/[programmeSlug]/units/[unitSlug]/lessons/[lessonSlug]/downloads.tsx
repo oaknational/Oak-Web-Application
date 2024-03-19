@@ -27,7 +27,6 @@ const SpecialistLessonDownloadsPage: NextPage<
           title: `Lesson Download: ${lesson.lessonTitle} | ${lesson.subjectTitle}`,
           description: "Lesson downloads",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <SpecialistLessonDownloads curriculumData={curriculumData} />

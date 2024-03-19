@@ -89,6 +89,7 @@ export type SpecialistProgrammeListingLinkProps = Omit<
 > & {
   page: "specialist-programme-index";
 };
+
 export type UnitListingLinkProps = {
   page: "unit-index";
   programmeSlug: string;
@@ -113,7 +114,10 @@ export type LessonListingLinkProps = {
   programmeSlug: string;
   unitSlug: string;
 };
-type SpecialistLessonListingLinkProps = Omit<LessonListingLinkProps, "page"> & {
+export type SpecialistLessonListingLinkProps = Omit<
+  LessonListingLinkProps,
+  "page"
+> & {
   page: "specialist-lesson-index";
 };
 
@@ -124,7 +128,7 @@ export type LessonOverviewLinkProps = {
   lessonSlug: string;
 };
 
-type SpecialistLessonOverviewLinkProps = Omit<
+export type SpecialistLessonOverviewLinkProps = Omit<
   LessonOverviewLinkProps,
   "page"
 > & {
@@ -144,7 +148,7 @@ export type LessonDownloadsLinkProps = {
   };
 };
 
-type SpecialistLessonDownloadsLinkProps = Omit<
+export type SpecialistLessonDownloadsLinkProps = Omit<
   LessonDownloadsLinkProps,
   "page"
 > & {
@@ -168,7 +172,10 @@ export type LessonShareLinkProps = {
   };
 };
 
-type SpecialistLessonShareLinkProps = Omit<LessonDownloadsLinkProps, "page"> & {
+export type SpecialistLessonShareLinkProps = Omit<
+  LessonDownloadsLinkProps,
+  "page"
+> & {
   page: "specialist-lesson-share";
 };
 

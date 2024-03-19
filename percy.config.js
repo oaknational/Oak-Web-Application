@@ -30,8 +30,15 @@ module.exports = {
     `,
   },
   discovery: {
+    concurrency: 6,
+    retry: true,
+    // Standard config.
     networkIdleTimeout: 750,
-    allowedHostnames: ["docs.google.com"],
+    allowedHostnames: [
+      "docs.google.com",
+      // "gstatic-fonts.thenational.academy",
+      // "sanity-asset-cdn.thenational.academy",
+    ],
     userAgent: "oak testing Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,

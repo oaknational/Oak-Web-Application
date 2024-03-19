@@ -1,11 +1,15 @@
-import { UnitListingData } from "../../node-lib/curriculum-api";
+type GenericUnitListingData<U> = {
+  units: U[][];
+};
 
-export const filterLearningTheme = (
+function filterLearningTheme<
+  U extends { learningThemes?: { themeSlug?: string | null }[] | null },
+>(
   themeSlug: string | undefined,
-  units: UnitListingData["units"],
-): UnitListingData["units"] => {
+  units: GenericUnitListingData<U>["units"],
+): GenericUnitListingData<U>["units"] {
   if (themeSlug) {
-    const filteredUnits = units.filter((unitVariant) =>
+    return units.filter((unitVariant) =>
       unitVariant.some(
         (unit) =>
           unit.learningThemes?.some(
@@ -13,9 +17,9 @@ export const filterLearningTheme = (
           ),
       ),
     );
-
-    return filteredUnits;
   } else {
     return units;
   }
-};
+}
+
+export default filterLearningTheme;

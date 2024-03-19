@@ -1,35 +1,35 @@
 import { z } from "zod";
 
-const contentGuidanceSchema = z.object({
+export const contentGuidanceSchema = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
   contentGuidanceArea: z.string(),
 });
 
-const misconceptionsAndCommonMistakesSchema = z.object({
+export const misconceptionsAndCommonMistakesSchema = z.object({
   misconception: z.string(),
   response: z.string(),
 });
 
-const teacherTipsSchema = z.object({
+export const teacherTipsSchema = z.object({
   teacherTip: z.string(),
 });
 
-const lessonEquipmentAndResourcesSchema = z.object({
+export const lessonEquipmentAndResourcesSchema = z.object({
   equipment: z.string(),
 });
 
-const keyLearningPointsSchema = z.object({
+export const keyLearningPointsSchema = z.object({
   keyLearningPoint: z.string().nullable(),
 });
 
 export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
 
-const copyrightContentSchema = z.object({
+export const copyrightContentSchema = z.object({
   copyrightInfo: z.string(),
 });
 
-const keywordsSchema = z.object({
+export const keywordsSchema = z.object({
   keyword: z.string(),
   description: z.string(),
 });
@@ -166,7 +166,7 @@ export const baseLessonOverviewSchema = z.object({
     .array(lessonEquipmentAndResourcesSchema)
     .nullable()
     .optional(),
-  additionalMaterialUrl: z.string().nullable(),
+  additionalMaterialUrl: z.string().nullable().optional(),
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),
@@ -252,3 +252,15 @@ export const legacyAssetObjectSchema = z
       .nullish(),
   })
   .nullish();
+
+export const lessonShareResourceSchema = z.object({
+  exists: z.boolean().nullable(),
+  type: z.enum([
+    "intro-quiz-questions",
+    "exit-quiz-questions",
+    "worksheet-pdf",
+    "video",
+  ]),
+  label: z.string(),
+  metadata: z.string().nullable(),
+});

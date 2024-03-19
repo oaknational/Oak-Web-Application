@@ -1,6 +1,6 @@
 import { AppHeaderBurgerMenuSection } from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 
-export const betaMenuSections: Array<AppHeaderBurgerMenuSection> = [
+export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
   {
     header: "Teachers",
     links: [
@@ -48,11 +48,12 @@ export const betaMenuSections: Array<AppHeaderBurgerMenuSection> = [
       },
       {
         linkTo: {
-          href: "https://teachers.thenational.academy/key-stages/early-years-foundation-stage",
+          page: "subject-index",
+          keyStageSlug: "early-years-foundation-stage",
         },
         text: "EYFS",
         new: false,
-        external: true,
+        external: false,
       },
       {
         linkTo: { href: "https://teachers.thenational.academy/specialist" },
@@ -65,12 +66,6 @@ export const betaMenuSections: Array<AppHeaderBurgerMenuSection> = [
         text: "Curriculum plans",
         new: false,
         external: false,
-      },
-      {
-        linkTo: { href: "https://teachers.thenational.academy/" },
-        text: "Teacher Hub (old)",
-        new: false,
-        external: true,
       },
       {
         linkTo: { page: "lesson-planning" },

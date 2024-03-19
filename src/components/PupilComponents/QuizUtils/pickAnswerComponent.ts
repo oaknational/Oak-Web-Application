@@ -1,5 +1,10 @@
+import { QuizOrderAnswer } from "../QuizOrderAnswer";
+import { QuizMatchAnswer } from "../QuizMatchAnswer";
+
 import {
+  isMatchAnswer,
   isMultiAnswerMCQ,
+  isOrderAnswer,
   isShortAnswer,
   isSingleAnswerMCQ,
 } from "./answerTypeDiscriminators";
@@ -17,6 +22,10 @@ export const pickAnswerComponent = (answers: AnswersSchema) => {
       return QuizMCQSingleAnswer;
     case isShortAnswer(answers):
       return QuizShortAnswer;
+    case isOrderAnswer(answers):
+      return QuizOrderAnswer;
+    case isMatchAnswer(answers):
+      return QuizMatchAnswer;
     default:
       return null;
   }

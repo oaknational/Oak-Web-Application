@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { OakFlex, OakForm } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
@@ -23,6 +23,8 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     updateQuestionMode,
     handleSubmitMCAnswer,
     handleSubmitShortAnswer,
+    handleSubmitOrderAnswer,
+    handleSubmitMatchAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
@@ -61,6 +63,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
             const a = answers?.["multiple-choice"]?.[i];
             a && selectedAnswers.push(a);
           }
+
           handleSubmitMCAnswer(selectedAnswers);
           break;
         }
@@ -71,15 +74,33 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           handleSubmitShortAnswer(answer);
           break;
         }
-        case "order":
-        case "match":
+        case "order": {
+          const answers = formData.getAll(
+            `order-${currentQuestionData?.questionUid}`,
+          );
+          handleSubmitOrderAnswer(answers.map(Number));
+
+          break;
+        }
+        case "match": {
+          const matches = formData.getAll(
+            `match-${currentQuestionData?.questionUid}-match`,
+          );
+          const choices = formData.getAll(
+            `match-${currentQuestionData?.questionUid}-choice`,
+          );
+          handleSubmitMatchAnswer(matches.map(String), choices.map(String));
+
+          break;
+        }
         default:
           break;
       }
     };
 
     innerRender = (
-      <OakForm
+      <OakBox
+        as="form"
         id={formId}
         onSubmit={handleSubmit}
         $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
@@ -89,7 +110,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
       >
         <OakFlex
           $flexDirection={"column"}
-          $gap={["space-between-m", "space-between-l", "space-between-xl"]}
+          $gap={"space-between-m"}
           $height={"100%"}
         >
           <QuizQuestionStem
@@ -102,7 +123,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
-      </OakForm>
+      </OakBox>
     );
   }
 

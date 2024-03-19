@@ -28,14 +28,14 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 import { NEW_COHORT } from "@/config/cohort";
+import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 
 export type UnitListingPageProps = {
@@ -83,32 +83,21 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
-  const tiersSEO = {
-    ...getSeoProps({
-      title: `${keyStageTitle} ${subjectTitle} tiers${paginationTitle}`,
-      description: `We have resources for tiers: ${tiers
-        .map((tier) => tier.tierTitle)
-        .join(", ")}`,
-    }),
-    ...{ noFollow: true, noIndex: true },
-  };
-
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning${paginationTitle}`,
-      description: "Programme units",
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources${paginationTitle}`,
+      description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   const trackUnitSelected = ({
     ...props
-  }: UnitListItemProps | IndividualSpecialistUnit) => {
+  }: UnitListItemProps | SpecialistUnit) => {
     // Temporary until tracking for specialist units
     const isSpecialistUnit = (
-      x: UnitListItemProps | IndividualSpecialistUnit,
-    ): x is IndividualSpecialistUnit => {
-      return "developmentalStageTitle" in x;
+      x: UnitListItemProps | SpecialistUnit,
+    ): x is SpecialistUnit => {
+      return "developmentStageTitle" in x;
     };
 
     if (!isSpecialistUnit(props)) {
@@ -125,15 +114,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   return (
-    <AppLayout
-      seoProps={
-        tierSlug
-          ? programmeSlug.includes(tierSlug)
-            ? unitsSEO
-            : tiersSEO
-          : unitsSEO
-      }
-    >
+    <AppLayout seoProps={unitsSEO}>
       <HeaderListing
         breadcrumbs={[
           {

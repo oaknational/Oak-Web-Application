@@ -5,6 +5,8 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
+import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+
 import { QuizShortAnswer } from "./QuizShortAnswer";
 
 import {
@@ -43,12 +45,11 @@ const getContext = (
   } = {},
 ): QuizEngineContextType => {
   const { mode = "init", feedback } = params;
-  return {
+  return createQuizEngineContext({
     currentQuestionData: quizQuestions?.find(
       (q) =>
         q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
     ),
-    currentQuestionIndex: 0,
     questionState: [
       {
         mode: mode,
@@ -57,15 +58,7 @@ const getContext = (
         offerHint: false,
       },
     ],
-    score: 0,
-    numQuestions: 0,
-    numInteractiveQuestions: 0,
-    currentQuestionDisplayIndex: 0,
-    updateQuestionMode: () => {},
-    handleSubmitMCAnswer: () => {},
-    handleSubmitShortAnswer: () => {},
-    handleNextQuestion: () => {},
-  };
+  });
 };
 
 /*

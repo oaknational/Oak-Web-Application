@@ -7,6 +7,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
+  SpecialistLessonShareLinkProps,
 } from "@/common-lib/urls";
 
 export const LessonOverviewHeaderShareAllButton: FC<
@@ -28,25 +29,37 @@ export const LessonOverviewHeaderShareAllButton: FC<
     analyticsUseCase,
     isShareable,
     onClickShareAll,
+    isSpecialist,
     ...boxProps
   } = props;
 
   const preselected = "all";
 
-  const linkProps: LessonShareLinkProps | LessonShareCanonicalLinkProps =
-    programmeSlug && unitSlug
+  const linkProps:
+    | LessonShareLinkProps
+    | LessonShareCanonicalLinkProps
+    | SpecialistLessonShareLinkProps =
+    programmeSlug && unitSlug && isSpecialist
       ? {
-          page: "lesson-share",
+          page: "specialist-lesson-share",
           lessonSlug,
           unitSlug,
           programmeSlug,
           query: { preselected },
         }
-      : {
-          page: "lesson-share-canonical",
-          lessonSlug,
-          query: { preselected },
-        };
+      : programmeSlug && unitSlug && !isSpecialist
+        ? {
+            page: "lesson-share",
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            query: { preselected },
+          }
+        : {
+            page: "lesson-share-canonical",
+            lessonSlug,
+            query: { preselected },
+          };
 
   return (
     <Flex
