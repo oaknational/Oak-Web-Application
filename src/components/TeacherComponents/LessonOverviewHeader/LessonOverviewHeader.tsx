@@ -31,6 +31,7 @@ export type LessonOverviewHeaderProps = {
   hasDownloadableResources: boolean;
   lessonSlug: string;
   lessonDescription?: string;
+  isSpecialist: boolean;
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;

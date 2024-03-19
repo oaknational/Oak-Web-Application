@@ -58,6 +58,7 @@ const TagPromotional: FC<TagPromotionalProps> = ({
       $width={tagDimMap[size].width}
       $height={tagDimMap[size].height}
       $position={"relative"}
+      data-testid={`new-icon`}
       {...flexProps}
     >
       <Svg

@@ -73,7 +73,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
           "We have resources for development stages: Building Understanding, Applying Learning",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
     it("renders the correct SEO details when no development stages programme", async () => {
@@ -97,7 +97,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
         ogDescription: "Specialist programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        robots: "index,follow",
       });
     });
   });

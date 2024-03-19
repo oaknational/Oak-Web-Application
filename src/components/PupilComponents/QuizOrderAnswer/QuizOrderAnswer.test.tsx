@@ -1,9 +1,9 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { act } from "@testing-library/react";
 import * as oakComponents from "@oaknational/oak-components";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
