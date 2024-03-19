@@ -1,3 +1,10 @@
+## [1.388.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.0...v1.388.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* replacing avo file with main branch ([b1c0c62](https://github.com/oaknational/Oak-Web-Application/commit/b1c0c62f905dc323db6486120bbd035095a1e4af))
+
 # [1.388.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.387.0...v1.388.0) (2024-03-19)
 
 
