@@ -17,6 +17,7 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -32,7 +33,13 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
       seoProps={{
         ...getSeoProps({
           title: `Lesson Share: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-          description: "Lesson share",
+          description:
+            "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
+            curriculumData.programmeSlug
+          }/units/${curriculumData.unitSlug}/lessons/${
+            curriculumData.lessonSlug
+          }`,
         }),
         ...{ noFollow: true, noIndex: true },
       }}

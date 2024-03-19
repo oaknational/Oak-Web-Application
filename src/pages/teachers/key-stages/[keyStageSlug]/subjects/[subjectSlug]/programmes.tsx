@@ -50,18 +50,55 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
       });
   };
 
-  const tiersSEO = {
+  // SEO Methods
+  const generateTierString = (tiers: Array<string>) => {
+    if (tiers.length === 2) {
+      return `${tiers[0]} or ${tiers[1]} tier`;
+    } else {
+      return `${tiers.slice(0, -1).join(", ")} or ${tiers.slice(-1)} tier`;
+    }
+  };
+  const tiers = programmes
+    .map((programme) => programme.tierTitle?.toLowerCase())
+    .filter(Boolean)
+    .filter((tier, index, self) => self.indexOf(tier) === index);
+
+  const hasExamBoards = programmes.some(
+    (programme) => programme.examBoardTitle,
+  );
+
+  const getSEOTitle = () => {
+    if (hasExamBoards) {
+      return `${keyStageTitle} ${subjectTitle} exam boards`;
+    } else {
+      return `${keyStageTitle} ${subjectTitle} tiers`;
+    }
+  };
+
+  const getSEODescription = () => {
+    if (tiers.length > 0 && hasExamBoards) {
+      return `Choose ${generateTierString(
+        tiers as string[],
+      )} from the most popular exam boards in GCSE ${subjectTitle}`;
+    } else if (tiers.length > 0) {
+      return `Choose ${generateTierString(
+        tiers as string[],
+      )} for GCSE ${subjectTitle}`;
+    } else {
+      return `Choose from the most popular exam boards in GCSE ${subjectTitle}`;
+    }
+  };
+
+  const programmesSEO = {
     ...getSeoProps({
-      title: `${keyStageTitle} ${subjectTitle} tiers`,
-      description: `We have resources for tiers: ${programmes
-        .filter((programme) => programme.tierTitle)
-        .map((programme) => programme.tierTitle)
-        .join(", ")}`,
+      title: getSEOTitle(),
+      description: getSEODescription(),
     }),
     ...{ noFollow: true, noIndex: true },
   };
+
   return (
-    <AppLayout seoProps={tiersSEO}>
+    <AppLayout seoProps={programmesSEO}>
       <HeaderListing
         breadcrumbs={[
           {
