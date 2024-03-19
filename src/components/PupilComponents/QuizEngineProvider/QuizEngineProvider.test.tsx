@@ -194,16 +194,14 @@ describe("QuizEngineContext", () => {
     });
 
     it("should grade a multi answer mcq as correct if all of the pupilAnswers are correct", () => {
-      const multiQs = [...questionsArrayFixture].filter(
-        (question) => question.questionType === "multiple-choice",
+      const multiQs = structuredClone(
+        questionsArrayFixture.filter(
+          (question) => question.questionType === "multiple-choice",
+        ),
       );
-
       // set the first answer as also correct
-      if (multiQs[0]?.answers?.["multiple-choice"]?.[0]) {
-        multiQs[0].answers["multiple-choice"][0].answer_is_correct = true;
-      } else {
-        throw new Error("multiQs[0] is not properly defined");
-      }
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
+
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
       });
@@ -230,16 +228,12 @@ describe("QuizEngineContext", () => {
     });
 
     it("should grade a multi answer mcq as incorrect if only some of the pupilAnswers are correct", () => {
-      const multiQs = [...questionsArrayFixture].filter(
-        (question) => question.questionType === "multiple-choice",
+      const multiQs = structuredClone(
+        questionsArrayFixture.filter(
+          (question) => question.questionType === "multiple-choice",
+        ),
       );
-
-      // set the first answer as also correct
-      if (multiQs[0]?.answers?.["multiple-choice"]?.[0]) {
-        multiQs[0].answers["multiple-choice"][0].answer_is_correct = true;
-      } else {
-        throw new Error("multiQs[0] is not properly defined");
-      }
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -532,3 +526,8 @@ describe("useQuizEngineContext", () => {
     jest.restoreAllMocks();
   });
 });
+
+// https://github.com/jsdom/jsdom/issues/3363
+function structuredClone<T extends object>(incoming: T): T {
+  return JSON.parse(JSON.stringify(incoming));
+}
