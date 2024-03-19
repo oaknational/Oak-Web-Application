@@ -1,5 +1,5 @@
 query specialistUnitListing($programmeSlug: String!) {
-  specialistUnits: published_mv_specialist_1_0_1(
+  specialistUnits: published_mv_specialist_1_0_2(
     distinct_on: unit_slug
     where: { synthetic_programme_slug: { _eq: $programmeSlug } }
   ) {
