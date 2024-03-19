@@ -10,7 +10,7 @@ import React, {
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { invariant } from "../pupilUtils/invariant";
 
-import {
+import type {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -28,7 +28,12 @@ export type QuizEngineProps = {
 };
 
 export type QuestionFeedbackType = "correct" | "incorrect" | null;
-export type QuestionModeType = "init" | "input" | "grading" | "feedback";
+export type QuestionModeType =
+  | "init"
+  | "incomplete"
+  | "input"
+  | "grading"
+  | "feedback";
 
 type QuestionState = {
   mode: QuestionModeType;
