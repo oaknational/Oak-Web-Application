@@ -103,7 +103,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       seoProps={{
         ...getSeoProps({
           title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}${paginationTitle}`,
-          description: "Lessons in Unit",
+          description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
         ...{ noFollow: true, noIndex: true },
       }}
