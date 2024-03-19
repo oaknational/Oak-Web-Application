@@ -1,3 +1,5 @@
+import { useMemo, useState } from "react";
+import { isArray } from "lodash";
 import {
   OakBox,
   OakDraggableFeedback,
@@ -5,14 +7,12 @@ import {
   OakQuizOrder,
   OakQuizOrderProps,
 } from "@oaknational/oak-components";
-import { useMemo, useState } from "react";
-import { isArray } from "lodash";
 
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+import { invariant } from "../pupilUtils/invariant";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
-import OakError from "@/errors/OakError";
 
 export type QuizOrderAnswerProps = {
   onInitialChange?: () => void;
@@ -84,7 +84,7 @@ export const QuizOrderAnswer = ({
           invariant(currentFeedback, "feedback is missing");
 
           return (
-            <OakDroppable key={item.id} $mb="space-between-xs">
+            <OakDroppable key={item.id} $mb="space-between-s">
               <OakDraggableFeedback
                 feedback={currentFeedback}
                 data-testid="order-item-feedback"
@@ -115,16 +115,3 @@ export const QuizOrderAnswer = ({
     </OakBox>
   );
 };
-
-/**
- * Throws if condition is false
- * while narrowing the type to something truthy
- */
-function invariant(condition: unknown, message: string): asserts condition {
-  if (!condition) {
-    throw new OakError({
-      code: "misc/unexpected-type",
-      meta: { message },
-    });
-  }
-}
