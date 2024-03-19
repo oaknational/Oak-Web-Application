@@ -1,3 +1,12 @@
+## [1.386.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.1...v1.386.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* add id to necessary anchor target props ([3b0cf0a](https://github.com/oaknational/Oak-Web-Application/commit/3b0cf0a9bfc79ba90c4982f2e2dfd2de48a8deef))
+* made anchor target id required ([a75e316](https://github.com/oaknational/Oak-Web-Application/commit/a75e31605ea772937e83eb0b74de208a6a2480f1))
+* make id optional ([6cc577e](https://github.com/oaknational/Oak-Web-Application/commit/6cc577e48460e5308d112caac562bf7fba12bc87))
+
 ## [1.386.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.0...v1.386.1) (2024-03-19)
 
 # [1.386.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.385.0...v1.386.0) (2024-03-19)
