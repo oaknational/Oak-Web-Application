@@ -13,14 +13,16 @@ console.log("Percy base url:", baseUrl);
 // Support single string relative URLs, or objects with a `url` key.
 // https://docs.percy.io/docs/percy-snapshot#configuration
 // Make Percy wait for the Next app to load.
+
 const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
-  return {
+  /** @type {import('@percy/core/types/index').SnapshotOptions} */
+  const snapshotConfig = {
     url,
-    // Wait for a set time as a form of throttling between snapshot requests.
-    // waitForTimeout: 1000,
     // Wait for the Next app to load.
     waitForSelector: "#__next",
+    // waitForTimeout: 3000,
   };
+  return snapshotConfig;
 });
 
 const urls = snapshotRelativeUrls.map((relUrl) => {

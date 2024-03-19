@@ -5,6 +5,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
+  SpecialistLessonDownloadsLinkProps,
 } from "@/common-lib/urls";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
@@ -26,6 +27,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     track,
     analyticsUseCase,
     onClickDownloadAll,
+    isSpecialist,
     ...boxProps
   } = props;
 
@@ -37,20 +39,29 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
 
   const linkProps:
     | LessonDownloadsLinkProps
+    | SpecialistLessonDownloadsLinkProps
     | LessonDownloadsCanonicalLinkProps =
-    programmeSlug && unitSlug
+    programmeSlug && unitSlug && isSpecialist
       ? {
-          page: "lesson-downloads",
+          page: "specialist-lesson-downloads",
           lessonSlug,
           unitSlug,
           programmeSlug,
           query: { preselected },
         }
-      : {
-          page: "lesson-downloads-canonical",
-          lessonSlug,
-          query: { preselected },
-        };
+      : programmeSlug && unitSlug && !isSpecialist
+        ? {
+            page: "lesson-downloads",
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            query: { preselected },
+          }
+        : {
+            page: "lesson-downloads-canonical",
+            lessonSlug,
+            query: { preselected },
+          };
 
   return (
     <Box {...boxProps}>
