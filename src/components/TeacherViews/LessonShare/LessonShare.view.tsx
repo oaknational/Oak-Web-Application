@@ -8,7 +8,7 @@ import {
   getCommonPathway,
   getLessonShareBreadCrumb,
   getBreadcrumbsForSpecialistLessonPathway,
-  getBreadcrumbsForSpecialistShare,
+  getBreadCrumbForSpecialistShare,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
@@ -203,7 +203,7 @@ export function LessonShare(props: LessonShareProps) {
                     ...getBreadcrumbsForSpecialistLessonPathway(
                       specialistPathway,
                     ),
-                    ...getBreadcrumbsForSpecialistShare({
+                    ...getBreadCrumbForSpecialistShare({
                       lessonSlug,
                       programmeSlug,
                       unitSlug,

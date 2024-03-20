@@ -170,12 +170,12 @@ export const getBreadCrumbForSpecialistDownload = ({
     programmeSlug && unitSlug
       ? {
           oakLinkProps: {
-            page: "specialist-lesson-share",
+            page: "specialist-lesson-downloads",
             programmeSlug,
             unitSlug,
             lessonSlug,
           },
-          label: "Share",
+          label: "Downloads",
           disabled,
         }
       : null,
@@ -183,7 +183,7 @@ export const getBreadCrumbForSpecialistDownload = ({
   return nullableBreadcrumbs.filter(truthy);
 };
 
-export const getBreadcrumbsForSpecialistShare = ({
+export const getBreadCrumbForSpecialistShare = ({
   lessonSlug,
   programmeSlug,
   unitSlug,
