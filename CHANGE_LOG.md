@@ -1,3 +1,10 @@
+## [1.388.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.1...v1.388.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **PUPIL-478:** confirmic blocking the bottom nav in pupil lessons ([49836cd](https://github.com/oaknational/Oak-Web-Application/commit/49836cd3e44d54ca083ae67d15315f8f601e9a56))
+
 ## [1.388.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.0...v1.388.1) (2024-03-19)
 
 
