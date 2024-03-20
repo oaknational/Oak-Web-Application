@@ -155,6 +155,62 @@ export const getLessonShareBreadCrumb = ({
   }
 };
 
+export const getBreadCrumbForSpecialistDownload = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb[] => {
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    programmeSlug && unitSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-share",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: "Share",
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
+export const getBreadcrumbsForSpecialistShare = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb[] => {
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    programmeSlug && unitSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-share",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: "Share",
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
 export const getBreadcrumbsForSpecialistLessonPathway = (
   lesson: {
     lessonSlug: string;
@@ -165,7 +221,7 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
     disabled?: boolean;
     subjectTitle: string;
     subjectSlug: string;
-    developmentStageTitle: string;
+    developmentStageTitle?: string | null;
     disable?: boolean;
   } | null,
 ): Breadcrumb[] | [] => {

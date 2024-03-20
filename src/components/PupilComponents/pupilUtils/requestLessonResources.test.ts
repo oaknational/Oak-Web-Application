@@ -20,7 +20,10 @@ describe("requestLessonResources", () => {
   beforeEach(() => {
     getDownloadResourcesExistenceSpy = jest
       .spyOn(curriculumApi2023, "lessonDownloadsCanonical")
-      .mockResolvedValue(lessonDownloadsCanonicalResponse);
+      .mockResolvedValue({
+        ...lessonDownloadsCanonicalResponse,
+        isSpecialist: false,
+      });
   });
   afterEach(() => {
     getDownloadResourcesExistenceSpy.mockRestore();

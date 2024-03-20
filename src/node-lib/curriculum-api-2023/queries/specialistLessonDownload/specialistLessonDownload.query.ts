@@ -124,9 +124,12 @@ export const specialistLessonDownloadQuery =
 
     return {
       lesson: {
+        isSpecialist: true,
         subjectTitle: lesson.combined_programme_fields.subject,
         subjectSlug: lesson.combined_programme_fields.subject_slug,
         unitTitle: lesson.unit_title,
+        developmentStageTitle:
+          lesson.combined_programme_fields.developmentstage ?? "",
         unitSlug: unitSlug,
         programmeSlug: programmeSlug,
         isLegacy: false,
