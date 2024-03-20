@@ -12,6 +12,8 @@ import {
   LessonDownloadsLinkProps,
   LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
+  SpecialistLessonDownloadsLinkProps,
+  SpecialistLessonShareLinkProps,
 } from "@/common-lib/urls";
 
 export function LessonItemContainerLink({
@@ -22,6 +24,7 @@ export function LessonItemContainerLink({
   programmeSlug,
   preselected,
   page,
+  isSpecialist,
 }: {
   page: "share" | "download";
   resourceTitle: string;
@@ -30,6 +33,7 @@ export function LessonItemContainerLink({
   unitSlug: string | null;
   programmeSlug: string | null;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
+  isSpecialist: boolean;
 }) {
   const buttonProps: Pick<
     ButtonAsLinkProps,
@@ -48,10 +52,13 @@ export function LessonItemContainerLink({
     label: page === "share" ? "Share with pupils" : `Download ${resourceTitle}`,
   };
 
-  const shareLinkProps: LessonShareLinkProps | LessonShareCanonicalLinkProps =
-    programmeSlug && unitSlug
+  const shareLinkProps:
+    | LessonShareLinkProps
+    | LessonShareCanonicalLinkProps
+    | SpecialistLessonShareLinkProps =
+    isSpecialist && programmeSlug && unitSlug
       ? {
-          page: "lesson-share",
+          page: "specialist-lesson-share",
           lessonSlug,
           unitSlug,
           programmeSlug,
@@ -59,20 +66,31 @@ export function LessonItemContainerLink({
             ? { preselected }
             : undefined,
         }
-      : {
-          page: "lesson-share-canonical",
-          lessonSlug,
-          query: isPreselectedShareType(preselected)
-            ? { preselected }
-            : undefined,
-        };
+      : programmeSlug && unitSlug
+        ? {
+            page: "lesson-share",
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            query: isPreselectedShareType(preselected)
+              ? { preselected }
+              : undefined,
+          }
+        : {
+            page: "lesson-share-canonical",
+            lessonSlug,
+            query: isPreselectedShareType(preselected)
+              ? { preselected }
+              : undefined,
+          };
 
   const downloadLinkProps:
     | LessonDownloadsLinkProps
-    | LessonDownloadsCanonicalLinkProps =
-    programmeSlug && unitSlug
+    | LessonDownloadsCanonicalLinkProps
+    | SpecialistLessonDownloadsLinkProps =
+    isSpecialist && programmeSlug && unitSlug
       ? {
-          page: "lesson-downloads",
+          page: "specialist-lesson-downloads",
           lessonSlug,
           unitSlug,
           programmeSlug,
@@ -80,13 +98,23 @@ export function LessonItemContainerLink({
             ? { preselected }
             : undefined,
         }
-      : {
-          page: "lesson-downloads-canonical",
-          lessonSlug,
-          query: isPreselectedDownloadType(preselected)
-            ? { preselected }
-            : undefined,
-        };
+      : programmeSlug && unitSlug
+        ? {
+            page: "lesson-downloads",
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            query: isPreselectedDownloadType(preselected)
+              ? { preselected }
+              : undefined,
+          }
+        : {
+            page: "lesson-downloads-canonical",
+            lessonSlug,
+            query: isPreselectedDownloadType(preselected)
+              ? { preselected }
+              : undefined,
+          };
   const linkProps = page === "share" ? shareLinkProps : downloadLinkProps;
 
   return (

@@ -13,6 +13,7 @@ const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 const props: LessonItemContainerProps = {
   title: "Slide deck",
   downloadable: true,
+  isSpecialist: false,
   slugs: { lessonSlug, unitSlug, programmeSlug },
   anchorId: "slide-deck",
 };
