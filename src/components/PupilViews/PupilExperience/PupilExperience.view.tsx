@@ -8,6 +8,7 @@ import {
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   LessonEngineProvider,
+  LessonSection,
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
@@ -41,15 +42,15 @@ export type PupilExperienceViewProps = {
   curriculumData: PupilLessonOverviewData;
   hasWorksheet: boolean;
   backUrl?: string | null;
+  initialSection: LessonSection;
 };
 
 export const PupilPageContent = ({
   curriculumData,
   hasWorksheet,
   backUrl,
-}: PupilExperienceViewProps) => {
+}: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
-
   const {
     starterQuiz,
     exitQuiz,
@@ -117,7 +118,7 @@ const CookieConsentStyles = createGlobalStyle`
 
   // Hides the corner shadow
   > div {
-    display: none;  
+    display: none;
   }
 }
 `;
@@ -126,6 +127,7 @@ export const PupilExperienceView = ({
   curriculumData,
   hasWorksheet,
   backUrl,
+  initialSection,
 }: PupilExperienceViewProps) => {
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
@@ -140,7 +142,10 @@ export const PupilExperienceView = ({
     >
       <OakThemeProvider theme={oakDefaultTheme}>
         <CookieConsentStyles />
-        <LessonEngineProvider initialLessonReviewSections={availableSections}>
+        <LessonEngineProvider
+          initialLessonReviewSections={availableSections}
+          initialSection={initialSection}
+        >
           <OakBox $height={"100vh"}>
             {curriculumData.expired ? (
               <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
