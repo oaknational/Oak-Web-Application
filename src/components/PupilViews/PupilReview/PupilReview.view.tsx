@@ -13,6 +13,7 @@ import {
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -27,17 +28,16 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
+  const getSectionLinkProps = useGetSectionLinkProps();
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
+        element="a"
+        {...getSectionLinkProps("overview", updateCurrentSection)}
         iconName="arrow-right"
         isTrailingIcon
-        type="button"
         width={["100%", "max-content"]}
-        onClick={() => {
-          updateCurrentSection("overview");
-        }}
       >
         Lesson overview
       </OakPrimaryButton>

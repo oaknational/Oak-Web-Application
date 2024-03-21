@@ -227,6 +227,16 @@ module.exports = async (phase) => {
       unoptimized: isStaticBuild,
       domains: imageDomains,
     },
+    async rewrites() {
+      return {
+        beforeFiles: [
+          {
+            source: "/pupils/lessons/:lessonSlug",
+            destination: "/pupils/lessons/:lessonSlug/overview",
+          },
+        ],
+      };
+    },
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.

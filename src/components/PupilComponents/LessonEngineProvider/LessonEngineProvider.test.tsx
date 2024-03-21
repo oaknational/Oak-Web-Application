@@ -4,7 +4,10 @@ import { OakSpan } from "@oaknational/oak-components";
 
 import {
   LessonEngineProvider,
+  LessonSection,
   allLessonReviewSections,
+  isLessonReviewSection,
+  isLessonSection,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
@@ -26,10 +29,17 @@ jest.mock(
 );
 
 describe("LessonEngineProvider", () => {
-  const ProviderWrapper = ({ children }: { children: ReactNode }) => {
+  const ProviderWrapper = ({
+    children,
+    initialSection = "overview",
+  }: {
+    children: ReactNode;
+    initialSection?: LessonSection;
+  }) => {
     return (
       <LessonEngineProvider
         initialLessonReviewSections={allLessonReviewSections}
+        initialSection={initialSection}
       >
         {children}
       </LessonEngineProvider>
@@ -44,6 +54,7 @@ describe("LessonEngineProvider", () => {
     const { getByText } = render(
       <LessonEngineProvider
         initialLessonReviewSections={allLessonReviewSections}
+        initialSection="overview"
       >
         <OakSpan>Hello World</OakSpan>
       </LessonEngineProvider>,
@@ -159,7 +170,9 @@ describe("LessonEngineProvider", () => {
 
   it("tracks section results", () => {
     const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: ProviderWrapper,
+      wrapper: (props) => (
+        <ProviderWrapper initialSection="starter-quiz" {...props} />
+      ),
     });
 
     if (result.current === null) {
@@ -173,7 +186,7 @@ describe("LessonEngineProvider", () => {
     });
 
     expect(result.current.sectionResults).toEqual({
-      overview: expect.objectContaining({ grade: 0, numQuestions: 0 }),
+      "starter-quiz": expect.objectContaining({ grade: 0, numQuestions: 0 }),
     });
   });
 
@@ -272,5 +285,19 @@ describe("LessonEngineProvider", () => {
       pupilWorksheetAvailable: undefined,
       pupilWorksheetDownloaded: undefined,
     });
+  });
+});
+
+describe(isLessonReviewSection, () => {
+  it("returns true when the given section is a review section", () => {
+    expect(isLessonReviewSection("overview")).toEqual(false);
+    expect(isLessonReviewSection("starter-quiz")).toEqual(true);
+  });
+});
+
+describe(isLessonSection, () => {
+  it("returns true when the given string is a valid lesson section", () => {
+    expect(isLessonSection("overview")).toEqual(true);
+    expect(isLessonSection("banana")).toEqual(false);
   });
 });

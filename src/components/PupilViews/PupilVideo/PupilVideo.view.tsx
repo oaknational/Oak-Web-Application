@@ -19,6 +19,7 @@ import {
 import VideoPlayer, {
   VideoEventCallbackArgs,
 } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -37,6 +38,7 @@ export const PupilViewsVideo = ({
 }: PupilViewsVideoProps) => {
   const { completeSection, updateCurrentSection, updateSectionResult } =
     useLessonEngineContext();
+  const getSectionLinkProps = useGetSectionLinkProps();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
     signLanguageOn && videoWithSignLanguageMuxPlaybackId
@@ -68,10 +70,7 @@ export const PupilViewsVideo = ({
         <OakLessonTopNav
           backLinkSlot={
             <OakBackLink
-              type="button"
-              onClick={() => {
-                updateCurrentSection("overview");
-              }}
+              {...getSectionLinkProps("overview", updateCurrentSection)}
             />
           }
           heading="Lesson video"
@@ -82,9 +81,8 @@ export const PupilViewsVideo = ({
       bottomNavSlot={
         <OakLessonBottomNav>
           <OakPrimaryButton
-            onClick={() => {
-              completeSection("video");
-            }}
+            element="a"
+            {...getSectionLinkProps("overview", () => completeSection("video"))}
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon

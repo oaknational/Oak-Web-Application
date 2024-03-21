@@ -55,7 +55,7 @@ describe(PupilViewsLessonOverview, () => {
         </OakThemeProvider>,
       );
 
-      getByRole("button", { name }).click();
+      getByRole("link", { name }).click();
 
       expect(updateCurrentSection).toHaveBeenCalledWith(section);
     });

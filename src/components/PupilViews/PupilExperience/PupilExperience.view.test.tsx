@@ -83,6 +83,7 @@ describe("PupilExperienceView", () => {
           <PupilExperienceView
             curriculumData={lessonData}
             hasWorksheet={false}
+            initialSection="overview"
           />
         </PupilAnalyticsProvider>,
       );
@@ -114,6 +115,7 @@ describe("PupilExperienceView", () => {
             <PupilExperienceView
               curriculumData={lessonData}
               hasWorksheet={false}
+              initialSection="overview"
             />
           </PupilAnalyticsProvider>,
         );
@@ -138,7 +140,11 @@ describe("PupilExperienceView", () => {
 
     const { getByText } = render(
       <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView curriculumData={lessonData} hasWorksheet={false} />
+        <PupilExperienceView
+          curriculumData={lessonData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
       </PupilAnalyticsProvider>,
     );
 

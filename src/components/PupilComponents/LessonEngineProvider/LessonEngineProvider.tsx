@@ -5,7 +5,13 @@ import {
   memo,
   useReducer,
   Reducer,
+  useEffect,
 } from "react";
+
+import {
+  useLessonPopStateHandler,
+  useNavigateToSection,
+} from "../pupilUtils/lessonNavigation";
 
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
@@ -37,7 +43,7 @@ export const isLessonSection = (
 export function isLessonReviewSection(
   section: string,
 ): section is LessonReviewSection {
-  return lessonSections.includes(section as LessonReviewSection);
+  return allLessonReviewSections.includes(section as LessonReviewSection);
 }
 
 export type QuizResult = { grade: number; numQuestions: number };
@@ -177,16 +183,32 @@ export const useLessonEngineContext = () => {
 export type LessonEngineProviderProps = {
   children: ReactNode;
   initialLessonReviewSections: Readonly<LessonReviewSection[]>;
+  initialSection: LessonSection;
 };
 
 export const LessonEngineProvider = memo(
-  ({ children, initialLessonReviewSections }: LessonEngineProviderProps) => {
+  ({
+    children,
+    initialLessonReviewSections,
+    initialSection,
+  }: LessonEngineProviderProps) => {
     const [state, dispatch] = useReducer(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
-      currentSection: "overview",
+      currentSection: initialSection,
       lessonStarted: false,
       sections: {},
     });
+    const navigateToSection = useNavigateToSection();
+
+    // Sync the currentSection when the user navigates back/forward
+    useLessonPopStateHandler((section) => {
+      dispatch({ type: "setCurrentSection", section });
+    });
+
+    // Update the URL when `currentSection` changes
+    useEffect(() => {
+      navigateToSection(state.currentSection);
+    }, [navigateToSection, state.currentSection]);
 
     const { track } = usePupilAnalytics();
 

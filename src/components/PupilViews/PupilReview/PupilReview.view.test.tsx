@@ -41,9 +41,7 @@ describe("PupilReview", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(
-      getByRole("button", { name: /Lesson overview/i }),
-    ).toBeInTheDocument();
+    expect(getByRole("link", { name: /Lesson overview/i })).toBeInTheDocument();
   });
 
   it("displays a special message when the lesson is complete", () => {
