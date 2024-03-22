@@ -1,7 +1,7 @@
 import {
   getStaticPaths,
   getStaticProps,
-} from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+} from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
 jest.mock(
@@ -31,6 +31,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           programmeSlug: "ks123",
           unitSlug: "unitSlug",
           lessonSlug: "lessonSlug",
+          section: "overview",
         },
       });
 

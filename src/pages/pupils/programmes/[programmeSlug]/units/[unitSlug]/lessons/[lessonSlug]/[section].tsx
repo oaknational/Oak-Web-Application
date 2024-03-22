@@ -14,16 +14,22 @@ import {
 import {
   PupilExperienceView,
   PupilExperienceViewProps,
+  pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import {
+  isLessonReviewSection,
+  isLessonSection,
+} from "@/components/PupilComponents/LessonEngineProvider";
 
 const PupilsPage: NextPage<PupilExperienceViewProps> = ({
   curriculumData,
   hasWorksheet,
+  initialSection,
 }) => {
   return (
     <PupilAnalyticsProvider
@@ -32,6 +38,7 @@ const PupilsPage: NextPage<PupilExperienceViewProps> = ({
       <PupilExperienceView
         curriculumData={curriculumData}
         hasWorksheet={hasWorksheet}
+        initialSection={initialSection}
       />
     </PupilAnalyticsProvider>
   );
@@ -41,6 +48,7 @@ export type PupilPageURLParams = {
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
+  section: string;
 };
 
 export const getStaticPaths = async () => {
@@ -66,7 +74,14 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("context.params is undefined");
       }
-      const { lessonSlug, unitSlug, programmeSlug } = context.params;
+      const { lessonSlug, unitSlug, programmeSlug, section } = context.params;
+
+      // 404 if the section is not valid
+      if (!isLessonSection(section)) {
+        return {
+          notFound: true,
+        };
+      }
 
       const curriculumData = await curriculumApi2023.pupilLessonOverview({
         programmeSlug,
@@ -75,6 +90,16 @@ export const getStaticProps: GetStaticProps<
       });
 
       if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      // 404 if the lesson does not contain the given section
+      if (
+        isLessonReviewSection(section) &&
+        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+      ) {
         return {
           notFound: true,
         };
@@ -90,6 +115,7 @@ export const getStaticProps: GetStaticProps<
             transcriptSentences: transcriptSentences ?? [],
           },
           hasWorksheet,
+          initialSection: section,
         },
       };
 
