@@ -50,7 +50,8 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
           <OakFlex $flexDirection={["column", "row", "row"]}>
             <OakFlex
               $gap={["all-spacing-4", "all-spacing-0"]}
-              $maxWidth="all-spacing-11"
+              // $maxWidth="all-spacing-18"
+              // $height={"all-spacing-18"}
               $mr={"space-between-s"}
             >
               <SubjectIconBrushBorders
