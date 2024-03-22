@@ -2,7 +2,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
@@ -12,20 +11,17 @@ import {
 } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
-  PupilExperienceView,
   PupilExperienceViewProps,
   pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
+
+export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
 /**
  * Test URLs:
@@ -41,20 +37,6 @@ import {
  *
  *
  */
-
-const PupilsCanonicalPage: NextPage<PupilExperienceViewProps> = ({
-  curriculumData,
-  ...props
-}) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
-      <PupilExperienceView curriculumData={curriculumData} {...props} />
-    </PupilAnalyticsProvider>
-  );
-};
-
 type PupilCanonicalPageURLParams = {
   lessonSlug: string;
   section: string;
@@ -138,5 +120,3 @@ export const getStaticProps: GetStaticProps<
     },
   });
 };
-
-export default PupilsCanonicalPage;

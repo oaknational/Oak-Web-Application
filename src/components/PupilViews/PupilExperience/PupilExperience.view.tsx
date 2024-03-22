@@ -21,6 +21,10 @@ import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/
 import { PupilExpiredView } from "@/components/PupilViews/PupilExpired/PupilExpired.view";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -132,33 +136,37 @@ export const PupilExperienceView = ({
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
   return (
-    <PupilLayout
-      seoProps={{
-        ...getSeoProps({
-          title: curriculumData.lessonTitle,
-          description: curriculumData.pupilLessonOutcome,
-        }),
-      }}
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(curriculumData)}
     >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <CookieConsentStyles />
-        <LessonEngineProvider
-          initialLessonReviewSections={availableSections}
-          initialSection={initialSection}
-        >
-          <OakBox $height={"100vh"}>
-            {curriculumData.expired ? (
-              <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
-            ) : (
-              <PupilPageContent
-                curriculumData={curriculumData}
-                hasWorksheet={hasWorksheet}
-                backUrl={backUrl}
-              />
-            )}
-          </OakBox>
-        </LessonEngineProvider>
-      </OakThemeProvider>
-    </PupilLayout>
+      <PupilLayout
+        seoProps={{
+          ...getSeoProps({
+            title: curriculumData.lessonTitle,
+            description: curriculumData.pupilLessonOutcome,
+          }),
+        }}
+      >
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <CookieConsentStyles />
+          <LessonEngineProvider
+            initialLessonReviewSections={availableSections}
+            initialSection={initialSection}
+          >
+            <OakBox $height={"100vh"}>
+              {curriculumData.expired ? (
+                <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+              ) : (
+                <PupilPageContent
+                  curriculumData={curriculumData}
+                  hasWorksheet={hasWorksheet}
+                  backUrl={backUrl}
+                />
+              )}
+            </OakBox>
+          </LessonEngineProvider>
+        </OakThemeProvider>
+      </PupilLayout>
+    </PupilAnalyticsProvider>
   );
 };

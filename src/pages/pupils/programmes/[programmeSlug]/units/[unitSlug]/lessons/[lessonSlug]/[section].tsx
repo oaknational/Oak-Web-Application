@@ -2,7 +2,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
@@ -12,37 +11,16 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import {
-  PupilExperienceView,
   PupilExperienceViewProps,
   pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 
-const PupilsPage: NextPage<PupilExperienceViewProps> = ({
-  curriculumData,
-  hasWorksheet,
-  initialSection,
-}) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
-      <PupilExperienceView
-        curriculumData={curriculumData}
-        hasWorksheet={hasWorksheet}
-        initialSection={initialSection}
-      />
-    </PupilAnalyticsProvider>
-  );
-};
+export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
 export type PupilPageURLParams = {
   lessonSlug: string;
@@ -123,5 +101,3 @@ export const getStaticProps: GetStaticProps<
     },
   });
 };
-
-export default PupilsPage;
