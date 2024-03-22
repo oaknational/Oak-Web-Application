@@ -2,7 +2,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -14,20 +13,17 @@ import {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
-  PupilExperienceView,
   PupilExperienceViewProps,
   pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
+
+export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
 /**
  * Test URLs:
@@ -40,26 +36,6 @@ import {
  *
  *
  */
-
-const PupilsLegacyCanonicalPage: NextPage<PupilExperienceViewProps> = ({
-  curriculumData,
-  hasWorksheet,
-  backUrl,
-  initialSection,
-}) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
-      <PupilExperienceView
-        curriculumData={curriculumData}
-        hasWorksheet={hasWorksheet}
-        backUrl={backUrl}
-        initialSection={initialSection}
-      />
-    </PupilAnalyticsProvider>
-  );
-};
 
 type PupilLegacyCanonicalPageURLParams = {
   lessonSlug: string;
@@ -168,5 +144,3 @@ export const getStaticProps: GetStaticProps<
     },
   });
 };
-
-export default PupilsLegacyCanonicalPage;
