@@ -34,9 +34,9 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     subjectSlug,
     title,
     subjectTitle,
-    subjectIconBackgroundColor = "white",
+    subjectIconBackgroundColor = "aqua",
     breadcrumbs,
-    background = "aqua",
+    background = "aqua50",
     description,
   } = props;
 
@@ -44,19 +44,14 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakGrid>
         <OakGridArea $colSpan={[12, 6]}>
-          <OakSpan $mb="space-between-s" $color={"grey60"} $font={"heading-7"}>
-            {title}
-          </OakSpan>
           <OakFlex $flexDirection={["column", "row", "row"]}>
             <OakFlex
-              $gap={["all-spacing-4", "all-spacing-0"]}
-              // $maxWidth="all-spacing-18"
-              // $height={"all-spacing-18"}
-              $mr={"space-between-s"}
+              $mr={["space-between-s", "space-between-l"]}
+              $maxWidth={["all-spacing-13", "all-spacing-16"]}
+              $alignItems={"center"}
             >
               <SubjectIconBrushBorders
-                $pa={4}
-                containerMinWidth={[40, 60]}
+                $pa={16}
                 subjectSlug={subjectSlug}
                 $ma={"auto"}
                 isNew={false}
@@ -64,6 +59,13 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               />
             </OakFlex>
             <OakFlex $flexDirection={"column"}>
+              <OakSpan
+                $mb="space-between-s"
+                $color={"grey60"}
+                $font={"heading-7"}
+              >
+                {title}
+              </OakSpan>
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
               </OakHeading>
