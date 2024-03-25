@@ -24,6 +24,7 @@ const pupilLessonOverviewFixture = (
     transcriptSentences: ["This is a sentence.", "This is another sentence"],
     videoTitle: "Introduction to Islamic Geometry",
     isLegacy: false,
+    isSensitive: false,
     pupilLessonOutcome: undefined,
     expired: false,
     ...partial,
