@@ -44,15 +44,21 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakGrid>
         <OakGridArea $colSpan={[12, 6]}>
-          <OakFlex $flexDirection={["column", "row", "row"]}>
+          <OakFlex $flexDirection={["column", "column", "row"]}>
             <OakFlex
               $mr={["space-between-s", "space-between-l"]}
-              $maxWidth={["all-spacing-13", "all-spacing-16"]}
-              $alignItems={"center"}
+              $maxWidth={["all-spacing-13", "all-spacing-13", "all-spacing-16"]}
+              $alignItems={"flex-start"}
+              $mb={[
+                "space-between-m",
+                "space-between-m2",
+                "space-between-none",
+              ]}
             >
               <SubjectIconBrushBorders
                 $pa={16}
                 subjectSlug={subjectSlug}
+                containerMinWidth={[80, 80, 140]}
                 $ma={"auto"}
                 isNew={false}
                 color={subjectIconBackgroundColor}
@@ -69,11 +75,16 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
               </OakHeading>
+              <OakP
+                $mb="space-between-s"
+                $mt="space-between-s"
+                $font={"body-1"}
+              >
+                {description}
+              </OakP>
             </OakFlex>
           </OakFlex>
-          <OakP $mb="space-between-s" $mt="space-between-s" $font={"body-1"}>
-            {description}
-          </OakP>
+
           {/* Commented out until - I want to be able to download specialist curriculum maps LESQ-586 */}
           {/* {hasCurriculumDownload && (
             <HeaderListingCurriculumDownloadButton
