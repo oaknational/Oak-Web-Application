@@ -3,7 +3,12 @@ import { requestLessonResources } from "./requestLessonResources";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { pupilLessonOverviewFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilLessonOverview.fixture";
 
-jest.mock("@/utils/handleTranscript");
+jest.mock("@/utils/handleTranscript", () => {
+  return {
+    ...jest.requireActual("@/utils/handleTranscript"),
+    getCaptionsFromFile: jest.fn().mockResolvedValue([]),
+  };
+});
 
 describe("requestLessonResources", () => {
   const lessonDownloadsCanonicalResponse = {
@@ -35,9 +40,7 @@ describe("requestLessonResources", () => {
     });
 
     const res = await requestLessonResources({
-      curriculumData: {
-        ...pupilLessonOverviewFixture(),
-      },
+      curriculumData: pupilLessonOverviewFixture(),
     });
 
     expect(res.hasWorksheet).toBe(true);
@@ -50,9 +53,7 @@ describe("requestLessonResources", () => {
     });
 
     const res = await requestLessonResources({
-      curriculumData: {
-        ...pupilLessonOverviewFixture(),
-      },
+      curriculumData: pupilLessonOverviewFixture(),
     });
 
     expect(res.hasWorksheet).toBe(false);
@@ -61,16 +62,32 @@ describe("requestLessonResources", () => {
   // refactored into helper file
   it("tests for the presence of a worksheet", async () => {
     await requestLessonResources({
-      curriculumData: {
-        ...pupilLessonOverviewFixture({
-          lessonSlug: "lessonSlug",
-          isLegacy: false,
-        }),
-      },
+      curriculumData: pupilLessonOverviewFixture({
+        lessonSlug: "lessonSlug",
+        isLegacy: false,
+      }),
     });
 
     expect(getDownloadResourcesExistenceSpy).toHaveBeenCalledWith({
       lessonSlug: "lessonSlug",
     });
+  });
+
+  it("for legacy lessons it splits the transcript into sentences", async () => {
+    const transcriptSentences = [
+      "This is a sentence. This is another sentence.",
+    ];
+
+    const res = await requestLessonResources({
+      curriculumData: pupilLessonOverviewFixture({
+        isLegacy: true,
+        transcriptSentences,
+      }),
+    });
+
+    expect(res.transcriptSentences).toEqual([
+      "This is a sentence.",
+      "This is another sentence.",
+    ]);
   });
 });
