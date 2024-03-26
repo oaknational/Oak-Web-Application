@@ -8,7 +8,6 @@ query specialistUnitListing($programmeSlug: String!) {
     unit_title
     combined_programme_fields
     contains_copyright_content
-    expired
     threads
   }
 }
