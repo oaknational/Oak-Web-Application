@@ -1,3 +1,66 @@
+## [1.388.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.2...v1.388.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* update unit listing query to remove expired ([bb69bae](https://github.com/oaknational/Oak-Web-Application/commit/bb69bae940ba5659efbac1edd55d963f8bccf0a2))
+
+## [1.388.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.1...v1.388.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **PUPIL-478:** confirmic blocking the bottom nav in pupil lessons ([49836cd](https://github.com/oaknational/Oak-Web-Application/commit/49836cd3e44d54ca083ae67d15315f8f601e9a56))
+
+## [1.388.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.0...v1.388.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* replacing avo file with main branch ([b1c0c62](https://github.com/oaknational/Oak-Web-Application/commit/b1c0c62f905dc323db6486120bbd035095a1e4af))
+
+# [1.388.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.387.0...v1.388.0) (2024-03-19)
+
+
+### Features
+
+* index follow teacher journey ([68c98b4](https://github.com/oaknational/Oak-Web-Application/commit/68c98b49a7b1d9dd0f8710ac59ed5edf28460186))
+* remove next site map teacher journey exclusions ([6c993ba](https://github.com/oaknational/Oak-Web-Application/commit/6c993ba9093531a60d37bc4621e7ea986d4ce142))
+
+# [1.387.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.5...v1.387.0) (2024-03-19)
+
+
+### Features
+
+* update lesson listing SEO ([d6c8f67](https://github.com/oaknational/Oak-Web-Application/commit/d6c8f674112a4ce493d2eae4c777acce2571680a))
+* update lesson overview page seo ([c2656b2](https://github.com/oaknational/Oak-Web-Application/commit/c2656b2605366c2bbb99c8537b9c3c9f71ff9a2e))
+* update SEO for share and download pages ([4b403a0](https://github.com/oaknational/Oak-Web-Application/commit/4b403a0a7361619814daa59ac0645ceb36b89e8f))
+* update share page copy ([f4b4200](https://github.com/oaknational/Oak-Web-Application/commit/f4b4200480305251b8e4ab2ef315cd45b5f4073a))
+* update subject and programme page SEO ([5a5edee](https://github.com/oaknational/Oak-Web-Application/commit/5a5edeea57d95c8b62fe5d59d7d87f8cdc64ac0b))
+* update unit listing page seo ([1e143c8](https://github.com/oaknational/Oak-Web-Application/commit/1e143c870a03499b08b143150d87e1024dd10528))
+
+## [1.386.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.4...v1.386.5) (2024-03-19)
+
+
+### Bug Fixes
+
+* another change to copy ([f43a295](https://github.com/oaknational/Oak-Web-Application/commit/f43a2950a526614c5a05c95d60ff0b346db99a7d))
+* broken storyboard args for HomePageTabImageButton ([4327a78](https://github.com/oaknational/Oak-Web-Application/commit/4327a78d60061c198850015802d2b3ccb64f01b2))
+* broken SubjectPhasePicker tests ([c9c1e20](https://github.com/oaknational/Oak-Web-Application/commit/c9c1e207a5b39958ba414684f9acd7ff47f27944))
+* broken UnitTab test ([1347ddf](https://github.com/oaknational/Oak-Web-Application/commit/1347ddfc0d5875d05e380cf02b7534ad3bb65dc5))
+* removing new icon from home page tab and added some tests ([53a9f71](https://github.com/oaknational/Oak-Web-Application/commit/53a9f7166d2809c4a011665e607df00147beeada))
+* update copy to remove usage of 'new' ([a8dbaef](https://github.com/oaknational/Oak-Web-Application/commit/a8dbaefcb7b3a1137b1ac9316b5c6ce2614da4fd))
+* updated copy and heading hierarchy ([09d01bd](https://github.com/oaknational/Oak-Web-Application/commit/09d01bd19a9cc4549d57c3413ccbc72536d7e3c3))
+
+## [1.386.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.3...v1.386.4) (2024-03-19)
+
+## [1.386.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.2...v1.386.3) (2024-03-19)
+
+
+### Bug Fixes
+
+* develpomentstage optional ([5d07c1d](https://github.com/oaknational/Oak-Web-Application/commit/5d07c1dde1c87aea8952f7aa11bd6de5a38bbee2))
+
 ## [1.386.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.1...v1.386.2) (2024-03-19)
 
 

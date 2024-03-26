@@ -126,17 +126,23 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can close selection panels with escape button", async () => {
-    const { getByTitle, queryByText } = render(
+    const { getByTestId } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    await userEvent.click(getByTitle("Subject"));
-    expect(queryByText("New curriculum plans")).toBeTruthy();
+
+    // Open the subject dropdown
+    await userEvent.click(getByTestId("selectSubjectHeading"));
+    const curriculumHeadingElem = getByTestId("subjectDropdownHeading");
+    expect(curriculumHeadingElem).toBeVisible();
     await userEvent.keyboard("{Escape}");
-    expect(queryByText("New curriculum plans")).toBeNull();
-    await userEvent.click(getByTitle("Phase"));
-    expect(queryByText("Choose a school phase:")).toBeTruthy();
+    expect(curriculumHeadingElem).not.toBeVisible();
+
+    // Open the phase dropdown
+    await userEvent.click(getByTestId("selectPhaseHeading"));
+    const schoolPhaseHeadingElem = getByTestId("phaseDropdownHeading");
+    expect(schoolPhaseHeadingElem).toBeVisible();
     await userEvent.keyboard("{Escape}");
-    expect(queryByText("Choose a school phase:")).toBeNull();
+    expect(schoolPhaseHeadingElem).not.toBeVisible();
   });
 
   test("user clicks View without complete selection and gets error", async () => {

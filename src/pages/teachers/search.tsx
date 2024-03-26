@@ -60,7 +60,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
 
           description: "Search for Free Teaching Resources",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
       $background="grey20"
     >

@@ -41,17 +41,10 @@ module.exports = {
       {
         userAgent: "*",
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
-        disallow: ["/teachers/programmes/", "/teachers/lessons/"],
       },
     ],
   },
   exclude: [
-    //Exclude lesson journey pages from the sitemap.
-    "/teachers/lessons",
-    "/teachers/lessons/*",
-    "/teachers/programmes",
-    "/teachers/programmes/*",
-    "/teachers/search",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",

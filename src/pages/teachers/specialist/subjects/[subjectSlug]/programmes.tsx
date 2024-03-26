@@ -26,7 +26,6 @@ const SEO = {
     title: `Free Specialist Teaching Resources for Lesson Planning`,
     description: "Specialist programmes",
   }),
-  ...{ noFollow: true, noIndex: true },
 };
 
 const SpecialistProgrammeListingPage: NextPage<

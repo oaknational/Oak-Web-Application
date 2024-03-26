@@ -36,7 +36,7 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   activeImageSlug: IllustrationSlug;
   passiveImageSlug: IllustrationSlug;
   isCurrent?: boolean;
-  isLegacyLesson?: boolean;
+  showNewIcon?: boolean;
 };
 
 export type HomePageNavTabImageButtonStylesProps = OpacityProps &
@@ -101,7 +101,7 @@ const HomePageTabImageButton = forwardRef<
     passiveImageSlug,
     isCurrent,
     title,
-    isLegacyLesson,
+    showNewIcon,
   } = props;
 
   const defaultTitle =
@@ -146,7 +146,7 @@ const HomePageTabImageButton = forwardRef<
             >
               {label}
             </HopePageTabButtonLabelWithScreenReaderTitle>
-            {!isLegacyLesson && (
+            {showNewIcon && (
               <TagPromotional
                 size={"small"}
                 $ml={3}

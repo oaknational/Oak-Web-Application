@@ -40,7 +40,6 @@ export default function LessonOverviewCanonicalPage({
           title: `Lesson: ${lesson.lessonTitle}`,
           description: "Overview of lesson",
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonOverview

@@ -35,16 +35,16 @@ const CurriculumTab: FC = () => {
                 Teachers & subject leads
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                New curriculum plans
+                Curriculum plans
               </OakHeading>
               <OakFlex $flexDirection={"column"}>
                 {" "}
                 <OakTypography $font={"body-1"}>
-                  Explore our new curriculum plans.
+                  All of our curriculum plans are:
                 </OakTypography>
                 <OakUL $mt="space-between-s" $font={"body-1"}>
                   <OakLI>National curriculum-aligned</OakLI>
-                  <OakLI>Primary and secondary sequences</OakLI>
+                  <OakLI>Sequenced across year groups</OakLI>
                   <OakLI>Designed by curriculum experts</OakLI>
                 </OakUL>
               </OakFlex>
