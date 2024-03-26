@@ -6,7 +6,6 @@ import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeader
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { OakColorName } from "@/styles/theme";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -60,17 +59,15 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <Flex $mb={[12, 0]} $flexDirection={"column"}>
         <Flex>
-          <Box $height={[80, 140]} $maxWidth={[80, 140]} $mr={[16, 32]}>
+          <Flex $mr={[16, 32]} $height={[80, 140]} $maxWidth={[80, 140]}>
             <SubjectIconBrushBorders
-              $pa={8}
+              $pa={16}
               subjectSlug={subjectSlug}
-              height={15}
-              width={20}
               $ma={"auto"}
               isNew={isNew}
               color={subjectIconBackgroundColor}
             />
-          </Box>
+          </Flex>
           <Flex $flexDirection={"column"}>
             <OakSpan
               $mb="space-between-ssx"
