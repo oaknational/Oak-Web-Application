@@ -1,3 +1,10 @@
+## [1.389.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.0...v1.389.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* allow null value in schema for asset download url ([d60b652](https://github.com/oaknational/Oak-Web-Application/commit/d60b65229d7dfcaf3f4faec5af0c7a4301ebc365))
+
 # [1.389.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.7...v1.389.0) (2024-03-26)
 
 
