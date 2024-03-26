@@ -1,3 +1,4 @@
+import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
   OakThemeProvider,
@@ -104,6 +105,21 @@ export const PupilPageContent = ({
   }
 };
 
+// Moves Confirmic modal clear of the bottom navigation
+// This should be removed once confirmic is replaced (PUPIL-478)
+const CookieConsentStyles = createGlobalStyle`
+#mtm-frame-container {
+  bottom: 70px!important;
+  height: 510px;
+  overflow: clip;
+
+  // Hides the corner shadow
+  > div {
+    display: none;  
+  }
+}
+`;
+
 export const PupilExperienceView = ({
   curriculumData,
   hasWorksheet,
@@ -113,6 +129,7 @@ export const PupilExperienceView = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
+      <CookieConsentStyles />
       <LessonEngineProvider initialLessonReviewSections={availableSections}>
         <OakBox $height={"100vh"}>
           {curriculumData.expired ? (

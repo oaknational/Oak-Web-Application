@@ -34,7 +34,6 @@ const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
         .map((stage) => stage.title)
         .join(", ")}`,
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   const unitsSEO = {
@@ -42,7 +41,6 @@ const SpecialistUnitListingPage: NextPage<SpecialistUnitListingPageProps> = ({
       title: `Free Specialist ${subjectTitle} Teaching Resources for Lesson Planning`,
       description: "Specialist programme units",
     }),
-    ...{ noFollow: true, noIndex: true },
   };
 
   return (

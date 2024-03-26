@@ -50,18 +50,18 @@ export const constructDownloadsArray = (
     forbidden: false,
   };
   const worksheetPdf = {
-    exists: lesson.worksheet_asset_object?.google_drive_downloadable_version
-      ? true
-      : false,
+    exists:
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string",
     type: "worksheet-pdf" as const,
     label: "Worksheet",
     ext: "pdf",
     forbidden: false,
   };
   const worksheetPptx = {
-    exists: lesson.worksheet_asset_object?.google_drive_downloadable_version
-      ? true
-      : false,
+    exists:
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string",
     type: "worksheet-pptx" as const,
     label: "Worksheet",
     ext: "pptx",
@@ -124,9 +124,12 @@ export const specialistLessonDownloadQuery =
 
     return {
       lesson: {
+        isSpecialist: true,
         subjectTitle: lesson.combined_programme_fields.subject,
         subjectSlug: lesson.combined_programme_fields.subject_slug,
         unitTitle: lesson.unit_title,
+        developmentStageTitle:
+          lesson.combined_programme_fields.developmentstage ?? "",
         unitSlug: unitSlug,
         programmeSlug: programmeSlug,
         isLegacy: false,

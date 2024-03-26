@@ -1,3 +1,73 @@
+## [1.389.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.1...v1.389.2) (2024-03-26)
+
+## [1.389.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.0...v1.389.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* allow null value in schema for asset download url ([d60b652](https://github.com/oaknational/Oak-Web-Application/commit/d60b65229d7dfcaf3f4faec5af0c7a4301ebc365))
+
+# [1.389.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.7...v1.389.0) (2024-03-26)
+
+
+### Features
+
+* **analytice-tracking:** add eyfs to keystage titles for tracking ([607de62](https://github.com/oaknational/Oak-Web-Application/commit/607de62dd3bdf700c201e531db60149ab4310d57))
+
+## [1.388.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.6...v1.388.7) (2024-03-26)
+
+## [1.388.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.5...v1.388.6) (2024-03-26)
+
+## [1.388.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.4...v1.388.5) (2024-03-26)
+
+
+### Bug Fixes
+
+* **PUPIL-524:** missing line breaks in legacy lesson transcripts ([7090bbc](https://github.com/oaknational/Oak-Web-Application/commit/7090bbc1736f321276c88d61ca4a46737b54d622))
+
+## [1.388.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.3...v1.388.4) (2024-03-26)
+
+## [1.388.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.2...v1.388.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* update unit listing query to remove expired ([bb69bae](https://github.com/oaknational/Oak-Web-Application/commit/bb69bae940ba5659efbac1edd55d963f8bccf0a2))
+
+## [1.388.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.1...v1.388.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **PUPIL-478:** confirmic blocking the bottom nav in pupil lessons ([49836cd](https://github.com/oaknational/Oak-Web-Application/commit/49836cd3e44d54ca083ae67d15315f8f601e9a56))
+
+## [1.388.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.0...v1.388.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* replacing avo file with main branch ([b1c0c62](https://github.com/oaknational/Oak-Web-Application/commit/b1c0c62f905dc323db6486120bbd035095a1e4af))
+
+# [1.388.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.387.0...v1.388.0) (2024-03-19)
+
+
+### Features
+
+* index follow teacher journey ([68c98b4](https://github.com/oaknational/Oak-Web-Application/commit/68c98b49a7b1d9dd0f8710ac59ed5edf28460186))
+* remove next site map teacher journey exclusions ([6c993ba](https://github.com/oaknational/Oak-Web-Application/commit/6c993ba9093531a60d37bc4621e7ea986d4ce142))
+
+# [1.387.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.5...v1.387.0) (2024-03-19)
+
+
+### Features
+
+* update lesson listing SEO ([d6c8f67](https://github.com/oaknational/Oak-Web-Application/commit/d6c8f674112a4ce493d2eae4c777acce2571680a))
+* update lesson overview page seo ([c2656b2](https://github.com/oaknational/Oak-Web-Application/commit/c2656b2605366c2bbb99c8537b9c3c9f71ff9a2e))
+* update SEO for share and download pages ([4b403a0](https://github.com/oaknational/Oak-Web-Application/commit/4b403a0a7361619814daa59ac0645ceb36b89e8f))
+* update share page copy ([f4b4200](https://github.com/oaknational/Oak-Web-Application/commit/f4b4200480305251b8e4ab2ef315cd45b5f4073a))
+* update subject and programme page SEO ([5a5edee](https://github.com/oaknational/Oak-Web-Application/commit/5a5edeea57d95c8b62fe5d59d7d87f8cdc64ac0b))
+* update unit listing page seo ([1e143c8](https://github.com/oaknational/Oak-Web-Application/commit/1e143c870a03499b08b143150d87e1024dd10528))
+
 ## [1.386.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.386.4...v1.386.5) (2024-03-19)
 
 

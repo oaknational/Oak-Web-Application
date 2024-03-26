@@ -395,13 +395,16 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
           "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Lesson downloads",
+        description:
+          "Select and download free lesson resources, including slide decks, worksheets and quizzes",
         ogTitle:
           "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Lesson downloads",
+        ogDescription:
+          "Select and download free lesson resources, including slide decks, worksheets and quizzes",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "noindex,nofollow",
+        canonical:
+          "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
+        robots: "index,follow",
       });
     });
   });
