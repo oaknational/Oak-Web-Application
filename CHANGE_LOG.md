@@ -1,3 +1,10 @@
+# [1.389.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.7...v1.389.0) (2024-03-26)
+
+
+### Features
+
+* **analytice-tracking:** add eyfs to keystage titles for tracking ([607de62](https://github.com/oaknational/Oak-Web-Application/commit/607de62dd3bdf700c201e531db60149ab4310d57))
+
 ## [1.388.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.6...v1.388.7) (2024-03-26)
 
 ## [1.388.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.5...v1.388.6) (2024-03-26)
