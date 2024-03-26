@@ -36,6 +36,7 @@ const lessonShareQuery =
     return lessonShareSchema.parse({
       ...page,
       isLegacy: page?.lessonCohort === LEGACY_COHORT,
+      isSpecialist: false,
     });
   };
 

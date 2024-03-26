@@ -44,6 +44,7 @@ const specialistLessonDownloadsFixtures = (
     lesson: {
       expired: false,
       isLegacy: true,
+      isSpecialist: true,
       lessonSlug: "test-lesson-1",
       lessonTitle: "Test lesson",
       programmeSlug: "test-arts-l",

@@ -26,7 +26,7 @@ export const UnitListItemLessonCount = ({
           <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
             {!!lessonCount &&
               `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
-            {expired && ` Coming soon`}
+            {expired && `This unit is currently unavailable.`}
           </OakSpan>
         )}
 

@@ -41092,7 +41092,7 @@ export type SpecialistUnitListingQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_2', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, threads?: any | null }> };
+export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_2', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, threads?: any | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
@@ -41654,7 +41654,6 @@ export const SpecialistUnitListingDocument = gql`
     unit_title
     combined_programme_fields
     contains_copyright_content
-    expired
     threads
   }
 }
