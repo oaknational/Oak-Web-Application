@@ -11,7 +11,7 @@ export const pupilLessonOverviewCanonicalQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (lessons[0]?.isSensitive === true) {
+    if (lessons[0]?.isSensitive) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
