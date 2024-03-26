@@ -1,7 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakThemeProvider,
+  OakTooltipProps,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 import { ValueOf } from "next/dist/shared/lib/constants";
 
@@ -29,6 +33,12 @@ jest.mock("@oaknational/oak-components", () => {
     ...jest.requireActual("@oaknational/oak-components"),
     OakQuizMatch: () => null,
     OakQuizOrder: () => null,
+    OakTooltip: ({ children, tooltip }: OakTooltipProps) => (
+      <>
+        {children}
+        <div role="tooltip">{tooltip}</div>
+      </>
+    ),
   };
 });
 
