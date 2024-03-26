@@ -16,10 +16,13 @@ export const specialistLessonShareQueryResponseSchema = z.object({
   combined_programme_fields: z.object({
     subject_slug: z.string(),
     subject: z.string(),
+    developmentstage: z.string().nullish(),
   }),
 });
 
 export const specialistLessonShareSchema = z.object({
+  isSpecialist: z.literal(true),
+  developmentStageTitle: z.string().nullish(),
   programmeSlug: z.string(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),

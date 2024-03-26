@@ -1,3 +1,39 @@
+## [1.389.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.1...v1.389.2) (2024-03-26)
+
+## [1.389.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.0...v1.389.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* allow null value in schema for asset download url ([d60b652](https://github.com/oaknational/Oak-Web-Application/commit/d60b65229d7dfcaf3f4faec5af0c7a4301ebc365))
+
+# [1.389.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.7...v1.389.0) (2024-03-26)
+
+
+### Features
+
+* **analytice-tracking:** add eyfs to keystage titles for tracking ([607de62](https://github.com/oaknational/Oak-Web-Application/commit/607de62dd3bdf700c201e531db60149ab4310d57))
+
+## [1.388.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.6...v1.388.7) (2024-03-26)
+
+## [1.388.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.5...v1.388.6) (2024-03-26)
+
+## [1.388.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.4...v1.388.5) (2024-03-26)
+
+
+### Bug Fixes
+
+* **PUPIL-524:** missing line breaks in legacy lesson transcripts ([7090bbc](https://github.com/oaknational/Oak-Web-Application/commit/7090bbc1736f321276c88d61ca4a46737b54d622))
+
+## [1.388.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.3...v1.388.4) (2024-03-26)
+
+## [1.388.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.2...v1.388.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* update unit listing query to remove expired ([bb69bae](https://github.com/oaknational/Oak-Web-Application/commit/bb69bae940ba5659efbac1edd55d963f8bccf0a2))
+
 ## [1.388.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.1...v1.388.2) (2024-03-20)
 
 

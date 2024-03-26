@@ -44,6 +44,8 @@ export const SpecialistLessonSchema = z.object({
   hasCurriculumDownload: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   hasCopyrightMaterial: z.boolean().nullish(),
+  developmentStageSlug: z.string().nullish(),
+  developmentStageTitle: z.string().nullish(),
   developmentStage: z.string().nullish(),
 });
 
