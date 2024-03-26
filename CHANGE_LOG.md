@@ -1,3 +1,10 @@
+## [1.390.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.390.0...v1.390.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* do not exclude copyright from counts ([6ced917](https://github.com/oaknational/Oak-Web-Application/commit/6ced917e880b9b03efdbc59863e1eeed38160f4e))
+
 # [1.390.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.3...v1.390.0) (2024-03-26)
 
 
