@@ -9,6 +9,7 @@ export const SpecialistLessonDownloadFixture = (
   return {
     lesson: {
       lessonTitle: "Online safety",
+      isSpecialist: true,
       subjectTitle: "Independent Living",
       subjectSlug: "independent-living",
       unitTitle: "Staying Safe - AL",

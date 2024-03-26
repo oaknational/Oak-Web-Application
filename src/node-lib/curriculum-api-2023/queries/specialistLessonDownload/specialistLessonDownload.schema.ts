@@ -39,10 +39,12 @@ export const specialistLessonDownloadQueryResponseSchema = z.array(
 
 export const SpecialistLessonDownloadSchema = z.object({
   lesson: z.object({
+    isSpecialist: z.literal(true),
     subjectTitle: z.string(),
     subjectSlug: z.string(),
     unitTitle: z.string(),
     unitSlug: z.string(),
+    developmentStageTitle: z.string().nullish(),
     programmeSlug: z.string(),
     isLegacy: z.boolean(),
     lessonTitle: z.string(),

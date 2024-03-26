@@ -233,6 +233,7 @@ export const lessonShareSchema = z.intersection(
   lessonPathwaySchema,
   z.object({
     isLegacy: z.boolean(),
+    isSpecialist: z.literal(false),
     lessonSlug: z.string(),
     lessonTitle: z.string(),
     shareableResources: z.array(lessonShareListSchema),
@@ -600,6 +601,7 @@ const curriculumApi = {
       expired: false,
       programmeSlug: addLegacySlugSuffix(share.programmeSlug),
       isLegacy: true,
+      isSpecialist: false,
       lessonCohort: LEGACY_COHORT,
     });
   },
@@ -619,6 +621,7 @@ const curriculumApi = {
       ...download,
       expired: false,
       nextLessons,
+      isSpecialist: false,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
       hasDownloadableResources: true,
@@ -641,6 +644,7 @@ const curriculumApi = {
       {
         ...downloads[0],
         expired: false,
+        isSpecialist: false,
         pathways: [],
         isLegacy: true,
         hasDownloadableResources: true,

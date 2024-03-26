@@ -5,6 +5,7 @@ export const SpecialistLessonShareFixture = (
 ): SpecialistLessonShareData => ({
   programmeSlug: "independent-living-applying-learning",
   lessonSlug: "online-safety-c5gk8r",
+  isSpecialist: true,
   lessonTitle: "Online Safety",
   unitSlug: "staying-safe-al-5556",
   unitTitle: "Staying Safe",
