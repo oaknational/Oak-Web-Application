@@ -37,6 +37,7 @@ export interface LessonItemContainerProps {
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
+  isSpecialist: boolean;
 }
 
 const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
@@ -86,6 +87,7 @@ export const LessonItemContainer = forwardRef<
             resourceTitle={lowerCaseTitle}
             onClick={onDownloadButtonClick}
             preselected={preselectedDownload}
+            isSpecialist={props.isSpecialist}
             {...slugs}
           />
         )}
@@ -95,6 +97,7 @@ export const LessonItemContainer = forwardRef<
             resourceTitle={lowerCaseTitle}
             onClick={onDownloadButtonClick}
             preselected={preselectedShare}
+            isSpecialist={props.isSpecialist}
             {...slugs}
           />
         )}
