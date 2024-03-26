@@ -68,8 +68,11 @@ export const specialistLessonShareQuery =
       unitTitle: lesson.unit_title,
       subjectSlug: lesson.combined_programme_fields.subject_slug,
       subjectTitle: lesson.combined_programme_fields.subject,
+      developmentStageTitle:
+        lesson.combined_programme_fields.developmentstage ?? "",
       expired: lesson.expired,
       isLegacy: true,
+      isSpecialist: true,
       shareableResources,
     };
   };

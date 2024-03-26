@@ -6,6 +6,7 @@ const lessonDownloadsFixture2023 = (
   return {
     expired: false,
     isLegacy: false,
+    isSpecialist: false,
     lessonCohort: "2023-2024",
     lessonSlug: "transverse-waves",
     lessonTitle: "Transverse waves",
