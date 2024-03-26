@@ -41628,14 +41628,14 @@ export const DevelopmentStagesDocument = gql`
 export const SpecialistLessonCountDocument = gql`
     query specialistLessonCount($unit_slug: String!) {
   specialistUnitLessonCount: published_mv_specialist_1_0_2_aggregate(
-    where: {unit_slug: {_eq: $unit_slug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {unit_slug: {_eq: $unit_slug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
     }
   }
   specialistUnitExpiredLessonCount: published_mv_specialist_1_0_2_aggregate(
-    where: {unit_slug: {_eq: $unit_slug}, contains_copyright_content: {_eq: false}, expired: {_is_null: false}}
+    where: {unit_slug: {_eq: $unit_slug}, expired: {_is_null: false}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
