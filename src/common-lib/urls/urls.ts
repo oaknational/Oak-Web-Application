@@ -1,20 +1,20 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
-import {
-  PreselectedDownloadType,
-  PreselectedShareType,
-} from "../../components/TeacherComponents/types/downloadAndShare.types";
-import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import isBrowser from "../../utils/isBrowser";
-import errorReporter from "../error-reporter";
-import OakError from "../../errors/OakError";
-import getBrowserConfig from "../../browser-lib/getBrowserConfig";
-
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
 
+import { PageNameValueType } from "@/browser-lib/avo/Avo";
+import isBrowser from "@/utils/isBrowser";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { SearchQuery } from "@/context/Search/search.types";
+import { SpecialistPreselectedType } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
+import {
+  PreselectedDownloadType,
+  PreselectedShareType,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 const reportError = errorReporter("urls.ts");
 
@@ -174,9 +174,12 @@ export type LessonShareLinkProps = {
 
 export type SpecialistLessonShareLinkProps = Omit<
   LessonDownloadsLinkProps,
-  "page"
+  "page" | "query"
 > & {
   page: "specialist-lesson-share";
+  query?: {
+    preselected: SpecialistPreselectedType | null;
+  };
 };
 
 export type LessonShareCanonicalLinkProps = {
