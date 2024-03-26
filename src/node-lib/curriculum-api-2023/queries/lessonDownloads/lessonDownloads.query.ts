@@ -39,6 +39,7 @@ const lessonDownloadsQuery =
       ...page,
       nextLessons,
       isLegacy: false,
+      isSpecialist: false,
     });
   };
 

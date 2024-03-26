@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const preselectedResourceBaseType = z.union([
+export const preselectedResourceBaseType = z.union([
   z.literal("exit quiz"),
   z.literal("starter quiz"),
   z.literal("worksheet"),

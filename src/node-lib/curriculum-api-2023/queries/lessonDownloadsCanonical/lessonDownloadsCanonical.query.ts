@@ -33,6 +33,7 @@ const lessonDownloadsCanonicalQuery =
         ...res.lessonDownloadsCanonical[0],
         pathways: [],
         isLegacy: false,
+        isSpecialist: false,
       } as LessonDownloadsCanonical,
     );
 

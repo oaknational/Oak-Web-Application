@@ -19,6 +19,7 @@ export const SpecialistLessonDownloadsPage: Story = {
     curriculumData: {
       lesson: {
         expired: false,
+        isSpecialist: true,
         isLegacy: true,
         lessonSlug: "healthy-hugs-1",
         lessonTitle: "Healthy hugs",
