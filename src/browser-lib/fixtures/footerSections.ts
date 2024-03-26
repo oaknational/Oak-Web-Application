@@ -20,6 +20,10 @@ const footerSections: FooterSections = {
         href: "/teachers/key-stages/early-years-foundation-stage/subjects",
       },
       {
+        text: "Specialist",
+        href: "/teachers/specialist/subjects",
+      },
+      {
         text: "Key stage 1",
         href: "/teachers/key-stages/ks1/subjects",
       },
