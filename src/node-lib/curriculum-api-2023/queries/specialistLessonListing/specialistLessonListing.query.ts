@@ -54,6 +54,10 @@ const specialistLessonListingQuery =
             lessonTitle: lesson.lesson_title,
             subjectSlug: lesson.combined_programme_fields.subject_slug,
             subjectTitle: lesson.combined_programme_fields.subject,
+            developmentStageSlug:
+              lesson.combined_programme_fields.developmentstage_slug,
+            developmentStageTitle:
+              lesson.combined_programme_fields.developmentstage ?? "",
             unitSlug: lesson.unit_slug,
             programmeSlug: programmeSlug,
             programmeTitle: acc.programmeTitle,

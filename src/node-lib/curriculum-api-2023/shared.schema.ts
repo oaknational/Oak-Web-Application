@@ -219,6 +219,7 @@ export const baseLessonDownloadsSchema = z.object({
   downloads: lessonDownloadsListSchema,
   hasDownloadableResources: z.boolean(),
   expired: z.boolean().nullable(),
+  isSpecialist: z.literal(false),
 });
 
 export const lessonListSchema = z.array(
@@ -247,7 +248,7 @@ export const legacyAssetObjectSchema = z
     google_drive_downloadable_version: z
       .object({
         id: z.string(),
-        url: z.string(),
+        url: z.string().nullish(),
       })
       .nullish(),
   })

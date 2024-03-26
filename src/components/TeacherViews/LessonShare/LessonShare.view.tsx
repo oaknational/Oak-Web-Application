@@ -7,6 +7,8 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonShareBreadCrumb,
+  getBreadcrumbsForSpecialistLessonPathway,
+  getBreadCrumbForSpecialistShare,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
@@ -31,11 +33,13 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 
 type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
+        isSpecialist: false;
         expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
@@ -47,12 +51,18 @@ type LessonShareProps =
   | {
       isCanonical: false;
       lesson: LessonPathway & {
+        isSpecialist: false;
+        developmentStageTitle?: string | null;
         expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
       };
+    }
+  | {
+      isCanonical: false;
+      lesson: SpecialistLessonShareData;
     };
 
 const classroomActivityMap: Partial<
@@ -74,8 +84,30 @@ const pupilSubjectsLive = [
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, shareableResources, isLegacy, expired } =
-    lesson;
+  const {
+    lessonTitle,
+    lessonSlug,
+    shareableResources,
+    isLegacy,
+    expired,
+    isSpecialist,
+  } = lesson;
+
+  const specialistPathway =
+    isSpecialist && !props.isCanonical
+      ? {
+          lessonSlug,
+          lessonTitle,
+          unitSlug: props.lesson.unitSlug,
+          programmeSlug: props.lesson.programmeSlug,
+          unitTitle: props.lesson.unitTitle,
+          subjectTitle: props.lesson.subjectTitle,
+          subjectSlug: props.lesson.subjectSlug,
+          developmentStageTitle: props.lesson.developmentStageTitle,
+          disabled: false,
+        }
+      : null;
+
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -150,21 +182,35 @@ export function LessonShare(props: LessonShareProps) {
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-              }),
-              getLessonShareBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                disabled: true,
-              }),
-            ]}
+            breadcrumbs={
+              !isSpecialist
+                ? [
+                    ...getBreadcrumbsForLessonPathway(commonPathway),
+                    getLessonOverviewBreadCrumb({
+                      lessonTitle,
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                    }),
+                    getLessonShareBreadCrumb({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+                : [
+                    ...getBreadcrumbsForSpecialistLessonPathway(
+                      specialistPathway,
+                    ),
+                    ...getBreadCrumbForSpecialistShare({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+            }
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>
