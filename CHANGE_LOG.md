@@ -1,3 +1,10 @@
+## [1.388.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.4...v1.388.5) (2024-03-26)
+
+
+### Bug Fixes
+
+* **PUPIL-524:** missing line breaks in legacy lesson transcripts ([7090bbc](https://github.com/oaknational/Oak-Web-Application/commit/7090bbc1736f321276c88d61ca4a46737b54d622))
+
 ## [1.388.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.3...v1.388.4) (2024-03-26)
 
 ## [1.388.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.2...v1.388.3) (2024-03-26)
