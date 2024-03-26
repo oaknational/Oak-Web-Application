@@ -250,7 +250,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Slide deck") &&
                   hasDownloadableResources && (
                     <LessonItemContainer
-                      isSpecialist
+                      isSpecialist={isSpecialist}
                       ref={slideDeckSectionRef}
                       title={"Slide deck"}
                       downloadable={hasDownloadableResources}
@@ -270,7 +270,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
                 <LessonItemContainer
-                  isSpecialist
+                  isSpecialist={isSpecialist}
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
@@ -291,7 +291,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
                 {pageLinks.find((p) => p.label === "Video") && (
                   <LessonItemContainer
-                    isSpecialist
+                    isSpecialist={isSpecialist}
                     ref={videoSectionRef}
                     shareable={isLegacyLicense}
                     slugs={slugs}
@@ -313,7 +313,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Worksheet") && (
                   <LessonItemContainer
-                    isSpecialist
+                    isSpecialist={isSpecialist}
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
@@ -340,7 +340,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Starter quiz") && (
                   <LessonItemContainer
-                    isSpecialist
+                    isSpecialist={isSpecialist}
                     ref={starterQuizSectionRef}
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
@@ -367,7 +367,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (
                   <LessonItemContainer
-                    isSpecialist
+                    isSpecialist={isSpecialist}
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
@@ -394,7 +394,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Additional material") && (
                   <LessonItemContainer
-                    isSpecialist
+                    isSpecialist={isSpecialist}
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
