@@ -1,3 +1,18 @@
+# [1.390.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.3...v1.390.0) (2024-03-26)
+
+
+### Bug Fixes
+
+* isSensitve is nullable ([545b11b](https://github.com/oaknational/Oak-Web-Application/commit/545b11b91c37314dc37f1b9b9920212d24fd4fa2))
+* merge conflicts ([a75d039](https://github.com/oaknational/Oak-Web-Application/commit/a75d039ace0346aeb052814d48c1a650b5df6391))
+* updated sdk ([a845638](https://github.com/oaknational/Oak-Web-Application/commit/a8456381468a9efcd499f774a03a67ec49f53623))
+
+
+### Features
+
+* **lessons:** 404 lessons which are sensitive ([c973e58](https://github.com/oaknational/Oak-Web-Application/commit/c973e5856d3efd46ae09c6ed0d81c3c6b004f62f))
+* **lessons:** 404 lessons which are sensitive ([aa36412](https://github.com/oaknational/Oak-Web-Application/commit/aa364126e766aba6d0af90b75a505fecd83960ae))
+
 ## [1.389.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.2...v1.389.3) (2024-03-26)
 
 ## [1.389.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.1...v1.389.2) (2024-03-26)
