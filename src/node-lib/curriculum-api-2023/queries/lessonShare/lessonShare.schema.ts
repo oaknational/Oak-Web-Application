@@ -3,6 +3,7 @@ import { z } from "zod";
 import { lessonShareResourceSchema } from "../../shared.schema";
 
 export const lessonShareSchema = z.object({
+  isSpecialist: z.literal(false),
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
