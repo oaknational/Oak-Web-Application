@@ -98,11 +98,15 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(lessonResourcesToShare.length).toEqual(
         props.curriculumData.shareableResources.length,
       );
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
 
+      const exitQuizQuestions = screen.getByText("Exit quiz");
       expect(exitQuizQuestions).toBeInTheDocument();
-      expect(exitQuizQuestions).toHaveAttribute("name", "resources");
-      expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
+
+      // Temporary disabled until work is complete on pupil side
+      // const exitQuizQuestions = screen.getByLabelText("Exit quiz");
+      // expect(exitQuizQuestions).toBeInTheDocument();
+      // expect(exitQuizQuestions).toHaveAttribute("name", "resources");
+      // expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
       // Share buttons
       const shareButtonCopy = screen.getByRole("button", {
@@ -156,7 +160,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("selected resources count", () => {
-    it("should select all resources if user checks 'Select all'", async () => {
+    it.skip("should select all resources if user checks 'Select all'", async () => {
+      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
       const { getByRole } = render(<LessonSharePage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
@@ -169,7 +174,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizAnswers).toBeChecked();
     });
 
-    it("should deselect all resources if user deselects 'Select all'", async () => {
+    it.skip("should deselect all resources if user deselects 'Select all'", async () => {
+      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
       const { getByRole } = render(<LessonSharePage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
