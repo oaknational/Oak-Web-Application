@@ -29,6 +29,7 @@ jest.mock("../../sdk", () => {
             exit_quiz: 1,
             contains_copyright_content: false,
             unit_title: "Staying safe",
+            order_in_unit: 1,
           },
         ],
       }),
