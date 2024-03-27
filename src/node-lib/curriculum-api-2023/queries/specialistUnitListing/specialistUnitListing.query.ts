@@ -53,6 +53,7 @@ export const getExpandedSpecialistUnits = (
             unit.combined_programme_fields.developmentstage_slug || null,
           developmentStageTitle:
             unit.combined_programme_fields.developmentstage || null,
+          orderInProgramme: unit.order_in_programme,
         },
       ];
     }
@@ -162,6 +163,7 @@ export const getUnitListingPageData = (
     specialistUnits,
     specialistData,
   );
+
   const expandedDevelopmentStage = getExpandedDevelopmentStages(
     partialDevelopmentStages,
     developmentData,
@@ -170,7 +172,11 @@ export const getUnitListingPageData = (
   const themes = getThemes(specialistUnits);
 
   return {
-    units: expandedUnits,
+    units: expandedUnits.sort((a, b) => {
+      if (a && a[0] && b && b[0]) {
+        return a[0].orderInProgramme - b[0].orderInProgramme;
+      } else return 0;
+    }),
     developmentStage: expandedDevelopmentStage,
     programmeSlug: specialistUnits[0]?.synthetic_programme_slug,
     subjectSlug: specialistUnits[0]?.combined_programme_fields.subject_slug,

@@ -6,6 +6,7 @@ query specialistUnitListing($programmeSlug: String!) {
     synthetic_programme_slug
     unit_slug
     unit_title
+    order_in_programme
     combined_programme_fields
     contains_copyright_content
     threads
