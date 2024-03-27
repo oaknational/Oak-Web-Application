@@ -134,7 +134,7 @@ export const PupilExperienceView = ({
       seoProps={{
         ...getSeoProps({
           title: curriculumData.lessonTitle,
-          description: "Lesson description",
+          description: curriculumData.pupilLessonOutcome,
         }),
       }}
     >
