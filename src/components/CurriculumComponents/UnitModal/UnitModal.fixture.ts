@@ -1,4 +1,5 @@
-import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Unit } from "../CurriculumVisualiser";
+
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 
 const lessons: Lesson[] = [
