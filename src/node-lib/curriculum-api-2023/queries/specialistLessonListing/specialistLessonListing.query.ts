@@ -81,7 +81,7 @@ const specialistLessonListingQuery =
       );
 
     transformedLessonLising.lessons.sort(
-      (a, b) => a.orderInUnit! - b.orderInUnit!,
+      (a, b) => a.orderInUnit - b.orderInUnit,
     );
 
     return transformedLessonLising;
