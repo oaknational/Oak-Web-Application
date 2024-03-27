@@ -481,6 +481,15 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab data={data} examboardSlug={null} />,
     );
 
+    const yearOptions = (await queryAllByTestId(
+      "year-radio",
+    )) as HTMLInputElement[];
+
+    const year10Option = yearOptions.find((option) => option.value === "10");
+    if (!year10Option) {
+      throw new Error("No year 10 option found");
+    }
+
     const disciplineButtons = await findAllByTestId("discipline-button");
 
     if (
@@ -494,15 +503,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(disciplineButtons[0]).toHaveTextContent("All");
     expect(disciplineButtons[1]).toHaveTextContent("Biology");
     expect(disciplineButtons[2]).toHaveTextContent("Physics");
-
-    const yearOptions = (await queryAllByTestId(
-      "year-radio",
-    )) as HTMLInputElement[];
-
-    const year10Option = yearOptions.find((option) => option.value === "10");
-    if (!year10Option) {
-      throw new Error("No year 10 option found");
-    }
 
     // Check we only have 2 units for year 10 to start with.
     await userEvent.click(year10Option);
