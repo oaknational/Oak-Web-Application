@@ -1,3 +1,30 @@
+# [1.391.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.390.1...v1.391.0) (2024-03-27)
+
+
+### Bug Fixes
+
+* change flex to OakFlex ([f4d03ad](https://github.com/oaknational/Oak-Web-Application/commit/f4d03ad369d97ad1c98c4931732b6b0535746958))
+* made sure units highlighted visible when thread selected ([49a219f](https://github.com/oaknational/Oak-Web-Application/commit/49a219fcc4c84d02b62a308a19e9c0caf7c628de))
+* offset to units when sticky filtering ([80c155a](https://github.com/oaknational/Oak-Web-Application/commit/80c155ab5491fa881c36ee008fb930ad665824c5))
+* removed event listener for year group change ([98a1ceb](https://github.com/oaknational/Oak-Web-Application/commit/98a1cebccf5822df93b878bac1ae755fc9f85482))
+* removed left padding for sidebar filters on desktop ([c05b3f3](https://github.com/oaknational/Oak-Web-Application/commit/c05b3f35e9e6b0decc552f546ccf27d4c6aa58e0))
+* rerender on year group change and styling fixes ([d9665bd](https://github.com/oaknational/Oak-Web-Application/commit/d9665bd4a8db2a497550d8cc3a60b57d489c4211))
+* update colours on year group buttons ([7e2a4e5](https://github.com/oaknational/Oak-Web-Application/commit/7e2a4e5fda44f58294f771acdd67f5e21e699606))
+* update imports ([5f05cae](https://github.com/oaknational/Oak-Web-Application/commit/5f05caeecf0d0df5e1cde3453b79c7fb3218bbca))
+* update IO root margin and useEffect ([068d409](https://github.com/oaknational/Oak-Web-Application/commit/068d409d7a0557bc061ed0ced86cfc492194ec9c))
+* updated spacing and z index for mobile filters ([74942da](https://github.com/oaknational/Oak-Web-Application/commit/74942da8c3553d73758e0106b61f6025820dc13b))
+* updated sticky headers ([6a3bc6a](https://github.com/oaknational/Oak-Web-Application/commit/6a3bc6ae591f08534e308eccf3cb59dd30dc26d0))
+* updated when banner is displayed ([65e9a9d](https://github.com/oaknational/Oak-Web-Application/commit/65e9a9d2cac287be3957c55d41e7b5612a65480d))
+* updated year group to shallow routing ([4d2d435](https://github.com/oaknational/Oak-Web-Application/commit/4d2d4357980209f430560c702b2078c024db7610))
+
+
+### Features
+
+* add drop shadow for mobile filters ([89fd47c](https://github.com/oaknational/Oak-Web-Application/commit/89fd47cbcf4f15ac92f2597e80113c057338dbfa))
+* added intersection observer for mobile ([6e804ac](https://github.com/oaknational/Oak-Web-Application/commit/6e804ac02285c8330b0f8b5f1cf7c2d61f4fae90))
+* added mobile optimisation to curric visualiser ([a7ed98e](https://github.com/oaknational/Oak-Web-Application/commit/a7ed98ea057eafb17ad8a2b5f370291dbd204a66))
+* updated to auto scroll ([ff140c4](https://github.com/oaknational/Oak-Web-Application/commit/ff140c447e386862148e3c910d825ca8ee9b47b8))
+
 ## [1.390.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.390.0...v1.390.1) (2024-03-26)
 
 

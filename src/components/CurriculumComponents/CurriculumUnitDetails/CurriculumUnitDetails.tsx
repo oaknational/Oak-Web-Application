@@ -7,10 +7,11 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
+import { Thread } from "../CurriculumVisualiser";
+
 import Box from "@/components/SharedComponents/Box";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
-import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
 
 export type CurriculumUnitDetailsProps = {

@@ -1,10 +1,11 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
+import { Unit } from "../CurriculumVisualiser";
+
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
