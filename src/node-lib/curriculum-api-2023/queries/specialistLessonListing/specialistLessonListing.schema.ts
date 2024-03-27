@@ -23,6 +23,7 @@ export const specialistLessonQueryResponseSchema = z.array(
     worksheet_url: z.string().nullish(),
     video_mux_playback_id: z.string().nullish(),
     video_title: z.string().nullish(),
+    order_in_unit: z.number(),
   }),
 );
 
@@ -42,7 +43,7 @@ export const SpecialistLessonSchema = z.object({
   presentationCount: z.number().nullable(),
   worksheetCount: z.number().nullable(),
   hasCurriculumDownload: z.boolean().nullish(),
-  orderInUnit: z.number().nullish(),
+  orderInUnit: z.number(),
   hasCopyrightMaterial: z.boolean().nullish(),
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
