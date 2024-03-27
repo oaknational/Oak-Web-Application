@@ -56,10 +56,10 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: { href: "https://teachers.thenational.academy/specialist" },
+        linkTo: { page: "specialist-subject-index" },
         text: "Specialist",
         new: false,
-        external: true,
+        external: false,
       },
       {
         linkTo: { page: "curriculum-landing-page" },
