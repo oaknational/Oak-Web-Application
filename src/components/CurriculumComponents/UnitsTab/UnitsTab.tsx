@@ -51,6 +51,11 @@ interface Domain {
   domain_id: number;
 }
 
+interface Discipline {
+  id: number;
+  title: string;
+}
+
 interface Tier {
   tier: string;
   tier_slug: string;
@@ -58,6 +63,7 @@ interface Tier {
 
 interface YearSelection {
   [key: string]: {
+    discipline?: Discipline | null;
     subject?: Subject | null;
     domain?: Domain | null;
     tier?: Tier | null;
@@ -86,6 +92,7 @@ let yearData: {
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
+    disciplines: Discipline[];
   };
 } = {};
 let threadOptions: Thread[] = [];
@@ -144,6 +151,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           childSubjects: [],
           domains: [],
           tiers: [],
+          disciplines: [],
         };
         yearData[unit.year] = currentYearData;
       }
@@ -193,6 +201,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         });
       }
 
+      // Loop through tags array and populate disciplines.
+      unit.tags?.forEach((tag) => {
+        if (tag.category === "Discipline") {
+          if (
+            currentYearData?.disciplines.findIndex((d) => d.id === tag.id) ===
+            -1
+          ) {
+            currentYearData.disciplines.push({ id: tag.id, title: tag.title });
+          }
+        }
+      });
+
       // Check for duplicate unit slugs
 
       if (unitSlugs.has(unit.slug)) {
@@ -238,11 +258,21 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         });
       }
       filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+      // Sort disciplines
+      filters.disciplines.sort((a, b) => a.title.localeCompare(b.title));
+
+      // Add an "All" option if there are 2 or more disciplines. Set to -1 id as this shouldn't ever appear in the DB
+      const allDisciplineTag: Discipline = { id: -1, title: "All" };
+      if (filters.disciplines.length >= 2) {
+        filters.disciplines.unshift(allDisciplineTag);
+      }
+
       initialYearSelection[year] = {
         subject:
           filters.childSubjects.find(
             (s) => s.subject_slug === "combined-science",
           ) ?? null,
+        discipline: allDisciplineTag,
         domain: filters.domains.length ? filters.domains[0] : null,
         tier: filters.tiers.length ? filters.tiers[0] : null,
       };
@@ -280,6 +310,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
+  function handleSelectDiscipline(year: string, discipline: Discipline) {
+    const selection = { ...yearSelection[year] };
+    selection.discipline = discipline;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
   function handleSelectTier(year: string, tier: Tier) {
     const selection = { ...yearSelection[year] };
     selection.tier = tier;
@@ -298,6 +334,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   function isSelectedTier(year: string, tier: Tier) {
     return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
+  }
+
+  function isSelectedDiscipline(year: string, discipline: Discipline) {
+    return yearSelection[year]?.discipline?.id === discipline.id;
   }
 
   // Visibility helpers
@@ -335,6 +375,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     }
     const filterBySubject =
       !s.subject || s.subject.subject_slug === unit.subject_slug;
+    const filterByDiscipline =
+      s.discipline?.id == -1 ||
+      unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
     const filterByDomain =
       !s.domain ||
       s.domain.domain_id === 0 ||
@@ -350,7 +393,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       unit.tier === null &&
       unit.subject_parent === null &&
       duplicateUnitSlugs.has(unit.slug);
-    return filterBySubject && filterByDomain && filterByTier && !isDuplicate;
+    return (
+      filterBySubject &&
+      filterByDomain &&
+      filterByTier &&
+      filterByDiscipline &&
+      !isDuplicate
+    );
   }
 
   // Modal handlers
@@ -505,9 +554,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             {Object.keys(yearData)
               .filter((year) => !selectedYear || selectedYear === year)
               .map((year) => {
-                const { units, childSubjects, domains, tiers } = yearData[
-                  year
-                ] as (typeof yearData)[string];
+                const { units, childSubjects, domains, tiers, disciplines } =
+                  yearData[year] as (typeof yearData)[string];
                 return (
                   <Box
                     key={year}
@@ -525,6 +573,28 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                     >
                       Year {year}
                     </OakHeading>
+                    {disciplines?.length > 1 && (
+                      <Box>
+                        {disciplines.map((discipline, index) => (
+                          <Button
+                            $mb={20}
+                            $mr={20}
+                            background={
+                              isSelectedDiscipline(year, discipline)
+                                ? "black"
+                                : "white"
+                            }
+                            key={index}
+                            label={discipline.title}
+                            onClick={() =>
+                              handleSelectDiscipline(year, discipline)
+                            }
+                            size="small"
+                            data-testid="discipline-button"
+                          />
+                        ))}
+                      </Box>
+                    )}
                     {childSubjects.length > 0 && (
                       <Box>
                         {childSubjects.map((subject) => (

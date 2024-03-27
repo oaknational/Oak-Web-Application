@@ -78,6 +78,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          tags: null,
           threads: [
             {
               title: "Developing grammatical knowledge",
@@ -112,6 +113,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_slug: "english",
           tier: null,
           tier_slug: null,
+          tags: null,
           threads: [
             {
               title: "Aspiration",
@@ -207,6 +209,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -252,6 +255,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -338,6 +342,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "combined-science",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -364,6 +369,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "physics",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -414,6 +420,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -442,6 +449,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_slug: "english",
           tier: null,
           tier_slug: null,
+          tags: null,
           threads: [],
           title: "’A Superhero Like You!’: Reading and Writing",
           unit_options: [],
@@ -467,6 +475,62 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
+  test("user can filter units by discipline", async () => {
+    const data = curriculumUnitsTabFixture();
+    const { findAllByTestId, queryAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
+
+    const disciplineButtons = await findAllByTestId("discipline-button");
+
+    if (
+      !disciplineButtons[0] ||
+      !disciplineButtons[1] ||
+      !disciplineButtons[2]
+    ) {
+      throw new Error("Missing second subject button");
+    }
+
+    expect(disciplineButtons[0]).toHaveTextContent("All");
+    expect(disciplineButtons[1]).toHaveTextContent("Biology");
+    expect(disciplineButtons[2]).toHaveTextContent("Physics");
+
+    const yearOptions = (await queryAllByTestId(
+      "year-radio",
+    )) as HTMLInputElement[];
+
+    const year10Option = yearOptions.find((option) => option.value === "10");
+    if (!year10Option) {
+      throw new Error("No year 10 option found");
+    }
+
+    // Check we only have 2 units for year 10 to start with.
+    await userEvent.click(year10Option);
+    let unitCards;
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+
+    // Check we have 1 unit after clicking the Biology button.
+    await userEvent.click(disciplineButtons[1]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+      if (!data.units[1]?.title) {
+        throw new Error("No unit title in fixture");
+      }
+      expect(unitCards[0]).toHaveTextContent(data.units[1]?.title);
+    });
+
+    // Check we have 2 units after clicking the All button.
+    await userEvent.click(disciplineButtons[0]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+  });
+
   test("user can filter units by tier", async () => {
     const data = {
       units: [
@@ -489,6 +553,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "combined-science",
+          tags: null,
           threads: [],
           tier: "Foundation",
           tier_slug: "foundation",
@@ -503,6 +568,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
+          tags: null,
           threads: [],
           examboard: null,
           examboard_slug: null,
@@ -560,6 +626,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
+          tags: null,
           threads: [],
           examboard: null,
           examboard_slug: null,
@@ -622,6 +689,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          tags: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -678,6 +746,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent: "Science",
         subject_parent_slug: "science",
         subject_slug: "combined-science",
+        tags: null,
         threads: [],
         tier: "Foundation",
         tier_slug: "foundation",
@@ -709,6 +778,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent: "Science",
         subject_parent_slug: "science",
         subject_slug: "combined-science",
+        tags: null,
         threads: [],
         tier: "Foundation",
         tier_slug: "foundation",
