@@ -467,6 +467,62 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
+  test("user can filter units by discipline", async () => {
+    const data = curriculumUnitsTabFixture();
+    const { findAllByTestId, queryAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
+
+    const disciplineButtons = await findAllByTestId("discipline-button");
+
+    if (
+      !disciplineButtons[0] ||
+      !disciplineButtons[1] ||
+      !disciplineButtons[2]
+    ) {
+      throw new Error("Missing second subject button");
+    }
+
+    expect(disciplineButtons[0]).toHaveTextContent("All");
+    expect(disciplineButtons[1]).toHaveTextContent("Biology");
+    expect(disciplineButtons[2]).toHaveTextContent("Physics");
+
+    const yearOptions = (await queryAllByTestId(
+      "year-radio",
+    )) as HTMLInputElement[];
+
+    const year10Option = yearOptions.find((option) => option.value === "10");
+    if (!year10Option) {
+      throw new Error("No year 10 option found");
+    }
+
+    // Check we only have 2 units for year 10 to start with.
+    await userEvent.click(year10Option);
+    let unitCards;
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+
+    // Check we have 1 unit after clicking the Biology button.
+    await userEvent.click(disciplineButtons[1]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+      if (!data.units[1]?.title) {
+        throw new Error("No unit title in fixture");
+      }
+      expect(unitCards[0]).toHaveTextContent(data.units[1]?.title);
+    });
+
+    // Check we have 2 units after clicking the All button.
+    await userEvent.click(disciplineButtons[0]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+  });
+
   test("user can filter units by tier", async () => {
     const data = {
       units: [
