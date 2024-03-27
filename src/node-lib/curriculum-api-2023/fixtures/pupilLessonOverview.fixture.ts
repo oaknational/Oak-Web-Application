@@ -7,6 +7,7 @@ export const pupilLessonOverviewFixture = (
 ): PupilLessonOverviewPageData => {
   return {
     isLegacy: true,
+    isSensitive: false,
     lessonSlug:
       "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
     lessonTitle: "Adverbial complex sentences",

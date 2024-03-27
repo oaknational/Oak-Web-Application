@@ -3,7 +3,7 @@ query pupilLessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_5_0_0(
+  lesson: published_mv_lesson_overview_5_0_1(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -33,6 +33,7 @@ query pupilLessonOverview(
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
     isLegacy
+    isSensitive
     expired
   }
 }

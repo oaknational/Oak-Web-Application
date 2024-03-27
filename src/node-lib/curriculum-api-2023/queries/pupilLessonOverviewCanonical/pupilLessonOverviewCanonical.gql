@@ -1,5 +1,5 @@
 query pupilLessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_5_0_0(
+  lesson: published_mv_lesson_overview_5_0_1(
     where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     lessonSlug
@@ -25,6 +25,7 @@ query pupilLessonOverviewCanonical($lessonSlug: String!) {
     videoWithSignLanguageMuxPlaybackId
     transcriptSentences
     isLegacy
+    isSensitive
     expired
   }
 }
