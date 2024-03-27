@@ -11,6 +11,10 @@ export const pupilLessonOverviewCanonicalQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    if (lessons[0]?.isSensitive) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     // currently we assume that all lessons returned by the mv are identical for the same lessonSlug
     // this may change in future
     return pupilLessonOverviewSchema.parse(lessons[0]);

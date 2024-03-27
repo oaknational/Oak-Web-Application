@@ -1,3 +1,70 @@
+## [1.390.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.390.0...v1.390.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* do not exclude copyright from counts ([6ced917](https://github.com/oaknational/Oak-Web-Application/commit/6ced917e880b9b03efdbc59863e1eeed38160f4e))
+
+# [1.390.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.3...v1.390.0) (2024-03-26)
+
+
+### Bug Fixes
+
+* isSensitve is nullable ([545b11b](https://github.com/oaknational/Oak-Web-Application/commit/545b11b91c37314dc37f1b9b9920212d24fd4fa2))
+* merge conflicts ([a75d039](https://github.com/oaknational/Oak-Web-Application/commit/a75d039ace0346aeb052814d48c1a650b5df6391))
+* updated sdk ([a845638](https://github.com/oaknational/Oak-Web-Application/commit/a8456381468a9efcd499f774a03a67ec49f53623))
+
+
+### Features
+
+* **lessons:** 404 lessons which are sensitive ([c973e58](https://github.com/oaknational/Oak-Web-Application/commit/c973e5856d3efd46ae09c6ed0d81c3c6b004f62f))
+* **lessons:** 404 lessons which are sensitive ([aa36412](https://github.com/oaknational/Oak-Web-Application/commit/aa364126e766aba6d0af90b75a505fecd83960ae))
+
+## [1.389.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.2...v1.389.3) (2024-03-26)
+
+## [1.389.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.1...v1.389.2) (2024-03-26)
+
+## [1.389.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.389.0...v1.389.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* allow null value in schema for asset download url ([d60b652](https://github.com/oaknational/Oak-Web-Application/commit/d60b65229d7dfcaf3f4faec5af0c7a4301ebc365))
+
+# [1.389.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.7...v1.389.0) (2024-03-26)
+
+
+### Features
+
+* **analytice-tracking:** add eyfs to keystage titles for tracking ([607de62](https://github.com/oaknational/Oak-Web-Application/commit/607de62dd3bdf700c201e531db60149ab4310d57))
+
+## [1.388.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.6...v1.388.7) (2024-03-26)
+
+## [1.388.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.5...v1.388.6) (2024-03-26)
+
+## [1.388.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.4...v1.388.5) (2024-03-26)
+
+
+### Bug Fixes
+
+* **PUPIL-524:** missing line breaks in legacy lesson transcripts ([7090bbc](https://github.com/oaknational/Oak-Web-Application/commit/7090bbc1736f321276c88d61ca4a46737b54d622))
+
+## [1.388.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.3...v1.388.4) (2024-03-26)
+
+## [1.388.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.2...v1.388.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* update unit listing query to remove expired ([bb69bae](https://github.com/oaknational/Oak-Web-Application/commit/bb69bae940ba5659efbac1edd55d963f8bccf0a2))
+
+## [1.388.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.1...v1.388.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **PUPIL-478:** confirmic blocking the bottom nav in pupil lessons ([49836cd](https://github.com/oaknational/Oak-Web-Application/commit/49836cd3e44d54ca083ae67d15315f8f601e9a56))
+
 ## [1.388.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.388.0...v1.388.1) (2024-03-19)
 
 

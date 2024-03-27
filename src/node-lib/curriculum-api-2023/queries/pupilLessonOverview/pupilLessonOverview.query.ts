@@ -18,6 +18,10 @@ export const pupilLessonOverviewQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    if (lesson.isSensitive) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     if (res.lesson.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",

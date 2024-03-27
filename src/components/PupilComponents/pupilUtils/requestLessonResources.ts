@@ -1,6 +1,6 @@
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { getCaptionsFromFile } from "@/utils/handleTranscript";
+import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export const requestLessonResources = async ({
   curriculumData,
@@ -16,7 +16,7 @@ export const requestLessonResources = async ({
       return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
     }
 
-    return curriculumData.transcriptSentences;
+    return formatSentences(curriculumData.transcriptSentences);
   })();
 
   // Resolve the requests for the transcript and worksheet existence in parallel
