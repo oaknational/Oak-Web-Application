@@ -21,6 +21,7 @@ import {
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
@@ -45,13 +46,13 @@ export const PupilViewsLessonOverview = ({
 }: PupilViewsLessonOverviewProps) => {
   const {
     sectionResults,
-    updateCurrentSection,
     proceedToNextSection,
     lessonReviewSections,
     isLessonComplete,
     lessonStarted,
+    updateCurrentSection,
   } = useLessonEngineContext();
-
+  const getSectionLinkProps = useGetSectionLinkProps();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
@@ -179,44 +180,36 @@ export const PupilViewsLessonOverview = ({
             <OakFlex $gap="space-between-s" $flexDirection="column">
               {lessonReviewSections.includes("intro") && (
                 <OakLessonNavItem
-                  as="button"
+                  {...getSectionLinkProps("intro", updateCurrentSection)}
                   lessonSectionName="intro"
-                  onClick={() => updateCurrentSection("intro")}
                   progress={pickProgressForSection("intro")}
-                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("starter-quiz") && (
                 <OakLessonNavItem
-                  as="button"
+                  {...getSectionLinkProps("starter-quiz", updateCurrentSection)}
                   lessonSectionName="starter-quiz"
-                  onClick={() => updateCurrentSection("starter-quiz")}
                   progress={pickProgressForSection("starter-quiz")}
                   numQuestions={starterQuizNumQuestions}
                   grade={sectionResults["starter-quiz"]?.grade ?? 0}
                   data-testid="starter-quiz"
-                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("video") && (
                 <OakLessonNavItem
-                  as="button"
+                  {...getSectionLinkProps("video", updateCurrentSection)}
                   lessonSectionName="video"
-                  onClick={() => updateCurrentSection("video")}
                   progress={pickProgressForSection("video")}
-                  disabled={!isMounted}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
                 <OakLessonNavItem
-                  as="button"
+                  {...getSectionLinkProps("exit-quiz", updateCurrentSection)}
                   lessonSectionName="exit-quiz"
-                  onClick={() => updateCurrentSection("exit-quiz")}
                   progress={pickProgressForSection("exit-quiz")}
                   numQuestions={exitQuizNumQuestions}
                   grade={sectionResults["exit-quiz"]?.grade ?? 0}
                   data-testid="exit-quiz"
-                  disabled={!isMounted}
                 />
               )}
             </OakFlex>

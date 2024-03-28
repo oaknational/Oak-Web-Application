@@ -2,7 +2,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -14,15 +13,17 @@ import {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
-  PupilExperienceView,
   PupilExperienceViewProps,
+  pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+  isLessonReviewSection,
+  isLessonSection,
+} from "@/components/PupilComponents/LessonEngineProvider";
+
+export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
 /**
  * Test URLs:
@@ -36,27 +37,10 @@ import {
  *
  */
 
-const PupilsLegacyCanonicalPage: NextPage<PupilExperienceViewProps> = ({
-  curriculumData,
-  hasWorksheet,
-  backUrl,
-}) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
-      <PupilExperienceView
-        curriculumData={curriculumData}
-        hasWorksheet={hasWorksheet}
-        backUrl={backUrl}
-      />
-    </PupilAnalyticsProvider>
-  );
-};
-
 type PupilLegacyCanonicalPageURLParams = {
   lessonSlug: string;
   redirectFrom: string;
+  section: string;
 };
 
 export const getStaticPaths = async () => {
@@ -82,7 +66,14 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new OakError({ code: "urls/failed-to-resolve" });
       }
-      const { lessonSlug, redirectFrom } = context.params;
+      const { lessonSlug, redirectFrom, section } = context.params;
+
+      // 404 if the section is not valid
+      if (!isLessonSection(section)) {
+        return {
+          notFound: true,
+        };
+      }
 
       const redirectUrl = `${resolveOakHref({
         page: "classroom",
@@ -120,6 +111,16 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      // 404 if the lesson does not contain the given section
+      if (
+        isLessonReviewSection(section) &&
+        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+      ) {
+        return {
+          notFound: true,
+        };
+      }
+
       const backUrl = `${resolveOakHref({
         page: "classroom",
       })}/units/${redirectFrom}`;
@@ -135,6 +136,7 @@ export const getStaticProps: GetStaticProps<
           },
           hasWorksheet,
           backUrl,
+          initialSection: section,
         },
       };
 
@@ -142,5 +144,3 @@ export const getStaticProps: GetStaticProps<
     },
   });
 };
-
-export default PupilsLegacyCanonicalPage;
