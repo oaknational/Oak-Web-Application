@@ -15,7 +15,7 @@ import {
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonOverview } from "@/components/TeacherComponents/types/lesson.types";
+import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
@@ -48,7 +48,7 @@ const lessonIsSpecialist = (u: unknown): u is SpecialistLessonOverviewData => {
 };
 
 export type LessonOverviewProps = {
-  lesson: LessonOverview;
+  lesson: LessonOverviewAll;
 };
 
 // helper function to remove key learning points from the header in legacy lessons

@@ -35,7 +35,7 @@ export type LessonOverviewInPathway = LessonBase & {
   programmeSlug: string;
 };
 
-export type LessonOverview = { isSpecialist: boolean } & (
+export type LessonOverviewAll = { isSpecialist: boolean } & (
   | LessonOverviewCanonical
   | LessonOverviewInPathway
   | SpecialistLessonOverviewData

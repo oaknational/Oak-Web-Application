@@ -7,7 +7,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
-import { LessonOverview } from "@/components/TeacherComponents/types/lesson.types";
+import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
 
 export const generateLessonOverviewFromRaw = (
   rawLesson: unknown,
@@ -36,7 +36,7 @@ export const generateLessonOverviewFromRaw = (
 
   const lesson = parsedLessonOverview[0];
 
-  const transformedLesson: LessonOverview = {
+  const transformedLesson: LessonOverviewAll = {
     isLegacy: true,
     isSpecialist: true,
     isCanonical: false,
