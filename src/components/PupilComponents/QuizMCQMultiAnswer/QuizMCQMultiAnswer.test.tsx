@@ -78,7 +78,7 @@ describe("QuizMCQMultiAnswer", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer />
+          <QuizMCQMultiAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -94,7 +94,7 @@ describe("QuizMCQMultiAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer />
+          <QuizMCQMultiAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -125,7 +125,7 @@ describe("QuizMCQMultiAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContextFeedback}>
-          <QuizMCQMultiAnswer />
+          <QuizMCQMultiAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -150,7 +150,7 @@ describe("QuizMCQMultiAnswer", () => {
         <QuizEngineContext.Provider
           value={mockQuizEngineContextWithImageAnswers}
         >
-          <QuizMCQMultiAnswer />
+          <QuizMCQMultiAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );

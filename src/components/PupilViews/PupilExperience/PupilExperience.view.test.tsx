@@ -1,3 +1,5 @@
+import { OakTooltipProps } from "@oaknational/oak-components";
+
 import {
   PupilExperienceView,
   pickAvailableSectionsForLesson,
@@ -22,6 +24,18 @@ jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
 jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
   PupilExpiredView: jest.fn(() => "PupilExpiredView"),
 }));
+
+jest.mock("@oaknational/oak-components", () => {
+  return {
+    ...jest.requireActual("@oaknational/oak-components"),
+    OakTooltip: ({ children, tooltip }: OakTooltipProps) => (
+      <>
+        {children}
+        <div role="tooltip">{tooltip}</div>
+      </>
+    ),
+  };
+});
 
 const render = renderWithProviders();
 

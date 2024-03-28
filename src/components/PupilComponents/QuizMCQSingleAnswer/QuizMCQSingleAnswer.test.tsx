@@ -29,7 +29,7 @@ describe("QuizMCQSingleAnswer", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizMCQSingleAnswer />
+          <QuizMCQSingleAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
