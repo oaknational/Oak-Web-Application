@@ -39,6 +39,7 @@ export const SpecialistLessonListingPage: Story = {
           presentationCount: 1,
           worksheetCount: 2,
           hasCopyrightMaterial: false,
+          orderInUnit: 1,
         },
         {
           lessonSlug: "glitter-germs-lesson-1",
@@ -55,6 +56,7 @@ export const SpecialistLessonListingPage: Story = {
           presentationCount: 0,
           worksheetCount: 2,
           hasCopyrightMaterial: false,
+          orderInUnit: 1,
         },
         {
           lessonSlug: "games-apart-1",
@@ -72,6 +74,7 @@ export const SpecialistLessonListingPage: Story = {
           presentationCount: 1,
           worksheetCount: 2,
           hasCopyrightMaterial: false,
+          orderInUnit: 1,
         },
       ],
     },

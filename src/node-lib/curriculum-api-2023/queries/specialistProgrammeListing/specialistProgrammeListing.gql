@@ -1,5 +1,5 @@
 query specialistProgrammeListing($_contains: jsonb = "") {
-  specialistProgrammeListing: published_mv_specialist_1_0_2(
+  specialistProgrammeListing: published_mv_specialist_1_0_3(
     where: { combined_programme_fields: { _contains: $_contains } }
     distinct_on: synthetic_programme_slug
   ) {

@@ -207,6 +207,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {

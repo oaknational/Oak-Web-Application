@@ -1,4 +1,5 @@
-import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { Unit } from "../CurriculumVisualiser";
+
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 
 const lessons: Lesson[] = [
@@ -33,6 +34,7 @@ export const mockUnit: Unit = {
   phase_slug: "primary",
   planned_number_of_lessons: 15,
   lessons: [],
+  order: 1,
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,
@@ -72,6 +74,7 @@ export const mockUnitKS4: Unit = {
   phase_slug: "secondary",
   planned_number_of_lessons: 15,
   lessons,
+  order: 1,
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,

@@ -24,6 +24,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
@@ -71,6 +78,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks1",
           lessons: [],
+          order: 1,
           phase: "Primary",
           phase_slug: "primary",
           slug: "word-class",
@@ -104,6 +112,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks1",
           lessons: [],
+          order: 1,
           phase: "Primary",
           phase_slug: "primary",
           slug: "a-superhero-like-you-reading-and-writing",
@@ -202,6 +211,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: "aqa",
           keystage_slug: "ks4",
           lessons: [],
+          order: 1,
           phase: "Secondary",
           phase_slug: "secondary",
           slug: "modern-text-first-study",
@@ -248,6 +258,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [],
+          order: 1,
           phase: "Secondary",
           phase_slug: "secondary",
           slug: "modern-text-first-study",
@@ -334,6 +345,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [],
+          order: 1,
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -361,6 +373,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [],
+          order: 1,
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -413,6 +426,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks1",
           lessons: [],
+          order: 1,
           phase: "Primary",
           phase_slug: "primary",
           slug: "word-class",
@@ -440,6 +454,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks1",
           lessons: [],
+          order: 2,
           phase: "Primary",
           phase_slug: "primary",
           slug: "a-superhero-like-you-reading-and-writing",
@@ -546,6 +561,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [],
+          order: 1,
           phase: "Secondary",
           phase_slug: "secondary",
           slug: "cellular-respiration-and-atp",
@@ -605,6 +621,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               _state: "published",
             },
           ],
+          order: 2,
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -632,6 +649,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks4",
           lessons: [],
+          order: 3,
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -681,6 +699,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           examboard_slug: null,
           keystage_slug: "ks2",
           lessons: [],
+          order: 1,
           phase: "Primary",
           phase_slug: "primary",
           planned_number_of_lessons: 24,
@@ -739,6 +758,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         examboard_slug: null,
         keystage_slug: "ks4",
         lessons: [],
+        order: 1,
         phase: "Secondary",
         phase_slug: "secondary",
         slug: "cellular-respiration-and-atp",
@@ -771,6 +791,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         examboard_slug: null,
         keystage_slug: "ks3",
         lessons: [],
+        order: 1,
         phase: "Secondary",
         phase_slug: "secondary",
         slug: "cellular-respiration-and-atp",
@@ -790,5 +811,95 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         "combined-science-secondary-ks3",
       );
     });
+  });
+
+  const resizeWindow = (x: number, y: number) => {
+    window.innerWidth = x;
+    window.innerHeight = y;
+    window.dispatchEvent(new Event("resize"));
+  };
+
+  test("mobile: highlighting threads updates the number of threads highlighted", async () => {
+    resizeWindow(390, 844);
+
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+    // Open thread modal
+    const filterThreadsButton = await findByTestId("mobile-highlight-thread");
+    await userEvent.click(filterThreadsButton);
+
+    const threadRadios = await findAllByTestId("thread-radio-mobile");
+    const doneButton = await findByTestId("mobile-done-thread-modal-button");
+    const aspectsOfNarrativeThread = threadRadios[0];
+    if (aspectsOfNarrativeThread && doneButton) {
+      // Select the first thread
+      await userEvent.click(aspectsOfNarrativeThread);
+      await userEvent.click(doneButton);
+
+      const highlightedThreadsBox = await findByTestId(
+        "highlighted-threads-mobile",
+      );
+      const highlightedUnitsBox = await findByTestId(
+        "highlighted-units-box-mobile",
+      );
+      expect(highlightedThreadsBox).toBeInTheDocument();
+      expect(highlightedThreadsBox).toHaveTextContent("Aspects of narrative");
+      expect(highlightedUnitsBox).toHaveTextContent("1 units highlighted");
+    }
+  });
+  test("mobile: mobile filter options visible", async () => {
+    resizeWindow(390, 844);
+
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+    const mobileThreadButton = await findByTestId("mobile-highlight-thread");
+    const mobileYearFilter = await findByTestId("year-selection-mobile");
+    const mobileYearFilterButtons = await findAllByTestId(
+      "year-group-filter-button",
+    );
+    expect(mobileThreadButton).toBeInTheDocument();
+    expect(mobileYearFilter).toBeInTheDocument();
+    expect(mobileYearFilterButtons).toHaveLength(9);
+  });
+  test("desktop filters are not visible in mobile", async () => {
+    resizeWindow(390, 844);
+
+    const { findByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+
+    const yearsRadio = await findByTestId("year-group-filter-desktop");
+    expect(yearsRadio).toHaveStyle({ display: "none" });
+
+    const threadsFilter = await findByTestId("threads-filter-desktop");
+    expect(threadsFilter).toHaveStyle({ display: "none" });
+  });
+
+  test("mobile: anchor links for year group filters match", async () => {
+    window.HTMLElement.prototype.scrollIntoView = function () {};
+    resizeWindow(390, 844);
+
+    const { findAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+    );
+
+    const yearFilterButtons = await findAllByTestId("year-group-filter-button");
+    const yearHeadings = await findAllByTestId("year-heading");
+    const year2Button = yearFilterButtons[1];
+    if (year2Button) {
+      await userEvent.click(year2Button);
+      // Selected button background colour should change
+      waitFor(() => {
+        expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
+        // Unselected button background colour shouldn't change
+        expect(yearFilterButtons[0]).toHaveStyle(
+          "background-color: rgb(242, 242, 242);",
+        );
+        expect(year2Button).toHaveTextContent("Year 2");
+        expect(yearHeadings[1]).toHaveTextContent("Year 2");
+      });
+    }
   });
 });

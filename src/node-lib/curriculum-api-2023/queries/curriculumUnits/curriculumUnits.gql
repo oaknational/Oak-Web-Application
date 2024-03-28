@@ -10,6 +10,7 @@ query curriculumUnits($where: published_mv_curriculum_units_0_3_bool_exp) {
     examboard_slug
     keystage_slug
     lessons
+    order
     planned_number_of_lessons
     phase
     phase_slug
