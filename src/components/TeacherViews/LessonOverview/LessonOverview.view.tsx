@@ -184,6 +184,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <HeaderLesson
         {...lesson}
         {...commonPathway}
+        {...specialistPathway}
         breadcrumbs={
           !isSpecialist
             ? [
