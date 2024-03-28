@@ -1,5 +1,4 @@
 import specialistLessonOverviewSchema, {
-  SpecialistLessonOverviewData,
   specialistLessonOverviewRawSchema,
 } from "./specialistLessonOverview.schema";
 
@@ -7,6 +6,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { LessonOverview } from "@/components/TeacherComponents/types/lesson.types";
 
 const specialistLessonOverview =
   (sdk: Sdk) =>
@@ -47,7 +47,7 @@ const specialistLessonOverview =
 
     const lesson = parsedLessonOverview[0];
 
-    const transformedLesson: SpecialistLessonOverviewData = {
+    const transformedLesson: LessonOverview = {
       isLegacy: true,
       isSpecialist: true,
       isCanonical: false,

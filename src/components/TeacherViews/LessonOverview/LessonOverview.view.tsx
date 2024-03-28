@@ -15,10 +15,7 @@ import {
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonOverviewCanonical,
-  LessonOverviewInPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
+import { LessonOverview } from "@/components/TeacherComponents/types/lesson.types";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
@@ -41,11 +38,17 @@ import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
+const lessonIsSpecialist = (u: unknown): u is SpecialistLessonOverviewData => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    Object.hasOwn(u, "isSpecialist") &&
+    (u as { isSpecialist: boolean }).isSpecialist === true
+  );
+};
+
 export type LessonOverviewProps = {
-  lesson:
-    | LessonOverviewCanonical
-    | LessonOverviewInPathway
-    | SpecialistLessonOverviewData;
+  lesson: LessonOverview;
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -91,7 +94,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lesson.isCanonical ? lesson.pathways : [lesson],
   );
 
-  const specialistPathway = isSpecialist
+  const specialistPathway = lessonIsSpecialist(lesson)
     ? {
         lessonSlug,
         lessonTitle,

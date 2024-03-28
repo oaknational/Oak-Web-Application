@@ -23,6 +23,7 @@ import OakError from "@/errors/OakError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
+  isSpecialist: boolean;
 };
 
 export type URLParams = {
@@ -31,6 +32,7 @@ export type URLParams = {
 
 export default function LessonOverviewCanonicalPage({
   lesson,
+  isSpecialist,
 }: PageProps): JSX.Element {
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -42,9 +44,7 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverview
-        lesson={{ ...lesson, isCanonical: true, isSpecialist: false }}
-      />
+      <LessonOverview lesson={{ ...lesson, isCanonical: true, isSpecialist }} />
       <OakFlex $background={"pink50"} $width={"100%"}>
         <MaxWidth $pv={96}>
           <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
@@ -85,6 +85,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
        */
 
       let lesson;
+      const isSpecialist = false;
 
       try {
         lesson = await curriculumApi2023.lessonOverviewCanonical({
@@ -123,6 +124,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
+          isSpecialist,
         },
       };
 

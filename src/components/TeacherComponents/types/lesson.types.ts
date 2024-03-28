@@ -1,3 +1,4 @@
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -20,7 +21,6 @@ export type LessonPathway = {
 
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
-  isSpecialist: false;
   pathways: LessonPathway[];
 };
 
@@ -33,5 +33,10 @@ export type LessonOverviewInPathway = LessonBase & {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
-  isSpecialist: false;
 };
+
+export type LessonOverview = { isSpecialist: boolean } & (
+  | LessonOverviewCanonical
+  | LessonOverviewInPathway
+  | SpecialistLessonOverviewData
+);
