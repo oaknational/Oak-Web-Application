@@ -28,6 +28,7 @@ const specialistUnits = [
       phase: "primary",
       developmentstage_display_order: 1,
     },
+    order_in_programme: 1,
   },
   {
     contains_copyright_content: false,
@@ -47,6 +48,7 @@ const specialistUnits = [
       phase: "secondary",
       developmentstage_display_order: 1,
     },
+    order_in_programme: 1,
   },
 ];
 
@@ -254,6 +256,7 @@ describe("getExpandedUnits", () => {
             phase: "primary",
             developmentstage_display_order: 1,
           },
+          order_in_programme: 1,
         },
       ],
       [
@@ -273,6 +276,7 @@ describe("getExpandedUnits", () => {
         slug: "celebrations-and-festivals-primary-1f8f",
         lessonCount: 4,
         nullTitle: "Celebrations and Festivals (Primary)",
+        orderInProgramme: 1,
         programmeSlug: "communication-and-language-applying-learning",
         subjectSlug: "communication-and-language",
         subjectTitle: "Communication and language",
@@ -367,6 +371,7 @@ describe("getExpandedUnits", () => {
             themeSlug: "primary",
             themeTitle: "primary",
             title: "Celebrations and Festivals (Primary)",
+            orderInProgramme: 1,
           },
         ],
         [
@@ -390,6 +395,7 @@ describe("getExpandedUnits", () => {
             themeSlug: "secondary",
             themeTitle: "secondary",
             title: "Our World (Secondary)",
+            orderInProgramme: 1,
           },
         ],
       ],

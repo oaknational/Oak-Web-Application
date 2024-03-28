@@ -1,11 +1,12 @@
 query specialistUnitListing($programmeSlug: String!) {
-  specialistUnits: published_mv_specialist_1_0_2(
+  specialistUnits: published_mv_specialist_1_0_3(
     distinct_on: unit_slug
     where: { synthetic_programme_slug: { _eq: $programmeSlug } }
   ) {
     synthetic_programme_slug
     unit_slug
     unit_title
+    order_in_programme
     combined_programme_fields
     contains_copyright_content
     threads

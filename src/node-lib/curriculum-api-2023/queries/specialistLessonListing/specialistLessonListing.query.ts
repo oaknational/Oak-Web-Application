@@ -69,7 +69,7 @@ const specialistLessonListingQuery =
             presentationCount: lesson.video_mux_playback_id ? 1 : 0,
             worksheetCount: lesson.worksheet_url ? 1 : 0,
             hasCurriculumDownload: false, // TODO: curriculum download
-            orderInUnit: 1, // TODO: order in unit
+            orderInUnit: lesson.order_in_unit,
             developmentStage: developmentStage || null,
           };
 
@@ -79,6 +79,10 @@ const specialistLessonListingQuery =
         },
         { programmeSlug, unitSlug } as SpecialistLessonListingData,
       );
+
+    transformedLessonLising.lessons.sort(
+      (a, b) => a.orderInUnit - b.orderInUnit,
+    );
 
     return transformedLessonLising;
   };

@@ -24,6 +24,7 @@ export const specialistUnitListRequestSchema = z.array(
     synthetic_programme_slug: z.string(),
     unit_slug: z.string(),
     unit_title: z.string(),
+    order_in_programme: z.number(),
     combined_programme_fields: combinedProgrammeFields,
     threads: z.array(themeSchema).nullish(),
   }),
