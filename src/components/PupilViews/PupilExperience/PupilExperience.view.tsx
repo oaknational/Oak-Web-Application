@@ -18,6 +18,8 @@ import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 import { PupilExpiredView } from "@/components/PupilViews/PupilExpired/PupilExpired.view";
+import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -128,21 +130,30 @@ export const PupilExperienceView = ({
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CookieConsentStyles />
-      <LessonEngineProvider initialLessonReviewSections={availableSections}>
-        <OakBox $height={"100vh"}>
-          {curriculumData.expired ? (
-            <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
-          ) : (
-            <PupilPageContent
-              curriculumData={curriculumData}
-              hasWorksheet={hasWorksheet}
-              backUrl={backUrl}
-            />
-          )}
-        </OakBox>
-      </LessonEngineProvider>
-    </OakThemeProvider>
+    <PupilLayout
+      seoProps={{
+        ...getSeoProps({
+          title: curriculumData.lessonTitle,
+          description: curriculumData.pupilLessonOutcome,
+        }),
+      }}
+    >
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <CookieConsentStyles />
+        <LessonEngineProvider initialLessonReviewSections={availableSections}>
+          <OakBox $height={"100vh"}>
+            {curriculumData.expired ? (
+              <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+            ) : (
+              <PupilPageContent
+                curriculumData={curriculumData}
+                hasWorksheet={hasWorksheet}
+                backUrl={backUrl}
+              />
+            )}
+          </OakBox>
+        </LessonEngineProvider>
+      </OakThemeProvider>
+    </PupilLayout>
   );
 };
