@@ -94,6 +94,7 @@ const curriculumVisualiserFixture = {
               _state: "new",
             },
           ],
+          order: 1,
           slug: "step-into-the-unknown-fiction-reading-and-creative-writing",
           subject: "English",
           subject_slug: "english",
