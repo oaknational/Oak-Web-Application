@@ -1,5 +1,5 @@
 query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
-  developmentStageUnitCount: published_mv_specialist_1_0_2_aggregate(
+  developmentStageUnitCount: published_mv_specialist_1_0_3_aggregate(
     where: {
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
       contains_copyright_content: { _eq: false }
@@ -10,7 +10,7 @@ query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
       count(distinct: true, columns: unit_slug)
     }
   }
-  developmentStageLessonCount: published_mv_specialist_1_0_2_aggregate(
+  developmentStageLessonCount: published_mv_specialist_1_0_3_aggregate(
     where: {
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
       contains_copyright_content: { _eq: false }
