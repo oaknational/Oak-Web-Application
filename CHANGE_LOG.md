@@ -1,3 +1,12 @@
+# [1.394.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.393.0...v1.394.0) (2024-03-28)
+
+
+### Features
+
+* lift to specialist mv v 1_0_3 in queries ([299c8c9](https://github.com/oaknational/Oak-Web-Application/commit/299c8c98b875af89a925e9606b2f84e80757fdd7))
+* sort units by order in programme ([fbf9e70](https://github.com/oaknational/Oak-Web-Application/commit/fbf9e70b58f50b59dc9b4a1785362869f2c8b0fe))
+* use order_in_unit to sort lessons on listing page ([8f856a8](https://github.com/oaknational/Oak-Web-Application/commit/8f856a8b06a4349e806ccbd95b151d20afd27259))
+
 # [1.393.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.392.1...v1.393.0) (2024-03-28)
 
 
