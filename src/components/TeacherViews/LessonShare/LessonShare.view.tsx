@@ -5,12 +5,15 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
-  getCommonPathway,
   getLessonShareBreadCrumb,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonOverviewAll,
+  SpecialistLessonPathway,
+  getPathway,
+} from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
@@ -33,37 +36,13 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 
-type LessonShareProps =
-  | {
-      isCanonical: true;
-      lesson: {
-        isSpecialist: false;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        pathways: LessonPathway[];
-      };
-    }
-  | {
-      isCanonical: false;
-      lesson: LessonPathway & {
-        isSpecialist: false;
-        developmentStageTitle?: string | null;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-      };
-    }
-  | {
-      isCanonical: false;
-      lesson: SpecialistLessonShareData;
-    };
+type LessonShareProps = {
+  isCanonical: boolean;
+  lesson: LessonOverviewAll & {
+    shareableResources: LessonShareData["shareableResources"];
+  };
+};
 
 const classroomActivityMap: Partial<
   Record<ResourceType, PupilActivityResourceTypesValueType>
@@ -119,24 +98,7 @@ export function LessonShare(props: LessonShareProps) {
     isSpecialist,
   } = lesson;
 
-  const specialistPathway =
-    isSpecialist && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-        }
-      : null;
-
-  const commonPathway = getCommonPathway(
-    props.isCanonical ? props.lesson.pathways : [props.lesson],
-  );
+  const commonPathway = getPathway(lesson);
   const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
 
   const { track } = useAnalytics();
@@ -227,7 +189,7 @@ export function LessonShare(props: LessonShareProps) {
                   ]
                 : [
                     ...getBreadcrumbsForSpecialistLessonPathway(
-                      specialistPathway,
+                      commonPathway as SpecialistLessonPathway,
                     ),
                     ...getBreadCrumbForSpecialistShare({
                       lessonSlug,

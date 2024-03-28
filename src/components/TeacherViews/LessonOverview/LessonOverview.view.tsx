@@ -8,7 +8,6 @@ import {
 } from "@oaknational/oak-components";
 
 import {
-  getCommonPathway,
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
@@ -18,6 +17,7 @@ import {
 import {
   LessonOverviewAll,
   SpecialistLessonPathway,
+  getPathway,
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -40,26 +40,6 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
-
-const getPathway = (lesson: LessonOverviewAll) => {
-  if (lessonIsSpecialist(lesson)) {
-    return {
-      lessonSlug: lesson.lessonSlug,
-      lessonTitle: lesson.lessonTitle,
-      unitSlug: lesson.unitSlug,
-      programmeSlug: lesson.programmeSlug,
-      unitTitle: lesson.unitTitle,
-      subjectTitle: lesson.subjectTitle,
-      subjectSlug: lesson.subjectSlug,
-      developmentStageTitle: lesson.developmentStageTitle,
-      disabled: true,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    } as SpecialistLessonPathway;
-  } else {
-    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
-  }
-};
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll;

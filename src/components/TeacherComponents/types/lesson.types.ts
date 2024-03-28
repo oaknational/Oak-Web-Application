@@ -1,3 +1,5 @@
+import { getCommonPathway } from "../helpers/lessonHelpers/lesson.helpers";
+
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -32,6 +34,26 @@ export type SpecialistLessonPathway = {
   disable?: boolean;
   keyStageSlug: null;
   keyStageTitle: null;
+};
+
+export const getPathway = (lesson: LessonOverviewAll) => {
+  if (lessonIsSpecialist(lesson)) {
+    return {
+      lessonSlug: lesson.lessonSlug,
+      lessonTitle: lesson.lessonTitle,
+      unitSlug: lesson.unitSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitTitle: lesson.unitTitle,
+      subjectTitle: lesson.subjectTitle,
+      subjectSlug: lesson.subjectSlug,
+      developmentStageTitle: lesson.developmentStageTitle,
+      disabled: true,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    } as SpecialistLessonPathway;
+  } else {
+    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
+  }
 };
 
 export type LessonOverviewCanonical = LessonBase & {
