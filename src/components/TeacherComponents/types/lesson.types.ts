@@ -19,6 +19,21 @@ export type LessonPathway = {
   lessonCohort?: string | null;
 };
 
+export type SpecialistLessonPathway = {
+  lessonSlug: string;
+  lessonTitle: string;
+  programmeSlug: string;
+  unitSlug: string;
+  unitTitle: string;
+  disabled?: boolean;
+  subjectTitle: string;
+  subjectSlug: string;
+  developmentStageTitle?: string | null;
+  disable?: boolean;
+  keyStageSlug: null;
+  keyStageTitle: null;
+};
+
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
   pathways: LessonPathway[];
@@ -40,3 +55,14 @@ export type LessonOverviewAll = { isSpecialist: boolean } & (
   | LessonOverviewInPathway
   | SpecialistLessonOverviewData
 );
+
+export const lessonIsSpecialist = (
+  u: unknown,
+): u is SpecialistLessonOverviewData => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    Object.hasOwn(u, "isSpecialist") &&
+    (u as { isSpecialist: boolean }).isSpecialist === true
+  );
+};

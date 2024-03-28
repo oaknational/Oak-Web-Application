@@ -3,6 +3,7 @@ import { pick, groupBy } from "lodash";
 import {
   LessonBase,
   LessonPathway,
+  SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -212,18 +213,7 @@ export const getBreadCrumbForSpecialistShare = ({
 };
 
 export const getBreadcrumbsForSpecialistLessonPathway = (
-  lesson: {
-    lessonSlug: string;
-    lessonTitle: string;
-    programmeSlug: string;
-    unitSlug: string;
-    unitTitle: string;
-    disabled?: boolean;
-    subjectTitle: string;
-    subjectSlug: string;
-    developmentStageTitle?: string | null;
-    disable?: boolean;
-  } | null,
+  lesson: SpecialistLessonPathway | null,
 ): Breadcrumb[] | [] => {
   if (!lesson) return [];
   const {

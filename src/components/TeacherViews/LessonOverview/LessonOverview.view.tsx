@@ -15,8 +15,11 @@ import {
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
-import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
+import {
+  LessonOverviewAll,
+  SpecialistLessonPathway,
+  lessonIsSpecialist,
+} from "@/components/TeacherComponents/types/lesson.types";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -38,13 +41,24 @@ import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const lessonIsSpecialist = (u: unknown): u is SpecialistLessonOverviewData => {
-  return (
-    typeof u === "object" &&
-    u !== null &&
-    Object.hasOwn(u, "isSpecialist") &&
-    (u as { isSpecialist: boolean }).isSpecialist === true
-  );
+const getPathway = (lesson: LessonOverviewAll) => {
+  if (lessonIsSpecialist(lesson)) {
+    return {
+      lessonSlug: lesson.lessonSlug,
+      lessonTitle: lesson.lessonTitle,
+      unitSlug: lesson.unitSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitTitle: lesson.unitTitle,
+      subjectTitle: lesson.subjectTitle,
+      subjectSlug: lesson.subjectSlug,
+      developmentStageTitle: lesson.developmentStageTitle,
+      disabled: true,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    } as SpecialistLessonPathway;
+  } else {
+    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
+  }
 };
 
 export type LessonOverviewProps = {
@@ -90,23 +104,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const commonPathway = getCommonPathway(
-    lesson.isCanonical ? lesson.pathways : [lesson],
-  );
-
-  const specialistPathway = lessonIsSpecialist(lesson)
-    ? {
-        lessonSlug,
-        lessonTitle,
-        unitSlug: lesson.unitSlug,
-        programmeSlug: lesson.programmeSlug,
-        unitTitle: lesson.unitTitle,
-        subjectTitle: lesson.subjectTitle,
-        subjectSlug: lesson.subjectSlug,
-        developmentStageTitle: lesson.developmentStageTitle,
-        disabled: true,
-      }
-    : null;
+  const commonPathway = getPathway(lesson);
 
   const {
     keyStageSlug,
@@ -184,9 +182,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <HeaderLesson
         {...lesson}
         {...commonPathway}
-        {...specialistPathway}
         breadcrumbs={
-          !isSpecialist
+          !lessonIsSpecialist(lesson)
             ? [
                 ...getBreadcrumbsForLessonPathway(commonPathway),
                 getLessonOverviewBreadCrumb({
@@ -197,7 +194,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   disabled: true,
                 }),
               ]
-            : [...getBreadcrumbsForSpecialistLessonPathway(specialistPathway)]
+            : [
+                ...getBreadcrumbsForSpecialistLessonPathway(
+                  commonPathway as SpecialistLessonPathway,
+                ),
+              ]
         }
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
