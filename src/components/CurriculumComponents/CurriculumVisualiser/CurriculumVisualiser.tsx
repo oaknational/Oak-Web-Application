@@ -2,6 +2,8 @@ import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
+import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
+
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -79,20 +81,43 @@ type CurriculumVisualiserProps = {
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-export function createProgrammeSlug(
-  unitData?: Unit | null,
-  examboardSlug?: string | null,
+export function isVisibleUnit(
+  yearSelection: YearSelection,
+  duplicateUnitSlugs: Set<string>,
+  year: string,
+  unit: Unit,
 ) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
+  const s = yearSelection[year];
+  if (!s) {
+    return false;
   }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
+  const filterBySubject =
+    !s.subject || s.subject.subject_slug === unit.subject_slug;
+  const filterByDiscipline =
+    s.discipline?.id == -1 ||
+    unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
+  const filterByDomain =
+    !s.domain ||
+    s.domain.domain_id === 0 ||
+    s.domain.domain_id === unit.domain_id;
+  const filterByTier =
+    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
+
+  // Look for duplicates that don't have an examboard, tier or subject parent
+  // (i.e. aren't handled by other filters)
+
+  const isDuplicate =
+    unit.examboard === null &&
+    unit.tier === null &&
+    unit.subject_parent === null &&
+    duplicateUnitSlugs.has(unit.slug);
+  return (
+    filterBySubject &&
+    filterByDomain &&
+    filterByTier &&
+    filterByDiscipline &&
+    !isDuplicate
+  );
 }
 
 function isSelectedDomain(
@@ -191,40 +216,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
-  // Visibility helpers
-  function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year];
-    if (!s) {
-      return false;
-    }
-    const filterBySubject =
-      !s.subject || s.subject.subject_slug === unit.subject_slug;
-    const filterByDiscipline =
-      s.discipline?.id == -1 ||
-      unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
-    const filterByDomain =
-      !s.domain ||
-      s.domain.domain_id === 0 ||
-      s.domain.domain_id === unit.domain_id;
-    const filterByTier =
-      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-    // Look for duplicates that don't have an examboard, tier or subject parent
-    // (i.e. aren't handled by other filters)
-
-    const isDuplicate =
-      unit.examboard === null &&
-      unit.tier === null &&
-      unit.subject_parent === null &&
-      duplicateUnitSlugs.has(unit.slug);
-    return (
-      filterBySubject &&
-      filterByDomain &&
-      filterByTier &&
-      filterByDiscipline &&
-      !isDuplicate
-    );
-  }
   const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
     setDisplayModal((prev) => !prev);
     setUnitOptionsAvailable(unitOptions);
@@ -360,7 +351,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   data-testid="unit-cards"
                 >
                   {units
-                    .filter((unit: Unit) => isVisibleUnit(year, unit))
+                    .filter((unit: Unit) =>
+                      isVisibleUnit(
+                        yearSelection,
+                        duplicateUnitSlugs,
+                        year,
+                        unit,
+                      ),
+                    )
                     .map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
                         unit,

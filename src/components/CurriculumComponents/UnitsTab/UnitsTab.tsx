@@ -13,6 +13,7 @@ import CurriculumVisualiser, {
   Discipline,
   Tier,
   Unit,
+  isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
@@ -302,7 +303,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       const units = yearData[year]?.units;
       if (units && (!selectedYear || selectedYear === year)) {
         units.forEach((unit) => {
-          if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
+          if (
+            isVisibleUnit(yearSelection, duplicateUnitSlugs, year, unit) &&
+            isHighlightedUnit(unit)
+          ) {
             count++;
           }
         });
@@ -320,40 +324,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   function isSelectedThread(thread: Thread) {
     return selectedThread?.slug === thread.slug;
-  }
-
-  function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year];
-    if (!s) {
-      return false;
-    }
-    const filterBySubject =
-      !s.subject || s.subject.subject_slug === unit.subject_slug;
-    const filterByDiscipline =
-      s.discipline?.id == -1 ||
-      unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
-    const filterByDomain =
-      !s.domain ||
-      s.domain.domain_id === 0 ||
-      s.domain.domain_id === unit.domain_id;
-    const filterByTier =
-      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-    // Look for duplicates that don't have an examboard, tier or subject parent
-    // (i.e. aren't handled by other filters)
-
-    const isDuplicate =
-      unit.examboard === null &&
-      unit.tier === null &&
-      unit.subject_parent === null &&
-      duplicateUnitSlugs.has(unit.slug);
-    return (
-      filterBySubject &&
-      filterByDomain &&
-      filterByTier &&
-      filterByDiscipline &&
-      !isDuplicate
-    );
   }
 
   // Analytics handlers
