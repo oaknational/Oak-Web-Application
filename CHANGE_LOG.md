@@ -1,3 +1,11 @@
+# [1.393.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.392.1...v1.393.0) (2024-03-28)
+
+
+### Features
+
+* added dynamic description to meta data ([1fa2c25](https://github.com/oaknational/Oak-Web-Application/commit/1fa2c25707dea03cadb8c0a28334e89ca7cf82c8))
+* pupil layout with seo ([463ae4b](https://github.com/oaknational/Oak-Web-Application/commit/463ae4b39e7bb79fc0a2055863b5ab423cec2390))
+
 ## [1.392.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.392.0...v1.392.1) (2024-03-27)
 
 # [1.392.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.391.0...v1.392.0) (2024-03-27)
