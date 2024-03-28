@@ -13,7 +13,7 @@ describe("specialistLessonOverview()", () => {
       })({
         lessonSlug: "specialist-lesson-slug",
       });
-    }).rejects.toThrow(`curriculum-api/not-found`);
+    }).rejects.toThrow(`Resource not found`);
   });
 
   test("throws a Zod error if the response is invalid", async () => {

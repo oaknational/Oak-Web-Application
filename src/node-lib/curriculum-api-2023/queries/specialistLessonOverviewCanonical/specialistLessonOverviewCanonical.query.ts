@@ -25,7 +25,7 @@ const specialistLessonOverviewCanonical =
       parsedLessonOverview.length === 0 ||
       !parsedLessonOverview[0]
     ) {
-      throw new Error("curriculum-api/not-found");
+      throw new OakError({ code: "curriculum-api/not-found" });
     }
 
     if (parsedLessonOverview.length > 1) {
