@@ -7,7 +7,7 @@ describe("specialistLessonOverview()", () => {
     await expect(async () => {
       await specialistLessonOverviewCanonical({
         ...sdk,
-        specialistLessonOverview: jest.fn(() =>
+        specialistLessonOverviewCanonical: jest.fn(() =>
           Promise.resolve({ lesson: [] }),
         ),
       })({
