@@ -1,5 +1,5 @@
 query specialistLessonListing($programmeSlug: String, $unitSlug: String) {
-  specialistLessonListing: published_mv_specialist_1_0_2(
+  specialistLessonListing: published_mv_specialist_1_0_3(
     where: {
       unit_slug: { _eq: $unitSlug }
       synthetic_programme_slug: { _eq: $programmeSlug }
@@ -10,6 +10,7 @@ query specialistLessonListing($programmeSlug: String, $unitSlug: String) {
     combined_programme_fields
     unit_slug
     unit_title
+    order_in_unit
     expired
     contains_copyright_content
     exit_quiz
