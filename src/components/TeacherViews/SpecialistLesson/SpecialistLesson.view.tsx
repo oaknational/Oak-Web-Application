@@ -11,7 +11,11 @@ const SpecialistLesson: FC<SpecialistLessonProps> = (props) => {
   return (
     <>
       <LessonOverview
-        lesson={{ ...props.lesson, isWorksheetLandscape: true }}
+        lesson={{
+          ...props.lesson,
+          isWorksheetLandscape: true,
+          isSpecialist: true,
+        }}
       />
     </>
   );

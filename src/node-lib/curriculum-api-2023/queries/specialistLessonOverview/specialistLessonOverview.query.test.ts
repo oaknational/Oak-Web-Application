@@ -15,7 +15,7 @@ describe("specialistLessonOverview()", () => {
         unitSlug: "specialist-unit-slug",
         programmeSlug: "specialist-programme-slug",
       });
-    }).rejects.toThrow(`curriculum-api/not-found`);
+    }).rejects.toThrow(`Resource not found`);
   });
 
   test("first lesson is returned if multiple units in response", async () => {

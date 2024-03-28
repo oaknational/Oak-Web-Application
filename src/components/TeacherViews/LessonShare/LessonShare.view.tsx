@@ -5,12 +5,16 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
-  getCommonPathway,
   getLessonShareBreadCrumb,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
+  getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonPathway,
+  SpecialistLessonPathway,
+  lessonIsSpecialist,
+} from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
@@ -35,7 +39,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 
-type LessonShareProps =
+export type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
@@ -119,8 +123,8 @@ export function LessonShare(props: LessonShareProps) {
     isSpecialist,
   } = lesson;
 
-  const specialistPathway =
-    isSpecialist && !props.isCanonical
+  const commonPathway =
+    lessonIsSpecialist(lesson) && !props.isCanonical
       ? {
           lessonSlug,
           lessonTitle,
@@ -132,11 +136,9 @@ export function LessonShare(props: LessonShareProps) {
           developmentStageTitle: props.lesson.developmentStageTitle,
           disabled: false,
         }
-      : null;
-
-  const commonPathway = getCommonPathway(
-    props.isCanonical ? props.lesson.pathways : [props.lesson],
-  );
+      : getCommonPathway(
+          props.isCanonical ? props.lesson.pathways : [props.lesson],
+        );
   const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
 
   const { track } = useAnalytics();
@@ -227,7 +229,7 @@ export function LessonShare(props: LessonShareProps) {
                   ]
                 : [
                     ...getBreadcrumbsForSpecialistLessonPathway(
-                      specialistPathway,
+                      commonPathway as SpecialistLessonPathway,
                     ),
                     ...getBreadCrumbForSpecialistShare({
                       lessonSlug,

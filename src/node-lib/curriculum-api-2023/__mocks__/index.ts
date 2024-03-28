@@ -9,6 +9,7 @@ import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachers
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
+import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -22,6 +23,7 @@ const curriculumApi: Pick<
   | "pupilLessonOverviewCanonical"
   | "specialistSubjectListing"
   | "specialistUnitListing"
+  | "specialistLessonOverviewCanonical"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -61,6 +63,12 @@ const curriculumApi: Pick<
   specialistUnitListing: jest.fn(async () => {
     return {
       ...specialistUnitListingFixture(),
+    };
+  }),
+  specialistLessonOverviewCanonical: jest.fn(async () => {
+    return {
+      ...specialistLessonOverviewFixture(),
+      isSpecialist: true as const,
     };
   }),
 };

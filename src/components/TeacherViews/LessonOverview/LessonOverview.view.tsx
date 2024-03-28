@@ -8,7 +8,6 @@ import {
 } from "@oaknational/oak-components";
 
 import {
-  getCommonPathway,
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
@@ -16,10 +15,11 @@ import {
   getBreadcrumbsForSpecialistLessonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
-  LessonOverviewCanonical,
-  LessonOverviewInPathway,
+  LessonOverviewAll,
+  SpecialistLessonPathway,
+  getPathway,
+  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
-import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -42,10 +42,7 @@ import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonOverviewProps = {
-  lesson:
-    | LessonOverviewCanonical
-    | LessonOverviewInPathway
-    | SpecialistLessonOverviewData;
+  lesson: LessonOverviewAll;
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -87,23 +84,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const commonPathway = getCommonPathway(
-    lesson.isCanonical ? lesson.pathways : [lesson],
-  );
-
-  const specialistPathway = isSpecialist
-    ? {
-        lessonSlug,
-        lessonTitle,
-        unitSlug: lesson.unitSlug,
-        programmeSlug: lesson.programmeSlug,
-        unitTitle: lesson.unitTitle,
-        subjectTitle: lesson.subjectTitle,
-        subjectSlug: lesson.subjectSlug,
-        developmentStageTitle: lesson.developmentStageTitle,
-        disabled: true,
-      }
-    : null;
+  const commonPathway = getPathway(lesson);
 
   const {
     keyStageSlug,
@@ -182,7 +163,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         {...lesson}
         {...commonPathway}
         breadcrumbs={
-          !isSpecialist
+          !lessonIsSpecialist(lesson)
             ? [
                 ...getBreadcrumbsForLessonPathway(commonPathway),
                 getLessonOverviewBreadCrumb({
@@ -193,7 +174,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   disabled: true,
                 }),
               ]
-            : [...getBreadcrumbsForSpecialistLessonPathway(specialistPathway)]
+            : [
+                ...getBreadcrumbsForSpecialistLessonPathway(
+                  commonPathway as SpecialistLessonPathway,
+                ),
+              ]
         }
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
