@@ -1,3 +1,11 @@
+# [1.395.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.1...v1.395.0) (2024-03-28)
+
+
+### Features
+
+* **PUPIL-485:** add an "incomplete" mode to questions ([4115a75](https://github.com/oaknational/Oak-Web-Application/commit/4115a75f6329e4390e6aa85bb30baca0f80fabe8))
+* **PUPIL-485:** display a tooltip when a pupil tries to submit an incomplete answer ([48da5d3](https://github.com/oaknational/Oak-Web-Application/commit/48da5d3dc0fa10d8c4df25458a4d807571513175))
+
 ## [1.394.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.0...v1.394.1) (2024-03-28)
 
 
