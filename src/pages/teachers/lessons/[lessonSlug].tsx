@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lessonSlug,
         });
 
-        lesson = { ...res, pathways: [] };
+        lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
         isSpecialist = true;
       } catch (error) {
         if (
