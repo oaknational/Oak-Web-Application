@@ -17,6 +17,7 @@ type DownloadConfirmationProps = {
   unitTitle?: string | null;
   nextLessons?: NextLesson[];
   onwardContentSelected: TrackFns["onwardContentSelected"];
+  isSpecialist: boolean;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -28,6 +29,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   unitTitle,
   nextLessons,
   onwardContentSelected,
+  isSpecialist,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
@@ -59,7 +61,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         >
           {unitSlug && unitTitle && programmeSlug ? (
             <ButtonAsLink
-              page={"lesson-overview"}
+              page={
+                isSpecialist ? "specialist-lesson-overview" : "lesson-overview"
+              }
               lessonSlug={lessonSlug}
               programmeSlug={programmeSlug}
               unitSlug={unitSlug}
