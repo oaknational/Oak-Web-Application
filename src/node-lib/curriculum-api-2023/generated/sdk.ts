@@ -36386,7 +36386,14 @@ export type SpecialistLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_specialist_1_0_3', lesson_slug?: string | null, lesson_title?: string | null, synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, pupil_lesson_outcome?: string | null, key_learning_points?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, content_guidance?: any | null, supervision_level?: string | null, threads?: any | null, video_mux_playback_id?: string | null, video_with_sign_language_mux_playback_id?: string | null, video_title?: string | null, worksheet_url?: string | null, presentation_url?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, transcript_sentences?: string | null }> };
+export type SpecialistLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_specialist_1_0_3', lesson_slug?: string | null, lesson_title?: string | null, synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, pupil_lesson_outcome?: string | null, key_learning_points?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, content_guidance?: any | null, supervision_level?: string | null, threads?: any | null, video_mux_playback_id?: string | null, video_with_sign_language_mux_playback_id?: string | null, video_title?: string | null, worksheet_url?: string | null, presentation_url?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, transcript_sentences?: string | null, exit_quiz_asset_object?: any | null, starter_quiz_asset_object?: any | null }> };
+
+export type SpecialistLessonOverviewCanonicalQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type SpecialistLessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_specialist_1_0_3', lesson_slug?: string | null, lesson_title?: string | null, synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, pupil_lesson_outcome?: string | null, key_learning_points?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, content_guidance?: any | null, supervision_level?: string | null, threads?: any | null, video_mux_playback_id?: string | null, video_with_sign_language_mux_playback_id?: string | null, video_title?: string | null, worksheet_url?: string | null, presentation_url?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, transcript_sentences?: string | null }> };
 
 export type SpecialistLessonShareQueryVariables = Exact<{
   programmeSlug?: InputMaybe<Scalars['String']['input']>;
@@ -36863,6 +36870,38 @@ export const SpecialistLessonOverviewDocument = gql`
     starter_quiz
     exit_quiz
     transcript_sentences
+    exit_quiz_asset_object
+    starter_quiz_asset_object
+  }
+}
+    `;
+export const SpecialistLessonOverviewCanonicalDocument = gql`
+    query specialistLessonOverviewCanonical($lessonSlug: String!) {
+  lesson: published_mv_specialist_1_0_3(where: {lesson_slug: {_eq: $lessonSlug}}) {
+    lesson_slug
+    lesson_title
+    synthetic_programme_slug
+    unit_slug
+    unit_title
+    combined_programme_fields
+    pupil_lesson_outcome
+    key_learning_points
+    contains_copyright_content
+    expired
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    content_guidance
+    supervision_level
+    threads
+    video_mux_playback_id
+    video_with_sign_language_mux_playback_id
+    video_title
+    worksheet_url
+    presentation_url
+    starter_quiz
+    exit_quiz
+    transcript_sentences
   }
 }
     `;
@@ -37120,6 +37159,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query');
+    },
+    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query');
     },
     specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query');
