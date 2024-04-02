@@ -276,6 +276,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             isCanonical={props.isCanonical}
             nextLessons={lesson.nextLessons}
             onwardContentSelected={onwardContentSelected}
+            isSpecialist={isSpecialist}
           />
         </Box>
         {!isDownloadSuccessful && (
