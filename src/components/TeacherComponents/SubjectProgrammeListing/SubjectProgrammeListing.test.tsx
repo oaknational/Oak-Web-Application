@@ -85,11 +85,11 @@ describe("SubjectProgrammeListing", () => {
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
       "href",
-      "/teachers/programmes/maths-secondary-ks4-foundation/units",
+      "/teachers/programmes/maths-secondary-ks4-foundation-l/units",
     );
     expect(getByRole("link", { name: "Higher" })).toHaveAttribute(
       "href",
-      "/teachers/programmes/maths-secondary-ks4-higher/units",
+      "/teachers/programmes/maths-secondary-ks4-higher-l/units",
     );
   });
   it("calls onclick once, with correct props", async () => {
@@ -105,7 +105,7 @@ describe("SubjectProgrammeListing", () => {
       examBoardDisplayOrder: null,
       examBoardSlug: null,
       examBoardTitle: null,
-      programmeSlug: "maths-secondary-ks4-higher",
+      programmeSlug: "maths-secondary-ks4-higher-l",
       subjectTitle: "Maths",
       tierDisplayOrder: "3",
       tierSlug: "higher",
