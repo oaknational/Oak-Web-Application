@@ -36277,7 +36277,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_1', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
 
 export type CurriculumUnitsQueryVariables = Exact<{
-  where?: InputMaybe<Published_Mv_Curriculum_Units_0_1_Bool_Exp>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_3_Bool_Exp>;
 }>;
 
 
@@ -36335,6 +36335,7 @@ export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typ
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
   subjectSlug?: InputMaybe<Scalars['String']['input']>;
+  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
@@ -36705,9 +36706,9 @@ export const LessonShareDocument = gql`
 }
     `;
 export const ProgrammeListingDocument = gql`
-    query programmeListing($keyStageSlug: String, $subjectSlug: String) {
+    query programmeListing($keyStageSlug: String, $subjectSlug: String, $isLegacy: Boolean) {
   programmes: published_mv_programme_listing_5_0_0(
-    where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}}
+    where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}, isLegacy: {_eq: $isLegacy}}
   ) {
     keyStageTitle
     keyStageSlug

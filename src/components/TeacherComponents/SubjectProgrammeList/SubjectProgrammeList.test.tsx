@@ -54,7 +54,7 @@ describe("ProgrammeList", () => {
       examBoardDisplayOrder: null,
       examBoardSlug: null,
       examBoardTitle: null,
-      programmeSlug: "maths-secondary-ks4-higher",
+      programmeSlug: "maths-secondary-ks4-higher-l",
       subjectTitle: "Maths",
       tierDisplayOrder: "3",
       tierSlug: "higher",

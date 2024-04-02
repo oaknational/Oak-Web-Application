@@ -20,7 +20,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
-import { generateProgrammeListing } from "@/components/TeacherComponents/helpers/programmeHelpers/generateCorrectProgrammes";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
@@ -174,16 +173,12 @@ export const getStaticProps: GetStaticProps<
         : await curriculumApi2023.programmeListingPage({
             keyStageSlug: keyStageSlug,
             subjectSlug: subjectSlug,
+            isLegacy: false,
           });
-
-      const generatedCurriculumData = generateProgrammeListing(
-        curriculumData,
-        isSlugLegacy(subjectSlug),
-      );
 
       const results = {
         props: {
-          ...generatedCurriculumData,
+          ...curriculumData,
         },
       };
 

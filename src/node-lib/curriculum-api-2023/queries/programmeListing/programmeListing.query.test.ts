@@ -11,6 +11,7 @@ describe("programmeListing()", () => {
       })({
         keyStageSlug: "key-stage-slug",
         subjectSlug: "subject-slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -60,6 +61,7 @@ describe("programmeListing()", () => {
       })({
         keyStageSlug: "key-stage-slug",
         subjectSlug: "subject-slug",
+        isLegacy: false,
       });
     }).rejects.toThrow(`subjectSlug`);
   });
