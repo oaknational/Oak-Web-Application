@@ -1,3 +1,11 @@
+## [1.397.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.0...v1.397.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* google drive worksheet downloadable version is string for downloads all check ([6fa7d6d](https://github.com/oaknational/Oak-Web-Application/commit/6fa7d6d19ffd5e031a7b89be50c96b5b0f87276d))
+* specialist overview download all button ([25b4939](https://github.com/oaknational/Oak-Web-Application/commit/25b4939ac32b5d9c230b5e9db172c4fc72dce07a))
+
 # [1.397.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.396.0...v1.397.0) (2024-04-02)
 
 
