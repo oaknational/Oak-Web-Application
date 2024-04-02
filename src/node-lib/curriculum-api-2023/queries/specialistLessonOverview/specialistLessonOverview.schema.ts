@@ -3,6 +3,7 @@ import { z } from "zod";
 import { LessonOverviewPageData } from "../lessonOverview/lessonOverview.schema";
 import {
   baseLessonOverviewSchema,
+  legacyAssetObjectSchema,
   lessonOverviewQuizData,
 } from "../../shared.schema";
 
@@ -98,6 +99,8 @@ export const specialistLessonOverviewRawSchema = z.array(
     starter_quiz: lessonOverviewQuizData,
     exit_quiz: lessonOverviewQuizData,
     transcript_sentences: z.union([z.array(z.string()), z.string()]).nullable(),
+    starter_quiz_asset_object: legacyAssetObjectSchema,
+    exit_quiz_asset_object: legacyAssetObjectSchema,
   }),
 );
 

@@ -34,5 +34,7 @@ query specialistLessonOverview(
     starter_quiz
     exit_quiz
     transcript_sentences
+    exit_quiz_asset_object
+    starter_quiz_asset_object
   }
 }

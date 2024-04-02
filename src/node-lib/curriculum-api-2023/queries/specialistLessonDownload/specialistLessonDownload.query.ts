@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { Sdk } from "../../sdk";
 import { lessonDownloadsListSchema } from "../../shared.schema";
+import { SpecialistLessonDataRaw } from "../specialistLessonOverview/specialistLessonOverview.schema";
 
 import {
   SpecialistLessonDownloadRaw,
@@ -80,7 +81,7 @@ export const constructDownloadsArray = (
 };
 
 export const constructHasDownloadableResources = (
-  lesson: SpecialistLessonDownloadRaw,
+  lesson: SpecialistLessonDownloadRaw | SpecialistLessonDataRaw[number],
 ) => {
   return (
     (!!lesson.presentation_url &&

@@ -1,3 +1,5 @@
+import { constructHasDownloadableResources } from "../specialistLessonDownload/specialistLessonDownload.query";
+
 import specialistLessonOverviewSchema, {
   SpecialistLessonOverviewData,
   specialistLessonOverviewRawSchema,
@@ -87,7 +89,7 @@ const specialistLessonOverview =
         lesson.equipment_and_resources,
       ),
       keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-      hasDownloadableResources: true,
+      hasDownloadableResources: constructHasDownloadableResources(lesson),
     };
 
     return specialistLessonOverviewSchema.parse({
