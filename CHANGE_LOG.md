@@ -1,3 +1,10 @@
+# [1.396.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.395.0...v1.396.0) (2024-04-02)
+
+
+### Features
+
+* add isLegacy flag to programme listing query ([a262f65](https://github.com/oaknational/Oak-Web-Application/commit/a262f65fc367e1c5b83c3e0a99f1b804c420cec5))
+
 # [1.395.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.1...v1.395.0) (2024-03-28)
 
 

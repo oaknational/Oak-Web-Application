@@ -11,7 +11,7 @@ export const tieredProgrammeListingFixture = (
     subjectTitle: "Maths",
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks4-foundation",
+        programmeSlug: "maths-secondary-ks4-foundation-l",
         subjectTitle: "Maths",
         tierSlug: "foundation",
         tierTitle: "Foundation",
@@ -21,7 +21,7 @@ export const tieredProgrammeListingFixture = (
         examBoardDisplayOrder: null,
       },
       {
-        programmeSlug: "maths-secondary-ks4-higher",
+        programmeSlug: "maths-secondary-ks4-higher-l",
         subjectTitle: "Maths",
         tierSlug: "higher",
         tierTitle: "Higher",
@@ -70,7 +70,7 @@ const tierListingFixture = (
   return {
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks4-core",
+        programmeSlug: "maths-secondary-ks4-core-l",
         keyStageSlug: "ks3",
         keyStageTitle: "Key stage 3",
         subjectSlug: "maths",
@@ -82,7 +82,7 @@ const tierListingFixture = (
         activeUnitCount: 61,
       },
       {
-        programmeSlug: "maths-secondary-ks4-foundation",
+        programmeSlug: "maths-secondary-ks4-foundation-l",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "maths",
@@ -94,7 +94,7 @@ const tierListingFixture = (
         activeUnitCount: 63,
       },
       {
-        programmeSlug: "maths-secondary-ks4-higher",
+        programmeSlug: "maths-secondary-ks4-higher-l",
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",
