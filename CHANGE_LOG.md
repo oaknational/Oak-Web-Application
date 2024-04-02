@@ -1,3 +1,23 @@
+# [1.397.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.396.0...v1.397.0) (2024-04-02)
+
+
+### Bug Fixes
+
+* duplicate identifier ([dcc133a](https://github.com/oaknational/Oak-Web-Application/commit/dcc133a4f82274196ce1f854dd7a2160d462a3d4))
+* links to share pages ([8a9c427](https://github.com/oaknational/Oak-Web-Application/commit/8a9c42789165e95893b9c99375c167b4d174bbec))
+* props in story ([fa0fa4e](https://github.com/oaknational/Oak-Web-Application/commit/fa0fa4e9e3181b360a24d55a471cb2d5bfe2d5a2))
+* specialist pathway for subject slug ([c47e0f6](https://github.com/oaknational/Oak-Web-Application/commit/c47e0f614e04b2a0a2eb43dc9382506bf7f7aa20))
+* types for download ([91e4411](https://github.com/oaknational/Oak-Web-Application/commit/91e4411922e211d210d3ec90ff1cf7ad279fe52e))
+* types on share page ([70f088d](https://github.com/oaknational/Oak-Web-Application/commit/70f088d4a7429b9681900c493a65d3f7a4aa7301))
+* use landscape worksheets for specialist canonical lessons ([1dfe923](https://github.com/oaknational/Oak-Web-Application/commit/1dfe92317dad00b4e308eed3730c990011a8dcfa))
+* use new types on share page ([8f0f167](https://github.com/oaknational/Oak-Web-Application/commit/8f0f167c51724d3b95fdcfa17785e4b24f45a719))
+
+
+### Features
+
+* add specialist canonical query ([b36652e](https://github.com/oaknational/Oak-Web-Application/commit/b36652e0bf1bfb16abd411453b669585e07f8240))
+* add specialist query to canonical lesson page ([960416e](https://github.com/oaknational/Oak-Web-Application/commit/960416ee4131a6bf6b6dfc7c1ce457b288fa7a18))
+
 # [1.396.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.395.0...v1.396.0) (2024-04-02)
 
 

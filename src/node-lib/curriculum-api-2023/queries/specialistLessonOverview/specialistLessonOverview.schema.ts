@@ -16,7 +16,6 @@ export type SpecialistLessonOverviewData = Omit<
   | "yearTitle"
   | "examBoardTitle"
 > & {
-  isSpecialist: true;
   isCanonical: false;
   developmentStageTitle: string;
   developmentStageSlug: string | null;

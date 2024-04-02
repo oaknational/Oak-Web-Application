@@ -23,6 +23,7 @@ import OakError from "@/errors/OakError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
+  isSpecialist: boolean;
 };
 
 export type URLParams = {
@@ -31,6 +32,7 @@ export type URLParams = {
 
 export default function LessonOverviewCanonicalPage({
   lesson,
+  isSpecialist,
 }: PageProps): JSX.Element {
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -42,14 +44,14 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverview
-        lesson={{ ...lesson, isCanonical: true, isSpecialist: false }}
-      />
-      <OakFlex $background={"pink50"} $width={"100%"}>
-        <MaxWidth $pv={96}>
-          <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-        </MaxWidth>
-      </OakFlex>
+      <LessonOverview lesson={{ ...lesson, isCanonical: true, isSpecialist }} />
+      {!isSpecialist && (
+        <OakFlex $background={"pink50"} $width={"100%"}>
+          <MaxWidth $pv={96}>
+            <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
+          </MaxWidth>
+        </OakFlex>
+      )}
     </AppLayout>
   );
 }
@@ -79,24 +81,27 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const { lessonSlug } = context.params;
 
       /**
-       * If the lesson is not found in the 2023 curriculum, try the 2020 api
-       * instead. Otherwise rethrow the error.
-       * This is temporary logic until the migration.
+       * If the lesson is not found in the specialist 2023 curriculum, try the non-specialist 2023 curriculum,
+       * otherwise try the 2020 api. Otherwise rethrow the error.
        */
 
       let lesson;
+      let isSpecialist = false;
 
       try {
-        lesson = await curriculumApi2023.lessonOverviewCanonical({
+        const res = await curriculumApi2023.specialistLessonOverviewCanonical({
           lessonSlug,
         });
+
+        lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
+        isSpecialist = true;
       } catch (error) {
         if (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
           try {
-            lesson = await curriculumApi.lessonOverviewCanonical({
+            lesson = await curriculumApi2023.lessonOverviewCanonical({
               lessonSlug,
             });
           } catch (error) {
@@ -104,13 +109,24 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
               error instanceof OakError &&
               error.code === "curriculum-api/not-found"
             ) {
-              return {
-                notFound: true,
-              };
+              try {
+                lesson = await curriculumApi.lessonOverviewCanonical({
+                  lessonSlug,
+                });
+              } catch (error) {
+                if (
+                  error instanceof OakError &&
+                  error.code === "curriculum-api/not-found"
+                ) {
+                  return {
+                    notFound: true,
+                  };
+                }
+              }
+            } else {
+              throw error;
             }
           }
-        } else {
-          throw error;
         }
       }
 
@@ -123,6 +139,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
+          isSpecialist,
         },
       };
 

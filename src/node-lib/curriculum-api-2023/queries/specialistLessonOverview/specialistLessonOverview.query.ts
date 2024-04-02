@@ -1,7 +1,7 @@
 import { constructHasDownloadableResources } from "../specialistLessonDownload/specialistLessonDownload.query";
 
 import specialistLessonOverviewSchema, {
-  SpecialistLessonOverviewData,
+  SpecialistLessonDataRaw,
   specialistLessonOverviewRawSchema,
 } from "./specialistLessonOverview.schema";
 
@@ -9,6 +9,83 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
+
+export const generateLessonOverviewFromRaw = (
+  rawLesson: unknown,
+  errorCallback: (
+    lessonOverview: SpecialistLessonDataRaw,
+    error: OakError,
+  ) => void,
+) => {
+  const parsedLessonOverview =
+    specialistLessonOverviewRawSchema.parse(rawLesson);
+
+  if (
+    !parsedLessonOverview ||
+    parsedLessonOverview.length === 0 ||
+    !parsedLessonOverview[0]
+  ) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  if (parsedLessonOverview.length > 1) {
+    const error = new OakError({
+      code: "curriculum-api/uniqueness-assumption-violated",
+    });
+    errorCallback(parsedLessonOverview, error);
+  }
+
+  const lesson = parsedLessonOverview[0];
+  const hasDownloadableResources = constructHasDownloadableResources(lesson);
+
+  const transformedLesson: LessonOverviewAll = {
+    isLegacy: true,
+    isSpecialist: true,
+    isCanonical: false,
+    lessonSlug: lesson.lesson_slug,
+    lessonTitle: lesson.lesson_title,
+    programmeSlug: lesson.synthetic_programme_slug,
+    unitTitle: lesson.unit_title,
+    unitSlug: lesson.unit_slug,
+    phaseSlug: lesson.combined_programme_fields.phase_slug ?? "",
+    phaseTitle: lesson.combined_programme_fields.phase_description ?? "",
+    developmentStageSlug:
+      lesson.combined_programme_fields.developmentstage_slug ?? "",
+    developmentStageTitle:
+      lesson.combined_programme_fields.developmentstage ?? "",
+    subjectSlug: lesson.combined_programme_fields.subject_slug,
+    subjectTitle: lesson.combined_programme_fields.subject,
+    expired: lesson.expired,
+    pupilLessonOutcome: lesson.pupil_lesson_outcome,
+    videoTitle: lesson.video_title,
+    worksheetUrl: lesson.worksheet_url,
+    presentationUrl: lesson.presentation_url,
+    videoMuxPlaybackId: lesson.video_mux_playback_id,
+    videoWithSignLanguageMuxPlaybackId:
+      lesson.video_with_sign_language_mux_playback_id,
+    hasCopyrightMaterial: lesson.contains_copyright_content,
+    supervisionLevel: lesson.supervision_level,
+    starterQuiz: lesson.starter_quiz,
+    exitQuiz: lesson.exit_quiz,
+    transcriptSentences: lesson.transcript_sentences,
+    threads: lesson.threads,
+    contentGuidance: keysToCamelCase(lesson.content_guidance),
+    teacherTips: keysToCamelCase(lesson.teacher_tips),
+    misconceptionsAndCommonMistakes: keysToCamelCase(
+      lesson.misconceptions_and_common_mistakes,
+    ),
+    lessonEquipmentAndResources: keysToCamelCase(
+      lesson.equipment_and_resources,
+    ),
+    keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
+    hasDownloadableResources: hasDownloadableResources,
+  };
+
+  return specialistLessonOverviewSchema.parse({
+    ...transformedLesson,
+  });
+};
 
 const specialistLessonOverview =
   (sdk: Sdk) =>
@@ -24,77 +101,16 @@ const specialistLessonOverview =
       lessonSlug,
     });
 
-    const parsedLessonOverview = specialistLessonOverviewRawSchema.parse(
+    return generateLessonOverviewFromRaw(
       specialistLessonOverview.lesson,
+      (lessonOverview, error) => {
+        errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
+          severity: "warning",
+          ...args,
+          lessonOverview,
+        });
+      },
     );
-
-    if (
-      !parsedLessonOverview ||
-      parsedLessonOverview.length === 0 ||
-      !parsedLessonOverview[0]
-    ) {
-      throw new Error("curriculum-api/not-found");
-    }
-
-    if (parsedLessonOverview.length > 1) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
-        severity: "warning",
-        ...args,
-        parsedLessonOverview,
-      });
-    }
-
-    const lesson = parsedLessonOverview[0];
-    const hasDownloadableResources = constructHasDownloadableResources(lesson);
-    const transformedLesson: SpecialistLessonOverviewData = {
-      isLegacy: true,
-      isSpecialist: true,
-      isCanonical: false,
-      lessonSlug: lesson.lesson_slug,
-      lessonTitle: lesson.lesson_title,
-      programmeSlug: lesson.synthetic_programme_slug,
-      unitTitle: lesson.unit_title,
-      unitSlug: lesson.unit_slug,
-      phaseSlug: lesson.combined_programme_fields.phase_slug ?? "",
-      phaseTitle: lesson.combined_programme_fields.phase_description ?? "",
-      developmentStageSlug:
-        lesson.combined_programme_fields.developmentstage_slug ?? "",
-      developmentStageTitle:
-        lesson.combined_programme_fields.developmentstage ?? "",
-      subjectSlug: lesson.combined_programme_fields.subject_slug,
-      subjectTitle: lesson.combined_programme_fields.subject,
-      expired: lesson.expired,
-      pupilLessonOutcome: lesson.pupil_lesson_outcome,
-      videoTitle: lesson.video_title,
-      worksheetUrl: lesson.worksheet_url,
-      presentationUrl: lesson.presentation_url,
-      videoMuxPlaybackId: lesson.video_mux_playback_id,
-      videoWithSignLanguageMuxPlaybackId:
-        lesson.video_with_sign_language_mux_playback_id,
-      hasCopyrightMaterial: lesson.contains_copyright_content,
-      supervisionLevel: lesson.supervision_level,
-      starterQuiz: lesson.starter_quiz,
-      exitQuiz: lesson.exit_quiz,
-      transcriptSentences: lesson.transcript_sentences,
-      threads: lesson.threads,
-      contentGuidance: keysToCamelCase(lesson.content_guidance),
-      teacherTips: keysToCamelCase(lesson.teacher_tips),
-      misconceptionsAndCommonMistakes: keysToCamelCase(
-        lesson.misconceptions_and_common_mistakes,
-      ),
-      lessonEquipmentAndResources: keysToCamelCase(
-        lesson.equipment_and_resources,
-      ),
-      keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-      hasDownloadableResources: hasDownloadableResources,
-    };
-
-    return specialistLessonOverviewSchema.parse({
-      ...transformedLesson,
-    });
   };
 
 export default specialistLessonOverview;
