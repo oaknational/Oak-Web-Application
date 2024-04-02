@@ -1,14 +1,6 @@
-query specialistLessonOverview(
-  $programmeSlug: String!
-  $lessonSlug: String!
-  $unitSlug: String!
-) {
+query specialistLessonOverviewCanonical($lessonSlug: String!) {
   lesson: published_mv_specialist_1_0_3(
-    where: {
-      lesson_slug: { _eq: $lessonSlug }
-      synthetic_programme_slug: { _eq: $programmeSlug }
-      unit_slug: { _eq: $unitSlug }
-    }
+    where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_slug
     lesson_title
@@ -34,7 +26,5 @@ query specialistLessonOverview(
     starter_quiz
     exit_quiz
     transcript_sentences
-    exit_quiz_asset_object
-    starter_quiz_asset_object
   }
 }

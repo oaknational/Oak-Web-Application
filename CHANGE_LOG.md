@@ -1,3 +1,45 @@
+## [1.397.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.1...v1.397.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* specialist back to lesson button ([be0f362](https://github.com/oaknational/Oak-Web-Application/commit/be0f362c53a5004bbfd33399a10c689ab835e85f))
+
+## [1.397.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.0...v1.397.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* google drive worksheet downloadable version is string for downloads all check ([6fa7d6d](https://github.com/oaknational/Oak-Web-Application/commit/6fa7d6d19ffd5e031a7b89be50c96b5b0f87276d))
+* specialist overview download all button ([25b4939](https://github.com/oaknational/Oak-Web-Application/commit/25b4939ac32b5d9c230b5e9db172c4fc72dce07a))
+
+# [1.397.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.396.0...v1.397.0) (2024-04-02)
+
+
+### Bug Fixes
+
+* duplicate identifier ([dcc133a](https://github.com/oaknational/Oak-Web-Application/commit/dcc133a4f82274196ce1f854dd7a2160d462a3d4))
+* links to share pages ([8a9c427](https://github.com/oaknational/Oak-Web-Application/commit/8a9c42789165e95893b9c99375c167b4d174bbec))
+* props in story ([fa0fa4e](https://github.com/oaknational/Oak-Web-Application/commit/fa0fa4e9e3181b360a24d55a471cb2d5bfe2d5a2))
+* specialist pathway for subject slug ([c47e0f6](https://github.com/oaknational/Oak-Web-Application/commit/c47e0f614e04b2a0a2eb43dc9382506bf7f7aa20))
+* types for download ([91e4411](https://github.com/oaknational/Oak-Web-Application/commit/91e4411922e211d210d3ec90ff1cf7ad279fe52e))
+* types on share page ([70f088d](https://github.com/oaknational/Oak-Web-Application/commit/70f088d4a7429b9681900c493a65d3f7a4aa7301))
+* use landscape worksheets for specialist canonical lessons ([1dfe923](https://github.com/oaknational/Oak-Web-Application/commit/1dfe92317dad00b4e308eed3730c990011a8dcfa))
+* use new types on share page ([8f0f167](https://github.com/oaknational/Oak-Web-Application/commit/8f0f167c51724d3b95fdcfa17785e4b24f45a719))
+
+
+### Features
+
+* add specialist canonical query ([b36652e](https://github.com/oaknational/Oak-Web-Application/commit/b36652e0bf1bfb16abd411453b669585e07f8240))
+* add specialist query to canonical lesson page ([960416e](https://github.com/oaknational/Oak-Web-Application/commit/960416ee4131a6bf6b6dfc7c1ce457b288fa7a18))
+
+# [1.396.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.395.0...v1.396.0) (2024-04-02)
+
+
+### Features
+
+* add isLegacy flag to programme listing query ([a262f65](https://github.com/oaknational/Oak-Web-Application/commit/a262f65fc367e1c5b83c3e0a99f1b804c420cec5))
+
 # [1.395.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.1...v1.395.0) (2024-03-28)
 
 

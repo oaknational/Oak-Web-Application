@@ -4,7 +4,12 @@ import { Sdk } from "../../sdk";
 import { programmeListingSchema } from "./programmeListing.schema";
 
 const programmeListingQuery =
-  (sdk: Sdk) => async (args: { keyStageSlug: string; subjectSlug: string }) => {
+  (sdk: Sdk) =>
+  async (args: {
+    keyStageSlug: string;
+    subjectSlug: string;
+    isLegacy: boolean;
+  }) => {
     const res = await sdk.programmeListing(args);
     const [programmes] = res.programmes;
 

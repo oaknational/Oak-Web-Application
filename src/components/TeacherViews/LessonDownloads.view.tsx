@@ -25,7 +25,11 @@ import {
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistDownload,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonPathway,
+  SpecialistLessonPathway,
+  lessonIsSpecialist,
+} from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
@@ -83,12 +87,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isSpecialist,
   } = lesson;
 
-  const commonPathway = getCommonPathway(
-    props.isCanonical ? props.lesson.pathways : [props.lesson],
-  );
-
-  const specialistPathway =
-    isSpecialist && !props.isCanonical
+  const commonPathway =
+    lessonIsSpecialist(lesson) && !props.isCanonical
       ? {
           lessonSlug,
           lessonTitle,
@@ -99,8 +99,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           subjectSlug: props.lesson.subjectSlug,
           developmentStageTitle: props.lesson.developmentStageTitle,
           disabled: false,
+          lessonCohort: LEGACY_COHORT,
+          keyStageSlug: null,
+          keyStageTitle: null,
         }
-      : null;
+      : getCommonPathway(
+          props.isCanonical ? props.lesson.pathways : [props.lesson],
+        );
 
   const {
     programmeSlug,
@@ -246,7 +251,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   ]
                 : [
                     ...getBreadcrumbsForSpecialistLessonPathway(
-                      specialistPathway,
+                      commonPathway as SpecialistLessonPathway,
                     ),
                     ...getBreadCrumbForSpecialistDownload({
                       lessonSlug,
@@ -271,6 +276,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             isCanonical={props.isCanonical}
             nextLessons={lesson.nextLessons}
             onwardContentSelected={onwardContentSelected}
+            isSpecialist={isSpecialist}
           />
         </Box>
         {!isDownloadSuccessful && (
