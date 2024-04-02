@@ -1,3 +1,5 @@
+import { constructHasDownloadableResources } from "../specialistLessonDownload/specialistLessonDownload.query";
+
 import specialistLessonOverviewSchema, {
   SpecialistLessonDataRaw,
   specialistLessonOverviewRawSchema,
@@ -35,6 +37,7 @@ export const generateLessonOverviewFromRaw = (
   }
 
   const lesson = parsedLessonOverview[0];
+  const hasDownloadableResources = constructHasDownloadableResources(lesson);
 
   const transformedLesson: LessonOverviewAll = {
     isLegacy: true,
@@ -76,7 +79,7 @@ export const generateLessonOverviewFromRaw = (
       lesson.equipment_and_resources,
     ),
     keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-    hasDownloadableResources: true,
+    hasDownloadableResources: hasDownloadableResources,
   };
 
   return specialistLessonOverviewSchema.parse({
