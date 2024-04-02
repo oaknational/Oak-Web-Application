@@ -174,6 +174,7 @@ export const getStaticProps: GetStaticProps<
         : await curriculumApi2023.programmeListingPage({
             keyStageSlug: keyStageSlug,
             subjectSlug: subjectSlug,
+            isLegacy: false,
           });
 
       const generatedCurriculumData = generateProgrammeListing(
