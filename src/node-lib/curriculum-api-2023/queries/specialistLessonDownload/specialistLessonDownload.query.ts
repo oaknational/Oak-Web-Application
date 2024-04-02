@@ -88,7 +88,9 @@ export const constructHasDownloadableResources = (
       lesson.contains_copyright_content === false) ||
     (!!lesson.starter_quiz && !!lesson.starter_quiz_asset_object) ||
     (!!lesson.exit_quiz && !!lesson.exit_quiz_asset_object) ||
-    !!lesson.worksheet_url
+    (!!lesson.worksheet_url &&
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string")
   );
 };
 

@@ -101,6 +101,7 @@ export const specialistLessonOverviewRawSchema = z.array(
     transcript_sentences: z.union([z.array(z.string()), z.string()]).nullable(),
     starter_quiz_asset_object: legacyAssetObjectSchema,
     exit_quiz_asset_object: legacyAssetObjectSchema,
+    worksheet_asset_object: legacyAssetObjectSchema,
   }),
 );
 

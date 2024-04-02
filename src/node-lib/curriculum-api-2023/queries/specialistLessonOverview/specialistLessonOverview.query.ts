@@ -48,7 +48,7 @@ const specialistLessonOverview =
     }
 
     const lesson = parsedLessonOverview[0];
-
+    const hasDownloadableResources = constructHasDownloadableResources(lesson);
     const transformedLesson: SpecialistLessonOverviewData = {
       isLegacy: true,
       isSpecialist: true,
@@ -89,7 +89,7 @@ const specialistLessonOverview =
         lesson.equipment_and_resources,
       ),
       keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-      hasDownloadableResources: constructHasDownloadableResources(lesson),
+      hasDownloadableResources: hasDownloadableResources,
     };
 
     return specialistLessonOverviewSchema.parse({
