@@ -19,6 +19,7 @@ query curriculumUnits($where: published_mv_curriculum_units_0_3_bool_exp) {
     subject_slug
     subject_parent
     subject_parent_slug
+    tags
     tier
     tier_slug
     title

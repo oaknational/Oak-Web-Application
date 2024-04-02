@@ -2,6 +2,8 @@ import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
+import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
+
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -21,6 +23,7 @@ export type YearData = {
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
+    disciplines: Discipline[];
   };
 };
 
@@ -42,6 +45,11 @@ export interface Domain {
   domain_id: number;
 }
 
+export interface Discipline {
+  id: number;
+  title: string;
+}
+
 export interface Tier {
   tier: string;
   tier_slug: string;
@@ -49,6 +57,7 @@ export interface Tier {
 
 export interface YearSelection {
   [key: string]: {
+    discipline?: Discipline | null;
     subject?: Subject | null;
     domain?: Domain | null;
     tier?: Tier | null;
@@ -65,26 +74,50 @@ type CurriculumVisualiserProps = {
   handleSelectDomain: (year: string, domain: Domain) => void;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
+  handleSelectDiscipline: (year: string, discipline: Discipline) => void;
   duplicateUnitSlugs: Set<string>;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-export function createProgrammeSlug(
-  unitData?: Unit | null,
-  examboardSlug?: string | null,
+export function isVisibleUnit(
+  yearSelection: YearSelection,
+  duplicateUnitSlugs: Set<string>,
+  year: string,
+  unit: Unit,
 ) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
+  const s = yearSelection[year];
+  if (!s) {
+    return false;
   }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
+  const filterBySubject =
+    !s.subject || s.subject.subject_slug === unit.subject_slug;
+  const filterByDiscipline =
+    s.discipline?.id == -1 ||
+    unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
+  const filterByDomain =
+    !s.domain ||
+    s.domain.domain_id === 0 ||
+    s.domain.domain_id === unit.domain_id;
+  const filterByTier =
+    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
+
+  // Look for duplicates that don't have an examboard, tier or subject parent
+  // (i.e. aren't handled by other filters)
+
+  const isDuplicate =
+    unit.examboard === null &&
+    unit.tier === null &&
+    unit.subject_parent === null &&
+    duplicateUnitSlugs.has(unit.slug);
+  return (
+    filterBySubject &&
+    filterByDomain &&
+    filterByTier &&
+    filterByDiscipline &&
+    !isDuplicate
+  );
 }
 
 function isSelectedDomain(
@@ -111,6 +144,14 @@ function isSelectedTier(
   return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
 }
 
+function isSelectedDiscipline(
+  yearSelection: YearSelection,
+  year: string,
+  discipline: Discipline,
+) {
+  return yearSelection[year]?.discipline?.id === discipline.id;
+}
+
 function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
   if (!selectedThread) {
     return false;
@@ -129,6 +170,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   handleSelectDomain,
   handleSelectSubject,
   handleSelectTier,
+  handleSelectDiscipline,
   duplicateUnitSlugs,
   mobileHeaderScrollOffset,
   setUnitData,
@@ -174,31 +216,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
-  // Visibility helpers
-  function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year];
-    if (!s) {
-      return false;
-    }
-    const filterBySubject =
-      !s.subject || s.subject.subject_slug === unit.subject_slug;
-    const filterByDomain =
-      !s.domain ||
-      s.domain.domain_id === 0 ||
-      s.domain.domain_id === unit.domain_id;
-    const filterByTier =
-      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-    // Look for duplicates that don't have an examboard, tier or subject parent
-    // (i.e. aren't handled by other filters)
-
-    const isDuplicate =
-      unit.examboard === null &&
-      unit.tier === null &&
-      unit.subject_parent === null &&
-      duplicateUnitSlugs.has(unit.slug);
-    return filterBySubject && filterByDomain && filterByTier && !isDuplicate;
-  }
   const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
     setDisplayModal((prev) => !prev);
     setUnitOptionsAvailable(unitOptions);
@@ -221,9 +238,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
           .map((year, index) => {
-            const { units, childSubjects, domains, tiers } = yearData[
-              year
-            ] as YearData[string];
+            const { units, childSubjects, domains, tiers, disciplines } =
+              yearData[year] as YearData[string];
             return (
               <Box
                 key={year}
@@ -250,6 +266,26 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   Year {year}
                 </OakHeading>
+                {disciplines?.length > 1 && (
+                  <Box>
+                    {disciplines.map((discipline, index) => (
+                      <Button
+                        $mb={20}
+                        $mr={20}
+                        background={
+                          isSelectedDiscipline(yearSelection, year, discipline)
+                            ? "black"
+                            : "white"
+                        }
+                        key={index}
+                        label={discipline.title}
+                        onClick={() => handleSelectDiscipline(year, discipline)}
+                        size="small"
+                        data-testid="discipline-button"
+                      />
+                    ))}
+                  </Box>
+                )}
                 {childSubjects.length > 0 && (
                   <Box>
                     {childSubjects.map((subject: Subject) => (
@@ -315,7 +351,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   data-testid="unit-cards"
                 >
                   {units
-                    .filter((unit: Unit) => isVisibleUnit(year, unit))
+                    .filter((unit: Unit) =>
+                      isVisibleUnit(
+                        yearSelection,
+                        duplicateUnitSlugs,
+                        year,
+                        unit,
+                      ),
+                    )
                     .map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
                         unit,
