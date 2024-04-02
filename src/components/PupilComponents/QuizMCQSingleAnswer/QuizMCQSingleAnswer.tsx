@@ -7,7 +7,6 @@ import {
 } from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import {
   getStemImage,
   isText,
@@ -20,15 +19,11 @@ import {
 //http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
 
 export type QuizMCQSingleAnswerProps = {
-  onInitialChange?: () => void;
-  onChange?: () => void;
+  onChange: () => void;
 };
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
-  const { onInitialChange, onChange } = props;
-
-  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
-
+  const { onChange } = props;
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const answers = useMemo(
@@ -55,7 +50,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
         name={questionUid || "mcq-single-answer"}
         $flexDirection={"column"}
         $gap={"space-between-s"}
-        onChange={handleOnChange}
+        onChange={onChange}
         disabled={isFeedbackMode}
       >
         {answers?.map((answer, i) => {
@@ -79,6 +74,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
               label={label?.text}
               feedback={feedback}
               image={image}
+              isHighlighted={questionState?.mode === "incomplete"}
             />
           );
         })}

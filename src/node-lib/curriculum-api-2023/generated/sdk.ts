@@ -36281,7 +36281,7 @@ export type CurriculumUnitsQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_0_1', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
+export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_0_3', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -36498,8 +36498,8 @@ export const CurriculumOverviewDocument = gql`
 }
     `;
 export const CurriculumUnitsDocument = gql`
-    query curriculumUnits($where: published_mv_curriculum_units_0_1_bool_exp) {
-  units: published_mv_curriculum_units_0_1(where: $where) {
+    query curriculumUnits($where: published_mv_curriculum_units_0_3_bool_exp) {
+  units: published_mv_curriculum_units_0_3(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
@@ -36510,6 +36510,7 @@ export const CurriculumUnitsDocument = gql`
     examboard_slug
     keystage_slug
     lessons
+    order
     planned_number_of_lessons
     phase
     phase_slug

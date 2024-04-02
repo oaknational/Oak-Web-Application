@@ -12,27 +12,19 @@ import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { invariant } from "../pupilUtils/invariant";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 
 export type QuizOrderAnswerProps = {
-  onInitialChange?: () => void;
-  onChange?: () => void;
+  onChange: () => void;
 };
 
-export const QuizOrderAnswer = ({
-  onChange,
-  onInitialChange,
-}: QuizOrderAnswerProps) => {
-  const { handleOnChange: handleInitialChange } = useInitialChange({
-    onChange,
-    onInitialChange,
-  });
+export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
   const { currentQuestionData, questionState, currentQuestionIndex } =
     useQuizEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
   const answers = currentQuestionData.answers;
   const questionUid = currentQuestionData.questionUid;
-  const feedback = questionState[currentQuestionIndex]?.feedback;
+  const currentQuestionState = questionState[currentQuestionIndex];
+  const feedback = currentQuestionState?.feedback;
 
   invariant(
     answers && isOrderAnswer(answers),
@@ -70,7 +62,7 @@ export const QuizOrderAnswer = ({
   const [currentOrder, setCurrentOrder] = useState(initialItems);
 
   const handleOrderChange = (items: OakQuizOrderProps["initialItems"]) => {
-    handleInitialChange();
+    onChange();
     setCurrentOrder(items);
   };
 
@@ -100,7 +92,11 @@ export const QuizOrderAnswer = ({
 
   return (
     <OakBox>
-      <OakQuizOrder initialItems={initialItems} onChange={handleOrderChange} />
+      <OakQuizOrder
+        initialItems={initialItems}
+        onChange={handleOrderChange}
+        isHighlighted={currentQuestionState?.mode === "incomplete"}
+      />
       {currentOrder.map((item) => {
         return (
           <input

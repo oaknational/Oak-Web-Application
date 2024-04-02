@@ -1,3 +1,21 @@
+# [1.395.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.1...v1.395.0) (2024-03-28)
+
+
+### Features
+
+* **PUPIL-485:** add an "incomplete" mode to questions ([4115a75](https://github.com/oaknational/Oak-Web-Application/commit/4115a75f6329e4390e6aa85bb30baca0f80fabe8))
+* **PUPIL-485:** display a tooltip when a pupil tries to submit an incomplete answer ([48da5d3](https://github.com/oaknational/Oak-Web-Application/commit/48da5d3dc0fa10d8c4df25458a4d807571513175))
+
+## [1.394.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.394.0...v1.394.1) (2024-03-28)
+
+
+### Bug Fixes
+
+* add order property to the curriculumVisualiserFixture ([4b3acd0](https://github.com/oaknational/Oak-Web-Application/commit/4b3acd073d80463a9c3937292f6c23b95a6a4317))
+* adding sort to the curriculum units ([2694c0a](https://github.com/oaknational/Oak-Web-Application/commit/2694c0a981553d3475a33055d1bb7adb0f43bc7d))
+* generate new sdk for curriculum units MV ([f198017](https://github.com/oaknational/Oak-Web-Application/commit/f198017a42fef125668bf6bd4ca7977a84df078a))
+* updating fixtures and tests ([0ad2c55](https://github.com/oaknational/Oak-Web-Application/commit/0ad2c554cda77c2aae961a2587d9c9fa22cb850c))
+
 # [1.394.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.393.0...v1.394.0) (2024-03-28)
 
 
