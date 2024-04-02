@@ -1,3 +1,10 @@
+## [1.397.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.1...v1.397.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* specialist back to lesson button ([be0f362](https://github.com/oaknational/Oak-Web-Application/commit/be0f362c53a5004bbfd33399a10c689ab835e85f))
+
 ## [1.397.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.0...v1.397.1) (2024-04-02)
 
 
