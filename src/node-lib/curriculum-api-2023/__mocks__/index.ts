@@ -24,6 +24,7 @@ const curriculumApi: Pick<
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
+  | "lessonOverview"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -42,6 +43,9 @@ const curriculumApi: Pick<
   }),
   pupilLessonOverviewCanonical: jest.fn(async () => {
     return pupilLessonOverviewFixture();
+  }),
+  lessonOverview: jest.fn(async () => {
+    return lessonOverviewFixture();
   }),
   lessonOverviewCanonical: jest.fn(async () => {
     return {

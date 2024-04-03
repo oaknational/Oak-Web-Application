@@ -424,9 +424,10 @@ describe("pages/teachers/lessons", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
         params: {
-          lessonSlug: "macbeth-lesson-1",
-          programmeSlug: "english-primary-ks2-l",
-          unitSlug: "shakespeare",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
@@ -434,7 +435,7 @@ describe("pages/teachers/lessons", () => {
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1",
+        "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
       );
     });
     it("should throw error", async () => {
