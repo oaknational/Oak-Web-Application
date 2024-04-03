@@ -2,7 +2,6 @@ query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageUnitCount: published_mv_specialist_1_0_3_aggregate(
     where: {
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
-      contains_copyright_content: { _eq: false }
       expired: { _is_null: true }
     }
   ) {
@@ -13,7 +12,6 @@ query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageLessonCount: published_mv_specialist_1_0_3_aggregate(
     where: {
       synthetic_programme_slug: { _eq: $syntheticProgrammeSlug }
-      contains_copyright_content: { _eq: false }
       expired: { _is_null: true }
     }
   ) {
