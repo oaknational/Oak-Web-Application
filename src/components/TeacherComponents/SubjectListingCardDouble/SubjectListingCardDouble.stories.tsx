@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import Component from ".";
 
-import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectPageProps";
+import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
