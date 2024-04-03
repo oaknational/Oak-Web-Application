@@ -1,7 +1,7 @@
 import {
   getStaticPaths,
   getStaticProps,
-} from "@/pages/pupils/lessons/[lessonSlug]";
+} from "@/pages/pupils/lessons/[lessonSlug]/[section]";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
@@ -33,6 +33,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
+          section: "overview",
         },
       });
 
@@ -56,6 +57,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = (await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
+          section: "overview",
         },
       })) as {
         props: PupilExperienceViewProps;
@@ -77,6 +79,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
+          section: "overview",
         },
       });
 
@@ -92,6 +95,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
+          section: "overview",
         },
       });
 
