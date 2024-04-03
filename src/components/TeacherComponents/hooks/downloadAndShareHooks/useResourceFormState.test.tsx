@@ -152,7 +152,7 @@ describe("useResourceFormState", () => {
           query: { preselected: "worksheet" },
         });
         const { result } = renderHook(() => useResourceFormState(shareProps));
-        console.log(result);
+
         expect(result.current.selectedResources).toEqual(["worksheet-pdf"]);
       });
     });
