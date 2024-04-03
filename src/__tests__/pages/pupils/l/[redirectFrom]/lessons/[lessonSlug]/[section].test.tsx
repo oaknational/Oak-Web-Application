@@ -1,7 +1,7 @@
 import {
   getStaticPaths,
   getStaticProps,
-} from "@/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]";
+} from "@/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section]";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -32,6 +32,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         params: {
           lessonSlug: "lessonSlug",
           redirectFrom: "redirectFrom",
+          section: "overview",
         },
       });
 
@@ -52,6 +53,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       params: {
         lessonSlug: "lessonSlug",
         redirectFrom: "redirectFrom",
+        section: "overview",
       },
     });
 
@@ -76,6 +78,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       params: {
         lessonSlug: "lessonSlug",
         redirectFrom: "redirectFrom",
+        section: "overview",
       },
     });
 

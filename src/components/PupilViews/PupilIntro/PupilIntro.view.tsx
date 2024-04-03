@@ -24,6 +24,7 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import { ContentGuidance } from "@/components/TeacherComponents/LessonOverviewRequirements";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 export type PupilViewsIntroProps = PupilLessonOverviewData & {
   hasWorksheet: boolean;
@@ -44,6 +45,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     updateSectionResult,
     sectionResults,
   } = useLessonEngineContext();
+  const getSectionLinkProps = useGetSectionLinkProps();
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
     isLegacy,
@@ -69,10 +71,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     <OakLessonTopNav
       backLinkSlot={
         <OakBackLink
-          type="button"
-          onClick={() => {
-            updateCurrentSection("overview");
-          }}
+          {...getSectionLinkProps("overview", updateCurrentSection)}
         />
       }
       heading={"Introduction"}
@@ -88,13 +87,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
-        type="button"
+        element="a"
+        {...getSectionLinkProps("overview", () => completeSection("intro"))}
         width={["100%", "max-content"]}
         isTrailingIcon
         iconName="arrow-right"
-        onClick={() => {
-          completeSection("intro");
-        }}
       >
         I'm ready
       </OakPrimaryButton>
