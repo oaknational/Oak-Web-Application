@@ -1,3 +1,19 @@
+## [1.399.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.0...v1.399.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* remove no exinsistant preselected resources ([0df7162](https://github.com/oaknational/Oak-Web-Application/commit/0df71622dd8bb287a2bb2ce28162439ce4289ede))
+* remove props from use effect ([e2d38a3](https://github.com/oaknational/Oak-Web-Application/commit/e2d38a309febabc10a6fccff44cb3dee8d19891c))
+
+# [1.399.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.398.0...v1.399.0) (2024-04-03)
+
+
+### Features
+
+* **PUPIL-517:** allow deep linking to lesson sections from the alternative URLs ([8e1ef9e](https://github.com/oaknational/Oak-Web-Application/commit/8e1ef9ef43152c36c2aa659d80b5a0fb94539758))
+* **PUPIL-517:** enable deep linking to lesson sections ([e499e0a](https://github.com/oaknational/Oak-Web-Application/commit/e499e0aa5445696a4884daaa40dfe32e05392572))
+
 # [1.398.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.2...v1.398.0) (2024-04-02)
 
 

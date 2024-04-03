@@ -26,6 +26,7 @@ import {
   isShortAnswer,
   isSingleAnswerMCQ,
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -40,6 +41,7 @@ const isQuizSection = (section: string): section is QuizSection => {
 const QuizInner = () => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
+  const getSectionLinkProps = useGetSectionLinkProps();
 
   if (!isQuizSection(currentSection)) {
     return null;
@@ -146,10 +148,7 @@ const QuizInner = () => {
     <OakLessonTopNav
       backLinkSlot={
         <OakBackLink
-          type="button"
-          onClick={() => {
-            updateCurrentSection("overview");
-          }}
+          {...getSectionLinkProps("overview", updateCurrentSection)}
         />
       }
       counterSlot={

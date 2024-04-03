@@ -30,6 +30,7 @@ const meta = {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineProvider
           initialLessonReviewSections={allLessonReviewSections}
+          initialSection="overview"
         >
           <Story />
         </LessonEngineProvider>
