@@ -151,6 +151,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     setEmailInLocalStorage,
   } = useResourceFormState({ downloadResources: downloads, type: "download" });
 
+  const noResourcesSelected =
+    form.watch().resources === undefined || form.watch().resources.length === 0;
+
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -325,6 +328,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
+                  noResourcesSelected ||
                   expired ||
                   !hasDownloadableResources ||
                   (!form.formState.isValid && !localStorageDetails)
