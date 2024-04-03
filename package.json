@@ -64,6 +64,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.22.3",
     "@bugsnag/plugin-react": "^7.19.0",
+    "@dotlottie/react-player": "^1.6.19",
     "@google-cloud/storage": "^7.7.0",
     "@hookform/resolvers": "^3.3.4",
     "@hubspot/api-client": "^9.1.1",
