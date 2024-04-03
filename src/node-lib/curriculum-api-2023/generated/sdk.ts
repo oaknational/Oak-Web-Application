@@ -36940,14 +36940,14 @@ export const SpecialistProgrammeListingDocument = gql`
 export const SpecialistProgrammeListingCountsDocument = gql`
     query specialistProgrammeListingCounts($programmeSlug: String!) {
   unitCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   lessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
