@@ -203,7 +203,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       preselected = getPreselectedShareResourceTypes(queryResults);
     }
     if (isPreselectedDownloadType(queryResults)) {
-      preselected = getPreselectedDownloadResourceTypes(queryResults);
+      preselected = getPreselectedDownloadResourceTypes(
+        queryResults,
+        resources as LessonDownloadsData["downloads"],
+      );
     }
     if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
@@ -215,6 +218,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     getInitialResourcesState,
     props.type,
     router.query.preselected,
+    resources,
     setValue,
   ]);
 
@@ -259,6 +263,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     form: {
       trigger,
       setValue,
+      watch,
       formState,
       getInitialResourcesState,
       errors,
