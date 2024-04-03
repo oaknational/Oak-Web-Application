@@ -2,7 +2,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
@@ -12,15 +11,17 @@ import {
 } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
-  PupilExperienceView,
   PupilExperienceViewProps,
+  pickAvailableSectionsForLesson,
 } from "@/components/PupilViews/PupilExperience";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+  isLessonReviewSection,
+  isLessonSection,
+} from "@/components/PupilComponents/LessonEngineProvider";
+
+export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
 /**
  * Test URLs:
@@ -36,27 +37,9 @@ import {
  *
  *
  */
-
-const PupilsCanonicalPage: NextPage<PupilExperienceViewProps> = ({
-  curriculumData,
-  hasWorksheet,
-  backUrl,
-}) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
-      <PupilExperienceView
-        curriculumData={curriculumData}
-        hasWorksheet={hasWorksheet}
-        backUrl={backUrl}
-      />
-    </PupilAnalyticsProvider>
-  );
-};
-
 type PupilCanonicalPageURLParams = {
   lessonSlug: string;
+  section: string;
 };
 
 export const getStaticPaths = async () => {
@@ -82,7 +65,14 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context.params");
       }
-      const { lessonSlug } = context.params;
+      const { lessonSlug, section } = context.params;
+
+      // 404 if the section is not valid
+      if (!isLessonSection(section)) {
+        return {
+          notFound: true,
+        };
+      }
 
       const curriculumData =
         await curriculumApi2023.pupilLessonOverviewCanonical({
@@ -90,6 +80,16 @@ export const getStaticProps: GetStaticProps<
         });
 
       if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      // 404 if the lesson does not contain the given section
+      if (
+        isLessonReviewSection(section) &&
+        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+      ) {
         return {
           notFound: true,
         };
@@ -112,6 +112,7 @@ export const getStaticProps: GetStaticProps<
           },
           hasWorksheet,
           backUrl,
+          initialSection: section,
         },
       };
 
@@ -119,5 +120,3 @@ export const getStaticProps: GetStaticProps<
     },
   });
 };
-
-export default PupilsCanonicalPage;

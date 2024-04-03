@@ -27,6 +27,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "number-addition-and-subtraction",
@@ -67,6 +68,11 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "combined-science",
+        tags: [
+          { id: 12, title: "Practical", category: "" },
+          { id: 3, title: "Biology", category: "Discipline" },
+          { id: 9, title: "Physics", category: "Discipline" },
+        ],
         threads: [
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
@@ -101,6 +107,10 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: [
+          { id: 12, title: "Practical", category: "" },
+          { id: 9, title: "Physics", category: "Discipline" },
+        ],
         threads: [
           {
             slug: "number",
@@ -136,6 +146,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: "Science",
         subject_parent_slug: "science",
         subject_slug: "combined-science",
+        tags: null,
         threads: [
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
@@ -171,6 +182,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "geography",
+        tags: null,
         threads: [
           {
             slug: "human-and-physical-processes-climate-and-weather",
@@ -216,6 +228,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "number-fractions",
@@ -256,6 +269,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "statistics",
@@ -307,6 +321,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "english",
+        tags: null,
         threads: [
           {
             slug: "preparing-for-analytical-writing",
@@ -347,6 +362,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "science",
+        tags: null,
         threads: [
           {
             slug: "bq07-what-are-things-made-of",
@@ -368,7 +384,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Composition of numbers 6 to 10",
         connection_prior_unit_title: "Composition of numbers",
         domain: null,
-        domain_id: null,
+        domain_id: 17,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks3",
@@ -382,6 +398,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "science",
+        tags: null,
         threads: [
           {
             slug: "bq2-how-do-living-things-grow-and-reproduce",

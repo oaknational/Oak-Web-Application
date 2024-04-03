@@ -1,3 +1,25 @@
+# [1.399.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.398.0...v1.399.0) (2024-04-03)
+
+
+### Features
+
+* **PUPIL-517:** allow deep linking to lesson sections from the alternative URLs ([8e1ef9e](https://github.com/oaknational/Oak-Web-Application/commit/8e1ef9ef43152c36c2aa659d80b5a0fb94539758))
+* **PUPIL-517:** enable deep linking to lesson sections ([e499e0a](https://github.com/oaknational/Oak-Web-Application/commit/e499e0aa5445696a4884daaa40dfe32e05392572))
+
+# [1.398.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.2...v1.398.0) (2024-04-02)
+
+
+### Features
+
+* adding subject tags filters based on discipline tags in CAT ([c533fb6](https://github.com/oaknational/Oak-Web-Application/commit/c533fb6ae25348d8db7ab72f493f1cf7e2d42f54))
+
+## [1.397.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.1...v1.397.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* specialist back to lesson button ([be0f362](https://github.com/oaknational/Oak-Web-Application/commit/be0f362c53a5004bbfd33399a10c689ab835e85f))
+
 ## [1.397.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.397.0...v1.397.1) (2024-04-02)
 
 

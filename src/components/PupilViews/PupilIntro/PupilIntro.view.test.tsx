@@ -173,7 +173,7 @@ describe("PupilIntro", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByRole("button", { name: /I'm ready/i })).toBeInTheDocument();
+    expect(getByRole("link", { name: /I'm ready/i })).toBeInTheDocument();
   });
   it("completes the section when I'm ready button is clicked", () => {
     const context = createLessonEngineContext();
@@ -184,7 +184,7 @@ describe("PupilIntro", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    fireEvent.click(getByRole("button", { name: /I'm ready/i }));
+    fireEvent.click(getByRole("link", { name: /I'm ready/i }));
     expect(context.completeSection).toHaveBeenCalledWith("intro");
   });
 

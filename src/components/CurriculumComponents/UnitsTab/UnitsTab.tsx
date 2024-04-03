@@ -10,8 +10,10 @@ import CurriculumVisualiser, {
   Thread,
   Subject,
   Domain,
+  Discipline,
   Tier,
   Unit,
+  isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
@@ -35,6 +37,7 @@ type UnitsTabProps = {
 
 export interface YearSelection {
   [key: string]: {
+    discipline?: Discipline | null;
     subject?: Subject | null;
     domain?: Domain | null;
     tier?: Tier | null;
@@ -63,6 +66,7 @@ let yearData: {
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
+    disciplines: Discipline[];
     ref?: MutableRefObject<HTMLDivElement>;
   };
 } = {};
@@ -120,6 +124,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
           childSubjects: [],
           domains: [],
           tiers: [],
+          disciplines: [],
         };
         yearData[unit.year] = currentYearData;
       }
@@ -169,6 +174,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         });
       }
 
+      // Loop through tags array and populate disciplines.
+      unit.tags?.forEach((tag) => {
+        if (tag.category === "Discipline") {
+          if (
+            currentYearData?.disciplines.findIndex((d) => d.id === tag.id) ===
+            -1
+          ) {
+            currentYearData.disciplines.push({ id: tag.id, title: tag.title });
+          }
+        }
+      });
+
       // Check for duplicate unit slugs
 
       if (unitSlugs.has(unit.slug)) {
@@ -214,11 +231,21 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         });
       }
       filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+      // Sort disciplines
+      filters.disciplines.sort((a, b) => a.title.localeCompare(b.title));
+
+      // Add an "All" option if there are 2 or more disciplines. Set to -1 id as this shouldn't ever appear in the DB
+      const allDisciplineTag: Discipline = { id: -1, title: "All" };
+      if (filters.disciplines.length >= 2) {
+        filters.disciplines.unshift(allDisciplineTag);
+      }
+
       initialYearSelection[year] = {
         subject:
           filters.childSubjects.find(
             (s) => s.subject_slug === "combined-science",
           ) ?? null,
+        discipline: allDisciplineTag,
         domain: filters.domains.length ? filters.domains[0] : null,
         tier: filters.tiers.length ? filters.tiers[0] : null,
       };
@@ -256,6 +283,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
+  function handleSelectDiscipline(year: string, discipline: Discipline) {
+    const selection = { ...yearSelection[year] };
+    selection.discipline = discipline;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
   function handleSelectTier(year: string, tier: Tier) {
     const selection = { ...yearSelection[year] };
     selection.tier = tier;
@@ -270,7 +303,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       const units = yearData[year]?.units;
       if (units && (!selectedYear || selectedYear === year)) {
         units.forEach((unit) => {
-          if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
+          if (
+            isVisibleUnit(yearSelection, duplicateUnitSlugs, year, unit) &&
+            isHighlightedUnit(unit)
+          ) {
             count++;
           }
         });
@@ -288,31 +324,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   function isSelectedThread(thread: Thread) {
     return selectedThread?.slug === thread.slug;
-  }
-
-  function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year];
-    if (!s) {
-      return false;
-    }
-    const filterBySubject =
-      !s.subject || s.subject.subject_slug === unit.subject_slug;
-    const filterByDomain =
-      !s.domain ||
-      s.domain.domain_id === 0 ||
-      s.domain.domain_id === unit.domain_id;
-    const filterByTier =
-      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-    // Look for duplicates that don't have an examboard, tier or subject parent
-    // (i.e. aren't handled by other filters)
-
-    const isDuplicate =
-      unit.examboard === null &&
-      unit.tier === null &&
-      unit.subject_parent === null &&
-      duplicateUnitSlugs.has(unit.slug);
-    return filterBySubject && filterByDomain && filterByTier && !isDuplicate;
   }
 
   // Analytics handlers
@@ -524,6 +535,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
             handleSelectDomain={handleSelectDomain}
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
+            handleSelectDiscipline={handleSelectDiscipline}
             duplicateUnitSlugs={duplicateUnitSlugs}
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}
             setUnitData={setUnitData}

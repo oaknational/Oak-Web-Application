@@ -32,6 +32,15 @@ const curriculumUnitsSchema = z.object({
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
+      tags: z
+        .array(
+          z.object({
+            id: z.number(),
+            title: z.string(),
+            category: z.string().optional(),
+          }),
+        )
+        .nullable(),
       threads: z.array(
         z.object({
           title: z.string(),
