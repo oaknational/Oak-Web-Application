@@ -22,8 +22,14 @@ import {
   getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
+  getBreadcrumbsForSpecialistLessonPathway,
+  getBreadCrumbForSpecialistDownload,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonPathway,
+  SpecialistLessonPathway,
+  lessonIsSpecialist,
+} from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
@@ -31,6 +37,7 @@ import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloa
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
+import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -40,6 +47,8 @@ type BaseLessonDownload = {
   lessonCohort?: string | null;
   downloads: LessonDownloadsData["downloads"];
   hasDownloadableResources?: boolean;
+  isSpecialist: false;
+  developmentStageTitle?: string | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -51,6 +60,8 @@ type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
 } & LessonPathway;
 
+type SpecialistLesson = SpecialistLessonDownloads["lesson"];
+
 type LessonDownloadsProps =
   | {
       isCanonical: true;
@@ -59,6 +70,10 @@ type LessonDownloadsProps =
   | {
       isCanonical: false;
       lesson: NonCanonicalLesson;
+    }
+  | {
+      isCanonical: false;
+      lesson: SpecialistLesson;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
@@ -69,10 +84,29 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     downloads,
     hasDownloadableResources,
     expired,
+    isSpecialist,
   } = lesson;
-  const commonPathway = getCommonPathway(
-    props.isCanonical ? props.lesson.pathways : [props.lesson],
-  );
+
+  const commonPathway =
+    lessonIsSpecialist(lesson) && !props.isCanonical
+      ? {
+          lessonSlug,
+          lessonTitle,
+          unitSlug: props.lesson.unitSlug,
+          programmeSlug: props.lesson.programmeSlug,
+          unitTitle: props.lesson.unitTitle,
+          subjectTitle: props.lesson.subjectTitle,
+          subjectSlug: props.lesson.subjectSlug,
+          developmentStageTitle: props.lesson.developmentStageTitle,
+          disabled: false,
+          lessonCohort: LEGACY_COHORT,
+          keyStageSlug: null,
+          keyStageTitle: null,
+        }
+      : getCommonPathway(
+          props.isCanonical ? props.lesson.pathways : [props.lesson],
+        );
+
   const {
     programmeSlug,
     keyStageTitle,
@@ -116,6 +150,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     selectAllChecked,
     setEmailInLocalStorage,
   } = useResourceFormState({ downloadResources: downloads, type: "download" });
+
+  const noResourcesSelected =
+    form.watch().resources === undefined || form.watch().resources.length === 0;
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
@@ -198,21 +235,35 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
           <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-              }),
-              getLessonDownloadsBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                disabled: true,
-              }),
-            ]}
+            breadcrumbs={
+              !isSpecialist
+                ? [
+                    ...getBreadcrumbsForLessonPathway(commonPathway),
+                    getLessonOverviewBreadCrumb({
+                      lessonTitle,
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                    }),
+                    getLessonDownloadsBreadCrumb({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+                : [
+                    ...getBreadcrumbsForSpecialistLessonPathway(
+                      commonPathway as SpecialistLessonPathway,
+                    ),
+                    ...getBreadCrumbForSpecialistDownload({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+            }
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>
@@ -228,6 +279,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             isCanonical={props.isCanonical}
             nextLessons={lesson.nextLessons}
             onwardContentSelected={onwardContentSelected}
+            isSpecialist={isSpecialist}
           />
         </Box>
         {!isDownloadSuccessful && (
@@ -276,6 +328,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
+                  noResourcesSelected ||
                   expired ||
                   !hasDownloadableResources ||
                   (!form.formState.isValid && !localStorageDetails)

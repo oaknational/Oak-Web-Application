@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { Sdk } from "../../sdk";
 import { lessonDownloadsListSchema } from "../../shared.schema";
+import { SpecialistLessonDataRaw } from "../specialistLessonOverview/specialistLessonOverview.schema";
 
 import {
   SpecialistLessonDownloadRaw,
@@ -50,18 +51,18 @@ export const constructDownloadsArray = (
     forbidden: false,
   };
   const worksheetPdf = {
-    exists: lesson.worksheet_asset_object?.google_drive_downloadable_version
-      ? true
-      : false,
+    exists:
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string",
     type: "worksheet-pdf" as const,
     label: "Worksheet",
     ext: "pdf",
     forbidden: false,
   };
   const worksheetPptx = {
-    exists: lesson.worksheet_asset_object?.google_drive_downloadable_version
-      ? true
-      : false,
+    exists:
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string",
     type: "worksheet-pptx" as const,
     label: "Worksheet",
     ext: "pptx",
@@ -80,14 +81,16 @@ export const constructDownloadsArray = (
 };
 
 export const constructHasDownloadableResources = (
-  lesson: SpecialistLessonDownloadRaw,
+  lesson: SpecialistLessonDownloadRaw | SpecialistLessonDataRaw[number],
 ) => {
   return (
     (!!lesson.presentation_url &&
       lesson.contains_copyright_content === false) ||
     (!!lesson.starter_quiz && !!lesson.starter_quiz_asset_object) ||
     (!!lesson.exit_quiz && !!lesson.exit_quiz_asset_object) ||
-    !!lesson.worksheet_url
+    (!!lesson.worksheet_url &&
+      typeof lesson.worksheet_asset_object
+        ?.google_drive_downloadable_version === "string")
   );
 };
 
@@ -124,9 +127,12 @@ export const specialistLessonDownloadQuery =
 
     return {
       lesson: {
+        isSpecialist: true,
         subjectTitle: lesson.combined_programme_fields.subject,
         subjectSlug: lesson.combined_programme_fields.subject_slug,
         unitTitle: lesson.unit_title,
+        developmentStageTitle:
+          lesson.combined_programme_fields.developmentstage ?? "",
         unitSlug: unitSlug,
         programmeSlug: programmeSlug,
         isLegacy: false,

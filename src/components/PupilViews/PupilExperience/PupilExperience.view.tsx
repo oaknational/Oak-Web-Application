@@ -1,3 +1,4 @@
+import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
   OakThemeProvider,
@@ -7,6 +8,7 @@ import {
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   LessonEngineProvider,
+  LessonSection,
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
@@ -17,6 +19,12 @@ import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
 import { PupilViewsVideo } from "@/components/PupilViews/PupilVideo";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 import { PupilExpiredView } from "@/components/PupilViews/PupilExpired/PupilExpired.view";
+import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import {
+  PupilAnalyticsProvider,
+  getPupilPathwayData,
+} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -38,15 +46,15 @@ export type PupilExperienceViewProps = {
   curriculumData: PupilLessonOverviewData;
   hasWorksheet: boolean;
   backUrl?: string | null;
+  initialSection: LessonSection;
 };
 
 export const PupilPageContent = ({
   curriculumData,
   hasWorksheet,
   backUrl,
-}: PupilExperienceViewProps) => {
+}: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
-
   const {
     starterQuiz,
     exitQuiz,
@@ -104,28 +112,61 @@ export const PupilPageContent = ({
   }
 };
 
+// Moves Confirmic modal clear of the bottom navigation
+// This should be removed once confirmic is replaced (PUPIL-478)
+const CookieConsentStyles = createGlobalStyle`
+#mtm-frame-container {
+  bottom: 70px!important;
+  height: 510px;
+  overflow: clip;
+
+  // Hides the corner shadow
+  > div {
+    display: none;
+  }
+}
+`;
+
 export const PupilExperienceView = ({
   curriculumData,
   hasWorksheet,
   backUrl,
+  initialSection,
 }: PupilExperienceViewProps) => {
   const availableSections = pickAvailableSectionsForLesson(curriculumData);
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonEngineProvider initialLessonReviewSections={availableSections}>
-        <OakBox $height={"100vh"}>
-          {curriculumData.expired ? (
-            <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
-          ) : (
-            <PupilPageContent
-              curriculumData={curriculumData}
-              hasWorksheet={hasWorksheet}
-              backUrl={backUrl}
-            />
-          )}
-        </OakBox>
-      </LessonEngineProvider>
-    </OakThemeProvider>
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(curriculumData)}
+    >
+      <PupilLayout
+        seoProps={{
+          ...getSeoProps({
+            title: curriculumData.lessonTitle,
+            description: curriculumData.pupilLessonOutcome,
+          }),
+        }}
+      >
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <CookieConsentStyles />
+          <LessonEngineProvider
+            initialLessonReviewSections={availableSections}
+            initialSection={initialSection}
+          >
+            <OakBox $height={"100vh"}>
+              {curriculumData.expired ? (
+                <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+              ) : (
+                <PupilPageContent
+                  curriculumData={curriculumData}
+                  hasWorksheet={hasWorksheet}
+                  backUrl={backUrl}
+                />
+              )}
+            </OakBox>
+          </LessonEngineProvider>
+        </OakThemeProvider>
+      </PupilLayout>
+    </PupilAnalyticsProvider>
   );
 };

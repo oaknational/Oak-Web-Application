@@ -27,17 +27,18 @@ export const getExpandedSpecialistUnits = (
 ) => {
   const units = specialistUnits.map((unit, i) => {
     const batchRes = specialistUnitLessonCount.parse(data[i]?.data);
+    const lessonCount = batchRes.specialistUnitLessonCount.aggregate.count;
     if (data[i]?.data) {
       return [
         {
           title: unit.unit_title,
           slug: unit.unit_slug,
-          lessonCount: batchRes.specialistUnitLessonCount.aggregate.count,
+          lessonCount,
           nullTitle: unit.unit_title,
           programmeSlug: unit.synthetic_programme_slug,
           subjectSlug: unit.combined_programme_fields.subject_slug,
           subjectTitle: unit.combined_programme_fields.subject,
-          expired: unit.expired || false,
+          expired: unit.expired || lessonCount === 0,
           expiredLessonCount:
             batchRes.specialistUnitExpiredLessonCount.aggregate.count,
           themeSlug: unit.threads ? unit.threads[0]?.themeSlug : null,
@@ -52,6 +53,7 @@ export const getExpandedSpecialistUnits = (
             unit.combined_programme_fields.developmentstage_slug || null,
           developmentStageTitle:
             unit.combined_programme_fields.developmentstage || null,
+          orderInProgramme: unit.order_in_programme,
         },
       ];
     }
@@ -161,6 +163,7 @@ export const getUnitListingPageData = (
     specialistUnits,
     specialistData,
   );
+
   const expandedDevelopmentStage = getExpandedDevelopmentStages(
     partialDevelopmentStages,
     developmentData,
@@ -169,7 +172,11 @@ export const getUnitListingPageData = (
   const themes = getThemes(specialistUnits);
 
   return {
-    units: expandedUnits,
+    units: expandedUnits.sort((a, b) => {
+      if (a && a[0] && b && b[0]) {
+        return a[0].orderInProgramme - b[0].orderInProgramme;
+      } else return 0;
+    }),
     developmentStage: expandedDevelopmentStage,
     programmeSlug: specialistUnits[0]?.synthetic_programme_slug,
     subjectSlug: specialistUnits[0]?.combined_programme_fields.subject_slug,

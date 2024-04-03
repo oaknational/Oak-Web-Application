@@ -5,25 +5,19 @@ import {
 } from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz
 
 export type QuizShortAnswerProps = {
-  onInitialChange?: () => void;
-  onChange?: () => void;
+  onChange: () => void;
 };
 
-export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
-  const { onInitialChange, onChange } = props;
-
+export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
-
-  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
 
   if (!questionState || !currentQuestionData) {
     return null;
@@ -52,9 +46,10 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
         id={`short-answer-${questionUid}`}
         key={`short-answer-${questionUid}`}
         name={`short-answer-${questionUid}`}
-        onChange={handleOnChange}
+        onChange={onChange}
         feedback={feedback}
         wrapperWidth={["100%", "all-spacing-22"]}
+        isHighlighted={questionState.mode === "incomplete"}
       />
     </OakFlex>
   );

@@ -79,7 +79,7 @@ describe(QuizOrderAnswer, () => {
     const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer />
+          <QuizOrderAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -99,21 +99,21 @@ describe(QuizOrderAnswer, () => {
       onItemOrderChange = props.onChange;
       return <div />;
     });
-    const onInitialChange = jest.fn();
+    const onChange = jest.fn();
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer onInitialChange={onInitialChange} />
+          <QuizOrderAnswer onChange={onChange} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
 
     act(() => {
-      onItemOrderChange?.(newOrder);
+      onItemOrderChange!(newOrder);
     });
 
-    expect(onInitialChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalled();
   });
 
   describe("when feedback is present", () => {
@@ -141,19 +141,19 @@ describe(QuizOrderAnswer, () => {
       const { getAllByTestId, rerender } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={context}>
-            <QuizOrderAnswer />
+            <QuizOrderAnswer onChange={() => {}} />
           </QuizEngineContext.Provider>
         </OakThemeProvider>,
       );
 
       act(() => {
-        onItemOrderChange?.(newOrder);
+        onItemOrderChange!(newOrder);
       });
 
       rerender(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={feedbackContext}>
-            <QuizOrderAnswer />
+            <QuizOrderAnswer onChange={() => {}} />
           </QuizEngineContext.Provider>
         </OakThemeProvider>,
       );

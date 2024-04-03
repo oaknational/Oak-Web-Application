@@ -49,6 +49,27 @@ describe("DownloadConfirmation component", () => {
       "/teachers/programmes/test-programme/units/test-unit/lessons/test-lesson",
     );
   });
+  it("Back to lesson link specialist", () => {
+    const { getByTestId } = renderWithTheme(
+      <DownloadConfirmation
+        lessonSlug="test-lesson"
+        lessonTitle="Test lesson"
+        programmeSlug="test-programme"
+        unitTitle="Test unit"
+        unitSlug="test-unit"
+        isCanonical={false}
+        onwardContentSelected={onwardContentSelected}
+        isSpecialist={true}
+      />,
+    );
+
+    const link = getByTestId("back-to-lesson-link");
+
+    expect(link).toHaveAttribute(
+      "href",
+      "/teachers/specialist/programmes/test-programme/units/test-unit/lessons/test-lesson",
+    );
+  });
 
   it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
     const { getByTestId } = renderWithTheme(

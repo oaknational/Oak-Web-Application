@@ -1,8 +1,13 @@
-query programmeListing($keyStageSlug: String, $subjectSlug: String) {
+query programmeListing(
+  $keyStageSlug: String
+  $subjectSlug: String
+  $isLegacy: Boolean
+) {
   programmes: published_mv_programme_listing_5_0_0(
     where: {
       keyStageSlug: { _eq: $keyStageSlug }
       subjectSlug: { _eq: $subjectSlug }
+      isLegacy: { _eq: $isLegacy }
     }
   ) {
     keyStageTitle

@@ -20,10 +20,11 @@ export const combinedProgrammeFields = z.object({
 export const specialistUnitListRequestSchema = z.array(
   z.object({
     contains_copyright_content: z.boolean(),
-    expired: z.boolean().nullable(),
+    expired: z.boolean().nullish(),
     synthetic_programme_slug: z.string(),
     unit_slug: z.string(),
     unit_title: z.string(),
+    order_in_programme: z.number(),
     combined_programme_fields: combinedProgrammeFields,
     threads: z.array(themeSchema).nullish(),
   }),

@@ -26,14 +26,8 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     handleSubmitOrderAnswer,
     handleSubmitMatchAnswer,
   } = quizEngineContext;
-
+  const currentQuestionState = questionState[currentQuestionIndex];
   let innerRender = null;
-
-  const handleInitialChange = () => {
-    if (questionState[currentQuestionIndex]?.mode === "init") {
-      updateQuestionMode("input");
-    }
-  };
 
   if (currentQuestionData) {
     const { questionStem, answers } = currentQuestionData;
@@ -42,12 +36,27 @@ export const QuizRenderer = (props: QuizRenderProps) => {
     const answerRender = AnswerComponent ? (
       <AnswerComponent
         key={`question-index-${currentQuestionIndex}`}
-        onInitialChange={handleInitialChange}
+        onChange={() => {
+          updateQuestionMode("input");
+        }}
       />
     ) : null;
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      // If the question has not been answered make it invalid
+      // when attempting to submit an answer
+      if (currentQuestionState?.mode === "init") {
+        updateQuestionMode("incomplete");
+        return;
+      }
+
+      // Don't allow an incomplete answer to be submitted
+      if (currentQuestionState?.mode === "incomplete") {
+        return;
+      }
+
       updateQuestionMode("grading");
       const formData = new FormData(e.currentTarget);
 

@@ -5,10 +5,16 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
-  getCommonPathway,
   getLessonShareBreadCrumb,
+  getBreadcrumbsForSpecialistLessonPathway,
+  getBreadCrumbForSpecialistShare,
+  getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonPathway,
+  SpecialistLessonPathway,
+  lessonIsSpecialist,
+} from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
@@ -31,11 +37,13 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 
-type LessonShareProps =
+export type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
+        isSpecialist: false;
         expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
@@ -47,12 +55,18 @@ type LessonShareProps =
   | {
       isCanonical: false;
       lesson: LessonPathway & {
+        isSpecialist: false;
+        developmentStageTitle?: string | null;
         expired: boolean | null;
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
       };
+    }
+  | {
+      isCanonical: false;
+      lesson: SpecialistLessonShareData;
     };
 
 const classroomActivityMap: Partial<
@@ -70,15 +84,61 @@ const pupilSubjectsLive = [
   "english-grammar",
   "english-reading-for-pleasure",
   "english-spelling",
+  "french",
+  "german",
+  "spanish",
+  "latin",
+  "citizenship",
+  "drama",
+  "religious-education",
+  "history",
+  "geography",
+  "maths",
+  "science",
+  "combined-science",
+  "chemistry",
+  "biology",
+  "physics",
+  "art",
+  "computing",
+  "design-technology",
+  "music",
+  "physical-education",
+  "computing-non-gcse",
+  "expressive-arts-and-design",
+  "literacy",
+  "personal-social-and-emotional-development",
+  "understanding-the-world",
+  // "rshe-pshe", // excluded for now because of special handling of is_sensitive content
 ];
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, shareableResources, isLegacy, expired } =
-    lesson;
-  const commonPathway = getCommonPathway(
-    props.isCanonical ? props.lesson.pathways : [props.lesson],
-  );
+  const {
+    lessonTitle,
+    lessonSlug,
+    shareableResources,
+    isLegacy,
+    expired,
+    isSpecialist,
+  } = lesson;
+
+  const commonPathway =
+    lessonIsSpecialist(lesson) && !props.isCanonical
+      ? {
+          lessonSlug,
+          lessonTitle,
+          unitSlug: props.lesson.unitSlug,
+          programmeSlug: props.lesson.programmeSlug,
+          unitTitle: props.lesson.unitTitle,
+          subjectTitle: props.lesson.subjectTitle,
+          subjectSlug: props.lesson.subjectSlug,
+          developmentStageTitle: props.lesson.developmentStageTitle,
+          disabled: false,
+        }
+      : getCommonPathway(
+          props.isCanonical ? props.lesson.pathways : [props.lesson],
+        );
   const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
 
   const { track } = useAnalytics();
@@ -150,21 +210,35 @@ export function LessonShare(props: LessonShareProps) {
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-              }),
-              getLessonShareBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                disabled: true,
-              }),
-            ]}
+            breadcrumbs={
+              !isSpecialist
+                ? [
+                    ...getBreadcrumbsForLessonPathway(commonPathway),
+                    getLessonOverviewBreadCrumb({
+                      lessonTitle,
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                    }),
+                    getLessonShareBreadCrumb({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+                : [
+                    ...getBreadcrumbsForSpecialistLessonPathway(
+                      commonPathway as SpecialistLessonPathway,
+                    ),
+                    ...getBreadCrumbForSpecialistShare({
+                      lessonSlug,
+                      programmeSlug,
+                      unitSlug,
+                      disabled: true,
+                    }),
+                  ]
+            }
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>

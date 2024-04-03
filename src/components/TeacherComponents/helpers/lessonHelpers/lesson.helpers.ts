@@ -3,6 +3,7 @@ import { pick, groupBy } from "lodash";
 import {
   LessonBase,
   LessonPathway,
+  SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -155,19 +156,64 @@ export const getLessonShareBreadCrumb = ({
   }
 };
 
+export const getBreadCrumbForSpecialistDownload = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb[] => {
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    programmeSlug && unitSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-downloads",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: "Downloads",
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
+export const getBreadCrumbForSpecialistShare = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb[] => {
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    programmeSlug && unitSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-share",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: "Share",
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
 export const getBreadcrumbsForSpecialistLessonPathway = (
-  lesson: {
-    lessonSlug: string;
-    lessonTitle: string;
-    programmeSlug: string;
-    unitSlug: string;
-    unitTitle: string;
-    disabled?: boolean;
-    subjectTitle: string;
-    subjectSlug: string;
-    developmentStageTitle: string;
-    disable?: boolean;
-  } | null,
+  lesson: SpecialistLessonPathway | null,
 ): Breadcrumb[] | [] => {
   if (!lesson) return [];
   const {

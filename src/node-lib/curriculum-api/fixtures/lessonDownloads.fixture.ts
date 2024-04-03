@@ -6,6 +6,7 @@ const lessonDownloadsFixtures = (
   return {
     isLegacy: true,
     expired: false,
+    isSpecialist: false,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
     programmeSlug: "maths-higher-ks4-l",

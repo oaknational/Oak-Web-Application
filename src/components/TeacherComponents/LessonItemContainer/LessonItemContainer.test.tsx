@@ -28,7 +28,11 @@ describe("LessonItemContainer", () => {
 
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonItemContainer title={"Slide deck"} anchorId={"slide-deck"}>
+      <LessonItemContainer
+        title={"Slide deck"}
+        anchorId={"slide-deck"}
+        isSpecialist={false}
+      >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
@@ -39,7 +43,11 @@ describe("LessonItemContainer", () => {
 
   it("renders the children", () => {
     const { getByText } = renderWithTheme(
-      <LessonItemContainer title={"Slide deck"} anchorId="slide-deck">
+      <LessonItemContainer
+        title={"Slide deck"}
+        anchorId="slide-deck"
+        isSpecialist={false}
+      >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
@@ -54,6 +62,7 @@ describe("LessonItemContainer", () => {
         title={"Slide deck"}
         downloadable={true}
         anchorId={"slide-deck"}
+        isSpecialist={false}
         slugs={lessonOverview}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
@@ -69,6 +78,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
+        isSpecialist={false}
         anchorId="slide-deck"
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
@@ -84,6 +94,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
+        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={true}
       >
@@ -100,6 +111,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
+        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={false}
       >
@@ -120,6 +132,7 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         slugs={lessonOverview}
         title={"Video"}
+        isSpecialist={false}
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
@@ -140,6 +153,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Worksheet"}
         downloadable={true}
+        isSpecialist={false}
         anchorId="worksheet"
         slugs={lessonOverview}
       >

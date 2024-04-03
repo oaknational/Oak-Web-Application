@@ -30,7 +30,8 @@ export const QuizMatchAnswer = () => {
   } = useQuizEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
   const questionUid = currentQuestionData.questionUid;
-  const feedback = questionState[currentQuestionIndex]?.feedback;
+  const currentQuestionState = questionState[currentQuestionIndex];
+  const feedback = currentQuestionState?.feedback;
 
   invariant(
     currentQuestionData.answers && isMatchAnswer(currentQuestionData.answers),
@@ -121,6 +122,7 @@ export const QuizMatchAnswer = () => {
         initialOptions={choiceItems}
         initialSlots={matchItems}
         onChange={handleChange}
+        isHighlighted={currentQuestionState?.mode === "incomplete"}
       />
       {Object.entries(currentMatches).map(([matchId, choiceId]) => {
         return (

@@ -18,6 +18,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks1",
         lessons: [],
+        order: 1,
         phase: "Primary",
         phase_slug: "primary",
         planned_number_of_lessons: 15,
@@ -26,6 +27,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "number-addition-and-subtraction",
@@ -57,6 +59,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks4",
         lessons: [],
+        order: 2,
         phase: "Secondary",
         phase_slug: "secondary",
         planned_number_of_lessons: 9,
@@ -65,6 +68,11 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "combined-science",
+        tags: [
+          { id: 12, title: "Practical", category: "" },
+          { id: 3, title: "Biology", category: "Discipline" },
+          { id: 9, title: "Physics", category: "Discipline" },
+        ],
         threads: [
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
@@ -90,6 +98,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks4",
         lessons: [],
+        order: 3,
         phase: "Secondary",
         phase_slug: "secondary",
         planned_number_of_lessons: 8,
@@ -98,6 +107,10 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: [
+          { id: 12, title: "Practical", category: "" },
+          { id: 9, title: "Physics", category: "Discipline" },
+        ],
         threads: [
           {
             slug: "number",
@@ -124,6 +137,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks4",
         lessons: [],
+        order: 4,
         phase: "Secondary",
         phase_slug: "secondary",
         planned_number_of_lessons: 5,
@@ -132,6 +146,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: "Science",
         subject_parent_slug: "science",
         subject_slug: "combined-science",
+        tags: null,
         threads: [
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
@@ -158,6 +173,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks1",
         lessons: [],
+        order: 5,
         phase: "Primary",
         phase_slug: "primary",
         planned_number_of_lessons: 8,
@@ -166,6 +182,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "geography",
+        tags: null,
         threads: [
           {
             slug: "human-and-physical-processes-climate-and-weather",
@@ -202,6 +219,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks2",
         lessons: [],
+        order: 6,
         phase: "Primary",
         phase_slug: "primary",
         planned_number_of_lessons: 10,
@@ -210,6 +228,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "number-fractions",
@@ -241,6 +260,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks2",
         lessons: [],
+        order: 7,
         phase: "Primary",
         phase_slug: "primary",
         planned_number_of_lessons: 5,
@@ -249,6 +269,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "maths",
+        tags: null,
         threads: [
           {
             slug: "statistics",
@@ -291,6 +312,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks2",
         lessons: [],
+        order: 8,
         phase: "Primary",
         phase_slug: "primary",
         planned_number_of_lessons: 12,
@@ -299,6 +321,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "english",
+        tags: null,
         threads: [
           {
             slug: "preparing-for-analytical-writing",
@@ -330,6 +353,7 @@ const curriculumUnitsTabFixture = (
         examboard_slug: null,
         keystage_slug: "ks3",
         lessons: [],
+        order: 9,
         phase: "Secondary",
         phase_slug: "secondary",
         planned_number_of_lessons: 10,
@@ -338,6 +362,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "science",
+        tags: null,
         threads: [
           {
             slug: "bq07-what-are-things-made-of",
@@ -359,11 +384,12 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Composition of numbers 6 to 10",
         connection_prior_unit_title: "Composition of numbers",
         domain: null,
-        domain_id: null,
+        domain_id: 17,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks3",
         lessons: [],
+        order: 10,
         phase: "Secondary",
         phase_slug: "secondary",
         planned_number_of_lessons: 8,
@@ -372,6 +398,7 @@ const curriculumUnitsTabFixture = (
         subject_parent: null,
         subject_parent_slug: null,
         subject_slug: "science",
+        tags: null,
         threads: [
           {
             slug: "bq2-how-do-living-things-grow-and-reproduce",

@@ -32,7 +32,7 @@ describe("QuizShortAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer />
+          <QuizShortAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -41,14 +41,14 @@ describe("QuizShortAnswer", () => {
     expect(input).toBeInTheDocument();
   });
 
-  it("calls onInitialChange when there is user input", () => {
+  it("calls onChange when there is user input", () => {
     const context = getContext();
-    const onInitialChange = jest.fn();
+    const onChange = jest.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer onInitialChange={onInitialChange} />
+          <QuizShortAnswer onChange={onChange} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -58,7 +58,7 @@ describe("QuizShortAnswer", () => {
       fireEvent.change(input, { target: { value: "test" } });
     });
 
-    expect(onInitialChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalled();
   });
 
   it("sets the name to the `short-answer-${questionUid}`", () => {
@@ -67,7 +67,7 @@ describe("QuizShortAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer />
+          <QuizShortAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -92,7 +92,7 @@ describe("QuizShortAnswer", () => {
     const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer />
+          <QuizShortAnswer onChange={() => {}} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );

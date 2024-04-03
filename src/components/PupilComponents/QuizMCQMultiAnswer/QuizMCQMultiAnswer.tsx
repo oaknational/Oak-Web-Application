@@ -22,18 +22,13 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export type QuizMCQMultiAnswerProps = {
-  onInitialChange?: () => void;
-  onChange?: () => void;
+  onChange: () => void;
 };
 
-export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
-  const { onInitialChange, onChange } = props;
-  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
-
+export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
@@ -97,7 +92,8 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
               value={`answer-${index}`}
               feedback={feedback}
               image={answerImage}
-              onChange={handleOnChange}
+              onChange={onChange}
+              isHighlighted={questionState.mode === "incomplete"}
             />
           );
         })}

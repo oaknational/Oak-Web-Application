@@ -38,16 +38,28 @@ export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
   },
 ];
 
+export const mcqCorrectAnswer: MCAnswer = {
+  answer: [
+    {
+      text: "a group of words that contains a verb and makes complete sense",
+      type: "text",
+    },
+  ],
+  answer_is_correct: true,
+};
+
+export const mcqIncorrectAnswer: MCAnswer = {
+  answer: [
+    {
+      text: "a sentence starter followed by a comma",
+      type: "text",
+    },
+  ],
+  answer_is_correct: false,
+};
+
 export const mcqTextAnswers: MCAnswer[] = [
-  {
-    answer: [
-      {
-        text: "a sentence starter followed by a comma",
-        type: "text",
-      },
-    ],
-    answer_is_correct: false,
-  },
+  mcqIncorrectAnswer,
   {
     answer: [
       {
@@ -57,15 +69,7 @@ export const mcqTextAnswers: MCAnswer[] = [
     ],
     answer_is_correct: false,
   },
-  {
-    answer: [
-      {
-        text: "a group of words that contains a verb and makes complete sense",
-        type: "text",
-      },
-    ],
-    answer_is_correct: true,
-  },
+  mcqCorrectAnswer,
   {
     answer: [
       {

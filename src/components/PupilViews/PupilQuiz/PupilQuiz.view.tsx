@@ -7,6 +7,7 @@ import {
   OakPrimaryButton,
   OakQuizCounter,
   OakSpan,
+  OakTooltip,
 } from "@oaknational/oak-components";
 
 import {
@@ -17,6 +18,15 @@ import {
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { pickFeedBackComponent } from "@/components/PupilComponents/QuizUtils/pickFeedback";
+import type { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  isMatchAnswer,
+  isMultiAnswerMCQ,
+  isOrderAnswer,
+  isShortAnswer,
+  isSingleAnswerMCQ,
+} from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
+import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -31,6 +41,7 @@ const isQuizSection = (section: string): section is QuizSection => {
 const QuizInner = () => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
+  const getSectionLinkProps = useGetSectionLinkProps();
 
   if (!isQuizSection(currentSection)) {
     return null;
@@ -47,14 +58,12 @@ const QuizInner = () => {
   } = quizEngineContext;
 
   const formId = "quiz-form";
-  const isFeedbackMode =
-    questionState[currentQuestionIndex]?.mode === "feedback";
+  const currentQuestionState = questionState[currentQuestionIndex];
+  const isFeedbackMode = currentQuestionState?.mode === "feedback";
   const isExplanatoryText =
     currentQuestionData?.questionType === "explanatory-text";
-
-  const grade = questionState[currentQuestionIndex]?.grade;
-  const isPartiallyCorrect =
-    questionState[currentQuestionIndex]?.isPartiallyCorrect;
+  const grade = currentQuestionState?.grade;
+  const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
   const isCorrect = grade === 1;
 
   const correctFeedback = (
@@ -103,18 +112,25 @@ const QuizInner = () => {
           : incorrectFeedback(currentQuestionData?.answers)
       }
     >
-      {!isFeedbackMode && !isExplanatoryText && (
-        <OakPrimaryButton
-          form={formId}
-          disabled={questionState[currentQuestionIndex]?.mode === "init"}
-          type="submit"
-          isTrailingIcon
-          iconName="arrow-right"
-          width={["100%", "max-content"]}
-        >
-          Check
-        </OakPrimaryButton>
-      )}
+      {currentQuestionData?.answers &&
+        !isFeedbackMode &&
+        !isExplanatoryText && (
+          <OakTooltip
+            tooltip={pickTooltip(currentQuestionData.answers)}
+            isOpen={currentQuestionState?.mode === "incomplete"}
+            tooltipPosition="top-right"
+          >
+            <OakPrimaryButton
+              form={formId}
+              type="submit"
+              isTrailingIcon
+              iconName="arrow-right"
+              width={["100%", "max-content"]}
+            >
+              Check
+            </OakPrimaryButton>
+          </OakTooltip>
+        )}
       {(isFeedbackMode || isExplanatoryText) && (
         <OakPrimaryButton
           width={["100%", "max-content"]}
@@ -132,10 +148,7 @@ const QuizInner = () => {
     <OakLessonTopNav
       backLinkSlot={
         <OakBackLink
-          type="button"
-          onClick={() => {
-            updateCurrentSection("overview");
-          }}
+          {...getSectionLinkProps("overview", updateCurrentSection)}
         />
       }
       counterSlot={
@@ -190,3 +203,18 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
     </OakCloudinaryConfigProvider>
   );
 };
+
+function pickTooltip(answers: AnswersSchema) {
+  switch (true) {
+    case isOrderAnswer(answers):
+      return "You need to order to move on!";
+    case isMatchAnswer(answers):
+      return "You need to match to move on!";
+    case isShortAnswer(answers):
+      return "You need to type an answer to move on!";
+    case isMultiAnswerMCQ(answers):
+      return "You need to select answers to move on!";
+    case isSingleAnswerMCQ(answers):
+      return "You need to select an answer to move on!";
+  }
+}

@@ -1,5 +1,5 @@
-query curriculumUnits($where: published_mv_curriculum_units_0_1_bool_exp) {
-  units: published_mv_curriculum_units_0_1(where: $where) {
+query curriculumUnits($where: published_mv_curriculum_units_0_3_bool_exp) {
+  units: published_mv_curriculum_units_0_3(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
@@ -10,6 +10,7 @@ query curriculumUnits($where: published_mv_curriculum_units_0_1_bool_exp) {
     examboard_slug
     keystage_slug
     lessons
+    order
     planned_number_of_lessons
     phase
     phase_slug
@@ -18,6 +19,7 @@ query curriculumUnits($where: published_mv_curriculum_units_0_1_bool_exp) {
     subject_slug
     subject_parent
     subject_parent_slug
+    tags
     tier
     tier_slug
     title
