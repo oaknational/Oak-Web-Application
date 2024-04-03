@@ -1,6 +1,5 @@
-import { LessonOverviewData } from "..";
-
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { LessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewData>,

@@ -6,7 +6,7 @@ import { LessonItemContainer } from "./LessonItemContainer";
 import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import { LessonOverviewData } from "@/node-lib/curriculum-api";
+import { LessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const resourceContainerExpanded = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
