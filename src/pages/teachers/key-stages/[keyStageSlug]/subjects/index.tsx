@@ -4,7 +4,6 @@ import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
-import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -42,6 +41,7 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
   const containerHeight = keyStages.length > 4 ? 172 : 120;
+
   return (
     <AppLayout
       seoProps={{
@@ -95,20 +95,35 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No keyStageSlug");
       }
       const keystage = context.params?.keyStageSlug;
-      const isEyfs = keystage === "early-years-foundation-stage";
 
       const curriculumData2023 = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keystage,
-        isLegacy: isEyfs,
+        isLegacy: false,
       });
+      const curriculumData2023Legacy =
+        await curriculumApi2023.subjectListingPage({
+          keyStageSlug: keystage,
+          isLegacy: true,
+        });
+
+      if (!curriculumData2023 || !curriculumData2023Legacy) {
+        return {
+          notFound: true,
+        };
+      }
 
       const { keyStageSlug, keyStages } = curriculumData2023;
-      let keyStageTitle = curriculumData2023.keyStageTitle;
+      const keyStageTitle = curriculumData2023.keyStageTitle;
+
+      const subjectSlugsLegacy =
+        curriculumData2023Legacy?.subjects.map((s) => s.subjectSlug) || [];
 
       const subjectSlugs2023 =
         curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
 
-      let subjects = [];
+      const uniqueSubjectSlugs = [
+        ...new Set(subjectSlugsLegacy.concat(subjectSlugs2023)),
+      ];
 
       const getSubject = (
         data: SubjectListingPageData,
@@ -125,55 +140,21 @@ export const getStaticProps: GetStaticProps<
         );
       };
 
-      // EYFS only exists in the new API
-      if (isEyfs) {
-        if (!curriculumData2023) {
+      const subjects = uniqueSubjectSlugs
+        .map((subjectSlug) => {
           return {
-            notFound: true,
+            subjectSlug: subjectSlug,
+            old: getSubject(curriculumData2023Legacy, subjectSlug, true),
+            new: getSubject(curriculumData2023, subjectSlug, false),
           };
-        }
+        })
+        // Filter out subjects that don't exist in either curriculum
 
-        subjects = subjectSlugs2023.map((subjectSlug) => {
-          return {
-            subjectSlug,
-            old: getSubject(curriculumData2023, subjectSlug, false),
-            new: null,
-          };
-        });
-      } else {
-        const curriculumData = await curriculumApi.subjectListing({
-          keyStageSlug: keystage,
-        });
+        .filter((subject) => subject.old || subject.new)
 
-        if (!curriculumData && !curriculumData2023) {
-          return {
-            notFound: true,
-          };
-        }
+        // sort by slug so the old and new subjects are intermingled
 
-        keyStageTitle = curriculumData.keyStageTitle;
-
-        const subjectSlugs = curriculumData.subjects.map((s) =>
-          removeLegacySlugSuffix(s.subjectSlug),
-        );
-
-        const uniqueSubjectSlugs = [
-          ...new Set(subjectSlugs.concat(subjectSlugs2023)),
-        ];
-
-        subjects = uniqueSubjectSlugs
-          .map((subjectSlug) => {
-            return {
-              subjectSlug,
-              old: getSubject(curriculumData, subjectSlug, true),
-              new: getSubject(curriculumData2023, subjectSlug, false),
-            };
-          })
-          // Filter out subjects that don't exist in either curriculum
-          .filter((subject) => subject.old || subject.new)
-          // sort by slug so the old and new subjects are intermingled
-          .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
-      }
+        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
 
       const results = {
         props: {
