@@ -17,10 +17,10 @@ import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
-import { LessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 export type LessonOverviewPageProps = {
-  curriculumData: LessonOverviewData;
+  curriculumData: LessonOverviewPageData;
 };
 
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({

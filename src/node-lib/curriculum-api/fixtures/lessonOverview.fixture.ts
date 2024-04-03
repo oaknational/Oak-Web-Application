@@ -1,9 +1,9 @@
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { LessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const lessonOverviewFixture = (
-  partial?: Partial<LessonOverviewData>,
-): LessonOverviewData => {
+  partial?: Partial<LessonOverviewPageData>,
+): LessonOverviewPageData => {
   return {
     isLegacy: true,
     lessonSlug: "macbeth-lesson-1",
