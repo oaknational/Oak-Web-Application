@@ -7,7 +7,6 @@ import SubjectListingPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
@@ -77,15 +76,16 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
           keyStageSlug: "ks123",
         },
       });
+      expect(curriculumApi.subjectListingPage).toHaveBeenCalledTimes(2);
 
-      expect(curriculumApi.subjectListingPage).toHaveBeenCalledWith({
+      expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(1, {
         keyStageSlug: "ks123",
+        isLegacy: false,
       });
-      expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
-        {
-          keyStageSlug: "ks123",
-        },
-      );
+      expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(2, {
+        keyStageSlug: "ks123",
+        isLegacy: true,
+      });
     });
     it("should throw error when not provided context params", async () => {
       await expect(getStaticProps({})).rejects.toThrowError("No keyStageSlug");
