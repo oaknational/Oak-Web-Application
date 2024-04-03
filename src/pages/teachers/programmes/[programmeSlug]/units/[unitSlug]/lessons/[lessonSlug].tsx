@@ -12,12 +12,12 @@ import {
 } from "@/node-lib/isr";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
+import { LessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;

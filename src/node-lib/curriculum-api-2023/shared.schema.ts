@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import lessonOverviewSchema from "./queries/lessonOverview/lessonOverview.schema";
+
 export const contentGuidanceSchema = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
@@ -265,3 +267,6 @@ export const lessonShareResourceSchema = z.object({
   label: z.string(),
   metadata: z.string().nullable(),
 });
+
+export const lessonOverviewData = lessonOverviewSchema;
+export type LessonOverviewData = z.infer<typeof lessonOverviewData>;

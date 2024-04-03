@@ -5,7 +5,6 @@ import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import lessonOverviewCanonicalSchema, {
@@ -13,6 +12,7 @@ import lessonOverviewCanonicalSchema, {
 } from "../curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
 import {
   lessonListSchema,
+  lessonOverviewData,
   lessonPathwaySchema,
 } from "../curriculum-api-2023/shared.schema";
 import lessonDownloadsCanonicalSchema, {
@@ -160,7 +160,6 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-export const lessonOverviewData = lessonOverviewSchema;
 export const pupilLessonOverviewData = pupilLessonOverviewSchema;
 
 export const programmesData = z.object({
@@ -243,7 +242,6 @@ export const lessonShareSchema = z.intersection(
 
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
-export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type PupilLessonOverviewData = z.infer<typeof pupilLessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
