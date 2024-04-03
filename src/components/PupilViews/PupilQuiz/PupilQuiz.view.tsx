@@ -27,6 +27,7 @@ import {
   isSingleAnswerMCQ,
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -198,7 +199,9 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
       }}
     >
       <QuizEngineProvider questionsArray={questionsArray}>
-        <QuizInner />
+        <MathJaxProvider>
+          <QuizInner />
+        </MathJaxProvider>
       </QuizEngineProvider>
     </OakCloudinaryConfigProvider>
   );
