@@ -4,6 +4,7 @@ export const programmeListingFixture = (
   partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {
+    legacy: false,
     keyStageSlug: "ks3",
     keyStageTitle: "Key stage 3",
     subjectSlug: "maths",
