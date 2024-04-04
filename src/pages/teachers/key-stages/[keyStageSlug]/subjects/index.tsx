@@ -96,9 +96,11 @@ export const getStaticProps: GetStaticProps<
       }
       const keyStage = context.params?.keyStageSlug;
 
+      const isEyfs = keyStage === "early-years-foundation-stage";
+
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
-        isLegacy: false,
+        isLegacy: isEyfs,
       });
       const curriculumDataLegacy = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
@@ -144,7 +146,7 @@ export const getStaticProps: GetStaticProps<
           return {
             subjectSlug: subjectSlug,
             old: getSubject(curriculumDataLegacy, subjectSlug, true),
-            new: getSubject(curriculumData, subjectSlug, false),
+            new: isEyfs ? null : getSubject(curriculumData, subjectSlug, false),
           };
         })
         // Filter out subjects that don't exist in either curriculum
