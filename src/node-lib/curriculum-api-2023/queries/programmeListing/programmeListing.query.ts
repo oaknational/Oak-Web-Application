@@ -17,7 +17,16 @@ const programmeListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    return programmeListingSchema.parse(programmes);
+    function toSentenceCase(str: string) {
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    return programmeListingSchema.parse({
+      ...programmes,
+      keyStageTitle: programmes.keyStageTitle
+        ? toSentenceCase(programmes.keyStageTitle)
+        : null,
+    });
   };
 
 export default programmeListingQuery;
