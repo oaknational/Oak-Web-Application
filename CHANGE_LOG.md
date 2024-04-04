@@ -1,3 +1,10 @@
+## [1.399.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.1...v1.399.2) (2024-04-04)
+
+
+### Bug Fixes
+
+* **a11y:** add 'new' to aria-label where appropriate ([4d6d13a](https://github.com/oaknational/Oak-Web-Application/commit/4d6d13a3ee4bbc4ae581e596900c156c651fc6e1))
+
 ## [1.399.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.0...v1.399.1) (2024-04-03)
 
 
