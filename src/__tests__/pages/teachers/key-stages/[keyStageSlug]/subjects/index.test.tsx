@@ -70,7 +70,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should call both API::subjectListing on 'teachers-2023'", async () => {
+    it("Should call API::subjectListing for legacy and new data", async () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
@@ -85,6 +85,17 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(2, {
         keyStageSlug: "ks123",
         isLegacy: true,
+      });
+    });
+    it("should return notFound when a landing page is missing", async () => {
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
+        undefined,
+      );
+
+      const context = { params: { keyStageSlug: "test-key-stage" } };
+      const response = await getStaticProps(context);
+      expect(response).toEqual({
+        notFound: true,
       });
     });
     it("should throw error when not provided context params", async () => {
