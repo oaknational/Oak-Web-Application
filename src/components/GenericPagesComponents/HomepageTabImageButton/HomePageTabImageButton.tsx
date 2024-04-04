@@ -93,7 +93,7 @@ const HomePageTabImageButton = forwardRef<
   const {
     onClick,
     label,
-    labelSuffixA11y,
+    labelSuffixA11y = props.showNewIcon ? "(New)" : undefined,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     disabled,
