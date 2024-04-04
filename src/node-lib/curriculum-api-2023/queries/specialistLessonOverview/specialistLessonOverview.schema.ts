@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-import { LessonOverviewPageData } from "../lessonOverview/lessonOverview.schema";
+import {
+  LessonOverviewPageData,
+  lessonOverviewDownloads,
+} from "../lessonOverview/lessonOverview.schema";
 import {
   baseLessonOverviewSchema,
   legacyAssetObjectSchema,
@@ -63,10 +66,6 @@ const combined_programme_fields = z.object({
   phase_slug: z.string().nullable().optional(),
 });
 
-export const copyright_content_schema = z.object({
-  copyrightInfo: z.string(),
-});
-
 export const specialistLessonOverviewRawSchema = z.array(
   z.object({
     lesson_slug: z.string(),
@@ -120,6 +119,7 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   developmentStageTitle: z.string(),
   isSpecialist: z.literal(true),
   isCanonical: z.literal(false),
+  downloads: lessonOverviewDownloads,
 });
 
 export type SpecialistLessonOverview = z.infer<

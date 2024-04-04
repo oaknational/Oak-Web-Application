@@ -84,8 +84,6 @@ const lessonOverview = jest.fn(() => ({
         lessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
       transcriptSentences: lessonOverviewFixture().transcriptSentences,
       expired: lessonOverviewFixture().expired,
-      hasDownloadableResources:
-        lessonOverviewFixture().hasDownloadableResources,
     },
   ],
   starterQuiz: lessonOverviewFixture().starterQuiz,
@@ -118,8 +116,6 @@ const lessonOverviewCanonical = jest.fn(() => ({
         lessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
       transcriptSentences: lessonOverviewFixture().transcriptSentences,
       expired: lessonOverviewFixture().expired,
-      hasDownloadableResources:
-        lessonOverviewFixture().hasDownloadableResources,
     },
   ],
 }));
@@ -228,21 +224,7 @@ describe("curriculum-api", () => {
       undefined,
     );
   });
-  test("lessonOverview", async () => {
-    await curriculumApi.lessonOverview({
-      lessonSlug: "Geometry fundamentals",
-      unitSlug: "geometry",
-      programmeSlug: "maths-secondary-ks4",
-    });
-    expect(lessonOverview).toHaveBeenCalledWith(
-      {
-        lessonSlug: "Geometry fundamentals",
-        unitSlug: "geometry",
-        programmeSlug: "maths-secondary-ks4",
-      },
-      undefined,
-    );
-  });
+
   test("canonical lesson overview", async () => {
     await curriculumApi.lessonOverviewCanonical({
       lessonSlug: "Geometry fundamentals",

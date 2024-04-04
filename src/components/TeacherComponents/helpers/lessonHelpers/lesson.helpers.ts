@@ -339,7 +339,6 @@ type GetPageLinksForLessonProps = Pick<
   | "starterQuiz"
   | "exitQuiz"
   | "hasCopyrightMaterial"
-  | "hasDownloadableResources"
 >;
 export type LessonPageLinkAnchorId =
   | "slide-deck"
@@ -364,11 +363,7 @@ export const getPageLinksForLesson = (
       label: "Slide deck",
       anchorId: "slide-deck",
       condition: (lesson) =>
-        Boolean(
-          lesson.presentationUrl &&
-            !lesson.hasCopyrightMaterial &&
-            lesson.hasDownloadableResources,
-        ),
+        Boolean(lesson.presentationUrl && !lesson.hasCopyrightMaterial),
     },
     {
       label: "Lesson details",

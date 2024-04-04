@@ -40,9 +40,14 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  checkIsResourceCopyrightRestricted,
+  getIsResourceDownloadable,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewAll;
+  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -78,7 +83,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyLearningPoints,
     pupilLessonOutcome,
     lessonCohort,
-    hasDownloadableResources,
+    downloads,
+    copyrightContent,
     isSpecialist,
   } = lesson;
 
@@ -157,6 +163,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
+  const showDownloadAll =
+    downloads.filter(
+      (d) =>
+        d.exists === true &&
+        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+    ).length > 0;
+
   return (
     <MathJaxProvider>
       <HeaderLesson
@@ -196,6 +209,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           pupilLessonOutcome,
           keyLearningPoints,
         )}
+        showDownloadAll={showDownloadAll}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
@@ -233,12 +247,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") &&
-                  hasDownloadableResources && (
+                  !checkIsResourceCopyrightRestricted(
+                    "presentation",
+                    copyrightContent,
+                  ) && (
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
                       ref={slideDeckSectionRef}
                       title={"Slide deck"}
-                      downloadable={hasDownloadableResources}
+                      downloadable={getIsResourceDownloadable(
+                        "presentation",
+                        downloads,
+                        copyrightContent,
+                      )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "slide deck",
@@ -302,7 +323,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "worksheet-pdf",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "worksheet-pptx",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -330,7 +362,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
                     anchorId="starter-quiz"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "intro-quiz-answers",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "intro-quiz-questions",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
@@ -356,7 +399,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "exit-quiz-answers",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "exit-quiz-questions",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -383,7 +437,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "supplementary-docx",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "supplementary-pdf",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({

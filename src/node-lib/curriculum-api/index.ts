@@ -563,6 +563,7 @@ const curriculumApi = {
         ...transformedLessons[0],
         pathways: [],
         isLegacy: true,
+        downloads: [],
       } as LessonOverviewCanonical,
     );
 
