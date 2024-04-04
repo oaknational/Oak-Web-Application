@@ -1,3 +1,11 @@
+## [1.399.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.2...v1.399.3) (2024-04-04)
+
+
+### Bug Fixes
+
+* removing new banner and updating header hierarchy ([85cacdb](https://github.com/oaknational/Oak-Web-Application/commit/85cacdbdc8b13dcd04e250f4ad0cab3787483377))
+* update margins on visualiser title section ([9439df6](https://github.com/oaknational/Oak-Web-Application/commit/9439df60a28ad8554f94ed82194673038a64914e))
+
 ## [1.399.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.1...v1.399.2) (2024-04-04)
 
 
