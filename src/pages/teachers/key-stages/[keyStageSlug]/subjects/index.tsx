@@ -94,32 +94,31 @@ export const getStaticProps: GetStaticProps<
       if (!context.params?.keyStageSlug) {
         throw new Error("No keyStageSlug");
       }
-      const keystage = context.params?.keyStageSlug;
+      const keyStage = context.params?.keyStageSlug;
 
-      const curriculumData2023 = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: keystage,
+      const curriculumData = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: keyStage,
         isLegacy: false,
       });
-      const curriculumData2023Legacy =
-        await curriculumApi2023.subjectListingPage({
-          keyStageSlug: keystage,
-          isLegacy: true,
-        });
+      const curriculumDataLegacy = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: keyStage,
+        isLegacy: true,
+      });
 
-      if (!curriculumData2023 || !curriculumData2023Legacy) {
+      if (!curriculumData || !curriculumDataLegacy) {
         return {
           notFound: true,
         };
       }
 
-      const { keyStageSlug, keyStages } = curriculumData2023;
-      const keyStageTitle = curriculumData2023.keyStageTitle;
+      const { keyStageSlug, keyStages } = curriculumData;
+      const keyStageTitle = curriculumData.keyStageTitle;
 
       const subjectSlugsLegacy =
-        curriculumData2023Legacy?.subjects.map((s) => s.subjectSlug) || [];
+        curriculumDataLegacy?.subjects.map((s) => s.subjectSlug) || [];
 
       const subjectSlugs2023 =
-        curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
+        curriculumData?.subjects.map((s) => s.subjectSlug) || [];
 
       const uniqueSubjectSlugs = [
         ...new Set(subjectSlugsLegacy.concat(subjectSlugs2023)),
@@ -144,16 +143,13 @@ export const getStaticProps: GetStaticProps<
         .map((subjectSlug) => {
           return {
             subjectSlug: subjectSlug,
-            old: getSubject(curriculumData2023Legacy, subjectSlug, true),
-            new: getSubject(curriculumData2023, subjectSlug, false),
+            old: getSubject(curriculumDataLegacy, subjectSlug, true),
+            new: getSubject(curriculumData, subjectSlug, false),
           };
         })
         // Filter out subjects that don't exist in either curriculum
-
         .filter((subject) => subject.old || subject.new)
-
         // sort by slug so the old and new subjects are intermingled
-
         .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
 
       const results = {
