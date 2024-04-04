@@ -201,16 +201,6 @@ describe("programmes listing page", () => {
     });
   });
   describe("getStaticProps", () => {
-    // it("Should fetch the correct data", async () => {
-    //   const testRes = (await getStaticProps({
-    //     params: {
-    //       keyStageSlug: "ks4",
-    //       subjectSlug: "maths-l",
-    //     },
-    //   })) as { props: ProgrammeListingPageData };
-
-    //   expect(testRes.props).toEqual(generatedLegacyProgrammeData);
-    // });
     it("Should fetch the correct data for legacy subject slugs", async () => {
       await getStaticProps({
         params: {
