@@ -17,11 +17,7 @@ const SubjectProgrammeListing: FC<
   ).filter((examBoard) => examBoard !== null);
   const tiers = Array.from(
     new Set(programmes.map((programme) => programme.tierTitle)),
-  )
-    .filter((tier) => tier !== null)
-    .sort();
-
-  console.log(tiers);
+  ).filter((tier) => tier !== null);
 
   const tierProgrammes = programmes
     .filter((programme) => programme.tierSlug !== null)
