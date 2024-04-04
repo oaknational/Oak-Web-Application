@@ -365,12 +365,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         <OakHeading
           tag="h2"
           $mb="space-between-m"
-          $ml="space-between-xs"
+          $ml={["space-between-s", "space-between-none"]}
           $font={["heading-5", "heading-4"]}
         >
           Unit sequence
         </OakHeading>
-        <OakP $mb={"space-between-xl"} data-testid="units-heading">
+        <OakP
+          $mh={["space-between-s", "space-between-none"]}
+          $mb={"space-between-xl"}
+          data-testid="units-heading"
+        >
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
