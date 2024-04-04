@@ -17,11 +17,20 @@ const SubjectProgrammeListing: FC<
   ).filter((examBoard) => examBoard !== null);
   const tiers = Array.from(
     new Set(programmes.map((programme) => programme.tierTitle)),
-  ).filter((tier) => tier !== null);
+  )
+    .filter((tier) => tier !== null)
+    .sort();
 
-  const tierProgrammes = programmes.filter(
-    (programme) => programme.tierSlug !== null,
-  );
+  console.log(tiers);
+
+  const tierProgrammes = programmes
+    .filter((programme) => programme.tierSlug !== null)
+    .sort((a, b) => {
+      if (a.tierTitle === null) return 1;
+      if (b.tierTitle === null) return -1;
+      return a.tierTitle.localeCompare(b.tierTitle);
+    });
+
   const examBoardProgrammes = programmes.filter(
     (programme) => programme.examBoardSlug !== null,
   );
