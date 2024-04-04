@@ -117,11 +117,11 @@ export const getStaticProps: GetStaticProps<
       const subjectSlugsLegacy =
         curriculumDataLegacy?.subjects.map((s) => s.subjectSlug) || [];
 
-      const subjectSlugs2023 =
+      const subjectSlugs =
         curriculumData?.subjects.map((s) => s.subjectSlug) || [];
 
       const uniqueSubjectSlugs = [
-        ...new Set(subjectSlugsLegacy.concat(subjectSlugs2023)),
+        ...new Set(subjectSlugsLegacy.concat(subjectSlugs)),
       ];
 
       const getSubject = (
