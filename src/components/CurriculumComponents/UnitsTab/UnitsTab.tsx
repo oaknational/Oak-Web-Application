@@ -18,11 +18,9 @@ import CurriculumVisualiser, {
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
 import Box from "@/components/SharedComponents/Box";
-import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
-import Icon from "@/components/SharedComponents/Icon";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -372,45 +370,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
         >
           Unit sequence
         </OakHeading>
-        <Card
-          $background={"lemon30"}
-          $pa={0}
-          $pl={96}
-          $mb={[16, 48]}
-          $display={["none", "block"]}
-        >
-          <Box
-            $background={"lemon"}
-            $height={"100%"}
-            $left={0}
-            $position={"absolute"}
-            $top={0}
-            $width={[64, 96]}
-            $textAlign={"center"}
-          >
-            <Icon
-              name={"bell"}
-              size={[48]}
-              $position={"relative"}
-              $transform={"translateY(-50%)"}
-              $top={"50%"}
-            />
-          </Box>
-          <Box $pa={20}>
-            <OakHeading
-              tag="h3"
-              $font={"heading-7"}
-              $mb="space-between-xs"
-              data-testid="units-heading"
-            >
-              Introducing our new curriculum sequence for 2023/2024!
-            </OakHeading>
-            <OakP>
-              Units that make up our curricula are fully sequenced, and aligned
-              to the national curriculum.
-            </OakP>
-          </Box>
-        </Card>
+        <OakP $mb={"space-between-xl"} data-testid="units-heading">
+          Units that make up our curricula are fully sequenced, and aligned to
+          the national curriculum.
+        </OakP>
         <UnitsTabMobile
           updateMobileHeaderScroll={updateMobileHeaderScroll}
           selectedThread={selectedThread}
@@ -430,7 +393,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
-              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
+              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
               </OakHeading>
               <OakP $mb="space-between-xs">
@@ -495,7 +458,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
               $display={["none", "block"]}
               data-testid="year-group-filter-desktop"
             >
-              <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-xs">
+              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
                 Year group
               </OakHeading>
               <RadioGroup
