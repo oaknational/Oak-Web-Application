@@ -33,7 +33,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
     );
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Early years foundation stage",
+        "EYFS areas of learning",
       );
     });
   });
