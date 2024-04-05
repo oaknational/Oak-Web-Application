@@ -1,3 +1,16 @@
+# [1.400.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.3...v1.400.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* incorrect tier order ([379c3be](https://github.com/oaknational/Oak-Web-Application/commit/379c3beae5cc1141418e40dee5dfda3a21dd1d29))
+* sentence case key stage title ([2f147ba](https://github.com/oaknational/Oak-Web-Application/commit/2f147ba8da4ac61583703e3f7685cdb230b8d7de))
+
+
+### Features
+
+* use new api on programme listing page ([569cb89](https://github.com/oaknational/Oak-Web-Application/commit/569cb89394bd64c7789358bc60dbec922c4ed8c5))
+
 ## [1.399.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.2...v1.399.3) (2024-04-04)
 
 
