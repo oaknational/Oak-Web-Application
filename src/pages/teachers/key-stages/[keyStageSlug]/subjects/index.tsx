@@ -19,6 +19,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -134,11 +136,19 @@ export const getStaticProps: GetStaticProps<
         const slugToMatch = (subjectSlug: string) =>
           isLegacy ? removeLegacySlugSuffix(subjectSlug) : subjectSlug;
 
-        return (
+        const foundSubject =
           data.subjects.find(
             (subject) => slugToMatch(subject.subjectSlug) === subjectSlug,
-          ) || null
-        );
+          ) || null;
+
+        return foundSubject && isLegacy
+          ? {
+              ...foundSubject,
+              subjectSlug: isSlugLegacy(foundSubject.subjectSlug)
+                ? foundSubject.subjectSlug
+                : addLegacySlugSuffix(foundSubject.subjectSlug),
+            }
+          : foundSubject;
       };
 
       const subjects = uniqueSubjectSlugs
