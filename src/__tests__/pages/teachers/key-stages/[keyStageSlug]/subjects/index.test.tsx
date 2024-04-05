@@ -39,7 +39,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details ", async () => {
       const { seo } = renderWithSeo()(<SubjectListingPage {...props} />);
       expect(seo).toEqual({
         ...mockSeoResult,
