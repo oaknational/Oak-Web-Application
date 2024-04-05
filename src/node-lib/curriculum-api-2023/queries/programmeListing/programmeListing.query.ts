@@ -17,7 +17,13 @@ const programmeListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    return programmeListingSchema.parse(programmes);
+    return programmeListingSchema.parse({
+      ...programmes,
+      keyStageTitle: programmes.keyStageTitle
+        ? programmes.keyStageTitle.charAt(0).toUpperCase() +
+          programmes.keyStageTitle.slice(1).toLowerCase()
+        : null,
+    });
   };
 
 export default programmeListingQuery;
