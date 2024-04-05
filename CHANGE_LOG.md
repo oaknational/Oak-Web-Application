@@ -1,3 +1,16 @@
+# [1.401.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.400.0...v1.401.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* eyfs only exists in legacy ([012f51e](https://github.com/oaknational/Oak-Web-Application/commit/012f51ec6977abad8292515732edfc8282ebd5b3))
+* missing legacy slugs for maths and science ([d1cc65c](https://github.com/oaknational/Oak-Web-Application/commit/d1cc65c38fc58e804ae77f8aa4430de1297fcbb0))
+
+
+### Features
+
+* sentence case key stage title ([950866c](https://github.com/oaknational/Oak-Web-Application/commit/950866c3f812d19895f7992feb345fec666f039b))
+
 # [1.400.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.3...v1.400.0) (2024-04-05)
 
 
