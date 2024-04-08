@@ -1,5 +1,6 @@
 import { ResourceType } from "../../types/downloadAndShare.types";
 
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -24,6 +25,17 @@ export const checkIsResourceCopyrightRestricted = (
       ) !== undefined
     );
   }
+};
+
+export const filterDownloadsByCopyright = (
+  downloads: LessonDownloadsPageData["downloads"],
+  copyrightContent: CopyrightContent,
+) => {
+  return downloads.filter(
+    (d) =>
+      d.exists === true &&
+      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  );
 };
 
 export const getIsResourceDownloadable = (

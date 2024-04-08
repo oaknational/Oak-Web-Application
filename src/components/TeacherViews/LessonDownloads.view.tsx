@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import { checkIsResourceCopyrightRestricted } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -132,10 +132,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onwardContentSelected } = track;
 
-  const downloadsFilteredByCopyright = downloads.filter(
-    (d) =>
-      d.exists === true &&
-      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  const downloadsFilteredByCopyright = useMemo(
+    () => filterDownloadsByCopyright(downloads, copyrightContent),
+    [downloads, copyrightContent],
   );
 
   const {
