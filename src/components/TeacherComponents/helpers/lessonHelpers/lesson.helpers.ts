@@ -1,5 +1,7 @@
 import { pick, groupBy } from "lodash";
 
+import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/downloadsCopyright";
+
 import {
   LessonBase,
   LessonPathway,
@@ -9,6 +11,7 @@ import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
 import {
+  CopyrightContent,
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -350,6 +353,7 @@ export type LessonPageLinkAnchorId =
   | "additional-material";
 export const getPageLinksForLesson = (
   lesson: GetPageLinksForLessonProps,
+  copyrightContent: CopyrightContent,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -363,7 +367,13 @@ export const getPageLinksForLesson = (
       label: "Slide deck",
       anchorId: "slide-deck",
       condition: (lesson) =>
-        Boolean(lesson.presentationUrl && !lesson.hasCopyrightMaterial),
+        Boolean(
+          lesson.presentationUrl &&
+            !checkIsResourceCopyrightRestricted(
+              "presentation",
+              copyrightContent,
+            ),
+        ),
     },
     {
       label: "Lesson details",

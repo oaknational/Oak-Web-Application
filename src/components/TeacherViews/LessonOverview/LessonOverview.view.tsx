@@ -135,7 +135,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
-  const pageLinks = getPageLinksForLesson(lesson);
+  const pageLinks = getPageLinksForLesson(lesson, copyrightContent);
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
   const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
@@ -163,12 +163,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
-  const showDownloadAll =
-    downloads.filter(
-      (d) =>
-        d.exists === true &&
-        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
-    ).length > 0;
+  const downloadsFilteredByCopyright = downloads.filter(
+    (d) =>
+      d.exists === true &&
+      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  );
+
+  const showDownloadAll = downloadsFilteredByCopyright.length > 0;
 
   return (
     <MathJaxProvider>

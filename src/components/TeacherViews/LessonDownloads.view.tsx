@@ -233,14 +233,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isLegacyDownload: isLegacyDownload,
   });
 
+  const downloadsFilteredByCopyright = downloads.filter(
+    (d) =>
+      d.exists === true &&
+      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  );
+
   const showNoResources =
     !hasResources ||
     Boolean(expired) ||
-    downloads.filter(
-      (d) =>
-        d.exists === true &&
-        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
-    ).length === 0;
+    downloadsFilteredByCopyright.length === 0;
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -320,7 +322,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               !showNoResources && (
                 <DownloadCardGroup
                   control={form.control}
-                  downloads={downloads}
+                  downloads={downloadsFilteredByCopyright}
                   hasError={form.errors?.resources ? true : false}
                   triggerForm={form.trigger}
                 />
