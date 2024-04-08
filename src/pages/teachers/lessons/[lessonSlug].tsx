@@ -69,7 +69,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
   context,
-) => {
+): Promise<GetStaticPropsResult<PageProps>> => {
   return getPageProps({
     page: "lesson-overview-canonical::getStaticProps",
     context,
