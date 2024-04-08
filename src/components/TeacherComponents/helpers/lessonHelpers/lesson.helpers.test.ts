@@ -208,7 +208,7 @@ describe("getPageLinksForLesson()", () => {
     };
 
     const result = getPageLinksForLesson(lesson, [
-      { copyrightInfo: "Contains copyright material." },
+      { copyrightInfo: "This lesson contains copyright material." },
     ]);
 
     const expected = [
