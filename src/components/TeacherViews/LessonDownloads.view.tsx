@@ -132,6 +132,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onwardContentSelected } = track;
 
+  const downloadsFilteredByCopyright = downloads.filter(
+    (d) =>
+      d.exists === true &&
+      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  );
+
   const {
     form,
     emailFromLocalStorage,
@@ -152,7 +158,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
-  } = useResourceFormState({ downloadResources: downloads, type: "download" });
+  } = useResourceFormState({
+    downloadResources: downloadsFilteredByCopyright,
+    type: "download",
+  });
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -232,12 +241,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     onComplete: setActiveResources,
     isLegacyDownload: isLegacyDownload,
   });
-
-  const downloadsFilteredByCopyright = downloads.filter(
-    (d) =>
-      d.exists === true &&
-      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
-  );
 
   const showNoResources =
     !hasResources ||
