@@ -1,4 +1,5 @@
 import { specialistSubjectListingFixture2023 } from "../fixtures/specialistSubjectListing.fixture";
+import programmeListingFixture from "../fixtures/programmeListing.fixture";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
@@ -16,6 +17,7 @@ const curriculumApi: Pick<
   | "subjectPhaseOptions"
   | "curriculumOverview"
   | "subjectListingPage"
+  | "programmeListingPage"
   | "teachersHomePage"
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
@@ -35,6 +37,9 @@ const curriculumApi: Pick<
   }),
   subjectListingPage: jest.fn(async () => {
     return subjectListingFixture2023();
+  }),
+  programmeListingPage: jest.fn(async () => {
+    return programmeListingFixture();
   }),
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();

@@ -1,3 +1,44 @@
+# [1.401.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.400.0...v1.401.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* eyfs only exists in legacy ([012f51e](https://github.com/oaknational/Oak-Web-Application/commit/012f51ec6977abad8292515732edfc8282ebd5b3))
+* missing legacy slugs for maths and science ([d1cc65c](https://github.com/oaknational/Oak-Web-Application/commit/d1cc65c38fc58e804ae77f8aa4430de1297fcbb0))
+
+
+### Features
+
+* sentence case key stage title ([950866c](https://github.com/oaknational/Oak-Web-Application/commit/950866c3f812d19895f7992feb345fec666f039b))
+
+# [1.400.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.3...v1.400.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* incorrect tier order ([379c3be](https://github.com/oaknational/Oak-Web-Application/commit/379c3beae5cc1141418e40dee5dfda3a21dd1d29))
+* sentence case key stage title ([2f147ba](https://github.com/oaknational/Oak-Web-Application/commit/2f147ba8da4ac61583703e3f7685cdb230b8d7de))
+
+
+### Features
+
+* use new api on programme listing page ([569cb89](https://github.com/oaknational/Oak-Web-Application/commit/569cb89394bd64c7789358bc60dbec922c4ed8c5))
+
+## [1.399.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.2...v1.399.3) (2024-04-04)
+
+
+### Bug Fixes
+
+* removing new banner and updating header hierarchy ([85cacdb](https://github.com/oaknational/Oak-Web-Application/commit/85cacdbdc8b13dcd04e250f4ad0cab3787483377))
+* update margins on visualiser title section ([9439df6](https://github.com/oaknational/Oak-Web-Application/commit/9439df60a28ad8554f94ed82194673038a64914e))
+
+## [1.399.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.1...v1.399.2) (2024-04-04)
+
+
+### Bug Fixes
+
+* **a11y:** add 'new' to aria-label where appropriate ([4d6d13a](https://github.com/oaknational/Oak-Web-Application/commit/4d6d13a3ee4bbc4ae581e596900c156c651fc6e1))
+
 ## [1.399.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.0...v1.399.1) (2024-04-03)
 
 

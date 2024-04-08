@@ -7,9 +7,8 @@ import SubjectListingPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectPageProps";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
-import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const props = subjectPagePropsFixture();
@@ -34,13 +33,13 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
     );
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Early years foundation stage",
+        "EYFS areas of learning",
       );
     });
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details ", async () => {
       const { seo } = renderWithSeo()(<SubjectListingPage {...props} />);
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -71,34 +70,33 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should call legacy API:subjectListing on 'teachers'", async () => {
+    it("Should call API::subjectListing for legacy and new data", async () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
         },
       });
+      expect(curriculumApi.subjectListingPage).toHaveBeenCalledTimes(2);
 
-      expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
+      expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(1, {
         keyStageSlug: "ks123",
+        isLegacy: false,
       });
-      expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalled();
+      expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(2, {
+        keyStageSlug: "ks123",
+        isLegacy: true,
+      });
     });
-    it("Should call both API::subjectListing on 'teachers-2023'", async () => {
-      await getStaticProps({
-        params: {
-          keyStageSlug: "ks123",
-        },
-      });
-
-      expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
-        keyStageSlug: "ks123",
-      });
-      expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
-        {
-          keyStageSlug: "ks123",
-          isLegacy: false,
-        },
+    it("should return notFound when a landing page is missing", async () => {
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
+        undefined,
       );
+
+      const context = { params: { keyStageSlug: "test-key-stage" } };
+      const response = await getStaticProps(context);
+      expect(response).toEqual({
+        notFound: true,
+      });
     });
     it("should throw error when not provided context params", async () => {
       await expect(getStaticProps({})).rejects.toThrowError("No keyStageSlug");

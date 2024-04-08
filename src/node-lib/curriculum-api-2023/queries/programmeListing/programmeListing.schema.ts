@@ -19,5 +19,7 @@ export const programmeListingSchema = z.object({
   programmes: z.array(programmeSchema),
 });
 
-export type ProgrammeListingPageData = z.infer<typeof programmeListingSchema>;
+export type ProgrammeListingPageData = z.infer<
+  typeof programmeListingSchema
+> & { legacy: boolean };
 export type Programme = z.infer<typeof programmeSchema>;

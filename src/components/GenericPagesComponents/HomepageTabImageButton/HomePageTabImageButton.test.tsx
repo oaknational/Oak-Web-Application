@@ -102,6 +102,20 @@ describe("HomePageTabImageButton", () => {
     // Would check visibility, but the new icon is not visible on smaller viewports.
   });
 
+  test("adds '(New)' to aria-label when showNewIcon prop set to true", async () => {
+    const { getByRole } = renderWithTheme(
+      <HomePageTabImageButton
+        label="Click me"
+        title={""}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
+        showNewIcon={true}
+      />,
+    );
+    const button = getByRole("button");
+    expect(button).toHaveAttribute("aria-label", "Click me (New)");
+  });
+
   test("Doesn't show a new icon when showNewIcon prop omitted", () => {
     const { queryAllByTestId } = renderWithTheme(
       <HomePageTabImageButton
