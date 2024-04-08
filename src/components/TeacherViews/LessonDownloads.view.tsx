@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { checkIsResourceCopyrightRestricted } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
@@ -38,6 +40,7 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
+import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -46,7 +49,7 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsData["downloads"];
-  hasDownloadableResources?: boolean;
+  copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
 };
@@ -82,9 +85,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
-    hasDownloadableResources,
     expired,
     isSpecialist,
+    copyrightContent,
   } = lesson;
 
   const commonPathway =
@@ -227,6 +230,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isLegacyDownload: isLegacyDownload,
   });
 
+  const showNoResources =
+    !hasResources ||
+    Boolean(expired) ||
+    downloads.filter(
+      (d) =>
+        d.exists === true &&
+        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+    ).length === 0;
+
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
@@ -286,9 +298,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             handleToggleSelectAll={handleToggleSelectAll}
             selectAllChecked={selectAllChecked}
             header="Download"
-            showNoResources={
-              !hasResources || !hasDownloadableResources || Boolean(expired)
-            }
+            showNoResources={showNoResources}
             showLoading={isLocalStorageLoading}
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
@@ -304,8 +314,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             apiError={apiError}
             hideSelectAll={Boolean(expired)}
             cardGroup={
-              hasDownloadableResources &&
-              !expired && (
+              !showNoResources && (
                 <DownloadCardGroup
                   control={form.control}
                   downloads={downloads}
@@ -325,8 +334,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={isAttemptingDownload}
                 disabled={
                   hasFormErrors ||
-                  expired ||
-                  !hasDownloadableResources ||
+                  showNoResources ||
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 loadingText={"Downloading..."}

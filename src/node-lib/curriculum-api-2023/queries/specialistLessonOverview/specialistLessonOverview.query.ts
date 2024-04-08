@@ -14,7 +14,6 @@ import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.t
 export const constructDownloadsArray = (
   lesson: SpecialistLessonDataRaw[number],
 ): LessonOverviewDownloads => {
-  console.log("diego lesson", lesson);
   const presentation = {
     exists: lesson.presentation_url ? true : false,
     type: "presentation" as const,
