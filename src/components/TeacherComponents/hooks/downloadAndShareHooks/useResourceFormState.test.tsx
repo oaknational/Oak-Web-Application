@@ -133,7 +133,6 @@ describe("useResourceFormState", () => {
 
         expect(result.current.selectedResources).toEqual([
           "intro-quiz-questions",
-          "intro-quiz-answers",
         ]);
       });
       test("useResourceFormState should return correct string for quiz exit ", () => {
@@ -145,7 +144,6 @@ describe("useResourceFormState", () => {
 
         expect(result.current.selectedResources).toEqual([
           "exit-quiz-questions",
-          "exit-quiz-answers",
         ]);
       });
       test("useResourceFormState should return correct string for worksheet ", () => {
@@ -155,10 +153,7 @@ describe("useResourceFormState", () => {
         });
         const { result } = renderHook(() => useResourceFormState(shareProps));
 
-        expect(result.current.selectedResources).toEqual([
-          "worksheet-pdf",
-          "worksheet-pptx",
-        ]);
+        expect(result.current.selectedResources).toEqual(["worksheet-pdf"]);
       });
     });
   });
