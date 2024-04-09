@@ -9,6 +9,7 @@ import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schem
 const lessonOverviewCanonicalQuery =
   (sdk: Sdk) => async (args: { lessonSlug: string }) => {
     const res = await sdk.lessonOverviewCanonical(args);
+
     const lessons = res.lesson;
     if (lessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });

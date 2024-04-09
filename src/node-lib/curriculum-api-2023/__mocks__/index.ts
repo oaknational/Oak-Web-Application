@@ -28,6 +28,8 @@ const curriculumApi: Pick<
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
+  | "lessonOverview"
+  | "lessonDownloads"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -53,6 +55,9 @@ const curriculumApi: Pick<
   pupilLessonOverviewCanonical: jest.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
+  lessonOverview: jest.fn(async () => {
+    return lessonOverviewFixture();
+  }),
   lessonOverviewCanonical: jest.fn(async () => {
     return {
       ...lessonOverviewFixture(),
@@ -64,6 +69,9 @@ const curriculumApi: Pick<
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
     };
+  }),
+  lessonDownloads: jest.fn(async () => {
+    return lessonDownloadsFixtures();
   }),
   specialistSubjectListing: jest.fn(async () => {
     return {
