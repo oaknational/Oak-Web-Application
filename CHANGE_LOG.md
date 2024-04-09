@@ -1,3 +1,15 @@
+# [1.403.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.1...v1.403.0) (2024-04-09)
+
+
+### Bug Fixes
+
+* keystage title sentence case ([854adf1](https://github.com/oaknational/Oak-Web-Application/commit/854adf191efda8fa0382504243157365fe9ce502))
+
+
+### Features
+
+* lesson listing use new api ([55de261](https://github.com/oaknational/Oak-Web-Application/commit/55de2614d4fb9b506d2e50ed9c17488af2b60fd9))
+
 ## [1.402.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.0...v1.402.1) (2024-04-09)
 
 
