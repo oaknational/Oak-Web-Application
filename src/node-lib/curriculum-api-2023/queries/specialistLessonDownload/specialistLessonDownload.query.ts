@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { Sdk } from "../../sdk";
 import { lessonDownloadsListSchema } from "../../shared.schema";
-import { SpecialistLessonDataRaw } from "../specialistLessonOverview/specialistLessonOverview.schema";
 
 import {
   SpecialistLessonDownloadRaw,
@@ -80,20 +79,6 @@ export const constructDownloadsArray = (
   ];
 };
 
-export const constructHasDownloadableResources = (
-  lesson: SpecialistLessonDownloadRaw | SpecialistLessonDataRaw[number],
-) => {
-  return (
-    (!!lesson.presentation_url &&
-      lesson.contains_copyright_content === false) ||
-    (!!lesson.starter_quiz && !!lesson.starter_quiz_asset_object) ||
-    (!!lesson.exit_quiz && !!lesson.exit_quiz_asset_object) ||
-    (!!lesson.worksheet_url &&
-      typeof lesson.worksheet_asset_object
-        ?.google_drive_downloadable_version === "string")
-  );
-};
-
 export const specialistLessonDownloadQuery =
   (sdk: Sdk) =>
   async (args: {
@@ -123,7 +108,6 @@ export const specialistLessonDownloadQuery =
 
     const lesson = parsedSpecialistLessonDownloads[0];
     const downloads = constructDownloadsArray(lesson);
-    const hasDownloadableResources = constructHasDownloadableResources(lesson);
 
     return {
       lesson: {
@@ -140,7 +124,6 @@ export const specialistLessonDownloadQuery =
         lessonSlug: lessonSlug,
         downloads: downloads,
         nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
-        hasDownloadableResources: hasDownloadableResources,
         expired: lesson.expired ?? false,
       },
     };

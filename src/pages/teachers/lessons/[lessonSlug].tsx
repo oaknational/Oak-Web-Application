@@ -18,7 +18,6 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import curriculumApi from "@/node-lib/curriculum-api";
 import OakError from "@/errors/OakError";
 
 type PageProps = {
@@ -70,7 +69,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
   context,
-) => {
+): Promise<GetStaticPropsResult<PageProps>> => {
   return getPageProps({
     page: "lesson-overview-canonical::getStaticProps",
     context,
@@ -81,8 +80,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const { lessonSlug } = context.params;
 
       /**
-       * If the lesson is not found in the specialist 2023 curriculum, try the non-specialist 2023 curriculum,
-       * otherwise try the 2020 api. Otherwise rethrow the error.
+       * If the lesson is not found in the specialist 2023 curriculum, try the non-specialist 2023 curriculum
        */
 
       let lesson;
@@ -92,7 +90,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
         const res = await curriculumApi2023.specialistLessonOverviewCanonical({
           lessonSlug,
         });
-
         lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
         isSpecialist = true;
       } catch (error) {
@@ -100,33 +97,10 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          try {
-            lesson = await curriculumApi2023.lessonOverviewCanonical({
-              lessonSlug,
-            });
-          } catch (error) {
-            if (
-              error instanceof OakError &&
-              error.code === "curriculum-api/not-found"
-            ) {
-              try {
-                lesson = await curriculumApi.lessonOverviewCanonical({
-                  lessonSlug,
-                });
-              } catch (error) {
-                if (
-                  error instanceof OakError &&
-                  error.code === "curriculum-api/not-found"
-                ) {
-                  return {
-                    notFound: true,
-                  };
-                }
-              }
-            } else {
-              throw error;
-            }
-          }
+          await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
+          lesson = await curriculumApi2023.lessonOverviewCanonical({
+            lessonSlug,
+          });
         }
       }
 
