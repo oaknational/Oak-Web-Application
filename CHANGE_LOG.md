@@ -1,3 +1,11 @@
+## [1.402.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.0...v1.402.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* lesson counts on programme listing page ([5df8d92](https://github.com/oaknational/Oak-Web-Application/commit/5df8d92f9ff1e942fb07b495b7bde4b475af46e5))
+* remove copyright from query and include expired lessons in total count ([3b69fa2](https://github.com/oaknational/Oak-Web-Application/commit/3b69fa240fce9fcced69f515b4442c0e3d0f1583))
+
 # [1.402.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.401.0...v1.402.0) (2024-04-09)
 
 
