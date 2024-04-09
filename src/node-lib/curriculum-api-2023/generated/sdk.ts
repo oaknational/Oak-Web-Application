@@ -39359,14 +39359,14 @@ export const SpecialistProgrammeListingDocument = gql`
 export const SpecialistProgrammeListingCountsDocument = gql`
     query specialistProgrammeListingCounts($programmeSlug: String!) {
   unitCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   lessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
@@ -39418,14 +39418,14 @@ export const SpecialistUnitsAndLessonCountDocument = gql`
 export const DevelopmentStageUnitCountDocument = gql`
     query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageUnitCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   developmentStageLessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
@@ -39446,7 +39446,7 @@ export const DevelopmentStagesDocument = gql`
 export const SpecialistLessonCountDocument = gql`
     query specialistLessonCount($unit_slug: String!) {
   specialistUnitLessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {unit_slug: {_eq: $unit_slug}, expired: {_is_null: true}}
+    where: {unit_slug: {_eq: $unit_slug}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
