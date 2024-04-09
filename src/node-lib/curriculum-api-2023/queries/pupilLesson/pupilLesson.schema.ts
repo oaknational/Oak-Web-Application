@@ -85,7 +85,7 @@ const unitDataSchema = z.object({
   description: z.string().nullable(),
   slug: z.string(),
   tags: z.array(z.number()).nullable(),
-  deprecated_fields: z.object({}).nullable(),
+  deprecated_fields: z.object({}).nullable().optional(),
   title: z.string(),
   _state: _stateSchema,
   _cohort: _cohortSchema,
