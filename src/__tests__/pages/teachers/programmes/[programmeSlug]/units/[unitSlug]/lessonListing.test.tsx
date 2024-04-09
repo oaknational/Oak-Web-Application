@@ -100,6 +100,34 @@ describe("Lesson listing page", () => {
         unitSlug: "adding-surds-a57d",
       });
     });
+    it("should return notFound when a landing page is missing", async () => {
+      (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(
+        undefined,
+      );
+
+      const context = {
+        params: {
+          programmeSlug: "maths-secondary-ks4-higher-l",
+          unitSlug: "adding-surds-a57d",
+        },
+      };
+      const response = await getStaticProps(context);
+      expect(response).toEqual({
+        notFound: true,
+      });
+    });
+    it("should throw error when params are missing", async () => {
+      const context = {
+        params: {
+          programmeSlug: "maths-secondary-ks4-higher-l",
+        },
+      };
+      await expect(
+        getStaticProps(
+          context as GetStaticPropsContext<URLParams, PreviewData>,
+        ),
+      ).rejects.toThrowError("unexpected context.params");
+    });
     it("should throw error", async () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
