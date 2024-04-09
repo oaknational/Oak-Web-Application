@@ -1,15 +1,15 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
 
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
   getStaticProps,
-  LessonListingPageProps,
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
 const render = renderWithProviders();
 
@@ -89,17 +89,16 @@ describe("Lesson listing page", () => {
   });
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
-      const propsResult = (await getStaticProps({
+      await getStaticProps({
         params: {
           programmeSlug: "maths-secondary-ks4-higher-l",
           unitSlug: "adding-surds-a57d",
         },
-        query: {},
-      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: LessonListingPageProps;
-      };
-
-      expect(propsResult.props.curriculumData).toEqual(lessonListingFixture());
+      });
+      expect(curriculumApi.lessonListing).toHaveBeenCalledWith({
+        programmeSlug: "maths-secondary-ks4-higher-l",
+        unitSlug: "adding-surds-a57d",
+      });
     });
     it("should throw error", async () => {
       await expect(
