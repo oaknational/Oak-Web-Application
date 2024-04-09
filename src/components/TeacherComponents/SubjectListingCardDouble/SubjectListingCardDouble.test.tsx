@@ -5,7 +5,7 @@ import SubjectListingCardDouble from "./SubjectListingCardDouble";
 
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectPageProps";
+import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
 const subjects: Subjects = subjectPagePropsFixture().subjects;
 

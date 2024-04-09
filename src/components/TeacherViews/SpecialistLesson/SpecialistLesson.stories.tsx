@@ -46,10 +46,10 @@ export const SpecialistLessonPage: Story = {
       videoMuxPlaybackId: null,
       videoWithSignLanguageMuxPlaybackId: null,
       transcriptSentences: null,
-      hasDownloadableResources: true,
       starterQuiz: null,
       exitQuiz: null,
       expired: false,
+      downloads: [],
     },
   },
 };

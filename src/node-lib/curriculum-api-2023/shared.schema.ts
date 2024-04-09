@@ -25,9 +25,16 @@ export const keyLearningPointsSchema = z.object({
 
 export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
 
-export const copyrightContentSchema = z.object({
-  copyrightInfo: z.string(),
-});
+export const copyrightContentSchema = z
+  .array(
+    z.object({
+      copyrightInfo: z.string(),
+    }),
+  )
+  .nullable()
+  .optional();
+
+export type CopyrightContent = z.infer<typeof copyrightContentSchema>;
 
 export const keywordsSchema = z.object({
   keyword: z.string(),
@@ -170,7 +177,7 @@ export const baseLessonOverviewSchema = z.object({
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),
-  copyrightContent: z.array(copyrightContentSchema).nullable().optional(),
+  copyrightContent: copyrightContentSchema,
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
   presentationUrl: z.string().nullable(),
@@ -178,7 +185,6 @@ export const baseLessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
   expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
@@ -217,9 +223,9 @@ export const baseLessonDownloadsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
-  hasDownloadableResources: z.boolean(),
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
+  copyrightContent: copyrightContentSchema,
 });
 
 export const lessonListSchema = z.array(

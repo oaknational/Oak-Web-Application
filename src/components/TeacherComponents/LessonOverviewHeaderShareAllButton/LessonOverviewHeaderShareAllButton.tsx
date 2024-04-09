@@ -17,7 +17,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     subjectSlug,
     lessonTitle,
     expired,
-    hasDownloadableResources,
     programmeSlug,
     lessonSlug,
     unitSlug,

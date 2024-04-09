@@ -41,8 +41,8 @@ describe("lessonOverview()", () => {
               videoMuxPlaybackId: "video-mux-playback-id",
               videoWithSignLanguageMuxPlaybackId:
                 "video-with-sign-language-mux-playback-id",
-              hasDownloadableResources: false,
               expired: false,
+              downloads: [],
             },
             {
               programmeSlug: "programme-slug-1",
@@ -63,8 +63,8 @@ describe("lessonOverview()", () => {
               videoMuxPlaybackId: "video-mux-playback-id",
               videoWithSignLanguageMuxPlaybackId:
                 "video-with-sign-language-mux-playback-id",
-              hasDownloadableResources: false,
               expired: false,
+              downloads: [],
             },
           ],
         }),
@@ -101,9 +101,9 @@ describe("lessonOverview()", () => {
                 videoMuxPlaybackId: null,
                 videoWithSignLanguageMuxPlaybackId: null,
                 transcriptSentences: null,
-                hasDownloadableResources: null,
                 introQuiz: [],
                 exitQuiz: [],
+                downloads: [],
                 introQuizInfo: null,
                 exitQuizInfo: null,
                 expired: false,

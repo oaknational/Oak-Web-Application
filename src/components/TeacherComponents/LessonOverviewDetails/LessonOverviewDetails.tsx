@@ -83,7 +83,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $gap={"all-spacing-9"}
           $mb={"space-between-m"}
         >
-          {teacherTips && (
+          {teacherTips && teacherTips.length > 0 && (
             <Box>
               <LessonOverviewTeacherTips teacherTips={teacherTips} />
             </Box>

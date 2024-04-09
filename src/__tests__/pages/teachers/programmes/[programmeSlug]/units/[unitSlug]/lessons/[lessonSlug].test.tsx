@@ -16,7 +16,6 @@ const props = {
   curriculumData: lessonOverviewFixture({
     videoMuxPlaybackId: "pid-001",
     videoWithSignLanguageMuxPlaybackId: "pid-002",
-    hasDownloadableResources: true,
   }),
 };
 
@@ -69,13 +68,7 @@ describe("pages/teachers/lessons", () => {
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
-    render(
-      <LessonOverviewPage
-        curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: true,
-        })}
-      />,
-    );
+    render(<LessonOverviewPage curriculumData={lessonOverviewFixture()} />);
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
       "Download all resources",
@@ -86,8 +79,8 @@ describe("pages/teachers/lessons", () => {
     render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: false,
+          downloads: [],
         })}
       />,
     );
@@ -99,7 +92,6 @@ describe("pages/teachers/lessons", () => {
     render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: true,
         })}
       />,
@@ -112,7 +104,6 @@ describe("pages/teachers/lessons", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: false,
           lessonCohort: null,
         })}
@@ -133,7 +124,6 @@ describe("pages/teachers/lessons", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: false,
           lessonCohort: LEGACY_COHORT,
         })}
@@ -154,7 +144,6 @@ describe("pages/teachers/lessons", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: true,
           lessonCohort: NEW_COHORT,
         })}
