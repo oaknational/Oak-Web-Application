@@ -17,7 +17,8 @@ import LessonSharePage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
-import lessonShareFixtures from "@/node-lib/curriculum-api/fixtures/lessonShare.fixture";
+import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
@@ -369,6 +370,35 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
         "macbeth-lesson-1",
       );
+    });
+    it("Should call curriculum api with correct props", async () => {
+      await getStaticProps({
+        params: {
+          programmeSlug: "maths-secondary-ks4-higher-l",
+          unitSlug: "maths-secondary-ks4-higher-l",
+          lessonSlug: "adding-surds-a57d",
+        },
+      });
+      expect(curriculumApi.lessonShare).toHaveBeenCalledWith({
+        programmeSlug: "maths-secondary-ks4-higher-l",
+        unitSlug: "maths-secondary-ks4-higher-l",
+        lessonSlug: "adding-surds-a57d",
+      });
+    });
+    it("should return notFound when a landing page is missing", async () => {
+      (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(undefined);
+
+      const context = {
+        params: {
+          programmeSlug: "maths-secondary-ks4-higher-l",
+          unitSlug: "maths-secondary-ks4-higher-l",
+          lessonSlug: "adding-surds-a57d",
+        },
+      };
+      const response = await getStaticProps(context);
+      expect(response).toEqual({
+        notFound: true,
+      });
     });
     it("should throw error", async () => {
       await expect(
