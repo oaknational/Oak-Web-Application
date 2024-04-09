@@ -88,7 +88,7 @@ describe("Lesson listing page", () => {
     });
   });
   describe("getStaticProps", () => {
-    it("Should fetch the correct data", async () => {
+    it("Should call curriculum api with correct props", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "maths-secondary-ks4-higher-l",
