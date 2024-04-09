@@ -3,6 +3,10 @@ import { pupilLessonSchema } from "./pupilLesson.schema";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import {
+  InputMaybe,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp,
+} from "@/node-lib/curriculum-api-2023/generated/sdk";
 
 export const pupilLessonQuery =
   (sdk: Sdk) =>
@@ -12,24 +16,36 @@ export const pupilLessonQuery =
     programmeSlug?: string;
     isLegacy?: boolean;
   }) => {
-    const { lessonSlug, unitSlug, programmeSlug, isLegacy = false } = args;
+    const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
+
+    const query: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp> =
+      { lesson_slug: { _eq: lessonSlug } };
+
+    if (unitSlug) {
+      query["unit_slug"] = { _eq: unitSlug };
+    }
+
+    if (programmeSlug) {
+      query["programme_slug"] = { _eq: programmeSlug };
+    }
+
+    if (isLegacy !== undefined) {
+      query["is_legacy"] = { _eq: isLegacy };
+    }
 
     const res = await sdk.pupilLesson({
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      isLegacy,
+      where: query,
     });
+
     const [browseData] = res.browseData;
 
     if (!browseData) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    // TODO: this needs adding to the mv
-    // if (browseData.isSensitive) {
-    //   throw new OakError({ code: "curriculum-api/not-found" });
-    // }
+    if (browseData.unit_data.deprecated_fields.is_sensitive) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
 
     if (res.browseData.length > 1) {
       const error = new OakError({
