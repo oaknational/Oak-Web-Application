@@ -7,9 +7,6 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi, {
-  type LessonDownloadsData,
-} from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -17,11 +14,11 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
-import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: LessonDownloadsData;
+  curriculumData: LessonDownloadsPageData;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -80,17 +77,11 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = shouldUseLegacyApi(programmeSlug)
-        ? await curriculumApi.lessonDownloads({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          })
-        : await curriculumApi2023.lessonDownloads({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          });
+      const curriculumData = await curriculumApi2023.lessonDownloads({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
 
       if (!curriculumData) {
         return {

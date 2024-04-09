@@ -32,7 +32,6 @@ const lessonOverviewQuery =
     return lessonOverviewSchema.parse({
       ...lesson,
       isLegacy: false,
-      hasCopyrightMaterial: false,
     });
   };
 

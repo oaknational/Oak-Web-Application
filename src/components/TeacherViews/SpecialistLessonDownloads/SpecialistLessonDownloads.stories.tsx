@@ -30,7 +30,6 @@ export const SpecialistLessonDownloadsPage: Story = {
         unitTitle: "Creative arts",
         nextLessons: nextLessons,
         downloads: downloads,
-        hasDownloadableResources: true,
       },
     },
   },

@@ -1,6 +1,7 @@
 import { specialistSubjectListingFixture2023 } from "../fixtures/specialistSubjectListing.fixture";
-import programmeListingFixture from "../fixtures/programmeListing.fixture";
 
+import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
@@ -18,6 +19,7 @@ const curriculumApi: Pick<
   | "subjectPhaseOptions"
   | "curriculumOverview"
   | "subjectListingPage"
+  | "lessonListing"
   | "programmeListingPage"
   | "teachersHomePage"
   | "lessonOverviewCanonical"
@@ -28,6 +30,8 @@ const curriculumApi: Pick<
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
   | "lessonShare"
+  | "lessonOverview"
+  | "lessonDownloads"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -41,6 +45,9 @@ const curriculumApi: Pick<
   programmeListingPage: jest.fn(async () => {
     return programmeListingFixture();
   }),
+  lessonListing: jest.fn(async () => {
+    return lessonListingFixture();
+  }),
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
   }),
@@ -53,6 +60,9 @@ const curriculumApi: Pick<
   pupilLessonOverviewCanonical: jest.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
+  lessonOverview: jest.fn(async () => {
+    return lessonOverviewFixture();
+  }),
   lessonOverviewCanonical: jest.fn(async () => {
     return {
       ...lessonOverviewFixture(),
@@ -64,6 +74,9 @@ const curriculumApi: Pick<
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
     };
+  }),
+  lessonDownloads: jest.fn(async () => {
+    return lessonDownloadsFixtures();
   }),
   specialistSubjectListing: jest.fn(async () => {
     return {

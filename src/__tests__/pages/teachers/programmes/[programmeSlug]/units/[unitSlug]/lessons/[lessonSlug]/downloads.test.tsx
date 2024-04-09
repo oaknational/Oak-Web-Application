@@ -103,7 +103,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
           ...props,
           curriculumData: {
             ...props.curriculumData,
-            hasDownloadableResources: false,
+            downloads: [],
           },
         }}
       />,
@@ -118,7 +118,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
           ...props,
           curriculumData: {
             ...props.curriculumData,
-            hasDownloadableResources: false,
+            downloads: [],
           },
         }}
       />,
