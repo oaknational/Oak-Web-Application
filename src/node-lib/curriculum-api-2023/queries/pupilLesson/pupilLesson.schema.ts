@@ -30,6 +30,7 @@ const lessonDataSchema = z.object({
   quiz_id_exit: z.number().nullable(),
   asset_id_slidedeck: z.number().nullable(),
   asset_id_worksheet: z.number().nullable(),
+  deprecated_fields: z.object({}).nullable().optional(),
   _state: _stateSchema,
   _cohort: _cohortSchema,
 });

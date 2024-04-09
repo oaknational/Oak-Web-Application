@@ -43,7 +43,7 @@ export const pupilLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (browseData.unit_data.deprecated_fields.is_sensitive) {
+    if (browseData.lesson_data?.deprecated_fields?.is_sensitive) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
