@@ -43,9 +43,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
   it("renders Download All button if lesson has downloadable resources", async () => {
     render(
       <SpecialistLessonOverviewPage
-        curriculumData={specialistLessonOverviewFixture({
-          hasDownloadableResources: true,
-        })}
+        curriculumData={specialistLessonOverviewFixture({})}
       />,
     );
 
@@ -58,8 +56,8 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     render(
       <SpecialistLessonOverviewPage
         curriculumData={specialistLessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: false,
+          downloads: [],
         })}
       />,
     );
@@ -71,7 +69,6 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     render(
       <SpecialistLessonOverviewPage
         curriculumData={specialistLessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: true,
         })}
       />,
@@ -84,7 +81,6 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     const { queryAllByTestId, queryAllByText } = render(
       <SpecialistLessonOverviewPage
         curriculumData={specialistLessonOverviewFixture({
-          hasDownloadableResources: false,
           expired: false,
         })}
       />,

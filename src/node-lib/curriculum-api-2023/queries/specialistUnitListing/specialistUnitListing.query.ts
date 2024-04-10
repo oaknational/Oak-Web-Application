@@ -28,6 +28,13 @@ export const getExpandedSpecialistUnits = (
   const units = specialistUnits.map((unit, i) => {
     const batchRes = specialistUnitLessonCount.parse(data[i]?.data);
     const lessonCount = batchRes.specialistUnitLessonCount.aggregate.count;
+    const expiredLessonCount =
+      batchRes.specialistUnitExpiredLessonCount.aggregate.count;
+    const expired =
+      unit.expired ||
+      lessonCount === 0 ||
+      lessonCount - expiredLessonCount === 0;
+
     if (data[i]?.data) {
       return [
         {
@@ -38,9 +45,8 @@ export const getExpandedSpecialistUnits = (
           programmeSlug: unit.synthetic_programme_slug,
           subjectSlug: unit.combined_programme_fields.subject_slug,
           subjectTitle: unit.combined_programme_fields.subject,
-          expired: unit.expired || lessonCount === 0,
-          expiredLessonCount:
-            batchRes.specialistUnitExpiredLessonCount.aggregate.count,
+          expired,
+          expiredLessonCount,
           themeSlug: unit.threads ? unit.threads[0]?.themeSlug : null,
           themeTitle: unit.threads ? unit.threads[0]?.themeTitle : null,
           learningThemes: [

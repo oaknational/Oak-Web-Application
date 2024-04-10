@@ -15,10 +15,13 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;
 
   const isEyfs = keyStageSlug === "early-years-foundation-stage";
+  const sentenceCaseKeyStageTitle =
+    keyStageTitle.charAt(0).toUpperCase() +
+    keyStageTitle.slice(1).toLowerCase();
 
   const title = isEyfs
-    ? `${keyStageTitle} areas of learning`
-    : `${keyStageTitle} subjects`;
+    ? `EYFS areas of learning`
+    : `${sentenceCaseKeyStageTitle} subjects`;
 
   return (
     <OakFlex $flexDirection={"column"}>
@@ -65,7 +68,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
                   subject={subject}
                   subjectSlug={subject.subjectSlug}
                   keyStageSlug={keyStageSlug}
-                  keyStageTitle={keyStageTitle}
+                  keyStageTitle={sentenceCaseKeyStageTitle}
                 />
               </GridAreaListItem>
             );

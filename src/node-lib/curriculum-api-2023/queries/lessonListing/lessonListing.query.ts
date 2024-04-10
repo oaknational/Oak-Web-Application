@@ -25,7 +25,13 @@ const lessonListingQuery =
       });
     }
 
-    return lessonListingSchema.parse(unit);
+    return lessonListingSchema.parse({
+      ...unit,
+      keyStageTitle:
+        unit.keyStageTitle &&
+        unit.keyStageTitle.charAt(0).toUpperCase() +
+          unit.keyStageTitle.slice(1).toLowerCase(),
+    });
   };
 
 export default lessonListingQuery;

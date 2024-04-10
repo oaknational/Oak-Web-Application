@@ -1,10 +1,9 @@
-import { LessonOverviewData } from "..";
-
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const lessonOverviewFixture = (
-  partial?: Partial<LessonOverviewData>,
-): LessonOverviewData => {
+  partial?: Partial<LessonOverviewPageData>,
+): LessonOverviewPageData => {
   return {
     isLegacy: true,
     lessonSlug: "macbeth-lesson-1",
@@ -35,10 +34,19 @@ const lessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: ["this is a sentence", "this is another sentence"],
-    hasDownloadableResources: true,
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
     expired: false,
+    copyrightContent: [],
+    downloads: [
+      { exists: true, type: "intro-quiz-answers" },
+      { exists: true, type: "intro-quiz-questions" },
+      { exists: true, type: "exit-quiz-answers" },
+      { exists: true, type: "exit-quiz-questions" },
+      { exists: true, type: "worksheet-pdf" },
+      { exists: true, type: "worksheet-pptx" },
+      { exists: true, type: "presentation" },
+    ],
     ...partial,
   };
 };

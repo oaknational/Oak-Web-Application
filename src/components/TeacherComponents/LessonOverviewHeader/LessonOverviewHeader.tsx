@@ -28,7 +28,6 @@ export type LessonOverviewHeaderProps = {
   // lesson base props
   lessonTitle: string;
   expired?: boolean | null;
-  hasDownloadableResources: boolean;
   lessonSlug: string;
   lessonDescription?: string;
   isSpecialist: boolean;
@@ -43,6 +42,7 @@ export type LessonOverviewHeaderProps = {
   pupilLessonOutcome?: string | null;
   onClickDownloadAll: () => void;
   onClickShareAll: () => void;
+  showDownloadAll: boolean;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
