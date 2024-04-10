@@ -38894,7 +38894,6 @@ export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePag
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
@@ -39508,9 +39507,9 @@ export const TeachersHomePageDocument = gql`
 }
     `;
 export const UnitListingDocument = gql`
-    query unitListing($programmeSlug: String!, $isLegacy: Boolean!) {
+    query unitListing($programmeSlug: String!) {
   programme: published_mv_unit_listing_page_5_0_0(
-    where: {programmeSlug: {_eq: $programmeSlug}, isLegacy: {_eq: $isLegacy}}
+    where: {programmeSlug: {_eq: $programmeSlug}}
   ) {
     programmeSlug
     keyStageSlug

@@ -54,6 +54,6 @@ const unitListingSchema = z.object({
   learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
-export type unitListingPageData = z.infer<typeof unitListingSchema>;
+export type UnitListingPageData = z.infer<typeof unitListingSchema>;
 
 export default unitListingSchema;
