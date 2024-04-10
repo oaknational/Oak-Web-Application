@@ -1,0 +1,42 @@
+{
+  "took": 50,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 19,
+      "relation": "eq"
+    },
+    "max_score": 121.737686,
+    "hits": [
+      {
+        "_id": "Z38Yx44Bc8iIk5N9Klp6",
+        "_index": "lessons_1712737230873",
+        "_score": 104.29718,
+        "_source": {
+          "slug": "the-relationship-between-macbeth-and-lady-macbeth",
+          "title": "The relationship between Macbeth and Lady Macbeth",
+          "programme_slug": "english-secondary-ks4-eduqas",
+          "subject_title": "English",
+          "subject_slug": "english",
+          "key_stage_title": "Key Stage 4",
+          "key_stage_slug": "ks4",
+          "unit_slug": "macbeth-lady-macbeth-as-a-machiavellian-villain",
+          "unit_title": "Macbeth: Lady Macbeth as a machiavellian villain",
+          "pathways": [],
+          "cohort": "2023-2024",
+          "type": "lesson",
+          "pupil_lesson_outcome": "I can describe the relationship between Macbeth and Lady Macbeth."
+        },
+        "highlight": {
+          "pupil_lesson_outcome": "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>."
+        }
+      }
+    ]
+  }
+}

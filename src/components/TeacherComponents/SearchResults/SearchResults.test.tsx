@@ -6,16 +6,13 @@ import { act } from "react-dom/test-utils";
 
 import SearchResults from "./SearchResults";
 
-import elasticResponseFixture from "@/context/Search/elasticResponse.2020.fixture.json";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
 import truthy from "@/utils/truthy";
-import { searchResultsHitsSchema } from "@/context/Search/search.schema";
-
-const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
+import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
 const getNHits = (n: number) => {
-  const [hit] = hits.map((hit) => {
+  const [hit] = hitsFixture.map((hit) => {
     return {
       ...hit,
     };
@@ -37,7 +34,7 @@ const getNHits = (n: number) => {
 };
 
 const props = {
-  hits,
+  hits: hitsFixture,
   allKeyStages: searchPageFixture().keyStages,
 };
 
@@ -57,11 +54,11 @@ describe("<SearchResults />", () => {
     );
     expect(
       getByRole("link", {
-        name: "English lesson: To write the setting description",
+        name: "English lesson: The relationship between Macbeth and Lady Macbeth",
       }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
+      "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons/the-relationship-between-macbeth-and-lady-macbeth",
     );
   });
   // @todo when we have programme_slug in search index
@@ -75,10 +72,12 @@ describe("<SearchResults />", () => {
       />,
     );
     expect(
-      getByRole("link", { name: "English unit: Macbeth - unit" }),
+      getByRole("link", {
+        name: "English unit: Macbeth: Lady Macbeth as a machiavellian villain",
+      }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/english-secondary-ks4-core/units/macbeth-narrative-writing-core/lessons",
+      "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons",
     );
   });
 
@@ -93,7 +92,7 @@ describe("<SearchResults />", () => {
 
     const searchElement = getAllByRole("listitem");
 
-    expect(searchElement.length).toEqual(20);
+    expect(searchElement.length).toEqual(4);
   });
 
   test("it renders pagination if there are more results than 20 results", () => {
@@ -137,7 +136,7 @@ describe("<SearchResults />", () => {
       />,
     );
     const searchHit = getByRole("link", {
-      name: "Drama lesson: Dipping into Macbeth - Brave Macbeth (Part 2)",
+      name: "English lesson: The relationship between Macbeth and Lady Macbeth",
     });
     act(() => {
       searchHit.click();

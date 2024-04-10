@@ -93,3 +93,47 @@ export const searchResultsSchema = z.object({
     hits: z.array(searchResultsHitSchema),
   }),
 });
+
+const rawBaseSearchResultSchema = z.object({
+  cohort: z.string(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
+  isLegacy: z.boolean(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  programmeSlug: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  tierSlug: z.string().nullish(),
+  tierTitle: z.string().nullish(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  yearSlug: z.string().nullish(),
+  yearTitle: z.string().nullish(),
+});
+
+export const rawSearchResponseSchema = z.object({
+  took: z.number(),
+  timed_out: z.boolean(),
+  hits: z.object({
+    hits: z.array(
+      z.object({
+        _id: z.string(),
+        _index: z.string(),
+        _score: z.number(),
+        _source: z.object({
+          ...rawBaseSearchResultSchema.shape,
+          pupilLessonOutcome: z.string().nullish(),
+          description: z.string().nullish(),
+          type: z.union([z.literal("lesson"), z.literal("unit")]),
+          lessonSlug: z.string().nullish(),
+          lessonTitle: z.string().nullish(),
+          pathways: z.array(rawBaseSearchResultSchema),
+          unitVariantId: z.number().nullish(),
+        }),
+      }),
+    ),
+  }),
+});
+
+export type RawSearchResponseData = z.infer<typeof rawSearchResponseSchema>;

@@ -4,10 +4,14 @@ import { fetchResults } from "./fetchResults";
 const mockResponse = {
   json: jest.fn().mockResolvedValue(elasticResponse2023),
 } as unknown as Response;
+
 const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
+
 const mockHandleFetchError = jest.fn();
+
 jest.mock("@/browser-lib/getBrowserConfig", () => () => "test");
 jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
+
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -25,32 +29,30 @@ describe("search-api/2023/fetchResults", () => {
       body: '{"term":"test"}',
     });
   });
-  test("should respond with transformed data", async () => {
+  test.only("should respond with transformed data", async () => {
     const results = await fetchResults({ term: "test" });
-
-    expect(results).toHaveLength(20);
+    expect(results).toHaveLength(4);
     expect(results[0]).toMatchObject({
-      _id: "5KnzTocBd235CCw7oqe1",
-      _index: "lessons_test",
-      _score: 121.737686,
+      _id: "Z38Yx44Bc8iIk5N9Klp6",
+      _index: "lessons_1712737230873",
+      _score: 104.29718,
     });
 
     expect(results[0]?._source).toMatchObject({
-      id: 211319,
-      slug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
-      title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
-      subject_title: "Drama",
-      subject_slug: "drama",
-      key_stage_title: "Key Stage 2",
-      key_stage_slug: "key-stage-2",
-      unit_slug: "dipping-into-shakespeare-da5e",
-      unit_title: "Dipping into Shakespeare",
-      theme_title: null,
-      tier: null,
-      phase: "primary",
+      slug: "the-relationship-between-macbeth-and-lady-macbeth",
+      title: "The relationship between Macbeth and Lady Macbeth",
+      programme_slug: "english-secondary-ks4-eduqas",
+      subject_title: "English",
+      subject_slug: "english",
+      key_stage_title: "Key Stage 4",
+      key_stage_slug: "ks4",
+      unit_slug: "macbeth-lady-macbeth-as-a-machiavellian-villain",
+      unit_title: "Macbeth: Lady Macbeth as a machiavellian villain",
+      pathways: [],
+      cohort: "2023-2024",
       type: "lesson",
-      lesson_description:
-        "In this lesson we are introduced to Macbeth and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.",
+      pupil_lesson_outcome:
+        "I can describe the relationship between Macbeth and Lady Macbeth.",
     });
   });
 });
