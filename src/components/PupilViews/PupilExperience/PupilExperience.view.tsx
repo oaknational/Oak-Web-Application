@@ -25,6 +25,10 @@ import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import {
+  BrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export const pickAvailableSectionsForLesson = (
   curriculumData: PupilLessonOverviewData,
@@ -43,14 +47,16 @@ export const pickAvailableSectionsForLesson = (
   });
 
 export type PupilExperienceViewProps = {
-  curriculumData: PupilLessonOverviewData;
+  browseData: BrowseData;
+  lessonContent: LessonContent;
   hasWorksheet: boolean;
   backUrl?: string | null;
   initialSection: LessonSection;
 };
 
 export const PupilPageContent = ({
-  curriculumData,
+  browseData,
+  lessonContent,
   hasWorksheet,
   backUrl,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
@@ -66,7 +72,7 @@ export const PupilPageContent = ({
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     isLegacy,
-  } = curriculumData;
+  } = lessonContent;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { lessonOverviewQuizData } from "../../shared.schema";
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 const _stateSchema = z.enum(["published", "new", "migration"]);
 
@@ -190,4 +191,7 @@ export const lessonContentSchema = z.object({
   deprecated_fields: z.record(z.unknown()).nullable().optional(),
 });
 
+// TODO: rename these
 export type LessonContent = z.infer<typeof lessonContentSchema>;
+
+export type CamelLessonContent = ConvertKeysToCamelCase<LessonContent>;
