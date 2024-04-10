@@ -1,6 +1,9 @@
 import { pupilLessonQuery } from "./pupilLesson.query";
 
-import { pupilLessonFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilLesson.fixture";
+import {
+  browseDataFixture,
+  contentFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/pupilLesson.fixture";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilLesson()", () => {
@@ -21,41 +24,51 @@ describe("pupilLesson()", () => {
   });
 
   test("it returns the lesson if found", async () => {
-    const fixture = pupilLessonFixture({
+    const _browseDataFixture = browseDataFixture({
       lesson_slug: "lesson-slug-test",
       unit_slug: "unit-slug-test",
       programme_slug: "programme-slug-test",
       is_legacy: false,
     });
 
+    const _contentFixture = contentFixture();
+
     const lesson = await pupilLessonQuery({
       ...sdk,
       pupilLesson: jest.fn(() =>
         Promise.resolve({
-          browseData: [fixture],
-          content: [{}],
+          browseData: [_browseDataFixture],
+          content: [_contentFixture],
         }),
       ),
     })({
       lessonSlug: "test",
     });
 
-    expect(lesson.browseData.lesson_slug).toEqual(fixture.lesson_slug);
-    expect(lesson.browseData.unit_slug).toEqual(fixture.unit_slug);
-    expect(lesson.browseData.programme_slug).toEqual(fixture.programme_slug);
-    expect(lesson.browseData.is_legacy).toEqual(fixture.is_legacy);
+    expect(lesson.browseData.lesson_slug).toEqual(
+      _browseDataFixture.lesson_slug,
+    );
+    expect(lesson.browseData.unit_slug).toEqual(_browseDataFixture.unit_slug);
+    expect(lesson.browseData.programme_slug).toEqual(
+      _browseDataFixture.programme_slug,
+    );
+    expect(lesson.browseData.is_legacy).toEqual(_browseDataFixture.is_legacy);
+    expect(lesson.content.lesson_id).toEqual(_contentFixture.lesson_id);
+    expect(lesson.content.lesson_title).toEqual(_contentFixture.lesson_title);
   });
 
   test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
-      pupilLessonFixture({
+      browseDataFixture({
         lesson_slug: "lesson-slug-test",
         unit_slug: "unit-slug-test",
         programme_slug: "programme-slug-test",
         is_legacy: false,
       }),
-      pupilLessonFixture(),
+      browseDataFixture(),
     ];
+
+    const _contentFixture = contentFixture();
 
     if (!fixtures || fixtures.length < 1) {
       throw new Error("No fixtures found");
@@ -66,7 +79,7 @@ describe("pupilLesson()", () => {
       pupilLesson: jest.fn(() =>
         Promise.resolve({
           browseData: fixtures,
-          content: [{}],
+          content: [_contentFixture],
         }),
       ),
     })({
@@ -79,5 +92,7 @@ describe("pupilLesson()", () => {
       fixtures[0]?.programme_slug,
     );
     expect(lesson.browseData.is_legacy).toEqual(fixtures[0]?.is_legacy);
+    expect(lesson.content.lesson_id).toEqual(_contentFixture.lesson_id);
+    expect(lesson.content.lesson_title).toEqual(_contentFixture.lesson_title);
   });
 });

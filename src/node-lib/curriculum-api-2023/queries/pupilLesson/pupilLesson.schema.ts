@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { lessonOverviewQuizData } from "../../shared.schema";
+
 const _stateSchema = z.enum(["published", "new", "migration"]);
 
 export type _State = z.infer<typeof _stateSchema>;
@@ -108,7 +110,7 @@ export type Unitvariant = z.infer<typeof unitvariantSchema>;
 
 // This really should have a more generic name. Holding off on renaming it pending an RFC on where to store shared schemas.
 
-export const pupilLessonSchema = z.object({
+export const browseDataSchema = z.object({
   lesson_slug: z.string(),
   unit_slug: z.string(),
   programme_slug: z.string(),
@@ -123,4 +125,69 @@ export const pupilLessonSchema = z.object({
   }),
 });
 
-export type PupilLesson = z.infer<typeof pupilLessonSchema>;
+export type BrowseData = z.infer<typeof browseDataSchema>;
+
+const keywordsSchema = z.object({
+  keyword: z.string(),
+  description: z.string(),
+});
+
+const misconceptionsAndCommonMistakesSchema = z.object({
+  misconception: z.string(),
+  response: z.string(),
+});
+
+const contentGuidanceSchema = z.object({
+  contentguidance_label: z.string().nullable(),
+  contentguidance_description: z.string().nullable(),
+  contentguidance_area: z.string().nullable(),
+});
+
+export const lessonContentSchema = z.object({
+  lesson_id: z.number(),
+  lesson_slug: z.string(),
+  lesson_title: z.string().nullable(),
+  content_guidance: z.array(contentGuidanceSchema).nullable(),
+  misconceptions_and_common_mistakes: z
+    .array(misconceptionsAndCommonMistakesSchema)
+    .nullable(),
+  teacher_tips: z
+    .array(
+      z.object({
+        teacher_tip: z.string(),
+      }),
+    )
+    .nullable(),
+  equipment_and_resources: z
+    .array(
+      z.object({
+        equipment: z.string(),
+      }),
+    )
+    .nullable(),
+  pupil_lesson_outcome: z.string().nullable(),
+  lesson_keywords: z.array(keywordsSchema).nullable(),
+  supervision_level: z.string().nullable(),
+  key_learning_points: z
+    .array(
+      z.object({
+        key_learning_point: z.string(),
+      }),
+    )
+    .nullable()
+    .optional(),
+  video_mux_playback_id: z.string().nullable(),
+  video_with_sign_language_mux_playback_id: z.string().nullable(),
+  video_id: z.number().nullable(),
+  video_title: z.string().nullable(),
+  transcript_sentences: z.string().nullable(),
+  starter_quiz: lessonOverviewQuizData,
+  exit_quiz: lessonOverviewQuizData,
+  starter_quiz_id: z.number().nullable(),
+  exit_quiz_id: z.number().nullable(),
+  state: _stateSchema.optional().nullable(),
+  is_legacy: z.boolean().nullable(),
+  deprecated_fields: z.record(z.unknown()).nullable().optional(),
+});
+
+export type LessonContent = z.infer<typeof lessonContentSchema>;

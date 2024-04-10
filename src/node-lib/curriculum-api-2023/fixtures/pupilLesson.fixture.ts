@@ -1,10 +1,11 @@
 import {
   LessonData,
   ProgrammeFields,
-  PupilLesson,
   UnitData,
   Unitvariant,
-} from "../queries/pupilLesson/pupilLesson.schema";
+  BrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export const lessonDataFixture = (): LessonData => ({
   lesson_id: 1,
@@ -86,9 +87,9 @@ export const programmeFieldsFixture = (): ProgrammeFields => ({
   subject_display_order: 1,
 });
 
-export const pupilLessonFixture = (
-  overrides: Partial<PupilLesson> = {},
-): PupilLesson => ({
+export const browseDataFixture = (
+  overrides: Partial<BrowseData> = {},
+): BrowseData => ({
   lesson_slug: "lesson-slug",
   unit_slug: "unit-slug",
   programme_slug: "programme-slug",
@@ -102,4 +103,29 @@ export const pupilLessonFixture = (
     order_in_unit: 1,
   },
   ...overrides,
+});
+
+export const contentFixture = (): LessonContent => ({
+  lesson_id: 1,
+  lesson_title: "lesson-title",
+  lesson_slug: "lesson-slug",
+  deprecated_fields: {},
+  is_legacy: false,
+  misconceptions_and_common_mistakes: null,
+  equipment_and_resources: null,
+  teacher_tips: null,
+  key_learning_points: null,
+  pupil_lesson_outcome: "pupil-lesson-outcome",
+  lesson_keywords: null,
+  content_guidance: null,
+  video_mux_playback_id: null,
+  video_id: null,
+  video_with_sign_language_mux_playback_id: null,
+  video_title: null,
+  transcript_sentences: null,
+  starter_quiz: null,
+  starter_quiz_id: null,
+  exit_quiz: null,
+  exit_quiz_id: null,
+  supervision_level: null,
 });

@@ -1,4 +1,4 @@
-import { pupilLessonSchema } from "./pupilLesson.schema";
+import { browseDataSchema, lessonContentSchema } from "./pupilLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -76,5 +76,8 @@ export const pupilLessonQuery =
       });
     }
 
-    return { browseData: pupilLessonSchema.parse(browseData), content };
+    return {
+      browseData: browseDataSchema.parse(browseData),
+      content: lessonContentSchema.parse(content),
+    };
   };
