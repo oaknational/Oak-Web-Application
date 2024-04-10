@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { lessonOverviewQuizData } from "../../shared.schema";
+import {
+  LessonOverviewQuizData,
+  lessonOverviewQuizData,
+} from "../../shared.schema";
+
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 const _stateSchema = z.enum(["published", "new", "migration"]);
@@ -33,12 +37,14 @@ const lessonDataSchema = z.object({
   quiz_id_exit: z.number().nullable(),
   asset_id_slidedeck: z.number().nullable(),
   asset_id_worksheet: z.number().nullable(),
-  deprecated_fields: z.object({}).nullable().optional(),
+  deprecated_fields: z.record(z.unknown()).nullable().optional(),
   _state: _stateSchema,
   _cohort: _cohortSchema,
 });
 
-export type LessonData = z.infer<typeof lessonDataSchema>;
+export type LessonData = ConvertKeysToCamelCase<
+  z.infer<typeof lessonDataSchema>
+>;
 
 const programmeFieldsSchema = z.object({
   tier: z.string().nullable(),
@@ -81,7 +87,9 @@ const programmeFieldsSchema = z.object({
   dataset: z.string().optional(),
 });
 
-export type ProgrammeFields = z.infer<typeof programmeFieldsSchema>;
+export type ProgrammeFields = ConvertKeysToCamelCase<
+  z.infer<typeof programmeFieldsSchema>
+>;
 
 const unitDataSchema = z.object({
   unit_id: z.number(),
@@ -95,7 +103,7 @@ const unitDataSchema = z.object({
   _cohort: _cohortSchema,
 });
 
-export type UnitData = z.infer<typeof unitDataSchema>;
+export type UnitData = ConvertKeysToCamelCase<z.infer<typeof unitDataSchema>>;
 
 const unitvariantSchema = z.object({
   _state: _stateSchema,
@@ -107,7 +115,9 @@ const unitvariantSchema = z.object({
   programme_fields: programmeFieldsSchema.partial(),
 });
 
-export type Unitvariant = z.infer<typeof unitvariantSchema>;
+export type Unitvariant = ConvertKeysToCamelCase<
+  z.infer<typeof unitvariantSchema>
+>;
 
 // This really should have a more generic name. Holding off on renaming it pending an RFC on where to store shared schemas.
 
@@ -118,7 +128,6 @@ export const browseDataSchema = z.object({
   is_legacy: z.boolean(),
   lesson_data: lessonDataSchema,
   unit_data: unitDataSchema,
-  null_unitvariant: unitvariantSchema,
   programme_fields: programmeFieldsSchema,
   supplementary_data: z.object({
     unit_order: z.number(),
@@ -126,7 +135,8 @@ export const browseDataSchema = z.object({
   }),
 });
 
-export type BrowseData = z.infer<typeof browseDataSchema>;
+export type BrowseDataSchema = z.infer<typeof browseDataSchema>;
+export type BrowseData = ConvertKeysToCamelCase<BrowseDataSchema>;
 
 const keywordsSchema = z.object({
   keyword: z.string(),
@@ -143,6 +153,10 @@ const contentGuidanceSchema = z.object({
   contentguidance_description: z.string().nullable(),
   contentguidance_area: z.string().nullable(),
 });
+
+export type ContentGuidance = ConvertKeysToCamelCase<
+  z.infer<typeof contentGuidanceSchema>
+>;
 
 export const lessonContentSchema = z.object({
   lesson_id: z.number(),
@@ -191,7 +205,15 @@ export const lessonContentSchema = z.object({
   deprecated_fields: z.record(z.unknown()).nullable().optional(),
 });
 
-// TODO: rename these
-export type LessonContent = z.infer<typeof lessonContentSchema>;
+export type LessonContentSchema = z.infer<typeof lessonContentSchema>;
 
-export type CamelLessonContent = ConvertKeysToCamelCase<LessonContent>;
+export type LessonContent = Omit<
+  ConvertKeysToCamelCase<LessonContentSchema>,
+  "starterQuiz" | "exitQuiz" | "contentGuidance" | "transcriptSentences"
+> & {
+  // ensure that the starterQuiz and exitQuiz are of the correct type
+  starterQuiz: LessonOverviewQuizData;
+  exitQuiz: LessonOverviewQuizData;
+  contentGuidance: ContentGuidance;
+  transcriptSentences: string[] | null;
+};

@@ -4,7 +4,7 @@ import {
   UnitData,
   Unitvariant,
   BrowseData,
-  LessonContent,
+  LessonContentSchema,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export const lessonDataFixture = (): LessonData => ({
@@ -105,7 +105,7 @@ export const browseDataFixture = (
   ...overrides,
 });
 
-export const contentFixture = (): LessonContent => ({
+export const contentFixture = (): LessonContentSchema => ({
   lesson_id: 1,
   lesson_title: "lesson-title",
   lesson_slug: "lesson-slug",

@@ -1,4 +1,9 @@
-import { browseDataSchema, lessonContentSchema } from "./pupilLesson.schema";
+import {
+  BrowseData,
+  LessonContent,
+  browseDataSchema,
+  lessonContentSchema,
+} from "./pupilLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -16,7 +21,7 @@ export const pupilLessonQuery =
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }) => {
+  }): Promise<{ content: LessonContent; browseData: BrowseData }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp> =
@@ -81,7 +86,7 @@ export const pupilLessonQuery =
     lessonContentSchema.parse(content);
 
     return {
-      browseData: keysToCamelCase(browseData),
-      content: keysToCamelCase(content),
+      browseData: keysToCamelCase(browseData) as BrowseData,
+      content: keysToCamelCase(content) as LessonContent,
     };
   };

@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import sdk from "./sdk";
 import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
-import { pupilLessonOverviewQuery } from "./queries/pupilLessonOverview/pupilLessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.query";
@@ -21,6 +20,8 @@ import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
 import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonOverviewCanonicalQuery } from "./queries/pupilLessonOverviewCanonical/pupilLessonOverviewCanonical.query";
+import { pupilLessonOverviewQuery } from "./queries/pupilLessonOverview/pupilLessonOverview.query";
+import { pupilLessonQuery } from "./queries/pupilLesson/pupilLesson.query";
 import specialistUnitListingQuery from "./queries/specialistUnitListing/specialistUnitListing.query";
 import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
 import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
@@ -127,6 +128,7 @@ const curriculumApi2023 = {
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonOverview: pupilLessonOverviewQuery(sdk),
   pupilLessonOverviewCanonical: pupilLessonOverviewCanonicalQuery(sdk),
+  pupilLessonQuery: pupilLessonQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),

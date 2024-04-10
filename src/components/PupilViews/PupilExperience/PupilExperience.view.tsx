@@ -5,7 +5,6 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import {
   LessonEngineProvider,
   LessonSection,
@@ -30,17 +29,15 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export const pickAvailableSectionsForLesson = (
-  curriculumData: PupilLessonOverviewData,
-) =>
+export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
     switch (section) {
       case "starter-quiz":
-        return !!curriculumData?.starterQuiz?.length;
+        return !!lessonContent?.starterQuiz?.length;
       case "exit-quiz":
-        return !!curriculumData?.exitQuiz?.length;
+        return !!lessonContent?.exitQuiz?.length;
       case "video":
-        return !!curriculumData.videoMuxPlaybackId;
+        return !!lessonContent?.videoMuxPlaybackId;
       default:
         return true;
     }
@@ -65,14 +62,14 @@ export const PupilPageContent = ({
     starterQuiz,
     exitQuiz,
     lessonTitle,
-    subjectTitle,
-    subjectSlug,
-    yearTitle,
     pupilLessonOutcome,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     isLegacy,
   } = lessonContent;
+
+  const { subjectDescription, subjectSlug, yearDescription } =
+    browseData.programmeFields;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
@@ -81,10 +78,10 @@ export const PupilPageContent = ({
     case "overview":
       return (
         <PupilViewsLessonOverview
-          lessonTitle={lessonTitle}
-          subjectTitle={subjectTitle}
+          lessonTitle={lessonTitle ?? ""}
+          subjectTitle={subjectDescription}
           subjectSlug={subjectSlug}
-          yearTitle={yearTitle ?? undefined}
+          yearTitle={yearDescription}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
           starterQuizNumQuestions={starterQuizNumQuestions}
           exitQuizNumQuestions={exitQuizNumQuestions}
@@ -92,27 +89,27 @@ export const PupilPageContent = ({
         />
       );
     case "intro":
-      return (
-        <PupilViewsIntro {...curriculumData} hasWorksheet={hasWorksheet} />
-      );
+      return <PupilViewsIntro {...lessonContent} hasWorksheet={hasWorksheet} />;
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
       return (
         <PupilViewsVideo
-          lessonTitle={lessonTitle}
+          lessonTitle={lessonTitle ?? ""}
           videoMuxPlaybackId={videoMuxPlaybackId ?? undefined}
           videoWithSignLanguageMuxPlaybackId={
             videoWithSignLanguageMuxPlaybackId ?? undefined
           }
-          transcriptSentences={curriculumData.transcriptSentences ?? []}
-          isLegacy={isLegacy}
+          transcriptSentences={lessonContent.transcriptSentences ?? []}
+          isLegacy={isLegacy ?? false}
         />
       );
     case "exit-quiz":
       return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
     case "review":
-      return <PupilViewsReview lessonTitle={lessonTitle} backUrl={backUrl} />;
+      return (
+        <PupilViewsReview lessonTitle={lessonTitle ?? ""} backUrl={backUrl} />
+      );
     default:
       return null;
   }
@@ -134,22 +131,21 @@ const CookieConsentStyles = createGlobalStyle`
 `;
 
 export const PupilExperienceView = ({
-  curriculumData,
+  browseData,
+  lessonContent,
   hasWorksheet,
   backUrl,
   initialSection,
 }: PupilExperienceViewProps) => {
-  const availableSections = pickAvailableSectionsForLesson(curriculumData);
+  const availableSections = pickAvailableSectionsForLesson(lessonContent);
 
   return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(curriculumData)}
-    >
+    <PupilAnalyticsProvider pupilPathwayData={getPupilPathwayData(browseData)}>
       <PupilLayout
         seoProps={{
           ...getSeoProps({
-            title: curriculumData.lessonTitle,
-            description: curriculumData.pupilLessonOutcome,
+            title: browseData.lessonData.title,
+            description: browseData.lessonData.pupilLessonOutcome,
           }),
         }}
       >
@@ -160,11 +156,12 @@ export const PupilExperienceView = ({
             initialSection={initialSection}
           >
             <OakBox $height={"100vh"}>
-              {curriculumData.expired ? (
-                <PupilExpiredView lessonTitle={curriculumData.lessonTitle} />
+              {browseData.lessonData.deprecatedFields?.expired ? (
+                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
               ) : (
                 <PupilPageContent
-                  curriculumData={curriculumData}
+                  browseData={browseData}
+                  lessonContent={lessonContent}
                   hasWorksheet={hasWorksheet}
                   backUrl={backUrl}
                 />
