@@ -38965,11 +38965,12 @@ export type ProgrammeListingQueryVariables = Exact<{
 export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing_5_0_0', keyStageTitle?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, programmes?: any | null }> };
 
 export type PupilLessonQueryVariables = Exact<{
-  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp>;
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp>;
+  lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_0_1', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
 
 export type PupilLessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -39350,9 +39351,9 @@ export const ProgrammeListingDocument = gql`
 }
     `;
 export const PupilLessonDocument = gql`
-    query pupilLesson($where: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0_bool_exp) {
+    query pupilLesson($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0_bool_exp, $lessonSlug: String!) {
   browseData: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0(
-    where: $where
+    where: $browseDataWhere
   ) {
     lesson_slug
     unit_slug
@@ -39362,6 +39363,32 @@ export const PupilLessonDocument = gql`
     unit_data
     programme_fields
     supplementary_data
+  }
+  content: published_mv_lesson_content_0_1(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
   }
 }
     `;
@@ -39789,7 +39816,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query');
     },
-    pupilLesson(variables?: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
+    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query');
     },
     pupilLessonOverview(variables: PupilLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonOverviewQuery> {

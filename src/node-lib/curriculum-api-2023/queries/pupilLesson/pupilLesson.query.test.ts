@@ -8,7 +8,9 @@ describe("pupilLesson()", () => {
     await expect(async () => {
       await pupilLessonQuery({
         ...sdk,
-        pupilLesson: jest.fn(() => Promise.resolve({ browseData: [] })),
+        pupilLesson: jest.fn(() =>
+          Promise.resolve({ browseData: [], content: [] }),
+        ),
       })({
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
@@ -31,16 +33,17 @@ describe("pupilLesson()", () => {
       pupilLesson: jest.fn(() =>
         Promise.resolve({
           browseData: [fixture],
+          content: [{}],
         }),
       ),
     })({
       lessonSlug: "test",
     });
 
-    expect(lesson.lesson_slug).toEqual(fixture.lesson_slug);
-    expect(lesson.unit_slug).toEqual(fixture.unit_slug);
-    expect(lesson.programme_slug).toEqual(fixture.programme_slug);
-    expect(lesson.is_legacy).toEqual(fixture.is_legacy);
+    expect(lesson.browseData.lesson_slug).toEqual(fixture.lesson_slug);
+    expect(lesson.browseData.unit_slug).toEqual(fixture.unit_slug);
+    expect(lesson.browseData.programme_slug).toEqual(fixture.programme_slug);
+    expect(lesson.browseData.is_legacy).toEqual(fixture.is_legacy);
   });
 
   test("it returns the first lesson if multiple are found", async () => {
@@ -63,15 +66,18 @@ describe("pupilLesson()", () => {
       pupilLesson: jest.fn(() =>
         Promise.resolve({
           browseData: fixtures,
+          content: [{}],
         }),
       ),
     })({
       lessonSlug: "test",
     });
 
-    expect(lesson.lesson_slug).toEqual(fixtures[0]?.lesson_slug);
-    expect(lesson.unit_slug).toEqual(fixtures[0]?.unit_slug);
-    expect(lesson.programme_slug).toEqual(fixtures[0]?.programme_slug);
-    expect(lesson.is_legacy).toEqual(fixtures[0]?.is_legacy);
+    expect(lesson.browseData.lesson_slug).toEqual(fixtures[0]?.lesson_slug);
+    expect(lesson.browseData.unit_slug).toEqual(fixtures[0]?.unit_slug);
+    expect(lesson.browseData.programme_slug).toEqual(
+      fixtures[0]?.programme_slug,
+    );
+    expect(lesson.browseData.is_legacy).toEqual(fixtures[0]?.is_legacy);
   });
 });
