@@ -45,16 +45,19 @@ describe("pupilLesson()", () => {
       lessonSlug: "test",
     });
 
-    expect(lesson.browseData.lesson_slug).toEqual(
+    expect(lesson.browseData.lessonSlug).toEqual(
       _browseDataFixture.lesson_slug,
     );
-    expect(lesson.browseData.unit_slug).toEqual(_browseDataFixture.unit_slug);
-    expect(lesson.browseData.programme_slug).toEqual(
+    expect(lesson.browseData.unitSlug).toEqual(_browseDataFixture.unit_slug);
+    expect(lesson.browseData.programmeSlug).toEqual(
       _browseDataFixture.programme_slug,
     );
-    expect(lesson.browseData.is_legacy).toEqual(_browseDataFixture.is_legacy);
-    expect(lesson.content.lesson_id).toEqual(_contentFixture.lesson_id);
-    expect(lesson.content.lesson_title).toEqual(_contentFixture.lesson_title);
+    expect(lesson.browseData.isLegacy).toEqual(_browseDataFixture.is_legacy);
+    expect(lesson.browseData.programmeFields.lessonSlug).toEqual(
+      lesson.browseData.programmeFields.lesson_slug,
+    );
+    expect(lesson.content.lessonId).toEqual(_contentFixture.lesson_id);
+    expect(lesson.content.lessonTitle).toEqual(_contentFixture.lesson_title);
   });
 
   test("it returns the first lesson if multiple are found", async () => {
@@ -86,13 +89,13 @@ describe("pupilLesson()", () => {
       lessonSlug: "test",
     });
 
-    expect(lesson.browseData.lesson_slug).toEqual(fixtures[0]?.lesson_slug);
-    expect(lesson.browseData.unit_slug).toEqual(fixtures[0]?.unit_slug);
-    expect(lesson.browseData.programme_slug).toEqual(
+    expect(lesson.browseData.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
+    expect(lesson.browseData.unitSlug).toEqual(fixtures[0]?.unit_slug);
+    expect(lesson.browseData.programmeSlug).toEqual(
       fixtures[0]?.programme_slug,
     );
-    expect(lesson.browseData.is_legacy).toEqual(fixtures[0]?.is_legacy);
-    expect(lesson.content.lesson_id).toEqual(_contentFixture.lesson_id);
-    expect(lesson.content.lesson_title).toEqual(_contentFixture.lesson_title);
+    expect(lesson.browseData.isLegacy).toEqual(fixtures[0]?.is_legacy);
+    expect(lesson.content.lessonId).toEqual(_contentFixture.lesson_id);
+    expect(lesson.content.lessonTitle).toEqual(_contentFixture.lesson_title);
   });
 });

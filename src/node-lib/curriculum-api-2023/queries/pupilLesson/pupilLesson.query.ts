@@ -7,6 +7,7 @@ import {
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const pupilLessonQuery =
   (sdk: Sdk) =>
@@ -76,8 +77,11 @@ export const pupilLessonQuery =
       });
     }
 
+    browseDataSchema.parse(browseData);
+    lessonContentSchema.parse(content);
+
     return {
-      browseData: browseDataSchema.parse(browseData),
-      content: lessonContentSchema.parse(content),
+      browseData: keysToCamelCase(browseData),
+      content: keysToCamelCase(content),
     };
   };
