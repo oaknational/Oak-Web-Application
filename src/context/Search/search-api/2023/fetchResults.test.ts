@@ -29,7 +29,7 @@ describe("search-api/2023/fetchResults", () => {
       body: '{"term":"test"}',
     });
   });
-  test.only("should respond with transformed data", async () => {
+  test("should respond with transformed data", async () => {
     const results = await fetchResults({ term: "test" });
     expect(results).toHaveLength(4);
     expect(results[0]).toMatchObject({
