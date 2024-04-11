@@ -1,13 +1,17 @@
-import {
-  LessonData,
-  ProgrammeFields,
-  UnitData,
-  Unitvariant,
-  BrowseData,
-  LessonContentSchema,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { z } from "zod";
 
-export const lessonDataFixture = (): LessonData => ({
+import {
+  lessonDataSchema,
+  unitvariantSchema,
+  unitDataSchema,
+  programmeFieldsSchema,
+  syntheticUnitvariantLessonsSchema,
+  lessonContentSchema,
+} from "../shared.schema.new";
+
+type LessonDataSnake = z.infer<typeof lessonDataSchema>;
+
+export const lessonDataFixture = (): LessonDataSnake => ({
   lesson_id: 1,
   lesson_uid: "lesson-uid",
   title: "lesson-title",
@@ -33,7 +37,9 @@ export const lessonDataFixture = (): LessonData => ({
   _cohort: "2023-2024",
 });
 
-export const unitvariantFixture = (): Unitvariant => ({
+type UnitvariantSnake = z.infer<typeof unitvariantSchema>;
+
+export const unitvariantFixture = (): UnitvariantSnake => ({
   unitvariant_id: 1,
   unit_id: 1,
   _deleted: false,
@@ -43,7 +49,9 @@ export const unitvariantFixture = (): Unitvariant => ({
   programme_fields: {},
 });
 
-export const unitDataFixture = (): UnitData => ({
+type UnitDataSnake = z.infer<typeof unitDataSchema>;
+
+export const unitDataFixture = (): UnitDataSnake => ({
   unit_id: 0,
   unit_uid: "unit-uid",
   description: null,
@@ -54,7 +62,9 @@ export const unitDataFixture = (): UnitData => ({
   _cohort: "2023-2024",
 });
 
-export const programmeFieldsFixture = (): ProgrammeFields => ({
+type ProgrammeFieldsSnake = z.infer<typeof programmeFieldsSchema>;
+
+export const programmeFieldsFixture = (): ProgrammeFieldsSnake => ({
   tier: null,
   tier_id: null,
   tier_slug: null,
@@ -87,9 +97,11 @@ export const programmeFieldsFixture = (): ProgrammeFields => ({
   subject_display_order: 1,
 });
 
-export const browseDataFixture = (
-  overrides: Partial<BrowseData> = {},
-): BrowseData => ({
+type SUVLessons = z.infer<typeof syntheticUnitvariantLessonsSchema>;
+
+export const syntheticUnitvariantLessonsSchemaFixture = (
+  overrides: Partial<SUVLessons> = {},
+): SUVLessons => ({
   lesson_slug: "lesson-slug",
   unit_slug: "unit-slug",
   programme_slug: "programme-slug",
@@ -105,7 +117,9 @@ export const browseDataFixture = (
   ...overrides,
 });
 
-export const contentFixture = (): LessonContentSchema => ({
+type LessonContentSnake = z.infer<typeof lessonContentSchema>;
+
+export const contentFixture = (): LessonContentSnake => ({
   lesson_id: 1,
   lesson_title: "lesson-title",
   lesson_slug: "lesson-slug",
@@ -128,4 +142,5 @@ export const contentFixture = (): LessonContentSchema => ({
   exit_quiz: null,
   exit_quiz_id: null,
   supervision_level: null,
+  state: "published",
 });

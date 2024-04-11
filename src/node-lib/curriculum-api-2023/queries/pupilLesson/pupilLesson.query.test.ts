@@ -1,9 +1,9 @@
 import { pupilLessonQuery } from "./pupilLesson.query";
 
 import {
-  browseDataFixture,
+  syntheticUnitvariantLessonsSchemaFixture,
   contentFixture,
-} from "@/node-lib/curriculum-api-2023/fixtures/pupilLesson.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/schema.new.fixture";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilLesson()", () => {
@@ -24,12 +24,13 @@ describe("pupilLesson()", () => {
   });
 
   test("it returns the lesson if found", async () => {
-    const _browseDataFixture = browseDataFixture({
-      lesson_slug: "lesson-slug-test",
-      unit_slug: "unit-slug-test",
-      programme_slug: "programme-slug-test",
-      is_legacy: false,
-    });
+    const _syntheticUnitvariantLessonsSchemaFixture =
+      syntheticUnitvariantLessonsSchemaFixture({
+        lesson_slug: "lesson-slug-test",
+        unit_slug: "unit-slug-test",
+        programme_slug: "programme-slug-test",
+        is_legacy: false,
+      });
 
     const _contentFixture = contentFixture();
 
@@ -37,7 +38,7 @@ describe("pupilLesson()", () => {
       ...sdk,
       pupilLesson: jest.fn(() =>
         Promise.resolve({
-          browseData: [_browseDataFixture],
+          browseData: [_syntheticUnitvariantLessonsSchemaFixture],
           content: [_contentFixture],
         }),
       ),
@@ -46,13 +47,17 @@ describe("pupilLesson()", () => {
     });
 
     expect(lesson.browseData.lessonSlug).toEqual(
-      _browseDataFixture.lesson_slug,
+      _syntheticUnitvariantLessonsSchemaFixture.lesson_slug,
     );
-    expect(lesson.browseData.unitSlug).toEqual(_browseDataFixture.unit_slug);
+    expect(lesson.browseData.unitSlug).toEqual(
+      _syntheticUnitvariantLessonsSchemaFixture.unit_slug,
+    );
     expect(lesson.browseData.programmeSlug).toEqual(
-      _browseDataFixture.programme_slug,
+      _syntheticUnitvariantLessonsSchemaFixture.programme_slug,
     );
-    expect(lesson.browseData.isLegacy).toEqual(_browseDataFixture.is_legacy);
+    expect(lesson.browseData.isLegacy).toEqual(
+      _syntheticUnitvariantLessonsSchemaFixture.is_legacy,
+    );
     expect(lesson.browseData.programmeFields.lessonSlug).toEqual(
       lesson.browseData.programmeFields.lesson_slug,
     );
@@ -62,13 +67,13 @@ describe("pupilLesson()", () => {
 
   test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
-      browseDataFixture({
+      syntheticUnitvariantLessonsSchemaFixture({
         lesson_slug: "lesson-slug-test",
         unit_slug: "unit-slug-test",
         programme_slug: "programme-slug-test",
         is_legacy: false,
       }),
-      browseDataFixture(),
+      syntheticUnitvariantLessonsSchemaFixture(),
     ];
 
     const _contentFixture = contentFixture();

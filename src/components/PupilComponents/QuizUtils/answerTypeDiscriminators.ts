@@ -12,7 +12,7 @@ export const isMultiAnswerMCQ = (
   answers: QuizQuestionAnswers,
 ): answers is { "multiple-choice": MCAnswer[] } => {
   const answerCount =
-    answers["multiple-choice"]?.filter((a) => a.answerIsCorrect).length ?? 0;
+    answers["multiple-choice"]?.filter((a) => a?.answerIsCorrect).length ?? 0;
 
   return answerCount > 1;
 };
@@ -21,7 +21,7 @@ export const isSingleAnswerMCQ = (
   answers: QuizQuestionAnswers,
 ): answers is { "multiple-choice": MCAnswer[] } => {
   const answerCount =
-    answers["multiple-choice"]?.filter((a) => a.answerIsCorrect).length ?? 0;
+    answers["multiple-choice"]?.filter((a) => a?.answerIsCorrect).length ?? 0;
 
   return answerCount === 1;
 };
