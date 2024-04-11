@@ -1,8 +1,8 @@
 import {
-  BrowseData,
   LessonContent,
-  browseDataSchema,
+  LessonBrowseData,
   lessonContentSchema,
+  lessonBrowseDataSchema,
 } from "./pupilLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -21,7 +21,7 @@ export const pupilLessonQuery =
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }): Promise<{ content: LessonContent; browseData: BrowseData }> => {
+  }): Promise<{ content: LessonContent; browseData: LessonBrowseData }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp> =
@@ -44,13 +44,13 @@ export const pupilLessonQuery =
       lessonSlug,
     });
 
-    const [browseData] = res.browseData;
+    const [browseDataSnake] = res.browseData;
 
-    if (!browseData) {
+    if (!browseDataSnake) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (browseData.lesson_data?.deprecated_fields?.is_sensitive) {
+    if (browseDataSnake.lesson_data?.deprecated_fields?.is_sensitive) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
@@ -65,9 +65,9 @@ export const pupilLessonQuery =
       });
     }
 
-    const [content] = res.content;
+    const [contentSnake] = res.content;
 
-    if (!content) {
+    if (!contentSnake) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
@@ -82,11 +82,15 @@ export const pupilLessonQuery =
       });
     }
 
-    browseDataSchema.parse(browseData);
-    lessonContentSchema.parse(content);
+    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonContentSchema.parse(contentSnake);
+
+    // We've already parsed this data with Zod so we can safely cast it to the correct type
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const content = keysToCamelCase(contentSnake) as LessonContent;
 
     return {
-      browseData: keysToCamelCase(browseData) as BrowseData,
-      content: keysToCamelCase(content) as LessonContent,
+      browseData,
+      content,
     };
   };

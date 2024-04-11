@@ -23,10 +23,7 @@ import { useWorksheetDownload } from "./useWorksheetDownload";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
-import {
-  ContentGuidance,
-  LessonContent,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
@@ -102,9 +99,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
 
   const removedGuidanceDuplicates = Array.from(
     new Set(
-      contentGuidance?.map(
-        (guidance: ContentGuidance) => guidance.contentguidanceLabel || "",
-      ),
+      contentGuidance?.map((guidance) => guidance.contentguidanceLabel || ""),
     ),
   );
 

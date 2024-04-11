@@ -25,7 +25,7 @@ import {
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import {
-  BrowseData,
+  LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
@@ -44,7 +44,7 @@ export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   });
 
 export type PupilExperienceViewProps = {
-  browseData: BrowseData;
+  browseData: LessonBrowseData;
   lessonContent: LessonContent;
   hasWorksheet: boolean;
   backUrl?: string | null;
@@ -74,6 +74,13 @@ export const PupilPageContent = ({
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
 
+  const narrowTranscriptSentences = (
+    transcriptSentences: string[] | string | undefined,
+  ) =>
+    Array.isArray(transcriptSentences)
+      ? transcriptSentences
+      : [transcriptSentences ?? ""];
+
   switch (currentSection) {
     case "overview":
       return (
@@ -100,7 +107,9 @@ export const PupilPageContent = ({
           videoWithSignLanguageMuxPlaybackId={
             videoWithSignLanguageMuxPlaybackId ?? undefined
           }
-          transcriptSentences={lessonContent.transcriptSentences ?? []}
+          transcriptSentences={narrowTranscriptSentences(
+            lessonContent.transcriptSentences,
+          )}
           isLegacy={isLegacy ?? false}
         />
       );

@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<
   PupilCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "pupils-lesson-overview-legacy-canonical::getStaticProps",
+    page: "pupils-lesson-experience-canonical::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {

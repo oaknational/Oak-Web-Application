@@ -1,219 +1,63 @@
+/**
+ *
+ * Ultimately some of these types will be used more widely at which point they could be moved to a shared location
+ *
+ */
+
 import { z } from "zod";
 
 import {
-  LessonOverviewQuizData,
-  lessonOverviewQuizData,
-} from "../../shared.schema";
-
+  lessonContentSchema as lessonContentSchemaFull,
+  syntheticUnitvariantLessonsSchema,
+  quizQuestionSchema,
+  multipleChoiceSchema,
+  shortAnswerSchema,
+  orderSchema,
+  matchSchema,
+  imageItemSchema,
+  textItemSchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema.new";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
-const _stateSchema = z.enum(["published", "new", "migration"]);
-
-export type _State = z.infer<typeof _stateSchema>;
-
-const _cohortSchema = z.enum(["2020-2023", "2023-2024", "0"]);
-
-export type _Cohort = z.infer<typeof _cohortSchema>;
-
-const lessonDataSchema = z.object({
-  lesson_id: z.number(),
-  lesson_uid: z.string(),
-  slug: z.string(),
-  title: z.string(),
-  description: z.string(),
-  pupil_lesson_outcome: z.string(),
-  key_learning_points: z.array(z.object({})),
-  equipment_and_resources: z.array(z.object({})).nullable(),
-  content_guidance_details: z.array(z.object({})).nullable(),
-  content_guidance: z.array(z.number()).nullable(),
-  copyright_content: z.array(z.object({})).nullable(),
-  supervision_level: z.string().nullable(),
-  thirdpartycontent_list: z.array(z.number()).nullable(),
-  misconceptions_and_common_mistakes: z.array(z.object({})).nullable(),
-  keywords: z.array(z.object({})).nullable(),
-  video_id: z.number().nullable(),
-  sign_language_video_id: z.number().nullable(),
-  quiz_id_starter: z.number().nullable(),
-  quiz_id_exit: z.number().nullable(),
-  asset_id_slidedeck: z.number().nullable(),
-  asset_id_worksheet: z.number().nullable(),
-  deprecated_fields: z.record(z.unknown()).nullable().optional(),
-  _state: _stateSchema,
-  _cohort: _cohortSchema,
-});
-
-export type LessonData = ConvertKeysToCamelCase<
-  z.infer<typeof lessonDataSchema>
+export type QuizQuestion = ConvertKeysToCamelCase<
+  z.infer<typeof quizQuestionSchema>
 >;
 
-const programmeFieldsSchema = z.object({
-  tier: z.string().nullable(),
-  tier_id: z.number().nullable(),
-  tier_slug: z.string().nullable(),
-  tier_description: z.string().nullable(),
-  tier_display_order: z.number().nullable(),
-
-  examboard: z.string().nullable(),
-  examboard_id: z.number().nullable(),
-  examboard_slug: z.string().nullable(),
-  examboard_description: z.string().nullable(),
-  examboard_display_order: z.number().nullable(),
-
-  year: z.string(),
-  year_slug: z.string(),
-  year_id: z.number(),
-  year_description: z.string(),
-  year_display_order: z.number(),
-
-  keystage: z.string(),
-  keystage_id: z.number(),
-  keystage_slug: z.string(),
-  keystage_description: z.string(),
-  keystage_display_order: z.number(),
-
-  phase: z.string(),
-  phase_id: z.number(),
-  phase_slug: z.string(),
-  phase_description: z.string(),
-  phase_display_order: z.number(),
-
-  subject: z.string(),
-  subject_id: z.number(),
-  subject_slug: z.string(),
-  subject_description: z.string(),
-  subject_display_order: z.number(),
-
-  legacy: z.string().optional(),
-  dataset: z.string().optional(),
-});
-
-export type ProgrammeFields = ConvertKeysToCamelCase<
-  z.infer<typeof programmeFieldsSchema>
+export type QuizQuestionAnswers = NonNullable<
+  ConvertKeysToCamelCase<z.infer<typeof quizQuestionSchema>["answers"]>
 >;
 
-const unitDataSchema = z.object({
-  unit_id: z.number(),
-  unit_uid: z.string(),
-  description: z.string().nullable(),
-  slug: z.string(),
-  tags: z.array(z.number()).nullable(),
-  deprecated_fields: z.object({}).nullable().optional(),
-  title: z.string(),
-  _state: _stateSchema,
-  _cohort: _cohortSchema,
-});
-
-export type UnitData = ConvertKeysToCamelCase<z.infer<typeof unitDataSchema>>;
-
-const unitvariantSchema = z.object({
-  _state: _stateSchema,
-  _cohort: _cohortSchema,
-  unit_id: z.number(),
-  unitvariant_id: z.number(),
-  _deleted: z.boolean(),
-  unit_overrides: unitDataSchema.partial(),
-  programme_fields: programmeFieldsSchema.partial(),
-});
-
-export type Unitvariant = ConvertKeysToCamelCase<
-  z.infer<typeof unitvariantSchema>
+export type MCAnswer = ConvertKeysToCamelCase<
+  z.infer<typeof multipleChoiceSchema>
 >;
-
-// This really should have a more generic name. Holding off on renaming it pending an RFC on where to store shared schemas.
-
-export const browseDataSchema = z.object({
-  lesson_slug: z.string(),
-  unit_slug: z.string(),
-  programme_slug: z.string(),
-  is_legacy: z.boolean(),
-  lesson_data: lessonDataSchema,
-  unit_data: unitDataSchema,
-  programme_fields: programmeFieldsSchema,
-  supplementary_data: z.object({
-    unit_order: z.number(),
-    order_in_unit: z.number(),
-  }),
-});
-
-export type BrowseDataSchema = z.infer<typeof browseDataSchema>;
-export type BrowseData = ConvertKeysToCamelCase<BrowseDataSchema>;
-
-const keywordsSchema = z.object({
-  keyword: z.string(),
-  description: z.string(),
-});
-
-const misconceptionsAndCommonMistakesSchema = z.object({
-  misconception: z.string(),
-  response: z.string(),
-});
-
-const contentGuidanceSchema = z.object({
-  contentguidance_label: z.string().nullable(),
-  contentguidance_description: z.string().nullable(),
-  contentguidance_area: z.string().nullable(),
-});
-
-export type ContentGuidance = ConvertKeysToCamelCase<
-  z.infer<typeof contentGuidanceSchema>
+export type ShortAnswer = ConvertKeysToCamelCase<
+  z.infer<typeof shortAnswerSchema>
 >;
+export type OrderAnswer = ConvertKeysToCamelCase<z.infer<typeof orderSchema>>;
+export type MatchAnswer = ConvertKeysToCamelCase<z.infer<typeof matchSchema>>;
 
-export const lessonContentSchema = z.object({
-  lesson_id: z.number(),
-  lesson_slug: z.string(),
-  lesson_title: z.string().nullable(),
-  content_guidance: z.array(contentGuidanceSchema).nullable(),
-  misconceptions_and_common_mistakes: z
-    .array(misconceptionsAndCommonMistakesSchema)
-    .nullable(),
-  teacher_tips: z
-    .array(
-      z.object({
-        teacher_tip: z.string(),
-      }),
-    )
-    .nullable(),
-  equipment_and_resources: z
-    .array(
-      z.object({
-        equipment: z.string(),
-      }),
-    )
-    .nullable(),
-  pupil_lesson_outcome: z.string().nullable(),
-  lesson_keywords: z.array(keywordsSchema).nullable(),
-  supervision_level: z.string().nullable(),
-  key_learning_points: z
-    .array(
-      z.object({
-        key_learning_point: z.string(),
-      }),
-    )
-    .nullable()
-    .optional(),
-  video_mux_playback_id: z.string().nullable(),
-  video_with_sign_language_mux_playback_id: z.string().nullable(),
-  video_id: z.number().nullable(),
-  video_title: z.string().nullable(),
-  transcript_sentences: z.string().nullable(),
-  starter_quiz: lessonOverviewQuizData,
-  exit_quiz: lessonOverviewQuizData,
-  starter_quiz_id: z.number().nullable(),
-  exit_quiz_id: z.number().nullable(),
-  state: _stateSchema.optional().nullable(),
-  is_legacy: z.boolean().nullable(),
-  deprecated_fields: z.record(z.unknown()).nullable().optional(),
+export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
+export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
+export type ImageOrTextItem = ImageItem | TextItem;
+
+export const lessonContentSchema = lessonContentSchemaFull.omit({
+  state: true,
+  cohort: true,
 });
-
-export type LessonContentSchema = z.infer<typeof lessonContentSchema>;
 
 export type LessonContent = Omit<
-  ConvertKeysToCamelCase<LessonContentSchema>,
-  "starterQuiz" | "exitQuiz" | "contentGuidance" | "transcriptSentences"
+  ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
+  "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
-  // ensure that the starterQuiz and exitQuiz are of the correct type
-  starterQuiz: LessonOverviewQuizData;
-  exitQuiz: LessonOverviewQuizData;
-  contentGuidance: ContentGuidance;
-  transcriptSentences: string[] | null;
+  starterQuiz: QuizQuestion[];
+  exitQuiz: QuizQuestion[];
+  transcriptSentences: string | string[];
 };
+
+export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
+  null_unitvariant: true,
+});
+
+export type LessonBrowseData = ConvertKeysToCamelCase<
+  z.infer<typeof lessonBrowseDataSchema>
+>;

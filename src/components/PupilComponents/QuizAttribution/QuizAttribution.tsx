@@ -3,33 +3,33 @@ import { isNull, negate } from "lodash";
 
 import { isImage } from "../QuizUtils/stemUtils";
 
-import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type QuizAttributionProps = {
-  questionData: NonNullable<LessonOverviewQuizData>[number];
+  questionData: NonNullable<QuizQuestion>;
 };
 
 /**
  * Displays the attributions for the images in the question stem and answers
  */
 export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
-  const questionImages = questionData.questionStem.filter(isImage);
+  const questionImages = questionData.questionStem?.filter(isImage);
   const answerImages =
     questionData.answers?.["multiple-choice"]?.flatMap((choice) =>
       choice.answer.filter(isImage),
     ) ?? [];
   const questionAttribution = questionImages.map((stem) => {
-    if ("attribution" in stem.image_object.metadata) {
-      return stem.image_object.metadata.attribution ?? null;
+    if ("attribution" in stem.imageObject.metadata) {
+      return stem.imageObject.metadata.attribution ?? null;
     }
 
     return null;
   });
   const answerAttributions = answerImages.map((stem, i) => {
-    if ("attribution" in stem.image_object.metadata) {
+    if ("attribution" in stem.imageObject.metadata) {
       return (
         <span key={i}>
-          <strong>{i + 1}</strong> {stem.image_object.metadata.attribution}
+          <strong>{i + 1}</strong> {stem.imageObject.metadata.attribution}
         </span>
       );
     }

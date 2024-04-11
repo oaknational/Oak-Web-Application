@@ -32,6 +32,8 @@ export const QuizRenderer = (props: QuizRenderProps) => {
   if (currentQuestionData) {
     const { questionStem, answers } = currentQuestionData;
 
+    console.log("currentQuestionData", currentQuestionData);
+
     const AnswerComponent = answers ? pickAnswerComponent(answers) : null;
     const answerRender = AnswerComponent ? (
       <AnswerComponent

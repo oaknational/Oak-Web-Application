@@ -10,17 +10,14 @@ import React, {
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { invariant } from "../pupilUtils/invariant";
 
-import type {
-  LessonOverviewQuizData,
-  MCAnswer,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   isLessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 
-export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
+export type QuestionsArray = NonNullable<QuizQuestion[]>;
 
 export type QuizEngineProps = {
   children: ReactNode;
@@ -124,7 +121,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     (pupilAnswer?: MCAnswer | MCAnswer[] | null) => {
       const questionAnswers = currentQuestionData?.answers?.["multiple-choice"];
       const correctAnswers = questionAnswers?.filter(
-        (answer) => answer.answer_is_correct,
+        (answer) => answer?.answerIsCorrect,
       );
 
       const pupilAnswerArray = Array.isArray(pupilAnswer)
@@ -149,9 +146,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         (grade === 0 &&
           currentQuestionData?.answers?.["multiple-choice"]?.some(
             (answer, index) => {
-              return (
-                answer.answer_is_correct && feedback?.[index] === "correct"
-              );
+              return answer?.answerIsCorrect && feedback?.[index] === "correct";
             },
           )) ??
         false;
