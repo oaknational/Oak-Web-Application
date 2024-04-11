@@ -186,7 +186,7 @@ describe("SearchResultsItem", () => {
         keyStageShortCode: "KS4",
         keyStageTitle: "Key stage 4",
         pupilLessonOutcome:
-          "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+          "I can describe the relationship between Macbeth and Lady Macbeth.",
         keyStageSlug: "ks4",
         subjectTitle: "English",
         unitTitle: "Macbeth: Lady Macbeth as a machiavellian villain",
