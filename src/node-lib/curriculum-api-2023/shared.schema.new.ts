@@ -37,6 +37,22 @@ export const lessonDataSchema = z.object({
   _cohort: _cohortSchema,
 });
 
+export const keystages = z.enum(["KS1", "KS2", "KS3", "KS4", "EYFS"]);
+export const keystageSlugs = z.enum([
+  "ks1",
+  "ks2",
+  "ks3",
+  "ks4",
+  "early-years-foundation-stage",
+]);
+export const keystageDescriptions = z.enum([
+  "Key Stage 1",
+  "Key Stage 2",
+  "Key Stage 3",
+  "Key Stage 4",
+  "Early Years Foundation Stage",
+]);
+
 export const programmeFieldsSchema = z.object({
   tier: z.string().nullable(),
   tier_id: z.number().nullable(),
@@ -56,10 +72,10 @@ export const programmeFieldsSchema = z.object({
   year_description: z.string(),
   year_display_order: z.number(),
 
-  keystage: z.string(),
+  keystage: keystages,
   keystage_id: z.number(),
-  keystage_slug: z.string(),
-  keystage_description: z.string(),
+  keystage_slug: keystageSlugs,
+  keystage_description: keystageDescriptions,
   keystage_display_order: z.number(),
 
   phase: z.string(),

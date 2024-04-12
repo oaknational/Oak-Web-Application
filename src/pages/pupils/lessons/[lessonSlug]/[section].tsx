@@ -74,15 +74,17 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { browseData, content } = await curriculumApi2023.pupilLessonQuery({
+      const res = await curriculumApi2023.pupilLessonQuery({
         lessonSlug,
       });
 
-      if (!browseData || !content) {
+      if (!res) {
         return {
           notFound: true,
         };
       }
+
+      const { browseData, content } = res;
 
       // 404 if the lesson does not contain the given section
       if (

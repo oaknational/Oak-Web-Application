@@ -35,6 +35,7 @@ export const lessonDataFixture = (): LessonDataSnake => ({
   copyright_content: null,
   _state: "published",
   _cohort: "2023-2024",
+  deprecated_fields: null,
 });
 
 type UnitvariantSnake = z.infer<typeof unitvariantSchema>;
@@ -76,14 +77,14 @@ export const programmeFieldsFixture = (): ProgrammeFieldsSnake => ({
   examboard_description: null,
   examboard_display_order: null,
   year: "year",
-  year_slug: "year-slug",
+  year_slug: "year-1",
   year_id: 1,
   year_description: "year-description",
   year_display_order: 1,
-  keystage: "keystage",
+  keystage: "KS1",
   keystage_id: 1,
-  keystage_slug: "keystage-slug",
-  keystage_description: "keystage-description",
+  keystage_slug: "ks1",
+  keystage_description: "Key Stage 1",
   keystage_display_order: 1,
   phase: "primary",
   phase_id: 0,

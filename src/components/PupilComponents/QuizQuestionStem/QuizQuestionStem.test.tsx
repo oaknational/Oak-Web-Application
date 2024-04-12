@@ -6,11 +6,10 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 
-const lessonOverview = lessonContentFixture({});
-const starterQuiz = lessonOverview.starterQuiz;
+const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
 const mcqStemImage = starterQuiz ? starterQuiz[1] : null;
 
@@ -43,10 +42,7 @@ describe("QuestionListItem", () => {
   });
 
   it("renders text after an image", () => {
-    invariant(
-      !!mcqStemImage?.questionStem,
-      "mcqStemImage.questionStem is null",
-    );
+    invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
     const questionStem: ImageOrTextItem[] = [
       ...mcqStemImage.questionStem,

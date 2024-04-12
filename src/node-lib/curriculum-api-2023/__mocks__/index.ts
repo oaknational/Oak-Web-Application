@@ -11,6 +11,8 @@ import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDo
 import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -21,6 +23,7 @@ const curriculumApi: Pick<
   | "teachersHomePage"
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
+  | "pupilLessonQuery"
   | "pupilLessonOverview"
   | "pupilLessonOverviewCanonical"
   | "specialistSubjectListing"
@@ -41,6 +44,12 @@ const curriculumApi: Pick<
   }),
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
+  }),
+  pupilLessonQuery: jest.fn(async () => {
+    return {
+      browseData: lessonBrowseDataFixture({}),
+      content: lessonContentFixture({}),
+    };
   }),
   pupilLessonOverview: jest.fn(async () => {
     return pupilLessonOverviewFixture();

@@ -87,7 +87,7 @@ describe("PupilExperienceView", () => {
         lessonTitle: "Lesson Title",
       });
       const lessonBrowseData = lessonBrowseDataFixture({});
-      const pupilPathwayData = getPupilPathwayData(lessonContent);
+      const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -128,7 +128,7 @@ describe("PupilExperienceView", () => {
             }),
           );
 
-        const pupilPathwayData = getPupilPathwayData(lessonContent);
+        const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
         const { getByText } = render(
           <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
@@ -152,7 +152,7 @@ describe("PupilExperienceView", () => {
     const lessonBrowseData = lessonBrowseDataFixture({});
     lessonBrowseData.lessonData.deprecatedFields = { expired: true };
 
-    const pupilPathwayData = getPupilPathwayData(lessonContent);
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
