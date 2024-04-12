@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps<
           }
 
           errorReporter(
-            "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonOverviewCanonical",
+            "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonQuery",
           )(forwardError, {
             severity: "warning",
             lessonSlug,

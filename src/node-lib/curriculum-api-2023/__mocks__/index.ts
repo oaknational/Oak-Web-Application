@@ -8,7 +8,6 @@ import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixt
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/subjectListing.fixture";
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
-import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
@@ -24,8 +23,6 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonQuery"
-  | "pupilLessonOverview"
-  | "pupilLessonOverviewCanonical"
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
@@ -50,12 +47,6 @@ const curriculumApi: Pick<
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
     };
-  }),
-  pupilLessonOverview: jest.fn(async () => {
-    return pupilLessonOverviewFixture();
-  }),
-  pupilLessonOverviewCanonical: jest.fn(async () => {
-    return pupilLessonOverviewFixture();
   }),
   lessonOverviewCanonical: jest.fn(async () => {
     return {
