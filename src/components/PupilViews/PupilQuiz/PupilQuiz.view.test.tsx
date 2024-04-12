@@ -20,13 +20,13 @@ import {
   orderAnswers,
   quizQuestions,
   shortAnswers,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import {
   LessonEngineContext,
   LessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
-import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -123,7 +123,9 @@ describe("PupilQuizView", () => {
     ],
     ["order", orderAnswers, "You need to order to move on!"],
     ["match", matchAnswers, "You need to match to move on!"],
-  ] satisfies Array<[keyof AnswersSchema, ValueOf<AnswersSchema>, string]>)(
+  ] satisfies Array<
+    [keyof QuizQuestionAnswers, ValueOf<QuizQuestionAnswers>, string]
+  >)(
     "displays a tooltip for the %p question type when it is incomplete",
     (questionType, answers, tooltipText) => {
       const { getByRole } = renderWithTheme(
@@ -142,6 +144,7 @@ describe("PupilQuizView", () => {
                   answers: {
                     [questionType]: answers,
                   },
+                  order: 0,
                 },
               ]}
             />

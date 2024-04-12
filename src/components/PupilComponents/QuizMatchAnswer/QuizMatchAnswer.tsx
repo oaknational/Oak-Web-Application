@@ -39,17 +39,17 @@ export const QuizMatchAnswer = () => {
   );
 
   const answers = Object.fromEntries(
-    currentQuestionData.answers.match.map(
-      ({ correct_choice, match_option }) => {
-        const match = getStemTextData(match_option);
-        const choice = getStemTextData(correct_choice);
+    currentQuestionData.answers.match.map(({ correctChoice, matchOptions }) => {
+      invariant(matchOptions, "matchOptions is missing");
 
-        invariant(match?.text, "match_text is missing");
-        invariant(choice?.text, "choice_text is missing");
+      const match = getStemTextData(matchOptions);
+      const choice = getStemTextData(correctChoice);
 
-        return [match.text, choice.text];
-      },
-    ),
+      invariant(match?.text, "match_text is missing");
+      invariant(choice?.text, "choice_text is missing");
+
+      return [match.text, choice.text];
+    }),
   );
   const matchItems = Object.keys(answers).map((label, index) => ({
     id: index.toString(),

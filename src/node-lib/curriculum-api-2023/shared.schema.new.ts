@@ -32,6 +32,7 @@ export const lessonDataSchema = z.object({
   quiz_id_exit: z.number().nullable(),
   asset_id_slidedeck: z.number().nullable(),
   asset_id_worksheet: z.number().nullable(),
+  deprecated_fields: z.record(z.unknown()).nullable(),
   _state: _stateSchema,
   _cohort: _cohortSchema,
 });
@@ -154,14 +155,15 @@ export const quizQuestionSchema = z.object({
   question_uid: z.string(),
   question_type: z.string(),
   question_stem: z
-    .array(z.union([textItemSchema, imageItemSchema]).optional())
+    .array(z.union([textItemSchema, imageItemSchema]))
+    .optional()
     .nullable(),
   answers: z
     .object({
-      "multiple-choice": z.array(multipleChoiceSchema.optional()).optional(),
-      "short-answer": z.array(shortAnswerSchema.optional()).optional(),
-      order: z.array(orderSchema.optional()).optional(),
-      match: z.array(matchSchema.optional()).optional(),
+      "multiple-choice": z.array(multipleChoiceSchema).optional(),
+      "short-answer": z.array(shortAnswerSchema).optional(),
+      order: z.array(orderSchema).optional(),
+      match: z.array(matchSchema).optional(),
     })
     .optional()
     .nullable(),

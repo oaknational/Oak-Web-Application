@@ -10,7 +10,10 @@ import React, {
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { invariant } from "../pupilUtils/invariant";
 
-import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import type {
+  QuizQuestion,
+  MCAnswer,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   isLessonReviewSection,
   useLessonEngineContext,
@@ -164,11 +167,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleSubmitShortAnswer = useCallback(
     (pupilAnswer?: string) => {
       const questionAnswers = currentQuestionData?.answers?.["short-answer"];
-      const correctAnswers = questionAnswers?.map(
-        (answer) => answer?.answer?.[0]?.text,
+      const correctAnswers = questionAnswers?.map((answer) =>
+        answer?.answer?.[0]?.type === "text" ? answer?.answer?.[0]?.text : "",
       );
       const feedback: QuestionFeedbackType = correctAnswers?.includes(
-        pupilAnswer,
+        pupilAnswer ?? "",
       )
         ? "correct"
         : "incorrect";
@@ -186,7 +189,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   /**
    * Receives an array containing the order of the answers given
-   * The order is 1-indexed like `correct_order` in the question data
+   * The order is 1-indexed like `correctOrder` in the question data
    * for ease of comparison
    */
   const handleSubmitOrderAnswer = useCallback(
@@ -198,9 +201,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         "answers are not for an order question",
       );
 
-      const correctAnswers = answers.order.map(
-        (answer) => answer.correct_order,
-      );
+      const correctAnswers = answers.order.map((answer) => answer.correctOrder);
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
         (pupilAnswer, i) =>
           correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",

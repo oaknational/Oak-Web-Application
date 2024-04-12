@@ -13,7 +13,7 @@ import {
   matchAnswers,
   orderAnswers,
   quizQuestions as questionsArrayFixture,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import {
   LessonEngineContext,
   LessonEngineContextType,
@@ -200,7 +200,7 @@ describe("QuizEngineContext", () => {
         ),
       );
       // set the first answer as also correct
-      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answerIsCorrect = true;
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -210,7 +210,7 @@ describe("QuizEngineContext", () => {
 
       const pupilAnswers = currentQuestionData?.answers?.[
         "multiple-choice"
-      ]?.filter((answer) => answer.answer_is_correct);
+      ]?.filter((answer) => answer.answerIsCorrect);
 
       act(() => {
         handleSubmitMCAnswer(pupilAnswers);
@@ -233,7 +233,7 @@ describe("QuizEngineContext", () => {
           (question) => question.questionType === "multiple-choice",
         ),
       );
-      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answerIsCorrect = true;
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -247,7 +247,6 @@ describe("QuizEngineContext", () => {
       ];
 
       act(() => {
-        //@ts-expect-error: we know that these will not be undefined
         handleSubmitMCAnswer(pupilAnswers);
       });
 
@@ -325,7 +324,7 @@ describe("QuizEngineContext", () => {
     });
   });
 
-  describe("handleSubmitOrderAnser", () => {
+  describe("handleSubmitOrderAnswer", () => {
     const orderQuestion = createQuestionData({
       answers: {
         order: orderAnswers,

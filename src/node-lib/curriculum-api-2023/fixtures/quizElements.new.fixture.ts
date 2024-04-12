@@ -170,15 +170,15 @@ export const orderAnswers: OrderAnswer[] = [
 export const matchAnswers: MatchAnswer[] = [
   {
     correctChoice: [{ text: "producer", type: "text" }],
-    match_option: [{ text: "grass", type: "text" }],
+    matchOptions: [{ text: "grass", type: "text" }],
   },
   {
     correctChoice: [{ text: "primary consumer", type: "text" }],
-    match_option: [{ text: "cow", type: "text" }],
+    matchOptions: [{ text: "cow", type: "text" }],
   },
   {
     correctChoice: [{ text: "secondary consumer", type: "text" }],
-    match_option: [{ text: "human", type: "text" }],
+    matchOptions: [{ text: "human", type: "text" }],
   },
 ];
 

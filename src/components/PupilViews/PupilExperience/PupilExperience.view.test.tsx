@@ -8,8 +8,9 @@ import {
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
-import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   PupilAnalyticsProvider,
@@ -43,7 +44,7 @@ describe("PupilExperienceView", () => {
   describe("pickAvailableSectionsForLesson", () => {
     it("returns all sections if all are available", () => {
       const sections = pickAvailableSectionsForLesson(
-        pupilLessonOverviewFixture({
+        lessonContentFixture({
           starterQuiz: quizQuestions,
           exitQuiz: quizQuestions,
           videoMuxPlaybackId: "123",
@@ -55,17 +56,17 @@ describe("PupilExperienceView", () => {
 
     it("should not include a section if it has no content", () => {
       const withoutStarterQuiz = pickAvailableSectionsForLesson(
-        pupilLessonOverviewFixture({
+        lessonContentFixture({
           starterQuiz: [],
         }),
       );
       const withoutExitQuiz = pickAvailableSectionsForLesson(
-        pupilLessonOverviewFixture({
+        lessonContentFixture({
           exitQuiz: [],
         }),
       );
       const withoutVideo = pickAvailableSectionsForLesson(
-        pupilLessonOverviewFixture({
+        lessonContentFixture({
           videoMuxPlaybackId: null,
         }),
       );
@@ -82,8 +83,11 @@ describe("PupilExperienceView", () => {
     });
 
     it("should render", () => {
-      const lessonData = pupilLessonOverviewFixture();
-      const pupilPathwayData = getPupilPathwayData(lessonData);
+      const lessonContent = lessonContentFixture({
+        lessonTitle: "Lesson Title",
+      });
+      const lessonBrowseData = lessonBrowseDataFixture({});
+      const pupilPathwayData = getPupilPathwayData(lessonContent);
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -95,14 +99,15 @@ describe("PupilExperienceView", () => {
       const { getByText } = render(
         <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
           <PupilExperienceView
-            curriculumData={lessonData}
+            lessonContent={lessonContent}
+            browseData={lessonBrowseData}
             hasWorksheet={false}
             initialSection="overview"
           />
         </PupilAnalyticsProvider>,
       );
 
-      expect(getByText(lessonData.lessonTitle)).toBeInTheDocument();
+      expect(getByText("Lesson Title")).toBeInTheDocument();
     });
 
     // we don't render the video section as it crashes without a valid mux id
@@ -112,7 +117,8 @@ describe("PupilExperienceView", () => {
       [/Exit Quiz/, "exit-quiz"],
     ].forEach(([name, section]) => {
       it("renders the current section", () => {
-        const lessonData = pupilLessonOverviewFixture();
+        const lessonContent = lessonContentFixture({});
+        const lessonBrowseData = lessonBrowseDataFixture({});
 
         jest
           .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -122,12 +128,13 @@ describe("PupilExperienceView", () => {
             }),
           );
 
-        const pupilPathwayData = getPupilPathwayData(lessonData);
+        const pupilPathwayData = getPupilPathwayData(lessonContent);
 
         const { getByText } = render(
           <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
             <PupilExperienceView
-              curriculumData={lessonData}
+              lessonContent={lessonContent}
+              browseData={lessonBrowseData}
               hasWorksheet={false}
               initialSection="overview"
             />
@@ -140,11 +147,12 @@ describe("PupilExperienceView", () => {
   });
 
   it("should render the expired view if the lesson is expired", () => {
-    const lessonData = pupilLessonOverviewFixture({
-      expired: true,
-    });
+    const lessonContent = lessonContentFixture({});
 
-    const pupilPathwayData = getPupilPathwayData(lessonData);
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    lessonBrowseData.lessonData.deprecatedFields = { expired: true };
+
+    const pupilPathwayData = getPupilPathwayData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -155,7 +163,8 @@ describe("PupilExperienceView", () => {
     const { getByText } = render(
       <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
         <PupilExperienceView
-          curriculumData={lessonData}
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
         />
