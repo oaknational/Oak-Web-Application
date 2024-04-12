@@ -52,7 +52,6 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
     yearTitle,
     isExemplarUnit,
     onClick,
-    themeTitle,
   } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -101,15 +100,6 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
             $mv="space-between-none"
           >
             {yearTitle}
-          </OakSpan>
-        )}
-        {themeTitle && (
-          <OakSpan
-            $font={"heading-light-7"}
-            $color={"grey60"}
-            $mv="space-between-none"
-          >
-            {themeTitle}
           </OakSpan>
         )}
         <ListItemHeader
