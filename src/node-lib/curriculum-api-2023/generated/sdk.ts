@@ -39328,7 +39328,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_5_0_0', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, hasDownloadableResources?: boolean | null, expired?: boolean | null }>, unit: Array<{ __typename?: 'published_mv_lesson_listing_5_0_1', lessons?: any | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_5_0_2', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, copyrightContent?: any | null, expired?: boolean | null }>, unit: Array<{ __typename?: 'published_mv_lesson_listing_5_0_1', lessons?: any | null }> };
 
 export type LessonDownloadsCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -39352,14 +39352,14 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: boolean | null, expired?: boolean | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_3', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, downloads?: any | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: boolean | null, expired?: boolean | null }> };
 
 export type LessonOverviewCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, lessonCohort?: string | null, expired?: boolean | null }> };
+export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_5_0_2', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, lessonCohort?: string | null, expired?: boolean | null, downloads?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -39416,7 +39416,7 @@ export type SpecialistLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type SpecialistLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_specialist_1_0_3', lesson_slug?: string | null, lesson_title?: string | null, synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, pupil_lesson_outcome?: string | null, key_learning_points?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, content_guidance?: any | null, supervision_level?: string | null, threads?: any | null, video_mux_playback_id?: string | null, video_with_sign_language_mux_playback_id?: string | null, video_title?: string | null, worksheet_url?: string | null, presentation_url?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, transcript_sentences?: string | null, exit_quiz_asset_object?: any | null, starter_quiz_asset_object?: any | null }> };
+export type SpecialistLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_specialist_1_0_3', lesson_slug?: string | null, lesson_title?: string | null, synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, combined_programme_fields?: any | null, pupil_lesson_outcome?: string | null, key_learning_points?: any | null, contains_copyright_content?: boolean | null, expired?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, content_guidance?: any | null, supervision_level?: string | null, threads?: any | null, video_mux_playback_id?: string | null, video_with_sign_language_mux_playback_id?: string | null, video_title?: string | null, worksheet_url?: string | null, presentation_url?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, transcript_sentences?: string | null, exit_quiz_asset_object?: any | null, starter_quiz_asset_object?: any | null, worksheet_asset_object?: any | null }> };
 
 export type SpecialistLessonOverviewCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -39562,7 +39562,7 @@ export const CurriculumUnitsDocument = gql`
     `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  downloads: published_mv_downloads_5_0_0(
+  downloads: published_mv_downloads_5_0_2(
     where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     downloads
@@ -39576,7 +39576,7 @@ export const LessonDownloadsDocument = gql`
     unitSlug
     unitTitle
     lessonCohort
-    hasDownloadableResources
+    copyrightContent
     expired
   }
   unit: published_mv_lesson_listing_5_0_1(
@@ -39629,7 +39629,7 @@ export const LessonListingDocument = gql`
     `;
 export const LessonOverviewDocument = gql`
     query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
-  lesson: published_mv_lesson_overview_5_0_0(
+  lesson: published_mv_lesson_overview_5_0_3(
     where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     lessonSlug
@@ -39661,7 +39661,7 @@ export const LessonOverviewDocument = gql`
     starterQuiz
     exitQuiz
     yearTitle
-    hasDownloadableResources
+    downloads
     videoTitle
     lessonCohort
     isWorksheetLandscape
@@ -39672,7 +39672,7 @@ export const LessonOverviewDocument = gql`
     `;
 export const LessonOverviewCanonicalDocument = gql`
     query lessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_5_0_0(
+  lesson: published_mv_lesson_overview_5_0_2(
     where: {lessonSlug: {_eq: $lessonSlug}}
   ) {
     lessonSlug
@@ -39706,9 +39706,9 @@ export const LessonOverviewCanonicalDocument = gql`
     starterQuiz
     exitQuiz
     yearTitle
-    hasDownloadableResources
     lessonCohort
     expired
+    downloads
   }
 }
     `;
@@ -39879,6 +39879,9 @@ export const SpecialistLessonOverviewDocument = gql`
     transcript_sentences
     exit_quiz_asset_object
     starter_quiz_asset_object
+    exit_quiz
+    starter_quiz
+    worksheet_asset_object
   }
 }
     `;
@@ -39946,14 +39949,14 @@ export const SpecialistProgrammeListingDocument = gql`
 export const SpecialistProgrammeListingCountsDocument = gql`
     query specialistProgrammeListingCounts($programmeSlug: String!) {
   unitCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   lessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $programmeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $programmeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
@@ -40005,14 +40008,14 @@ export const SpecialistUnitsAndLessonCountDocument = gql`
 export const DevelopmentStageUnitCountDocument = gql`
     query developmentStageUnitCount($syntheticProgrammeSlug: String!) {
   developmentStageUnitCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: unit_slug)
     }
   }
   developmentStageLessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, contains_copyright_content: {_eq: false}, expired: {_is_null: true}}
+    where: {synthetic_programme_slug: {_eq: $syntheticProgrammeSlug}, expired: {_is_null: true}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
@@ -40033,7 +40036,7 @@ export const DevelopmentStagesDocument = gql`
 export const SpecialistLessonCountDocument = gql`
     query specialistLessonCount($unit_slug: String!) {
   specialistUnitLessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: {unit_slug: {_eq: $unit_slug}, expired: {_is_null: true}}
+    where: {unit_slug: {_eq: $unit_slug}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)

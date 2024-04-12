@@ -32,7 +32,6 @@ export const SpecialistLessonDownloadFixture = (
           lessonTitle: "test",
         },
       ],
-      hasDownloadableResources: true,
       expired: false,
     },
     ...partial,

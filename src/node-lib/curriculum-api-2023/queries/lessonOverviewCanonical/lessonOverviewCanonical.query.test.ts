@@ -27,8 +27,8 @@ describe("lessonOverviewCanonical()", () => {
       videoMuxPlaybackId: "video-mux-playback-id",
       videoWithSignLanguageMuxPlaybackId:
         "video-with-sign-language-mux-playback-id",
-      hasDownloadableResources: false,
       expired: false,
+      downloads: [],
     };
     const lesson = await lessonOverviewCanonical({
       ...sdk,
@@ -44,6 +44,7 @@ describe("lessonOverviewCanonical()", () => {
               subjectTitle: "Combined Science",
               keyStageSlug: "ks3",
               keyStageTitle: "Key-stage 3",
+              downloads: [],
             },
             {
               ...originalLessonBase,
@@ -54,6 +55,7 @@ describe("lessonOverviewCanonical()", () => {
               subjectTitle: "biology",
               keyStageSlug: "ks4",
               keyStageTitle: "Key-stage 4",
+              downloads: [],
             },
           ],
         }),

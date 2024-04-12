@@ -83,7 +83,7 @@ const lessonOverviewFixture = (
     transcriptSentences: null,
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
-    hasDownloadableResources: false,
+    downloads: [],
     ...partial,
   };
 };

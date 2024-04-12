@@ -5,7 +5,6 @@ import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import lessonOverviewCanonicalSchema, {
@@ -19,6 +18,7 @@ import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
 } from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import getNextLessonsInUnit from "../curriculum-api-2023/queries/lessonDownloads/getNextLessonsInUnit";
+import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
@@ -560,6 +560,7 @@ const curriculumApi = {
         ...transformedLessons[0],
         pathways: [],
         isLegacy: true,
+        downloads: [],
       } as LessonOverviewCanonical,
     );
 
