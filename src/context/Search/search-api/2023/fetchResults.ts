@@ -35,12 +35,12 @@ export const transformAndParseSearchResponseData = (
       }),
     },
   };
-  const snakeaseData = snakecaseKeys(transformedData, {
+  const snakecaseData = snakecaseKeys(transformedData, {
     deep: true,
     exclude: ["_id", "_index", "_score", "_source"],
   });
 
-  const data = searchResultsSchema.parse(snakeaseData);
+  const data = searchResultsSchema.parse(snakecaseData);
 
   return data;
 };
