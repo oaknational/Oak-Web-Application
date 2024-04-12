@@ -8,6 +8,7 @@ export const examBoardProgrammeListingFixture = (
     keyStageTitle: "Key stage 3",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    legacy: false,
     programmes: [
       {
         programmeSlug: "history-secondary-ks4-aqa",

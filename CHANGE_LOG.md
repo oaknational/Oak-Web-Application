@@ -1,3 +1,98 @@
+# [1.405.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.404.0...v1.405.0) (2024-04-10)
+
+
+### Features
+
+* share use new api ([28082bc](https://github.com/oaknational/Oak-Web-Application/commit/28082bc616b5a5a6a0dcadd4dc4bb62dc48e24e4))
+
+# [1.404.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.403.0...v1.404.0) (2024-04-10)
+
+
+### Features
+
+* **oak-components:** update oak components version ([07722a9](https://github.com/oaknational/Oak-Web-Application/commit/07722a9f72d3e46c026148e619e1bea01ae8bc9b))
+
+# [1.403.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.1...v1.403.0) (2024-04-09)
+
+
+### Bug Fixes
+
+* keystage title sentence case ([854adf1](https://github.com/oaknational/Oak-Web-Application/commit/854adf191efda8fa0382504243157365fe9ce502))
+
+
+### Features
+
+* lesson listing use new api ([55de261](https://github.com/oaknational/Oak-Web-Application/commit/55de2614d4fb9b506d2e50ed9c17488af2b60fd9))
+
+## [1.402.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.0...v1.402.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* lesson counts on programme listing page ([5df8d92](https://github.com/oaknational/Oak-Web-Application/commit/5df8d92f9ff1e942fb07b495b7bde4b475af46e5))
+* remove copyright from query and include expired lessons in total count ([3b69fa2](https://github.com/oaknational/Oak-Web-Application/commit/3b69fa240fce9fcced69f515b4442c0e3d0f1583))
+
+# [1.402.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.401.0...v1.402.0) (2024-04-09)
+
+
+### Bug Fixes
+
+* check for empty teachertips array ([cc01d1d](https://github.com/oaknational/Oak-Web-Application/commit/cc01d1d8ba2661a91b20ff8a5ba9990099311408))
+* filter out copyrighted resources from side bar and downloads page ([68ccebd](https://github.com/oaknational/Oak-Web-Application/commit/68ccebd318f6c6ce8c6e2ae4ed6e79a4eba1c1f4))
+* fixture updates ([961d801](https://github.com/oaknational/Oak-Web-Application/commit/961d801199bf9a6f706e2a619a6d16f6a45a2827))
+* prevent infinite loop ([afbacd8](https://github.com/oaknational/Oak-Web-Application/commit/afbacd8161ebbe3a093191e7e884331443f024b2))
+* reuse lessonoverviewpagedata type ([5bd4882](https://github.com/oaknational/Oak-Web-Application/commit/5bd48825f1c377761312cf21663846bf55ddcb39))
+* use filtered downloads in form ([40e3fdc](https://github.com/oaknational/Oak-Web-Application/commit/40e3fdcf4edd33ca991d83084a05b64f7a8153c1))
+
+
+### Features
+
+* lesson downloads uses new api ([337cb83](https://github.com/oaknational/Oak-Web-Application/commit/337cb833dbd6ad373b2b03d29c4951131499aa8c))
+* update lesson overview mv and schema for specialist and canonical as well ([c23b6db](https://github.com/oaknational/Oak-Web-Application/commit/c23b6dbb66afbf11e2018d35211edba0855c1ded))
+* use latest mv for lesson overview query ([79c32ce](https://github.com/oaknational/Oak-Web-Application/commit/79c32cef9f3fdcbc1918c022377ed40c6e24f9cd))
+* use new api for all lesson overview requests ([907b9a9](https://github.com/oaknational/Oak-Web-Application/commit/907b9a99384bb44173b65986a75bf4de9f492e8f))
+
+# [1.401.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.400.0...v1.401.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* eyfs only exists in legacy ([012f51e](https://github.com/oaknational/Oak-Web-Application/commit/012f51ec6977abad8292515732edfc8282ebd5b3))
+* missing legacy slugs for maths and science ([d1cc65c](https://github.com/oaknational/Oak-Web-Application/commit/d1cc65c38fc58e804ae77f8aa4430de1297fcbb0))
+
+
+### Features
+
+* sentence case key stage title ([950866c](https://github.com/oaknational/Oak-Web-Application/commit/950866c3f812d19895f7992feb345fec666f039b))
+
+# [1.400.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.3...v1.400.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* incorrect tier order ([379c3be](https://github.com/oaknational/Oak-Web-Application/commit/379c3beae5cc1141418e40dee5dfda3a21dd1d29))
+* sentence case key stage title ([2f147ba](https://github.com/oaknational/Oak-Web-Application/commit/2f147ba8da4ac61583703e3f7685cdb230b8d7de))
+
+
+### Features
+
+* use new api on programme listing page ([569cb89](https://github.com/oaknational/Oak-Web-Application/commit/569cb89394bd64c7789358bc60dbec922c4ed8c5))
+
+## [1.399.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.2...v1.399.3) (2024-04-04)
+
+
+### Bug Fixes
+
+* removing new banner and updating header hierarchy ([85cacdb](https://github.com/oaknational/Oak-Web-Application/commit/85cacdbdc8b13dcd04e250f4ad0cab3787483377))
+* update margins on visualiser title section ([9439df6](https://github.com/oaknational/Oak-Web-Application/commit/9439df60a28ad8554f94ed82194673038a64914e))
+
+## [1.399.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.1...v1.399.2) (2024-04-04)
+
+
+### Bug Fixes
+
+* **a11y:** add 'new' to aria-label where appropriate ([4d6d13a](https://github.com/oaknational/Oak-Web-Application/commit/4d6d13a3ee4bbc4ae581e596900c156c651fc6e1))
+
 ## [1.399.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.399.0...v1.399.1) (2024-04-03)
 
 
