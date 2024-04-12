@@ -13,7 +13,7 @@ type QuizAttributionProps = {
  * Displays the attributions for the images in the question stem and answers
  */
 export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
-  const questionImages = questionData.questionStem?.filter(isImage);
+  const questionImages = questionData.questionStem?.filter(isImage) ?? [];
   const answerImages =
     questionData.answers?.["multiple-choice"]?.flatMap((choice) =>
       choice.answer.filter(isImage),

@@ -10,11 +10,11 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
-export const isImage = (obj: ImageOrTextItem): obj is ImageItem =>
-  obj.type === "image";
+export const isImage = (obj?: ImageOrTextItem): obj is ImageItem =>
+  obj?.type === "image";
 
-export const isText = (obj: ImageOrTextItem): obj is TextItem =>
-  obj.type === "text";
+export const isText = (obj?: ImageOrTextItem): obj is TextItem =>
+  obj?.type === "text";
 
 export const getStemImageData = (stem: ImageOrTextItem[]) => {
   const data = stem.find((a) => isImage(a));

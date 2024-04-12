@@ -1,14 +1,14 @@
 import { OakSpan } from "@oaknational/oak-components";
 
-import { useQuizEngineContext } from "../QuizEngineProvider";
-import { isText } from "../QuizUtils/stemUtils";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 export const QuizMCQSingleAnswerFeedback = () => {
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionData } = quizEngineContext;
   const correctAnswer = currentQuestionData?.answers?.[
     "multiple-choice"
-  ]?.filter((answer) => answer.answer_is_correct);
+  ]?.filter((answer) => answer.answerIsCorrect);
   const label = correctAnswer?.[0]?.answer?.find(isText);
   if (label)
     return (

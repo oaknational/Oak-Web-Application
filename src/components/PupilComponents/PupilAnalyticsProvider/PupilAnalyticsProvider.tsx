@@ -8,7 +8,7 @@ import {
   KeyStageTitle,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
-import { BrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -121,7 +121,7 @@ const isKeyStageTitle = (
 };
 
 export const getPupilPathwayData = (
-  browseData: BrowseData,
+  browseData: LessonBrowseData,
 ): PupilPathwayData => {
   const k = browseData.programmeFields.keystageDescription.replace(
     "Stage",

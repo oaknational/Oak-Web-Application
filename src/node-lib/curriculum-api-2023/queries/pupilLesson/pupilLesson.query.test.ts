@@ -58,8 +58,8 @@ describe("pupilLesson()", () => {
     expect(lesson.browseData.isLegacy).toEqual(
       _syntheticUnitvariantLessonsSchemaFixture.is_legacy,
     );
-    expect(lesson.browseData.programmeFields.lessonSlug).toEqual(
-      lesson.browseData.programmeFields.lesson_slug,
+    expect(lesson.browseData.lessonSlug).toEqual(
+      _syntheticUnitvariantLessonsSchemaFixture.lesson_slug,
     );
     expect(lesson.content.lessonId).toEqual(_contentFixture.lesson_id);
     expect(lesson.content.lessonTitle).toEqual(_contentFixture.lesson_title);
