@@ -102,7 +102,7 @@ describe("useSearch()", () => {
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });
-  test.skip("results should be returned in the correct form", async () => {
+  test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
 
     const { result } = renderHookWithProviders(providers)(() =>
@@ -111,33 +111,24 @@ describe("useSearch()", () => {
 
     await waitFor(() =>
       expect(result.current.results[0]).toEqual({
-        _id: "5KnzTocBd235CCw7oqe1",
-        _index: "lessons_production",
-        _score: 121.737686,
+        _index: "lessons_1712737230873",
+        _id: "Z38Yx44Bc8iIk5N9Klp6",
+        _score: 104.29718,
         _source: {
-          cohort: "2020-2023",
-          expired: false,
-          has_copyright_material: false,
-          id: 211319,
-          key_stage_slug: "key-stage-2",
-          key_stage_title: "Key Stage 2",
-          lesson_description:
-            "In this lesson we are introduced to Macbeth and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.",
-          slug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
-          subject_slug: "drama",
-          subject_title: "Drama",
-          theme_title: null,
-          title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
-          topic_slug: "dipping-into-shakespeare-da5e",
-          topic_title: "Dipping into Shakespeare",
+          slug: "the-relationship-between-macbeth-and-lady-macbeth",
+          title: "The relationship between Macbeth and Lady Macbeth",
+          pupil_lesson_outcome:
+            "I can describe the relationship between Macbeth and Lady Macbeth.",
+          programme_slug: "english-secondary-ks4-eduqas",
+          unit_slug: "macbeth-lady-macbeth-as-a-machiavellian-villain",
+          unit_title: "Macbeth: Lady Macbeth as a machiavellian villain",
+          key_stage_slug: "ks4",
+          key_stage_title: "Key Stage 4",
+          subject_slug: "english",
+          subject_title: "English",
+          cohort: "2023-2024",
           type: "lesson",
-          tier: null,
-          phase: "primary",
           pathways: [],
-        },
-        highlight: {
-          lesson_description:
-            'In this lesson we are introduced to <mark class="highlighted">Macbeth</mark> and Banquo. We will explore the characters\' thoughts and feelings and how they respond when they encounter the witches.',
         },
       }),
     );
