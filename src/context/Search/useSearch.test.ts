@@ -115,9 +115,8 @@ describe("useSearch()", () => {
         _id: "Z38Yx44Bc8iIk5N9Klp6",
         _score: 104.29718,
         highlight: {
-          pupil_lesson_outcome: [
+          pupil_lesson_outcome:
             "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
-          ],
         },
         _source: {
           slug: "the-relationship-between-macbeth-and-lady-macbeth",
