@@ -40,7 +40,7 @@ export const QuizMatchAnswer = () => {
 
   const answers = Object.fromEntries(
     currentQuestionData.answers.match.map(({ correctChoice, matchOption }) => {
-      invariant(matchOption, "matchOptions is missing");
+      invariant(matchOption, "matchOption is missing");
 
       const match = getStemTextData(matchOption);
       const choice = getStemTextData(correctChoice);

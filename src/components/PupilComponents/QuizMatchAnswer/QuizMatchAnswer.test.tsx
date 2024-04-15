@@ -30,7 +30,7 @@ describe(QuizMatchAnswer, () => {
         text: "Mouse",
       },
     ],
-    matchOptions: [
+    matchOption: [
       {
         type: "text",
         text: "Likes cheese",
@@ -44,7 +44,7 @@ describe(QuizMatchAnswer, () => {
         text: "Cat",
       },
     ],
-    matchOptions: [
+    matchOption: [
       {
         type: "text",
         text: "Likes to be petted",
@@ -58,7 +58,7 @@ describe(QuizMatchAnswer, () => {
         text: "Elephant",
       },
     ],
-    matchOptions: [
+    matchOption: [
       {
         type: "text",
         text: "Never forgets",
