@@ -68,8 +68,7 @@ export const PupilPageContent = ({
     isLegacy,
   } = lessonContent;
 
-  const { subjectDescription, subjectSlug, yearDescription } =
-    browseData.programmeFields;
+  const { subject, subjectSlug, yearDescription } = browseData.programmeFields;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
@@ -86,7 +85,7 @@ export const PupilPageContent = ({
       return (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
-          subjectTitle={subjectDescription}
+          subjectTitle={subject}
           subjectSlug={subjectSlug}
           yearTitle={yearDescription}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
