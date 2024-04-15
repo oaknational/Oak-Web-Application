@@ -1,3 +1,10 @@
+/**
+ *
+ * These fixtures follow the new schema implemented by pupil squad.
+ * This follows the database schema as closely as possible but translates all fields to camelCase.
+ *
+ */
+
 import {
   MCAnswer,
   ShortAnswer,
