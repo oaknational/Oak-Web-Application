@@ -121,6 +121,7 @@ export const rawSearchResponseSchema = z.object({
         _id: z.string(),
         _index: z.string(),
         _score: z.number(),
+        highlight: z.record(z.string(), z.array(z.string())).nullish(),
         _source: z.object({
           ...rawBaseSearchResultSchema.shape,
           pupilLessonOutcome: z.string().nullish(),
