@@ -163,7 +163,7 @@ export const orderSchema = z.object({
 export const matchSchema = z.object({
   answer_is_active: z.boolean().optional(),
   correct_choice: z.array(textItemSchema),
-  match_options: z.array(textItemSchema).optional(),
+  match_option: z.array(textItemSchema).optional(),
 });
 
 export const quizQuestionSchema = z.object({
