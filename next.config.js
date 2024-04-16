@@ -227,25 +227,26 @@ module.exports = async (phase) => {
       unoptimized: isStaticBuild,
       domains: imageDomains,
     },
-    async rewrites() {
-      return {
-        beforeFiles: [
-          {
-            source: "/pupils/lessons/:lessonSlug",
-            destination: "/pupils/lessons/:lessonSlug/overview",
-          },
-          {
-            source:
-              "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
-            destination:
-              "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
-          },
-          {
-            source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
-            destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
-          },
-        ],
-      };
+    async redirects() {
+      return [
+        {
+          source: "/pupils/lessons/:lessonSlug",
+          destination: "/pupils/lessons/:lessonSlug/overview",
+          permanent: false,
+        },
+        {
+          source:
+            "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+          destination:
+            "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
+          permanent: false,
+        },
+        {
+          source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
+          destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
+          permanent: false,
+        },
+      ];
     },
   };
 
