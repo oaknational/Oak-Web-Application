@@ -1,3 +1,17 @@
+# [1.406.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.405.0...v1.406.0) (2024-04-16)
+
+
+### Bug Fixes
+
+* update curriculum blog slugs ([4011259](https://github.com/oaknational/Oak-Web-Application/commit/4011259a0cdab86b1c8bd18eb6b7af75bb99e004))
+* update slugs for pa11y ([656e2f5](https://github.com/oaknational/Oak-Web-Application/commit/656e2f5061ac58b0b5a655e4b797345f196df4c7))
+* wrong url updated for pa11y ([e774794](https://github.com/oaknational/Oak-Web-Application/commit/e774794ed620ef2f51a205cfb9e603854ce5a180))
+
+
+### Features
+
+* add copyright notice link to footer ([e63cd8c](https://github.com/oaknational/Oak-Web-Application/commit/e63cd8cc75e2d5bea7b5a24a6da3792cd7ad1649))
+
 # [1.405.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.404.0...v1.405.0) (2024-04-10)
 
 
