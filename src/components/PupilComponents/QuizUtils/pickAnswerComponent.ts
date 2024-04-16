@@ -9,12 +9,12 @@ import {
   isSingleAnswerMCQ,
 } from "./answerTypeDiscriminators";
 
-import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
 import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
 import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
+import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export const pickAnswerComponent = (answers: AnswersSchema) => {
+export const pickAnswerComponent = (answers: QuizQuestionAnswers) => {
   switch (true) {
     case isMultiAnswerMCQ(answers):
       return QuizMCQMultiAnswer;

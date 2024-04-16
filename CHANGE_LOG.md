@@ -1,3 +1,42 @@
+# [1.407.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.406.0...v1.407.0) (2024-04-16)
+
+
+### Bug Fixes
+
+* deprecated_fields is optional ([076f5dc](https://github.com/oaknational/Oak-Web-Application/commit/076f5dc5fa4e2afe074665f0bc0761f48960d487))
+* inccorect schema field ([9b2ca23](https://github.com/oaknational/Oak-Web-Application/commit/9b2ca2384db131c300b55e915bad2df3b637d1a9))
+* incorrect field in schema ([0e79e13](https://github.com/oaknational/Oak-Web-Application/commit/0e79e135951919e50ac9f4e89bbbc26b78dfe742))
+* is sensitive ([997ccbc](https://github.com/oaknational/Oak-Web-Application/commit/997ccbc53c17b9548d54b15ac04b2c7ff6d90f97))
+* missing / inconsistent subject description ([63336a7](https://github.com/oaknational/Oak-Web-Application/commit/63336a7b96d4c1d9983542fb7e9568eeb768986b))
+* resolved conflicts ([91bc942](https://github.com/oaknational/Oak-Web-Application/commit/91bc9420c49001f22fed07f80a399c02b026cb11))
+* tests ([a0ba9ad](https://github.com/oaknational/Oak-Web-Application/commit/a0ba9adb77dbf2c7f307873edf8a07aa687ca469))
+* type errors ([f28d960](https://github.com/oaknational/Oak-Web-Application/commit/f28d960970048173eeac8a8035a646ff076d8266))
+* udpated pages to new query ([23557b0](https://github.com/oaknational/Oak-Web-Application/commit/23557b048e8c841b55782d04ca552619c4e93aa7))
+* updated tests to match new schema ([44d28b8](https://github.com/oaknational/Oak-Web-Application/commit/44d28b8342fa8a13c391e30a30ff954d644a7002))
+
+
+### Features
+
+* convert to camelCase ([51fb940](https://github.com/oaknational/Oak-Web-Application/commit/51fb940ad731a6b733eec447ba08e1911e37748d))
+* dynamic where for gql query ([ea7722b](https://github.com/oaknational/Oak-Web-Application/commit/ea7722b55db3597cf6354801c81157f66b6ca0ff))
+* query both mvs in the same api call ([079e7fe](https://github.com/oaknational/Oak-Web-Application/commit/079e7fe3de9853a6eb2c009abf2e2fe7028c36f6))
+* remove pupilLessonOverview queries and fixtures ([033446e](https://github.com/oaknational/Oak-Web-Application/commit/033446e5db5ecea6b86e0e0f67a7b07159c1c25b))
+* schema and tests for lesson content ([a5d319c](https://github.com/oaknational/Oak-Web-Application/commit/a5d319ccb58cd7f1deadcda1ca5635d1bd1d1d49))
+
+# [1.406.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.405.0...v1.406.0) (2024-04-16)
+
+
+### Bug Fixes
+
+* update curriculum blog slugs ([4011259](https://github.com/oaknational/Oak-Web-Application/commit/4011259a0cdab86b1c8bd18eb6b7af75bb99e004))
+* update slugs for pa11y ([656e2f5](https://github.com/oaknational/Oak-Web-Application/commit/656e2f5061ac58b0b5a655e4b797345f196df4c7))
+* wrong url updated for pa11y ([e774794](https://github.com/oaknational/Oak-Web-Application/commit/e774794ed620ef2f51a205cfb9e603854ce5a180))
+
+
+### Features
+
+* add copyright notice link to footer ([e63cd8c](https://github.com/oaknational/Oak-Web-Application/commit/e63cd8cc75e2d5bea7b5a24a6da3792cd7ad1649))
+
 # [1.405.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.404.0...v1.405.0) (2024-04-10)
 
 

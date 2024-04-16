@@ -1,7 +1,7 @@
 import { QuizEngineContextType } from "../QuizEngineProvider";
 
-import { LessonOverviewQuizQuestion } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export function createQuizEngineContext(
   overrides?: Partial<QuizEngineContextType>,
@@ -30,8 +30,8 @@ export function createQuizEngineContext(
 }
 
 export function createQuestionData(
-  overrides: Partial<LessonOverviewQuizQuestion>,
-): LessonOverviewQuizQuestion {
+  overrides: Partial<QuizQuestion>,
+): QuizQuestion {
   return {
     ...quizQuestions[0]!,
     ...overrides,
