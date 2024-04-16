@@ -9,6 +9,7 @@ const unitListingQuery =
     const res = await sdk.unitListing(args);
 
     const [programme] = res.programme;
+
     if (!programme) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
@@ -24,7 +25,13 @@ const unitListingQuery =
       });
     }
 
-    return unitListingSchema.parse(programme);
+    return unitListingSchema.parse({
+      ...programme,
+      keyStageTitle:
+        programme.keyStageTitle &&
+        programme.keyStageTitle.charAt(0).toUpperCase() +
+          programme.keyStageTitle.slice(1).toLowerCase(),
+    });
   };
 
 export default unitListingQuery;
