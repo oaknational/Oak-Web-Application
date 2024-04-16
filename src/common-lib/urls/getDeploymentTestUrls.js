@@ -10,7 +10,7 @@ function getDeploymentTestUrls() {
     // Public pages
     "/",
     "/lesson-planning",
-    "/develop-your-curriculum",
+    "/develop-your-curriculum-in-7-easy-steps",
     "/support-your-team",
     "/contact-us",
     "/about-us/who-we-are",
@@ -19,7 +19,7 @@ function getDeploymentTestUrls() {
     "/about-us/partners",
     "/about-us/work-with-us",
     "/blog",
-    "/blog/how-to-design-a-unit-of-study",
+    "/blog/how-to-create-a-unit-of-study",
     "/blog/evolution-of-oak",
     "/blog/join-the-childrens-mental-health-week-assembly-2022",
     "/webinars/effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student",
