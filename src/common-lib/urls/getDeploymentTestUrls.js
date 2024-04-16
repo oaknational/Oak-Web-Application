@@ -10,7 +10,7 @@ function getDeploymentTestUrls() {
     // Public pages
     "/",
     "/lesson-planning",
-    "/develop-your-curriculum-in-7-easy-steps",
+    "/develop-your-curriculum",
     "/support-your-team",
     "/contact-us",
     "/about-us/who-we-are",
