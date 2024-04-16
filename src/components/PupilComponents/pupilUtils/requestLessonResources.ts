@@ -1,22 +1,22 @@
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export const requestLessonResources = async ({
-  curriculumData,
+  lessonContent,
 }: {
-  curriculumData: PupilLessonOverviewData;
+  lessonContent: LessonContent;
 }) => {
-  const { lessonSlug } = curriculumData;
+  const { lessonSlug } = lessonContent;
 
   // For new content we need to fetch the captions file from gCloud and parse the result to generate
   // the transcript sentences.
   const resolveTranscriptSentences = (() => {
-    if (curriculumData.videoTitle && !curriculumData.isLegacy) {
-      return getCaptionsFromFile(`${curriculumData.videoTitle}.vtt`);
+    if (lessonContent.videoTitle && !lessonContent.isLegacy) {
+      return getCaptionsFromFile(`${lessonContent.videoTitle}.vtt`);
     }
 
-    return formatSentences(curriculumData.transcriptSentences);
+    return formatSentences(lessonContent.transcriptSentences || []);
   })();
 
   // Resolve the requests for the transcript and worksheet existence in parallel

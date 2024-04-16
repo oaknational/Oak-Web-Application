@@ -1,7 +1,7 @@
 import { requestLessonResources } from "./requestLessonResources";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { pupilLessonOverviewFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilLessonOverview.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 
 jest.mock("@/utils/handleTranscript", () => {
   return {
@@ -40,7 +40,7 @@ describe("requestLessonResources", () => {
     });
 
     const res = await requestLessonResources({
-      curriculumData: pupilLessonOverviewFixture(),
+      lessonContent: lessonContentFixture({}),
     });
 
     expect(res.hasWorksheet).toBe(true);
@@ -53,7 +53,7 @@ describe("requestLessonResources", () => {
     });
 
     const res = await requestLessonResources({
-      curriculumData: pupilLessonOverviewFixture(),
+      lessonContent: lessonContentFixture({}),
     });
 
     expect(res.hasWorksheet).toBe(false);
@@ -62,7 +62,7 @@ describe("requestLessonResources", () => {
   // refactored into helper file
   it("tests for the presence of a worksheet", async () => {
     await requestLessonResources({
-      curriculumData: pupilLessonOverviewFixture({
+      lessonContent: lessonContentFixture({
         lessonSlug: "lessonSlug",
         isLegacy: false,
       }),
@@ -79,7 +79,7 @@ describe("requestLessonResources", () => {
     ];
 
     const res = await requestLessonResources({
-      curriculumData: pupilLessonOverviewFixture({
+      lessonContent: lessonContentFixture({
         isLegacy: true,
         transcriptSentences,
       }),

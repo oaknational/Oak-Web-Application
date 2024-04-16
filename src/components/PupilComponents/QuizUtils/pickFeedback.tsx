@@ -10,9 +10,9 @@ import {
   isSingleAnswerMCQ,
 } from "./answerTypeDiscriminators";
 
-import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export const pickFeedBackComponent = (answers: AnswersSchema) => {
+export const pickFeedBackComponent = (answers: QuizQuestionAnswers) => {
   switch (true) {
     case isMultiAnswerMCQ(answers):
       return <QuizMCQMultiAnswerFeedback />;

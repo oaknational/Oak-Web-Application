@@ -2,7 +2,7 @@ type SnakeToCamelCase<S extends string> =
   S extends `${infer T}_${infer U}${infer Rest}`
     ? `${T}${Uppercase<U>}${SnakeToCamelCase<Rest>}`
     : S;
-type ConvertKeysToCamelCase<T> = T extends Array<infer U>
+export type ConvertKeysToCamelCase<T> = T extends Array<infer U>
   ? Array<ConvertKeysToCamelCase<U>>
   : T extends object
     ? {
