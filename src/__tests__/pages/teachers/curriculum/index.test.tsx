@@ -52,7 +52,7 @@ const mockCMS = (willErr = false) => ({
   blogPostBySlug: jest.fn((slug) => {
     if (willErr) throw new Error("Missing blog post");
     switch (slug) {
-      case "how-to-design-a-subject-curriculum":
+      case "how-to-design-a-subject-curriculum-in-7-easy-steps":
         return {
           id: "1",
           title: "blog 1",
@@ -68,7 +68,7 @@ const mockCMS = (willErr = false) => ({
           date: new Date("2021-12-01"),
           category: { title: "category", slug: "category" },
         };
-      case "how-to-design-a-unit-of-study":
+      case "how-to-create-a-unit-of-study":
         return {
           id: "3",
           title: "blog 3",
