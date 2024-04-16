@@ -1,3 +1,17 @@
+# [1.405.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.404.0...v1.405.0) (2024-04-10)
+
+
+### Features
+
+* share use new api ([28082bc](https://github.com/oaknational/Oak-Web-Application/commit/28082bc616b5a5a6a0dcadd4dc4bb62dc48e24e4))
+
+# [1.404.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.403.0...v1.404.0) (2024-04-10)
+
+
+### Features
+
+* **oak-components:** update oak components version ([07722a9](https://github.com/oaknational/Oak-Web-Application/commit/07722a9f72d3e46c026148e619e1bea01ae8bc9b))
+
 # [1.403.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.402.1...v1.403.0) (2024-04-09)
 
 
