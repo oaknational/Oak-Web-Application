@@ -21,12 +21,11 @@ import {
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";
-import { ContentGuidance } from "@/components/TeacherComponents/LessonOverviewRequirements";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export type PupilViewsIntroProps = PupilLessonOverviewData & {
+export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
 };
 
@@ -34,7 +33,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const {
     contentGuidance,
     supervisionLevel,
-    lessonEquipmentAndResources,
+    equipmentAndResources,
     isLegacy,
     lessonSlug,
     hasWorksheet,
@@ -48,7 +47,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const getSectionLinkProps = useGetSectionLinkProps();
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
-    isLegacy,
+    isLegacy ?? false,
   );
 
   const handleDownloadClicked = () => {
@@ -100,9 +99,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
 
   const removedGuidanceDuplicates = Array.from(
     new Set(
-      contentGuidance?.map(
-        (guidance: ContentGuidance) => guidance.contentGuidanceLabel,
-      ),
+      contentGuidance?.map((guidance) => guidance.contentguidanceLabel || ""),
     ),
   );
 
@@ -153,13 +150,13 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {lessonEquipmentAndResources?.[0]?.equipment && (
+            {equipmentAndResources?.[0]?.equipment && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="equipment-required" tag="h1">
                   Equipment
                 </OakCardHeader>
                 <OakP $font={"body-1"}>
-                  {lessonEquipmentAndResources?.[0]?.equipment}
+                  {equipmentAndResources?.[0]?.equipment}
                 </OakP>
               </OakLessonInfoCard>
             )}
@@ -221,7 +218,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             </OakBox>
             <OakSpan $font={"body-3-bold"}>Licence</OakSpan>
           </OakFlex>
-          <CopyrightNotice isLegacyLicense={isLegacy} />
+          <CopyrightNotice isLegacyLicense={isLegacy ?? false} />
         </OakGridArea>
       </OakGrid>
     </OakLessonLayout>

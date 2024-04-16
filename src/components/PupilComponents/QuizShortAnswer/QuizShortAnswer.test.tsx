@@ -13,7 +13,7 @@ import {
   QuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
 const shortAnswerQuestion = quizQuestions?.find(
   (q) => q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
