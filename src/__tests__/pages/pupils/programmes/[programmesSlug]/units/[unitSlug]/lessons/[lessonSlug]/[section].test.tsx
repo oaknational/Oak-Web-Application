@@ -25,7 +25,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   describe("getStaticProps", () => {
-    it("Should call API:pupilLessonOverview", async () => {
+    it("Should call API:pupilLessonQuery", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "ks123",
@@ -35,9 +35,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
 
-      expect(
-        curriculumApi2023.default.pupilLessonOverview,
-      ).toHaveBeenCalledWith({
+      expect(curriculumApi2023.default.pupilLessonQuery).toHaveBeenCalledWith({
         programmeSlug: "ks123",
         unitSlug: "unitSlug",
         lessonSlug: "lessonSlug",

@@ -11,7 +11,7 @@ import { QuizMatchAnswer } from "./QuizMatchAnswer";
 
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -24,13 +24,13 @@ window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
 
 describe(QuizMatchAnswer, () => {
   const mouse: MatchAnswer = {
-    correct_choice: [
+    correctChoice: [
       {
         type: "text",
         text: "Mouse",
       },
     ],
-    match_option: [
+    matchOption: [
       {
         type: "text",
         text: "Likes cheese",
@@ -38,13 +38,13 @@ describe(QuizMatchAnswer, () => {
     ],
   };
   const cat: MatchAnswer = {
-    correct_choice: [
+    correctChoice: [
       {
         type: "text",
         text: "Cat",
       },
     ],
-    match_option: [
+    matchOption: [
       {
         type: "text",
         text: "Likes to be petted",
@@ -52,13 +52,13 @@ describe(QuizMatchAnswer, () => {
     ],
   };
   const elephant: MatchAnswer = {
-    correct_choice: [
+    correctChoice: [
       {
         type: "text",
         text: "Elephant",
       },
     ],
-    match_option: [
+    matchOption: [
       {
         type: "text",
         text: "Never forgets",
@@ -82,6 +82,7 @@ describe(QuizMatchAnswer, () => {
       answers: {
         match: [mouse, cat, elephant],
       },
+      order: 1,
     },
   });
   const completeMatches = {
