@@ -1,13 +1,12 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/dom";
+import { act } from "react-dom/test-utils";
 
 import CurriculumDownloads, {
   CurriculumDownloadsRef,
 } from "./CurriculumDownloads";
 
-import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -19,15 +18,14 @@ jest.mock(
   }),
 );
 
+let hubspotShouldError = false;
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
   () => ({
-    useHubspotSubmit: jest.fn().mockImplementation(() => {
-      return {
-        onHubspotSubmit: jest
-          .fn()
-          .mockImplementation(() => Promise.resolve(true)),
-      };
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return hubspotShouldError ? Promise.reject() : Promise.resolve(true);
+      },
     }),
   }),
 );
@@ -39,19 +37,24 @@ jest.mock("next/router", () => ({
   }),
 }));
 
+const testSubject = "test-subject";
+const testCategory = "test-category";
+const frenchResource = {
+  icon: "french",
+  label: "French Subject",
+  url: `https://this-url-needs-to-end-in-the-subject?param=${testSubject}`,
+  // TODO - the radio is selected based of the end of the url. This isn't ideal and should be refactored
+};
+const downloads = [frenchResource];
 const render = renderWithProviders();
+beforeEach(() => {
+  localStorage.clear();
+});
 
 describe("Component - Curriculum Header", () => {
-  const downloads = [
-    {
-      icon: "french",
-      label: "Test Subject",
-      url: "https://test-url.com/download?type=curriculum-map&extension=pdf&id=test-subject",
-    },
-  ];
   const renderComponent = () => {
     const defaultProps = {
-      category: "test-category",
+      category: testCategory,
       downloads: downloads,
     };
     return render(<CurriculumDownloads {...defaultProps} />);
@@ -69,7 +72,7 @@ describe("Component - Curriculum Header", () => {
         <>
           <CurriculumDownloads
             ref={downloadsRef}
-            category="test-category"
+            category={testCategory}
             downloads={downloads}
           />
           ;
@@ -83,18 +86,18 @@ describe("Component - Curriculum Header", () => {
     const { getByTestId } = render(<Page />);
     const resourceCard = getByTestId("resourceCard");
     await userEvent.click(resourceCard.querySelector("label")!);
-    await waitFor(() => {
+    await act(() => {
       expect(resourceCard.querySelector("input")?.checked).toBeTruthy();
     });
     await userEvent.click(getByTestId("clearButton"));
-    await waitFor(() => {
+    await act(() => {
       expect(resourceCard.querySelector("input")?.checked).toBeFalsy();
     });
   });
 
   test("renders download cards", async () => {
     const { findAllByLabelText } = renderComponent();
-    const cards = await findAllByLabelText("Test Subject");
+    const cards = await findAllByLabelText(frenchResource.label);
     expect(cards).toHaveLength(1);
   });
 
@@ -102,7 +105,7 @@ describe("Component - Curriculum Header", () => {
     const { getByTestId } = renderComponent();
     const schoolInput = getByTestId("search-combobox-input");
     await userEvent.type(schoolInput, "notavalidschool!?{enter}");
-    await waitFor(() => {
+    await act(() => {
       expect(getByTestId("errorList")).toBeInTheDocument();
     });
   });
@@ -112,11 +115,11 @@ describe("Component - Curriculum Header", () => {
     await userEvent.click(getByTestId("checkbox-download"));
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
-    await waitFor(() => {
+    await act(() => {
       expect(getByTestId("errorList")).toBeInTheDocument();
     });
     await userEvent.click(getByTestId("resourceCard").querySelector("label")!);
-    await waitFor(() => {
+    await act(() => {
       expect(queryByTestId("errorList")).not.toBeInTheDocument();
     });
   });
@@ -124,7 +127,7 @@ describe("Component - Curriculum Header", () => {
   test("rejects empty download URL", async () => {
     const { getByTestId } = render(
       <CurriculumDownloads
-        category="test-category"
+        category={testCategory}
         downloads={[{ icon: "english", label: "English", url: "" }]}
       />,
     );
@@ -132,7 +135,7 @@ describe("Component - Curriculum Header", () => {
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("resourceCard").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
-    await waitFor(() => {
+    await act(() => {
       expect(getByTestId("errorList")).toBeInTheDocument();
     });
   });
@@ -147,48 +150,42 @@ describe("Component - Curriculum Header", () => {
     await userEvent.click(getByTestId("checkbox-download")!);
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
-    await waitFor(
-      () => {
-        expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
-          "https://test-url.com/download?type=curriculum-map&extension=pdf&id=test-subject",
-        );
-
-        expect(getByTestId("downloadSuccess")).toBeInTheDocument();
-      },
-      { interval: 100, timeout: 2000 },
+    expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
+      frenchResource.url,
     );
+    expect(getByTestId("downloadSuccess")).toBeInTheDocument();
   });
 
   test("generates error when Hubspot fails", async () => {
-    (useHubspotSubmit as jest.Mock).mockImplementation(() => ({
-      useHubspotSubmit: jest.fn().mockImplementation(() => {
-        return {
-          onHubspotSubmit: jest.fn().mockImplementation(() => {
-            throw new Error("Test Error");
-          }),
-        };
-      }),
-    }));
-    const { getByTestId, getByText } = renderComponent();
+    const { getByTestId, getByText, getAllByTestId } = renderComponent();
+    hubspotShouldError = true;
+    const resourceCard = getAllByTestId("resourceCard")[0];
+    if (resourceCard === undefined) {
+      throw new Error("Resource card not found");
+    }
+    await userEvent.click(resourceCard.querySelector("label")!);
+    await userEvent.click(getByTestId("checkbox-download")!);
+    await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("resourceCard").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
-    await waitFor(() => {
+    await act(() => {
       expect(
         getByText(
           "There was an error downloading your files. Please try again.",
         ),
       ).toBeInTheDocument();
     });
+    hubspotShouldError = false;
   });
 
   test("selects subject when specified in URL", async () => {
     (useRouter as jest.Mock).mockReturnValue({
-      query: { subject: "test-subject", keystage: "test-category" },
+      query: { subject: testSubject, keystage: testCategory },
       asPath: "/some-path",
     });
     const { getByText } = renderComponent();
-    await waitFor(() => {
-      const input = getByText("Test Subject")
+    await act(() => {
+      const input = getByText(frenchResource.label)
         .closest("label")
         ?.querySelector("input") as HTMLInputElement;
       expect(input?.checked).toBeTruthy();

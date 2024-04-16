@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styled from "styled-components";
 import {
   OakP,
   OakHeading,
@@ -20,6 +21,11 @@ import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPh
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+
+const ULNoStyles = styled(OakUL)`
+  padding-inline-start: 0;
+  list-style-type: none;
+`;
 
 export type OverviewTabProps = {
   data: {
@@ -82,10 +88,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         ));
         return (
           <OakLI
-            $mb="space-between-sssx"
+            $mb={["space-between-xs"]}
+            $mr="space-between-none"
             key={`${firstItem.split(" ").join("-")}`}
           >
-            {createBullet(firstItem, i)}
+            <ULNoStyles>{createBullet(firstItem, i)}</ULNoStyles>
             <OakUL>{bullets}</OakUL>
           </OakLI>
         );
