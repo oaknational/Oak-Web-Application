@@ -1,3 +1,11 @@
+## [1.407.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.2...v1.407.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* set redirects to permanent ([b998fc7](https://github.com/oaknational/Oak-Web-Application/commit/b998fc7b57c6915a9e3c2e5bbe0620756be9b97d))
+* switch to redirects instead of rewrites to prevent perpetual 404 reloading ([5ff6f54](https://github.com/oaknational/Oak-Web-Application/commit/5ff6f5440b3ea8ddc76e7280202b37d5ed1b4f43))
+
 ## [1.407.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.1...v1.407.2) (2024-04-17)
 
 
