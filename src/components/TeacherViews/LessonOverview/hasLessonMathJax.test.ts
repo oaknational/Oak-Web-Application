@@ -46,7 +46,7 @@ describe("hasLessonMathJax", () => {
         { keyLearningPoint: "Important point $$\\int_0^1 x^2 dx$$" },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInKLP)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInKLP, "maths", false)).toBe(true);
   });
   it("containMathJax returns false with no text", () => {
     expect(containsMathJax(undefined)).toBe(false);
@@ -62,7 +62,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInKeywords)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInKeywords, "maths", false)).toBe(
+      true,
+    );
   });
 
   it("detects MathJax in multiple-choice quiz answers", () => {
@@ -95,7 +97,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInMCQuiz)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInMCQuiz, "maths", false)).toBe(
+      true,
+    );
   });
 
   it("detects MathJax in match quiz answers", () => {
@@ -126,7 +130,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz, "maths", false)).toBe(
+      true,
+    );
   });
   it("detects MathJax in match quiz answers", () => {
     const lessonWithMathJaxInMatchQuiz: LessonOverviewProps["lesson"] = {
@@ -156,7 +162,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz, "maths", false)).toBe(
+      true,
+    );
   });
 
   it("detects MathJax in order quiz answers", () => {
@@ -189,7 +197,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInOrderQuiz)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInOrderQuiz, "maths", false)).toBe(
+      true,
+    );
   });
 
   it("detects MathJax in short-answer quiz answers", () => {
@@ -218,7 +228,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInShortAnswerQuiz)).toBe(true);
+    expect(
+      hasLessonMathJax(lessonWithMathJaxInShortAnswerQuiz, "maths", false),
+    ).toBe(true);
   });
 
   it("detects MathJax in exitQuiz questions and answers", () => {
@@ -226,8 +238,8 @@ describe("hasLessonMathJax", () => {
       ...basicLesson,
       exitQuiz: [
         {
-          questionId: 1, // replace with actual questionId
-          questionUid: "example-uid", // replace with actual questionUid
+          questionId: 1,
+          questionUid: "example-uid",
           questionType: "multiple-choice",
           questionStem: [
             { text: "What is $$x$$ if $$x^2 = 4$$?", type: "text" },
@@ -246,7 +258,9 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInExitQuiz)).toBe(true);
+    expect(hasLessonMathJax(lessonWithMathJaxInExitQuiz, "maths", false)).toBe(
+      true,
+    );
   });
 
   it("detects MathJax in starterQuiz questions", () => {
@@ -254,8 +268,8 @@ describe("hasLessonMathJax", () => {
       ...basicLesson,
       starterQuiz: [
         {
-          questionId: 1, // replace with actual questionId
-          questionUid: "example-uid", // replace with actual questionUid
+          questionId: 1,
+          questionUid: "example-uid",
           questionType: "multiple-choice", //
           questionStem: [
             { text: "Solve $$x + 5 = 10$$ for $$x$$", type: "text" },
@@ -266,10 +280,18 @@ describe("hasLessonMathJax", () => {
         },
       ],
     };
-    expect(hasLessonMathJax(lessonWithMathJaxInStarterQuiz)).toBe(true);
+    expect(
+      hasLessonMathJax(lessonWithMathJaxInStarterQuiz, "maths", false),
+    ).toBe(true);
   });
 
   it("returns false when MathJax is not present in any sections", () => {
-    expect(hasLessonMathJax(basicLesson)).toBe(false);
+    expect(hasLessonMathJax(basicLesson, "maths", false)).toBe(false);
+  });
+  it("returns false when subject is not allowed", () => {
+    expect(hasLessonMathJax(basicLesson, "computing", false)).toBe(false);
+  });
+  it("returns false when legacy is not allowed", () => {
+    expect(hasLessonMathJax(basicLesson, "computing", true)).toBe(false);
   });
 });

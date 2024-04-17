@@ -7,10 +7,7 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import {
-  ALLOWED_MATHJAX_SUBJECT_SLUGS,
-  hasLessonMathJax,
-} from "./hasLessonMathJax";
+import { hasLessonMathJax } from "./hasLessonMathJax";
 
 import {
   getPageLinksForLesson,
@@ -109,13 +106,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
-
-  const isMathJaxLesson =
-    subjectSlug &&
-    ALLOWED_MATHJAX_SUBJECT_SLUGS.includes(subjectSlug) &&
-    !isLegacyLicense
-      ? hasLessonMathJax(lesson)
-      : false;
+  const isMathJaxLesson = hasLessonMathJax(
+    lesson,
+    subjectSlug,
+    isLegacyLicense,
+  );
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 

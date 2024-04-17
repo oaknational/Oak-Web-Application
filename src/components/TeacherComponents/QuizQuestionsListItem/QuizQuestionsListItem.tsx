@@ -12,11 +12,11 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 export type QuizQuestionsListItemProps = {
   question: NonNullable<LessonOverviewQuizData>[number];
   index: number;
-  isMathJaxLesson?: boolean;
+  isMathJaxLesson: boolean;
 };
 
 const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
-  const { question, index, isMathJaxLesson = false } = props;
+  const { question, index, isMathJaxLesson } = props;
   const { questionStem, answers } = question;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (

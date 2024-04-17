@@ -71,7 +71,16 @@ const hasQuizMathJax = (
 
 export const hasLessonMathJax = (
   lessonPage: LessonOverviewProps["lesson"],
+  subjectSlug: string | null,
+  isLegacyLicense: boolean,
 ): boolean => {
+  if (
+    (subjectSlug && !ALLOWED_MATHJAX_SUBJECT_SLUGS.includes(subjectSlug)) ||
+    isLegacyLicense
+  ) {
+    return false;
+  }
+
   if (
     lessonPage.contentGuidance?.some((cg) =>
       containsMathJax(cg.contentGuidanceDescription),

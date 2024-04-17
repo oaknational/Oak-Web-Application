@@ -5,10 +5,10 @@ import { QuizProps } from "@/components/TeacherComponents/LessonOverviewQuizCont
 import QuizQuestionsListItem from "@/components/TeacherComponents/QuizQuestionsListItem";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
-export type QuizQuestionListProps = QuizProps & { isMathJaxLesson?: boolean };
+export type QuizQuestionListProps = QuizProps & { isMathJaxLesson: boolean };
 
 const QuestionsList: FC<QuizQuestionListProps> = (props) => {
-  const { questions, isMathJaxLesson = false } = props;
+  const { questions, isMathJaxLesson } = props;
   const questionCount = questions.length;
 
   return (
