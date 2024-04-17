@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import {
   OakCloudinaryConfigProvider,
   OakBackLink,
@@ -7,7 +8,6 @@ import {
   OakPrimaryButton,
   OakQuizCounter,
   OakSpan,
-  OakTooltip,
 } from "@oaknational/oak-components";
 
 import {
@@ -27,6 +27,11 @@ import {
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+
+const OakTooltip = dynamic(
+  () => import("@oaknational/oak-components").then((mod) => mod.OakTooltip),
+  { ssr: false },
+);
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
