@@ -18,7 +18,6 @@ export type QuizQuestionsListItemProps = {
 const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
   const { question, index, isMathJaxLesson = false } = props;
   const { questionStem, answers } = question;
-  console.log("isMathJaxLesson -List item", isMathJaxLesson);
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
     <MathJaxWrapper>

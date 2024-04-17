@@ -45,7 +45,6 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   isMathJaxLesson = false,
 }) => {
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
-  console.log("isMathJaxLesson - details", isMathJaxLesson);
   return (
     <MathJaxWrapper>
       <OakFlex
