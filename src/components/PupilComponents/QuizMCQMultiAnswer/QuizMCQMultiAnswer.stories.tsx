@@ -21,7 +21,7 @@ import {
 import {
   quizQuestions,
   mcqImageAnswers,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
 const meta = {
   component: QuizMCQMultiAnswer,
@@ -64,10 +64,10 @@ const mockQuizEngineContext: NonNullable<QuizEngineContextType> =
 
 const mcqMultiImageAnswers = [...mcqImageAnswers];
 if (mcqMultiImageAnswers[0]) {
-  mcqMultiImageAnswers[0].answer_is_correct = true;
+  mcqMultiImageAnswers[0].answerIsCorrect = true;
 }
 if (mcqMultiImageAnswers[2]) {
-  mcqMultiImageAnswers[2].answer_is_correct = true;
+  mcqMultiImageAnswers[2].answerIsCorrect = true;
 }
 
 /*

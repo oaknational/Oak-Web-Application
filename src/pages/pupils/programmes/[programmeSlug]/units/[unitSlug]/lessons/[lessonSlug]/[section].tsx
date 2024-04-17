@@ -61,22 +61,24 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const curriculumData = await curriculumApi2023.pupilLessonOverview({
+      const res = await curriculumApi2023.pupilLessonQuery({
         programmeSlug,
         lessonSlug,
         unitSlug,
       });
 
-      if (!curriculumData) {
+      if (!res) {
         return {
           notFound: true,
         };
       }
 
+      const { browseData, content } = res;
+
       // 404 if the lesson does not contain the given section
       if (
         isLessonReviewSection(section) &&
-        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+        !pickAvailableSectionsForLesson(content).includes(section)
       ) {
         return {
           notFound: true,
@@ -84,14 +86,15 @@ export const getStaticProps: GetStaticProps<
       }
 
       const { transcriptSentences, hasWorksheet } =
-        await requestLessonResources({ curriculumData });
+        await requestLessonResources({ lessonContent: content });
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
-          curriculumData: {
-            ...curriculumData,
+          lessonContent: {
+            ...content,
             transcriptSentences: transcriptSentences ?? [],
           },
+          browseData,
           hasWorksheet,
           initialSection: section,
         },

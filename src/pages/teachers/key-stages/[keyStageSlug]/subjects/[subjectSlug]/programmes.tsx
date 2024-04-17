@@ -1,7 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
-import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -22,8 +21,14 @@ import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpe
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
-  const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
-    props;
+  const {
+    programmes,
+    keyStageSlug,
+    subjectSlug,
+    keyStageTitle,
+    subjectTitle,
+    legacy,
+  } = props;
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
@@ -123,10 +128,10 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         subjectIconBackgroundColor={"lavender"}
         title={subjectTitle}
         programmeFactor={keyStageTitle}
-        hasCurriculumDownload={isSlugLegacy(subjectSlug)}
+        hasCurriculumDownload={legacy}
         {...props}
-        subjectSlug={removeLegacySlugSuffix(subjectSlug)}
-        isNew={!isSlugLegacy(subjectSlug)} // we have no way to know if it's new based on cohort information at this level
+        subjectSlug={subjectSlug}
+        isNew={!legacy} // we have no way to know if it's new based on cohort information at this level
       />
       <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />
@@ -165,20 +170,20 @@ export const getStaticProps: GetStaticProps<
       }
 
       const { subjectSlug, keyStageSlug } = context.params;
-      const curriculumData = isSlugLegacy(subjectSlug)
-        ? await curriculumApi.tierListing({
-            keyStageSlug: keyStageSlug,
-            subjectSlug: subjectSlug,
-          })
-        : await curriculumApi2023.programmeListingPage({
-            keyStageSlug: keyStageSlug,
-            subjectSlug: subjectSlug,
-            isLegacy: false,
-          });
+
+      const isLegacy = isSlugLegacy(subjectSlug);
+      const curriculumData = await curriculumApi2023.programmeListingPage({
+        keyStageSlug: keyStageSlug,
+        subjectSlug: isLegacy
+          ? removeLegacySlugSuffix(subjectSlug)
+          : subjectSlug,
+        isLegacy: isLegacy,
+      });
 
       const results = {
         props: {
           ...curriculumData,
+          legacy: isLegacy,
         },
       };
 

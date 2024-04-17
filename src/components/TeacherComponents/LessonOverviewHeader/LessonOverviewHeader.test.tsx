@@ -23,9 +23,9 @@ describe("LessonOverviewHeader", () => {
     expect(subjectHeading[0]).toHaveTextContent("Islamic Geometry");
   });
 
-  it("renders the download button when !expired && hasDownloadableResources", () => {
+  it("renders the download button when !expired && show download all is true", () => {
     const { getAllByTestId } = renderWithTheme(
-      <LessonOverviewHeader {...props} />,
+      <LessonOverviewHeader {...props} showDownloadAll={true} />,
     );
     expect(getAllByTestId("download-all-button")).toHaveLength(2); // mobile and desktop
   });
@@ -37,17 +37,17 @@ describe("LessonOverviewHeader", () => {
     expect(getAllByTestId("share-all-button")).toHaveLength(2); // mobile and desktop
   });
 
-  it("does not render the download button when expired && hasDownloadableResources", () => {
+  it("does not render the download button when expired && show download all is true", () => {
     const { queryByTestId } = renderWithTheme(
-      <LessonOverviewHeader {...props} expired={true} />,
+      <LessonOverviewHeader {...props} expired={true} showDownloadAll={true} />,
     );
     const downloadLink = queryByTestId("download-all-button");
     expect(downloadLink).toBeNull();
   });
 
-  it("does not render the download button when !expired && !hasDownloadableResources", () => {
+  it("does not render the download button when show download all is false", () => {
     const { queryByTestId } = renderWithTheme(
-      <LessonOverviewHeader {...props} hasDownloadableResources={false} />,
+      <LessonOverviewHeader {...props} showDownloadAll={false} />,
     );
     const downloadLink = queryByTestId("download-all-button");
     expect(downloadLink).toBeNull();

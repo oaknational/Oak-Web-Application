@@ -9,6 +9,7 @@ export const tieredProgrammeListingFixture = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths-l",
     subjectTitle: "Maths",
+    legacy: false,
     programmes: [
       {
         programmeSlug: "maths-secondary-ks4-foundation-l",
@@ -40,6 +41,7 @@ export const generatedLegacyProgrammeData = {
   keyStageTitle: "Key stage 4",
   subjectSlug: "maths-l",
   subjectTitle: "Maths",
+  legacy: false,
   programmes: [
     {
       programmeSlug: "maths-secondary-ks4-foundation-l",

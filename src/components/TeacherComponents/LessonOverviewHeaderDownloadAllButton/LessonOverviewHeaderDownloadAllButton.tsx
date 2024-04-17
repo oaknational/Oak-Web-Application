@@ -16,7 +16,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     subjectSlug,
     lessonTitle,
     expired,
-    hasDownloadableResources,
+    showDownloadAll,
     programmeSlug,
     lessonSlug,
     unitSlug,
@@ -33,7 +33,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
 
   const preselected = "all";
 
-  if (expired || !hasDownloadableResources) {
+  if (expired || !showDownloadAll) {
     return null;
   }
 
