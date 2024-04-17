@@ -1,5 +1,5 @@
 import { LessonOverviewProps } from "./LessonOverview.view";
-import { hasLessonMathJax } from "./hasLessonMathJax";
+import { containsMathJax, hasLessonMathJax } from "./hasLessonMathJax";
 
 describe("hasLessonMathJax", () => {
   const basicLesson: LessonOverviewProps["lesson"] = {
@@ -48,6 +48,9 @@ describe("hasLessonMathJax", () => {
     };
     expect(hasLessonMathJax(lessonWithMathJaxInKLP)).toBe(true);
   });
+  it("containMathJax returns false with no text", () => {
+    expect(containsMathJax(undefined)).toBe(false);
+  });
 
   it("detects MathJax in lessonKeywords", () => {
     const lessonWithMathJaxInKeywords = {
@@ -95,7 +98,36 @@ describe("hasLessonMathJax", () => {
     expect(hasLessonMathJax(lessonWithMathJaxInMCQuiz)).toBe(true);
   });
 
-  // Test for MathJax in "match" quiz answers
+  it("detects MathJax in match quiz answers", () => {
+    const lessonWithMathJaxInMatchQuiz: LessonOverviewProps["lesson"] = {
+      ...basicLesson,
+      starterQuiz: [
+        {
+          questionId: 3,
+          questionUid: "match-uid",
+          questionType: "match",
+          questionStem: [
+            {
+              text: "Match the following expressions to their simplified forms",
+              type: "text",
+            },
+          ],
+          answers: {
+            match: [
+              {
+                correct_choice: [{ text: "$$x^2 - x^2$$", type: "text" }],
+                match_option: [{ text: "$$0$$", type: "text" }],
+              },
+            ],
+          },
+          feedback: "Remember that any term minus itself equals zero.",
+          hint: "Subtract the terms.",
+          active: true,
+        },
+      ],
+    };
+    expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz)).toBe(true);
+  });
   it("detects MathJax in match quiz answers", () => {
     const lessonWithMathJaxInMatchQuiz: LessonOverviewProps["lesson"] = {
       ...basicLesson,
@@ -127,7 +159,6 @@ describe("hasLessonMathJax", () => {
     expect(hasLessonMathJax(lessonWithMathJaxInMatchQuiz)).toBe(true);
   });
 
-  // Test for MathJax in "order" quiz answers
   it("detects MathJax in order quiz answers", () => {
     const lessonWithMathJaxInOrderQuiz: LessonOverviewProps["lesson"] = {
       ...basicLesson,
@@ -161,7 +192,6 @@ describe("hasLessonMathJax", () => {
     expect(hasLessonMathJax(lessonWithMathJaxInOrderQuiz)).toBe(true);
   });
 
-  // Test for MathJax in "short-answer" quiz answers
   it("detects MathJax in short-answer quiz answers", () => {
     const lessonWithMathJaxInShortAnswerQuiz: LessonOverviewProps["lesson"] = {
       ...basicLesson,

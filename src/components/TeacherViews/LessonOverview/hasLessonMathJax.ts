@@ -5,7 +5,16 @@ import {
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const containsMathJax = (text: string | undefined | null): boolean => {
+export const ALLOWED_MATHJAX_SUBJECT_SLUGS = [
+  "maths",
+  "physics",
+  "chemistry",
+  "biology",
+  "combined-science",
+  "science",
+];
+
+export const containsMathJax = (text: string | undefined | null): boolean => {
   if (!text) return false;
   const mathJaxPatterns = /(\$\$|\\\[|\\\(|\\begin\{)/;
   return mathJaxPatterns.test(text);
@@ -23,9 +32,7 @@ const hasQuizMathJax = (
 
       // Check in answers by type
       const answerCheck = Object.entries(question.answers ?? {}).some(
-        ([type, answers]) => {
-          if (!Array.isArray(answers)) return false;
-
+        ([type]) => {
           const findMatch = (answer: StemObject[]) => {
             return answer.some(
               (a) => a.type === "text" && containsMathJax(a.text),
