@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, Fragment } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -6,6 +6,8 @@ import {
   OakHeading,
   OakFlex,
 } from "@oaknational/oak-components";
+
+import { hasLessonMathJax } from "./hasLessonMathJax";
 
 import {
   getPageLinksForLesson,
@@ -102,6 +104,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     programmeSlug,
   } = commonPathway;
 
+  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
+
+  const isMathJaxLesson =
+    subjectSlug === "maths" && !isLegacyLicense
+      ? hasLessonMathJax(lesson)
+      : false;
+
+  const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
   }: {
@@ -156,9 +168,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
-  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
-  const isNew = lessonCohort === NEW_COHORT;
-
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
@@ -172,7 +181,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
 
   return (
-    <MathJaxProvider>
+    <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
         {...commonPathway}
@@ -293,6 +302,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
+                    isMathJaxLesson={isMathJaxLesson}
                   />
                 </LessonItemContainer>
 
@@ -390,6 +400,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={starterQuiz}
                         imageAttribution={starterQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -428,6 +439,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={exitQuiz}
                         imageAttribution={exitQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -484,6 +496,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </OakGrid>
         )}
       </MaxWidth>
-    </MathJaxProvider>
+    </MathJaxLessonProvider>
   );
 }

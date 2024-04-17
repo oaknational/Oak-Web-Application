@@ -9,6 +9,7 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 export type QuizProps = {
   questions: NonNullable<LessonOverviewQuizData>;
   imageAttribution: { attribution: string; questionNumber: string }[];
+  isMathJaxLesson?: boolean;
 };
 
 const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
