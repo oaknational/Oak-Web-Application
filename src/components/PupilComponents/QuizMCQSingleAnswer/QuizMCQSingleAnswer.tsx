@@ -9,6 +9,7 @@ import {
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import {
   getStemImage,
+  isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
 
@@ -57,7 +58,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
           const label = answer.answer.find(isText);
 
           const image = getStemImage({
-            stem: answer.answer,
+            stem: answer.answer.filter(isImage),
             minWidth: "all-spacing-19",
           });
 

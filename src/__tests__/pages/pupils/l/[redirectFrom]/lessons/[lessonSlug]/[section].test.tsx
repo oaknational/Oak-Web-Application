@@ -27,7 +27,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   describe("getStaticProps", () => {
-    it("Should call API:pupilLessonOverview", async () => {
+    it("Should call API:pupilLessonQuery", async () => {
       await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
@@ -36,18 +36,16 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
 
-      expect(
-        curriculumApi2023.pupilLessonOverviewCanonical,
-      ).toHaveBeenCalledWith({
+      expect(curriculumApi2023.pupilLessonQuery).toHaveBeenCalledWith({
         lessonSlug: "lessonSlug",
       });
     });
   });
 
   it("should return redirect if lesson not found", async () => {
-    (
-      curriculumApi2023.pupilLessonOverviewCanonical as jest.Mock
-    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
+    (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
 
     const res = await getStaticProps({
       params: {
@@ -70,9 +68,9 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   it("should return redirect if lesson not found", async () => {
-    (
-      curriculumApi2023.pupilLessonOverviewCanonical as jest.Mock
-    ).mockResolvedValueOnce(null);
+    (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
+      null,
+    );
 
     const res = await getStaticProps({
       params: {

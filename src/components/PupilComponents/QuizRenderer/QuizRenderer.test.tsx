@@ -17,7 +17,7 @@ import {
 } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 const questionsArrayFixture = quizQuestions || [];
@@ -157,7 +157,7 @@ describe("QuizRenderer", () => {
     if (context?.currentQuestionData?.answers?.["multiple-choice"]?.[1]) {
       context.currentQuestionData.answers[
         "multiple-choice"
-      ][1].answer_is_correct = true;
+      ][1].answerIsCorrect = true;
     }
 
     if (context?.questionState?.[0]) {

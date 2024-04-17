@@ -11,16 +11,16 @@ import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { invariant } from "../pupilUtils/invariant";
 
 import type {
-  LessonOverviewQuizData,
+  QuizQuestion,
   MCAnswer,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   isLessonReviewSection,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
 
-export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
+export type QuestionsArray = NonNullable<QuizQuestion[]>;
 
 export type QuizEngineProps = {
   children: ReactNode;
@@ -124,7 +124,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     (pupilAnswer?: MCAnswer | MCAnswer[] | null) => {
       const questionAnswers = currentQuestionData?.answers?.["multiple-choice"];
       const correctAnswers = questionAnswers?.filter(
-        (answer) => answer.answer_is_correct,
+        (answer) => answer?.answerIsCorrect,
       );
 
       const pupilAnswerArray = Array.isArray(pupilAnswer)
@@ -149,9 +149,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         (grade === 0 &&
           currentQuestionData?.answers?.["multiple-choice"]?.some(
             (answer, index) => {
-              return (
-                answer.answer_is_correct && feedback?.[index] === "correct"
-              );
+              return answer?.answerIsCorrect && feedback?.[index] === "correct";
             },
           )) ??
         false;
@@ -169,11 +167,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleSubmitShortAnswer = useCallback(
     (pupilAnswer?: string) => {
       const questionAnswers = currentQuestionData?.answers?.["short-answer"];
-      const correctAnswers = questionAnswers?.map(
-        (answer) => answer?.answer?.[0]?.text,
+      const correctAnswers = questionAnswers?.map((answer) =>
+        answer?.answer?.[0]?.type === "text" ? answer?.answer?.[0]?.text : "",
       );
       const feedback: QuestionFeedbackType = correctAnswers?.includes(
-        pupilAnswer,
+        pupilAnswer ?? "",
       )
         ? "correct"
         : "incorrect";
@@ -191,7 +189,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   /**
    * Receives an array containing the order of the answers given
-   * The order is 1-indexed like `correct_order` in the question data
+   * The order is 1-indexed like `correctOrder` in the question data
    * for ease of comparison
    */
   const handleSubmitOrderAnswer = useCallback(
@@ -203,9 +201,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         "answers are not for an order question",
       );
 
-      const correctAnswers = answers.order.map(
-        (answer) => answer.correct_order,
-      );
+      const correctAnswers = answers.order.map((answer) => answer.correctOrder);
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
         (pupilAnswer, i) =>
           correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",

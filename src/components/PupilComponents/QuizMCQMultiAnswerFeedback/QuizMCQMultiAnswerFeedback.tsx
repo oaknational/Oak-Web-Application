@@ -8,7 +8,7 @@ export const QuizMCQMultiAnswerFeedback = () => {
   const { currentQuestionData } = quizEngineContext;
   const correctAnswers = currentQuestionData?.answers?.[
     "multiple-choice"
-  ]?.filter((answer) => answer.answer_is_correct);
+  ]?.filter((answer) => answer.answerIsCorrect);
   const labels = correctAnswers?.map((answer) => answer.answer?.find(isText));
   if (labels && labels.length !== 0)
     return (
