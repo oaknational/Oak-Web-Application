@@ -232,19 +232,19 @@ module.exports = async (phase) => {
         {
           source: "/pupils/lessons/:lessonSlug",
           destination: "/pupils/lessons/:lessonSlug/overview",
-          permanent: false,
+          permanent: true,
         },
         {
           source:
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
           destination:
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
-          permanent: false,
+          permanent: true,
         },
         {
           source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
           destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
-          permanent: false,
+          permanent: true,
         },
       ];
     },
