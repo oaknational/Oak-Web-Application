@@ -1,3 +1,10 @@
+## [1.407.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.1...v1.407.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* check correct field for worksheet download ([a565fda](https://github.com/oaknational/Oak-Web-Application/commit/a565fda5d95bdb33391f45bb3b47f0c242b7cfdf))
+
 ## [1.407.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.0...v1.407.1) (2024-04-17)
 
 
