@@ -20,7 +20,6 @@ const lessonDownloadsFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
-    hasDownloadableResources: true,
     nextLessons: [
       { lessonSlug: "macbeth-lesson-2", lessonTitle: "Macbeth" },
       { lessonSlug: "macbeth-lesson-3", lessonTitle: "Macbeth" },

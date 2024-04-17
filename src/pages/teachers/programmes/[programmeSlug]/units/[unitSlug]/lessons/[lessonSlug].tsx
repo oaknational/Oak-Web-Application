@@ -12,16 +12,15 @@ import {
 } from "@/node-lib/isr";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { getCaptionsFromFile, formatSentences } from "@/utils/handleTranscript";
-import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 export type LessonOverviewPageProps = {
-  curriculumData: LessonOverviewData;
+  curriculumData: LessonOverviewPageData;
 };
 
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
@@ -88,17 +87,12 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = shouldUseLegacyApi(programmeSlug)
-        ? await curriculumApi.lessonOverview({
-            programmeSlug,
-            lessonSlug,
-            unitSlug,
-          })
-        : await curriculumApi2023.lessonOverview({
-            programmeSlug,
-            lessonSlug,
-            unitSlug,
-          });
+      const curriculumData = await curriculumApi2023.lessonOverview({
+        programmeSlug,
+        lessonSlug,
+        unitSlug,
+      });
+
       if (!curriculumData) {
         return {
           notFound: true,

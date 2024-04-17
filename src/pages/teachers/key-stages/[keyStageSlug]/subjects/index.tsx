@@ -4,7 +4,6 @@ import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
-import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -20,6 +19,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -42,6 +43,7 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
   const containerHeight = keyStages.length > 4 ? 172 : 120;
+
   return (
     <AppLayout
       seoProps={{
@@ -94,21 +96,37 @@ export const getStaticProps: GetStaticProps<
       if (!context.params?.keyStageSlug) {
         throw new Error("No keyStageSlug");
       }
-      const keystage = context.params?.keyStageSlug;
-      const isEyfs = keystage === "early-years-foundation-stage";
+      const keyStage = context.params?.keyStageSlug;
 
-      const curriculumData2023 = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: keystage,
+      const isEyfs = keyStage === "early-years-foundation-stage";
+
+      const curriculumData = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: keyStage,
         isLegacy: isEyfs,
       });
+      const curriculumDataLegacy = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: keyStage,
+        isLegacy: true,
+      });
 
-      const { keyStageSlug, keyStages } = curriculumData2023;
-      let keyStageTitle = curriculumData2023.keyStageTitle;
+      if (!curriculumData || !curriculumDataLegacy) {
+        return {
+          notFound: true,
+        };
+      }
 
-      const subjectSlugs2023 =
-        curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
+      const { keyStageSlug, keyStages } = curriculumData;
+      const keyStageTitle = curriculumData.keyStageTitle;
 
-      let subjects = [];
+      const subjectSlugsLegacy =
+        curriculumDataLegacy?.subjects.map((s) => s.subjectSlug) || [];
+
+      const subjectSlugs =
+        curriculumData?.subjects.map((s) => s.subjectSlug) || [];
+
+      const uniqueSubjectSlugs = [
+        ...new Set(subjectSlugsLegacy.concat(subjectSlugs)),
+      ];
 
       const getSubject = (
         data: SubjectListingPageData,
@@ -118,62 +136,33 @@ export const getStaticProps: GetStaticProps<
         const slugToMatch = (subjectSlug: string) =>
           isLegacy ? removeLegacySlugSuffix(subjectSlug) : subjectSlug;
 
-        return (
+        const foundSubject =
           data.subjects.find(
             (subject) => slugToMatch(subject.subjectSlug) === subjectSlug,
-          ) || null
-        );
+          ) || null;
+
+        return foundSubject && isLegacy
+          ? {
+              ...foundSubject,
+              subjectSlug: isSlugLegacy(foundSubject.subjectSlug)
+                ? foundSubject.subjectSlug
+                : addLegacySlugSuffix(foundSubject.subjectSlug),
+            }
+          : foundSubject;
       };
 
-      // EYFS only exists in the new API
-      if (isEyfs) {
-        if (!curriculumData2023) {
+      const subjects = uniqueSubjectSlugs
+        .map((subjectSlug) => {
           return {
-            notFound: true,
+            subjectSlug: subjectSlug,
+            old: getSubject(curriculumDataLegacy, subjectSlug, true),
+            new: isEyfs ? null : getSubject(curriculumData, subjectSlug, false),
           };
-        }
-
-        subjects = subjectSlugs2023.map((subjectSlug) => {
-          return {
-            subjectSlug,
-            old: getSubject(curriculumData2023, subjectSlug, false),
-            new: null,
-          };
-        });
-      } else {
-        const curriculumData = await curriculumApi.subjectListing({
-          keyStageSlug: keystage,
-        });
-
-        if (!curriculumData && !curriculumData2023) {
-          return {
-            notFound: true,
-          };
-        }
-
-        keyStageTitle = curriculumData.keyStageTitle;
-
-        const subjectSlugs = curriculumData.subjects.map((s) =>
-          removeLegacySlugSuffix(s.subjectSlug),
-        );
-
-        const uniqueSubjectSlugs = [
-          ...new Set(subjectSlugs.concat(subjectSlugs2023)),
-        ];
-
-        subjects = uniqueSubjectSlugs
-          .map((subjectSlug) => {
-            return {
-              subjectSlug,
-              old: getSubject(curriculumData, subjectSlug, true),
-              new: getSubject(curriculumData2023, subjectSlug, false),
-            };
-          })
-          // Filter out subjects that don't exist in either curriculum
-          .filter((subject) => subject.old || subject.new)
-          // sort by slug so the old and new subjects are intermingled
-          .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
-      }
+        })
+        // Filter out subjects that don't exist in either curriculum
+        .filter((subject) => subject.old || subject.new)
+        // sort by slug so the old and new subjects are intermingled
+        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
 
       const results = {
         props: {

@@ -7,7 +7,6 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -16,7 +15,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type LessonSharePageProps = {
@@ -79,17 +77,11 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = shouldUseLegacyApi(programmeSlug)
-        ? await curriculumApi.lessonShare({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          })
-        : await curriculumApi2023.lessonShare({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          });
+      const curriculumData = await curriculumApi2023.lessonShare({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
 
       if (!curriculumData) {
         return {

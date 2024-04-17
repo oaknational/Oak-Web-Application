@@ -5,7 +5,6 @@ import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import lessonOverviewCanonicalSchema, {
@@ -19,7 +18,7 @@ import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
 } from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import getNextLessonsInUnit from "../curriculum-api-2023/queries/lessonDownloads/getNextLessonsInUnit";
-import { pupilLessonOverviewSchema } from "../curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
+import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
@@ -161,7 +160,6 @@ const teachersHomePageData = z.object({
 });
 
 export const lessonOverviewData = lessonOverviewSchema;
-export const pupilLessonOverviewData = pupilLessonOverviewSchema;
 
 export const programmesData = z.object({
   subjectSlug: z.string(),
@@ -244,7 +242,6 @@ export const lessonShareSchema = z.intersection(
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
-export type PupilLessonOverviewData = z.infer<typeof pupilLessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
 export type LessonShareSchema = z.infer<typeof lessonShareListSchema>;
@@ -563,6 +560,7 @@ const curriculumApi = {
         ...transformedLessons[0],
         pathways: [],
         isLegacy: true,
+        downloads: [],
       } as LessonOverviewCanonical,
     );
 

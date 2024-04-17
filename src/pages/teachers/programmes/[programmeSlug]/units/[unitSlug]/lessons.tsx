@@ -16,7 +16,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import curriculumApi from "@/node-lib/curriculum-api";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
@@ -31,7 +30,6 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { NEW_COHORT } from "@/config/cohort";
-import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 export type LessonListingPageProps = {
@@ -64,11 +62,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     unitTitle,
     subjectTitle,
     programmeSlug,
-    hasNewContent,
   } = curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
-
+  const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: RESULTS_PER_PAGE,
@@ -205,24 +202,20 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = shouldUseLegacyApi(programmeSlug)
-        ? await curriculumApi.lessonListing({
-            programmeSlug,
-            unitSlug,
-          })
-        : await curriculumApi2023.lessonListing({
-            programmeSlug,
-            unitSlug,
-          });
+      const curriculumData = await curriculumApi2023.lessonListing({
+        programmeSlug,
+        unitSlug,
+      });
 
-      const lessonsCohorts = curriculumData.lessons.map(
-        (l) => l.lessonCohort ?? "2020-2023",
-      );
-      const hasNewContent = lessonsCohorts.includes(NEW_COHORT);
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
-          curriculumData: { ...curriculumData, hasNewContent },
+          curriculumData,
         },
       };
       return results;

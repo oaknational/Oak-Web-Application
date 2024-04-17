@@ -5,14 +5,11 @@ import ProgrammesListingPage, {
   getStaticProps,
   URLParams,
 } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
-import {
-  generatedLegacyProgrammeData,
-  tieredProgrammeListingFixture,
-} from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
-import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 
 const render = renderWithProviders();
 
@@ -20,7 +17,7 @@ describe("programmes listing page", () => {
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
+        <ProgrammesListingPage {...programmeListingFixture()} />,
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
@@ -28,7 +25,7 @@ describe("programmes listing page", () => {
 
     it("renders the correct number of tiers and tier cards", () => {
       const { getAllByTestId } = render(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
+        <ProgrammesListingPage {...programmeListingFixture()} />,
       );
 
       expect(getAllByTestId("programme-list-item")).toHaveLength(2);
@@ -38,7 +35,7 @@ describe("programmes listing page", () => {
   describe("SEO and Tracking", () => {
     it("renders the correct SEO details for programmes with only tiers", async () => {
       const { seo } = renderWithSeo()(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
+        <ProgrammesListingPage {...programmeListingFixture()} />,
       );
 
       expect(seo).toEqual({
@@ -56,7 +53,7 @@ describe("programmes listing page", () => {
     it("correctly formats more than 2 tiers", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
-          {...tieredProgrammeListingFixture({
+          {...programmeListingFixture({
             programmes: [
               {
                 programmeSlug: "maths-secondary-ks4-foundation",
@@ -108,7 +105,7 @@ describe("programmes listing page", () => {
     it("renders the correct SEO details for programmes with only examboards", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
-          {...tieredProgrammeListingFixture({
+          {...programmeListingFixture({
             programmes: [
               {
                 programmeSlug: "maths-secondary-ks4-foundation",
@@ -150,7 +147,7 @@ describe("programmes listing page", () => {
     it("renders correct SEO for programmes with tiers and examboards", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
-          {...tieredProgrammeListingFixture({
+          {...programmeListingFixture({
             programmes: [
               {
                 programmeSlug: "maths-secondary-ks4-foundation",
@@ -204,15 +201,33 @@ describe("programmes listing page", () => {
     });
   });
   describe("getStaticProps", () => {
-    it("Should fetch the correct data", async () => {
-      const testRes = (await getStaticProps({
+    it("Should fetch the correct data for legacy subject slugs", async () => {
+      await getStaticProps({
         params: {
           keyStageSlug: "ks4",
           subjectSlug: "maths-l",
         },
-      })) as { props: ProgrammeListingPageData };
+      });
 
-      expect(testRes.props).toEqual(generatedLegacyProgrammeData);
+      expect(curriculumApi.programmeListingPage).toHaveBeenCalledWith({
+        keyStageSlug: "ks4",
+        subjectSlug: "maths",
+        isLegacy: true,
+      });
+    });
+    it("Should fetch the correct data for non legacy subject slugs", async () => {
+      await getStaticProps({
+        params: {
+          keyStageSlug: "ks4",
+          subjectSlug: "maths",
+        },
+      });
+
+      expect(curriculumApi.programmeListingPage).toHaveBeenCalledWith({
+        keyStageSlug: "ks4",
+        subjectSlug: "maths",
+        isLegacy: false,
+      });
     });
 
     it("should throw error when not provided context params", async () => {

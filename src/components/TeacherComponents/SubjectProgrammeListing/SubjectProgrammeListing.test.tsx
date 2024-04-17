@@ -14,7 +14,7 @@ const render = renderWithProviders();
 const onClick = jest.fn();
 
 describe("SubjectProgrammeListing", () => {
-  test("render a tier subject component with heading ", () => {
+  test("render a tier subject component with heading", () => {
     render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     expect(screen.getByText("Select tier of learning")).toBeInTheDocument();
