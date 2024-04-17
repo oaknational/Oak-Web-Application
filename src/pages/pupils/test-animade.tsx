@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 // import { DotLottiePlayer } from "@dotlottie/react-player";
 
-import lottieJson from "../../lotties/lottie.json";
+// import lottieJson from "../../lotties/lottie.json";
 
 const TestPage: NextPage = () => {
   const [width, setWidth] = useState(150);
@@ -28,7 +28,7 @@ const TestPage: NextPage = () => {
       <button type="button" onClick={handleDecreaseSize}>
         Decrease size
       </button>
-      <OakHeading tag="h1">local asset</OakHeading>
+      {/* <OakHeading tag="h1">local asset</OakHeading>
       <Player loop src={lottieJson} autoplay style={{ width }} />
       <OakHeading tag="h1">cloudinary asset loop</OakHeading>
       <Player
@@ -40,15 +40,15 @@ const TestPage: NextPage = () => {
         speed={0.25}
         controls={true}
       >
-        {/* <Controls visible={true} buttons={["play", "frame"]} /> */}
-      </Player>
-      <OakHeading tag="h1">cloudinary asset no loop</OakHeading>
+     
+      </Player> */}
+      {/* <OakHeading tag="h1">cloudinary asset no loop</OakHeading>
       <Player
         src="https://res.cloudinary.com/oak-web-application/raw/upload/v1710780142/lotties/08_Ambient_HeadTilt_du99fc.json"
         className="player"
         autoplay
         style={{ width }}
-      />
+      /> */}
 
       <OakHeading tag="h1">Json Files</OakHeading>
       <OakGrid>
