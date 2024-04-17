@@ -84,7 +84,7 @@ export const lessonIsSpecialist = (
   return (
     typeof u === "object" &&
     u !== null &&
-    Object.hasOwn(u, "isSpecialist") &&
+    Object.prototype.hasOwnProperty.call(u, "isSpecialist") &&
     (u as { isSpecialist: boolean }).isSpecialist === true
   );
 };

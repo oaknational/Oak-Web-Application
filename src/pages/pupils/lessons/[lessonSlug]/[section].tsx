@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<
   PupilCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "pupils-lesson-overview-legacy-canonical::getStaticProps",
+    page: "pupils-lesson-experience-canonical::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
@@ -74,42 +74,44 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const curriculumData =
-        await curriculumApi2023.pupilLessonOverviewCanonical({
-          lessonSlug,
-        });
+      const res = await curriculumApi2023.pupilLessonQuery({
+        lessonSlug,
+      });
 
-      if (!curriculumData) {
+      if (!res) {
         return {
           notFound: true,
         };
       }
 
+      const { browseData, content } = res;
+
       // 404 if the lesson does not contain the given section
       if (
         isLessonReviewSection(section) &&
-        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+        !pickAvailableSectionsForLesson(content).includes(section)
       ) {
         return {
           notFound: true,
         };
       }
 
-      const backUrl = curriculumData.isLegacy
+      const backUrl = browseData.isLegacy
         ? `${resolveOakHref({
             page: "classroom",
-          })}/units/${curriculumData.unitSlug}`
+          })}/units/${browseData.unitSlug}`
         : null;
 
       const { transcriptSentences, hasWorksheet } =
-        await requestLessonResources({ curriculumData });
+        await requestLessonResources({ lessonContent: content });
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
-          curriculumData: {
-            ...curriculumData,
+          lessonContent: {
+            ...content,
             transcriptSentences: transcriptSentences ?? [],
           },
+          browseData,
           hasWorksheet,
           backUrl,
           initialSection: section,

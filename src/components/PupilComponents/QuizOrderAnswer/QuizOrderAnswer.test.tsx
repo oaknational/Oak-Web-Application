@@ -11,7 +11,7 @@ import { QuizOrderAnswer } from "./QuizOrderAnswer";
 
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -30,7 +30,7 @@ describe(QuizOrderAnswer, () => {
         text: "Mouse",
       },
     ],
-    correct_order: 1,
+    correctOrder: 1,
   };
   const cat: OrderAnswer = {
     answer: [
@@ -39,7 +39,7 @@ describe(QuizOrderAnswer, () => {
         text: "Cat",
       },
     ],
-    correct_order: 2,
+    correctOrder: 2,
   };
   const elephant: OrderAnswer = {
     answer: [
@@ -48,7 +48,7 @@ describe(QuizOrderAnswer, () => {
         text: "Elephant",
       },
     ],
-    correct_order: 3,
+    correctOrder: 3,
   };
   const context = createQuizEngineContext({
     currentQuestionData: {
@@ -64,6 +64,7 @@ describe(QuizOrderAnswer, () => {
       feedback: "",
       hint: "",
       active: true,
+      order: 0,
       answers: {
         order: [mouse, cat, elephant],
       },

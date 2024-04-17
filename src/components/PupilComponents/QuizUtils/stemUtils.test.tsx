@@ -2,16 +2,16 @@ import { OakCloudinaryImage } from "@oaknational/oak-components";
 
 import { getStemImage, getStemImageData } from "./stemUtils";
 
-import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 describe("stemUtils", () => {
-  const stem: StemObject[] = [
+  const stem: ImageOrTextItem[] = [
     {
       type: "image",
-      image_object: {
-        secure_url:
+      imageObject: {
+        secureUrl:
           "https://res.cloudinary.com/mockcloudinary/image/upload/image.png",
-        public_id: "image",
+        publicId: "image",
         metadata: {},
       },
     },

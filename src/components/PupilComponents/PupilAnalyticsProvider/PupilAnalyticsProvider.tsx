@@ -7,8 +7,8 @@ import {
   KeyStageTitleValueType,
   KeyStageTitle,
 } from "@/browser-lib/avo/Avo";
-import { PupilLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonOverview/pupilLessonOverview.schema";
 import errorReporter from "@/common-lib/error-reporter";
+import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -121,9 +121,12 @@ const isKeyStageTitle = (
 };
 
 export const getPupilPathwayData = (
-  curriculumData: PupilLessonOverviewPageData,
+  browseData: LessonBrowseData,
 ): PupilPathwayData => {
-  const k = curriculumData.keyStageTitle.replace("Stage", "stage");
+  const k = browseData.programmeFields.keystageDescription.replace(
+    "Stage",
+    "stage",
+  );
 
   const keyStageTitle = isKeyStageTitle(k) ? k : null;
 
@@ -139,13 +142,13 @@ export const getPupilPathwayData = (
   }
 
   return {
-    unitName: curriculumData.unitTitle,
-    unitSlug: curriculumData.unitSlug,
-    lessonSlug: curriculumData.lessonSlug,
-    lessonName: curriculumData.lessonTitle,
-    keyStageSlug: curriculumData.keyStageSlug,
+    unitName: browseData.unitData.description ?? "",
+    unitSlug: browseData.unitData.slug,
+    lessonSlug: browseData.lessonData.slug,
+    lessonName: browseData.lessonData.title,
+    keyStageSlug: browseData.programmeFields.keystageSlug,
     keyStageTitle,
-    subjectTitle: curriculumData.subjectTitle,
-    subjectSlug: curriculumData.subjectSlug,
+    subjectTitle: browseData.programmeFields.subjectDescription,
+    subjectSlug: browseData.programmeFields.subjectSlug,
   };
 };
