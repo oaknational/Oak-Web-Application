@@ -1,3 +1,10 @@
+## [1.407.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.0...v1.407.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* use more widely supported prototype has own property ([782e3ed](https://github.com/oaknational/Oak-Web-Application/commit/782e3ed72e437aef70bd25554022c69efd891d6c))
+
 # [1.407.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.406.0...v1.407.0) (2024-04-16)
 
 
