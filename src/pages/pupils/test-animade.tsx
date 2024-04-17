@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Player } from "@lottiefiles/react-lottie-player";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import {
   OakFlex,
   OakGrid,
@@ -8,7 +8,7 @@ import {
   OakLabel,
 } from "@oaknational/oak-components";
 import { useState } from "react";
-import { DotLottiePlayer } from "@dotlottie/react-player";
+// import { DotLottiePlayer } from "@dotlottie/react-player";
 
 import lottieJson from "../../lotties/lottie.json";
 
@@ -37,7 +37,11 @@ const TestPage: NextPage = () => {
         loop
         autoplay
         style={{ width }}
-      />
+        speed={0.25}
+        controls={true}
+      >
+        {/* <Controls visible={true} buttons={["play", "frame"]} /> */}
+      </Player>
       <OakHeading tag="h1">cloudinary asset no loop</OakHeading>
       <Player
         src="https://res.cloudinary.com/oak-web-application/raw/upload/v1710780142/lotties/08_Ambient_HeadTilt_du99fc.json"
@@ -56,7 +60,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Intro</OakLabel>
         </OakGridArea>
@@ -68,7 +75,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Outro</OakLabel>
         </OakGridArea>
@@ -80,7 +90,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Celebratory_Fanfare</OakLabel>
         </OakGridArea>
@@ -92,7 +105,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Celebratory_Off_The_Scale</OakLabel>
         </OakGridArea>
@@ -104,7 +120,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Something_Wrong_-_Encouraging</OakLabel>
         </OakGridArea>
@@ -116,7 +135,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Explaining</OakLabel>
         </OakGridArea>
@@ -128,7 +150,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Exercising</OakLabel>
         </OakGridArea>
@@ -140,7 +165,10 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Ambient_Head_Tilt</OakLabel>
         </OakGridArea>
@@ -152,13 +180,16 @@ const TestPage: NextPage = () => {
               loop
               autoplay
               style={{ width }}
-            />
+              speed={1}
+            >
+              <Controls visible={true} buttons={["frame"]} />
+            </Player>
           </OakFlex>
           <OakLabel>Ambient_Face</OakLabel>
         </OakGridArea>
       </OakGrid>
 
-      <OakHeading tag="h1">Lotie Files</OakHeading>
+      {/* <OakHeading tag="h1">Lotie Files</OakHeading>
       <OakGrid>
         <OakGridArea $colSpan={[12, 6, 3]} $mh={"space-between-l"}>
           <OakFlex>
@@ -250,7 +281,7 @@ const TestPage: NextPage = () => {
           </OakFlex>
           <OakLabel>Ambient_Face</OakLabel>
         </OakGridArea>
-      </OakGrid>
+      </OakGrid> */}
     </OakFlex>
   );
 };
