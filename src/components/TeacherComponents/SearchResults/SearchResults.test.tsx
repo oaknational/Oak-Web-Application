@@ -54,7 +54,7 @@ describe("<SearchResults />", () => {
     );
     expect(
       getByRole("link", {
-        name: "English lesson: The relationship between Macbeth and Lady Macbeth",
+        name: "See lesson: The relationship between Macbeth and Lady Macbeth",
       }),
     ).toHaveAttribute(
       "href",
@@ -73,7 +73,7 @@ describe("<SearchResults />", () => {
     );
     expect(
       getByRole("link", {
-        name: "English unit: Macbeth: Lady Macbeth as a machiavellian villain",
+        name: "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
       }),
     ).toHaveAttribute(
       "href",
@@ -136,7 +136,7 @@ describe("<SearchResults />", () => {
       />,
     );
     const searchHit = getByRole("link", {
-      name: "English lesson: The relationship between Macbeth and Lady Macbeth",
+      name: "See lesson: The relationship between Macbeth and Lady Macbeth",
     });
     act(() => {
       searchHit.click();
