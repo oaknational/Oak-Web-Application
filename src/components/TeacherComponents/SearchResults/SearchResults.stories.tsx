@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./SearchResults";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import elasticResponseFixture from "@/context/Search/elasticResponse.2020.fixture.json";
+import elasticResponseFixture from "@/context/Search/search-api/2023/elasticResponse.2023.fixture.json";
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
