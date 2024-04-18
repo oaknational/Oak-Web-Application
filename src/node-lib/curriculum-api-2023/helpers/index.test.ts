@@ -41,12 +41,12 @@ describe("filterOutCoreTier", () => {
     },
   ];
 
-  test("returns all tiers when subject and key stage are in the exclusion set", () => {
+  test("returns all tiers when subject and key stage are in the hasCoreTier set", () => {
     expect(filterOutCoreTier("maths", "ks4", sampleTiers)).toEqual(sampleTiers);
   });
 
-  test('filters out "core" tier when not in the exclusion set', () => {
-    expect(filterOutCoreTier("science", "ks4", sampleTiers)).toEqual([
+  test('filters out "core" tier when not in the hasCoreTier set', () => {
+    expect(filterOutCoreTier("combined-science", "ks4", sampleTiers)).toEqual([
       {
         tierSlug: "foundation",
         tierTitle: "Foundation",

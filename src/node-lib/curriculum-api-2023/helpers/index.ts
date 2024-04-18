@@ -4,7 +4,7 @@ export const toSentenceCase = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
-const exclusionSet = new Set(["maths-ks4"]);
+const hasCoreTierSet = new Set(["maths-ks4"]);
 
 export const filterOutCoreTier = (
   subjectSlug?: string | null,
@@ -16,7 +16,7 @@ export const filterOutCoreTier = (
   }
   const key = `${subjectSlug}-${keyStageSlug}`;
   return tiers.filter((tier) => {
-    if (!exclusionSet.has(key)) {
+    if (!hasCoreTierSet.has(key)) {
       return tier.tierSlug !== "core";
     } else {
       return tier;
