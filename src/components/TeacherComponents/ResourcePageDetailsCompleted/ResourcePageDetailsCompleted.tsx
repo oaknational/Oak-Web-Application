@@ -32,6 +32,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       $height={"max-content"}
       $position="relative"
       $background="grey30"
+      data-testid="details-completed"
     >
       <BrushBorders color="grey30" />
       <OakFlex
