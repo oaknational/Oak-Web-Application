@@ -1,3 +1,10 @@
+## [1.410.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.1...v1.410.2) (2024-04-18)
+
+
+### Bug Fixes
+
+* updated curric approach blog slug on curric landing page ([bfa661c](https://github.com/oaknational/Oak-Web-Application/commit/bfa661c736d829466bddf0fde6f91a7bd7f24c36))
+
 ## [1.410.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.0...v1.410.1) (2024-04-18)
 
 # [1.410.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.409.0...v1.410.0) (2024-04-18)
