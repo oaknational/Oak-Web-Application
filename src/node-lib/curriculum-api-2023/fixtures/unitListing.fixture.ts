@@ -1,6 +1,6 @@
 import { UnitListingPageData } from "../queries/unitListing/unitListing.schema";
 
-const lessonListingFixture = (
+const unitListingFixture = (
   partial?: Partial<UnitListingPageData>,
 ): UnitListingPageData => {
   return {
@@ -51,4 +51,4 @@ const lessonListingFixture = (
   };
 };
 
-export default lessonListingFixture;
+export default unitListingFixture;
