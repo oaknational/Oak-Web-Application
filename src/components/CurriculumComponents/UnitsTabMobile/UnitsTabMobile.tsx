@@ -218,7 +218,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                   </Box>
                   <Box $mh={6}> • </Box>
                   <Box data-testid="highlighted-units-box-mobile">
-                    <OakSpan aria-live="polite">
+                    <OakSpan aria-live="polite" aria-atomic="true">
                       {highlightedUnitCount()} units highlighted
                     </OakSpan>
                   </Box>
