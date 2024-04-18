@@ -130,6 +130,7 @@ const curriculumApi2023 = {
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
     const teachersHomePage = getFirstResultOrNull()({
@@ -139,7 +140,6 @@ const curriculumApi2023 = {
   },
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
-  unitListing: unitListingQuery(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistUnitListing: specialistUnitListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
