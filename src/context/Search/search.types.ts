@@ -16,7 +16,7 @@ export type SearchQuery = {
   subjects?: string[];
   contentTypes?: ("unit" | "lesson")[];
   examBoards?: string[];
-  legacy?: "filterOutAll" | "filterOutLegacyIncludeEYFS";
+  legacy?: "filterOutAll" | "filterOutLegacyIncludeEYFS" | "filterOutEYFS";
 };
 
 export type SetSearchQuery = (

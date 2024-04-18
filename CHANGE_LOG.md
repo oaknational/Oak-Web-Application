@@ -1,3 +1,40 @@
+# [1.409.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.408.0...v1.409.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* add highlight to search schema ([f8f7171](https://github.com/oaknational/Oak-Web-Application/commit/f8f717153b47a2b66235f14e8a62557656b0bf19))
+* remove only from test file ([f0f5c3a](https://github.com/oaknational/Oak-Web-Application/commit/f0f5c3ae7e450dcce6f1389ba35d7bb2480db947))
+* remove test subject from filter list ([51b0b28](https://github.com/oaknational/Oak-Web-Application/commit/51b0b28a8d13a1d8af35a2b40edad9a3e543ac8f))
+
+
+### Features
+
+* remove call to legacy mv on search page for filters ([c124ad5](https://github.com/oaknational/Oak-Web-Application/commit/c124ad5b072d68226771cac99a8793e116317665))
+* remove legacy search call and update tests ([d053227](https://github.com/oaknational/Oak-Web-Application/commit/d053227477fa88e7c534328f57832ff2af4c5afb))
+
+# [1.408.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.3...v1.408.0) (2024-04-18)
+
+
+### Features
+
+* refactored school details and terms form into component ([fa5458f](https://github.com/oaknational/Oak-Web-Application/commit/fa5458ff4b0ce6647e1042639043976251473245))
+
+## [1.407.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.2...v1.407.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* set redirects to permanent ([b998fc7](https://github.com/oaknational/Oak-Web-Application/commit/b998fc7b57c6915a9e3c2e5bbe0620756be9b97d))
+* switch to redirects instead of rewrites to prevent perpetual 404 reloading ([5ff6f54](https://github.com/oaknational/Oak-Web-Application/commit/5ff6f5440b3ea8ddc76e7280202b37d5ed1b4f43))
+
+## [1.407.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.1...v1.407.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* check correct field for worksheet download ([a565fda](https://github.com/oaknational/Oak-Web-Application/commit/a565fda5d95bdb33391f45bb3b47f0c242b7cfdf))
+
 ## [1.407.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.0...v1.407.1) (2024-04-17)
 
 
