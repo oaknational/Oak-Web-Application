@@ -1,12 +1,5 @@
-import {
-  ChangeEvent,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { useRouter } from "next/router";
-import { Controller } from "react-hook-form";
 import styled from "styled-components";
 import {
   OakFlex,
@@ -16,32 +9,25 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
-import {
-  ErrorKeysType,
-  ResourceFormProps,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
-import DetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
-import SchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
-import TermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Icon from "@/components/SharedComponents/Icon";
-import OakLink from "@/components/SharedComponents/OwaLink";
-import Input from "@/components/SharedComponents/Input";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 
 export type CurriculumDownload = {
   label: string;
@@ -212,14 +198,6 @@ function CurriculumDownloads(
     }
   };
 
-  const getFormErrorMessages = () => {
-    const errorKeyArray = Object.keys(form.errors);
-    const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[],
-    );
-    return errorMessage;
-  };
-
   useEffect(() => {
     if (hasSetPreselectedDownload) {
       return;
@@ -320,114 +298,18 @@ function CurriculumDownloads(
                 </CardsContainer>
               </OakGridArea>
               <OakGridArea $colSpan={[12, 12, 5]}>
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-6", "heading-5"]}
-                  $mb={["space-between-m", "space-between-m2"]}
-                >
-                  Your details
-                </OakHeading>
-                {form.errors.school && (
-                  <FieldError id="school-error">
-                    {form.errors.school?.message}
-                  </FieldError>
-                )}
-                {isLocalStorageLoading ? (
-                  <OakP $mb={"space-between-s"}>Loading...</OakP>
-                ) : (
-                  <OakFlex
-                    $flexDirection="column"
-                    $gap={"space-between-m"}
-                    $mb={"space-between-s"}
-                  >
-                    {shouldDisplayDetailsCompleted ? (
-                      <DetailsCompleted
-                        email={emailFromLocalStorage}
-                        school={schoolNameFromLocalStorage}
-                        onEditClick={handleEditDetailsCompletedClick}
-                      />
-                    ) : (
-                      <Box $maxWidth={[null, 420, 420]}>
-                        <SchoolDetails
-                          errors={form.errors}
-                          setSchool={setSchool}
-                          initialValue={schoolIdFromLocalStorage ?? undefined}
-                          initialSchoolName={
-                            schoolNameFromLocalStorage?.length &&
-                            schoolNameFromLocalStorage?.length > 0
-                              ? schoolNameFromLocalStorage
-                                  .charAt(0)
-                                  .toUpperCase() +
-                                schoolNameFromLocalStorage.slice(1)
-                              : undefined
-                          }
-                        />
-
-                        <Input
-                          id={"email"}
-                          data-testid="inputEmail"
-                          label="Email"
-                          autoComplete="email"
-                          placeholder="Enter email address here"
-                          isOptional={true}
-                          {...form.register("email")}
-                          error={form.errors?.email?.message}
-                        />
-                        <OakP $font="body-3" $mb={"space-between-l"}>
-                          Join over 100k teachers and get free resources and
-                          other helpful content by email. Unsubscribe at any
-                          time. Read our{" "}
-                          <OakLink
-                            page="legal"
-                            legalSlug="privacy-policy"
-                            $isInline
-                            htmlAnchorProps={{
-                              target: "_blank",
-                              "aria-label":
-                                "Privacy policy (opens in a new tab)",
-                            }}
-                          >
-                            privacy policy
-                            <Icon
-                              name="external"
-                              verticalAlign="bottom"
-                              size={20}
-                            />
-                          </OakLink>
-                          .
-                        </OakP>
-                        <Controller
-                          control={form.control}
-                          name="terms"
-                          render={({
-                            field: { value, onChange, name, onBlur },
-                          }) => {
-                            const onChangeHandler = (
-                              e: ChangeEvent<HTMLInputElement>,
-                            ) => {
-                              onChange(e.target.checked);
-                              form.trigger();
-                            };
-                            return (
-                              <TermsAndConditionsCheckbox
-                                name={name}
-                                checked={value}
-                                onChange={onChangeHandler}
-                                onBlur={onBlur}
-                                id={"terms"}
-                                errorMessage={form.errors?.terms?.message}
-                              />
-                            );
-                          }}
-                        />
-                      </Box>
-                    )}
-                    <CopyrightNotice
-                      showPostAlbCopyright={true}
-                      openLinksExternally={true}
-                    />
-                  </OakFlex>
-                )}
+                <TermsAgreementForm
+                  form={form}
+                  email={emailFromLocalStorage}
+                  schoolId={schoolIdFromLocalStorage}
+                  schoolName={schoolNameFromLocalStorage}
+                  isLoading={isLocalStorageLoading}
+                  setSchool={setSchool}
+                  showSavedDetails={shouldDisplayDetailsCompleted}
+                  handleEditDetailsCompletedClick={
+                    handleEditDetailsCompletedClick
+                  }
+                />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
                     <Icon name="content-guidance" $color={"red"} />
@@ -436,7 +318,7 @@ function CurriculumDownloads(
                         To complete correct the following:
                       </OakP>
                       <OakUL $mr={"space-between-m"} data-testid="errorList">
-                        {getFormErrorMessages().map((err, i) => {
+                        {getFormErrorMessages(form.errors).map((err, i) => {
                           return (
                             <OakLI $color={"red"} key={i}>
                               {err}
@@ -447,34 +329,36 @@ function CurriculumDownloads(
                     </OakFlex>
                   </OakFlex>
                 )}
-                <LoadingButton
-                  type="button"
-                  onClick={(event) =>
-                    void form.handleSubmit(onFormSubmit)(event)
-                  }
-                  text={"Download PDF"}
-                  icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    (!form.formState.isValid && !localStorageDetails)
-                  }
-                  loadingText={"Downloading..."}
-                />
-                {hasSuccessfullyDownloaded && (
-                  <OakP $mt={"space-between-m"} data-testid="downloadSuccess">
-                    Download Successful!
-                  </OakP>
-                )}
-                {apiError && !hasFormErrors && (
-                  <FieldError
-                    id="download-error"
-                    variant={"large"}
-                    withoutMarginBottom
-                  >
-                    {apiError}
-                  </FieldError>
-                )}
+                <OakBox $mt={"space-between-s"}>
+                  <LoadingButton
+                    type="button"
+                    onClick={(event) =>
+                      void form.handleSubmit(onFormSubmit)(event)
+                    }
+                    text={"Download PDF"}
+                    icon={"download"}
+                    isLoading={isAttemptingDownload}
+                    disabled={
+                      hasFormErrors ||
+                      (!form.formState.isValid && !localStorageDetails)
+                    }
+                    loadingText={"Downloading..."}
+                  />
+                  {hasSuccessfullyDownloaded && (
+                    <OakP $mt={"space-between-m"} data-testid="downloadSuccess">
+                      Download Successful!
+                    </OakP>
+                  )}
+                  {apiError && !hasFormErrors && (
+                    <FieldError
+                      id="download-error"
+                      variant={"large"}
+                      withoutMarginBottom
+                    >
+                      {apiError}
+                    </FieldError>
+                  )}
+                </OakBox>
               </OakGridArea>
             </OakGrid>
           </form>

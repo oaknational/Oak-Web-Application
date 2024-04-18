@@ -7,7 +7,6 @@ import Search from "@/components/TeacherViews/Search/Search.view";
 import curriculumApi2023, {
   SearchPageData,
 } from "@/node-lib/curriculum-api-2023";
-import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
@@ -32,7 +31,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allSubjects,
     allContentTypes,
     allExamBoards,
-    legacy: "filterOutAll",
+    legacy: "filterOutEYFS",
   });
   const { results } = searchProps;
 
@@ -79,33 +78,7 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     page: "teachers-search::getStaticProps",
     context,
     getProps: async () => {
-      const curriculumData2020 = await curriculumApi.searchPage();
-      const curriculumData2023 = await curriculumApi2023.searchPage();
-
-      const subjects = [
-        ...curriculumData2020.subjects,
-        ...curriculumData2023.subjects,
-      ];
-
-      const uniqueSubjects = subjects.reduce(
-        (acc: SearchPageData["subjects"], subject) => {
-          const existingSubject = acc.find(
-            (s: SearchPageData["subjects"][number]) => s.slug === subject.slug,
-          );
-
-          if (!existingSubject) {
-            acc.push(subject);
-          }
-
-          return acc;
-        },
-        [],
-      );
-
-      const curriculumData = {
-        ...curriculumData2023,
-        subjects: uniqueSubjects,
-      };
+      const curriculumData = await curriculumApi2023.searchPage();
 
       const results = {
         props: {
