@@ -1,6 +1,7 @@
 import errorReporter from "../../../../common-lib/error-reporter";
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
+import { toSentenceCase, filterOutCoreTier } from "../../helpers";
 
 import unitListingSchema from "./unitListing.schema";
 
@@ -27,10 +28,15 @@ const unitListingQuery =
 
     return unitListingSchema.parse({
       ...programme,
+      tiers:
+        programme.tiers &&
+        filterOutCoreTier(
+          programme.subjectSlug,
+          programme.keyStageSlug,
+          programme.tiers,
+        ),
       keyStageTitle:
-        programme.keyStageTitle &&
-        programme.keyStageTitle.charAt(0).toUpperCase() +
-          programme.keyStageTitle.slice(1).toLowerCase(),
+        programme.keyStageTitle && toSentenceCase(programme.keyStageTitle),
     });
   };
 
