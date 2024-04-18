@@ -109,7 +109,7 @@ const individualSpecialistUnitSchema = z.object({
   programmeSlug: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  lessonCount: z.number(),
+  lessonCount: z.number().nullable(),
   unitStudyOrder: z.number().nullish(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
