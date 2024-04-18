@@ -1,3 +1,10 @@
+# [1.408.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.3...v1.408.0) (2024-04-18)
+
+
+### Features
+
+* refactored school details and terms form into component ([fa5458f](https://github.com/oaknational/Oak-Web-Application/commit/fa5458ff4b0ce6647e1042639043976251473245))
+
 ## [1.407.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.2...v1.407.3) (2024-04-17)
 
 
