@@ -11,7 +11,7 @@ import {
   questionStem,
   questionStemWithImage,
   quizQuestions,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
 describe(QuizAttribution, () => {
   it("displays attribution for any image in the question stem", () => {
@@ -43,8 +43,8 @@ describe(QuizAttribution, () => {
                 ...choice,
                 answer: choice.answer.filter(isImage).map((answer) => ({
                   ...answer,
-                  image_object: {
-                    ...answer.image_object,
+                  imageObject: {
+                    ...answer.imageObject,
                     metadata: {
                       attribution: `attribution for image #${i + 1}`,
                     },

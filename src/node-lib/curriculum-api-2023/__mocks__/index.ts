@@ -10,9 +10,10 @@ import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixt
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/subjectListing.fixture";
 import teachersHomePageFixture from "@/node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
-import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 
 const curriculumApi: Pick<
@@ -25,8 +26,7 @@ const curriculumApi: Pick<
   | "teachersHomePage"
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
-  | "pupilLessonOverview"
-  | "pupilLessonOverviewCanonical"
+  | "pupilLessonQuery"
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
@@ -53,14 +53,14 @@ const curriculumApi: Pick<
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
   }),
-  pupilLessonOverview: jest.fn(async () => {
-    return pupilLessonOverviewFixture();
+  pupilLessonQuery: jest.fn(async () => {
+    return {
+      browseData: lessonBrowseDataFixture({}),
+      content: lessonContentFixture({}),
+    };
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
-  }),
-  pupilLessonOverviewCanonical: jest.fn(async () => {
-    return pupilLessonOverviewFixture();
   }),
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();

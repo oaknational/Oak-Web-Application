@@ -2,6 +2,7 @@ import React from "react";
 import { renderHook, act } from "@testing-library/react";
 
 import { createQuestionData } from "../pupilTestHelpers/createQuizEngineContext";
+import { isText } from "../QuizUtils/stemUtils";
 
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
@@ -13,11 +14,13 @@ import {
   matchAnswers,
   orderAnswers,
   quizQuestions as questionsArrayFixture,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 
 describe("QuizEngineContext", () => {
   const wrapper = (
@@ -200,7 +203,7 @@ describe("QuizEngineContext", () => {
         ),
       );
       // set the first answer as also correct
-      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answerIsCorrect = true;
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -210,7 +213,7 @@ describe("QuizEngineContext", () => {
 
       const pupilAnswers = currentQuestionData?.answers?.[
         "multiple-choice"
-      ]?.filter((answer) => answer.answer_is_correct);
+      ]?.filter((answer) => answer.answerIsCorrect);
 
       act(() => {
         handleSubmitMCAnswer(pupilAnswers);
@@ -233,7 +236,7 @@ describe("QuizEngineContext", () => {
           (question) => question.questionType === "multiple-choice",
         ),
       );
-      multiQs[0]!.answers!["multiple-choice"]![0]!.answer_is_correct = true;
+      multiQs[0]!.answers!["multiple-choice"]![0]!.answerIsCorrect = true;
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -241,13 +244,22 @@ describe("QuizEngineContext", () => {
 
       const { handleSubmitMCAnswer, currentQuestionData } = result.current;
 
-      const pupilAnswers = [
+      invariant(
         currentQuestionData?.answers?.["multiple-choice"]?.[0],
+        "MCQ not defined",
+      );
+
+      invariant(
         currentQuestionData?.answers?.["multiple-choice"]?.[1],
+        "MCQ not defined",
+      );
+
+      const pupilAnswers: MCAnswer[] = [
+        currentQuestionData.answers["multiple-choice"][0],
+        currentQuestionData.answers["multiple-choice"][1],
       ];
 
       act(() => {
-        //@ts-expect-error: we know that these will not be undefined
         handleSubmitMCAnswer(pupilAnswers);
       });
 
@@ -279,10 +291,13 @@ describe("QuizEngineContext", () => {
 
       const { handleSubmitShortAnswer, currentQuestionData } = result.current;
 
+      const answer =
+        currentQuestionData?.answers?.["short-answer"]?.[0]?.answer[0];
+
+      invariant(isText(answer), "answer is not a text answer");
+
       act(() => {
-        handleSubmitShortAnswer(
-          currentQuestionData?.answers?.["short-answer"]?.[0]?.answer[0]?.text,
-        );
+        handleSubmitShortAnswer(answer.text);
       });
 
       const { questionState } = result.current;
@@ -325,7 +340,7 @@ describe("QuizEngineContext", () => {
     });
   });
 
-  describe("handleSubmitOrderAnser", () => {
+  describe("handleSubmitOrderAnswer", () => {
     const orderQuestion = createQuestionData({
       answers: {
         order: orderAnswers,

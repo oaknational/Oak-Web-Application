@@ -1,11 +1,16 @@
-import type { ErrorKeysType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { FieldErrors } from "react-hook-form";
+
+import type {
+  ErrorKeysType,
+  ResourceFormProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type ErrorMessagesAndOrderType = {
   order: number;
   message: string;
 };
 
-const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
+export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
   const errorMessagesAndOrder: Record<
     ErrorKeysType,
     ErrorMessagesAndOrderType
@@ -37,6 +42,16 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     .filter(Boolean);
 
   return errorMessagesArray;
+};
+
+export const getFormErrorMessages = (
+  errors: FieldErrors<ResourceFormProps>,
+) => {
+  const errorKeyArray = Object.keys(errors);
+  const errorMessage = getDownloadFormErrorMessage(
+    errorKeyArray as ErrorKeysType[],
+  );
+  return errorMessage;
 };
 
 export default getDownloadFormErrorMessage;
