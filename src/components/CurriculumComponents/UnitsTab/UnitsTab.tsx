@@ -444,16 +444,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                       >
                         <OakSpan>
                           {threadOption.title}
-                          {isSelected && (
-                            <>
-                              <br />
-                              <OakSpan aria-live="polite" aria-atomic="true">
+                          <OakSpan aria-live="polite" aria-atomic="true">
+                            {isSelected && (
+                              <>
+                                <br />
                                 {highlightedCount}
                                 {highlightedCount === 1 ? " unit " : " units "}
                                 highlighted
-                              </OakSpan>
-                            </>
-                          )}
+                              </>
+                            )}
+                          </OakSpan>
                         </OakSpan>
                       </Radio>
                     </Box>
