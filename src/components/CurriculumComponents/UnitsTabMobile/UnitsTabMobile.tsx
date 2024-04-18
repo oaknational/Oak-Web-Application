@@ -1,5 +1,10 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { OakP, OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakHeading,
+  OakFlex,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { Thread } from "../CurriculumVisualiser/CurriculumVisualiser";
 
@@ -213,7 +218,9 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                   </Box>
                   <Box $mh={6}> • </Box>
                   <Box data-testid="highlighted-units-box-mobile">
-                    {highlightedUnitCount()} units highlighted
+                    <OakSpan aria-live="polite">
+                      {highlightedUnitCount()} units highlighted
+                    </OakSpan>
                   </Box>
                 </OakFlex>
               )}

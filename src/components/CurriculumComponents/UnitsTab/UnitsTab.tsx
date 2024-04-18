@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakP,
   OakHeading,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 import CurriculumVisualiser, {
@@ -441,15 +442,17 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                           isSelected ? "selected-thread-radio" : "thread-radio"
                         }
                       >
-                        {threadOption.title}
-                        {isSelected && (
-                          <>
-                            <br />
-                            {highlightedCount}
-                            {highlightedCount === 1 ? " unit " : " units "}
-                            highlighted
-                          </>
-                        )}
+                        <OakSpan aria-live="polite">
+                          {threadOption.title}
+                          {isSelected && (
+                            <>
+                              <br />
+                              {highlightedCount}
+                              {highlightedCount === 1 ? " unit " : " units "}
+                              highlighted
+                            </>
+                          )}
+                        </OakSpan>
                       </Radio>
                     </Box>
                   );
