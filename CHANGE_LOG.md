@@ -1,3 +1,11 @@
+# [1.410.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.409.0...v1.410.0) (2024-04-18)
+
+
+### Features
+
+* allowed subjects ([b205a11](https://github.com/oaknational/Oak-Web-Application/commit/b205a11b53485095429d54500c48d90e8e233f08))
+* has lesson math jax check ([8a609be](https://github.com/oaknational/Oak-Web-Application/commit/8a609be712a6bbf091d83d183654cc314c802be6))
+
 # [1.409.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.408.0...v1.409.0) (2024-04-18)
 
 
