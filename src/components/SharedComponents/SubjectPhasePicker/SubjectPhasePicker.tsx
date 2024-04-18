@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef } from "react";
+import { FC, useEffect, useState, useRef, useId } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -148,6 +148,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [phaseBackground, setPhaseBackground] = useState<OakColorName>("white");
   const [subjectBackground, setSubjectBackground] =
     useState<OakColorName>("white");
+
+  const schoolPhaseInputId = useId();
+  const examBoardInputId = useId();
+  const subjectInputId = useId();
 
   const toggleShowSubjects = () => {
     setShowSubjects(!showSubjects);
@@ -413,6 +417,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
                   <OakHeading
+                    id={subjectInputId}
                     tag={"h4"}
                     $font={"heading-6"}
                     $mr="space-between-xs"
@@ -424,7 +429,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 <OakP $mb="space-between-s">
                   Explore our new curricula for 2023/2024.
                 </OakP>
-                <Box aria-label="Subject" role="radiogroup">
+                <Box
+                  aria-label="Subject"
+                  role="radiogroup"
+                  aria-labelledby={subjectInputId}
+                >
                   {subjects.map((subject) => (
                     <ButtonContainer
                       className={isSelected(subject) ? "selected" : ""}
@@ -594,6 +603,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     ""
                   )}
                   <OakHeading
+                    id={schoolPhaseInputId}
                     tag={"h4"}
                     $font={"heading-6"}
                     $mb="space-between-s"
@@ -601,7 +611,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   >
                     Choose a school phase:
                   </OakHeading>
-                  <Box aria-label="School phase" radioGroup="radiogroup">
+                  <Box
+                    aria-label="School phase"
+                    radioGroup="radiogroup"
+                    aria-labelledby={schoolPhaseInputId}
+                  >
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
                       <ButtonContainer className="multi-line" key={phase.slug}>
                         <Button
@@ -622,6 +636,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     selectedSubject?.examboards && (
                       <>
                         <OakHeading
+                          id={examBoardInputId}
                           $mb="space-between-s"
                           $mt="space-between-m"
                           tag={"h4"}
@@ -630,7 +645,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           Choose an exam board for KS4:
                         </OakHeading>
 
-                        <Box aria-label="Exam board" role="radiogroup">
+                        <Box
+                          aria-label="Exam board"
+                          role="radiogroup"
+                          aria-labelledby={examBoardInputId}
+                        >
                           {selectedSubject.examboards.map(
                             (examboard, index) => (
                               <ButtonContainer key={examboard.slug}>
