@@ -1,7 +1,7 @@
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
 
-import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
