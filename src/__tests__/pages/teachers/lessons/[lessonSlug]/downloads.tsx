@@ -48,7 +48,7 @@ describe("LessonDownloadsCanonicalPage", () => {
       ).rejects.toThrowError("No context.params");
     });
 
-    it("should call throw an error if API is not found", async () => {
+    it("should throw an error if API is not found", async () => {
       (
         curriculumApi2023.lessonDownloadsCanonical as jest.Mock
       ).mockRejectedValueOnce(

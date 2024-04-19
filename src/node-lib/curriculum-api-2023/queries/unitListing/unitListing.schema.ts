@@ -35,8 +35,8 @@ const tierSchema = z.array(
     tierSlug: z.string(),
     tierTitle: z.string(),
     tierProgrammeSlug: z.string(),
-    unitCount: z.number().nullable().optional(),
-    lessonCount: z.number().nullable().optional(),
+    unitCount: z.number().nullish(),
+    lessonCount: z.number().nullish(),
   }),
 );
 const unitListingData = z.object({
@@ -45,7 +45,7 @@ const unitListingData = z.object({
   keyStageTitle: z.string(),
   examBoardSlug: z.string().nullable(),
   examBoardTitle: z.string().nullable(),
-  lessonCount: z.number().nullable().optional(),
+  lessonCount: z.number().nullish(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
@@ -73,7 +73,7 @@ const unitListingSchema = z.object({
   keyStageTitle: z.string(),
   examBoardSlug: z.string().nullable(),
   examBoardTitle: z.string().nullable(),
-  lessonCount: z.number().nullable().optional(),
+  lessonCount: z.number().nullish(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
