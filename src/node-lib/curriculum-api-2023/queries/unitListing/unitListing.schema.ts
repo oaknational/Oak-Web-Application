@@ -23,42 +23,12 @@ const unitData = z.object({
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
   cohort: z.string().nullish(),
-  learningThemes: z
-    .array(
-      z.object({
-        themeSlug: z.string().nullable(),
-        themeTitle: z.string().nullable(),
-      }),
-    )
-    .nullable(),
+  learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
 export type UnitData = z.infer<typeof unitData>;
 
-const unitSchema = z.array(
-  z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      nullTitle: z.string(),
-      programmeSlug: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      lessonCount: z.number(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      yearTitle: z.string().nullable(),
-      learningThemes: z.array(learningThemesSchema).nullable(),
-      cohort: z.string().nullable(),
-    }),
-  ),
-);
+const unitSchema = z.array(z.array(unitData));
 
 const tierSchema = z.array(
   z.object({
