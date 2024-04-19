@@ -39,6 +39,8 @@ const tierSchema = z.array(
   }),
 );
 
+export type TierSchema = z.infer<typeof tierSchema>;
+
 const unitListingSchema = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
@@ -54,6 +56,6 @@ const unitListingSchema = z.object({
   learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
-export type unitListingPageData = z.infer<typeof unitListingSchema>;
+export type UnitListingPageData = z.infer<typeof unitListingSchema>;
 
 export default unitListingSchema;
