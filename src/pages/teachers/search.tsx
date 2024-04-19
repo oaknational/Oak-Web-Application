@@ -78,29 +78,7 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     page: "teachers-search::getStaticProps",
     context,
     getProps: async () => {
-      const curriculumData2023 = await curriculumApi2023.searchPage();
-
-      const subjects = [...curriculumData2023.subjects];
-
-      const uniqueSubjects = subjects.reduce(
-        (acc: SearchPageData["subjects"], subject) => {
-          const existingSubject = acc.find(
-            (s: SearchPageData["subjects"][number]) => s.slug === subject.slug,
-          );
-
-          if (!existingSubject) {
-            acc.push(subject);
-          }
-
-          return acc;
-        },
-        [],
-      );
-
-      const curriculumData = {
-        ...curriculumData2023,
-        subjects: uniqueSubjects,
-      };
+      const curriculumData = await curriculumApi2023.searchPage();
 
       const results = {
         props: {
