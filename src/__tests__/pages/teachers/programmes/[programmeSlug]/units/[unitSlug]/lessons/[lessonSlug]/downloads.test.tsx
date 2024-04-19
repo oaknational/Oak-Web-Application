@@ -11,8 +11,7 @@ import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
-import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
-import lessonDownloadsFixtures2023 from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
+import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
   URLParams,
@@ -361,7 +360,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   describe("Copyright notice", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
-        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
+        <LessonDownloadsPage
+          curriculumData={lessonDownloadsFixtures({
+            isLegacy: true,
+            lessonCohort: "2020-2023",
+          })}
+        />,
       );
 
       const copyrightNotice = await screen.findByText(
@@ -374,7 +378,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
-        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures2023()} />,
+        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
       );
 
       const copyrightNotice = await screen.findByText(
@@ -394,16 +398,16 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          "Lesson Download: Transverse waves | KS4 Combined Science | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Select and download free lesson resources, including slide decks, worksheets and quizzes",
         ogTitle:
-          "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          "Lesson Download: Transverse waves | KS4 Combined Science | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Select and download free lesson resources, including slide decks, worksheets and quizzes",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical:
-          "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
+          "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
         robots: "index,follow",
       });
     });
@@ -434,7 +438,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1",
+        "transverse-waves",
       );
     });
     it("should throw error", async () => {

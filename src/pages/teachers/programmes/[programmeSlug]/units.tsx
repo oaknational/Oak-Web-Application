@@ -19,7 +19,6 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
@@ -36,9 +35,10 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import { UnitListingPageData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type UnitListingPageProps = {
-  curriculumData: UnitListingData;
+  curriculumData: UnitListingPageData;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({

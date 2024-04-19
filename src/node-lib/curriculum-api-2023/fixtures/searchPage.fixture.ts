@@ -1,11 +1,11 @@
-import { SearchPageData } from "../";
+import { SearchPageData } from "../../curriculum-api-2023/";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 
 const searchPageFixture = (
   partial?: Partial<SearchPageData>,
-): SearchPageData[] => [
-  {
+): SearchPageData => {
+  return {
     keyStages: [
       {
         shortCode: "KS1",
@@ -49,8 +49,9 @@ const searchPageFixture = (
       { slug: "ocr", title: "OCR", displayOrder: 4 },
     ],
     ...partial,
-  },
-];
+  };
+};
+
 export default searchPageFixture;
 
 export const searchResultsItem = (

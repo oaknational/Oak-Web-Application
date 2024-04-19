@@ -6,7 +6,7 @@ import {
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
-import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
