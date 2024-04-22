@@ -80,6 +80,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     $focusStyles={["new-underline"]}
                     {...props.buttonLinkProps}
                     programmeSlug={item.programmeSlug}
+                    unitSlug={item.unitSlug}
                     onClick={() => {
                       onClick?.({ ...props, isToggleOpen });
                     }}
