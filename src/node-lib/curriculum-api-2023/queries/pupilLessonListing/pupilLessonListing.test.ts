@@ -1,8 +1,8 @@
-import { PupilLessonListingQuery } from "../../generated/sdk";
+import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { pupilLessonListingQuery } from "./pupilLessonListing.query";
 
-import { syntheticUnitvariantLessonsSchemaFixture } from "@/node-lib/curriculum-api-2023/fixtures/schema.new.fixture";
+import { PupilLessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilLessonListing()", () => {
@@ -19,10 +19,12 @@ describe("pupilLessonListing()", () => {
   });
 
   test("it returns the lesson if found", async () => {
-    const _syntheticUnitvariantLessonsSchemaFixture =
-      syntheticUnitvariantLessonsSchemaFixture({
-        unit_slug: "unit-slug-test",
-        programme_slug: "programme-slug-test",
+    const _syntheticUnitvariantLessonsFixture =
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          unit_slug: "unit-slug-test",
+          programme_slug: "programme-slug-test",
+        },
       });
 
     const lesson = await pupilLessonListingQuery({
@@ -30,7 +32,7 @@ describe("pupilLessonListing()", () => {
       pupilLessonListing: jest.fn(
         () =>
           Promise.resolve({
-            browseData: [_syntheticUnitvariantLessonsSchemaFixture],
+            browseData: [_syntheticUnitvariantLessonsFixture],
           }) as Promise<PupilLessonListingQuery>, // Add the correct return type
       ),
     })({
@@ -39,23 +41,25 @@ describe("pupilLessonListing()", () => {
     });
 
     expect(lesson.browseData.lessonSlug).toEqual(
-      _syntheticUnitvariantLessonsSchemaFixture.lesson_slug,
+      _syntheticUnitvariantLessonsFixture.lesson_slug,
     );
     expect(lesson.browseData.unitSlug).toEqual(
-      _syntheticUnitvariantLessonsSchemaFixture.unit_slug,
+      _syntheticUnitvariantLessonsFixture.unit_slug,
     );
     expect(lesson.browseData.programmeSlug).toEqual(
-      _syntheticUnitvariantLessonsSchemaFixture.programme_slug,
+      _syntheticUnitvariantLessonsFixture.programme_slug,
     );
   });
 
   test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
-      syntheticUnitvariantLessonsSchemaFixture({
-        unit_slug: "unit-slug-test",
-        programme_slug: "programme-slug-test",
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          unit_slug: "unit-slug-test",
+          programme_slug: "programme-slug-test",
+        },
       }),
-      syntheticUnitvariantLessonsSchemaFixture(),
+      syntheticUnitvariantLessonsFixture(),
     ];
 
     if (!fixtures || fixtures.length < 1) {
