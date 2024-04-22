@@ -31,7 +31,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   const isExamBoardDropdown = examDropdownContent.length > 0;
 
   const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
-  const ariaLabel = `${label} for ${type}`;
+  const ariaLabel = `${label} for ${type}: ${props.title}`;
 
   const dropDownContent = isExamBoardDropdown
     ? examDropdownContent
