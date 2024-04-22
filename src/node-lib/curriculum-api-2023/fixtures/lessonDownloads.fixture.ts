@@ -1,6 +1,6 @@
 import { LessonDownloadsPageData } from "../queries/lessonDownloads/lessonDownloads.schema";
 
-const lessonDownloadsFixture2023 = (
+const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsPageData>,
 ): LessonDownloadsPageData => {
   return {
@@ -50,4 +50,4 @@ const lessonDownloadsFixture2023 = (
   };
 };
 
-export default lessonDownloadsFixture2023;
+export default lessonDownloadsFixtures;

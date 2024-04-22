@@ -9,13 +9,13 @@ import Box from "@/components/SharedComponents/Box";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type Tier = {
   title: string;

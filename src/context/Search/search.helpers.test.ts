@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 
-import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 import {
   getFilterForQuery,
