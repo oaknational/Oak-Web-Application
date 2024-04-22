@@ -1,6 +1,6 @@
 import { combinedPreselectedTypeMap } from "./combinedPreselectedTypeMap";
 
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import {
   DownloadResourceType,
   PreselectedDownloadType,
@@ -10,7 +10,7 @@ import {
 
 function removeFromPreselectedIfDownloadExistsFalse(
   preSelectedTypes: DownloadResourceType[],
-  downloads: LessonDownloadsData["downloads"],
+  downloads: LessonDownloadsPageData["downloads"],
 ): DownloadResourceType[] {
   const existingItemTypes = new Set(
     downloads.filter((item) => item.exists).map((item) => item.type),
@@ -25,7 +25,7 @@ function removeFromPreselectedIfDownloadExistsFalse(
 
 export const getPreselectedDownloadResourceTypes = (
   title: PreselectedDownloadType,
-  downloads: LessonDownloadsData["downloads"],
+  downloads: LessonDownloadsPageData["downloads"],
 ): DownloadResourceType[] | "all" | undefined => {
   const preSelectedTypes = combinedPreselectedTypeMap[title].downloadType;
   if (preSelectedTypes === "all" || preSelectedTypes === undefined) {

@@ -3,7 +3,7 @@ import LessonOverviewHeader, {
 } from "./LessonOverviewHeader";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 const props = {
   ...lessonOverviewFixture(),
@@ -20,7 +20,7 @@ describe("LessonOverviewHeader", () => {
     );
     const subjectHeading = getAllByRole("heading", { level: 1 });
     expect(subjectHeading).toHaveLength(1);
-    expect(subjectHeading[0]).toHaveTextContent("Islamic Geometry");
+    expect(subjectHeading[0]).toHaveTextContent("Adverbial complex sentences");
   });
 
   it("renders the download button when !expired && show download all is true", () => {

@@ -25,12 +25,15 @@ import {
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
 import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
-  | { downloadResources: LessonDownloadsData["downloads"]; type: "download" }
+  | {
+      downloadResources: LessonDownloadsPageData["downloads"];
+      type: "download";
+    }
   | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
@@ -68,7 +71,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         .filter((resource) => resource.exists)
         .map((resource) => resource.type);
     } else if (props.type === "download") {
-      return (resources as LessonDownloadsData["downloads"])
+      return (resources as LessonDownloadsPageData["downloads"])
         .filter((resource) => resource.exists && !resource.forbidden)
         .map((resource) => resource.type);
     } else if (props.type === "curriculum") {
@@ -205,7 +208,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (isPreselectedDownloadType(queryResults)) {
       preselected = getPreselectedDownloadResourceTypes(
         queryResults,
-        resources as LessonDownloadsData["downloads"],
+        resources as LessonDownloadsPageData["downloads"],
       );
     }
     if (preselected && props.type !== "curriculum") {

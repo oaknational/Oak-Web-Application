@@ -5,11 +5,13 @@ import { UnitListProps } from "./UnitList";
 import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
-import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+import unitListingFixture, {
+  unitListingWithTiers,
+} from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
 const currentPageItems: UnitListProps = {
   ...unitListingFixture(),
+  lessonCount: 10,
   currentPageItems: unitListingFixture().units.slice(0, 5),
   paginationProps: {
     currentPage: 1,
@@ -35,8 +37,9 @@ export const UnitList = Template.bind({});
 UnitList.args = currentPageItems;
 
 const currentPageItemsWithTiers: UnitListProps = {
-  ...unitListingWithTiersFixture(),
-  currentPageItems: unitListingWithTiersFixture().units.slice(0, 5),
+  ...unitListingWithTiers(),
+  lessonCount: 10,
+  currentPageItems: unitListingWithTiers().units.slice(0, 5),
   paginationProps: {
     currentPage: 1,
     totalPages: 2,

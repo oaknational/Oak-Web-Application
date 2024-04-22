@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import Component, { UnitOption } from "./UnitListOptionalityCard";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
 const units = unitListingFixture().units;
 const option1 = units[0] ? units[0][0] : null;

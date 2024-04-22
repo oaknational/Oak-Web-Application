@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
 
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 
 const downloads = [
   {

@@ -6,7 +6,6 @@ public
 out
 
 storybook-static
-src/node-lib/curriculum-api/generated
 src/node-lib/curriculum-api-2023/generated
 src/node-lib/sanity-graphql/generated
 
