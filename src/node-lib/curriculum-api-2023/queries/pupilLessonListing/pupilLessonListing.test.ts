@@ -40,13 +40,13 @@ describe("pupilLessonListing()", () => {
       programmeSlug: "test",
     });
 
-    expect(lesson.browseData.lessonSlug).toEqual(
+    expect(lesson.browseData[0]?.lessonSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.lesson_slug,
     );
-    expect(lesson.browseData.unitSlug).toEqual(
+    expect(lesson.browseData[0]?.unitSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.unit_slug,
     );
-    expect(lesson.browseData.programmeSlug).toEqual(
+    expect(lesson.browseData[0]?.programmeSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.programme_slug,
     );
   });
@@ -78,11 +78,11 @@ describe("pupilLessonListing()", () => {
       programmeSlug: "test",
     });
 
-    expect(lesson.browseData.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
-    expect(lesson.browseData.unitSlug).toEqual(fixtures[0]?.unit_slug);
-    expect(lesson.browseData.programmeSlug).toEqual(
+    expect(lesson.browseData[0]?.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
+    expect(lesson.browseData[0]?.unitSlug).toEqual(fixtures[0]?.unit_slug);
+    expect(lesson.browseData[0]?.programmeSlug).toEqual(
       fixtures[0]?.programme_slug,
     );
-    expect(lesson.browseData.isLegacy).toEqual(fixtures[0]?.is_legacy);
+    expect(lesson.browseData[0]?.isLegacy).toEqual(fixtures[0]?.is_legacy);
   });
 });
