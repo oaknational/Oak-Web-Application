@@ -1,6 +1,6 @@
 import { z } from "zod";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
-import { syntheticUnitvariantLessonsSchema } from "@/node-lib/curriculum-api-2023/shared.schema.new";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({

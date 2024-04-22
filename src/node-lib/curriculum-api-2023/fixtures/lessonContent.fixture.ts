@@ -1,4 +1,4 @@
-import { contentFixture } from "./schema.new.fixture";
+import { lessonContentFixture as lessonContentFixtureSnake } from "@oaknational/oak-curriculum-schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
@@ -6,7 +6,7 @@ import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesso
 export const lessonContentFixture = (
   overrides: Partial<LessonContent>,
 ): LessonContent => {
-  const snake = contentFixture();
+  const snake = lessonContentFixtureSnake();
   const camel = keysToCamelCase(snake) as LessonContent;
   return {
     ...camel,
