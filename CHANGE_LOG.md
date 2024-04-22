@@ -1,3 +1,14 @@
+# [1.412.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.2...v1.412.0) (2024-04-22)
+
+
+### Features
+
+* **lessonListingQuery:** create lessonlisting query and tests ([e1f131d](https://github.com/oaknational/Oak-Web-Application/commit/e1f131d9919d17380e35f23c3f0993e241622d2c))
+
+## [1.411.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.1...v1.411.2) (2024-04-22)
+
+## [1.411.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.0...v1.411.1) (2024-04-22)
+
 # [1.411.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.3...v1.411.0) (2024-04-22)
 
 
