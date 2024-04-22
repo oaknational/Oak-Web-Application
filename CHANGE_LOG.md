@@ -1,3 +1,20 @@
+## [1.411.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.0...v1.411.1) (2024-04-22)
+
+# [1.411.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.3...v1.411.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* **pupilquix:** remove dynamic import ([af9f9ff](https://github.com/oaknational/Oak-Web-Application/commit/af9f9ff27058b80013f921e380d569627df0fc1b))
+* **pupilquix:** remove dynamic import ([a04f19a](https://github.com/oaknational/Oak-Web-Application/commit/a04f19a0f1541a9b89abe64fb6b2e98350ce2ffa))
+* **quizview:** update oak-components to use fixed tooltip ([f8832fe](https://github.com/oaknational/Oak-Web-Application/commit/f8832fe2427977ed8d3dfa967b77bdd66a89dc52))
+* **quizview:** update oak-components to use fixed tooltip ([4592072](https://github.com/oaknational/Oak-Web-Application/commit/45920721d42d369898890c0826000fa084045a1c))
+
+
+### Features
+
+* **quiz:** refreshing quiz not erroring ([e063e23](https://github.com/oaknational/Oak-Web-Application/commit/e063e239e715d24fe6433bafe0523b2991e905c8))
+
 ## [1.410.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.2...v1.410.3) (2024-04-19)
 
 ## [1.410.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.1...v1.410.2) (2024-04-18)
