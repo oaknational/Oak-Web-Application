@@ -1,6 +1,6 @@
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonDownloadsPageData } from "../queries/lessonDownloads/lessonDownloads.schema";
 
-export const allResources: LessonDownloadsData["downloads"] = [
+export const allResources: LessonDownloadsPageData["downloads"] = [
   {
     exists: true,
     type: "presentation",
@@ -58,7 +58,7 @@ export const allResources: LessonDownloadsData["downloads"] = [
   },
 ];
 
-export const noSlideDeck: LessonDownloadsData["downloads"] = [
+export const noSlideDeck: LessonDownloadsPageData["downloads"] = [
   {
     exists: true,
     type: "intro-quiz-questions",
@@ -109,7 +109,7 @@ export const noSlideDeck: LessonDownloadsData["downloads"] = [
   },
 ];
 
-export const oneWorksheet: LessonDownloadsData["downloads"] = [
+export const oneWorksheet: LessonDownloadsPageData["downloads"] = [
   {
     exists: true,
     type: "presentation",
@@ -161,7 +161,7 @@ export const oneWorksheet: LessonDownloadsData["downloads"] = [
   },
 ];
 
-export const noSlideDeckOneWorksheet: LessonDownloadsData["downloads"] = [
+export const noSlideDeckOneWorksheet: LessonDownloadsPageData["downloads"] = [
   {
     exists: true,
     type: "intro-quiz-questions",

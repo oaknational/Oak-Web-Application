@@ -1,5 +1,6 @@
-import { UnitListingData } from "../../node-lib/curriculum-api";
-import unitListingFixture from "../../node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
-export const subjectUnits: UnitListingData["units"] =
+import { UnitListingPageData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+
+export const subjectUnits: UnitListingPageData["units"] =
   unitListingFixture().units;

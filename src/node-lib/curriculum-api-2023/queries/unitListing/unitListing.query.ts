@@ -1,14 +1,16 @@
 import errorReporter from "../../../../common-lib/error-reporter";
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
+import { toSentenceCase, filterOutCoreTier } from "../../helpers";
 
 import unitListingSchema from "./unitListing.schema";
 
 const unitListingQuery =
-  (sdk: Sdk) => async (args: { programmeSlug: string; isLegacy: boolean }) => {
+  (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
     const [programme] = res.programme;
+
     if (!programme) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
@@ -24,7 +26,18 @@ const unitListingQuery =
       });
     }
 
-    return unitListingSchema.parse(programme);
+    return unitListingSchema.parse({
+      ...programme,
+      tiers:
+        programme.tiers &&
+        filterOutCoreTier(
+          programme.subjectSlug,
+          programme.keyStageSlug,
+          programme.tiers,
+        ),
+      keyStageTitle:
+        programme.keyStageTitle && toSentenceCase(programme.keyStageTitle),
+    });
   };
 
 export default unitListingQuery;

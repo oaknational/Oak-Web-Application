@@ -10,7 +10,7 @@ const providers = {
   analytics: {},
   cookieConsent: {},
 };
-const fixture = searchPageFixture()[0];
+const fixture = searchPageFixture();
 if (!fixture) {
   throw new Error("Cannot find search page fixture");
 }
