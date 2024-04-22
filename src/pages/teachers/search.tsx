@@ -51,7 +51,13 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     }
   };
 
-  const lastFocussedFilter = localStorage.getItem("lastFocussedFilter");
+  const lastFocussedFilter = () => {
+    try {
+      return localStorage.getItem("lastFocussedFilter");
+    } catch {
+      return null;
+    }
+  };
 
   const searchFilters = useSearchFilters({
     ...searchProps,
@@ -76,7 +82,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
         searchFilters={searchFilters}
         allKeyStages={allKeyStages}
         onFilterClick={setLastFocussedFilterInLocalStorage}
-        lastFocussedFilter={lastFocussedFilter}
+        lastFocussedFilter={lastFocussedFilter()}
       />
     </AppLayout>
   );
