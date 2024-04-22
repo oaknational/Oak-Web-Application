@@ -97,6 +97,8 @@ const props: SearchProps = {
   results: [],
   query: validQuery,
   setQuery: jest.fn(),
+  onFilterClick: jest.fn(),
+  lastFocussedFilter: null,
   searchFilters: {
     keyStageFilters: [
       {

@@ -13,9 +13,10 @@ import {
 
 type SearchActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
+  onFilterClick: (filter: string | undefined) => void;
 };
 const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
-  const { searchFilters } = props;
+  const { searchFilters, onFilterClick } = props;
   const {
     keyStageFilters,
     subjectFilters,
@@ -50,7 +51,10 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
             label={"shortCode" in props ? props.shortCode : title}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
-            onClick={onChange}
+            onClick={() => {
+              onChange();
+              onFilterClick(undefined);
+            }}
             variant="buttonStyledAsLink"
             icon="cross"
             $font={"heading-7"}

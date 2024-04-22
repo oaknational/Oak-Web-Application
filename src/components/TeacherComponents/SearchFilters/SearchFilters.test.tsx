@@ -22,6 +22,8 @@ describe("SearchFilters", () => {
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const searchFilters = getAllByRole("checkbox");
@@ -40,6 +42,8 @@ describe("SearchFilters", () => {
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -71,6 +75,8 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -110,6 +116,8 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -149,6 +157,8 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -197,6 +207,8 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        onFilterClick={jest.fn()}
+        lastFocussedFilter={null}
       />,
     );
     const ks2Filter = getByRole("checkbox", {

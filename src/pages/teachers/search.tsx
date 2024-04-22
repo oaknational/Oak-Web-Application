@@ -43,6 +43,16 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
 
   const { paginationTitle } = paginationProps;
 
+  const setLastFocussedFilterInLocalStorage = (filter: string | undefined) => {
+    if (filter) {
+      localStorage.setItem("lastFocussedFilter", filter);
+    } else {
+      localStorage.removeItem("lastFocussedFilter");
+    }
+  };
+
+  const lastFocussedFilter = localStorage.getItem("lastFocussedFilter");
+
   const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
@@ -50,7 +60,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allContentTypes,
     allExamBoards,
   });
-
   return (
     <AppLayout
       seoProps={{
@@ -66,6 +75,8 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
         {...searchProps}
         searchFilters={searchFilters}
         allKeyStages={allKeyStages}
+        onFilterClick={setLastFocussedFilterInLocalStorage}
+        lastFocussedFilter={lastFocussedFilter}
       />
     </AppLayout>
   );

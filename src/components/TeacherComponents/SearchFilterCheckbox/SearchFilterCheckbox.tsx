@@ -14,6 +14,8 @@ type SearchFilterCheckboxProps = {
   onChange: () => void;
   filterType: FilterTypeValueType;
   searchRefined: (filterType: FilterTypeValueType, filterValue: string) => void;
+  onFilterClick: (filter: string | undefined) => void;
+  lastFocussedFilter: string | null;
 };
 
 const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
@@ -26,6 +28,8 @@ const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
     width = "50%",
     filterType,
     searchRefined,
+    onFilterClick,
+    lastFocussedFilter,
   } = props;
 
   return (
@@ -36,7 +40,18 @@ const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
         id={`custom-checkbox-${slug}`}
         name={name}
         checked={checked}
-        onChange={() => {
+        autoFocus={lastFocussedFilter === slug}
+        onChange={(e) => {
+          if (
+            (e.nativeEvent as PointerEvent).clientX !== 0 ||
+            (e.nativeEvent as PointerEvent).clientY !== 0
+          ) {
+            // set undefined on mouse click
+            onFilterClick(undefined);
+          } else {
+            // store last filter clicked by keyboard
+            onFilterClick(slug);
+          }
           onChange();
           if (!checked) {
             searchRefined(filterType, label);
