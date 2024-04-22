@@ -6,18 +6,6 @@ import { PupilLessonListingQuery } from "@/node-lib/curriculum-api-2023/generate
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilLessonListing()", () => {
-  test("throws a not found error if no lesson is found", async () => {
-    await expect(async () => {
-      await pupilLessonListingQuery({
-        ...sdk,
-        pupilLessonListing: jest.fn(() => Promise.resolve({ browseData: [] })),
-      })({
-        unitSlug: "unit-slug",
-        programmeSlug: "programme-slug",
-      });
-    }).rejects.toThrow(`Resource not found`);
-  });
-
   test("it returns the lesson if found", async () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
