@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
+import * as downloads from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 
 const meta: Meta<typeof Component> = {
   component: Component,

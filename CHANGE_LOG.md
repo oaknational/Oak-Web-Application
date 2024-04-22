@@ -1,3 +1,143 @@
+# [1.413.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.412.0...v1.413.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* imports ([5cc65ae](https://github.com/oaknational/Oak-Web-Application/commit/5cc65ae5ce3315f882095e623ba41405464631c8))
+
+
+### Features
+
+* switch to oak-curriculum-schema ([6a9f55a](https://github.com/oaknational/Oak-Web-Application/commit/6a9f55a33f7f3b0f2fca1db394a056ee7eb36952))
+
+# [1.412.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.2...v1.412.0) (2024-04-22)
+
+
+### Features
+
+* **lessonListingQuery:** create lessonlisting query and tests ([e1f131d](https://github.com/oaknational/Oak-Web-Application/commit/e1f131d9919d17380e35f23c3f0993e241622d2c))
+
+## [1.411.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.1...v1.411.2) (2024-04-22)
+
+## [1.411.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.0...v1.411.1) (2024-04-22)
+
+# [1.411.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.3...v1.411.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* **pupilquix:** remove dynamic import ([af9f9ff](https://github.com/oaknational/Oak-Web-Application/commit/af9f9ff27058b80013f921e380d569627df0fc1b))
+* **pupilquix:** remove dynamic import ([a04f19a](https://github.com/oaknational/Oak-Web-Application/commit/a04f19a0f1541a9b89abe64fb6b2e98350ce2ffa))
+* **quizview:** update oak-components to use fixed tooltip ([f8832fe](https://github.com/oaknational/Oak-Web-Application/commit/f8832fe2427977ed8d3dfa967b77bdd66a89dc52))
+* **quizview:** update oak-components to use fixed tooltip ([4592072](https://github.com/oaknational/Oak-Web-Application/commit/45920721d42d369898890c0826000fa084045a1c))
+
+
+### Features
+
+* **quiz:** refreshing quiz not erroring ([e063e23](https://github.com/oaknational/Oak-Web-Application/commit/e063e239e715d24fe6433bafe0523b2991e905c8))
+
+## [1.410.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.2...v1.410.3) (2024-04-19)
+
+## [1.410.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.1...v1.410.2) (2024-04-18)
+
+
+### Bug Fixes
+
+* updated curric approach blog slug on curric landing page ([bfa661c](https://github.com/oaknational/Oak-Web-Application/commit/bfa661c736d829466bddf0fde6f91a7bd7f24c36))
+
+## [1.410.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.0...v1.410.1) (2024-04-18)
+
+# [1.410.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.409.0...v1.410.0) (2024-04-18)
+
+
+### Features
+
+* allowed subjects ([b205a11](https://github.com/oaknational/Oak-Web-Application/commit/b205a11b53485095429d54500c48d90e8e233f08))
+* has lesson math jax check ([8a609be](https://github.com/oaknational/Oak-Web-Application/commit/8a609be712a6bbf091d83d183654cc314c802be6))
+
+# [1.409.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.408.0...v1.409.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* add highlight to search schema ([f8f7171](https://github.com/oaknational/Oak-Web-Application/commit/f8f717153b47a2b66235f14e8a62557656b0bf19))
+* remove only from test file ([f0f5c3a](https://github.com/oaknational/Oak-Web-Application/commit/f0f5c3ae7e450dcce6f1389ba35d7bb2480db947))
+* remove test subject from filter list ([51b0b28](https://github.com/oaknational/Oak-Web-Application/commit/51b0b28a8d13a1d8af35a2b40edad9a3e543ac8f))
+
+
+### Features
+
+* remove call to legacy mv on search page for filters ([c124ad5](https://github.com/oaknational/Oak-Web-Application/commit/c124ad5b072d68226771cac99a8793e116317665))
+* remove legacy search call and update tests ([d053227](https://github.com/oaknational/Oak-Web-Application/commit/d053227477fa88e7c534328f57832ff2af4c5afb))
+
+# [1.408.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.3...v1.408.0) (2024-04-18)
+
+
+### Features
+
+* refactored school details and terms form into component ([fa5458f](https://github.com/oaknational/Oak-Web-Application/commit/fa5458ff4b0ce6647e1042639043976251473245))
+
+## [1.407.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.2...v1.407.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* set redirects to permanent ([b998fc7](https://github.com/oaknational/Oak-Web-Application/commit/b998fc7b57c6915a9e3c2e5bbe0620756be9b97d))
+* switch to redirects instead of rewrites to prevent perpetual 404 reloading ([5ff6f54](https://github.com/oaknational/Oak-Web-Application/commit/5ff6f5440b3ea8ddc76e7280202b37d5ed1b4f43))
+
+## [1.407.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.1...v1.407.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* check correct field for worksheet download ([a565fda](https://github.com/oaknational/Oak-Web-Application/commit/a565fda5d95bdb33391f45bb3b47f0c242b7cfdf))
+
+## [1.407.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.407.0...v1.407.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* use more widely supported prototype has own property ([782e3ed](https://github.com/oaknational/Oak-Web-Application/commit/782e3ed72e437aef70bd25554022c69efd891d6c))
+
+# [1.407.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.406.0...v1.407.0) (2024-04-16)
+
+
+### Bug Fixes
+
+* deprecated_fields is optional ([076f5dc](https://github.com/oaknational/Oak-Web-Application/commit/076f5dc5fa4e2afe074665f0bc0761f48960d487))
+* inccorect schema field ([9b2ca23](https://github.com/oaknational/Oak-Web-Application/commit/9b2ca2384db131c300b55e915bad2df3b637d1a9))
+* incorrect field in schema ([0e79e13](https://github.com/oaknational/Oak-Web-Application/commit/0e79e135951919e50ac9f4e89bbbc26b78dfe742))
+* is sensitive ([997ccbc](https://github.com/oaknational/Oak-Web-Application/commit/997ccbc53c17b9548d54b15ac04b2c7ff6d90f97))
+* missing / inconsistent subject description ([63336a7](https://github.com/oaknational/Oak-Web-Application/commit/63336a7b96d4c1d9983542fb7e9568eeb768986b))
+* resolved conflicts ([91bc942](https://github.com/oaknational/Oak-Web-Application/commit/91bc9420c49001f22fed07f80a399c02b026cb11))
+* tests ([a0ba9ad](https://github.com/oaknational/Oak-Web-Application/commit/a0ba9adb77dbf2c7f307873edf8a07aa687ca469))
+* type errors ([f28d960](https://github.com/oaknational/Oak-Web-Application/commit/f28d960970048173eeac8a8035a646ff076d8266))
+* udpated pages to new query ([23557b0](https://github.com/oaknational/Oak-Web-Application/commit/23557b048e8c841b55782d04ca552619c4e93aa7))
+* updated tests to match new schema ([44d28b8](https://github.com/oaknational/Oak-Web-Application/commit/44d28b8342fa8a13c391e30a30ff954d644a7002))
+
+
+### Features
+
+* convert to camelCase ([51fb940](https://github.com/oaknational/Oak-Web-Application/commit/51fb940ad731a6b733eec447ba08e1911e37748d))
+* dynamic where for gql query ([ea7722b](https://github.com/oaknational/Oak-Web-Application/commit/ea7722b55db3597cf6354801c81157f66b6ca0ff))
+* query both mvs in the same api call ([079e7fe](https://github.com/oaknational/Oak-Web-Application/commit/079e7fe3de9853a6eb2c009abf2e2fe7028c36f6))
+* remove pupilLessonOverview queries and fixtures ([033446e](https://github.com/oaknational/Oak-Web-Application/commit/033446e5db5ecea6b86e0e0f67a7b07159c1c25b))
+* schema and tests for lesson content ([a5d319c](https://github.com/oaknational/Oak-Web-Application/commit/a5d319ccb58cd7f1deadcda1ca5635d1bd1d1d49))
+
+# [1.406.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.405.0...v1.406.0) (2024-04-16)
+
+
+### Bug Fixes
+
+* update curriculum blog slugs ([4011259](https://github.com/oaknational/Oak-Web-Application/commit/4011259a0cdab86b1c8bd18eb6b7af75bb99e004))
+* update slugs for pa11y ([656e2f5](https://github.com/oaknational/Oak-Web-Application/commit/656e2f5061ac58b0b5a655e4b797345f196df4c7))
+* wrong url updated for pa11y ([e774794](https://github.com/oaknational/Oak-Web-Application/commit/e774794ed620ef2f51a205cfb9e603854ce5a180))
+
+
+### Features
+
+* add copyright notice link to footer ([e63cd8c](https://github.com/oaknational/Oak-Web-Application/commit/e63cd8cc75e2d5bea7b5a24a6da3792cd7ad1649))
+
 # [1.405.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.404.0...v1.405.0) (2024-04-10)
 
 

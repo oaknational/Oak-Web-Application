@@ -38,14 +38,14 @@ export const constructDownloadsArray = (
   };
   const worksheetPdf = {
     exists:
-      typeof lesson.worksheet_asset_object
-        ?.google_drive_downloadable_version === "string",
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
     type: "worksheet-pdf" as const,
   };
   const worksheetPptx = {
     exists:
-      typeof lesson.worksheet_asset_object
-        ?.google_drive_downloadable_version === "string",
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
     type: "worksheet-pptx" as const,
   };
 

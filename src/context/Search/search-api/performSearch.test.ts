@@ -1,23 +1,11 @@
 import { SearchHit } from "../search.types";
 
 import { performSearch } from "./performSearch";
-import * as fetchResults2020 from "./2020/fetchResults";
 import * as fetchResults2023 from "./2023/fetchResults";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-const mockResults2020: SearchHit[] = [{ foo: "bar-2020" }];
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 const mockResults2023: SearchHit[] = [{ foo: "bar-2023" }];
-
-jest.mock("./2020/fetchResults", () => ({
-  __esModule: true,
-  ...jest.requireActual("./2020/fetchResults"),
-}));
-const fetchResults2020Spy = jest
-  .spyOn(fetchResults2020, "fetchResults")
-  .mockResolvedValue([...mockResults2020]);
 
 jest.mock("./2023/fetchResults", () => ({
   __esModule: true,
@@ -53,13 +41,10 @@ describe("performSearch", () => {
       ...callbacks,
     });
 
-    expect(callbacks.onSuccess).toHaveBeenCalledWith([
-      ...mockResults2023,
-      ...mockResults2020,
-    ]);
+    expect(callbacks.onSuccess).toHaveBeenCalledWith([...mockResults2023]);
   });
   test("should call onFail on fail", async () => {
-    fetchResults2020Spy.mockRejectedValue(new Error("test"));
+    fetchResults2023Spy.mockRejectedValue(new Error("test"));
     await performSearch({
       query: {
         term: "test",

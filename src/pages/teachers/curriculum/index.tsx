@@ -144,7 +144,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               <OakTypography $font={"heading-7"} $mb="space-between-xs">
                 <OwaLink
                   page={"blog-single"}
-                  blogSlug="our-approach-to-curriculum"
+                  blogSlug="our-6-principles-guiding-our-approach-to-curriculum"
                   $display={"flex"}
                   $alignItems={"center"}
                 >
@@ -215,7 +215,7 @@ export async function fetchCurriculumPageBlogs(
   CMSClient: Client,
 ): Promise<SerializedBlogPostPreview[]> {
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-subject-curriculum",
+    "how-to-design-a-subject-curriculum-in-7-easy-steps",
   );
 
   const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
@@ -223,7 +223,7 @@ export async function fetchCurriculumPageBlogs(
   );
 
   const designUnitBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-unit-of-study",
+    "how-to-create-a-unit-of-study",
   );
 
   const blogs = [];

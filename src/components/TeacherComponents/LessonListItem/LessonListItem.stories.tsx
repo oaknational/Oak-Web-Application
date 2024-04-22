@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 
 const lessonListing = lessonListingFixture();
 

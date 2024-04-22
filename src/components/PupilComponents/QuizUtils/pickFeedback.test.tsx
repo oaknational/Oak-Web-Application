@@ -5,35 +5,35 @@ import { QuizShortAnswerFeedback } from "../QuizShortAnswerFeedback";
 
 import { pickFeedBackComponent } from "./pickFeedback";
 
-import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 describe("pickFeedbackComponent", () => {
-  const multiAnswer: AnswersSchema = {
+  const multiAnswer: QuizQuestionAnswers = {
     "multiple-choice": [
       {
-        answer_is_correct: true,
+        answerIsCorrect: true,
       },
       {
-        answer_is_correct: true,
+        answerIsCorrect: true,
       },
     ],
-  } as AnswersSchema;
+  } as QuizQuestionAnswers;
 
-  const singleAnswer: AnswersSchema = {
+  const singleAnswer: QuizQuestionAnswers = {
     "multiple-choice": [
       {
-        answer_is_correct: true,
+        answerIsCorrect: true,
       },
       {
-        answer_is_correct: false,
+        answerIsCorrect: false,
       },
     ],
-  } as AnswersSchema;
+  } as QuizQuestionAnswers;
 
-  const shortAnswer: AnswersSchema = {
+  const shortAnswer: QuizQuestionAnswers = {
     "short-answer": [{}],
-  } as AnswersSchema;
+  } as QuizQuestionAnswers;
 
   describe("pickFeedbackComponent", () => {
     it("should return QuizMCQMultiAnswer if isMultiAnswerMCQ is true", () => {

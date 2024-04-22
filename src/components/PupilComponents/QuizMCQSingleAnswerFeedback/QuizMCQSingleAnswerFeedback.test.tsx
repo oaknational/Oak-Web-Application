@@ -4,7 +4,7 @@ import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineCon
 
 import { QuizMCQSingleAnswerFeedback } from "./QuizMCQSingleAnswerFeedback";
 
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import {
   QuizEngineContext,
   QuizEngineContextType,

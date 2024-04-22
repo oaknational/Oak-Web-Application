@@ -37,6 +37,7 @@ describe("LessonOverviewQuizContainer", () => {
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
         imageAttribution={imageAttribution}
+        isMathJaxLesson={false}
       />,
     );
     expect(screen.getByText("What is a main clause?")).toBeInTheDocument();
@@ -46,6 +47,7 @@ describe("LessonOverviewQuizContainer", () => {
       <LessonOverviewQuizContainer
         questions={quizQuestionsData as NonNullable<LessonOverviewQuizData>}
         imageAttribution={imageAttribution}
+        isMathJaxLesson={false}
       />,
     );
     expect(

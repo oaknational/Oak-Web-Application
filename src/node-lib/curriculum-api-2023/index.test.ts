@@ -5,7 +5,7 @@ import curriculumApi from ".";
 jest.unmock(".");
 
 const searchPage = jest.fn(() => ({
-  searchPage: searchPageFixture(),
+  searchPage: [searchPageFixture()],
 }));
 
 jest.mock("./generated/sdk", () => ({
