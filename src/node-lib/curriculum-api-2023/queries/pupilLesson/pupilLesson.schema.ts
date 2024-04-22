@@ -5,7 +5,6 @@
  */
 
 import { z } from "zod";
-
 import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsSchema,
@@ -16,7 +15,8 @@ import {
   matchSchema,
   imageItemSchema,
   textItemSchema,
-} from "@/node-lib/curriculum-api-2023/shared.schema.new";
+} from "@oaknational/oak-curriculum-schema";
+
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export type QuizQuestion = ConvertKeysToCamelCase<
