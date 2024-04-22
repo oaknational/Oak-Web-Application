@@ -42,7 +42,8 @@ export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   state: true,
-  cohort: true,
+  // cohort has type never, investigate.
+  // cohort: true,
 });
 
 export type LessonContent = Omit<

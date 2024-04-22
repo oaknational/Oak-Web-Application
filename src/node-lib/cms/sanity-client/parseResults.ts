@@ -119,7 +119,8 @@ export const parseResults = <S extends ZodSchema, D>(
         // Explicitly cast the erroneous unknown[] to the right type
         return uniqueItems as ReturnType<S["parse"]>;
       } else {
-        return schema.parse(data);
+        // Had to add a type assertion here as the inferred type was unknown.
+        return schema.parse(data) as ReturnType<S["parse"]>;
       }
     } catch (error) {
       let oakError = error;
@@ -141,5 +142,6 @@ export const parseResults = <S extends ZodSchema, D>(
     }
   }
 
-  return schema.parse(data);
+  // Had to add a type assertion here as the inferred type was unknown.
+  return schema.parse(data) as ReturnType<S["parse"]>;
 };

@@ -97,9 +97,13 @@ const SelectSpan = styled(OakSpan)`
   ${ellipsis}
 `;
 
-export function Select<T extends object>(
-  props: AriaSelectProps<T> & SelectProps,
-) {
+export function Select<
+  T extends {
+    // Set type of value as string, is this right?
+    value: string;
+    label: string;
+  },
+>(props: AriaSelectProps<T> & SelectProps) {
   const { myRef, containerProps } = props;
 
   // Create state based on the incoming props
