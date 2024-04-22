@@ -98,13 +98,13 @@ describe("SearchDropdown component", () => {
     expect(links[0]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-1/units/computer-systems-e17a/lessons/the-fde-cycle-68w3ct",
+        "/teachers/programmes/maths-program-1/units/algebra-unit/lessons/the-fde-cycle-68w3ct",
       ),
     );
     expect(links[1]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-3/units/computer-systems-e17a/lessons/the-fde-cycle-68w3ct",
+        "/teachers/programmes/maths-program-3/units/world-wars-unit/lessons/the-fde-cycle-68w3ct",
       ),
     );
   });
@@ -124,13 +124,13 @@ describe("SearchDropdown component", () => {
     expect(links[0]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-1/units/computing-systems-1558/lessons",
+        "/teachers/programmes/maths-program-1/units/algebra-unit/lessons",
       ),
     );
     expect(links[1]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-3/units/computing-systems-1558/lessons",
+        "/teachers/programmes/maths-program-3/units/world-wars-unit/lessons",
       ),
     );
   });
