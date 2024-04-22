@@ -5,14 +5,17 @@ import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
 import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
 import ListItemCard from "@/components/TeacherComponents/ListItemCard";
-import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import {
+  UnitData,
+  UnitListingPageData,
+} from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type UnitListItemProps = Omit<
-  UnitListingData["units"][number][number],
+  UnitListingPageData["units"][number][number],
   "year" | "unitStudyOrder"
 > &
   UnitListProps;
@@ -52,7 +55,6 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
     yearTitle,
     isExemplarUnit,
     onClick,
-    themeTitle,
   } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -101,15 +103,6 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
             $mv="space-between-none"
           >
             {yearTitle}
-          </OakSpan>
-        )}
-        {themeTitle && (
-          <OakSpan
-            $font={"heading-light-7"}
-            $color={"grey60"}
-            $mv="space-between-none"
-          >
-            {themeTitle}
           </OakSpan>
         )}
         <ListItemHeader

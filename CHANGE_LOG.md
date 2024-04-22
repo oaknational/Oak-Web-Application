@@ -1,3 +1,22 @@
+## [1.410.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.2...v1.410.3) (2024-04-19)
+
+## [1.410.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.1...v1.410.2) (2024-04-18)
+
+
+### Bug Fixes
+
+* updated curric approach blog slug on curric landing page ([bfa661c](https://github.com/oaknational/Oak-Web-Application/commit/bfa661c736d829466bddf0fde6f91a7bd7f24c36))
+
+## [1.410.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.0...v1.410.1) (2024-04-18)
+
+# [1.410.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.409.0...v1.410.0) (2024-04-18)
+
+
+### Features
+
+* allowed subjects ([b205a11](https://github.com/oaknational/Oak-Web-Application/commit/b205a11b53485095429d54500c48d90e8e233f08))
+* has lesson math jax check ([8a609be](https://github.com/oaknational/Oak-Web-Application/commit/8a609be712a6bbf091d83d183654cc314c802be6))
+
 # [1.409.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.408.0...v1.409.0) (2024-04-18)
 
 

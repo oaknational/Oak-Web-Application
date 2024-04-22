@@ -8,7 +8,7 @@ import UnitListItem, {
   UnitListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
-import { UnitData } from "@/node-lib/curriculum-api";
+import { UnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 
