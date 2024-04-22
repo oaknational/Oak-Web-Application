@@ -4,8 +4,8 @@ import {
   sortShareResources,
 } from "./sortResources";
 
-import * as downloadResources from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
-import * as shareResources from "@/node-lib/curriculum-api/fixtures/shareableResources.fixture";
+import * as downloadResources from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
+import * as shareResources from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 
 const sortOrderKey = {
   presentation: 1,

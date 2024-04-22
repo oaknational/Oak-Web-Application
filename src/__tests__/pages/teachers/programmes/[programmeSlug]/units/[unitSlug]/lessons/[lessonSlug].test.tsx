@@ -4,7 +4,7 @@ import { GetStaticPropsContext, PreviewData } from "next";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
@@ -57,7 +57,7 @@ describe("pages/teachers/lessons", () => {
     render(<LessonOverviewPage {...props} />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Islamic Geometry",
+      "Adverbial complex sentences",
     );
   });
 
@@ -185,11 +185,11 @@ describe("pages/teachers/lessons", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          "Lesson: Adverbial complex sentences | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "View lesson content and choose resources to download or share",
         ogTitle:
-          "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          "Lesson: Adverbial complex sentences | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
@@ -204,17 +204,20 @@ describe("pages/teachers/lessons", () => {
 
       expect(seo).toEqual(
         expect.objectContaining({
-          title:
-            "Lesson: Islamic Geometry | Higher | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
           description:
             "View lesson content and choose resources to download or share",
-          ogTitle:
-            "Lesson: Islamic Geometry | Higher | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
+          ogImage:
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+          ogTitle:
+            "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
           robots: "index,follow",
+          title:
+            "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
         }),
       );
     });
@@ -226,11 +229,12 @@ describe("pages/teachers/lessons", () => {
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Lesson: Islamic Geometry | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+            "Lesson: Adverbial complex sentences | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
+
           ogTitle:
-            "Lesson: Islamic Geometry | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+            "Lesson: Adverbial complex sentences | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
@@ -247,14 +251,17 @@ describe("pages/teachers/lessons", () => {
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Lesson: Islamic Geometry | Higher | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+            "Lesson: Adverbial complex sentences | Higher | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
           ogTitle:
-            "Lesson: Islamic Geometry | Higher | AQA | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+            "Lesson: Adverbial complex sentences | Higher | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogImage:
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
           robots: "index,follow",
         }),
@@ -284,14 +291,15 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: null,
         downloadResourceButtonName: "all",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
@@ -305,14 +313,15 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         downloadResourceButtonName: "slide deck",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
@@ -326,14 +335,15 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         downloadResourceButtonName: "worksheet",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
@@ -347,14 +357,15 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         downloadResourceButtonName: "exit quiz",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
@@ -368,14 +379,15 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         downloadResourceButtonName: "starter quiz",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
     it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
@@ -398,14 +410,15 @@ describe("pages/teachers/lessons", () => {
         }
       });
       expect(lessonShareStarted).toHaveBeenCalledWith({
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
     });
   });
