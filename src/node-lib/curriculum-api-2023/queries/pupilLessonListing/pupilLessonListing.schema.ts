@@ -1,16 +1,35 @@
 import { z } from "zod";
 
-import { syntheticUnitvariantLessonsSchema } from "@/node-lib/curriculum-api-2023/shared.schema.new";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
-export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
-  null_unitvariant: true,
-  unit_data: true,
-  lesson_data: true,
-  programme_fields: true,
-  supplementary_data: true,
+export const lessonBrowseDataSchema = z.array(
+  z.object({
+    lesson_slug: z.string(),
+    lesson_title: z.string(),
+    order: z.number(),
+    is_legacy: z.boolean(),
+    unit_slug: z.string(),
+    subject_slug: z.string(),
+    subject_title: z.string(),
+    programme_slug: z.string(),
+    unit_title: z.string(),
+    year_description: z.string(),
+  }),
+);
+
+export const pupiUnitDataSchema = z.object({
+  unit_slug: z.string(),
+  subject_slug: z.string(),
+  subject_title: z.string(),
+  programme_slug: z.string(),
+  unit_title: z.string(),
+  year_description: z.string(),
 });
 
-export type LessonBrowseData = ConvertKeysToCamelCase<
+export type LessonListingBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
+>;
+
+export type PupilUnitData = ConvertKeysToCamelCase<
+  z.infer<typeof pupiUnitDataSchema>
 >;

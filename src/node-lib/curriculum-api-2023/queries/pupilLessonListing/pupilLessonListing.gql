@@ -1,11 +1,8 @@
-query pupilLessonListing(
-    $programmeSlug: String!
-    $unitSlug: String!
-) {
+query pupilLessonListing($programmeSlug: String!, $unitSlug: String!) {
   browseData: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0(
     where: {
-      programme_slug: {_eq: $programmeSlug}, 
-      unit_slug: {_eq: $unitSlug}
+      programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
     }
   ) {
     lesson_title: lesson_data(path: "title")
@@ -15,8 +12,8 @@ query pupilLessonListing(
     subject_slug: programme_fields(path: "subject_slug")
     year_description: programme_fields(path: "year_description")
     unit_slug
+    unit_title: unit_data(path: "title")
     programme_slug
     is_legacy
-    
   }
 }

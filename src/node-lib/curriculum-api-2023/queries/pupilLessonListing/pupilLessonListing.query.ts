@@ -1,6 +1,8 @@
 import {
-  LessonBrowseData,
+  LessonListingBrowseData,
   lessonBrowseDataSchema,
+  PupilUnitData,
+  pupiUnitDataSchema,
 } from "./pupilLessonListing.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -13,7 +15,10 @@ export const pupilLessonListingQuery =
   async (args: {
     unitSlug: string;
     programmeSlug: string;
-  }): Promise<{ browseData: LessonBrowseData }> => {
+  }): Promise<{
+    unitData: PupilUnitData;
+    browseData: LessonListingBrowseData;
+  }> => {
     const { unitSlug, programmeSlug } = args;
 
     const res = await sdk.pupilLessonListing({
@@ -21,7 +26,7 @@ export const pupilLessonListingQuery =
       unitSlug,
     });
 
-    const [browseDataSnake] = res.browseData;
+    const browseDataSnake = res.browseData;
 
     if (!browseDataSnake) {
       throw new OakError({ code: "curriculum-api/not-found" });
@@ -38,11 +43,33 @@ export const pupilLessonListingQuery =
       });
     }
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    const browseData = keysToCamelCase(
+      lessonBrowseDataSchema.parse(browseDataSnake),
+    ) as LessonListingBrowseData;
 
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const [firstBrowseDataSnake] = res.browseData;
+
+    if (!firstBrowseDataSnake) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
+      const error = new OakError({
+        code: "curriculum-api/uniqueness-assumption-violated",
+      });
+      errorReporter("curriculum-api-2023::pupilLessonListing")(error, {
+        severity: "warning",
+        ...args,
+        res,
+      });
+    }
+
+    const unitData = keysToCamelCase(
+      pupiUnitDataSchema.parse(firstBrowseDataSnake),
+    ) as PupilUnitData;
 
     return {
+      unitData,
       browseData,
     };
   };
