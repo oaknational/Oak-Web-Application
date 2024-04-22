@@ -51,7 +51,7 @@ describe("SearchDropdown component", () => {
     );
 
     const button = getByRole("button", {
-      name: "Select exam board for lesson",
+      name: "Select exam board for lesson: The FDE cycle",
     });
 
     await userEvent.click(button);
@@ -65,7 +65,7 @@ describe("SearchDropdown component", () => {
     );
 
     const button = getByRole("button", {
-      name: "Select exam board for lesson",
+      name: "Select exam board for lesson: The FDE cycle",
     });
 
     await userEvent.click(button);
@@ -79,7 +79,9 @@ describe("SearchDropdown component", () => {
       <SearchDropdown {...searchResultTierPathways} />,
     );
 
-    const button = getByRole("button", { name: "Select tier for unit" });
+    const button = getByRole("button", {
+      name: "Select tier for unit: Computing systems",
+    });
 
     await userEvent.click(button);
 
@@ -93,7 +95,7 @@ describe("SearchDropdown component", () => {
     );
 
     const button = getByRole("button", {
-      name: "Select exam board for lesson",
+      name: "Select exam board for lesson: The FDE cycle",
     });
 
     await userEvent.click(button);
@@ -120,7 +122,9 @@ describe("SearchDropdown component", () => {
       <SearchDropdown {...searchResultUnit} />,
     );
 
-    const button = getByRole("button", { name: "Select exam board for unit" });
+    const button = getByRole("button", {
+      name: "Select exam board for unit: Computing systems",
+    });
 
     await userEvent.click(button);
 
@@ -146,7 +150,9 @@ describe("SearchDropdown component", () => {
       <SearchDropdown {...searchResultUnit} />,
     );
 
-    const button = getByRole("button", { name: "Select exam board for unit" });
+    const button = getByRole("button", {
+      name: "Select exam board for unit: Computing systems",
+    });
 
     await userEvent.click(button);
 
