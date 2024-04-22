@@ -211,6 +211,8 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={2}
             $pr={"inner-padding-m"}
+            aria-live="polite"
+            role="region"
           >
             <div role="status">
               {shouldShowError && (
