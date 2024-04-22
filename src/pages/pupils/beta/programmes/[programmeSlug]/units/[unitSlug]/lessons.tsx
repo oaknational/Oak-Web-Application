@@ -1,56 +1,52 @@
-import Link from "next/link";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import { OakLink } from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonListingBrowseData,
-  PupilUnitData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
+import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-// import OakLink from "@/components/SharedComponents/OwaLink";
 import { resolveOakHref } from "@/common-lib/urls";
-
 
 export type LessonListingPageProps = {
   curriculumData: {
     browseData: LessonListingBrowseData;
-    unitData: PupilUnitData;
   };
 };
 
 const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
-  const { browseData, unitData } = curriculumData;
-  const { unitTitle, subjectTitle, yearDescription } = unitData;
+  const { browseData } = curriculumData;
+  const unitData = browseData[0]?.unitData;
+  const programmeFields = browseData[0]?.programmeFields;
+
   return (
     <div>
-      <h1>{unitTitle}</h1>
-      <h2>{subjectTitle}</h2>
-      <h3>{yearDescription}</h3>
+      <h1>{unitData?.title}</h1>
+      <h2>{programmeFields?.subject}</h2>
+      <h3>{programmeFields?.yearDescription}</h3>
       <ul>
-        {browseData.map((lesson) => (
-          <li key={lesson.lessonSlug}>
-            <OakLink
-              element={Link}
-              href={resolveOakHref({
-                page: "pupil-lesson",
-                lessonSlug: lesson.lessonSlug,
-                programmeSlug: lesson.programmeSlug,
-                unitSlug: lesson.unitSlug,
-              })}
-            >
-              {lesson.lessonTitle}
-            </OakLink>
-          </li>
-        ))}
+        {browseData.map((lesson) => {
+          const lessonData = lesson.lessonData;
+          return (
+            <li key={lesson.lessonSlug}>
+              <a
+                href={resolveOakHref({
+                  page: "pupil-lesson",
+                  lessonSlug: lesson.lessonSlug,
+                  programmeSlug: lesson.programmeSlug,
+                  unitSlug: lesson.unitSlug,
+                })}
+              >
+                {lessonData?.title}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

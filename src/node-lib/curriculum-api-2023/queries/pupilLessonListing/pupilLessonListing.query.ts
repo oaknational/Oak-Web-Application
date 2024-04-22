@@ -1,8 +1,6 @@
 import {
   LessonListingBrowseData,
   lessonBrowseDataSchema,
-  PupilUnitData,
-  pupiUnitDataSchema,
 } from "./pupilLessonListing.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -16,7 +14,6 @@ export const pupilLessonListingQuery =
     unitSlug: string;
     programmeSlug: string;
   }): Promise<{
-    unitData: PupilUnitData;
     browseData: LessonListingBrowseData;
   }> => {
     const { unitSlug, programmeSlug } = args;
@@ -42,34 +39,13 @@ export const pupilLessonListingQuery =
         res,
       });
     }
+    lessonBrowseDataSchema.parse(browseDataSnake);
 
     const browseData = keysToCamelCase(
-      lessonBrowseDataSchema.parse(browseDataSnake),
+      browseDataSnake,
     ) as LessonListingBrowseData;
 
-    const [firstBrowseDataSnake] = res.browseData;
-
-    if (!firstBrowseDataSnake) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
-    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::pupilLessonListing")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
-
-    const unitData = keysToCamelCase(
-      pupiUnitDataSchema.parse(firstBrowseDataSnake),
-    ) as PupilUnitData;
-
     return {
-      unitData,
       browseData,
     };
   };
