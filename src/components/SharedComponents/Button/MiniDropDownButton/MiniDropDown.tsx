@@ -58,7 +58,8 @@ type MiniDropDownProps = CommonButtonProps & {
 
 const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
   (props, ref) => {
-    const { onClick, icon, label, htmlButtonProps, isExpanded } = props;
+    const { onClick, icon, label, htmlButtonProps, isExpanded, ariaLabel } =
+      props;
     const [textUnderline, setTextUnderline] = useState<boolean>(false);
     const { isFocusVisible, focusProps } = useFocusRing();
 
@@ -77,7 +78,7 @@ const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
           $color={"navy"}
           onClick={onClick}
           $font={"heading-7"}
-          aria-label={label}
+          aria-label={ariaLabel ?? label}
           aria-expanded={isExpanded}
           $ph={8}
         >
