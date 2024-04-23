@@ -122,7 +122,7 @@ describe("SearchResultsItem", () => {
         <SearchResultsItem {...hitObjectUnit} />,
       );
       const link = getByLabelText(
-        "English unit: Macbeth: Lady Macbeth as a machiavellian villain",
+        "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
       );
       expect(link).toBeInTheDocument();
     } else {
@@ -135,7 +135,7 @@ describe("SearchResultsItem", () => {
         <SearchResultsItem {...hitObjectLesson} />,
       );
       const link = getByLabelText(
-        "English lesson: The relationship between Macbeth and Lady Macbeth",
+        "See lesson: The relationship between Macbeth and Lady Macbeth",
       );
       expect(link).toBeInTheDocument();
     } else {
