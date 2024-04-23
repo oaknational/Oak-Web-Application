@@ -240,6 +240,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .map((year, index) => {
             const { units, childSubjects, domains, tiers, disciplines } =
               yearData[year] as YearData[string];
+
+            const ref = (element: HTMLDivElement) => {
+              itemEls.current[index] = element;
+            };
             return (
               <Box
                 key={year}
@@ -251,7 +255,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 $borderRadius={4}
                 className="mobileYearDisplay"
                 id={year}
-                ref={(element) => (itemEls.current[index] = element)}
+                ref={ref}
               >
                 <AnchorTarget
                   $paddingTop={mobileHeaderScrollOffset}
