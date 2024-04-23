@@ -8,7 +8,7 @@ import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
-  const { pathways, onClick, onToggleClick } = props;
+  const { pathways, onClick, onToggleClick, type } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
   const getSlug = (item: string | null | undefined) => item || "";
@@ -31,6 +31,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   const isExamBoardDropdown = examDropdownContent.length > 0;
 
   const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
+  const ariaLabel = `${label} for ${type}: ${props.title}`;
 
   const dropDownContent = isExamBoardDropdown
     ? examDropdownContent
@@ -40,6 +41,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
         label={label}
+        ariaLabel={ariaLabel}
         title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => {
