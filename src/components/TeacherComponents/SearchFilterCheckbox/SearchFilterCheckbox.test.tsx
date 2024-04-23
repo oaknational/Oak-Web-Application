@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
 import { FilterType } from "@/browser-lib/avo/Avo";
@@ -60,6 +62,33 @@ describe("SearchFilterCheckbox", () => {
     const checkbox = getByRole("checkbox");
     expect(checkbox).toBeChecked();
   });
+  test("calls onFilterClick", async () => {
+    const onFilterClick = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <SearchFilterCheckbox
+        {...props}
+        lastFocussedFilter={null}
+        onFilterClick={onFilterClick}
+      />,
+    );
+    const checkbox = getByRole("checkbox");
+    const user = userEvent.setup();
+    await user.click(checkbox);
 
-  test.todo("calls onChange when clicked");
+    expect(onFilterClick).toHaveBeenCalledWith("ks1");
+  });
+  test("calls onChange when clicked", async () => {
+    const { getByRole } = renderWithTheme(
+      <SearchFilterCheckbox
+        {...props}
+        lastFocussedFilter={null}
+        onFilterClick={jest.fn()}
+      />,
+    );
+    const checkbox = getByRole("checkbox");
+    const user = userEvent.setup();
+    await user.click(checkbox);
+
+    expect(props.onChange).toHaveBeenCalled();
+  });
 });
