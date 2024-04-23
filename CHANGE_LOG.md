@@ -1,3 +1,36 @@
+## [1.413.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.4...v1.413.5) (2024-04-23)
+
+
+### Bug Fixes
+
+* updated blog slug to match blog url ([f91bb6a](https://github.com/oaknational/Oak-Web-Application/commit/f91bb6ad3bc690c46ee138d5f20b905981c857fd))
+
+## [1.413.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.3...v1.413.4) (2024-04-23)
+
+## [1.413.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.2...v1.413.3) (2024-04-23)
+
+
+### Bug Fixes
+
+* add title to aria label ([e3a8df0](https://github.com/oaknational/Oak-Web-Application/commit/e3a8df0e9770bc67a2ae65e99a61991517fcf1a3))
+* update aria label for dropdown search results ([60c5f81](https://github.com/oaknational/Oak-Web-Application/commit/60c5f81010e3c4b21f8ba35b2c384d3e195f3741))
+* update aria label for single results ([d702316](https://github.com/oaknational/Oak-Web-Application/commit/d70231692cb7bb32e68885b0c34f49c637060efa))
+
+## [1.413.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.1...v1.413.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* **analytics:** fix incorrect value for analytics bug ([e1e67c1](https://github.com/oaknational/Oak-Web-Application/commit/e1e67c1982f249760f1700e0d9b967139c6af9c7))
+
+## [1.413.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.0...v1.413.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* added aria-labelledby to radiogroups in subject-phase picker ([484231a](https://github.com/oaknational/Oak-Web-Application/commit/484231ae7f5407bf905ec6b9ada34482be77578f))
+* remove old aria-label tags from radiogroups ([8716f78](https://github.com/oaknational/Oak-Web-Application/commit/8716f7846c13488d3fa2403ac0012ec83353eef1))
+
 # [1.413.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.412.0...v1.413.0) (2024-04-22)
 
 
