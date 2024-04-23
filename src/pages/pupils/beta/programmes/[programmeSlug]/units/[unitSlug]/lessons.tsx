@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
+import Link from "next/link";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
@@ -29,7 +30,7 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
           const lessonData = lesson.lessonData;
           return (
             <li key={lesson.lessonSlug}>
-              <a
+              <Link
                 href={resolveOakHref({
                   page: "pupil-lesson",
                   lessonSlug: lesson.lessonSlug,
@@ -38,7 +39,7 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
                 })}
               >
                 {lessonData?.title}
-              </a>
+              </Link>
             </li>
           );
         })}

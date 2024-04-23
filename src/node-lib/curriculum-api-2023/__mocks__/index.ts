@@ -27,6 +27,7 @@ const curriculumApi: Pick<
   | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonQuery"
+  | "pupilLessonListingQuery"
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
@@ -57,6 +58,11 @@ const curriculumApi: Pick<
     return {
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
+    };
+  }),
+  pupilLessonListingQuery: jest.fn(async () => {
+    return {
+      browseData: [lessonBrowseDataFixture({})],
     };
   }),
   lessonShare: jest.fn(async () => {
