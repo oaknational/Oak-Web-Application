@@ -61,9 +61,7 @@ const curriculumApi: Pick<
     };
   }),
   pupilLessonListingQuery: jest.fn(async () => {
-    return {
-      browseData: [lessonBrowseDataFixture({})],
-    };
+    return [lessonBrowseDataFixture({})];
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();

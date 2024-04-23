@@ -13,9 +13,7 @@ export const pupilLessonListingQuery =
   async (args: {
     unitSlug: string;
     programmeSlug: string;
-  }): Promise<{
-    browseData: LessonListingBrowseData;
-  }> => {
+  }): Promise<LessonListingBrowseData> => {
     const { unitSlug, programmeSlug } = args;
 
     const res = await sdk.pupilLessonListing({
@@ -45,7 +43,5 @@ export const pupilLessonListingQuery =
       browseDataSnake,
     ) as LessonListingBrowseData;
 
-    return {
-      browseData,
-    };
+    return [...browseData];
   };

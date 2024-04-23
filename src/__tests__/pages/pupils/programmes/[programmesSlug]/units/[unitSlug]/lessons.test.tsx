@@ -12,9 +12,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     it("should render the subjectTitle, unitTitle, and yearDescription", () => {
       const { getByText } = render(
         <PupilLessonListingPage
-          curriculumData={{
-            browseData: [lessonBrowseDataFixture({})],
-          }}
+          curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
       expect(getByText("subject")).toBeInTheDocument();
@@ -24,9 +22,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     it("should render the lesson titles as a tags", () => {
       const { getByText } = render(
         <PupilLessonListingPage
-          curriculumData={{
-            browseData: [lessonBrowseDataFixture({})],
-          }}
+          curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
       expect(getByText("lesson-title")).toBeInTheDocument();

@@ -10,23 +10,21 @@ import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[un
 export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 
 export type LessonListingPageProps = {
-  curriculumData: {
-    browseData: LessonListingBrowseData;
-  };
+  curriculumData: LessonListingBrowseData;
 };
 
 const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
-  const { browseData } = curriculumData;
-  const unitData = browseData[0]?.unitData;
-  const programmeFields = browseData[0]?.programmeFields;
+  const unitData = curriculumData[0]?.unitData;
+  const programmeFields = curriculumData[0]?.programmeFields;
 
+  console.log("curriculumData", curriculumData);
   return (
     <div>
       <h1>{unitData?.title}</h1>
       <h2>{programmeFields?.subject}</h2>
       <h3>{programmeFields?.yearDescription}</h3>
       <ul>
-        {browseData.map((lesson) => {
+        {curriculumData.map((lesson) => {
           const lessonData = lesson.lessonData;
           return (
             <li key={lesson.lessonSlug}>
