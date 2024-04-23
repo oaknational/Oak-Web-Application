@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./SubjectProgrammeListing";
 
-import { programmeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierAndExamboardListing.fixture";
+import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 
 const meta: Meta<typeof Component> = {
   component: Component,

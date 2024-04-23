@@ -40003,6 +40003,14 @@ export type PupilLessonQueryVariables = Exact<{
 
 export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
 
+export type PupilLessonListingQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_title?: any | null, lesson_slug?: any | null, order?: any | null, subject_title?: any | null, subject_slug?: any | null, year_description?: any | null }> };
+
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -40406,6 +40414,23 @@ export const PupilLessonDocument = gql`
   }
 }
     `;
+export const PupilLessonListingDocument = gql`
+    query pupilLessonListing($programmeSlug: String!, $unitSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0(
+    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
+    lesson_title: lesson_data(path: "title")
+    lesson_slug: lesson_data(path: "slug")
+    order: supplementary_data(path: "order_in_unit")
+    subject_title: programme_fields(path: "subject")
+    subject_slug: programme_fields(path: "subject_slug")
+    year_description: programme_fields(path: "year_description")
+    unit_slug
+    programme_slug
+    is_legacy
+  }
+}
+    `;
 export const SearchPageDocument = gql`
     query searchPage {
   searchPage: published_mv_search_page_3_0_1 {
@@ -40769,6 +40794,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query');
+    },
+    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

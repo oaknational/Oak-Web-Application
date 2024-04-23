@@ -7,7 +7,7 @@ import { act } from "react-dom/test-utils";
 import SearchResults from "./SearchResults";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 

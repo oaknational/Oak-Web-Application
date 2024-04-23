@@ -1,3 +1,51 @@
+## [1.413.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.0...v1.413.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* added aria-labelledby to radiogroups in subject-phase picker ([484231a](https://github.com/oaknational/Oak-Web-Application/commit/484231ae7f5407bf905ec6b9ada34482be77578f))
+* remove old aria-label tags from radiogroups ([8716f78](https://github.com/oaknational/Oak-Web-Application/commit/8716f7846c13488d3fa2403ac0012ec83353eef1))
+
+# [1.413.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.412.0...v1.413.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* imports ([5cc65ae](https://github.com/oaknational/Oak-Web-Application/commit/5cc65ae5ce3315f882095e623ba41405464631c8))
+
+
+### Features
+
+* switch to oak-curriculum-schema ([6a9f55a](https://github.com/oaknational/Oak-Web-Application/commit/6a9f55a33f7f3b0f2fca1db394a056ee7eb36952))
+
+# [1.412.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.2...v1.412.0) (2024-04-22)
+
+
+### Features
+
+* **lessonListingQuery:** create lessonlisting query and tests ([e1f131d](https://github.com/oaknational/Oak-Web-Application/commit/e1f131d9919d17380e35f23c3f0993e241622d2c))
+
+## [1.411.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.1...v1.411.2) (2024-04-22)
+
+## [1.411.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.411.0...v1.411.1) (2024-04-22)
+
+# [1.411.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.3...v1.411.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* **pupilquix:** remove dynamic import ([af9f9ff](https://github.com/oaknational/Oak-Web-Application/commit/af9f9ff27058b80013f921e380d569627df0fc1b))
+* **pupilquix:** remove dynamic import ([a04f19a](https://github.com/oaknational/Oak-Web-Application/commit/a04f19a0f1541a9b89abe64fb6b2e98350ce2ffa))
+* **quizview:** update oak-components to use fixed tooltip ([f8832fe](https://github.com/oaknational/Oak-Web-Application/commit/f8832fe2427977ed8d3dfa967b77bdd66a89dc52))
+* **quizview:** update oak-components to use fixed tooltip ([4592072](https://github.com/oaknational/Oak-Web-Application/commit/45920721d42d369898890c0826000fa084045a1c))
+
+
+### Features
+
+* **quiz:** refreshing quiz not erroring ([e063e23](https://github.com/oaknational/Oak-Web-Application/commit/e063e239e715d24fe6433bafe0523b2991e905c8))
+
+## [1.410.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.2...v1.410.3) (2024-04-19)
+
 ## [1.410.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.410.1...v1.410.2) (2024-04-18)
 
 
