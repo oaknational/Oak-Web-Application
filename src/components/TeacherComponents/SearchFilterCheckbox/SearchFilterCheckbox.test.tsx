@@ -62,7 +62,7 @@ describe("SearchFilterCheckbox", () => {
     const checkbox = getByRole("checkbox");
     expect(checkbox).toBeChecked();
   });
-  test("calls onFilterClick", async () => {
+  test("calls onFilterClick with slug on non-mouse click", async () => {
     const onFilterClick = jest.fn();
     const { getByRole } = renderWithTheme(
       <SearchFilterCheckbox
@@ -76,6 +76,25 @@ describe("SearchFilterCheckbox", () => {
     await user.click(checkbox);
 
     expect(onFilterClick).toHaveBeenCalledWith("ks1");
+  });
+  test("calls onFilterClick with undefined on mouse click", async () => {
+    const onFilterClick = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <SearchFilterCheckbox
+        {...props}
+        lastFocussedFilter={null}
+        onFilterClick={onFilterClick}
+      />,
+    );
+    const checkbox = getByRole("checkbox");
+    const user = userEvent.setup();
+    await user.pointer({
+      keys: "[MouseLeft]",
+      target: checkbox,
+      coords: { x: 10, y: 10 },
+    });
+
+    expect(onFilterClick).toHaveBeenCalledWith(undefined);
   });
   test("calls onChange when clicked", async () => {
     const { getByRole } = renderWithTheme(
