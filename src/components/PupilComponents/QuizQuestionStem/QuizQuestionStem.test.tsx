@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
@@ -36,7 +35,7 @@ describe("QuestionListItem", () => {
         <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
       </OakThemeProvider>,
     );
-    const image = getByRole("img");
+    const image = getByRole("presentation");
 
     expect(image).toBeInTheDocument();
   });
