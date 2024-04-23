@@ -10,13 +10,13 @@ import {
 
 import Box from "../Box";
 
-import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import { TeachersHomePageData } from "@/node-lib/curriculum-api-2023";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 

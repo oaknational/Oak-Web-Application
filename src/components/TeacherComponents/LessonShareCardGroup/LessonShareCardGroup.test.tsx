@@ -6,8 +6,8 @@ import { ResourceFormProps } from "../types/downloadAndShare.types";
 
 import LessonShareCardGroup from "./LessonShareCardGroup";
 
-import { LessonShareData } from "@/node-lib/curriculum-api";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 const ComponentWrapper = (props: {
   shareableResources: LessonShareData["shareableResources"];

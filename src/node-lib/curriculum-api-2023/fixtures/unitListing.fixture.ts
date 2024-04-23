@@ -1,8 +1,8 @@
-import { UnitListingData } from "..";
+import { UnitListingPageData } from "../queries/unitListing/unitListing.schema";
 
-const unitListingFixture = (
-  partial?: Partial<UnitListingData>,
-): UnitListingData => {
+export const unitListingFixture = (
+  partial?: Partial<UnitListingPageData>,
+): UnitListingPageData => {
   return {
     programmeSlug: "computing-secondary-ks4",
     keyStageSlug: "ks4",
@@ -33,6 +33,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
 
           learningThemes: [
             {
@@ -60,6 +61,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -86,6 +88,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-3",
@@ -112,6 +115,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -138,6 +142,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -164,6 +169,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -190,6 +196,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -216,6 +223,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -242,6 +250,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -268,6 +277,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -294,6 +304,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -320,6 +331,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -346,6 +358,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "no-theme",
@@ -372,6 +385,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -398,6 +412,7 @@ const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -418,6 +433,39 @@ const unitListingFixture = (
       },
 
       { themeTitle: null, themeSlug: "no-theme" },
+    ],
+    ...partial,
+  };
+};
+
+export const unitListingWithTiers = (
+  partial?: Partial<UnitListingPageData>,
+): UnitListingPageData => {
+  return {
+    ...unitListingFixture(),
+    tierSlug: "higher",
+    tiers: [
+      {
+        tierTitle: "Foundation",
+        tierSlug: "foundation",
+        unitCount: 3,
+        lessonCount: 34,
+        tierProgrammeSlug: "maths-secondary-ks4-foundation",
+      },
+      {
+        tierTitle: "Core",
+        tierSlug: "core",
+        unitCount: 3,
+        lessonCount: 38,
+        tierProgrammeSlug: "maths-secondary-ks4-core",
+      },
+      {
+        tierTitle: "Higher",
+        tierSlug: "higher",
+        unitCount: 3,
+        lessonCount: 29,
+        tierProgrammeSlug: "maths-secondary-ks4-higher",
+      },
     ],
     ...partial,
   };

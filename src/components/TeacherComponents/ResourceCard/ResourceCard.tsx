@@ -9,14 +9,14 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
-import { LessonShareSchema } from "@/node-lib/curriculum-api";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import zIndex from "@/styles/utils/zIndex";
+import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export type ResourceCardProps = CheckboxProps & {
   label: string;
-  resourceType: DownloadResourceType | LessonShareSchema["type"];
+  resourceType: DownloadResourceType | LessonShareResourceData["type"];
   subtitle: string;
   hasError?: boolean;
   useRadio?: boolean;
@@ -29,7 +29,7 @@ type ResourceCardLabelProps = ResourceCardProps & {
 };
 
 const RESOURCE_TYPE_ICON_MAP: Record<
-  DownloadResourceType | LessonShareSchema["type"],
+  DownloadResourceType | LessonShareResourceData["type"],
   IconName
 > = {
   presentation: "slide-deck",

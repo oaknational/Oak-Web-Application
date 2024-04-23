@@ -1,5 +1,5 @@
 import { KeyStageKeypadProps } from "../../components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
-import teachersHomePageFixture from "../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
+import teachersHomePageFixture from "../../node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
 
 const keyStageKeypad: KeyStageKeypadProps = {
   keyStages: teachersHomePageFixture().keyStages,
