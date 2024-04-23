@@ -18,8 +18,8 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
   const programmeFields = curriculumData[0]?.programmeFields;
 
   const orderedCurriculumData = curriculumData.sort((a, b) => {
-    const aLessonOrder = a.supplementaryData?.orderInUnit ?? 0;
-    const bLessonOrder = b.supplementaryData?.orderInUnit ?? 0;
+    const aLessonOrder = a.supplementaryData?.orderInUnit;
+    const bLessonOrder = b.supplementaryData?.orderInUnit;
     return aLessonOrder - bLessonOrder;
   });
 

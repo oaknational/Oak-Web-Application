@@ -27,6 +27,21 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       );
       expect(getByText("lesson-title")).toBeInTheDocument();
     });
+    it("should render the lesson titlts in the correct order", () => {
+      const { getByText } = render(
+        <PupilLessonListingPage
+          curriculumData={[
+            lessonBrowseDataFixture({
+              supplementaryData: { orderInUnit: 2, unitOrder: 4 },
+            }),
+            lessonBrowseDataFixture({
+              supplementaryData: { orderInUnit: 1, unitOrder: 4 },
+            }),
+          ]}
+        />,
+      );
+      expect(getByText("lesson-title")).toBeInTheDocument();
+    });
   });
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
