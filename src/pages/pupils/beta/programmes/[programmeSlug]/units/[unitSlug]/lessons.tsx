@@ -1,17 +1,12 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
 import { resolveOakHref } from "@/common-lib/urls";
+import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+
+export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 
 export type LessonListingPageProps = {
   curriculumData: {
@@ -50,23 +45,6 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
       </ul>
     </div>
   );
-};
-
-export type URLParams = {
-  programmeSlug: string;
-  unitSlug: string;
-};
-
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
 };
 
 export const getStaticProps: GetStaticProps<
