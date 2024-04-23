@@ -68,6 +68,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           }
 
           for (const entries of formData.entries()) {
+            if (!entries[1]) continue; // if there is no index for the answer skip it
             const i = Number((entries[1] as string).at(-1)); // assumes the last character is the index and no more than 10 answers
             const a = answers?.["multiple-choice"]?.[i];
             a && selectedAnswers.push(a);
