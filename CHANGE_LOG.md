@@ -1,3 +1,21 @@
+## [1.413.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.3...v1.413.4) (2024-04-23)
+
+## [1.413.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.2...v1.413.3) (2024-04-23)
+
+
+### Bug Fixes
+
+* add title to aria label ([e3a8df0](https://github.com/oaknational/Oak-Web-Application/commit/e3a8df0e9770bc67a2ae65e99a61991517fcf1a3))
+* update aria label for dropdown search results ([60c5f81](https://github.com/oaknational/Oak-Web-Application/commit/60c5f81010e3c4b21f8ba35b2c384d3e195f3741))
+* update aria label for single results ([d702316](https://github.com/oaknational/Oak-Web-Application/commit/d70231692cb7bb32e68885b0c34f49c637060efa))
+
+## [1.413.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.1...v1.413.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* **analytics:** fix incorrect value for analytics bug ([e1e67c1](https://github.com/oaknational/Oak-Web-Application/commit/e1e67c1982f249760f1700e0d9b967139c6af9c7))
+
 ## [1.413.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.0...v1.413.1) (2024-04-23)
 
 

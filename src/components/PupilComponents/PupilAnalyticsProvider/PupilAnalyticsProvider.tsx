@@ -148,7 +148,7 @@ export const getPupilPathwayData = (
     lessonName: browseData.lessonData.title,
     keyStageSlug: browseData.programmeFields.keystageSlug,
     keyStageTitle,
-    subjectTitle: browseData.programmeFields.subjectDescription,
+    subjectTitle: browseData.programmeFields.subject,
     subjectSlug: browseData.programmeFields.subjectSlug,
   };
 };
