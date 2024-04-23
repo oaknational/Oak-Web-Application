@@ -5,6 +5,7 @@ import {
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -222,16 +223,19 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={2}
             $pr={"inner-padding-m"}
-            aria-live="polite"
-            role="region"
           >
-            <div role="status">
+            <div role="status" aria-live="polite">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
                 <NoSearchResults searchTerm={query.term} />
+              )}
+              {shouldShowResults && (
+                <OakBox $visibility="hidden">
+                  Showing {results.length} results
+                </OakBox>
               )}
             </div>
             <OakFlex $mb="space-between-m2">
