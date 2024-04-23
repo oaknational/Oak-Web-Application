@@ -8,20 +8,20 @@ describe("QuizImageAnswer", () => {
     const { getByRole } = renderWithTheme(
       <QuizImageAnswer src={image_object} />,
     );
-    expect(getByRole("img")).toBeInTheDocument();
+    expect(getByRole("presentation")).toBeInTheDocument();
   });
 
   it("constrains height to 200", () => {
     const { getByRole } = renderWithTheme(
       <QuizImageAnswer src={image_object} />,
     );
-    expect(getByRole("img")).toHaveAttribute("height", "200");
+    expect(getByRole("presentation")).toHaveAttribute("height", "200");
   });
 
   it("gets the natural dims when none are specified", () => {
     const no_dims = { ...image_object, width: undefined, height: undefined };
     const { getByRole } = renderWithTheme(<QuizImageAnswer src={no_dims} />);
-    expect(getByRole("img")).toHaveAttribute("data-nimg", "fill");
+    expect(getByRole("presentation")).toHaveAttribute("data-nimg", "fill");
   });
   it("renders a tick when the answer is correct", () => {
     const no_dims = { ...image_object, width: undefined, height: undefined };

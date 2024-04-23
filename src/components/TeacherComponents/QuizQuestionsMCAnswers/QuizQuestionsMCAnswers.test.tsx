@@ -60,6 +60,6 @@ describe("QuizQuestionsMCAnswers", () => {
       <QuizQuestionsMCAnswers answers={mcqImageAnswers} questionNumber={0} />,
     );
 
-    expect(getAllByRole("img").length).toBe(3);
+    expect(getAllByRole("presentation").length).toBe(3);
   });
 });
