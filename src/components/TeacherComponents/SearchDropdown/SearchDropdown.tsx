@@ -6,6 +6,7 @@ import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButto
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
+import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   const { pathways, onClick, onToggleClick, type } = props;
@@ -42,6 +43,20 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
       ? tierDropdownContent
       : pathways;
 
+  const getDropdownButtonTitle = (item: PathwaySchemaCamel) => {
+    const examboardTitle = item.examBoardTitle !== undefined;
+    const tierTitle = item.tierTitle !== undefined;
+    if (examboardTitle && !tierTitle) {
+      return item.examBoardTitle;
+    } else if (tierTitle && !examboardTitle) {
+      return item.tierTitle;
+    } else if (tierTitle && examboardTitle) {
+      return `${item.examBoardTitle} ${item.tierTitle}`;
+    } else {
+      return item.unitTitle;
+    }
+  };
+
   return (
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
@@ -69,9 +84,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
             $gap="all-spacing-4"
           >
             {dropDownContent.map((item, index) => {
-              const buttonTitle = `${
-                item.examBoardTitle ?? item.tierTitle ?? item.unitTitle
-              }`;
+              const buttonTitle = getDropdownButtonTitle(item);
 
               return (
                 <OakLI
