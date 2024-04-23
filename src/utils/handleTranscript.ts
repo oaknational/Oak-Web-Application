@@ -2,6 +2,7 @@ import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { Cue, WebVTTParser } from "webvtt-parser";
 
 export const getCaptionsFromFile = async (fileName: string) => {
+  // TODO: get bucket name from config?
   const bucketName = "oak-captions-2023-production";
   const file = await getFileFromBucket(bucketName, fileName);
   if (file) {
