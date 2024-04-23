@@ -32,15 +32,25 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         <PupilLessonListingPage
           curriculumData={[
             lessonBrowseDataFixture({
+              lessonData: {
+                ...lessonBrowseDataFixture({}).lessonData,
+                title: "lesson-title-2",
+              },
               supplementaryData: { orderInUnit: 2, unitOrder: 4 },
             }),
             lessonBrowseDataFixture({
+              lessonData: {
+                ...lessonBrowseDataFixture({}).lessonData,
+                title: "lesson-title-1",
+              },
               supplementaryData: { orderInUnit: 1, unitOrder: 4 },
             }),
           ]}
         />,
       );
-      expect(getByText("lesson-title")).toBeInTheDocument();
+      const e1 = getByText("lesson-title-1");
+      const e2 = getByText("lesson-title-2");
+      expect(e2.compareDocumentPosition(e1)).toBe(2);
     });
   });
   describe("getStaticPaths", () => {
