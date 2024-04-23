@@ -23,7 +23,7 @@ describe("CMSImage", () => {
       </ThemeProvider>,
     );
 
-    const img = getByRole("img");
+    const img = getByRole("presentation");
     expect(img).toBeInTheDocument();
   });
 
@@ -54,7 +54,7 @@ describe("CMSImage", () => {
     const mockImage = mockImageAsset();
     const { getByRole } = render(<CMSImage image={mockImage} alt="" />);
 
-    const img = getByRole("img");
+    const img = getByRole("presentation");
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(img.getAttribute("alt")).toBe("");
   });
@@ -68,10 +68,10 @@ describe("CMSImage", () => {
     };
     const { getByRole, queryByRole } = render(<CMSImage image={mockImage} />);
 
-    const img = queryByRole("img");
+    const img = queryByRole("presentation");
     expect(img).not.toBeInTheDocument();
 
-    const hiddenImg = getByRole("img", { hidden: true });
+    const hiddenImg = getByRole("presentation", { hidden: true });
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(hiddenImg.getAttribute("alt")).toBe("");
     expect(hiddenImg).toHaveAttribute("aria-hidden", "true");
@@ -81,7 +81,7 @@ describe("CMSImage", () => {
     const mockImage = mockImageAsset();
     const { getByRole } = render(<CMSImage image={mockImage} />);
 
-    const img = getByRole("img");
+    const img = getByRole("presentation");
     expect(img.getAttribute("src")).toBe(
       "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format",
     );
