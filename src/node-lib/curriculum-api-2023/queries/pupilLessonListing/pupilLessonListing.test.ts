@@ -1,25 +1,19 @@
-import {
-  syntheticUnitvariantLessonsFixture,
-  lessonContentFixture,
-} from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { pupilLessonQuery } from "./pupilLesson.query";
+import { pupilLessonListingQuery } from "./pupilLessonListing.query";
 
+import { PupilLessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
-describe("pupilLesson()", () => {
+describe("pupilLessonListing()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
-      await pupilLessonQuery({
+      await pupilLessonListingQuery({
         ...sdk,
-        pupilLesson: jest.fn(() =>
-          Promise.resolve({ browseData: [], content: [] }),
-        ),
+        pupilLessonListing: jest.fn(() => Promise.resolve({ browseData: [] })),
       })({
-        lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -28,25 +22,22 @@ describe("pupilLesson()", () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
         overrides: {
-          lesson_slug: "lesson-slug-test",
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
-          is_legacy: false,
         },
       });
 
-    const _lessonContentFixture = lessonContentFixture();
-
-    const lesson = await pupilLessonQuery({
+    const lesson = await pupilLessonListingQuery({
       ...sdk,
-      pupilLesson: jest.fn(() =>
-        Promise.resolve({
-          browseData: [_syntheticUnitvariantLessonsFixture],
-          content: [_lessonContentFixture],
-        }),
+      pupilLessonListing: jest.fn(
+        () =>
+          Promise.resolve({
+            browseData: [_syntheticUnitvariantLessonsFixture],
+          }) as Promise<PupilLessonListingQuery>, // Add the correct return type
       ),
     })({
-      lessonSlug: "test",
+      unitSlug: "test",
+      programmeSlug: "test",
     });
 
     expect(lesson.browseData.lessonSlug).toEqual(
@@ -58,47 +49,33 @@ describe("pupilLesson()", () => {
     expect(lesson.browseData.programmeSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.programme_slug,
     );
-    expect(lesson.browseData.isLegacy).toEqual(
-      _syntheticUnitvariantLessonsFixture.is_legacy,
-    );
-    expect(lesson.browseData.lessonSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.lesson_slug,
-    );
-    expect(lesson.content.lessonId).toEqual(_lessonContentFixture.lesson_id);
-    expect(lesson.content.lessonTitle).toEqual(
-      _lessonContentFixture.lesson_title,
-    );
   });
 
   test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
       syntheticUnitvariantLessonsFixture({
         overrides: {
-          lesson_slug: "lesson-slug-test",
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
-          is_legacy: false,
         },
       }),
       syntheticUnitvariantLessonsFixture(),
     ];
 
-    const _lessonContentFixture = lessonContentFixture();
-
     if (!fixtures || fixtures.length < 1) {
       throw new Error("No fixtures found");
     }
-
-    const lesson = await pupilLessonQuery({
+    const lesson = await pupilLessonListingQuery({
       ...sdk,
-      pupilLesson: jest.fn(() =>
-        Promise.resolve({
-          browseData: fixtures,
-          content: [_lessonContentFixture],
-        }),
+      pupilLessonListing: jest.fn(
+        () =>
+          Promise.resolve({
+            browseData: fixtures as PupilLessonListingQuery["browseData"],
+          }) as Promise<PupilLessonListingQuery>,
       ),
     })({
-      lessonSlug: "test",
+      unitSlug: "test",
+      programmeSlug: "test",
     });
 
     expect(lesson.browseData.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
@@ -107,9 +84,5 @@ describe("pupilLesson()", () => {
       fixtures[0]?.programme_slug,
     );
     expect(lesson.browseData.isLegacy).toEqual(fixtures[0]?.is_legacy);
-    expect(lesson.content.lessonId).toEqual(_lessonContentFixture.lesson_id);
-    expect(lesson.content.lessonTitle).toEqual(
-      _lessonContentFixture.lesson_title,
-    );
   });
 });
