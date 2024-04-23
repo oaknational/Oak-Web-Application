@@ -17,14 +17,20 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
   const unitData = curriculumData[0]?.unitData;
   const programmeFields = curriculumData[0]?.programmeFields;
 
+  const orderedCurriculumData = curriculumData.sort((a, b) => {
+    const aLessonOrder = a.supplementaryData?.orderInUnit ?? 0;
+    const bLessonOrder = b.supplementaryData?.orderInUnit ?? 0;
+    return aLessonOrder - bLessonOrder;
+  });
+
   console.log("curriculumData", curriculumData);
   return (
     <div>
       <h1>{unitData?.title}</h1>
       <h2>{programmeFields?.subject}</h2>
       <h3>{programmeFields?.yearDescription}</h3>
-      <ul>
-        {curriculumData.map((lesson) => {
+      <ol>
+        {orderedCurriculumData.map((lesson) => {
           const lessonData = lesson.lessonData;
           return (
             <li key={lesson.lessonSlug}>
@@ -41,7 +47,7 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
             </li>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 };
