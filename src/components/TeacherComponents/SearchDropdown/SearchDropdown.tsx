@@ -29,13 +29,18 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
     });
 
   const isExamBoardDropdown = examDropdownContent.length > 0;
+  const isTierDropdown = tierDropdownContent.length > 0;
 
-  const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
+  const label = `Select ${
+    isExamBoardDropdown ? "exam board" : isTierDropdown ? "tier" : "unit"
+  }`;
   const ariaLabel = `${label} for ${type}: ${props.title}`;
 
   const dropDownContent = isExamBoardDropdown
     ? examDropdownContent
-    : tierDropdownContent;
+    : isTierDropdown
+      ? tierDropdownContent
+      : pathways;
 
   return (
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
@@ -64,8 +69,8 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
             $gap="all-spacing-4"
           >
             {dropDownContent.map((item, index) => {
-              const buttonTitle = `${item.examBoardTitle ?? ""} ${
-                item.tierTitle ?? ""
+              const buttonTitle = `${
+                item.examBoardTitle ?? item.tierTitle ?? item.unitTitle
               }`;
 
               return (
