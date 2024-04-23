@@ -21,6 +21,8 @@ const searchResultUnit = searchResultsData[1] as SearchResultsItemProps; // we k
 
 const searchResultTierPathways = searchResultsData[2] as SearchResultsItemProps; // we know this exists
 
+const searchResultPathways = searchResultsData[3] as SearchResultsItemProps;
+
 describe("SearchDropdown component", () => {
   test("component renders with correct title for pathways with exam boards", () => {
     const { getByText } = renderWithTheme(
@@ -29,12 +31,19 @@ describe("SearchDropdown component", () => {
 
     expect(getByText("Select exam board")).toBeInTheDocument();
   });
-  test("component renders with correct title for pathways without exam boards", () => {
+  test("component renders with correct title for pathways with tiers", () => {
     const { getByText } = renderWithTheme(
       <SearchDropdown {...searchResultTierPathways} />,
     );
 
     expect(getByText("Select tier")).toBeInTheDocument();
+  });
+  test("component renders with correct title for pathways without examboards or tiers", () => {
+    const { getByText } = renderWithTheme(
+      <SearchDropdown {...searchResultPathways} />,
+    );
+
+    expect(getByText("Select unit")).toBeInTheDocument();
   });
 
   test("child component to not be visible on unexpanded container", () => {
@@ -162,4 +171,5 @@ describe("SearchDropdown component", () => {
 
     expect(onClickSearchHit).toHaveBeenCalled();
   });
+  test("dropdown buttons show correct title", () => {});
 });
