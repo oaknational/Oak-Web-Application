@@ -12,6 +12,7 @@ playwright-report/
 test-results/
 npm_audit.json
 audit.json
+audit.txt
 
 # Browserstack Local log
 local.log
