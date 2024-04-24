@@ -44,8 +44,9 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
       : pathways;
 
   const getDropdownButtonTitle = (item: PathwaySchemaCamel) => {
-    const examboardTitle = item.examBoardTitle !== undefined;
-    const tierTitle = item.tierTitle !== undefined;
+    const examboardTitle = !!item.examBoardTitle;
+    const tierTitle = !!item.tierTitle;
+
     if (examboardTitle && !tierTitle) {
       return item.examBoardTitle;
     } else if (tierTitle && !examboardTitle) {
@@ -85,7 +86,6 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
           >
             {dropDownContent.map((item, index) => {
               const buttonTitle = getDropdownButtonTitle(item);
-
               return (
                 <OakLI
                   $pl="inner-padding-xs"
