@@ -1,3 +1,17 @@
+# [1.417.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.416.0...v1.417.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* "paragraph" test <SuccessMessage/> component ([5c0584b](https://github.com/oaknational/Oak-Web-Application/commit/5c0584bf5a28c2a86fc974153f33842a3938892f))
+* increase 'tick-mark-happiness' <Box/> on large breakpoint ([fe894d3](https://github.com/oaknational/Oak-Web-Application/commit/fe894d3a7b5aec2569a0b6d463cf4e443fbe1199))
+* spacing fixes for <SuccessMessage/> component ([7b2ba78](https://github.com/oaknational/Oak-Web-Application/commit/7b2ba78596fe0ea671a15fcb87a00d519d557fa3))
+
+
+### Features
+
+* added <SuccessMessage/> component + stories/tests ([33ee766](https://github.com/oaknational/Oak-Web-Application/commit/33ee766e435f12ad85d31a65f6ad65c9cca3f0f0))
+
 # [1.416.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.415.0...v1.416.0) (2024-04-24)
 
 
