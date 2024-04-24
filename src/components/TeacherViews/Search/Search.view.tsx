@@ -216,7 +216,9 @@ const Search: FC<SearchProps> = (props) => {
                 <OakHeading tag="h2" $font="heading-6">
                   Filters
                 </OakHeading>
-                <OakSecondaryButton>Skip to results</OakSecondaryButton>
+                <OakSecondaryButton element="a" href="#search-results">
+                  Skip to results
+                </OakSecondaryButton>
               </OakFlex>
               <SearchFilters {...searchFilters} searchRefined={searchRefined} />
             </OakFlex>
