@@ -21,7 +21,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
         $width={"100%"}
         $flexDirection={["column", "row", "row"]}
         $alignItems={["start", "center"]}
-        $gap={["space-between-m", "space-between-xxxl", "space-between-xxxl"]}
+        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
       >
         <OakFlex
           $flexDirection={"column"}
@@ -52,7 +52,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           <OakHeading tag="h2" $font={["heading-4"]}>
             {title}
           </OakHeading>
-          <OakP>{message}</OakP>
+          <OakP $font={["body-1"]}>{message}</OakP>
         </OakFlex>
       </OakFlex>
     </Box>
