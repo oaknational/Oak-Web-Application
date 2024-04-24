@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styled from "styled-components";
 import {
   OakP,
   OakHeading,
@@ -22,11 +21,6 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
-const ULNoStyles = styled(OakUL)`
-  padding-inline-start: 0;
-  list-style-type: none;
-`;
-
 export type OverviewTabProps = {
   data: {
     curriculumInfo: CurriculumOverviewMVData;
@@ -34,6 +28,30 @@ export type OverviewTabProps = {
     curriculumSelectionSlugs: CurriculumSelectionSlugs;
   };
 };
+
+const PrincipleBullet = ({
+  bulletText,
+  children,
+}: {
+  bulletText: string;
+  children?: React.ReactNode;
+}) => (
+  <OakLI $mb={["space-between-xs"]} data-testid="subject-principles">
+    <OakFlex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+      {/* @todo replace with OakFlex - work out $borderRadius */}
+      <Flex
+        $background={"mint"}
+        $borderRadius={"50%"}
+        $borderColor="mint"
+        $mr={10}
+      >
+        <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+      </Flex>
+      {bulletText}
+    </OakFlex>
+    {children}
+  </OakLI>
+);
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
@@ -48,58 +66,42 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculaDesc } = curriculumInfo;
   const { subjectSlug } = curriculumSelectionSlugs;
 
-  const createBullet = (item: string, i: number) => (
-    <OakLI
-      $mb={["space-between-xs"]}
-      key={`principle-${i + 1}`}
-      data-testid="subject-principles"
-    >
-      <OakFlex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
-        {/* @todo replace with OakFlex - work out $borderRadius */}
-        <Flex
-          $background={"mint"}
-          $borderRadius={"50%"}
-          $borderColor="mint"
-          $mr={10}
-        >
-          <Icon name="arrow-right" $ma={"auto"} $pa={2} />
-        </Flex>
-        {item}
-      </OakFlex>
-    </OakLI>
-  );
-  const itemiseSubjectPrinciples = (item: string, i: number) => {
-    if (item.includes(" • ")) {
-      const sublist = item.split(" • ");
+  const itemiseSubjectPrinciples = (
+    principle: string,
+    principleIndex: number,
+  ) => {
+    let subBullets: React.ReactNode = null;
+    let principleText = principle;
+    // Check if the principle is a sublist (divided by " • ")
+    if (principle.includes(" • ")) {
+      const sublist = principle.split(" • ");
       if (sublist.length > 0 && typeof sublist[0] === "string") {
-        const firstItem = sublist[0];
+        principleText = sublist[0];
         const bulletItems = sublist.slice(1);
-        const bullets = bulletItems.map((listItem, li) => (
-          <OakLI
-            $listStyle={"disc"}
-            data-testid="sp-subbullet"
-            key={`${firstItem.split(" ").join("-")}-sb-${li}`}
-            $ml="space-between-ssx"
-            $mt="space-between-sssx"
-            $mb="space-between-sssx"
-          >
-            {listItem}
-          </OakLI>
-        ));
-        return (
-          <OakLI
-            $mb={["space-between-xs"]}
-            $mr="space-between-none"
-            key={`${firstItem.split(" ").join("-")}`}
-          >
-            <ULNoStyles>{createBullet(firstItem, i)}</ULNoStyles>
-            <OakUL>{bullets}</OakUL>
-          </OakLI>
+        subBullets = (
+          <OakUL>
+            {bulletItems.map((subItem, subItemIndex) => (
+              <OakLI
+                $listStyle={"disc"}
+                data-testid="sp-subbullet"
+                key={subItemIndex}
+                $ml="space-between-ssx"
+                $mt="space-between-sssx"
+                $mb="space-between-sssx"
+              >
+                {subItem}
+              </OakLI>
+            ))}
+          </OakUL>
         );
       }
-    } else {
-      return createBullet(item, i);
     }
+
+    return (
+      <PrincipleBullet bulletText={principleText} key={principleIndex}>
+        {subBullets}
+      </PrincipleBullet>
+    );
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
