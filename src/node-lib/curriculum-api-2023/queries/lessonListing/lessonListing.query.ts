@@ -1,6 +1,7 @@
 import errorReporter from "../../../../common-lib/error-reporter";
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
+import { toSentenceCase } from "../../helpers";
 
 import lessonListingSchema from "./lessonListing.schema";
 
@@ -25,7 +26,10 @@ const lessonListingQuery =
       });
     }
 
-    return lessonListingSchema.parse(unit);
+    return lessonListingSchema.parse({
+      ...unit,
+      keyStageTitle: unit.keyStageTitle && toSentenceCase(unit.keyStageTitle),
+    });
   };
 
 export default lessonListingQuery;

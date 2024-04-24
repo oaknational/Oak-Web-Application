@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import {
+  copyrightContentSchema,
   legacyAssetObjectSchema,
   lessonDownloadsListSchema,
 } from "../../shared.schema";
@@ -56,8 +57,8 @@ export const SpecialistLessonDownloadSchema = z.object({
         lessonTitle: z.string(),
       }),
     ),
-    hasDownloadableResources: z.boolean(),
     expired: z.boolean().nullable(),
+    copyrightContent: copyrightContentSchema,
   }),
 });
 

@@ -1,6 +1,6 @@
 import getNextLessonsInUnit from "./getNextLessonsInUnit";
 
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 
 const lessons = lessonListingFixture().lessons;
 

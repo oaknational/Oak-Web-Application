@@ -9,9 +9,9 @@ import {
   shortAnswerTitleFormatter,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import {
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+  ImageItem,
+  TextItem,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export const QuizQuestionStem = ({
@@ -19,7 +19,7 @@ export const QuizQuestionStem = ({
   index,
   takeFullHeight,
 }: {
-  questionStem: (StemImageObject | StemTextObject)[];
+  questionStem: (ImageItem | TextItem)[];
   index: number;
   takeFullHeight?: boolean;
 }) => {
@@ -67,11 +67,11 @@ export const QuizQuestionStem = ({
               $pv={"inner-padding-xl"}
               key={`q-${displayNumber}-stem-element-${i}`}
             >
-              {stemItem.image_object.public_id && (
+              {stemItem.imageObject.publicId && (
                 <OakCloudinaryImage
-                  cloudinaryId={stemItem.image_object.public_id}
-                  height={stemItem.image_object.height}
-                  width={stemItem.image_object.width}
+                  cloudinaryId={stemItem.imageObject.publicId}
+                  height={stemItem.imageObject.height}
+                  width={stemItem.imageObject.width}
                   alt={""}
                   $minWidth={"all-spacing-19"}
                   placeholder="oak"

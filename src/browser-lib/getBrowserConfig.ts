@@ -139,13 +139,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  searchApiUrl2020: {
-    value: process.env.NEXT_PUBLIC_SEARCH_API_URL,
-    envName: "NEXT_PUBLIC_SEARCH_API_URL",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
   searchApiUrl2023: {
     value: `${process.env.NEXT_PUBLIC_SEARCH_API_URL_2023}/v2`,
     envName: "NEXT_PUBLIC_SEARCH_API_URL_2023",

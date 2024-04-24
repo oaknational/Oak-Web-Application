@@ -118,7 +118,7 @@ describe("getPageLinksForLesson()", () => {
       hasDownloadableResources: true,
     };
 
-    const result = getPageLinksForLesson(lesson);
+    const result = getPageLinksForLesson(lesson, []);
 
     const expected = [
       {
@@ -207,7 +207,9 @@ describe("getPageLinksForLesson()", () => {
       hasDownloadableResources: true,
     };
 
-    const result = getPageLinksForLesson(lesson);
+    const result = getPageLinksForLesson(lesson, [
+      { copyrightInfo: "This lesson contains copyright material." },
+    ]);
 
     const expected = [
       {

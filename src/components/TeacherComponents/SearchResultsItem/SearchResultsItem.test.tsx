@@ -3,22 +3,26 @@ import { act } from "react-dom/test-utils";
 
 import SearchResultsItem from "./SearchResultsItem";
 
-import elasticResponseFixture from "@/context/Search/elasticResponse.2020.fixture.json";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
-import { searchResultsHitSchema } from "@/context/Search/search.schema";
+import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { LEGACY_COHORT } from "@/config/cohort";
+import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
 const searchResultClicked = jest.fn();
 
 const allKeyStages = searchPageFixture().keyStages;
-const hitLesson = searchResultsHitSchema.parse(
-  elasticResponseFixture.hits.hits[0],
-);
-const hitUnit = searchResultsHitSchema.parse(
-  elasticResponseFixture.hits.hits[3],
-);
+const hitLesson = hitsFixture.find((h) => h._source.type === "lesson");
+
+const hitUnit = hitsFixture.find((h) => h._source.type === "unit");
+
+if (!hitLesson) {
+  throw new Error("Cannot find a lesson result");
+}
+if (!hitUnit) {
+  throw new Error("Cannot find a unit result");
+}
+
 const legacyHit = {
   ...hitLesson,
   _source: { ...hitLesson._source, cohort: LEGACY_COHORT },
@@ -34,7 +38,7 @@ describe("SearchResultsItem", () => {
     if (hitObjectLesson) {
       const { getByText } = render(<SearchResultsItem {...hitObjectLesson} />);
       expect(
-        getByText("Dipping into Macbeth - Brave Macbeth (Part 2)"),
+        getByText("The relationship between Macbeth and Lady Macbeth"),
       ).toBeInTheDocument();
     } else {
       throw new Error("hitObjectLesson is undefined");
@@ -77,7 +81,7 @@ describe("SearchResultsItem", () => {
   test("It renders ks short code in meta data", () => {
     if (hitObjectUnit) {
       const { getByText } = render(<SearchResultsItem {...hitObjectUnit} />);
-      expect(getByText("KS2")).toBeInTheDocument();
+      expect(getByText("KS4")).toBeInTheDocument();
     } else {
       throw new Error("hitObjectUnit is undefined");
     }
@@ -86,9 +90,7 @@ describe("SearchResultsItem", () => {
     if (hitObjectLesson) {
       const { getByText } = render(<SearchResultsItem {...hitObjectLesson} />);
       expect(
-        getByText(
-          /and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches./i,
-        ),
+        getByText(/I can describe the relationship between./i),
       ).toBeInTheDocument();
     } else {
       throw new Error("hitObjectLesson is undefined");
@@ -119,7 +121,9 @@ describe("SearchResultsItem", () => {
       const { getByLabelText } = render(
         <SearchResultsItem {...hitObjectUnit} />,
       );
-      const link = getByLabelText("English unit: Macbeth - Narrative writing");
+      const link = getByLabelText(
+        "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
+      );
       expect(link).toBeInTheDocument();
     } else {
       throw new Error("hitObjectUnit is undefined");
@@ -131,7 +135,7 @@ describe("SearchResultsItem", () => {
         <SearchResultsItem {...hitObjectLesson} />,
       );
       const link = getByLabelText(
-        "Drama lesson: Dipping into Macbeth - Brave Macbeth (Part 2)",
+        "See lesson: The relationship between Macbeth and Lady Macbeth",
       );
       expect(link).toBeInTheDocument();
     } else {
@@ -144,7 +148,7 @@ describe("SearchResultsItem", () => {
       const link = getByRole("link");
       expect(link).toHaveAttribute(
         "href",
-        "/teachers/programmes/drama-primary-ks2/units/dipping-into-shakespeare-da5e/lessons/dipping-into-macbeth-brave-macbeth-part-2-crvkad",
+        "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons/the-relationship-between-macbeth-and-lady-macbeth",
       );
     } else {
       throw new Error("hitObjectLesson is undefined");
@@ -156,7 +160,7 @@ describe("SearchResultsItem", () => {
       const link = getByRole("link");
       expect(link).toHaveAttribute(
         "href",
-        "/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons",
+        "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons",
       );
     } else {
       throw new Error("hitObjectUnit is undefined");
@@ -170,28 +174,29 @@ describe("SearchResultsItem", () => {
           onClick={searchResultClicked}
         />,
       );
-      const link = getByText("Dipping into Macbeth - Brave Macbeth (Part 2)");
+      const link = getByText("See lesson");
       act(() => {
         link.click();
       });
       expect(searchResultClicked).toHaveBeenCalledWith({
         type: "lesson",
-        title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
-        description: `In this lesson we are introduced to <mark class="highlighted">Macbeth</mark> and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.`,
-        subjectSlug: "drama",
-        keyStageShortCode: "KS2",
-        keyStageTitle: "Key stage 2",
-        pupilLessonOutcome: "",
-        keyStageSlug: "ks2",
-        subjectTitle: "Drama",
-        unitTitle: "Dipping into Shakespeare",
+        title: "The relationship between Macbeth and Lady Macbeth",
+        description: "",
+        subjectSlug: "english",
+        keyStageShortCode: "KS4",
+        keyStageTitle: "Key stage 4",
+        pupilLessonOutcome:
+          "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+        keyStageSlug: "ks4",
+        subjectTitle: "English",
+        unitTitle: "Macbeth: Lady Macbeth as a machiavellian villain",
         onClick: searchResultClicked,
         pathways: [],
         buttonLinkProps: {
           page: "lesson-overview",
-          lessonSlug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
-          programmeSlug: "drama-primary-ks2",
-          unitSlug: "dipping-into-shakespeare-da5e",
+          lessonSlug: "the-relationship-between-macbeth-and-lady-macbeth",
+          programmeSlug: "english-secondary-ks4-eduqas",
+          unitSlug: "macbeth-lady-macbeth-as-a-machiavellian-villain",
         },
         cohort: "2023-2024",
       });

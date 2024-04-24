@@ -5,8 +5,8 @@ import { LessonItemContainer } from "./LessonItemContainer";
 
 import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import { LessonOverviewData } from "@/node-lib/curriculum-api";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const resourceContainerExpanded = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -20,7 +20,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("LessonItemContainer", () => {
-  let lessonOverview: LessonOverviewData;
+  let lessonOverview: LessonOverviewPageData;
 
   beforeAll(() => {
     lessonOverview = lessonOverviewFixture();
@@ -166,7 +166,7 @@ describe("LessonItemContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/teachers/programmes/maths-higher-ks4/units/maths-unit/lessons/macbeth-lesson-1/downloads?preselected=worksheet",
+      "/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?preselected=worksheet",
     );
   });
 });

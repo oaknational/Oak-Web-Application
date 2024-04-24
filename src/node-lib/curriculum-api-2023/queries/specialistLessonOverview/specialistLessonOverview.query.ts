@@ -1,4 +1,4 @@
-import { constructHasDownloadableResources } from "../specialistLessonDownload/specialistLessonDownload.query";
+import { LessonOverviewDownloads } from "../lessonOverview/lessonOverview.schema";
 
 import specialistLessonOverviewSchema, {
   SpecialistLessonDataRaw,
@@ -10,6 +10,55 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
+
+export const constructDownloadsArray = (
+  lesson: SpecialistLessonDataRaw[number],
+): LessonOverviewDownloads => {
+  const presentation = {
+    exists: lesson.presentation_url ? true : false,
+    type: "presentation" as const,
+  };
+  const introQuizQuestions = {
+    exists:
+      lesson.starter_quiz && lesson.starter_quiz_asset_object ? true : false,
+    type: "intro-quiz-questions" as const,
+  };
+  const introQuizAnswers = {
+    exists:
+      lesson.starter_quiz && lesson.starter_quiz_asset_object ? true : false,
+    type: "intro-quiz-answers" as const,
+  };
+  const exitQuizQuestions = {
+    exists: lesson.exit_quiz && lesson.exit_quiz_asset_object ? true : false,
+    type: "exit-quiz-questions" as const,
+  };
+  const exitQuizAnswers = {
+    exists: lesson.exit_quiz && lesson.exit_quiz_asset_object ? true : false,
+    type: "exit-quiz-answers" as const,
+  };
+  const worksheetPdf = {
+    exists:
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
+    type: "worksheet-pdf" as const,
+  };
+  const worksheetPptx = {
+    exists:
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
+    type: "worksheet-pptx" as const,
+  };
+
+  return [
+    presentation,
+    introQuizQuestions,
+    introQuizAnswers,
+    exitQuizQuestions,
+    exitQuizAnswers,
+    worksheetPdf,
+    worksheetPptx,
+  ];
+};
 
 export const generateLessonOverviewFromRaw = (
   rawLesson: unknown,
@@ -37,7 +86,6 @@ export const generateLessonOverviewFromRaw = (
   }
 
   const lesson = parsedLessonOverview[0];
-  const hasDownloadableResources = constructHasDownloadableResources(lesson);
 
   const transformedLesson: LessonOverviewAll = {
     isLegacy: true,
@@ -79,7 +127,10 @@ export const generateLessonOverviewFromRaw = (
       lesson.equipment_and_resources,
     ),
     keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-    hasDownloadableResources: hasDownloadableResources,
+    copyrightContent: lesson.contains_copyright_content
+      ? [{ copyrightInfo: "This lesson contains copyright material" }]
+      : [],
+    downloads: constructDownloadsArray(lesson),
   };
 
   return specialistLessonOverviewSchema.parse({

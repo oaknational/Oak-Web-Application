@@ -2,11 +2,11 @@ import {
   ResourceType,
   Resources,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export const sortDownloadResources = (
-  resources: LessonDownloadsData["downloads"],
+  resources: LessonDownloadsPageData["downloads"],
 ) => {
   const sortOrderKey = {
     presentation: 1,
@@ -24,7 +24,7 @@ export const sortDownloadResources = (
   return sortResourcesByOrder(
     resources,
     sortOrderKey,
-  ) as LessonDownloadsData["downloads"];
+  ) as LessonDownloadsPageData["downloads"];
 };
 
 export const sortShareResources = (

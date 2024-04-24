@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, Fragment } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -6,6 +6,8 @@ import {
   OakHeading,
   OakFlex,
 } from "@oaknational/oak-components";
+
+import { hasLessonMathJax } from "./hasLessonMathJax";
 
 import {
   getPageLinksForLesson,
@@ -40,9 +42,14 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  checkIsResourceCopyrightRestricted,
+  getIsResourceDownloadable,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewAll;
+  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -78,7 +85,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyLearningPoints,
     pupilLessonOutcome,
     lessonCohort,
-    hasDownloadableResources,
+    downloads,
+    copyrightContent,
     isSpecialist,
   } = lesson;
 
@@ -95,6 +103,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
   } = commonPathway;
+
+  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
+  const isMathJaxLesson = hasLessonMathJax(
+    lesson,
+    subjectSlug,
+    isLegacyLicense,
+  );
+
+  const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -129,7 +147,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
-  const pageLinks = getPageLinksForLesson(lesson);
+  const pageLinks = getPageLinksForLesson(lesson, copyrightContent);
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
   const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
@@ -150,15 +168,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
-  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
-  const isNew = lessonCohort === NEW_COHORT;
-
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
+  const downloadsFilteredByCopyright = downloads.filter(
+    (d) =>
+      d.exists === true &&
+      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+  );
+
+  const showDownloadAll = downloadsFilteredByCopyright.length > 0;
+
   return (
-    <MathJaxProvider>
+    <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
         {...commonPathway}
@@ -196,6 +219,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           pupilLessonOutcome,
           keyLearningPoints,
         )}
+        showDownloadAll={showDownloadAll}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
@@ -233,12 +257,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") &&
-                  hasDownloadableResources && (
+                  !checkIsResourceCopyrightRestricted(
+                    "presentation",
+                    copyrightContent,
+                  ) && (
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
                       ref={slideDeckSectionRef}
                       title={"Slide deck"}
-                      downloadable={hasDownloadableResources}
+                      downloadable={getIsResourceDownloadable(
+                        "presentation",
+                        downloads,
+                        copyrightContent,
+                      )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "slide deck",
@@ -271,6 +302,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
+                    isMathJaxLesson={isMathJaxLesson}
                   />
                 </LessonItemContainer>
 
@@ -302,7 +334,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "worksheet-pdf",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "worksheet-pptx",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -330,7 +373,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense}
                     anchorId="starter-quiz"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "intro-quiz-answers",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "intro-quiz-questions",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
@@ -346,6 +400,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={starterQuiz}
                         imageAttribution={starterQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -356,7 +411,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={exitQuizSectionRef}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "exit-quiz-answers",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "exit-quiz-questions",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -373,6 +439,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={exitQuiz}
                         imageAttribution={exitQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -383,7 +450,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={additionalMaterialSectionRef}
                     title={"Additional material"}
                     anchorId="additional-material"
-                    downloadable={hasDownloadableResources}
+                    downloadable={
+                      getIsResourceDownloadable(
+                        "supplementary-docx",
+                        downloads,
+                        copyrightContent,
+                      ) ||
+                      getIsResourceDownloadable(
+                        "supplementary-pdf",
+                        downloads,
+                        copyrightContent,
+                      )
+                    }
                     shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -418,6 +496,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </OakGrid>
         )}
       </MaxWidth>
-    </MathJaxProvider>
+    </MathJaxLessonProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { OakFlex } from "@oaknational/oak-components";
 
 import { QuizQuestionsQuestionStem } from "@/components/TeacherComponents/QuizQuestionsQuestionStem/QuizQuestionsQuestionStem";
@@ -12,14 +12,15 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 export type QuizQuestionsListItemProps = {
   question: NonNullable<LessonOverviewQuizData>[number];
   index: number;
+  isMathJaxLesson: boolean;
 };
 
 const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
-  const { question, index } = props;
+  const { question, index, isMathJaxLesson } = props;
   const { questionStem, answers } = question;
-
+  const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
-    <MathJaxWrap>
+    <MathJaxWrapper>
       <OakFlex
         $flexDirection={"column"}
         $width={"100%"}
@@ -62,7 +63,7 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
           </>
         )}
       </OakFlex>
-    </MathJaxWrap>
+    </MathJaxWrapper>
   );
 };
 

@@ -126,7 +126,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           <SearchDropdown {...props} />
         ) : (
           <OwaLink
-            aria-label={`${subjectTitle} ${type}: ${title}`}
+            aria-label={`See ${type}: ${title}`}
             {...buttonLinkProps}
             onClick={() => {
               onClick?.(props);

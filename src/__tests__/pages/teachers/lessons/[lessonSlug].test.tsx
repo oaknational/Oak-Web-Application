@@ -5,11 +5,10 @@ import LessonOverviewCanonicalPage, {
   getStaticProps,
 } from "@/pages/teachers/lessons/[lessonSlug]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import { LessonOverviewCanonical } from "@/components/TeacherComponents/types/lesson.types";
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
-import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
+import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
 
 const render = renderWithProviders();
 
@@ -56,36 +55,10 @@ describe("getStaticProps", () => {
       getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
     ).rejects.toThrowError("No context.params");
   });
-
-  it("should call legacy api if 2023 throws curriculum-api/not-found error ", async () => {
-    (
-      curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
-    (
-      curriculumApi2023.lessonOverviewCanonical as jest.Mock
-    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
-
-    const propsResult = (await getStaticProps({
-      params: {
-        lessonSlug: "macbeth-lesson-1",
-      },
-      query: {},
-    } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-      props: { lesson: LessonOverviewCanonical; isSpecialist: false };
-    };
-
-    expect(curriculumApi.lessonOverviewCanonical).toHaveBeenCalledWith({
-      lessonSlug: "macbeth-lesson-1",
-    });
-    expect(propsResult.props.lesson.lessonSlug).toEqual("macbeth-lesson-1");
-  });
   it("should throw an error if both API's are not found", async () => {
     (
       curriculumApi2023.lessonOverviewCanonical as jest.Mock
     ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
-    (curriculumApi.lessonOverviewCanonical as jest.Mock).mockRejectedValueOnce(
-      new OakError({ code: "curriculum-api/not-found" }),
-    );
     await expect(
       getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
     ).rejects.toThrowError();
@@ -97,9 +70,6 @@ describe("getStaticProps", () => {
     (
       curriculumApi2023.lessonOverviewCanonical as jest.Mock
     ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
-    (curriculumApi.lessonOverviewCanonical as jest.Mock).mockRejectedValueOnce(
-      new OakError({ code: "curriculum-api/not-found" }),
-    );
 
     const result = await getStaticProps({
       params: {
@@ -114,15 +84,6 @@ describe("getStaticProps", () => {
     (
       curriculumApi2023.lessonOverviewCanonical as jest.Mock
     ).mockRejectedValueOnce(new Error("Some error"));
-
-    await expect(
-      getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-    ).rejects.toThrowError();
-  });
-  it('should throw an error if 2020 api throws an error that is not "curriculum-api/not-found"', async () => {
-    (curriculumApi.lessonOverviewCanonical as jest.Mock).mockRejectedValueOnce(
-      new Error("Some error"),
-    );
 
     await expect(
       getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),

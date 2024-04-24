@@ -10,9 +10,15 @@ const searchPageQuery = (sdk: Sdk) => async () => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  return searchPageSchema.parse({
-    ...searchPage,
-  });
+  const parsed = searchPageSchema.parse(searchPage);
+
+  return {
+    ...parsed,
+    subjects: parsed.subjects.filter(
+      // TODO: this test subject should not be published in production
+      (s) => s.slug !== "testing-not-for-publication",
+    ),
+  };
 };
 
 export default searchPageQuery;

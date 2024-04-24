@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { OakFlex } from "@oaknational/oak-components";
 
 import LessonOverviewKeyLearningPoints, {
@@ -30,6 +30,7 @@ type LessonOverviewDetailsProps = {
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
+  isMathJaxLesson: boolean;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -41,9 +42,11 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   contentGuidance,
   supervisionLevel,
   isLegacyLicense,
+  isMathJaxLesson,
 }) => {
+  const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
-    <MathJaxWrap>
+    <MathJaxWrapper>
       <OakFlex
         $flexDirection={"row"}
         $flexWrap={["wrap", "nowrap"]}
@@ -83,7 +86,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $gap={"all-spacing-9"}
           $mb={"space-between-m"}
         >
-          {teacherTips && (
+          {teacherTips && teacherTips.length > 0 && (
             <Box>
               <LessonOverviewTeacherTips teacherTips={teacherTips} />
             </Box>
@@ -103,7 +106,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           ) : null}
         </OakFlex>
       </OakFlex>
-    </MathJaxWrap>
+    </MathJaxWrapper>
   );
 };
 

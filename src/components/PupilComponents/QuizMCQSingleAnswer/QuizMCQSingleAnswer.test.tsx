@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
@@ -12,7 +11,8 @@ import {
   QuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 const questionsArrayFixture = quizQuestions || [];
 
@@ -39,7 +39,7 @@ describe("QuizMCQSingleAnswer", () => {
         "multiple-choice"
       ]) {
         for (const t of answer.answer) {
-          if (t.type === "text") {
+          if (isText(t)) {
             const answerText = getByText(t.text);
             expect(answerText).toBeInTheDocument();
           }

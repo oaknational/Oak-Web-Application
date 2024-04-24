@@ -1,11 +1,11 @@
 import { getInteractiveQuestions } from "./questionUtils";
 
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { LessonOverviewQuizQuestion } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 describe("questionUtils", () => {
   describe("getInteractiveQuestions", () => {
-    const explanatoryTextQuestion: LessonOverviewQuizQuestion = {
+    const explanatoryTextQuestion: QuizQuestion = {
       questionId: 1,
       questionUid: "1",
       questionStem: [],
@@ -13,6 +13,7 @@ describe("questionUtils", () => {
       feedback: "Feedback",
       hint: "Hint",
       active: true,
+      order: 0,
     };
 
     it("should return an empty array if no questions are provided", () => {

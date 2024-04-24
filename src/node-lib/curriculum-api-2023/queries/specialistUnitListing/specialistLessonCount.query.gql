@@ -1,6 +1,6 @@
 query specialistLessonCount($unit_slug: String!) {
   specialistUnitLessonCount: published_mv_specialist_1_0_3_aggregate(
-    where: { unit_slug: { _eq: $unit_slug }, expired: { _is_null: true } }
+    where: { unit_slug: { _eq: $unit_slug } }
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)

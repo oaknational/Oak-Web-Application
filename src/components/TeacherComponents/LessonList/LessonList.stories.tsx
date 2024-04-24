@@ -5,7 +5,7 @@ import { LessonListProps } from "./LessonList";
 
 import Component from ".";
 
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {

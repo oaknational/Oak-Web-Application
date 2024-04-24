@@ -23,7 +23,6 @@
     "format:check": "prettier '**/*.{j,t}{s,sx}' --check",
     "gql-codegen": "npm run gql-codegen:curriculum & npm run gql-codegen:curriculum-2023",
     "gql-codegen:curriculum-2023": "graphql-codegen --config src/node-lib/curriculum-api-2023/codegen.yml -r dotenv/config",
-    "gql-codegen:curriculum": "graphql-codegen --config src/node-lib/curriculum-api/codegen.yml -r dotenv/config",
     "gql-codegen:sanity": "graphql-codegen --config src/node-lib/sanity-graphql/codegen.yml -r dotenv/config",
     "image-data:all": "./scripts/build/image_data/all.sh",
     "lint": "NODE_ENV=test next lint",
@@ -59,6 +58,7 @@
     "storybook-addon-next-router": {
       "next": "$next"
     },
+    "protobufjs": ">=7.2.5",
     "tough-cookie": ">=4.1.3"
   },
   "dependencies": {
@@ -70,7 +70,8 @@
     "@hubspot/api-client": "^9.1.1",
     "@mux/mux-node": "^7.3.3",
     "@mux/mux-player-react": "^2.3.1",
-    "@oaknational/oak-components": "^0.6.2",
+    "@oaknational/oak-components": "^0.16.1",
+    "@oaknational/oak-curriculum-schema": "^1.2.0",
     "@portabletext/react": "^3.0.11",
     "@react-aria/aria-modal-polyfill": "^3.7.7",
     "@sanity/asset-utils": "^1.3.0",
@@ -107,6 +108,7 @@
     "react-string-replace": "^1.1.1",
     "react-transition-group": "^4.4.5",
     "semver": "^7.5.4",
+    "sharp": "^0.33.3",
     "snakecase-keys": "^5.5.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
@@ -127,7 +129,7 @@
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
     "@commitlint/prompt-cli": "18.4.4",
-    "@google-cloud/secret-manager": "^5.0.1",
+    "@google-cloud/secret-manager": "^5.3.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-graphql-request": "^5.0.0",
@@ -153,10 +155,10 @@
     "@storybook/nextjs": "^7.6.7",
     "@storybook/react": "^7.6.7",
     "@storybook/testing-library": "^0.2.2",
-    "@testing-library/dom": "^9.3.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.1.0",
-    "@testing-library/user-event": "^14.5.1",
+    "@testing-library/dom": "^10.0.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.8",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.10.4",
@@ -225,7 +227,7 @@
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
-    "node": "20",
+    "node": ">=20 <21",
     "npm": ">=10"
   },
   "publishConfig": {

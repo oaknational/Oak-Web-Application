@@ -9,23 +9,25 @@ import {
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { ExpandingContainerTitle } from "@/components/ArchivedComponents/ExpandingContainer/ExpandingContainer";
 import {
-  LessonDownloadsData,
-  LessonShareSchema,
-} from "@/node-lib/curriculum-api";
-import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+  LessonShareData,
+  LessonShareResourceData,
+} from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 // Resource types
 
 export type Resources =
-  | LessonDownloadsData["downloads"]
+  | LessonDownloadsPageData["downloads"]
   | LessonShareData["shareableResources"];
 
-export type ResourceType = LessonShareSchema["type"] | DownloadResourceType;
+export type ResourceType =
+  | LessonShareResourceData["type"]
+  | DownloadResourceType;
 
 export type DownloadResourceType =
-  LessonDownloadsData["downloads"][number]["type"];
+  LessonDownloadsPageData["downloads"][number]["type"];
 export type ResourcesToDownloadArrayType = DownloadResourceType[];
-export type ShareResourceType = LessonShareSchema["type"];
+export type ShareResourceType = LessonShareResourceData["type"];
 
 // Preselected types
 

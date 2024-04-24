@@ -4,17 +4,18 @@ import userEvent from "@testing-library/user-event";
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
-import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
+import programmeListingFixture, {
+  examBoardProgrammeListingFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 
-const curriculumData = tieredProgrammeListingFixture();
+const curriculumData = programmeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
 const onClick = jest.fn();
 
 describe("SubjectProgrammeListing", () => {
-  test("render a tier subject component with heading ", () => {
+  test("render a tier subject component with heading", () => {
     render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     expect(screen.getByText("Select tier of learning")).toBeInTheDocument();

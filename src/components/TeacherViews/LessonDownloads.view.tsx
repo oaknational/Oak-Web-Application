@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck";
@@ -33,11 +34,15 @@ import {
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
-import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import {
+  LessonDownloadsPageData,
+  NextLesson,
+} from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
+import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -45,8 +50,8 @@ type BaseLessonDownload = {
   lessonTitle: string;
   lessonSlug: string;
   lessonCohort?: string | null;
-  downloads: LessonDownloadsData["downloads"];
-  hasDownloadableResources?: boolean;
+  downloads: LessonDownloadsPageData["downloads"];
+  copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
 };
@@ -82,9 +87,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
-    hasDownloadableResources,
     expired,
     isSpecialist,
+    copyrightContent,
   } = lesson;
 
   const commonPathway =
@@ -129,6 +134,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onwardContentSelected } = track;
 
+  const downloadsFilteredByCopyright = useMemo(
+    () => filterDownloadsByCopyright(downloads, copyrightContent),
+    [downloads, copyrightContent],
+  );
+
   const {
     form,
     emailFromLocalStorage,
@@ -149,7 +159,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
-  } = useResourceFormState({ downloadResources: downloads, type: "download" });
+  } = useResourceFormState({
+    downloadResources: downloadsFilteredByCopyright,
+    type: "download",
+  });
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -230,6 +243,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isLegacyDownload: isLegacyDownload,
   });
 
+  const showNoResources =
+    !hasResources ||
+    Boolean(expired) ||
+    downloadsFilteredByCopyright.length === 0;
+
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
@@ -289,9 +307,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             handleToggleSelectAll={handleToggleSelectAll}
             selectAllChecked={selectAllChecked}
             header="Download"
-            showNoResources={
-              !hasResources || !hasDownloadableResources || Boolean(expired)
-            }
+            showNoResources={showNoResources}
             showLoading={isLocalStorageLoading}
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
@@ -307,11 +323,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             apiError={apiError}
             hideSelectAll={Boolean(expired)}
             cardGroup={
-              hasDownloadableResources &&
-              !expired && (
+              !showNoResources && (
                 <DownloadCardGroup
                   control={form.control}
-                  downloads={downloads}
+                  downloads={downloadsFilteredByCopyright}
                   hasError={form.errors?.resources ? true : false}
                   triggerForm={form.trigger}
                 />
@@ -329,8 +344,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 disabled={
                   hasFormErrors ||
                   noResourcesSelected ||
-                  expired ||
-                  !hasDownloadableResources ||
+                  showNoResources ||
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 loadingText={"Downloading..."}
