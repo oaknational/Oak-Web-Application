@@ -238,8 +238,8 @@ const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
 
   if (!isBrowser) {
     // DEBUG: DO NOT MERGE!
-    console.log("Server config", envVars);
-    console.log("process env", process.env);
+    console.log({ envVars });
+    console.log({ env: process.env });
 
     throw new Error(
       `getServerConfig('${key}') failed because there is no env value ${envName}`,

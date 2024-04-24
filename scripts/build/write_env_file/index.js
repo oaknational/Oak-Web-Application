@@ -236,6 +236,9 @@ ${warningComment}
 
   console.log(`Writing env to ${envFileName}`);
 
+  // DEBUG: DO NOT MERGE!
+  console.log(envFileContent);
+
   writeFileSync(envFileName, envFileContent);
 }
 
