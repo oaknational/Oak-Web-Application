@@ -16,8 +16,8 @@ async function redirectNetlifySubdomains(
   request: Request,
   context: Context,
 ): Promise<Response> {
-  let subdomain;
-  let redirected;
+  let subdomain: string;
+  let redirected: string | false;
 
   console.log(`Request URL: ${request?.url}`);
 
@@ -27,6 +27,8 @@ async function redirectNetlifySubdomains(
     );
     if (Array.isArray(subdomainMatches)) {
       subdomain = subdomainMatches[1];
+    } else {
+      throw new Error(`Subdomain matching failed for domain: ${request.url}`);
     }
     // Determine if the request is coming from the proxying Cloudflare worker.
     redirected = request.headers.get("x-cloudflare-redirect") || false;
@@ -37,6 +39,7 @@ async function redirectNetlifySubdomains(
   } catch (err) {
     console.error("Subdomain matching failed.");
     console.error(err, request.url);
+    process.exit(1);
   }
 
   // Netlify makes some requests internally for optimisation functions,
