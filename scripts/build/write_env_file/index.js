@@ -237,7 +237,7 @@ ${warningComment}
   console.log(`Writing env to ${envFileName}`);
 
   // DEBUG: DO NOT MERGE!
-  console.log(envFileContent);
+  writeFileSync(".env", envFileContent, { flag: "a" });
 
   writeFileSync(envFileName, envFileContent);
 }
