@@ -50,9 +50,7 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
             label={"shortCode" in props ? props.shortCode : title}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
-            onClick={() => {
-              onChange();
-            }}
+            onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"
             $font={"heading-7"}
