@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
 import { FilterType } from "@/browser-lib/avo/Avo";
@@ -38,5 +40,12 @@ describe("SearchFilterCheckbox", () => {
     expect(checkbox).toBeChecked();
   });
 
-  test.todo("calls onChange when clicked");
+  test("calls onChange when clicked", async () => {
+    const { getByRole } = renderWithTheme(<SearchFilterCheckbox {...props} />);
+    const checkbox = getByRole("checkbox");
+    const user = userEvent.setup();
+    await user.click(checkbox);
+
+    expect(props.onChange).toHaveBeenCalled();
+  });
 });

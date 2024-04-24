@@ -51,7 +51,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allContentTypes,
     allExamBoards,
   });
-
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout

@@ -1,3 +1,20 @@
+# [1.416.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.415.0...v1.416.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* wrap localstorage get in trycatch ([d2f8bfb](https://github.com/oaknational/Oak-Web-Application/commit/d2f8bfba4880edeced475d1be3b9408c13386424))
+
+
+### Features
+
+* add aria-live tag to results region ([35518d1](https://github.com/oaknational/Oak-Web-Application/commit/35518d1394c6bc89d70ccb4eb7c73e932d9d966c))
+* add fieldsets for filter groups ([90051c1](https://github.com/oaknational/Oak-Web-Application/commit/90051c1940d7d45f094e9c4a8b87896bda66366b))
+* move aria live tag and add hidden text ([8d69243](https://github.com/oaknational/Oak-Web-Application/commit/8d6924319386834ecc75639a2c2971739839a1b4))
+* move filters up in tab order ([35bb8ad](https://github.com/oaknational/Oak-Web-Application/commit/35bb8ad1ec3eab13727c4659c8d26cef652b7dee))
+* remember filters focus state on search reload ([af640aa](https://github.com/oaknational/Oak-Web-Application/commit/af640aa46af397dd338105a6eacba427ea1078c4))
+* show results count for all users ([b79cb5c](https://github.com/oaknational/Oak-Web-Application/commit/b79cb5c05d737398a1cae965353f24a2d4549558))
+
 # [1.415.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.414.0...v1.415.0) (2024-04-24)
 
 
