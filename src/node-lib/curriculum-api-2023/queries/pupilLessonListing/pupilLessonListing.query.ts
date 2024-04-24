@@ -1,5 +1,5 @@
 import {
-  LessonBrowseData,
+  LessonListingBrowseData,
   lessonBrowseDataSchema,
 } from "./pupilLessonListing.schema";
 
@@ -13,7 +13,7 @@ export const pupilLessonListingQuery =
   async (args: {
     unitSlug: string;
     programmeSlug: string;
-  }): Promise<{ browseData: LessonBrowseData }> => {
+  }): Promise<LessonListingBrowseData> => {
     const { unitSlug, programmeSlug } = args;
 
     const res = await sdk.pupilLessonListing({
@@ -21,7 +21,7 @@ export const pupilLessonListingQuery =
       unitSlug,
     });
 
-    const [browseDataSnake] = res.browseData;
+    const browseDataSnake = res.browseData;
 
     if (!browseDataSnake) {
       throw new OakError({ code: "curriculum-api/not-found" });
@@ -37,12 +37,11 @@ export const pupilLessonListingQuery =
         res,
       });
     }
-
     lessonBrowseDataSchema.parse(browseDataSnake);
 
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(
+      browseDataSnake,
+    ) as LessonListingBrowseData;
 
-    return {
-      browseData,
-    };
+    return [...browseData];
   };
