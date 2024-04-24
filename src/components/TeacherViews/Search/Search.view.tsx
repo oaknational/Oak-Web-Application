@@ -5,6 +5,7 @@ import {
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -13,7 +14,6 @@ import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
@@ -237,9 +237,23 @@ const Search: FC<SearchProps> = (props) => {
             )}
           </OakGridArea>
           <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+            <OakFlex
+              $flexDirection="column"
+              $mb="space-between-m2"
+              $display={["none", "flex"]}
+            >
+              <OakFlex
+                $mb="space-between-s"
+                $flexDirection="column"
+                $gap="space-between-ssx"
+              >
+                <OakHeading tag="h2" $font="heading-6">
+                  Filters
+                </OakHeading>
+                <OakSecondaryButton>Skip to results</OakSecondaryButton>
+              </OakFlex>
               <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </Flex>
+            </OakFlex>
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
