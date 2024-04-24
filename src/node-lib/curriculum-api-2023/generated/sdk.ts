@@ -40009,7 +40009,7 @@ export type PupilLessonListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_title?: any | null, lesson_slug?: any | null, order?: any | null, subject_title?: any | null, subject_slug?: any | null, year_description?: any | null }> };
+export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_data?: any | null, lesson_slug?: string | null, supplementary_data?: any | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -40419,13 +40419,12 @@ export const PupilLessonListingDocument = gql`
   browseData: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0(
     where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
   ) {
-    lesson_title: lesson_data(path: "title")
-    lesson_slug: lesson_data(path: "slug")
-    order: supplementary_data(path: "order_in_unit")
-    subject_title: programme_fields(path: "subject")
-    subject_slug: programme_fields(path: "subject_slug")
-    year_description: programme_fields(path: "year_description")
+    lesson_data
+    lesson_slug
+    supplementary_data
+    programme_fields
     unit_slug
+    unit_data
     programme_slug
     is_legacy
   }
