@@ -1,5 +1,9 @@
 import { type Config, type Context } from "@netlify/edge-functions";
 
+function logRequestComplete() {
+  console.log("--- Request completed ---");
+}
+
 /**
  * Given a request at the Netlify edge, check if the subdomain matches the pattern
  * `<nested_subdomain>.netlify.netlify.app`
@@ -37,7 +41,8 @@ async function redirectNetlifySubdomains(
     console.log(`Redirected from Cloudflare: ${redirected}`);
   } catch (err) {
     console.error("Error: subdomain matching failed.");
-    console.error(err, request.url, "");
+    console.error(err, request.url);
+    logRequestComplete();
     process.exit(1);
   }
 
@@ -60,12 +65,14 @@ async function redirectNetlifySubdomains(
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`,
     ).href;
-    console.log("Redirected to Cloudflare - ", redirectTargetUrl, "");
+    console.log("Redirected to Cloudflare - ", redirectTargetUrl);
+    logRequestComplete();
 
     return Response.redirect(redirectTargetUrl);
   } else {
-    console.log("Request allowed through", "");
+    console.log("Request allowed through");
     const res = await context.next();
+    logRequestComplete();
     return res;
   }
 }
