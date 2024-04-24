@@ -191,8 +191,8 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
      * @TODO we decide which var is required, etc, and set defaults and validations
      */
     if (shouldBePresent && !isPresent) {
-      console.error(`- - - WARNING no config value found for required env var:
-- - - ${envName}`);
+      console.error(`- - - WARNING (getServerConfig): No config value found for required env var:
+      - - - ${envName}`);
     }
     if ("allowedValues" in envVarConfig && envValue) {
       // Explicitly typing allowedValues are currently the only instance
@@ -237,12 +237,12 @@ const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   }
 
   if (!isBrowser) {
+    // DEBUG: DO NOT MERGE!
+    console.log({ envVars });
+
     throw new Error(
       `getServerConfig('${key}') failed because there is no env value ${envName}`,
     );
-
-    // DEBUG: DO NOT MERGE!
-    console.log({ envVars });
   }
   return "";
 };
