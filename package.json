@@ -68,6 +68,7 @@
     "@hubspot/api-client": "^9.1.1",
     "@mux/mux-node": "^7.3.3",
     "@mux/mux-player-react": "^2.3.1",
+    "@netlify/edge-functions": "^2.5.1",
     "@oaknational/oak-components": "^0.16.1",
     "@oaknational/oak-curriculum-schema": "^1.2.0",
     "@portabletext/react": "^3.0.11",

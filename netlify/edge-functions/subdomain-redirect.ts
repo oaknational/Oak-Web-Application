@@ -1,4 +1,4 @@
-import type { Context } from "https://edge.netlify.com";
+import { type Config, type Context } from "@netlify/edge-functions";
 
 /**
  * Given a request at the Netlify edge, check if the subdomain matches the pattern
@@ -69,3 +69,8 @@ async function redirectNetlifySubdomains(
 }
 
 export default redirectNetlifySubdomains;
+
+export const config: Config = {
+  path: "/*",
+  // onError: "bypass",
+};
