@@ -240,6 +240,9 @@ const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
     throw new Error(
       `getServerConfig('${key}') failed because there is no env value ${envName}`,
     );
+
+    // DEBUG: DO NOT MERGE!
+    console.log({ envVars });
   }
   return "";
 };
