@@ -3,14 +3,12 @@ import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-s
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
-export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
-  null_unitvariant: true,
-  unit_data: true,
-  lesson_data: true,
-  programme_fields: true,
-  supplementary_data: true,
-});
+export const lessonBrowseDataSchema = z.array(
+  syntheticUnitvariantLessonsSchema.omit({
+    null_unitvariant: true,
+  }),
+);
 
-export type LessonBrowseData = ConvertKeysToCamelCase<
+export type LessonListingBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;

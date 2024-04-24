@@ -5,6 +5,7 @@ import {
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakP,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -171,7 +172,12 @@ const Search: FC<SearchProps> = (props) => {
     <OakFlex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
-          <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
+          <OakGridArea
+            $colSpan={[12, 12, 7]}
+            $colStart={1}
+            $rowStart={1}
+            $mt={"space-between-m"}
+          >
             <OakFlex
               $flexDirection={["column"]}
               $mb={["space-between-l", "space-between-xxl"]}
@@ -191,14 +197,35 @@ const Search: FC<SearchProps> = (props) => {
             </OakFlex>
             <SearchActiveFilters searchFilters={searchFilters} />
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 9]} $pr={"inner-padding-m"}>
-            <div role="status">
+          <OakGridArea
+            $colSpan={[12, 3]}
+            $colStart={[1, 10]}
+            $rowStart={2}
+            $pr={"inner-padding-m"}
+          >
+            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
+            </Flex>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 9]}
+            $colStart={1}
+            $rowStart={2}
+            $pr={"inner-padding-m"}
+          >
+            <div role="status" aria-live="polite">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
                 <NoSearchResults searchTerm={query.term} />
+              )}
+              {shouldShowResults && (
+                <OakP>
+                  Showing {results.length} result
+                  {results.length === 1 ? "" : "s"}
+                </OakP>
               )}
             </div>
             <OakFlex $mb="space-between-m2">
@@ -235,11 +262,6 @@ const Search: FC<SearchProps> = (props) => {
                 }
               />
             )}
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </Flex>
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
