@@ -1,3 +1,6 @@
+// DEBUG: DO NOT MERGE!
+import fs from "fs";
+
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
@@ -238,7 +241,10 @@ const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
 
   if (!isBrowser) {
     // DEBUG: DO NOT MERGE!
-    console.log({ envVars });
+    console.log("Server config", envVars);
+    console.log("process env", process.env);
+    const envFile = fs.readFileSync(".env.local.production", "utf8");
+    console.log("envFile", envFile);
 
     throw new Error(
       `getServerConfig('${key}') failed because there is no env value ${envName}`,
