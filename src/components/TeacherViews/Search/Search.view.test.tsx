@@ -1,5 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
@@ -176,28 +177,36 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
 
 const render = renderWithProviders();
 
+const SearchComponent = (props: SearchProps) => (
+  <OakThemeProvider theme={oakDefaultTheme}>
+    <Search {...props} />
+  </OakThemeProvider>
+);
+
 describe("Search.page.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("status: error message displayed status is fail", () => {
-    const { getByRole } = render(<Search {...props} status="fail" />);
+    const { getByRole } = render(<SearchComponent {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
       "There was an error fetching search results",
     );
   });
   test("status: loading not displayed if not passed", () => {
-    const { getByRole } = render(<Search {...props} />);
+    const { getByRole } = render(<SearchComponent {...props} />);
     expect(getByRole("status")).not.toHaveTextContent("Loading");
   });
   test("status: loading displayed if passed", () => {
-    const { getByRole } = render(<Search {...props} status="loading" />);
+    const { getByRole } = render(
+      <SearchComponent {...props} status="loading" />,
+    );
     expect(getByRole("status")).toHaveTextContent("Loading");
   });
   test("status: 'no results' message displayed if no results and status==='success'", () => {
     const { getByRole } = render(
-      <Search
+      <SearchComponent
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="success"
@@ -207,7 +216,7 @@ describe("Search.page.tsx", () => {
   });
   test("status: 'no results' message not displayed if loading", () => {
     const { getByRole } = render(
-      <Search
+      <SearchComponent
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="loading"
@@ -217,7 +226,7 @@ describe("Search.page.tsx", () => {
   });
   test("status: 'no results' message not displayed if results not empty", () => {
     const { getByRole } = render(
-      <Search
+      <SearchComponent
         {...props}
         query={{ ...props.query, term: "test search term" }}
         results={[createSearchResult()]}
@@ -226,13 +235,17 @@ describe("Search.page.tsx", () => {
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
   test("results are displayed", () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(
+      <SearchComponent {...props} {...resultsProps} />,
+    );
     expect(
       getByRole("link", { name: "See lesson: lesson title" }),
     ).toBeInTheDocument();
   });
   test("results have correct href", () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(
+      <SearchComponent {...props} {...resultsProps} />,
+    );
     expect(
       getByRole("link", { name: "See lesson: lesson title" }),
     ).toHaveAttribute(
@@ -241,7 +254,7 @@ describe("Search.page.tsx", () => {
     );
   });
   test("search term is set on enter", async () => {
-    const { getByRole } = render(<Search {...props} />);
+    const { getByRole } = render(<SearchComponent {...props} />);
     const user = userEvent.setup();
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
@@ -251,7 +264,7 @@ describe("Search.page.tsx", () => {
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("query is set on submit button click", async () => {
-    const { getByRole } = render(<Search {...props} />);
+    const { getByRole } = render(<SearchComponent {...props} />);
     const user = userEvent.setup();
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
@@ -260,14 +273,16 @@ describe("Search.page.tsx", () => {
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("tab order, 1: search input", async () => {
-    const { getByRole } = render(<Search {...props} />);
+    const { getByRole } = render(<SearchComponent {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
     await user.tab();
     expect(searchInput).toHaveFocus();
   });
   test("tab order, 2: submit button", async () => {
-    const { getByRole } = render(<Search {...props} {...resultsProps} />);
+    const { getByRole } = render(
+      <SearchComponent {...props} {...resultsProps} />,
+    );
 
     const user = userEvent.setup();
     await user.tab();
@@ -276,7 +291,7 @@ describe("Search.page.tsx", () => {
   });
   test("clicking result description clicks the link", async () => {
     const { getByText, getByRole } = render(
-      <Search {...props} {...resultsProps} />,
+      <SearchComponent {...props} {...resultsProps} />,
     );
     const description = getByText("lesson description");
     const user = userEvent.setup();
@@ -298,32 +313,36 @@ describe("Search.page.tsx", () => {
   });
 
   test("searchResultsDisplayed is called when a search is completed with success status", async () => {
-    render(<Search {...props} {...resultsProps} />);
+    render(<SearchComponent {...props} {...resultsProps} />);
     await waitFor(() =>
       expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
     );
   });
   test("searchResultsDisplayed is called when a search is completed with fail status", async () => {
-    render(<Search {...{ ...props, status: "fail" }} {...resultsProps} />);
+    render(
+      <SearchComponent {...{ ...props, status: "fail" }} {...resultsProps} />,
+    );
     await waitFor(() =>
       expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
     );
   });
   test("searchResultsDisplayed is not called when status is not asked", async () => {
-    render(<Search {...props} />);
+    render(<SearchComponent {...props} />);
     await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
   test("searchResultsDisplayed is not called when status is loading", async () => {
-    render(<Search {...{ ...props, status: "loading" }} />);
+    render(<SearchComponent {...{ ...props, status: "loading" }} />);
     await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
   test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
-    render(<Search {...props} {...resultsProps} />);
+    render(<SearchComponent {...props} {...resultsProps} />);
 
     expect(setSearchStartTime).toHaveBeenCalledTimes(1);
   });
   test("searchResultOpened is called when a search hit is clicked", async () => {
-    const { getByText } = render(<Search {...props} {...resultsProps} />);
+    const { getByText } = render(
+      <SearchComponent {...props} {...resultsProps} />,
+    );
     const description = getByText("lesson title");
     const user = userEvent.setup();
     await user.click(description);
@@ -348,7 +367,7 @@ describe("Search.page.tsx", () => {
   });
   test("searchResultClicked is called when a pathway hit is clicked", async () => {
     const { getByText } = render(
-      <Search {...props} {...resultsPropsPathWays} />,
+      <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
     const user = userEvent.setup();
@@ -377,7 +396,7 @@ describe("Search.page.tsx", () => {
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
     const { getByText } = render(
-      <Search {...props} {...resultsPropsPathWays} />,
+      <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
     const user = userEvent.setup();
