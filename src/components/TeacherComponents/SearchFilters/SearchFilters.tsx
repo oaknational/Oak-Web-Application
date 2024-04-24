@@ -8,8 +8,6 @@ import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type SearchFiltersProps = {
   searchRefined: (filterType: FilterTypeValueType, filterValue: string) => void;
-  onFilterClick: (filter: string | undefined) => void;
-  lastFocussedFilter: string | null;
 } & UseSearchFiltersReturnType;
 
 const StyledFieldset = styled.fieldset`
@@ -25,8 +23,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
     contentTypeFilters,
     examBoardFilters,
     searchRefined,
-    onFilterClick,
-    lastFocussedFilter,
   } = props;
   return (
     <>
@@ -43,9 +39,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               width={"50%"}
               filterType={"Content type filter"}
               searchRefined={searchRefined}
-              onFilterClick={onFilterClick}
               {...contentType}
-              lastFocussedFilter={lastFocussedFilter}
             />
           ))}
         </OakFlex>
@@ -63,8 +57,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               width={"50%"}
               filterType="Exam board filter"
               searchRefined={searchRefined}
-              onFilterClick={onFilterClick}
-              lastFocussedFilter={lastFocussedFilter}
               {...examBoard}
             />
           ))}
@@ -86,8 +78,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               key={`search-filters-keyStage-${keyStageFilter.slug}`}
               filterType="Key stage filter"
               searchRefined={searchRefined}
-              onFilterClick={onFilterClick}
-              lastFocussedFilter={lastFocussedFilter}
               {...keyStageFilter}
             />
           ))}
@@ -106,8 +96,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               key={`search-filters-subject-${subjectFilter.slug}`}
               filterType="Subject filter"
               searchRefined={searchRefined}
-              onFilterClick={onFilterClick}
-              lastFocussedFilter={lastFocussedFilter}
               {...subjectFilter}
             />
           ))}

@@ -35,8 +35,6 @@ const Search: FC<SearchProps> = (props) => {
     searchFilters,
     searchStartTime,
     setSearchStartTime,
-    onFilterClick,
-    lastFocussedFilter,
   } = props;
 
   const { track } = useAnalytics();
@@ -192,16 +190,12 @@ const Search: FC<SearchProps> = (props) => {
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
                 handleSubmit={(value) => {
-                  onFilterClick(undefined);
                   setSearchTerm(value);
                 }}
                 analyticsSearchSource={"search page search box"}
               />
             </OakFlex>
-            <SearchActiveFilters
-              searchFilters={searchFilters}
-              onFilterClick={onFilterClick}
-            />
+            <SearchActiveFilters searchFilters={searchFilters} />
           </OakGridArea>
           <OakGridArea
             $colSpan={[12, 3]}
@@ -210,12 +204,7 @@ const Search: FC<SearchProps> = (props) => {
             $pr={"inner-padding-m"}
           >
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters
-                {...searchFilters}
-                searchRefined={searchRefined}
-                onFilterClick={onFilterClick}
-                lastFocussedFilter={lastFocussedFilter}
-              />
+              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
             </Flex>
           </OakGridArea>
           <OakGridArea
@@ -251,8 +240,6 @@ const Search: FC<SearchProps> = (props) => {
                 <SearchFilters
                   {...searchFilters}
                   searchRefined={searchRefined}
-                  onFilterClick={onFilterClick}
-                  lastFocussedFilter={lastFocussedFilter}
                 />
               </MobileFilters>
             </OakFlex>

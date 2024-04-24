@@ -18,92 +18,30 @@ const props = {
 
 describe("SearchFilterCheckbox", () => {
   test("has the correct id", () => {
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={jest.fn()}
-      />,
-    );
+    const { getByRole } = renderWithTheme(<SearchFilterCheckbox {...props} />);
     const checkbox = getByRole("checkbox");
     expect(checkbox.id).toEqual("custom-checkbox-ks1");
   });
   test("has the correct name", () => {
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={jest.fn()}
-      />,
-    );
+    const { getByRole } = renderWithTheme(<SearchFilterCheckbox {...props} />);
     const checkbox = getByRole("checkbox");
     expect(checkbox.getAttribute("name")).toEqual("Key stage");
   });
   test("respects checked value: true", () => {
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={jest.fn()}
-      />,
-    );
+    const { getByRole } = renderWithTheme(<SearchFilterCheckbox {...props} />);
     const checkbox = getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
   });
   test("respects checked value: false", () => {
     const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        checked={true}
-        lastFocussedFilter={null}
-        onFilterClick={jest.fn()}
-      />,
+      <SearchFilterCheckbox {...props} checked={true} />,
     );
     const checkbox = getByRole("checkbox");
     expect(checkbox).toBeChecked();
   });
-  test("calls onFilterClick with slug on non-mouse click", async () => {
-    const onFilterClick = jest.fn();
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={onFilterClick}
-      />,
-    );
-    const checkbox = getByRole("checkbox");
-    const user = userEvent.setup();
-    await user.click(checkbox);
 
-    expect(onFilterClick).toHaveBeenCalledWith("ks1");
-  });
-  test("calls onFilterClick with undefined on mouse click", async () => {
-    const onFilterClick = jest.fn();
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={onFilterClick}
-      />,
-    );
-    const checkbox = getByRole("checkbox");
-    const user = userEvent.setup();
-    await user.pointer({
-      keys: "[MouseLeft]",
-      target: checkbox,
-      coords: { x: 10, y: 10 },
-    });
-
-    expect(onFilterClick).toHaveBeenCalledWith(undefined);
-  });
   test("calls onChange when clicked", async () => {
-    const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox
-        {...props}
-        lastFocussedFilter={null}
-        onFilterClick={jest.fn()}
-      />,
-    );
+    const { getByRole } = renderWithTheme(<SearchFilterCheckbox {...props} />);
     const checkbox = getByRole("checkbox");
     const user = userEvent.setup();
     await user.click(checkbox);

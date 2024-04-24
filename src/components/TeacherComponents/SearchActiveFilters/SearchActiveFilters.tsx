@@ -13,10 +13,9 @@ import {
 
 type SearchActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
-  onFilterClick: (filter: string | undefined) => void;
 };
 const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
-  const { searchFilters, onFilterClick } = props;
+  const { searchFilters } = props;
   const {
     keyStageFilters,
     subjectFilters,
@@ -53,7 +52,6 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
             key={`active-filter-${title}-${slug}`}
             onClick={() => {
               onChange();
-              onFilterClick(undefined);
             }}
             variant="buttonStyledAsLink"
             icon="cross"
