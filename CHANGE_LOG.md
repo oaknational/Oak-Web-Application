@@ -1,3 +1,34 @@
+# [1.414.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.5...v1.414.0) (2024-04-24)
+
+
+### Features
+
+* **lessonlisting:** add test suite for page ([fa072fd](https://github.com/oaknational/Oak-Web-Application/commit/fa072fd96f96004240330a352fe9640fe4fe38f7))
+* **lessonlisting:** add test suite for page ([d53dae2](https://github.com/oaknational/Oak-Web-Application/commit/d53dae21e6983bf5ed3cc5465fea206e5edd7f97))
+* **lessonlisting:** add test suite for page ([9806cdc](https://github.com/oaknational/Oak-Web-Application/commit/9806cdc784c51b8eab52b883833660be5410146f))
+* **lessonlisting:** create lesson listing page ([046da1d](https://github.com/oaknational/Oak-Web-Application/commit/046da1dee750524fd9eab8b92b10a7f00f516153))
+* **lessonlisting:** create lesson listing page ([4536eb8](https://github.com/oaknational/Oak-Web-Application/commit/4536eb8f98673dc037cb5c71e8254eb210fecca3))
+* **lessonlisting:** create lessonListing page ([d861c4f](https://github.com/oaknational/Oak-Web-Application/commit/d861c4f348236d3b851b8b45e1c69d08aa26ac89))
+* **lessonlisting:** create lessonListing page ([802717a](https://github.com/oaknational/Oak-Web-Application/commit/802717a7affd9ed157044fcc47723227f98697e4))
+* **lessonlisting:** order lessons by orderInUnit field ([105cd12](https://github.com/oaknational/Oak-Web-Application/commit/105cd127d02295588103056a496509dd882a8d1d))
+* **lessonlisting:** order lessons by orderInUnit field ([6159cfc](https://github.com/oaknational/Oak-Web-Application/commit/6159cfc1e284a01ec1813510d2e7cc9736337392))
+* **lessonlisting:** order lessons by orderInUnit field ([d1d79eb](https://github.com/oaknational/Oak-Web-Application/commit/d1d79eb77f26d6989437c300760892fb058ac07d))
+* **lessonlisting:** order lessons by orderInUnit field ([1b87d53](https://github.com/oaknational/Oak-Web-Application/commit/1b87d53fdc865db3c9f4844dc661cc88528ce9ae))
+* **lessonlisting:** point lesson link to right location and refactor query ([ab30665](https://github.com/oaknational/Oak-Web-Application/commit/ab30665fe160810ae6573a9251d6c456694dcc9e))
+* **lessonlisting:** point lesson link to right location and refactor query ([da1af8e](https://github.com/oaknational/Oak-Web-Application/commit/da1af8e3f2e75cc8d1e83143ea817b81c2e0336f))
+* **lessonlisting:** refactor lesson query ([c978872](https://github.com/oaknational/Oak-Web-Application/commit/c9788720e0487e4495a260bf37f51ab6d17f08fd))
+* **lessonlisting:** refactor lesson query ([b4e4df9](https://github.com/oaknational/Oak-Web-Application/commit/b4e4df9164164e8a5ab4ca4e0e81657054bb0ad4))
+* **lessonlisting:** refactor lesson query ([293ba99](https://github.com/oaknational/Oak-Web-Application/commit/293ba99e7379875cf929fdf3ab4e1108b839abe3))
+* **lessonlisting:** refactor static paths to remove duplications ([c867234](https://github.com/oaknational/Oak-Web-Application/commit/c8672345dfb844977d81460e865c1027dae03cde))
+* **lessonlisting:** refactor static paths to remove duplications ([c80eac3](https://github.com/oaknational/Oak-Web-Application/commit/c80eac3da75a7b9513c1705ee3caf7f2ee9c7531))
+
+## [1.413.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.4...v1.413.5) (2024-04-23)
+
+
+### Bug Fixes
+
+* updated blog slug to match blog url ([f91bb6a](https://github.com/oaknational/Oak-Web-Application/commit/f91bb6ad3bc690c46ee138d5f20b905981c857fd))
+
 ## [1.413.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.3...v1.413.4) (2024-04-23)
 
 ## [1.413.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.2...v1.413.3) (2024-04-23)
