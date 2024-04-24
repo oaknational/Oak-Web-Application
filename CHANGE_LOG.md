@@ -1,3 +1,18 @@
+# [1.415.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.414.0...v1.415.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* examboard and tier can be null ([4fd6d0d](https://github.com/oaknational/Oak-Web-Application/commit/4fd6d0d88b5b8b7d6055164e5b48e8be0002c309))
+* use exam and tier if both present in button ([931c01e](https://github.com/oaknational/Oak-Web-Application/commit/931c01e68294c6ac2d3d86de59d90f1e829f79b9))
+* use individual unitslug for search result pathway links ([41b50bf](https://github.com/oaknational/Oak-Web-Application/commit/41b50bf25a42bdeec04fe608b3bbcfbb41cfe479))
+
+
+### Features
+
+* remove comment ([daf7950](https://github.com/oaknational/Oak-Web-Application/commit/daf79502dd136b5293368ee159062c07d993ac79))
+* use unit dropdown when no examboard or tier in pathways ([44bf831](https://github.com/oaknational/Oak-Web-Application/commit/44bf83119446c558bc602eb5ec09b894ee595c91))
+
 # [1.414.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.5...v1.414.0) (2024-04-24)
 
 
