@@ -5,7 +5,7 @@ import {
   OakGridArea,
   OakHeading,
   OakFlex,
-  OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -222,9 +222,10 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
               {shouldShowResults && (
-                <OakBox $visibility="hidden">
-                  Showing {results.length} results
-                </OakBox>
+                <OakP>
+                  Showing {results.length} result
+                  {results.length === 1 ? "" : "s"}
+                </OakP>
               )}
             </div>
             <OakFlex $mb="space-between-m2">
