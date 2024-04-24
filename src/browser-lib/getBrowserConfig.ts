@@ -353,9 +353,6 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
   }
 }
 
-// DEBUG: DO NOT MERGE!
-console.log("browser envVars", envVars);
-
 // We can safely assert it's non-nullable as our
 // guard loop above will throw
 type NonNullEnvValue<K extends ConfigKey> = NonNullable<
