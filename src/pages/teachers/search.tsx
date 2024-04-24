@@ -50,7 +50,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allContentTypes,
     allExamBoards,
   });
-
   return (
     <AppLayout
       seoProps={{

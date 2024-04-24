@@ -43,6 +43,7 @@ export type CheckboxProps = {
   labelFontWeight?: 400 | 600;
   slim?: boolean;
   zIndex?: ZIndex;
+  autoFocus?: boolean;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -168,6 +169,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     inputRef,
     onBlur,
     slim,
+    autoFocus,
     zIndex,
     labelFontWeight,
     ...spacingProps
@@ -198,6 +200,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-describedby={error ? errorId : undefined}
           ref={inputRef}
           onBlur={onBlur}
+          autoFocus={autoFocus}
         />
         <VisualCheckbox
           checked={checked}
