@@ -33,12 +33,11 @@ async function redirectNetlifySubdomains(
     // Determine if the request is coming from the proxying Cloudflare worker.
     redirected = request.headers.get("x-cloudflare-redirect") || false;
 
-    console.log(
-      `Subdomain identified: ${subdomain}\nRedirected from Cloudflare: ${redirected}`,
-    );
+    console.log(`Subdomain identified: ${subdomain}`);
+    console.log(`Redirected from Cloudflare: ${redirected}`);
   } catch (err) {
-    console.error("Subdomain matching failed.");
-    console.error(err, request.url);
+    console.error("Error: subdomain matching failed.");
+    console.error(err, request.url, "");
     process.exit(1);
   }
 
@@ -61,11 +60,11 @@ async function redirectNetlifySubdomains(
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`,
     ).href;
-    console.log("Redirected to Cloudflare - ", redirectTargetUrl);
+    console.log("Redirected to Cloudflare - ", redirectTargetUrl, "");
 
     return Response.redirect(redirectTargetUrl);
   } else {
-    console.log(`Request allowed through`);
+    console.log("Request allowed through", "");
     const res = await context.next();
     return res;
   }
