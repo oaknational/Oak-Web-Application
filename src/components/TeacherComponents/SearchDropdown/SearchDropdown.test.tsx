@@ -21,6 +21,8 @@ const searchResultUnit = searchResultsData[1] as SearchResultsItemProps; // we k
 
 const searchResultTierPathways = searchResultsData[2] as SearchResultsItemProps; // we know this exists
 
+const searchResultPathways = searchResultsData[3] as SearchResultsItemProps;
+
 describe("SearchDropdown component", () => {
   test("component renders with correct title for pathways with exam boards", () => {
     const { getByText } = renderWithTheme(
@@ -29,12 +31,19 @@ describe("SearchDropdown component", () => {
 
     expect(getByText("Select exam board")).toBeInTheDocument();
   });
-  test("component renders with correct title for pathways without exam boards", () => {
+  test("component renders with correct title for pathways with tiers", () => {
     const { getByText } = renderWithTheme(
       <SearchDropdown {...searchResultTierPathways} />,
     );
 
     expect(getByText("Select tier")).toBeInTheDocument();
+  });
+  test("component renders with correct title for pathways without examboards or tiers", () => {
+    const { getByText } = renderWithTheme(
+      <SearchDropdown {...searchResultPathways} />,
+    );
+
+    expect(getByText("Select unit")).toBeInTheDocument();
   });
 
   test("child component to not be visible on unexpanded container", () => {
@@ -106,13 +115,13 @@ describe("SearchDropdown component", () => {
     expect(links[0]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-1/units/computer-systems-e17a/lessons/the-fde-cycle-68w3ct",
+        "/teachers/programmes/maths-program-1/units/algebra-unit/lessons/the-fde-cycle-68w3ct",
       ),
     );
     expect(links[1]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-3/units/computer-systems-e17a/lessons/the-fde-cycle-68w3ct",
+        "/teachers/programmes/maths-program-3/units/world-wars-unit/lessons/the-fde-cycle-68w3ct",
       ),
     );
   });
@@ -134,13 +143,13 @@ describe("SearchDropdown component", () => {
     expect(links[0]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-1/units/computing-systems-1558/lessons",
+        "/teachers/programmes/maths-program-1/units/algebra-unit/lessons",
       ),
     );
     expect(links[1]).toHaveAttribute(
       "href",
       expect.stringContaining(
-        "/teachers/programmes/maths-program-3/units/computing-systems-1558/lessons",
+        "/teachers/programmes/maths-program-3/units/world-wars-unit/lessons",
       ),
     );
   });
@@ -162,4 +171,5 @@ describe("SearchDropdown component", () => {
 
     expect(onClickSearchHit).toHaveBeenCalled();
   });
+  test("dropdown buttons show correct title", () => {});
 });
