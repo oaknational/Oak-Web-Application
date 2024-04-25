@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
@@ -156,7 +155,7 @@ describe("QuizMCQMultiAnswer", () => {
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
-    const images = getAllByRole("img", { name: "" }); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
+    const images = getAllByRole("presentation"); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
     expect(images.length).toEqual(mcqImageAnswers.length);
   });
 });

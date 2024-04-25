@@ -1,6 +1,6 @@
 import { getPreselectedDownloadResourceTypes } from "./getDownloadResourceType";
 
-import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 
 const downloads = lessonDownloadsFixtures().downloads;
 describe("getDownloadResourceType", () => {

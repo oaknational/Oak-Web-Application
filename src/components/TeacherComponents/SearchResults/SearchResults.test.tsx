@@ -7,7 +7,7 @@ import { act } from "react-dom/test-utils";
 import SearchResults from "./SearchResults";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
@@ -54,7 +54,7 @@ describe("<SearchResults />", () => {
     );
     expect(
       getByRole("link", {
-        name: "English lesson: The relationship between Macbeth and Lady Macbeth",
+        name: "See lesson: The relationship between Macbeth and Lady Macbeth",
       }),
     ).toHaveAttribute(
       "href",
@@ -73,7 +73,7 @@ describe("<SearchResults />", () => {
     );
     expect(
       getByRole("link", {
-        name: "English unit: Macbeth: Lady Macbeth as a machiavellian villain",
+        name: "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
       }),
     ).toHaveAttribute(
       "href",
@@ -136,7 +136,7 @@ describe("<SearchResults />", () => {
       />,
     );
     const searchHit = getByRole("link", {
-      name: "English lesson: The relationship between Macbeth and Lady Macbeth",
+      name: "See lesson: The relationship between Macbeth and Lady Macbeth",
     });
     act(() => {
       searchHit.click();

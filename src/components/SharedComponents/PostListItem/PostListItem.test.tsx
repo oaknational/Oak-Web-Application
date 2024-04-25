@@ -77,7 +77,7 @@ describe("components/PostListItem", () => {
       <PostListItem {...testProps} withImage />,
     );
 
-    const image = getByRole("img");
+    const image = getByRole("presentation");
     /**
      * We can't really assert on the srcset, but the withImage=false test
      * should catch any false positives if another unrealted role=img was
@@ -100,7 +100,7 @@ describe("components/PostListItem", () => {
       <PostListItem {...testProps} withImage />,
     );
 
-    const image = getByRole("img");
+    const image = getByRole("presentation");
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(image?.getAttribute("alt")).toBe("");
   });

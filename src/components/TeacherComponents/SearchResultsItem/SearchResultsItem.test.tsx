@@ -4,7 +4,7 @@ import { act } from "react-dom/test-utils";
 import SearchResultsItem from "./SearchResultsItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
@@ -122,7 +122,7 @@ describe("SearchResultsItem", () => {
         <SearchResultsItem {...hitObjectUnit} />,
       );
       const link = getByLabelText(
-        "English unit: Macbeth: Lady Macbeth as a machiavellian villain",
+        "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
       );
       expect(link).toBeInTheDocument();
     } else {
@@ -135,7 +135,7 @@ describe("SearchResultsItem", () => {
         <SearchResultsItem {...hitObjectLesson} />,
       );
       const link = getByLabelText(
-        "English lesson: The relationship between Macbeth and Lady Macbeth",
+        "See lesson: The relationship between Macbeth and Lady Macbeth",
       );
       expect(link).toBeInTheDocument();
     } else {

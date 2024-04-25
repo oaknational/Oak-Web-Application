@@ -1,13 +1,14 @@
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
 
-import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
+import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units";
-import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
-import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+import unitListingFixture, {
+  unitListingWithTiers,
+} from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -48,7 +49,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
-      <UnitListingPage curriculumData={unitListingWithTiersFixture()} />,
+      <UnitListingPage curriculumData={unitListingWithTiers()} />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
@@ -78,7 +79,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   describe("SEO", () => {
     it("renders the correct SEO details for programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage curriculumData={unitListingWithTiersFixture()} />,
+        <UnitListingPage curriculumData={unitListingWithTiers()} />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,

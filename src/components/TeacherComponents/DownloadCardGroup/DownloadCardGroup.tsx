@@ -8,12 +8,12 @@ import type {
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
-import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/SharedComponents/Box";
 import Grid from "@/components/SharedComponents/Grid.deprecated";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 export type DownloadCardGroupProps = {
-  downloads?: LessonDownloadsData["downloads"];
+  downloads?: LessonDownloadsPageData["downloads"];
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;

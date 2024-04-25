@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import SubjectProgrammeList from "./SubjectProgrammeList";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
+import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -18,10 +18,7 @@ const onClick = jest.fn();
 describe("ProgrammeList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
-      <SubjectProgrammeList
-        onClick={onClick}
-        {...tieredProgrammeListingFixture()}
-      />,
+      <SubjectProgrammeList onClick={onClick} {...programmeListingFixture()} />,
     );
 
     waitFor(() => {
@@ -38,10 +35,7 @@ describe("ProgrammeList", () => {
   });
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
-      <SubjectProgrammeList
-        onClick={onClick}
-        {...tieredProgrammeListingFixture()}
-      />,
+      <SubjectProgrammeList onClick={onClick} {...programmeListingFixture()} />,
     );
 
     const trier = screen.getByText("Higher");

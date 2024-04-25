@@ -10,9 +10,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
-import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
@@ -33,6 +31,9 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
+import curriculumApi2023, {
+  TeachersHomePageData,
+} from "@/node-lib/curriculum-api-2023";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;

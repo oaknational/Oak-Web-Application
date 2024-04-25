@@ -20,6 +20,7 @@ import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
 import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonQuery } from "./queries/pupilLesson/pupilLesson.query";
+import { pupilLessonListingQuery } from "./queries/pupilLessonListing/pupilLessonListing.query";
 import specialistUnitListingQuery from "./queries/specialistUnitListing/specialistUnitListing.query";
 import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
 import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
@@ -27,6 +28,7 @@ import { specialistLessonDownloadQuery } from "./queries/specialistLessonDownloa
 import { specialistLessonShareQuery } from "./queries/specialistLessonShare/specialistLessonShare.query";
 import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 import specialistLessonOverviewCanonical from "./queries/specialistLessonOverviewCanonical/specialistLessonOverviewCanonical.query";
+import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -125,11 +127,14 @@ const curriculumApi2023 = {
   lessonDownloadsCanonical: lessonDownloadsCanonicalQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
+  pupilUnitListingQuery: pupilUnitListingQuery(sdk),
+  pupilLessonListingQuery: pupilLessonListingQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
     const teachersHomePage = getFirstResultOrNull()({
@@ -139,7 +144,6 @@ const curriculumApi2023 = {
   },
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
-  unitListing: unitListingQuery(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistUnitListing: specialistUnitListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
