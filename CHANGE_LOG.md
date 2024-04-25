@@ -1,3 +1,142 @@
+## [1.419.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.0...v1.419.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* added aria-atomic="true" to announce "X units highlighted" as a whole statement ([9572d45](https://github.com/oaknational/Oak-Web-Application/commit/9572d451f03ba040c73050fbc0e6365ab1349ed7))
+* added aria-live="polite" only to the "X units highlighted" text ([f63470f](https://github.com/oaknational/Oak-Web-Application/commit/f63470f9d137a470a8791e48e8ebe8383f192688))
+* added aria-live="polite" to "units highlighted" in units mobile tab ([a4b88b3](https://github.com/oaknational/Oak-Web-Application/commit/a4b88b369e890218b83b4b8689cd1052daddc06f))
+* added aria-live="polite" to "units highlighted" text ([bcf1700](https://github.com/oaknational/Oak-Web-Application/commit/bcf1700f82f0a07b4adc32ff0c9866de7178c536))
+* move aria-live to always be present in DOM ([8bd363c](https://github.com/oaknational/Oak-Web-Application/commit/8bd363cab26f917b427e67199e6d9bba62ecc7f8))
+
+# [1.419.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.418.0...v1.419.0) (2024-04-25)
+
+
+### Features
+
+* add skip button to filters ([a26b4a9](https://github.com/oaknational/Oak-Web-Application/commit/a26b4a9c165aa893c8ea7613c7ca9150cffcb892))
+* hide filter button and reveal on focus ([9cdee7d](https://github.com/oaknational/Oak-Web-Application/commit/9cdee7d65af1d44125332c561ab7c6f492e75e33))
+* skip to main content on click ([eff3fa6](https://github.com/oaknational/Oak-Web-Application/commit/eff3fa6bcb3d727119577abc7df54a4939ca31bb))
+
+# [1.418.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.1...v1.418.0) (2024-04-25)
+
+
+### Features
+
+* **unitlistingquery:** create unit listing query ([ff8aadc](https://github.com/oaknational/Oak-Web-Application/commit/ff8aadcea579560b31bf2180c74bd18810af1cf2))
+* **unitlistingquery:** update schema import ([7f09be6](https://github.com/oaknational/Oak-Web-Application/commit/7f09be65f49d4b2cbecacc68c20d439264c81d23))
+* **unitlistingquery:** update schema import ([94bb297](https://github.com/oaknational/Oak-Web-Application/commit/94bb297ff2362ac00e7e6fd173602396fd94955a))
+
+## [1.417.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.0...v1.417.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* landing page font color ([1b4738c](https://github.com/oaknational/Oak-Web-Application/commit/1b4738c7c1d0027012686766b3f44bb0a1df8c78))
+
+# [1.417.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.416.0...v1.417.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* "paragraph" test <SuccessMessage/> component ([5c0584b](https://github.com/oaknational/Oak-Web-Application/commit/5c0584bf5a28c2a86fc974153f33842a3938892f))
+* increase 'tick-mark-happiness' <Box/> on large breakpoint ([fe894d3](https://github.com/oaknational/Oak-Web-Application/commit/fe894d3a7b5aec2569a0b6d463cf4e443fbe1199))
+* spacing fixes for <SuccessMessage/> component ([7b2ba78](https://github.com/oaknational/Oak-Web-Application/commit/7b2ba78596fe0ea671a15fcb87a00d519d557fa3))
+
+
+### Features
+
+* added <SuccessMessage/> component + stories/tests ([33ee766](https://github.com/oaknational/Oak-Web-Application/commit/33ee766e435f12ad85d31a65f6ad65c9cca3f0f0))
+
+# [1.416.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.415.0...v1.416.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* wrap localstorage get in trycatch ([d2f8bfb](https://github.com/oaknational/Oak-Web-Application/commit/d2f8bfba4880edeced475d1be3b9408c13386424))
+
+
+### Features
+
+* add aria-live tag to results region ([35518d1](https://github.com/oaknational/Oak-Web-Application/commit/35518d1394c6bc89d70ccb4eb7c73e932d9d966c))
+* add fieldsets for filter groups ([90051c1](https://github.com/oaknational/Oak-Web-Application/commit/90051c1940d7d45f094e9c4a8b87896bda66366b))
+* move aria live tag and add hidden text ([8d69243](https://github.com/oaknational/Oak-Web-Application/commit/8d6924319386834ecc75639a2c2971739839a1b4))
+* move filters up in tab order ([35bb8ad](https://github.com/oaknational/Oak-Web-Application/commit/35bb8ad1ec3eab13727c4659c8d26cef652b7dee))
+* remember filters focus state on search reload ([af640aa](https://github.com/oaknational/Oak-Web-Application/commit/af640aa46af397dd338105a6eacba427ea1078c4))
+* show results count for all users ([b79cb5c](https://github.com/oaknational/Oak-Web-Application/commit/b79cb5c05d737398a1cae965353f24a2d4549558))
+
+# [1.415.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.414.0...v1.415.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* examboard and tier can be null ([4fd6d0d](https://github.com/oaknational/Oak-Web-Application/commit/4fd6d0d88b5b8b7d6055164e5b48e8be0002c309))
+* use exam and tier if both present in button ([931c01e](https://github.com/oaknational/Oak-Web-Application/commit/931c01e68294c6ac2d3d86de59d90f1e829f79b9))
+* use individual unitslug for search result pathway links ([41b50bf](https://github.com/oaknational/Oak-Web-Application/commit/41b50bf25a42bdeec04fe608b3bbcfbb41cfe479))
+
+
+### Features
+
+* remove comment ([daf7950](https://github.com/oaknational/Oak-Web-Application/commit/daf79502dd136b5293368ee159062c07d993ac79))
+* use unit dropdown when no examboard or tier in pathways ([44bf831](https://github.com/oaknational/Oak-Web-Application/commit/44bf83119446c558bc602eb5ec09b894ee595c91))
+
+# [1.414.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.5...v1.414.0) (2024-04-24)
+
+
+### Features
+
+* **lessonlisting:** add test suite for page ([fa072fd](https://github.com/oaknational/Oak-Web-Application/commit/fa072fd96f96004240330a352fe9640fe4fe38f7))
+* **lessonlisting:** add test suite for page ([d53dae2](https://github.com/oaknational/Oak-Web-Application/commit/d53dae21e6983bf5ed3cc5465fea206e5edd7f97))
+* **lessonlisting:** add test suite for page ([9806cdc](https://github.com/oaknational/Oak-Web-Application/commit/9806cdc784c51b8eab52b883833660be5410146f))
+* **lessonlisting:** create lesson listing page ([046da1d](https://github.com/oaknational/Oak-Web-Application/commit/046da1dee750524fd9eab8b92b10a7f00f516153))
+* **lessonlisting:** create lesson listing page ([4536eb8](https://github.com/oaknational/Oak-Web-Application/commit/4536eb8f98673dc037cb5c71e8254eb210fecca3))
+* **lessonlisting:** create lessonListing page ([d861c4f](https://github.com/oaknational/Oak-Web-Application/commit/d861c4f348236d3b851b8b45e1c69d08aa26ac89))
+* **lessonlisting:** create lessonListing page ([802717a](https://github.com/oaknational/Oak-Web-Application/commit/802717a7affd9ed157044fcc47723227f98697e4))
+* **lessonlisting:** order lessons by orderInUnit field ([105cd12](https://github.com/oaknational/Oak-Web-Application/commit/105cd127d02295588103056a496509dd882a8d1d))
+* **lessonlisting:** order lessons by orderInUnit field ([6159cfc](https://github.com/oaknational/Oak-Web-Application/commit/6159cfc1e284a01ec1813510d2e7cc9736337392))
+* **lessonlisting:** order lessons by orderInUnit field ([d1d79eb](https://github.com/oaknational/Oak-Web-Application/commit/d1d79eb77f26d6989437c300760892fb058ac07d))
+* **lessonlisting:** order lessons by orderInUnit field ([1b87d53](https://github.com/oaknational/Oak-Web-Application/commit/1b87d53fdc865db3c9f4844dc661cc88528ce9ae))
+* **lessonlisting:** point lesson link to right location and refactor query ([ab30665](https://github.com/oaknational/Oak-Web-Application/commit/ab30665fe160810ae6573a9251d6c456694dcc9e))
+* **lessonlisting:** point lesson link to right location and refactor query ([da1af8e](https://github.com/oaknational/Oak-Web-Application/commit/da1af8e3f2e75cc8d1e83143ea817b81c2e0336f))
+* **lessonlisting:** refactor lesson query ([c978872](https://github.com/oaknational/Oak-Web-Application/commit/c9788720e0487e4495a260bf37f51ab6d17f08fd))
+* **lessonlisting:** refactor lesson query ([b4e4df9](https://github.com/oaknational/Oak-Web-Application/commit/b4e4df9164164e8a5ab4ca4e0e81657054bb0ad4))
+* **lessonlisting:** refactor lesson query ([293ba99](https://github.com/oaknational/Oak-Web-Application/commit/293ba99e7379875cf929fdf3ab4e1108b839abe3))
+* **lessonlisting:** refactor static paths to remove duplications ([c867234](https://github.com/oaknational/Oak-Web-Application/commit/c8672345dfb844977d81460e865c1027dae03cde))
+* **lessonlisting:** refactor static paths to remove duplications ([c80eac3](https://github.com/oaknational/Oak-Web-Application/commit/c80eac3da75a7b9513c1705ee3caf7f2ee9c7531))
+
+## [1.413.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.4...v1.413.5) (2024-04-23)
+
+
+### Bug Fixes
+
+* updated blog slug to match blog url ([f91bb6a](https://github.com/oaknational/Oak-Web-Application/commit/f91bb6ad3bc690c46ee138d5f20b905981c857fd))
+
+## [1.413.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.3...v1.413.4) (2024-04-23)
+
+## [1.413.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.2...v1.413.3) (2024-04-23)
+
+
+### Bug Fixes
+
+* add title to aria label ([e3a8df0](https://github.com/oaknational/Oak-Web-Application/commit/e3a8df0e9770bc67a2ae65e99a61991517fcf1a3))
+* update aria label for dropdown search results ([60c5f81](https://github.com/oaknational/Oak-Web-Application/commit/60c5f81010e3c4b21f8ba35b2c384d3e195f3741))
+* update aria label for single results ([d702316](https://github.com/oaknational/Oak-Web-Application/commit/d70231692cb7bb32e68885b0c34f49c637060efa))
+
+## [1.413.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.1...v1.413.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* **analytics:** fix incorrect value for analytics bug ([e1e67c1](https://github.com/oaknational/Oak-Web-Application/commit/e1e67c1982f249760f1700e0d9b967139c6af9c7))
+
+## [1.413.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.413.0...v1.413.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* added aria-labelledby to radiogroups in subject-phase picker ([484231a](https://github.com/oaknational/Oak-Web-Application/commit/484231ae7f5407bf905ec6b9ada34482be77578f))
+* remove old aria-label tags from radiogroups ([8716f78](https://github.com/oaknational/Oak-Web-Application/commit/8716f7846c13488d3fa2403ac0012ec83353eef1))
+
 # [1.413.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.412.0...v1.413.0) (2024-04-22)
 
 
