@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -168,6 +168,8 @@ const Search: FC<SearchProps> = (props) => {
     });
   };
 
+  const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
+
   return (
     <OakFlex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
@@ -216,7 +218,17 @@ const Search: FC<SearchProps> = (props) => {
                 <OakHeading tag="h2" $font="heading-6">
                   Filters
                 </OakHeading>
-                <OakSecondaryButton element="a" href="#search-results">
+                <OakSecondaryButton
+                  element="a"
+                  href="#search-results"
+                  onFocus={() => setFilterButtonFocussed(true)}
+                  onBlur={() => setFilterButtonFocussed(false)}
+                  style={
+                    filterButtonFocussed
+                      ? {}
+                      : { position: "absolute", top: "-500px" }
+                  }
+                >
                   Skip to results
                 </OakSecondaryButton>
               </OakFlex>
