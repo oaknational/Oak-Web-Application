@@ -1,4 +1,4 @@
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
@@ -418,5 +418,29 @@ describe("Search.page.tsx", () => {
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
     });
+  });
+  test("filter button becomes visible when focussed", async () => {
+    const { getByText } = render(
+      <SearchComponent {...props} {...resultsPropsPathWays} />,
+    );
+
+    const filterButton = getByText("Skip to results").closest("a");
+
+    if (!filterButton) {
+      throw new Error("Could not find filter button");
+    }
+    expect(filterButton).not.toBeVisible();
+
+    act(() => {
+      filterButton.focus();
+    });
+    expect(filterButton).toHaveFocus();
+    expect(filterButton).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      filterButton.blur();
+    });
+    expect(filterButton).not.toHaveFocus();
+    expect(filterButton).not.toBeVisible();
   });
 });
