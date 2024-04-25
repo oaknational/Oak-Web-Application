@@ -1,3 +1,12 @@
+# [1.419.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.418.0...v1.419.0) (2024-04-25)
+
+
+### Features
+
+* add skip button to filters ([a26b4a9](https://github.com/oaknational/Oak-Web-Application/commit/a26b4a9c165aa893c8ea7613c7ca9150cffcb892))
+* hide filter button and reveal on focus ([9cdee7d](https://github.com/oaknational/Oak-Web-Application/commit/9cdee7d65af1d44125332c561ab7c6f492e75e33))
+* skip to main content on click ([eff3fa6](https://github.com/oaknational/Oak-Web-Application/commit/eff3fa6bcb3d727119577abc7df54a4939ca31bb))
+
 # [1.418.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.1...v1.418.0) (2024-04-25)
 
 
