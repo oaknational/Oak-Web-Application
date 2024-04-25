@@ -1,5 +1,6 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import useSearch from "@/context/Search/useSearch";
@@ -51,22 +52,24 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allExamBoards,
   });
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `Search for Free Teaching Resources${paginationTitle}`,
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `Search for Free Teaching Resources${paginationTitle}`,
 
-          description: "Search for Free Teaching Resources",
-        }),
-      }}
-      $background="grey20"
-    >
-      <Search
-        {...searchProps}
-        searchFilters={searchFilters}
-        allKeyStages={allKeyStages}
-      />
-    </AppLayout>
+            description: "Search for Free Teaching Resources",
+          }),
+        }}
+        $background="grey20"
+      >
+        <Search
+          {...searchProps}
+          searchFilters={searchFilters}
+          allKeyStages={allKeyStages}
+        />
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
