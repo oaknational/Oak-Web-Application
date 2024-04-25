@@ -1,3 +1,14 @@
+## [1.419.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.1...v1.419.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* issue with timing of unit test, concealed error and refactor ([3809d7d](https://github.com/oaknational/Oak-Web-Application/commit/3809d7d505079bf45b6c85e596deb0224b4e89ce))
+* removing console statement to help reduce noise when running unit tests ([e200789](https://github.com/oaknational/Oak-Web-Application/commit/e200789c2ad5a6ce612f05e381cc671e3ec507ef))
+* resolving some errors and warnings in the curriculum unit tests ([aa1fa53](https://github.com/oaknational/Oak-Web-Application/commit/aa1fa53d08fbfa69ababac94133e0624d97d1567))
+* updating act import for consistency ([829e7c6](https://github.com/oaknational/Oak-Web-Application/commit/829e7c6a953e2ee58ab394620726f55766c7ccba))
+* updating overview bullets to better html structure ([c0bfb6f](https://github.com/oaknational/Oak-Web-Application/commit/c0bfb6fda81ec3dc7a012f536e01c940d1fcb480))
+
 ## [1.419.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.0...v1.419.1) (2024-04-25)
 
 
