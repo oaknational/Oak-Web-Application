@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
+import { act } from "@testing-library/react";
 
 import CurriculumDownloads, {
   CurriculumDownloadsRef,

@@ -1,4 +1,4 @@
-import { act } from "react-dom/test-utils";
+import { act } from "@testing-library/react";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
