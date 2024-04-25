@@ -27,7 +27,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       );
       expect(getByText("lesson-title")).toBeInTheDocument();
     });
-    it("should render the lesson titlts in the correct order", () => {
+    it("should render the lesson titles in the correct order", () => {
       const { getByText } = render(
         <PupilLessonListingPage
           curriculumData={[
