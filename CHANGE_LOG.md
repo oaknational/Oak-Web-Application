@@ -1,3 +1,14 @@
+## [1.419.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.0...v1.419.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* added aria-atomic="true" to announce "X units highlighted" as a whole statement ([9572d45](https://github.com/oaknational/Oak-Web-Application/commit/9572d451f03ba040c73050fbc0e6365ab1349ed7))
+* added aria-live="polite" only to the "X units highlighted" text ([f63470f](https://github.com/oaknational/Oak-Web-Application/commit/f63470f9d137a470a8791e48e8ebe8383f192688))
+* added aria-live="polite" to "units highlighted" in units mobile tab ([a4b88b3](https://github.com/oaknational/Oak-Web-Application/commit/a4b88b369e890218b83b4b8689cd1052daddc06f))
+* added aria-live="polite" to "units highlighted" text ([bcf1700](https://github.com/oaknational/Oak-Web-Application/commit/bcf1700f82f0a07b4adc32ff0c9866de7178c536))
+* move aria-live to always be present in DOM ([8bd363c](https://github.com/oaknational/Oak-Web-Application/commit/8bd363cab26f917b427e67199e6d9bba62ecc7f8))
+
 # [1.419.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.418.0...v1.419.0) (2024-04-25)
 
 
