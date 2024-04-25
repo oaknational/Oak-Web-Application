@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakSecondaryButton,
   OakP,
 } from "@oaknational/oak-components";
 
@@ -14,7 +15,6 @@ import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
@@ -168,6 +168,8 @@ const Search: FC<SearchProps> = (props) => {
     });
   };
 
+  const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
+
   return (
     <OakFlex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
@@ -203,9 +205,35 @@ const Search: FC<SearchProps> = (props) => {
             $rowStart={2}
             $pr={"inner-padding-m"}
           >
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+            <OakFlex
+              $flexDirection="column"
+              $mb="space-between-m2"
+              $display={["none", "flex"]}
+            >
+              <OakFlex
+                $mb="space-between-s"
+                $flexDirection="column"
+                $gap="space-between-ssx"
+              >
+                <OakHeading tag="h2" $font="heading-6">
+                  Filters
+                </OakHeading>
+                <OakSecondaryButton
+                  element="a"
+                  href="#search-results"
+                  onFocus={() => setFilterButtonFocussed(true)}
+                  onBlur={() => setFilterButtonFocussed(false)}
+                  style={
+                    filterButtonFocussed
+                      ? {}
+                      : { position: "absolute", top: "-500px" }
+                  }
+                >
+                  Skip to results
+                </OakSecondaryButton>
+              </OakFlex>
               <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </Flex>
+            </OakFlex>
           </OakGridArea>
           <OakGridArea
             $colSpan={[12, 9]}
