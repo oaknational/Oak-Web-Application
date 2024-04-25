@@ -1,3 +1,64 @@
+## [1.419.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.1...v1.419.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* issue with timing of unit test, concealed error and refactor ([3809d7d](https://github.com/oaknational/Oak-Web-Application/commit/3809d7d505079bf45b6c85e596deb0224b4e89ce))
+* removing console statement to help reduce noise when running unit tests ([e200789](https://github.com/oaknational/Oak-Web-Application/commit/e200789c2ad5a6ce612f05e381cc671e3ec507ef))
+* resolving some errors and warnings in the curriculum unit tests ([aa1fa53](https://github.com/oaknational/Oak-Web-Application/commit/aa1fa53d08fbfa69ababac94133e0624d97d1567))
+* updating act import for consistency ([829e7c6](https://github.com/oaknational/Oak-Web-Application/commit/829e7c6a953e2ee58ab394620726f55766c7ccba))
+* updating overview bullets to better html structure ([c0bfb6f](https://github.com/oaknational/Oak-Web-Application/commit/c0bfb6fda81ec3dc7a012f536e01c940d1fcb480))
+
+## [1.419.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.0...v1.419.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* added aria-atomic="true" to announce "X units highlighted" as a whole statement ([9572d45](https://github.com/oaknational/Oak-Web-Application/commit/9572d451f03ba040c73050fbc0e6365ab1349ed7))
+* added aria-live="polite" only to the "X units highlighted" text ([f63470f](https://github.com/oaknational/Oak-Web-Application/commit/f63470f9d137a470a8791e48e8ebe8383f192688))
+* added aria-live="polite" to "units highlighted" in units mobile tab ([a4b88b3](https://github.com/oaknational/Oak-Web-Application/commit/a4b88b369e890218b83b4b8689cd1052daddc06f))
+* added aria-live="polite" to "units highlighted" text ([bcf1700](https://github.com/oaknational/Oak-Web-Application/commit/bcf1700f82f0a07b4adc32ff0c9866de7178c536))
+* move aria-live to always be present in DOM ([8bd363c](https://github.com/oaknational/Oak-Web-Application/commit/8bd363cab26f917b427e67199e6d9bba62ecc7f8))
+
+# [1.419.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.418.0...v1.419.0) (2024-04-25)
+
+
+### Features
+
+* add skip button to filters ([a26b4a9](https://github.com/oaknational/Oak-Web-Application/commit/a26b4a9c165aa893c8ea7613c7ca9150cffcb892))
+* hide filter button and reveal on focus ([9cdee7d](https://github.com/oaknational/Oak-Web-Application/commit/9cdee7d65af1d44125332c561ab7c6f492e75e33))
+* skip to main content on click ([eff3fa6](https://github.com/oaknational/Oak-Web-Application/commit/eff3fa6bcb3d727119577abc7df54a4939ca31bb))
+
+# [1.418.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.1...v1.418.0) (2024-04-25)
+
+
+### Features
+
+* **unitlistingquery:** create unit listing query ([ff8aadc](https://github.com/oaknational/Oak-Web-Application/commit/ff8aadcea579560b31bf2180c74bd18810af1cf2))
+* **unitlistingquery:** update schema import ([7f09be6](https://github.com/oaknational/Oak-Web-Application/commit/7f09be65f49d4b2cbecacc68c20d439264c81d23))
+* **unitlistingquery:** update schema import ([94bb297](https://github.com/oaknational/Oak-Web-Application/commit/94bb297ff2362ac00e7e6fd173602396fd94955a))
+
+## [1.417.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.0...v1.417.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* landing page font color ([1b4738c](https://github.com/oaknational/Oak-Web-Application/commit/1b4738c7c1d0027012686766b3f44bb0a1df8c78))
+
+# [1.417.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.416.0...v1.417.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* "paragraph" test <SuccessMessage/> component ([5c0584b](https://github.com/oaknational/Oak-Web-Application/commit/5c0584bf5a28c2a86fc974153f33842a3938892f))
+* increase 'tick-mark-happiness' <Box/> on large breakpoint ([fe894d3](https://github.com/oaknational/Oak-Web-Application/commit/fe894d3a7b5aec2569a0b6d463cf4e443fbe1199))
+* spacing fixes for <SuccessMessage/> component ([7b2ba78](https://github.com/oaknational/Oak-Web-Application/commit/7b2ba78596fe0ea671a15fcb87a00d519d557fa3))
+
+
+### Features
+
+* added <SuccessMessage/> component + stories/tests ([33ee766](https://github.com/oaknational/Oak-Web-Application/commit/33ee766e435f12ad85d31a65f6ad65c9cca3f0f0))
+
 # [1.416.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.415.0...v1.416.0) (2024-04-24)
 
 
