@@ -3,7 +3,6 @@ import {
   lessonBrowseDataSchema,
 } from "./pupilLessonListing.schema";
 
-import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
@@ -27,16 +26,6 @@ export const pupilLessonListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::pupilLessonListing")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
     lessonBrowseDataSchema.parse(browseDataSnake);
 
     const browseData = keysToCamelCase(
