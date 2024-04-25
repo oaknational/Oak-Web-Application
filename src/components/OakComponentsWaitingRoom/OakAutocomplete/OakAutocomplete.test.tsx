@@ -62,6 +62,7 @@ describe("OakAutocomplete", () => {
     );
     const inputElement = getByRole("combobox");
 
+    // Enter "Ca" into text <input/>
     act(() => {
       inputElement.focus();
       fireEvent.change(inputElement, { target: { value: "Ca" } });
@@ -76,6 +77,7 @@ describe("OakAutocomplete", () => {
     expect(allOptions[1]).toHaveTextContent("North Carolina");
     expect(allOptions[2]).toHaveTextContent("South Carolina");
 
+    // Select 2nd option
     act(() => {
       fireEvent.click(allOptions[1]!);
     });
@@ -90,6 +92,7 @@ describe("OakAutocomplete", () => {
     );
     const inputElement = getByRole("combobox");
 
+    // Enter "Ca" into text <input/>
     act(() => {
       inputElement.focus();
       fireEvent.change(inputElement, { target: { value: "Ca" } });
@@ -100,6 +103,7 @@ describe("OakAutocomplete", () => {
     const listBoxElement = getByTestId("listbox");
     expect(listBoxElement).toBeInTheDocument();
 
+    // Press ESC
     act(() => {
       fireEvent.keyDown(inputElement, {
         key: "Escape",
@@ -118,6 +122,7 @@ describe("OakAutocomplete", () => {
 
     const inputElement = getByRole("combobox");
 
+    // Enter "Ca" into text <input/>
     act(() => {
       inputElement.focus();
       fireEvent.change(inputElement, { target: { value: "Ca" } });
@@ -136,6 +141,7 @@ describe("OakAutocomplete", () => {
       />,
     );
 
+    // Enter "Ca" into text <input/>
     act(() => {
       const inputElement = getByRole("combobox");
       inputElement.focus();
