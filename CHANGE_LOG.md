@@ -1,3 +1,12 @@
+# [1.418.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.1...v1.418.0) (2024-04-25)
+
+
+### Features
+
+* **unitlistingquery:** create unit listing query ([ff8aadc](https://github.com/oaknational/Oak-Web-Application/commit/ff8aadcea579560b31bf2180c74bd18810af1cf2))
+* **unitlistingquery:** update schema import ([7f09be6](https://github.com/oaknational/Oak-Web-Application/commit/7f09be65f49d4b2cbecacc68c20d439264c81d23))
+* **unitlistingquery:** update schema import ([94bb297](https://github.com/oaknational/Oak-Web-Application/commit/94bb297ff2362ac00e7e6fd173602396fd94955a))
+
 ## [1.417.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.0...v1.417.1) (2024-04-24)
 
 
