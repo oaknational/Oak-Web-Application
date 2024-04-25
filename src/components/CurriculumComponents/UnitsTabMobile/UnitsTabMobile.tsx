@@ -145,15 +145,19 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                         : "thread-radio-mobile"
                     }
                   >
-                    {threadOption.title}
-                    {isSelectedMobile && (
-                      <>
-                        <br />
-                        {highlightedUnits}
-                        {highlightedUnits === 1 ? " unit " : " units "}
-                        highlighted
-                      </>
-                    )}
+                    <OakSpan>
+                      {threadOption.title}
+                      <OakSpan aria-live="polite" aria-atomic="true">
+                        {isSelectedMobile && (
+                          <>
+                            <br />
+                            {highlightedUnits}
+                            {highlightedUnits === 1 ? " unit " : " units "}
+                            highlighted
+                          </>
+                        )}
+                      </OakSpan>
+                    </OakSpan>
                   </Radio>
                 </Box>
               );
