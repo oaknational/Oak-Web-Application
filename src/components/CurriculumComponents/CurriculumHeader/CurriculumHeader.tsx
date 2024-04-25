@@ -168,6 +168,14 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               currentStyles: ["underline"],
               scroll: false,
             },
+            {
+              label: "Download",
+              page: "curriculum-download",
+              subjectPhaseSlug: subjectPhaseSlug,
+              isCurrent: tab === "download",
+              currentStyles: ["underline"],
+              scroll: false,
+            },
           ]}
           data-testid="tabularNav"
         />

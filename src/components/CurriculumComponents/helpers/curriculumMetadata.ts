@@ -2,7 +2,7 @@ import { capitalize } from "lodash";
 
 export const buildCurriculumMetadata = (props: {
   metadataType: "title" | "description";
-  tab: "units" | "overview";
+  tab: "units" | "overview" | "download";
   keyStagesData: string;
   subjectSlug: string;
   examboardSlug?: string | null;
@@ -34,6 +34,9 @@ export const buildCurriculumMetadata = (props: {
     )} ${examboard} Curriculum Unit Sequence`;
   } else if (props.tab === "units" && props.metadataType === "description") {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now.`;
+  } else if (props.tab === "download") {
+    // TODO
+    return "Downloads";
   } else {
     throw new Error('Invalid input for "metadataType" or "tab"');
   }

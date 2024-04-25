@@ -245,7 +245,7 @@ type CurriculumUnitsLinkProps = {
   subjectPhaseSlug: string;
 };
 type CurriculumDownloadsLinkProps = {
-  page: "curriculum-downloads";
+  page: "curriculum-download";
   subjectPhaseSlug: string;
 };
 type CurriculumPreviousDownloadsLinkProps = {
@@ -714,11 +714,11 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "curriculum-units",
   }),
-  "curriculum-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/downloads",
+  "curriculum-download": createOakPageConfig({
+    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/download",
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
-    pageType: "curriculum-downloads",
+    pageType: "curriculum-download",
   }),
   "curriculum-previous-downloads": createOakPageConfig({
     pathPattern: "/teachers/curriculum/previous-downloads",

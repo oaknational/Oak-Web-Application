@@ -1,4 +1,4 @@
-import { FC, forwardRef } from "react";
+import { forwardRef, PropsWithChildren } from "react";
 import styled from "styled-components";
 import { OakSpan } from "@oaknational/oak-components";
 
@@ -129,7 +129,7 @@ type InputProps = UnstyledInputProps &
     label: string;
     error?: string;
   };
-const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
   (props, ref) => {
     const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
       props;

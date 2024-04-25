@@ -29,6 +29,7 @@ import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
+import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumDownloadTab";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -44,7 +45,7 @@ export type CurriculumInfoPageProps = {
   curriculumUnitsTabData: CurriculumUnitsTabData;
 };
 
-const VALID_TABS = ["overview", "units"] as const;
+const VALID_TABS = ["overview", "units", "download"] as const;
 export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -58,6 +59,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const tab = router.query.tab as CurriculumTab;
 
   const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+  console.log({ curriculumSelectionSlugs });
 
   let keyStagesData: string;
   switch (phaseSlug) {
@@ -90,6 +92,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       tabContent = (
         <UnitsTab data={curriculumUnitsTabData} examboardSlug={examboardSlug} />
       );
+      break;
+    case "download":
+      tabContent = <CurriculumDownloadTab />;
       break;
     default:
       throw new Error("Not a valid tab");
