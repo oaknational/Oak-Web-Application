@@ -1,3 +1,10 @@
+## [1.417.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.417.0...v1.417.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* landing page font color ([1b4738c](https://github.com/oaknational/Oak-Web-Application/commit/1b4738c7c1d0027012686766b3f44bb0a1df8c78))
+
 # [1.417.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.416.0...v1.417.0) (2024-04-24)
 
 
