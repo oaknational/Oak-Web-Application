@@ -30,7 +30,6 @@ const curriculumApi: Pick<
   | "pupilLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
-  | "pupilUnitListingQuery"
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"

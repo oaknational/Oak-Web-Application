@@ -16,48 +16,33 @@ type UnitListingPageProps = {
 const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
   console.log("curriculumData", curriculumData);
 
+  if (!curriculumData[0]) {
+    throw new Error("No curriculum data");
+  }
+
   const orderedCurriculumData = curriculumData.sort((a, b) => {
     const aUnitOrder = a.supplementaryData.unitOrder;
     const bUnitOrder = b.supplementaryData.unitOrder;
     return aUnitOrder - bUnitOrder;
   });
 
-  const subject = curriculumData[0]?.programmeFields?.subject;
-  const yearDescription = curriculumData[0]?.programmeFields?.yearDescription;
-  const tier = curriculumData[0]?.programmeFields?.tier || null;
-  const examboard = curriculumData[0]?.programmeFields?.examboard;
-  const yearSlug = curriculumData[0]?.programmeFields?.yearSlug || "";
-  const examboardSlug =
-    curriculumData[0]?.programmeFields?.examboardSlug || null;
-  const subjectSlug = curriculumData[0]?.programmeFields?.subjectSlug || "";
+  const { programmeFields } = curriculumData[0];
+  const {
+    subject,
+    yearDescription,
+    tier,
+    examboard,
+    yearSlug,
+    examboardSlug,
+    subjectSlug,
+  } = programmeFields;
 
-  type BackPages =
-    | "tier-with-examboard"
-    | "tier-without-examboard"
-    | "examboard"
-    | "subject";
-
-  function pickPreviousPage(): BackPages {
+  function pickPreviousPage(): [backHref: string, backLabel: string] {
     const hasTier = tier !== null;
     const hasExamboard = examboard !== null;
 
     switch (true) {
       case hasTier && hasExamboard:
-        return "tier-with-examboard";
-      case hasTier && !hasExamboard:
-        return "tier-without-examboard";
-      case hasExamboard && !hasTier:
-        return "examboard";
-      default:
-        return "subject";
-    }
-  }
-
-  function PickBackHref(
-    backPage: BackPages,
-  ): [backHref: string, backLabel: string] {
-    switch (backPage) {
-      case "tier-with-examboard":
         return [
           `${resolveOakHref({
             page: "pupil-programme-index",
@@ -66,7 +51,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
           })}?examboard=${examboardSlug}`,
           "Select tiers",
         ];
-      case "tier-without-examboard":
+      case hasTier && !hasExamboard:
         return [
           resolveOakHref({
             page: "pupil-programme-index",
@@ -75,7 +60,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
           }),
           "Select tiers",
         ];
-      case "examboard":
+      case hasExamboard && !hasTier:
         return [
           resolveOakHref({
             page: "pupil-programme-index",
@@ -84,7 +69,6 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
           }),
           "Select examboards",
         ];
-      case "subject":
       default:
         return [
           resolveOakHref({ page: "pupil-subject-index", yearSlug }),
@@ -93,8 +77,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     }
   }
 
-  const backPage = pickPreviousPage();
-  const [backHref, backLabel] = PickBackHref(backPage);
+  const [backHref, backLabel] = pickPreviousPage();
 
   return (
     <div>
