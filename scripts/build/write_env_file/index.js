@@ -236,11 +236,6 @@ ${warningComment}
 
   console.log(`Writing env to ${envFileName}`);
 
-  // DEBUG: DO NOT MERGE!
-  // This is a temporary fix to allow the Netlify next.js runtime 5 to read the env vars in preview environments,
-  // it's not clear if failing to read `.env.production.local` is a bug, or if that environment now expects `.env.development.local`.
-  writeFileSync(".env", envFileContent, { flag: "a" });
-
   writeFileSync(envFileName, envFileContent);
 }
 
