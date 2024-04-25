@@ -110,11 +110,6 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
 
-  Nirav Arvinda (Product Designer)
-  Site: https://nirav.work
-  Linkedin: https://www.linkedin.com/in/niravarvinda
-  From: London, UK
-
   Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
   Twitter: @r_mcky
@@ -171,6 +166,11 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
 
+  Nirav Arvinda (Product Designer)
+  Site: https://nirav.work
+  Linkedin: https://www.linkedin.com/in/niravarvinda
+  From: London, UK
+  
   Rees McIvor (Software Engineer)
   Site: https://www.logicrises.co.uk/
   From: Shropshire, UK
