@@ -37,6 +37,7 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
           page="unit-index"
           {...primaryTargetProps}
           {...props.programme}
+          data-testid="programme-list-item-link"
           onClick={() => onClick(programme)}
         >
           <OakHeading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
