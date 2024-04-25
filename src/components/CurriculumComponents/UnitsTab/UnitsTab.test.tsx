@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
@@ -14,9 +14,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      curriculumThreadHighlighted: (...args: unknown[]) =>
-        curriculumThreadHighlighted(...args),
-      yearGroupSelected: (...args: unknown[]) => yearGroupSelected(...args),
+      curriculumThreadHighlighted,
+      yearGroupSelected,
     },
   }),
 }));
@@ -475,19 +474,21 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const { findAllByTestId } = render(
       <UnitsTab data={data} examboardSlug={null} />,
     );
-    let unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(2);
+
+    await act(async () => {
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+
     const domainButtons = await findAllByTestId("domain-button");
     // When there are domains, "All" button is added, so 3 expected
     expect(domainButtons).toHaveLength(3);
     if (!domainButtons[1]) {
       throw new Error("Missing second domain button");
     }
-    userEvent.click(domainButtons[1]);
-    await waitFor(async () => {
-      unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(1);
-    });
+    await userEvent.click(domainButtons[1]);
+    const unitCards = await findAllByTestId("unit-card");
+    expect(unitCards).toHaveLength(1);
   });
 
   test("user can filter units by discipline", async () => {
