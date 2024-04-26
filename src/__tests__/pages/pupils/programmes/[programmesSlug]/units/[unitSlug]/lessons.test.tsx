@@ -15,9 +15,9 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
-      expect(getByText("subject")).toBeInTheDocument();
+      expect(getByText("Maths")).toBeInTheDocument();
       expect(getByText("unit-title")).toBeInTheDocument();
-      expect(getByText("year-description")).toBeInTheDocument();
+      expect(getByText("Year 1")).toBeInTheDocument();
     });
     it("should render the lesson titles as a tags", () => {
       const { getByText } = render(
