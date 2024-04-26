@@ -1,3 +1,19 @@
+# [1.421.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.420.0...v1.421.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* **icons:** remove changes to subject-icon file ([6fa4693](https://github.com/oaknational/Oak-Web-Application/commit/6fa4693dd8bc08126f78768449bdbf5df9192db9))
+
+
+### Features
+
+* **unitlisting:** create unit listing page ([805aba6](https://github.com/oaknational/Oak-Web-Application/commit/805aba6ae617266b5049c24950e57d474d0909a4))
+* **unitlisting:** fix types ([caa3a60](https://github.com/oaknational/Oak-Web-Application/commit/caa3a601ef2486c954b42caf45da8d1c7f86ff6a))
+* **unitlisting:** fix types ([7df641c](https://github.com/oaknational/Oak-Web-Application/commit/7df641c70b342acfa5baefbe03a31be795c50deb))
+* **unitlisting:** refactor pickPreviouPage ([cfad3ac](https://github.com/oaknational/Oak-Web-Application/commit/cfad3ac729ac75650879743192fbac1f365761b3))
+* **unitlisting:** refactor pickPreviouPage ([e76cbd3](https://github.com/oaknational/Oak-Web-Application/commit/e76cbd3de01d92ed1933c8020ef707e8e1367c19))
+
 # [1.420.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.2...v1.420.0) (2024-04-26)
 
 
