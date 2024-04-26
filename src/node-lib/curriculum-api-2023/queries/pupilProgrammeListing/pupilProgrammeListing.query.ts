@@ -28,7 +28,7 @@ export const pupilProgrammeListingQuery =
       isLegacy,
     });
 
-    if (!res.data) {
+    if (res.data?.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
