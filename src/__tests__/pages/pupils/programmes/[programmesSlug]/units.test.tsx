@@ -54,10 +54,10 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
             unitBrowseDataFixture({
               programmeFields: {
                 ...unitBrowseDataFixture({}).programmeFields,
-                tier: "tier",
-                examboard: "examboard",
-                tierSlug: "tierSlug",
-                examboardSlug: "examboardSlug",
+                tier: "core",
+                examboard: "AQA",
+                tierSlug: "core",
+                examboardSlug: "aqa",
               },
               supplementaryData: { unitOrder: 2 },
             }),
@@ -79,8 +79,8 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
             unitBrowseDataFixture({
               programmeFields: {
                 ...unitBrowseDataFixture({}).programmeFields,
-                examboard: "examboard",
-                examboardSlug: "examboardSlug",
+                examboard: "AQA",
+                examboardSlug: "aqa",
               },
             }),
           ]}
