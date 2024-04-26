@@ -288,7 +288,7 @@ export const getHighlightFromAllFields = (
   highlight: RawHighlightSchema | undefined | null,
   pupilLessonOutcome: string | undefined | null,
 ): RawHighlightSchema | undefined | null => {
-  if (!highlight || highlight.pupilLessonOutcome) {
+  if (!highlight || highlight.pupilLessonOutcome || !pupilLessonOutcome) {
     return highlight;
   }
   if (highlight.all_fields) {
@@ -301,8 +301,8 @@ export const getHighlightFromAllFields = (
           } else {
             result = { pupilLessonOutcome: [h] };
           }
-          return result;
         }
+        return result;
       },
       undefined as RawHighlightSchema | undefined,
     );

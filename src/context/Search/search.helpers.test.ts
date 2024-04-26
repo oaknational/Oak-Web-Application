@@ -180,10 +180,21 @@ describe("search helpers", () => {
   });
   test("getHighlightFromAllFields transforms highlight from all fields with multiple values", () => {
     const rawHighlight = {
-      all_fields: ["not a match", "<b>not a match</b>", "<b>a match</b>"],
+      all_fields: [
+        "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+        "<b>Macbeth</b>: Lady <b>Macbeth</b> as a machiavellian villain",
+        "The relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>",
+      ],
     };
-    const highlight = getHighlightFromAllFields(rawHighlight, "a match");
-    expect(highlight).toEqual({ pupilLessonOutcome: ["<b>a match</b>"] });
+    const highlight = getHighlightFromAllFields(
+      rawHighlight,
+      "I can describe the relationship between Macbeth and Lady Macbeth.",
+    );
+    expect(highlight).toEqual({
+      pupilLessonOutcome: [
+        "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+      ],
+    });
   });
   test("getHighlightFromAllFields returns undefined if no match found in all fields or pupilLessonOutcome", () => {
     const rawHighlight = {
