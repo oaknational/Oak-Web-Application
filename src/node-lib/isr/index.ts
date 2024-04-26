@@ -5,9 +5,7 @@ import { GetServerSidePropsContext, GetStaticPropsResult } from "next";
 import getServerConfig from "../getServerConfig";
 
 const disableIsr = getServerConfig("disableIsr");
-if (disableIsr) {
-  console.info("ISR disabled in env");
-}
+
 // For now we can couple these settings,
 // but keeping them semantically separate
 // in case we want finer control later.
