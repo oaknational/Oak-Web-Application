@@ -39,7 +39,7 @@ const SearchResults = (props: SearchResultsProps) => {
   };
 
   return (
-    <OakFlex $background={"white"} $flexDirection="column">
+    <OakFlex $background={"white"} $flexDirection="column" id="search-results">
       {hitCount ? (
         <>
           <OakUL $reset>

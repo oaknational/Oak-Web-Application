@@ -1,6 +1,6 @@
 import { waitFor } from "@testing-library/react";
 
-import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
 import useSearch from "./useSearch";

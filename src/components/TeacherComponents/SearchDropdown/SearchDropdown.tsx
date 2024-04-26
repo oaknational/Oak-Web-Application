@@ -6,9 +6,10 @@ import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButto
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
+import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
-  const { pathways, onClick, onToggleClick } = props;
+  const { pathways, onClick, onToggleClick, type } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
   const getSlug = (item: string | null | undefined) => item || "";
@@ -29,17 +30,39 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
     });
 
   const isExamBoardDropdown = examDropdownContent.length > 0;
+  const isTierDropdown = tierDropdownContent.length > 0;
 
-  const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
+  const label = `Select ${
+    isExamBoardDropdown ? "exam board" : isTierDropdown ? "tier" : "unit"
+  }`;
+  const ariaLabel = `${label} for ${type}: ${props.title}`;
 
   const dropDownContent = isExamBoardDropdown
     ? examDropdownContent
-    : tierDropdownContent;
+    : isTierDropdown
+      ? tierDropdownContent
+      : pathways;
+
+  const getDropdownButtonTitle = (item: PathwaySchemaCamel) => {
+    const examboardTitle = !!item.examBoardTitle;
+    const tierTitle = !!item.tierTitle;
+
+    if (examboardTitle && !tierTitle) {
+      return item.examBoardTitle;
+    } else if (tierTitle && !examboardTitle) {
+      return item.tierTitle;
+    } else if (tierTitle && examboardTitle) {
+      return `${item.examBoardTitle} ${item.tierTitle}`;
+    } else {
+      return item.unitTitle;
+    }
+  };
 
   return (
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
         label={label}
+        ariaLabel={ariaLabel}
         title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => {
@@ -62,10 +85,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
             $gap="all-spacing-4"
           >
             {dropDownContent.map((item, index) => {
-              const buttonTitle = `${item.examBoardTitle ?? ""} ${
-                item.tierTitle ?? ""
-              }`;
-
+              const buttonTitle = getDropdownButtonTitle(item);
               return (
                 <OakLI
                   $pl="inner-padding-xs"
@@ -80,6 +100,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     $focusStyles={["new-underline"]}
                     {...props.buttonLinkProps}
                     programmeSlug={item.programmeSlug}
+                    unitSlug={item.unitSlug}
                     onClick={() => {
                       onClick?.({ ...props, isToggleOpen });
                     }}

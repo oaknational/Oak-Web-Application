@@ -144,7 +144,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               <OakTypography $font={"heading-7"} $mb="space-between-xs">
                 <OwaLink
                   page={"blog-single"}
-                  blogSlug="our-6-principles-guiding-our-approach-to-curriculum"
+                  blogSlug="our-approach-to-curriculum"
                   $display={"flex"}
                   $alignItems={"center"}
                 >
