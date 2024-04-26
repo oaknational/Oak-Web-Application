@@ -13,8 +13,8 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       const { getByText } = render(
         <PupilUnitListingPage curriculumData={[unitBrowseDataFixture({})]} />,
       );
-      expect(getByText("subject")).toBeInTheDocument();
-      expect(getByText("year-description")).toBeInTheDocument();
+      expect(getByText("Maths")).toBeInTheDocument();
+      expect(getByText("Year 1")).toBeInTheDocument();
     });
     it("should render the unit titles and number of lessons", () => {
       const { getByText } = render(
