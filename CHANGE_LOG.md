@@ -1,3 +1,53 @@
+# [1.421.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.420.0...v1.421.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* **icons:** remove changes to subject-icon file ([6fa4693](https://github.com/oaknational/Oak-Web-Application/commit/6fa4693dd8bc08126f78768449bdbf5df9192db9))
+
+
+### Features
+
+* **unitlisting:** create unit listing page ([805aba6](https://github.com/oaknational/Oak-Web-Application/commit/805aba6ae617266b5049c24950e57d474d0909a4))
+* **unitlisting:** fix types ([caa3a60](https://github.com/oaknational/Oak-Web-Application/commit/caa3a601ef2486c954b42caf45da8d1c7f86ff6a))
+* **unitlisting:** fix types ([7df641c](https://github.com/oaknational/Oak-Web-Application/commit/7df641c70b342acfa5baefbe03a31be795c50deb))
+* **unitlisting:** refactor pickPreviouPage ([cfad3ac](https://github.com/oaknational/Oak-Web-Application/commit/cfad3ac729ac75650879743192fbac1f365761b3))
+* **unitlisting:** refactor pickPreviouPage ([e76cbd3](https://github.com/oaknational/Oak-Web-Application/commit/e76cbd3de01d92ed1933c8020ef707e8e1367c19))
+
+# [1.420.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.2...v1.420.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* test broken because of fixture change ([8853c5b](https://github.com/oaknational/Oak-Web-Application/commit/8853c5bef1daa54b1fb8f3c8b3e499febf73dada))
+
+
+### Features
+
+* programmeListing ([2099a39](https://github.com/oaknational/Oak-Web-Application/commit/2099a39577cbcee9f6da3c4f8c3de86a0f6e996a))
+
+## [1.419.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.1...v1.419.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* issue with timing of unit test, concealed error and refactor ([3809d7d](https://github.com/oaknational/Oak-Web-Application/commit/3809d7d505079bf45b6c85e596deb0224b4e89ce))
+* removing console statement to help reduce noise when running unit tests ([e200789](https://github.com/oaknational/Oak-Web-Application/commit/e200789c2ad5a6ce612f05e381cc671e3ec507ef))
+* resolving some errors and warnings in the curriculum unit tests ([aa1fa53](https://github.com/oaknational/Oak-Web-Application/commit/aa1fa53d08fbfa69ababac94133e0624d97d1567))
+* updating act import for consistency ([829e7c6](https://github.com/oaknational/Oak-Web-Application/commit/829e7c6a953e2ee58ab394620726f55766c7ccba))
+* updating overview bullets to better html structure ([c0bfb6f](https://github.com/oaknational/Oak-Web-Application/commit/c0bfb6fda81ec3dc7a012f536e01c940d1fcb480))
+
+## [1.419.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.0...v1.419.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* added aria-atomic="true" to announce "X units highlighted" as a whole statement ([9572d45](https://github.com/oaknational/Oak-Web-Application/commit/9572d451f03ba040c73050fbc0e6365ab1349ed7))
+* added aria-live="polite" only to the "X units highlighted" text ([f63470f](https://github.com/oaknational/Oak-Web-Application/commit/f63470f9d137a470a8791e48e8ebe8383f192688))
+* added aria-live="polite" to "units highlighted" in units mobile tab ([a4b88b3](https://github.com/oaknational/Oak-Web-Application/commit/a4b88b369e890218b83b4b8689cd1052daddc06f))
+* added aria-live="polite" to "units highlighted" text ([bcf1700](https://github.com/oaknational/Oak-Web-Application/commit/bcf1700f82f0a07b4adc32ff0c9866de7178c536))
+* move aria-live to always be present in DOM ([8bd363c](https://github.com/oaknational/Oak-Web-Application/commit/8bd363cab26f917b427e67199e6d9bba62ecc7f8))
+
 # [1.419.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.418.0...v1.419.0) (2024-04-25)
 
 
