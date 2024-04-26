@@ -1,3 +1,15 @@
+# [1.420.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.2...v1.420.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* test broken because of fixture change ([8853c5b](https://github.com/oaknational/Oak-Web-Application/commit/8853c5bef1daa54b1fb8f3c8b3e499febf73dada))
+
+
+### Features
+
+* programmeListing ([2099a39](https://github.com/oaknational/Oak-Web-Application/commit/2099a39577cbcee9f6da3c4f8c3de86a0f6e996a))
+
 ## [1.419.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.1...v1.419.2) (2024-04-25)
 
 
