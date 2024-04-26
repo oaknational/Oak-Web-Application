@@ -7,6 +7,7 @@ import {
   SearchHit,
   PathwaySchema,
 } from "./search.types";
+import { RawHighlightSchema } from "./search.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -18,6 +19,7 @@ import {
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
+import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
 
 const reportError = errorReporter("search/helpers");
 
@@ -281,3 +283,28 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 export function isUnitSearchHit(x: SearchHit): x is UnitSearchHit {
   return x._source.type === "unit";
 }
+
+export const getHighlightFromAllFields = (
+  highlight: RawHighlightSchema | undefined | null,
+  pupilLessonOutcome: string | undefined | null,
+): RawHighlightSchema | undefined | null => {
+  if (!highlight || highlight.pupilLessonOutcome) {
+    return highlight;
+  }
+  if (highlight.all_fields) {
+    return highlight.all_fields.reduce(
+      (result, h) => {
+        const stripped = removeHTMLTags(h);
+        if (stripped === pupilLessonOutcome) {
+          if (result?.pupilLessonOutcome) {
+            result.pupilLessonOutcome.push(h);
+          } else {
+            result = { pupilLessonOutcome: [h] };
+          }
+          return result;
+        }
+      },
+      undefined as RawHighlightSchema | undefined,
+    );
+  }
+};

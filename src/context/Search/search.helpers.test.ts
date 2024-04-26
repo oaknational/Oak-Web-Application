@@ -5,6 +5,7 @@ import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searc
 import {
   getFilterForQuery,
   getFiltersFromQuery,
+  getHighlightFromAllFields,
   getLessonObject,
   getSortedSearchFiltersSelected,
   getUnitObject,
@@ -166,5 +167,29 @@ describe("search helpers", () => {
 
     const result = getSortedSearchFiltersSelected(query);
     expect(result).toEqual(["english-grammar", "ks2", "lesson", "wjec"]);
+  });
+  test("getHighlightFromAllFields returns highlight when there is pupilLessonOutcome", () => {
+    const rawHighlight = { pupilLessonOutcome: ["<b>Outcome</b>"] };
+    const highlight = getHighlightFromAllFields(rawHighlight, "Outcome");
+    expect(highlight).toBe(rawHighlight);
+  });
+  test("getHighlightFromAllFields transforms highlight from all fields with a single value", () => {
+    const rawHighlight = { all_fields: ["<b>Outcome</b>"] };
+    const highlight = getHighlightFromAllFields(rawHighlight, "Outcome");
+    expect(highlight).toEqual({ pupilLessonOutcome: ["<b>Outcome</b>"] });
+  });
+  test("getHighlightFromAllFields transforms highlight from all fields with multiple values", () => {
+    const rawHighlight = {
+      all_fields: ["not a match", "<b>not a match</b>", "<b>a match</b>"],
+    };
+    const highlight = getHighlightFromAllFields(rawHighlight, "a match");
+    expect(highlight).toEqual({ pupilLessonOutcome: ["<b>a match</b>"] });
+  });
+  test("getHighlightFromAllFields returns undefined if no match found in all fields or pupilLessonOutcome", () => {
+    const rawHighlight = {
+      all_fields: ["not a match", "<b>not a match</b>"],
+    };
+    const highlight = getHighlightFromAllFields(rawHighlight, "a match");
+    expect(highlight).toBeUndefined();
   });
 });
