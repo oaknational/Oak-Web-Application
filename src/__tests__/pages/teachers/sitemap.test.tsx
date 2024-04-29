@@ -56,16 +56,7 @@ describe("getServerSideProps", () => {
     });
   });
 
-  describe.only("getServerSideProps", () => {
-    beforeEach(() => {
-      jest.mock("@/pages/teachers/sitemap.xml", () => ({
-        generateURLFields: jest.fn(),
-      }));
-    });
-    afterAll(() => {
-      jest.clearAllMocks();
-    });
-
+  describe("getServerSideProps", () => {
     it("fetches data and generates fields correctly", async () => {
       const context = {} as GetServerSidePropsContext;
       const mockSiteMap = [{ urls: "https://example.com" }];
