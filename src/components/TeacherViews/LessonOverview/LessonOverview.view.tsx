@@ -310,7 +310,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     slugs={slugs}
                     title={"Video"}
                     anchorId="video"
@@ -346,7 +346,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "worksheet",
