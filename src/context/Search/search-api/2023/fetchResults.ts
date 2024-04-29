@@ -6,6 +6,7 @@ import {
   searchResultsSchema,
 } from "../../search.schema";
 import { SearchQuery } from "../../search.types";
+import { getHighlightFromAllFields } from "../../search.helpers";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
@@ -23,9 +24,13 @@ export const transformAndParseSearchResponseData = (
           source.type === "lesson" ? source.lessonTitle : source.unitTitle;
         const slug =
           source.type === "lesson" ? source.lessonSlug : source.unitSlug;
+        const highlight = getHighlightFromAllFields(
+          hit.highlight,
+          hit._source.pupilLessonOutcome,
+        );
         return {
           ...hit,
-
+          highlight,
           _source: {
             ...source,
             title,
@@ -63,7 +68,6 @@ export async function fetchResults(query: SearchQuery) {
   const unparsedData = await response.json();
 
   const rawData = rawSearchResponseSchema.parse(unparsedData);
-
   const data = transformAndParseSearchResponseData(rawData);
   const { hits } = data;
   const hitList = hits.hits;

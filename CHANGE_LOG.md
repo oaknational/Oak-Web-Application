@@ -1,3 +1,43 @@
+# [1.422.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.421.0...v1.422.0) (2024-04-29)
+
+
+### Bug Fixes
+
+* highlighting ([1237104](https://github.com/oaknational/Oak-Web-Application/commit/1237104a9f3fcf3a41e60b95ce09df7a1704c871))
+
+
+### Features
+
+* add fn to retrieve highlight from all_fields of highlight ([87bd174](https://github.com/oaknational/Oak-Web-Application/commit/87bd1746a28e2c5e5c0cb17282602b45f611b7da))
+
+# [1.421.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.420.0...v1.421.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* **icons:** remove changes to subject-icon file ([6fa4693](https://github.com/oaknational/Oak-Web-Application/commit/6fa4693dd8bc08126f78768449bdbf5df9192db9))
+
+
+### Features
+
+* **unitlisting:** create unit listing page ([805aba6](https://github.com/oaknational/Oak-Web-Application/commit/805aba6ae617266b5049c24950e57d474d0909a4))
+* **unitlisting:** fix types ([caa3a60](https://github.com/oaknational/Oak-Web-Application/commit/caa3a601ef2486c954b42caf45da8d1c7f86ff6a))
+* **unitlisting:** fix types ([7df641c](https://github.com/oaknational/Oak-Web-Application/commit/7df641c70b342acfa5baefbe03a31be795c50deb))
+* **unitlisting:** refactor pickPreviouPage ([cfad3ac](https://github.com/oaknational/Oak-Web-Application/commit/cfad3ac729ac75650879743192fbac1f365761b3))
+* **unitlisting:** refactor pickPreviouPage ([e76cbd3](https://github.com/oaknational/Oak-Web-Application/commit/e76cbd3de01d92ed1933c8020ef707e8e1367c19))
+
+# [1.420.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.2...v1.420.0) (2024-04-26)
+
+
+### Bug Fixes
+
+* test broken because of fixture change ([8853c5b](https://github.com/oaknational/Oak-Web-Application/commit/8853c5bef1daa54b1fb8f3c8b3e499febf73dada))
+
+
+### Features
+
+* programmeListing ([2099a39](https://github.com/oaknational/Oak-Web-Application/commit/2099a39577cbcee9f6da3c4f8c3de86a0f6e996a))
+
 ## [1.419.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.419.1...v1.419.2) (2024-04-25)
 
 
