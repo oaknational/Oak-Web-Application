@@ -75,7 +75,7 @@ describe("BrowseTierSelector", () => {
     );
 
     for (const t of tiers) {
-      const button = getByRole("link", { name: t.tier });
+      const button = getByRole("link", { name: String(t.tier) });
       expect(button).toHaveAttribute(
         "href",
         `/pupils/beta/programmes/my-subject-${t.tierSlug}-my-examboard/units`,
