@@ -1,5 +1,5 @@
 query teachersSitemap {
-  teachersSitemap: published_mv_sitemap_6_0_0 {
+  teachersSitemap: published_mv_sitemap_6_0_1 {
     urls
   }
 }
