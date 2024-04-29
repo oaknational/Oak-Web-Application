@@ -18,14 +18,20 @@ type URLParams = {
 type ProgrammesPageProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
+  yearSlug: string;
 };
 
-const ProgrammesPage = ({ programmes, baseSlug }: ProgrammesPageProps) => {
+const ProgrammesPage = ({
+  programmes,
+  baseSlug,
+  yearSlug,
+}: ProgrammesPageProps) => {
   return (
     <PupilViewsProgrammeListing
       programmes={programmes}
       baseSlug={baseSlug}
       isLegacy={true}
+      yearSlug={yearSlug}
     />
   );
 };
@@ -80,7 +86,7 @@ export const getStaticProps: GetStaticProps<
   }
 
   return {
-    props: { programmes, baseSlug: programmeSlug },
+    props: { programmes, baseSlug: programmeSlug, yearSlug },
   };
 };
 
