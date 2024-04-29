@@ -10,6 +10,7 @@ describe("pupilUnitListing()", () => {
   const pupilProgrammeListingFixture = {
     programme_slug: s.programme_slug,
     programme_fields: s.programme_fields,
+    year_slug: s.year_slug,
   };
 
   it("it returns the correct data", async () => {
