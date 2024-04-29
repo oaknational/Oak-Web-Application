@@ -55,11 +55,10 @@ describe("getAvailableProgrammeFactor", () => {
       factorPrefix: "tier",
     }) as TierData[];
 
-    expect(
-      result.sort(
-        (a, b) => (b.tierDisplayOrder ?? 0) - (a.tierDisplayOrder ?? 0),
-      ),
-    ).toEqual([
+    result.sort(
+      (a, b) => (b.tierDisplayOrder ?? 0) - (a.tierDisplayOrder ?? 0),
+    );
+    expect(result).toEqual([
       {
         tier: "core",
         tierSlug: "core",
