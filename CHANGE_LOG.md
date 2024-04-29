@@ -1,3 +1,10 @@
+## [1.422.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.422.0...v1.422.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* remove specialist page and button link ([023b916](https://github.com/oaknational/Oak-Web-Application/commit/023b9165821ec479e43ec0822fe024b9d168d097))
+
 # [1.422.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.421.0...v1.422.0) (2024-04-29)
 
 
