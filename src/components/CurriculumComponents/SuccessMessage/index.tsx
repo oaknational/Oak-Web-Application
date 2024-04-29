@@ -21,7 +21,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
         $width={"100%"}
         $flexDirection={["column", "row", "row"]}
         $alignItems={["start", "center"]}
-        $gap={["space-between-m", "space-between-xxxl", "space-between-xxxl"]}
+        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
       >
         <OakFlex
           $flexDirection={"column"}
@@ -29,7 +29,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $justifyContent={"center"}
           $flexShrink={1}
         >
-          <Box $height={[140, 240]} $width={[166, 240]}>
+          <Box $height={[140, 240, 270]} $width={[166, 240, 320]}>
             <Svg name="tick-mark-happiness" />
           </Box>
         </OakFlex>
@@ -52,7 +52,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           <OakHeading tag="h2" $font={["heading-4"]}>
             {title}
           </OakHeading>
-          <OakP>{message}</OakP>
+          <OakP $font={["body-1"]}>{message}</OakP>
         </OakFlex>
       </OakFlex>
     </Box>

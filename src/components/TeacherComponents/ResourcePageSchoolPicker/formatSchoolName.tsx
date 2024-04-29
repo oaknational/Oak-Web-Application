@@ -19,7 +19,7 @@ export const formatSchoolName = (
     <OakSpan $font={"heading-light-7"}>
       {splitSchoolName.map((splitSchoolNameItem: string, index: number) => {
         return (
-          <OakSpan>
+          <OakSpan key={index}>
             {`${splitSchoolNameItem}`}
             {index < splitSchoolName.length - 1 && (
               <OakSpan
