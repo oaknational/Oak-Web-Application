@@ -9,8 +9,7 @@ describe("pupilUnitListing()", () => {
   const s = syntheticProgrammesByYearFixture();
   const pupilProgrammeListingFixture = {
     programme_slug: s.programme_slug,
-    combined_programme_fields: s.combined_programme_fields,
-    base_programme_fields: s.base_programme_fields,
+    programme_fields: s.programme_fields,
   };
 
   it("it returns the correct data", async () => {
@@ -27,7 +26,7 @@ describe("pupilUnitListing()", () => {
       isLegacy: false,
     });
     expect(res[0]?.programmeSlug).toEqual("maths-primary-year-1");
-    expect(res[0]?.combinedProgrammeFields?.phase).toEqual("primary");
+    expect(res[0]?.programmeFields?.phase).toEqual("primary");
   });
 
   it("throws if data is not returned", async () => {
