@@ -13,12 +13,15 @@ const teachersSitemapSchema = z.array(
 const teachersSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.teachersSitemap();
 
-  if (!res.teachersSitemap) {
-    const error = new OakError({ code: "curriculum-api/not-found" });
-    errorReporter("curriculum-api-2023::teachersStiemap")(error, {
-      severity: "warning",
-      res,
-    });
+  if (!res || res.teachersSitemap.length === 0) {
+    errorReporter("curriculum-api-2023::teachersSitemap")(
+      new Error("Resource not found"),
+      {
+        severity: "warning",
+        res,
+      },
+    );
+    throw new OakError({ code: "curriculum-api/not-found" });
   }
 
   return teachersSitemapSchema.parse(res.teachersSitemap);
