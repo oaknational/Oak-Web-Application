@@ -29,6 +29,7 @@ import { specialistLessonShareQuery } from "./queries/specialistLessonShare/spec
 import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 import specialistLessonOverviewCanonical from "./queries/specialistLessonOverviewCanonical/specialistLessonOverviewCanonical.query";
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
+import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -129,6 +130,7 @@ const curriculumApi2023 = {
   pupilLessonQuery: pupilLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
+  pupilSubjectListingQuery: pupilSubjectListingQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),

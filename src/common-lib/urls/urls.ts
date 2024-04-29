@@ -141,6 +141,11 @@ export type PupilLessonListingLinkProps = {
   unitSlug: string;
 };
 
+export type PupilUnitListingLinkProps = {
+  page: "pupil-unit-index";
+  programmeSlug: string;
+};
+
 export type PupilProgrammeListingLinkProps = {
   page: "pupil-programme-index";
   subjectSlug: string;
@@ -294,6 +299,7 @@ export type OakLinkProps =
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonListingLinkProps
+  | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
   | SpecialistLessonOverviewLinkProps
@@ -635,6 +641,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "pupil-lesson-index",
+  }),
+  "pupil-unit-index": createOakPageConfig({
+    pathPattern: "/pupils/beta/programmes/:programmeSlug/units",
+    analyticsPageName: "Unit Listing",
+    configType: "internal",
+    pageType: "pupil-unit-index",
   }),
   "pupil-programme-index": createOakPageConfig({
     pathPattern:
