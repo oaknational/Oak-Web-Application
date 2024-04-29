@@ -1,3 +1,10 @@
+# [1.423.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.422.1...v1.423.0) (2024-04-29)
+
+
+### Features
+
+* added <OakAutocomplete/> component ([34a7455](https://github.com/oaknational/Oak-Web-Application/commit/34a7455b32d60ff8b032bd60390f296f0c4467be))
+
 ## [1.422.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.422.0...v1.422.1) (2024-04-29)
 
 
