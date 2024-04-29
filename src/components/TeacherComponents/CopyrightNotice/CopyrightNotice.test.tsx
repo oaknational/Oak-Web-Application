@@ -20,6 +20,7 @@ describe("CopyrightNotice", () => {
     expect(preAlbCopyright).toBeInTheDocument();
   });
   it("renders post-ALB copyright notice", () => {
+    const currentYear = new Date().getFullYear();
     renderWithTheme(
       <CopyrightNotice
         showPostAlbCopyright={true}
@@ -28,7 +29,7 @@ describe("CopyrightNotice", () => {
     );
 
     const preAlbCopyright = screen.getByText(
-      "This content is © Oak National Academy Limited (2023), licensed on",
+      `This content is © Oak National Academy Limited (${currentYear}), licensed on`,
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();
