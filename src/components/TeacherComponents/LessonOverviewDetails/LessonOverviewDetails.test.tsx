@@ -227,8 +227,9 @@ describe("LessonOverviewDetails component", () => {
         isMathJaxLesson={false}
       />,
     );
+    const currentYear = new Date().getFullYear();
     const preAlbCopyright = getByText(
-      "This content is © Oak National Academy Limited (2023), licensed on",
+      `This content is © Oak National Academy Limited (${currentYear}), licensed on`,
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();
