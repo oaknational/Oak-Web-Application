@@ -56,7 +56,7 @@ describe("getAvailableProgrammeFactor", () => {
     }) as TierData[];
 
     expect(
-      result.toSorted(
+      result.sort(
         (a, b) => (b.tierDisplayOrder ?? 0) - (a.tierDisplayOrder ?? 0),
       ),
     ).toEqual([
