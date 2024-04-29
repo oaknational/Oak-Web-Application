@@ -10,17 +10,12 @@ import {
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
-
-type URLParams = {
-  programmeSlug: string;
-};
-type ProgrammesPageProps = {
-  baseSlug: string;
-  programmes: PupilProgrammeListingData[];
-  yearSlug: string;
-};
+import {
+  ProgrammesPageProps,
+  URLParams,
+  getYearSlug,
+} from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 const ProgrammesPage = ({
   programmes,
@@ -74,17 +69,7 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const yearSlug = programmes[0]?.yearSlug;
-
-  if (
-    programmes.filter((programme) => programme.yearSlug !== yearSlug).length > 0
-  ) {
-    throw new Error("programmes have non-matching yearSlugs");
-  }
-
-  if (!yearSlug) {
-    throw new Error("no yearSlug found");
-  }
+  const yearSlug = getYearSlug({ programmes });
 
   return {
     props: { programmes, baseSlug: programmeSlug, yearSlug },
