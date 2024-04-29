@@ -8,6 +8,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
+import { getExamboardData } from "./getExamboardData";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import {
@@ -23,7 +24,8 @@ type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
   isLegacy: boolean;
-  yearSlug: string;
+  yearSlug: string; // TODO: give these the correct types
+  examboardSlug?: ExamboardData["examboardSlug"];
 };
 
 export const PupilViewsProgrammeListing = ({
@@ -31,6 +33,7 @@ export const PupilViewsProgrammeListing = ({
   baseSlug,
   isLegacy,
   yearSlug,
+  examboardSlug,
 }: PupilViewsProgrammeListingProps) => {
   const tiers = getAvailableProgrammeFactor({
     programmes,
@@ -40,10 +43,15 @@ export const PupilViewsProgrammeListing = ({
   const examboards = getAvailableProgrammeFactor({
     programmes,
     factorPrefix: "examboard",
-  });
+  }) as ExamboardData[];
+
+  const examboardData =
+    examboardSlug && examboards.length >= 1
+      ? getExamboardData({ examboardSlug, availableExamboards: examboards })
+      : null;
 
   const [chosenExamboard, setChosenExamboard] = useState<ExamboardData | null>(
-    null,
+    examboardData,
   );
 
   return (

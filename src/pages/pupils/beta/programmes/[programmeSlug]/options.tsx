@@ -4,6 +4,7 @@
 // http://localhost:3000/pupils/beta/programmes/maths-secondary-year-11/options (should 404)
 
 import { GetStaticPathsResult, GetStaticProps } from "next";
+import { useSearchParams } from "next/navigation";
 
 import {
   shouldSkipInitialBuild,
@@ -22,12 +23,17 @@ const ProgrammesPage = ({
   baseSlug,
   yearSlug,
 }: ProgrammesPageProps) => {
+  const searchParams = useSearchParams();
+
+  const examboardSlug = searchParams.get("examboard");
+
   return (
     <PupilViewsProgrammeListing
       programmes={programmes}
       baseSlug={baseSlug}
       isLegacy={false}
       yearSlug={yearSlug}
+      examboardSlug={examboardSlug}
     />
   );
 };
