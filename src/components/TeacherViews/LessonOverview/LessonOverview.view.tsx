@@ -371,7 +371,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isSpecialist={isSpecialist}
                     ref={starterQuizSectionRef}
                     title={"Starter quiz"}
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     anchorId="starter-quiz"
                     downloadable={
                       getIsResourceDownloadable(
@@ -423,7 +423,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "exit quiz",
@@ -462,7 +462,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "additional material",
