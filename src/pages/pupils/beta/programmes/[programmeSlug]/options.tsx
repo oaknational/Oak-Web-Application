@@ -1,8 +1,9 @@
 // TESTING
+// http://localhost:3000/pupils/beta/programmes/biology-secondary-year-11/options
 // http://localhost:3000/pupils/beta/programmes/maths-secondary-year-10/options
+// http://localhost:3000/pupils/beta/programmes/maths-secondary-year-11/options (should 404)
 
 import { GetStaticPathsResult, GetStaticProps } from "next";
-import { OakHeading } from "@oaknational/oak-components";
 
 import {
   shouldSkipInitialBuild,
@@ -10,24 +11,23 @@ import {
 } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 type URLParams = {
   programmeSlug: string;
 };
 type ProgrammesPageProps = {
+  baseSlug: string;
   programmes: PupilProgrammeListingData[];
 };
 
-const ProgrammesPage = ({ programmes }: ProgrammesPageProps) => {
+const ProgrammesPage = ({ programmes, baseSlug }: ProgrammesPageProps) => {
   return (
-    <>
-      <OakHeading tag="h1">Programmes Listing Page</OakHeading>
-      {programmes.map((programme) => (
-        <div key={programme.programmeSlug}>
-          <OakHeading tag="h2">{programme.programmeSlug}</OakHeading>
-        </div>
-      ))}
-    </>
+    <PupilViewsProgrammeListing
+      programmes={programmes}
+      baseSlug={baseSlug}
+      isLegacy={false}
+    />
   );
 };
 
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<
 
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
     baseSlug: programmeSlug,
-    isLegacy: true,
+    isLegacy: false,
   });
 
   if (!programmes) {
@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps<
   }
 
   return {
-    props: { programmes },
+    props: { programmes, baseSlug: programmeSlug },
   };
 };
 

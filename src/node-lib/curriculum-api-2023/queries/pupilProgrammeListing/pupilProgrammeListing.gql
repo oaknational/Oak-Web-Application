@@ -1,12 +1,8 @@
 query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
-  data: published_mv_synthetic_programmes_by_year_7_0_0(
-    where: {
-      base_slug: { _eq: $baseSlug }
-      synthetic_programme_slug: { _contains: { is_legacy: $isLegacy } }
-    }
+  data: published_mv_synthetic_programmes_by_year_7_1_0(
+    where: { base_slug: { _eq: $baseSlug }, is_legacy: { _eq: $isLegacy } }
   ) {
     programme_slug
-    combined_programme_fields
-    base_programme_fields
+    programme_fields
   }
 }
