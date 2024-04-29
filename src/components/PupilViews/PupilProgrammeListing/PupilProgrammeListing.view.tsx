@@ -168,7 +168,7 @@ export const PupilViewsProgrammeListing = ({
                 <TierSelector
                   tiers={tiers as TierData[]}
                   baseSlug={baseSlug}
-                  examboardSlug={chosenExamboard.examboardSlug}
+                  examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
                   isLegacy={isLegacy}
                 />
               );
