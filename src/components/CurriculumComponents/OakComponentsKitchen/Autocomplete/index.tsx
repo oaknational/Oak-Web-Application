@@ -9,16 +9,16 @@ import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
 import Input from "@/components/SharedComponents/Input";
 
-export const OakAutocompleteItem = Item;
+export const AutocompleteItem = Item;
 
-type OakAutocompleteProps = {
+type AutocompleteProps = {
   inputProps: Omit<ComponentProps<typeof Input>, "value">;
   value?: string;
   onChange: (value: string) => void;
   onInputChange?: (value: string) => void;
   children: CollectionChildren<HTMLDivElement>;
 };
-const OakAutocomplete = (props: OakAutocompleteProps) => {
+const Autocomplete = (props: AutocompleteProps) => {
   const inputRef = useRef(null);
   const listBoxRef = useRef(null);
   const popoverRef = useRef(null);
@@ -88,4 +88,4 @@ const OakAutocomplete = (props: OakAutocompleteProps) => {
   );
 };
 
-export default OakAutocomplete;
+export default Autocomplete;

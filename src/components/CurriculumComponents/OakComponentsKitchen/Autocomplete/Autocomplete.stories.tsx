@@ -4,22 +4,22 @@ import { useState } from "react";
 
 import { STATES } from "./seeds";
 
-import OakAutocomplete, { OakAutocompleteItem } from ".";
+import Autocomplete, { AutocompleteItem } from ".";
 
-const meta: Meta<typeof OakAutocomplete> = {
-  component: OakAutocomplete,
+const meta: Meta<typeof Autocomplete> = {
+  component: Autocomplete,
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<typeof OakAutocomplete>;
+type Story = StoryObj<typeof Autocomplete>;
 
 const TestComponent = () => {
   const [state, setState] = useState("");
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakAutocomplete
+      <Autocomplete
         inputProps={{
           label: "Pick a state",
           id: "states",
@@ -34,16 +34,16 @@ const TestComponent = () => {
 
           const element = <div>🇺🇸 {textValue}</div>;
           return (
-            <OakAutocompleteItem key={key} textValue={textValue}>
+            <AutocompleteItem key={key} textValue={textValue}>
               {element}
-            </OakAutocompleteItem>
+            </AutocompleteItem>
           );
         })}
-      </OakAutocomplete>
+      </Autocomplete>
     </OakThemeProvider>
   );
 };
 
-export const OakAutocompleteStory: Story = {
+export const AutocompleteStory: Story = {
   render: TestComponent,
 };

@@ -4,14 +4,14 @@ import { act } from "react-dom/test-utils";
 
 import { STATES } from "./seeds";
 
-import OakAutocomplete, { OakAutocompleteItem } from ".";
+import Autocomplete, { AutocompleteItem } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const Wrapper = ({ options = STATES, mockOnInputChange = () => {} }) => {
   const [state, setState] = useState("");
   return (
-    <OakAutocomplete
+    <Autocomplete
       inputProps={{
         label: "Pick a state",
         id: "states",
@@ -22,16 +22,16 @@ const Wrapper = ({ options = STATES, mockOnInputChange = () => {} }) => {
       value={state}
     >
       {options.map((state) => {
-        return <OakAutocompleteItem key={state}>{state}</OakAutocompleteItem>;
+        return <AutocompleteItem key={state}>{state}</AutocompleteItem>;
       })}
-    </OakAutocomplete>
+    </Autocomplete>
   );
 };
 
-describe("OakAutocomplete", () => {
+describe("Autocomplete", () => {
   test("render / basic", async () => {
     const { getByRole, getByTestId } = renderWithTheme(
-      <OakAutocomplete
+      <Autocomplete
         inputProps={{
           label: "Pick a bear",
           id: "bears",
@@ -42,9 +42,9 @@ describe("OakAutocomplete", () => {
         value={"Black Bear"}
       >
         {STATES.map((state) => {
-          return <OakAutocompleteItem key={state}>{state}</OakAutocompleteItem>;
+          return <AutocompleteItem key={state}>{state}</AutocompleteItem>;
         })}
-      </OakAutocomplete>,
+      </Autocomplete>,
     );
 
     const inputElement = getByRole("combobox");
