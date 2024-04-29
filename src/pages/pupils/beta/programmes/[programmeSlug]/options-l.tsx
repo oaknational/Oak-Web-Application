@@ -67,6 +67,18 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  const yearSlug = programmes[0]?.yearSlug;
+
+  if (
+    programmes.filter((programme) => programme.yearSlug !== yearSlug).length > 0
+  ) {
+    throw new Error("programmes have non-matching yearSlugs");
+  }
+
+  if (!yearSlug) {
+    throw new Error("no yearSlug found");
+  }
+
   return {
     props: { programmes, baseSlug: programmeSlug },
   };

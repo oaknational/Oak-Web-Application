@@ -19,14 +19,20 @@ type URLParams = {
 type ProgrammesPageProps = {
   baseSlug: string;
   programmes: PupilProgrammeListingData[];
+  yearSlug: string;
 };
 
-const ProgrammesPage = ({ programmes, baseSlug }: ProgrammesPageProps) => {
+const ProgrammesPage = ({
+  programmes,
+  baseSlug,
+  yearSlug,
+}: ProgrammesPageProps) => {
   return (
     <PupilViewsProgrammeListing
       programmes={programmes}
       baseSlug={baseSlug}
       isLegacy={false}
+      yearSlug={yearSlug}
     />
   );
 };
@@ -68,8 +74,20 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  const yearSlug = programmes[0]?.yearSlug;
+
+  if (
+    programmes.filter((programme) => programme.yearSlug !== yearSlug).length > 0
+  ) {
+    throw new Error("programmes have non-matching yearSlugs");
+  }
+
+  if (!yearSlug) {
+    throw new Error("no yearSlug found");
+  }
+
   return {
-    props: { programmes, baseSlug: programmeSlug },
+    props: { programmes, baseSlug: programmeSlug, yearSlug },
   };
 };
 

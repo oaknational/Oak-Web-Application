@@ -3,6 +3,7 @@ query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
     where: { base_slug: { _eq: $baseSlug }, is_legacy: { _eq: $isLegacy } }
   ) {
     programme_slug
+    year_slug
     programme_fields
   }
 }

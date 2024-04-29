@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  OakBackLink,
   OakFlex,
   OakHeading,
   OakThemeProvider,
@@ -22,12 +23,14 @@ type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
   isLegacy: boolean;
+  yearSlug: string;
 };
 
 export const PupilViewsProgrammeListing = ({
   programmes,
   baseSlug,
   isLegacy,
+  yearSlug,
 }: PupilViewsProgrammeListingProps) => {
   const tiers = getAvailableProgrammeFactor({
     programmes,
@@ -56,29 +59,47 @@ export const PupilViewsProgrammeListing = ({
           switch (true) {
             case chosenExamboard !== null && tiers.length > 1:
               return (
-                <BrowseTierSelector
-                  tiers={tiers as TierData[]}
-                  baseSlug={baseSlug}
-                  examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
-                  isLegacy={isLegacy}
-                />
+                <>
+                  <OakBackLink
+                    as={"button"}
+                    onClick={() => setChosenExamboard(null)}
+                  >
+                    Back
+                  </OakBackLink>
+                  <BrowseTierSelector
+                    tiers={tiers as TierData[]}
+                    baseSlug={baseSlug}
+                    examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
+                    isLegacy={isLegacy}
+                  />
+                </>
               );
             case examboards.length > 1 && chosenExamboard === null:
               return (
-                <BrowseExamboardSelector
-                  examboards={examboards as ExamboardData[]}
-                  baseSlug={baseSlug}
-                  onClick={(examboard) => setChosenExamboard(examboard)}
-                  isLegacy={isLegacy}
-                />
+                <>
+                  <OakBackLink href={`/pupils/beta/years/${yearSlug}/subjects`}>
+                    Back
+                  </OakBackLink>
+                  <BrowseExamboardSelector
+                    examboards={examboards as ExamboardData[]}
+                    baseSlug={baseSlug}
+                    onClick={(examboard) => setChosenExamboard(examboard)}
+                    isLegacy={isLegacy}
+                  />
+                </>
               );
             case examboards.length <= 1 && tiers.length >= 1:
               return (
-                <BrowseTierSelector
-                  tiers={tiers as TierData[]}
-                  baseSlug={baseSlug}
-                  isLegacy={isLegacy}
-                />
+                <>
+                  <OakBackLink href={`/pupils/beta/years/${yearSlug}/subjects`}>
+                    Back
+                  </OakBackLink>
+                  <BrowseTierSelector
+                    tiers={tiers as TierData[]}
+                    baseSlug={baseSlug}
+                    isLegacy={isLegacy}
+                  />
+                </>
               );
             default:
               return <div>No programme factors to be selected</div>;

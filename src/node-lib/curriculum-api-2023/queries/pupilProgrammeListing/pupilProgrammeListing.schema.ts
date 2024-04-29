@@ -10,6 +10,7 @@ export const pupilProgrammeListingSchema = syntheticProgrammesByYearSchema.pick(
   {
     programme_slug: true,
     programme_fields: true,
+    year_slug: true,
   },
 );
 
