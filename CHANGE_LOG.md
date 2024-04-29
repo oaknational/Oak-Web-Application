@@ -1,3 +1,15 @@
+# [1.422.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.421.0...v1.422.0) (2024-04-29)
+
+
+### Bug Fixes
+
+* highlighting ([1237104](https://github.com/oaknational/Oak-Web-Application/commit/1237104a9f3fcf3a41e60b95ce09df7a1704c871))
+
+
+### Features
+
+* add fn to retrieve highlight from all_fields of highlight ([87bd174](https://github.com/oaknational/Oak-Web-Application/commit/87bd1746a28e2c5e5c0cb17282602b45f611b7da))
+
 # [1.421.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.420.0...v1.421.0) (2024-04-26)
 
 
