@@ -3,7 +3,10 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
 
-import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import {
+  ProgrammeFields,
+  PupilProgrammeListingData,
+} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 
 describe("PublicProgrammeListing", () => {
@@ -47,15 +50,19 @@ describe("PublicProgrammeListing", () => {
   );
 
   it("renders BrowseExamboardSelector when there are multiple examboards and no examboard is chosen", () => {
-    const programmes = programmeFields.map((programmeField) => ({
-      programmeSlug: "physics-test-slug",
-      programmeFields: programmeField,
-    }));
+    const programmes: PupilProgrammeListingData[] = programmeFields.map(
+      (programmeField) => ({
+        programmeSlug: "physics-test-slug",
+        programmeFields: programmeField,
+        yearSlug: "year-11",
+      }),
+    );
 
     const props = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,
+      yearSlug: "year-11",
     };
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -67,17 +74,19 @@ describe("PublicProgrammeListing", () => {
   });
 
   it("renders BrowseTierSelector when there are multiple tiers and only one examboard", () => {
-    const programmes = programmeFields
+    const programmes: PupilProgrammeListingData[] = programmeFields
       .filter((p) => p.examboard === "AQA")
       .map((programmeField) => ({
         programmeSlug: "physics-test-slug",
         programmeFields: programmeField,
+        yearSlug: "year-11",
       }));
 
     const props = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,
+      yearSlug: "year-11",
     };
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -89,15 +98,19 @@ describe("PublicProgrammeListing", () => {
   });
 
   it("renders BrowseTierSelector when there are multiple tiers and multiple examboards and an examboard is chosen", () => {
-    const programmes = programmeFields.map((programmeField) => ({
-      programmeSlug: "physics-test-slug",
-      programmeFields: programmeField,
-    }));
+    const programmes: PupilProgrammeListingData[] = programmeFields.map(
+      (programmeField) => ({
+        programmeSlug: "physics-test-slug",
+        programmeFields: programmeField,
+        yearSlug: "year-11",
+      }),
+    );
 
     const props = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,
+      yearSlug: "year-11",
     };
 
     const { getByRole } = render(

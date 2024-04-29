@@ -2,7 +2,7 @@ import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
 
 import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
-import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { ProgrammeFields , PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 
 describe("getAvailableProgrammeFactor", () => {
   const overrides: Partial<ProgrammeFields>[] = [
@@ -44,10 +44,13 @@ describe("getAvailableProgrammeFactor", () => {
     programmeFieldsFixture({ overrides: override }),
   );
 
-  const programmes = programmeFields.map((programmeField) => ({
-    programmeSlug: "physics-test-slug",
-    programmeFields: programmeField,
-  }));
+  const programmes: PupilProgrammeListingData[] = programmeFields.map(
+    (programmeField) => ({
+      programmeSlug: "physics-test-slug",
+      programmeFields: programmeField,
+      yearSlug: "year-11",
+    }),
+  );
 
   it("should return unique tiers", () => {
     const result = getAvailableProgrammeFactor({
