@@ -23,6 +23,9 @@ import styled from "styled-components";
 import { ZodType } from "zod";
 
 import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
+import Autocomplete, {
+  AutocompleteItem,
+} from "../OakComponentsKitchen/Autocomplete";
 
 import { submitSchema } from "./schema";
 
@@ -34,6 +37,7 @@ import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import { HOMESCHOOL_URN } from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
+import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
 // import OakAutocomplete, { OakAutocompleteItem } from "./../../OakComponentsWaitingRoom/OakAutocomplete";
 
 export type School = {
@@ -176,8 +180,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   );
   const hasErrors = Object.keys(errors).length;
 
-  console.log({ schoolsAsAutocompleteItems });
-
   const onChangeLocal = (partial: Partial<CurriculumDownloadViewData>) => {
     // const newSubmitValidatioResults = runSchema(runtimeSchema, partial)
     // setErrors(newSubmitValidatioResults.errors)
@@ -255,22 +257,37 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                     $alignItems={"start"}
                     $gap={"space-between-xs"}
                   >
-                    {/* <OakAutocomplete
-                                            inputProps={{
-                                                label: "School (required)",
-                                                id: "download-school",
-                                                error: errors.school,
-                                                placeholder: "Type school name, postcode, or ‘homeschool’",
-                                            }}
-                                            onChange={(value) => onChangeLocal({school: value, schoolIsntListed: false})}
-                                            onInputChange={(value) => setPartialDirtyData({school: value})}
-                                            value={data.school}
-                                        >
-                                            {schoolsAsAutocompleteItems.map(({key, textValue}) => {
-                                                const element = formatSchoolName(textValue, dirtyData.school)
-                                                return <OakAutocompleteItem key={key} textValue={textValue}>{element}</OakAutocompleteItem>
-                                            })}
-                                        </OakAutocomplete> */}
+                    <Autocomplete
+                      inputProps={{
+                        label: "School (required)",
+                        id: "download-school",
+                        error: errors.school,
+                        placeholder:
+                          "Type school name, postcode, or ‘homeschool’",
+                      }}
+                      onChange={(value) =>
+                        onChangeLocal({
+                          school: value,
+                          schoolIsntListed: false,
+                        })
+                      }
+                      onInputChange={(value) =>
+                        setPartialDirtyData({ school: value })
+                      }
+                      value={data.school}
+                    >
+                      {schoolsAsAutocompleteItems.map(({ key, textValue }) => {
+                        const element = formatSchoolName(
+                          textValue,
+                          dirtyData.school,
+                        );
+                        return (
+                          <AutocompleteItem key={key} textValue={textValue}>
+                            {element}
+                          </AutocompleteItem>
+                        );
+                      })}
+                    </Autocomplete>
                     <OakCheckBox
                       displayValue={"My school isn't listed"}
                       checked={data.schoolIsntListed}
