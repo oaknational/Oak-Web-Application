@@ -52,11 +52,13 @@ const StyledLink = styled.a`
   color: ${(props) => props.theme.colors.navy};
 `;
 
+const currentYear = new Date().getFullYear();
+
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
   <OakP $font="body-3" {...props}>
-    This content is © Oak National Academy Limited (2023), licensed on{" "}
+    This content is © Oak National Academy Limited ({currentYear}), licensed on{" "}
     <StyledLink
       aria-label={`Open Government License version 3.0${
         props.openLinksExternally ? " (opens in a new tab)" : ""
