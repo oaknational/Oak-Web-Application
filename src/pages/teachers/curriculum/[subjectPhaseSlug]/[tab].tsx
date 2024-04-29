@@ -59,7 +59,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const tab = router.query.tab as CurriculumTab;
 
   const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
-  console.log({ curriculumSelectionSlugs });
 
   let keyStagesData: string;
   switch (phaseSlug) {
@@ -184,6 +183,8 @@ export const getStaticProps: GetStaticProps<
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
+      console.log({ context });
+
       if (!context.params) {
         throw new Error("Missing params");
       }
