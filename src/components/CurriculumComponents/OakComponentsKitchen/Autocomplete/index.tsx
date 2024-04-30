@@ -19,7 +19,7 @@ type AutocompleteProps = {
   children: CollectionChildren<HTMLDivElement>;
 };
 const Autocomplete = (props: AutocompleteProps) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const listBoxRef = useRef(null);
   const popoverRef = useRef(null);
   const { contains } = useFilter({ sensitivity: "base" });
@@ -64,7 +64,6 @@ const Autocomplete = (props: AutocompleteProps) => {
         placeholder={props.inputProps.placeholder}
         value={String(inputProps.value)}
         $mb={0}
-        // @ts-expect-error: unsure what type it's after here...
         ref={inputRef}
       />
       {isOpen && (
