@@ -4,8 +4,8 @@ import useSWR from "swr";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
-  School,
 } from "../CurriculumDownloadView";
+import { School } from "../CurriculumDownloadView/helper";
 
 import OakError, { ErrorInfo } from "@/errors/OakError";
 import Box from "@/components/SharedComponents/Box";

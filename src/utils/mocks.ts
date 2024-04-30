@@ -9,3 +9,7 @@ export function mockCookieGet(input: Record<string, unknown>) {
   const cookieString = `${cookieStringPartial}; `;
   jest.spyOn(document, "cookie", "get").mockReturnValue(cookieString);
 }
+
+export function mockPrerelease(key: string) {
+  mockCookieGet({ [`prerelease.${key}.enabled`]: true });
+}

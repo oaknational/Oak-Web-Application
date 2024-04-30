@@ -20,7 +20,6 @@ import {
   useState,
 } from "react";
 import styled from "styled-components";
-import { ZodType } from "zod";
 
 import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
 import Autocomplete, {
@@ -28,6 +27,7 @@ import Autocomplete, {
 } from "../OakComponentsKitchen/Autocomplete";
 
 import { submitSchema } from "./schema";
+import { School, parseSchoolToListItems, runSchema } from "./helper";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Box from "@/components/SharedComponents/Box";
@@ -38,45 +38,6 @@ import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import { HOMESCHOOL_URN } from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
-// import OakAutocomplete, { OakAutocompleteItem } from "./../../OakComponentsWaitingRoom/OakAutocomplete";
-
-export type School = {
-  urn: string;
-  la: string;
-  name: string;
-  postcode: string;
-  fullInfo: string;
-  status: string;
-};
-const parseSchoolToListItems = (schools: School[]) => {
-  return schools.map((item) => {
-    const comboItemKey = `${item.urn}-${item.name}`;
-    const textValue = `${item.name}, ${item.la}, ${item.postcode}`;
-
-    return {
-      key: comboItemKey,
-      textValue: String(textValue),
-    };
-  });
-};
-
-function runSchema<T extends Record<string, unknown>>(
-  schema: ZodType,
-  data: T,
-) {
-  const rslt = schema.safeParse(data);
-  const newErrors: Partial<Record<keyof T, string>> = {};
-  if (!rslt.success) {
-    for (const issue of rslt.error.issues) {
-      const dataKey = String(issue.path[0]);
-      newErrors[dataKey as keyof T] = issue.message;
-    }
-  }
-  return {
-    success: rslt.success,
-    errors: newErrors,
-  };
-}
 
 const useSchoolsFromApi = ({ schools }: { schools: School[] }) => {
   return useMemo(() => {
@@ -181,8 +142,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   const hasErrors = Object.keys(errors).length;
 
   const onChangeLocal = (partial: Partial<CurriculumDownloadViewData>) => {
-    // const newSubmitValidatioResults = runSchema(runtimeSchema, partial)
-    // setErrors(newSubmitValidatioResults.errors)
     const newData = {
       ...data,
       ...partial,
@@ -451,15 +410,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                         </OakUL>
                       </OakFieldError>
                     )}
-                    {/* <Button
-                                            icon="download"
-                                            $iconPosition="trailing"
-                                            label="Download"
-                                            iconBackground="black"
-                                            aria-label="Submit"
-                                            htmlButtonProps={{ type: "submit" }}
-                                            size={"small"}
-                                        /> */}
                     <LoadingButton
                       text="Download"
                       isLoading={isSubmitting}
