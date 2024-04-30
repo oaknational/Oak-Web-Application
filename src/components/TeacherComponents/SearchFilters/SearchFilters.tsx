@@ -62,6 +62,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                       : toSentenceCase(keyStageFilter.title)
                   }
                   key={`search-filters-keyStage-${keyStageFilter.slug}`}
+                  aria-label={`${keyStageFilter.title} filter`}
                   id={`search-filters-keyStage-${keyStageFilter.slug}:mobile:${isMobileFilter}`}
                   value="Key stage filter"
                   {...keyStageFilter}
@@ -92,6 +93,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 <OakSearchFilterCheckBox
                   value={"examBoardFilters"}
                   key={`search-filters-examBoard-${examBoardFilter.slug}`}
+                  aria-label={`${examBoardFilter.title} filter`}
                   displayValue={examBoardFilter.title}
                   id={`search-filters-examBoard-${examBoardFilter.slug}:mobile:${isMobileFilter}`}
                   {...examBoardFilter}
@@ -119,6 +121,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   <OakSearchFilterCheckBox
                     value={"subjectFilters"}
                     key={`search-filters-subject-${subjectFilter.slug}`}
+                    aria-label={`${subjectFilter.title} filter`}
                     id={`search-filters-subject-${subjectFilter.slug}:mobile:${isMobileFilter}`}
                     displayValue={subjectFilter.title}
                     icon={icon}

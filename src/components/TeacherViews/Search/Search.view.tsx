@@ -221,6 +221,7 @@ const Search: FC<SearchProps> = (props) => {
                           name={"typeFilters"}
                           displayValue={contentTypeFilter.title}
                           key={`search-filters-type-${contentTypeFilter.slug}`}
+                          aria-label={`${contentTypeFilter.title} filter`}
                           id={`search-filters-type-${contentTypeFilter.slug}`}
                           icon={icon}
                           value={"Content type filter"}
