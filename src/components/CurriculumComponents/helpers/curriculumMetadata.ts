@@ -36,6 +36,16 @@ export const buildCurriculumMetadata = (props: {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now.`;
   } else if (props.tab === "download" && props.metadataType === "description") {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit downloads.`;
+  } else if (props.tab === "download" && props.metadataType === "title") {
+    const examboard =
+      props.examboardSlug && props.examboardSlug === "aqa"
+        ? "AQA"
+        : props.examboardSlug
+          ? `${capitalize(props.examboardSlug)}`
+          : "";
+    return `${props.keyStagesData} ${capitalize(
+      props.subjectSlug,
+    )} ${examboard} Curriculum Downloads`;
   } else {
     throw new Error('Invalid input for "metadataType" or "tab"');
   }

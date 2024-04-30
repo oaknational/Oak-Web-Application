@@ -58,4 +58,15 @@ describe("buildCurriculumMetadata", () => {
       "Explore our free KS3-4 History curriculum unit downloads.",
     );
   });
+
+  it('should return the title string for "download" tab and "title" metadataType', () => {
+    const result = buildCurriculumMetadata({
+      metadataType: "title",
+      tab: "download",
+      keyStagesData: "KS3-4",
+      subjectSlug: "English",
+      examboardSlug: "edexcel",
+    });
+    expect(result).toBe("KS3-4 English Edexcel Curriculum Downloads");
+  });
 });
