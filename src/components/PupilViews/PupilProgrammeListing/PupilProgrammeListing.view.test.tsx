@@ -1,7 +1,10 @@
 import { act, render } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
+import {
+  PupilViewsProgrammeListing,
+  PupilViewsProgrammeListingProps,
+} from "./PupilProgrammeListing.view";
 
 import {
   ProgrammeFields,
@@ -58,7 +61,7 @@ describe("PublicProgrammeListing", () => {
       }),
     );
 
-    const props = {
+    const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,
@@ -82,7 +85,7 @@ describe("PublicProgrammeListing", () => {
         yearSlug: "year-11",
       }));
 
-    const props = {
+    const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,
@@ -106,7 +109,7 @@ describe("PublicProgrammeListing", () => {
       }),
     );
 
-    const props = {
+    const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
       isLegacy: false,

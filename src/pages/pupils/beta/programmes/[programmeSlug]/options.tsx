@@ -16,6 +16,7 @@ import {
   ProgrammesPageProps,
   URLParams,
   getYearSlug,
+  isExamboardSlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 const ProgrammesPage = ({
@@ -25,7 +26,8 @@ const ProgrammesPage = ({
 }: ProgrammesPageProps) => {
   const searchParams = useSearchParams();
 
-  const examboardSlug = searchParams.get("examboard");
+  const e = searchParams.get("examboard");
+  const examboardSlug = isExamboardSlug(e) ? e : null;
 
   return (
     <PupilViewsProgrammeListing

@@ -1,3 +1,8 @@
+import {
+  ProgrammeFields,
+  examboardSlugs,
+} from "@oaknational/oak-curriculum-schema";
+
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 
 export type URLParams = {
@@ -7,7 +12,7 @@ export type URLParams = {
 export type ProgrammesPageProps = {
   baseSlug: string;
   programmes: PupilProgrammeListingData[];
-  yearSlug: string;
+  yearSlug: PupilProgrammeListingData["yearSlug"];
 };
 
 export const getYearSlug = ({
@@ -29,3 +34,8 @@ export const getYearSlug = ({
 
   return yearSlug;
 };
+
+export const isExamboardSlug = (
+  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
+): examboardSlug is ProgrammeFields["examboard_slug"] =>
+  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");

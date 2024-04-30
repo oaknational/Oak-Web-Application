@@ -20,11 +20,11 @@ import {
   TierData,
 } from "@/components/PupilComponents/BrowseTierSelector";
 
-type PupilViewsProgrammeListingProps = {
+export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
   isLegacy: boolean;
-  yearSlug: string; // TODO: give these the correct types
+  yearSlug: PupilProgrammeListingData["yearSlug"];
   examboardSlug?: ExamboardData["examboardSlug"];
 };
 
@@ -89,7 +89,7 @@ export const PupilViewsProgrammeListing = ({
                     Back
                   </OakBackLink>
                   <BrowseExamboardSelector
-                    examboards={examboards as ExamboardData[]}
+                    examboards={examboards}
                     baseSlug={baseSlug}
                     onClick={(examboard) => setChosenExamboard(examboard)}
                     isLegacy={isLegacy}
