@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakP } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -40,9 +40,9 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
           data-testid="programme-list-item-link"
           onClick={() => onClick(programme)}
         >
-          <OakHeading $font={"heading-7"} tag="h3" ariaLabel={ariaLabel}>
+          <OakP $font={"heading-7"} aria-label={ariaLabel}>
             {heading}
-          </OakHeading>
+          </OakP>
         </OwaLink>
       </OakFlex>
 
