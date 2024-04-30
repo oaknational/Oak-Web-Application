@@ -12,6 +12,71 @@ import { RadioContext } from "./RadioGroup";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
+const StyledRadio = styled.span<{
+  isSelected: boolean;
+  isFocusVisible: boolean;
+  hasError?: boolean;
+}>`
+  height: 24px;
+  width: 24px;
+  border: 2px solid
+    ${(props) =>
+      props.isFocusVisible
+        ? getColorByName("black")
+        : getColorByName("grey50")};
+  ${(props) =>
+    props.hasError &&
+    css`
+      border: 2px solid ${getColorByName("red")};
+    `}
+  border-radius: 50%;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  background: white;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 16px;
+  ${(props) =>
+    props.isFocusVisible &&
+    css`
+      box-shadow: 0 0 0 2px ${getColorByName("lemon")};
+    `}
+
+  &::after {
+    content: "";
+    height: ${(props) => (props.isSelected ? "20px" : "16px")};
+    width: ${(props) => (props.isSelected ? "20px" : "16px")};
+    background: ${(props) =>
+      props.isSelected ? getColorByName("black") : getColorByName("white")};
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    ${(props) =>
+      props.isSelected &&
+      css`
+        border: 2px solid ${getColorByName("white")};
+      `}
+  }
+
+  &:active {
+    border: 2px solid ${getColorByName("black")};
+    box-shadow: 0 0 0 3px ${getColorByName("lemon")};
+  }
+
+  &:hover {
+    &::after {
+      background: ${getColorByName("black")};
+    }
+  }
+
+  &:focus {
+    border: 2px solid ${getColorByName("black")};
+    box-shadow: 0 0 0 3px ${getColorByName("lemon")};
+  }
+`;
+
 const Radio: FC<AriaRadioProps> = (props) => {
   const { children } = props;
   const stateOrNull = useContext(RadioContext);
@@ -22,71 +87,6 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
   inputProps.name = useId();
   inputProps.id = useId();
-
-  const StyledRadio = styled.span<{
-    isSelected: boolean;
-    isFocusVisible: boolean;
-    hasError?: boolean;
-  }>`
-    height: 24px;
-    width: 24px;
-    border: 2px solid
-      ${(props) =>
-        props.isFocusVisible
-          ? getColorByName("black")
-          : getColorByName("grey50")};
-    ${(props) =>
-      props.hasError &&
-      css`
-        border: 2px solid ${getColorByName("red")};
-      `}
-    border-radius: 50%;
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 0;
-    align-items: center;
-    background: white;
-    justify-content: center;
-    cursor: pointer;
-    margin-right: 16px;
-    ${(props) =>
-      props.isFocusVisible &&
-      css`
-        box-shadow: 0 0 0 2px ${getColorByName("lemon")};
-      `}
-
-    &::after {
-      content: "";
-      height: ${(props) => (props.isSelected ? "20px" : "16px")};
-      width: ${(props) => (props.isSelected ? "20px" : "16px")};
-      background: ${(props) =>
-        props.isSelected ? getColorByName("black") : getColorByName("white")};
-      display: block;
-      position: absolute;
-      border-radius: 50%;
-      ${(props) =>
-        props.isSelected &&
-        css`
-          border: 2px solid ${getColorByName("white")};
-        `}
-    }
-
-    &:active {
-      border: 2px solid ${getColorByName("black")};
-      box-shadow: 0 0 0 3px ${getColorByName("lemon")};
-    }
-
-    &:hover {
-      &::after {
-        background: ${getColorByName("black")};
-      }
-    }
-
-    &:focus {
-      border: 2px solid ${getColorByName("black")};
-      box-shadow: 0 0 0 3px ${getColorByName("lemon")};
-    }
-  `;
 
   return (
     <label

@@ -5,8 +5,6 @@ import SubjectProgrammeListItem from "./SubjectProgrammeListItem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const onClick = jest.fn();
-
 const programme = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
@@ -28,21 +26,28 @@ describe("ProgrammeListItem", () => {
 
   it("renders SubjectProgrammeListItem", () => {
     renderWithTheme(
-      <SubjectProgrammeListItem onClick={onClick} programme={programme} />,
+      <SubjectProgrammeListItem onClick={() => {}} programme={programme} />,
     );
 
     expect(screen.getByText("Higher")).toBeInTheDocument();
   });
 
   it("calls tracking.tierSelected once, with correct props", async () => {
+    const onClick = jest.fn();
+
     renderWithTheme(
       <SubjectProgrammeListItem onClick={onClick} programme={programme} />,
     );
 
-    const trier = screen.getByText("Higher");
+    const tier = screen.getByText("Higher");
+
+    // Prevent the link from causing a navigation and an error in the console.
+    screen
+      .getByTestId("programme-list-item-link")
+      .addEventListener("click", (event) => event.preventDefault());
 
     const user = userEvent.setup();
-    await user.click(trier);
+    await user.click(tier);
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith(programme);
