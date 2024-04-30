@@ -77,26 +77,6 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
-  it("share button is not disabled as content is legacy", () => {
-    const { queryAllByTestId, queryAllByText } = render(
-      <SpecialistLessonOverviewPage
-        curriculumData={specialistLessonOverviewFixture({
-          expired: false,
-        })}
-      />,
-    );
-
-    const shareButton = queryAllByTestId("share-all-button");
-    const shareLabel = queryAllByText("Share activities with pupils");
-
-    if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).not.toHaveAttribute("disabled");
-      expect(shareLabel[0]).toBeInTheDocument();
-    } else {
-      throw new Error("Share all button not found");
-    }
-  });
-
   it("renders an iframe for a presentation and worksheet", async () => {
     const { getAllByTestId } = render(
       <SpecialistLessonOverviewPage {...props} />,

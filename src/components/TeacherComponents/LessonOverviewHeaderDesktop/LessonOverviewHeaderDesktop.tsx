@@ -28,6 +28,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     isNew,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
+    isSpecialist,
   } = props;
 
   return (
@@ -74,7 +75,9 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               )}
               <OakFlex $gap="all-spacing-6">
                 <LessonOverviewHeaderDownloadAllButton {...props} />
-                <LessonOverviewHeaderShareAllButton {...props} />
+                {!isSpecialist && (
+                  <LessonOverviewHeaderShareAllButton {...props} />
+                )}
               </OakFlex>
             </OakFlex>
           </OakFlex>

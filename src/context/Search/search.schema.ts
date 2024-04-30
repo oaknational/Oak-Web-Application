@@ -112,6 +112,13 @@ const rawBaseSearchResultSchema = z.object({
   yearTitle: z.string().nullish(),
 });
 
+const rawHighlightSchema = z.object({
+  pupilLessonOutcome: z.array(z.string()).optional(),
+  all_fields: z.array(z.string()).optional(),
+});
+
+export type RawHighlightSchema = z.infer<typeof rawHighlightSchema>;
+
 export const rawSearchResponseSchema = z.object({
   took: z.number(),
   timed_out: z.boolean(),
@@ -121,7 +128,7 @@ export const rawSearchResponseSchema = z.object({
         _id: z.string(),
         _index: z.string(),
         _score: z.number(),
-        highlight: z.record(z.string(), z.array(z.string())).nullish(),
+        highlight: rawHighlightSchema.nullish(),
         _source: z.object({
           ...rawBaseSearchResultSchema.shape,
           pupilLessonOutcome: z.string().nullish(),
