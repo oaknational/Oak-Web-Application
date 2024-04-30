@@ -24,15 +24,12 @@ export const getYearSlug = ({
   const yearSlug = programmes[0]?.yearSlug;
 
   if (
-    programmes.filter((programme) => programme.yearSlug !== yearSlug).length > 0
+    programmes.filter((programme) => programme.yearSlug !== yearSlug).length >
+      0 ||
+    !yearSlug
   ) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
-
-  if (!yearSlug) {
-    throw new OakError({ code: "curriculum-api/params-incorrect" });
-  }
-
   return yearSlug;
 };
 

@@ -19,6 +19,7 @@ import {
   BrowseTierSelector,
   TierData,
 } from "@/components/PupilComponents/BrowseTierSelector";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -54,6 +55,11 @@ export const PupilViewsProgrammeListing = ({
     examboardData,
   );
 
+  const backlink = resolveOakHref({
+    page: "pupil-subject-index",
+    yearSlug,
+  });
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakFlex
@@ -85,9 +91,7 @@ export const PupilViewsProgrammeListing = ({
             case examboards.length > 1 && chosenExamboard === null:
               return (
                 <>
-                  <OakBackLink href={`/pupils/beta/years/${yearSlug}/subjects`}>
-                    Back
-                  </OakBackLink>
+                  <OakBackLink href={backlink}>Back</OakBackLink>
                   <BrowseExamboardSelector
                     examboards={examboards}
                     baseSlug={baseSlug}
@@ -99,9 +103,7 @@ export const PupilViewsProgrammeListing = ({
             case examboards.length <= 1 && tiers.length >= 1:
               return (
                 <>
-                  <OakBackLink href={`/pupils/beta/years/${yearSlug}/subjects`}>
-                    Back
-                  </OakBackLink>
+                  <OakBackLink href={backlink}>Back</OakBackLink>
                   <BrowseTierSelector
                     tiers={tiers as TierData[]}
                     baseSlug={baseSlug}

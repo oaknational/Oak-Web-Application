@@ -143,8 +143,8 @@ export type PupilLessonListingLinkProps = {
 
 export type PupilProgrammeListingLinkProps = {
   page: "pupil-programme-index";
-  subjectSlug: string;
-  yearSlug: string;
+  programmeSlug: string;
+  optionSlug: string;
 };
 
 export type PupilSubjectListingLinkProps = {
@@ -637,8 +637,7 @@ export const OAK_PAGES: {
     pageType: "pupil-lesson-index",
   }),
   "pupil-programme-index": createOakPageConfig({
-    pathPattern:
-      "/pupils/beta/years/:yearSlug/subjects/:subjectSlug/programmes",
+    pathPattern: "/pupils/beta/programmes/:programmeSlug/:optionSlug",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "pupil-programme-index",

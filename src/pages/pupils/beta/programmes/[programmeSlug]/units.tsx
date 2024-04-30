@@ -6,6 +6,7 @@ import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getBaseSlugByYearFromProgrammeSlug } from "@/pages-helpers/pupil/pupils-browse-helpers";
 
 export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units";
 
@@ -14,8 +15,6 @@ type UnitListingPageProps = {
 };
 
 const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
-  console.log("curriculumData", curriculumData);
-
   if (!curriculumData[0]) {
     throw new Error("No curriculum data");
   }
@@ -34,8 +33,14 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     examboard,
     yearSlug,
     examboardSlug,
-    subjectSlug,
+    legacy,
   } = programmeFields;
+
+  const baseSlug = getBaseSlugByYearFromProgrammeSlug(
+    curriculumData[0].programmeSlug,
+  );
+
+  const optionSlug = `options${legacy ? "-l" : ""}`;
 
   function pickPreviousPage(): [backHref: string, backLabel: string] {
     const hasTier = tier !== null;
@@ -46,8 +51,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           `${resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           })}?examboard=${examboardSlug}`,
           "Select tiers",
         ];
@@ -55,8 +60,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           }),
           "Select tiers",
         ];
@@ -64,8 +69,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           }),
           "Select examboards",
         ];
