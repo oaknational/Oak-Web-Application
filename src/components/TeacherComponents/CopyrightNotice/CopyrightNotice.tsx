@@ -10,7 +10,7 @@ import Icon from "@/components/SharedComponents/Icon";
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
-  updatedAt?: string;
+  copyrightYear?: string;
 };
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
@@ -54,11 +54,11 @@ const StyledLink = styled.a`
 `;
 
 const PostAlbCopyright = (
-  props: FontProps & { openLinksExternally: boolean; updatedAt?: string },
+  props: FontProps & { openLinksExternally: boolean; copyrightYear?: string },
 ) => {
   let currentYear;
-  if (props.updatedAt) {
-    currentYear = new Date(props.updatedAt).getFullYear();
+  if (props.copyrightYear) {
+    currentYear = new Date(props.copyrightYear).getFullYear();
   } else {
     currentYear = "2023";
   }

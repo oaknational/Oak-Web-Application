@@ -152,7 +152,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
           <CopyrightNotice
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            updatedAt={updatedAt}
+            copyrightYear={updatedAt}
           />
         </OakFlex>
       )}

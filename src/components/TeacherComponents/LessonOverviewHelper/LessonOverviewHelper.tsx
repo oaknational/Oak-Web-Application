@@ -65,7 +65,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
               $font={"body-2"}
               showPostAlbCopyright={!isLegacyLicense}
               openLinksExternally={false}
-              updatedAt={updatedAt}
+              copyrightYear={updatedAt}
             />
           </Box>
         </OakGridArea>
