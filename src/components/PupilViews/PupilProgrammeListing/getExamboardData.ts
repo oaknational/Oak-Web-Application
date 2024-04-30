@@ -1,4 +1,5 @@
 import { ExamboardData } from "@/components/PupilComponents/BrowseExamboardSelector";
+import OakError from "@/errors/OakError";
 
 export const getExamboardData = ({
   examboardSlug,
@@ -12,7 +13,7 @@ export const getExamboardData = ({
   );
 
   if (!v) {
-    throw new Error("invalid examboardSlug");
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
   return v;

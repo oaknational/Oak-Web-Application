@@ -4,6 +4,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import OakError from "@/errors/OakError";
 
 export type URLParams = {
   programmeSlug: string;
@@ -25,11 +26,11 @@ export const getYearSlug = ({
   if (
     programmes.filter((programme) => programme.yearSlug !== yearSlug).length > 0
   ) {
-    throw new Error("programmes have non-matching yearSlugs");
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
   if (!yearSlug) {
-    throw new Error("no yearSlug found");
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
   return yearSlug;

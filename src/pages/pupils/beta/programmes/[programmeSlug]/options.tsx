@@ -18,6 +18,7 @@ import {
   getYearSlug,
   isExamboardSlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import OakError from "@/errors/OakError";
 
 const ProgrammesPage = ({
   programmes,
@@ -26,8 +27,14 @@ const ProgrammesPage = ({
 }: ProgrammesPageProps) => {
   const searchParams = useSearchParams();
 
-  const e = searchParams.get("examboard");
-  const examboardSlug = isExamboardSlug(e) ? e : null;
+  const examboardSlug = (() => {
+    const e = searchParams.get("examboard");
+    if (!e) return null;
+    if (!isExamboardSlug(e)) {
+      throw new OakError({ code: "curriculum-api/params-incorrect" });
+    }
+    return e;
+  })();
 
   return (
     <PupilViewsProgrammeListing
@@ -57,11 +64,12 @@ export const getStaticProps: GetStaticProps<
   URLParams
 > = async (context) => {
   if (!context.params) {
-    throw new Error("no context.params");
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
   const { programmeSlug } = context.params;
+
   if (!programmeSlug) {
-    throw new Error("unexpected context.params");
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
   // construct a base slug for the subject
