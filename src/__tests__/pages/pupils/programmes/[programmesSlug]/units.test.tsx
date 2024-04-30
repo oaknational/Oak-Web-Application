@@ -11,14 +11,26 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
   describe("renders", () => {
     it("should render the subjectTitle, unitTitle, and yearDescription", () => {
       const { getByText } = render(
-        <PupilUnitListingPage curriculumData={[unitBrowseDataFixture({})]} />,
+        <PupilUnitListingPage
+          curriculumData={[
+            unitBrowseDataFixture({
+              programmeSlug: "maths-secondary-year-10-aqa-core",
+            }),
+          ]}
+        />,
       );
       expect(getByText("Maths")).toBeInTheDocument();
       expect(getByText("Year 1")).toBeInTheDocument();
     });
     it("should render the unit titles and number of lessons", () => {
       const { getByText } = render(
-        <PupilUnitListingPage curriculumData={[unitBrowseDataFixture({})]} />,
+        <PupilUnitListingPage
+          curriculumData={[
+            unitBrowseDataFixture({
+              programmeSlug: "maths-secondary-year-10-aqa-core",
+            }),
+          ]}
+        />,
       );
       expect(getByText("unit-title - 1 lessons")).toBeInTheDocument();
     });
@@ -32,6 +44,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
                 title: "unit-title-2",
               },
               supplementaryData: { unitOrder: 2 },
+              programmeSlug: "maths-secondary-year-10-aqa-core",
             }),
             unitBrowseDataFixture({
               unitData: {
@@ -39,6 +52,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
                 title: "unit-title-1",
               },
               supplementaryData: { unitOrder: 1 },
+              programmeSlug: "maths-secondary-year-10-aqa-core",
             }),
           ]}
         />,
@@ -60,6 +74,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
                 examboardSlug: "aqa",
               },
               supplementaryData: { unitOrder: 2 },
+              programmeSlug: "maths-secondary-year-10-aqa-core",
             }),
           ]}
         />,
@@ -68,7 +83,11 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
     });
     it("should render a link which links back to subjects if the programme has no tiers and no examboards", () => {
       const { getByText } = render(
-        <PupilUnitListingPage curriculumData={[unitBrowseDataFixture({})]} />,
+        <PupilUnitListingPage
+          curriculumData={[
+            unitBrowseDataFixture({ programmeSlug: "maths-secondary-year-10" }),
+          ]}
+        />,
       );
       expect(getByText("Select subjects")).toBeInTheDocument();
     });
@@ -77,6 +96,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         <PupilUnitListingPage
           curriculumData={[
             unitBrowseDataFixture({
+              programmeSlug: "maths-secondary-year-10-aqa",
               programmeFields: {
                 ...unitBrowseDataFixture({}).programmeFields,
                 examboard: "AQA",
