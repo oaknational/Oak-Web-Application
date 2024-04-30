@@ -34,9 +34,8 @@ export const buildCurriculumMetadata = (props: {
     )} ${examboard} Curriculum Unit Sequence`;
   } else if (props.tab === "units" && props.metadataType === "description") {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now.`;
-  } else if (props.tab === "download") {
-    // TODO
-    return "Downloads";
+  } else if (props.tab === "download" && props.metadataType === "description") {
+    return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit downloads.`;
   } else {
     throw new Error('Invalid input for "metadataType" or "tab"');
   }

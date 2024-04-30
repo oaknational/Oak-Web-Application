@@ -46,4 +46,16 @@ describe("buildCurriculumMetadata", () => {
       "Explore our free KS3-4 History curriculum unit sequences, easily select units and topics and view in our interactive tool now.",
     );
   });
+
+  it('should return the description string for "download" tab and "description" metadataType', () => {
+    const result = buildCurriculumMetadata({
+      metadataType: "description",
+      tab: "download",
+      keyStagesData: "KS3-4",
+      subjectSlug: "History",
+    });
+    expect(result).toBe(
+      "Explore our free KS3-4 History curriculum unit downloads.",
+    );
+  });
 });
