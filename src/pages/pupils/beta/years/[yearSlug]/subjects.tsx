@@ -31,6 +31,13 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
 
   return (
     <div>
+      <Link
+        href={resolveOakHref({
+          page: "pupil-year-index",
+        })}
+      >
+        View years
+      </Link>
       <ol>
         {subjects.map((subject) => {
           const subjectData = subjectObject[subject];

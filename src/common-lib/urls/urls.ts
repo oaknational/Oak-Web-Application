@@ -157,6 +157,10 @@ export type PupilSubjectListingLinkProps = {
   yearSlug: string;
 };
 
+export type PupilYearListingLinkProps = {
+  page: "pupil-year-index";
+};
+
 export type SpecialistLessonOverviewLinkProps = Omit<
   LessonOverviewLinkProps,
   "page"
@@ -302,6 +306,7 @@ export type OakLinkProps =
   | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
+  | PupilYearListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -660,6 +665,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "pupil-subject-index",
+  }),
+  "pupil-year-index": createOakPageConfig({
+    pathPattern: "/pupils/beta/years",
+    analyticsPageName: "Subject Listing",
+    configType: "internal",
+    pageType: "pupil-year-index",
   }),
   "specialist-lesson-overview": createOakPageConfig({
     pathPattern:
