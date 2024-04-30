@@ -1,4 +1,4 @@
-import { FC, forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
 import { OakSpan } from "@oaknational/oak-components";
 
@@ -129,65 +129,63 @@ type InputProps = UnstyledInputProps &
     label: string;
     error?: string;
   };
-const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => {
-    const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
-      props;
-    const errorId = `${id}-error`;
-    const labelId = `${id}-label`;
-    return (
-      <>
-        {error && <FieldError id={errorId}>{error}</FieldError>}
-        <InputFieldWrap
-          $mb={props.$mb ?? 32}
-          $alignItems="center"
-          $background="white"
-          $width={"100%"}
-        >
-          <Flex $width={"100%"} $position={"relative"}>
-            <BoxBorders gapPosition="rightTop" />
-            <Flex $position={"absolute"}>
-              <RotatedInputLabel
-                aria-hidden="true"
-                background={error ? "red" : "lemon"}
-                color={error ? "white" : "black"}
-                htmlFor={id}
-                id={labelId}
-                $font={"heading-7"}
-                data-testid="rotated-input-label"
-              >
-                {isRequired && (
-                  <OakSpan>
-                    {props.label}{" "}
-                    <OakSpan $font={"heading-light-7"}>(required)</OakSpan>
-                  </OakSpan>
-                )}
-                {isOptional && (
-                  <OakSpan>
-                    {props.label}{" "}
-                    <OakSpan $font={"heading-light-7"}>(optional)</OakSpan>
-                  </OakSpan>
-                )}
-                {!isRequired && !isOptional && props.label}
-              </RotatedInputLabel>
-            </Flex>
-
-            <StyledInput
-              {...inputProps}
-              icon={icon}
-              ref={ref}
-              id={id}
-              aria-invalid={Boolean(error)}
-              aria-describedby={error ? errorId : undefined}
-              aria-labelledby={labelId}
-            />
-            {icon && <InputIcon $pa={8} size={40} name={icon} />}
-            <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
+    props;
+  const errorId = `${id}-error`;
+  const labelId = `${id}-label`;
+  return (
+    <>
+      {error && <FieldError id={errorId}>{error}</FieldError>}
+      <InputFieldWrap
+        $mb={props.$mb ?? 32}
+        $alignItems="center"
+        $background="white"
+        $width={"100%"}
+      >
+        <Flex $width={"100%"} $position={"relative"}>
+          <BoxBorders gapPosition="rightTop" />
+          <Flex $position={"absolute"}>
+            <RotatedInputLabel
+              aria-hidden="true"
+              background={error ? "red" : "lemon"}
+              color={error ? "white" : "black"}
+              htmlFor={id}
+              id={labelId}
+              $font={"heading-7"}
+              data-testid="rotated-input-label"
+            >
+              {isRequired && (
+                <OakSpan>
+                  {props.label}{" "}
+                  <OakSpan $font={"heading-light-7"}>(required)</OakSpan>
+                </OakSpan>
+              )}
+              {isOptional && (
+                <OakSpan>
+                  {props.label}{" "}
+                  <OakSpan $font={"heading-light-7"}>(optional)</OakSpan>
+                </OakSpan>
+              )}
+              {!isRequired && !isOptional && props.label}
+            </RotatedInputLabel>
           </Flex>
-        </InputFieldWrap>
-      </>
-    );
-  },
-);
+
+          <StyledInput
+            {...inputProps}
+            icon={icon}
+            ref={ref}
+            id={id}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+            aria-labelledby={labelId}
+          />
+          {icon && <InputIcon $pa={8} size={40} name={icon} />}
+          <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
+        </Flex>
+      </InputFieldWrap>
+    </>
+  );
+});
 
 export default Input;
