@@ -56,7 +56,6 @@ const StyledLink = styled.a`
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean; updatedAt?: string },
 ) => {
-  // Temp Fix
   let currentYear;
   if (props.updatedAt) {
     currentYear = new Date(props.updatedAt).getFullYear();
