@@ -1,38 +1,13 @@
 import { FC, useState } from "react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import useSWR from "swr";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
 } from "../CurriculumDownloadView";
 import { School } from "../CurriculumDownloadView/helper";
 
-import OakError, { ErrorInfo } from "@/errors/OakError";
 import Box from "@/components/SharedComponents/Box";
-
-function useFetch<T>(url: string, errorCode: ErrorInfo["code"]) {
-  const { data, error } = useSWR<T, OakError>(url, (queryUrl: string) => {
-    return fetch(queryUrl).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        const error = new OakError({
-          code: errorCode,
-          meta: {
-            status: res.status,
-            statusText: res.statusText,
-            queryUrl,
-            json: res.json,
-          },
-        });
-
-        reportError(error);
-        throw error;
-      }
-    });
-  });
-  return { data, error } as const;
-}
+import { useFetch } from "@/hooks/useFetch";
 
 const CurriculumDownloadTab: FC = () => {
   const schoolPickerInputValue = "the";
