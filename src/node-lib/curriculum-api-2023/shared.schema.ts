@@ -191,6 +191,7 @@ export const baseLessonOverviewSchema = z.object({
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
   lessonCohort: z.string().nullish(),
+  updatedAt: z.string().optional(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -226,6 +227,7 @@ export const baseLessonDownloadsSchema = z.object({
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
   copyrightContent: copyrightContentSchema,
+  updatedAt: z.string(),
 });
 
 export const lessonListSchema = z.array(

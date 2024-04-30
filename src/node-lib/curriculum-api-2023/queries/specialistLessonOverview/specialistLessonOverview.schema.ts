@@ -25,6 +25,7 @@ export type SpecialistLessonOverviewData = Omit<
   phaseTitle: string | null;
   phaseSlug: string | null;
   threads?: Threads[] | null;
+  updatedAt?: string;
 };
 
 const content_guidance_schema = z.object({

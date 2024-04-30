@@ -225,11 +225,12 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={undefined}
         isLegacyLicense={false}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
-    const currentYear = new Date().getFullYear();
+
     const preAlbCopyright = getByText(
-      `This content is © Oak National Academy Limited (${currentYear}), licensed on`,
+      `This content is © Oak National Academy Limited (2024), licensed on`,
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();

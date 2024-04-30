@@ -10,6 +10,7 @@ import Icon from "@/components/SharedComponents/Icon";
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
+  updatedAt?: string;
 };
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
@@ -52,42 +53,48 @@ const StyledLink = styled.a`
   color: ${(props) => props.theme.colors.navy};
 `;
 
-const currentYear = new Date().getFullYear();
-
 const PostAlbCopyright = (
-  props: FontProps & { openLinksExternally: boolean },
-) => (
-  <OakP $font="body-3" {...props}>
-    This content is © Oak National Academy Limited ({currentYear}), licensed on{" "}
-    <StyledLink
-      aria-label={`Open Government License version 3.0${
-        props.openLinksExternally ? " (opens in a new tab)" : ""
-      }`}
-      role="link"
-      href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-      target={props.openLinksExternally ? "_blank" : "_self"}
-    >
-      Open Government Licence version 3.0{" "}
-      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </StyledLink>{" "}
-    except where otherwise stated. See{" "}
-    <OwaLink
-      page={"legal"}
-      legalSlug="terms-and-conditions"
-      $isInline
-      htmlAnchorProps={{
-        target: props.openLinksExternally ? "_blank" : "_self",
-        "aria-label": `Terms and conditions${
+  props: FontProps & { openLinksExternally: boolean; updatedAt?: string },
+) => {
+  // Temp Fix
+  let currentYear;
+  if (props.updatedAt) {
+    currentYear = new Date(props.updatedAt).getFullYear();
+  }
+  return (
+    <OakP $font="body-3" {...props}>
+      This content is © Oak National Academy Limited ({currentYear}), licensed
+      on{" "}
+      <StyledLink
+        aria-label={`Open Government License version 3.0${
           props.openLinksExternally ? " (opens in a new tab)" : ""
-        }`,
-      }}
-    >
-      Oak's terms & conditions
-      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OwaLink>{" "}
-    (Collection 2).
-  </OakP>
-);
+        }`}
+        role="link"
+        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+        target={props.openLinksExternally ? "_blank" : "_self"}
+      >
+        Open Government Licence version 3.0{" "}
+        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      </StyledLink>{" "}
+      except where otherwise stated. See{" "}
+      <OwaLink
+        page={"legal"}
+        legalSlug="terms-and-conditions"
+        $isInline
+        htmlAnchorProps={{
+          target: props.openLinksExternally ? "_blank" : "_self",
+          "aria-label": `Terms and conditions${
+            props.openLinksExternally ? " (opens in a new tab)" : ""
+          }`,
+        }}
+      >
+        Oak's terms & conditions
+        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      </OwaLink>{" "}
+      (Collection 2).
+    </OakP>
+  );
+};
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,

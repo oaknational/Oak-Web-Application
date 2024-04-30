@@ -112,6 +112,7 @@ const specialistLessonOverviewFixture = (
       { exists: true, type: "worksheet-pptx" },
       { exists: true, type: "presentation" },
     ],
+    updatedAt: "2022-02",
     ...partial,
   };
 };

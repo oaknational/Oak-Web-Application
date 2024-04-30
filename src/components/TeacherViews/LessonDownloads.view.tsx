@@ -58,11 +58,13 @@ type BaseLessonDownload = {
 
 type CanonicalLesson = BaseLessonDownload & {
   pathways: LessonPathway[];
+  updatedAt?: string;
   nextLessons?: NextLesson[];
 };
 
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
+  updatedAt?: string;
 } & LessonPathway;
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];
@@ -90,6 +92,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     expired,
     isSpecialist,
     copyrightContent,
+    updatedAt,
   } = lesson;
 
   const commonPathway =
@@ -322,6 +325,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             triggerForm={form.trigger}
             apiError={apiError}
             hideSelectAll={Boolean(expired)}
+            updatedAt={updatedAt}
             cardGroup={
               !showNoResources && (
                 <DownloadCardGroup
