@@ -5,6 +5,12 @@ import {
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakSearchFilterCheckBox,
+  OakThemeProvider,
+  oakDefaultTheme,
+  OakBox,
+  isValidIconName,
+  OakSearchFilterCheckBoxProps,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -168,82 +174,139 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   return (
-    <OakFlex $background="white" $flexDirection={"column"}>
-      <MaxWidth $ph={16}>
-        <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
-          <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
-            <OakFlex
-              $flexDirection={["column"]}
-              $mb={["space-between-l", "space-between-xxl"]}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <OakFlex $background="white" $flexDirection={"column"}>
+        <MaxWidth $ph={16}>
+          <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
+            <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
+              <OakFlex
+                $flexDirection={["column"]}
+                $mb={["space-between-l", "space-between-m2"]}
+              >
+                <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
+                  Search
+                </OakHeading>
+                <SearchForm
+                  searchContext="search"
+                  searchTerm={query.term}
+                  placeholderText="Search by keyword or topic"
+                  handleSubmit={(value) => {
+                    setSearchTerm(value);
+                  }}
+                  analyticsSearchSource={"search page search box"}
+                />
+              </OakFlex>
+              <OakBox>
+                <OakFlex
+                  $gap={"space-between-xs"}
+                  $flexWrap={"wrap"}
+                  $position={"absolute"}
+                  $zIndex={"modal-close-button"}
+                >
+                  {searchFilters.contentTypeFilters
+                    .map((contentTypeFilter) => {
+                      const icon = isValidIconName(
+                        `teacher-${contentTypeFilter.slug}`,
+                      )
+                        ? (`teacher-${contentTypeFilter.slug}` as OakSearchFilterCheckBoxProps["icon"])
+                        : undefined;
+
+                      return (
+                        <OakSearchFilterCheckBox
+                          name={"typeFilters"}
+                          displayValue={contentTypeFilter.title}
+                          key={`search-filters-type-${contentTypeFilter.slug}`}
+                          id={`search-filters-type-${contentTypeFilter.slug}`}
+                          icon={icon}
+                          value={"Content type filter"}
+                          aria-label={`${contentTypeFilter.title} filter`}
+                          keepIconColor={true}
+                          {...contentTypeFilter}
+                          onChange={() => {
+                            contentTypeFilter.onChange();
+                            searchRefined(
+                              "Content type filter",
+                              contentTypeFilter.title,
+                            );
+                          }}
+                        />
+                      );
+                    })
+                    .reverse()}
+                </OakFlex>
+              </OakBox>
+              <OakFlex $mb={["space-between-ssx", "space-between-xl"]}>
+                <MobileFilters
+                  $mt={0}
+                  label="Filters"
+                  labelOpened="Close"
+                  iconOpened="cross"
+                  iconClosed="mini-menu"
+                  iconBackground="black"
+                  $alignSelf={"flex-end"}
+                >
+                  <OakBox>
+                    <SearchFilters
+                      {...searchFilters}
+                      searchRefined={searchRefined}
+                    />
+                  </OakBox>
+                </MobileFilters>
+              </OakFlex>
+              <OakBox $mt={["space-between-s", null]}>
+                <SearchActiveFilters searchFilters={searchFilters} />
+              </OakBox>
+            </OakGridArea>
+            <OakGridArea
+              $mt={"space-between-l"}
+              $colSpan={[12, 9]}
+              $pr={"inner-padding-m"}
             >
-              <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
-                Search
-              </OakHeading>
-              <SearchForm
-                searchContext="search"
-                searchTerm={query.term}
-                placeholderText="Search by keyword or topic"
-                handleSubmit={(value) => {
-                  setSearchTerm(value);
-                }}
-                analyticsSearchSource={"search page search box"}
-              />
-            </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 9]} $pr={"inner-padding-m"}>
-            <div role="status">
-              {shouldShowError && (
-                <p>There was an error fetching search results</p>
+              <div role="status">
+                {shouldShowError && (
+                  <p>There was an error fetching search results</p>
+                )}
+                {shouldShowLoading && <p>Loading...</p>}
+                {shouldShowNoResultsMessage && (
+                  <NoSearchResults searchTerm={query.term} />
+                )}
+              </div>
+
+              {shouldShowResults && (
+                <SearchResults
+                  hits={results}
+                  allKeyStages={allKeyStages}
+                  searchResultExpanded={(searchHit, searchRank) =>
+                    searchResultExpanded({
+                      searchHit,
+                      searchRank,
+                    })
+                  }
+                  searchResultOpened={(searchHit, searchRank) =>
+                    searchResultOpened({
+                      searchHit,
+                      searchRank,
+                    })
+                  }
+                />
               )}
-              {shouldShowLoading && <p>Loading...</p>}
-              {shouldShowNoResultsMessage && (
-                <NoSearchResults searchTerm={query.term} />
-              )}
-            </div>
-            <OakFlex $mb="space-between-m2">
-              <MobileFilters
-                $mt={0}
-                label="Filters"
-                labelOpened="Close"
-                iconOpened="cross"
-                iconClosed="mini-menu"
-                iconBackground="black"
-                $alignSelf={"flex-start"}
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
+              <Flex
+                $flexDirection="column"
+                $mb={32}
+                $display={["none", "flex"]}
               >
                 <SearchFilters
                   {...searchFilters}
                   searchRefined={searchRefined}
                 />
-              </MobileFilters>
-            </OakFlex>
-            {shouldShowResults && (
-              <SearchResults
-                hits={results}
-                allKeyStages={allKeyStages}
-                searchResultExpanded={(searchHit, searchRank) =>
-                  searchResultExpanded({
-                    searchHit,
-                    searchRank,
-                  })
-                }
-                searchResultOpened={(searchHit, searchRank) =>
-                  searchResultOpened({
-                    searchHit,
-                    searchRank,
-                  })
-                }
-              />
-            )}
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </Flex>
-          </OakGridArea>
-        </OakGrid>
-      </MaxWidth>
-    </OakFlex>
+              </Flex>
+            </OakGridArea>
+          </OakGrid>
+        </MaxWidth>
+      </OakFlex>
+    </OakThemeProvider>
   );
 };
 

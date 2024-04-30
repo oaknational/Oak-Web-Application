@@ -38,7 +38,6 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     <Flex
       $alignItems={["flex-start", "center"]}
       $flexDirection={["column", "row"]}
-      $minHeight={44}
       $display={activeFilters.length ? "flex" : "none"}
     >
       <OakSpan $font="heading-light-7" $mr="space-between-s">
