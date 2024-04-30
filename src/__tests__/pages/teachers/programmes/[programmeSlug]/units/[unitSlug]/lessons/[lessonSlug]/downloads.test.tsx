@@ -380,9 +380,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(
         <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
       );
-      const cY = lessonDownloadsFixtures().updatedAt;
 
-      const currentYear = new Date(cY).getFullYear();
+      const currentYear = new Date(
+        lessonDownloadsFixtures().updatedAt,
+      ).getFullYear();
       const copyrightNotice = await screen.findByText(
         `This content is © Oak National Academy Limited (${currentYear}), licensed on`,
         { exact: false },
