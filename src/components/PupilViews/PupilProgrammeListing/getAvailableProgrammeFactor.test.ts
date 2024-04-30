@@ -2,7 +2,10 @@ import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
 
 import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
-import { ProgrammeFields , PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import {
+  ProgrammeFields,
+  PupilProgrammeListingData,
+} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 
 describe("getAvailableProgrammeFactor", () => {
   const overrides: Partial<ProgrammeFields>[] = [
