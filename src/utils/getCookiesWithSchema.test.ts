@@ -122,4 +122,19 @@ describe("useCookieWithSchema()", () => {
     });
     expect(current).toEqual(dflt);
   });
+
+  test("logging", () => {
+    const logSpy = jest.spyOn(console, "log").mockImplementationOnce(() => {});
+    mockCookieGet({ "foo.bar": "testing" });
+
+    const current = getCookiesWithSchema("foo.bar", z.boolean(), {
+      dflt: true,
+    });
+    expect(logSpy).toHaveBeenCalledTimes(1);
+    expect(logSpy).toHaveBeenCalledWith(
+      `cookie 'foo.bar' of invalid format`,
+      expect.anything(),
+    );
+    expect(current).toEqual(true);
+  });
 });

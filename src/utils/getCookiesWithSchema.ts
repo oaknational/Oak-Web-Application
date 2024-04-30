@@ -19,6 +19,7 @@ export function getCookiesWithSchema<
   if (cookieValueRaw === undefined) {
     return dflt;
   }
+
   try {
     cookieValue = JSON.parse(cookieValueRaw);
   } catch (err) {
