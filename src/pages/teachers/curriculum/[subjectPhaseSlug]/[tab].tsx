@@ -183,8 +183,6 @@ export const getStaticProps: GetStaticProps<
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
-      console.log({ context });
-
       if (!context.params) {
         throw new Error("Missing params");
       }
