@@ -72,8 +72,6 @@ export const getStaticProps: GetStaticProps<
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
-  // construct a base slug for the subject
-
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
     baseSlug: programmeSlug,
     isLegacy: false,

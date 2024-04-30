@@ -6,7 +6,6 @@ import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
-import { getBaseSlugByYearFromProgrammeSlug } from "@/pages-helpers/pupil/pupils-browse-helpers";
 
 export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units";
 
@@ -32,13 +31,13 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     tier,
     examboard,
     yearSlug,
+    phaseSlug,
+    subjectSlug,
     examboardSlug,
     legacy,
   } = programmeFields;
 
-  const baseSlug = getBaseSlugByYearFromProgrammeSlug(
-    curriculumData[0].programmeSlug,
-  );
+  const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
 
   const optionSlug = `options${legacy ? "-l" : ""}`;
 
