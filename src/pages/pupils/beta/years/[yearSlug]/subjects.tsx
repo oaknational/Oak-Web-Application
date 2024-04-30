@@ -109,7 +109,7 @@ export const getStaticProps: GetStaticProps<
 
       const curriculumData = await curriculumApi2023.pupilSubjectListingQuery({
         yearSlug: year,
-        isLegacy: false,
+        isLegacy: true,
       });
 
       if (!curriculumData) {
