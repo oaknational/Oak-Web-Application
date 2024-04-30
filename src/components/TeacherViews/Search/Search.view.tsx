@@ -219,7 +219,6 @@ const Search: FC<SearchProps> = (props) => {
                           id={`search-filters-type-${contentTypeFilter.slug}`}
                           icon={icon}
                           value={"Content type filter"}
-                          aria-label={`${contentTypeFilter.title} filter`}
                           keepIconColor={true}
                           {...contentTypeFilter}
                           onChange={() => {
@@ -249,6 +248,7 @@ const Search: FC<SearchProps> = (props) => {
                     <SearchFilters
                       {...searchFilters}
                       searchRefined={searchRefined}
+                      isMobileFilter
                     />
                   </OakBox>
                 </MobileFilters>

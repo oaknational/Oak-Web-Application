@@ -16,11 +16,16 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 type SearchFiltersProps = {
   searchRefined: (filterType: FilterTypeValueType, filterValue: string) => void;
-} & UseSearchFiltersReturnType;
+} & UseSearchFiltersReturnType & { isMobileFilter?: boolean };
 
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
-  const { keyStageFilters, subjectFilters, examBoardFilters, searchRefined } =
-    props;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    examBoardFilters,
+    searchRefined,
+    isMobileFilter,
+  } = props;
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -49,9 +54,8 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     : toSentenceCase(keyStageFilter.title)
                 }
                 key={`search-filters-keyStage-${keyStageFilter.slug}`}
-                id={`search-filters-keyStage-${keyStageFilter.slug}`}
+                id={`search-filters-keyStage-${keyStageFilter.slug}:mobile:${isMobileFilter}`}
                 value="Key stage filter"
-                aria-label={`${keyStageFilter.title} filter`}
                 {...keyStageFilter}
                 onChange={() => {
                   keyStageFilter.onChange();
@@ -79,8 +83,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 value={"examBoardFilters"}
                 key={`search-filters-examBoard-${examBoardFilter.slug}`}
                 displayValue={examBoardFilter.title}
-                id={`search-filters-examBoard-${examBoardFilter.slug}`}
-                aria-label={`${examBoardFilter.title} filter`}
+                id={`search-filters-examBoard-${examBoardFilter.slug}:mobile:${isMobileFilter}`}
                 {...examBoardFilter}
                 onChange={() => {
                   examBoardFilter.onChange();
@@ -104,10 +107,9 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 <OakSearchFilterCheckBox
                   value={"subjectFilters"}
                   key={`search-filters-subject-${subjectFilter.slug}`}
-                  id={`search-filters-subject-${subjectFilter.slug}`}
+                  id={`search-filters-subject-${subjectFilter.slug}:mobile:${isMobileFilter}`}
                   displayValue={subjectFilter.title}
                   icon={icon}
-                  aria-label={`${subjectFilter.title} filter`}
                   {...subjectFilter}
                   onChange={() => {
                     subjectFilter.onChange();
