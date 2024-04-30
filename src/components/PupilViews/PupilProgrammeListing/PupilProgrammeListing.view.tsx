@@ -71,6 +71,7 @@ export const PupilViewsProgrammeListing = ({
 
         {(() => {
           switch (true) {
+            // examboard is chosen and there are multiple tiers
             case chosenExamboard !== null && tiers.length > 1:
               return (
                 <>
@@ -88,7 +89,10 @@ export const PupilViewsProgrammeListing = ({
                   />
                 </>
               );
-            case examboards.length > 1 && chosenExamboard === null:
+            // examboard is not chosen and there are multiple tiers
+            case examboards.length > 1 &&
+              chosenExamboard === null &&
+              tiers.length > 1:
               return (
                 <>
                   <OakBackLink href={backlink}>Back</OakBackLink>
@@ -100,6 +104,21 @@ export const PupilViewsProgrammeListing = ({
                   />
                 </>
               );
+            // examboard is not chosen and there is only one or no tiers
+            case examboards.length > 1 &&
+              chosenExamboard === null &&
+              tiers.length <= 1:
+              return (
+                <>
+                  <OakBackLink href={backlink}>Back</OakBackLink>
+                  <BrowseExamboardSelector
+                    examboards={examboards}
+                    baseSlug={baseSlug}
+                    isLegacy={isLegacy}
+                  />
+                </>
+              );
+            // there are only tiers
             case examboards.length <= 1 && tiers.length >= 1:
               return (
                 <>
