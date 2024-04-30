@@ -36,7 +36,7 @@ describe("PupilSubjectListing", () => {
         curriculumApi2023.default.pupilSubjectListingQuery,
       ).toHaveBeenCalledWith({
         yearSlug: "ks123",
-        isLegacy: false,
+        isLegacy: true,
       });
     });
   });
