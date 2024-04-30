@@ -12,7 +12,7 @@ import {
 
 type SubjectListingPageProps = { curriculumData: PupilSubjectListingData[] };
 
-const SubjectListing = (props: SubjectListingPageProps) => {
+const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { curriculumData } = props;
   const subjectObject: Record<string, PupilSubjectListingData[]> =
     curriculumData.reduce(
@@ -36,7 +36,7 @@ const SubjectListing = (props: SubjectListingPageProps) => {
           const subjectData = subjectObject[subject];
           const length = subjectData?.length;
           if (subjectData?.[0]) {
-            if (length === 1 && subjectData?.[0]) {
+            if (length === 1) {
               const programmeSlug = subjectData[0].programmeSlug;
               return (
                 <li key={subject}>
@@ -122,4 +122,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SubjectListing;
+export default PupilSubjectListing;
