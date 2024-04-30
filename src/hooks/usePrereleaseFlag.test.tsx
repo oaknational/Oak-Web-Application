@@ -9,7 +9,7 @@ describe("usePrereleaseFlag()", () => {
   });
 
   it("should be true when enabled", async () => {
-    mockCookieGet({ "prerelease.testing.enabled": "true" });
+    mockCookieGet({ "prerelease.testing.enabled": true });
     const hook = renderHookWithInitialState(() => {
       return usePrereleaseFlag("testing");
     });
@@ -19,7 +19,7 @@ describe("usePrereleaseFlag()", () => {
   });
 
   it("should be false when disabled", async () => {
-    mockCookieGet({ "prerelease.testing.enabled": "false" });
+    mockCookieGet({ "prerelease.testing.enabled": false });
     const hook = renderHookWithInitialState(() => {
       return usePrereleaseFlag("testing");
     });
