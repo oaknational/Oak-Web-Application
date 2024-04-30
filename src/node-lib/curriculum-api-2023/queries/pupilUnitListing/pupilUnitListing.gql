@@ -1,0 +1,13 @@
+query pupilUnitListing($programmeSlug: String!) {
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    programme_slug
+    unit_slug
+    is_legacy
+    programme_fields
+    unit_data
+    supplementary_data
+    lesson_count
+  }
+}

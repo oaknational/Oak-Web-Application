@@ -15,9 +15,9 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
-      expect(getByText("subject")).toBeInTheDocument();
+      expect(getByText("Maths")).toBeInTheDocument();
       expect(getByText("unit-title")).toBeInTheDocument();
-      expect(getByText("year-description")).toBeInTheDocument();
+      expect(getByText("Year 1")).toBeInTheDocument();
     });
     it("should render the lesson titles as a tags", () => {
       const { getByText } = render(
@@ -27,7 +27,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       );
       expect(getByText("lesson-title")).toBeInTheDocument();
     });
-    it("should render the lesson titlts in the correct order", () => {
+    it("should render the lesson titles in the correct order", () => {
       const { getByText } = render(
         <PupilLessonListingPage
           curriculumData={[
