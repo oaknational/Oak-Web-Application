@@ -1,3 +1,10 @@
+## [1.423.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.0...v1.423.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* remove 'ts-expect-error' from component ([660bd70](https://github.com/oaknational/Oak-Web-Application/commit/660bd702408460b1c92598ad4336c56af4e09e40))
+
 # [1.423.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.422.1...v1.423.0) (2024-04-29)
 
 
