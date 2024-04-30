@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { getCookiesWithSchema } from "./getCookiesWithSchema";
+import { mockCookieGet } from "./mocks";
 
 const BOOLEAN_SCHEMA = z.boolean();
 const NUMBER_SCHEMA = z.number();
@@ -8,16 +9,6 @@ const OBJECT_SCHEMA = z.object({
   foo: z.number(),
   bar: z.string(),
 });
-
-function mockCookieGet(input: Record<string, unknown>) {
-  const cookieStringPartial = Object.entries(input)
-    .map(([key, val]) => {
-      return `${key}=${JSON.stringify(val)}`;
-    })
-    .join("; ");
-  const cookieString = `${cookieStringPartial}; `;
-  jest.spyOn(document, "cookie", "get").mockReturnValue(cookieString);
-}
 
 const DISABLE_LOGGING = true;
 
