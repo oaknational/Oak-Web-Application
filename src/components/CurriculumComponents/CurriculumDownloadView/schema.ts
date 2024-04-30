@@ -36,7 +36,7 @@ export const submitSchema = z
     termsAndConditionsSchema: termsAndConditionsSchema,
   })
   .superRefine((values, context) => {
-    if (!values.schoolIsntListed && (!values.school || values.school === "")) {
+    if (!values.schoolIsntListed && values.school === undefined) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         message: ERRORS.school,
