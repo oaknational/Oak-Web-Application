@@ -148,11 +148,15 @@ describe("SearchFilters", () => {
     const mathsFilter = getByRole("checkbox", {
       name: "Maths filter",
     });
+    const examBoardFilter = getByRole("checkbox", {
+      name: "OCR filter",
+    });
+    examBoardFilter.click();
 
     ks2Filter.click();
     mathsFilter.click();
 
-    expect(mockOnChange).toHaveBeenCalledTimes(2);
+    expect(mockOnChange).toHaveBeenCalledTimes(3);
   });
 
   test("searchRefined function invoked when checked", () => {
@@ -181,7 +185,11 @@ describe("SearchFilters", () => {
       name: "Key stage 2 filter",
     });
     ks2Filter.click();
+    const examBoardFilter = getByRole("checkbox", {
+      name: "OCR filter",
+    });
+    examBoardFilter.click();
 
-    expect(searchRefined).toHaveBeenCalledTimes(1);
+    expect(searchRefined).toHaveBeenCalledTimes(2);
   });
 });
