@@ -289,7 +289,7 @@ const Search: FC<SearchProps> = (props) => {
                   style={
                     filterButtonFocussed
                       ? {}
-                      : { position: "absolute", top: "-500px" }
+                      : { position: "absolute", top: "-600px" }
                   }
                 >
                   Skip to results
