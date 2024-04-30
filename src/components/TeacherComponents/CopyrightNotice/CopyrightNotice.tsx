@@ -59,6 +59,8 @@ const PostAlbCopyright = (
   let currentYear;
   if (props.updatedAt) {
     currentYear = new Date(props.updatedAt).getFullYear();
+  } else {
+    currentYear = "2023";
   }
   return (
     <OakP $font="body-3" {...props}>
