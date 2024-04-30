@@ -384,6 +384,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       const currentYear = new Date(
         lessonDownloadsFixtures().updatedAt,
       ).getFullYear();
+
       const copyrightNotice = await screen.findByText(
         `This content is © Oak National Academy Limited (${currentYear}), licensed on`,
         { exact: false },
