@@ -39,10 +39,9 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
           {...props.programme}
           data-testid="programme-list-item-link"
           onClick={() => onClick(programme)}
+          aria-label={ariaLabel}
         >
-          <OakP $font={"heading-7"} aria-label={ariaLabel}>
-            {heading}
-          </OakP>
+          <OakP $font={"heading-7"}>{heading}</OakP>
         </OwaLink>
       </OakFlex>
 
