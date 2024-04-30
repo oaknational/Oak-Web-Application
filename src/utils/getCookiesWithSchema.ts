@@ -11,9 +11,9 @@ export function getCookiesWithSchema<
 >(
   key: string,
   schema: Schema,
-  opts?: getCookiesWithSchemaOpts<Default>,
+  opts: getCookiesWithSchemaOpts<Default> = {},
 ): z.infer<Schema> | Default {
-  const { dflt, disableLogging } = opts ?? {};
+  const { dflt, disableLogging } = opts;
   let cookieValue: unknown;
   const cookieValueRaw = Cookies.get(key);
   if (cookieValueRaw === undefined) {
