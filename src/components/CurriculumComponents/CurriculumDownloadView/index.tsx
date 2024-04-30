@@ -179,7 +179,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
             <OakHeading
               tag="h3"
               $font={["heading-5"]}
-              data-testid="intent-heading"
+              data-testid="download-heading"
             >
               Document preview
             </OakHeading>
@@ -188,11 +188,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
         </Box>
         <Box $maxWidth={["100%", 400]} $textAlign={"left"}>
           <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-            <OakHeading
-              tag="h3"
-              $font={["heading-5"]}
-              data-testid="intent-heading"
-            >
+            <OakHeading tag="h3" $font={["heading-5"]}>
               Your details
             </OakHeading>
             <StyledForm
