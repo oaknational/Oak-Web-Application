@@ -127,14 +127,12 @@ describe("useCookieWithSchema()", () => {
     const logSpy = jest.spyOn(console, "log").mockImplementationOnce(() => {});
     mockCookieGet({ "foo.bar": "testing" });
 
-    const current = getCookiesWithSchema("foo.bar", z.boolean(), {
-      dflt: true,
-    });
+    const current = getCookiesWithSchema("foo.bar", z.boolean());
     expect(logSpy).toHaveBeenCalledTimes(1);
     expect(logSpy).toHaveBeenCalledWith(
       `cookie 'foo.bar' of invalid format`,
       expect.anything(),
     );
-    expect(current).toEqual(true);
+    expect(current).toEqual(undefined);
   });
 });

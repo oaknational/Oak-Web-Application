@@ -69,4 +69,17 @@ describe("buildCurriculumMetadata", () => {
     });
     expect(result).toBe("KS3-4 English Edexcel Curriculum Downloads");
   });
+
+  it("should throw if invalid", () => {
+    expect(() => {
+      buildCurriculumMetadata({
+        // @ts-expect-error because we want to test for bad values
+        metadataType: "foo",
+        tab: "download",
+        keyStagesData: "KS3-4",
+        subjectSlug: "English",
+        examboardSlug: "edexcel",
+      });
+    }).toThrow();
+  });
 });
