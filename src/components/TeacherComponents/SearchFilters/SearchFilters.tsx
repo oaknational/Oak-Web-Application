@@ -41,7 +41,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           $mb="space-between-m2"
           $bb={"border-solid-s"}
           $borderColor={"grey40"}
-          // $mt={["space-between-l", null]}
         >
           <StyledFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
