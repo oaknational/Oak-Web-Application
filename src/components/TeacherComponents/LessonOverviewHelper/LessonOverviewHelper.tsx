@@ -15,7 +15,7 @@ type LessonOverviewHelperProps = {
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
-  updatedAt?: string;
+  updatedAt: string;
 };
 
 const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({

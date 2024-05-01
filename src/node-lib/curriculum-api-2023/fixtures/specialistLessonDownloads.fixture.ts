@@ -8,6 +8,7 @@ export const SpecialistLessonDownloadFixture = (
 ): SpecialistLessonDownloads => {
   return {
     lesson: {
+      updatedAt: "2021-09-29T14:00:00Z",
       lessonTitle: "Online safety",
       isSpecialist: true,
       subjectTitle: "Independent Living",

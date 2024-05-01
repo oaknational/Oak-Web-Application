@@ -31,7 +31,7 @@ type LessonOverviewDetailsProps = {
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
   isMathJaxLesson: boolean;
-  updatedAt?: string;
+  updatedAt: string;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({

@@ -19,7 +19,6 @@ export type LessonPathway = {
   examBoardTitle?: string | null;
   examBoardSlug?: string | null;
   lessonCohort?: string | null;
-  updatedAt?: string;
 };
 
 export type SpecialistLessonPathway = {
@@ -71,7 +70,7 @@ export type LessonOverviewInPathway = LessonBase & {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
-  updatedAt?: string;
+  updatedAt: string;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (

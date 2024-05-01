@@ -58,13 +58,13 @@ type BaseLessonDownload = {
 
 type CanonicalLesson = BaseLessonDownload & {
   pathways: LessonPathway[];
-  updatedAt?: string;
+  updatedAt: string;
   nextLessons?: NextLesson[];
 };
 
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
-  updatedAt?: string;
+  updatedAt: string;
 } & LessonPathway;
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];

@@ -306,6 +306,8 @@ function CurriculumDownloads(
                   isLoading={isLocalStorageLoading}
                   setSchool={setSchool}
                   showSavedDetails={shouldDisplayDetailsCompleted}
+                  //updatedAt value hard coded speak to curriculum team
+                  updatedAt="2023"
                   handleEditDetailsCompletedClick={
                     handleEditDetailsCompletedClick
                   }

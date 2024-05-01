@@ -35,7 +35,7 @@ export type TermsAgreementFormProps = {
   showSavedDetails?: boolean;
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
-  updatedAt?: string;
+  updatedAt: string;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({

@@ -10,7 +10,7 @@ import Icon from "@/components/SharedComponents/Icon";
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
-  copyrightYear?: string;
+  copyrightYear: string;
 };
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
@@ -54,18 +54,13 @@ const StyledLink = styled.a`
 `;
 
 const PostAlbCopyright = (
-  props: FontProps & { openLinksExternally: boolean; copyrightYear?: string },
+  props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {
-  let currentYear;
-  if (props.copyrightYear) {
-    currentYear = new Date(props.copyrightYear).getFullYear();
-  } else {
-    currentYear = "2023";
-  }
+  const { copyrightYear } = props;
+  const year = new Date(copyrightYear).getFullYear();
   return (
     <OakP $font="body-3" {...props}>
-      This content is © Oak National Academy Limited ({currentYear}), licensed
-      on{" "}
+      This content is © Oak National Academy Limited ({year}), licensed on{" "}
       <StyledLink
         aria-label={`Open Government License version 3.0${
           props.openLinksExternally ? " (opens in a new tab)" : ""
@@ -100,12 +95,14 @@ const PostAlbCopyright = (
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
   openLinksExternally,
+  copyrightYear,
   ...fontProps
 }) => (
   <Box $maxWidth={[null, 420, 420]}>
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}
+        copyrightYear={copyrightYear}
         openLinksExternally={openLinksExternally}
       />
     ) : (

@@ -36,6 +36,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -53,6 +54,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -71,6 +73,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -89,6 +92,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -107,6 +111,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -125,6 +130,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -143,6 +149,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -161,6 +168,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -179,6 +187,7 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={null}
         supervisionLevel={undefined}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -202,6 +211,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={undefined}
         isLegacyLicense={true}
         isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
     const preAlbCopyright = getByText(

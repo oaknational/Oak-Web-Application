@@ -48,7 +48,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     resourcesHeader: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
-    updatedAt?: string;
+    updatedAt: string;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {

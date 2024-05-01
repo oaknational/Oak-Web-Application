@@ -191,7 +191,7 @@ export const baseLessonOverviewSchema = z.object({
   exitQuiz: lessonOverviewQuizData,
   videoTitle: z.string().nullish(),
   lessonCohort: z.string().nullish(),
-  updatedAt: z.string().optional(),
+  updatedAt: z.string(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
