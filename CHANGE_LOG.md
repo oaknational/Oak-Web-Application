@@ -1,3 +1,32 @@
+# [1.424.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.3...v1.424.0) (2024-05-01)
+
+
+### Bug Fixes
+
+* add missing logic state ([17d69bf](https://github.com/oaknational/Oak-Web-Application/commit/17d69bf556d7089b5da28c290a80c248234ebcf9))
+* broken tests ([5f2da7e](https://github.com/oaknational/Oak-Web-Application/commit/5f2da7e85ee01e3cd3f78c6b20e8d19576a3bd43))
+* forgot is legacy field ([799b8b2](https://github.com/oaknational/Oak-Web-Application/commit/799b8b2fce0bb59a0bcdba909797b35f2cc8853c))
+* formatting ([2e44c9a](https://github.com/oaknational/Oak-Web-Application/commit/2e44c9a85765da72812453737be878a5ac6946d2))
+* lint error ([d45534b](https://github.com/oaknational/Oak-Web-Application/commit/d45534b00721ccef4914e988dca4f56ceec8ae86))
+* merge conflicts ([904be4f](https://github.com/oaknational/Oak-Web-Application/commit/904be4fb4a879a93e29c4b1dca442d4bab427e54))
+* missing props ([9501b1a](https://github.com/oaknational/Oak-Web-Application/commit/9501b1aaf8e94c03e8c35a3ad3b0506343418be8))
+* narrowing types ([fe41f5b](https://github.com/oaknational/Oak-Web-Application/commit/fe41f5ba21a4b907ee8d375948dc86dd7e95834b))
+* trailing route ([3c18a0c](https://github.com/oaknational/Oak-Web-Application/commit/3c18a0cedf2ed97808a25ec5e49d1a631da7f4f8))
+* ts issue ([89fd32a](https://github.com/oaknational/Oak-Web-Application/commit/89fd32aa5717fb6d42f52e7f7e9050795796116a))
+* types ([a4e60df](https://github.com/oaknational/Oak-Web-Application/commit/a4e60df6cc59b15948502f7141e3e0384676b171))
+* update backbutton on units page to match new schema ([7958455](https://github.com/oaknational/Oak-Web-Application/commit/7958455986e801035542e5c9bf7fd9baf4ed8c35))
+* update tests ([e915873](https://github.com/oaknational/Oak-Web-Application/commit/e915873bfc6e49eddf0501970ac05c9c38eac3ea))
+
+
+### Features
+
+* back button ([e5de096](https://github.com/oaknational/Oak-Web-Application/commit/e5de09677b808942445ce117846d3b34fa9991c8))
+* error handling ([1836797](https://github.com/oaknational/Oak-Web-Application/commit/18367970910c9abf37b831f446780c4ec89d2be8))
+* programme listing pages ([c0b5093](https://github.com/oaknational/Oak-Web-Application/commit/c0b5093f06e027650cb26bff57c638a013eff95c))
+* programmeListing page ([f276f4d](https://github.com/oaknational/Oak-Web-Application/commit/f276f4da1f972fc826d60f8c82c6764c9d1e3c3c))
+* redirect if no programme factors ([bf083b8](https://github.com/oaknational/Oak-Web-Application/commit/bf083b8730af730fe5893160a6c7b382210b8d49))
+* use resolveOkaHref for href ([7c242e4](https://github.com/oaknational/Oak-Web-Application/commit/7c242e45021dacd0d3bbf70fbe61fdb964676e70))
+
 ## [1.423.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.2...v1.423.3) (2024-05-01)
 
 ## [1.423.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.1...v1.423.2) (2024-05-01)
