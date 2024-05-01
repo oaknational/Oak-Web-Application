@@ -11,7 +11,7 @@ import {
 } from "../__helpers__/cms";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
-const testPlanningPageData: PlanningPage = {
+export const testPlanningPageData: PlanningPage = {
   id: "01",
   title: "Planning title",
   heading: "Planning heading",
