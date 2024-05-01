@@ -183,11 +183,11 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={1}
             $mt={"space-between-m"}
-            $mb={"space-between-m"}
+            $mb={"space-between-ssx"}
           >
             <OakFlex
               $flexDirection={["column"]}
-              $mb={["space-between-l", "space-between-xxl"]}
+              $mb={["space-between-m", "space-between-m2"]}
             >
               <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
                 Search
@@ -315,7 +315,7 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
               {shouldShowResults && (
-                <OakP $mb={"space-between-ssx"}>
+                <OakP $mb={"space-between-xxl"}>
                   Showing {results.length} result
                   {results.length === 1 ? "" : "s"}
                 </OakP>
