@@ -21001,6 +21001,150 @@ export type Published_Mv_Share_5_0_0_Stream_Cursor_Value_Input = {
   unitTitle?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** columns and relationships of "published.mv_sitemap_6_0_0" */
+export type Published_Mv_Sitemap_6_0_0 = {
+  __typename?: 'published_mv_sitemap_6_0_0';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregated selection of "published.mv_sitemap_6_0_0" */
+export type Published_Mv_Sitemap_6_0_0_Aggregate = {
+  __typename?: 'published_mv_sitemap_6_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Sitemap_6_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Sitemap_6_0_0>;
+};
+
+/** aggregate fields of "published.mv_sitemap_6_0_0" */
+export type Published_Mv_Sitemap_6_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Sitemap_6_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Sitemap_6_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_sitemap_6_0_0" */
+export type Published_Mv_Sitemap_6_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_sitemap_6_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Sitemap_6_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Bool_Exp>>;
+  urls?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Sitemap_6_0_0_Max_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_0_max_fields';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Sitemap_6_0_0_Min_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_0_min_fields';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_sitemap_6_0_0". */
+export type Published_Mv_Sitemap_6_0_0_Order_By = {
+  urls?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_sitemap_6_0_0" */
+export enum Published_Mv_Sitemap_6_0_0_Select_Column {
+  /** column name */
+  Urls = 'urls'
+}
+
+/** Streaming cursor of the table "published_mv_sitemap_6_0_0" */
+export type Published_Mv_Sitemap_6_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Sitemap_6_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Sitemap_6_0_0_Stream_Cursor_Value_Input = {
+  urls?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** columns and relationships of "published.mv_sitemap_6_0_1" */
+export type Published_Mv_Sitemap_6_0_1 = {
+  __typename?: 'published_mv_sitemap_6_0_1';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregated selection of "published.mv_sitemap_6_0_1" */
+export type Published_Mv_Sitemap_6_0_1_Aggregate = {
+  __typename?: 'published_mv_sitemap_6_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Sitemap_6_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Sitemap_6_0_1>;
+};
+
+/** aggregate fields of "published.mv_sitemap_6_0_1" */
+export type Published_Mv_Sitemap_6_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_1_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Sitemap_6_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Sitemap_6_0_1_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_sitemap_6_0_1" */
+export type Published_Mv_Sitemap_6_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_sitemap_6_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Sitemap_6_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Bool_Exp>>;
+  urls?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Sitemap_6_0_1_Max_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_1_max_fields';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Sitemap_6_0_1_Min_Fields = {
+  __typename?: 'published_mv_sitemap_6_0_1_min_fields';
+  urls?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_sitemap_6_0_1". */
+export type Published_Mv_Sitemap_6_0_1_Order_By = {
+  urls?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_sitemap_6_0_1" */
+export enum Published_Mv_Sitemap_6_0_1_Select_Column {
+  /** column name */
+  Urls = 'urls'
+}
+
+/** Streaming cursor of the table "published_mv_sitemap_6_0_1" */
+export type Published_Mv_Sitemap_6_0_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Sitemap_6_0_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Sitemap_6_0_1_Stream_Cursor_Value_Input = {
+  urls?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** columns and relationships of "published.mv_specialist_1_0_2" */
 export type Published_Mv_Specialist_1_0_2 = {
   __typename?: 'published_mv_specialist_1_0_2';
@@ -27911,6 +28055,14 @@ export type Query_Root = {
   published_mv_share_5_0_0: Array<Published_Mv_Share_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_share_5_0_0" */
   published_mv_share_5_0_0_aggregate: Published_Mv_Share_5_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_sitemap_6_0_0" */
+  published_mv_sitemap_6_0_0: Array<Published_Mv_Sitemap_6_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_sitemap_6_0_0" */
+  published_mv_sitemap_6_0_0_aggregate: Published_Mv_Sitemap_6_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_sitemap_6_0_1" */
+  published_mv_sitemap_6_0_1: Array<Published_Mv_Sitemap_6_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_sitemap_6_0_1" */
+  published_mv_sitemap_6_0_1_aggregate: Published_Mv_Sitemap_6_0_1_Aggregate;
   /** fetch data from the table: "published.mv_specialist_1_0_2" */
   published_mv_specialist_1_0_2: Array<Published_Mv_Specialist_1_0_2>;
   /** fetch aggregated fields from the table: "published.mv_specialist_1_0_2" */
@@ -29141,6 +29293,42 @@ export type Query_RootPublished_Mv_Share_5_0_0_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Share_5_0_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Share_5_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Sitemap_6_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Sitemap_6_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Sitemap_6_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Sitemap_6_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
 };
 
 
@@ -32190,6 +32378,18 @@ export type Subscription_Root = {
   published_mv_share_5_0_0_aggregate: Published_Mv_Share_5_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_share_5_0_0" */
   published_mv_share_5_0_0_stream: Array<Published_Mv_Share_5_0_0>;
+  /** fetch data from the table: "published.mv_sitemap_6_0_0" */
+  published_mv_sitemap_6_0_0: Array<Published_Mv_Sitemap_6_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_sitemap_6_0_0" */
+  published_mv_sitemap_6_0_0_aggregate: Published_Mv_Sitemap_6_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_sitemap_6_0_0" */
+  published_mv_sitemap_6_0_0_stream: Array<Published_Mv_Sitemap_6_0_0>;
+  /** fetch data from the table: "published.mv_sitemap_6_0_1" */
+  published_mv_sitemap_6_0_1: Array<Published_Mv_Sitemap_6_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_sitemap_6_0_1" */
+  published_mv_sitemap_6_0_1_aggregate: Published_Mv_Sitemap_6_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_sitemap_6_0_1" */
+  published_mv_sitemap_6_0_1_stream: Array<Published_Mv_Sitemap_6_0_1>;
   /** fetch data from the table: "published.mv_specialist_1_0_2" */
   published_mv_specialist_1_0_2: Array<Published_Mv_Specialist_1_0_2>;
   /** fetch aggregated fields from the table: "published.mv_specialist_1_0_2" */
@@ -33860,6 +34060,56 @@ export type Subscription_RootPublished_Mv_Share_5_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Share_5_0_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Share_5_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Sitemap_6_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Sitemap_6_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Sitemap_6_0_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Sitemap_6_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Sitemap_6_0_1_Bool_Exp>;
 };
 
 
@@ -41501,6 +41751,11 @@ export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_3_0_1', keyStages?: any | null }> };
 
+export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeachersSitemapQuery = { __typename?: 'query_root', teachersSitemap: Array<{ __typename?: 'published_mv_sitemap_6_0_1', urls?: string | null }> };
+
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
@@ -42133,6 +42388,13 @@ export const TeachersHomePageDocument = gql`
   }
 }
     `;
+export const TeachersSitemapDocument = gql`
+    query teachersSitemap {
+  teachersSitemap: published_mv_sitemap_6_0_1 {
+    urls
+  }
+}
+    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
   programme: published_mv_unit_listing_page_5_0_1(
@@ -42250,6 +42512,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
+    },
+    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');

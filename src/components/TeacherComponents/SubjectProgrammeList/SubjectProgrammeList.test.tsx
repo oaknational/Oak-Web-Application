@@ -15,12 +15,10 @@ describe("ProgrammeList", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
+      expect(screen.getAllByRole("paragraph")[0]?.textContent).toBe(
         "Foundation",
       );
-      expect(screen.getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-        "Higher",
-      );
+      expect(screen.getAllByRole("paragraph")[1]?.textContent).toBe("Higher");
     });
   });
 });
