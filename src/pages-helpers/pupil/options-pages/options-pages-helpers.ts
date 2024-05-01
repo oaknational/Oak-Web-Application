@@ -1,3 +1,4 @@
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import {
   ProgrammeFields,
   examboardSlugs,
@@ -5,8 +6,9 @@ import {
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-export type URLParams = {
+export type OptionsURLParams = {
   programmeSlug: string;
 };
 
@@ -37,3 +39,34 @@ export const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
   Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+
+export const getPupilOptionData = async (
+  context: GetStaticPropsContext<OptionsURLParams>,
+  isLegacy: boolean = false,
+): Promise<GetStaticPropsResult<ProgrammesPageProps>> => {
+  if (!context.params) {
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
+  }
+  const { programmeSlug } = context.params;
+
+  if (!programmeSlug) {
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
+  }
+
+  const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
+    baseSlug: programmeSlug,
+    isLegacy,
+  });
+
+  if (!programmes) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const yearSlug = getYearSlug({ programmes });
+
+  return {
+    props: { programmes, baseSlug: programmeSlug, yearSlug },
+  };
+};

@@ -10,13 +10,12 @@ import {
   shouldSkipInitialBuild,
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import {
   ProgrammesPageProps,
-  URLParams,
-  getYearSlug,
+  OptionsURLParams,
   isExamboardSlug,
+  getPupilOptionData,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import OakError from "@/errors/OakError";
 
@@ -52,7 +51,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const config: GetStaticPathsResult<URLParams> = {
+  const config: GetStaticPathsResult<OptionsURLParams> = {
     fallback: "blocking",
     paths: [],
   };
@@ -61,33 +60,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   ProgrammesPageProps,
-  URLParams
-> = async (context) => {
-  if (!context.params) {
-    throw new OakError({ code: "curriculum-api/params-incorrect" });
-  }
-  const { programmeSlug } = context.params;
-
-  if (!programmeSlug) {
-    throw new OakError({ code: "curriculum-api/params-incorrect" });
-  }
-
-  const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
-    baseSlug: programmeSlug,
-    isLegacy: false,
-  });
-
-  if (!programmes) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const yearSlug = getYearSlug({ programmes });
-
-  return {
-    props: { programmes, baseSlug: programmeSlug, yearSlug },
-  };
+  OptionsURLParams
+> = (context) => {
+  return getPupilOptionData(context);
 };
 
 export default ProgrammesPage;
