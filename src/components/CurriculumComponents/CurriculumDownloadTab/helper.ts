@@ -15,7 +15,6 @@ import {
   setLocalstorageWithSchema,
 } from "@/utils/localstorage";
 
-
 type LocalStorageDownloadData = {
   schoolId: string;
   schoolName: string;
