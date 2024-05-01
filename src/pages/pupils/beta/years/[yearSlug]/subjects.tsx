@@ -27,7 +27,7 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
       {},
     );
 
-  const subjects = Object.keys(subjectObject);
+  const subjects = Object.keys(subjectObject).sort();
 
   return (
     <div>

@@ -14,6 +14,29 @@ describe("PupilSubjectListing", () => {
     );
     expect(getByText("maths")).toBeInTheDocument();
   });
+  it("should render subjects alphabetically", () => {
+    const { getByText } = render(
+      <PupilSubjectListing
+        curriculumData={[
+          subjectBrowseDataFixture({
+            programmeFields: {
+              ...subjectBrowseDataFixture({}).programmeFields,
+              subjectSlug: "maths",
+            },
+          }),
+          subjectBrowseDataFixture({
+            programmeFields: {
+              ...subjectBrowseDataFixture({}).programmeFields,
+              subjectSlug: "biology",
+            },
+          }),
+        ]}
+      />,
+    );
+    const e1 = getByText("biology");
+    const e2 = getByText("maths");
+    expect(e2.compareDocumentPosition(e1)).toBe(2);
+  });
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
       const res = await getStaticPaths();
