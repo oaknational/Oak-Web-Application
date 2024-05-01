@@ -34,6 +34,14 @@ describe("PupilSubjectListing", () => {
               subjectSlug: "biology",
             },
           }),
+          subjectBrowseDataFixture({
+            baseSlug: "biology-primary-year-6",
+            isLegacy: false,
+            programmeFields: {
+              ...subjectBrowseDataFixture({}).programmeFields,
+              subjectSlug: "biology",
+            },
+          }),
         ]}
       />,
     );
