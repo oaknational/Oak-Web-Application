@@ -29,6 +29,7 @@ import { specialistLessonShareQuery } from "./queries/specialistLessonShare/spec
 import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 import specialistLessonOverviewCanonical from "./queries/specialistLessonOverviewCanonical/specialistLessonOverviewCanonical.query";
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
+import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -150,6 +151,7 @@ const curriculumApi2023 = {
   specialistLessonListing: specialistLessonListingQuery(sdk),
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
+  teachersSitemap: teachersSitemap(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
