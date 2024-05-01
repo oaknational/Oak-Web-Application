@@ -45,6 +45,7 @@ describe("lessonOverviewCanonical()", () => {
               keyStageSlug: "ks3",
               keyStageTitle: "Key-stage 3",
               downloads: [],
+              updatedAt: "2021-10-01",
             },
             {
               ...originalLessonBase,
@@ -56,6 +57,7 @@ describe("lessonOverviewCanonical()", () => {
               keyStageSlug: "ks4",
               keyStageTitle: "Key-stage 4",
               downloads: [],
+              updatedAt: "2021-10-01",
             },
           ],
         }),
