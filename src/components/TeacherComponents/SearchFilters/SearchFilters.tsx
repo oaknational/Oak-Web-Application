@@ -98,7 +98,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   {...examBoardFilter}
                   onChange={() => {
                     examBoardFilter.onChange();
-                    searchRefined("Subject filter", examBoardFilter.title);
+                    searchRefined("Exam board filter", examBoardFilter.title);
                   }}
                 />
               ))}
