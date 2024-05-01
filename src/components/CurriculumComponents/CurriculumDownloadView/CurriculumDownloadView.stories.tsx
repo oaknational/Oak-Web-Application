@@ -19,7 +19,6 @@ const sleep = (t: number) =>
 export const CurriculumDownloadView: Story = {
   args: {
     data: {
-      defaultSchool: "100000",
       schools: [
         {
           urn: "100000",
@@ -106,11 +105,11 @@ export const CurriculumDownloadView: Story = {
           status: "Open",
         },
       ],
-      school: undefined,
+      schoolId: undefined,
       email: "test@example.com",
       downloadType: "word",
-      termsAndConditionsSchema: true,
-      schoolIsntListed: false,
+      termsAndConditions: true,
+      schoolNotListed: false,
       // TODO: For better UX...
       loadingSchools: false,
     },

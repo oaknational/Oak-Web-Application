@@ -6,7 +6,7 @@ const ERRORS = {
   terms: "Accept terms and conditions to continue",
 } as const;
 
-export const schoolSchema = z
+export const schoolIdSchema = z
   .string({
     errorMap: () => ({
       message: ERRORS.school,
@@ -30,13 +30,13 @@ export const termsAndConditionsSchema = z.literal(true, {
 
 export const submitSchema = z
   .object({
-    school: schoolSchema.optional(),
-    schoolIsntListed: z.boolean(),
+    schoolId: schoolIdSchema.optional(),
+    schoolNotListed: z.boolean(),
     email: emailSchema,
-    termsAndConditionsSchema: termsAndConditionsSchema,
+    termsAndConditions: termsAndConditionsSchema,
   })
   .superRefine((values, context) => {
-    if (!values.schoolIsntListed && values.school === undefined) {
+    if (!values.schoolNotListed && values.schoolId === undefined) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         message: ERRORS.school,
@@ -44,8 +44,3 @@ export const submitSchema = z
       });
     }
   });
-
-export const runtimeSchema = z.object({
-  school: schoolSchema.optional(),
-  email: emailSchema.optional(),
-});

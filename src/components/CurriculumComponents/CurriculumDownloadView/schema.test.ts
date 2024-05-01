@@ -2,14 +2,14 @@ import { SafeParseError } from "zod";
 
 import {
   emailSchema,
-  schoolSchema,
+  schoolIdSchema,
   submitSchema,
   termsAndConditionsSchema,
 } from "./schema";
 
 describe("CurriculumDownloadView / schema", () => {
-  test("schoolSchema", () => {
-    const out = schoolSchema.safeParse("");
+  test("schoolIdSchema", () => {
+    const out = schoolIdSchema.safeParse("");
     const error = (out as SafeParseError<unknown>).error;
     expect(error).toBeDefined();
     expect(error.errors).toHaveLength(1);
@@ -37,10 +37,10 @@ describe("CurriculumDownloadView / schema", () => {
   });
   test("submitSchema", () => {
     const out = submitSchema.safeParse({
-      school: undefined,
-      schoolIsntListed: false,
+      schoolId: undefined,
+      schoolNotListed: false,
       email: "test@example.com",
-      termsAndConditionsSchema: true,
+      termsAndConditions: true,
     });
     expect(out.success).toEqual(false);
     const error = (out as SafeParseError<unknown>).error;

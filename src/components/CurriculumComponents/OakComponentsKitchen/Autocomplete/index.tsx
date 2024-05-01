@@ -12,9 +12,9 @@ import Input from "@/components/SharedComponents/Input";
 export const AutocompleteItem = Item;
 
 type AutocompleteProps = {
-  inputProps: Omit<ComponentProps<typeof Input>, "value">;
+  inputProps: ComponentProps<typeof Input>;
   value?: string;
-  onChange: (value: string) => void;
+  onChange: (value: string, textValue: string) => void;
   onInputChange?: (value: string) => void;
   children: CollectionChildren<HTMLDivElement>;
 };
@@ -25,7 +25,10 @@ const Autocomplete = (props: AutocompleteProps) => {
   const { contains } = useFilter({ sensitivity: "base" });
 
   const onSelectionChange = (key: Key) => {
-    props.onChange(String(key));
+    const textValue = state.collection.getItem(key);
+    if (textValue) {
+      props.onChange(String(key), textValue.textValue);
+    }
   };
 
   const onInputChange = (key: string) => {

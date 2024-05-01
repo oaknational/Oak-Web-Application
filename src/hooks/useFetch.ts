@@ -11,7 +11,6 @@ export function useFetch<T>(url: string, errorCode: ErrorInfo["code"]) {
     (queryUrl: string) => {
       return fetch(queryUrl)
         .then((res) => {
-          console.log("res.ok[%s]", queryUrl, res.ok);
           if (res.ok) {
             return res.json();
           } else {

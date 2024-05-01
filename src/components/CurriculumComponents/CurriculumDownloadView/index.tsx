@@ -11,14 +11,7 @@ import {
   OakRadioGroup,
   OakUL,
 } from "@oaknational/oak-components";
-import {
-  ComponentProps,
-  FC,
-  FormEvent,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { ComponentProps, FC, FormEvent, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
@@ -39,12 +32,19 @@ import { HOMESCHOOL_URN } from "@/components/TeacherComponents/ResourcePageSchoo
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
 
-const useSchoolsFromApi = ({ schools }: { schools: School[] }) => {
+const useSchoolsFromApi = ({
+  schools,
+}: {
+  schools: School[];
+}): {
+  key: string;
+  textValue: string;
+}[] => {
   return useMemo(() => {
     return [
       ...parseSchoolToListItems(schools),
-      { textValue: "Homeschool", key: HOMESCHOOL_URN } as const,
-    ] as const;
+      { textValue: "Homeschool", key: HOMESCHOOL_URN },
+    ];
   }, [schools]);
 };
 
@@ -83,46 +83,48 @@ const DOWNLOAD_LABELS: [DownloadType, string][] = [
   ["pdf", "PDF"],
 ];
 
+const injectCurrentSchool = (
+  data: { schoolId?: string; schoolName?: string },
+  schools: { key: string; textValue: string }[],
+) => {
+  const found = !!schools.find((school) => {
+    return school.key === data.schoolId;
+  });
+
+  if (!found && data.schoolId && data.schoolName) {
+    return [
+      ...schools,
+      {
+        key: data.schoolId,
+        textValue: data.schoolName,
+      },
+    ];
+  }
+  return schools;
+};
+
 export type CurriculumDownloadViewData = {
   schools: School[];
-  defaultSchool: string;
   loadingSchools: boolean;
-  school?: string;
+  schoolId?: string;
+  schoolName?: string;
   email?: string;
   downloadType: DownloadType;
-  termsAndConditionsSchema?: boolean;
-  schoolIsntListed?: boolean;
+  termsAndConditions?: boolean;
+  schoolNotListed?: boolean;
 };
 
 export type CurriculumDownloadViewErrors = Partial<{
-  school: string;
+  schoolId: string;
   email: string;
-  termsAndConditionsSchema: string;
-  schoolIsntListed: string;
+  termsAndConditions: string;
+  schoolNotListed: string;
 }>;
-
-function useDirtyState<T extends object>(newData: T) {
-  const [dirtyData, setDirtyData] = useState<T>(newData);
-
-  useEffect(() => {
-    setDirtyData(newData);
-  }, [newData]);
-
-  const setDirtyDataPartial = (newPartialData: Partial<T>) => {
-    setDirtyData({
-      ...dirtyData,
-      ...newPartialData,
-    });
-  };
-
-  return [dirtyData, setDirtyDataPartial] as const;
-}
 
 export type CurriculumDownloadViewProps = {
   isSubmitting: boolean;
   data: CurriculumDownloadViewData;
   schools: School[];
-  // errors: CurriculumDownloadViewErrors
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
 };
@@ -134,8 +136,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   isSubmitting,
 }) => {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
-  const [dirtyData, setPartialDirtyData] =
-    useDirtyState<CurriculumDownloadViewData>(data);
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>(
     () => ({}),
   );
@@ -153,7 +153,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
     e.preventDefault();
     if (onSubmit) {
       const newSubmitValidatioResults = runSchema(submitSchema, data);
-      console.log({ newSubmitValidatioResults });
       setErrors(newSubmitValidatioResults.errors);
       if (newSubmitValidatioResults.success) {
         onSubmit(data);
@@ -161,9 +160,10 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
     }
   };
 
-  const onChangeDirtyLocal = (data: Partial<CurriculumDownloadViewData>) => {
-    setPartialDirtyData(data);
-  };
+  const autoCompleteList = injectCurrentSchool(
+    data,
+    schoolsAsAutocompleteItems,
+  );
 
   return (
     <OakBox $color="black">
@@ -213,28 +213,33 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                     $gap={"space-between-xs"}
                   >
                     <Autocomplete
+                      key={data.schoolId}
                       inputProps={{
                         label: "School (required)",
                         id: "download-school",
-                        error: errors.school,
+                        error: errors.schoolId,
                         placeholder:
                           "Type school name, postcode, or ‘homeschool’",
                       }}
-                      onChange={(value) =>
+                      onChange={(value, textValue) => {
                         onChangeLocal({
-                          school: value,
-                          schoolIsntListed: false,
-                        })
-                      }
-                      onInputChange={(value) =>
-                        setPartialDirtyData({ school: value })
-                      }
-                      value={data.school}
+                          schoolId: value,
+                          schoolName: textValue,
+                          schoolNotListed: false,
+                        });
+                      }}
+                      onInputChange={(value) => {
+                        onChangeLocal({
+                          schoolName: value,
+                          schoolId: undefined,
+                        });
+                      }}
+                      value={data.schoolName}
                     >
-                      {schoolsAsAutocompleteItems.map(({ key, textValue }) => {
+                      {autoCompleteList.map(({ key, textValue }) => {
                         const element = formatSchoolName(
                           textValue,
-                          dirtyData.school,
+                          data.schoolName,
                         );
                         return (
                           <AutocompleteItem key={key} textValue={textValue}>
@@ -245,11 +250,11 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                     </Autocomplete>
                     <OakCheckBox
                       displayValue={"My school isn't listed"}
-                      checked={data.schoolIsntListed}
+                      checked={data.schoolNotListed}
                       onChange={(e) =>
                         onChangeLocal({
-                          schoolIsntListed: e.target.checked,
-                          school: undefined,
+                          schoolNotListed: e.target.checked,
+                          schoolId: undefined,
                         })
                       }
                       value="download-school-isnt-listed"
@@ -270,13 +275,11 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                       label="Email (optional)"
                       id="download-email"
                       data-testid="download-email"
-                      value={dirtyData.email}
+                      value={data.email}
                       type="text"
                       error={errors.email}
                       onBlur={(e) => onChangeLocal({ email: e.target.value })}
-                      onChange={(e) =>
-                        onChangeDirtyLocal({ email: e.target.value })
-                      }
+                      onChange={(e) => onChangeLocal({ email: e.target.value })}
                     />
 
                     <OakP $font={["body-3"]}>
@@ -301,10 +304,8 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                     $alignItems={"start"}
                     $gap={"space-between-m"}
                   >
-                    {errors.termsAndConditionsSchema && (
-                      <OakFieldError>
-                        {errors.termsAndConditionsSchema}
-                      </OakFieldError>
+                    {errors.termsAndConditions && (
+                      <OakFieldError>{errors.termsAndConditions}</OakFieldError>
                     )}
                     <Box
                       $position={"relative"}
@@ -321,10 +322,10 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                         displayValue={
                           "I accept terms and conditions (required)"
                         }
-                        checked={data.termsAndConditionsSchema}
+                        checked={data.termsAndConditions}
                         onChange={(e) =>
                           onChangeLocal({
-                            termsAndConditionsSchema: e.target.checked,
+                            termsAndConditions: e.target.checked,
                           })
                         }
                         value="download-accept-terms"
@@ -386,6 +387,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                               return (
                                 <OakRadioButton
                                   id={downloadTypeValue}
+                                  key={downloadTypeValue}
                                   label={downloadTypeLabel}
                                   value={downloadTypeValue}
                                   data-testid={downloadTypeValue}
