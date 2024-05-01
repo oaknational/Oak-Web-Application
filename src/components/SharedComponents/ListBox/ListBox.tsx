@@ -110,6 +110,7 @@ function Option({ item, state }: OptionProps) {
       isFocused={isFocused}
       isSelected={isSelected}
       $font={"heading-light-7"}
+      data-testid="listbox-option"
     >
       <OakFlex
         $width={"100%"}

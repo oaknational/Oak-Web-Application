@@ -41617,6 +41617,14 @@ export type PupilLessonListingQueryVariables = Exact<{
 
 export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_data?: any | null, lesson_slug?: string | null, supplementary_data?: any | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null }> };
 
+export type PupilProgrammeListingQueryVariables = Exact<{
+  baseSlug: Scalars['String']['input'];
+  isLegacy: Scalars['Boolean']['input'];
+}>;
+
+
+export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_0_0', programme_slug?: string | null, combined_programme_fields?: any | null, base_programme_fields?: any | null }> };
+
 export type PupilUnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
@@ -42048,6 +42056,17 @@ export const PupilLessonListingDocument = gql`
   }
 }
     `;
+export const PupilProgrammeListingDocument = gql`
+    query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
+  data: published_mv_synthetic_programmes_by_year_7_0_0(
+    where: {base_slug: {_eq: $baseSlug}, synthetic_programme_slug: {_contains: {is_legacy: $isLegacy}}}
+  ) {
+    programme_slug
+    combined_programme_fields
+    base_programme_fields
+  }
+}
+    `;
 export const PupilUnitListingDocument = gql`
     query pupilUnitListing($programmeSlug: String!) {
   browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0(
@@ -42436,6 +42455,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query');
+    },
+    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query');
     },
     pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query');
