@@ -27,7 +27,9 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
       {},
     );
 
-  const subjects = Object.keys(subjectObject).sort();
+  const subjects = Object.keys(subjectObject).sort((a, b) =>
+    a.localeCompare(b),
+  );
 
   return (
     <div>
