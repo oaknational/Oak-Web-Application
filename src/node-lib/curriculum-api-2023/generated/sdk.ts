@@ -42050,6 +42050,11 @@ export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_3_0_1', keyStages?: any | null }> };
 
+export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeachersSitemapQuery = { __typename?: 'query_root', teachersSitemap: Array<{ __typename?: 'published_mv_sitemap_6_0_1', urls?: string | null }> };
+
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
@@ -42694,6 +42699,13 @@ export const TeachersHomePageDocument = gql`
   }
 }
     `;
+export const TeachersSitemapDocument = gql`
+    query teachersSitemap {
+  teachersSitemap: published_mv_sitemap_6_0_1 {
+    urls
+  }
+}
+    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
   programme: published_mv_unit_listing_page_5_0_1(
@@ -42814,6 +42826,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
+    },
+    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
