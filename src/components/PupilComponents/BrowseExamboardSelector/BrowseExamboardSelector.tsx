@@ -45,7 +45,7 @@ export const BrowseExamboardSelector = ({
                 page: "pupil-unit-index",
                 programmeSlug: `${baseSlug}-${examboard.examboardSlug}${
                   isLegacy ? "-l" : ""
-                }/units`,
+                }`,
               })}
             >
               {examboard.examboard}
