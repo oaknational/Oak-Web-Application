@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps<
   ProgrammesPageProps,
   OptionsURLParams
 > = async (context) => {
-  return getPupilOptionData(context);
+  return getPupilOptionData(context, true);
 };
 
 export default ProgrammesPage;
