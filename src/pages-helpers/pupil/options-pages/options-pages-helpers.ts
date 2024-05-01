@@ -7,6 +7,7 @@ import {
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type OptionsURLParams = {
   programmeSlug: string;
@@ -58,9 +59,21 @@ export const getPupilOptionData = async (
     isLegacy,
   });
 
-  if (!programmes) {
+  if (!programmes || programmes.length === 0) {
     return {
       notFound: true,
+    };
+  }
+
+  if (programmes.length === 1) {
+    return {
+      redirect: {
+        destination: resolveOakHref({
+          page: "pupil-unit-index",
+          programmeSlug,
+        }),
+        permanent: false,
+      },
     };
   }
 
