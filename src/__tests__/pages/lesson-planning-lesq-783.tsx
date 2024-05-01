@@ -51,7 +51,9 @@ describe("pages/lesson-planning.tsx", () => {
 
   describe("getStaticProps", () => {
     it("Should not fetch draft content by default", async () => {
-      const { getStaticProps } = await import("../../pages/lesson-planning");
+      const { getStaticProps } = await import(
+        "../../pages/lesson-planning-lesq-783"
+      );
       await getStaticProps({
         params: {},
       });
@@ -64,7 +66,9 @@ describe("pages/lesson-planning.tsx", () => {
     it("should return notFound when the page data is missing", async () => {
       getPageData.mockResolvedValueOnce(null as never);
 
-      const { getStaticProps } = await import("../../pages/lesson-planning");
+      const { getStaticProps } = await import(
+        "../../pages/lesson-planning-lesq-783"
+      );
       const propsResult = await getStaticProps({
         params: {},
       });
