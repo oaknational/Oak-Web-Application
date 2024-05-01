@@ -1,5 +1,6 @@
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import { unitBrowseDataFixture } from "../fixtures/unitBrowseData.fixture";
+import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -32,6 +33,7 @@ const curriculumApi: Pick<
   | "pupilLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
+  | "pupilSubjectListingQuery"
   | "pupilProgrammeListingQuery"
   | "specialistSubjectListing"
   | "specialistUnitListing"
@@ -71,6 +73,9 @@ const curriculumApi: Pick<
   }),
   pupilUnitListingQuery: jest.fn(async () => {
     return [unitBrowseDataFixture({})];
+  }),
+  pupilSubjectListingQuery: jest.fn(async () => {
+    return [subjectBrowseDataFixture({})];
   }),
   pupilProgrammeListingQuery: jest.fn(async () => {
     return pupilProgrammeListingFixture();
