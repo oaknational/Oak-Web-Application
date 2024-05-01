@@ -60,13 +60,15 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
                 </li>
               );
             }
+            const baseSlug = subjectData[0].baseSlug;
+            const isLegacy = subjectData[0].isLegacy;
             return (
               <li key={subject}>
                 <Link
                   href={resolveOakHref({
                     page: "pupil-programme-index",
-                    yearSlug: subjectData[0].programmeFields.yearSlug,
-                    subjectSlug: subjectData[0].programmeFields.subjectSlug,
+                    programmeSlug: baseSlug,
+                    optionSlug: isLegacy ? "options-l" : "options",
                   })}
                 >
                   {subject}

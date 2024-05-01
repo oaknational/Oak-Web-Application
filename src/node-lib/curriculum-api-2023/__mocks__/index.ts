@@ -17,6 +17,7 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
+import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { mockUrls } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 
 const curriculumApi: Pick<
@@ -33,6 +34,7 @@ const curriculumApi: Pick<
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
   | "pupilSubjectListingQuery"
+  | "pupilProgrammeListingQuery"
   | "specialistSubjectListing"
   | "specialistUnitListing"
   | "specialistLessonOverviewCanonical"
@@ -74,6 +76,9 @@ const curriculumApi: Pick<
   }),
   pupilSubjectListingQuery: jest.fn(async () => {
     return [subjectBrowseDataFixture({})];
+  }),
+  pupilProgrammeListingQuery: jest.fn(async () => {
+    return pupilProgrammeListingFixture();
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();

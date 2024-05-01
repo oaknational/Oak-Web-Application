@@ -10,6 +10,7 @@ describe("pupilUnitListing()", () => {
   const pupilProgrammeListingFixture = {
     programme_slug: s.programme_slug,
     programme_fields: s.programme_fields,
+    year_slug: s.year_slug,
   };
 
   it("it returns the correct data", async () => {
@@ -26,7 +27,7 @@ describe("pupilUnitListing()", () => {
       isLegacy: false,
     });
     expect(res[0]?.programmeSlug).toEqual("maths-primary-year-1");
-    // expect(res[0]?.programmeFields?.phase).toEqual("primary");
+    expect(res[0]?.programmeFields?.phase).toEqual("primary");
   });
 
   it("throws if data is not returned", async () => {

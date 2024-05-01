@@ -12,6 +12,7 @@ describe("pupilSubjectListing()", () => {
     programme_fields: s.programme_fields,
     year_slug: s.year_slug,
     base_slug: s.base_slug,
+    is_legacy: s.is_legacy,
   };
 
   it("it returns the correct data", async () => {

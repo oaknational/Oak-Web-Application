@@ -141,15 +141,15 @@ export type PupilLessonListingLinkProps = {
   unitSlug: string;
 };
 
+export type PupilProgrammeListingLinkProps = {
+  page: "pupil-programme-index";
+  programmeSlug: string;
+  optionSlug: string;
+};
+
 export type PupilUnitListingLinkProps = {
   page: "pupil-unit-index";
   programmeSlug: string;
-};
-
-export type PupilProgrammeListingLinkProps = {
-  page: "pupil-programme-index";
-  subjectSlug: string;
-  yearSlug: string;
 };
 
 export type PupilSubjectListingLinkProps = {
@@ -307,6 +307,7 @@ export type OakLinkProps =
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
   | PupilYearListingLinkProps
+  | PupilUnitListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -654,8 +655,7 @@ export const OAK_PAGES: {
     pageType: "pupil-unit-index",
   }),
   "pupil-programme-index": createOakPageConfig({
-    pathPattern:
-      "/pupils/beta/years/:yearSlug/subjects/:subjectSlug/programmes",
+    pathPattern: "/pupils/beta/programmes/:programmeSlug/:optionSlug",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "pupil-programme-index",

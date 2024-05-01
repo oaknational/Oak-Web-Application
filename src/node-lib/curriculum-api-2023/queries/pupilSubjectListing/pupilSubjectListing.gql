@@ -6,5 +6,6 @@ query pupilSubjectListing($yearSlug: String!, $isLegacy: Boolean!) {
     base_slug
     year_slug
     programme_fields
+    is_legacy
   }
 }

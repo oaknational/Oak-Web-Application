@@ -41914,7 +41914,7 @@ export type PupilProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_0_0', programme_slug?: string | null, combined_programme_fields?: any | null, base_programme_fields?: any | null }> };
+export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null, year_slug?: string | null, programme_fields?: any | null }> };
 
 export type PupilSubjectListingQueryVariables = Exact<{
   yearSlug: Scalars['String']['input'];
@@ -41922,7 +41922,7 @@ export type PupilSubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null }> };
+export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }> };
 
 export type PupilUnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -42357,12 +42357,12 @@ export const PupilLessonListingDocument = gql`
     `;
 export const PupilProgrammeListingDocument = gql`
     query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
-  data: published_mv_synthetic_programmes_by_year_7_0_0(
-    where: {base_slug: {_eq: $baseSlug}, synthetic_programme_slug: {_contains: {is_legacy: $isLegacy}}}
+  data: published_mv_synthetic_programmes_by_year_7_1_0(
+    where: {base_slug: {_eq: $baseSlug}, is_legacy: {_eq: $isLegacy}}
   ) {
     programme_slug
-    combined_programme_fields
-    base_programme_fields
+    year_slug
+    programme_fields
   }
 }
     `;
@@ -42375,6 +42375,7 @@ export const PupilSubjectListingDocument = gql`
     base_slug
     year_slug
     programme_fields
+    is_legacy
   }
 }
     `;
