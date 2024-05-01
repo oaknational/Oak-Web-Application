@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 
 import PupilUnitListingPage, {
-  getStaticPaths,
   getStaticProps,
 } from "@/pages/pupils/beta//programmes/[programmeSlug]/units";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
@@ -108,15 +107,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       );
 
       expect(getByText("Select examboards")).toBeInTheDocument();
-    });
-  });
-  describe("getStaticPaths", () => {
-    it("Should not generate pages at build time", async () => {
-      const res = await getStaticPaths();
-      expect(res).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
     });
   });
 

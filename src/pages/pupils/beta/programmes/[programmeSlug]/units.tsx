@@ -2,15 +2,17 @@ import { GetStaticProps, GetStaticPropsResult } from "next";
 import Link from "next/link";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
-import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
-
-export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
+};
+
+type PupilUnitListingPageURLParams = {
+  programmeSlug: string;
 };
 
 const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
@@ -111,9 +113,12 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
   );
 };
 
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilUnitListingPageURLParams>;
+
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
-  URLParams
+  PupilUnitListingPageURLParams
 > = async (context) => {
   return getPageProps({
     page: "pupil-lesson-listing::getStaticProps",
