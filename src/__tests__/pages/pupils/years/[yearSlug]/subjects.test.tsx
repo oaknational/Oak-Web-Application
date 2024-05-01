@@ -19,12 +19,16 @@ describe("PupilSubjectListing", () => {
       <PupilSubjectListing
         curriculumData={[
           subjectBrowseDataFixture({
+            baseSlug: "maths-primary-year-6",
+            isLegacy: false,
             programmeFields: {
               ...subjectBrowseDataFixture({}).programmeFields,
               subjectSlug: "maths",
             },
           }),
           subjectBrowseDataFixture({
+            baseSlug: "biology-primary-year-6",
+            isLegacy: false,
             programmeFields: {
               ...subjectBrowseDataFixture({}).programmeFields,
               subjectSlug: "biology",
