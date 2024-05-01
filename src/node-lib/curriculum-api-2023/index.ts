@@ -21,6 +21,7 @@ import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
 import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonQuery } from "./queries/pupilLesson/pupilLesson.query";
 import { pupilLessonListingQuery } from "./queries/pupilLessonListing/pupilLessonListing.query";
+import { pupilProgrammeListingQuery } from "./queries/pupilProgrammeListing/pupilProgrammeListing.query";
 import specialistUnitListingQuery from "./queries/specialistUnitListing/specialistUnitListing.query";
 import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
 import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
@@ -29,6 +30,7 @@ import { specialistLessonShareQuery } from "./queries/specialistLessonShare/spec
 import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
 import specialistLessonOverviewCanonical from "./queries/specialistLessonOverviewCanonical/specialistLessonOverviewCanonical.query";
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
+import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -129,6 +131,7 @@ const curriculumApi2023 = {
   pupilLessonQuery: pupilLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
+  pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),
@@ -150,6 +153,7 @@ const curriculumApi2023 = {
   specialistLessonListing: specialistLessonListingQuery(sdk),
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
+  teachersSitemap: teachersSitemap(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
