@@ -260,7 +260,9 @@ const Search: FC<SearchProps> = (props) => {
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
+            <OakBox $height={"space-between-l"}>
+              <SearchActiveFilters searchFilters={searchFilters} />
+            </OakBox>
           </OakGridArea>
           <OakGridArea
             $colSpan={[12, 3]}
