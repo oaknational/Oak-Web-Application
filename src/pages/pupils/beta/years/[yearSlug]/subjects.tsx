@@ -1,33 +1,23 @@
-import { GetStaticPathsResult, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import Link from "next/link";
+import _ from "lodash";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 type SubjectListingPageProps = { curriculumData: PupilSubjectListingData[] };
 
 const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { curriculumData } = props;
-  const subjectObject: Record<string, PupilSubjectListingData[]> =
-    curriculumData.reduce(
-      (acc: Record<string, PupilSubjectListingData[]>, curriculumData) => {
-        const subjectSlug = curriculumData.programmeFields.subjectSlug;
-        if (!acc[subjectSlug]) {
-          acc[subjectSlug] = [];
-        }
-        acc[subjectSlug]?.push(curriculumData);
-        return acc;
-      },
-      {},
-    );
+  const groupedBySubject: Record<string, PupilSubjectListingData[]> = _.groupBy(
+    curriculumData,
+    (curriculumData) => curriculumData.programmeFields.subjectSlug,
+  );
 
-  const subjects = Object.keys(subjectObject).sort((a, b) =>
+  const subjects = Object.keys(groupedBySubject).sort((a, b) =>
     a.localeCompare(b),
   );
 
@@ -42,7 +32,7 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
       </Link>
       <ol>
         {subjects.map((subject) => {
-          const subjectData = subjectObject[subject];
+          const subjectData = groupedBySubject[subject];
           const length = subjectData?.length;
           if (subjectData?.[0]) {
             if (length === 1) {
@@ -86,17 +76,7 @@ type URLParams = {
   yearSlug: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
+export const getStaticPaths = getStaticPathsTemplate<URLParams>;
 
 export const getStaticProps: GetStaticProps<
   SubjectListingPageProps,
