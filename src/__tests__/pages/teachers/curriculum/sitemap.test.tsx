@@ -12,7 +12,7 @@ jest.mock("next-sitemap", () => ({
 
 type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;
 
-type SeoData = {
+export type SeoData = {
   loc: string;
   lastmod: string;
 };
