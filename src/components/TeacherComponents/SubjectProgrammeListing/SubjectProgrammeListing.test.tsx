@@ -71,12 +71,8 @@ describe("SubjectProgrammeListing", () => {
       <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-      "Higher",
-    );
-    expect(getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
-      "Foundation",
-    );
+    expect(getAllByRole("paragraph")[1]?.textContent).toBe("Higher");
+    expect(getAllByRole("paragraph")[0]?.textContent).toBe("Foundation");
   });
 
   test("each card items will link have a link to a different query ", () => {
