@@ -5,6 +5,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type ExamboardData = Pick<
   ProgrammeFields,
@@ -40,9 +41,12 @@ export const BrowseExamboardSelector = ({
             <OakSecondaryButton
               key={examboard.examboardSlug}
               element="a"
-              href={`/pupils/beta/programmes/${baseSlug}-${
-                examboard.examboardSlug
-              }${isLegacy ? "-l" : ""}/units`}
+              href={resolveOakHref({
+                page: "pupil-unit-index",
+                programmeSlug: `${baseSlug}-${examboard.examboardSlug}${
+                  isLegacy ? "-l" : ""
+                }/units`,
+              })}
             >
               {examboard.examboard}
             </OakSecondaryButton>

@@ -5,6 +5,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type TierData = Pick<
   ProgrammeFields,
@@ -31,15 +32,23 @@ export const BrowseTierSelector = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakHeading tag="h2">Choose a tier</OakHeading>
-      {tiers.map((tier, i) => (
-        <OakSecondaryButton
-          key={tier.tierSlug}
-          element="a"
-          href={`/pupils/beta/programmes/${programmeSlugs[i]}/units`}
-        >
-          {tier.tier}
-        </OakSecondaryButton>
-      ))}
+      {tiers.map((tier, i) => {
+        const programmeSlug = programmeSlugs[i];
+        if (programmeSlug) {
+          return (
+            <OakSecondaryButton
+              key={tier.tierSlug}
+              element="a"
+              href={resolveOakHref({
+                page: "pupil-unit-index",
+                programmeSlug,
+              })}
+            >
+              {tier.tier}
+            </OakSecondaryButton>
+          );
+        }
+      })}
     </OakFlex>
   );
 };
