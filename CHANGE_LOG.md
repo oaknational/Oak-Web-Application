@@ -1,3 +1,11 @@
+## [1.423.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.1...v1.423.2) (2024-05-01)
+
+
+### Bug Fixes
+
+* move aria label ([d2310c2](https://github.com/oaknational/Oak-Web-Application/commit/d2310c23811f8c747196f32726327eada32b54af))
+* use p tag instead of heading on programme links ([d55f3f2](https://github.com/oaknational/Oak-Web-Application/commit/d55f3f26ecf2ec150b46140752d37be295fdc49e))
+
 ## [1.423.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.0...v1.423.1) (2024-04-30)
 
 
