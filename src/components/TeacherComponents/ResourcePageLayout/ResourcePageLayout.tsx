@@ -120,7 +120,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                   showSavedDetails={props.showSavedDetails}
                   handleEditDetailsCompletedClick={props.onEditClick}
                   showPostAlbCopyright={props.showPostAlbCopyright}
-                  updatedAt={props.updatedAt}
+                  copyrightYear={props.updatedAt}
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"}>

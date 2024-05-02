@@ -10,7 +10,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 type TermsAgreementFormPropsOptionalForm = Omit<
   TermsAgreementFormProps,
-  "form" | "updatedAt"
+  "form" | "copyrightYear"
 > & {
   errors?: FieldErrors<ResourceFormProps>;
 };
@@ -23,7 +23,7 @@ const Wrapper = (props: TermsAgreementFormPropsOptionalForm) => {
   return (
     <TermsAgreementForm
       {...props}
-      updatedAt={"2022-01-01T00:00:00Z"}
+      copyrightYear={"2022-01-01T00:00:00Z"}
       form={{ control, register, trigger, errors: props.errors || {} }}
     />
   );

@@ -35,7 +35,7 @@ export type TermsAgreementFormProps = {
   showSavedDetails?: boolean;
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
-  updatedAt: string;
+  copyrightYear: string;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
@@ -48,7 +48,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   showSavedDetails = false,
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
-  updatedAt,
+  copyrightYear,
 }) => {
   return (
     <>
@@ -152,7 +152,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
           <CopyrightNotice
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            copyrightYear={updatedAt}
+            copyrightYear={copyrightYear}
           />
         </OakFlex>
       )}
