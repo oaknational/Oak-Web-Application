@@ -5,13 +5,19 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import { resolveOakHref } from "@/common-lib/urls";
-import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
-export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+type PupilLessonListingURLParams = {
+  programmeSlug: string;
+  unitSlug: string;
+};
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingBrowseData;
 };
+
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilLessonListingURLParams>;
 
 const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
   const unitData = curriculumData[0]?.unitData;
@@ -23,7 +29,6 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
     return aLessonOrder - bLessonOrder;
   });
 
-  console.log("curriculumData", curriculumData);
   return (
     <div>
       <h1>{unitData?.title}</h1>
@@ -54,7 +59,7 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
 
 export const getStaticProps: GetStaticProps<
   LessonListingPageProps,
-  URLParams
+  PupilLessonListingURLParams
 > = async (context) => {
   return getPageProps({
     page: "pupil-lesson-listing::getStaticProps",
