@@ -1,3 +1,39 @@
+# [1.426.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.425.0...v1.426.0) (2024-05-02)
+
+
+### Bug Fixes
+
+* accessibility errors ([558bc11](https://github.com/oaknational/Oak-Web-Application/commit/558bc11eb498a264fc41f0aa7744b49bdc410687))
+* hide skip to results button ([3179d46](https://github.com/oaknational/Oak-Web-Application/commit/3179d46864d033b7883391ae75d30c6002cec3e8))
+* jumping filters when active filters are added ([68327f9](https://github.com/oaknational/Oak-Web-Application/commit/68327f976f5482c2464ad2825ab1efb737eccae0))
+* subject filters ([fca6861](https://github.com/oaknational/Oak-Web-Application/commit/fca6861743a1d5f1c967fb1e8334f0e87b3a3c14))
+
+
+### Features
+
+* search filters from oak components ([8347729](https://github.com/oaknational/Oak-Web-Application/commit/83477296c5714ab216ce983d05def19b551639aa))
+
+# [1.425.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.424.0...v1.425.0) (2024-05-01)
+
+
+### Features
+
+* **pupilSubject:** add test suite for subject page ([f55311a](https://github.com/oaknational/Oak-Web-Application/commit/f55311a20d6cebce2f79bdb34040e03277d4cce9))
+* **pupilSubject:** create subject query and subject page ([214d7b7](https://github.com/oaknational/Oak-Web-Application/commit/214d7b7b211c96153233b208fdeb4d7315f5585f))
+* **pupilSubject:** create subject query and subject page ([04ad771](https://github.com/oaknational/Oak-Web-Application/commit/04ad77111f2128a9e8c9bb1a7ac8aad9887632b0))
+* **pupilSubject:** create subject query and subject page ([7175649](https://github.com/oaknational/Oak-Web-Application/commit/71756494088805d0621ebe940d5c0c186387c777))
+* **pupilsubjects:** default to legacy programmes ([0a43fe7](https://github.com/oaknational/Oak-Web-Application/commit/0a43fe7eff77b1904cbab91e21d0b0041bd14026))
+* **pupilsubjects:** default to legacy programmes ([02add96](https://github.com/oaknational/Oak-Web-Application/commit/02add96e2da399b838319ad0b132f7a7677af0c1))
+* **pupilsubjects:** merge programme page in ([cd496ca](https://github.com/oaknational/Oak-Web-Application/commit/cd496caf20a1b2dccb9bb7333c0829c57b2b98ec))
+* **pupilsubjects:** order alphabetically ([4007eb8](https://github.com/oaknational/Oak-Web-Application/commit/4007eb89a47a36ae4414571076ddfa3ee0fb8013))
+* **pupilsubjects:** order alphabetically ([97cf249](https://github.com/oaknational/Oak-Web-Application/commit/97cf249bbb388be4bf9ababde033154db320eae0))
+* **pupilsubjects:** order alphabetically ([e01e708](https://github.com/oaknational/Oak-Web-Application/commit/e01e708b2dfb5ae732fd5f2cac587ce6f5608d1b))
+* **pupilsubjects:** refactor groupedbysubject ([4332f6c](https://github.com/oaknational/Oak-Web-Application/commit/4332f6cc95d0a65d84ad0a471fe2d3850ca97184))
+* **pupilsubjects:** test coverage ([319f989](https://github.com/oaknational/Oak-Web-Application/commit/319f989bf96c30133f469467613b2997dd397525))
+* **pupilsubjects:** test coverage ([f1e2905](https://github.com/oaknational/Oak-Web-Application/commit/f1e290553baed11f4b29be2caa4d93574503fde7))
+* **pupilsubjects:** test coverage ([773d01e](https://github.com/oaknational/Oak-Web-Application/commit/773d01e3b69511b1b25e6d7bb8a8c602ee8a799f))
+* **pupilYears:** add the year listing page ([c20f896](https://github.com/oaknational/Oak-Web-Application/commit/c20f8969425fafcadb41857ecb2358fa41903583))
+
 # [1.424.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.423.3...v1.424.0) (2024-05-01)
 
 
