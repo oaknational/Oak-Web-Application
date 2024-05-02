@@ -65,7 +65,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $borderColor={"grey60"}
             $colSpan={[12, 12, 3]}
           >
-            <OakHeading tag={"h3"} $font={"heading-7"}>
+            <OakHeading tag={"h2"} $font={"heading-7"}>
               {"Contents in heading 7 style"}
             </OakHeading>
             <OakFlex>{"sticky nav"}</OakFlex>
