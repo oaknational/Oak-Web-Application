@@ -40,7 +40,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const checkAndSetHeight = () => {
     if (categoryListRef.current) {
       const boundingRect = categoryListRef.current.getBoundingClientRect();
-      setCategoryListHeight(boundingRect.height);
+      setCategoryListHeight(boundingRect.height + 100);
     }
   };
   useEventListener("resize", () => {
