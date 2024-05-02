@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 
 import PupilLessonListingPage, {
-  getStaticPaths,
   getStaticProps,
 } from "@/pages/pupils/beta//programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
@@ -51,15 +50,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const e1 = getByText("lesson-title-1");
       const e2 = getByText("lesson-title-2");
       expect(e2.compareDocumentPosition(e1)).toBe(2);
-    });
-  });
-  describe("getStaticPaths", () => {
-    it("Should not generate pages at build time", async () => {
-      const res = await getStaticPaths();
-      expect(res).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
     });
   });
 

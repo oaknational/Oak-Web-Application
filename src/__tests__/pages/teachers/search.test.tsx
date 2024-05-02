@@ -51,7 +51,7 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[6]).toHaveAttribute(
       "aria-label",
       "AQA filter",
     );
@@ -63,9 +63,9 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[6]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
       "aria-label",
-      "KS1 filter",
+      "Key stage 1 filter",
     );
   });
   test("renders correct subject filters", () => {
@@ -88,12 +88,12 @@ describe("pages/teachers/search.tsx", () => {
     );
     expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
       "aria-label",
-      "Lessons filter",
+      "Units filter",
     );
 
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
       "aria-label",
-      "Units filter",
+      "Lessons filter",
     );
   });
 });

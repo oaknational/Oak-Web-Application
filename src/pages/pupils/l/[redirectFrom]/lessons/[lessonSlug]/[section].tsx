@@ -1,15 +1,7 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
@@ -22,6 +14,7 @@ import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -43,17 +36,8 @@ type PupilLegacyCanonicalPageURLParams = {
   section: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<PupilLegacyCanonicalPageURLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilLegacyCanonicalPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
   PupilExperienceViewProps,
