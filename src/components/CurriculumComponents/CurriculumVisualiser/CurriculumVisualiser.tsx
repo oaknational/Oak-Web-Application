@@ -340,7 +340,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         variant="minimal"
                         isCurrent={isSelectedTier(yearSelection, year, tier)}
                         currentStyles={["underline"]}
-                        data-testid="tier-button"
+                        data-testid={`tier-button-y${year}`}
                       />
                     ))}
                   </Box>
@@ -434,7 +434,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             <Button
                               icon="chevron-right"
                               $iconPosition="trailing"
-                              data-testid="unit-modal-button"
+                              data-testid={`unit-info-button-${unit.slug}${
+                                unit.tier_slug ? `-${unit.tier_slug}` : ""
+                              }`}
                               variant={isHighlighted ? "brush" : "minimal"}
                               background={isHighlighted ? "black" : undefined}
                               label="Unit info"
