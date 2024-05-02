@@ -1,3 +1,18 @@
+# [1.426.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.425.0...v1.426.0) (2024-05-02)
+
+
+### Bug Fixes
+
+* accessibility errors ([558bc11](https://github.com/oaknational/Oak-Web-Application/commit/558bc11eb498a264fc41f0aa7744b49bdc410687))
+* hide skip to results button ([3179d46](https://github.com/oaknational/Oak-Web-Application/commit/3179d46864d033b7883391ae75d30c6002cec3e8))
+* jumping filters when active filters are added ([68327f9](https://github.com/oaknational/Oak-Web-Application/commit/68327f976f5482c2464ad2825ab1efb737eccae0))
+* subject filters ([fca6861](https://github.com/oaknational/Oak-Web-Application/commit/fca6861743a1d5f1c967fb1e8334f0e87b3a3c14))
+
+
+### Features
+
+* search filters from oak components ([8347729](https://github.com/oaknational/Oak-Web-Application/commit/83477296c5714ab216ce983d05def19b551639aa))
+
 # [1.425.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.424.0...v1.425.0) (2024-05-01)
 
 
