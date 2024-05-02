@@ -306,6 +306,8 @@ function CurriculumDownloads(
                   isLoading={isLocalStorageLoading}
                   setSchool={setSchool}
                   showSavedDetails={shouldDisplayDetailsCompleted}
+                  //copyrightYear value hard coded
+                  copyrightYear="2023"
                   handleEditDetailsCompletedClick={
                     handleEditDetailsCompletedClick
                   }

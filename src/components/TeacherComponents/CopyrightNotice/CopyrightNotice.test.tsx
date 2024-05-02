@@ -10,6 +10,7 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={false}
         openLinksExternally={false}
+        copyrightYear="2022-01-01T00:00:00Z"
       />,
     );
 
@@ -24,11 +25,12 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
+        copyrightYear="2024-01-01T00:00:00Z"
       />,
     );
 
     const preAlbCopyright = screen.getByText(
-      "This content is © Oak National Academy Limited (2023), licensed on",
+      `This content is © Oak National Academy Limited (2024), licensed on`,
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();
@@ -38,6 +40,7 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={true}
+        copyrightYear="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -53,6 +56,7 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
+        copyrightYear="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -68,6 +72,7 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={true}
+        copyrightYear="2024-01-01T00:00:00Z"
       />,
     );
     const links = screen.getAllByRole("link");
@@ -79,6 +84,7 @@ describe("CopyrightNotice", () => {
       <CopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
+        copyrightYear="2024-01-01T00:00:00Z"
       />,
     );
     const links = screen.getAllByRole("link");

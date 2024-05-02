@@ -28,6 +28,7 @@ const props: PropsWithoutForm = {
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
   resourcesHeader: "Lesson downloads",
+  updatedAt: "2022-01-01T00:00:00Z",
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {

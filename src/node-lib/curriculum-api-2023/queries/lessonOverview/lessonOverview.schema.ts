@@ -33,6 +33,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   yearTitle: z.string().nullable().optional(),
   examBoardTitle: z.string().nullable().optional(),
   downloads: lessonOverviewDownloads,
+  updatedAt: z.string(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

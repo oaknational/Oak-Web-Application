@@ -19,6 +19,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -32,6 +33,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={null}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -45,6 +47,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
     const contentGuidanceTitle = getByText("Content guidance");
@@ -57,6 +60,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={equipment}
         contentGuidance={undefined}
         supervisionLevel={supervisionLevel}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -70,6 +74,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -82,6 +87,7 @@ describe("LessonOverviewHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={null}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 

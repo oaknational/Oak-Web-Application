@@ -131,6 +131,7 @@ export const generateLessonOverviewFromRaw = (
       ? [{ copyrightInfo: "This lesson contains copyright material" }]
       : [],
     downloads: constructDownloadsArray(lesson),
+    updatedAt: "2022",
   };
 
   return specialistLessonOverviewSchema.parse({
