@@ -143,13 +143,22 @@ export type PupilLessonListingLinkProps = {
 
 export type PupilProgrammeListingLinkProps = {
   page: "pupil-programme-index";
-  subjectSlug: string;
-  yearSlug: string;
+  programmeSlug: string;
+  optionSlug: string;
+};
+
+export type PupilUnitListingLinkProps = {
+  page: "pupil-unit-index";
+  programmeSlug: string;
 };
 
 export type PupilSubjectListingLinkProps = {
   page: "pupil-subject-index";
   yearSlug: string;
+};
+
+export type PupilYearListingLinkProps = {
+  page: "pupil-year-index";
 };
 
 export type SpecialistLessonOverviewLinkProps = Omit<
@@ -294,8 +303,11 @@ export type OakLinkProps =
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonListingLinkProps
+  | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
+  | PupilYearListingLinkProps
+  | PupilUnitListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -636,9 +648,14 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "pupil-lesson-index",
   }),
+  "pupil-unit-index": createOakPageConfig({
+    pathPattern: "/pupils/beta/programmes/:programmeSlug/units",
+    analyticsPageName: "Unit Listing",
+    configType: "internal",
+    pageType: "pupil-unit-index",
+  }),
   "pupil-programme-index": createOakPageConfig({
-    pathPattern:
-      "/pupils/beta/years/:yearSlug/subjects/:subjectSlug/programmes",
+    pathPattern: "/pupils/beta/programmes/:programmeSlug/:optionSlug",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "pupil-programme-index",
@@ -648,6 +665,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "pupil-subject-index",
+  }),
+  "pupil-year-index": createOakPageConfig({
+    pathPattern: "/pupils/beta/years",
+    analyticsPageName: "Subject Listing",
+    configType: "internal",
+    pageType: "pupil-year-index",
   }),
   "specialist-lesson-overview": createOakPageConfig({
     pathPattern:
