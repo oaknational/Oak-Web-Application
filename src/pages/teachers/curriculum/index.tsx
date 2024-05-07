@@ -215,7 +215,7 @@ export async function fetchCurriculumPageBlogs(
   CMSClient: Client,
 ): Promise<SerializedBlogPostPreview[]> {
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-subject-curriculum-in-7-easy-steps",
+    "how-to-design-a-subject-curriculum",
   );
 
   const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
@@ -223,7 +223,7 @@ export async function fetchCurriculumPageBlogs(
   );
 
   const designUnitBlog = await CMSClient.blogPostBySlug(
-    "how-to-create-a-unit-of-study",
+    "how-to-design-a-unit-of-study",
   );
 
   const blogs = [];
