@@ -26,7 +26,7 @@ export async function docToJson(
     }
 
     const json = toJson(await value.async("text"));
-    console.log({ key, json });
+
     if (json.elements) {
       const docIndex = json.elements.findIndex(
         (el: Element) => el.name === selector,
