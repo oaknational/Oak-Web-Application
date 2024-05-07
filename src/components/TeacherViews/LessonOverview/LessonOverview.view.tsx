@@ -47,6 +47,7 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
@@ -89,11 +90,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     copyrightContent,
     isSpecialist,
     updatedAt,
+    additionalMaterialUrl,
+    videoTitle,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
-
   const {
     keyStageSlug,
     keyStageTitle,
@@ -103,6 +105,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
   } = commonPathway;
+
+  // TODO: if using, get lesson uuid from data instead of video title
+  const lessonUuid = videoTitle?.split("-").slice(0, 3).join("-");
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
@@ -445,53 +450,113 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     )}
                   </LessonItemContainer>
                 )}
-                {pageLinks.find((p) => p.label === "Additional material") && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={additionalMaterialSectionRef}
-                    title={"Additional material"}
-                    anchorId="additional-material"
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "supplementary-docx",
-                        downloads,
-                        copyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "supplementary-pdf",
-                        downloads,
-                        copyrightContent,
-                      )
-                    }
-                    shareable={isLegacyLicense && !isSpecialist}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "additional material",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex(
-                        (p) => p.label === "Additional material",
-                      ) ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    <OakTypography $font={"body-1"}>
-                      We're sorry, but preview is not currently available.
-                      Download to see additional material.
-                    </OakTypography>
-                    {/* 
-                    Temporary fix for additional material due to unexpected poor rendering of google docs
-                    <OverviewPresentation
-                    asset={additionalMaterialUrl}
-                    isAdditionalMaterial={true}
-                    title={lessonTitle}
-                    isWorksheetLandscape={isWorksheetLandscape}
-                    isWorksheet={true}
-                  /> */}
-                  </LessonItemContainer>
-                )}
+                {pageLinks.find((p) => p.label === "Additional material") &&
+                  !!additionalMaterialUrl && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={additionalMaterialSectionRef}
+                      title={"Additional material"}
+                      anchorId="additional-material"
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "supplementary-docx",
+                          downloads,
+                          copyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "supplementary-pdf",
+                          downloads,
+                          copyrightContent,
+                        )
+                      }
+                      shareable={isLegacyLicense && !isSpecialist}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "additional material",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === "Additional material",
+                        ) ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      {/* <OakTypography $font={"body-1"}>
+                        We're sorry, but preview is not currently available.
+                        Download to see additional material.
+                      </OakTypography> */}
+                      {/* Temporary fix for additional material due to unexpected
+                      poor rendering of google docs */}
+                      {/* <LessonOverviewPresentation
+                        asset={additionalMaterialUrl}
+                        isAdditionalMaterial={true}
+                        title={lessonTitle}
+                        isWorksheetLandscape={isWorksheetLandscape}
+                        isWorksheet={true}
+                      /> */}
+
+                      <OakTypography $font={"body-1"}>
+                        Example Google doc:
+                      </OakTypography>
+                      <Box $ba={[3]} $width={"100%"}>
+                        <AspectRatio ratio={"2:3"}>
+                          <iframe
+                            width="100%"
+                            style={{
+                              border: "none",
+                            }}
+                            src={`${additionalMaterialUrl}&rm=minimal`}
+                           />
+                        </AspectRatio>
+                      </Box>
+                      <OakTypography $font={"body-1"}>
+                        Example PDF without controls:
+                      </OakTypography>
+                      <Box $ba={[3]} $width={"100%"}>
+                        <AspectRatio ratio={"2:3"}>
+                          <object
+                            width="100%"
+                            type="application/pdf"
+                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                          >
+                            <OakTypography>
+                              It appears you don't have a PDF plugin for this
+                              browser.
+                              <a
+                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                              >
+                                Click here to download the PDF file.
+                              </a>
+                            </OakTypography>
+                          </object>
+                        </AspectRatio>
+                      </Box>
+                      <OakTypography $font={"body-1"}>
+                        PDF with controls:
+                      </OakTypography>
+                      <Box $ba={[3]} $width={"100%"}>
+                        <AspectRatio ratio={"2:3"}>
+                          <object
+                            width="100%"
+                            type="application/pdf"
+                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf`}
+                          >
+                            <OakTypography>
+                              It appears you don't have a PDF plugin for this
+                              browser.
+                              <a
+                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                              >
+                                Click here to download the PDF file.
+                              </a>
+                            </OakTypography>
+                          </object>
+                        </AspectRatio>
+                      </Box>
+                    </LessonItemContainer>
+                  )}
               </OakFlex>
             </OakGridArea>
           </OakGrid>
