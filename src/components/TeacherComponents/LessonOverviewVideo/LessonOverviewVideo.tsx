@@ -58,22 +58,17 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         $alignItems={["start", "center"]}
         $gap={["all-spacing-4", "all-spacing-0"]}
       >
-        {hasCaptions && !transcriptOn && (
+        {hasCaptions && (
           <Button
-            label="Show transcript"
-            aria-label="Show video transcript"
-            icon={"chevron-down"}
+            label={transcriptOn ? "Hide transcript" : "Show transcript"}
+            aria-label={
+              transcriptOn ? "Hide video transcript" : "Show video transcript"
+            }
+            icon={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
             {...buttonParams}
-          />
-        )}
-        {hasCaptions && transcriptOn && (
-          <Button
-            label="Hide transcript"
-            aria-label="Hide video transcript"
-            icon={"chevron-up"}
-            onClick={toggleTranscript}
-            {...buttonParams}
+            aria-controls="transcript-viewer"
+            aria-expanded={transcriptOn}
           />
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
