@@ -508,7 +508,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                               border: "none",
                             }}
                             src={`${additionalMaterialUrl}&rm=minimal`}
-                           />
+                          />
                         </AspectRatio>
                       </Box>
                       <OakTypography $font={"body-1"}>
@@ -519,16 +519,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           <object
                             width="100%"
                             type="application/pdf"
-                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0&zoom=110`}
                           >
                             <OakTypography>
                               It appears you don't have a PDF plugin for this
                               browser.
                               <a
-                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf`}
                               >
                                 Click here to download the PDF file.
-                              </a>
+                              </a>{" "}
+                              (this can link to download page or have analytics
+                              attached)
                             </OakTypography>
                           </object>
                         </AspectRatio>
@@ -541,16 +543,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           <object
                             width="100%"
                             type="application/pdf"
-                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf`}
+                            data={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#zoom=110`}
                           >
                             <OakTypography>
                               It appears you don't have a PDF plugin for this
                               browser.
                               <a
-                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf#toolbar=0&navpanes=0`}
+                                href={`https://storage.cloud.google.com/ingested-assets-production/${lessonUuid}/supplementary_resource/PDF.pdf`}
                               >
                                 Click here to download the PDF file.
-                              </a>
+                              </a>{" "}
+                              (this can link to download page or have analytics
+                              attached)
                             </OakTypography>
                           </object>
                         </AspectRatio>
