@@ -13,3 +13,23 @@ export const download = (data: Uint8Array, fileName: string): void => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+
+export function padTwoDigits(num: number) {
+  return num.toString().padStart(2, "0");
+}
+
+export const formattedDate = (date: Date): string => {
+  const dateStr = [
+    padTwoDigits(date.getDate()),
+    padTwoDigits(date.getMonth() + 1),
+    date.getFullYear(),
+  ].join("-");
+
+  const timeStr = [
+    padTwoDigits(date.getHours()),
+    padTwoDigits(date.getMinutes()),
+    padTwoDigits(date.getSeconds()),
+  ].join("-");
+
+  return `${dateStr} ${timeStr}`;
+};
