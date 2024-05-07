@@ -57,10 +57,7 @@ export const QuizQuestionsQuestionStem = ({
               $pv="inner-padding-xl"
               key={`q-${displayNumber}-stem-element-${i}`}
             >
-              <QuizImage
-                src={stemItem.image_object}
-                alt="This is an image in a quiz"
-              />
+              <QuizImage src={stemItem.image_object} alt="An image in a quiz" />
             </OakFlex>
           );
         }
