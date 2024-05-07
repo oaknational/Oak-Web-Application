@@ -7,7 +7,7 @@ import CurriculumInfoPage, {
   parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+ formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 import {
   curriculumOverviewCMSFixture,
@@ -58,6 +58,9 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 
+const curriculumUnitsFormattedData = formatCurriculumUnitsData(
+  curriculumUnitsTabFixture(),
+);
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -99,11 +102,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -119,11 +122,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
@@ -139,11 +142,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();

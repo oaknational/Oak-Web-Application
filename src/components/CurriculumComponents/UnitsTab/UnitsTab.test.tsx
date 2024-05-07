@@ -5,7 +5,6 @@ import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
 import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
-import curriculumUnitsFormattedDataFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnitsYearData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
@@ -14,6 +13,12 @@ const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
 const fixtureUnitLength = 87;
 
+const trackingDataSecondaryScience = {
+  subjectTitle: "Science",
+  subjectSlug: "science",
+  examboardSlug: "aqa",
+  phaseSlug: "secondary",
+};
 const secondaryScienceUnits = {
   units: [
     {
@@ -75,6 +80,12 @@ const secondaryScienceUnits = {
   ],
 };
 
+const trackingDataPrimaryEnglish = {
+  subjectTitle: "English",
+  subjectSlug: "english",
+  examboardSlug: null,
+  phaseSlug: "primary",
+};
 const primaryEnglishData = {
   units: [
     {
@@ -193,9 +204,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
@@ -205,9 +215,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     const unitCards = await findAllByTestId("unit-card");
@@ -224,9 +233,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
@@ -319,8 +327,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     };
     const { findAllByTestId } = render(
       <UnitsTab
-        data={data}
-        examboardSlug={null}
+        trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(data)}
       />,
     );
@@ -338,9 +345,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
@@ -357,9 +363,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     expect(await findByTestId("all-years-radio")).toBeInTheDocument();
@@ -373,9 +378,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     const yearOptions = await findAllByTestId("year-radio");
@@ -479,12 +483,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       ],
     };
     const formattedData = formatCurriculumUnitsData(data);
+    const trackingData = {
+      subjectTitle: "English",
+      subjectSlug: "english",
+      examboardSlug: "aqa",
+      phaseSlug: "secondary",
+    };
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab
-        data={data}
-        examboardSlug={"aqa"}
-        formattedData={formattedData}
-      />,
+      <UnitsTab trackingData={trackingData} formattedData={formattedData} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(1);
@@ -495,8 +501,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
       <UnitsTab
-        data={primaryEnglishData}
-        examboardSlug={null}
+        trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
@@ -520,9 +525,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     const yearOptions = queryAllByTestId("year-radio");
@@ -540,8 +544,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter units by parent subject", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
-        data={secondaryScienceUnits}
-        examboardSlug={"aqa"}
+        trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(secondaryScienceUnits)}
       />,
     );
@@ -564,8 +567,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter units by domain", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
-        data={primaryEnglishData}
-        examboardSlug={null}
+        trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
@@ -593,9 +595,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const data = curriculumUnitsTabFixture();
     const { findAllByTestId, queryAllByTestId } = render(
       <UnitsTab
-        data={data}
-        examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
 
@@ -667,9 +668,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter units by tier", async () => {
     const { findAllByTestId, findByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug="aqa"
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     let unitCards = await findAllByTestId("unit-card");
@@ -701,8 +701,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see correct number of unit options", async () => {
     const { findByTestId } = render(
       <UnitsTab
-        data={primaryEnglishData}
-        examboardSlug={null}
+        trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
@@ -790,9 +789,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug="aqa"
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     // Open thread modal
@@ -825,9 +823,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug="aqa"
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
     const mobileThreadButton = await findByTestId("mobile-highlight-thread");
@@ -844,9 +841,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug="aqa"
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
 
@@ -863,9 +859,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
-        examboardSlug="aqa"
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
     );
 
