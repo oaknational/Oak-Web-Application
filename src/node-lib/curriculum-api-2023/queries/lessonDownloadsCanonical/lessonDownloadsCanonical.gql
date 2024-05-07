@@ -1,5 +1,5 @@
 query lessonDownloadsCanonical($lessonSlug: String!) {
-  lessonDownloadsCanonical: published_mv_downloads_5_0_0(
+  lessonDownloadsCanonical: published_mv_downloads_6_0_0(
     where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     downloads
@@ -13,7 +13,7 @@ query lessonDownloadsCanonical($lessonSlug: String!) {
     unitSlug
     unitTitle
     lessonCohort
-    hasDownloadableResources
     expired
+    updatedAt
   }
 }

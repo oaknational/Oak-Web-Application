@@ -48,6 +48,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     resourcesHeader: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
+    updatedAt: string;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -119,6 +120,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                   showSavedDetails={props.showSavedDetails}
                   handleEditDetailsCompletedClick={props.onEditClick}
                   showPostAlbCopyright={props.showPostAlbCopyright}
+                  copyrightYear={props.updatedAt}
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"}>

@@ -15,6 +15,7 @@ type LessonOverviewHelperProps = {
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
+  updatedAt: string;
 };
 
 const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
@@ -22,6 +23,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
   contentGuidance,
   supervisionLevel,
   isLegacyLicense,
+  updatedAt,
 }) => {
   return (
     <Box $background={"aqua50"} $position={"relative"} $width={320}>
@@ -63,6 +65,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
               $font={"body-2"}
               showPostAlbCopyright={!isLegacyLicense}
               openLinksExternally={false}
+              copyrightYear={updatedAt}
             />
           </Box>
         </OakGridArea>

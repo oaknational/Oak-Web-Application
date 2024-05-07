@@ -1,3 +1,17 @@
+## [1.427.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.2...v1.427.3) (2024-05-07)
+
+## [1.427.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.1...v1.427.2) (2024-05-07)
+
+## [1.427.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.0...v1.427.1) (2024-05-02)
+
+# [1.427.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.426.0...v1.427.0) (2024-05-02)
+
+
+### Features
+
+* add basic schema ([99d5255](https://github.com/oaknational/Oak-Web-Application/commit/99d5255c4619441f74c8e5f822eaf5cde4d7efe2))
+* new plan a lesson page ([982a50e](https://github.com/oaknational/Oak-Web-Application/commit/982a50ec41a717b924f07b839d8ac1bffe5d5e6f))
+
 # [1.426.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.425.0...v1.426.0) (2024-05-02)
 
 
