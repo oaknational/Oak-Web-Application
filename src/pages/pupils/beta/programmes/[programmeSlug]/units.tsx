@@ -1,11 +1,23 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import Link from "next/link";
+import {
+  OakPupilJourneyLayout,
+  OakPupilJourneyHeader,
+  OakThemeProvider,
+  oakDefaultTheme,
+  OakTertiaryButton,
+  OakPupilJourneyListItem,
+  OakFlex,
+  OakInfo,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
@@ -29,6 +41,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
   const { programmeFields } = curriculumData[0];
   const {
     subject,
+    phase,
     yearDescription,
     tier,
     examboard,
@@ -39,9 +52,18 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     legacy,
   } = programmeFields;
 
+  if (phase === "foundation") {
+    throw new Error("Foundation phase not supported");
+  }
+
   const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
 
   const optionSlug = `options${legacy ? "-l" : ""}`;
+
+  const lessonCount = orderedCurriculumData.reduce(
+    (p, c) => p + c.lessonCount,
+    0,
+  );
 
   function pickPreviousPage(): [backHref: string, backLabel: string] {
     const hasTier = tier !== null;
@@ -85,31 +107,83 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
 
   const [backHref, backLabel] = pickPreviousPage();
 
+  const breadcrumbs: string[] = [yearDescription];
+  if (tier) {
+    breadcrumbs.push(tier);
+  }
+  if (examboard) {
+    breadcrumbs.push(examboard);
+  }
+
+  const backgroundColor =
+    phase === "primary" ? "bg-decorative4-subdued" : "bg-decorative3-subdued";
+
   return (
-    <div>
-      <h1>{subject}</h1>
-      <h2>{yearDescription}</h2>
-      <h3>{tier}</h3>
-      <h4>{examboard}</h4>
-      <Link href={backHref}>{backLabel}</Link>
-      <ol>
-        {orderedCurriculumData.map((unit) => {
-          return (
-            <li key={unit.unitSlug}>
-              <Link
-                href={resolveOakHref({
-                  page: "pupil-lesson-index",
-                  programmeSlug: unit.programmeSlug,
-                  unitSlug: unit.unitSlug,
-                })}
-              >
-                {unit.unitData?.title} - {unit.lessonCount} lessons
-              </Link>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
+            description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
+          }),
+        }}
+      >
+        <OakPupilJourneyLayout
+          phase={phase}
+          sectionName="unit-listing"
+          topNavSlot={
+            <OakTertiaryButton
+              element="a"
+              href={backHref}
+              iconName="arrow-left"
+            >
+              {backLabel}
+            </OakTertiaryButton>
+          }
+          titleSlot={
+            <OakPupilJourneyHeader
+              title={subject}
+              iconName={`subject-${subjectSlug}`}
+              iconBackground={phase}
+              breadcrumbs={breadcrumbs}
+            />
+          }
+        >
+          <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+            <OakInfo
+              hint="Units are groups of lessons that relate to one another."
+              tooltipPosition="top-left"
+            />
+
+            <OakHeading tag="h2">New lessons ({lessonCount})</OakHeading>
+          </OakFlex>
+          <OakFlex
+            $flexDirection={"column"}
+            $pa={"inner-padding-m"}
+            $background={backgroundColor}
+            $borderRadius={"border-radius-l"}
+            $gap={"space-between-s"}
+          >
+            {orderedCurriculumData.map((unit, i) => {
+              return (
+                <OakPupilJourneyListItem
+                  key={unit.unitSlug}
+                  title={unit.unitData?.title}
+                  index={i + 1}
+                  numberOfLessons={unit.lessonCount}
+                  as="a"
+                  href={resolveOakHref({
+                    page: "pupil-lesson-index",
+                    programmeSlug: unit.programmeSlug,
+                    unitSlug: unit.unitSlug,
+                  })}
+                />
+              );
+            })}
+          </OakFlex>
+        </OakPupilJourneyLayout>
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
