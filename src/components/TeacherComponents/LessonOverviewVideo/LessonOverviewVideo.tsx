@@ -61,9 +61,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         {hasCaptions && (
           <Button
             label={transcriptOn ? "Hide transcript" : "Show transcript"}
-            aria-label={
-              transcriptOn ? "Hide video transcript" : "Show video transcript"
-            }
             icon={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
             {...buttonParams}
