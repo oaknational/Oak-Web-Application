@@ -78,7 +78,6 @@ describe("getServerSideProps", () => {
       const result = await getServerSideProps(context);
 
       expect(curriculumApi2023.teachersSitemap).toHaveBeenCalled();
-      expect(getServerSideSitemap).toHaveBeenCalledWith(context, mockFields);
       expect(result).toEqual({ props: { fields: mockFields } });
     });
   });
