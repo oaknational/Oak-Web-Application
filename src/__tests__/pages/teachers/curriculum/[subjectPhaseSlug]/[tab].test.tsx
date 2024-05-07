@@ -7,7 +7,8 @@ import CurriculumInfoPage, {
   parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
- formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+  formatCurriculumUnitsData,
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 import {
   curriculumOverviewCMSFixture,
@@ -183,7 +184,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
-          curriculumUnitsTabData: curriculumUnitsTabFixture(),
+          curriculumUnitsFormattedData: curriculumUnitsFormattedData,
         },
       });
     });

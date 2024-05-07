@@ -341,7 +341,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         variant="minimal"
                         isCurrent={isSelectedTier(yearSelection, year, tier)}
                         currentStyles={["underline"]}
-                        data-testid={`tier-button-y${year}`}
+                        data-testid={`tier-button`}
                       />
                     ))}
                   </Box>

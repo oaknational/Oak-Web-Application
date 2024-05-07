@@ -11,7 +11,6 @@ const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
-const fixtureUnitLength = 87;
 
 const trackingDataSecondaryScience = {
   subjectTitle: "Science",
@@ -666,35 +665,144 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can filter units by tier", async () => {
-    const { findAllByTestId, findByTestId } = render(
+    const data = {
+      units: [
+        {
+          planned_number_of_lessons: 5,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          domain: null,
+          domain_id: null,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks4",
+          lessons: [],
+          order: 1,
+          phase: "Secondary",
+          phase_slug: "secondary",
+          slug: "cellular-respiration-and-atp",
+          subject: "Combined Science",
+          subject_parent: "Science",
+          subject_parent_slug: "science",
+          subject_slug: "combined-science",
+          tags: null,
+          threads: [],
+          tier: "Foundation",
+          tier_slug: "foundation",
+          title: "Aerobic and anaerobic cellular respiration",
+          unit_options: [],
+          year: "11",
+        },
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          domain: null,
+          domain_id: null,
+          tags: null,
+          threads: [],
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks4",
+          lessons: [
+            {
+              title: "Lesson 1",
+              slug: "lesson-1",
+              order: 1,
+              _state: "published",
+            },
+            {
+              title: "Lesson 2",
+              slug: "lesson-2",
+              order: 2,
+              _state: "published",
+            },
+            {
+              title: "Lesson 3",
+              slug: "lesson-3",
+              order: 3,
+              _state: "published",
+            },
+            {
+              title: "Lesson 4",
+              slug: "lesson-4",
+              order: 4,
+              _state: "published",
+            },
+            {
+              title: "Lesson 5",
+              slug: "lesson-5",
+              order: 5,
+              _state: "published",
+            },
+          ],
+          order: 2,
+          phase: "Secondary",
+          phase_slug: "secondary",
+          planned_number_of_lessons: 5,
+          slug: "nuclear-physics",
+          subject: "Combined Science",
+          subject_parent: "Science",
+          subject_parent_slug: "science",
+          subject_slug: "combined-science",
+          tier: "Higher",
+          tier_slug: "higher",
+          title: "Nuclear Physics",
+          unit_options: [],
+          year: "11",
+        },
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          domain: null,
+          domain_id: null,
+          tags: null,
+          threads: [],
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks4",
+          lessons: [],
+          order: 3,
+          phase: "Secondary",
+          phase_slug: "secondary",
+          planned_number_of_lessons: 5,
+          slug: "industrial-chemistry",
+          subject: "Combined Science",
+          subject_parent: "Science",
+          subject_parent_slug: "science",
+          subject_slug: "combined-science",
+          tier: null,
+          tier_slug: null,
+          title: "Industrial Chemistry",
+          unit_options: [],
+          year: "11",
+        },
+      ],
+    };
+    const { findAllByTestId } = render(
       <UnitsTab
         trackingData={trackingDataSecondaryScience}
-        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+        formattedData={formatCurriculumUnitsData(data)}
       />,
     );
     let unitCards = await findAllByTestId("unit-card");
-    // Foundation selected by default, so only 2 (including blank) expected for both sets of buttons for Year 10
-    expect(unitCards).toHaveLength(fixtureUnitLength);
-
-    // Find and click higher tier button for Y10
-    const tierButtons = await findAllByTestId("tier-button-y10");
+    // Foundation selected by default, so only 2 (including blank) expected
+    expect(unitCards).toHaveLength(2);
+    const tierButtons = await findAllByTestId("tier-button");
     expect(tierButtons).toHaveLength(2);
-
     if (!tierButtons[1]) {
-      throw new Error("Missing higher tier button");
+      throw new Error("Missing second subject button");
     }
-
     userEvent.click(tierButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(fixtureUnitLength);
-
-      // find a higher unit - atomic structure and the periodic table
-      const higherUnitInfoButton = await findByTestId(
-        "unit-info-button-eukaryotic-and-prokaryotic-cells-higher",
-      );
-
-      expect(higherUnitInfoButton).toBeInTheDocument();
+      expect(unitCards).toHaveLength(2);
+      expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
     });
   });
 
