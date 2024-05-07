@@ -63,11 +63,7 @@ export function createProgrammeSlug(
 
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({
-  data,
-  examboardSlug,
-  formattedData,
-}) => {
+const UnitsTab: FC<UnitsTabProps> = ({ examboardSlug, formattedData }) => {
   // Initialize constants
   const {
     yearData,
@@ -170,15 +166,39 @@ const UnitsTab: FC<UnitsTabProps> = ({
 
   // Analytics handlers
 
+  function getTrackingData() {
+    // Get the first unit coming through for tracking data
+    const firstYearOption = Object.keys(formattedData.yearData)[0];
+    if (firstYearOption) {
+      const firstYearData = formattedData.yearData[firstYearOption];
+      if (firstYearData) {
+        const { units } = firstYearData;
+        if (units[0]) {
+          const {
+            subject,
+            phase_slug: phaseSlug,
+            subject_slug: subjectSlug,
+          } = units[0];
+          return {
+            subject,
+            subjectSlug,
+            phaseSlug,
+          };
+        }
+      }
+    }
+  }
+
   function trackSelectThread(thread: Thread): void {
-    if (data.units[0]) {
-      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
+    const trackingData = getTrackingData();
+    if (trackingData) {
+      const { subject, subjectSlug, phaseSlug } = trackingData;
       track.curriculumThreadHighlighted({
         subjectTitle: subject,
         subjectSlug: subjectSlug,
         threadTitle: thread.title,
         threadSlug: thread.slug,
-        phase: phase_slug as PhaseValueType,
+        phase: phaseSlug as PhaseValueType,
         order: thread.order,
         analyticsUseCase: analyticsUseCase,
       });
@@ -186,12 +206,14 @@ const UnitsTab: FC<UnitsTabProps> = ({
   }
 
   function trackSelectYear(year: string): void {
-    if (data.units[0]) {
+    const trackingData = getTrackingData();
+    if (trackingData) {
+      const { subject, subjectSlug } = trackingData;
       track.yearGroupSelected({
         yearGroupName: year,
         yearGroupSlug: year,
-        subjectTitle: data.units[0].subject,
-        subjectSlug: data.units[0].subject_slug,
+        subjectTitle: subject,
+        subjectSlug: subjectSlug,
         analyticsUseCase: analyticsUseCase,
       });
     }
