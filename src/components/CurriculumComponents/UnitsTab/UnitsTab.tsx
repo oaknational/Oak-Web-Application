@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useLayoutEffect } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -60,7 +60,6 @@ export function createProgrammeSlug(
     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
     : "";
 }
-const duplicateUnitSlugs = new Set<string>();
 
 // Function component
 
@@ -70,14 +69,27 @@ const UnitsTab: FC<UnitsTabProps> = ({
   formattedData,
 }) => {
   // Initialize constants
-  const { yearData, threadOptions, yearOptions, initialYearSelection } =
-    formattedData;
+  const {
+    yearData,
+    threadOptions,
+    yearOptions,
+    initialYearSelection,
+    duplicateUnitSlugs: duplicateUnitSlugsList,
+  } = formattedData;
+  // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
+  const duplicateUnitSlugs = new Set(duplicateUnitSlugsList);
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [unitData, setUnitData] = useState<Unit | null>(null);
+
   const [yearSelection, setYearSelection] = useState<YearSelection>({
     ...initialYearSelection,
   });
+  // This useLayoutEffect hook should be deprecated once the url structure of the visualiser should be updated
+  useLayoutEffect(() => {
+    setYearSelection(initialYearSelection);
+  }, [initialYearSelection]);
+
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
