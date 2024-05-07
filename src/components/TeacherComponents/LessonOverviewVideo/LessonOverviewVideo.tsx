@@ -72,20 +72,14 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           />
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
-          {signLanguageVideo && !signLanguageOn && (
+          {signLanguageVideo && (
             <Button
-              label="Show sign language"
+              label={
+                signLanguageOn ? "Hide sign language" : "Show sign language"
+              }
               icon={"sign-language"}
               onClick={toggleSignLanguage}
-              {...buttonParams}
-            />
-          )}
-          {signLanguageVideo && signLanguageOn && (
-            <Button
-              label="Hide sign language"
-              background="blue"
-              icon={"sign-language"}
-              onClick={toggleSignLanguage}
+              background={signLanguageOn ? "blue" : "white"}
               {...buttonParams}
             />
           )}
