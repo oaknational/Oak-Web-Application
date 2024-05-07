@@ -28,9 +28,17 @@ export interface POCFormData {
 
 interface POCFormProps {
   onSubmit: (formData: POCFormData, file: File) => void;
+  onGenerateDemoFile: (
+    type: "unit_table",
+    formData: POCFormData,
+    file: File,
+  ) => void;
 }
 
-export default function POCForm({ onSubmit }: POCFormProps) {
+export default function POCForm({
+  onSubmit,
+  onGenerateDemoFile,
+}: POCFormProps) {
   const hiddenFileInputRef: MutableRefObject<null | HTMLInputElement> =
     useRef(null);
 
@@ -60,6 +68,19 @@ Comparing quantities - part whole relationships`,
     }
 
     onSubmit(formData, hiddenFileInputRef.current?.files?.[0]);
+  };
+
+  const handleGenerateRepeatables = () => {
+    if (!hiddenFileInputRef.current?.files?.[0]) {
+      alert("Please add a docx template file ");
+      return;
+    }
+
+    onGenerateDemoFile(
+      "unit_table",
+      formData,
+      hiddenFileInputRef.current.files[0],
+    );
   };
 
   const handleFileSelect = () => {
@@ -230,9 +251,20 @@ Comparing quantities - part whole relationships`,
             />
           </Flex>
 
-          <OakPrimaryButton onClick={handleDownloadClick} iconName="download">
-            Download new document
-          </OakPrimaryButton>
+          <Box $mb={12}>
+            <OakPrimaryButton onClick={handleDownloadClick} iconName="download">
+              Download new document
+            </OakPrimaryButton>
+          </Box>
+
+          <Box $mb={12}>
+            <OakPrimaryButton
+              onClick={handleGenerateRepeatables}
+              iconName="download"
+            >
+              Generate unit table
+            </OakPrimaryButton>
+          </Box>
         </Box>
       </MaxWidth>
     </Flex>
