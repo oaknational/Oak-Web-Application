@@ -7,19 +7,20 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import { NewPlanningPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import CMSClient from "@/node-lib/cms";
+import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
 
 export type PlanALessonProps = {
-  pageData: NewPlanningPage;
+  pageData: PlanALessonPage;
 };
 
 // This is the new plan a lesson page currently a template for the layout
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+  console.log("pageData", pageData);
   return (
     <Layout
       seoProps={{
@@ -95,26 +96,11 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     context,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
-      const planningPage = await CMSClient.planningPage({
+      const planALessonPage = await CMSClient.planALessonPage({
         previewMode: isPreviewMode,
       });
 
-      const planningPageNew: NewPlanningPage = {
-        id: "1",
-        hero: {
-          title: "Title",
-          heading: "Heading",
-        },
-        content: [
-          {
-            type: "LandingPageTextBlock",
-            title: "Title",
-          },
-        ],
-        seo: null,
-      };
-
-      if (!planningPage) {
+      if (!planALessonPage) {
         return {
           notFound: true,
         };
@@ -122,7 +108,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
 
       const results: GetStaticPropsResult<PlanALessonProps> = {
         props: {
-          pageData: planningPageNew,
+          pageData: planALessonPage,
         },
       };
 
