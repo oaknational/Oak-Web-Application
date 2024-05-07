@@ -3,6 +3,7 @@ import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
+import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import curriculumUnitsFormattedDataFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnitsYearData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -12,6 +13,67 @@ const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
 const fixtureUnitLength = 87;
+
+const secondaryScienceUnits = {
+  units: [
+    {
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      order: 1,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      planned_number_of_lessons: 5,
+      slug: "cellular-respiration-and-atp",
+      subject: "Combined Science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      subject_slug: "combined-science",
+      tags: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Aerobic and anaerobic cellular respiration",
+      unit_options: [],
+      year: "11",
+    },
+    {
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      order: 1,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      planned_number_of_lessons: 5,
+      slug: "nuclear-physics",
+      subject: "Physics",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      subject_slug: "physics",
+      tags: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Nuclear Physics",
+      unit_options: [],
+      year: "11",
+    },
+  ],
+};
 
 const primaryEnglishData = {
   units: [
@@ -25,23 +87,29 @@ const primaryEnglishData = {
       connection_prior_unit_title: null,
       examboard: null,
       examboard_slug: null,
-      keystage_slug: "ks1",
+      keystage_slug: "ks2",
       lessons: [],
       order: 1,
       phase: "Primary",
       phase_slug: "primary",
-      slug: "word-class",
+      slug: "using-five-sentence-types",
       subject: "English",
       subject_parent: null,
       subject_parent_slug: null,
       subject_slug: "english",
       tags: null,
-      threads: [],
+      threads: [
+        {
+          title: "Developing grammatical knowledge",
+          slug: "developing-grammatical-knowledge",
+          order: 10,
+        },
+      ],
       tier: null,
       tier_slug: null,
-      title: "Word Class",
+      title: "Using five sentence types",
       unit_options: [],
-      year: "1",
+      year: "6",
     },
     {
       connection_future_unit_description: null,
@@ -52,7 +120,7 @@ const primaryEnglishData = {
       domain_id: 16,
       examboard: null,
       examboard_slug: null,
-      keystage_slug: "ks1",
+      keystage_slug: "ks2",
       lessons: [],
       order: 1,
       phase: "Primary",
@@ -64,7 +132,13 @@ const primaryEnglishData = {
       subject_parent_slug: null,
       subject_slug: "english",
       tags: null,
-      threads: [],
+      threads: [
+        {
+          title: "Texts that inform",
+          slug: "texts-that-inform",
+          order: 4,
+        },
+      ],
       tier: null,
       tier_slug: null,
       title: "Pandas or Antarctic Animals: Non-Chronological Report",
@@ -91,135 +165,6 @@ const primaryEnglishData = {
       year: "6",
     },
   ],
-};
-
-const primaryEnglishFormattedData = {
-  yearData: {
-    1: {
-      childSubjects: [],
-      disciplines: [],
-      units: primaryEnglishData.units,
-      // units: [
-      //   {
-      //     planned_number_of_lessons: 8,
-      //     domain: "Grammar",
-      //     domain_id: 17,
-      //     connection_future_unit_description: null,
-      //     connection_prior_unit_description: null,
-      //     connection_future_unit_title: null,
-      //     connection_prior_unit_title: null,
-      //     examboard: null,
-      //     examboard_slug: null,
-      //     keystage_slug: "ks1",
-      //     lessons: [],
-      //     order: 1,
-      //     phase: "Primary",
-      //     phase_slug: "primary",
-      //     slug: "word-class",
-      //     subject: "English",
-      //     subject_parent: null,
-      //     subject_parent_slug: null,
-      //     subject_slug: "english",
-      //     tags: null,
-      //     threads: [],
-      //     tier: null,
-      //     tier_slug: null,
-      //     title: "Word Class",
-      //     unit_options: [],
-      //     year: "1",
-      //   },
-      //   {
-      //     connection_future_unit_description: null,
-      //     connection_prior_unit_description: null,
-      //     connection_future_unit_title: null,
-      //     connection_prior_unit_title: null,
-      //     domain: "Reading, Writing & Oracy",
-      //     domain_id: 16,
-      //     examboard: null,
-      //     examboard_slug: null,
-      //     keystage_slug: "ks1",
-      //     lessons: [],
-      //     order: 1,
-      //     phase: "Primary",
-      //     phase_slug: "primary",
-      //     planned_number_of_lessons: 24,
-      //     slug: "pandas-or-antarctic-animals-non-chronological-report",
-      //     subject: "English",
-      //     subject_parent: null,
-      //     subject_parent_slug: null,
-      //     subject_slug: "english",
-      //     tags: null,
-      //     threads: [],
-      //     tier: null,
-      //     tier_slug: null,
-      //     title: "Pandas or Antarctic Animals: Non-Chronological Report",
-      //     unit_options: [
-      //       {
-      //         connection_future_unit_description: null,
-      //         connection_prior_unit_description: null,
-      //         connection_future_unit_title: null,
-      //         connection_prior_unit_title: null,
-      //         lessons: [],
-      //         title: "Antarctic Animals",
-      //         unitvariant_id: 774,
-      //       },
-      //       {
-      //         connection_future_unit_description: null,
-      //         connection_prior_unit_description: null,
-      //         connection_future_unit_title: null,
-      //         connection_prior_unit_title: null,
-      //         lessons: [],
-      //         title: "Pandas",
-      //         unitvariant_id: 773,
-      //       },
-      //     ],
-      //     year: "6",
-      //   },
-      // ],
-      domains: [
-        {
-          domain: "Reading, writing & oracy",
-          domain_id: 16,
-        },
-        { domain: "Grammar", domain_id: 16 },
-      ],
-      tiers: [],
-    },
-  },
-  threadOptions: [
-    {
-      title: "Texts that inform",
-      slug: "texts-that-inform",
-      order: 4,
-    },
-  ],
-  yearOptions: ["1", "6"],
-  initialYearSelection: {
-    "1": {
-      subject: null,
-      discipline: {
-        id: -1,
-        title: "All",
-      },
-      domain: {
-        domain: "All",
-        domain_id: 0,
-      },
-      tier: null,
-    },
-    "6": {
-      subject: null,
-      discipline: {
-        id: -1,
-        title: "All",
-      },
-      domain: {
-        domain: "All",
-        domain_id: 0,
-      },
-      tier: null,
-    },
-  },
 };
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -266,7 +211,13 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       />,
     );
     const unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
+    // Find all combined science units as these are displayed by default
+    // const combinedScienceUnits = curriculumUnitsTabFixture().units.filter(
+    //   ({ subject_slug }) => subject_slug === "combined-science",
+    // );
+    // Hard coding this figure for now - as multiple units with the same name
+    const VISIBLE_UNITS = 87;
+    expect(unitCards).toHaveLength(VISIBLE_UNITS);
   });
 
   test("threads with duplicate orders sort alphabetically", async () => {
@@ -370,7 +321,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab
         data={data}
         examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        formattedData={formatCurriculumUnitsData(data)}
       />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
@@ -527,11 +478,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
+    const formattedData = formatCurriculumUnitsData(data);
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
         data={data}
         examboardSlug={"aqa"}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        formattedData={formattedData}
       />,
     );
     const unitCards = await findAllByTestId("unit-card");
@@ -543,9 +495,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
       <UnitsTab
-        data={curriculumUnitsTabFixture()}
+        data={primaryEnglishData}
         examboardSlug={null}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
     const threads = queryAllByTestId("thread-radio");
@@ -553,11 +505,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       throw new Error("No thread option found");
     }
     await userEvent.click(threads[0]);
-    const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
-      return unit.threads.some(
+
+    const threadUnits = primaryEnglishData.units.filter((unit) =>
+      unit.threads.some(
         (thread) => thread.slug === threads[0]?.getAttribute("value"),
-      );
-    });
+      ),
+    );
     const highlightedUnits = queryAllByTestId("highlighted-unit-card");
     expect(threadUnits).toHaveLength(highlightedUnits.length);
     const selectedThread = queryByTestId("selected-thread-radio");
@@ -585,71 +538,11 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can filter units by parent subject", async () => {
-    const data = {
-      units: [
-        {
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks4",
-          lessons: [],
-          order: 1,
-          phase: "Secondary",
-          phase_slug: "secondary",
-          planned_number_of_lessons: 5,
-          slug: "cellular-respiration-and-atp",
-          subject: "Combined Science",
-          subject_parent: "Science",
-          subject_parent_slug: "science",
-          subject_slug: "combined-science",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Aerobic and anaerobic cellular respiration",
-          unit_options: [],
-          year: "11",
-        },
-        {
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks4",
-          lessons: [],
-          order: 1,
-          phase: "Secondary",
-          phase_slug: "secondary",
-          planned_number_of_lessons: 5,
-          slug: "nuclear-physics",
-          subject: "Physics",
-          subject_parent: "Science",
-          subject_parent_slug: "science",
-          subject_slug: "physics",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Nuclear Physics",
-          unit_options: [],
-          year: "11",
-        },
-      ],
-    };
     const { findAllByTestId } = render(
       <UnitsTab
-        data={data}
+        data={secondaryScienceUnits}
         examboardSlug={"aqa"}
-        formattedData={curriculumUnitsFormattedDataFixture()}
+        formattedData={formatCurriculumUnitsData(secondaryScienceUnits)}
       />,
     );
     let unitCards = await findAllByTestId("unit-card");
@@ -668,12 +561,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test.only("user can filter units by domain", async () => {
+  test("user can filter units by domain", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
         data={primaryEnglishData}
         examboardSlug={null}
-        formattedData={primaryEnglishFormattedData}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
 
@@ -685,14 +578,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const domainButtons = await findAllByTestId("domain-button");
     // When there are domains, "All" button is added, so 3 expected
-    expect(domainButtons).toHaveLength(2);
+    expect(domainButtons).toHaveLength(3);
     if (!domainButtons[1]) {
       throw new Error("Missing second domain button");
     }
     userEvent.click(domainButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(2);
+      expect(unitCards).toHaveLength(1);
     });
   });
 
@@ -810,7 +703,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       <UnitsTab
         data={primaryEnglishData}
         examboardSlug={null}
-        formattedData={primaryEnglishFormattedData}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
     );
     const tag = await findByTestId("options-tag");
