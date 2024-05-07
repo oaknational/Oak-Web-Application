@@ -50,7 +50,7 @@ describe("QuizQuestionsQuestionStem", () => {
         index={0}
       />,
     );
-    const image = getByRole("presentation");
+    const image = getByRole("img");
 
     expect(image).toBeInTheDocument();
   });
