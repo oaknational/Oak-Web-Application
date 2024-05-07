@@ -65,11 +65,19 @@ export type CurriculumUnitsYearData = {
   };
 };
 
+export type CurriculumUnitsTrackingData = {
+  subjectSlug: string;
+  subjectTitle: string;
+  phaseSlug: string;
+  examboardSlug: string | null;
+};
+
 export type CurriculumUnitsFormattedData = {
   yearData: CurriculumUnitsYearData;
   threadOptions: Thread[];
   yearOptions: string[];
   initialYearSelection: YearSelection;
+  duplicateUnitSlugs: string[];
 };
 
 export type CurriculumInfoPageProps = {
@@ -77,7 +85,6 @@ export type CurriculumInfoPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
-  curriculumUnitsTabData: CurriculumUnitsTabData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
@@ -88,7 +95,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
   subjectPhaseOptions,
   curriculumOverviewTabData,
-  curriculumUnitsTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
 }) => {
@@ -96,6 +102,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const tab = router.query.tab as CurriculumTab;
 
   const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
+    subjectSlug,
+    phaseSlug,
+    subjectTitle: curriculumOverviewTabData.subjectTitle,
+    examboardSlug: examboardSlug,
+  };
 
   let keyStagesData: string;
   switch (phaseSlug) {
@@ -127,9 +139,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "units":
       tabContent = (
         <UnitsTab
-          data={curriculumUnitsTabData}
-          examboardSlug={examboardSlug}
           formattedData={curriculumUnitsFormattedData}
+          trackingData={curriculumUnitsTrackingData}
         />
       );
       break;
@@ -213,7 +224,7 @@ export const parseSubjectPhaseSlug = (slug: string) => {
   };
 };
 
-function formatCurriculumUnitsData(
+export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const threadOptions = [] as Thread[];
@@ -381,6 +392,7 @@ function formatCurriculumUnitsData(
     threadOptions,
     yearOptions,
     initialYearSelection,
+    duplicateUnitSlugs: Array.from(duplicateUnitSlugs),
   };
   return formattedDataCurriculumUnits;
 }
@@ -422,17 +434,17 @@ export const getStaticProps: GetStaticProps<
       }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
-      const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(
         curriculumUnitsTabData,
       );
+
+      const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
           curriculumOverviewSanityData,
-          curriculumUnitsTabData,
           curriculumUnitsFormattedData,
         },
       };

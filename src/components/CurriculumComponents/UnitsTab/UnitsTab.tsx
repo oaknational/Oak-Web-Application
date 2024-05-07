@@ -19,20 +19,21 @@ import CurriculumVisualiser, {
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
 import Box from "@/components/SharedComponents/Box";
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-import { CurriculumUnitsFormattedData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import {
+  CurriculumUnitsFormattedData,
+  CurriculumUnitsTrackingData,
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 // Types and interfaces
 
 type UnitsTabProps = {
-  data: CurriculumUnitsTabData;
-  examboardSlug: string | null;
+  trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
 };
 
@@ -63,7 +64,7 @@ export function createProgrammeSlug(
 
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({ examboardSlug, formattedData }) => {
+const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   // Initialize constants
   const {
     yearData,
@@ -72,6 +73,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ examboardSlug, formattedData }) => {
     initialYearSelection,
     duplicateUnitSlugs: duplicateUnitSlugsList,
   } = formattedData;
+  const { examboardSlug } = trackingData;
   // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
   const duplicateUnitSlugs = new Set(duplicateUnitSlugsList);
   const { track } = useAnalytics();
@@ -165,37 +167,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ examboardSlug, formattedData }) => {
   }
 
   // Analytics handlers
-
-  function getTrackingData() {
-    // Get the first unit coming through for tracking data
-    const firstYearOption = Object.keys(formattedData.yearData)[0];
-    if (firstYearOption) {
-      const firstYearData = formattedData.yearData[firstYearOption];
-      if (firstYearData) {
-        const { units } = firstYearData;
-        if (units[0]) {
-          const {
-            subject,
-            phase_slug: phaseSlug,
-            subject_slug: subjectSlug,
-          } = units[0];
-          return {
-            subject,
-            subjectSlug,
-            phaseSlug,
-          };
-        }
-      }
-    }
-  }
-
   function trackSelectThread(thread: Thread): void {
-    const trackingData = getTrackingData();
     if (trackingData) {
-      const { subject, subjectSlug, phaseSlug } = trackingData;
+      const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
       track.curriculumThreadHighlighted({
-        subjectTitle: subject,
-        subjectSlug: subjectSlug,
+        subjectTitle,
+        subjectSlug,
         threadTitle: thread.title,
         threadSlug: thread.slug,
         phase: phaseSlug as PhaseValueType,
@@ -206,14 +183,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ examboardSlug, formattedData }) => {
   }
 
   function trackSelectYear(year: string): void {
-    const trackingData = getTrackingData();
     if (trackingData) {
-      const { subject, subjectSlug } = trackingData;
+      const { subjectTitle, subjectSlug } = trackingData;
       track.yearGroupSelected({
         yearGroupName: year,
         yearGroupSlug: year,
-        subjectTitle: subject,
-        subjectSlug: subjectSlug,
+        subjectTitle,
+        subjectSlug,
         analyticsUseCase: analyticsUseCase,
       });
     }
