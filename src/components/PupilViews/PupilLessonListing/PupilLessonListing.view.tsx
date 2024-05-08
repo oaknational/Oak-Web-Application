@@ -9,6 +9,7 @@ import {
   OakTertiaryButton,
   OakThemeProvider,
   oakDefaultTheme,
+  OakPupilJourneyList,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -62,7 +63,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       })}
       element="a"
     >
-      Change units
+      Change unit
     </OakTertiaryButton>
   );
 
@@ -92,24 +93,13 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               }
             />
             <OakHeading tag="h2" $font={["heading-6", "heading-6"]}>
-              lessons
+              Lessons
               <OakSpan
                 $font={"heading-light-6"}
               >{` (${orderedCurriculumData.length})`}</OakSpan>
             </OakHeading>
           </OakFlex>
-
-          <OakFlex
-            $flexDirection={"column"}
-            $gap={"space-between-s"}
-            $background={
-              phase === "secondary"
-                ? "bg-decorative3-subdued"
-                : "bg-decorative4-subdued"
-            }
-            $pa={"inner-padding-m"}
-            $borderRadius={"border-radius-l"}
-          >
+          <OakPupilJourneyList phase={phase}>
             {orderedCurriculumData.map((lesson, index) => {
               const lessonData = lesson.lessonData;
               return (
@@ -125,7 +115,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                 />
               );
             })}
-          </OakFlex>
+          </OakPupilJourneyList>
         </OakPupilJourneyLayout>
       </AppLayout>
     </OakThemeProvider>
