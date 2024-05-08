@@ -1,6 +1,6 @@
 import {
+  OakInfoProps,
   OakThemeProvider,
-  OakTooltipProps,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
@@ -14,10 +14,9 @@ const render = renderWithProviders();
 jest.mock("@oaknational/oak-components", () => {
   return {
     ...jest.requireActual("@oaknational/oak-components"),
-    OakInfo: ({ children, tooltip }: OakTooltipProps) => (
+    OakInfo: ({ hint }: OakInfoProps) => (
       <>
-        {children}
-        <div role="tooltip">{tooltip}</div>
+        <div role="tooltip">{hint}</div>
       </>
     ),
   };
