@@ -1,5 +1,4 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-
 import {
   OakGrid,
   OakGridArea,
@@ -7,6 +6,7 @@ import {
   OakMaxWidth,
   OakFlex,
 } from "@oaknational/oak-components";
+
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
