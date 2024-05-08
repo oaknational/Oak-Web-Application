@@ -98,6 +98,7 @@ describe("PupilViewsUnitListing", () => {
   it("should throw an error if the phase is foundation", () => {
     const data = unitBrowseDataFixture({
       programmeFields: {
+        ...unitBrowseDataFixture({}).programmeFields,
         phase: "foundation",
       },
     });
