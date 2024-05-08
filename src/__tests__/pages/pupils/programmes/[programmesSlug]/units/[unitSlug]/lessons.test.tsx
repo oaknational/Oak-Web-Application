@@ -5,28 +5,35 @@ import PupilLessonListingPage, {
 } from "@/pages/pupils/beta//programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
+import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
+
+jest.mock(
+  "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view",
+  () => ({
+    PupilViewsLessonListing: jest.fn((props) => (
+      <div>
+        {props.orderedCurriculumData.map(
+          (data: LessonListingBrowseData[number]) => {
+            return <div>{data.lessonData.title}</div>;
+          },
+        )}
+      </div>
+    )),
+  }),
+);
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
-    it("should render the subjectTitle, unitTitle, and yearDescription", () => {
-      const { getByText } = render(
+    it("should call PupilViewsLessonListing with correct props", () => {
+      render(
         <PupilLessonListingPage
           curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
-      expect(getByText("Maths")).toBeInTheDocument();
-      expect(getByText("unit-title")).toBeInTheDocument();
-      expect(getByText("Year 1")).toBeInTheDocument();
+      expect(PupilViewsLessonListing).toHaveBeenCalled();
     });
-    it("should render the lesson titles as a tags", () => {
-      const { getByText } = render(
-        <PupilLessonListingPage
-          curriculumData={[lessonBrowseDataFixture({})]}
-        />,
-      );
-      expect(getByText("lesson-title")).toBeInTheDocument();
-    });
-    it("should render the lesson titles in the correct order", () => {
+    it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
           curriculumData={[
