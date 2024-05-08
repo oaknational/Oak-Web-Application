@@ -13,7 +13,7 @@ describe("useBackHref", () => {
     expect(backHref).toBe(
       "/pupils/beta/programmes/maths-secondary-year-10/options?examboard=aqa",
     );
-    expect(backLabel).toBe("Select tiers");
+    expect(backLabel).toBe("Change tier");
   });
 
   it("should render a link which links back to subjects if the programme has no tiers and no examboards", () => {
@@ -24,7 +24,7 @@ describe("useBackHref", () => {
     });
 
     expect(backHref).toBe("/pupils/beta/years/year-10/subjects");
-    expect(backLabel).toBe("Select subjects");
+    expect(backLabel).toBe("Change subject");
   });
 
   it("should render a link which links back to examboards if the programme has examboards and no tiers", () => {
@@ -38,6 +38,6 @@ describe("useBackHref", () => {
     expect(backHref).toBe(
       "/pupils/beta/programmes/maths-secondary-year-10/options",
     );
-    expect(backLabel).toBe("Select examboards");
+    expect(backLabel).toBe("Change examboard");
   });
 });

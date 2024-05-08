@@ -25,7 +25,7 @@ export const useBackHref = ({
           programmeSlug: baseSlug,
           optionSlug,
         })}?examboard=${examboardSlug}`,
-        "Select tiers",
+        "Change tier",
       ];
     case hasTier && !hasExamboard:
       return [
@@ -34,7 +34,7 @@ export const useBackHref = ({
           programmeSlug: baseSlug,
           optionSlug,
         }),
-        "Select tiers",
+        "Change tier",
       ];
     case hasExamboard && !hasTier:
       return [
@@ -43,12 +43,12 @@ export const useBackHref = ({
           programmeSlug: baseSlug,
           optionSlug,
         }),
-        "Select examboards",
+        "Change examboard",
       ];
     default:
       return [
         resolveOakHref({ page: "pupil-subject-index", yearSlug }),
-        "Select subjects",
+        "Change subject",
       ];
   }
 };
