@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import {
   OakThemeProvider,
   OakTooltipProps,
@@ -8,6 +7,9 @@ import {
 import { PupilViewsLessonListing } from "./PupilLessonListing.view";
 
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -34,6 +36,11 @@ describe("PupilViewsLessonListing", () => {
       lessonData: {
         ...lessonBrowseDataFixture({}).lessonData,
         title: "lesson-title-2",
+      },
+      programmeFields: {
+        ...lessonBrowseDataFixture({}).programmeFields,
+        tierDescription: "Core",
+        examboardDescription: "Edexcel",
       },
       supplementaryData: { orderInUnit: 2, unitOrder: 4 },
     })["programmeFields"],
@@ -73,6 +80,8 @@ describe("PupilViewsLessonListing", () => {
     expect(getByText("unit-title")).toBeInTheDocument();
     expect(getByText("Maths")).toBeInTheDocument();
     expect(getByText("Year 1")).toBeInTheDocument();
+    expect(getByText("Core")).toBeInTheDocument();
+    expect(getByText("Edexcel")).toBeInTheDocument();
   });
   it("should render the lesson titles as a tags", () => {
     const { getByText } = render(

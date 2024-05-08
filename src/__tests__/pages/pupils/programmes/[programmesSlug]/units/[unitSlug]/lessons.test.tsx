@@ -25,6 +25,11 @@ jest.mock(
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
+    it("should through error if no data", () => {
+      expect(() => {
+        render(<PupilLessonListingPage curriculumData={[]} />);
+      }).toThrowError("unitData or programmeFields is undefined");
+    });
     it("should call PupilViewsLessonListing with correct props", () => {
       render(
         <PupilLessonListingPage
