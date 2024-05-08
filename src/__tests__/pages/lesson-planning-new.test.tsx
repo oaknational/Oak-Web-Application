@@ -4,39 +4,20 @@ import PlanALesson from "../../pages/lesson-planning-new";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
-import { NewPlanningPage } from "@/common-lib/cms-types";
+import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
-const testPlanningPageData: NewPlanningPage = {
-  id: "1",
-  hero: {
-    title: "a title",
-    heading: "a heading",
-  },
-  content: [
-    {
-      type: "LandingPageTextBlock",
-      title: "A title",
-    },
-  ],
-  seo: null,
-};
+import CMSClient from "@/node-lib/cms";
 
+jest.mock("@/node-lib/cms");
+
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+const testPlanningPageData = testPlanALessonPageData;
 const getPageData = jest.fn(() => testPlanningPageData);
 
 const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../src/node-lib/cms/", () => ({
-      __esModule: true,
-      default: {
-        planningPage: jest.fn(getPageData),
-      },
-    }));
-  });
-
   it("Renders correct title ", () => {
     render(<PlanALesson pageData={testPlanningPageData} />);
 
@@ -62,13 +43,14 @@ describe("pages/lesson-planning.tsx", () => {
         params: {},
       });
 
-      expect(getPageData).toHaveBeenCalledWith({
+      expect(mockCMSClient.planALessonPage).toHaveBeenCalledWith({
         previewMode: false,
       });
     });
 
     it("should return notFound when the page data is missing", async () => {
       getPageData.mockResolvedValueOnce(null as never);
+      mockCMSClient.planALessonPage.mockResolvedValueOnce(null);
 
       const { getStaticProps } = await import(
         "../../pages/lesson-planning-new"
