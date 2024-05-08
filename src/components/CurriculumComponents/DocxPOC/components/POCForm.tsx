@@ -130,6 +130,10 @@ Comparing quantities - part whole relationships`,
           ) and replaces areas within it with the text below. <br />
           You can modify the template but the placeholder identifiers are hard
           coded into the POC for now.
+          <br />
+          You can also select a curriculum{" "}
+          <OakLink href="docx-poc/select">here</OakLink> to test the download.
+          (WIP)
         </OakP>
         <Box $maxWidth={960} $mb={40}>
           <Flex $alignItems={"center"}>

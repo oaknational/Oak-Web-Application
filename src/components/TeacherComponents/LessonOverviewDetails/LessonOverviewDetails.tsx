@@ -31,6 +31,7 @@ type LessonOverviewDetailsProps = {
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
   isMathJaxLesson: boolean;
+  updatedAt: string;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -43,6 +44,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   supervisionLevel,
   isLegacyLicense,
   isMathJaxLesson,
+  updatedAt,
 }) => {
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
@@ -101,6 +103,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 contentGuidance={contentGuidance}
                 supervisionLevel={supervisionLevel}
                 isLegacyLicense={isLegacyLicense}
+                updatedAt={updatedAt}
               />
             </Box>
           ) : null}

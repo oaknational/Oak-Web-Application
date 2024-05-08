@@ -5,14 +5,14 @@ export const searchFilters: UseSearchFiltersReturnType = {
   keyStageFilters: [
     {
       slug: "ks2",
-      title: "Key-stage 2",
+      title: "Key stage 2",
       shortCode: "KS2",
       onChange: mockOnChange,
       checked: false,
     },
     {
       slug: "ks4",
-      title: "Key-stage 4",
+      title: "Key stage 4",
       shortCode: "KS4",
       onChange: jest.fn(),
       checked: true,

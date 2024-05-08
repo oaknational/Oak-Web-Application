@@ -54,6 +54,7 @@ const specialistLessonDownloadsFixtures = (
       unitTitle: "Test unit",
       nextLessons: nextLessons,
       downloads: downloads,
+      updatedAt: "2021-09-29T14:00:00Z",
     },
     ...partial,
   };
