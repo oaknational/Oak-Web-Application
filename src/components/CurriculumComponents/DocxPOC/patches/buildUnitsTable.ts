@@ -1,5 +1,8 @@
-import { STUB_UNITS_DATA } from "./stubData";
+import { groupBy } from "lodash";
+
 import { xmlElementToJson } from "./xml";
+
+import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
 function buildYearColumn({ index, title }: { title: string; index: number }) {
   return `
@@ -61,11 +64,11 @@ function buildYearRow(children: string) {
 
 function buildYear(
   year: string,
-  unitListData: (typeof STUB_UNITS_DATA)["7" | "8" | "9" | "10" | "11"],
+  unitListData: CombinedCurriculumData["units"],
   index: number,
 ) {
   const rows = [];
-  const units = unitListData.units;
+  const units = unitListData;
   for (let i = 0; i < units.length; i += 3) {
     rows.push(
       buildYearRow(
@@ -131,7 +134,10 @@ function buildYear(
   return xmlElementToJson(xml);
 }
 
-export async function buildUnitsTable(unitsData: typeof STUB_UNITS_DATA) {
+export async function buildUnitsTable(
+  unitsDataList: CombinedCurriculumData["units"],
+) {
+  const unitsData = groupBy(unitsDataList, "year");
   const sections = Object.entries(unitsData).map(([key, val], index) => {
     return buildYear(key, val, index);
   });

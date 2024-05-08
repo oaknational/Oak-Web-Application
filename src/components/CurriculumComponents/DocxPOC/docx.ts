@@ -60,20 +60,17 @@ export async function findAsJson(
   const zipContent = await JSZip.loadAsync(data);
 
   for (const [key, value] of Object.entries(zipContent.files)) {
-    console.log({ key, value });
     if (!key.endsWith(".xml") && !key.endsWith(".rels")) {
       continue;
     }
 
     const json = toJson(await value.async("text"));
-    console.log(json.elements.map((el: Element) => el.name));
 
     if (json.elements) {
       const docIndex = json.elements.findIndex(
         (el: Element) => el.name === selector,
       );
       if (docIndex > -1) {
-        console.log("HERE/", docIndex);
         if (handler(json.elements![docIndex]!)) {
           return json;
         }
@@ -111,13 +108,11 @@ export const elementContains = (
   parent?: Element,
 ): boolean => {
   if (fn(root, parent)) {
-    console.log(">>> found!");
     return true;
   }
   if (root.elements) {
     for (const element of root.elements) {
       if (elementContains(element, fn, root)) {
-        console.log(">> found!");
         return true;
       }
     }
