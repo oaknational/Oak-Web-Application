@@ -1,3 +1,18 @@
+## [1.427.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.4...v1.427.5) (2024-05-08)
+
+
+### Bug Fixes
+
+* only show core tier in legacy maths ([a66cc74](https://github.com/oaknational/Oak-Web-Application/commit/a66cc741bf2d0a937126c74bf545162e15ba5a79))
+
+## [1.427.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.3...v1.427.4) (2024-05-08)
+
+
+### Bug Fixes
+
+* test url ([f03afd7](https://github.com/oaknational/Oak-Web-Application/commit/f03afd7617bee4cb0bea20f9a8f464d73f4c8d7f))
+* update curriculum blog slugs ([37d92f3](https://github.com/oaknational/Oak-Web-Application/commit/37d92f349fd0cba13ba70b929e74fb6d7e06d474))
+
 ## [1.427.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.2...v1.427.3) (2024-05-07)
 
 ## [1.427.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.1...v1.427.2) (2024-05-07)

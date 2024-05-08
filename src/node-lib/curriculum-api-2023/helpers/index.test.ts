@@ -42,11 +42,15 @@ describe("filterOutCoreTier", () => {
   ];
 
   test("returns all tiers when subject and key stage are in the hasCoreTier set", () => {
-    expect(filterOutCoreTier("maths", "ks4", sampleTiers)).toEqual(sampleTiers);
+    expect(filterOutCoreTier(true, "maths", "ks4", sampleTiers)).toEqual(
+      sampleTiers,
+    );
   });
 
   test('filters out "core" tier when not in the hasCoreTier set', () => {
-    expect(filterOutCoreTier("combined-science", "ks4", sampleTiers)).toEqual([
+    expect(
+      filterOutCoreTier(false, "combined-science", "ks4", sampleTiers),
+    ).toEqual([
       {
         tierSlug: "foundation",
         tierTitle: "Foundation",
@@ -61,6 +65,6 @@ describe("filterOutCoreTier", () => {
   });
 
   test("returns null for null arguments", () => {
-    expect(filterOutCoreTier(null, null, null)).toBeNull();
+    expect(filterOutCoreTier(false, null, null, null)).toBeNull();
   });
 });
