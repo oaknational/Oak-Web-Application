@@ -26,11 +26,14 @@ const unitListingQuery =
       });
     }
 
+    const isLegacy = programme.programmeSlug?.endsWith("-l") ?? false;
+
     return unitListingSchema.parse({
       ...programme,
       tiers:
         programme.tiers &&
         filterOutCoreTier(
+          isLegacy,
           programme.subjectSlug,
           programme.keyStageSlug,
           programme.tiers,

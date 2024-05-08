@@ -1,3 +1,10 @@
+## [1.427.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.4...v1.427.5) (2024-05-08)
+
+
+### Bug Fixes
+
+* only show core tier in legacy maths ([a66cc74](https://github.com/oaknational/Oak-Web-Application/commit/a66cc741bf2d0a937126c74bf545162e15ba5a79))
+
 ## [1.427.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.3...v1.427.4) (2024-05-08)
 
 

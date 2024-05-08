@@ -8,6 +8,7 @@ export const toSentenceCase = (str: string) => {
  this function removes core from programmes that shouldn't have Core as an option*/
 const hasCoreTierSet = new Set(["maths-ks4"]);
 export const filterOutCoreTier = (
+  legacy: boolean,
   subjectSlug?: string | null,
   keyStageSlug?: string | null,
   tiers?: TierSchema | null,
@@ -17,7 +18,7 @@ export const filterOutCoreTier = (
   }
   const key = `${subjectSlug}-${keyStageSlug}`;
   return tiers.filter((tier) => {
-    if (!hasCoreTierSet.has(key)) {
+    if (!hasCoreTierSet.has(key) || !legacy) {
       return tier.tierSlug !== "core";
     } else {
       return tier;
