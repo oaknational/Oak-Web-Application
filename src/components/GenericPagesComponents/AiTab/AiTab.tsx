@@ -10,6 +10,7 @@ import {
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Illustration from "@/components/SharedComponents/Illustration";
 
 const AiTab: FC = () => {
   return (
@@ -48,6 +49,20 @@ const AiTab: FC = () => {
                 $mb={24}
               />
             </Flex>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 6]}
+            $alignItems={"flex-end"}
+            $display={["none", "flex"]}
+            $justifyContent="center"
+            $pv="inner-padding-xl"
+          >
+            <Illustration
+              slug="ai-hero"
+              priority
+              $borderStyle={"none"}
+              $maxWidth={450}
+            />
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
