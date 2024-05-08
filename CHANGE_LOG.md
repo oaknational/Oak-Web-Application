@@ -1,3 +1,10 @@
+# [1.428.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.5...v1.428.0) (2024-05-08)
+
+
+### Features
+
+* connect new plan a lesson to sanity ([e16b583](https://github.com/oaknational/Oak-Web-Application/commit/e16b5830126be98185d42ecbe64c29dca95dd73f))
+
 ## [1.427.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.4...v1.427.5) (2024-05-08)
 
 
