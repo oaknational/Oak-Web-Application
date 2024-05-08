@@ -46,6 +46,7 @@ const lessonDownloadsFixtures = (
         ext: "PDF",
       },
     ],
+    updatedAt: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };

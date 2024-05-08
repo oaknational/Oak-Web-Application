@@ -2,20 +2,20 @@ import { GetStaticProps, GetStaticPropsResult } from "next";
 import Link from "next/link";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
-import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
-
-export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
 };
 
-const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
-  console.log("curriculumData", curriculumData);
+type PupilUnitListingPageURLParams = {
+  programmeSlug: string;
+};
 
+const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
   if (!curriculumData[0]) {
     throw new Error("No curriculum data");
   }
@@ -33,9 +33,15 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     tier,
     examboard,
     yearSlug,
-    examboardSlug,
+    phaseSlug,
     subjectSlug,
+    examboardSlug,
+    legacy,
   } = programmeFields;
+
+  const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
+
+  const optionSlug = `options${legacy ? "-l" : ""}`;
 
   function pickPreviousPage(): [backHref: string, backLabel: string] {
     const hasTier = tier !== null;
@@ -46,8 +52,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           `${resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           })}?examboard=${examboardSlug}`,
           "Select tiers",
         ];
@@ -55,8 +61,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           }),
           "Select tiers",
         ];
@@ -64,8 +70,8 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         return [
           resolveOakHref({
             page: "pupil-programme-index",
-            yearSlug,
-            subjectSlug,
+            programmeSlug: baseSlug,
+            optionSlug,
           }),
           "Select examboards",
         ];
@@ -107,9 +113,12 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
   );
 };
 
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilUnitListingPageURLParams>;
+
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
-  URLParams
+  PupilUnitListingPageURLParams
 > = async (context) => {
   return getPageProps({
     page: "pupil-lesson-listing::getStaticProps",

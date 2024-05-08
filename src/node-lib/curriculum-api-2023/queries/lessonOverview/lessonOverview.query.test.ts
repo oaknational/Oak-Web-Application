@@ -43,6 +43,7 @@ describe("lessonOverview()", () => {
                 "video-with-sign-language-mux-playback-id",
               expired: false,
               downloads: [],
+              updatedAt: "2023-04-01",
             },
             {
               programmeSlug: "programme-slug-1",
@@ -65,6 +66,7 @@ describe("lessonOverview()", () => {
                 "video-with-sign-language-mux-playback-id",
               expired: false,
               downloads: [],
+              updatedAt: "2023-04-01",
             },
           ],
         }),

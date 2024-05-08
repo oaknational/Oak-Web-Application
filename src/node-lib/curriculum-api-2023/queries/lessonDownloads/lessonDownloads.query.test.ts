@@ -18,6 +18,7 @@ const downloads = [
     downloads: [],
     hasDownloadableResources: true,
     expired: true,
+    updatedAt: "2023-04-01",
   },
   {
     programmeSlug: "programme-slug-1",
@@ -32,6 +33,7 @@ const downloads = [
     downloads: [],
     hasDownloadableResources: true,
     expired: true,
+    updatedAt: "2023-04-01",
   },
 ];
 
