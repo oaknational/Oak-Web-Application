@@ -42,7 +42,7 @@ export default function LiveDataSection({
         <OakP $mb="space-between-l">
           Docx primary template file can be found{" "}
           <OakLink
-            href="https://www.notion.so/oaknationalacademy/Curriculum-Downloads-Engineering-Spike-CUR-422-5edfb7d91b1c40a292a29b1d6cc4366a?pvs=4#41485cbadd5b4782969d1151d4903851"
+            href="https://www.notion.so/oaknationalacademy/Curriculum-Downloads-Engineering-Spike-CUR-422-5edfb7d91b1c40a292a29b1d6cc4366a?pvs=4#913a81d0487047fca6e7a14525b4979b"
             target="_blank"
           >
             here
