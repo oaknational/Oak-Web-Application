@@ -352,15 +352,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   data-testid="unit-cards"
                 >
                   {units
-                    .filter((unit: Unit) => {
-                      const isVisible = isVisibleUnit(
+                    .filter((unit: Unit) =>
+                      isVisibleUnit(
                         yearSelection,
                         duplicateUnitSlugs,
                         year,
                         unit,
-                      );
-                      return isVisible;
-                    })
+                      ),
+                    )
                     .map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
                         unit,

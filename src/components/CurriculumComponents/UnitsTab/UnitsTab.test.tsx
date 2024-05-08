@@ -603,13 +603,13 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       "year-radio",
     )) as HTMLInputElement[];
 
-    const year10Option = yearOptions.find((option) => option.value === "7");
-    if (!year10Option) {
+    const year7Option = yearOptions.find((option) => option.value === "7");
+    if (!year7Option) {
       throw new Error("No year 7 option found");
     }
 
-    // Check we only have 27 units for year 10 to start with (combined science).
-    await userEvent.click(year10Option);
+    // Check we only have 14 units for year 7 to start with (combined science).
+    await userEvent.click(year7Option);
     let unitCards;
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");

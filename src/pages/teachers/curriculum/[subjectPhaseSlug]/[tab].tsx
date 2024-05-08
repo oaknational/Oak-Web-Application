@@ -235,9 +235,6 @@ export function formatCurriculumUnitsData(
   const unitSlugs = new Set<string>();
   const duplicateUnitSlugs = new Set<string>();
 
-  unitSlugs.clear();
-  duplicateUnitSlugs.clear();
-
   data.units.forEach((unit: Unit) => {
     // Populate years object
 
