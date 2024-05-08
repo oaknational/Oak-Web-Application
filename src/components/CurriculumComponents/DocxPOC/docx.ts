@@ -13,7 +13,7 @@ function toJson(xmlData: string) {
   });
 }
 
-export async function docToJson(
+export async function modifyXmlBySelector(
   data: ArrayBuffer,
   selector: string,
   handler: (current: Element) => Promise<Element>,
@@ -52,6 +52,36 @@ export async function docToJson(
   });
 }
 
+export async function findAsJson(
+  data: ArrayBuffer,
+  selector: string,
+  handler: (current: Element) => boolean = () => true,
+) {
+  const zipContent = await JSZip.loadAsync(data);
+
+  for (const [key, value] of Object.entries(zipContent.files)) {
+    console.log({ key, value });
+    if (!key.endsWith(".xml") && !key.endsWith(".rels")) {
+      continue;
+    }
+
+    const json = toJson(await value.async("text"));
+    console.log(json.elements.map((el: Element) => el.name));
+
+    if (json.elements) {
+      const docIndex = json.elements.findIndex(
+        (el: Element) => el.name === selector,
+      );
+      if (docIndex > -1) {
+        console.log("HERE/", docIndex);
+        if (handler(json.elements![docIndex]!)) {
+          return json;
+        }
+      }
+    }
+  }
+}
+
 export async function findAnyReplaceByName(
   parent: Element,
   selector: string,
@@ -74,3 +104,57 @@ export async function findAnyReplaceByName(
     return parent;
   }
 }
+
+export const elementContains = (
+  root: Element,
+  fn: (el: Element, parent?: Element) => boolean,
+  parent?: Element,
+): boolean => {
+  if (fn(root, parent)) {
+    console.log(">>> found!");
+    return true;
+  }
+  if (root.elements) {
+    for (const element of root.elements) {
+      if (elementContains(element, fn, root)) {
+        console.log(">> found!");
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+const elementMapperRun = async (
+  root: Element,
+  fn: (el: Element, parent?: Element) => Promise<Element | undefined>,
+  parent?: Element,
+): Promise<Element | undefined> => {
+  const newRoot = await fn(root, parent);
+
+  if (!newRoot) return;
+
+  let newElements: Element[] | undefined;
+  if (newRoot.elements) {
+    const newElementsSparse = await Promise.all(
+      newRoot.elements.map(async (el) => {
+        return elementMapperRun(el, fn, root);
+      }),
+    );
+    newElements = newElementsSparse.filter(
+      (el) => el !== undefined,
+    ) as Element[];
+  }
+
+  return {
+    ...newRoot,
+    elements: newElements,
+  };
+};
+
+export const elementMapper = async (
+  root: Element,
+  fn: (el: Element, parent?: Element) => Promise<Element | undefined>,
+): Promise<Element | undefined> => {
+  return elementMapperRun(root, fn)!;
+};

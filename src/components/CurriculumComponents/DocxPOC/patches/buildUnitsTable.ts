@@ -62,6 +62,7 @@ function buildYearRow(children: string) {
 function buildYear(
   year: string,
   unitListData: (typeof STUB_UNITS_DATA)["7" | "8" | "9" | "10" | "11"],
+  index: number,
 ) {
   const rows = [];
   const units = unitListData.units;
@@ -83,7 +84,7 @@ function buildYear(
     <w:sectPr>
       <w:p>
         <w:pPr>
-            <w:pageBreakBefore/>
+            ${index > 0 && `<w:pageBreakBefore/>`}
         </w:pPr>
         <w:r>
             <w:rPr>
@@ -131,8 +132,8 @@ function buildYear(
 }
 
 export async function buildUnitsTable(unitsData: typeof STUB_UNITS_DATA) {
-  const sections = Object.entries(unitsData).map(([key, val]) => {
-    return buildYear(key, val);
+  const sections = Object.entries(unitsData).map(([key, val], index) => {
+    return buildYear(key, val, index);
   });
 
   sections.push(
