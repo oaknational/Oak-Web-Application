@@ -6,6 +6,7 @@ export * from "./homePage";
 export * from "./aboutPages";
 export * from "./curriculumPage";
 export * from "./planningPage";
+export * from "./planALessonPage";
 export * from "./contactPage";
 export * from "./policyPage";
 export * from "./blog";
