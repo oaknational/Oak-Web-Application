@@ -504,10 +504,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         <AspectRatio ratio={"2:3"}>
                           <iframe
                             width="100%"
-                            style={{
-                              border: "none",
-                            }}
                             src={`${additionalMaterialUrl}&rm=minimal`}
+                          />
+                        </AspectRatio>
+                      </Box>
+
+                      <OakTypography $font={"body-1"}>
+                        Example pdf using google viewer:
+                      </OakTypography>
+                      <Box $ba={[3]} $width={"100%"}>
+                        <AspectRatio ratio={"2:3"}>
+                          <iframe
+                            width="100%"
+                            src={`https://docs.google.com/viewer?srcid=1NwGnxDKxtsjfN_02cSvBrayW4tRZET5PdD0yXxTWbjs&pid=explorer&efh=false&a=v&chrome=false&embedded=true`}
                           />
                         </AspectRatio>
                       </Box>
