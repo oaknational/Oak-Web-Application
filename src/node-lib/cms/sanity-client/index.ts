@@ -29,6 +29,8 @@ import { getABTestSchema } from "../../../common-lib/cms-types/abTest";
 
 import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
+import { planALessonPageSchema } from "@/common-lib/cms-types/planALessonPage";
+
 const getSanityClient = () => ({
   webinarsListingPage: getSingleton(
     sanityGraphqlApi.webinarsListingPage,
@@ -69,6 +71,11 @@ const getSanityClient = () => ({
     sanityGraphqlApi.planningCorePage,
     planningPageSchema,
     (result) => result?.allPlanningCorePage?.[0],
+  ),
+  planALessonPage: getSingleton(
+    sanityGraphqlApi.planALessonPage,
+    planALessonPageSchema,
+    (result) => result?.allPlanALessonCorePage?.[0],
   ),
   aboutWhoWeArePage: getSingleton(
     sanityGraphqlApi.aboutWhoWeArePage,

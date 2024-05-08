@@ -39,23 +39,3 @@ export const planningPageSchema = z
   .merge(documentSchema);
 
 export type PlanningPage = z.infer<typeof planningPageSchema>;
-
-export const newPlanningPageSchema = z
-  .object({
-    hero: z.object({
-      title: z.string(),
-      heading: z.string(),
-    }),
-    content: z.array(
-      z.discriminatedUnion("type", [
-        z.object({
-          type: z.literal("LandingPageTextBlock"),
-          title: z.string(),
-        }),
-      ]),
-    ),
-    seo: seoSchema.nullish(),
-  })
-  .merge(documentSchema);
-
-export type NewPlanningPage = z.infer<typeof newPlanningPageSchema>;
