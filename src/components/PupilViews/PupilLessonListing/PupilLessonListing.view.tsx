@@ -11,7 +11,6 @@ import {
   oakDefaultTheme,
   OakPupilJourneyList,
 } from "@oaknational/oak-components";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -35,7 +34,10 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     examboardDescription,
     phaseSlug,
   } = programmeFields;
-  const phase = phaseSlug === "primary" ? "primary" : "secondary";
+
+  if (phaseSlug === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
 
   const breadcrumb: string[] = [yearDescription, subject];
   if (tierDescription) {
@@ -47,7 +49,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
 
   const LessonListingTitle = (
     <OakPupilJourneyHeader
-      iconBackground={phase}
+      iconBackground={phaseSlug}
       iconName={`subject-${subjectSlug}`}
       title={unitData?.title}
       breadcrumbs={breadcrumb}
@@ -73,8 +75,8 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       <AppLayout
         seoProps={{
           ...getSeoProps({
-            title: `${subject}, ${phase}, ${yearDescription} - Lesson listing`,
-            description: `Lesson listing for ${subject}, ${phase}, ${yearDescription}`,
+            title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
+            description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
           }),
         }}
       >
@@ -82,7 +84,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
         <OakPupilJourneyLayout
           sectionName={"lesson-listing"}
           titleSlot={LessonListingTitle}
-          phase={phase}
+          phase={phaseSlug}
           topNavSlot={BacktoUnits}
         >
           <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
@@ -99,7 +101,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               >{` (${orderedCurriculumData.length})`}</OakSpan>
             </OakHeading>
           </OakFlex>
-          <OakPupilJourneyList phase={phase}>
+          <OakPupilJourneyList phase={phaseSlug}>
             {orderedCurriculumData.map((lesson, index) => {
               const lessonData = lesson.lessonData;
               return (
@@ -112,6 +114,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                   })}
                   index={index + 1}
                   title={lessonData.title}
+                  role="listitem"
                 />
               );
             })}
