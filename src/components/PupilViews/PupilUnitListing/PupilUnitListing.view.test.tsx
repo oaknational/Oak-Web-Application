@@ -94,4 +94,50 @@ describe("PupilViewsUnitListing", () => {
     const e2 = getByText("unit-title-2");
     expect(e2.compareDocumentPosition(e1)).toBe(2);
   });
+
+  it("should throw an error if the phase is foundation", () => {
+    const data = unitBrowseDataFixture({
+      programmeFields: {
+        phase: "foundation",
+      },
+    });
+
+    expect(() =>
+      render(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <PupilViewsUnitListing
+            programmeFields={data.programmeFields}
+            units={[data]}
+          />
+        </OakThemeProvider>,
+      ),
+    ).toThrow("Foundation phase not supported");
+  });
+
+  it("should render breadcrumbs", () => {
+    const data = unitBrowseDataFixture({
+      programmeSlug: "combined-science-secondary-year-11-foundation-aqa",
+      programmeFields: {
+        ...unitBrowseDataFixture({}).programmeFields,
+        subject: "Combined science",
+        tier: "foundation",
+        examboard: "AQA",
+        phase: "secondary",
+        yearDescription: "Year 11",
+      },
+    });
+
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          programmeFields={data.programmeFields}
+          units={[data]}
+        />
+      </OakThemeProvider>,
+    );
+    expect(getByText("Combined science")).toBeInTheDocument();
+    expect(getByText("Year 11")).toBeInTheDocument();
+    expect(getByText("foundation")).toBeInTheDocument();
+    expect(getByText("AQA")).toBeInTheDocument();
+  });
 });
