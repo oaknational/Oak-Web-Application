@@ -28,8 +28,8 @@ export const PupilViewsUnitListing = ({
     subject,
     phase,
     yearDescription,
-    tier,
     tierSlug,
+    tierDescription,
     examboard,
     yearSlug,
     phaseSlug,
@@ -55,8 +55,8 @@ export const PupilViewsUnitListing = ({
   const lessonCount = units.reduce((p, c) => p + c.lessonCount, 0);
 
   const breadcrumbs: string[] = [yearDescription];
-  if (tier) {
-    breadcrumbs.push(tier);
+  if (tierDescription) {
+    breadcrumbs.push(tierDescription);
   }
   if (examboard) {
     breadcrumbs.push(examboard);

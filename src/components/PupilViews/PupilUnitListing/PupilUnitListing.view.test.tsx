@@ -121,10 +121,10 @@ describe("PupilViewsUnitListing", () => {
       programmeFields: {
         ...unitBrowseDataFixture({}).programmeFields,
         subject: "Combined science",
-        tier: "foundation",
         examboard: "AQA",
         phase: "secondary",
         yearDescription: "Year 11",
+        tierDescription: "Foundation",
       },
     });
 
@@ -138,7 +138,7 @@ describe("PupilViewsUnitListing", () => {
     );
     expect(getByText("Combined science")).toBeInTheDocument();
     expect(getByText("Year 11")).toBeInTheDocument();
-    expect(getByText("foundation")).toBeInTheDocument();
+    expect(getByText("Foundation")).toBeInTheDocument();
     expect(getByText("AQA")).toBeInTheDocument();
   });
 });
