@@ -20,7 +20,6 @@ export type PlanALessonProps = {
 
 // This is the new plan a lesson page currently a template for the layout
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  console.log("pageData", pageData);
   return (
     <Layout
       seoProps={{
