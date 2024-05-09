@@ -1,3 +1,26 @@
+# [1.429.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.428.0...v1.429.0) (2024-05-08)
+
+
+### Features
+
+* **lesson-listing:** add applayout and seo ([6ba132a](https://github.com/oaknational/Oak-Web-Application/commit/6ba132aaeb30fc116a746ac795d7e41dc24e2f54))
+* **lesson-listing:** add type restriction ([f37ab9e](https://github.com/oaknational/Oak-Web-Application/commit/f37ab9e7b8bbbca0b40d3eb0df7999bc9da08ea3))
+* **lesson-listing:** add type restriction ([855a261](https://github.com/oaknational/Oak-Web-Application/commit/855a261b55ebbba8c91e7910d42342612124b771))
+* **lesson-listing:** fix lint ([ff4b238](https://github.com/oaknational/Oak-Web-Application/commit/ff4b2387eb082345266a353c8690d9013a69ec5a))
+* **lesson-listing:** increase test coverage ([3973f94](https://github.com/oaknational/Oak-Web-Application/commit/3973f9425f94fdc2889ff23b2b9a0e4e3bd881d8))
+* **lesson-listing:** increase test coverage ([180572e](https://github.com/oaknational/Oak-Web-Application/commit/180572e9136d1a32c655170478ee0f0d946022fa))
+* **lesson-listing:** style lesson listing page ([30c359d](https://github.com/oaknational/Oak-Web-Application/commit/30c359db447e0017d581f8e598f706597a27a53b))
+* **lesson-listing:** style/ copy fix ([7dfdfc2](https://github.com/oaknational/Oak-Web-Application/commit/7dfdfc2422794be84dee2dacdd7aa49503f43b91))
+* **lesson-listing:** test doc fix ([d7d8370](https://github.com/oaknational/Oak-Web-Application/commit/d7d837051e433d5dab2df00f8c32327a51b1060f))
+* **lesson-listing:** test doc fix ([4503866](https://github.com/oaknational/Oak-Web-Application/commit/4503866f427cd746ee8aaf51cbf1d2807523d4f0))
+
+# [1.428.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.5...v1.428.0) (2024-05-08)
+
+
+### Features
+
+* connect new plan a lesson to sanity ([e16b583](https://github.com/oaknational/Oak-Web-Application/commit/e16b5830126be98185d42ecbe64c29dca95dd73f))
+
 ## [1.427.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.427.4...v1.427.5) (2024-05-08)
 
 
