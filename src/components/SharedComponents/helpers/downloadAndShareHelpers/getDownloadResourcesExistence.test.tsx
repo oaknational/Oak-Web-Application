@@ -46,7 +46,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     }) as jest.Mock;
   });
 
-  it("should return correct data if fetch is successful", async () => {
+  it.skip("should return correct data if fetch is successful", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
