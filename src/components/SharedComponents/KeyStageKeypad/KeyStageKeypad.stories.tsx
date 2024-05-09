@@ -31,7 +31,10 @@ export const KeyStageKeypad: Story = {
           $pa="inner-padding-m"
           $mb="space-between-xs"
         >
-          <Component keyStages={keyStageKeypad.keyStages} />
+          <Component
+            keyStages={keyStageKeypad.keyStages}
+            title="Select key stage"
+          />
         </OakFlex>
       </OakFlex>
     );
