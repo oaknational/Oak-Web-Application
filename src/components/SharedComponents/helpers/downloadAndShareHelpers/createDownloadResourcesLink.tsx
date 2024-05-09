@@ -4,8 +4,9 @@ import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
-const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
-
+//const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
+const DOWNLOADS_API_URL =
+  "https://deploy-preview-209--curriculum-downloads-api.netlify.thenational.academy";
 /**
  * Expected response schema
  */
@@ -46,7 +47,6 @@ const createDownloadResourcesLink = async (
     });
   }
   const json = await res.json();
-
   const parsedJson = schema.safeParse(json);
 
   if (!parsedJson.success) {
