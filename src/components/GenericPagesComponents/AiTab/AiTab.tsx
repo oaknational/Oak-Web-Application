@@ -59,6 +59,8 @@ const AiTab: FC = () => {
               priority
               $borderStyle={"none"}
               $maxWidth={450}
+              noCrop
+              $objectFit="contain"
             />
           </OakGridArea>
         </OakGrid>
