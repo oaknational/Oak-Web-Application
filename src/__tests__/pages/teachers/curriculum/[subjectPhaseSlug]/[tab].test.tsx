@@ -1287,11 +1287,4 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       );
     });
   });
-
-  describe("formatCurriculumData", () => {
-    // it("Should return formatted data", async () => {
-    //   const paths = formatCurriculumUnitsData(data);
-    //   expect(paths).toEqual({ fallback: "blocking", paths: [] });
-    // });
-  });
 });
