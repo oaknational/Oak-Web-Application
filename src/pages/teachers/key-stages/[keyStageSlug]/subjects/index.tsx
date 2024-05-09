@@ -56,7 +56,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
     >
       <Box $background={"lavender50"} $height={[containerHeight, 140]}>
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]} $pv={32}>
-          <KeyStageKeypad keyStages={keyStages} />
+          <KeyStageKeypad keyStages={keyStages} title="Select key stage" />
         </MaxWidth>
       </Box>
       <SubjectListingPage

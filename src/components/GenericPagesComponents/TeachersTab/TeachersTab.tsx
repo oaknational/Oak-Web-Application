@@ -57,7 +57,10 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 />
               </Box>
               <Box $pv={32} $width={"100%"}>
-                <KeyStageKeypad keyStages={keyStages} />
+                <KeyStageKeypad
+                  keyStages={keyStages}
+                  title="View subjects by key stage"
+                />
               </Box>
             </Flex>
           </OakGridArea>
