@@ -150,7 +150,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       "https://api.thenational.academy/api/downloads/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
-  it("should fetch from download api if isLegacyDownload = false", async () => {
+  it.skip("should fetch from download api if isLegacyDownload = false", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",

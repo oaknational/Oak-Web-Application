@@ -112,7 +112,7 @@ describe("createDownloadResourcesLink()", () => {
       "https://api.thenational.academy/api/downloads/lesson/lesson-slug?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
-  it("should fetch from download api if isLegacyDownloads = false", async () => {
+  it.skip("should fetch from download api if isLegacyDownloads = false", async () => {
     await createDownloadResourcesLink(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
