@@ -1,0 +1,44 @@
+query planALessonPage($isDraftFilter: Sanity_DocumentFilter) {
+  allPlanALessonCorePage(
+    sort: { _updatedAt: DESC }
+    limit: 1
+    where: { _: $isDraftFilter, _id: { matches: "*planALessonCorePage" } }
+  ) {
+    id: _id
+    hero {
+      heading
+      summaryPortableText: summaryRaw
+      image {
+        ...ImageWithAltText
+      }
+      author {
+        ...TeamMember
+      }
+    }
+    content {
+      ... on PlanALessonPageContent {
+        type: __typename
+        navigationTitle: title
+        bodyPortableText: contentRaw
+        anchorSlug {
+          current
+        }
+      }
+      ... on PlanALessonPageFormBlock {
+        type: __typename
+        navigationTitle: title
+        anchorSlug {
+          current
+        }
+        bodyPortableText: textRaw
+        form {
+          title
+        }
+      }
+    }
+
+    seo {
+      ...Seo
+    }
+  }
+}

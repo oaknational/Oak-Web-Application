@@ -29,6 +29,7 @@ describe("lessonOverviewCanonical()", () => {
         "video-with-sign-language-mux-playback-id",
       expired: false,
       downloads: [],
+      updatedAt: "2021",
     };
     const lesson = await lessonOverviewCanonical({
       ...sdk,

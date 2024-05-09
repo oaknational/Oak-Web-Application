@@ -1,15 +1,7 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
 import {
   PupilExperienceViewProps,
   pickAvailableSectionsForLesson,
@@ -19,6 +11,7 @@ import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -29,17 +22,7 @@ export type PupilPageURLParams = {
   section: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<PupilPageURLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
+export const getStaticPaths = getStaticPathsTemplate<PupilPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
   PupilExperienceViewProps,

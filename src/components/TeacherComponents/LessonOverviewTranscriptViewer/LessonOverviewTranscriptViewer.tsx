@@ -12,7 +12,7 @@ export interface LessonOverviewTranscriptViewerProps {
 export const LessonOverviewTranscriptViewer: FC<
   LessonOverviewTranscriptViewerProps
 > = ({ transcriptSentences }) => (
-  <OakFlex $width={"100%"} $justifyContent={"center"}>
+  <OakFlex $width={"100%"} $justifyContent={"center"} id="transcript-viewer">
     <Box
       role="article"
       aria-label="The video transcript"

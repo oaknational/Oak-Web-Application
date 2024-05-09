@@ -263,6 +263,8 @@ export function LessonShare(props: LessonShareProps) {
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
           hideSelectAll={shareToNewPupilExperience || Boolean(expired)}
+          //updateAt hardcoded, only legacy share available currently
+          updatedAt={"2022"}
           cardGroup={
             <LessonShareCardGroup
               control={form.control}

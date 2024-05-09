@@ -8,8 +8,8 @@ import {
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Illustration from "@/components/SharedComponents/Illustration";
 
 const AiTab: FC = () => {
   return (
@@ -17,14 +17,12 @@ const AiTab: FC = () => {
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
-            {/* @todo replace with OakFlex - work out $flex prop */}
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
-              $maxWidth={[640]}
-              $pt={32}
-              $alignItems={"flex-start"}
-              $gap={24}
-              $flex={"0 1 auto"}
+              $maxWidth="all-spacing-22"
+              $pt="inner-padding-xl"
+              $alignItems="flex-start"
+              $gap={"space-between-m"}
             >
               <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers
@@ -47,7 +45,23 @@ const AiTab: FC = () => {
                 iconBackground="black"
                 $mb={24}
               />
-            </Flex>
+            </OakFlex>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 6]}
+            $alignItems={"flex-end"}
+            $display={["none", "flex"]}
+            $justifyContent="center"
+            $pv="inner-padding-xl"
+          >
+            <Illustration
+              slug="ai-hero"
+              priority
+              $borderStyle={"none"}
+              $maxWidth={450}
+              noCrop
+              $objectFit="contain"
+            />
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
