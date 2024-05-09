@@ -224,24 +224,10 @@ export const parseSubjectPhaseSlug = (slug: string) => {
   };
 };
 
-export function formatCurriculumUnitsData(
-  data: CurriculumUnitsTabData,
-): CurriculumUnitsFormattedData {
+export function createThreadOptions(units: Unit[]): Thread[] {
   const threadOptions = [] as Thread[];
-  const yearOptions = [] as string[];
-  const yearData = {} as CurriculumUnitsYearData;
-  const initialYearSelection = {} as YearSelection;
 
-  const unitSlugs = new Set<string>();
-  const duplicateUnitSlugs = new Set<string>();
-
-  data.units.forEach((unit: Unit) => {
-    // Populate years object
-
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
-    }
-
+  units.forEach((unit: Unit) => {
     // Populate threads object
 
     unit.threads.forEach((thread) => {
@@ -249,7 +235,99 @@ export function formatCurriculumUnitsData(
         threadOptions.push(thread);
       }
     });
+  });
 
+  // Sort threads
+
+  const threadOrders = new Set(threadOptions.map((to) => to.order));
+  if (threadOptions.length > threadOrders.size) {
+    // In secondary science multiple threads can have the same order value due
+    // to multiple subjects (eg biology, chemistry, physics) being shown, so
+    // if orders are not unique, sort alphabetically by slug
+
+    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
+  } else {
+    // If orders are unique, use them to sort
+
+    threadOptions.sort((a, b) => a.order - b.order);
+  }
+  return threadOptions;
+}
+
+export function createYearOptions(units: Unit[]): string[] {
+  const yearOptions = [] as string[];
+
+  units.forEach((unit: Unit) => {
+    // Populate years object
+    if (yearOptions.every((yo) => yo !== unit.year)) {
+      yearOptions.push(unit.year);
+    }
+  });
+  // Sort year data
+  yearOptions.sort((a, b) => Number(a) - Number(b));
+
+  return yearOptions;
+}
+
+export function findDuplicateUnitSlugs(units: Unit[]): Set<string> {
+  const duplicateUnitSlugs = new Set<string>();
+  const unitSlugs = new Set<string>();
+  units.forEach((unit: Unit) => {
+    // Check for duplicate unit slugs
+    if (unitSlugs.has(unit.slug)) {
+      duplicateUnitSlugs.add(unit.slug);
+    } else {
+      unitSlugs.add(unit.slug);
+    }
+  });
+  return duplicateUnitSlugs;
+}
+
+export function createInitialYearFilterSelection(
+  yearData: CurriculumUnitsYearData,
+): YearSelection {
+  const initialYearSelection = {} as YearSelection;
+  Object.keys(yearData).forEach((year) => {
+    const filters = yearData[year];
+    if (!filters) {
+      throw new Error("year filters missing");
+    }
+    if (filters.domains.length > 0) {
+      filters.domains.sort((a, b) => a.domain_id - b.domain_id);
+      filters.domains.unshift({
+        domain: "All",
+        domain_id: 0,
+      });
+    }
+    filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+    // Sort disciplines
+    filters.disciplines.sort((a, b) => a.title.localeCompare(b.title));
+
+    // Add an "All" option if there are 2 or more disciplines. Set to -1 id as this shouldn't ever appear in the DB
+    const allDisciplineTag: Discipline = { id: -1, title: "All" };
+    if (filters.disciplines.length >= 2) {
+      filters.disciplines.unshift(allDisciplineTag);
+    }
+
+    initialYearSelection[year] = {
+      subject:
+        filters.childSubjects.find(
+          (s) => s.subject_slug === "combined-science",
+        ) ?? null,
+      discipline: allDisciplineTag,
+      domain: filters.domains.length ? filters.domains[0] : null,
+      tier: filters.tiers.length ? filters.tiers[0] : null,
+    };
+  });
+
+  return initialYearSelection;
+}
+
+export function createUnitsListingByYear(
+  units: Unit[],
+): CurriculumUnitsYearData {
+  const yearData = {} as CurriculumUnitsYearData;
+  units.forEach((unit: Unit) => {
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
@@ -322,68 +400,19 @@ export function formatCurriculumUnitsData(
         }
       }
     });
-
-    // Check for duplicate unit slugs
-
-    if (unitSlugs.has(unit.slug)) {
-      duplicateUnitSlugs.add(unit.slug);
-    } else {
-      unitSlugs.add(unit.slug);
-    }
   });
+  return yearData;
+}
 
-  // Sort year data
-
-  yearOptions.sort((a, b) => Number(a) - Number(b));
-
-  // Sort threads
-
-  const threadOrders = new Set(threadOptions.map((to) => to.order));
-  if (threadOptions.length > threadOrders.size) {
-    // In secondary science multiple threads can have the same order value due
-    // to multiple subjects (eg biology, chemistry, physics) being shown, so
-    // if orders are not unique, sort alphabetically by slug
-
-    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
-  } else {
-    // If orders are unique, use them to sort
-
-    threadOptions.sort((a, b) => a.order - b.order);
-  }
-
-  Object.keys(yearData).forEach((year) => {
-    const filters = yearData[year];
-    if (!filters) {
-      throw new Error("year filters missing");
-    }
-    if (filters.domains.length > 0) {
-      filters.domains.sort((a, b) => a.domain_id - b.domain_id);
-      filters.domains.unshift({
-        domain: "All",
-        domain_id: 0,
-      });
-    }
-    filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
-    // Sort disciplines
-    filters.disciplines.sort((a, b) => a.title.localeCompare(b.title));
-
-    // Add an "All" option if there are 2 or more disciplines. Set to -1 id as this shouldn't ever appear in the DB
-    const allDisciplineTag: Discipline = { id: -1, title: "All" };
-    if (filters.disciplines.length >= 2) {
-      filters.disciplines.unshift(allDisciplineTag);
-    }
-
-    initialYearSelection[year] = {
-      subject:
-        filters.childSubjects.find(
-          (s) => s.subject_slug === "combined-science",
-        ) ?? null,
-      discipline: allDisciplineTag,
-      domain: filters.domains.length ? filters.domains[0] : null,
-      tier: filters.tiers.length ? filters.tiers[0] : null,
-    };
-  });
-
+export function formatCurriculumUnitsData(
+  data: CurriculumUnitsTabData,
+): CurriculumUnitsFormattedData {
+  const { units } = data;
+  const yearData = createUnitsListingByYear(units);
+  const threadOptions = createThreadOptions(units);
+  const yearOptions = createYearOptions(units);
+  const duplicateUnitSlugs = findDuplicateUnitSlugs(units);
+  const initialYearSelection = createInitialYearFilterSelection(yearData);
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,
@@ -431,6 +460,7 @@ export const getStaticProps: GetStaticProps<
       }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
+
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(
         curriculumUnitsTabData,
       );
