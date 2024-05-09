@@ -19,19 +19,14 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import CMSClient from "@/node-lib/cms";
 import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { getNavItems } from "@/pages-helpers/homesite/plan-a-lesson/getNavItems";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
 };
 
-// This is the new plan a lesson page currently a template for the layout
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const items = pageData.content
-    .filter((c) => c.type === "PlanALessonPageContent")
-    .map((section) => ({
-      title: section.navigationTitle,
-      href: `#${section.anchorSlug.current}`,
-    }));
+  const navItems = getNavItems({ pageData });
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -82,7 +77,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
         >
           <OakMaxWidth>
             <OakTertiaryOLNav
-              items={items}
+              items={navItems}
               ariaLabel="plan a lesson contents"
               title={"Contents"}
               anchorTarget="plan-a-lesson-contents"
@@ -100,7 +95,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $display={["none", "none", "block"]}
             >
               <OakTertiaryOLNav
-                items={items}
+                items={navItems}
                 ariaLabel="plan a lesson contents"
                 title={"Contents"}
                 anchorTarget="#plan-a-lesson-contents"
