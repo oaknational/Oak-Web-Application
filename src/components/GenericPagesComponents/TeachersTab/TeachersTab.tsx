@@ -59,7 +59,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               <Box $pv={32} $width={"100%"}>
                 <KeyStageKeypad
                   keyStages={keyStages}
-                  title="View subjects by keystage"
+                  title="View subjects by key stage"
                 />
               </Box>
             </Flex>
