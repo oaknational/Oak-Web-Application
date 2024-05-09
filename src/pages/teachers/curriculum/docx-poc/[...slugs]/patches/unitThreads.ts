@@ -4,19 +4,19 @@ import { CombinedCurriculumData } from "..";
 
 import { textIncludes, textReplacer } from "./util";
 
-export function partnerDetailPatch(
-  combinedCurriculumData: CombinedCurriculumData,
+export function unitThreadsPatch(
+  unit: CombinedCurriculumData["units"][number],
 ) {
   return async (el: Element) => {
-    if (el.type === "text" && textIncludes(el.text, "{{=PARTNER_DETAIL}}")) {
+    if (el.type === "text" && textIncludes(el.text, "{{=UNIT.THREADS}}")) {
       return {
         type: "text",
         text: textReplacer(
           el.text,
-          "{{=PARTNER_DETAIL}}",
-          combinedCurriculumData.partnerBio,
+          "{{=UNIT.THREADS}}",
+          unit.threads.map((t) => t.title).join(", "),
         ),
-      };
+      } as Element;
     }
     return el;
   };

@@ -8,13 +8,18 @@ import { subjectExplainerPatch } from "./patches/subjectExplainer";
 import { partnerDetailPatch } from "./patches/partnerDetail";
 import { partnerNamePatch } from "./patches/partnerName";
 import { yearPatch } from "./patches/year";
-import { transitionYearPatch } from "./patches/transitionYear";
 import { endOfDocumentPatch } from "./patches/endOfDocument";
+import { threadsTablePatch } from "./patches/threadsTable";
+import { unitTitlePatch } from "./patches/unitTitle";
+import { unitYearPatch } from "./patches/unitYear";
+import { unitLessonsPatch } from "./patches/unitLessons";
+import { unitThreadsPatch } from "./patches/unitThreads";
 
 import {
   mapOverElements,
   modifyXmlByRootSelector,
   pipeElementThrough,
+  withBlock,
 } from "@/components/CurriculumComponents/DocxPOC/docx";
 import LiveDataSection from "@/components/CurriculumComponents/DocxPOC/components/LiveDataSection";
 import {
@@ -47,7 +52,7 @@ export default function Page({
     examboardSlug ? ` - ${examboardSlug.toLocaleUpperCase()}` : ""
   }`;
 
-  console.log({ combinedCurriculumData });
+  // console.log({ combinedCurriculumData });
 
   const handleLiveDataClick = (file: File) => {
     const reader = new FileReader();
@@ -59,6 +64,7 @@ export default function Page({
       const fileContent = event.target.result as ArrayBuffer;
       const uint8Array = new Uint8Array(fileContent);
 
+      // NOTE: This is really inefficient at the moment, that's fine for now though
       const patches = [
         unitsTablePatch(combinedCurriculumData),
         subjectPatch(combinedCurriculumData),
@@ -67,7 +73,7 @@ export default function Page({
         partnerDetailPatch(combinedCurriculumData),
         partnerNamePatch(combinedCurriculumData),
         yearPatch(),
-        transitionYearPatch(),
+        threadsTablePatch(),
         endOfDocumentPatch(),
       ];
 
@@ -75,10 +81,28 @@ export default function Page({
         uint8Array,
         "w:document",
         async (doc) => {
-          const newDoc = await mapOverElements(
+          const newDoc1 = await mapOverElements(
             doc,
             (el: Element, parent?: Element) => {
               return pipeElementThrough(el, parent, patches);
+            },
+          );
+
+          const newDoc = await withBlock(
+            newDoc1!,
+            "UNIT_PAGE",
+            async (el: Element) => {
+              const promises = combinedCurriculumData.units.map((unit) => {
+                return mapOverElements(el, (el, parent) => {
+                  return pipeElementThrough(el, parent, [
+                    unitTitlePatch(unit),
+                    unitLessonsPatch(unit),
+                    unitThreadsPatch(unit),
+                    unitYearPatch(unit),
+                  ]);
+                });
+              });
+              return await Promise.all(promises);
             },
           );
 

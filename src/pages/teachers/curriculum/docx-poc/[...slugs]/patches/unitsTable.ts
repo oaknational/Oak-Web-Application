@@ -168,7 +168,7 @@ export function unitsTablePatch(
       checkWithinElement(
         el,
         (el: Element) =>
-          el.type === "text" && textIncludes(el.text, "{{UNIT_TABLE}}"),
+          el.type === "text" && textIncludes(el.text, "{{=UNITS_TABLE}}"),
       )
     ) {
       const out = xmlElementToJson(`<w:sectPr></w:sectPr>`);

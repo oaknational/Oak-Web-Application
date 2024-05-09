@@ -1,7 +1,13 @@
 import JSZip from "jszip";
 import type { Element } from "xml-js";
 
-import { jsonXmlToXmlString, xmlElementsToJson } from "./patches/xml";
+import {
+  jsonXmlToXmlString,
+  xmlElementToJson,
+  xmlElementsToJson,
+} from "./patches/xml";
+
+import { textIncludes } from "@/pages/teachers/curriculum/docx-poc/[...slugs]/patches/util";
 
 /**
  * Modify docx file
@@ -43,6 +49,70 @@ export async function modifyXmlByRootSelector(
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     compression: "DEFLATE",
   });
+}
+
+function hasStartBlock(element: Element, selector: string) {
+  return checkWithinElement(element, (el: Element) => {
+    return (
+      el.type === "text" && textIncludes(el.text, `{{BLOCK_START.${selector}}}`)
+    );
+  });
+}
+
+function hasEndBlock(element: Element, selector: string) {
+  return checkWithinElement(element, (el: Element) => {
+    return (
+      el.type === "text" && textIncludes(el.text, `{{BLOCK_END.${selector}}}`)
+    );
+  });
+}
+
+export async function withBlock(
+  el: Element,
+  selector: string,
+  fn: (
+    element: Element,
+  ) => Promise<Element | (Element | undefined)[] | undefined>,
+) {
+  const blockElement = xmlElementToJson(`<w:sectPr></w:sectPr>`);
+  blockElement.elements = [];
+  const rootIndex = el.elements?.findIndex((el) => el.name === "w:body") ?? -1;
+  if (rootIndex > -1 && el.elements) {
+    const root = el.elements[rootIndex];
+    let startIndex = -1;
+    let endIndex = -1;
+    if (root && root.elements) {
+      for (let index = 0; index < (root.elements ?? []).length; index++) {
+        const element = root.elements[index]!;
+        if (startIndex === -1 && hasStartBlock(element, selector)) {
+          startIndex = index;
+        } else if (startIndex > -1 && hasEndBlock(element, selector)) {
+          endIndex = index;
+          break;
+        } else if (startIndex > -1) {
+          blockElement.elements.push(element);
+        }
+      }
+
+      if (startIndex > -1 && endIndex > -1) {
+        const ret = await fn(blockElement);
+        const newBlockElementsRaw = Array.isArray(ret) ? ret : [ret];
+        const newBlockElements = newBlockElementsRaw.filter(
+          (el) => el !== undefined,
+        ) as Element[];
+        const newEl = { ...el, elements: [...el.elements] };
+        const newRoot = { ...root, elements: [...root.elements] };
+        newRoot.elements.splice(
+          startIndex,
+          endIndex - startIndex + 1,
+          ...newBlockElements,
+        );
+        newEl.elements[rootIndex] = newRoot;
+        return newEl;
+      }
+    }
+  }
+  return el;
 }
 
 export const checkWithinElement = (

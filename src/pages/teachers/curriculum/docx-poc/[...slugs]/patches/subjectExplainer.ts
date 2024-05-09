@@ -8,12 +8,12 @@ export function subjectExplainerPatch(
   combinedCurriculumData: CombinedCurriculumData,
 ) {
   return async (el: Element) => {
-    if (el.type === "text" && textIncludes(el.text, "{{SUBJECT_EXPLAINER}}")) {
+    if (el.type === "text" && textIncludes(el.text, "{{=SUBJECT_EXPLAINER}}")) {
       return {
         type: "text",
         text: textReplacer(
           el.text,
-          "{{SUBJECT_EXPLAINER}}",
+          "{{=SUBJECT_EXPLAINER}}",
           combinedCurriculumData.curriculaDesc,
         ),
       };

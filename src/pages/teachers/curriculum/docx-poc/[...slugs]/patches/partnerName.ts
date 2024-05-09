@@ -8,12 +8,12 @@ export function partnerNamePatch(
   combinedCurriculumData: CombinedCurriculumData,
 ) {
   return async (el: Element) => {
-    if (el.type === "text" && textIncludes(el.text, "{{PARTNER_NAME}}")) {
+    if (el.type === "text" && textIncludes(el.text, "{{=PARTNER_NAME}}")) {
       return {
         type: "text",
         text: textReplacer(
           el.text,
-          "{{PARTNER_NAME}}",
+          "{{=PARTNER_NAME}}",
           combinedCurriculumData.curriculumPartner.name,
         ),
       };

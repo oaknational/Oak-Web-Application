@@ -4,19 +4,19 @@ import { CombinedCurriculumData } from "..";
 
 import { textIncludes, textReplacer } from "./util";
 
-export function partnerDetailPatch(
-  combinedCurriculumData: CombinedCurriculumData,
+export function unitLessonsPatch(
+  unit: CombinedCurriculumData["units"][number],
 ) {
   return async (el: Element) => {
-    if (el.type === "text" && textIncludes(el.text, "{{=PARTNER_DETAIL}}")) {
+    if (el.type === "text" && textIncludes(el.text, "{{=UNIT.LESSONS}}")) {
       return {
         type: "text",
         text: textReplacer(
           el.text,
-          "{{=PARTNER_DETAIL}}",
-          combinedCurriculumData.partnerBio,
+          "{{=UNIT.LESSONS}}",
+          unit.lessons?.map((l) => l.title).join(", ") ?? "",
         ),
-      };
+      } as Element;
     }
     return el;
   };
