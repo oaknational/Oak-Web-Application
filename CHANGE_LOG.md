@@ -1,3 +1,17 @@
+# [1.430.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.429.0...v1.430.0) (2024-05-09)
+
+
+### Bug Fixes
+
+* ai image cropping ([e87421c](https://github.com/oaknational/Oak-Web-Application/commit/e87421c91d21f1b326493f81495e850c419d2d9b))
+
+
+### Features
+
+* add illustration to ai tab ([ec0d632](https://github.com/oaknational/Oak-Web-Application/commit/ec0d632ad4fde2904bdd059bca1d6c4909685ed9))
+* update ai tab icon ([18bb638](https://github.com/oaknational/Oak-Web-Application/commit/18bb638bd928bbb6abf1ee5a71b808060c88f7ec))
+* update keystage selection title ([381492d](https://github.com/oaknational/Oak-Web-Application/commit/381492d1fbd8ffb1edd97daa574bab363854d536))
+
 # [1.429.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.428.0...v1.429.0) (2024-05-08)
 
 
