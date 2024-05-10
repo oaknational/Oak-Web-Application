@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakPupilJourneyListItem,
   OakPupilJourneyList,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 import { useBackHref } from "./useBackHref";
@@ -86,7 +87,10 @@ export const PupilViewsUnitListing = ({
           tooltipPosition="top-left"
         />
 
-        <OakHeading tag="h2">New lessons ({lessonCount})</OakHeading>
+        <OakHeading tag="h2" $font={"heading-6"}>
+          New lessons{" "}
+          <OakSpan $font={"heading-light-6"}>({lessonCount})</OakSpan>
+        </OakHeading>
       </OakFlex>
 
       <OakPupilJourneyList phase={phase}>
