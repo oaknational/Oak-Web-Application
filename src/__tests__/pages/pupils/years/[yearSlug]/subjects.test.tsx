@@ -15,6 +15,7 @@ describe("PupilSubjectListing", () => {
     const { getByText } = render(
       <PupilSubjectListing curriculumData={[subjectBrowseDataFixture({})]} />,
     );
+
     expect(getByText("Now choose a subject")).toBeInTheDocument();
   });
 
