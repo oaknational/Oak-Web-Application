@@ -31,6 +31,14 @@ const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   display: flex;
 `;
 
+const Container = styled(OakFlex)`
+  flex-direction: row;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
 const validDownloadTypes = ["word", "pdf"] as const;
 export type DownloadType = (typeof validDownloadTypes)[number];
 
@@ -113,10 +121,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
       <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
         Download
       </OakHeading>
-      <OakFlex
-        $gap={["space-between-m2", "space-between-l"]}
-        $flexDirection={["column", "column", "row"]}
-      >
+      <Container $gap={["space-between-m2", "space-between-l"]}>
         <Box $width={["100%", 510]} $textAlign={"left"}>
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
             <OakHeading
@@ -236,7 +241,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
             </StyledForm>
           </OakFlex>
         </Box>
-      </OakFlex>
+      </Container>
     </OakBox>
   );
 };
