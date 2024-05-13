@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 
 import {
   LS_KEY_EMAIL,
@@ -76,28 +76,42 @@ export function defaultValueWhenThrown<T = undefined>(
 }
 
 export function useDownloadsLocalStorage() {
-  return useMemo(() => {
-    const email = defaultValueWhenThrown(() => {
-      return getLocalstorageWithSchema(
-        LS_KEY_EMAIL,
-        LS_KEY_EMAIL_SCHEMA.optional(),
-      );
-    }, undefined);
-    const { schoolId, schoolName } = defaultValueWhenThrown(
-      () => {
-        return getLocalstorageWithSchema(LS_KEY_SCHOOL, LS_KEY_SCHOOL_SCHEMA);
-      },
-      { schoolId: undefined, schoolName: undefined },
-    );
-    const termsAndConditions = defaultValueWhenThrown(() => {
-      return getLocalstorageWithSchema(LS_KEY_TERMS, LS_KEY_TERMS_SCHEMA);
-    }, false);
+  const [isLoading, setIsLoading] = useState(true);
 
-    return parseFromLocalStorageData({
-      email,
-      schoolId,
-      schoolName,
-      termsAndConditions,
-    });
+  useLayoutEffect(() => {
+    if (globalThis.localStorage) {
+      setIsLoading(false);
+    }
   }, []);
+
+  const data = useMemo(() => {
+    if (isLoading) {
+      return undefined;
+    } else {
+      const email = defaultValueWhenThrown(() => {
+        return getLocalstorageWithSchema(
+          LS_KEY_EMAIL,
+          LS_KEY_EMAIL_SCHEMA.optional(),
+        );
+      }, undefined);
+      const { schoolId, schoolName } = defaultValueWhenThrown(
+        () => {
+          return getLocalstorageWithSchema(LS_KEY_SCHOOL, LS_KEY_SCHOOL_SCHEMA);
+        },
+        { schoolId: undefined, schoolName: undefined },
+      );
+      const termsAndConditions = defaultValueWhenThrown(() => {
+        return getLocalstorageWithSchema(LS_KEY_TERMS, LS_KEY_TERMS_SCHEMA);
+      }, false);
+
+      return parseFromLocalStorageData({
+        email,
+        schoolId,
+        schoolName,
+        termsAndConditions,
+      });
+    }
+  }, [isLoading]);
+
+  return { isLoading, data };
 }

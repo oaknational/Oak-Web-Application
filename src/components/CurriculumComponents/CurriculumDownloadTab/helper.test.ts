@@ -35,12 +35,15 @@ describe("CurriculumDownloadTab / helper", () => {
     it("defaults", () => {
       const { result } = renderHook(() => useDownloadsLocalStorage());
       expect(result.current).toEqual({
-        isComplete: false,
-        schoolId: undefined,
-        schoolName: undefined,
-        schoolNotListed: false,
-        email: undefined,
-        termsAndConditions: false,
+        isLoading: false,
+        data: {
+          isComplete: false,
+          schoolId: undefined,
+          schoolName: undefined,
+          schoolNotListed: false,
+          email: undefined,
+          termsAndConditions: false,
+        },
       });
     });
 
@@ -65,12 +68,15 @@ describe("CurriculumDownloadTab / helper", () => {
 
       const { result } = renderHook(() => useDownloadsLocalStorage());
       expect(result.current).toEqual({
-        isComplete: true,
-        schoolId: "1",
-        schoolName: "Acme Inc",
-        schoolNotListed: false,
-        email: "test@example.com",
-        termsAndConditions: true,
+        isLoading: false,
+        data: {
+          isComplete: true,
+          schoolId: "1",
+          schoolName: "Acme Inc",
+          schoolNotListed: false,
+          email: "test@example.com",
+          termsAndConditions: true,
+        },
       });
     });
   });

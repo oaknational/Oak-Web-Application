@@ -110,8 +110,6 @@ export const CurriculumDownloadView: Story = {
       downloadType: "word",
       termsAndConditions: true,
       schoolNotListed: false,
-      // TODO: For better UX...
-      loadingSchools: false,
     },
   },
   render: function StoryComponent(args) {

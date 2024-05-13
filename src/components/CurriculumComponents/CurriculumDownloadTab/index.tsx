@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import CurriculumDownloadView, {
@@ -30,21 +30,33 @@ function ScrollIntoViewWhenVisisble({
 }
 
 const CurriculumDownloadTab: FC = () => {
-  const localStorageData = useDownloadsLocalStorage();
+  const { isLoading, data: localStorageData } = useDownloadsLocalStorage();
   const [isDone, setIsDone] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
-    schoolId: localStorageData.schoolId,
-    schoolName: localStorageData.schoolName,
-    email: localStorageData.email,
+    schoolId: undefined,
+    schoolName: undefined,
+    email: undefined,
     downloadType: "word",
-    termsAndConditions: localStorageData.termsAndConditions,
-    schoolNotListed: localStorageData.schoolNotListed,
-    // TODO: For better UX...
-    loadingSchools: false,
+    termsAndConditions: false,
+    schoolNotListed: false,
     schools: [],
   }));
+
+  useLayoutEffect(() => {
+    if (localStorageData) {
+      setData({
+        schoolId: localStorageData.schoolId,
+        schoolName: localStorageData.schoolName,
+        email: localStorageData.email,
+        downloadType: "word",
+        termsAndConditions: localStorageData.termsAndConditions,
+        schoolNotListed: localStorageData.schoolNotListed,
+        schools: [],
+      });
+    }
+  }, [localStorageData]);
 
   const schoolPickerInputValue = data.schoolName;
   const { data: schoolList } = useFetch<School[]>(
@@ -88,13 +100,15 @@ const CurriculumDownloadTab: FC = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
-        <CurriculumDownloadView
-          isSubmitting={isSubmitting}
-          onSubmit={onSubmit}
-          onChange={setData}
-          schools={schoolList ?? []}
-          data={data}
-        />
+        {!isLoading && (
+          <CurriculumDownloadView
+            isSubmitting={isSubmitting}
+            onSubmit={onSubmit}
+            onChange={setData}
+            schools={schoolList ?? []}
+            data={data}
+          />
+        )}
       </Box>
     </OakThemeProvider>
   );

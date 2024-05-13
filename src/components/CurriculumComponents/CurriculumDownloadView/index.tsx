@@ -48,7 +48,6 @@ const DOWNLOAD_LABELS: [DownloadType, string][] = [
 
 export type CurriculumDownloadViewData = {
   schools: School[];
-  loadingSchools: boolean;
   schoolId?: string;
   schoolName?: string;
   email?: string;
