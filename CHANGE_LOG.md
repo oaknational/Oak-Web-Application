@@ -1,3 +1,10 @@
+# [1.432.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.431.0...v1.432.0) (2024-05-13)
+
+
+### Features
+
+* plan a lesson navigation ([d2eba3c](https://github.com/oaknational/Oak-Web-Application/commit/d2eba3cffb36dc09861f8a77dd46d26d2768bb8b))
+
 # [1.431.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.430.0...v1.431.0) (2024-05-10)
 
 
