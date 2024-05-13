@@ -8,6 +8,7 @@ import {
   OakPupilJourneyListItem,
   OakPupilJourneyList,
   OakSpan,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { useBackHref } from "./useBackHref";
@@ -86,35 +87,38 @@ export const PupilViewsUnitListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakPupilJourneyList
-        phase={phase}
-        titleSlot={
-          <OakPupilJourneyHeader
-            title={subject}
-            iconName={`subject-${subjectSlug}`}
-            iconBackground={phase}
-            breadcrumbs={breadcrumbs}
-          />
-        }
-        counterSlot={newLessonCount}
-      >
-        {units.map((unit, i) => {
-          return (
-            <OakPupilJourneyListItem
-              key={unit.unitSlug}
-              title={unit.unitData?.title}
-              index={i + 1}
-              numberOfLessons={unit.lessonCount}
-              as="a"
-              href={resolveOakHref({
-                page: "pupil-lesson-index",
-                programmeSlug: unit.programmeSlug,
-                unitSlug: unit.unitSlug,
-              })}
+      <OakBox $mb={"space-between-xl"}>
+        {" "}
+        <OakPupilJourneyList
+          phase={phase}
+          titleSlot={
+            <OakPupilJourneyHeader
+              title={subject}
+              iconName={`subject-${subjectSlug}`}
+              iconBackground={phase}
+              breadcrumbs={breadcrumbs}
             />
-          );
-        })}
-      </OakPupilJourneyList>
+          }
+          counterSlot={newLessonCount}
+        >
+          {units.map((unit, i) => {
+            return (
+              <OakPupilJourneyListItem
+                key={unit.unitSlug}
+                title={unit.unitData?.title}
+                index={i + 1}
+                numberOfLessons={unit.lessonCount}
+                as="a"
+                href={resolveOakHref({
+                  page: "pupil-lesson-index",
+                  programmeSlug: unit.programmeSlug,
+                  unitSlug: unit.unitSlug,
+                })}
+              />
+            );
+          })}
+        </OakPupilJourneyList>
+      </OakBox>
     </OakPupilJourneyLayout>
   );
 };

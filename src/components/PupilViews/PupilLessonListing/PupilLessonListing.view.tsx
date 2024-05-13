@@ -9,6 +9,7 @@ import {
   oakDefaultTheme,
   OakPupilJourneyList,
   OakPupilJourneyListCounter,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -102,28 +103,31 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           phase={phaseSlug}
           topNavSlot={BacktoUnits}
         >
-          <OakPupilJourneyList
-            titleSlot={LessonListingTitle}
-            phase={phaseSlug}
-            counterSlot={lessonCount}
-          >
-            {orderedCurriculumData.map((lesson, index) => {
-              const lessonData = lesson.lessonData;
-              return (
-                <OakPupilJourneyListItem
-                  href={resolveOakHref({
-                    page: "pupil-lesson",
-                    lessonSlug: lesson.lessonSlug,
-                    programmeSlug: lesson.programmeSlug,
-                    unitSlug: lesson.unitSlug,
-                  })}
-                  index={index + 1}
-                  title={lessonData.title}
-                  role="listitem"
-                />
-              );
-            })}
-          </OakPupilJourneyList>
+          <OakBox $mb={"space-between-xl"}>
+            {" "}
+            <OakPupilJourneyList
+              titleSlot={LessonListingTitle}
+              phase={phaseSlug}
+              counterSlot={lessonCount}
+            >
+              {orderedCurriculumData.map((lesson, index) => {
+                const lessonData = lesson.lessonData;
+                return (
+                  <OakPupilJourneyListItem
+                    href={resolveOakHref({
+                      page: "pupil-lesson",
+                      lessonSlug: lesson.lessonSlug,
+                      programmeSlug: lesson.programmeSlug,
+                      unitSlug: lesson.unitSlug,
+                    })}
+                    index={index + 1}
+                    title={lessonData.title}
+                    role="listitem"
+                  />
+                );
+              })}
+            </OakPupilJourneyList>
+          </OakBox>
         </OakPupilJourneyLayout>
       </AppLayout>
     </OakThemeProvider>
