@@ -1,3 +1,11 @@
+# [1.433.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.432.0...v1.433.0) (2024-05-13)
+
+
+### Features
+
+* add mux token secrets ([70c595f](https://github.com/oaknational/Oak-Web-Application/commit/70c595f5f1b6ee24ad0c3f00e56a93d6dc3951b4))
+* upgrade mux to v8 ([c797e1c](https://github.com/oaknational/Oak-Web-Application/commit/c797e1c04fe29e90d0fa7e7d9259848917647dfe))
+
 # [1.432.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.431.0...v1.432.0) (2024-05-13)
 
 
