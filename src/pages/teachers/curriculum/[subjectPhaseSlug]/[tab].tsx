@@ -45,7 +45,7 @@ export type CurriculumInfoPageProps = {
   curriculumUnitsTabData: CurriculumUnitsTabData;
 };
 
-const VALID_TABS = ["overview", "units", "download"] as const;
+const VALID_TABS = ["overview", "units", "downloads"] as const;
 export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -92,7 +92,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <UnitsTab data={curriculumUnitsTabData} examboardSlug={examboardSlug} />
       );
       break;
-    case "download":
+    case "downloads":
       tabContent = <CurriculumDownloadTab />;
       break;
     default:

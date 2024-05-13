@@ -50,7 +50,7 @@ describe("buildCurriculumMetadata", () => {
   it('should return the description string for "download" tab and "description" metadataType', () => {
     const result = buildCurriculumMetadata({
       metadataType: "description",
-      tab: "download",
+      tab: "downloads",
       keyStagesData: "KS3-4",
       subjectSlug: "History",
     });
@@ -62,7 +62,7 @@ describe("buildCurriculumMetadata", () => {
   it('should return the title string for "download" tab and "title" metadataType', () => {
     const result = buildCurriculumMetadata({
       metadataType: "title",
-      tab: "download",
+      tab: "downloads",
       keyStagesData: "KS3-4",
       subjectSlug: "English",
       examboardSlug: "edexcel",
@@ -75,7 +75,7 @@ describe("buildCurriculumMetadata", () => {
       buildCurriculumMetadata({
         // @ts-expect-error because we want to test for bad values
         metadataType: "foo",
-        tab: "download",
+        tab: "downloads",
         keyStagesData: "KS3-4",
         subjectSlug: "English",
         examboardSlug: "edexcel",

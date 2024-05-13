@@ -2,7 +2,7 @@ import { capitalize } from "lodash";
 
 type buildCurriculumMetadataProps = {
   metadataType: "title" | "description";
-  tab: "units" | "overview" | "download";
+  tab: "units" | "overview" | "downloads";
   keyStagesData: string;
   subjectSlug: string;
   examboardSlug?: string | null;
@@ -36,9 +36,12 @@ export const buildCurriculumMetadata = (
     )} ${examboard} Curriculum Unit Sequence`;
   } else if (props.tab === "units" && props.metadataType === "description") {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now.`;
-  } else if (props.tab === "download" && props.metadataType === "description") {
+  } else if (
+    props.tab === "downloads" &&
+    props.metadataType === "description"
+  ) {
     return `Explore our free ${props.keyStagesData} ${props.subjectSlug} curriculum unit downloads.`;
-  } else if (props.tab === "download" && props.metadataType === "title") {
+  } else if (props.tab === "downloads" && props.metadataType === "title") {
     const examboard = getExamboardFromSlug(props);
     return `${props.keyStagesData} ${capitalize(
       props.subjectSlug,

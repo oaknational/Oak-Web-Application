@@ -154,9 +154,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     it("renders the Curriculum Downloads Tab (with prerelease)", () => {
       mockPrerelease("curriculum.downloads");
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "download" },
+        query: { tab: "downloads" },
         isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/download",
+        pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
