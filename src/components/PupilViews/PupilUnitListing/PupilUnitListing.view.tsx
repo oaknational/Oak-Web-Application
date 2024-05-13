@@ -63,6 +63,19 @@ export const PupilViewsUnitListing = ({
     breadcrumbs.push(examboard);
   }
 
+  const newLessonCount = (
+    <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+      <OakInfo
+        hint="Units are groups of lessons that relate to one another."
+        tooltipPosition="top-left"
+      />
+
+      <OakHeading tag="h2" $font={"heading-6"}>
+        New lessons <OakSpan $font={"heading-light-6"}>({lessonCount})</OakSpan>
+      </OakHeading>
+    </OakFlex>
+  );
+
   return (
     <OakPupilJourneyLayout
       phase={phase}
@@ -72,28 +85,19 @@ export const PupilViewsUnitListing = ({
           {backLabel}
         </OakTertiaryButton>
       }
-      titleSlot={
-        <OakPupilJourneyHeader
-          title={subject}
-          iconName={`subject-${subjectSlug}`}
-          iconBackground={phase}
-          breadcrumbs={breadcrumbs}
-        />
-      }
     >
-      <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-        <OakInfo
-          hint="Units are groups of lessons that relate to one another."
-          tooltipPosition="top-left"
-        />
-
-        <OakHeading tag="h2" $font={"heading-6"}>
-          New lessons{" "}
-          <OakSpan $font={"heading-light-6"}>({lessonCount})</OakSpan>
-        </OakHeading>
-      </OakFlex>
-
-      <OakPupilJourneyList phase={phase}>
+      <OakPupilJourneyList
+        phase={phase}
+        titleSlot={
+          <OakPupilJourneyHeader
+            title={subject}
+            iconName={`subject-${subjectSlug}`}
+            iconBackground={phase}
+            breadcrumbs={breadcrumbs}
+          />
+        }
+        counterSlot={newLessonCount}
+      >
         {units.map((unit, i) => {
           return (
             <OakPupilJourneyListItem
