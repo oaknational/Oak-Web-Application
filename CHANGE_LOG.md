@@ -1,3 +1,14 @@
+## [1.433.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.0...v1.433.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **pupils-views:** add margin ([ca60dd6](https://github.com/oaknational/Oak-Web-Application/commit/ca60dd6777ba0bc634f5db9e8a251360828f9677))
+* **pupils-views:** add margin ([48741fe](https://github.com/oaknational/Oak-Web-Application/commit/48741fe4419c129291020500ba1c26f08254a142))
+* **pupils-views:** add margin ([ce7ee3a](https://github.com/oaknational/Oak-Web-Application/commit/ce7ee3aa55d2ede8c8e14dd13c8211e62e0dd64d))
+* **pupils-views:** add margin ([5943e77](https://github.com/oaknational/Oak-Web-Application/commit/5943e7797f0fb3d0a3e7f72f1416aed23d03d41a))
+* **pupils-views:** use new layout fix breakages ([e6e1fbf](https://github.com/oaknational/Oak-Web-Application/commit/e6e1fbf307f7cf75cda9de41cdba4f9d0c8212b8))
+
 # [1.433.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.432.0...v1.433.0) (2024-05-13)
 
 
