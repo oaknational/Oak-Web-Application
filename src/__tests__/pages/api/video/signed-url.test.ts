@@ -2,14 +2,14 @@ import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/video/signed-url";
 
 const signPlaybackId = jest.fn().mockReturnValue("some-token");
-jest.mock("@mux/mux-node", () => ({
-  __esModule: true,
-  default: {
-    JWT: {
+
+jest.mock("@mux/mux-node", () => {
+  return jest.fn().mockImplementation(() => ({
+    jwt: {
       signPlaybackId: (...args: []) => signPlaybackId(...args),
     },
-  },
-}));
+  }));
+});
 
 describe("/api/video/signed-url", () => {
   beforeEach(() => {
