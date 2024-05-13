@@ -3,6 +3,7 @@ import teachersHomePageFixture from "../../node-lib/curriculum-api-2023/fixtures
 
 const keyStageKeypad: KeyStageKeypadProps = {
   keyStages: teachersHomePageFixture().keyStages,
+  title: "Select key stage",
   years: [
     { title: "Year 1", shortCode: "1", slug: "/" },
     { title: "Year 2", shortCode: "2", slug: "/" },
