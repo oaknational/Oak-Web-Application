@@ -95,7 +95,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   if (downloadsEnabled) {
     links.push({
       label: "Download",
-      page: "curriculum-download",
+      page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "download",
       currentStyles: ["underline"],
