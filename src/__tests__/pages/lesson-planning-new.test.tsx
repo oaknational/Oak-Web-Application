@@ -25,8 +25,11 @@ describe("pages/lesson-planning.tsx", () => {
   });
   it("Renders a nav", () => {
     render(<PlanALesson pageData={testPlanningPageData} />);
-
+    const nav = screen.getByRole("navigation", {
+      name: "plan a lesson contents",
+    });
     expect(screen.getAllByText("Contents")).toHaveLength(2);
+    expect(nav).toBeInTheDocument();
   });
 
   describe("SEO", () => {
