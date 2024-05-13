@@ -14,6 +14,7 @@ import {
 
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
+import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -114,4 +115,4 @@ const CurriculumDownloadTab: FC = () => {
   );
 };
 
-export default CurriculumDownloadTab;
+export default wrapPreRelease(CurriculumDownloadTab, "curriculum.downloads");
