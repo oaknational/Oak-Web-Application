@@ -64,23 +64,34 @@ export function parseFromLocalStorageData({
   };
 }
 
+export function defaultValueWhenThrown<T = undefined>(
+  throwableFn: () => T,
+  dflt: T,
+) {
+  try {
+    return throwableFn();
+  } catch (err) {
+    return dflt;
+  }
+}
+
 export function useDownloadsLocalStorage() {
   return useMemo(() => {
-    const email = getLocalstorageWithSchema(
-      LS_KEY_EMAIL,
-      LS_KEY_EMAIL_SCHEMA.optional(),
-      { dflt: undefined },
+    const email = defaultValueWhenThrown(() => {
+      return getLocalstorageWithSchema(
+        LS_KEY_EMAIL,
+        LS_KEY_EMAIL_SCHEMA.optional(),
+      );
+    }, undefined);
+    const { schoolId, schoolName } = defaultValueWhenThrown(
+      () => {
+        return getLocalstorageWithSchema(LS_KEY_SCHOOL, LS_KEY_SCHOOL_SCHEMA);
+      },
+      { schoolId: undefined, schoolName: undefined },
     );
-    const { schoolId, schoolName } = getLocalstorageWithSchema(
-      LS_KEY_SCHOOL,
-      LS_KEY_SCHOOL_SCHEMA,
-      { dflt: { schoolId: undefined, schoolName: undefined } },
-    );
-    const termsAndConditions = getLocalstorageWithSchema(
-      LS_KEY_TERMS,
-      LS_KEY_TERMS_SCHEMA,
-      { dflt: false },
-    );
+    const termsAndConditions = defaultValueWhenThrown(() => {
+      return getLocalstorageWithSchema(LS_KEY_TERMS, LS_KEY_TERMS_SCHEMA);
+    }, false);
 
     return parseFromLocalStorageData({
       email,

@@ -1,53 +1,53 @@
 import { z } from "zod";
 
-export type getLocalstorageWithSchemaOpts<T> = {
-  dflt?: T;
+export class ErrorInvalidJson extends Error {
+  constructor(key: string) {
+    super(`Not valid JSON at key '${key}'`);
+  }
+}
+
+export class ErrorNoData extends Error {
+  constructor(key: string) {
+    super(`No data in localStorage at key '${key}'`);
+  }
+}
+
+export type getLocalstorageWithSchemaOpts = {
   disableLogging?: boolean;
 };
-export function getLocalstorageWithSchema<
-  Schema extends z.ZodTypeAny,
-  Default extends z.infer<Schema> | undefined,
->(
+export function getLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
   key: string,
   schema: Schema,
-  opts: getLocalstorageWithSchemaOpts<Default> = {},
-): z.infer<Schema> | Default {
-  const { dflt, disableLogging } = opts;
-
-  if (!globalThis.localStorage) {
-    return dflt;
-  }
-
+): z.infer<Schema> {
   let value: unknown;
   const valueRaw = localStorage.getItem(key);
   if (valueRaw === null) {
-    return dflt;
+    throw new ErrorNoData(key);
   }
 
   try {
     value = JSON.parse(valueRaw);
   } catch (err) {
-    return dflt;
+    throw new ErrorInvalidJson(key);
   }
 
   const results = schema.safeParse(value);
-  if (results.success) {
-    return results.data as z.infer<Schema>;
-  } else if (!disableLogging) {
-    console.log(
-      `localStorage.getItem("${key}") of invalid format`,
-      results.error,
-    );
+  if (!results.success) {
+    throw results.error;
   }
-  return dflt;
+  const out = results.data as z.infer<Schema>;
+  return out!;
 }
 
 export function setLocalstorageWithSchema<
   Schema extends z.ZodTypeAny,
-  Default extends z.infer<Schema> | undefined,
->(key: string, schema: Schema, data: Default) {
+  DataType extends z.infer<Schema> | undefined,
+>(key: string, schema: Schema, data: DataType) {
   const results = schema.safeParse(data);
   if (results.success) {
+    console.log("setItem");
     localStorage.setItem(key, JSON.stringify(results.data));
+  } else {
+    throw results.error;
   }
 }
