@@ -135,15 +135,8 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
             <OakHeading tag="h3" $font={["heading-5"]}>
               Your details
             </OakHeading>
-            <StyledForm
-              role="search"
-              onSubmit={onSubmitLocal}
-              $alignItems={"center"}
-            >
-              <fieldset
-                disabled={isSubmitting}
-                style={{ border: "none", padding: 0, margin: 0 }}
-              >
+            <StyledForm onSubmit={onSubmitLocal} $alignItems={"center"}>
+              <OakFlex $flexDirection={"column"}>
                 {!isComplete && (
                   <OakFlex
                     $width={"100%"}
@@ -240,7 +233,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                   icon="download"
                   disabled={false}
                 />
-              </fieldset>
+              </OakFlex>
             </StyledForm>
           </OakFlex>
         </Box>
