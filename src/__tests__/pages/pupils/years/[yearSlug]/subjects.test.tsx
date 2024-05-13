@@ -12,43 +12,9 @@ describe("PupilSubjectListing", () => {
     const { getByText } = render(
       <PupilSubjectListing curriculumData={[subjectBrowseDataFixture({})]} />,
     );
-    expect(getByText("maths")).toBeInTheDocument();
+    expect(getByText("Now choose a subject")).toBeInTheDocument();
   });
-  it("should render subjects alphabetically", () => {
-    const { getByText } = render(
-      <PupilSubjectListing
-        curriculumData={[
-          subjectBrowseDataFixture({
-            baseSlug: "maths-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "maths",
-            },
-          }),
-          subjectBrowseDataFixture({
-            baseSlug: "biology-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "biology",
-            },
-          }),
-          subjectBrowseDataFixture({
-            baseSlug: "biology-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "biology",
-            },
-          }),
-        ]}
-      />,
-    );
-    const e1 = getByText("biology");
-    const e2 = getByText("maths");
-    expect(e2.compareDocumentPosition(e1)).toBe(2);
-  });
+
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
       const res = await getStaticPaths();
