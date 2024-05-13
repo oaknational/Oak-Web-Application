@@ -11,6 +11,14 @@ import Input from "@/components/SharedComponents/Input";
 
 export const AutocompleteItem = Item;
 
+/*
+ * Waiting for the following components to be in oak-components
+ *
+ *  - <Popover />
+ *  - <ListBox />
+ *  - <Input />
+ */
+
 type AutocompleteProps = {
   inputProps: ComponentProps<typeof Input>;
   value?: string;

@@ -14,7 +14,6 @@ import {
 
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
-import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -32,7 +31,6 @@ function ScrollIntoViewWhenVisisble({
 
 const CurriculumDownloadTab: FC = () => {
   const localStorageData = useDownloadsLocalStorage();
-  const [isComplete, setIsComplete] = useState(localStorageData.isComplete);
   const [isDone, setIsDone] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,24 +88,13 @@ const CurriculumDownloadTab: FC = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
-        {!isComplete && (
-          <CurriculumDownloadView
-            isSubmitting={isSubmitting}
-            onSubmit={onSubmit}
-            onChange={setData}
-            schools={schoolList ?? []}
-            data={data}
-          />
-        )}
-        {isComplete && (
-          <ResourcePageDetailsCompleted
-            school={
-              data.schoolNotListed ? "My school isn’t listed" : data.schoolName
-            }
-            email={data.email}
-            onEditClick={() => setIsComplete(false)}
-          />
-        )}
+        <CurriculumDownloadView
+          isSubmitting={isSubmitting}
+          onSubmit={onSubmit}
+          onChange={setData}
+          schools={schoolList ?? []}
+          data={data}
+        />
       </Box>
     </OakThemeProvider>
   );

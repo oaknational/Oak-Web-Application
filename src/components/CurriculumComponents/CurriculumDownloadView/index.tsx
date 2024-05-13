@@ -1,66 +1,29 @@
 import {
   OakBox,
-  OakCheckBox,
   OakFieldError,
   OakFlex,
   OakHeading,
   OakLI,
-  OakLink,
   OakP,
   OakRadioButton,
   OakRadioGroup,
   OakUL,
 } from "@oaknational/oak-components";
-import { ComponentProps, FC, FormEvent, useMemo, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import styled from "styled-components";
 
 import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
-import Autocomplete, {
-  AutocompleteItem,
-} from "../OakComponentsKitchen/Autocomplete";
+import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
+import YourDetails from "../OakComponentsKitchen/YourDetails";
 
 import { submitSchema } from "./schema";
-import { School, parseSchoolToListItems, runSchema } from "./helper";
+import { School, runSchema } from "./helper";
 
-import { resolveOakHref } from "@/common-lib/urls";
 import Box from "@/components/SharedComponents/Box";
-import Input from "@/components/SharedComponents/Input";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import { HOMESCHOOL_URN } from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
-import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
-
-const useSchoolsFromApi = ({
-  schools,
-}: {
-  schools: School[];
-}): {
-  key: string;
-  textValue: string;
-}[] => {
-  return useMemo(() => {
-    return [
-      ...parseSchoolToListItems(schools),
-      { textValue: "Homeschool", key: HOMESCHOOL_URN },
-    ];
-  }, [schools]);
-};
-
-const Link = (props: ComponentProps<typeof OakLink>) => {
-  const isExternal = props.rel === "external";
-  const additionalProps = isExternal
-    ? ({
-        target: "_blank",
-      } as const)
-    : {};
-  return (
-    <OakLink {...props} {...additionalProps} style={{ display: "inline" }}>
-      {props.children}
-    </OakLink>
-  );
-};
+import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -82,26 +45,6 @@ const DOWNLOAD_LABELS: [DownloadType, string][] = [
   ["word", "Word"],
   ["pdf", "PDF"],
 ];
-
-const injectCurrentSchool = (
-  data: { schoolId?: string; schoolName?: string },
-  schools: { key: string; textValue: string }[],
-) => {
-  const found = !!schools.find((school) => {
-    return school.key === data.schoolId;
-  });
-
-  if (!found && data.schoolId && data.schoolName) {
-    return [
-      ...schools,
-      {
-        key: data.schoolId,
-        textValue: data.schoolName,
-      },
-    ];
-  }
-  return schools;
-};
 
 export type CurriculumDownloadViewData = {
   schools: School[];
@@ -135,7 +78,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
-  const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>(
     () => ({}),
   );
@@ -160,10 +102,12 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
     }
   };
 
-  const autoCompleteList = injectCurrentSchool(
-    data,
-    schoolsAsAutocompleteItems,
-  );
+  const [isComplete, setIsComplete] = useState(() => {
+    return (
+      (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
+      data.termsAndConditions
+    );
+  });
 
   return (
     <OakBox $color="black">
@@ -200,224 +144,102 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                 disabled={isSubmitting}
                 style={{ border: "none", padding: 0, margin: 0 }}
               >
-                <OakFlex
-                  $width={"100%"}
-                  $flexDirection={"column"}
-                  $alignItems={"start"}
-                  $gap={["space-between-l"]}
-                >
+                {!isComplete && (
                   <OakFlex
                     $width={"100%"}
                     $flexDirection={"column"}
                     $alignItems={"start"}
-                    $gap={"space-between-xs"}
+                    $gap={["space-between-l"]}
                   >
-                    <Autocomplete
-                      key={data.schoolId}
-                      inputProps={{
-                        label: "School (required)",
-                        id: "download-school",
-                        error: errors.schoolId,
-                        placeholder:
-                          "Type school name, postcode, or ‘homeschool’",
-                      }}
-                      onChange={(value, textValue) => {
+                    <YourDetails
+                      schools={schools}
+                      data={data}
+                      errors={errors}
+                      onChange={onChangeLocal}
+                    />
+
+                    <AcceptTerms
+                      value={!!data.termsAndConditions}
+                      error={errors.termsAndConditions}
+                      onChange={(v) =>
                         onChangeLocal({
-                          schoolId: value,
-                          schoolName: textValue,
-                          schoolNotListed: false,
-                        });
-                      }}
-                      onInputChange={(value) => {
-                        onChangeLocal({
-                          schoolName: value,
-                          schoolId: undefined,
-                        });
-                      }}
-                      value={data.schoolName}
-                    >
-                      {autoCompleteList.map(({ key, textValue }) => {
-                        const element = formatSchoolName(
-                          textValue,
-                          data.schoolName,
-                        );
-                        return (
-                          <AutocompleteItem key={key} textValue={textValue}>
-                            {element}
-                          </AutocompleteItem>
-                        );
-                      })}
-                    </Autocomplete>
-                    <OakCheckBox
-                      displayValue={"My school isn't listed"}
-                      checked={data.schoolNotListed}
-                      onChange={(e) =>
-                        onChangeLocal({
-                          schoolNotListed: e.target.checked,
-                          schoolId: undefined,
+                          termsAndConditions: v,
                         })
                       }
-                      value="download-school-isnt-listed"
-                      id="download-school-isnt-listed"
-                      data-testid="download-school-isnt-listed"
-                      name={"school-isnt-listed"}
                     />
                   </OakFlex>
+                )}
 
+                {isComplete && (
+                  <ResourcePageDetailsCompleted
+                    school={
+                      data.schoolNotListed
+                        ? "My school isn’t listed"
+                        : data.schoolName
+                    }
+                    email={data.email}
+                    onEditClick={() => setIsComplete(false)}
+                  />
+                )}
+
+                <Box>
                   <OakFlex
-                    $width={"100%"}
                     $flexDirection={"column"}
-                    $alignItems={"start"}
-                    $gap={"space-between-xs"}
-                  >
-                    <Input
-                      $mb={0}
-                      label="Email (optional)"
-                      id="download-email"
-                      data-testid="download-email"
-                      value={data.email}
-                      type="text"
-                      error={errors.email}
-                      onBlur={(e) => onChangeLocal({ email: e.target.value })}
-                      onChange={(e) => onChangeLocal({ email: e.target.value })}
-                    />
-
-                    <OakP $font={["body-3"]}>
-                      Join over 100k teachers and get free resources and other
-                      helpful content by email. Unsubscribe at any time. Read
-                      our{" "}
-                      <Link
-                        href={resolveOakHref({
-                          page: "legal",
-                          legalSlug: "privacy",
-                        })}
-                      >
-                        privacy policy
-                      </Link>
-                      .
-                    </OakP>
-                  </OakFlex>
-
-                  <OakFlex
                     $width={"100%"}
-                    $flexDirection={"column"}
-                    $alignItems={"start"}
-                    $gap={"space-between-m"}
+                    $gap={"space-between-s"}
+                    $mv={"space-between-m2"}
                   >
-                    {errors.termsAndConditions && (
-                      <OakFieldError>{errors.termsAndConditions}</OakFieldError>
-                    )}
-                    <Box
-                      $position={"relative"}
-                      $background={"grey20"}
-                      $pv={6}
-                      $ph={6}
+                    <OakHeading tag={"h3"} $font={"heading-7"}>
+                      Download options
+                    </OakHeading>
+                    <OakRadioGroup
+                      aria-label="Download type"
+                      name="download-type"
+                      data-testid="download-download-type"
+                      value={data.downloadType}
+                      onChange={(e) =>
+                        onChangeLocal({
+                          downloadType: assertValidDownloadType(e.target.value),
+                        })
+                      }
+                      $gap={"space-between-s"}
+                      $flexDirection={"column"}
                     >
-                      <BrushBorders
-                        hideOnMobileH
-                        hideOnMobileV
-                        color={"grey20"}
-                      />
-                      <OakCheckBox
-                        displayValue={
-                          "I accept terms and conditions (required)"
-                        }
-                        checked={data.termsAndConditions}
-                        onChange={(e) =>
-                          onChangeLocal({
-                            termsAndConditions: e.target.checked,
-                          })
-                        }
-                        value="download-accept-terms"
-                        id="download-accept-terms"
-                        data-testid="download-accept-terms"
-                        name={"accept-terms"}
-                      />
-                    </Box>
-
-                    <OakP $font={["body-3"]}>
-                      This content is © Oak National Academy (2023), licensed
-                      on{" "}
-                      <Link
-                        target="_blank"
-                        rel="external"
-                        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-                      >
-                        Open Government Licence version 3.0
-                      </Link>{" "}
-                      except where otherwise stated. See{" "}
-                      <Link
-                        rel="external"
-                        href={resolveOakHref({
-                          page: "legal",
-                          legalSlug: "terms-and-conditions",
-                        })}
-                      >
-                        Oak's terms and conditions
-                      </Link>
-                      .
-                    </OakP>
-                    <Box>
-                      <OakFlex
-                        $flexDirection={"column"}
-                        $width={"100%"}
-                        $gap={"space-between-s"}
-                        $mv={"space-between-m2"}
-                      >
-                        <OakHeading tag={"h3"} $font={"heading-7"}>
-                          Download options
-                        </OakHeading>
-                        <OakRadioGroup
-                          aria-label="Download type"
-                          name="download-type"
-                          data-testid="download-download-type"
-                          value={data.downloadType}
-                          onChange={(e) =>
-                            onChangeLocal({
-                              downloadType: assertValidDownloadType(
-                                e.target.value,
-                              ),
-                            })
-                          }
-                          $gap={"space-between-s"}
-                          $flexDirection={"column"}
-                        >
-                          {DOWNLOAD_LABELS.map(
-                            ([downloadTypeValue, downloadTypeLabel]) => {
-                              return (
-                                <OakRadioButton
-                                  id={downloadTypeValue}
-                                  key={downloadTypeValue}
-                                  label={downloadTypeLabel}
-                                  value={downloadTypeValue}
-                                  data-testid={downloadTypeValue}
-                                />
-                              );
-                            },
-                          )}
-                        </OakRadioGroup>
-                      </OakFlex>
-                    </Box>
-                    {hasErrors > 0 && (
-                      <OakFieldError>
-                        <OakP>To download fix following errors:</OakP>
-                        <OakUL>
-                          {Object.entries(errors).map(([key, value]) => {
-                            return <OakLI key={key}>{value}</OakLI>;
-                          })}
-                        </OakUL>
-                      </OakFieldError>
-                    )}
-                    <LoadingButton
-                      text="Download"
-                      isLoading={isSubmitting}
-                      loadingText="Download"
-                      type="submit"
-                      icon="download"
-                      disabled={false}
-                    />
+                      {DOWNLOAD_LABELS.map(
+                        ([downloadTypeValue, downloadTypeLabel]) => {
+                          return (
+                            <OakRadioButton
+                              id={downloadTypeValue}
+                              key={downloadTypeValue}
+                              label={downloadTypeLabel}
+                              value={downloadTypeValue}
+                              data-testid={downloadTypeValue}
+                            />
+                          );
+                        },
+                      )}
+                    </OakRadioGroup>
                   </OakFlex>
-                </OakFlex>
+                </Box>
+
+                {hasErrors > 0 && (
+                  <OakFieldError>
+                    <OakP>To download fix following errors:</OakP>
+                    <OakUL>
+                      {Object.entries(errors).map(([key, value]) => {
+                        return <OakLI key={key}>{value}</OakLI>;
+                      })}
+                    </OakUL>
+                  </OakFieldError>
+                )}
+                <LoadingButton
+                  text="Download"
+                  isLoading={isSubmitting}
+                  loadingText="Download"
+                  type="submit"
+                  icon="download"
+                  disabled={false}
+                />
               </fieldset>
             </StyledForm>
           </OakFlex>
