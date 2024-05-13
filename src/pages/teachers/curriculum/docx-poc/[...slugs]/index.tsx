@@ -1,20 +1,19 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Element } from "xml-js";
 
-import { unitsTablePatch } from "./patches/unitsTable";
-import { subjectPatch } from "./patches/subject";
-import { tableOfContentsPatch } from "./patches/tableOfContents";
-import { subjectExplainerPatch } from "./patches/subjectExplainer";
-import { partnerDetailPatch } from "./patches/partnerDetail";
-import { partnerNamePatch } from "./patches/partnerName";
-import { yearPatch } from "./patches/year";
-import { endOfDocumentPatch } from "./patches/endOfDocument";
-import { threadsTablePatch } from "./patches/threadsTable";
-import { unitTitlePatch } from "./patches/unitTitle";
-import { unitYearPatch } from "./patches/unitYear";
-import { unitLessonsPatch } from "./patches/unitLessons";
-import { unitThreadsPatch } from "./patches/unitThreads";
-
+import { unitsTablePatch } from "@/pages-helpers/curriculum/docx-patches/unitsTable";
+import { subjectPatch } from "@/pages-helpers/curriculum/docx-patches/subject";
+import { tableOfContentsPatch } from "@/pages-helpers/curriculum/docx-patches/tableOfContents";
+import { subjectExplainerPatch } from "@/pages-helpers/curriculum/docx-patches/subjectExplainer";
+import { partnerDetailPatch } from "@/pages-helpers/curriculum/docx-patches/partnerDetail";
+import { partnerNamePatch } from "@/pages-helpers/curriculum/docx-patches/partnerName";
+import { yearPatch } from "@/pages-helpers/curriculum/docx-patches/year";
+import { endOfDocumentPatch } from "@/pages-helpers/curriculum/docx-patches/endOfDocument";
+import { threadsTablePatch } from "@/pages-helpers/curriculum/docx-patches/threadsTable";
+import { unitTitlePatch } from "@/pages-helpers/curriculum/docx-patches/unitTitle";
+import { unitYearPatch } from "@/pages-helpers/curriculum/docx-patches/unitYear";
+import { unitLessonsPatch } from "@/pages-helpers/curriculum/docx-patches/unitLessons";
+import { unitThreadsPatch } from "@/pages-helpers/curriculum/docx-patches/unitThreads";
 import {
   mapOverElements,
   modifyXmlByRootSelector,

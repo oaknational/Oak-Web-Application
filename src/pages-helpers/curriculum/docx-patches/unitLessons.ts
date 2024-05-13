@@ -1,6 +1,6 @@
 import type { Element } from "xml-js";
 
-import { CombinedCurriculumData } from "..";
+import { CombinedCurriculumData } from "../../../pages/teachers/curriculum/docx-poc/[...slugs]";
 
 import { textIncludes, textReplacer } from "./util";
 

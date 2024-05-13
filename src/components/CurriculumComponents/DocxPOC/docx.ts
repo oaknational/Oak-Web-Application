@@ -7,7 +7,7 @@ import {
   xmlElementsToJson,
 } from "./patches/xml";
 
-import { textIncludes } from "@/pages/teachers/curriculum/docx-poc/[...slugs]/patches/util";
+import { textIncludes } from "@/pages-helpers/curriculum/docx-patches/util";
 
 /**
  * Modify docx file
