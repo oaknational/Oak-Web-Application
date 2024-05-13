@@ -66,12 +66,16 @@ async function handleRequest(
   }
 
   const baseOptions = legacy ? auth2020 : auth2023;
+  const mux = new Mux({
+    tokenId: getServerConfig("muxTokenId"),
+    tokenSecret: getServerConfig("muxTokenSecret"),
+  });
 
   let token;
   try {
-    token = Mux.JWT.signPlaybackId(id, {
+    token = await mux.jwt.signPlaybackId(id, {
       ...baseOptions,
-      type,
+      type: type as "video" | "thumbnail" | "storyboard",
       expiration: "6h",
       // Probably only applies to thumbnails
       params: { time: "1" },
