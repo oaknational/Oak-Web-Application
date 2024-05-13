@@ -1,11 +1,13 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import Link from "next/link";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { resolveOakHref } from "@/common-lib/urls";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
@@ -20,96 +22,35 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     throw new Error("No curriculum data");
   }
 
-  const orderedCurriculumData = curriculumData.sort((a, b) => {
+  curriculumData.sort((a, b) => {
     const aUnitOrder = a.supplementaryData.unitOrder;
     const bUnitOrder = b.supplementaryData.unitOrder;
     return aUnitOrder - bUnitOrder;
   });
 
   const { programmeFields } = curriculumData[0];
-  const {
-    subject,
-    yearDescription,
-    tier,
-    examboard,
-    yearSlug,
-    phaseSlug,
-    subjectSlug,
-    examboardSlug,
-    legacy,
-  } = programmeFields;
+  const { subject, phase, yearDescription } = programmeFields;
 
-  const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
-
-  const optionSlug = `options${legacy ? "-l" : ""}`;
-
-  function pickPreviousPage(): [backHref: string, backLabel: string] {
-    const hasTier = tier !== null;
-    const hasExamboard = examboard !== null;
-
-    switch (true) {
-      case hasTier && hasExamboard:
-        return [
-          `${resolveOakHref({
-            page: "pupil-programme-index",
-            programmeSlug: baseSlug,
-            optionSlug,
-          })}?examboard=${examboardSlug}`,
-          "Select tiers",
-        ];
-      case hasTier && !hasExamboard:
-        return [
-          resolveOakHref({
-            page: "pupil-programme-index",
-            programmeSlug: baseSlug,
-            optionSlug,
-          }),
-          "Select tiers",
-        ];
-      case hasExamboard && !hasTier:
-        return [
-          resolveOakHref({
-            page: "pupil-programme-index",
-            programmeSlug: baseSlug,
-            optionSlug,
-          }),
-          "Select examboards",
-        ];
-      default:
-        return [
-          resolveOakHref({ page: "pupil-subject-index", yearSlug }),
-          "Select subjects",
-        ];
-    }
+  if (phase === "foundation") {
+    throw new Error("Foundation phase not supported");
   }
 
-  const [backHref, backLabel] = pickPreviousPage();
-
   return (
-    <div>
-      <h1>{subject}</h1>
-      <h2>{yearDescription}</h2>
-      <h3>{tier}</h3>
-      <h4>{examboard}</h4>
-      <Link href={backHref}>{backLabel}</Link>
-      <ol>
-        {orderedCurriculumData.map((unit) => {
-          return (
-            <li key={unit.unitSlug}>
-              <Link
-                href={resolveOakHref({
-                  page: "pupil-lesson-index",
-                  programmeSlug: unit.programmeSlug,
-                  unitSlug: unit.unitSlug,
-                })}
-              >
-                {unit.unitData?.title} - {unit.lessonCount} lessons
-              </Link>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
+            description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
+          }),
+        }}
+      >
+        <PupilViewsUnitListing
+          units={curriculumData}
+          programmeFields={programmeFields}
+        />
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
