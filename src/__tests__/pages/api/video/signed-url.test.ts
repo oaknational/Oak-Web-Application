@@ -19,7 +19,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "true",
       },
     });
@@ -32,7 +32,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
       },
     });
 
@@ -42,7 +42,7 @@ describe("/api/video/signed-url", () => {
       expect.objectContaining({
         keyId: "123",
         keySecret: "super secret",
-        type: "some-type",
+        type: "video",
       }),
     );
   });
@@ -50,7 +50,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "true",
       },
     });
@@ -61,7 +61,7 @@ describe("/api/video/signed-url", () => {
       expect.objectContaining({
         keyId: "123-2020",
         keySecret: "super secret-2020",
-        type: "some-type",
+        type: "video",
       }),
     );
   });
@@ -101,7 +101,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "false",
       },
     });
