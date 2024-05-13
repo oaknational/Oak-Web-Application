@@ -1,3 +1,20 @@
+# [1.431.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.430.0...v1.431.0) (2024-05-10)
+
+
+### Bug Fixes
+
+* capitalize tier by using tierDescription ([5e4cd7f](https://github.com/oaknational/Oak-Web-Application/commit/5e4cd7fe8a26701fed91d32cad8fbbcac8a2a168))
+* type error ([4a0fdb1](https://github.com/oaknational/Oak-Web-Application/commit/4a0fdb1517e1c95f046dd8f4cf956515fa626273))
+* update button label to match designs ([4cd8272](https://github.com/oaknational/Oak-Web-Application/commit/4cd8272f68558c4f5a94101611f481cb2ba9f675))
+* update font for numbers  to match designs ([b750ab1](https://github.com/oaknational/Oak-Web-Application/commit/b750ab1b086b5e90cc1b1b93e539aa1f21350493))
+
+
+### Features
+
+* style pupil unit listing page ([3577204](https://github.com/oaknational/Oak-Web-Application/commit/357720432192aad73bed72d457f147cb9d2d3795))
+* styling unit listing page ([e3d4d6f](https://github.com/oaknational/Oak-Web-Application/commit/e3d4d6f4e83ec34356da2d28637ae40ccb82f301))
+* test coverage for PupilUnitListing.view ([e275145](https://github.com/oaknational/Oak-Web-Application/commit/e2751450d2fcb3172cea25ba9fa86a8d18650748))
+
 # [1.430.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.429.0...v1.430.0) (2024-05-09)
 
 
