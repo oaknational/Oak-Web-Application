@@ -97,6 +97,24 @@ describe("/api/video/signed-url", () => {
       }),
     );
   });
+  it("should fail if type is not valid string", async () => {
+    const { req, res } = createNextApiMocks({
+      query: {
+        id: "some-id",
+        type: "invalid-type",
+        legacy: "true",
+      },
+    });
+
+    await handler(req, res);
+    expect(res._getStatusCode()).toBe(400);
+    expect(res._getJSONData()).toEqual(
+      JSON.stringify({
+        message:
+          "Query parameter 'type' must be one of video, thumbnail, gif, storyboard, stats",
+      }),
+    );
+  });
   it("should fail 'legacy' if exists but not 'true'", async () => {
     const { req, res } = createNextApiMocks({
       query: {
