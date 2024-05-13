@@ -45,7 +45,6 @@ export function setLocalstorageWithSchema<
 >(key: string, schema: Schema, data: DataType) {
   const results = schema.safeParse(data);
   if (results.success) {
-    console.log("setItem");
     localStorage.setItem(key, JSON.stringify(results.data));
   } else {
     throw results.error;

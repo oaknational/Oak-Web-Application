@@ -48,7 +48,6 @@ describe("CurriculumDownloadTab / helper", () => {
       jest
         .spyOn(Storage.prototype, "getItem")
         .mockImplementation((key: string) => {
-          console.log("key=", key);
           if (key === LS_KEY_EMAIL) {
             return JSON.stringify("test@example.com");
           }
