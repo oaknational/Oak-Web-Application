@@ -129,7 +129,7 @@ Here is an example of a paragraph with some text
 TODO...
 ```
 
-## Styling
+### Styling
 
 ```
 TODO...

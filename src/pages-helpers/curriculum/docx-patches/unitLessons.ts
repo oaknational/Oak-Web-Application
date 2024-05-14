@@ -16,14 +16,25 @@ export function unitLessonsPatch(
         return inner.type === "text" && inner.text === "{{=UNIT.LESSONS}}";
       })
     ) {
+      const listRules = {
+        // TODO: We should be using numbering here, but the numbered lists don't reset currently.
+        numbering: `
+          <w:ilvl w:val="0"/>
+          <w:numId w:val="8"/>
+        `,
+        bullets: `
+          <w:ilvl w:val="0"/>
+          <w:numId w:val="3"/>
+        `,
+      };
+
       const lessonsXml =
         unit.lessons?.map((lesson) => {
           return `
           <w:p>
               <w:pPr>
                   <w:numPr>
-                      <w:ilvl w:val="0"/>
-                      <w:numId w:val="8"/>
+                    ${listRules.bullets}
                   </w:numPr>
                   <w:spacing w:line="240" w:lineRule="auto"/>
                   <w:ind w:left="425" w:right="-17"/>
