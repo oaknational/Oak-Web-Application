@@ -36,6 +36,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { unitThreadsPatch } from "@/pages-helpers/curriculum/docx-patches/unitThreads";
 import { unitPreviousPatch } from "@/pages-helpers/curriculum/docx-patches/unitPrevious";
 import { unitNextPatch } from "@/pages-helpers/curriculum/docx-patches/unitNext";
+import { unitNumberPatch } from "@/pages-helpers/curriculum/docx-patches/unitNumber";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
@@ -92,18 +93,21 @@ export default function Page({
             docMod1!,
             "UNIT_PAGE",
             async (el: Element) => {
-              const promises = combinedCurriculumData.units.map((unit) => {
-                return mapOverElements(el, (el, parent) => {
-                  return pipeElementThrough(el, parent, [
-                    unitTitlePatch(unit),
-                    unitLessonsPatch(unit),
-                    unitYearPatch(unit),
-                    unitThreadsPatch(unit),
-                    unitPreviousPatch(unit),
-                    unitNextPatch(unit),
-                  ]);
-                });
-              });
+              const promises = combinedCurriculumData.units.map(
+                (unit, index) => {
+                  return mapOverElements(el, (el, parent) => {
+                    return pipeElementThrough(el, parent, [
+                      unitTitlePatch(unit),
+                      unitNumberPatch(unit, index),
+                      unitLessonsPatch(unit),
+                      unitYearPatch(unit),
+                      unitThreadsPatch(unit),
+                      unitPreviousPatch(unit),
+                      unitNextPatch(unit),
+                    ]);
+                  });
+                },
+              );
               return await Promise.all(promises);
             },
           );
