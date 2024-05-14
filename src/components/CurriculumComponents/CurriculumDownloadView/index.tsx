@@ -5,11 +5,12 @@ import {
   OakHeading,
   OakLI,
   OakP,
+  OakPrimaryButton,
   OakRadioButton,
   OakRadioGroup,
   OakUL,
 } from "@oaknational/oak-components";
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
 import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
@@ -22,7 +23,6 @@ import { School, runSchema } from "./helper";
 import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
@@ -85,6 +85,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
+  const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>(
     () => ({}),
   );
@@ -221,23 +222,25 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
 
                 <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
                   {hasErrors > 0 && (
-                    <OakFieldError>
-                      <OakP>To download fix following errors:</OakP>
-                      <OakUL>
-                        {Object.entries(errors).map(([key, value]) => {
-                          return <OakLI key={key}>{value}</OakLI>;
-                        })}
-                      </OakUL>
-                    </OakFieldError>
+                    <div id={errorMessageListId}>
+                      <OakFieldError>
+                        <OakP>To download fix following errors:</OakP>
+                        <OakUL>
+                          {Object.entries(errors).map(([key, value]) => {
+                            return <OakLI key={key}>{value}</OakLI>;
+                          })}
+                        </OakUL>
+                      </OakFieldError>
+                    </div>
                   )}
-                  <LoadingButton
-                    text="Download"
+                  <OakPrimaryButton
+                    aria-errormessage={errorMessageListId}
                     isLoading={isSubmitting}
-                    loadingText="Download"
                     type="submit"
-                    icon="download"
                     disabled={false}
-                  />
+                  >
+                    Download
+                  </OakPrimaryButton>
                 </OakFlex>
               </OakFlex>
             </StyledForm>
