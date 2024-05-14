@@ -27,9 +27,6 @@ query planALessonPage($isDraftFilter: Sanity_DocumentFilter) {
       ... on PlanALessonPageFormBlock {
         type: __typename
         navigationTitle: title
-        anchorSlug {
-          current
-        }
         bodyPortableText: textRaw
         form {
           title

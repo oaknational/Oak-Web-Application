@@ -8,6 +8,7 @@ import {
   OakMaxWidth,
   OakTypography,
   OakHeading,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -26,6 +27,7 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -74,6 +76,8 @@ const TimeLineCard: FC<TimeLineProps> = ({
 };
 
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
+  const videoCaptions =
+    pageData.intro.mediaType === "video" ? pageData.intro.video.captions : null;
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
@@ -85,44 +89,63 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
         <Card
           $pv={32}
           $ph={[16, 24]}
-          $flexDirection={["column", "column", "row"]}
+          $flexDirection={["column", "column", "column"]}
           $mb={[80, 92]}
           $background="pink50"
           $maxWidth={["100%", 812, "100%"]}
           $mt={92}
         >
-          <BrushBorders hideOnMobileH color={"pink50"} />
-          <OakFlex
-            $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
-            $flexDirection={["column", "column", "row"]}
-          >
-            <OakFlex $justifyContent={"center"} $alignItems={"center"}>
-              {pageData.intro.mediaType == "video" && (
-                <CMSVideo video={pageData.intro.video} location="marketing" />
-              )}
-            </OakFlex>
-            <Box $width={["100%", "100%", "50%"]}>
-              <OakTypography
-                $mb={"space-between-m2"}
-                $font={["body-2", "body-1"]}
-              >
-                <PortableTextWithDefaults
-                  value={pageData.intro.bodyPortableText}
-                />
-              </OakTypography>
-              <OakFlex $justifyContent={"flex-start"}>
-                {pageData.intro.cta && (
-                  <ButtonAsLink
-                    icon={"arrow-right"}
-                    $iconPosition="trailing"
-                    label={pageData.intro.cta.label}
-                    page={null}
-                    href={getLinkHref(pageData.intro.cta)}
+          <OakFlex>
+            <BrushBorders hideOnMobileH color={"pink50"} />
+            <OakFlex
+              $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
+              $flexDirection={["column", "column", "row"]}
+            >
+              <OakFlex $justifyContent={"center"} $alignItems={"center"}>
+                {pageData.intro.mediaType == "video" && (
+                  <CMSVideo
+                    hideCaptions={true}
+                    video={pageData.intro.video}
+                    location="marketing"
                   />
                 )}
               </OakFlex>
-            </Box>
+              {videoCaptions && videoCaptions?.length > 0 && (
+                <OakBox $display={["block", "block", "none"]}>
+                  <TranscriptToggle transcriptSentences={videoCaptions} />
+                </OakBox>
+              )}
+              <Box $width={["100%", "100%", "50%"]}>
+                <OakTypography
+                  $mb={"space-between-m2"}
+                  $font={["body-2", "body-1"]}
+                >
+                  <PortableTextWithDefaults
+                    value={pageData.intro.bodyPortableText}
+                  />
+                </OakTypography>
+                <OakFlex $justifyContent={"flex-start"}>
+                  {pageData.intro.cta && (
+                    <ButtonAsLink
+                      icon={"arrow-right"}
+                      $iconPosition="trailing"
+                      label={pageData.intro.cta.label}
+                      page={null}
+                      href={getLinkHref(pageData.intro.cta)}
+                    />
+                  )}
+                </OakFlex>
+              </Box>
+            </OakFlex>
           </OakFlex>
+          {videoCaptions && (
+            <OakBox
+              $mt={"space-between-xs"}
+              $display={["none", "none", "block"]}
+            >
+              <TranscriptToggle transcriptSentences={videoCaptions} />
+            </OakBox>
+          )}
         </Card>
         <TimeLineCard
           bodyPortableText={pageData.timeline.from.bodyPortableText}

@@ -1,5 +1,6 @@
 fragment Video on Video {
   title
+  captions: fieldForCaptionsDoNotUse
   video {
     asset {
       assetId
