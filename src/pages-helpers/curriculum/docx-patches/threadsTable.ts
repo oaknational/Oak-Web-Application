@@ -1,9 +1,10 @@
 import type { Element } from "xml-js";
 
-import { textIncludes } from "./util";
+import { createThreadOptions, textIncludes } from "./util";
 
 import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
 import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
+import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
 function buildColumn(text: string) {
   return `
@@ -52,7 +53,9 @@ function buildRow(children: string) {
     `;
 }
 
-export function threadsTablePatch() {
+export function threadsTablePatch(
+  combinedCurriculumData: CombinedCurriculumData,
+) {
   return async (el: Element) => {
     if (
       el.type === "element" &&
@@ -63,10 +66,10 @@ export function threadsTablePatch() {
           el.type === "text" && textIncludes(el.text, "{{=THREADS_TABLE}}"),
       )
     ) {
-      const items = ["test1", "test2", "test3"];
+      const items = createThreadOptions(combinedCurriculumData.units);
 
       const rows = items.map((item) => {
-        return buildRow(buildColumn(item));
+        return buildRow(buildColumn(item.title));
       });
 
       return xmlElementToJson(`

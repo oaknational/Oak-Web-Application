@@ -2,21 +2,46 @@ import type { Element } from "xml-js";
 
 import { CombinedCurriculumData } from "../../../pages/teachers/curriculum/docx-poc/[...slugs]";
 
-import { textIncludes, textReplacer } from "./util";
+import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
+import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
 
 export function unitLessonsPatch(
   unit: CombinedCurriculumData["units"][number],
 ) {
   return async (el: Element) => {
-    if (el.type === "text" && textIncludes(el.text, "{{=UNIT.LESSONS}}")) {
-      return {
-        type: "text",
-        text: textReplacer(
-          el.text,
-          "{{=UNIT.LESSONS}}",
-          unit.lessons?.map((l) => l.title).join(", ") ?? "",
-        ),
-      } as Element;
+    if (
+      el.type === "element" &&
+      el.name === "w:p" &&
+      checkWithinElement(el, (inner: Element) => {
+        return inner.type === "text" && inner.text === "{{=UNIT.LESSONS}}";
+      })
+    ) {
+      const lessonsXml =
+        unit.lessons?.map((lesson) => {
+          return `
+          <w:p>
+              <w:pPr>
+                  <w:numPr>
+                      <w:ilvl w:val="0"/>
+                      <w:numId w:val="8"/>
+                  </w:numPr>
+                  <w:spacing w:line="240" w:lineRule="auto"/>
+                  <w:ind w:left="425" w:right="-17"/>
+                  <w:rPr>
+                      <w:color w:val="222222"/>
+                  </w:rPr>
+              </w:pPr>
+              <w:r>
+                  <w:rPr>
+                      <w:color w:val="222222"/>
+                  </w:rPr>
+                  <w:t><![CDATA[${lesson.title}]]></w:t>
+              </w:r>
+          </w:p>
+        ` as Element;
+        }) ?? [];
+      const xml = `<w:sectPr>${lessonsXml.join("")}</w:sectPr>`;
+      return xmlElementToJson(xml) as Element;
     }
     return el;
   };

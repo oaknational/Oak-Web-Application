@@ -13,7 +13,7 @@ import { threadsTablePatch } from "@/pages-helpers/curriculum/docx-patches/threa
 import { unitTitlePatch } from "@/pages-helpers/curriculum/docx-patches/unitTitle";
 import { unitYearPatch } from "@/pages-helpers/curriculum/docx-patches/unitYear";
 import { unitLessonsPatch } from "@/pages-helpers/curriculum/docx-patches/unitLessons";
-import { unitThreadsPatch } from "@/pages-helpers/curriculum/docx-patches/unitThreads";
+import { mainThreadsPatch } from "@/pages-helpers/curriculum/docx-patches/mainThreads";
 import {
   mapOverElements,
   modifyXmlByRootSelector,
@@ -33,6 +33,9 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { unitThreadsPatch } from "@/pages-helpers/curriculum/docx-patches/unitThreads";
+import { unitPreviousPatch } from "@/pages-helpers/curriculum/docx-patches/unitPrevious";
+import { unitNextPatch } from "@/pages-helpers/curriculum/docx-patches/unitNext";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
@@ -64,31 +67,29 @@ export default function Page({
       const uint8Array = new Uint8Array(fileContent);
 
       // NOTE: This is really inefficient at the moment, that's fine for now though
-      const patches = [
-        unitsTablePatch(combinedCurriculumData),
-        subjectPatch(combinedCurriculumData),
-        tableOfContentsPatch(),
-        subjectExplainerPatch(combinedCurriculumData),
-        partnerDetailPatch(combinedCurriculumData),
-        partnerNamePatch(combinedCurriculumData),
-        yearPatch(),
-        threadsTablePatch(),
-        endOfDocumentPatch(),
-      ];
-
       const moddedFile = await modifyXmlByRootSelector(
         uint8Array,
         "w:document",
         async (doc) => {
-          const newDoc1 = await mapOverElements(
+          const docMod1 = await mapOverElements(
             doc,
             (el: Element, parent?: Element) => {
-              return pipeElementThrough(el, parent, patches);
+              return pipeElementThrough(el, parent, [
+                unitsTablePatch(combinedCurriculumData),
+                subjectPatch(combinedCurriculumData),
+                tableOfContentsPatch(),
+                subjectExplainerPatch(combinedCurriculumData),
+                partnerDetailPatch(combinedCurriculumData),
+                partnerNamePatch(combinedCurriculumData),
+                yearPatch(),
+                threadsTablePatch(combinedCurriculumData),
+                endOfDocumentPatch(),
+              ]);
             },
           );
 
-          const newDoc = await withBlock(
-            newDoc1!,
+          const docMod2 = await withBlock(
+            docMod1!,
             "UNIT_PAGE",
             async (el: Element) => {
               const promises = combinedCurriculumData.units.map((unit) => {
@@ -96,8 +97,10 @@ export default function Page({
                   return pipeElementThrough(el, parent, [
                     unitTitlePatch(unit),
                     unitLessonsPatch(unit),
-                    unitThreadsPatch(unit),
                     unitYearPatch(unit),
+                    unitThreadsPatch(unit),
+                    unitPreviousPatch(unit),
+                    unitNextPatch(unit),
                   ]);
                 });
               });
@@ -105,11 +108,21 @@ export default function Page({
             },
           );
 
-          if (!newDoc) {
+          const docMod3 = await withBlock(
+            docMod2!,
+            "THREAD_PAGE",
+            async (el: Element, parent?: Element) => {
+              return pipeElementThrough(el, parent, [
+                mainThreadsPatch(combinedCurriculumData),
+              ]);
+            },
+          );
+
+          if (!docMod3) {
             throw new Error("Invalid document!");
           }
 
-          return newDoc;
+          return docMod3;
         },
       );
 
