@@ -34,7 +34,8 @@ function buildYearColumn({ index, title }: { title: string; index: number }) {
                   <w:color w:val="222222"/>
                   <w:sz w:val="44"/>
                   <w:szCs w:val="44"/>
-                  <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
+                  <w:b/>
+                  <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
               </w:rPr>
               <w:t xml:space="preserve">${index}</w:t>
           </w:r>
@@ -99,7 +100,7 @@ function buildYear(
                 <w:szCs w:val="44"/>
                 <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
             </w:rPr>
-            <w:t xml:space="preserve">Year ${year}</w:t>
+            <w:t xml:space="preserve">Year ${year} units</w:t>
         </w:r>
       </w:p>
       <w:p>
