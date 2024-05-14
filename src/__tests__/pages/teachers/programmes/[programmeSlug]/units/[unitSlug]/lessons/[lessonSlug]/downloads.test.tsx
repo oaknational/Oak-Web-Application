@@ -409,7 +409,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
           "Lesson Download: Transverse waves | KS4 Combined Science | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Select and download free lesson resources, including slide decks, worksheets and quizzes",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
         robots: "index,follow",
