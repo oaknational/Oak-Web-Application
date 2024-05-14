@@ -169,6 +169,7 @@ export default function YourDetails({
             onChange({
               schoolNotListed: e.target.checked,
               schoolId: undefined,
+              schoolName: undefined,
             })
           }
           value="download-school-isnt-listed"
