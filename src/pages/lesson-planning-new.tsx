@@ -41,7 +41,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
         <OakHeaderHero
           headingTitle={pageData.hero.heading}
           authorName={pageData.hero.author.name}
-          authorTitle={pageData.hero.author.role}
+          authorTitle={pageData.hero.author.role ?? ""}
           subHeadingText={
             pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
           }
