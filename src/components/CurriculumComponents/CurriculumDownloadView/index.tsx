@@ -219,24 +219,26 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                   </OakFlex>
                 </Box>
 
-                {hasErrors > 0 && (
-                  <OakFieldError>
-                    <OakP>To download fix following errors:</OakP>
-                    <OakUL>
-                      {Object.entries(errors).map(([key, value]) => {
-                        return <OakLI key={key}>{value}</OakLI>;
-                      })}
-                    </OakUL>
-                  </OakFieldError>
-                )}
-                <LoadingButton
-                  text="Download"
-                  isLoading={isSubmitting}
-                  loadingText="Download"
-                  type="submit"
-                  icon="download"
-                  disabled={false}
-                />
+                <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+                  {hasErrors > 0 && (
+                    <OakFieldError>
+                      <OakP>To download fix following errors:</OakP>
+                      <OakUL>
+                        {Object.entries(errors).map(([key, value]) => {
+                          return <OakLI key={key}>{value}</OakLI>;
+                        })}
+                      </OakUL>
+                    </OakFieldError>
+                  )}
+                  <LoadingButton
+                    text="Download"
+                    isLoading={isSubmitting}
+                    loadingText="Download"
+                    type="submit"
+                    icon="download"
+                    disabled={false}
+                  />
+                </OakFlex>
               </OakFlex>
             </StyledForm>
           </OakFlex>
