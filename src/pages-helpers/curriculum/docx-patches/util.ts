@@ -48,7 +48,6 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
 
 // TODO: This is from from Sonali's work that's not yet merged
 export function createThreadOptions(units: Unit[]): Thread[] {
-  console.log("createThreadOptions=", { units });
   const threadOptions = [] as Thread[];
 
   units.forEach((unit: Unit) => {
