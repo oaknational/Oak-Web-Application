@@ -13,6 +13,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import CMSClient from "@/node-lib/cms";
 import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
+import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
+import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
@@ -76,10 +78,21 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $colSpan={[12, 12, 6]}
             $colStart={[1, 1, 5]}
           >
-            <OakHeading tag={"h2"} $font={"heading-4"}>
-              {"H2 Section title"}
-            </OakHeading>
-            <OakFlex>{"cms content block section"}</OakFlex>
+            {pageData.content.map((content) => {
+              if (content.type === "PlanALessonPageFormBlock") {
+                return (
+                  <OakFlex $mb={"space-between-xxxl"}>
+                    <LandingPageSignUpForm formTitle={content.form.title} />
+                  </OakFlex>
+                );
+              }
+              return (
+                <LessonPlanningBlog
+                  title={content.navigationTitle}
+                  blogPortableText={content.bodyPortableText}
+                />
+              );
+            })}
           </OakGridArea>
         </OakGrid>
       </OakMaxWidth>
