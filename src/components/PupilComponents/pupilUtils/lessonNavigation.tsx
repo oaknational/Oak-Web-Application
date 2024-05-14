@@ -2,10 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, MouseEvent, useRef, useCallback } from "react";
 import { resolveHref } from "next/dist/client/resolve-href";
 
-import {
-  LessonSection,
-  isLessonSection,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSection, isLessonSection } from "../LessonEngineProvider";
 
 /**
  * Subscribes to popstate events and calls the provided callback with the current section
