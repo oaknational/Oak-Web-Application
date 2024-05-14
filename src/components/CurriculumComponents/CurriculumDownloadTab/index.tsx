@@ -76,7 +76,9 @@ const CurriculumDownloadTab: FC = () => {
       termsAndConditions: data.termsAndConditions!,
       schoolNotListed: data.schoolNotListed!,
     });
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // TODO: Actually generate file here (async)
+
     setIsSubmitting(false);
     setIsDone(true);
   };
