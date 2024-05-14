@@ -171,6 +171,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  muxTokenId: {
+    value: process.env.MUX_TOKEN_ID,
+    envName: "MUX_TOKEN_ID",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  muxTokenSecret: {
+    value: process.env.MUX_TOKEN_SECRET,
+    envName: "MUX_TOKEN_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

@@ -2,9 +2,13 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakGrid,
   OakGridArea,
-  OakHeading,
   OakMaxWidth,
   OakFlex,
+  OakTertiaryOLNav,
+  OakThemeProvider,
+  oakDefaultTheme,
+  OakAnchorTarget,
+  OakHeaderHero,
 } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
@@ -13,90 +17,123 @@ import getPageProps from "@/node-lib/getPageProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import CMSClient from "@/node-lib/cms";
 import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
+import { getNavItems } from "@/pages-helpers/homesite/plan-a-lesson/getNavItems";
 import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
+import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
 };
 
-// This is the new plan a lesson page currently a template for the layout
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  return (
-    <Layout
-      seoProps={{
-        ...getSeoProps(pageData.seo),
-        ...{ noFollow: true, noIndex: true },
-      }}
-      $background={"white"}
-    >
-      <OakMaxWidth $pt={"inner-padding-xl"} $pb={"inner-padding-l"}>
-        <Breadcrumbs
-          breadcrumbs={[
-            {
-              oakLinkProps: {
-                page: "home",
-              },
-              label: "Home",
-            },
+  const navItems = getNavItems({ pageData });
 
-            {
-              oakLinkProps: {
-                page: "lesson-planning",
-              },
-              label: "Plan a lesson",
-              disabled: true,
-            },
-          ]}
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Layout
+        seoProps={{
+          ...getSeoProps(pageData.seo),
+          ...{ noFollow: true, noIndex: true },
+        }}
+        $background={"white"}
+      >
+        <OakHeaderHero
+          headingTitle={pageData.hero.heading}
+          authorName={pageData.hero.author.name}
+          authorTitle={pageData.hero.author.role}
+          subHeadingText={
+            pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
+          }
+          heroImageSrc={imageBuilder
+            .image(pageData.hero.image?.asset?.url ?? {})
+            .url()}
+          authorImageSrc={imageBuilder
+            .image(pageData.hero.author.image?.asset?.url ?? {})
+            .url()}
+          breadcrumbs={
+            <Breadcrumbs
+              breadcrumbs={[
+                {
+                  oakLinkProps: {
+                    page: "home",
+                  },
+                  label: "Home",
+                },
+
+                {
+                  oakLinkProps: {
+                    page: "lesson-planning",
+                  },
+                  label: "Plan a lesson",
+                  disabled: true,
+                },
+              ]}
+            />
+          }
         />
         <OakFlex
-          $ba={"border-solid-l"}
-          $borderColor={"grey60"}
-          $justifyContent={"center"}
-          $alignItems={"center"}
-          $height={"all-spacing-14"}
-          $mb={"space-between-l"}
+          $background={"bg-decorative3-very-subdued"}
+          $display={["block", "block", "none"]}
+          $pv={"inner-padding-xl"}
+          $ph={["inner-padding-m", "inner-padding-none", "inner-padding-none"]}
         >
-          <OakHeading tag={"h1"} $font={"heading-1"}>
-            {"hero"}
-          </OakHeading>
+          <OakMaxWidth>
+            <OakTertiaryOLNav
+              items={navItems}
+              ariaLabel="plan a lesson contents"
+              title={"Contents"}
+              anchorTarget="plan-a-lesson-contents"
+            />
+          </OakMaxWidth>
         </OakFlex>
-        <OakGrid>
-          <OakGridArea
-            $ba={"border-solid-l"}
-            $borderColor={"grey60"}
-            $colSpan={[12, 12, 3]}
-          >
-            <OakHeading tag={"h2"} $font={"heading-7"}>
-              {"Contents in heading 7 style"}
-            </OakHeading>
-            <OakFlex>{"sticky nav"}</OakFlex>
-          </OakGridArea>
-          <OakGridArea
-            $ba={"border-solid-l"}
-            $borderColor={"grey60"}
-            $colSpan={[12, 12, 6]}
-            $colStart={[1, 1, 5]}
-          >
-            {pageData.content.map((content) => {
-              if (content.type === "PlanALessonPageFormBlock") {
+
+        <OakMaxWidth $height={"auto"}>
+          <OakGrid $mt={"space-between-l"} $position={"relative"}>
+            <OakGridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={["static", "static", "sticky"]}
+              $top={"all-spacing-10"}
+              $display={["none", "none", "block"]}
+            >
+              <OakTertiaryOLNav
+                items={navItems}
+                ariaLabel="plan a lesson contents"
+                title={"Contents"}
+                anchorTarget="#plan-a-lesson-contents"
+              />
+            </OakGridArea>
+            <OakGridArea $colSpan={[12, 12, 6]} $colStart={[1, 1, 5]}>
+              {pageData.content.map((section) => {
+                if (section.type === "PlanALessonPageFormBlock") {
+                  return (
+                    <OakFlex
+                      $mb={"space-between-xxxl"}
+                      $flexDirection={"column"}
+                      $mh={"space-between-m"}
+                    >
+                      <LandingPageSignUpForm formTitle={section.form.title} />
+                    </OakFlex>
+                  );
+                }
                 return (
-                  <OakFlex $mb={"space-between-xxxl"}>
-                    <LandingPageSignUpForm formTitle={content.form.title} />
-                  </OakFlex>
+                  <>
+                    <LessonPlanningBlog
+                      title={section.navigationTitle}
+                      blogPortableText={section.bodyPortableText}
+                      anchorId={section.anchorSlug.current}
+                      linkHref={"#plan-a-lesson-contents"}
+                    />
+                    <OakAnchorTarget id={section.anchorSlug.current} />
+                  </>
                 );
-              }
-              return (
-                <LessonPlanningBlog
-                  title={content.navigationTitle}
-                  blogPortableText={content.bodyPortableText}
-                />
-              );
-            })}
-          </OakGridArea>
-        </OakGrid>
-      </OakMaxWidth>
-    </Layout>
+              })}
+            </OakGridArea>
+          </OakGrid>
+        </OakMaxWidth>
+      </Layout>
+    </OakThemeProvider>
   );
 };
 

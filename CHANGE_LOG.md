@@ -1,3 +1,39 @@
+## [1.433.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.1...v1.433.2) (2024-05-14)
+
+
+### Bug Fixes
+
+* fixed phase lot picker bug not refreshing ([8466089](https://github.com/oaknational/Oak-Web-Application/commit/84660897142108a4254ba5e7eb8d35c5fa56f45b))
+* remove empty test ([89d1a67](https://github.com/oaknational/Oak-Web-Application/commit/89d1a6716c7e5e2e7063607a87a26afe6c369f19))
+* update blog slugs ([1c9fe28](https://github.com/oaknational/Oak-Web-Application/commit/1c9fe28f6a95a22bcad45e78d59393fe42a4a407))
+* update package lock ([97d1977](https://github.com/oaknational/Oak-Web-Application/commit/97d1977ff712c73dc2270ba68df38cc134d55187))
+
+## [1.433.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.0...v1.433.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **pupils-views:** add margin ([ca60dd6](https://github.com/oaknational/Oak-Web-Application/commit/ca60dd6777ba0bc634f5db9e8a251360828f9677))
+* **pupils-views:** add margin ([48741fe](https://github.com/oaknational/Oak-Web-Application/commit/48741fe4419c129291020500ba1c26f08254a142))
+* **pupils-views:** add margin ([ce7ee3a](https://github.com/oaknational/Oak-Web-Application/commit/ce7ee3aa55d2ede8c8e14dd13c8211e62e0dd64d))
+* **pupils-views:** add margin ([5943e77](https://github.com/oaknational/Oak-Web-Application/commit/5943e7797f0fb3d0a3e7f72f1416aed23d03d41a))
+* **pupils-views:** use new layout fix breakages ([e6e1fbf](https://github.com/oaknational/Oak-Web-Application/commit/e6e1fbf307f7cf75cda9de41cdba4f9d0c8212b8))
+
+# [1.433.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.432.0...v1.433.0) (2024-05-13)
+
+
+### Features
+
+* add mux token secrets ([70c595f](https://github.com/oaknational/Oak-Web-Application/commit/70c595f5f1b6ee24ad0c3f00e56a93d6dc3951b4))
+* upgrade mux to v8 ([c797e1c](https://github.com/oaknational/Oak-Web-Application/commit/c797e1c04fe29e90d0fa7e7d9259848917647dfe))
+
+# [1.432.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.431.0...v1.432.0) (2024-05-13)
+
+
+### Features
+
+* plan a lesson navigation ([d2eba3c](https://github.com/oaknational/Oak-Web-Application/commit/d2eba3cffb36dc09861f8a77dd46d26d2768bb8b))
+
 # [1.431.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.430.0...v1.431.0) (2024-05-10)
 
 

@@ -15,6 +15,12 @@ import getServerConfig from "@/node-lib/getServerConfig";
 
 type Data = string;
 
+const isMuxSigningOption = (
+  u: string,
+): u is "video" | "thumbnail" | "gif" | "storyboard" | "stats" => {
+  return ["video", "thumbnail", "gif", "storyboard", "stats"].includes(u);
+};
+
 // Set some base options we can use for a few different signing types
 // 2020 content
 const auth2020 = {
@@ -57,6 +63,15 @@ async function handleRequest(
     );
   }
 
+  if (!isMuxSigningOption(type)) {
+    return response.status(400).json(
+      JSON.stringify({
+        message:
+          "Query parameter 'type' must be one of video, thumbnail, gif, storyboard, stats",
+      }),
+    );
+  }
+
   if (typeof legacy === "string" && legacy !== "true") {
     return response.status(400).json(
       JSON.stringify({
@@ -66,10 +81,14 @@ async function handleRequest(
   }
 
   const baseOptions = legacy ? auth2020 : auth2023;
+  const mux = new Mux({
+    tokenId: getServerConfig("muxTokenId"),
+    tokenSecret: getServerConfig("muxTokenSecret"),
+  });
 
   let token;
   try {
-    token = Mux.JWT.signPlaybackId(id, {
+    token = await mux.jwt.signPlaybackId(id, {
       ...baseOptions,
       type,
       expiration: "6h",
