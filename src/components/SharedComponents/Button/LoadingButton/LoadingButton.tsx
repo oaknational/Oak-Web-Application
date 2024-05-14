@@ -21,13 +21,10 @@ type LoadingButtonProps = {
   disabled: boolean;
   success?: boolean;
   ariaLabel?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 } & (
   | {
       type: "button";
-    }
-  | {
-      type: "submit";
     }
   | { type: "link"; href: string; external: boolean }
 );
@@ -125,9 +122,9 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
 
   const onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (
     e,
-  ) => (disabled ? e.preventDefault() : props.onClick?.(e));
+  ) => (disabled ? e.preventDefault() : props.onClick(e));
 
-  return props.type === "button" || props.type === "submit" ? (
+  return props.type === "button" ? (
     <StyledButton
       onClick={props.onClick}
       aria-disabled={disabled}
