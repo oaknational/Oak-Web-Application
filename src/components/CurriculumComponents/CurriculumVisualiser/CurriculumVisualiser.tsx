@@ -240,6 +240,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .map((year, index) => {
             const { units, childSubjects, domains, tiers, disciplines } =
               yearData[year] as YearData[string];
+
             return (
               <Box
                 key={year}
@@ -340,7 +341,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         variant="minimal"
                         isCurrent={isSelectedTier(yearSelection, year, tier)}
                         currentStyles={["underline"]}
-                        data-testid="tier-button"
+                        data-testid={`tier-button`}
                       />
                     ))}
                   </Box>
@@ -434,7 +435,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             <Button
                               icon="chevron-right"
                               $iconPosition="trailing"
-                              data-testid="unit-modal-button"
+                              data-testid={`unit-info-button-${unit.slug}${
+                                unit.tier_slug ? `-${unit.tier_slug}` : ""
+                              }`}
                               variant={isHighlighted ? "brush" : "minimal"}
                               background={isHighlighted ? "black" : undefined}
                               label="Unit info"
@@ -447,33 +450,33 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         </Card>
                       );
                     })}
-                  <UnitsTabSidebar
-                    displayModal={displayModal}
-                    onClose={handleCloseModal}
-                    lessons={currentUnitLessons}
-                    programmeSlug={createProgrammeSlug(unitData, examboardSlug)}
-                    unitOptionsAvailable={unitOptionsAvailable}
-                    unitSlug={unitData?.slug}
-                    unitVariantID={unitVariantID}
-                  >
-                    <UnitModal
-                      setCurrentUnitLessons={setCurrentUnitLessons}
-                      setUnitVariantID={setUnitVariantID}
-                      unitData={unitData}
-                      displayModal={displayModal}
-                      setUnitOptionsAvailable={setUnitOptionsAvailable}
-                      unitOptionsAvailable={unitOptionsAvailable}
-                      isHighlighted={
-                        unitData
-                          ? isHighlightedUnit(unitData, selectedThread)
-                          : false
-                      }
-                    />
-                  </UnitsTabSidebar>
                 </OakFlex>
               </Box>
             );
           })}
+      {displayModal && (
+        <UnitsTabSidebar
+          displayModal={displayModal}
+          onClose={handleCloseModal}
+          lessons={currentUnitLessons}
+          programmeSlug={createProgrammeSlug(unitData, examboardSlug)}
+          unitOptionsAvailable={unitOptionsAvailable}
+          unitSlug={unitData?.slug}
+          unitVariantID={unitVariantID}
+        >
+          <UnitModal
+            setCurrentUnitLessons={setCurrentUnitLessons}
+            setUnitVariantID={setUnitVariantID}
+            unitData={unitData}
+            displayModal={displayModal}
+            setUnitOptionsAvailable={setUnitOptionsAvailable}
+            unitOptionsAvailable={unitOptionsAvailable}
+            isHighlighted={
+              unitData ? isHighlightedUnit(unitData, selectedThread) : false
+            }
+          />
+        </UnitsTabSidebar>
+      )}
     </OakGridArea>
   );
 };
