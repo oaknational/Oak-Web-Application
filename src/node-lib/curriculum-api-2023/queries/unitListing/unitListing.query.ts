@@ -1,4 +1,5 @@
-import errorReporter from "../../../../common-lib/error-reporter";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+
 import OakError from "../../../../errors/OakError";
 import { Sdk, getBatchedRequests } from "../../sdk";
 import { TierCountsDocument } from "../../generated/sdk";
@@ -53,12 +54,12 @@ export const getTiersForProgramme = async (
 
   const batchRequests = Object.keys(constructedTiers).map((c) => {
     const variables: Record<string, string> = {
-      subjectSlug: subject,
-      tierSlug: c,
-      keystageSlug: keystage,
+      subject_slug: subject,
+      tier_slug: c,
+      keystage_slug: keystage,
     };
     if (examboard) {
-      variables.examboardSlug = examboard;
+      variables.examboard_slug = examboard;
     }
     return {
       document: TierCountsDocument,
@@ -73,8 +74,8 @@ export const getTiersForProgramme = async (
   parsedData.forEach((counts) => {
     const unitCount = counts.data.unitCount.aggregate.count;
     const lessonCount = counts.data.lessonCount.aggregate.count;
-
     const tierSlug = counts.data.unitCount.nodes[0]?.programme_fields;
+
     if (
       !tierSlug ||
       !constructedTiers[tierSlug] ||
@@ -82,12 +83,12 @@ export const getTiersForProgramme = async (
     ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+
     constructedTiers[tierSlug]!.unitCount = unitCount;
     constructedTiers[tierSlug]!.lessonCount = lessonCount;
   });
 
   const parsedCompleteTiers = tierSchema.parse(Object.values(constructedTiers));
-
   return parsedCompleteTiers;
 };
 
@@ -95,38 +96,47 @@ const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
-    const [programme] = res.programme;
+    const programme = res.programme;
 
-    if (!programme) {
+    if (!programme || programme.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (res.programme.length > 1) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::lessonListing")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
+    const parsedProgramme = programme.map((p) =>
+      syntheticUnitvariantLessonsSchema.parse(p),
+    );
+
+    const programmeFields = parsedProgramme[0]?.programme_fields;
+    if (!programmeFields) {
+      throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const isLegacy = programme.programmeSlug?.endsWith("-l") ?? false;
+    const hasTiers = parsedProgramme.some(
+      (p) => p.programme_fields.tier_slug !== null,
+    );
 
-    return unitListingSchema.parse({
-      ...programme,
-      tiers:
-        programme.tiers &&
-        filterOutCoreTier(
-          isLegacy,
-          programme.subjectSlug,
-          programme.keyStageSlug,
-          programme.tiers,
-        ),
-      keyStageTitle:
-        programme.keyStageTitle && toSentenceCase(programme.keyStageTitle),
-    });
+    const tiers = hasTiers
+      ? await getTiersForProgramme(
+          sdk,
+          programmeFields.subject_slug,
+          programmeFields.keystage_slug,
+          programmeFields.examboard_slug,
+        )
+      : [];
+
+    return {
+      programmeSlug: args.programmeSlug,
+      keyStageSlug: programmeFields.keystage_slug,
+      keyStageTitle: programmeFields.keystage_description,
+      examBoardSlug: programmeFields.examboard_slug,
+      examBoardTitle: programmeFields.examboard_description,
+      subjectSlug: programmeFields.subject_slug,
+      subjectTitle: programmeFields.subject_description,
+      totalUnitCount: parsedProgramme.length,
+      tierSlug: programmeFields.tier_slug,
+      tiers: tiers, // TODO: core tier
+      units: [], // TODO: units
+    };
   };
 
 export default unitListingQuery;

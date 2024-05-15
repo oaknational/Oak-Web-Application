@@ -1,0 +1,8 @@
+query tiers($_contains: jsonb) {
+  tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: { programme_fields: { _contains: $_contains } }
+  ) {
+    programme_fields
+    programme_slug
+  }
+}
