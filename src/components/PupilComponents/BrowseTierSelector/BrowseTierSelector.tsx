@@ -29,15 +29,27 @@ export const BrowseTierSelector = ({
         isLegacy ? "-l" : ""
       }`,
   );
-  // const phaseSlug = programmes[0]?.programmeFields.phaseSlug;
 
   if (phaseSlug === "foundation" || !phaseSlug) {
     throw new Error("Foundation phase is not supported");
   }
+
+  const orderedTiers = tiers.sort((a, b) => {
+    if (a.tier && b.tier) {
+      if (a.tier < b.tier) {
+        return -1;
+      }
+      if (a.tier > b.tier) {
+        return 1;
+      }
+    }
+    return 0;
+  });
+
   return (
     <>
       {" "}
-      {tiers.map((tier, i) => {
+      {orderedTiers.map((tier, i) => {
         const programmeSlug = programmeSlugs[i];
         if (programmeSlug) {
           return (

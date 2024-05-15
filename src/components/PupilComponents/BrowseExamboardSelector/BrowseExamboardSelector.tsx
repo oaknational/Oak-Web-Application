@@ -28,13 +28,17 @@ export const BrowseExamboardSelector = ({
     throw new Error("Foundation phase is not supported");
   }
 
+  const orderedExamboards = examboards.sort((a, b) => {
+    return (a.examboardDisplayOrder ?? 0) - (b.examboardDisplayOrder ?? 0);
+  });
+
   return (
     <>
       {" "}
       {(() => {
         switch (true) {
           case !!onClick:
-            return examboards.map((examboard) => (
+            return orderedExamboards.map((examboard) => (
               <OakPupilJourneyYearButton
                 phase={phaseSlug}
                 key={examboard.examboardSlug}
