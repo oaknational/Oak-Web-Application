@@ -1,3 +1,30 @@
+# [1.435.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.434.0...v1.435.0) (2024-05-15)
+
+
+### Bug Fixes
+
+* role list to outermost element ([52544cf](https://github.com/oaknational/Oak-Web-Application/commit/52544cf986d06eee345e3e7dca586fac92b9df03))
+
+
+### Features
+
+* mobile and tablet views ([385ee73](https://github.com/oaknational/Oak-Web-Application/commit/385ee739db8f6c2eb2701fb8f36e34ca57eddcfe))
+* year listing page ([a44f8ff](https://github.com/oaknational/Oak-Web-Application/commit/a44f8ff5015bfdd01cb4b0daf1348d1607d25e3f))
+
+# [1.434.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.2...v1.434.0) (2024-05-14)
+
+
+### Bug Fixes
+
+* a superificial change to trigger the cicd ([8c13623](https://github.com/oaknational/Oak-Web-Application/commit/8c136233acc7dcda6f154151198c52744822812b))
+* conflicts ([a42a593](https://github.com/oaknational/Oak-Web-Application/commit/a42a593c69fad4720856e22c9a9ed8cb881a01cf))
+* mock items for page test ([e824701](https://github.com/oaknational/Oak-Web-Application/commit/e8247018e11e57123e739b3e47faaf0501fd45d4))
+
+
+### Features
+
+* pupilsubjectlisting view ([81743cb](https://github.com/oaknational/Oak-Web-Application/commit/81743cb21a5b27e7baf6f0d2f203f605676ec675))
+
 ## [1.433.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.1...v1.433.2) (2024-05-14)
 
 
