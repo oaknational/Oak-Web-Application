@@ -65,10 +65,13 @@ const YearListingPage = () => {
                   $gap={"space-between-s"}
                   $mb={"space-between-m2"}
                 >
-                  <OakHeading tag="h1" $font={"heading-4"}>
+                  <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
                     Welcome to Oak!
                   </OakHeading>
-                  <OakHeading tag="h2" $font={"heading-light-6"}>
+                  <OakHeading
+                    tag="h2"
+                    $font={["heading-light-7", "heading-light-6"]}
+                  >
                     Learn or revise what you want, when you want.
                   </OakHeading>
                 </OakFlex>
@@ -79,7 +82,7 @@ const YearListingPage = () => {
                 />
                 <OakHeading
                   tag="h3"
-                  $font={"heading-5"}
+                  $font={["heading-6", "heading-5"]}
                   $mv={"space-between-l"}
                 >
                   What year are you in?
@@ -87,24 +90,30 @@ const YearListingPage = () => {
                 <OakGrid
                   $cg={"space-between-s"}
                   $rg={"space-between-s"}
-                  $gridTemplateColumns={"repeat(6 , 1fr)"}
+                  $gridTemplateColumns={[
+                    "repeat(2 , 1fr)",
+                    "repeat(5 , 1fr)",
+                    "repeat(6 , 1fr)",
+                  ]}
                   role="list"
                 >
                   {years.map((year) => {
                     return (
                       <OakGridArea $colSpan={1} key={year.yearSlug}>
-                        <OakPupilJourneyYearButton
-                          role="listitem"
-                          element="a"
-                          phase={year.phase}
-                          href={resolveOakHref({
-                            page: "pupil-subject-index",
-                            yearSlug: year.yearSlug,
-                          })}
-                          width={"100%"}
-                        >
-                          {year.yearDescription}
-                        </OakPupilJourneyYearButton>
+                        <OakFlex $alignItems={"stretch"} $height={"100%"}>
+                          <OakPupilJourneyYearButton
+                            role="listitem"
+                            element="a"
+                            phase={year.phase}
+                            href={resolveOakHref({
+                              page: "pupil-subject-index",
+                              yearSlug: year.yearSlug,
+                            })}
+                            width={"100%"}
+                          >
+                            {year.yearDescription}
+                          </OakPupilJourneyYearButton>
+                        </OakFlex>
                       </OakGridArea>
                     );
                   })}
