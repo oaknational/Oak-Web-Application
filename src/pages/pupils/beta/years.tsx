@@ -92,7 +92,7 @@ const YearListingPage = () => {
                   $rg={"space-between-s"}
                   $gridTemplateColumns={[
                     "repeat(2 , 1fr)",
-                    "repeat(5 , 1fr)",
+                    "repeat(4 , 1fr)",
                     "repeat(6 , 1fr)",
                   ]}
                   role="list"
@@ -100,20 +100,18 @@ const YearListingPage = () => {
                   {years.map((year) => {
                     return (
                       <OakGridArea $colSpan={1} key={year.yearSlug}>
-                        <OakFlex $alignItems={"stretch"} $height={"100%"}>
-                          <OakPupilJourneyYearButton
-                            role="listitem"
-                            element="a"
-                            phase={year.phase}
-                            href={resolveOakHref({
-                              page: "pupil-subject-index",
-                              yearSlug: year.yearSlug,
-                            })}
-                            width={"100%"}
-                          >
-                            {year.yearDescription}
-                          </OakPupilJourneyYearButton>
-                        </OakFlex>
+                        <OakPupilJourneyYearButton
+                          role="listitem"
+                          element="a"
+                          phase={year.phase}
+                          href={resolveOakHref({
+                            page: "pupil-subject-index",
+                            yearSlug: year.yearSlug,
+                          })}
+                          width={"100%"}
+                        >
+                          {year.yearDescription}
+                        </OakPupilJourneyYearButton>
                       </OakGridArea>
                     );
                   })}
