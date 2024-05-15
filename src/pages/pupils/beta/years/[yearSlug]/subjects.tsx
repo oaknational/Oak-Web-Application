@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
-
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps<
 
       const curriculumData = await curriculumApi2023.pupilSubjectListingQuery({
         yearSlug: year,
-        isLegacy: false,
+        isLegacy: true,
       });
 
       if (!curriculumData) {
