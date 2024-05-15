@@ -1,3 +1,27 @@
+# [1.434.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.2...v1.434.0) (2024-05-14)
+
+
+### Bug Fixes
+
+* a superificial change to trigger the cicd ([8c13623](https://github.com/oaknational/Oak-Web-Application/commit/8c136233acc7dcda6f154151198c52744822812b))
+* conflicts ([a42a593](https://github.com/oaknational/Oak-Web-Application/commit/a42a593c69fad4720856e22c9a9ed8cb881a01cf))
+* mock items for page test ([e824701](https://github.com/oaknational/Oak-Web-Application/commit/e8247018e11e57123e739b3e47faaf0501fd45d4))
+
+
+### Features
+
+* pupilsubjectlisting view ([81743cb](https://github.com/oaknational/Oak-Web-Application/commit/81743cb21a5b27e7baf6f0d2f203f605676ec675))
+
+## [1.433.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.1...v1.433.2) (2024-05-14)
+
+
+### Bug Fixes
+
+* fixed phase lot picker bug not refreshing ([8466089](https://github.com/oaknational/Oak-Web-Application/commit/84660897142108a4254ba5e7eb8d35c5fa56f45b))
+* remove empty test ([89d1a67](https://github.com/oaknational/Oak-Web-Application/commit/89d1a6716c7e5e2e7063607a87a26afe6c369f19))
+* update blog slugs ([1c9fe28](https://github.com/oaknational/Oak-Web-Application/commit/1c9fe28f6a95a22bcad45e78d59393fe42a4a407))
+* update package lock ([97d1977](https://github.com/oaknational/Oak-Web-Application/commit/97d1977ff712c73dc2270ba68df38cc134d55187))
+
 ## [1.433.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.0...v1.433.1) (2024-05-13)
 
 

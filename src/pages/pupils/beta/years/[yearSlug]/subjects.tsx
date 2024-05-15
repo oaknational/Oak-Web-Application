@@ -1,74 +1,38 @@
 import { GetStaticProps } from "next";
-import Link from "next/link";
-import _ from "lodash";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
 
 type SubjectListingPageProps = { curriculumData: PupilSubjectListingData[] };
 
 const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { curriculumData } = props;
-  const groupedBySubject: Record<string, PupilSubjectListingData[]> = _.groupBy(
-    curriculumData,
-    (curriculumData) => curriculumData.programmeFields.subjectSlug,
-  );
 
-  const subjects = Object.keys(groupedBySubject).sort((a, b) =>
-    a.localeCompare(b),
-  );
+  if (!curriculumData[0]) {
+    throw new Error("No curriculum data");
+  }
+
+  const { yearDescription } = curriculumData[0].programmeFields;
 
   return (
-    <div>
-      <Link
-        href={resolveOakHref({
-          page: "pupil-year-index",
-        })}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${yearDescription} - Subject listing`,
+            description: `Subject listing for ${yearDescription}`,
+          }),
+        }}
       >
-        View years
-      </Link>
-      <ol>
-        {subjects.map((subject) => {
-          const subjectData = groupedBySubject[subject];
-          const length = subjectData?.length;
-          if (subjectData?.[0]) {
-            if (length === 1) {
-              const programmeSlug = subjectData[0].programmeSlug;
-              return (
-                <li key={subject}>
-                  <Link
-                    href={resolveOakHref({
-                      page: "pupil-unit-index",
-                      programmeSlug: programmeSlug,
-                    })}
-                  >
-                    {subject}
-                  </Link>
-                </li>
-              );
-            }
-            const baseSlug = subjectData[0].baseSlug;
-            const isLegacy = subjectData[0].isLegacy;
-            return (
-              <li key={subject}>
-                <Link
-                  href={resolveOakHref({
-                    page: "pupil-programme-index",
-                    programmeSlug: baseSlug,
-                    optionSlug: isLegacy ? "options-l" : "options",
-                  })}
-                >
-                  {subject}
-                </Link>
-              </li>
-            );
-          }
-        })}
-      </ol>
-    </div>
+        <PupilViewsSubjectListing subjects={curriculumData} />
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
