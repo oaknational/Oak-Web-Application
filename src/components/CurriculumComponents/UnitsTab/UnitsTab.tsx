@@ -1,5 +1,11 @@
 import React, { FC, useState, useLayoutEffect } from "react";
-
+import {
+  OakGrid,
+  OakGridArea,
+  OakP,
+  OakHeading,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import CurriculumVisualiser, {
   Thread,
@@ -12,13 +18,6 @@ import CurriculumVisualiser, {
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
-import {
-  OakGrid,
-  OakGridArea,
-  OakP,
-  OakHeading,
-  OakSpan,
-} from "@oaknational/oak-components";
 import Box from "@/components/SharedComponents/Box";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";

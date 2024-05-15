@@ -3,7 +3,6 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { BrowseTierSelector, TierData } from "./BrowseTierSelector";
 
-
 describe("BrowseTierSelector", () => {
   const tiers: TierData[] = [
     {

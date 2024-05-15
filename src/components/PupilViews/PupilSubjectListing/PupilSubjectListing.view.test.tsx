@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 
 describe("PupilSubjectListing", () => {

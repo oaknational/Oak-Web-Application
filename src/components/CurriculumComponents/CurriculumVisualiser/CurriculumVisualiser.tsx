@@ -1,9 +1,9 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
+import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
 
-import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";

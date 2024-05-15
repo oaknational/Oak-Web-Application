@@ -1,12 +1,10 @@
 import { render } from "@testing-library/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   BrowseExamboardSelector,
   ExamboardData,
 } from "./BrowseExamboardSelector";
-
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-
 
 describe("BrowseExamboardSelector", () => {
   const examboards: ExamboardData[] = [

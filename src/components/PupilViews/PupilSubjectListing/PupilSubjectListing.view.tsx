@@ -1,5 +1,4 @@
 import _ from "lodash";
-
 import {
   OakFlex,
   OakGrid,
@@ -9,6 +8,7 @@ import {
   OakPupilJourneySubjectButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 
