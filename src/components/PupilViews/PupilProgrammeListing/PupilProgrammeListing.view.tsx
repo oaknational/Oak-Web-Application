@@ -110,58 +110,60 @@ export const PupilViewsProgrammeListing = ({
     }
   };
 
-  function BrowseOptions() {
-    switch (true) {
-      // examboard is chosen and there are multiple tiers
-      case chosenExamboard !== null && tiers.length > 1:
-        return (
-          <BrowseTierSelector
-            tiers={tiers as TierData[]}
-            baseSlug={baseSlug}
-            examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
-            isLegacy={isLegacy}
-            phaseSlug={phaseSlug}
-          />
-        );
-      // examboard is not chosen and there are multiple tiers
-      case examboards.length > 1 &&
-        chosenExamboard === null &&
-        tiers.length > 1:
-        return (
-          <BrowseExamboardSelector
-            examboards={examboards}
-            baseSlug={baseSlug}
-            onClick={(examboard) => setChosenExamboard(examboard)}
-            isLegacy={isLegacy}
-            phaseSlug={phaseSlug}
-          />
-        );
-      // examboard is not chosen and there is only one or no tiers
-      case examboards.length > 1 &&
-        chosenExamboard === null &&
-        tiers.length <= 1:
-        return (
-          <BrowseExamboardSelector
-            examboards={examboards}
-            baseSlug={baseSlug}
-            isLegacy={isLegacy}
-            phaseSlug={phaseSlug}
-          />
-        );
-      // there are only tiers
-      case examboards.length <= 1 && tiers.length >= 1:
-        return (
-          <BrowseTierSelector
-            tiers={tiers as TierData[]}
-            baseSlug={baseSlug}
-            isLegacy={isLegacy}
-            phaseSlug={phaseSlug}
-          />
-        );
-      default:
-        return <div>No programme factors to be selected</div>;
-    }
-  }
+  const BrowseOptions = () => {
+    return (() => {
+      switch (true) {
+        // examboard is chosen and there are multiple tiers
+        case chosenExamboard !== null && tiers.length > 1:
+          return (
+            <BrowseTierSelector
+              tiers={tiers as TierData[]}
+              baseSlug={baseSlug}
+              examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
+              isLegacy={isLegacy}
+              phaseSlug={phaseSlug}
+            />
+          );
+        // examboard is not chosen and there are multiple tiers
+        case examboards.length > 1 &&
+          chosenExamboard === null &&
+          tiers.length > 1:
+          return (
+            <BrowseExamboardSelector
+              examboards={examboards}
+              baseSlug={baseSlug}
+              onClick={(examboard) => setChosenExamboard(examboard)}
+              isLegacy={isLegacy}
+              phaseSlug={phaseSlug}
+            />
+          );
+        // examboard is not chosen and there is only one or no tiers
+        case examboards.length > 1 &&
+          chosenExamboard === null &&
+          tiers.length <= 1:
+          return (
+            <BrowseExamboardSelector
+              examboards={examboards}
+              baseSlug={baseSlug}
+              isLegacy={isLegacy}
+              phaseSlug={phaseSlug}
+            />
+          );
+        // there are only tiers
+        case examboards.length <= 1 && tiers.length >= 1:
+          return (
+            <BrowseTierSelector
+              tiers={tiers as TierData[]}
+              baseSlug={baseSlug}
+              isLegacy={isLegacy}
+              phaseSlug={phaseSlug}
+            />
+          );
+        default:
+          return <div>No programme factors to be selected</div>;
+      }
+    })();
+  };
 
   function optionTitles(): { hint: string; title: string } {
     switch (true) {
@@ -207,7 +209,7 @@ export const PupilViewsProgrammeListing = ({
               />
             }
           >
-            {BrowseOptions()}
+            <BrowseOptions />
           </OakPupilJourneyProgrammeOptions>
         </OakBox>
       </OakPupilJourneyLayout>
