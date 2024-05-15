@@ -1,5 +1,3 @@
-import { render } from "@testing-library/react";
-
 import PupilProgrammeListingPage, {
   getStaticProps,
 } from "@/pages/pupils/beta//programmes/[programmeSlug]/options-l";
@@ -10,6 +8,9 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 jest.mock(
   "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view",

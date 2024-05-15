@@ -25,8 +25,6 @@ import {
   TierData,
 } from "@/components/PupilComponents/BrowseTierSelector";
 import { resolveOakHref } from "@/common-lib/urls";
-import AppLayout from "@/components/SharedComponents/AppLayout";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -79,7 +77,7 @@ export const PupilViewsProgrammeListing = ({
   const subjectDescription = programmes[0]?.programmeFields.subject;
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
-  const topNavSlot = () => {
+  function topNavSlot() {
     switch (true) {
       // examboard is chosen and there are multiple tiers
       case chosenExamboard !== null && tiers.length > 1:
@@ -98,7 +96,7 @@ export const PupilViewsProgrammeListing = ({
           </OakTertiaryButton>
         );
     }
-  };
+  }
 
   const breadcrumbs = () => {
     switch (true) {
@@ -112,7 +110,7 @@ export const PupilViewsProgrammeListing = ({
     }
   };
 
-  const BrowseOptions = () => {
+  function BrowseOptions() {
     switch (true) {
       // examboard is chosen and there are multiple tiers
       case chosenExamboard !== null && tiers.length > 1:
@@ -163,9 +161,9 @@ export const PupilViewsProgrammeListing = ({
       default:
         return <div>No programme factors to be selected</div>;
     }
-  };
+  }
 
-  const optionTitles = (): { hint: string; title: string } => {
+  function optionTitles(): { hint: string; title: string } {
     switch (true) {
       case examboards.length > 1 && chosenExamboard === null:
         return {
@@ -178,7 +176,7 @@ export const PupilViewsProgrammeListing = ({
           title: "Choose a tier",
         };
     }
-  };
+  }
 
   const optionTitleSlot = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
@@ -191,37 +189,28 @@ export const PupilViewsProgrammeListing = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
-            description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
-          }),
-        }}
+      <OakPupilJourneyLayout
+        sectionName={"tier-listing"}
+        phase={phaseSlug}
+        topNavSlot={topNavSlot()}
       >
-        <OakPupilJourneyLayout
-          sectionName={"tier-listing"}
-          phase={phaseSlug}
-          topNavSlot={topNavSlot()}
-        >
-          <OakBox $mb={"space-between-xxl"}>
-            <OakPupilJourneyProgrammeOptions
-              optionTitleSlot={optionTitleSlot}
-              phase={phaseSlug}
-              titleSlot={
-                <OakPupilJourneyHeader
-                  iconBackground={phaseSlug}
-                  iconName={`subject-${subjectSlug}`}
-                  title={subjectDescription}
-                  breadcrumbs={breadcrumbs()}
-                />
-              }
-            >
-              {BrowseOptions()}
-            </OakPupilJourneyProgrammeOptions>
-          </OakBox>
-        </OakPupilJourneyLayout>
-      </AppLayout>
+        <OakBox $mb={"space-between-xxl"}>
+          <OakPupilJourneyProgrammeOptions
+            optionTitleSlot={optionTitleSlot}
+            phase={phaseSlug}
+            titleSlot={
+              <OakPupilJourneyHeader
+                iconBackground={phaseSlug}
+                iconName={`subject-${subjectSlug}`}
+                title={subjectDescription}
+                breadcrumbs={breadcrumbs()}
+              />
+            }
+          >
+            {BrowseOptions()}
+          </OakPupilJourneyProgrammeOptions>
+        </OakBox>
+      </OakPupilJourneyLayout>
     </OakThemeProvider>
   );
 };
