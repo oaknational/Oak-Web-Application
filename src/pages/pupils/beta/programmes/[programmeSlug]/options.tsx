@@ -5,6 +5,7 @@
 
 import { GetStaticProps } from "next";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import {
@@ -15,6 +16,7 @@ import {
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import OakError from "@/errors/OakError";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { ExamboardData } from "@/components/PupilComponents/BrowseExamboardSelector";
 
 const ProgrammesPage = ({
   programmes,
@@ -22,15 +24,17 @@ const ProgrammesPage = ({
   yearSlug,
 }: ProgrammesPageProps) => {
   const searchParams = useSearchParams();
+  const [examboardSlug, setExamboardSlug] =
+    useState<ExamboardData["examboardSlug"]>(null);
 
-  const examboardSlug = (() => {
+  useEffect(() => {
     const e = searchParams.get("examboard");
-    if (!e) return null;
+    if (!e) return;
     if (!isExamboardSlug(e)) {
       throw new OakError({ code: "curriculum-api/params-incorrect" });
     }
-    return e;
-  })();
+    setExamboardSlug(e);
+  }, [searchParams]);
 
   return (
     <PupilViewsProgrammeListing

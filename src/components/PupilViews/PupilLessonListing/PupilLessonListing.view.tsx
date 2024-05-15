@@ -11,7 +11,6 @@ import {
   OakPupilJourneyListCounter,
   OakBox,
 } from "@oaknational/oak-components";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -41,11 +40,11 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (tierDescription) {
-    breadcrumb.push(tierDescription);
-  }
   if (examboardDescription) {
     breadcrumb.push(examboardDescription);
+  }
+  if (tierDescription) {
+    breadcrumb.push(tierDescription);
   }
 
   const LessonListingTitle = (

@@ -1,3 +1,5 @@
+import { useBackHref } from "./useBackHref";
+
 import {
   OakPupilJourneyLayout,
   OakTertiaryButton,
@@ -10,9 +12,6 @@ import {
   OakSpan,
   OakBox,
 } from "@oaknational/oak-components";
-
-import { useBackHref } from "./useBackHref";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -57,11 +56,11 @@ export const PupilViewsUnitListing = ({
   const lessonCount = units.reduce((p, c) => p + c.lessonCount, 0);
 
   const breadcrumbs: string[] = [yearDescription];
-  if (tierDescription) {
-    breadcrumbs.push(tierDescription);
-  }
   if (examboard) {
     breadcrumbs.push(examboard);
+  }
+  if (tierDescription) {
+    breadcrumbs.push(tierDescription);
   }
 
   const newLessonCount = (

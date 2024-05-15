@@ -1,10 +1,12 @@
 import { render } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   BrowseExamboardSelector,
   ExamboardData,
 } from "./BrowseExamboardSelector";
+
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 
 describe("BrowseExamboardSelector", () => {
   const examboards: ExamboardData[] = [
@@ -24,6 +26,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -36,6 +39,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           onClick={() => {}}
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -53,6 +57,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -70,6 +75,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={true}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );

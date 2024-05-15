@@ -1,5 +1,4 @@
 import { act, render } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   PupilViewsProgrammeListing,
@@ -7,10 +6,26 @@ import {
 } from "./PupilProgrammeListing.view";
 
 import {
+  OakInfoProps,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
+import {
   ProgrammeFields,
   PupilProgrammeListingData,
 } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
+
+jest.mock("@oaknational/oak-components", () => {
+  return {
+    ...jest.requireActual("@oaknational/oak-components"),
+    OakInfo: ({ hint }: OakInfoProps) => (
+      <>
+        <div role="tooltip">{hint}</div>
+      </>
+    ),
+  };
+});
 
 describe("PublicProgrammeListing", () => {
   const overrides: Partial<ProgrammeFields>[] = [
@@ -73,7 +88,7 @@ describe("PublicProgrammeListing", () => {
       </OakThemeProvider>,
     );
 
-    expect(getByText("Choose an Examboard")).toBeInTheDocument();
+    expect(getByText("Choose an exam board")).toBeInTheDocument();
   });
 
   it("renders BrowseTierSelector when there are multiple tiers and only one examboard", () => {
