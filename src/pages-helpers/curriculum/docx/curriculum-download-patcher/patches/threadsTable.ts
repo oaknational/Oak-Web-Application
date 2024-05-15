@@ -1,10 +1,10 @@
 import type { Element } from "xml-js";
 
-import { createThreadOptions, textIncludes } from "./util";
+import { checkWithinElement } from "../../docx";
+import { xmlElementToJson } from "../../xml";
+import { CombinedCurriculumData } from "..";
 
-import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
-import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
-import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
+import { createThreadOptions, textIncludes } from "./util";
 
 function buildColumn(text: string) {
   return `

@@ -1,11 +1,11 @@
 import { groupBy } from "lodash";
 import type { Element } from "xml-js";
 
-import { textIncludes } from "./util";
+import { xmlElementToJson } from "../../xml";
+import { checkWithinElement } from "../../docx";
+import { CombinedCurriculumData } from "..";
 
-import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
-import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
-import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
+import { textIncludes } from "./util";
 
 function buildYearColumn({ index, title }: { title: string; index: number }) {
   return `

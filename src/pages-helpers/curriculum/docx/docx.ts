@@ -1,13 +1,8 @@
 import JSZip from "jszip";
 import type { Element } from "xml-js";
 
-import {
-  jsonXmlToXmlString,
-  xmlElementToJson,
-  xmlElementsToJson,
-} from "./patches/xml";
-
-import { textIncludes } from "@/pages-helpers/curriculum/docx-patches/util";
+import { jsonXmlToXmlString, xmlElementToJson, xmlElementsToJson } from "./xml";
+import { textIncludes } from "./curriculum-download-patcher/patches/util";
 
 /**
  * Modify docx file

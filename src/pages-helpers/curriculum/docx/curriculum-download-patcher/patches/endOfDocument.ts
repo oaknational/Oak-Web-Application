@@ -1,8 +1,8 @@
 import type { Element } from "xml-js";
 
-import { textIncludes } from "./util";
+import { checkWithinElement } from "../../docx";
 
-import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
+import { textIncludes } from "./util";
 
 export function endOfDocumentPatch() {
   return async (el: Element, parent?: Element) => {

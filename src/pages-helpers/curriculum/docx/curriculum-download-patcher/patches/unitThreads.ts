@@ -1,9 +1,8 @@
 import type { Element } from "xml-js";
 
-import { CombinedCurriculumData } from "../../../pages/teachers/curriculum/docx-poc/[...slugs]";
-
-import { checkWithinElement } from "@/components/CurriculumComponents/DocxPOC/docx";
-import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
+import { checkWithinElement } from "../../docx";
+import { xmlElementToJson } from "../../xml";
+import { CombinedCurriculumData } from "..";
 
 export function unitThreadsPatch(
   unit: CombinedCurriculumData["units"][number],

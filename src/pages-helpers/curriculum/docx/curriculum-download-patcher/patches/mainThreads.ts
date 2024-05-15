@@ -1,10 +1,9 @@
 import { chunk } from "lodash";
 
-import { CombinedCurriculumData } from "../../../pages/teachers/curriculum/docx-poc/[...slugs]";
+import { xmlElementToJson } from "../../xml";
+import { CombinedCurriculumData } from "..";
 
 import { createThreadOptions, threadUnitByYear } from "./util";
-
-import { xmlElementToJson } from "@/components/CurriculumComponents/DocxPOC/patches/xml";
 
 export function mainThreadsPatch(data: CombinedCurriculumData) {
   return async () => {
