@@ -1,4 +1,37 @@
+import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
+
+export const rawTierResponseSchema = z.array(
+  z.object({
+    programme_fields: programmeFieldsSchema,
+    programme_slug: z.string(),
+  }),
+);
+
+export const tierCounts = z.object({
+  lessonCount: z.object({
+    aggregate: z.object({
+      count: z.number(),
+    }),
+    nodes: z.array(z.object({ programme_fields: z.string() })),
+  }),
+  unitCount: z.object({
+    aggregate: z.object({
+      count: z.number(),
+    }),
+    nodes: z.array(z.object({ programme_fields: z.string() })),
+  }),
+});
+
+export type TierCounts = z.infer<typeof tierCounts>;
+
+export const batchResultResponseArray = z.array(
+  z.object({
+    data: tierCounts,
+  }),
+);
+
+export type BatchResultResponseArray = z.infer<typeof batchResultResponseArray>;
 
 const learningThemesSchema = z.object({
   themeTitle: z.string().nullable(),
@@ -30,7 +63,7 @@ export type UnitData = z.infer<typeof unitData>;
 
 const unitSchema = z.array(z.array(unitData));
 
-const tierSchema = z.array(
+export const tierSchema = z.array(
   z.object({
     tierSlug: z.string(),
     tierTitle: z.string(),
