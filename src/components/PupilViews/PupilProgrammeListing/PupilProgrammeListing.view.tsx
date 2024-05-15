@@ -80,7 +80,6 @@ export const PupilViewsProgrammeListing = ({
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
   const topNavSlot = () => {
-    console.log;
     switch (true) {
       // examboard is chosen and there are multiple tiers
       case chosenExamboard !== null && tiers.length > 1:
