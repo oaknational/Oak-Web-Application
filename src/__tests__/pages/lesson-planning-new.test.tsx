@@ -4,6 +4,7 @@ import PlanALesson from "../../pages/lesson-planning-new";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
+import { mockPosts } from "./index.test";
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
@@ -19,12 +20,12 @@ const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
   it.skip("Renders correct title ", () => {
-    render(<PlanALesson pageData={testPlanningPageData} />);
+    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("hero");
   });
   it("Renders a nav", () => {
-    render(<PlanALesson pageData={testPlanningPageData} />);
+    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
     const nav = screen.getByRole("navigation", {
       name: "plan a lesson contents",
     });
@@ -35,7 +36,7 @@ describe("pages/lesson-planning.tsx", () => {
   describe("SEO", () => {
     it.skip("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} />,
+        <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
       );
 
       expect(seo).toEqual({});
