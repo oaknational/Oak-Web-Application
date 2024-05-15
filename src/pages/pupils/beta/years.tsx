@@ -88,6 +88,7 @@ const YearListingPage = () => {
                   What year are you in?
                 </OakHeading>
                 <OakGrid
+                  role="list"
                   $cg={"space-between-s"}
                   $rg={"space-between-s"}
                   $gridTemplateColumns={[
@@ -95,13 +96,15 @@ const YearListingPage = () => {
                     "repeat(4 , 1fr)",
                     "repeat(6 , 1fr)",
                   ]}
-                  role="list"
                 >
                   {years.map((year) => {
                     return (
-                      <OakGridArea $colSpan={1} key={year.yearSlug}>
+                      <OakGridArea
+                        $colSpan={1}
+                        key={year.yearSlug}
+                        role="listitem"
+                      >
                         <OakPupilJourneyYearButton
-                          role="listitem"
                           element="a"
                           phase={year.phase}
                           href={resolveOakHref({
