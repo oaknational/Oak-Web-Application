@@ -1,6 +1,6 @@
-import { PlanALessonProps } from "@/pages/lesson-planning-new";
+import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
 
-export const getNavItems = ({ pageData }: PlanALessonProps) => {
+export const getNavItems = (pageData: PlanALessonPage) => {
   const navItems = pageData.content
     .map((section) => {
       if (section.type === "PlanALessonPageContent") {

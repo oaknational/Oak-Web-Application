@@ -10,7 +10,12 @@ import {
   OakAnchorTarget,
   OakHeaderHero,
   OakBox,
+  OakLink,
+  OakHeading,
+  OakTypography,
 } from "@oaknational/oak-components";
+
+import { postToPostListItem, SerializedPost, sortByDate } from ".";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -22,15 +27,60 @@ import { getNavItems } from "@/pages-helpers/homesite/plan-a-lesson/getNavItems"
 import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
+import usePostList from "@/components/SharedComponents/PostList/usePostList";
+import PostList from "@/components/SharedComponents/PostList";
+import OwaLink from "@/components/SharedComponents/OwaLink";
+import { serializeDate } from "@/utils/serializeDate";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
+  posts: SerializedPost[];
 };
 
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const navItems = getNavItems({ pageData });
+const getLessonPlanningBlogsWebinars = async (isPreviewMode: boolean) => {
+  const blogs = await CMSClient.blogPosts({
+    previewMode: isPreviewMode,
+  });
+
+  const blogRes = blogs
+    .map((blog) => ({
+      ...blog,
+      type: "blog-post" as const,
+    }))
+    .filter((blog) => blog.category.slug === "lesson-planning");
+
+  const webinars = await CMSClient.webinars({
+    previewMode: isPreviewMode,
+  });
+
+  const webinarsRes = webinars
+    .map((webinar) => ({
+      ...webinar,
+      type: "webinar" as const,
+    }))
+    .filter(
+      (webinar) =>
+        webinar.date.getTime() < new Date().getTime() &&
+        webinar.category.slug === "lesson-planning",
+    );
+
+  return [...blogRes, ...webinarsRes]
+    .sort(sortByDate)
+    .slice(0, 4)
+    .map(serializeDate);
+};
+
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
+  const navItems = getNavItems({ ...pageData });
   const isNewsletterForm = pageData.content.some((section) => {
     return section.type === "PlanALessonPageFormBlock";
+  });
+
+  const blogs = posts.map(postToPostListItem);
+
+  const blogListPosts = usePostList({
+    items: blogs,
+    withImage: true,
   });
 
   return (
@@ -100,6 +150,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $position={["static", "static", "sticky"]}
               $top={"all-spacing-10"}
               $display={["none", "none", "block"]}
+              $mb={"space-between-l"}
             >
               <OakTertiaryOLNav
                 items={navItems}
@@ -127,14 +178,24 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 }
 
                 return (
-                  <OakBox $position={"relative"}>
+                  <OakBox $position={"relative"} $mb={"space-between-xxxl"}>
                     <OakAnchorTarget id={section.anchorSlug.current} />
                     <LessonPlanningBlog
                       title={section.navigationTitle}
                       blogPortableText={section.bodyPortableText}
-                      anchorId={section.anchorSlug.current}
-                      linkHref={"lesson-planning-new"}
                     />
+                    <OakBox
+                      $display={["block", "block", "none"]}
+                      $mt={"space-between-m2"}
+                    >
+                      <OakLink
+                        iconName="chevron-up"
+                        href={"#plan-a-lesson-contents"}
+                        isTrailingIcon
+                      >
+                        {"Back to contents"}
+                      </OakLink>
+                    </OakBox>
                   </OakBox>
                 );
               })}
@@ -148,6 +209,34 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               )}
             </OakGridArea>
           </OakGrid>
+          <OakBox
+            $pa={"inner-padding-xl"}
+            $background={"bg-neutral"}
+            $borderRadius={"border-radius-l"}
+            $mb={"space-between-l"}
+            $display={["none", "none", "block"]}
+          >
+            <OakFlex
+              $width={"100%"}
+              $alignItems={["flex-start", "center"]}
+              $justifyContent={"space-between"}
+              $mb={"space-between-l"}
+              $flexDirection={["column", "row"]}
+            >
+              <OakHeading tag="h2" $font={"heading-5"}>
+                Stay up to date
+              </OakHeading>
+              <OakFlex $flexDirection={"row"}>
+                <OakTypography $mr={"space-between-s"} $font={"heading-7"}>
+                  <OwaLink page={"webinar-index"}>All webinars</OwaLink>
+                </OakTypography>
+                <OakTypography $font={"heading-7"}>
+                  <OwaLink page={"blog-index"}>All blogs</OwaLink>
+                </OakTypography>
+              </OakFlex>
+            </OakFlex>
+            <PostList showImageOnTablet={true} {...blogListPosts} />
+          </OakBox>
         </OakMaxWidth>
       </Layout>
     </OakThemeProvider>
@@ -166,6 +255,8 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
         previewMode: isPreviewMode,
       });
 
+      const posts = await getLessonPlanningBlogsWebinars(isPreviewMode);
+
       if (!planALessonPage) {
         return {
           notFound: true,
@@ -175,6 +266,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
       const results: GetStaticPropsResult<PlanALessonProps> = {
         props: {
           pageData: planALessonPage,
+          posts,
         },
       };
 
