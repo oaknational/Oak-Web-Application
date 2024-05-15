@@ -1,3 +1,13 @@
+## [1.433.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.1...v1.433.2) (2024-05-14)
+
+
+### Bug Fixes
+
+* fixed phase lot picker bug not refreshing ([8466089](https://github.com/oaknational/Oak-Web-Application/commit/84660897142108a4254ba5e7eb8d35c5fa56f45b))
+* remove empty test ([89d1a67](https://github.com/oaknational/Oak-Web-Application/commit/89d1a6716c7e5e2e7063607a87a26afe6c369f19))
+* update blog slugs ([1c9fe28](https://github.com/oaknational/Oak-Web-Application/commit/1c9fe28f6a95a22bcad45e78d59393fe42a4a407))
+* update package lock ([97d1977](https://github.com/oaknational/Oak-Web-Application/commit/97d1977ff712c73dc2270ba68df38cc134d55187))
+
 ## [1.433.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.0...v1.433.1) (2024-05-13)
 
 
