@@ -1,3 +1,16 @@
+# [1.435.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.434.0...v1.435.0) (2024-05-15)
+
+
+### Bug Fixes
+
+* role list to outermost element ([52544cf](https://github.com/oaknational/Oak-Web-Application/commit/52544cf986d06eee345e3e7dca586fac92b9df03))
+
+
+### Features
+
+* mobile and tablet views ([385ee73](https://github.com/oaknational/Oak-Web-Application/commit/385ee739db8f6c2eb2701fb8f36e34ca57eddcfe))
+* year listing page ([a44f8ff](https://github.com/oaknational/Oak-Web-Application/commit/a44f8ff5015bfdd01cb4b0daf1348d1607d25e3f))
+
 # [1.434.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.433.2...v1.434.0) (2024-05-14)
 
 
