@@ -114,6 +114,7 @@ export const PupilViewsUnitListing = ({
                   programmeSlug: unit.programmeSlug,
                   unitSlug: unit.unitSlug,
                 })}
+                unavailable={true}
               />
             );
           })}
