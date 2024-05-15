@@ -1,9 +1,4 @@
 import { useState } from "react";
-
-
-import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
-import { getExamboardData } from "./getExamboardData";
-
 import {
   OakBox,
   OakFlex,
@@ -16,6 +11,10 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
+import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
+import { getExamboardData } from "./getExamboardData";
+
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import {
   BrowseExamboardSelector,
