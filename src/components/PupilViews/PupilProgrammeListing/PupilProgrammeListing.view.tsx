@@ -104,7 +104,9 @@ export const PupilViewsProgrammeListing = ({
   const breadcrumbs = () => {
     switch (true) {
       // examboard is chosen and there are multiple tiers
-      case chosenExamboard !== null && tiers.length > 1:
+      case chosenExamboard !== null &&
+        tiers.length > 1 &&
+        chosenExamboard.examboard !== null:
         return [yearDescriptions, chosenExamboard.examboard] as string[];
       default:
         return [yearDescriptions];
