@@ -1,8 +1,7 @@
 import { render } from "@testing-library/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { BrowseTierSelector, TierData } from "./BrowseTierSelector";
-
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 
 describe("BrowseTierSelector", () => {
@@ -53,7 +52,7 @@ describe("BrowseTierSelector", () => {
     );
 
     for (const t of tiers) {
-      const button = getByRole("a", { name: t.tier ?? "" });
+      const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
         `/pupils/beta/programmes/my-subject-${t.tierSlug}/units`,
@@ -74,7 +73,7 @@ describe("BrowseTierSelector", () => {
     );
 
     for (const t of tiers) {
-      const button = getByRole("a", { name: t.tier ?? "" });
+      const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
         `/pupils/beta/programmes/my-subject-${t.tierSlug}-l/units`,
@@ -96,7 +95,7 @@ describe("BrowseTierSelector", () => {
     );
 
     for (const t of tiers) {
-      const button = getByRole("a", { name: t.tier ?? "" });
+      const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
         `/pupils/beta/programmes/my-subject-${t.tierSlug}-my-examboard/units`,

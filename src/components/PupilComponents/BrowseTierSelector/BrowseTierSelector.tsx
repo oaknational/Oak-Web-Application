@@ -1,4 +1,5 @@
 import { OakPupilJourneyYearButton } from "@oaknational/oak-components";
+
 import {
   ProgrammeFields,
   PupilProgrammeListingData,
@@ -41,6 +42,7 @@ export const BrowseTierSelector = ({
         if (programmeSlug) {
           return (
             <OakPupilJourneyYearButton
+              role="link"
               phase={phaseSlug}
               key={tier.tierSlug}
               element="a"

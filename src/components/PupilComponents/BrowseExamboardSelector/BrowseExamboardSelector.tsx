@@ -1,4 +1,5 @@
 import { OakPupilJourneyYearButton } from "@oaknational/oak-components";
+
 import {
   ProgrammeFields,
   PupilProgrammeListingData,
@@ -38,6 +39,7 @@ export const BrowseExamboardSelector = ({
                 phase={phaseSlug}
                 key={examboard.examboardSlug}
                 onClick={() => onClick && onClick(examboard)}
+                role="button"
               >
                 {examboard.examboard}
               </OakPupilJourneyYearButton>
@@ -45,6 +47,7 @@ export const BrowseExamboardSelector = ({
           case !!baseSlug:
             return examboards.map((examboard) => (
               <OakPupilJourneyYearButton
+                role="link"
                 phase={phaseSlug}
                 key={examboard.examboardSlug}
                 element="a"
