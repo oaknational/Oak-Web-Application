@@ -31,7 +31,7 @@ const LessonPlanningBlog: FC<LessonPlanningBlogProps> = ({
       <OakBox $display={["block", "block", "none"]} $mt={"space-between-m2"}>
         <OakLink
           isTrailingIcon
-          iconName="arrow-up"
+          iconName="arrow-left"
           href={linkHref || "#plan-a-lesson-contents"}
         >
           {"Back to contents"}
