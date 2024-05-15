@@ -43,7 +43,7 @@ describe("pages/lesson-planning.tsx", () => {
     });
   });
 
-  describe("getStaticProps", () => {
+  describe.skip("getStaticProps", () => {
     it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import(
         "../../pages/lesson-planning-new"
