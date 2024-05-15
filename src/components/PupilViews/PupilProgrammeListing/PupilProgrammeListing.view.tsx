@@ -107,7 +107,7 @@ export const PupilViewsProgrammeListing = ({
       case chosenExamboard !== null &&
         tiers.length > 1 &&
         chosenExamboard.examboard !== null:
-        return [yearDescriptions, chosenExamboard.examboard] as string[];
+        return [yearDescriptions, chosenExamboard?.examboard] as string[];
       default:
         return [yearDescriptions];
     }
