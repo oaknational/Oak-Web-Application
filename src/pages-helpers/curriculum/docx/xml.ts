@@ -1,7 +1,7 @@
 import { js2xml, xml2js } from "xml-js";
 import type { Element } from "xml-js";
 
-export function xmlElementsToJson(xmlData: string) {
+export function xmlRootToJson(xmlData: string) {
   return xml2js(xmlData, {
     compact: false,
     captureSpacesBetweenElements: false,
@@ -9,10 +9,15 @@ export function xmlElementsToJson(xmlData: string) {
 }
 
 export function xmlElementToJson(xmlData: string) {
-  return xmlElementsToJson(xmlData).elements[0];
+  const rootNode = xmlRootToJson(xmlData);
+  if (rootNode.elements.length !== 1) {
+    throw new Error("Expecting a single root node in XML");
+  }
+  return rootNode.elements[0];
 }
 
 export function jsonXmlToXmlString(json: Element): string {
-  const output = js2xml(json);
+  const root = "declaration" in json ? json : { elements: [json] };
+  const output = js2xml(root);
   return output;
 }
