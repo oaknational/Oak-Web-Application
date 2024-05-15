@@ -28,12 +28,10 @@ export const termsAndConditionsSchema = z.literal(true, {
   }),
 });
 
-export const submitSchema = z
+const schoolCombinedSchema = z
   .object({
     schoolId: schoolIdSchema.optional(),
     schoolNotListed: z.boolean(),
-    email: emailSchema,
-    termsAndConditions: termsAndConditionsSchema,
   })
   .superRefine((values, context) => {
     if (!values.schoolNotListed && values.schoolId === undefined) {
@@ -44,3 +42,17 @@ export const submitSchema = z
       });
     }
   });
+
+const submitPartSchema = z.object({
+  email: emailSchema,
+  termsAndConditions: termsAndConditionsSchema,
+});
+
+// See following for why this is required
+//
+//  - <https://timjames.dev/blog/validating-dependent-fields-with-zod-and-react-hook-form-2fa9#gotchas>
+//  - <https://github.com/colinhacks/zod/issues/479#issuecomment-1536233005>
+export const submitSchema = z.intersection(
+  schoolCombinedSchema,
+  submitPartSchema,
+);
