@@ -9,6 +9,7 @@ import {
   oakDefaultTheme,
   OakAnchorTarget,
   OakHeaderHero,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
@@ -28,6 +29,9 @@ export type PlanALessonProps = {
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   const navItems = getNavItems({ pageData });
+  const isNewsletterForm = pageData.content.some((section) => {
+    return section.type === "PlanALessonPageFormBlock";
+  });
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -83,7 +87,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               items={navItems}
               ariaLabel="plan a lesson contents"
               title={"Contents"}
-              anchorTarget="plan-a-lesson-contents"
+              anchorTarget={"plan-a-lesson-contents"}
             />
           </OakMaxWidth>
         </OakFlex>
@@ -101,34 +105,47 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 items={navItems}
                 ariaLabel="plan a lesson contents"
                 title={"Contents"}
-                anchorTarget="#plan-a-lesson-contents"
+                anchorTarget="plan-a-lesson-contents"
               />
             </OakGridArea>
-            <OakGridArea $colSpan={[12, 12, 6]} $colStart={[1, 1, 5]}>
+            <OakGridArea
+              $colSpan={[12, 12, 6]}
+              $colStart={[1, 1, 5]}
+              $mh={"space-between-s"}
+            >
               {pageData.content.map((section) => {
                 if (section.type === "PlanALessonPageFormBlock") {
                   return (
                     <OakFlex
                       $mb={"space-between-xxxl"}
                       $flexDirection={"column"}
-                      $mh={"space-between-m"}
+                      $display={["none", "none", "flex"]}
                     >
-                      <LandingPageSignUpForm formTitle={section.form.title} />
+                      <LandingPageSignUpForm formTitle={"Don't miss out"} />
                     </OakFlex>
                   );
                 }
+
                 return (
-                  <>
+                  <OakBox $position={"relative"}>
+                    <OakAnchorTarget id={section.anchorSlug.current} />
                     <LessonPlanningBlog
                       title={section.navigationTitle}
                       blogPortableText={section.bodyPortableText}
                       anchorId={section.anchorSlug.current}
-                      linkHref={"#plan-a-lesson-contents"}
+                      linkHref={"lesson-planning-new"}
                     />
-                    <OakAnchorTarget id={section.anchorSlug.current} />
-                  </>
+                  </OakBox>
                 );
               })}
+              {isNewsletterForm && (
+                <OakBox
+                  $mb={"space-between-l"}
+                  $display={["block", "none", "none"]}
+                >
+                  <LandingPageSignUpForm formTitle="Don't miss out" />
+                </OakBox>
+              )}
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>

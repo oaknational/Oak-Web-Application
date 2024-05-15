@@ -23,18 +23,15 @@ const LessonPlanningBlog: FC<LessonPlanningBlogProps> = ({
   linkHref,
 }) => {
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $mb={"space-between-xxxl"}
-      $mh={"space-between-s"}
-    >
+    <OakFlex $flexDirection={"column"} $mb={"space-between-xxxl"}>
       <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
         {title}
       </OakHeading>
       <PostPortableText portableText={blogPortableText} />
       <OakBox $display={["block", "block", "none"]} $mt={"space-between-m2"}>
         <OakLink
-          iconName="chevron-up"
+          isTrailingIcon
+          iconName="arrow-up"
           href={linkHref || "#plan-a-lesson-contents"}
         >
           {"Back to contents"}
