@@ -77,7 +77,7 @@ export const PupilViewsProgrammeListing = ({
   const subjectDescription = programmes[0]?.programmeFields.subject;
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
-  function topNavSlot() {
+  const topNavSlot = () => {
     switch (true) {
       // examboard is chosen and there are multiple tiers
       case chosenExamboard !== null && tiers.length > 1:
@@ -96,7 +96,7 @@ export const PupilViewsProgrammeListing = ({
           </OakTertiaryButton>
         );
     }
-  }
+  };
 
   const breadcrumbs = () => {
     switch (true) {
@@ -165,7 +165,7 @@ export const PupilViewsProgrammeListing = ({
     })();
   };
 
-  function optionTitles(): { hint: string; title: string } {
+  const optionTitles = (): { hint: string; title: string } => {
     switch (true) {
       case examboards.length > 1 && chosenExamboard === null:
         return {
@@ -178,7 +178,7 @@ export const PupilViewsProgrammeListing = ({
           title: "Choose a tier",
         };
     }
-  }
+  };
 
   const optionTitleSlot = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
