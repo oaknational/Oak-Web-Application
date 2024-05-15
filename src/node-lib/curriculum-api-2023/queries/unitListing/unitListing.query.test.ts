@@ -7,7 +7,8 @@ import {
 
 import sdk from "../../sdk";
 
-import unitListing, { getTiersForProgramme } from "./unitListing.query";
+import unitListing from "./unitListing.query";
+import { getTiersForProgramme } from "./getTiersForProgramme";
 
 jest.mock("../../sdk", () => {
   return {
