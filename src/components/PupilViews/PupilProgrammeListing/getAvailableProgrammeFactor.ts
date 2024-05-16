@@ -19,6 +19,7 @@ export const getAvailableProgrammeFactor = ({
             tier: programme.programmeFields.tier,
             tierSlug: programme.programmeFields.tierSlug,
             tierDisplayOrder: programme.programmeFields.tierDisplayOrder,
+            tierDescription: programme.programmeFields.tierDescription,
           };
         case factorPrefix === "examboard" &&
           !!programme.programmeFields.examboard:

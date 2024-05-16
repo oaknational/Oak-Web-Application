@@ -15,6 +15,8 @@ import {
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import OakError from "@/errors/OakError";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 const ProgrammesPage = ({
   programmes,
@@ -32,14 +34,28 @@ const ProgrammesPage = ({
     return e;
   })();
 
+  const subjectDescription = programmes[0]?.programmeFields.subject;
+  const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
+  const phaseSlug = programmes[0]?.programmeFields.phaseSlug;
+
   return (
-    <PupilViewsProgrammeListing
-      programmes={programmes}
-      baseSlug={baseSlug}
-      isLegacy={false}
-      yearSlug={yearSlug}
-      examboardSlug={examboardSlug}
-    />
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
+          description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
+        }),
+      }}
+    >
+      {" "}
+      <PupilViewsProgrammeListing
+        programmes={programmes}
+        baseSlug={baseSlug}
+        isLegacy={false}
+        yearSlug={yearSlug}
+        examboardSlug={examboardSlug}
+      />
+    </AppLayout>
   );
 };
 
