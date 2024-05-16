@@ -24,6 +24,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -36,6 +37,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           onClick={() => {}}
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -53,6 +55,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -70,6 +73,7 @@ describe("BrowseExamboardSelector", () => {
           examboards={examboards}
           baseSlug="my-subject"
           isLegacy={true}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
