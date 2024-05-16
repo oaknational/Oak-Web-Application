@@ -11,11 +11,9 @@ import {
   OakHeaderHero,
   OakBox,
   OakLink,
-  OakHeading,
-  OakTypography,
 } from "@oaknational/oak-components";
 
-import { postToPostListItem, SerializedPost, sortByDate } from ".";
+import { postToPostListItem, SerializedPost } from ".";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -28,46 +26,12 @@ import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanni
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
-import PostList from "@/components/SharedComponents/PostList";
-import OwaLink from "@/components/SharedComponents/OwaLink";
-import { serializeDate } from "@/utils/serializeDate";
+import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
+import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
   posts: SerializedPost[];
-};
-
-const getLessonPlanningBlogsWebinars = async (isPreviewMode: boolean) => {
-  const blogs = await CMSClient.blogPosts({
-    previewMode: isPreviewMode,
-  });
-
-  const blogRes = blogs
-    .map((blog) => ({
-      ...blog,
-      type: "blog-post" as const,
-    }))
-    .filter((blog) => blog.category.slug === "lesson-planning");
-
-  const webinars = await CMSClient.webinars({
-    previewMode: isPreviewMode,
-  });
-
-  const webinarsRes = webinars
-    .map((webinar) => ({
-      ...webinar,
-      type: "webinar" as const,
-    }))
-    .filter(
-      (webinar) =>
-        webinar.date.getTime() < new Date().getTime() &&
-        webinar.category.slug === "lesson-planning",
-    );
-
-  return [...blogRes, ...webinarsRes]
-    .sort(sortByDate)
-    .slice(0, 4)
-    .map(serializeDate);
 };
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
@@ -93,6 +57,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
         $background={"white"}
       >
         <OakHeaderHero
+          data-testid="header-hero"
           headingTitle={pageData.hero.heading}
           authorName={pageData.hero.author.name}
           authorTitle={pageData.hero.author.role ?? ""}
@@ -209,34 +174,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
               )}
             </OakGridArea>
           </OakGrid>
-          <OakBox
-            $pa={"inner-padding-xl"}
-            $background={"bg-neutral"}
-            $borderRadius={"border-radius-l"}
-            $mb={"space-between-l"}
-            $display={["none", "none", "block"]}
-          >
-            <OakFlex
-              $width={"100%"}
-              $alignItems={["flex-start", "center"]}
-              $justifyContent={"space-between"}
-              $mb={"space-between-l"}
-              $flexDirection={["column", "row"]}
-            >
-              <OakHeading tag="h2" $font={"heading-5"}>
-                Stay up to date
-              </OakHeading>
-              <OakFlex $flexDirection={"row"}>
-                <OakTypography $mr={"space-between-s"} $font={"heading-7"}>
-                  <OwaLink page={"webinar-index"}>All webinars</OwaLink>
-                </OakTypography>
-                <OakTypography $font={"heading-7"}>
-                  <OwaLink page={"blog-index"}>All blogs</OwaLink>
-                </OakTypography>
-              </OakFlex>
-            </OakFlex>
-            <PostList showImageOnTablet={true} {...blogListPosts} />
-          </OakBox>
+          <BlogAndWebinarList
+            backgroundColor={"grey20"}
+            showImageOnTablet
+            blogListPosts={blogListPosts}
+            displayOnPhone={false}
+          />
         </OakMaxWidth>
       </Layout>
     </OakThemeProvider>
@@ -255,14 +198,17 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
         previewMode: isPreviewMode,
       });
 
-      const posts = await getLessonPlanningBlogsWebinars(isPreviewMode);
-
       if (!planALessonPage) {
         return {
           notFound: true,
         };
       }
 
+      const posts = await getAndMergeWebinarsAndBlogs(
+        isPreviewMode,
+        5,
+        "lesson-planning",
+      );
       const results: GetStaticPropsResult<PlanALessonProps> = {
         props: {
           pageData: planALessonPage,
