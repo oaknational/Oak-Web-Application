@@ -88,7 +88,6 @@ export const PupilViewsUnitListing = ({
       }
     >
       <OakBox $mb={"space-between-xl"}>
-        {" "}
         <OakPupilJourneyList
           phase={phase}
           titleSlot={
@@ -114,7 +113,7 @@ export const PupilViewsUnitListing = ({
                   programmeSlug: unit.programmeSlug,
                   unitSlug: unit.unitSlug,
                 })}
-                unavailable={true}
+                unavailable={unit.expired}
               />
             );
           })}
