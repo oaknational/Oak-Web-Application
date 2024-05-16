@@ -41,11 +41,11 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (tierDescription) {
-    breadcrumb.push(tierDescription);
-  }
   if (examboardDescription) {
     breadcrumb.push(examboardDescription);
+  }
+  if (tierDescription) {
+    breadcrumb.push(tierDescription);
   }
 
   const LessonListingTitle = (
