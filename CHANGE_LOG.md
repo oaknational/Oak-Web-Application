@@ -1,3 +1,27 @@
+## [1.435.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.435.0...v1.435.1) (2024-05-16)
+
+
+### Bug Fixes
+
+* **programme:** browse option fc ([f0a2918](https://github.com/oaknational/Oak-Web-Application/commit/f0a2918b08ea958725e27aa718dd9d57c044b2fd))
+* **programme:** browse option fc ([b3577ae](https://github.com/oaknational/Oak-Web-Application/commit/b3577ae4b08d82195f91bbe36fcaa4c64bfec441))
+* **programme:** code refactor ([d46bda6](https://github.com/oaknational/Oak-Web-Application/commit/d46bda68320437f9ed36f52d054025810efff11f))
+* **programme:** lint warnings ([61a67b9](https://github.com/oaknational/Oak-Web-Application/commit/61a67b9008aceb5d1cd19a161d279b78066cc0ca))
+* **programme:** package lock fix ([5d20ae4](https://github.com/oaknational/Oak-Web-Application/commit/5d20ae4d5bc8d9a39f3cf1a8a05fa1448972cbfe))
+* **programme:** package lock fix ([903ebcb](https://github.com/oaknational/Oak-Web-Application/commit/903ebcbaf00262fb289aa2cffd00e9d5c929721d))
+* **programme:** package lock fix ([7a06ee7](https://github.com/oaknational/Oak-Web-Application/commit/7a06ee7b67584ad70f07532334cb5724b2443b87))
+* **programme:** package lock fix ([8257f7e](https://github.com/oaknational/Oak-Web-Application/commit/8257f7e7abf4939fec135e64286e430a6fb74054))
+* **programme:** package lock fix ([135970b](https://github.com/oaknational/Oak-Web-Application/commit/135970b6d29ce39516eecd56b57931b606f0332f))
+* **programme:** style fix ([abf0c11](https://github.com/oaknational/Oak-Web-Application/commit/abf0c116e567233f12d9135d1dcd0229a4d434e4))
+* **programme:** style fix ([29b338f](https://github.com/oaknational/Oak-Web-Application/commit/29b338f8650d8242c614b38e2b31160b0b5769ad))
+* **programme:** style programme page ([7c401ee](https://github.com/oaknational/Oak-Web-Application/commit/7c401eee3a6f342bab669c60a204844143275826))
+* **programme:** style programme page ([f175e6e](https://github.com/oaknational/Oak-Web-Application/commit/f175e6ea42062e9d256ee2ec75145295ef72876b))
+* **programme:** style programme page ([a5b7419](https://github.com/oaknational/Oak-Web-Application/commit/a5b7419c0e4896392811defe567173e93a63052d))
+* **programme:** style programme page ([1222d14](https://github.com/oaknational/Oak-Web-Application/commit/1222d14f01a39f04cbf3724e88784626467f2047))
+* **programme:** style programme page ([caaee0c](https://github.com/oaknational/Oak-Web-Application/commit/caaee0c40e7e436c26439d9e50f88ee646e85459))
+* **programme:** style programme page ([97e2c41](https://github.com/oaknational/Oak-Web-Application/commit/97e2c4143793bdb9e46d65086f6c27c634542687))
+* **programme:** style programme page ([d8563d3](https://github.com/oaknational/Oak-Web-Application/commit/d8563d343a7e51c82641315aaf18af96fc7e4c47))
+
 # [1.435.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.434.0...v1.435.0) (2024-05-15)
 
 
