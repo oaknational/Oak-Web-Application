@@ -153,7 +153,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       $mt={"space-between-m2"}
                     >
                       <OakLink
-                        iconName="chevron-up"
+                        iconName="arrow-up"
                         href={"#plan-a-lesson-contents"}
                         isTrailingIcon
                       >
