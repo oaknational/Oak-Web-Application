@@ -14,41 +14,7 @@ describe("lessonListing()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first unit is returned if multiple units in response", async () => {
-    const unit = await lessonListing({
-      ...sdk,
-      lessonListing: jest.fn(() =>
-        Promise.resolve({
-          unit: [
-            {
-              programmeSlug: "programme-slug-0",
-              unitSlug: "unit-slug",
-              unitTitle: "unit-title",
-              subjectSlug: "subject-slug",
-              subjectTitle: "subject-title",
-              keyStageSlug: "key-stage-slug",
-              keyStageTitle: "key-stage-title",
-              lessons: [],
-            },
-            {
-              programmeSlug: "programme-slug-1",
-              unitSlug: "unit-slug",
-              unitTitle: "unit-title",
-              subjectSlug: "subject-slug",
-              subjectTitle: "subject-title",
-              keyStageSlug: "key-stage-slug",
-              keyStageTitle: "key-stage-title",
-              lessons: [],
-            },
-          ],
-        }),
-      ),
-    })({
-      programmeSlug: "programme-slug",
-      unitSlug: "unit-slug",
-    });
-    expect(unit.programmeSlug).toEqual("programme-slug-0");
-  });
+
   test("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonListing({
@@ -74,6 +40,6 @@ describe("lessonListing()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
       });
-    }).rejects.toThrow(`unitSlug`);
+    }).rejects.toThrow(`lesson_slug`);
   });
 });
