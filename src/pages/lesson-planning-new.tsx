@@ -115,7 +115,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
               $position={["static", "static", "sticky"]}
               $top={"all-spacing-10"}
               $display={["none", "none", "block"]}
-              $mb={"space-between-l"}
             >
               <OakTertiaryOLNav
                 items={navItems}
@@ -206,7 +205,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
 
       const posts = await getAndMergeWebinarsAndBlogs(
         isPreviewMode,
-        5,
+        undefined,
         "lesson-planning",
       );
       const results: GetStaticPropsResult<PlanALessonProps> = {

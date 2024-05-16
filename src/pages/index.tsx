@@ -59,34 +59,6 @@ export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
   return b.date.getTime() - a.date.getTime();
 };
 
-// export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
-//   const blogResults = await CMSClient.blogPosts({
-//     previewMode: isPreviewMode,
-//     limit: 5,
-//   });
-
-//   const blogPosts = blogResults.map((blog) => ({
-//     ...blog,
-//     type: "blog-post" as const,
-//   }));
-
-//   const webinarResults = await CMSClient.webinars({
-//     previewMode: isPreviewMode,
-//     limit: 5,
-//   });
-//   const webinars = webinarResults
-//     .map((webinar) => ({
-//       ...webinar,
-//       type: "webinar" as const,
-//     }))
-//     .filter((webinar) => webinar.date.getTime() < new Date().getTime());
-
-//   return [...blogPosts, ...webinars]
-//     .sort(sortByDate)
-//     .slice(0, 4)
-//     .map(serializeDate);
-// };
-
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
@@ -131,12 +103,13 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       {current === "pupils" && <PupilTab />}
       {current === "ai" && <AiTab />}
 
-      <MaxWidth $mv={[24, 56]}>
+      <MaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}
           showImageOnTablet={true}
           backgroundColor="white"
           displayOnPhone={true}
+          isBackgroundWhite={true}
         />
       </MaxWidth>
       <Flex $background={"lavender50"} $width={"100%"}>

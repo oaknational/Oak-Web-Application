@@ -17,6 +17,7 @@ export type BlogAndWebinarListProps = {
   showImageOnTablet?: boolean;
   backgroundColor: OakColorToken;
   displayOnPhone: boolean;
+  isBackgroundWhite?: boolean;
 };
 
 const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
@@ -24,13 +25,15 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
   showImageOnTablet,
   backgroundColor,
   displayOnPhone,
+  isBackgroundWhite,
 }) => {
   return (
     <OakBox
-      $pa={["inner-padding-m", "inner-padding-xl"]}
+      $ph={["inner-padding-m", "inner-padding-xl"]}
+      $pv={isBackgroundWhite ? null : ["inner-padding-m", "inner-padding-xl"]}
       $background={backgroundColor}
       $borderRadius={"border-radius-l"}
-      $mb={["space-between-m", "space-between-l"]}
+      $mv={["space-between-m", "space-between-xl"]}
       $display={displayOnPhone ? "block" : ["none", "none", "block"]}
     >
       <OakFlex
