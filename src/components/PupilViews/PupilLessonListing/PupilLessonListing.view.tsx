@@ -111,7 +111,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               counterSlot={lessonCount}
             >
               {orderedCurriculumData.map((lesson, index) => {
-                const lessonData = lesson.lessonData;
                 return (
                   <OakPupilJourneyListItem
                     href={resolveOakHref({
@@ -121,8 +120,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                       unitSlug: lesson.unitSlug,
                     })}
                     index={index + 1}
-                    title={lessonData.title}
+                    title={lesson.lessonData.title}
                     role="listitem"
+                    unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
                 );
               })}
