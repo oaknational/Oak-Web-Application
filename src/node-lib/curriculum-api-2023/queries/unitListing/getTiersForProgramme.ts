@@ -3,8 +3,8 @@ import { Sdk, getBatchedRequests } from "../../sdk";
 
 import {
   TierSchema,
-  batchResultResponseArray,
   rawTierResponseSchema,
+  tierCounts,
   tierSchema,
 } from "./unitListing.schema";
 
@@ -24,6 +24,7 @@ export const getTiersForProgramme = async (
     contains.examboard_slug = examboard;
   }
   const response = await sdk.tiers({ _contains: contains });
+
   const rawTiers = response.tiers;
 
   if (!rawTiers || rawTiers.length === 0) {
@@ -67,13 +68,14 @@ export const getTiersForProgramme = async (
   });
 
   const batchResponse = await getBatchedRequests(batchRequests);
+  const data = batchResponse.map((b) => b.data);
 
-  const parsedData = batchResultResponseArray.parse(batchResponse);
+  const parsedData = data.map((d) => tierCounts.parse(d));
 
   parsedData.forEach((counts) => {
-    const unitCount = counts.data.unitCount.aggregate.count;
-    const lessonCount = counts.data.lessonCount.aggregate.count;
-    const tierSlug = counts.data.unitCount.nodes[0]?.programme_fields;
+    const unitCount = counts.unitCount.aggregate.count;
+    const lessonCount = counts.lessonCount.aggregate.count;
+    const tierSlug = counts.unitCount.nodes[0]?.programme_fields;
 
     if (
       !tierSlug ||

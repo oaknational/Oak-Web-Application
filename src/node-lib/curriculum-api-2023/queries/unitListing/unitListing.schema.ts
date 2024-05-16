@@ -8,35 +8,53 @@ export const rawTierResponseSchema = z.array(
   }),
 );
 
+const aggregateSchema = z.object({
+  count: z.number(),
+});
+
 export const tierCounts = z.object({
   lessonCount: z.object({
-    aggregate: z.object({
-      count: z.number(),
-    }),
+    aggregate: aggregateSchema,
     nodes: z.array(z.object({ programme_fields: z.string() })),
   }),
   unitCount: z.object({
-    aggregate: z.object({
-      count: z.number(),
-    }),
+    aggregate: aggregateSchema,
     nodes: z.array(z.object({ programme_fields: z.string() })),
   }),
 });
 
 export type TierCounts = z.infer<typeof tierCounts>;
 
-export const batchResultResponseArray = z.array(
+export const lessonCounts = z.object({
+  lessonCount: z.object({
+    aggregate: aggregateSchema,
+    nodes: z.array(z.object({ unit_id: z.number() })),
+  }),
+  expiredLessonCount: z.object({
+    aggregate: aggregateSchema,
+    nodes: z.array(z.object({ unit_id: z.number() })),
+  }),
+});
+
+export type LessonCounts = z.infer<typeof lessonCounts>;
+
+export const threadsResponseSchema = z.array(
   z.object({
-    data: tierCounts,
+    threads: z.array(
+      z.object({ theme_slug: z.string(), theme_title: z.string() }),
+    ),
+    unit_id: z.number(),
   }),
 );
 
-export type BatchResultResponseArray = z.infer<typeof batchResultResponseArray>;
-
-const learningThemesSchema = z.object({
+export const learningThemesSchema = z.object({
   themeTitle: z.string().nullable(),
   themeSlug: z.string().nullable(),
 });
+
+const learningThemes = z.array(learningThemesSchema);
+
+export type LearningThemes = z.infer<typeof learningThemes>;
 
 const unitData = z.object({
   slug: z.string(),
@@ -61,7 +79,8 @@ const unitData = z.object({
 
 export type UnitData = z.infer<typeof unitData>;
 
-const unitSchema = z.array(z.array(unitData));
+export const unitSchema = z.array(z.array(unitData));
+export type UnitsForProgramme = z.infer<typeof unitSchema>;
 
 export const tierSchema = z.array(
   z.object({

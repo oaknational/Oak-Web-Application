@@ -4,6 +4,7 @@ import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
 import { getTiersForProgramme } from "./getTiersForProgramme";
+import { getUnitsForProgramme } from "./getUnitsForProgramme";
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
@@ -37,6 +38,8 @@ const unitListingQuery =
         )
       : [];
 
+    const units = await getUnitsForProgramme(parsedProgramme);
+
     return {
       programmeSlug: args.programmeSlug,
       keyStageSlug: programmeFields.keystage_slug,
@@ -48,7 +51,7 @@ const unitListingQuery =
       totalUnitCount: parsedProgramme.length,
       tierSlug: programmeFields.tier_slug,
       tiers: tiers, // TODO: core tier
-      units: [], // TODO: units
+      units: units,
     };
   };
 

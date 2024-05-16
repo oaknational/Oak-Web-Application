@@ -2,7 +2,9 @@ query tierCounts($_contains: jsonb) {
   lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
     where: {
       programme_fields: { _contains: $_contains }
-      expired: { _is_null: true }
+      _not: {
+        lesson_data: { _contains: { deprecated_fields: { expired: true } } }
+      }
     }
   ) {
     aggregate {
@@ -15,7 +17,9 @@ query tierCounts($_contains: jsonb) {
   unitCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
     where: {
       programme_fields: { _contains: $_contains }
-      expired: { _is_null: true }
+      _not: {
+        lesson_data: { _contains: { deprecated_fields: { expired: true } } }
+      }
     }
   ) {
     aggregate {
