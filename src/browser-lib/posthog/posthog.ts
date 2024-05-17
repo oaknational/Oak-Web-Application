@@ -14,12 +14,19 @@ export type PosthogConfig = {
   apiHost: string;
 };
 
+declare global {
+  interface Window {
+    posthog: PostHog;
+  }
+}
+
 export const posthogToAnalyticsServiceWithoutQueue = (
   client: PostHog,
 ): AnalyticsService<PosthogConfig> => ({
   name: "posthog",
   init: ({ apiKey, apiHost }) =>
     new Promise((resolve) => {
+      window.posthog = client;
       client.init(apiKey, {
         api_host: apiHost,
         debug: getBrowserConfig("releaseStage") !== "production",
