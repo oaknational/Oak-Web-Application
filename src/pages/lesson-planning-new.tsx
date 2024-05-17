@@ -137,7 +137,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       $mb={
                         !isLastSection
                           ? "space-between-xxxl"
-                          : "space-between-none"
+                          : "space-between-m2"
                       }
                       $flexDirection={"column"}
                       $display={["none", "none", "flex"]}
@@ -152,9 +152,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                     key={`${section.navigationTitle} ${index}`}
                     $position={"relative"}
                     $mb={
-                      !isLastSection
-                        ? "space-between-xxxl"
-                        : "space-between-none"
+                      !isLastSection ? "space-between-xxxl" : "space-between-m2"
                     }
                   >
                     <OakAnchorTarget id={section.anchorSlug.current} />
