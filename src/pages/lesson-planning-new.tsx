@@ -128,11 +128,16 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
               $colStart={[1, 1, 5]}
               $mh={"space-between-s"}
             >
-              {pageData.content.map((section) => {
+              {pageData.content.map((section, index, sections) => {
+                const isLastSection = index === sections.length - 1;
                 if (section.type === "PlanALessonPageFormBlock") {
                   return (
                     <OakFlex
-                      $mb={"space-between-xxxl"}
+                      $mb={
+                        !isLastSection
+                          ? "space-between-xxxl"
+                          : "space-between-none"
+                      }
                       $flexDirection={"column"}
                       $display={["none", "none", "flex"]}
                     >
@@ -142,7 +147,14 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                 }
 
                 return (
-                  <OakBox $position={"relative"} $mb={"space-between-xxxl"}>
+                  <OakBox
+                    $position={"relative"}
+                    $mb={
+                      !isLastSection
+                        ? "space-between-xxxl"
+                        : "space-between-none"
+                    }
+                  >
                     <OakAnchorTarget id={section.anchorSlug.current} />
                     <LessonPlanningBlog
                       title={section.navigationTitle}
