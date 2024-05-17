@@ -1,3 +1,17 @@
+# [1.436.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.435.1...v1.436.0) (2024-05-16)
+
+
+### Bug Fixes
+
+* merge conflicts ([68e5a15](https://github.com/oaknational/Oak-Web-Application/commit/68e5a15f1fba0812f016e542673fb90f6f6a7f69))
+* run npm i ([923d5f0](https://github.com/oaknational/Oak-Web-Application/commit/923d5f0120d57f44e290e361dff94cbcbc8cb4f9))
+
+
+### Features
+
+* expired lessons for lesson listing ([64f8610](https://github.com/oaknational/Oak-Web-Application/commit/64f8610aae0bcb74bc38afcf2d1adfd88e69f6d1))
+* expired units ([c258c33](https://github.com/oaknational/Oak-Web-Application/commit/c258c3387a43067803e13a6c4d103bc5c91c5184))
+
 ## [1.435.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.435.0...v1.435.1) (2024-05-16)
 
 
