@@ -16,8 +16,60 @@ export function xmlElementToJson(xmlData: string) {
   return rootNode.elements[0];
 }
 
+export function createFragment(elements: Element[]): Element {
+  return {
+    type: "element",
+    name: "$FRAGMENT$",
+    elements: elements,
+  };
+}
+
+export function collapseFragments(root: Element) {
+  const run = (orig: Element) => {
+    let node = orig;
+    const cloneIfRequired = () => {
+      if (node === orig) {
+        return {
+          ...node,
+          elements: node.elements ? [...node.elements] : undefined,
+        };
+      }
+      return node;
+    };
+    if (node.elements) {
+      for (let i = node.elements.length - 1; i >= 0; i--) {
+        if (node.elements) {
+          const child = node.elements[i]!;
+          const out = run(child);
+
+          if (Array.isArray(out)) {
+            node = cloneIfRequired();
+            node.elements!.splice(i, 1, ...out);
+          } else if (out !== child) {
+            node = cloneIfRequired();
+            if (node.elements) {
+              node.elements[i] = out;
+            }
+          }
+        }
+      }
+    }
+
+    if (node.name === "$FRAGMENT$") {
+      return node.elements ?? [];
+    }
+    return node;
+  };
+
+  const out = run(root);
+  if (Array.isArray(out)) {
+    return createFragment(out);
+  }
+  return out;
+}
+
 export function jsonXmlToXmlString(json: Element): string {
-  const root = "declaration" in json ? json : { elements: [json] };
-  const output = js2xml(root);
+  const root = "name" in json ? { elements: [json] } : json;
+  const output = js2xml(collapseFragments(root));
   return output;
 }

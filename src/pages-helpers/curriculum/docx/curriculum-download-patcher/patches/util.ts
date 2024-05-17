@@ -3,6 +3,12 @@ import {
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
+export function notUndefined<TValue>(
+  value: TValue | undefined,
+): value is TValue {
+  return value !== undefined;
+}
+
 // Safe version of String#includes(...)
 export const textIncludes = (str: unknown, matchText: string) => {
   if (typeof str === "string") {

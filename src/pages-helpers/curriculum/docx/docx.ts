@@ -1,8 +1,11 @@
 import JSZip from "jszip";
 import type { Element } from "xml-js";
 
-import { jsonXmlToXmlString, xmlElementToJson, xmlElementsToJson } from "./xml";
-import { textIncludes } from "./curriculum-download-patcher/patches/util";
+import { collapseFragments, jsonXmlToXmlString, xmlRootToJson } from "./xml";
+import {
+  notUndefined,
+  textIncludes,
+} from "./curriculum-download-patcher/patches/util";
 
 /**
  * Modify docx file
@@ -19,7 +22,7 @@ export async function modifyXmlByRootSelector(
       continue;
     }
 
-    const json = xmlElementsToJson(await value.async("text"));
+    const json = xmlRootToJson(await value.async("text"));
 
     if (json.elements) {
       const docIndex = json.elements.findIndex(
@@ -46,7 +49,7 @@ export async function modifyXmlByRootSelector(
   });
 }
 
-function hasStartBlock(element: Element, selector: string) {
+export function hasStartBlock(element: Element, selector: string) {
   return checkWithinElement(element, (el: Element) => {
     return (
       el.type === "text" && textIncludes(el.text, `{{BLOCK_START.${selector}}}`)
@@ -54,7 +57,7 @@ function hasStartBlock(element: Element, selector: string) {
   });
 }
 
-function hasEndBlock(element: Element, selector: string) {
+export function hasEndBlock(element: Element, selector: string) {
   return checkWithinElement(element, (el: Element) => {
     return (
       el.type === "text" && textIncludes(el.text, `{{BLOCK_END.${selector}}}`)
@@ -65,17 +68,22 @@ function hasEndBlock(element: Element, selector: string) {
 export async function withBlock(
   el: Element,
   selector: string,
-  fn: (
-    element: Element,
-  ) => Promise<Element | (Element | undefined)[] | undefined>,
+  fn: (element: Element) => Promise<Element | undefined>,
 ) {
-  const blockElement = xmlElementToJson(`<w:sectPr></w:sectPr>`);
+  const blockElement: Element = {
+    type: "element",
+    name: "$FRAGMENT$",
+    elements: [],
+  };
   blockElement.elements = [];
+
   const rootIndex = el.elements?.findIndex((el) => el.name === "w:body") ?? -1;
   if (rootIndex > -1 && el.elements) {
     const root = el.elements[rootIndex];
+
     let startIndex = -1;
     let endIndex = -1;
+
     if (root && root.elements) {
       for (let index = 0; index < (root.elements ?? []).length; index++) {
         const element = root.elements[index]!;
@@ -90,20 +98,24 @@ export async function withBlock(
       }
 
       if (startIndex > -1 && endIndex > -1) {
-        const ret = await fn(blockElement);
-        const newBlockElementsRaw = Array.isArray(ret) ? ret : [ret];
-        const newBlockElements = newBlockElementsRaw.filter(
-          (el) => el !== undefined,
-        ) as Element[];
+        const newBlockElement = await fn(blockElement);
+
         const newEl = { ...el, elements: [...el.elements] };
         const newRoot = { ...root, elements: [...root.elements] };
-        newRoot.elements.splice(
-          startIndex,
-          endIndex - startIndex + 1,
-          ...newBlockElements,
-        );
-        newEl.elements[rootIndex] = newRoot;
-        return newEl;
+
+        if (newBlockElement) {
+          newRoot.elements.splice(
+            startIndex,
+            endIndex - startIndex + 1,
+            newBlockElement,
+          );
+        } else {
+          newRoot.elements.splice(startIndex, endIndex - startIndex + 1);
+        }
+
+        const newRootCollapsed = newRoot;
+        newEl.elements[rootIndex] = newRootCollapsed;
+        return collapseFragments(newEl);
       }
     }
   }
@@ -144,22 +156,27 @@ export async function mapOverElements(
 
     if (!newRoot) return;
 
-    let newElements: Element[] | undefined;
+    let hasChanged = false;
     if (newRoot.elements) {
       const newElementsSparse = await Promise.all(
         newRoot.elements.map(async (el) => {
-          return runner(el, fn, root);
+          const moddedEl = await runner(el, fn, newRoot);
+          if (moddedEl !== el) {
+            hasChanged = true;
+          }
+          return moddedEl;
         }),
       );
-      newElements = newElementsSparse.filter(
-        (el) => el !== undefined,
-      ) as Element[];
+
+      if (hasChanged) {
+        return {
+          ...newRoot,
+          elements: newElementsSparse.filter(notUndefined),
+        };
+      }
     }
 
-    return {
-      ...newRoot,
-      elements: newElements,
-    };
+    return newRoot;
   };
 
   return runner(root, fn)!;

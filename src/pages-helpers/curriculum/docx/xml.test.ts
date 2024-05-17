@@ -1,4 +1,10 @@
-import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
+import {
+  collapseFragments,
+  createFragment,
+  jsonXmlToXmlString,
+  xmlElementToJson,
+  xmlRootToJson,
+} from "./xml";
 
 describe("xml", () => {
   describe("xmlElementToJson", () => {
@@ -76,7 +82,26 @@ describe("xml", () => {
   });
 
   describe("jsonXmlToXmlString", () => {
-    it("should succeed with valid JSON definition", () => {
+    it("should succeed with valid JSON root definition", () => {
+      const xml = jsonXmlToXmlString({
+        // No name indicates a root node
+        elements: [
+          {
+            type: "element",
+            name: "one",
+            elements: [
+              {
+                type: "element",
+                name: "two",
+              },
+            ],
+          },
+        ],
+      });
+      expect(xml).toEqual("<one><two/></one>");
+    });
+
+    it("should succeed with valid JSON element definition", () => {
       const xml = jsonXmlToXmlString({
         type: "element",
         name: "one",
@@ -88,6 +113,141 @@ describe("xml", () => {
         ],
       });
       expect(xml).toEqual("<one><two/></one>");
+    });
+  });
+
+  describe("collapseFragments", () => {
+    it("should return fragment if top level is fragment", () => {
+      const input = {
+        type: "element",
+        name: "$FRAGMENT$",
+        elements: [],
+      };
+      expect(collapseFragments(input)).toEqual(input);
+    });
+    it("with fragments", () => {
+      const input = {
+        elements: [
+          {
+            type: "element",
+            name: "one",
+          },
+          {
+            type: "element",
+            name: "$FRAGMENT$",
+            elements: [
+              {
+                type: "element",
+                name: "$FRAGMENT$",
+                elements: [
+                  {
+                    type: "element",
+                    name: "two",
+                    elements: [
+                      {
+                        type: "text",
+                        text: "three",
+                      },
+                      {
+                        type: "element",
+                        name: "$FRAGMENT$",
+                        elements: [
+                          {
+                            type: "text",
+                            text: "four",
+                          },
+                        ],
+                      },
+                      {
+                        type: "element",
+                        name: "$FRAGMENT$",
+                      },
+                      {
+                        type: "element",
+                        elements: [
+                          {
+                            type: "text",
+                            text: "five",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+      const inputClone = JSON.parse(JSON.stringify(input));
+      const out = collapseFragments(input);
+      expect(inputClone).toEqual(input);
+      expect(input.elements[1]!.elements![0]!.elements[0]?.elements[3]).toBe(
+        out.elements![1]!.elements![2],
+      );
+      expect(out).toEqual({
+        elements: [
+          {
+            type: "element",
+            name: "one",
+          },
+          {
+            type: "element",
+            name: "two",
+            elements: [
+              {
+                type: "text",
+                text: "three",
+              },
+              {
+                type: "text",
+                text: "four",
+              },
+              {
+                type: "element",
+                elements: [
+                  {
+                    type: "text",
+                    text: "five",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it("without fragments should not mutate", () => {
+      const input = {
+        type: "element",
+        name: "foo",
+        elements: [
+          {
+            type: "element",
+            name: "bar",
+            elements: [
+              {
+                type: "text",
+                text: "hello",
+              },
+            ],
+          },
+        ],
+      };
+      const out = collapseFragments(input);
+      expect(out).toBe(input);
+    });
+  });
+
+  describe("createFragment", () => {
+    it("should return fragment", () => {
+      const out = createFragment([]);
+      expect(out).toEqual({
+        type: "element",
+        name: "$FRAGMENT$",
+        elements: [],
+      });
     });
   });
 });

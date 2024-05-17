@@ -24,6 +24,7 @@ import { unitThreadsPatch } from "./patches/unitThreads";
 import { unitPreviousPatch } from "./patches/unitPrevious";
 import { unitNextPatch } from "./patches/unitNext";
 import { mainThreadsPatch } from "./patches/mainThreads";
+import { notUndefined } from "./patches/util";
 
 import {
   CurriculumOverviewMVData,
@@ -64,8 +65,9 @@ export default async function CurriculumDownlodsPatch(
       const docMod2 = await withBlock(
         docMod1!,
         "UNIT_PAGE",
-        async (el: Element) => {
+        async (template: Element) => {
           const promises = combinedCurriculumData.units.map((unit, index) => {
+            const el = structuredClone(template);
             return mapOverElements(el, (el, parent) => {
               return pipeElementThrough(el, parent, [
                 unitTitlePatch(unit),
@@ -78,7 +80,13 @@ export default async function CurriculumDownlodsPatch(
               ]);
             });
           });
-          return await Promise.all(promises);
+          const elements = await Promise.all(promises);
+
+          return {
+            type: "element",
+            name: "$FRAGMENT$",
+            elements: elements.filter(notUndefined),
+          };
         },
       );
 
