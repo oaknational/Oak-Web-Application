@@ -133,6 +133,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                 if (section.type === "PlanALessonPageFormBlock") {
                   return (
                     <OakFlex
+                      key={`${section.navigationTitle} ${index}`}
                       $mb={
                         !isLastSection
                           ? "space-between-xxxl"
@@ -148,6 +149,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
 
                 return (
                   <OakBox
+                    key={`${section.navigationTitle} ${index}`}
                     $position={"relative"}
                     $mb={
                       !isLastSection
