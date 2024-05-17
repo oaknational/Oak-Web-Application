@@ -15,7 +15,6 @@ export const LandingPageSignUpForm: FC<{ formTitle: string }> = ({
   const descriptionId = `${id}-newsletter-form-description`;
   return (
     <Card
-      // $ml={[0, 48]}
       $width={["100%"]}
       $pv={40}
       $ph={[16, 24]}

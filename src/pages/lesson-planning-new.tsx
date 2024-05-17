@@ -57,6 +57,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
         $background={"white"}
       >
         <OakHeaderHero
+          authorImageAlt={`${pageData.hero.author.name} profile picture`}
+          heroImageAlt={pageData.hero.image?.altText ?? ""}
           data-testid="header-hero"
           headingTitle={pageData.hero.heading}
           authorName={pageData.hero.author.name}
