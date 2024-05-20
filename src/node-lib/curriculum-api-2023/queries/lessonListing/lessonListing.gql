@@ -1,21 +1,18 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_lesson_listing_5_0_1(
+  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     where: {
-      programmeSlug: { _eq: $programmeSlug }
-      unitSlug: { _eq: $unitSlug }
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
     }
   ) {
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardSlug: examboardSlug
-    examBoardTitle: examboardTitle
-    tierTitle
-    lessons
-    yearTitle
+    unit_slug
+    lesson_data
+    lesson_slug
+    is_legacy
+    programme_slug
+    unit_data
+    null_unitvariant
+    programme_fields
+    supplementary_data
   }
 }
