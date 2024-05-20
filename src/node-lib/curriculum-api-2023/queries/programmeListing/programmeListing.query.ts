@@ -20,8 +20,7 @@ export const getTransformedProgrammeData = (
     subject_slug: subjectSlug,
     subject: subjectTitle,
   } = firstProgramme.programme_fields;
-  console.log("first", firstProgramme);
-  console.log("rogram", programmeData);
+
   const programmes = programmeData.map((programme) => {
     return {
       programmeSlug: programme.programme_slug,
