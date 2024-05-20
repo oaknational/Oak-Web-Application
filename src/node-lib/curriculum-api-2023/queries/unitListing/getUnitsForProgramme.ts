@@ -1,56 +1,17 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
-import {
-  LessonCountsForUnitDocument,
-  ThreadsForUnitDocument,
-} from "../../generated/sdk";
+import { LessonCountsForUnitDocument } from "../../generated/sdk";
 import { getBatchedRequests } from "../../sdk";
 
 import {
-  LearningThemes,
   UnitData,
   UnitsForProgramme,
   lessonCounts,
-  threadsResponseSchema,
   unitSchema,
 } from "./unitListing.schema";
+import { getThreadsForUnit } from "./threads/getThreadsForUnit";
 
 import OakError from "@/errors/OakError";
-
-export const getThreadsForUnit = async (unitIds: Array<string>) => {
-  const batchThreadRequests = unitIds.map((unitId) => {
-    return {
-      document: ThreadsForUnitDocument,
-      variables: { unitId },
-    };
-  });
-
-  const threadsResponse = await getBatchedRequests(batchThreadRequests);
-  const parsedThreads = threadsResponseSchema.parse(
-    threadsResponse.map((tr) => tr.data),
-  );
-
-  return parsedThreads
-    .map((t) => t.threads)
-    .flat()
-    .reduce(
-      (acc, res) => {
-        const threads = res.threads
-          ? res.threads.map((t) => ({
-              themeSlug: t.theme_slug,
-              themeTitle: t.theme_title,
-            }))
-          : [];
-        if (acc[res.unit_id]) {
-          acc[res.unit_id]!.push(...threads);
-        } else {
-          acc[res.unit_id] = threads;
-        }
-        return acc;
-      },
-      {} as Record<string, LearningThemes>,
-    );
-};
 
 export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
   const batchCountsRequests = units.flat().map((u) => {

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { tierSchema } from "./tiers/tiers.schema";
+import { learningThemesSchema } from "./threads/threads.schema";
 
 const aggregateSchema = z.object({
   count: z.number(),
@@ -28,28 +29,6 @@ export const lessonCounts = z.object({
 });
 
 export type LessonCounts = z.infer<typeof lessonCounts>;
-
-export const threadsResponseSchema = z.array(
-  z.object({
-    threads: z.array(
-      z.object({
-        threads: z
-          .array(z.object({ theme_slug: z.string(), theme_title: z.string() }))
-          .nullish(),
-        unit_id: z.number(),
-      }),
-    ),
-  }),
-);
-
-export const learningThemesSchema = z.object({
-  themeTitle: z.string(),
-  themeSlug: z.string(),
-});
-
-const learningThemes = z.array(learningThemesSchema);
-
-export type LearningThemes = z.infer<typeof learningThemes>;
 
 const unitData = z.object({
   slug: z.string(),

@@ -5,21 +5,7 @@ import { Sdk } from "../../sdk";
 
 import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./getUnitsForProgramme";
-import { LearningThemes, UnitData } from "./unitListing.schema";
-
-export const getAllLearningThemes = (units: Array<Array<UnitData>>) => {
-  return units
-    .flat()
-    .reduce((acc, unit) => {
-      unit.learningThemes?.forEach((theme) => {
-        if (!acc.find((t) => t.themeSlug === theme.themeSlug)) {
-          acc.push(theme);
-        }
-      });
-      return acc;
-    }, [] as LearningThemes)
-    .sort((a, b) => (a.themeTitle > b.themeTitle ? 1 : -1));
-};
+import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
