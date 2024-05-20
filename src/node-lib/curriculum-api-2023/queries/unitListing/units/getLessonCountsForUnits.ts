@@ -31,12 +31,16 @@ export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
         counts.expiredLessonCount.nodes.find((n) => n.unit_data)?.unit_data;
 
       if (!unitSlug || !unitId) {
-        throw new OakError({ code: "curriculum-api/not-found" });
+        throw new OakError({
+          code: "curriculum-api/not-found",
+          originalError: `Lesson counts for unit not found, UnitSlug: ${unitSlug}, UnitId: ${unitId}`,
+        });
       }
 
       if (acc[unitId] && acc[unitId]?.[unitSlug]) {
         throw new OakError({
           code: "curriculum-api/uniqueness-assumption-violated",
+          originalError: `Duplicate lesson count data for unit ${unitSlug}`,
         });
       }
       if (acc[unitId]) {

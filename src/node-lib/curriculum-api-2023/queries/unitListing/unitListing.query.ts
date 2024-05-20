@@ -14,16 +14,21 @@ const unitListingQuery =
     const programme = res.programme;
 
     if (!programme || programme.length === 0) {
-      throw new OakError({ code: "curriculum-api/not-found" });
+      throw new OakError({
+        code: "curriculum-api/not-found",
+        originalError: `No programme data found for ${args.programmeSlug}`,
+      });
     }
 
     const parsedProgramme = programme.map((p) =>
       syntheticUnitvariantLessonsSchema.parse(p),
     );
-
     const firstProgramme = parsedProgramme[0];
+
     if (!firstProgramme) {
-      throw new OakError({ code: "curriculum-api/not-found" });
+      throw new OakError({
+        code: "curriculum-api/not-found",
+      });
     }
 
     const programmeFields = firstProgramme.programme_fields;
@@ -45,6 +50,7 @@ const unitListingQuery =
       : [];
     const units = await getUnitsForProgramme(parsedProgramme);
     const learningThemes = getAllLearningThemes(units);
+
     return {
       programmeSlug: args.programmeSlug,
       keyStageSlug: programmeFields.keystage_slug,

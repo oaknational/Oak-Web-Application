@@ -73,7 +73,10 @@ export const getUnitsForProgramme = async (
             u.expiredLessonCount = expiredLessonCount;
             u.expired = expiredLessonCount === lessonCount;
           } else {
-            throw new OakError({ code: "curriculum-api/not-found" });
+            throw new OakError({
+              code: "curriculum-api/not-found",
+              originalError: `Missing lesson count data for unit ${u.slug}`,
+            });
           }
           return u;
         });
