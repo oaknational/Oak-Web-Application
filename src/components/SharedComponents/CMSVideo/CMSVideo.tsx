@@ -29,6 +29,7 @@ const CMSVideo: FC<CMSVideoProps> = ({ video, hideCaptions, ...rest }) => {
         $position={"relative"}
         $flexDirection={"column"}
         $gap={["all-spacing-6"]}
+        $width={"100%"}
       >
         <VideoPlayer
           playbackPolicy="public"
