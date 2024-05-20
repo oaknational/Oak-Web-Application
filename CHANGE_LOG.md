@@ -1,3 +1,15 @@
+# [1.438.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.437.0...v1.438.0) (2024-05-20)
+
+
+### Bug Fixes
+
+* video size ([01b23af](https://github.com/oaknational/Oak-Web-Application/commit/01b23afc8a973d26ab14527ef69f27d623c7257c))
+
+
+### Features
+
+* transcripts on cms videos ([9cf1dfc](https://github.com/oaknational/Oak-Web-Application/commit/9cf1dfc1f302ca052bb09300eacdff7008d1be61))
+
 # [1.437.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.436.0...v1.437.0) (2024-05-17)
 
 
