@@ -8,11 +8,24 @@ import sdk from "../../sdk";
 import programmeListing, {
   getTransformedProgrammeData,
 } from "./programmeListing.query";
+import { programmeListingSchema } from "./programmeListing.schema";
 
 const programmeListingResponse = [
   {
     lesson_data: lessonDataFixture(),
-    programme_fields: programmeFieldsFixture(),
+    programme_fields: {
+      ...programmeFieldsFixture(),
+      examboard_display_order: 2,
+    },
+    is_legacy: false,
+    programme_slug: "programme-slug",
+  },
+  {
+    lesson_data: lessonDataFixture(),
+    programme_fields: {
+      ...programmeFieldsFixture(),
+      examboard_display_order: 1,
+    },
     is_legacy: false,
     programme_slug: "programme-slug",
   },
@@ -58,7 +71,67 @@ describe("programmeListing()", () => {
       });
     }).rejects.toThrow(`slug`);
   });
-  test("etTransformedProgrammeData returns the correct transformed programme data", async () => {
+  test("it returns data in the correct shape", async () => {
+    const res = await programmeListing({
+      ...sdk,
+      programmeListing: jest.fn(() =>
+        Promise.resolve({
+          programmes: programmeListingResponse,
+        }),
+      ),
+    })({
+      keyStageSlug: "ks1",
+      subjectSlug: "maths",
+      isLegacy: false,
+    });
+
+    expect(programmeListingSchema.parse(res)).toEqual({
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key stage 1",
+      programmes: [
+        {
+          examBoardDisplayOrder: 1,
+          examBoardSlug: null,
+          examBoardTitle: null,
+          programmeSlug: "programme-slug",
+          subjectTitle: "subject-description",
+          tierDisplayOrder: null,
+          tierSlug: null,
+          tierTitle: null,
+        },
+        {
+          examBoardDisplayOrder: 2,
+          examBoardSlug: null,
+          examBoardTitle: null,
+          programmeSlug: "programme-slug",
+          subjectTitle: "subject-description",
+          tierDisplayOrder: null,
+          tierSlug: null,
+          tierTitle: null,
+        },
+      ],
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    });
+  });
+  test("it sorts by exam board order", async () => {
+    const res = await programmeListing({
+      ...sdk,
+      programmeListing: jest.fn(() =>
+        Promise.resolve({
+          programmes: programmeListingResponse,
+        }),
+      ),
+    })({
+      keyStageSlug: "ks1",
+      subjectSlug: "maths",
+      isLegacy: false,
+    });
+
+    expect(res.programmes[0]?.examBoardDisplayOrder).toBe(1);
+    expect(res.programmes[1]?.examBoardDisplayOrder).toBe(2);
+  });
+  test("getTransformedProgrammeData returns the correct transformed programme data", async () => {
     const firstProgramme = programmeListingResponse[0];
     if (!firstProgramme) throw new Error("No first programme");
     const transformedProgrammes = getTransformedProgrammeData(
@@ -72,7 +145,18 @@ describe("programmeListing()", () => {
       legacy: false,
       programmes: [
         {
-          examBoardDisplayOrder: 0,
+          examBoardDisplayOrder: 1,
+          examBoardSlug: null,
+          examBoardTitle: null,
+          programmeSlug: "programme-slug",
+          subjectTitle: "subject-description",
+          tierDisplayOrder: null,
+          tierSlug: null,
+          tierTitle: null,
+        },
+
+        {
+          examBoardDisplayOrder: 2,
           examBoardSlug: null,
           examBoardTitle: null,
           programmeSlug: "programme-slug",

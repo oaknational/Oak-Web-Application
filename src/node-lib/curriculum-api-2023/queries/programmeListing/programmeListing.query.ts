@@ -35,16 +35,18 @@ export const getTransformedProgrammeData = (
     };
   });
 
+  const sortedProgrammes = examBoardDisplayOrder
+    ? programmes.toSorted(
+        (a, b) => a.examBoardDisplayOrder - b.examBoardDisplayOrder,
+      )
+    : programmes;
+
   return {
     keyStageTitle: toSentenceCase(keyStageTitle),
     keyStageSlug,
     subjectSlug,
     subjectTitle,
-    programmes: examBoardDisplayOrder
-      ? programmes.sort(
-          (a, b) => a.examBoardDisplayOrder - b.examBoardDisplayOrder,
-        )
-      : programmes,
+    programmes: sortedProgrammes,
     legacy: firstProgramme.is_legacy,
   };
 };
