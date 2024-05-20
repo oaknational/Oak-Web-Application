@@ -5,13 +5,13 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
-export interface LessonOverviewTranscriptViewerProps {
+export interface TranscriptViewerProps {
   transcriptSentences: string[] | null;
 }
 
-export const LessonOverviewTranscriptViewer: FC<
-  LessonOverviewTranscriptViewerProps
-> = ({ transcriptSentences }) => (
+export const TranscriptViewer: FC<TranscriptViewerProps> = ({
+  transcriptSentences,
+}) => (
   <OakFlex $width={"100%"} $justifyContent={"center"} id="transcript-viewer">
     <Box
       role="article"
@@ -48,4 +48,4 @@ export const LessonOverviewTranscriptViewer: FC<
   </OakFlex>
 );
 
-export default LessonOverviewTranscriptViewer;
+export default TranscriptViewer;
