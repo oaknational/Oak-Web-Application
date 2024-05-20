@@ -7,6 +7,8 @@ import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
+import { NEW_COHORT } from "@/config/cohort";
+
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
@@ -50,6 +52,9 @@ const unitListingQuery =
       : [];
     const units = await getUnitsForProgramme(parsedProgramme);
     const learningThemes = getAllLearningThemes(units);
+    const hasNewContent = units
+      .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
+      .includes(NEW_COHORT);
 
     return {
       programmeSlug: args.programmeSlug,
@@ -64,6 +69,7 @@ const unitListingQuery =
       tiers: tiers,
       units: units,
       learningThemes: learningThemes,
+      hasNewContent,
     };
   };
 

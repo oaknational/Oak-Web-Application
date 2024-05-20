@@ -12,6 +12,7 @@ export const unitListingFixture = (
     subjectSlug: "computing",
     subjectTitle: "Computing",
     totalUnitCount: 5,
+    hasNewContent: false,
     tierSlug: null,
     tiers: [],
     units: [

@@ -33,7 +33,6 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
@@ -312,17 +311,9 @@ export const getStaticProps: GetStaticProps<
           };
         }
 
-        const unitsCohorts = curriculumData.units.flatMap((unit) =>
-          unit.flatMap((u) => u.cohort ?? "2020-2023"),
-        );
-        const hasNewContent = unitsCohorts.includes(NEW_COHORT);
-
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
-            curriculumData: {
-              ...curriculumData,
-              hasNewContent,
-            },
+            curriculumData,
           },
         };
 

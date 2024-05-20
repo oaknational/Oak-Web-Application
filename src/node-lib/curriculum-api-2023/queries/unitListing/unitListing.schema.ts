@@ -26,7 +26,7 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
-  hasNewContent: z.boolean().nullish(),
+  hasNewContent: z.boolean(),
   learningThemes: learningThemes,
 });
 
