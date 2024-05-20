@@ -1,4 +1,5 @@
 import { TierCountsDocument } from "../../generated/sdk";
+import { isTierValid } from "../../helpers";
 import { Sdk, getBatchedRequests } from "../../sdk";
 
 import {
@@ -15,6 +16,7 @@ export const getTiersForProgramme = async (
   subject: string,
   keystage: string,
   examboard: string | null,
+  isLegacy: boolean,
 ) => {
   const contains: Record<string, string> = {
     subject_slug: subject,
@@ -40,13 +42,16 @@ export const getTiersForProgramme = async (
       if (!tierSlug || !tierTitle) {
         return acc;
       }
-      if (!acc[tierSlug]) {
-        acc[tierSlug] = {
-          tierSlug,
-          tierTitle,
-          tierProgrammeSlug: programme.programme_slug,
-        };
+      if (isTierValid(isLegacy, tierSlug, subject, keystage)) {
+        if (!acc[tierSlug]) {
+          acc[tierSlug] = {
+            tierSlug,
+            tierTitle,
+            tierProgrammeSlug: programme.programme_slug,
+          };
+        }
       }
+
       return acc;
     },
     {} as Record<string, Partial<TierSchema[number]>>,

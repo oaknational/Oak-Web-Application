@@ -41,12 +41,21 @@ const unitListingQuery =
       (p) => p.programme_fields.tier_slug !== null,
     );
 
+    const isLegacy = parsedProgramme[0]?.is_legacy;
+    if (
+      isLegacy === undefined ||
+      parsedProgramme.some((p) => p.is_legacy !== isLegacy)
+    ) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     const tiers = hasTiers
       ? await getTiersForProgramme(
           sdk,
           programmeFields.subject_slug,
           programmeFields.keystage_slug,
           programmeFields.examboard_slug,
+          isLegacy,
         )
       : [];
     const units = await getUnitsForProgramme(parsedProgramme);

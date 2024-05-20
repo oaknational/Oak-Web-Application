@@ -116,6 +116,7 @@ describe("unitListing()", () => {
       "subject-slug",
       "key-stage-slug",
       "exam-board-slug",
+      false,
     );
 
     expect(res).toEqual([
