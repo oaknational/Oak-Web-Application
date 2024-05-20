@@ -216,6 +216,7 @@ describe("unitListing()", () => {
             },
             expiredLessonCount: {
               aggregate: { count: 1 },
+              nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
             },
           },
         },
@@ -254,6 +255,7 @@ describe("unitListing()", () => {
               },
               expiredLessonCount: {
                 aggregate: { count: 1 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
               },
             },
           },
@@ -302,6 +304,7 @@ describe("unitListing()", () => {
               },
               expiredLessonCount: {
                 aggregate: { count: 1 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
               },
             },
           },
@@ -369,6 +372,7 @@ describe("unitListing()", () => {
               },
               expiredLessonCount: {
                 aggregate: { count: 1 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
               },
             },
           },
@@ -380,6 +384,7 @@ describe("unitListing()", () => {
               },
               expiredLessonCount: {
                 aggregate: { count: 1 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
               },
             },
           },

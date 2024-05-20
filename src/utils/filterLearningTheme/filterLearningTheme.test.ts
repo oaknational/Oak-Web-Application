@@ -27,6 +27,7 @@ describe("filterLearningTheme", () => {
           lessonCount: 9,
           quizCount: null,
           unitStudyOrder: 1,
+          yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
