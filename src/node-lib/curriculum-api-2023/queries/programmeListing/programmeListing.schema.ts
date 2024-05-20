@@ -1,15 +1,34 @@
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
+
+export const programmeListingResponseSchema =
+  syntheticUnitvariantLessonsSchema.pick({
+    lesson_data: true,
+    programme_fields: true,
+    is_legacy: true,
+    programme_slug: true,
+  });
+
+export const programmeListingResponseSchemaArray = z.array(
+  programmeListingResponseSchema,
+);
+
+export type ProgrammeListingResponse = z.infer<
+  typeof programmeListingResponseSchema
+>;
 
 const programmeSchema = z.object({
   programmeSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable(),
-  tierDisplayOrder: z.string().nullable(), // cast to number in datatools
+  tierDisplayOrder: z.number().nullable(),
   examBoardSlug: z.string().nullable(),
   examBoardTitle: z.string().nullable(),
-  examBoardDisplayOrder: z.string().nullable(), // cast to number in datatools
+  examBoardDisplayOrder: z.number().nullable(),
 });
+
+export const isLegacy = z.boolean();
 
 export const programmeListingSchema = z.object({
   keyStageTitle: z.string(),
