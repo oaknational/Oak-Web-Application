@@ -16,8 +16,6 @@ const programmeSchema = z.object({
   examBoardDisplayOrder: z.number().nullable(),
 });
 
-export const isLegacy = z.boolean();
-
 export const programmeListingSchema = z.object({
   keyStageTitle: z.string(),
   keyStageSlug: z.string(),
