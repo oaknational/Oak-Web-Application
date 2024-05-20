@@ -1,3 +1,8 @@
+import {
+  programmeListingResponseSchema,
+  programmeListingResponseSchemaArray,
+} from "@oaknational/oak-curriculum-schema";
+
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 import { toSentenceCase } from "../../helpers";
@@ -5,8 +10,6 @@ import { toSentenceCase } from "../../helpers";
 import {
   Programme,
   ProgrammeListingResponse,
-  programmeListingResponseSchema,
-  programmeListingResponseSchemaArray,
   programmeListingSchema,
 } from "./programmeListing.schema";
 
