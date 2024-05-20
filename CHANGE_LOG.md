@@ -1,3 +1,17 @@
+# [1.439.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.438.0...v1.439.0) (2024-05-20)
+
+
+### Bug Fixes
+
+* **section:** make view all lessons button work ([86d979d](https://github.com/oaknational/Oak-Web-Application/commit/86d979dfe40dae462894c020159ed38570dd80c5))
+
+
+### Features
+
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([003a01e](https://github.com/oaknational/Oak-Web-Application/commit/003a01e8d9d09bc5983486eb3efdaecdd5f6ba02))
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([36b7867](https://github.com/oaknational/Oak-Web-Application/commit/36b78672c1d72fb0fd541de40a2ecb23108c7c4e))
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([031a9e9](https://github.com/oaknational/Oak-Web-Application/commit/031a9e92d4ea44ecb63de0f6e6e5ba9b5d188975))
+
 # [1.438.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.437.0...v1.438.0) (2024-05-20)
 
 
