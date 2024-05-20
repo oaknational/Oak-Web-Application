@@ -23,9 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const fields = generateURLFields(teacherSiteMap);
 
-  const reducedFields = fields.slice(0, 7000);
-
-  return getServerSideSitemap(context, reducedFields);
+  return getServerSideSitemap(context, fields);
 };
 
 export default function Sitemap() {}
