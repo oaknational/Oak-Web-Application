@@ -40244,7 +40244,8 @@ export type TierCountsQueryVariables = Exact<{
 export type TierCountsQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null }> }, unitCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null }> } };
 
 export type TiersQueryVariables = Exact<{
-  _contains?: InputMaybe<Scalars['jsonb']['input']>;
+  _contains: Scalars['jsonb']['input'];
+  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
@@ -40964,9 +40965,9 @@ export const TierCountsDocument = gql`
 }
     `;
 export const TiersDocument = gql`
-    query tiers($_contains: jsonb) {
+    query tiers($_contains: jsonb!, $isLegacy: Boolean!) {
   tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
-    where: {programme_fields: {_contains: $_contains}}
+    where: {programme_fields: {_contains: $_contains}, is_legacy: {_eq: $isLegacy}}
   ) {
     programme_fields
     programme_slug
@@ -41104,7 +41105,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     tierCounts(variables?: TierCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TierCountsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TierCountsQuery>(TierCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tierCounts', 'query');
     },
-    tiers(variables?: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
+    tiers(variables: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {

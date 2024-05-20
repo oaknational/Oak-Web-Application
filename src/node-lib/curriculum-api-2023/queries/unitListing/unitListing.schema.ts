@@ -104,6 +104,7 @@ export const tierSchema = z.array(
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullish(),
     lessonCount: z.number().nullish(),
+    tierOrder: z.number().nullable(),
   }),
 );
 const unitListingData = z.object({

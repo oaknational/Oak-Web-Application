@@ -124,6 +124,7 @@ describe("unitListing()", () => {
         tierTitle: "Foundation",
         tierSlug: "foundation",
         unitCount: 2,
+        tierOrder: null,
         lessonCount: 3,
         tierProgrammeSlug: "subject-phase-ks-foundation",
       },
@@ -132,6 +133,7 @@ describe("unitListing()", () => {
         tierSlug: "higher",
         unitCount: 1,
         lessonCount: 2,
+        tierOrder: null,
         tierProgrammeSlug: "subject-phase-ks-higher",
       },
     ]);

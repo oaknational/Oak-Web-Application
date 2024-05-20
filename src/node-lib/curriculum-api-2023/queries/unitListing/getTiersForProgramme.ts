@@ -25,7 +25,7 @@ export const getTiersForProgramme = async (
   if (examboard) {
     contains.examboard_slug = examboard;
   }
-  const response = await sdk.tiers({ _contains: contains });
+  const response = await sdk.tiers({ _contains: contains, isLegacy: isLegacy });
 
   const rawTiers = response.tiers;
 
@@ -48,6 +48,7 @@ export const getTiersForProgramme = async (
             tierSlug,
             tierTitle,
             tierProgrammeSlug: programme.programme_slug,
+            tierOrder: programme.programme_fields.tier_display_order,
           };
         }
       }
@@ -95,5 +96,8 @@ export const getTiersForProgramme = async (
   });
 
   const parsedCompleteTiers = tierSchema.parse(Object.values(constructedTiers));
-  return parsedCompleteTiers;
+  const sortedTiers = parsedCompleteTiers.sort(
+    (a, b) => (a.tierOrder ?? 0) - (b.tierOrder ?? 0),
+  );
+  return sortedTiers;
 };

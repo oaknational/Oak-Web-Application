@@ -477,6 +477,7 @@ export const unitListingWithTiers = (
         unitCount: 3,
         lessonCount: 34,
         tierProgrammeSlug: "maths-secondary-ks4-foundation",
+        tierOrder: 1,
       },
       {
         tierTitle: "Core",
@@ -484,6 +485,7 @@ export const unitListingWithTiers = (
         unitCount: 3,
         lessonCount: 38,
         tierProgrammeSlug: "maths-secondary-ks4-core",
+        tierOrder: 2,
       },
       {
         tierTitle: "Higher",
@@ -491,6 +493,7 @@ export const unitListingWithTiers = (
         unitCount: 3,
         lessonCount: 29,
         tierProgrammeSlug: "maths-secondary-ks4-higher",
+        tierOrder: 3,
       },
     ],
     ...partial,

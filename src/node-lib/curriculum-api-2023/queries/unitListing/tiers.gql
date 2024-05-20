@@ -1,6 +1,9 @@
-query tiers($_contains: jsonb) {
+query tiers($_contains: jsonb!, $isLegacy: Boolean!) {
   tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
-    where: { programme_fields: { _contains: $_contains } }
+    where: {
+      programme_fields: { _contains: $_contains }
+      is_legacy: { _eq: $isLegacy }
+    }
   ) {
     programme_fields
     programme_slug
