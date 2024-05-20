@@ -1,3 +1,37 @@
+# [1.439.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.438.0...v1.439.0) (2024-05-20)
+
+
+### Bug Fixes
+
+* **section:** make view all lessons button work ([86d979d](https://github.com/oaknational/Oak-Web-Application/commit/86d979dfe40dae462894c020159ed38570dd80c5))
+
+
+### Features
+
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([003a01e](https://github.com/oaknational/Oak-Web-Application/commit/003a01e8d9d09bc5983486eb3efdaecdd5f6ba02))
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([36b7867](https://github.com/oaknational/Oak-Web-Application/commit/36b78672c1d72fb0fd541de40a2ecb23108c7c4e))
+* **view-all-lessons:** add link back to year listing for none legacy canonical ([031a9e9](https://github.com/oaknational/Oak-Web-Application/commit/031a9e92d4ea44ecb63de0f6e6e5ba9b5d188975))
+
+# [1.438.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.437.0...v1.438.0) (2024-05-20)
+
+
+### Bug Fixes
+
+* video size ([01b23af](https://github.com/oaknational/Oak-Web-Application/commit/01b23afc8a973d26ab14527ef69f27d623c7257c))
+
+
+### Features
+
+* transcripts on cms videos ([9cf1dfc](https://github.com/oaknational/Oak-Web-Application/commit/9cf1dfc1f302ca052bb09300eacdff7008d1be61))
+
+# [1.437.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.436.0...v1.437.0) (2024-05-17)
+
+
+### Features
+
+* lesson listing new query ([d0241ff](https://github.com/oaknational/Oak-Web-Application/commit/d0241ffce48e61fe983ea8a44555192daeda61cd))
+* new lesson listing query ([9095326](https://github.com/oaknational/Oak-Web-Application/commit/90953263eea88eae2818809b80f513f223a7db17))
+
 # [1.436.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.435.1...v1.436.0) (2024-05-16)
 
 

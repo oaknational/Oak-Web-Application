@@ -52,9 +52,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         props: PupilExperienceViewProps;
       };
 
-      const backUrl = `${resolveOakHref({
-        page: "classroom",
-      })}/units/${curriculumData.browseData.unitSlug}`;
+      const backUrl = resolveOakHref({ page: "pupil-year-index" });
 
       expect(res.props.backUrl).toEqual(backUrl);
     });
