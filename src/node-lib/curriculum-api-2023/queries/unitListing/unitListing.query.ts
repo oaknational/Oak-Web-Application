@@ -57,9 +57,9 @@ const unitListingQuery =
       keyStageSlug: programmeFields.keystage_slug,
       keyStageTitle: programmeFields.keystage_description,
       examBoardSlug: programmeFields.examboard_slug,
-      examBoardTitle: programmeFields.examboard_description,
+      examBoardTitle: programmeFields.examboard,
       subjectSlug: programmeFields.subject_slug,
-      subjectTitle: programmeFields.subject_description,
+      subjectTitle: programmeFields.subject,
       totalUnitCount: parsedProgramme.length,
       tierSlug: programmeFields.tier_slug,
       tiers: tiers, // TODO: core tier
