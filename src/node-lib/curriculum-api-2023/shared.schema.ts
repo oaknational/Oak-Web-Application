@@ -247,6 +247,8 @@ export const lessonListSchema = z.array(
   }),
 );
 
+export type LessonListSchema = z.infer<typeof lessonListSchema>;
+
 export const legacyAssetObjectSchema = z
   .object({
     google_drive: z.object({

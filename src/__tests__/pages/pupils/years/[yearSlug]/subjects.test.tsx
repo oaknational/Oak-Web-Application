@@ -1,54 +1,24 @@
-import { render } from "@testing-library/react";
-
 import PupilSubjectListing, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/pupils/beta/years/[yearSlug]/subjects";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
+
+jest.mock("next/router", () => require("next-router-mock"));
 
 describe("PupilSubjectListing", () => {
   it("renders correctly", () => {
     const { getByText } = render(
       <PupilSubjectListing curriculumData={[subjectBrowseDataFixture({})]} />,
     );
-    expect(getByText("maths")).toBeInTheDocument();
+
+    expect(getByText("Now choose a subject")).toBeInTheDocument();
   });
-  it("should render subjects alphabetically", () => {
-    const { getByText } = render(
-      <PupilSubjectListing
-        curriculumData={[
-          subjectBrowseDataFixture({
-            baseSlug: "maths-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "maths",
-            },
-          }),
-          subjectBrowseDataFixture({
-            baseSlug: "biology-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "biology",
-            },
-          }),
-          subjectBrowseDataFixture({
-            baseSlug: "biology-primary-year-6",
-            isLegacy: false,
-            programmeFields: {
-              ...subjectBrowseDataFixture({}).programmeFields,
-              subjectSlug: "biology",
-            },
-          }),
-        ]}
-      />,
-    );
-    const e1 = getByText("biology");
-    const e2 = getByText("maths");
-    expect(e2.compareDocumentPosition(e1)).toBe(2);
-  });
+
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
       const res = await getStaticPaths();

@@ -8,6 +8,7 @@ import {
   OakPupilJourneyListItem,
   OakPupilJourneyList,
   OakSpan,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { useBackHref } from "./useBackHref";
@@ -56,12 +57,25 @@ export const PupilViewsUnitListing = ({
   const lessonCount = units.reduce((p, c) => p + c.lessonCount, 0);
 
   const breadcrumbs: string[] = [yearDescription];
-  if (tierDescription) {
-    breadcrumbs.push(tierDescription);
-  }
   if (examboard) {
     breadcrumbs.push(examboard);
   }
+  if (tierDescription) {
+    breadcrumbs.push(tierDescription);
+  }
+
+  const newLessonCount = (
+    <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+      <OakInfo
+        hint="Units are groups of lessons that relate to one another."
+        tooltipPosition="top-left"
+      />
+
+      <OakHeading tag="h2" $font={"heading-6"}>
+        New lessons <OakSpan $font={"heading-light-6"}>({lessonCount})</OakSpan>
+      </OakHeading>
+    </OakFlex>
+  );
 
   return (
     <OakPupilJourneyLayout
@@ -72,45 +86,39 @@ export const PupilViewsUnitListing = ({
           {backLabel}
         </OakTertiaryButton>
       }
-      titleSlot={
-        <OakPupilJourneyHeader
-          title={subject}
-          iconName={`subject-${subjectSlug}`}
-          iconBackground={phase}
-          breadcrumbs={breadcrumbs}
-        />
-      }
     >
-      <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-        <OakInfo
-          hint="Units are groups of lessons that relate to one another."
-          tooltipPosition="top-left"
-        />
-
-        <OakHeading tag="h2" $font={"heading-6"}>
-          New lessons{" "}
-          <OakSpan $font={"heading-light-6"}>({lessonCount})</OakSpan>
-        </OakHeading>
-      </OakFlex>
-
-      <OakPupilJourneyList phase={phase}>
-        {units.map((unit, i) => {
-          return (
-            <OakPupilJourneyListItem
-              key={unit.unitSlug}
-              title={unit.unitData?.title}
-              index={i + 1}
-              numberOfLessons={unit.lessonCount}
-              as="a"
-              href={resolveOakHref({
-                page: "pupil-lesson-index",
-                programmeSlug: unit.programmeSlug,
-                unitSlug: unit.unitSlug,
-              })}
+      <OakBox $mb={"space-between-xl"}>
+        <OakPupilJourneyList
+          phase={phase}
+          titleSlot={
+            <OakPupilJourneyHeader
+              title={subject}
+              iconName={`subject-${subjectSlug}`}
+              iconBackground={phase}
+              breadcrumbs={breadcrumbs}
             />
-          );
-        })}
-      </OakPupilJourneyList>
+          }
+          counterSlot={newLessonCount}
+        >
+          {units.map((unit, i) => {
+            return (
+              <OakPupilJourneyListItem
+                key={unit.unitSlug}
+                title={unit.unitData?.title}
+                index={i + 1}
+                numberOfLessons={unit.lessonCount}
+                as="a"
+                href={resolveOakHref({
+                  page: "pupil-lesson-index",
+                  programmeSlug: unit.programmeSlug,
+                  unitSlug: unit.unitSlug,
+                })}
+                unavailable={unit.expired}
+              />
+            );
+          })}
+        </OakPupilJourneyList>
+      </OakBox>
     </OakPupilJourneyLayout>
   );
 };

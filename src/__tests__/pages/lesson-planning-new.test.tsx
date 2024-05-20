@@ -23,6 +23,14 @@ describe("pages/lesson-planning.tsx", () => {
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("hero");
   });
+  it("Renders a nav", () => {
+    render(<PlanALesson pageData={testPlanningPageData} />);
+    const nav = screen.getByRole("navigation", {
+      name: "plan a lesson contents",
+    });
+    expect(screen.getAllByText("Contents")).toHaveLength(2);
+    expect(nav).toBeInTheDocument();
+  });
 
   describe("SEO", () => {
     it.skip("renders the correct SEO details", () => {

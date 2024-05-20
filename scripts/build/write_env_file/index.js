@@ -150,6 +150,9 @@ async function main() {
     MUX_SIGNING_SECRET_2020:
       process.env.MUX_SIGNING_SECRET_2020 ||
       secretsFromNetwork.MUX_SIGNING_SECRET_2020,
+    MUX_TOKEN_ID: process.env.MUX_TOKEN_ID || secretsFromNetwork.MUX_TOKEN_ID,
+    MUX_TOKEN_SECRET:
+      process.env.MUX_TOKEN_SECRET || secretsFromNetwork.MUX_TOKEN_SECRET,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
