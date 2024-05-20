@@ -9,7 +9,6 @@ import {
 import sdk, { getBatchedRequests } from "../../sdk";
 
 import unitListing, { getAllLearningThemes } from "./unitListing.query";
-import { getTiersForProgramme } from "./getTiersForProgramme";
 import {
   getLessonCountsForUnit,
   getThreadsForUnit,
@@ -119,62 +118,6 @@ describe("unitListing()", () => {
     ]);
   });
 
-  test("getTiersForProgramme generates tiers in correct schema", async () => {
-    mockBatched.mockResolvedValue(
-      Promise.resolve([
-        {
-          data: {
-            lessonCount: {
-              aggregate: { count: 3 },
-              nodes: [{ programme_fields: "foundation" }],
-            },
-            unitCount: {
-              aggregate: { count: 2 },
-              nodes: [{ programme_fields: "foundation" }],
-            },
-          },
-        },
-        {
-          data: {
-            lessonCount: {
-              aggregate: { count: 2 },
-              nodes: [{ programme_fields: "higher" }],
-            },
-            unitCount: {
-              aggregate: { count: 1 },
-              nodes: [{ programme_fields: "higher" }],
-            },
-          },
-        },
-      ]),
-    );
-    const res = await getTiersForProgramme(
-      sdk,
-      "subject-slug",
-      "key-stage-slug",
-      "exam-board-slug",
-      false,
-    );
-
-    expect(res).toEqual([
-      {
-        tierTitle: "Foundation",
-        tierSlug: "foundation",
-        unitCount: 2,
-        tierOrder: null,
-        lessonCount: 3,
-        tierProgrammeSlug: "subject-phase-ks-foundation",
-      },
-      {
-        tierTitle: "Higher",
-        tierSlug: "higher",
-        unitCount: 1,
-        lessonCount: 2,
-        tierOrder: null,
-        tierProgrammeSlug: "subject-phase-ks-higher",
-      },
-    ]);
-  });
   test("getThreadsForUnit returns correct threads ", async () => {
     mockBatched.mockResolvedValue(
       Promise.resolve([

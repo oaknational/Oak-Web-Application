@@ -3,7 +3,7 @@ import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-s
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
-import { getTiersForProgramme } from "./getTiersForProgramme";
+import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./getUnitsForProgramme";
 import { LearningThemes, UnitData } from "./unitListing.schema";
 

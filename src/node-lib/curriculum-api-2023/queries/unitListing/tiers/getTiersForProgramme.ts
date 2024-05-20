@@ -1,13 +1,13 @@
-import { TierCountsDocument } from "../../generated/sdk";
-import { isTierValid } from "../../helpers";
-import { Sdk, getBatchedRequests } from "../../sdk";
+import { TierCountsDocument } from "../../../generated/sdk";
+import { isTierValid } from "../../../helpers";
+import { Sdk, getBatchedRequests } from "../../../sdk";
 
 import {
   TierSchema,
   rawTierResponseSchema,
   tierCounts,
   tierSchema,
-} from "./unitListing.schema";
+} from "./tiers.schema";
 
 import OakError from "@/errors/OakError";
 
@@ -30,7 +30,12 @@ export const getTiersForProgramme = async (
   const rawTiers = response.tiers;
 
   if (!rawTiers || rawTiers.length === 0) {
-    throw new OakError({ code: "curriculum-api/not-found" });
+    throw new OakError({
+      code: "curriculum-api/not-found",
+      originalError: `Missing tier data for ${
+        isLegacy ? "legacy" : "non-legacy"
+      } subject: ${subject} and keystage: ${keystage}`,
+    });
   }
 
   const parsedTiersResponse = rawTierResponseSchema.parse(rawTiers);
@@ -83,12 +88,11 @@ export const getTiersForProgramme = async (
     const lessonCount = counts.lessonCount.aggregate.count;
     const tierSlug = counts.unitCount.nodes[0]?.programme_fields;
 
-    if (
-      !tierSlug ||
-      !constructedTiers[tierSlug] ||
-      !constructedTiers[tierSlug]
-    ) {
-      throw new OakError({ code: "curriculum-api/not-found" });
+    if (!tierSlug || !constructedTiers[tierSlug]) {
+      throw new OakError({
+        code: "curriculum-api/not-found",
+        originalError: `Lesson counts for subject: ${subject}, keystage: ${keystage} and tier: ${tierSlug} not found `,
+      });
     }
 
     constructedTiers[tierSlug]!.unitCount = unitCount;
