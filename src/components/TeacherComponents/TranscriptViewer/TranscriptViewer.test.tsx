@@ -1,4 +1,4 @@
-import LessonOverviewTranscriptViewer from "./LessonOverviewTranscriptViewer";
+import TranscriptViewer from "./TranscriptViewer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -8,12 +8,10 @@ const transcriptSentences = [
   "Let's get started.",
 ];
 
-describe("LessonOverviewTranscriptViewer", () => {
+describe("TranscriptViewer", () => {
   test("it renders all the sentences", () => {
     const { getByText, getAllByRole } = renderWithTheme(
-      <LessonOverviewTranscriptViewer
-        transcriptSentences={transcriptSentences}
-      />,
+      <TranscriptViewer transcriptSentences={transcriptSentences} />,
     );
 
     for (const s of transcriptSentences) {

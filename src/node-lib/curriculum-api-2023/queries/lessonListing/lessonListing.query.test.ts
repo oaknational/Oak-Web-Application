@@ -143,7 +143,7 @@ describe("lessonListing()", () => {
       }).rejects.toThrow(`lesson_slug`);
     });
   });
-  describe("transform functions", () => {
+  describe("transform functions ", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getTransformedUnit(
         syntheticUnitvariantLessonsFixture(),
