@@ -8,7 +8,7 @@ import {
 
 import sdk, { getBatchedRequests } from "../../sdk";
 
-import unitListing from "./unitListing.query";
+import unitListing, { getAllLearningThemes } from "./unitListing.query";
 import { getTiersForProgramme } from "./getTiersForProgramme";
 import {
   getLessonCountsForUnit,
@@ -80,6 +80,43 @@ describe("unitListing()", () => {
         programmeSlug: "programme-slug",
       });
     }).rejects.toThrow(`Resource not found`);
+  });
+  test("getAllLearningThemes returns themes in alphabetical order", () => {
+    const res = getAllLearningThemes([
+      [
+        {
+          slug: "unit-slug",
+          title: "unit-title",
+          nullTitle: "unit-title",
+          programmeSlug: "programme-slug",
+          keyStageSlug: "key-stage-slug",
+          themeSlug: null,
+          themeTitle: null,
+          quizCount: null,
+          subjectSlug: "subject-slug",
+          subjectTitle: "subject-title",
+          keyStageTitle: "key-stage-title",
+          yearTitle: "year-title",
+          yearOrder: 1,
+          unitStudyOrder: 1,
+          cohort: "cohort",
+          lessonCount: 1,
+          expired: false,
+          expiredLessonCount: 1,
+          learningThemes: [
+            { themeSlug: "b theme", themeTitle: "B Theme" },
+            { themeSlug: "a theme", themeTitle: "A Theme" },
+            { themeSlug: "c theme", themeTitle: "C Theme" },
+          ],
+        },
+      ],
+    ]);
+
+    expect(res).toEqual([
+      { themeSlug: "a theme", themeTitle: "A Theme" },
+      { themeSlug: "b theme", themeTitle: "B Theme" },
+      { themeSlug: "c theme", themeTitle: "C Theme" },
+    ]);
   });
 
   test("getTiersForProgramme generates tiers in correct schema", async () => {

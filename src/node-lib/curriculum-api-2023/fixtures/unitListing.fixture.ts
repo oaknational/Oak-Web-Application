@@ -236,12 +236,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -265,12 +260,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -294,12 +284,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -323,12 +308,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -352,12 +332,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -381,12 +356,7 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          learningThemes: [
-            {
-              themeSlug: "no-theme",
-              themeTitle: null,
-            },
-          ],
+          learningThemes: [],
         },
       ],
       [
@@ -457,8 +427,6 @@ export const unitListingFixture = (
         themeTitle: "The sonnet through time",
         themeSlug: "the-sonnet-through-time-24",
       },
-
-      { themeTitle: null, themeSlug: "no-theme" },
     ],
     ...partial,
   };

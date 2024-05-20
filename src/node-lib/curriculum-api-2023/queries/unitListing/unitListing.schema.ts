@@ -62,8 +62,8 @@ export const threadsResponseSchema = z.array(
 );
 
 export const learningThemesSchema = z.object({
-  themeTitle: z.string().nullable(),
-  themeSlug: z.string().nullable(),
+  themeTitle: z.string(),
+  themeSlug: z.string(),
 });
 
 const learningThemes = z.array(learningThemesSchema);
