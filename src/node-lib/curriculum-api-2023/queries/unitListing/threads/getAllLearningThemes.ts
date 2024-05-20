@@ -1,4 +1,4 @@
-import { UnitData } from "../unitListing.schema";
+import { UnitData } from "../units/units.schema";
 
 import { LearningThemes } from "./threads.schema";
 

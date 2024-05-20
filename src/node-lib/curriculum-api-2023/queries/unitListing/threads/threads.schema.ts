@@ -18,6 +18,6 @@ export const learningThemesSchema = z.object({
   themeSlug: z.string(),
 });
 
-const learningThemes = z.array(learningThemesSchema);
+export const learningThemes = z.array(learningThemesSchema);
 
 export type LearningThemes = z.infer<typeof learningThemes>;

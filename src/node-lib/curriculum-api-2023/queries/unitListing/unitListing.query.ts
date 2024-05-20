@@ -4,7 +4,7 @@ import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
 import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
-import { getUnitsForProgramme } from "./getUnitsForProgramme";
+import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
 const unitListingQuery =

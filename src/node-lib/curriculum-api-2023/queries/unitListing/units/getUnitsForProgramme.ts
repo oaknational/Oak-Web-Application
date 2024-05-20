@@ -1,71 +1,11 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
-import { LessonCountsForUnitDocument } from "../../generated/sdk";
-import { getBatchedRequests } from "../../sdk";
+import { getThreadsForUnit } from "../threads/getThreadsForUnit";
 
-import {
-  UnitData,
-  UnitsForProgramme,
-  lessonCounts,
-  unitSchema,
-} from "./unitListing.schema";
-import { getThreadsForUnit } from "./threads/getThreadsForUnit";
+import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
+import { getLessonCountsForUnit } from "./getLessonCountsForUnits";
 
 import OakError from "@/errors/OakError";
-
-export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
-  const batchCountsRequests = units.flat().map((u) => {
-    return {
-      document: LessonCountsForUnitDocument,
-      variables: {
-        programmeSlug: u.programmeSlug,
-        unitSlug: u.slug,
-      },
-    };
-  });
-
-  const countsResponse = await getBatchedRequests(batchCountsRequests);
-  const parsedCounts = countsResponse.map((c) => lessonCounts.parse(c.data));
-
-  return parsedCounts.reduce(
-    (acc, counts) => {
-      const lessonCount = counts.lessonCount.aggregate.count;
-      const expiredLessonCount = counts.expiredLessonCount.aggregate.count;
-
-      const unitSlug =
-        counts.lessonCount.nodes.find((n) => n.unit_slug)?.unit_slug ??
-        counts.expiredLessonCount.nodes.find((n) => n.unit_slug)?.unit_slug;
-      const unitId =
-        counts.lessonCount.nodes.find((n) => n.unit_data)?.unit_data ??
-        counts.expiredLessonCount.nodes.find((n) => n.unit_data)?.unit_data;
-
-      if (!unitSlug || !unitId) {
-        throw new OakError({ code: "curriculum-api/not-found" });
-      }
-
-      if (acc[unitId] && acc[unitId]?.[unitSlug]) {
-        throw new OakError({
-          code: "curriculum-api/uniqueness-assumption-violated",
-        });
-      }
-      if (acc[unitId]) {
-        acc[unitId] = {
-          ...acc[unitId],
-          [unitSlug]: { lessonCount, expiredLessonCount },
-        };
-      } else {
-        acc[unitId] = { [unitSlug]: { lessonCount, expiredLessonCount } };
-      }
-      return acc;
-    },
-    {} as Record<
-      string,
-      {
-        [unitSlug: string]: { lessonCount: number; expiredLessonCount: number };
-      }
-    >,
-  );
-};
 
 export const getUnitsForProgramme = async (
   programmeData: SyntheticUnitvariantLessons[],

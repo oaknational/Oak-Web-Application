@@ -35,10 +35,10 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { UnitListingPageData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type UnitListingPageProps = {
-  curriculumData: UnitListingPageData;
+  curriculumData: UnitListingData;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({

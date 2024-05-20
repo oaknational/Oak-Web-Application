@@ -1,8 +1,8 @@
-import { UnitListingPageData } from "../queries/unitListing/unitListing.schema";
+import { UnitListingData } from "../queries/unitListing/unitListing.schema";
 
 export const unitListingFixture = (
-  partial?: Partial<UnitListingPageData>,
-): UnitListingPageData => {
+  partial?: Partial<UnitListingData>,
+): UnitListingData => {
   return {
     programmeSlug: "computing-secondary-ks4",
     keyStageSlug: "ks4",
@@ -433,8 +433,8 @@ export const unitListingFixture = (
 };
 
 export const unitListingWithTiers = (
-  partial?: Partial<UnitListingPageData>,
-): UnitListingPageData => {
+  partial?: Partial<UnitListingData>,
+): UnitListingData => {
   return {
     ...unitListingFixture(),
     tierSlug: "higher",
