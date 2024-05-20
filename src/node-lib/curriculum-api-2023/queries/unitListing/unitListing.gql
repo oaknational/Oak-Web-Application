@@ -1,5 +1,5 @@
 query unitListing($programmeSlug: String!) {
-  programme: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     distinct_on: unit_slug
     where: { programme_slug: { _eq: $programmeSlug } }
   ) {

@@ -40221,14 +40221,6 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', teachersSitemap: Array<{ __typename?: 'published_mv_sitemap_6_0_1', urls?: string | null }> };
 
-export type LessonCountsForUnitQueryVariables = Exact<{
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type LessonCountsForUnitQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> }, expiredLessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> } };
-
 export type ThreadsForUnitQueryVariables = Exact<{
   unitId?: InputMaybe<Scalars['Int']['input']>;
 }>;
@@ -40256,7 +40248,15 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, lesson_data?: any | null, lesson_slug?: string | null, null_unitvariant?: any | null, programme_fields?: any | null, programme_slug?: string | null, supplementary_data?: any | null, unit_data?: any | null, unit_slug?: string | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, lesson_data?: any | null, lesson_slug?: string | null, null_unitvariant?: any | null, programme_fields?: any | null, programme_slug?: string | null, supplementary_data?: any | null, unit_data?: any | null, unit_slug?: string | null }> };
+
+export type LessonCountsForUnitQueryVariables = Exact<{
+  programmeSlug?: InputMaybe<Scalars['String']['input']>;
+  unitSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type LessonCountsForUnitQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> }, expiredLessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> } };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -40906,32 +40906,6 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
-export const LessonCountsForUnitDocument = gql`
-    query lessonCountsForUnit($programmeSlug: String, $unitSlug: String) {
-  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: lesson_slug)
-    }
-    nodes {
-      unit_slug
-      unit_data(path: "unit_id")
-    }
-  }
-  expiredLessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}, lesson_data: {_contains: {deprecated_fields: {expired: true}}}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: lesson_slug)
-    }
-    nodes {
-      unit_slug
-      unit_data(path: "unit_id")
-    }
-  }
-}
-    `;
 export const ThreadsForUnitDocument = gql`
     query threadsForUnit($unitId: Int) {
   threads: published_mv_threads_by_unit_1_0_0(where: {unit_id: {_eq: $unitId}}) {
@@ -40976,7 +40950,7 @@ export const TiersDocument = gql`
     `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
-  programme: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     distinct_on: unit_slug
     where: {programme_slug: {_eq: $programmeSlug}}
   ) {
@@ -40989,6 +40963,32 @@ export const UnitListingDocument = gql`
     supplementary_data
     unit_data
     unit_slug
+  }
+}
+    `;
+export const LessonCountsForUnitDocument = gql`
+    query lessonCountsForUnit($programmeSlug: String, $unitSlug: String) {
+  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+    nodes {
+      unit_slug
+      unit_data(path: "unit_id")
+    }
+  }
+  expiredLessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}, lesson_data: {_contains: {deprecated_fields: {expired: true}}}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+    nodes {
+      unit_slug
+      unit_data(path: "unit_id")
+    }
   }
 }
     `;
@@ -41096,9 +41096,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
     },
-    lessonCountsForUnit(variables?: LessonCountsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonCountsForUnitQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonCountsForUnitQuery>(LessonCountsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonCountsForUnit', 'query');
-    },
     threadsForUnit(variables?: ThreadsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ThreadsForUnitQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query');
     },
@@ -41110,6 +41107,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
+    },
+    lessonCountsForUnit(variables?: LessonCountsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonCountsForUnitQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonCountsForUnitQuery>(LessonCountsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonCountsForUnit', 'query');
     }
   };
 }

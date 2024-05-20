@@ -1,4 +1,3 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
@@ -7,40 +6,39 @@ import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 import { NEW_COHORT } from "@/config/cohort";
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
-    const programme = res.programme;
+    const unitsForProgramme = res.units;
 
-    if (!programme || programme.length === 0) {
+    if (!unitsForProgramme || unitsForProgramme.length === 0) {
       throw new OakError({
         code: "curriculum-api/not-found",
         originalError: `No programme data found for ${args.programmeSlug}`,
       });
     }
 
-    const parsedProgramme = programme.map((p) =>
+    const parsedRawUnits = unitsForProgramme.map((p) =>
       syntheticUnitvariantLessonsSchema.parse(p),
     );
-    const firstProgramme = parsedProgramme[0];
+    const firstUnit = parsedRawUnits[0];
 
-    if (!firstProgramme) {
+    if (!firstUnit) {
       throw new OakError({
         code: "curriculum-api/not-found",
       });
     }
 
-    const programmeFields = firstProgramme.programme_fields;
+    const programmeFields = firstUnit.programme_fields;
 
-    const hasTiers = parsedProgramme.some(
+    const isLegacy = firstUnit.is_legacy;
+    const hasTiers = parsedRawUnits.some(
       (p) => p.programme_fields.tier_slug !== null,
     );
-
-    const isLegacy = firstProgramme.is_legacy;
-
     const tiers = hasTiers
       ? await getTiersForProgramme(
           sdk,
@@ -50,8 +48,10 @@ const unitListingQuery =
           isLegacy,
         )
       : [];
-    const units = await getUnitsForProgramme(parsedProgramme);
+
+    const units = await getUnitsForProgramme(parsedRawUnits);
     const learningThemes = getAllLearningThemes(units);
+
     const hasNewContent = units
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
@@ -64,7 +64,7 @@ const unitListingQuery =
       examBoardTitle: programmeFields.examboard,
       subjectSlug: programmeFields.subject_slug,
       subjectTitle: programmeFields.subject,
-      totalUnitCount: parsedProgramme.length,
+      totalUnitCount: parsedRawUnits.length,
       tierSlug: programmeFields.tier_slug,
       tiers: tiers,
       units: units,
