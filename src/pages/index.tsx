@@ -1,18 +1,14 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
-import { OakTypography, OakHeading } from "@oaknational/oak-components";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getPageProps from "@/node-lib/getPageProps";
-import PostList from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
@@ -29,11 +25,12 @@ import {
   webinarToPostListItem,
 } from "@/components/GenericPagesViews/WebinarsIndex.view";
 import { HomePage } from "@/common-lib/cms-types";
-import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import curriculumApi2023, {
   TeachersHomePageData,
 } from "@/node-lib/curriculum-api-2023";
+import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
+import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -60,34 +57,6 @@ export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
 
 export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
   return b.date.getTime() - a.date.getTime();
-};
-
-export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
-  const blogResults = await CMSClient.blogPosts({
-    previewMode: isPreviewMode,
-    limit: 5,
-  });
-
-  const blogPosts = blogResults.map((blog) => ({
-    ...blog,
-    type: "blog-post" as const,
-  }));
-
-  const webinarResults = await CMSClient.webinars({
-    previewMode: isPreviewMode,
-    limit: 5,
-  });
-  const webinars = webinarResults
-    .map((webinar) => ({
-      ...webinar,
-      type: "webinar" as const,
-    }))
-    .filter((webinar) => webinar.date.getTime() < new Date().getTime());
-
-  return [...blogPosts, ...webinars]
-    .sort(sortByDate)
-    .slice(0, 4)
-    .map(serializeDate);
 };
 
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
@@ -134,33 +103,14 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       {current === "pupils" && <PupilTab />}
       {current === "ai" && <AiTab />}
 
-      <MaxWidth $mv={[24, 56]}>
-        <Box $ph={[16, 24]} $height={"100%"}>
-          <Flex
-            $width={"100%"}
-            $alignItems={["flex-start", "center"]}
-            $justifyContent="space-between"
-            $mb={48}
-            $flexDirection={["column", "row"]}
-          >
-            <OakHeading
-              $mb={["space-between-m", "space-between-none"]}
-              tag={"h2"}
-              $font={"heading-5"}
-            >
-              Stay up to date
-            </OakHeading>
-            <Flex $flexDirection={"row"}>
-              <OakTypography $mr="space-between-s" $font="heading-7">
-                <OwaLink page={"webinar-index"}>All webinars</OwaLink>
-              </OakTypography>
-              <OakTypography $font="heading-7">
-                <OwaLink page={"blog-index"}>All blogs</OwaLink>
-              </OakTypography>
-            </Flex>
-          </Flex>
-          <PostList showImageOnTablet={true} {...blogListProps} />
-        </Box>
+      <MaxWidth>
+        <BlogAndWebinarList
+          blogListPosts={blogListProps}
+          showImageOnTablet={true}
+          backgroundColor="white"
+          displayOnPhone={true}
+          isBackgroundWhite={true}
+        />
       </MaxWidth>
       <Flex $background={"lavender50"} $width={"100%"}>
         <MaxWidth
@@ -199,7 +149,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         };
       }
 
-      const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
+      const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode, 5);
 
       const results: GetStaticPropsResult<TeachersHomePageProps> = {
         props: {
