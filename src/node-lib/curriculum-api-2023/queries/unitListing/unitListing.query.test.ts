@@ -139,12 +139,24 @@ describe("unitListing()", () => {
     mockBatched.mockResolvedValue(
       Promise.resolve([
         {
-          threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-          unit_id: 1,
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
+              },
+            ],
+          },
         },
         {
-          threads: [{ theme_slug: "theme2", theme_title: "Theme 2" }],
-          unit_id: 2,
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme2", theme_title: "Theme 2" }],
+                unit_id: 2,
+              },
+            ],
+          },
         },
       ]),
     );
@@ -157,16 +169,34 @@ describe("unitListing()", () => {
     mockBatched.mockResolvedValue(
       Promise.resolve([
         {
-          threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-          unit_id: 1,
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
+              },
+            ],
+          },
         },
         {
-          threads: [{ theme_slug: "theme2", theme_title: "Theme 2" }],
-          unit_id: 2,
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme2", theme_title: "Theme 2" }],
+                unit_id: 2,
+              },
+            ],
+          },
         },
         {
-          threads: [{ theme_slug: "theme3", theme_title: "Theme 3" }],
-          unit_id: 2,
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme2", theme_title: "Theme 2" }],
+                unit_id: 2,
+              },
+            ],
+          },
         },
       ]),
     );
@@ -179,13 +209,14 @@ describe("unitListing()", () => {
     mockBatched.mockResolvedValue(
       Promise.resolve([
         {
-          lessonCount: {
-            aggregate: { count: 2 },
-            nodes: [{ unit_id: 1 }],
-          },
-          expiredLessonCount: {
-            aggregate: { count: 1 },
-            nodes: [{ unit_id: 1 }],
+          data: {
+            lessonCount: {
+              aggregate: { count: 2 },
+              nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
+            },
+            expiredLessonCount: {
+              aggregate: { count: 1 },
+            },
           },
         },
       ]),
@@ -193,29 +224,37 @@ describe("unitListing()", () => {
     const res = await getLessonCountsForUnit([
       [{ programmeSlug: "programme-slug", slug: "unit-slug" }],
     ]);
-    expect(res[1]?.lessonCount).toEqual(2);
-    expect(res[1]?.expiredLessonCount).toEqual(1);
+    const unit = res[1]?.["unit-slug"];
+    expect(unit?.lessonCount).toEqual(2);
+    expect(unit?.expiredLessonCount).toEqual(1);
   });
   test("getUnitsForProgrammes returns correct units", async () => {
     mockBatched
       .mockResolvedValueOnce(
         Promise.resolve([
           {
-            threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-            unit_id: 1,
+            data: {
+              threads: [
+                {
+                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                  unit_id: 1,
+                },
+              ],
+            },
           },
         ]),
       )
       .mockResolvedValueOnce(
         Promise.resolve([
           {
-            lessonCount: {
-              aggregate: { count: 2 },
-              nodes: [{ unit_id: 1 }],
-            },
-            expiredLessonCount: {
-              aggregate: { count: 1 },
-              nodes: [{ unit_id: 1 }],
+            data: {
+              lessonCount: {
+                aggregate: { count: 2 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
+              },
+              expiredLessonCount: {
+                aggregate: { count: 1 },
+              },
             },
           },
         ]),
@@ -242,21 +281,28 @@ describe("unitListing()", () => {
       .mockResolvedValueOnce(
         Promise.resolve([
           {
-            threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-            unit_id: 1,
+            data: {
+              threads: [
+                {
+                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                  unit_id: 1,
+                },
+              ],
+            },
           },
         ]),
       )
       .mockResolvedValueOnce(
         Promise.resolve([
           {
-            lessonCount: {
-              aggregate: { count: 2 },
-              nodes: [{ unit_id: 1 }],
-            },
-            expiredLessonCount: {
-              aggregate: { count: 1 },
-              nodes: [{ unit_id: 1 }],
+            data: {
+              lessonCount: {
+                aggregate: { count: 2 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
+              },
+              expiredLessonCount: {
+                aggregate: { count: 1 },
+              },
             },
           },
         ]),
@@ -296,5 +342,78 @@ describe("unitListing()", () => {
     }
     expect(res[0][0]?.title).toEqual("Optional 1");
     expect(res[0][1]?.title).toEqual("Optional 2");
+  });
+  test("getUnitsForProgrammes removes null variant", async () => {
+    mockBatched
+      .mockResolvedValueOnce(
+        Promise.resolve([
+          {
+            data: {
+              threads: [
+                {
+                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                  unit_id: 1,
+                },
+              ],
+            },
+          },
+        ]),
+      )
+      .mockResolvedValueOnce(
+        Promise.resolve([
+          {
+            data: {
+              lessonCount: {
+                aggregate: { count: 2 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
+              },
+              expiredLessonCount: {
+                aggregate: { count: 1 },
+              },
+            },
+          },
+          {
+            data: {
+              lessonCount: {
+                aggregate: { count: 2 },
+                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-1" }],
+              },
+              expiredLessonCount: {
+                aggregate: { count: 1 },
+              },
+            },
+          },
+        ]),
+      );
+    const programmeFixture = syntheticUnitvariantLessonsFixture();
+    const res = await getUnitsForProgramme([
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          programme_fields: {
+            ...programmeFixture.programme_fields,
+            optionality: "Optional 1",
+          },
+          unit_data: {
+            ...programmeFixture.unit_data,
+            unit_id: 1,
+          },
+        },
+      }),
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          unit_data: {
+            ...programmeFixture.unit_data,
+            unit_id: 1,
+          },
+        },
+      }),
+    ]);
+
+    expect(res).toHaveLength(1);
+    expect(res[0]).toHaveLength(1);
+    if (!res[0]) {
+      throw new Error("No units found");
+    }
+    expect(res[0][0]?.title).toEqual("Optional 1");
   });
 });

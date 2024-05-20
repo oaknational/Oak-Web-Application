@@ -12,6 +12,7 @@ query lessonCountsForUnit($programmeSlug: String, $unitSlug: String) {
       count(distinct: true, columns: lesson_slug)
     }
     nodes {
+      unit_slug
       unit_data(path: "unit_id")
     }
   }
@@ -24,9 +25,6 @@ query lessonCountsForUnit($programmeSlug: String, $unitSlug: String) {
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
-    }
-    nodes {
-      unit_data(path: "unit_id")
     }
   }
 }

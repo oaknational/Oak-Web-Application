@@ -301,31 +301,37 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.unitListing({
-        programmeSlug,
-      });
+      try {
+        const curriculumData = await curriculumApi2023.unitListing({
+          programmeSlug,
+        });
 
-      if (!curriculumData) {
+        if (!curriculumData) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const unitsCohorts = curriculumData.units.flatMap((unit) =>
+          unit.flatMap((u) => u.cohort ?? "2020-2023"),
+        );
+        const hasNewContent = unitsCohorts.includes(NEW_COHORT);
+
+        const results: GetStaticPropsResult<UnitListingPageProps> = {
+          props: {
+            curriculumData: {
+              ...curriculumData,
+              hasNewContent,
+            },
+          },
+        };
+
+        return results;
+      } catch (error) {
         return {
           notFound: true,
         };
       }
-
-      const unitsCohorts = curriculumData.units.flatMap((unit) =>
-        unit.flatMap((u) => u.cohort ?? "2020-2023"),
-      );
-      const hasNewContent = unitsCohorts.includes(NEW_COHORT);
-
-      const results: GetStaticPropsResult<UnitListingPageProps> = {
-        props: {
-          curriculumData: {
-            ...curriculumData,
-            hasNewContent,
-          },
-        },
-      };
-
-      return results;
     },
   });
 };

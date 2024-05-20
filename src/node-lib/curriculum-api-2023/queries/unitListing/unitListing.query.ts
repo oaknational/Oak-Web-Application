@@ -5,6 +5,18 @@ import { Sdk } from "../../sdk";
 
 import { getTiersForProgramme } from "./getTiersForProgramme";
 import { getUnitsForProgramme } from "./getUnitsForProgramme";
+import { LearningThemes, UnitData } from "./unitListing.schema";
+
+const getAllLearningThemes = (units: Array<Array<UnitData>>) => {
+  return units.flat().reduce((acc, unit) => {
+    unit.learningThemes?.forEach((theme) => {
+      if (!acc.find((t) => t.themeSlug === theme.themeSlug)) {
+        acc.push(theme);
+      }
+    });
+    return acc;
+  }, [] as LearningThemes);
+};
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
@@ -37,8 +49,8 @@ const unitListingQuery =
           programmeFields.examboard_slug,
         )
       : [];
-
     const units = await getUnitsForProgramme(parsedProgramme);
+    const learningThemes = getAllLearningThemes(units);
 
     return {
       programmeSlug: args.programmeSlug,
@@ -52,6 +64,7 @@ const unitListingQuery =
       tierSlug: programmeFields.tier_slug,
       tiers: tiers, // TODO: core tier
       units: units,
+      learningThemes: learningThemes,
     };
   };
 

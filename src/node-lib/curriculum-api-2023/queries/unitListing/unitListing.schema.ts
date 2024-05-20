@@ -28,11 +28,15 @@ export type TierCounts = z.infer<typeof tierCounts>;
 export const lessonCounts = z.object({
   lessonCount: z.object({
     aggregate: aggregateSchema,
-    nodes: z.array(z.object({ unit_id: z.number() })),
+    nodes: z.array(
+      z.object({
+        unit_slug: z.string().nullish(),
+        unit_data: z.number().nullish(),
+      }),
+    ),
   }),
   expiredLessonCount: z.object({
     aggregate: aggregateSchema,
-    nodes: z.array(z.object({ unit_id: z.number() })),
   }),
 });
 
@@ -41,9 +45,13 @@ export type LessonCounts = z.infer<typeof lessonCounts>;
 export const threadsResponseSchema = z.array(
   z.object({
     threads: z.array(
-      z.object({ theme_slug: z.string(), theme_title: z.string() }),
+      z.object({
+        threads: z.array(
+          z.object({ theme_slug: z.string(), theme_title: z.string() }),
+        ),
+        unit_id: z.number(),
+      }),
     ),
-    unit_id: z.number(),
   }),
 );
 

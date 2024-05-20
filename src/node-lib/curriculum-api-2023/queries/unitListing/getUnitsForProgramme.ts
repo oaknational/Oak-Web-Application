@@ -26,24 +26,28 @@ export const getThreadsForUnit = async (unitIds: Array<string>) => {
   });
 
   const threadsResponse = await getBatchedRequests(batchThreadRequests);
-  console.log("threadsResponse", threadsResponse);
-  const parsedThreads = threadsResponseSchema.parse(threadsResponse);
-
-  return parsedThreads.reduce(
-    (acc, res) => {
-      const threads = res.threads.map((t) => ({
-        themeSlug: t.theme_slug,
-        themeTitle: t.theme_title,
-      }));
-      if (acc[res.unit_id]) {
-        acc[res.unit_id]!.push(...threads);
-      } else {
-        acc[res.unit_id] = threads;
-      }
-      return acc;
-    },
-    {} as Record<string, LearningThemes>,
+  const parsedThreads = threadsResponseSchema.parse(
+    threadsResponse.map((tr) => tr.data),
   );
+
+  return parsedThreads
+    .map((t) => t.threads)
+    .flat()
+    .reduce(
+      (acc, res) => {
+        const threads = res.threads.map((t) => ({
+          themeSlug: t.theme_slug,
+          themeTitle: t.theme_title,
+        }));
+        if (acc[res.unit_id]) {
+          acc[res.unit_id]!.push(...threads);
+        } else {
+          acc[res.unit_id] = threads;
+        }
+        return acc;
+      },
+      {} as Record<string, LearningThemes>,
+    );
 };
 
 export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
@@ -58,25 +62,41 @@ export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
   });
 
   const countsResponse = await getBatchedRequests(batchCountsRequests);
-  const parsedCounts = countsResponse.map((c) => lessonCounts.parse(c));
+  const parsedCounts = countsResponse.map((c) => lessonCounts.parse(c.data));
 
   return parsedCounts.reduce(
     (acc, counts) => {
       const lessonCount = counts.lessonCount.aggregate.count;
       const expiredLessonCount = counts.expiredLessonCount.aggregate.count;
-      const unitId = counts.lessonCount.nodes[0]?.unit_id;
-      if (!unitId) {
+      const unitSlug = counts.lessonCount.nodes.find((n) => n.unit_slug)
+        ?.unit_slug;
+      const unitId = counts.lessonCount.nodes.find((n) => n.unit_data)
+        ?.unit_data;
+
+      if (!unitSlug || !unitId) {
         throw new OakError({ code: "curriculum-api/not-found" });
       }
-      if (acc[unitId]) {
+      if (acc[unitId] && acc[unitId]?.[unitSlug]) {
         throw new OakError({
           code: "curriculum-api/uniqueness-assumption-violated",
         });
       }
-      acc[unitId] = { lessonCount, expiredLessonCount };
+      if (acc[unitId]) {
+        acc[unitId] = {
+          ...acc[unitId],
+          [unitSlug]: { lessonCount, expiredLessonCount },
+        };
+      } else {
+        acc[unitId] = { [unitSlug]: { lessonCount, expiredLessonCount } };
+      }
       return acc;
     },
-    {} as Record<string, { lessonCount: number; expiredLessonCount: number }>,
+    {} as Record<
+      string,
+      {
+        [unitSlug: string]: { lessonCount: number; expiredLessonCount: number };
+      }
+    >,
   );
 };
 
@@ -102,6 +122,7 @@ export const getUnitsForProgramme = async (
         themeSlug: null,
         themeTitle: null,
         quizCount: null,
+        isOptionalityUnit: !!optionalityTitle,
       };
       if (acc[unitId]) {
         acc[unitId]!.push(unit);
@@ -110,10 +131,14 @@ export const getUnitsForProgramme = async (
       }
       return acc;
     },
-    {} as Record<string, Array<Partial<UnitData>>>,
+    {} as Record<
+      string,
+      Array<Partial<UnitData> & { isOptionalityUnit: boolean }>
+    >,
   );
 
   const threads = await getThreadsForUnit(Object.keys(partialUniqueUnits));
+
   const lessonCounts = await getLessonCountsForUnit(
     Object.values(partialUniqueUnits),
   );
@@ -121,22 +146,27 @@ export const getUnitsForProgramme = async (
   Object.keys(partialUniqueUnits).forEach((unitId) => {
     const unit = partialUniqueUnits[unitId];
     const threadsForUnit = threads[unitId];
-    console.log("threadsForUnit", threadsForUnit);
     const counts = lessonCounts[unitId];
+
     if (unit && unit.length > 0) {
-      const populatedUnits = unit.map((u) => {
-        if (threadsForUnit) {
-          u.learningThemes = threadsForUnit;
-        }
-        if (counts) {
-          u.lessonCount = counts.lessonCount;
-          u.expiredLessonCount = counts.expiredLessonCount;
-          u.expired = u.expiredLessonCount === u.lessonCount;
-        } else {
-          throw new OakError({ code: "curriculum-api/not-found" });
-        }
-        return u;
-      });
+      const populatedUnits = unit
+        .filter((u) => (unit.length > 1 ? u.isOptionalityUnit : true))
+        .map((u) => {
+          if (threadsForUnit) {
+            u.learningThemes = threadsForUnit;
+          }
+          if (counts && u.slug && counts[u.slug]) {
+            const lessonCount = counts[u.slug]?.lessonCount;
+            const expiredLessonCount = counts[u.slug]?.expiredLessonCount;
+
+            u.lessonCount = lessonCount;
+            u.expiredLessonCount = expiredLessonCount;
+            u.expired = expiredLessonCount === lessonCount;
+          } else {
+            throw new OakError({ code: "curriculum-api/not-found" });
+          }
+          return u;
+        });
       partialUniqueUnits[unitId] = populatedUnits;
     }
   });
