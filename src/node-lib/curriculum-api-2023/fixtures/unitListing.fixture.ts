@@ -6,7 +6,7 @@ export const unitListingFixture = (
   return {
     programmeSlug: "computing-secondary-ks4",
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
+    keyStageTitle: "Key Stage 4",
     examBoardSlug: null,
     examBoardTitle: null,
     subjectSlug: "computing",

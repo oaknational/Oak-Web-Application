@@ -9,13 +9,11 @@ import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDe
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import {
-  UnitData,
-  UnitListingPageData,
-} from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { UnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/units/units.schema";
 
 export type UnitListItemProps = Omit<
-  UnitListingPageData["units"][number][number],
+  UnitListingData["units"][number][number],
   "year" | "unitStudyOrder"
 > &
   UnitListProps;

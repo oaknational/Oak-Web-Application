@@ -1,4 +1,8 @@
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  programmeFieldsSchema,
+  tierDescriptions,
+  tierSlugs,
+} from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
 export const rawTierResponseSchema = z.array(
@@ -27,8 +31,8 @@ export type TierCounts = z.infer<typeof tierCounts>;
 
 export const tierSchema = z.array(
   z.object({
-    tierSlug: z.string(),
-    tierTitle: z.string(),
+    tierSlug: tierSlugs,
+    tierTitle: tierDescriptions,
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullish(),
     lessonCount: z.number().nullish(),
