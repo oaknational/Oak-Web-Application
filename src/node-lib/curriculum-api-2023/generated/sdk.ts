@@ -40227,7 +40227,7 @@ export type LessonCountsForUnitQueryVariables = Exact<{
 }>;
 
 
-export type LessonCountsForUnitQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> }, expiredLessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null } };
+export type LessonCountsForUnitQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> }, expiredLessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, unit_data?: any | null }> } };
 
 export type ThreadsForUnitQueryVariables = Exact<{
   unitId?: InputMaybe<Scalars['Int']['input']>;
@@ -40908,7 +40908,7 @@ export const TeachersSitemapDocument = gql`
 export const LessonCountsForUnitDocument = gql`
     query lessonCountsForUnit($programmeSlug: String, $unitSlug: String) {
   lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}, _not: {lesson_data: {_contains: {deprecated_fields: {expired: true}}}}}
+    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
@@ -40923,6 +40923,10 @@ export const LessonCountsForUnitDocument = gql`
   ) {
     aggregate {
       count(distinct: true, columns: lesson_slug)
+    }
+    nodes {
+      unit_slug
+      unit_data(path: "unit_id")
     }
   }
 }

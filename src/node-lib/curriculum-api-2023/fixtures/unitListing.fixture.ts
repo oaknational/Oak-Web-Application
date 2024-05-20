@@ -31,10 +31,10 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 1,
           expired: false,
+          yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-
           learningThemes: [
             {
               themeSlug: "computer-science-1",
@@ -58,6 +58,7 @@ export const unitListingFixture = (
           lessonCount: 12,
           quizCount: null,
           unitStudyOrder: 2,
+          yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
@@ -86,6 +87,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 3,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -113,6 +116,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 4,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -140,6 +145,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 5,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -167,6 +174,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 6,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -194,6 +203,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 1,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -220,6 +231,7 @@ export const unitListingFixture = (
           lessonCount: 6,
           quizCount: null,
           unitStudyOrder: 2,
+          yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
@@ -248,6 +260,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 3,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -275,6 +289,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 4,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -302,6 +318,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 5,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -329,6 +347,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 6,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -356,6 +376,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 7,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -383,6 +405,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 8,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -410,6 +434,8 @@ export const unitListingFixture = (
           quizCount: null,
           unitStudyOrder: 9,
           expired: false,
+          yearOrder: 1,
+
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",

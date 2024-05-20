@@ -35,10 +35,12 @@ export const getThreadsForUnit = async (unitIds: Array<string>) => {
     .flat()
     .reduce(
       (acc, res) => {
-        const threads = res.threads.map((t) => ({
-          themeSlug: t.theme_slug,
-          themeTitle: t.theme_title,
-        }));
+        const threads = res.threads
+          ? res.threads.map((t) => ({
+              themeSlug: t.theme_slug,
+              themeTitle: t.theme_title,
+            }))
+          : [];
         if (acc[res.unit_id]) {
           acc[res.unit_id]!.push(...threads);
         } else {
@@ -68,14 +70,18 @@ export const getLessonCountsForUnit = async (units: Partial<UnitData>[][]) => {
     (acc, counts) => {
       const lessonCount = counts.lessonCount.aggregate.count;
       const expiredLessonCount = counts.expiredLessonCount.aggregate.count;
-      const unitSlug = counts.lessonCount.nodes.find((n) => n.unit_slug)
-        ?.unit_slug;
-      const unitId = counts.lessonCount.nodes.find((n) => n.unit_data)
-        ?.unit_data;
+
+      const unitSlug =
+        counts.lessonCount.nodes.find((n) => n.unit_slug)?.unit_slug ??
+        counts.expiredLessonCount.nodes.find((n) => n.unit_slug)?.unit_slug;
+      const unitId =
+        counts.lessonCount.nodes.find((n) => n.unit_data)?.unit_data ??
+        counts.expiredLessonCount.nodes.find((n) => n.unit_data)?.unit_data;
 
       if (!unitSlug || !unitId) {
         throw new OakError({ code: "curriculum-api/not-found" });
       }
+
       if (acc[unitId] && acc[unitId]?.[unitSlug]) {
         throw new OakError({
           code: "curriculum-api/uniqueness-assumption-violated",
@@ -107,6 +113,7 @@ export const getUnitsForProgramme = async (
     (acc, programme) => {
       const unitId = programme.unit_data.unit_id;
       const optionalityTitle = programme.programme_fields.optionality;
+
       const unit = {
         slug: programme.unit_slug,
         title: optionalityTitle ?? programme.unit_data.title,
@@ -118,6 +125,7 @@ export const getUnitsForProgramme = async (
         subjectTitle: programme.programme_fields.subject_description,
         yearTitle: programme.programme_fields.year_description,
         unitStudyOrder: programme.supplementary_data.unit_order,
+        yearOrder: programme.programme_fields.year_display_order,
         cohort: programme.unit_data._cohort,
         themeSlug: null,
         themeTitle: null,
@@ -150,6 +158,7 @@ export const getUnitsForProgramme = async (
 
     if (unit && unit.length > 0) {
       const populatedUnits = unit
+        // remove null unit variants when there is optionality present
         .filter((u) => (unit.length > 1 ? u.isOptionalityUnit : true))
         .map((u) => {
           if (threadsForUnit) {
@@ -167,9 +176,20 @@ export const getUnitsForProgramme = async (
           }
           return u;
         });
+
       partialUniqueUnits[unitId] = populatedUnits;
     }
   });
+  const parsedUnits = unitSchema.parse(Object.values(partialUniqueUnits));
+  const sortedUnits = parsedUnits
+    .map((units) => units.sort((a, b) => (a.title > b.title ? 1 : -1)))
+    .sort((a, b) => {
+      // Sort units first by year and then by unit order
+      return (
+        a[0]!.yearOrder - b[0]!.yearOrder ||
+        a[0]!.unitStudyOrder - b[0]!.unitStudyOrder
+      );
+    });
 
-  return unitSchema.parse(Object.values(partialUniqueUnits));
+  return sortedUnits;
 };

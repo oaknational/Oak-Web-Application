@@ -37,6 +37,12 @@ export const lessonCounts = z.object({
   }),
   expiredLessonCount: z.object({
     aggregate: aggregateSchema,
+    nodes: z.array(
+      z.object({
+        unit_slug: z.string().nullish(),
+        unit_data: z.number().nullish(),
+      }),
+    ),
   }),
 });
 
@@ -46,9 +52,9 @@ export const threadsResponseSchema = z.array(
   z.object({
     threads: z.array(
       z.object({
-        threads: z.array(
-          z.object({ theme_slug: z.string(), theme_title: z.string() }),
-        ),
+        threads: z
+          .array(z.object({ theme_slug: z.string(), theme_title: z.string() }))
+          .nullish(),
         unit_id: z.number(),
       }),
     ),
@@ -81,13 +87,14 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
+  yearOrder: z.number(),
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
 export type UnitData = z.infer<typeof unitData>;
 
-export const unitSchema = z.array(z.array(unitData));
+export const unitSchema = z.array(z.array(unitData).min(1));
 export type UnitsForProgramme = z.infer<typeof unitSchema>;
 
 export const tierSchema = z.array(
