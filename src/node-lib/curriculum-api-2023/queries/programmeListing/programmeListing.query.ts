@@ -3,6 +3,7 @@ import { Sdk } from "../../sdk";
 import { toSentenceCase } from "../../helpers";
 
 import {
+  Programme,
   ProgrammeListingResponse,
   programmeListingResponseSchema,
   programmeListingResponseSchemaArray,
@@ -14,14 +15,13 @@ export const getTransformedProgrammeData = (
   firstProgramme: ProgrammeListingResponse,
 ) => {
   const {
-    examboard_display_order: examBoardDisplayOrder,
     keystage_description: keyStageTitle,
     keystage_slug: keyStageSlug,
     subject_slug: subjectSlug,
     subject: subjectTitle,
   } = firstProgramme.programme_fields;
 
-  const programmes = programmeData.map((programme) => {
+  const programmes = programmeData.map((programme): Programme => {
     return {
       programmeSlug: programme.programme_slug,
       subjectTitle: programme.programme_fields.subject_description,
@@ -35,11 +35,11 @@ export const getTransformedProgrammeData = (
     };
   });
 
-  const sortedProgrammes = examBoardDisplayOrder
-    ? programmes.toSorted(
-        (a, b) => a.examBoardDisplayOrder - b.examBoardDisplayOrder,
-      )
-    : programmes;
+  const sortedProgrammes = programmes.sort((a, b) => {
+    const aOrder = a.examBoardDisplayOrder ?? 0;
+    const bOrder = b.examBoardDisplayOrder ?? 0;
+    return aOrder - bOrder;
+  });
 
   return {
     keyStageTitle: toSentenceCase(keyStageTitle),
