@@ -11,7 +11,7 @@ const PostImageWithAltText = (
     return null;
   }
 
-  return <CMSImage image={props.value} $mt={24} $mb={24} />;
+  return <CMSImage image={props.value} $mt={48} $mb={48} />;
 };
 
 export default PostImageWithAltText;
