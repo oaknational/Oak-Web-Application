@@ -1,3 +1,12 @@
+## [1.439.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.0...v1.439.1) (2024-05-20)
+
+
+### Bug Fixes
+
+* adds key on map ([ec70008](https://github.com/oaknational/Oak-Web-Application/commit/ec700088800e2d35d4b3f8f0441ec9c0e4c1d58a))
+* remove space between on last element and adds key on map ([05b61cd](https://github.com/oaknational/Oak-Web-Application/commit/05b61cd90fa3d7b4028cf7229f8412d29b36d387))
+* spacing on list ([00cd1dd](https://github.com/oaknational/Oak-Web-Application/commit/00cd1dd7840003bb572908293f689ba1698e3dda))
+
 # [1.439.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.438.0...v1.439.0) (2024-05-20)
 
 
