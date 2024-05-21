@@ -620,11 +620,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("should return expected props", async () => {
+      const unitsTabFixture = curriculumUnitsTabFixture();
+      unitsTabFixture.units.sort((a, b) => a.order - b.order);
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
+      mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
@@ -641,7 +643,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
-          curriculumUnitsFormattedData: curriculumUnitsFormattedData,
+          curriculumUnitsFormattedData:
+            formatCurriculumUnitsData(unitsTabFixture),
         },
       });
     });
