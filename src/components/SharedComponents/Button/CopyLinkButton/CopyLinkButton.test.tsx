@@ -71,4 +71,15 @@ describe("Copy link button", () => {
     const clipboardText = await navigator.clipboard.readText();
     expect(clipboardText).toBe("https://example.com");
   });
+  it("has aria-live polite", async () => {
+    const { getByLabelText } = renderWithTheme(
+      <ToastProvider>
+        <CopyLinkButton />
+      </ToastProvider>,
+    );
+
+    const button = getByLabelText("Copy to clipboard");
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute("aria-live", "polite");
+  });
 });
