@@ -42,6 +42,7 @@ export default function Page({
       const moddedFile = await CurriculumDownlodsPatch(
         uint8Array,
         combinedCurriculumData,
+        examboardSlug,
       );
 
       download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);

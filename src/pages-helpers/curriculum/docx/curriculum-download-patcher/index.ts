@@ -41,6 +41,7 @@ export type CombinedCurriculumData = CurriculumOverviewMVData &
 export default async function CurriculumDownlodsPatch(
   uint8Array: Uint8Array,
   combinedCurriculumData: CombinedCurriculumData,
+  examboardSlug: string,
 ) {
   // NOTE: This is really inefficient at the moment, that's fine for now though
   const moddedFile = await modifyXmlByRootSelector(
@@ -51,7 +52,7 @@ export default async function CurriculumDownlodsPatch(
         doc,
         (el: Element, parent?: Element) => {
           return pipeElementThrough(el, parent, [
-            coverPatch(combinedCurriculumData),
+            coverPatch(combinedCurriculumData, examboardSlug),
             unitsTablePatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             tableOfContentsPatch(),

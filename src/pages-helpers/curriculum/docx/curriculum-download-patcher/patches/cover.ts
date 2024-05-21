@@ -13,7 +13,10 @@ function keyStageFromPhaseTitle(phaseTitle: string) {
   return phaseTitle;
 }
 
-export function coverPatch(combinedCurriculumData: CombinedCurriculumData) {
+export function coverPatch(
+  combinedCurriculumData: CombinedCurriculumData,
+  examboardSlug?: string,
+) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=COVER.KEY_STAGE}}")) {
       return {
@@ -33,6 +36,13 @@ export function coverPatch(combinedCurriculumData: CombinedCurriculumData) {
           "{{=COVER.SUBJECT}}",
           `${combinedCurriculumData.subjectTitle} `,
         ),
+      };
+    }
+    if (el.type === "text" && textIncludes(el.text, "{{=COVER.EXAM_BOARD}}")) {
+      const text = examboardSlug ? `${examboardSlug.toUpperCase()} (KS4)` : "";
+      return {
+        type: "text",
+        text: textReplacer(el.text, "{{=COVER.EXAM_BOARD}}", text),
       };
     }
 
