@@ -1,8 +1,8 @@
-import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { getAllLearningThemes } from "./getAllLearningThemes";
 import { getThreadsForUnit } from "./getThreadsForUnit";
 
+import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 import { getBatchedRequests } from "@/node-lib/curriculum-api-2023/sdk";
 
 const mockBatched = getBatchedRequests as jest.Mock;
@@ -48,14 +48,11 @@ describe("unit listing threads", () => {
           title: "unit-title",
           nullTitle: "unit-title",
           programmeSlug: "programme-slug",
-          keyStageSlug: "key-stage-slug",
-          themeSlug: null,
-          themeTitle: null,
-          quizCount: null,
-          subjectSlug: "subject-slug",
-          subjectTitle: "subject-title",
-          keyStageTitle: "key-stage-title",
-          yearTitle: "year-title",
+          keyStageSlug: "ks2",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          keyStageTitle: "Key Stage 2",
+          yearTitle: "Year 4",
           yearOrder: 1,
           unitStudyOrder: 1,
           cohort: "cohort",

@@ -2,6 +2,14 @@ import { z } from "zod";
 
 import { learningThemesSchema } from "../threads/threads.schema";
 
+import {
+  keystageDescriptions,
+  keystageSlugs,
+  subjectSlugs,
+  subjects,
+  yearDescriptions,
+} from "@oaknational/oak-curriculum-schema";
+
 const aggregateSchema = z.object({
   count: z.number(),
 });
@@ -34,18 +42,15 @@ const unitData = z.object({
   title: z.string(),
   nullTitle: z.string(),
   programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
+  keyStageSlug: keystageSlugs,
+  keyStageTitle: keystageDescriptions,
+  subjectSlug: subjectSlugs,
+  subjectTitle: subjects,
   lessonCount: z.number().nullable(),
-  quizCount: z.number().nullable(),
   unitStudyOrder: z.number(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
-  yearTitle: z.string().nullable(),
+  yearTitle: yearDescriptions.nullable(),
   yearOrder: z.number(),
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),

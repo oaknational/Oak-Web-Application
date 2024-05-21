@@ -1,10 +1,10 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
 import { getThreadsForUnit } from "../threads/getThreadsForUnit";
 
 import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
 import { getLessonCountsForUnit } from "./getLessonCountsForUnits";
 
+import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import OakError from "@/errors/OakError";
 
 export const getUnitsForProgramme = async (
@@ -23,14 +23,11 @@ export const getUnitsForProgramme = async (
         keyStageSlug: programme.programme_fields.keystage_slug,
         keyStageTitle: programme.programme_fields.keystage_description,
         subjectSlug: programme.programme_fields.subject_slug,
-        subjectTitle: programme.programme_fields.subject_description,
+        subjectTitle: programme.programme_fields.subject,
         yearTitle: programme.programme_fields.year_description,
         unitStudyOrder: programme.supplementary_data.unit_order,
         yearOrder: programme.programme_fields.year_display_order,
         cohort: programme.unit_data._cohort,
-        themeSlug: null,
-        themeTitle: null,
-        quizCount: null,
         isOptionalityUnit: !!optionalityTitle,
       };
       if (acc[unitId]) {
