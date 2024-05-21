@@ -51,7 +51,7 @@ const LessonShareLinks: FC<{
           success={isShareSuccessful}
           type="button"
           ariaLabel="Copy link to clipboard"
-          aria-live={"polite"}
+          ariaLive={"polite"}
           onClick={() =>
             copyToClipboard(
               getHrefForSocialSharing({
