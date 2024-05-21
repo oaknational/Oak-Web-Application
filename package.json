@@ -48,7 +48,9 @@
     "wdio": "wdio run ./e2e_tests/browser/wdio.conf.local.ts",
     "wdio:ci": "wdio run ./e2e_tests/browser/wdio.conf.ci.ts",
     "use-local-components": "$npm_execpath remove @oaknational/oak-components && yalc add @oaknational/oak-components",
-    "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components"
+    "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components",
+    "use-local-schema": "$npm_execpath remove @oaknational/oak-curriculum-schema && yalc add @oaknational/oak-curriculum-schema",
+    "remove-local-schema": "npx yalc remove @oaknational/oak-curriculum-schema && $npm_execpath add @oaknational/oak-curriculum-schema"
   },
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
@@ -70,7 +72,7 @@
     "@hubspot/api-client": "^9.1.1",
     "@mux/mux-node": "^8.5.1",
     "@mux/mux-player-react": "^2.6.0",
-    "@oaknational/oak-components": "^0.30.0",
+    "@oaknational/oak-components": "^0.34.0",
     "@oaknational/oak-curriculum-schema": "^1.5.0",
     "@portabletext/react": "^3.0.11",
     "@react-aria/aria-modal-polyfill": "^3.7.7",

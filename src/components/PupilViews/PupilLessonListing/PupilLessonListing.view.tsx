@@ -41,11 +41,11 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (tierDescription) {
-    breadcrumb.push(tierDescription);
-  }
   if (examboardDescription) {
     breadcrumb.push(examboardDescription);
+  }
+  if (tierDescription) {
+    breadcrumb.push(tierDescription);
   }
 
   const LessonListingTitle = (
@@ -111,7 +111,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               counterSlot={lessonCount}
             >
               {orderedCurriculumData.map((lesson, index) => {
-                const lessonData = lesson.lessonData;
                 return (
                   <OakPupilJourneyListItem
                     href={resolveOakHref({
@@ -121,8 +120,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                       unitSlug: lesson.unitSlug,
                     })}
                     index={index + 1}
-                    title={lessonData.title}
+                    title={lesson.lessonData.title}
                     role="listitem"
+                    unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
                 );
               })}

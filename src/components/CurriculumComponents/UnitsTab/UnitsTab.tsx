@@ -144,7 +144,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
       if (units && (!selectedYear || selectedYear === year)) {
         units.forEach((unit) => {
           if (
-            isVisibleUnit(yearSelection, duplicateUnitSlugs, year, unit) &&
+            isVisibleUnit(yearSelection, year, unit) &&
             isHighlightedUnit(unit)
           ) {
             count++;
