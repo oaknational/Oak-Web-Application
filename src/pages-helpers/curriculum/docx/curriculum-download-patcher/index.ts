@@ -25,6 +25,7 @@ import { unitPreviousPatch } from "./patches/unitPrevious";
 import { unitNextPatch } from "./patches/unitNext";
 import { mainThreadsPatch } from "./patches/mainThreads";
 import { notUndefined } from "./patches/util";
+import { backPatch } from "./patches/back";
 
 import {
   CurriculumOverviewMVData,
@@ -57,6 +58,7 @@ export default async function CurriculumDownlodsPatch(
             partnerNamePatch(combinedCurriculumData),
             yearPatch(),
             threadsTablePatch(combinedCurriculumData),
+            backPatch(combinedCurriculumData),
             endOfDocumentPatch(),
           ]);
         },
