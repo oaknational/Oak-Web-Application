@@ -1,3 +1,10 @@
+## [1.439.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.3...v1.439.4) (2024-05-21)
+
+
+### Bug Fixes
+
+* fixed duplicate removal of units from curriculum visualiser ([07757e7](https://github.com/oaknational/Oak-Web-Application/commit/07757e72a5c8797884c029391b9c6f71d3ac0a37))
+
 ## [1.439.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.2...v1.439.3) (2024-05-20)
 
 ## [1.439.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.1...v1.439.2) (2024-05-20)
