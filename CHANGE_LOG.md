@@ -1,3 +1,15 @@
+# [1.440.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.6...v1.440.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* add type to program map ([09bdb4b](https://github.com/oaknational/Oak-Web-Application/commit/09bdb4b193b5df4fc85825655512745314ef12f3))
+
+
+### Features
+
+* new programme listing query ([6080da6](https://github.com/oaknational/Oak-Web-Application/commit/6080da623c1f3d60b03e9be37ed90e8a9bf416e0))
+
 ## [1.439.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.5...v1.439.6) (2024-05-21)
 
 
