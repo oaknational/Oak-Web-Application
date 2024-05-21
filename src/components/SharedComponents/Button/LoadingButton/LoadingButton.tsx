@@ -21,6 +21,7 @@ type LoadingButtonProps = {
   disabled: boolean;
   success?: boolean;
   ariaLabel?: string;
+  ariaLive?: "off" | "polite" | "assertive";
   onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 } & (
   | {
@@ -131,6 +132,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       aria-label={props.ariaLabel ?? props.text}
       color={props.success ? "oakGreen" : "black"}
       data-testid="loadingButton"
+      aria-live={props.ariaLive}
     >
       <ButtonContent {...props} />
     </StyledButton>
@@ -142,6 +144,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       target={props.external ? "_blank" : undefined}
       color={props.success ? "oakGreen" : "black"}
       onClick={onClick}
+      aria-live={props.ariaLive}
     >
       <ButtonContent {...props} />
     </StyledLink>

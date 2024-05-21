@@ -37,6 +37,7 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
 
   return (
     <IconButton
+      aria-live={"polite"}
       icon={"share"}
       aria-label={label}
       onClick={copyLink}
