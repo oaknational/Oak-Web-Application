@@ -7,16 +7,40 @@ describe("unitsTablePatch", () => {
   const patcher = unitsTablePatch({
     units: [
       {
+        slug: "one",
         title: "TEST_1",
         year: "7",
+        threads: [
+          {
+            title: "test1",
+          },
+          {
+            title: "test2",
+          },
+        ],
       },
       {
+        slug: "two",
         title: "TEST_2",
         year: "8",
+        threads: [
+          {
+            title: "test1",
+          },
+        ],
       },
+      // Next defines 2 duplicates
       {
+        slug: "three",
         title: "TEST_3",
         year: "8",
+        threads: [],
+      },
+      {
+        slug: "three",
+        title: "TEST_3",
+        year: "8",
+        threads: [],
       },
     ],
   } as CombinedCurriculumData);

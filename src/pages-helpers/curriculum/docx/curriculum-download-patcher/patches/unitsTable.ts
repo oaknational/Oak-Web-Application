@@ -7,7 +7,42 @@ import { CombinedCurriculumData } from "..";
 
 import { textIncludes } from "./util";
 
-function buildYearColumn({ index, title }: { title: string; index: number }) {
+import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+
+function buildOptions({ threads }: { threads: Unit["threads"] }) {
+  if (threads.length > 1) {
+    return `
+      <w:p>
+          <w:pPr>
+              <w:spacing w:line="240" w:lineRule="auto"/>
+          </w:pPr>
+          <w:r>
+          </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+            <w:rPr>
+                <w:color w:val="222222"/>
+                <w:shd w:fill="f6e8a0" w:val="clear"/>
+                <w:rtl w:val="0"/>
+            </w:rPr>
+            <w:t xml:space="preserve">${threads.length} options</w:t>
+        </w:r>
+      </w:p>
+    `;
+  }
+  return "";
+}
+
+function buildYearColumn({
+  index,
+  title,
+  threads,
+}: {
+  title: string;
+  index: number;
+  threads: Unit["threads"];
+}) {
   return `
     <w:tc>
       <w:tcPr>
@@ -51,6 +86,7 @@ function buildYearColumn({ index, title }: { title: string; index: number }) {
               <w:t xml:space="preserve">${title}</w:t>
           </w:r>
       </w:p>
+      ${buildOptions({ threads })}
     </w:tc>
   `;
 }
@@ -66,13 +102,25 @@ function buildYearRow(children: string) {
   `;
 }
 
+function removeDups(units: Unit[]) {
+  const unitSlugLookup = new Set();
+  return units.filter((unit) => {
+    const key = unit.slug;
+    if (!unitSlugLookup.has(key)) {
+      unitSlugLookup.add(key);
+      return true;
+    }
+    return false;
+  });
+}
+
 function buildYear(
   year: string,
   unitListData: CombinedCurriculumData["units"],
   index: number,
 ) {
   const rows = [];
-  const units = unitListData;
+  const units = removeDups(unitListData);
   for (let i = 0; i < units.length; i += 3) {
     rows.push(
       buildYearRow(
@@ -80,7 +128,11 @@ function buildYear(
           .slice(i, i + 3)
           .map((unit, j) => {
             const index = i + j + 1;
-            return buildYearColumn({ index: index, title: unit.title });
+            return buildYearColumn({
+              index: index,
+              title: unit.title,
+              threads: unit.threads,
+            });
           })
           .join(""),
       ),

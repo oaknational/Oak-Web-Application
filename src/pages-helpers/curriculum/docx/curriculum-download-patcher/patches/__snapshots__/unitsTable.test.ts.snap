@@ -840,6 +840,83 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
                       "name": "w:p",
                       "type": "element",
                     },
+                    {
+                      "elements": [
+                        {
+                          "elements": [
+                            {
+                              "attributes": {
+                                "w:line": "240",
+                                "w:lineRule": "auto",
+                              },
+                              "name": "w:spacing",
+                              "type": "element",
+                            },
+                          ],
+                          "name": "w:pPr",
+                          "type": "element",
+                        },
+                        {
+                          "name": "w:r",
+                          "type": "element",
+                        },
+                      ],
+                      "name": "w:p",
+                      "type": "element",
+                    },
+                    {
+                      "elements": [
+                        {
+                          "elements": [
+                            {
+                              "elements": [
+                                {
+                                  "attributes": {
+                                    "w:val": "222222",
+                                  },
+                                  "name": "w:color",
+                                  "type": "element",
+                                },
+                                {
+                                  "attributes": {
+                                    "w:fill": "f6e8a0",
+                                    "w:val": "clear",
+                                  },
+                                  "name": "w:shd",
+                                  "type": "element",
+                                },
+                                {
+                                  "attributes": {
+                                    "w:val": "0",
+                                  },
+                                  "name": "w:rtl",
+                                  "type": "element",
+                                },
+                              ],
+                              "name": "w:rPr",
+                              "type": "element",
+                            },
+                            {
+                              "attributes": {
+                                "xml:space": "preserve",
+                              },
+                              "elements": [
+                                {
+                                  "text": "2 options",
+                                  "type": "text",
+                                },
+                              ],
+                              "name": "w:t",
+                              "type": "element",
+                            },
+                          ],
+                          "name": "w:r",
+                          "type": "element",
+                        },
+                      ],
+                      "name": "w:p",
+                      "type": "element",
+                    },
                   ],
                   "name": "w:tc",
                   "type": "element",
