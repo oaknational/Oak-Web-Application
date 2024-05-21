@@ -50,6 +50,7 @@ export type Image = z.infer<typeof imageSchema>;
 
 export const videoSchema = z.object({
   title: z.string(),
+  captions: z.array(z.string()).nullish(),
   video: z.object({
     asset: z.object({
       assetId: z.string(),

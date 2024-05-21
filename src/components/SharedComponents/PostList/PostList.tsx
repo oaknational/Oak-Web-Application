@@ -79,7 +79,7 @@ const PostList: FC<PostListProps> = (props) => {
       )}
       {currentPageItems.length ? (
         <>
-          <OakUL $reset>
+          <OakUL $reset $width={"100%"}>
             {currentPageItems.map((item, i) => (
               <OakLI key={`PostList-PostListItem-${i}`}>
                 {i !== 0 && <Hr thickness={4} $mv={32} />}

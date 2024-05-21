@@ -80,11 +80,9 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const backUrl = browseData.isLegacy
-        ? `${resolveOakHref({
-            page: "classroom",
-          })}/units/${browseData.unitSlug}`
-        : null;
+      const backUrl = resolveOakHref({
+        page: "pupil-year-index",
+      });
 
       const { transcriptSentences, hasWorksheet } =
         await requestLessonResources({ lessonContent: content });

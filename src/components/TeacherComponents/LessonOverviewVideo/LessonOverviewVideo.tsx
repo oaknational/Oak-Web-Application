@@ -3,7 +3,7 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
+import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -92,7 +92,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
       {transcriptSentences &&
         transcriptSentences.length > 0 &&
         transcriptOn && (
-          <LessonOverviewTranscriptViewer
+          <TranscriptViewer
             transcriptSentences={
               Array.isArray(transcriptSentences)
                 ? transcriptSentences

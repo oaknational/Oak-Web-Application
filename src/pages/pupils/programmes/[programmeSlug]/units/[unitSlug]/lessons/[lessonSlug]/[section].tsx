@@ -12,6 +12,7 @@ import {
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -68,6 +69,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const backUrl = resolveOakHref({
+        page: "pupil-lesson-index",
+        programmeSlug,
+        unitSlug,
+      });
+
       const { transcriptSentences, hasWorksheet } =
         await requestLessonResources({ lessonContent: content });
 
@@ -80,6 +87,7 @@ export const getStaticProps: GetStaticProps<
           browseData,
           hasWorksheet,
           initialSection: section,
+          backUrl,
         },
       };
 
