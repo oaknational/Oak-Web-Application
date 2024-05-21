@@ -21,7 +21,7 @@ const serversideSitemapPaths = [
   "/webinars/categories/sitemap.xml",
   "/teachers/curriculum/sitemap.xml",
   "/teachers/key-stages/sitemap.xml",
-  "/teachers/sitemap.xml",
+  "/teachers/*",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
@@ -45,7 +45,6 @@ module.exports = {
       },
     ],
   },
-  sitemapSize: 7000,
   exclude: [
     // Exclude WIP webinar pages
     "/webinars",
