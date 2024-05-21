@@ -7,7 +7,7 @@ describe("unitListing()", () => {
     await expect(async () => {
       await unitListing({
         ...sdk,
-        unitListing: jest.fn(() => Promise.resolve({ programme: [] })),
+        unitListing: jest.fn(() => Promise.resolve({ units: [] })),
       })({
         programmeSlug: "programme-slug",
       });
