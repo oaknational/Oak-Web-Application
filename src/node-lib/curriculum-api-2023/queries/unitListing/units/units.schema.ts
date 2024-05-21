@@ -1,7 +1,4 @@
 import { z } from "zod";
-
-import { learningThemesSchema } from "../threads/threads.schema";
-
 import {
   keystageDescriptions,
   keystageSlugs,
@@ -9,6 +6,8 @@ import {
   subjects,
   yearDescriptions,
 } from "@oaknational/oak-curriculum-schema";
+
+import { learningThemesSchema } from "../threads/threads.schema";
 
 const aggregateSchema = z.object({
   count: z.number(),

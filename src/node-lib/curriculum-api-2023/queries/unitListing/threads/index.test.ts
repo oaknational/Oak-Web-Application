@@ -1,8 +1,8 @@
+import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { getAllLearningThemes } from "./getAllLearningThemes";
 import { getThreadsForUnit } from "./getThreadsForUnit";
 
-import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 import { getBatchedRequests } from "@/node-lib/curriculum-api-2023/sdk";
 
 const mockBatched = getBatchedRequests as jest.Mock;

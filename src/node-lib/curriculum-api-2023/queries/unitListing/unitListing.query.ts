@@ -1,3 +1,4 @@
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
@@ -6,7 +7,6 @@ import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 import { NEW_COHORT } from "@/config/cohort";
 
 const unitListingQuery =

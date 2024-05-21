@@ -1,10 +1,10 @@
+import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
 import { getThreadsForUnit } from "../threads/getThreadsForUnit";
 
 import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
 import { getLessonCountsForUnit } from "./getLessonCountsForUnits";
 
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import OakError from "@/errors/OakError";
 
 export const getUnitsForProgramme = async (
