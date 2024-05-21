@@ -31,10 +31,13 @@ describe("coverPatch", () => {
   });
 
   it("should modify node for KS1-2", async () => {
-    const patcher = coverPatch({
-      phaseTitle: "Secondary",
-      subjectTitle: "Science",
-    } as CombinedCurriculumData);
+    const patcher = coverPatch(
+      {
+        phaseTitle: "Secondary",
+        subjectTitle: "Science",
+      } as CombinedCurriculumData,
+      "AQA",
+    );
 
     const keyStageNode = await patcher({
       type: "text",
@@ -54,6 +57,16 @@ describe("coverPatch", () => {
     expect(subjectNode).toEqual({
       type: "text",
       text: " Science  ",
+    });
+
+    const examboardNode = await patcher({
+      type: "text",
+      text: " {{=COVER.EXAM_BOARD}} ",
+    });
+
+    expect(examboardNode).toEqual({
+      type: "text",
+      text: " AQA (KS4) ",
     });
   });
 
