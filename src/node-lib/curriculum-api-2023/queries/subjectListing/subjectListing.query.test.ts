@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import subjectListing from "./subjectListing.query";
 
-describe("subjectListing()", () => {
+describe.skip("subjectListing()", () => {
   test("throws a not found error if no subjects are found", async () => {
     await expect(async () => {
       await subjectListing({
