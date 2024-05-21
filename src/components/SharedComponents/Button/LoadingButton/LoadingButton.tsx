@@ -95,7 +95,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
   return (
     <>
       <OakFlex $gap="all-spacing-2" $justifyContent="center">
-        <ButtonLabel aria-live={props.ariaLive} $color="white">
+        <ButtonLabel aria-live={props.ariaLive || "off"} $color="white">
           {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
         {props.isLoading ? (
@@ -124,6 +124,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
   const onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (
     e,
   ) => (disabled ? e.preventDefault() : props.onClick(e));
+  const ariaLive = props.ariaLive ?? "off";
 
   return props.type === "button" ? (
     <StyledButton
@@ -132,7 +133,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       aria-label={props.ariaLabel ?? props.text}
       color={props.success ? "oakGreen" : "black"}
       data-testid="loadingButton"
-      aria-live={props.ariaLive}
+      aria-live={ariaLive}
     >
       <ButtonContent {...props} />
     </StyledButton>
@@ -144,7 +145,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       target={props.external ? "_blank" : undefined}
       color={props.success ? "oakGreen" : "black"}
       onClick={onClick}
-      aria-live={props.ariaLive}
+      aria-live={ariaLive}
     >
       <ButtonContent {...props} />
     </StyledLink>
