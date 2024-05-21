@@ -1,0 +1,16 @@
+query SubjectListingCount($programmeSlug: String!) {
+  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+  }
+  unitCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    aggregate {
+      count(distinct: true, columns: unit_slug)
+    }
+  }
+}

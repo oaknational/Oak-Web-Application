@@ -9,8 +9,8 @@ describe("subjectListing()", () => {
         ...sdk,
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            keyStageSubjects: [],
-            keyStages: [{ keyStages: [] }],
+            subjects: [],
+            key_stages: [],
           }),
         ),
       })({

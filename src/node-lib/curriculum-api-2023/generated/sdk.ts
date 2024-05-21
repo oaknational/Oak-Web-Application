@@ -40067,12 +40067,19 @@ export type SpecialistUnitListingQueryVariables = Exact<{
 export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, order_in_programme?: number | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, threads?: any | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
-  keyStageSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
+  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
+  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing_5_0_1', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null, keyStages?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjects: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'pf_keystages', keystage?: string | null, slug?: string | null, description?: string | null, display_order?: number | null }> };
+
+export type SubjectListingCountQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+}>;
+
+
+export type SubjectListingCountQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null }, unitCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null } };
 
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -40706,15 +40713,38 @@ export const SpecialistUnitListingDocument = gql`
 }
     `;
 export const SubjectListingDocument = gql`
-    query subjectListing($keyStageSlug: String!, $isLegacy: Boolean!) {
-  keyStageSubjects: published_mv_subject_listing_5_0_1(
-    where: {keyStageSlug: {_eq: $keyStageSlug}, is_legacy: {_eq: $isLegacy}}
+    query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
+  subjects: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
+    distinct_on: programme_slug
   ) {
-    keyStageSlug
-    keyStageTitle
-    subjects
-    subjectsUnavailable
-    keyStages
+    programme_fields
+    is_legacy
+    programme_slug
+  }
+  key_stages: pf_keystages(where: {slug: {_neq: "ks5"}}) {
+    keystage
+    slug
+    description
+    display_order
+  }
+}
+    `;
+export const SubjectListingCountDocument = gql`
+    query SubjectListingCount($programmeSlug: String!) {
+  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: {programme_slug: {_eq: $programmeSlug}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: lesson_slug)
+    }
+  }
+  unitCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
+    where: {programme_slug: {_eq: $programmeSlug}}
+  ) {
+    aggregate {
+      count(distinct: true, columns: unit_slug)
+    }
   }
 }
     `;
@@ -40854,8 +40884,11 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query');
     },
-    subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
+    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
+    },
+    SubjectListingCount(variables: SubjectListingCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingCountQuery>(SubjectListingCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SubjectListingCount', 'query');
     },
     subjectPhaseOptions(variables?: SubjectPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsQuery>(SubjectPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptions', 'query');
