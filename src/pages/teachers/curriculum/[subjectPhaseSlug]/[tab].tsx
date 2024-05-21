@@ -442,6 +442,9 @@ export const getStaticProps: GetStaticProps<
         };
       }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+
+      // Sort the units to have examboard versions first - this is so non-examboard units are removed
+      // in the visualiser
       curriculumUnitsTabData.units.sort((a) => {
         if (a.examboard) {
           return -1;
@@ -449,6 +452,7 @@ export const getStaticProps: GetStaticProps<
         return 1;
       });
 
+      // Sort by unit order
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
 
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(
