@@ -66,16 +66,10 @@ export function createProgrammeSlug(
 
 const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   // Initialize constants
-  const {
-    yearData,
-    threadOptions,
-    yearOptions,
-    initialYearSelection,
-    duplicateUnitSlugs: duplicateUnitSlugsList,
-  } = formattedData;
+  const { yearData, threadOptions, yearOptions, initialYearSelection } =
+    formattedData;
   const { examboardSlug } = trackingData;
   // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
-  const duplicateUnitSlugs = new Set(duplicateUnitSlugsList);
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [unitData, setUnitData] = useState<Unit | null>(null);
@@ -349,7 +343,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
             handleSelectDiscipline={handleSelectDiscipline}
-            duplicateUnitSlugs={duplicateUnitSlugs}
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}
             setUnitData={setUnitData}
             selectedThread={selectedThread}
