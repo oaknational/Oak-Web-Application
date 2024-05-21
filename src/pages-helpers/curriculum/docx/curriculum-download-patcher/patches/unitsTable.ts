@@ -94,12 +94,6 @@ function buildYear(
             ${index > 0 && `<w:pageBreakBefore/>`}
             <w:sz w:val="44"/>
             <w:szCs w:val="44"/>
-            <w:sectPr w:rsidR="00F97FD2" w:rsidSect="006A40E7">
-              <w:type w:val="continuous"/>
-              <w:pgSz w:w="11909" w:h="16834"/>
-              <w:pgMar w:top="709" w:right="851" w:bottom="709" w:left="851" w:header="720" w:footer="720" w:gutter="0"/>
-              <w:cols w:space="720"/>
-            </w:sectPr>
         </w:pPr>
         <w:r>
             <w:rPr>
@@ -137,7 +131,7 @@ function buildYear(
                     <wp:anchor distT="114300" distB="114300" distL="114300" distR="114300" simplePos="0" relativeHeight="251691008" behindDoc="0" locked="0" layoutInCell="1" hidden="0" allowOverlap="1" wp14:anchorId="485FEB59" wp14:editId="5459E64E">
                         <wp:simplePos x="0" y="0"/>
                         <wp:positionH relativeFrom="column">
-                            <wp:posOffset>2476500</wp:posOffset>
+                            <wp:posOffset>2976500</wp:posOffset>
                         </wp:positionH>
                         <wp:positionV relativeFrom="paragraph">
                             <wp:posOffset>-28575</wp:posOffset>
@@ -210,10 +204,10 @@ function buildYear(
       </w:tbl>
     </w:sectPr>
   `;
-  return xmlElementToJson(xml);
+  return xml;
 }
 
-export default async function buildUnitsTable(
+export default function buildUnitsTable(
   unitsDataList: CombinedCurriculumData["units"],
 ) {
   const unitsData = groupBy(unitsDataList, "year");
@@ -221,17 +215,7 @@ export default async function buildUnitsTable(
     return buildYear(key, val, index);
   });
 
-  sections.push(
-    xmlElementToJson(`
-      <w:p>
-        <w:pPr>
-          <w:pageBreakBefore />
-        </w:pPr>
-      </w:p>
-    `),
-  );
-
-  return sections;
+  return sections.join("");
 }
 
 export function unitsTablePatch(
@@ -247,8 +231,9 @@ export function unitsTablePatch(
           el.type === "text" && textIncludes(el.text, "{{=UNITS_TABLE}}"),
       )
     ) {
-      const out = xmlElementToJson(`<w:sectPr></w:sectPr>`);
-      out.elements = await buildUnitsTable(combinedCurriculumData.units);
+      const out = xmlElementToJson(`<w:sectPr>
+        ${buildUnitsTable(combinedCurriculumData.units)}
+      </w:sectPr>`);
       return out;
     }
     return el;

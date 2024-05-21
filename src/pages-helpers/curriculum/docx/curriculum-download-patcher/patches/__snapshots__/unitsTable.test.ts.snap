@@ -29,51 +29,6 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
                   "name": "w:szCs",
                   "type": "element",
                 },
-                {
-                  "attributes": {
-                    "w:rsidR": "00F97FD2",
-                    "w:rsidSect": "006A40E7",
-                  },
-                  "elements": [
-                    {
-                      "attributes": {
-                        "w:val": "continuous",
-                      },
-                      "name": "w:type",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:h": "16834",
-                        "w:w": "11909",
-                      },
-                      "name": "w:pgSz",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:bottom": "709",
-                        "w:footer": "720",
-                        "w:gutter": "0",
-                        "w:header": "720",
-                        "w:left": "851",
-                        "w:right": "851",
-                        "w:top": "709",
-                      },
-                      "name": "w:pgMar",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:space": "720",
-                      },
-                      "name": "w:cols",
-                      "type": "element",
-                    },
-                  ],
-                  "name": "w:sectPr",
-                  "type": "element",
-                },
               ],
               "name": "w:pPr",
               "type": "element",
@@ -274,7 +229,7 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
                             {
                               "elements": [
                                 {
-                                  "text": "2476500",
+                                  "text": "2976500",
                                   "type": "text",
                                 },
                               ],
@@ -925,51 +880,6 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
                   "name": "w:szCs",
                   "type": "element",
                 },
-                {
-                  "attributes": {
-                    "w:rsidR": "00F97FD2",
-                    "w:rsidSect": "006A40E7",
-                  },
-                  "elements": [
-                    {
-                      "attributes": {
-                        "w:val": "continuous",
-                      },
-                      "name": "w:type",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:h": "16834",
-                        "w:w": "11909",
-                      },
-                      "name": "w:pgSz",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:bottom": "709",
-                        "w:footer": "720",
-                        "w:gutter": "0",
-                        "w:header": "720",
-                        "w:left": "851",
-                        "w:right": "851",
-                        "w:top": "709",
-                      },
-                      "name": "w:pgMar",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:space": "720",
-                      },
-                      "name": "w:cols",
-                      "type": "element",
-                    },
-                  ],
-                  "name": "w:sectPr",
-                  "type": "element",
-                },
               ],
               "name": "w:pPr",
               "type": "element",
@@ -1170,7 +1080,7 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
                             {
                               "elements": [
                                 {
-                                  "text": "2476500",
+                                  "text": "2976500",
                                   "type": "text",
                                 },
                               ],
@@ -2037,22 +1947,6 @@ exports[`unitsTablePatch should modify node when valid element passed 1`] = `
         },
       ],
       "name": "w:sectPr",
-      "type": "element",
-    },
-    {
-      "elements": [
-        {
-          "elements": [
-            {
-              "name": "w:pageBreakBefore",
-              "type": "element",
-            },
-          ],
-          "name": "w:pPr",
-          "type": "element",
-        },
-      ],
-      "name": "w:p",
       "type": "element",
     },
   ],
