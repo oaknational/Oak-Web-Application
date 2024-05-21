@@ -95,7 +95,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
   return (
     <>
       <OakFlex $gap="all-spacing-2" $justifyContent="center">
-        <ButtonLabel $color="white">
+        <ButtonLabel aria-live={props.ariaLive} $color="white">
           {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
         {props.isLoading ? (

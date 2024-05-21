@@ -96,6 +96,7 @@ const LessonShareLinks: FC<{
               props.onSubmit(link.avoMedium);
             }}
             ariaLabel={`Share to ${link.name}`}
+            ariaLive={"polite"}
           />
         ))}
       </OakFlex>
