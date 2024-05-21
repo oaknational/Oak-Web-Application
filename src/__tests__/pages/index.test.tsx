@@ -14,7 +14,7 @@ import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 jest.mock("src/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-const mockPosts = [
+export const mockPosts = [
   {
     id: "1",
     type: "blog-post",
