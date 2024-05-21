@@ -1,12 +1,14 @@
 import { screen } from "@testing-library/react";
 
-import PlanALesson from "../../pages/lesson-planning-new";
+import PlanALesson, { getStaticProps } from "../../pages/lesson-planning-new";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
+import { mockPosts } from "./index.test";
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
+import { BlogPostPreview } from "@/common-lib/cms-types";
 
 jest.mock("@/node-lib/cms");
 
@@ -18,13 +20,14 @@ const getPageData = jest.fn(() => testPlanningPageData);
 const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
-  it("Renders correct title ", () => {
-    render(<PlanALesson pageData={testPlanningPageData} />);
-
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("hero");
+  it("Renders header hero component", () => {
+    const { getByRole } = render(
+      <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
+    );
+    expect(getByRole("heading", { name: "test" })).toBeInTheDocument();
   });
   it("Renders a nav", () => {
-    render(<PlanALesson pageData={testPlanningPageData} />);
+    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
     const nav = screen.getByRole("navigation", {
       name: "plan a lesson contents",
     });
@@ -35,7 +38,7 @@ describe("pages/lesson-planning.tsx", () => {
   describe("SEO", () => {
     it.skip("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} />,
+        <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
       );
 
       expect(seo).toEqual({});
@@ -43,17 +46,34 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   describe("getStaticProps", () => {
+    const mockPost = {
+      id: "1",
+      title: "Some blog post",
+      slug: "some-blog-post",
+      date: new Date("2022-12-01"),
+      category: { title: "Some category", slug: "some-category" },
+    } as BlogPostPreview;
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.resetModules();
+
+      mockCMSClient.planALessonPage.mockResolvedValue(testPlanningPageData);
+      mockCMSClient.blogPosts.mockResolvedValue([]);
+      mockCMSClient.webinars.mockResolvedValue([]);
+    });
+
     it("Should not fetch draft content by default", async () => {
-      const { getStaticProps } = await import(
-        "../../pages/lesson-planning-new"
-      );
+      mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
       await getStaticProps({
         params: {},
       });
 
-      expect(mockCMSClient.planALessonPage).toHaveBeenCalledWith({
-        previewMode: false,
-      });
+      expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
+        expect.objectContaining({
+          previewMode: false,
+        }),
+      );
     });
 
     it("should return notFound when the page data is missing", async () => {
@@ -66,7 +86,6 @@ describe("pages/lesson-planning.tsx", () => {
       const propsResult = await getStaticProps({
         params: {},
       });
-
       expect(propsResult).toMatchObject({
         notFound: true,
       });

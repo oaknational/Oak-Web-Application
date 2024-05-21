@@ -57,11 +57,11 @@ export const PupilViewsUnitListing = ({
   const lessonCount = units.reduce((p, c) => p + c.lessonCount, 0);
 
   const breadcrumbs: string[] = [yearDescription];
-  if (tierDescription) {
-    breadcrumbs.push(tierDescription);
-  }
   if (examboard) {
     breadcrumbs.push(examboard);
+  }
+  if (tierDescription) {
+    breadcrumbs.push(tierDescription);
   }
 
   const newLessonCount = (
@@ -88,7 +88,6 @@ export const PupilViewsUnitListing = ({
       }
     >
       <OakBox $mb={"space-between-xl"}>
-        {" "}
         <OakPupilJourneyList
           phase={phase}
           titleSlot={
@@ -114,6 +113,7 @@ export const PupilViewsUnitListing = ({
                   programmeSlug: unit.programmeSlug,
                   unitSlug: unit.unitSlug,
                 })}
+                unavailable={unit.expired}
               />
             );
           })}
