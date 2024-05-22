@@ -11,7 +11,6 @@ export const unitListingFixture = (
     examBoardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
-    totalUnitCount: 5,
     hasNewContent: false,
     tierSlug: null,
     tiers: [],

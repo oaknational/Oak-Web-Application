@@ -57,5 +57,5 @@ const unitData = z.object({
 
 export type UnitData = z.infer<typeof unitData>;
 
-export const unitSchema = z.array(z.array(unitData).min(1));
+export const unitSchema = z.array(z.array(unitData));
 export type UnitsForProgramme = z.infer<typeof unitSchema>;

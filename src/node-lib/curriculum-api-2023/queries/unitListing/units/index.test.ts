@@ -6,7 +6,6 @@ import {
 import { getBatchedRequests } from "../../../sdk";
 
 import { getUnitsForProgramme } from "./getUnitsForProgramme";
-import { getLessonCountsForUnit } from "./getLessonCountsForUnits";
 
 const mockBatched = getBatchedRequests as jest.Mock;
 
@@ -43,62 +42,21 @@ jest.mock("../../../sdk", () => {
   };
 });
 describe("unit listing units", () => {
-  test("getLessonsForUnit returns correct counts", async () => {
-    mockBatched.mockResolvedValue(
+  test("getUnitsForProgrammes returns correct units", async () => {
+    mockBatched.mockResolvedValueOnce(
       Promise.resolve([
         {
           data: {
-            lessonCount: {
-              aggregate: { count: 2 },
-              nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
-            },
-            expiredLessonCount: {
-              aggregate: { count: 1 },
-              nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-            },
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
+              },
+            ],
           },
         },
       ]),
     );
-    const res = await getLessonCountsForUnit([
-      [{ programmeSlug: "programme-slug", slug: "unit-slug" }],
-    ]);
-    const unit = res[1]?.["unit-slug"];
-    expect(unit?.lessonCount).toEqual(2);
-    expect(unit?.expiredLessonCount).toEqual(1);
-  });
-  test("getUnitsForProgrammes returns correct units", async () => {
-    mockBatched
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              threads: [
-                {
-                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-                  unit_id: 1,
-                },
-              ],
-            },
-          },
-        ]),
-      )
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 2 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
-              },
-              expiredLessonCount: {
-                aggregate: { count: 1 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-              },
-            },
-          },
-        ]),
-      );
     const res = await getUnitsForProgramme([
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -117,37 +75,20 @@ describe("unit listing units", () => {
     expect(res[0][0]?.title).toEqual("unit-title");
   });
   test("getUnitsForProgramme groups optionality units", async () => {
-    mockBatched
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              threads: [
-                {
-                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-                  unit_id: 1,
-                },
-              ],
-            },
-          },
-        ]),
-      )
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 2 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
+    mockBatched.mockResolvedValueOnce(
+      Promise.resolve([
+        {
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
               },
-              expiredLessonCount: {
-                aggregate: { count: 1 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-              },
-            },
+            ],
           },
-        ]),
-      );
+        },
+      ]),
+    );
     const programmeFixture = syntheticUnitvariantLessonsFixture();
     const res = await getUnitsForProgramme([
       syntheticUnitvariantLessonsFixture({
@@ -164,6 +105,7 @@ describe("unit listing units", () => {
       }),
       syntheticUnitvariantLessonsFixture({
         overrides: {
+          unit_slug: "unit-slug-2",
           programme_fields: {
             ...programmeFixture.programme_fields,
             optionality: "Optional 2",
@@ -177,6 +119,7 @@ describe("unit listing units", () => {
     ]);
 
     expect(res).toHaveLength(1);
+
     expect(res[0]).toHaveLength(2);
     if (!res[0]) {
       throw new Error("No units found");
@@ -185,49 +128,21 @@ describe("unit listing units", () => {
     expect(res[0][1]?.title).toEqual("Optional 2");
   });
   test("getUnitsForProgrammes removes null variant", async () => {
-    mockBatched
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              threads: [
-                {
-                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-                  unit_id: 1,
-                },
-              ],
-            },
+    mockBatched.mockResolvedValueOnce(
+      Promise.resolve([
+        {
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
+              },
+            ],
           },
-        ]),
-      )
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 2 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
-              },
-              expiredLessonCount: {
-                aggregate: { count: 1 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-              },
-            },
-          },
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 2 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-1" }],
-              },
-              expiredLessonCount: {
-                aggregate: { count: 1 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-              },
-            },
-          },
-        ]),
-      );
+        },
+      ]),
+    );
+
     const programmeFixture = syntheticUnitvariantLessonsFixture();
     const res = await getUnitsForProgramme([
       syntheticUnitvariantLessonsFixture({

@@ -3,9 +3,6 @@ import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema"
 import { getThreadsForUnit } from "../threads/getThreadsForUnit";
 
 import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
-import { getLessonCountsForUnit } from "./getLessonCountsForUnits";
-
-import OakError from "@/errors/OakError";
 
 export const getUnitsForProgramme = async (
   programmeData: SyntheticUnitvariantLessons[],
@@ -14,6 +11,16 @@ export const getUnitsForProgramme = async (
     (acc, programme) => {
       const unitId = programme.unit_data.unit_id;
       const optionalityTitle = programme.programme_fields.optionality;
+
+      const lessonCount = programmeData.filter((pd) => {
+        return pd.unit_slug === programme.unit_slug;
+      }).length;
+
+      const expiredLessonCount = programmeData.filter(
+        (pd) =>
+          pd.unit_slug === programme.unit_slug &&
+          pd.lesson_data.deprecated_fields?.expired,
+      ).length;
 
       const unit = {
         slug: programme.unit_slug,
@@ -29,9 +36,15 @@ export const getUnitsForProgramme = async (
         yearOrder: programme.programme_fields.year_display_order,
         cohort: programme.unit_data._cohort,
         isOptionalityUnit: !!optionalityTitle,
+        lessonCount,
+        expiredLessonCount,
+        expired: lessonCount === expiredLessonCount,
       };
       if (acc[unitId]) {
-        acc[unitId]!.push(unit);
+        const slugExists = acc[unitId]?.find((u) => u.slug === unit.slug);
+        if (!slugExists) {
+          acc[unitId]!.push(unit);
+        }
       } else {
         acc[unitId] = [unit];
       }
@@ -45,14 +58,9 @@ export const getUnitsForProgramme = async (
 
   const threads = await getThreadsForUnit(Object.keys(partialUniqueUnits));
 
-  const lessonCounts = await getLessonCountsForUnit(
-    Object.values(partialUniqueUnits),
-  );
-
   Object.keys(partialUniqueUnits).forEach((unitId) => {
     const unit = partialUniqueUnits[unitId];
     const threadsForUnit = threads[unitId];
-    const counts = lessonCounts[unitId];
 
     if (unit && unit.length > 0) {
       const populatedUnits = unit
@@ -61,19 +69,6 @@ export const getUnitsForProgramme = async (
         .map((u) => {
           if (threadsForUnit) {
             u.learningThemes = threadsForUnit;
-          }
-          if (counts && u.slug && counts[u.slug]) {
-            const lessonCount = counts[u.slug]?.lessonCount;
-            const expiredLessonCount = counts[u.slug]?.expiredLessonCount;
-
-            u.lessonCount = lessonCount;
-            u.expiredLessonCount = expiredLessonCount;
-            u.expired = expiredLessonCount === lessonCount;
-          } else {
-            throw new OakError({
-              code: "curriculum-api/not-found",
-              originalError: `Missing lesson count data for unit ${u.slug}`,
-            });
           }
           return u;
         });

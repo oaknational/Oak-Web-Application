@@ -23,7 +23,6 @@ const unitListingData = z.object({
   subjectSlug: subjectSlugs,
   subjectTitle: subjects,
   tierSlug: tierSlugs.nullable(),
-  totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
   hasNewContent: z.boolean(),

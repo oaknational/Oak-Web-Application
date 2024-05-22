@@ -62,6 +62,26 @@ jest.mock("../../sdk", () => {
             unit_data: unitDataFixture({ overrides: { unit_id: 1 } }),
             unit_slug: "unit-slug",
           },
+          {
+            is_legacy: false,
+            lesson_data: lessonDataFixture({
+              overrides: { deprecated_fields: { expired: true } },
+            }),
+            lesson_slug: "lesson-slug",
+            null_unitvariant: unitvariantFixture(),
+            programme_fields: programmeFieldsFixture({
+              overrides: {
+                tier: "foundation",
+                tier_slug: "foundation",
+                tier_description: "Foundation",
+                tier_display_order: 1,
+              },
+            }),
+            programme_slug: "programme-slug",
+            supplementary_data: { unit_order: 1, order_in_unit: 1 },
+            unit_data: unitDataFixture({ overrides: { unit_id: 1 } }),
+            unit_slug: "unit-slug",
+          },
         ],
       }),
     ),
@@ -80,54 +100,20 @@ describe("unitListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
   test("returns the correct data", async () => {
-    mockBatched
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 3 },
-                nodes: [{ programme_fields: "foundation" }],
+    mockBatched.mockResolvedValueOnce(
+      Promise.resolve([
+        {
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
               },
-              unitCount: {
-                aggregate: { count: 2 },
-                nodes: [{ programme_fields: "foundation" }],
-              },
-            },
+            ],
           },
-        ]),
-      )
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              threads: [
-                {
-                  threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-                  unit_id: 1,
-                },
-              ],
-            },
-          },
-        ]),
-      )
-
-      .mockResolvedValueOnce(
-        Promise.resolve([
-          {
-            data: {
-              lessonCount: {
-                aggregate: { count: 2 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug" }],
-              },
-              expiredLessonCount: {
-                aggregate: { count: 1 },
-                nodes: [{ unit_data: 1 }, { unit_slug: "unit-slug-2" }],
-              },
-            },
-          },
-        ]),
-      );
+        },
+      ]),
+    );
 
     const res = await unitListing(sdk)({ programmeSlug: "programme-slug" });
     expect(res).toEqual({
@@ -138,15 +124,12 @@ describe("unitListing()", () => {
       examBoardTitle: null,
       subjectSlug: "maths",
       subjectTitle: "Maths",
-      totalUnitCount: 1,
       tierSlug: "foundation",
       tiers: [
         {
           tierSlug: "foundation",
           tierTitle: "Foundation",
           tierProgrammeSlug: "subject-phase-ks-foundation",
-          unitCount: 2,
-          lessonCount: 3,
           tierOrder: null,
         },
         {

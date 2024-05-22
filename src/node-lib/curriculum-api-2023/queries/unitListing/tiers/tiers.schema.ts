@@ -12,23 +12,6 @@ export const rawTierResponseSchema = z.array(
   }),
 );
 
-const aggregateSchema = z.object({
-  count: z.number(),
-});
-
-export const tierCounts = z.object({
-  lessonCount: z.object({
-    aggregate: aggregateSchema,
-    nodes: z.array(z.object({ programme_fields: z.string() })),
-  }),
-  unitCount: z.object({
-    aggregate: aggregateSchema,
-    nodes: z.array(z.object({ programme_fields: z.string() })),
-  }),
-});
-
-export type TierCounts = z.infer<typeof tierCounts>;
-
 export const tierSchema = z.array(
   z.object({
     tierSlug: tierSlugs,

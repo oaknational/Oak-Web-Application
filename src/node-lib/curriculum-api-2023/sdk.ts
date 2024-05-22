@@ -31,9 +31,6 @@ export const getBatchedRequests = async (
     variables: Record<string, unknown>;
   }>,
 ) => {
-  // TODO: remove these console logs
-  console.log("headers for batch request", headers);
-  console.log("curriculumApiUrl for batch request", curriculumApiUrl);
   const data = await graphqlClient.batchRequests(requests);
   return data;
 };

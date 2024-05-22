@@ -319,8 +319,6 @@ export const getStaticProps: GetStaticProps<
 
         return results;
       } catch (error) {
-        // TODO: remove this log
-        console.error('Error in "unit-listing::getStaticProps"', error);
         return {
           notFound: true,
         };

@@ -1,13 +1,7 @@
-import { TierCountsDocument } from "../../../generated/sdk";
 import { isTierValid } from "../../../helpers";
-import { Sdk, getBatchedRequests } from "../../../sdk";
+import { Sdk } from "../../../sdk";
 
-import {
-  TierSchema,
-  rawTierResponseSchema,
-  tierCounts,
-  tierSchema,
-} from "./tiers.schema";
+import { TierSchema, rawTierResponseSchema, tierSchema } from "./tiers.schema";
 
 import OakError from "@/errors/OakError";
 
@@ -61,42 +55,6 @@ export const getTiersForProgramme = async (
     },
     {} as Record<string, Partial<TierSchema[number]>>,
   );
-
-  const batchRequests = Object.keys(constructedTiers).map((c) => {
-    const variables: Record<string, string> = {
-      subject_slug: subject,
-      tier_slug: c,
-      keystage_slug: keystage,
-    };
-    if (examboard) {
-      variables.examboard_slug = examboard;
-    }
-    return {
-      document: TierCountsDocument,
-      variables: { _contains: variables },
-    };
-  });
-
-  const batchResponse = await getBatchedRequests(batchRequests);
-  const data = batchResponse.map((b) => b.data);
-
-  const parsedData = data.map((d) => tierCounts.parse(d));
-
-  parsedData.forEach((counts) => {
-    const unitCount = counts.unitCount.aggregate.count;
-    const lessonCount = counts.lessonCount.aggregate.count;
-    const tierSlug = counts.unitCount.nodes[0]?.programme_fields;
-
-    if (!tierSlug || !constructedTiers[tierSlug]) {
-      throw new OakError({
-        code: "curriculum-api/not-found",
-        originalError: `Lesson counts for subject: ${subject}, keystage: ${keystage} and tier: ${tierSlug} not found `,
-      });
-    }
-
-    constructedTiers[tierSlug]!.unitCount = unitCount;
-    constructedTiers[tierSlug]!.lessonCount = lessonCount;
-  });
 
   const parsedCompleteTiers = tierSchema.parse(Object.values(constructedTiers));
   const sortedTiers = parsedCompleteTiers.sort(

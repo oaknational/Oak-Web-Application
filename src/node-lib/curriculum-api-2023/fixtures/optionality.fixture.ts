@@ -6,7 +6,6 @@ const optionalityProps = {
   examBoardTitle: null,
   subjectSlug: "geography",
   subjectTitle: "Geography",
-  totalUnitCount: 202,
   tierSlug: null,
   tiers: [],
   units: [
