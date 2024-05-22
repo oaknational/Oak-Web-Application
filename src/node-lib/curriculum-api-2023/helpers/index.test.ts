@@ -1,4 +1,4 @@
-import { toSentenceCase, filterOutCoreTier } from "./index";
+import { toSentenceCase, isTierValid } from "./index";
 
 describe("toSentenceCase", () => {
   test("converts first character to uppercase and the rest to lowercase", () => {
@@ -22,49 +22,20 @@ describe("toSentenceCase", () => {
   });
 });
 
-describe("filterOutCoreTier", () => {
-  const sampleTiers = [
-    {
-      tierSlug: "core",
-      tierTitle: "Core",
-      tierProgrammeSlug: "maths-ks4-core",
-    },
-    {
-      tierSlug: "foundation",
-      tierTitle: "Foundation",
-      tierProgrammeSlug: "maths-ks4-foundation",
-    },
-    {
-      tierSlug: "higher",
-      tierTitle: "Higher",
-      tierProgrammeSlug: "maths-ks4-higher",
-    },
-  ];
-
-  test("returns all tiers when subject and key stage are in the hasCoreTier set", () => {
-    expect(filterOutCoreTier(true, "maths", "ks4", sampleTiers)).toEqual(
-      sampleTiers,
-    );
+describe("isTierValid", () => {
+  test("it should return false if the keystage is not ks4", () => {
+    expect(isTierValid(true, "core", "maths", "ks3")).toBe(false);
   });
-
-  test('filters out "core" tier when not in the hasCoreTier set', () => {
-    expect(
-      filterOutCoreTier(false, "combined-science", "ks4", sampleTiers),
-    ).toEqual([
-      {
-        tierSlug: "foundation",
-        tierTitle: "Foundation",
-        tierProgrammeSlug: "maths-ks4-foundation",
-      },
-      {
-        tierSlug: "higher",
-        tierTitle: "Higher",
-        tierProgrammeSlug: "maths-ks4-higher",
-      },
-    ]);
+  test("it should return false if the subject is not maths", () => {
+    expect(isTierValid(true, "core", "english", "ks4")).toBe(false);
   });
-
-  test("returns null for null arguments", () => {
-    expect(filterOutCoreTier(false, null, null, null)).toBeNull();
+  test("it should return false if it is not legacy", () => {
+    expect(isTierValid(false, "core", "maths", "ks4")).toBe(false);
+  });
+  test("it should return true if the tier is not core", () => {
+    expect(isTierValid(true, "foundation", "english", "ks4")).toBe(true);
+  });
+  test("it should return true if the tier is core and it is legacy, the subject is maths and the keystage is ks4", () => {
+    expect(isTierValid(true, "core", "maths", "ks4")).toBe(true);
   });
 });
