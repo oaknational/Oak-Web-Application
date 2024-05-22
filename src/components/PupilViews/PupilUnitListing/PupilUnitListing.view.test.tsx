@@ -141,4 +141,50 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Foundation")).toBeInTheDocument();
     expect(getByText("AQA")).toBeInTheDocument();
   });
+  it("should render units with optionality correctly", () => {
+    const data = [
+      unitBrowseDataFixture({
+        unitData: {
+          ...unitBrowseDataFixture({}).unitData,
+          title: "unit-title-1",
+        },
+        programmeFields: {
+          ...unitBrowseDataFixture({}).programmeFields,
+          optionality: "optional title 1",
+        },
+        supplementaryData: { unitOrder: 2 },
+        programmeSlug: "maths-secondary-year-10-aqa-core",
+        unitSlug: "unit-slug-1-2",
+      }),
+      unitBrowseDataFixture({
+        unitData: {
+          ...unitBrowseDataFixture({}).unitData,
+          title: "unit-title-1",
+        },
+        programmeFields: {
+          ...unitBrowseDataFixture({}).programmeFields,
+          optionality: "optional title 2",
+        },
+        unitSlug: "unit-slug-1-2",
+        supplementaryData: { unitOrder: 1 },
+        programmeSlug: "maths-secondary-year-10-aqa-core",
+      }),
+    ];
+
+    if (!data[0]) {
+      throw new Error("No curriculum data");
+    }
+
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          units={data}
+          programmeFields={data[0].programmeFields}
+        />
+      </OakThemeProvider>,
+    );
+    expect(getByText("unit-title-1")).toBeInTheDocument();
+    expect(getByText("optional title 1")).toBeInTheDocument();
+    expect(getByText("optional title 2")).toBeInTheDocument();
+  });
 });
