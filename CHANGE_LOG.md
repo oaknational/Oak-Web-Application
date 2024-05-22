@@ -1,3 +1,17 @@
+# [1.441.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.440.1...v1.441.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* add aria live to inner button ([e939bd4](https://github.com/oaknational/Oak-Web-Application/commit/e939bd4f983451d0f65096f5d61ffdccd3f79ecd))
+* aria title and label behaviour ([0391083](https://github.com/oaknational/Oak-Web-Application/commit/0391083d9b63cf1050a28d95d318f7e671df965c))
+* default to off for aria live ([48155f3](https://github.com/oaknational/Oak-Web-Application/commit/48155f3e39030f1355dd59ddeb29ef4206e0b5ab))
+
+
+### Features
+
+* aria live polite ([b87baf1](https://github.com/oaknational/Oak-Web-Application/commit/b87baf1da435f262dc56f581bff2b05b6e41f68f))
+
 ## [1.440.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.440.0...v1.440.1) (2024-05-21)
 
 # [1.440.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.6...v1.440.0) (2024-05-21)
