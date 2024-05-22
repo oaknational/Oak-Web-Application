@@ -58,6 +58,7 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
           aria-relevant="all"
           aria-live="polite"
           style={{ position: "absolute", left: "-9999px" }}
+          data-testid="announce"
         >
           {announce}
         </div>
