@@ -114,7 +114,7 @@ export const PupilViewsUnitListing = ({
                 return (
                   <OakPupilJourneyListItem
                     key={unit.unitSlug}
-                    title={unit.unitData?.title}
+                    title={unit.unitData.title}
                     index={i + 1}
                     numberOfLessons={unit.lessonCount}
                     as="a"
@@ -128,7 +128,7 @@ export const PupilViewsUnitListing = ({
                 );
             } else {
               if (optionalityUnit[0]) {
-                const title = optionalityUnit[0].unitData?.title;
+                const title = optionalityUnit[0].unitData.title;
                 return (
                   <OakPupilJourneyOptionalityItem index={i + 1} title={title}>
                     {optionalityUnit.map((unit) => {
