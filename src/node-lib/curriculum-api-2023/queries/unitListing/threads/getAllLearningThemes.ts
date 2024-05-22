@@ -13,5 +13,5 @@ export const getAllLearningThemes = (units: Array<Array<UnitData>>) => {
       });
       return learningThemes;
     }, [] as LearningThemes)
-    .toSorted((a, b) => (a.themeTitle > b.themeTitle ? 1 : -1));
+    .sort((a, b) => (a.themeTitle > b.themeTitle ? 1 : -1));
 };

@@ -76,8 +76,8 @@ export const getUnitsForProgramme = async (
 
   const parsedUnits = unitSchema.parse(Object.values(partialUniqueUnits));
   const sortedUnits = parsedUnits
-    .map((units) => units.toSorted((a, b) => (a.title > b.title ? 1 : -1)))
-    .toSorted((a, b) => {
+    .map((units) => units.sort((a, b) => (a.title > b.title ? 1 : -1)))
+    .sort((a, b) => {
       // Sort units first by year and then by unit order
       return (
         a[0]!.yearOrder - b[0]!.yearOrder ||
