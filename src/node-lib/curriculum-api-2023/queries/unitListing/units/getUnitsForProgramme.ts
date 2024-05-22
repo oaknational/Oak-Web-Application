@@ -11,11 +11,9 @@ export const getUnitsForProgramme = async (
     (acc, programme) => {
       const unitId = programme.unit_data.unit_id;
       const optionalityTitle = programme.programme_fields.optionality;
-
       const lessonCount = programmeData.filter((pd) => {
         return pd.unit_slug === programme.unit_slug;
       }).length;
-
       const expiredLessonCount = programmeData.filter(
         (pd) =>
           pd.unit_slug === programme.unit_slug &&
@@ -58,10 +56,9 @@ export const getUnitsForProgramme = async (
 
   const threads = await getThreadsForUnit(Object.keys(partialUniqueUnits));
 
-  Object.keys(partialUniqueUnits).forEach((unitId) => {
+  // Populate partial units with threads
+  Object.entries(threads).forEach(([unitId, threadsForUnit]) => {
     const unit = partialUniqueUnits[unitId];
-    const threadsForUnit = threads[unitId];
-
     if (unit && unit.length > 0) {
       const populatedUnits = unit
         // remove null unit variants when there is optionality present
@@ -76,6 +73,7 @@ export const getUnitsForProgramme = async (
       partialUniqueUnits[unitId] = populatedUnits;
     }
   });
+
   const parsedUnits = unitSchema.parse(Object.values(partialUniqueUnits));
   const sortedUnits = parsedUnits
     .map((units) => units.sort((a, b) => (a.title > b.title ? 1 : -1)))

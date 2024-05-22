@@ -20,19 +20,20 @@ export const getThreadsForUnit = async (unitIds: Array<string>) => {
     .map((t) => t.threads)
     .flat()
     .reduce(
-      (acc, res) => {
-        const threads = res.threads
+      (learningThemesByUnit, res) => {
+        const learningThemes = res.threads
           ? res.threads.map((t) => ({
               themeSlug: t.theme_slug,
               themeTitle: t.theme_title,
             }))
           : [];
-        if (acc[res.unit_id]) {
-          acc[res.unit_id]!.push(...threads);
+        const unitId = res.unit_id;
+        if (learningThemesByUnit[unitId]) {
+          learningThemesByUnit[unitId]!.push(...learningThemes);
         } else {
-          acc[res.unit_id] = threads;
+          learningThemesByUnit[unitId] = learningThemes;
         }
-        return acc;
+        return learningThemesByUnit;
       },
       {} as Record<string, LearningThemes>,
     );
