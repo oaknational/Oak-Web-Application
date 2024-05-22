@@ -9,7 +9,10 @@ import {
   OakPupilJourneyList,
   OakSpan,
   OakBox,
+  OakPupilJourneyOptionalityItem,
+  OakPupilJourneyOptionalityButton,
 } from "@oaknational/oak-components";
+import _ from "lodash";
 
 import { useBackHref } from "./useBackHref";
 
@@ -56,6 +59,10 @@ export const PupilViewsUnitListing = ({
 
   const lessonCount = units.reduce((p, c) => p + c.lessonCount, 0);
 
+  const optionalityUnits = Object.values(
+    _.groupBy(units, (unit) => unit.unitData.title),
+  );
+
   const breadcrumbs: string[] = [yearDescription];
   if (examboard) {
     breadcrumbs.push(examboard);
@@ -100,22 +107,50 @@ export const PupilViewsUnitListing = ({
           }
           counterSlot={newLessonCount}
         >
-          {units.map((unit, i) => {
-            return (
-              <OakPupilJourneyListItem
-                key={unit.unitSlug}
-                title={unit.unitData?.title}
-                index={i + 1}
-                numberOfLessons={unit.lessonCount}
-                as="a"
-                href={resolveOakHref({
-                  page: "pupil-lesson-index",
-                  programmeSlug: unit.programmeSlug,
-                  unitSlug: unit.unitSlug,
-                })}
-                unavailable={unit.expired}
-              />
-            );
+          {optionalityUnits.map((optionalityUnit, i) => {
+            if (optionalityUnit.length === 1) {
+              const unit = optionalityUnit[0];
+              if (unit)
+                return (
+                  <OakPupilJourneyListItem
+                    key={unit.unitSlug}
+                    title={unit.unitData?.title}
+                    index={i + 1}
+                    numberOfLessons={unit.lessonCount}
+                    as="a"
+                    href={resolveOakHref({
+                      page: "pupil-lesson-index",
+                      programmeSlug: unit.programmeSlug,
+                      unitSlug: unit.unitSlug,
+                    })}
+                    unavailable={unit.expired}
+                  />
+                );
+            } else {
+              if (optionalityUnit[0]) {
+                const title = optionalityUnit[0].unitData?.title;
+                return (
+                  <OakPupilJourneyOptionalityItem index={i + 1} title={title}>
+                    {optionalityUnit.map((unit) => {
+                      const optionality = unit.programmeFields.optionality;
+                      if (optionality)
+                        return (
+                          <OakPupilJourneyOptionalityButton
+                            title={optionality}
+                            numberOfLessons={unit.lessonCount}
+                            href={resolveOakHref({
+                              page: "pupil-lesson-index",
+                              programmeSlug: unit.programmeSlug,
+                              unitSlug: unit.unitSlug,
+                            })}
+                            unavailable={unit.expired}
+                          />
+                        );
+                    })}
+                  </OakPupilJourneyOptionalityItem>
+                );
+              }
+            }
           })}
         </OakPupilJourneyList>
       </OakBox>
