@@ -80,15 +80,22 @@ type CurriculumVisualiserProps = {
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-function dedupUnits(units: Unit[]) {
+function dedupUnits(units: Unit[], examboardSlug: string | null) {
   const unitLookup = new Set();
-  return units.filter((unit) => {
-    if (!unitLookup.has(unit.slug)) {
-      unitLookup.add(unit.slug);
-      return true;
-    }
-    return false;
-  });
+  return units
+    .filter((unit) => {
+      return (
+        unit.examboard_slug === null || unit.examboard_slug === examboardSlug
+      );
+    })
+    .filter((unit) => {
+      const key = `${unit.slug}-${unit.subject_slug}-${unit.tier_slug}`;
+      if (!unitLookup.has(key)) {
+        unitLookup.add(key);
+        return true;
+      }
+      return false;
+    });
 }
 
 export function isVisibleUnit(
@@ -243,7 +250,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const filteredUnits = units.filter((unit: Unit) =>
               isVisibleUnit(yearSelection, year, unit),
             );
-            const dedupedUnits = dedupUnits(filteredUnits);
+            const dedupedUnits = dedupUnits(filteredUnits, examboardSlug);
 
             return (
               <Box
