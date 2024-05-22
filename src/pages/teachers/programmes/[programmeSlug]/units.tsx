@@ -35,6 +35,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -124,7 +125,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
               keyStageSlug,
             },
-            label: keyStageTitle,
+            label: toSentenceCase(keyStageTitle),
           },
           {
             oakLinkProps: {
@@ -139,7 +140,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         background={"lavender30"}
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
-        programmeFactor={keyStageTitle}
+        programmeFactor={toSentenceCase(keyStageTitle)}
         isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
