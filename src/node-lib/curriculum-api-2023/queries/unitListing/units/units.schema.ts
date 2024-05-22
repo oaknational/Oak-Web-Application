@@ -9,33 +9,6 @@ import {
 
 import { learningThemesSchema } from "../threads/threads.schema";
 
-const aggregateSchema = z.object({
-  count: z.number(),
-});
-
-export const lessonCounts = z.object({
-  lessonCount: z.object({
-    aggregate: aggregateSchema,
-    nodes: z.array(
-      z.object({
-        unit_slug: z.string().nullish(),
-        unit_data: z.number().nullish(),
-      }),
-    ),
-  }),
-  expiredLessonCount: z.object({
-    aggregate: aggregateSchema,
-    nodes: z.array(
-      z.object({
-        unit_slug: z.string().nullish(),
-        unit_data: z.number().nullish(),
-      }),
-    ),
-  }),
-});
-
-export type LessonCounts = z.infer<typeof lessonCounts>;
-
 const unitData = z.object({
   slug: z.string(),
   title: z.string(),
