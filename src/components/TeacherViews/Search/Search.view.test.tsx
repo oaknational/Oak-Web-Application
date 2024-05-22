@@ -9,6 +9,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
 
+const searchRefined = jest.fn();
+
 const createSearchResult = (): SearchHit => {
   return {
     _id: "",
@@ -91,6 +93,8 @@ const validQuery: SearchQuery = {
 
 const setSearchStartTime = jest.fn();
 
+const onChange = jest.fn();
+
 const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
@@ -117,7 +121,7 @@ const props: SearchProps = {
       },
     ],
     contentTypeFilters: [
-      { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
+      { slug: "unit", title: "Units", onChange: onChange, checked: false },
     ],
     examBoardFilters: [
       {
@@ -171,6 +175,7 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
       searchResultExpanded: (...args: unknown[]) =>
         searchResultExpanded(...args),
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
+      searchRefined: (...args: []) => searchRefined(...args),
     },
   }),
 }));
@@ -417,6 +422,23 @@ describe("Search.page.tsx", () => {
       subjectTitle: "subject title",
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
+    });
+  });
+  test("searchRefined function invoked when checked", () => {
+    const { getByRole } = render(
+      <SearchComponent {...props} {...resultsProps} />,
+    );
+    const unitsFilter = getByRole("checkbox", {
+      name: "Units filter",
+    });
+    unitsFilter.click();
+    expect(onChange).toHaveBeenCalledTimes(1);
+
+    expect(searchRefined).toHaveBeenCalledWith({
+      context: "search",
+      filterType: "Content type filter",
+      filterValue: "Units",
+      searchResultCount: 1,
     });
   });
   test("filter button becomes visible when focussed", async () => {

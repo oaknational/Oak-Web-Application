@@ -3,7 +3,7 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_5_0_3(
+  lesson: published_mv_lesson_overview_6_0_0(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -45,5 +45,6 @@ query lessonOverview(
     isWorksheetLandscape
     transcriptSentences
     expired
+    updatedAt
   }
 }

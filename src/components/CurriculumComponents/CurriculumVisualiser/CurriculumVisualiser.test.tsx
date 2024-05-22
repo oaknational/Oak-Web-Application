@@ -128,7 +128,6 @@ const curriculumVisualiserFixture = {
       disciplines: [],
     },
   },
-  duplicateUnitSlugs: new Set("unit-1"),
   mobileHeaderScrollOffset: 148,
   selectedThread: null,
   setVisibleMobileYearRefID: jest.fn(() => {}),

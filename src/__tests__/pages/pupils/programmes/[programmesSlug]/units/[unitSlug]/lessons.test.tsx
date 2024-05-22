@@ -1,33 +1,44 @@
 import { render } from "@testing-library/react";
 
 import PupilLessonListingPage, {
-  getStaticPaths,
   getStaticProps,
 } from "@/pages/pupils/beta//programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
+import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
+
+jest.mock(
+  "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view",
+  () => ({
+    PupilViewsLessonListing: jest.fn((props) => (
+      <div>
+        {props.orderedCurriculumData.map(
+          (data: LessonListingBrowseData[number]) => {
+            return <div>{data.lessonData.title}</div>;
+          },
+        )}
+      </div>
+    )),
+  }),
+);
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
-    it("should render the subjectTitle, unitTitle, and yearDescription", () => {
-      const { getByText } = render(
+    it("should through error if no data", () => {
+      expect(() => {
+        render(<PupilLessonListingPage curriculumData={[]} />);
+      }).toThrowError("unitData or programmeFields is undefined");
+    });
+    it("should call PupilViewsLessonListing with correct props", () => {
+      render(
         <PupilLessonListingPage
           curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
-      expect(getByText("Maths")).toBeInTheDocument();
-      expect(getByText("unit-title")).toBeInTheDocument();
-      expect(getByText("Year 1")).toBeInTheDocument();
+      expect(PupilViewsLessonListing).toHaveBeenCalled();
     });
-    it("should render the lesson titles as a tags", () => {
-      const { getByText } = render(
-        <PupilLessonListingPage
-          curriculumData={[lessonBrowseDataFixture({})]}
-        />,
-      );
-      expect(getByText("lesson-title")).toBeInTheDocument();
-    });
-    it("should render the lesson titles in the correct order", () => {
+    it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
           curriculumData={[
@@ -51,15 +62,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const e1 = getByText("lesson-title-1");
       const e2 = getByText("lesson-title-2");
       expect(e2.compareDocumentPosition(e1)).toBe(2);
-    });
-  });
-  describe("getStaticPaths", () => {
-    it("Should not generate pages at build time", async () => {
-      const res = await getStaticPaths();
-      expect(res).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
     });
   });
 

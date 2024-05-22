@@ -50,6 +50,7 @@ export const SpecialistLessonPage: Story = {
       exitQuiz: null,
       expired: false,
       downloads: [],
+      updatedAt: "2022-02-22T12:00:00Z",
     },
   },
 };

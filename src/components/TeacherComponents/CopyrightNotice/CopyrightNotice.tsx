@@ -10,6 +10,7 @@ import Icon from "@/components/SharedComponents/Icon";
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
+  copyrightYear: string;
 };
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
@@ -53,49 +54,55 @@ const StyledLink = styled.a`
 `;
 
 const PostAlbCopyright = (
-  props: FontProps & { openLinksExternally: boolean },
-) => (
-  <OakP $font="body-3" {...props}>
-    This content is © Oak National Academy Limited (2023), licensed on{" "}
-    <StyledLink
-      aria-label={`Open Government License version 3.0${
-        props.openLinksExternally ? " (opens in a new tab)" : ""
-      }`}
-      role="link"
-      href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-      target={props.openLinksExternally ? "_blank" : "_self"}
-    >
-      Open Government Licence version 3.0{" "}
-      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </StyledLink>{" "}
-    except where otherwise stated. See{" "}
-    <OwaLink
-      page={"legal"}
-      legalSlug="terms-and-conditions"
-      $isInline
-      htmlAnchorProps={{
-        target: props.openLinksExternally ? "_blank" : "_self",
-        "aria-label": `Terms and conditions${
+  props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
+) => {
+  const { copyrightYear } = props;
+  const year = new Date(copyrightYear).getFullYear();
+  return (
+    <OakP $font="body-3" {...props}>
+      This content is © Oak National Academy Limited ({year}), licensed on{" "}
+      <StyledLink
+        aria-label={`Open Government License version 3.0${
           props.openLinksExternally ? " (opens in a new tab)" : ""
-        }`,
-      }}
-    >
-      Oak's terms & conditions
-      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OwaLink>{" "}
-    (Collection 2).
-  </OakP>
-);
+        }`}
+        role="link"
+        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+        target={props.openLinksExternally ? "_blank" : "_self"}
+      >
+        Open Government Licence version 3.0{" "}
+        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      </StyledLink>{" "}
+      except where otherwise stated. See{" "}
+      <OwaLink
+        page={"legal"}
+        legalSlug="terms-and-conditions"
+        $isInline
+        htmlAnchorProps={{
+          target: props.openLinksExternally ? "_blank" : "_self",
+          "aria-label": `Terms and conditions${
+            props.openLinksExternally ? " (opens in a new tab)" : ""
+          }`,
+        }}
+      >
+        Oak's terms & conditions
+        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      </OwaLink>{" "}
+      (Collection 2).
+    </OakP>
+  );
+};
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
   openLinksExternally,
+  copyrightYear,
   ...fontProps
 }) => (
   <Box $maxWidth={[null, 420, 420]}>
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}
+        copyrightYear={copyrightYear}
         openLinksExternally={openLinksExternally}
       />
     ) : (

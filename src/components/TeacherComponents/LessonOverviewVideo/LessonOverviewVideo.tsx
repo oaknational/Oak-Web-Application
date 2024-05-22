@@ -3,7 +3,7 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import LessonOverviewTranscriptViewer from "@/components/TeacherComponents/LessonOverviewTranscriptViewer";
+import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -58,39 +58,25 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         $alignItems={["start", "center"]}
         $gap={["all-spacing-4", "all-spacing-0"]}
       >
-        {hasCaptions && !transcriptOn && (
+        {hasCaptions && (
           <Button
-            label="Show transcript"
-            aria-label="Show video transcript"
-            icon={"chevron-down"}
+            label={transcriptOn ? "Hide transcript" : "Show transcript"}
+            icon={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
             {...buttonParams}
-          />
-        )}
-        {hasCaptions && transcriptOn && (
-          <Button
-            label="Hide transcript"
-            aria-label="Hide video transcript"
-            icon={"chevron-up"}
-            onClick={toggleTranscript}
-            {...buttonParams}
+            aria-controls="transcript-viewer"
+            aria-expanded={transcriptOn}
           />
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
-          {signLanguageVideo && !signLanguageOn && (
+          {signLanguageVideo && (
             <Button
-              label="Show sign language"
+              label={
+                signLanguageOn ? "Hide sign language" : "Show sign language"
+              }
               icon={"sign-language"}
               onClick={toggleSignLanguage}
-              {...buttonParams}
-            />
-          )}
-          {signLanguageVideo && signLanguageOn && (
-            <Button
-              label="Hide sign language"
-              background="blue"
-              icon={"sign-language"}
-              onClick={toggleSignLanguage}
+              background={signLanguageOn ? "blue" : "white"}
               {...buttonParams}
             />
           )}
@@ -106,7 +92,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
       {transcriptSentences &&
         transcriptSentences.length > 0 &&
         transcriptOn && (
-          <LessonOverviewTranscriptViewer
+          <TranscriptViewer
             transcriptSentences={
               Array.isArray(transcriptSentences)
                 ? transcriptSentences

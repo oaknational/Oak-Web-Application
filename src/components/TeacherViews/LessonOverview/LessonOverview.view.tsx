@@ -88,8 +88,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     downloads,
     copyrightContent,
     isSpecialist,
+    updatedAt,
   } = lesson;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -303,6 +303,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
+                    updatedAt={updatedAt}
                   />
                 </LessonItemContainer>
 

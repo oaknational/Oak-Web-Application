@@ -6,6 +6,7 @@ import aboutPartnersPageFixture from "../fixtures/aboutPartnersPage.json";
 import aboutWorkWithUsPageFixture from "../fixtures/aboutWorkWithUsPage.json";
 import allWebinarsFixture from "../fixtures/allWebinars.json";
 import planningCorePageFixture from "../fixtures/planningCorePage.json";
+import planALessonCorePageFixture from "../fixtures/planALessonPage.json";
 import allBlogPostsFixture from "../fixtures/allBlogPosts.json";
 import blogPostBySlugFixture from "../fixtures/blogPostBySlug.json";
 import webinarBySlugFixture from "../fixtures/webinarBySlug.json";
@@ -30,6 +31,7 @@ export default {
   portableTextReferences: jest.fn(() => portableTextReferences),
   homepage: jest.fn(() => homepageFixture),
   planningCorePage: jest.fn(() => planningCorePageFixture),
+  planALessonPage: jest.fn(() => planALessonCorePageFixture),
   aboutWhoWeArePage: jest.fn(() => aboutWhoWeArePageFixture),
   aboutLeadershipPage: jest.fn(() => aboutLeadershipPageFixture),
   aboutBoardPage: jest.fn(() => aboutBoardPageFixture),

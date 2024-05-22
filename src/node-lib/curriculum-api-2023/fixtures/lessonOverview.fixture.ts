@@ -96,6 +96,7 @@ const lessonOverviewFixture = (
       { exists: true, type: "worksheet-pptx" },
       { exists: true, type: "presentation" },
     ],
+    updatedAt: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };

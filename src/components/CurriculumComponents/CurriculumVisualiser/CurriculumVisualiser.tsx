@@ -75,15 +75,24 @@ type CurriculumVisualiserProps = {
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
   handleSelectDiscipline: (year: string, discipline: Discipline) => void;
-  duplicateUnitSlugs: Set<string>;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
+function dedupUnits(units: Unit[]) {
+  const unitLookup = new Set();
+  return units.filter((unit) => {
+    if (!unitLookup.has(unit.slug)) {
+      unitLookup.add(unit.slug);
+      return true;
+    }
+    return false;
+  });
+}
+
 export function isVisibleUnit(
   yearSelection: YearSelection,
-  duplicateUnitSlugs: Set<string>,
   year: string,
   unit: Unit,
 ) {
@@ -106,17 +115,8 @@ export function isVisibleUnit(
   // Look for duplicates that don't have an examboard, tier or subject parent
   // (i.e. aren't handled by other filters)
 
-  const isDuplicate =
-    unit.examboard === null &&
-    unit.tier === null &&
-    unit.subject_parent === null &&
-    duplicateUnitSlugs.has(unit.slug);
   return (
-    filterBySubject &&
-    filterByDomain &&
-    filterByTier &&
-    filterByDiscipline &&
-    !isDuplicate
+    filterBySubject && filterByDomain && filterByTier && filterByDiscipline
   );
 }
 
@@ -171,7 +171,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   handleSelectSubject,
   handleSelectTier,
   handleSelectDiscipline,
-  duplicateUnitSlugs,
   mobileHeaderScrollOffset,
   setUnitData,
   selectedThread,
@@ -244,6 +243,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
+            const filteredUnits = units.filter((unit: Unit) =>
+              isVisibleUnit(yearSelection, year, unit),
+            );
+            const dedupedUnits = dedupUnits(filteredUnits);
+
             return (
               <Box
                 key={year}
@@ -344,7 +348,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         variant="minimal"
                         isCurrent={isSelectedTier(yearSelection, year, tier)}
                         currentStyles={["underline"]}
-                        data-testid="tier-button"
+                        data-testid={`tier-button`}
                       />
                     ))}
                   </Box>
@@ -354,130 +358,121 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   $mt="space-between-xs"
                   data-testid="unit-cards"
                 >
-                  {units
-                    .filter((unit: Unit) =>
-                      isVisibleUnit(
-                        yearSelection,
-                        duplicateUnitSlugs,
-                        year,
-                        unit,
-                      ),
-                    )
-                    .map((unit: Unit, index: number) => {
-                      const isHighlighted = isHighlightedUnit(
-                        unit,
-                        selectedThread,
-                      );
-                      const unitOptions = unit.unit_options.length >= 1;
+                  {dedupedUnits.map((unit: Unit, index: number) => {
+                    const isHighlighted = isHighlightedUnit(
+                      unit,
+                      selectedThread,
+                    );
+                    const unitOptions = unit.unit_options.length >= 1;
 
-                      return (
-                        <Card
-                          key={unit.slug + index}
-                          $background={isHighlighted ? "black" : "white"}
-                          $color={isHighlighted ? "white" : "black"}
-                          $flexGrow={"unset"}
-                          $mb={32}
-                          $mr={28}
-                          $position={"relative"}
-                          $width={[
-                            "100%",
-                            "calc(50% - 28px)",
-                            "calc(33% - 26px)",
-                          ]}
-                          data-testid={
-                            isHighlighted
-                              ? "highlighted-unit-card"
-                              : "unit-card"
-                          }
-                          $justifyContent={"space-between"}
-                        >
-                          <Box>
-                            <OutlineHeading
-                              tag={"div"}
-                              $font={"heading-5"}
-                              $fontSize={24}
-                              $mb={12}
-                            >
-                              {index + 1}
-                            </OutlineHeading>
-                            <OakHeading
-                              tag={"h4"}
-                              $font={"heading-7"}
-                              $mb="space-between-s"
-                            >
-                              {isHighlighted && (
-                                <VisuallyHidden>
-                                  Highlighted:&nbsp;
-                                </VisuallyHidden>
-                              )}
-                              {unit.title}
-                            </OakHeading>
-                            {unit.unit_options.length > 1 && (
-                              <Box
-                                $mt={12}
-                                $mb={20}
-                                $zIndex={"neutral"}
-                                data-testid="options-tag"
-                                $position={"relative"}
-                              >
-                                <TagFunctional
-                                  color="lavender"
-                                  text={`${unit.unit_options.length} unit options`}
-                                />
-                              </Box>
-                            )}
-                            <BrushBorders
-                              color={isHighlighted ? "black" : "white"}
-                            />
-                          </Box>
-
-                          <OakFlex
-                            $flexDirection={"row"}
-                            $justifyContent={"flex-end"}
+                    return (
+                      <Card
+                        key={unit.slug + index}
+                        $background={isHighlighted ? "black" : "white"}
+                        $color={isHighlighted ? "white" : "black"}
+                        $flexGrow={"unset"}
+                        $mb={32}
+                        $mr={28}
+                        $position={"relative"}
+                        $width={[
+                          "100%",
+                          "calc(50% - 28px)",
+                          "calc(33% - 26px)",
+                        ]}
+                        data-testid={
+                          isHighlighted ? "highlighted-unit-card" : "unit-card"
+                        }
+                        $justifyContent={"space-between"}
+                      >
+                        <Box>
+                          <OutlineHeading
+                            tag={"div"}
+                            $font={"heading-5"}
+                            $fontSize={24}
+                            $mb={12}
                           >
-                            <Button
-                              icon="chevron-right"
-                              $iconPosition="trailing"
-                              data-testid="unit-modal-button"
-                              variant={isHighlighted ? "brush" : "minimal"}
-                              background={isHighlighted ? "black" : undefined}
-                              label="Unit info"
-                              onClick={() => {
-                                handleOpenModal(unitOptions, unit);
-                              }}
-                              ref={modalButtonRef}
-                            />
-                          </OakFlex>
-                        </Card>
-                      );
-                    })}
-                  <UnitsTabSidebar
-                    displayModal={displayModal}
-                    onClose={handleCloseModal}
-                    lessons={currentUnitLessons}
-                    programmeSlug={createProgrammeSlug(unitData, examboardSlug)}
-                    unitOptionsAvailable={unitOptionsAvailable}
-                    unitSlug={unitData?.slug}
-                    unitVariantID={unitVariantID}
-                  >
-                    <UnitModal
-                      setCurrentUnitLessons={setCurrentUnitLessons}
-                      setUnitVariantID={setUnitVariantID}
-                      unitData={unitData}
-                      displayModal={displayModal}
-                      setUnitOptionsAvailable={setUnitOptionsAvailable}
-                      unitOptionsAvailable={unitOptionsAvailable}
-                      isHighlighted={
-                        unitData
-                          ? isHighlightedUnit(unitData, selectedThread)
-                          : false
-                      }
-                    />
-                  </UnitsTabSidebar>
+                            {index + 1}
+                          </OutlineHeading>
+                          <OakHeading
+                            tag={"h4"}
+                            $font={"heading-7"}
+                            $mb="space-between-s"
+                          >
+                            {isHighlighted && (
+                              <VisuallyHidden>
+                                Highlighted:&nbsp;
+                              </VisuallyHidden>
+                            )}
+                            {unit.title}
+                          </OakHeading>
+                          {unit.unit_options.length > 1 && (
+                            <Box
+                              $mt={12}
+                              $mb={20}
+                              $zIndex={"neutral"}
+                              data-testid="options-tag"
+                              $position={"relative"}
+                            >
+                              <TagFunctional
+                                color="lavender"
+                                text={`${unit.unit_options.length} unit options`}
+                              />
+                            </Box>
+                          )}
+                          <BrushBorders
+                            color={isHighlighted ? "black" : "white"}
+                          />
+                        </Box>
+
+                        <OakFlex
+                          $flexDirection={"row"}
+                          $justifyContent={"flex-end"}
+                        >
+                          <Button
+                            icon="chevron-right"
+                            $iconPosition="trailing"
+                            data-testid={`unit-info-button-${unit.slug}${
+                              unit.tier_slug ? `-${unit.tier_slug}` : ""
+                            }`}
+                            variant={isHighlighted ? "brush" : "minimal"}
+                            background={isHighlighted ? "black" : undefined}
+                            label="Unit info"
+                            onClick={() => {
+                              handleOpenModal(unitOptions, unit);
+                            }}
+                            ref={modalButtonRef}
+                          />
+                        </OakFlex>
+                      </Card>
+                    );
+                  })}
                 </OakFlex>
               </Box>
             );
           })}
+      {displayModal && (
+        <UnitsTabSidebar
+          displayModal={displayModal}
+          onClose={handleCloseModal}
+          lessons={currentUnitLessons}
+          programmeSlug={createProgrammeSlug(unitData, examboardSlug)}
+          unitOptionsAvailable={unitOptionsAvailable}
+          unitSlug={unitData?.slug}
+          unitVariantID={unitVariantID}
+        >
+          <UnitModal
+            setCurrentUnitLessons={setCurrentUnitLessons}
+            setUnitVariantID={setUnitVariantID}
+            unitData={unitData}
+            displayModal={displayModal}
+            setUnitOptionsAvailable={setUnitOptionsAvailable}
+            unitOptionsAvailable={unitOptionsAvailable}
+            isHighlighted={
+              unitData ? isHighlightedUnit(unitData, selectedThread) : false
+            }
+          />
+        </UnitsTabSidebar>
+      )}
     </OakGridArea>
   );
 };

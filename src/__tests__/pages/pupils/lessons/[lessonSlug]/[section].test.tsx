@@ -1,7 +1,4 @@
-import {
-  getStaticPaths,
-  getStaticProps,
-} from "@/pages/pupils/lessons/[lessonSlug]/[section]";
+import { getStaticProps } from "@/pages/pupils/lessons/[lessonSlug]/[section]";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -19,16 +16,6 @@ jest.mock(
 );
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
-  describe("getStaticPaths", () => {
-    it("Should not generate pages at build time", async () => {
-      const res = await getStaticPaths();
-      expect(res).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
-    });
-  });
-
   describe("getStaticProps", () => {
     it("Should call API:pupilLessonQuery", async () => {
       await getStaticProps({
@@ -65,9 +52,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         props: PupilExperienceViewProps;
       };
 
-      const backUrl = `${resolveOakHref({
-        page: "classroom",
-      })}/units/${curriculumData.browseData.unitSlug}`;
+      const backUrl = resolveOakHref({ page: "pupil-year-index" });
 
       expect(res.props.backUrl).toEqual(backUrl);
     });

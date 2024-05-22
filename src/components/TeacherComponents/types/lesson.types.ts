@@ -70,6 +70,7 @@ export type LessonOverviewInPathway = LessonBase & {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
+  updatedAt: string;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (

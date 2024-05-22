@@ -1,13 +1,15 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import Link from "next/link";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import { resolveOakHref } from "@/common-lib/urls";
-import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 
-export { getStaticPaths } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+type PupilLessonListingURLParams = {
+  programmeSlug: string;
+  unitSlug: string;
+};
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingBrowseData;
@@ -16,6 +18,7 @@ export type LessonListingPageProps = {
 const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
   const unitData = curriculumData[0]?.unitData;
   const programmeFields = curriculumData[0]?.programmeFields;
+  const programmeSlug = curriculumData[0]?.programmeSlug;
 
   const orderedCurriculumData = curriculumData.sort((a, b) => {
     const aLessonOrder = a.supplementaryData?.orderInUnit;
@@ -23,38 +26,29 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
     return aLessonOrder - bLessonOrder;
   });
 
-  console.log("curriculumData", curriculumData);
+  if (
+    unitData === undefined ||
+    programmeFields === undefined ||
+    programmeSlug === undefined
+  ) {
+    throw new Error("unitData or programmeFields is undefined");
+  }
   return (
-    <div>
-      <h1>{unitData?.title}</h1>
-      <h2>{programmeFields?.subject}</h2>
-      <h3>{programmeFields?.yearDescription}</h3>
-      <ol>
-        {orderedCurriculumData.map((lesson) => {
-          const lessonData = lesson.lessonData;
-          return (
-            <li key={lesson.lessonSlug}>
-              <Link
-                href={resolveOakHref({
-                  page: "pupil-lesson",
-                  lessonSlug: lesson.lessonSlug,
-                  programmeSlug: lesson.programmeSlug,
-                  unitSlug: lesson.unitSlug,
-                })}
-              >
-                {lessonData?.title}
-              </Link>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+    <PupilViewsLessonListing
+      unitData={unitData}
+      programmeFields={programmeFields}
+      orderedCurriculumData={orderedCurriculumData}
+      programmeSlug={programmeSlug}
+    />
   );
 };
 
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilLessonListingURLParams>;
+
 export const getStaticProps: GetStaticProps<
   LessonListingPageProps,
-  URLParams
+  PupilLessonListingURLParams
 > = async (context) => {
   return getPageProps({
     page: "pupil-lesson-listing::getStaticProps",
