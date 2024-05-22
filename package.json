@@ -71,7 +71,7 @@
     "@hubspot/api-client": "^9.1.1",
     "@mux/mux-node": "^8.5.1",
     "@mux/mux-player-react": "^2.6.0",
-    "@oaknational/oak-components": "^0.34.0",
+    "@oaknational/oak-components": "^0.37.0",
     "@oaknational/oak-curriculum-schema": "^1.9.0",
     "@portabletext/react": "^3.0.11",
     "@react-aria/aria-modal-polyfill": "^3.7.7",
