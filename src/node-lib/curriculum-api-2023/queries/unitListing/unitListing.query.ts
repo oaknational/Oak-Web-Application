@@ -2,6 +2,7 @@ import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-s
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
+import { toSentenceCase } from "../../helpers";
 
 import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
@@ -59,7 +60,7 @@ const unitListingQuery =
     return {
       programmeSlug: args.programmeSlug,
       keyStageSlug: programmeFields.keystage_slug,
-      keyStageTitle: programmeFields.keystage_description,
+      keyStageTitle: toSentenceCase(programmeFields.keystage_description),
       examBoardSlug: programmeFields.examboard_slug,
       examBoardTitle: programmeFields.examboard,
       subjectSlug: programmeFields.subject_slug,
