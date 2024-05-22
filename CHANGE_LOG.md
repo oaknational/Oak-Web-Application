@@ -1,3 +1,28 @@
+# [1.442.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.441.0...v1.442.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* convert ks to sentence case ([9a6121d](https://github.com/oaknational/Oak-Web-Application/commit/9a6121d73044997f9853428ac9a92e354b887637))
+* linting ([cd2b200](https://github.com/oaknational/Oak-Web-Application/commit/cd2b200648a7dc7da37567457d66e810efc185d3))
+* package json ([9443dec](https://github.com/oaknational/Oak-Web-Application/commit/9443dec0b67004c5eea9291dd7722fab3d5e152a))
+* programme heading ([095b81c](https://github.com/oaknational/Oak-Web-Application/commit/095b81c3d306c283e156effdfaf857e68867dd00))
+* use enum types from curric schema ([24dd5fa](https://github.com/oaknational/Oak-Web-Application/commit/24dd5fa3e6040f199c7ee9e966b2941cedbca64a))
+
+
+### Features
+
+* add error messages ([e2224ec](https://github.com/oaknational/Oak-Web-Application/commit/e2224ec55e6dacaaa08d201e8581d18005521f4d))
+* add fn to filter out core tier ([7f3a007](https://github.com/oaknational/Oak-Web-Application/commit/7f3a0075eea5fc4d215740c05156ce6e93c64bfa))
+* add method to get units for a programme ([fa9afb1](https://github.com/oaknational/Oak-Web-Application/commit/fa9afb1935dba4e0310b204b7a0fe27633f71b6d))
+* add new unit query and tier generation ([bf83721](https://github.com/oaknational/Oak-Web-Application/commit/bf8372149bac6633e70ff30a923bf2275e141443))
+* add tierCount query and method ([d35c3a9](https://github.com/oaknational/Oak-Web-Application/commit/d35c3a975ce4ff6a98ea7b1d231382ea4109dd63))
+* get learning themes and handle optionality ([edd69d4](https://github.com/oaknational/Oak-Web-Application/commit/edd69d435f4bcf2094d095fa3234d75919370175))
+* order units ([3f53887](https://github.com/oaknational/Oak-Web-Application/commit/3f538878f70b7d2c5343d73d4a4615a626e1eb6c))
+* remove unused fields in schema and update mock data ([04b0a21](https://github.com/oaknational/Oak-Web-Application/commit/04b0a2199dd2ea646167c7594a11b6ec961fc827))
+* sort learning themes alphabetically ([0a41cb4](https://github.com/oaknational/Oak-Web-Application/commit/0a41cb4f54119627415e7ce3206b9a4157d3d157))
+* sort tiers by displayorder ([432d6f7](https://github.com/oaknational/Oak-Web-Application/commit/432d6f7192c039673ee787b5d11a64c82451f18d))
+
 # [1.441.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.440.1...v1.441.0) (2024-05-22)
 
 
