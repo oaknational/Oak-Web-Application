@@ -28,10 +28,14 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
               <w:pageBreakBefore/>
             </w:pPr>
             <w:r>
+              <w:rPr>
+                <w:sz w:val="36"/>
+              </w:rPr>
               <w:t xml:space="preserve">Thread: </w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="36"/>
                 <w:b/>
               </w:rPr>
               <w:t>${thread.title}</w:t>
@@ -51,6 +55,7 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
               <w:r>
                 <w:rPr>
                   <w:b/>
+                  <w:sz w:val="28"/>
                 </w:rPr>
                 <w:t>Year ${year}</w:t>
               </w:r>
