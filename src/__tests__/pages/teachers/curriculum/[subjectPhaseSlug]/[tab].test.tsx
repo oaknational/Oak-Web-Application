@@ -10,7 +10,6 @@ import CurriculumInfoPage, {
   formatCurriculumUnitsData,
   createThreadOptions,
   createYearOptions,
-  findDuplicateUnitSlugs,
   createInitialYearFilterSelection,
   createUnitsListingByYear,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
@@ -621,11 +620,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("should return expected props", async () => {
+      const unitsTabFixture = curriculumUnitsTabFixture();
+      unitsTabFixture.units.sort((a, b) => a.order - b.order);
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
+      mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
@@ -642,7 +643,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
-          curriculumUnitsFormattedData: curriculumUnitsFormattedData,
+          curriculumUnitsFormattedData:
+            formatCurriculumUnitsData(unitsTabFixture),
         },
       });
     });
@@ -693,15 +695,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(createYearOptions(unitData)).toEqual(
         scienceSecondaryAQAYearOptions,
       );
-    });
-  });
-
-  describe("findDuplicateUnitSlugs", () => {
-    it("Should find duplicate slugs for units", () => {
-      const duplicateSlug =
-        "coordination-and-control-maintaining-a-constant-internal-environment";
-      const duplicateSlugs = new Set([duplicateSlug]);
-      expect(findDuplicateUnitSlugs(unitData)).toEqual(duplicateSlugs);
     });
   });
 
