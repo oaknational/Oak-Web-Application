@@ -179,7 +179,7 @@ describe("tracking", () => {
     expect(unitSelected).toHaveBeenCalledTimes(1);
 
     expect(unitSelected).toHaveBeenCalledWith({
-      keyStageTitle: "Key stage 4",
+      keyStageTitle: "Key Stage 4",
       keyStageSlug: "ks4",
       analyticsUseCase: "Teacher",
       subjectTitle: "Computing",
