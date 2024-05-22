@@ -48,12 +48,17 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     breadcrumb.push(tierDescription);
   }
 
+  console.log(programmeFields);
+
+  const optionality = programmeFields?.optionality;
+
   const LessonListingTitle = (
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
       iconName={`subject-${subjectSlug}`}
       title={unitData?.title}
       breadcrumbs={breadcrumb}
+      optionalityTitle={optionality}
     />
   );
 
