@@ -43,9 +43,10 @@ describe("PupilViewsUnitListing", () => {
   it("should render the unit titles and number of lessons", () => {
     const data = unitBrowseDataFixture({
       programmeSlug: "maths-secondary-year-10-aqa-core",
+      lessonCount: 26,
     });
 
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           programmeFields={data.programmeFields}
@@ -54,6 +55,8 @@ describe("PupilViewsUnitListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("unit-title")).toBeInTheDocument();
+    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
+    expect(count).toEqual("(26)");
   });
 
   it("should render the unit titles in the correct order", () => {
@@ -155,6 +158,7 @@ describe("PupilViewsUnitListing", () => {
         supplementaryData: { unitOrder: 2 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
         unitSlug: "unit-slug-1-2",
+        lessonCount: 26,
       }),
       unitBrowseDataFixture({
         unitData: {
@@ -167,6 +171,7 @@ describe("PupilViewsUnitListing", () => {
         supplementaryData: { unitOrder: 2 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
         unitSlug: "unit-slug-1-2",
+        lessonCount: 26,
       }),
       unitBrowseDataFixture({
         unitData: {
@@ -180,6 +185,7 @@ describe("PupilViewsUnitListing", () => {
         unitSlug: "unit-slug-1-2",
         supplementaryData: { unitOrder: 1 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
+        lessonCount: 26,
       }),
     ];
 
@@ -187,7 +193,7 @@ describe("PupilViewsUnitListing", () => {
       throw new Error("No curriculum data");
     }
 
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           units={data}
@@ -198,6 +204,9 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("unit-title-1")).toBeInTheDocument();
     expect(getByText("optional title 1")).toBeInTheDocument();
     expect(getByText("optional title 2")).toBeInTheDocument();
+
+    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
+    expect(count).toEqual("(52)");
   });
   it("should render OakPupilListitem if only one optionality option", () => {
     const data = [
@@ -213,6 +222,7 @@ describe("PupilViewsUnitListing", () => {
         supplementaryData: { unitOrder: 2 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
         unitSlug: "unit-slug-1",
+        lessonCount: 26,
       }),
       unitBrowseDataFixture({
         unitData: {
@@ -225,6 +235,7 @@ describe("PupilViewsUnitListing", () => {
         supplementaryData: { unitOrder: 2 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
         unitSlug: "unit-slug-1-2",
+        lessonCount: 52,
       }),
     ];
 
@@ -232,7 +243,7 @@ describe("PupilViewsUnitListing", () => {
       throw new Error("No curriculum data");
     }
 
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           units={data}
@@ -241,5 +252,8 @@ describe("PupilViewsUnitListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("unit-title-1 - optional title 1")).toBeInTheDocument();
+
+    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
+    expect(count).toEqual("(26)");
   });
 });
