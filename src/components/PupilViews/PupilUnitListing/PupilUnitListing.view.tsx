@@ -126,6 +126,31 @@ export const PupilViewsUnitListing = ({
                     unavailable={unit.expired}
                   />
                 );
+            } else if (optionalityUnit.length === 2) {
+              const filteredUnit = optionalityUnit.filter(
+                (unit) => unit.programmeFields.optionality,
+              );
+              const unit = filteredUnit[0];
+              if (unit) {
+                const optionality = unit.programmeFields.optionality;
+                if (optionality) {
+                  return (
+                    <OakPupilJourneyListItem
+                      key={unit.unitSlug}
+                      title={`${unit.unitData.title} - ${optionality}`}
+                      index={i + 1}
+                      numberOfLessons={unit.lessonCount}
+                      as="a"
+                      href={resolveOakHref({
+                        page: "pupil-lesson-index",
+                        programmeSlug: unit.programmeSlug,
+                        unitSlug: unit.unitSlug,
+                      })}
+                      unavailable={unit.expired}
+                    />
+                  );
+                }
+              }
             } else {
               if (optionalityUnit[0]) {
                 const title = optionalityUnit[0].unitData.title;

@@ -141,7 +141,7 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Foundation")).toBeInTheDocument();
     expect(getByText("AQA")).toBeInTheDocument();
   });
-  it("should render units with optionality correctly", () => {
+  it("should render units with optionality units if more than one option", () => {
     const data = [
       unitBrowseDataFixture({
         unitData: {
@@ -151,6 +151,18 @@ describe("PupilViewsUnitListing", () => {
         programmeFields: {
           ...unitBrowseDataFixture({}).programmeFields,
           optionality: "optional title 1",
+        },
+        supplementaryData: { unitOrder: 2 },
+        programmeSlug: "maths-secondary-year-10-aqa-core",
+        unitSlug: "unit-slug-1-2",
+      }),
+      unitBrowseDataFixture({
+        unitData: {
+          ...unitBrowseDataFixture({}).unitData,
+          title: "unit-title-1",
+        },
+        programmeFields: {
+          ...unitBrowseDataFixture({}).programmeFields,
         },
         supplementaryData: { unitOrder: 2 },
         programmeSlug: "maths-secondary-year-10-aqa-core",
@@ -186,5 +198,48 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("unit-title-1")).toBeInTheDocument();
     expect(getByText("optional title 1")).toBeInTheDocument();
     expect(getByText("optional title 2")).toBeInTheDocument();
+  });
+  it("should render OakPupilListitem if only one optionality option", () => {
+    const data = [
+      unitBrowseDataFixture({
+        unitData: {
+          ...unitBrowseDataFixture({}).unitData,
+          title: "unit-title-1",
+        },
+        programmeFields: {
+          ...unitBrowseDataFixture({}).programmeFields,
+          optionality: "optional title 1",
+        },
+        supplementaryData: { unitOrder: 2 },
+        programmeSlug: "maths-secondary-year-10-aqa-core",
+        unitSlug: "unit-slug-1",
+      }),
+      unitBrowseDataFixture({
+        unitData: {
+          ...unitBrowseDataFixture({}).unitData,
+          title: "unit-title-1",
+        },
+        programmeFields: {
+          ...unitBrowseDataFixture({}).programmeFields,
+        },
+        supplementaryData: { unitOrder: 2 },
+        programmeSlug: "maths-secondary-year-10-aqa-core",
+        unitSlug: "unit-slug-1-2",
+      }),
+    ];
+
+    if (!data[0]) {
+      throw new Error("No curriculum data");
+    }
+
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          units={data}
+          programmeFields={data[0].programmeFields}
+        />
+      </OakThemeProvider>,
+    );
+    expect(getByText("unit-title-1 - optional title 1")).toBeInTheDocument();
   });
 });
