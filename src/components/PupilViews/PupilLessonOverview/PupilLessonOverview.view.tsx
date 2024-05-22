@@ -178,7 +178,11 @@ export const PupilViewsLessonOverview = ({
               </OakBox>
             )}
             {contentGuidance && (
-              <OakBox $display={["none", "block"]} $mt="space-between-xl">
+              <OakBox
+                $display={["none", "block"]}
+                $mt="space-between-xl"
+                data-testid="content-guidance-info"
+              >
                 <OakFlex
                   $gap="space-between-ssx"
                   $flexDirection="row"

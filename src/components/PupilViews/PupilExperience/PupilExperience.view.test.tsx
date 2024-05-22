@@ -173,4 +173,49 @@ describe("PupilExperienceView", () => {
 
     expect(getByText("PupilExpiredView", { exact: false })).toBeInTheDocument();
   });
+
+  it("should render the content guidance on lessons that have guidance", () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId, getByRole } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+    const dialog = getByRole("alertdialog");
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(contentguidanceLabel);
+    expect(dialog).toHaveTextContent(supervisionLevel);
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      contentguidanceLabel,
+    );
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      supervisionLevel,
+    );
+  });
 });
