@@ -1,3 +1,24 @@
+## [1.440.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.440.0...v1.440.1) (2024-05-21)
+
+# [1.440.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.6...v1.440.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* add type to program map ([09bdb4b](https://github.com/oaknational/Oak-Web-Application/commit/09bdb4b193b5df4fc85825655512745314ef12f3))
+
+
+### Features
+
+* new programme listing query ([6080da6](https://github.com/oaknational/Oak-Web-Application/commit/6080da623c1f3d60b03e9be37ed90e8a9bf416e0))
+
+## [1.439.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.5...v1.439.6) (2024-05-21)
+
+
+### Bug Fixes
+
+* remove references to duplicateUnitSlugs and sort units to display examboard first ([ded3549](https://github.com/oaknational/Oak-Web-Application/commit/ded35492de9191611a8630adc2ebacf17b34c44b))
+
 ## [1.439.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.4...v1.439.5) (2024-05-21)
 
 ## [1.439.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.439.3...v1.439.4) (2024-05-21)

@@ -75,7 +75,6 @@ type CurriculumVisualiserProps = {
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
   handleSelectDiscipline: (year: string, discipline: Discipline) => void;
-  duplicateUnitSlugs: Set<string>;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
