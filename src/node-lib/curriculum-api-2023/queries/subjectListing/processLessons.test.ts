@@ -84,7 +84,6 @@ describe("processLessons", () => {
     ] as SubjectDataArrayRaw;
 
     const result = processLessons(lessons);
-    console.log(result, "<  ");
     expect(result).toEqual([
       {
         subjectTitle: "Combined science",
