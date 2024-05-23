@@ -40072,7 +40072,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', subjects: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'pf_keystages', keystage?: string | null, slug?: string | null, description?: string | null, display_order?: number | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'pf_keystages', keystage?: string | null, slug?: string | null, description?: string | null, display_order?: number | null }> };
 
 export type SubjectListingCountQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -40714,12 +40714,14 @@ export const SpecialistUnitListingDocument = gql`
     `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
-  subjects: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
-    distinct_on: programme_slug
   ) {
     programme_fields
     is_legacy
+    null_unitvariant
+    unit_slug
+    lesson_slug
     programme_slug
   }
   key_stages: pf_keystages(where: {slug: {_neq: "ks5"}}) {
