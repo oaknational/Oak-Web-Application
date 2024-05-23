@@ -39924,7 +39924,7 @@ export type ProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing_5_0_0', keyStageTitle?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, programmes?: any | null }> };
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
 
 export type PupilLessonQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp>;
@@ -40074,13 +40074,6 @@ export type SubjectListingQueryVariables = Exact<{
 
 export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'pf_keystages', keystage?: string | null, slug?: string | null, description?: string | null, display_order?: number | null }> };
 
-export type SubjectListingCountQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
-}>;
-
-
-export type SubjectListingCountQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null }, unitCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null } };
-
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -40096,12 +40089,27 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', teachersSitemap: Array<{ __typename?: 'published_mv_sitemap_6_0_1', urls?: string | null }> };
 
+export type ThreadsForUnitQueryVariables = Exact<{
+  unitId?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ThreadsForUnitQuery = { __typename?: 'query_root', threads: Array<{ __typename?: 'published_mv_threads_by_unit_1_0_0', threads?: any | null, unit_id?: number | null }> };
+
+export type TiersQueryVariables = Exact<{
+  _contains: Scalars['jsonb']['input'];
+  isLegacy: Scalars['Boolean']['input'];
+}>;
+
+
+export type TiersQuery = { __typename?: 'query_root', tiers: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, programme_slug?: string | null }> };
+
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_5_0_1', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, lesson_data?: any | null, lesson_slug?: string | null, null_unitvariant?: any | null, programme_fields?: any | null, programme_slug?: string | null, supplementary_data?: any | null, unit_data?: any | null, unit_slug?: string | null }> };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -40327,14 +40335,14 @@ export const LessonShareDocument = gql`
     `;
 export const ProgrammeListingDocument = gql`
     query programmeListing($keyStageSlug: String, $subjectSlug: String, $isLegacy: Boolean) {
-  programmes: published_mv_programme_listing_5_0_0(
-    where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}, isLegacy: {_eq: $isLegacy}}
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {programme_fields: {_contains: {subject_slug: $subjectSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
+    distinct_on: programme_slug
   ) {
-    keyStageTitle
-    keyStageSlug
-    subjectSlug
-    subjectTitle
-    programmes
+    lesson_data
+    programme_fields
+    is_legacy
+    programme_slug
   }
 }
     `;
@@ -40732,24 +40740,6 @@ export const SubjectListingDocument = gql`
   }
 }
     `;
-export const SubjectListingCountDocument = gql`
-    query SubjectListingCount($programmeSlug: String!) {
-  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_slug: {_eq: $programmeSlug}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: lesson_slug)
-    }
-  }
-  unitCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_slug: {_eq: $programmeSlug}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: unit_slug)
-    }
-  }
-}
-    `;
 export const SubjectPhaseOptionsDocument = gql`
     query subjectPhaseOptions {
   options: published_mv_subject_phase_options_0_1 {
@@ -40774,23 +40764,38 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
+export const ThreadsForUnitDocument = gql`
+    query threadsForUnit($unitId: Int) {
+  threads: published_mv_threads_by_unit_1_0_0(where: {unit_id: {_eq: $unitId}}) {
+    threads
+    unit_id
+  }
+}
+    `;
+export const TiersDocument = gql`
+    query tiers($_contains: jsonb!, $isLegacy: Boolean!) {
+  tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {programme_fields: {_contains: $_contains}, is_legacy: {_eq: $isLegacy}}
+  ) {
+    programme_fields
+    programme_slug
+  }
+}
+    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_5_0_1(
-    where: {programmeSlug: {_eq: $programmeSlug}}
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {programme_slug: {_eq: $programmeSlug}}
   ) {
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    totalUnitCount: unitCount
-    tiers
-    units
-    examBoardTitle
-    examBoardSlug
-    learningThemes
+    is_legacy
+    lesson_data
+    lesson_slug
+    null_unitvariant
+    programme_fields
+    programme_slug
+    supplementary_data
+    unit_data
+    unit_slug
   }
 }
     `;
@@ -40889,9 +40894,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
-    SubjectListingCount(variables: SubjectListingCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingCountQuery>(SubjectListingCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SubjectListingCount', 'query');
-    },
     subjectPhaseOptions(variables?: SubjectPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsQuery>(SubjectPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptions', 'query');
     },
@@ -40900,6 +40902,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
+    },
+    threadsForUnit(variables?: ThreadsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ThreadsForUnitQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query');
+    },
+    tiers(variables: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
