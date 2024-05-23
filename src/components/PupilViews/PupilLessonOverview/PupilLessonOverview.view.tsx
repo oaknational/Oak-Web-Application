@@ -6,10 +6,12 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakIcon,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
   OakPrimaryButton,
+  OakPupilContentGuidance,
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
@@ -29,6 +31,8 @@ type PupilViewsLessonOverviewProps = {
   subjectTitle: string;
   subjectSlug: string;
   pupilLessonOutcome?: string;
+  contentGuidance?: OakPupilContentGuidance[] | null;
+  supervisionLevel?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
   backUrl?: string | null;
@@ -40,6 +44,8 @@ export const PupilViewsLessonOverview = ({
   yearTitle,
   subjectSlug,
   pupilLessonOutcome,
+  contentGuidance,
+  supervisionLevel,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
   backUrl,
@@ -169,6 +175,31 @@ export const PupilViewsLessonOverview = ({
                   Lesson outcome
                 </OakHeading>
                 <OakSpan $font="body-1">{pupilLessonOutcome}</OakSpan>
+              </OakBox>
+            )}
+            {contentGuidance && (
+              <OakBox
+                $display={["none", "block"]}
+                $mt="space-between-xl"
+                data-testid="content-guidance-info"
+              >
+                <OakFlex
+                  $gap="space-between-ssx"
+                  $flexDirection="row"
+                  $alignItems="center"
+                  $mb="space-between-s"
+                >
+                  <OakIcon iconName="warning" $colorFilter="amber" />
+                  <OakHeading tag="h2" $font="heading-7">
+                    Content guidance
+                  </OakHeading>
+                </OakFlex>
+                <OakSpan $font="body-1">
+                  {contentGuidance.map(
+                    (item) => item.contentguidanceLabel + " ",
+                  )}
+                  {supervisionLevel}
+                </OakSpan>
               </OakBox>
             )}
           </OakGridArea>
