@@ -63,10 +63,13 @@ function buildYearRow(children: string) {
   `;
 }
 
+type Slug = { childSubject?: string; tier?: string };
+
 function buildYear(
   year: string,
   unitListData: CombinedCurriculumData["units"],
   index: number,
+  slug: Slug,
 ) {
   const rows = [];
   const units = unitListData;
@@ -84,6 +87,10 @@ function buildYear(
     );
   }
 
+  const subjectTierTitle = [slug.childSubject, slug.tier]
+    .filter(Boolean)
+    .join("/");
+
   const xml = `
     <w:sectPr>
       <w:p>
@@ -97,7 +104,7 @@ function buildYear(
                 <w:szCs w:val="44"/>
                 <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
             </w:rPr>
-            <w:t xml:space="preserve">Year ${year} units</w:t>
+            <w:t xml:space="preserve">Year ${year} units - ${subjectTierTitle}</w:t>
         </w:r>
       </w:p>
       <w:p>
@@ -136,11 +143,12 @@ function buildYear(
 }
 
 export default async function buildUnitsTable(
+  slug: Slug,
   unitsDataList: CombinedCurriculumData["units"],
 ) {
   const unitsData = groupBy(unitsDataList, "year");
   const sections = Object.entries(unitsData).map(([key, val], index) => {
-    return buildYear(key, val, index);
+    return buildYear(key, val, index, slug);
   });
 
   sections.push(
@@ -156,12 +164,15 @@ export default async function buildUnitsTable(
   return sections;
 }
 
-export function unitsTablePatch(units: CombinedCurriculumData["units"]) {
+export function unitsTablePatch(
+  slug: Slug,
+  units: CombinedCurriculumData["units"],
+) {
   return async (): Promise<Element> => {
     return {
       type: "element",
       name: "$FRAGMENT$",
-      elements: await buildUnitsTable(units),
+      elements: await buildUnitsTable(slug, units),
     };
   };
 }
