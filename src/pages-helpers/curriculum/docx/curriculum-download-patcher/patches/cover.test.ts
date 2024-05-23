@@ -31,13 +31,11 @@ describe("coverPatch", () => {
   });
 
   it("should modify node for KS1-2", async () => {
-    const patcher = coverPatch(
-      {
-        phaseTitle: "Secondary",
-        subjectTitle: "Science",
-      } as CombinedCurriculumData,
-      "AQA",
-    );
+    const patcher = coverPatch({
+      phaseTitle: "Secondary",
+      subjectTitle: "Science",
+      examboardTitle: "AQA",
+    } as CombinedCurriculumData);
 
     const keyStageNode = await patcher({
       type: "text",

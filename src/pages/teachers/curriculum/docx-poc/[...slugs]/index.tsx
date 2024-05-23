@@ -1,5 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { fetchSubjectPhasePickerData } from "../..";
+
 import LiveDataSection from "@/components/CurriculumComponents/DocxPOC/components/LiveDataSection";
 import {
   download,
@@ -16,18 +18,18 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CurriculumDownlodsPatch, {
   CombinedCurriculumData,
 } from "@/pages-helpers/curriculum/docx/curriculum-download-patcher";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type PageProps = {
   combinedCurriculumData: CombinedCurriculumData;
-  examboardSlug: string;
+  examboard: string;
 };
 
-export default function Page({
-  combinedCurriculumData,
-  examboardSlug,
-}: PageProps) {
+export default function Page({ combinedCurriculumData }: PageProps) {
   const pageTitle = `${combinedCurriculumData?.subjectTitle} - ${combinedCurriculumData?.phaseTitle}${
-    examboardSlug ? ` - ${examboardSlug.toLocaleUpperCase()}` : ""
+    combinedCurriculumData.examboardTitle
+      ? ` (${combinedCurriculumData.examboardTitle})`
+      : ""
   }`;
 
   const handleLiveDataClick = (file: File) => {
@@ -42,7 +44,6 @@ export default function Page({
       const moddedFile = await CurriculumDownlodsPatch(
         uint8Array,
         combinedCurriculumData,
-        examboardSlug,
       );
 
       download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);
@@ -114,17 +115,26 @@ export const getServerSideProps = async ({
       notFound: true,
     };
   }
+  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
+  const subject = subjectPhaseOptions.subjects.find(
+    (subject) => subject.slug === subjectSlug,
+  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  const examboard =
+    subject?.examboards?.find(
+      (examboard) => examboard.slug === examboardSlug,
+    ) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
+    examboardTitle: examboard?.title,
   };
 
   return {
     props: {
       combinedCurriculumData,
-      examboardSlug, // Temporary, as it seems the examboard value isn't being brought over in CurriculumOverviewMVData
     },
   };
 };
