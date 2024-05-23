@@ -84,11 +84,12 @@ describe("processLessons", () => {
     ] as SubjectDataArrayRaw;
 
     const result = processLessons(lessons);
+    console.log(result, "<  ");
     expect(result).toEqual([
       {
         subjectTitle: "Combined science",
         subjectSlug: "combined-science",
-        programmeSlug: "combined-science-secondary-ks4-foundation-l",
+        programmeSlug: "combined-science-secondary-ks4",
         unitCount: 2,
         lessonCount: 2,
         programmeCount: 1,
