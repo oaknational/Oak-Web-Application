@@ -10,6 +10,8 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     programme_fields
     is_legacy
     null_unitvariant
+    supplementary_data
+    lesson_data
     unit_data
     unit_slug
     lesson_slug

@@ -1,11 +1,13 @@
+import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
+
 import { SubjectDataArrayRaw } from "./subjectListing.schema";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 interface UnprocessedSubject {
   [key: string]: {
-    subjectTitle: string;
-    subjectSlug: string;
+    subjectTitle: typeof subjects | string;
+    subjectSlug: typeof subjectSlugs | string;
     programmeSlug: string;
     unitIds: Set<number>;
     lessonSlugs: Set<string>;
@@ -14,8 +16,8 @@ interface UnprocessedSubject {
 }
 
 interface ProcessedSubject {
-  subjectTitle: string;
-  subjectSlug: string;
+  subjectTitle: typeof subjects | string;
+  subjectSlug: typeof subjectSlugs | string;
   programmeSlug: string;
   unitCount: number;
   lessonCount: number;
@@ -70,6 +72,5 @@ export const processLessons = (
       programmeCount: subject.programmeSlugs.size,
     }),
   );
-  console.log(processedSubjects);
   return processedSubjects;
 };

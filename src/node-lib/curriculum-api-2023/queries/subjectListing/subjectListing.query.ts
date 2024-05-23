@@ -7,26 +7,6 @@ import { processLessons } from "./processLesson";
 
 import OakError from "@/errors/OakError";
 
-type Subject = {
-  subjectSlug: string;
-  subjectTitle: string;
-  programmeSlug: string;
-  programmeCount: number;
-  unitCount: number;
-  lessonCount: number;
-};
-
-export type UnprocessedSubject = {
-  subjectSlug: string;
-  subjectTitle: string;
-  programmeSlug: string;
-  programmeSlugs: Set<string>;
-  unitSlugs: Set<string>;
-  lessonSlugs: Set<string>;
-};
-
-export type Subjects = { [programme_slug: string]: Subject };
-
 const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string; isLegacy: boolean }) => {
     const res = await sdk.subjectListing(args);
