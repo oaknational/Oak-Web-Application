@@ -25,6 +25,7 @@ import { unitPreviousPatch } from "./patches/unitPrevious";
 import { unitNextPatch } from "./patches/unitNext";
 import { mainThreadsPatch } from "./patches/mainThreads";
 import { notUndefined } from "./patches/util";
+import { coverPatch } from "./patches/cover";
 import { backPatch } from "./patches/back";
 
 import {
@@ -50,6 +51,7 @@ export default async function CurriculumDownlodsPatch(
         doc,
         (el: Element, parent?: Element) => {
           return pipeElementThrough(el, parent, [
+            coverPatch(combinedCurriculumData),
             unitsTablePatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             tableOfContentsPatch(),

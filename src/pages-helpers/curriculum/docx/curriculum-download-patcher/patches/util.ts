@@ -30,7 +30,7 @@ export const textReplacer = (
 };
 
 export function threadUnitByYear(units: Unit[], threadSlug: string) {
-  const output = {} as Record<string, { thread: Thread; unit: Unit }[]>;
+  const output = {} as Record<string, Unit[]>;
 
   units.forEach((unit: Unit) => {
     unit.threads.forEach((thread) => {
@@ -38,12 +38,10 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
         output[unit.year] = output[unit.year] ?? [];
         if (
           output[unit.year] &&
-          !output[unit.year]!.find(({ unit: u }) => u.slug === unit.slug)
+          // Check if unit is not already within output
+          !output[unit.year]!.find((yearUnit) => yearUnit.slug === unit.slug)
         ) {
-          output[unit.year]!.push({
-            thread,
-            unit,
-          });
+          output[unit.year]!.push(unit);
         }
       }
     });
