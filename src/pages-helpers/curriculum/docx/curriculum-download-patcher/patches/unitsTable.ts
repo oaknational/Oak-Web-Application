@@ -2,10 +2,7 @@ import { groupBy } from "lodash";
 import type { Element } from "xml-js";
 
 import { xmlElementToJson } from "../../xml";
-import { checkWithinElement } from "../../docx";
 import { CombinedCurriculumData } from "..";
-
-import { textIncludes } from "./util";
 
 function buildYearColumn({ index, title }: { title: string; index: number }) {
   return `
@@ -159,23 +156,12 @@ export default async function buildUnitsTable(
   return sections;
 }
 
-export function unitsTablePatch(
-  combinedCurriculumData: CombinedCurriculumData,
-) {
-  return async (el: Element) => {
-    if (
-      el.type === "element" &&
-      el.name === "w:p" &&
-      checkWithinElement(
-        el,
-        (el: Element) =>
-          el.type === "text" && textIncludes(el.text, "{{=UNITS_TABLE}}"),
-      )
-    ) {
-      const out = xmlElementToJson(`<w:sectPr></w:sectPr>`);
-      out.elements = await buildUnitsTable(combinedCurriculumData.units);
-      return out;
-    }
-    return el;
+export function unitsTablePatch(units: CombinedCurriculumData["units"]) {
+  return async (): Promise<Element> => {
+    return {
+      type: "element",
+      name: "$FRAGMENT$",
+      elements: await buildUnitsTable(units),
+    };
   };
 }

@@ -1,4 +1,5 @@
 import { Element } from "xml-js";
+import { groupBy } from "lodash";
 
 import {
   mapOverElements,
@@ -50,7 +51,6 @@ export default async function CurriculumDownlodsPatch(
         doc,
         (el: Element, parent?: Element) => {
           return pipeElementThrough(el, parent, [
-            unitsTablePatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             tableOfContentsPatch(),
             subjectExplainerPatch(combinedCurriculumData),
@@ -68,26 +68,39 @@ export default async function CurriculumDownlodsPatch(
         docMod1!,
         "UNIT_PAGE",
         async (template: Element) => {
-          const promises = combinedCurriculumData.units.map((unit, index) => {
+          const yearUnits = groupBy(combinedCurriculumData.units, "year");
+          const promises = Object.entries(yearUnits).map(async ([, units]) => {
             const el = structuredClone(template);
-            return mapOverElements(el, (el, parent) => {
-              return pipeElementThrough(el, parent, [
-                unitTitlePatch(unit),
-                unitNumberPatch(unit, index),
-                unitLessonsPatch(unit),
-                unitYearPatch(unit),
-                unitThreadsPatch(unit),
-                unitPreviousPatch(unit),
-                unitNextPatch(unit),
-              ]);
-            });
+
+            const table = await unitsTablePatch(units)();
+
+            const unitsEls = await Promise.all(
+              units.map((unit, index) => {
+                return mapOverElements(el, (el, parent) => {
+                  return pipeElementThrough(el, parent, [
+                    unitTitlePatch(unit),
+                    unitNumberPatch(unit, index),
+                    unitLessonsPatch(unit),
+                    unitYearPatch(unit),
+                    unitThreadsPatch(unit),
+                    unitPreviousPatch(unit),
+                    unitNextPatch(unit),
+                  ]);
+                });
+              }),
+            );
+
+            return {
+              type: "element",
+              name: "$FRAGMENT$",
+              elements: [table, ...unitsEls.filter(notUndefined)],
+            } as Element;
           });
-          const elements = await Promise.all(promises);
 
           return {
             type: "element",
             name: "$FRAGMENT$",
-            elements: elements.filter(notUndefined),
+            elements: await Promise.all(promises),
           };
         },
       );
