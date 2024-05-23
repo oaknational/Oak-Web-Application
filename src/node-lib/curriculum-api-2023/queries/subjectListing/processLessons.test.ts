@@ -15,6 +15,9 @@ describe("processLessons", () => {
           phase_slug: "secondary",
           examboard_slug: null,
         },
+        unit_data: {
+          unit_id: 1,
+        },
         unit_slug: "atomic-structure-and-the-periodic-table-u68nqqc",
         programme_slug: "combined-science-secondary-ks4-foundation-l",
         lesson_slug: "chemical-formulae-and-conservation-of-mass-jeab35",
@@ -30,6 +33,9 @@ describe("processLessons", () => {
           keystage_description: "Key Stage 4",
           phase_slug: "secondary",
           examboard_slug: null,
+        },
+        unit_data: {
+          unit_id: 1,
         },
         unit_slug: "cells-biology-3p8njnj",
         programme_slug: "combined-science-secondary-ks4-foundation-l",
@@ -47,6 +53,9 @@ describe("processLessons", () => {
           phase_slug: "secondary",
           examboard_slug: "ocr",
         },
+        unit_data: {
+          unit_id: 2,
+        },
         unit_slug: "classification-in-modern-biology",
         programme_slug: "biology-secondary-ks4-higher-ocr",
         lesson_slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -62,6 +71,9 @@ describe("processLessons", () => {
           keystage_description: "Key Stage 4",
           phase_slug: "secondary",
           examboard_slug: "ocr",
+        },
+        unit_data: {
+          unit_id: 2,
         },
         unit_slug: "classification-in-modern-biology",
         programme_slug: "biology-secondary-ks4-higher-aqa",
