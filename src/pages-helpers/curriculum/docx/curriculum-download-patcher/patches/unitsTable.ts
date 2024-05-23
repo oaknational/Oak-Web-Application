@@ -253,6 +253,11 @@ function buildYear(
         </w:tblGrid>
         ${rows.join("")}
       </w:tbl>
+      <w:p>
+        <w:pPr>
+            <w:pageBreakBefore/>
+        </w:pPr>
+      </w:p>
   `;
   return xml;
 }
