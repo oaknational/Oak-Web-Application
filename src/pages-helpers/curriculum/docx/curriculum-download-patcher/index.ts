@@ -7,7 +7,6 @@ import {
   withBlock,
 } from "../docx";
 
-import { unitsTablePatch } from "./patches/unitsTable";
 import { subjectPatch } from "./patches/subject";
 import { tableOfContentsPatch } from "./patches/tableOfContents";
 import { subjectExplainerPatch } from "./patches/subjectExplainer";
@@ -27,12 +26,14 @@ import { mainThreadsPatch } from "./patches/mainThreads";
 import { notUndefined } from "./patches/util";
 import { coverPatch } from "./patches/cover";
 import { backPatch } from "./patches/back";
+import { unitsTablePatch } from "./patches/unitsTable";
 
 import {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
@@ -52,7 +53,6 @@ export default async function CurriculumDownlodsPatch(
         (el: Element, parent?: Element) => {
           return pipeElementThrough(el, parent, [
             coverPatch(combinedCurriculumData),
-            unitsTablePatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             tableOfContentsPatch(),
             subjectExplainerPatch(combinedCurriculumData),
@@ -70,26 +70,112 @@ export default async function CurriculumDownlodsPatch(
         docMod1!,
         "UNIT_PAGE",
         async (template: Element) => {
-          const promises = combinedCurriculumData.units.map((unit, index) => {
-            const el = structuredClone(template);
-            return mapOverElements(el, (el, parent) => {
-              return pipeElementThrough(el, parent, [
-                unitTitlePatch(unit),
-                unitNumberPatch(unit, index),
-                unitLessonsPatch(unit),
-                unitYearPatch(unit),
-                unitThreadsPatch(unit),
-                unitPreviousPatch(unit),
-                unitNextPatch(unit),
-              ]);
-            });
-          });
-          const elements = await Promise.all(promises);
+          const data = formatCurriculumUnitsData(combinedCurriculumData);
+
+          const unitOptions = Object.entries(data.yearData).flatMap(
+            ([year, { childSubjects, tiers, units }]) => {
+              const options: {
+                year: string;
+                tier?: string;
+                childSubject?: string;
+              }[] = [];
+
+              if (childSubjects.length > 0) {
+                for (const childSubject of childSubjects) {
+                  if (tiers.length > 0) {
+                    for (const tier of tiers) {
+                      options.push({
+                        year,
+                        childSubject: childSubject.subject_slug,
+                        tier: tier.tier_slug,
+                      });
+                    }
+                  } else {
+                    options.push({
+                      year,
+                      childSubject: childSubject.subject_slug,
+                    });
+                  }
+                }
+              } else if (tiers.length > 0) {
+                for (const tier of tiers) {
+                  if (childSubjects.length > 0) {
+                    for (const childSubject of childSubjects) {
+                      options.push({
+                        year,
+                        childSubject: childSubject.subject_slug,
+                        tier: tier.tier_slug,
+                      });
+                    }
+                  } else {
+                    options.push({ year, tier: tier.tier_slug });
+                  }
+                }
+              } else {
+                options.push({ year });
+              }
+              return options.map((option) => {
+                return {
+                  ...option,
+                  units: units.filter((unit) => {
+                    if (
+                      option.tier &&
+                      unit.tier_slug !== null &&
+                      unit.tier_slug !== option.tier
+                    ) {
+                      return false;
+                    }
+                    if (
+                      option.childSubject &&
+                      unit.subject_slug !== option.childSubject
+                    ) {
+                      return false;
+                    }
+                    return true;
+                  }),
+                };
+              });
+            },
+          );
+
+          const promises = unitOptions.map(
+            async ({ units, year, childSubject, tier }) => {
+              const el = structuredClone(template);
+
+              const table = await unitsTablePatch(
+                year,
+                { childSubject, tier },
+                units,
+              );
+
+              const unitsEls = await Promise.all(
+                units.map((unit, index) => {
+                  return mapOverElements(el, (el, parent) => {
+                    return pipeElementThrough(el, parent, [
+                      unitTitlePatch(unit),
+                      unitNumberPatch(unit, index),
+                      unitLessonsPatch(unit),
+                      unitYearPatch(unit),
+                      unitThreadsPatch(unit),
+                      unitPreviousPatch(unit),
+                      unitNextPatch(unit),
+                    ]);
+                  });
+                }),
+              );
+
+              return {
+                type: "element",
+                name: "$FRAGMENT$",
+                elements: [table, ...unitsEls.filter(notUndefined)],
+              } as Element;
+            },
+          );
 
           return {
             type: "element",
             name: "$FRAGMENT$",
-            elements: elements.filter(notUndefined),
+            elements: await Promise.all(promises),
           };
         },
       );
