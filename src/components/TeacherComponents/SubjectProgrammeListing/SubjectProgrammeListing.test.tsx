@@ -104,7 +104,7 @@ describe("SubjectProgrammeListing", () => {
       examBoardTitle: null,
       programmeSlug: "maths-secondary-ks4-higher-l",
       subjectTitle: "Maths",
-      tierDisplayOrder: "3",
+      tierDisplayOrder: 3,
       tierSlug: "higher",
       tierTitle: "Higher",
     });

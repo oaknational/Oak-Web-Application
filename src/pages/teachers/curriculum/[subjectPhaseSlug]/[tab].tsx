@@ -77,7 +77,6 @@ export type CurriculumUnitsFormattedData = {
   threadOptions: Thread[];
   yearOptions: string[];
   initialYearSelection: YearSelection;
-  duplicateUnitSlugs: string[];
 };
 
 export type CurriculumInfoPageProps = {
@@ -269,20 +268,6 @@ export function createYearOptions(units: Unit[]): string[] {
   return yearOptions;
 }
 
-export function findDuplicateUnitSlugs(units: Unit[]): Set<string> {
-  const duplicateUnitSlugs = new Set<string>();
-  const unitSlugs = new Set<string>();
-  units.forEach((unit: Unit) => {
-    // Check for duplicate unit slugs
-    if (unitSlugs.has(unit.slug)) {
-      duplicateUnitSlugs.add(unit.slug);
-    } else {
-      unitSlugs.add(unit.slug);
-    }
-  });
-  return duplicateUnitSlugs;
-}
-
 export function createInitialYearFilterSelection(
   yearData: CurriculumUnitsYearData,
 ): YearSelection {
@@ -411,14 +396,12 @@ export function formatCurriculumUnitsData(
   const yearData = createUnitsListingByYear(units);
   const threadOptions = createThreadOptions(units);
   const yearOptions = createYearOptions(units);
-  const duplicateUnitSlugs = findDuplicateUnitSlugs(units);
   const initialYearSelection = createInitialYearFilterSelection(yearData);
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,
     yearOptions,
     initialYearSelection,
-    duplicateUnitSlugs: Array.from(duplicateUnitSlugs),
   };
   return formattedDataCurriculumUnits;
 }
@@ -459,6 +442,17 @@ export const getStaticProps: GetStaticProps<
         };
       }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+
+      // Sort the units to have examboard versions first - this is so non-examboard units are removed
+      // in the visualiser
+      curriculumUnitsTabData.units.sort((a) => {
+        if (a.examboard) {
+          return -1;
+        }
+        return 1;
+      });
+
+      // Sort by unit order
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
 
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(

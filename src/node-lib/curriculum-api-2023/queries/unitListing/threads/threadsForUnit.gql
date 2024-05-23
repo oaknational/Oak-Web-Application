@@ -1,0 +1,8 @@
+query threadsForUnit($unitId: Int) {
+  threads: published_mv_threads_by_unit_1_0_0(
+    where: { unit_id: { _eq: $unitId } }
+  ) {
+    threads
+    unit_id
+  }
+}
