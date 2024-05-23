@@ -2,8 +2,6 @@ import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { SubjectDataArrayRaw } from "./subjectListing.schema";
 
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-
 interface UnprocessedSubject {
   [key: string]: {
     subjectTitle: typeof subjects | string;
@@ -37,7 +35,7 @@ export const processLessons = (
     const { unit_id } = lesson.unit_data;
     const newProgrammeSlug = programme_slug;
     // If there's a tier_slug or examboard_slug, slice the programme_slug after the keystage_slug
-    if ((tier_slug || examboard_slug) && !isSlugLegacy(programme_slug)) {
+    if (tier_slug || examboard_slug) {
       const components = programme_slug.split("-");
       const index = components.indexOf(keystage_slug);
       programme_slug = components.slice(0, index + 1).join("-");
