@@ -1,5 +1,6 @@
+import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
+
 import { processLessons } from "./processLesson";
-import { SubjectDataArrayRaw } from "./subjectListing.schema";
 
 describe("processLessons", () => {
   it("should process lessons correctly", () => {
@@ -81,7 +82,7 @@ describe("processLessons", () => {
           "electron-microscopy-and-the-size-and-scale-of-cells-including-standard-form",
         is_legacy: false,
       },
-    ] as SubjectDataArrayRaw;
+    ] as SyntheticUnitvariantLessons[];
 
     const result = processLessons(lessons);
     expect(result).toEqual([

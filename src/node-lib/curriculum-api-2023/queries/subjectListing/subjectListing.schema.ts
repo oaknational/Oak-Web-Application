@@ -35,16 +35,12 @@ const subjectListingSchema = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const subjectDataArrayRaw = z.array(syntheticUnitvariantLessonsSchema);
-
 export const subjectLisitingRawSchema = z.object({
   subjectLessons: z.array(syntheticUnitvariantLessonsSchema),
   key_stages: z.array(keyStageDataRaw),
 });
 
-export type SubjectDataArrayRaw = z.infer<typeof subjectDataArrayRaw>;
 export type KeyStageSubjectData = z.infer<typeof subjectSchema>;
 export type SubjectListingPageData = z.infer<typeof subjectListingSchema>;
 export type KeyStageData = z.infer<typeof keyStageSchema>;
-export type SubjectListingRawData = z.infer<typeof subjectLisitingRawSchema>;
 export default subjectListingSchema;

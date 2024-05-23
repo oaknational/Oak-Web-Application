@@ -1,6 +1,8 @@
-import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
-
-import { SubjectDataArrayRaw } from "./subjectListing.schema";
+import {
+  subjects,
+  subjectSlugs,
+  SyntheticUnitvariantLessons,
+} from "@oaknational/oak-curriculum-schema";
 
 interface UnprocessedSubject {
   [key: string]: {
@@ -23,7 +25,7 @@ interface ProcessedSubject {
 }
 
 export const processLessons = (
-  lessons: SubjectDataArrayRaw,
+  lessons: SyntheticUnitvariantLessons[],
 ): ProcessedSubject[] => {
   const subjects = {} as UnprocessedSubject;
 
