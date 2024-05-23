@@ -2,14 +2,14 @@ import sdk from "../../sdk";
 
 import subjectListing from "./subjectListing.query";
 
-describe.skip("subjectListing()", () => {
+describe("subjectListing()", () => {
   test("throws a not found error if no subjects are found", async () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            subjects: [],
+            subjectLessons: [],
             key_stages: [],
           }),
         ),
@@ -28,21 +28,30 @@ describe.skip("subjectListing()", () => {
         // @ts-ignore
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            keyStages: [{ keyStages: [] }],
-            keyStageSubjects: [
+            key_stages: [
               {
-                keyStageSlug: "ks4",
-                // keyStageTitle: "Key stage 4", // missing from response
-                subjects: [
-                  {
-                    subjectSlug: "biology",
-                    subjectTitle: "Biology",
-                    unitCount: 1,
-                    lessonCount: 18,
-                    programmeSlug: "biology-secondary-ks4",
-                  },
-                ],
-                subjectsUnavailable: null,
+                // slug: "slug",
+                description: "description",
+                keystage: "ks4",
+                display_order: 1,
+              },
+            ],
+            subjectLessons: [
+              {
+                programme_fields: {
+                  subject: "subject",
+                  subject_slug: "subject-slug",
+                  tier_slug: null,
+                  year_slug: null,
+                  keystage_slug: "ks4",
+                  keystage_description: "Key Stage 4",
+                  phase_slug: null,
+                  examboard_slug: null,
+                },
+                unit_slug: "unit-slug",
+                programme_slug: "programme-slug",
+                lesson_slug: "lesson-slug",
+                is_legacy: false,
               },
             ],
           }),
@@ -51,6 +60,6 @@ describe.skip("subjectListing()", () => {
         keyStageSlug: "slug",
         isLegacy: false,
       });
-    }).rejects.toThrow(`keyStageTitle`);
+    }).rejects.toThrow();
   });
 });

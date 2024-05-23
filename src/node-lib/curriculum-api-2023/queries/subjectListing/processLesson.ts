@@ -1,0 +1,75 @@
+import { SubjectDataArrayRaw } from "./subjectListing.schema";
+
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
+interface UnprocessedSubject {
+  [key: string]: {
+    subjectTitle: string;
+    subjectSlug: string;
+    programmeSlug: string;
+    unitSlugs: Set<string>;
+    lessonSlugs: Set<string>;
+    programmeSlugs: Set<string>;
+  };
+}
+
+interface ProcessedSubject {
+  subjectTitle: string;
+  subjectSlug: string;
+  programmeSlug: string;
+  unitCount: number;
+  lessonCount: number;
+  programmeCount: number;
+}
+
+export const processLessons = (
+  lessons: SubjectDataArrayRaw,
+): ProcessedSubject[] => {
+  const subjects = {} as UnprocessedSubject;
+
+  for (const lesson of lessons) {
+    // eslint-disable-next-line prefer-const
+    let { programme_slug, unit_slug, lesson_slug } = lesson;
+    const { subject, keystage_slug, tier_slug, examboard_slug } =
+      lesson.programme_fields;
+    const newProgrammeSlug = programme_slug;
+
+    // If there's a tier_slug or examboard_slug, slice the programme_slug after the keystage_slug
+    if ((tier_slug || examboard_slug) && !isSlugLegacy(programme_slug)) {
+      const components = programme_slug.split("-");
+      const index = components.indexOf(keystage_slug);
+      programme_slug = components.slice(0, index + 1).join("-");
+    }
+
+    // adds all the slugs to the unitSet, lessonSet and programmeSet
+    if (subjects[programme_slug]) {
+      subjects[programme_slug]?.unitSlugs.add(unit_slug);
+      subjects[programme_slug]?.lessonSlugs.add(lesson_slug);
+      subjects[programme_slug]?.programmeSlugs.add(newProgrammeSlug);
+    } else {
+      //if the object doesn't exist, create a new object with the programme_slug as the key
+      subjects[programme_slug] = {
+        subjectTitle: subject,
+        subjectSlug: lesson.programme_fields.subject_slug,
+        programmeSlug: programme_slug,
+        unitSlugs: new Set([unit_slug]),
+        lessonSlugs: new Set([lesson_slug]),
+        programmeSlugs: new Set([newProgrammeSlug]),
+      };
+    }
+  }
+
+  // convert the Set to its size so it can count of unique unit_slugs, lesson_slugs and programme_slugs
+  const processedSubjects: ProcessedSubject[] = Object.values(subjects).map(
+    (subject) => ({
+      subjectTitle: subject.subjectTitle,
+      subjectSlug: subject.subjectSlug,
+      programmeSlug: subject.programmeSlug,
+      unitCount: subject.unitSlugs.size,
+      lessonCount: subject.lessonSlugs.size,
+      programmeCount: subject.programmeSlugs.size,
+    }),
+  );
+
+  return processedSubjects;
+};

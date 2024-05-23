@@ -38,13 +38,19 @@ const subjectDataRaw = z.object({
     year_slug: z.string().nullable(),
     keystage_slug: z.string(),
     keystage_description: z.string(),
+    phase_slug: z.string().nullable(),
+    examboard_slug: z.string().nullable(),
   }),
+  unit_slug: z.string(),
   programme_slug: z.string(),
+  lesson_slug: z.string(),
   is_legacy: z.boolean(),
 });
 
+const subjectDataArrayRaw = z.array(subjectDataRaw);
+
 export const subjectLisitingRawSchema = z.object({
-  subjects: z.array(subjectDataRaw),
+  subjectLessons: z.array(subjectDataRaw),
   key_stages: z.array(keyStageDataRaw),
 });
 // change
@@ -61,6 +67,7 @@ export const subjectUnitsAndLessonCountSchema = z.object({
   }),
 });
 
+export type SubjectDataArrayRaw = z.infer<typeof subjectDataArrayRaw>;
 export type KeyStageSubjectData = z.infer<typeof subjectSchema>;
 export type SubjectListingPageData = z.infer<typeof subjectListingSchema>;
 export type KeyStageData = z.infer<typeof keyStageSchema>;
