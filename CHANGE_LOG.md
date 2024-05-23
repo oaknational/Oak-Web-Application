@@ -1,3 +1,10 @@
+# [1.444.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.443.0...v1.444.0) (2024-05-23)
+
+
+### Features
+
+* remove the isSensitive units and lessons from pupil browse ([81ca0a4](https://github.com/oaknational/Oak-Web-Application/commit/81ca0a4432f3c0eaf744ce6744affc42d9603409))
+
 # [1.443.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.442.0...v1.443.0) (2024-05-23)
 
 
