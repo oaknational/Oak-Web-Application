@@ -32,6 +32,9 @@ import specialistLessonOverviewCanonical from "./queries/specialistLessonOvervie
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
+import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
+import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
+import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -104,6 +107,10 @@ export type CurriculumDownloadsTabData = z.infer<
 export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
 
 export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
+export type CurriculumUnitsTabDataIncludeNew = z.infer<
+  typeof curriculumUnitsIncludeNewSchema
+>;
+
 export type CurriculumUnit = z.infer<
   typeof curriculumUnitsSchema
 >["units"][number];
@@ -122,6 +129,7 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
+  curriculumUnitsIncludeNew: curriculumUnitsIncludeNewQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
@@ -139,6 +147,7 @@ const curriculumApi2023 = {
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  subjectPhaseOptionsIncludeNew: subjectPhaseOptionsIncludeNewQuery(sdk),
   unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

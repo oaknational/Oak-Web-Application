@@ -5,6 +5,7 @@ import {
   OakLink,
   OakP,
   OakPrimaryButton,
+  OakFieldError,
 } from "@oaknational/oak-components";
 
 import FileSelect from "@/components/CurriculumComponents/DocxPOC/components/FileSelect";
@@ -13,9 +14,11 @@ import Box from "@/components/SharedComponents/Box";
 
 export default function LiveDataSection({
   pageTitle,
+  dataWarnings,
   onClick,
 }: {
   pageTitle: string;
+  dataWarnings: string[] | null;
   onClick: (file: File) => void;
 }) {
   const [file, setFile] = useState<File | null>(null);
@@ -39,6 +42,9 @@ export default function LiveDataSection({
         >
           {pageTitle}
         </OakHeading>
+        {dataWarnings?.map((warning, index) => (
+          <OakFieldError key={index}>{warning}</OakFieldError>
+        ))}
         <OakP $mb="space-between-l">
           Docx primary template file can be found{" "}
           <OakLink

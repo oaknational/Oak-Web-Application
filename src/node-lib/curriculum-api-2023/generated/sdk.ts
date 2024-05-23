@@ -1,4 +1,5 @@
-import { GraphQLClient, RequestOptions } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -7,7 +8,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -14623,6 +14623,374 @@ export type Published_Mv_Curriculum_Units_0_4_Variance_Fields = {
   planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1 = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1LessonsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1TagsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_including_new_0_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_curriculum_units_including_new_0_0_1". */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_curriculum_units_including_new_0_0_1" */
+export enum Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column {
+  /** column name */
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
+  /** column name */
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
+  /** column name */
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
+  /** column name */
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
+  /** column name */
+  Domain = 'domain',
+  /** column name */
+  DomainId = 'domain_id',
+  /** column name */
+  Examboard = 'examboard',
+  /** column name */
+  ExamboardSlug = 'examboard_slug',
+  /** column name */
+  KeystageSlug = 'keystage_slug',
+  /** column name */
+  Lessons = 'lessons',
+  /** column name */
+  Order = 'order',
+  /** column name */
+  Phase = 'phase',
+  /** column name */
+  PhaseSlug = 'phase_slug',
+  /** column name */
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  State = 'state',
+  /** column name */
+  Subject = 'subject',
+  /** column name */
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  Year = 'year'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_downloads_5_0_2" */
 export type Published_Mv_Downloads_5_0_2 = {
   __typename?: 'published_mv_downloads_5_0_2';
@@ -21169,6 +21537,182 @@ export type Published_Mv_Subject_Phase_Options_1_Variance_Fields = {
   display_order?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1 = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  examboards?: Maybe<Scalars['jsonb']['output']>;
+  phases?: Maybe<Scalars['jsonb']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1ExamboardsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1PhasesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+};
+
+/** aggregate fields of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Avg_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_avg_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_subject_phase_options_including_new_0_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>>;
+  display_order?: InputMaybe<Int_Comparison_Exp>;
+  examboards?: InputMaybe<Jsonb_Comparison_Exp>;
+  phases?: InputMaybe<Jsonb_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Max_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_max_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Min_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_min_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_subject_phase_options_including_new_0_0_1". */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By = {
+  display_order?: InputMaybe<Order_By>;
+  examboards?: InputMaybe<Order_By>;
+  phases?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_subject_phase_options_including_new_0_0_1" */
+export enum Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column {
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Examboards = 'examboards',
+  /** column name */
+  Phases = 'phases',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  State = 'state',
+  /** column name */
+  Title = 'title'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Value_Input = {
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  examboards?: InputMaybe<Scalars['jsonb']['input']>;
+  phases?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Sum_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_sum_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_var_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_var_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Variance_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_variance_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_synthetic_programmes_by_year_7_0_0" */
 export type Published_Mv_Synthetic_Programmes_By_Year_7_0_0 = {
   __typename?: 'published_mv_synthetic_programmes_by_year_7_0_0';
@@ -26681,6 +27225,10 @@ export type Query_Root = {
   published_mv_curriculum_units_0_4: Array<Published_Mv_Curriculum_Units_0_4>;
   /** fetch aggregated fields from the table: "published.mv_curriculum_units_0_4" */
   published_mv_curriculum_units_0_4_aggregate: Published_Mv_Curriculum_Units_0_4_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate;
   /** fetch data from the table: "published.mv_downloads_5_0_2" */
   published_mv_downloads_5_0_2: Array<Published_Mv_Downloads_5_0_2>;
   /** fetch aggregated fields from the table: "published.mv_downloads_5_0_2" */
@@ -26781,6 +27329,10 @@ export type Query_Root = {
   published_mv_subject_phase_options_1: Array<Published_Mv_Subject_Phase_Options_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1_aggregate: Published_Mv_Subject_Phase_Options_1_Aggregate;
+  /** fetch data from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_aggregate: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate;
   /** fetch data from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
   published_mv_synthetic_programmes_by_year_7_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
@@ -27580,6 +28132,24 @@ export type Query_RootPublished_Mv_Curriculum_Units_0_4_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Downloads_5_0_2Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -28027,6 +28597,24 @@ export type Query_RootPublished_Mv_Subject_Phase_Options_1_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_1_Order_By>>;
   where?: InputMaybe<Published_Mv_Subject_Phase_Options_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
 };
 
 
@@ -30848,6 +31436,12 @@ export type Subscription_Root = {
   published_mv_curriculum_units_0_4_aggregate: Published_Mv_Curriculum_Units_0_4_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_0_4" */
   published_mv_curriculum_units_0_4_stream: Array<Published_Mv_Curriculum_Units_0_4>;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_stream: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
   /** fetch data from the table: "published.mv_downloads_5_0_2" */
   published_mv_downloads_5_0_2: Array<Published_Mv_Downloads_5_0_2>;
   /** fetch aggregated fields from the table: "published.mv_downloads_5_0_2" */
@@ -30998,6 +31592,12 @@ export type Subscription_Root = {
   published_mv_subject_phase_options_1_aggregate: Published_Mv_Subject_Phase_Options_1_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1_stream: Array<Published_Mv_Subject_Phase_Options_1>;
+  /** fetch data from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_aggregate: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_stream: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
   /** fetch data from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
   published_mv_synthetic_programmes_by_year_7_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
@@ -32066,6 +32666,31 @@ export type Subscription_RootPublished_Mv_Curriculum_Units_0_4_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Downloads_5_0_2Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -32688,6 +33313,31 @@ export type Subscription_RootPublished_Mv_Subject_Phase_Options_1_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Subject_Phase_Options_1_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Subject_Phase_Options_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
 };
 
 
@@ -40000,6 +40650,13 @@ export type CurriculumUnitsQueryVariables = Exact<{
 
 export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_0_3', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
 
+export type CurriculumUnitsIncludeNewQueryVariables = Exact<{
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+}>;
+
+
+export type CurriculumUnitsIncludeNewQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_including_new_0_0_1', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, state?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
+
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   programmeSlug: Scalars['String']['input'];
@@ -40211,6 +40868,11 @@ export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>
 
 export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_1', title?: string | null, slug?: string | null, phases?: any | null, examboards?: any | null }> };
 
+export type SubjectPhaseOptionsIncludeNewQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SubjectPhaseOptionsIncludeNewQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_including_new_0_0_1', title?: string | null, slug?: string | null, state?: string | null, phases?: any | null, examboards?: any | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -40227,13 +40889,6 @@ export type ThreadsForUnitQueryVariables = Exact<{
 
 
 export type ThreadsForUnitQuery = { __typename?: 'query_root', threads: Array<{ __typename?: 'published_mv_threads_by_unit_1_0_0', threads?: any | null, unit_id?: number | null }> };
-
-export type TierCountsQueryVariables = Exact<{
-  _contains?: InputMaybe<Scalars['jsonb']['input']>;
-}>;
-
-
-export type TierCountsQuery = { __typename?: 'query_root', lessonCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null }> }, unitCount: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate', aggregate?: { __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields', count: number } | null, nodes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null }> } };
 
 export type TiersQueryVariables = Exact<{
   _contains: Scalars['jsonb']['input'];
@@ -40282,6 +40937,39 @@ export const CurriculumUnitsDocument = gql`
     phase
     phase_slug
     slug
+    subject
+    subject_slug
+    subject_parent
+    subject_parent_slug
+    tags
+    tier
+    tier_slug
+    title
+    unit_options
+    threads
+    year
+  }
+}
+    `;
+export const CurriculumUnitsIncludeNewDocument = gql`
+    query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_new_0_0_1_bool_exp) {
+  units: published_mv_curriculum_units_including_new_0_0_1(where: $where) {
+    connection_prior_unit_description
+    connection_future_unit_description
+    connection_future_unit_title
+    connection_prior_unit_title
+    domain
+    domain_id
+    examboard
+    examboard_slug
+    keystage_slug
+    lessons
+    order
+    planned_number_of_lessons
+    phase
+    phase_slug
+    slug
+    state
     subject
     subject_slug
     subject_parent
@@ -40882,6 +41570,17 @@ export const SubjectPhaseOptionsDocument = gql`
   }
 }
     `;
+export const SubjectPhaseOptionsIncludeNewDocument = gql`
+    query subjectPhaseOptionsIncludeNew {
+  options: published_mv_subject_phase_options_including_new_0_0_1 {
+    title
+    slug
+    state
+    phases
+    examboards
+  }
+}
+    `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
   teachersHomePage: published_mv_homepage_3_0_1 {
@@ -40901,30 +41600,6 @@ export const ThreadsForUnitDocument = gql`
   threads: published_mv_threads_by_unit_1_0_0(where: {unit_id: {_eq: $unitId}}) {
     threads
     unit_id
-  }
-}
-    `;
-export const TierCountsDocument = gql`
-    query tierCounts($_contains: jsonb) {
-  lessonCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_fields: {_contains: $_contains}, _not: {lesson_data: {_contains: {deprecated_fields: {expired: true}}}}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: lesson_slug)
-    }
-    nodes {
-      programme_fields(path: "tier_slug")
-    }
-  }
-  unitCount: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate(
-    where: {programme_fields: {_contains: $_contains}, _not: {lesson_data: {_contains: {deprecated_fields: {expired: true}}}}}
-  ) {
-    aggregate {
-      count(distinct: true, columns: unit_slug)
-    }
-    nodes {
-      programme_fields(path: "tier_slug")
-    }
   }
 }
     `;
@@ -40956,120 +41631,123 @@ export const UnitListingDocument = gql`
 }
     `;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query');
     },
     curriculumUnits(variables?: CurriculumUnitsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsQuery>(CurriculumUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnits', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsQuery>(CurriculumUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnits', 'query');
+    },
+    curriculumUnitsIncludeNew(variables?: CurriculumUnitsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsIncludeNewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsIncludeNewQuery>(CurriculumUnitsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnitsIncludeNew', 'query');
     },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
     lessonDownloadsCanonical(variables: LessonDownloadsCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsCanonicalQuery>(LessonDownloadsCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadsCanonical', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsCanonicalQuery>(LessonDownloadsCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadsCanonical', 'query');
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
     },
     lessonOverviewCanonical(variables: LessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewCanonicalQuery>(LessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewCanonical', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewCanonicalQuery>(LessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewCanonical', 'query');
     },
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query');
     },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query');
     },
     pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query');
     },
     pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query');
     },
     pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query');
     },
     pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>(PupilSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilSubjectListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>(PupilSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilSubjectListing', 'query');
     },
     pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
     },
     specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>(SpecialistLessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonDownloads', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>(SpecialistLessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonDownloads', 'query');
     },
     specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query');
     },
     specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query');
     },
     specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query');
     },
     specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query');
     },
     specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query');
     },
     specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingCountsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>(SpecialistProgrammeListingCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListingCounts', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>(SpecialistProgrammeListingCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListingCounts', 'query');
     },
     specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query');
     },
     specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitsAndLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query');
     },
     developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStageUnitCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query');
     },
     developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStagesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>(DevelopmentStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStages', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>(DevelopmentStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStages', 'query');
     },
     specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query');
     },
     specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query');
     },
     subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
     subjectPhaseOptions(variables?: SubjectPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsQuery>(SubjectPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptions', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsQuery>(SubjectPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptions', 'query');
+    },
+    subjectPhaseOptionsIncludeNew(variables?: SubjectPhaseOptionsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsIncludeNewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsIncludeNewQuery>(SubjectPhaseOptionsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptionsIncludeNew', 'query');
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
     },
     threadsForUnit(variables?: ThreadsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ThreadsForUnitQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query', variables);
-    },
-    tierCounts(variables?: TierCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TierCountsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TierCountsQuery>(TierCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tierCounts', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query');
     },
     tiers(variables: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query', variables);
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
     }
   };
 }

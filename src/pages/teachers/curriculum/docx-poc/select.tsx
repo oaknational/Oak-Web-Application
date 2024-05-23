@@ -25,6 +25,7 @@ type CurriculumItem = {
   phaseTitle: string;
   examboardSlug: string | null;
   examboardTitle: string | null;
+  state: string;
 };
 
 export default function Page({
@@ -77,7 +78,7 @@ export default function Page({
                     value={selectedCurriculumIndex}
                   >
                     {curriculumList.map((item, index) => {
-                      let text = `${item.subjectTitle} - ${item.phaseTitle}`;
+                      let text = `${item.subjectTitle} - ${item.phaseTitle} - ${item.state}`;
                       if (item.examboardSlug) {
                         text += ` - ${item.examboardTitle}`;
                       }
@@ -104,7 +105,7 @@ export default function Page({
                   router.push(
                     `/teachers/curriculum/docx-poc/${curriculum.subjectSlug}/${
                       curriculum.phaseSlug
-                    }${
+                    }/${curriculum.state}${
                       curriculum.examboardSlug
                         ? `/${curriculum.examboardSlug}`
                         : ""
@@ -124,7 +125,8 @@ export default function Page({
 }
 
 export const getServerSideProps = async () => {
-  const subjectPhaseOptions = await curriculumApi2023.subjectPhaseOptions();
+  const subjectPhaseOptions =
+    await curriculumApi2023.subjectPhaseOptionsIncludeNew();
   const curriculumList: CurriculumItem[] = [];
 
   // Flatten the subject, phase and examboard into a list of curriculum items
@@ -141,6 +143,7 @@ export const getServerSideProps = async () => {
           phaseTitle: phase.title,
           examboardSlug: null,
           examboardTitle: null,
+          state: subject.state,
         });
       } else if (phase.slug === "secondary") {
         subject.examboards.forEach((examboard) => {
@@ -151,6 +154,7 @@ export const getServerSideProps = async () => {
             phaseTitle: phase.title,
             examboardSlug: examboard.slug,
             examboardTitle: examboard.title,
+            state: subject.state,
           });
         });
       }
