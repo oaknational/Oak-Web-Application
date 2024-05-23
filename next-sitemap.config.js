@@ -45,7 +45,6 @@ module.exports = {
       },
     ],
   },
-  sitemapSize: 7000,
   exclude: [
     // Exclude WIP webinar pages
     "/webinars",

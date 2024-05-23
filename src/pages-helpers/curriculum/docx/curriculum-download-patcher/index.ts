@@ -7,7 +7,6 @@ import {
   withBlock,
 } from "../docx";
 
-import { unitsTablePatch } from "./patches/unitsTable";
 import { subjectPatch } from "./patches/subject";
 import { tableOfContentsPatch } from "./patches/tableOfContents";
 import { subjectExplainerPatch } from "./patches/subjectExplainer";
@@ -25,7 +24,9 @@ import { unitPreviousPatch } from "./patches/unitPrevious";
 import { unitNextPatch } from "./patches/unitNext";
 import { mainThreadsPatch } from "./patches/mainThreads";
 import { notUndefined } from "./patches/util";
+import { coverPatch } from "./patches/cover";
 import { backPatch } from "./patches/back";
+import { unitsTablePatch } from "./patches/unitsTable";
 
 import {
   CurriculumOverviewMVData,
@@ -51,6 +52,7 @@ export default async function CurriculumDownlodsPatch(
         doc,
         (el: Element, parent?: Element) => {
           return pipeElementThrough(el, parent, [
+            coverPatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             tableOfContentsPatch(),
             subjectExplainerPatch(combinedCurriculumData),
@@ -71,20 +73,28 @@ export default async function CurriculumDownlodsPatch(
           const data = formatCurriculumUnitsData(combinedCurriculumData);
 
           const unitOptions = Object.entries(data.yearData).flatMap(
-            ([, { childSubjects, tiers, units }]) => {
-              const options: { tier?: string; childSubject?: string }[] = [];
+            ([year, { childSubjects, tiers, units }]) => {
+              const options: {
+                year: string;
+                tier?: string;
+                childSubject?: string;
+              }[] = [];
 
               if (childSubjects.length > 0) {
                 for (const childSubject of childSubjects) {
                   if (tiers.length > 0) {
                     for (const tier of tiers) {
                       options.push({
+                        year,
                         childSubject: childSubject.subject_slug,
                         tier: tier.tier_slug,
                       });
                     }
                   } else {
-                    options.push({ childSubject: childSubject.subject_slug });
+                    options.push({
+                      year,
+                      childSubject: childSubject.subject_slug,
+                    });
                   }
                 }
               } else if (tiers.length > 0) {
@@ -92,16 +102,17 @@ export default async function CurriculumDownlodsPatch(
                   if (childSubjects.length > 0) {
                     for (const childSubject of childSubjects) {
                       options.push({
+                        year,
                         childSubject: childSubject.subject_slug,
                         tier: tier.tier_slug,
                       });
                     }
                   } else {
-                    options.push({ tier: tier.tier_slug });
+                    options.push({ year, tier: tier.tier_slug });
                   }
                 }
               } else {
-                options.push({});
+                options.push({ year });
               }
               return options.map((option) => {
                 return {
@@ -128,13 +139,14 @@ export default async function CurriculumDownlodsPatch(
           );
 
           const promises = unitOptions.map(
-            async ({ units, childSubject, tier }) => {
+            async ({ units, year, childSubject, tier }) => {
               const el = structuredClone(template);
 
               const table = await unitsTablePatch(
+                year,
                 { childSubject, tier },
                 units,
-              )();
+              );
 
               const unitsEls = await Promise.all(
                 units.map((unit, index) => {
