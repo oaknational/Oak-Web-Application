@@ -1,6 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
-// import { fetchSubjectPhasePickerData } from "../..";
+import { fetchSubjectPhasePickerData } from "../..";
 
 import LiveDataSection from "@/components/CurriculumComponents/DocxPOC/components/LiveDataSection";
 import {
@@ -17,6 +18,7 @@ import curriculumApi2023, {
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CurriculumDownlodsPatch from "@/pages-helpers/curriculum/docx/curriculum-download-patcher";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 // import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
@@ -40,15 +42,22 @@ export default function Page({
   state,
   dataWarnings,
 }: PageProps) {
+  const router = useRouter();
   let pageTitle: string = `${combinedCurriculumData?.subjectTitle} - ${combinedCurriculumData?.phaseTitle} - (${
     combinedCurriculumData.state
-  })${examboardSlug ? ` - ${examboardSlug.toLocaleUpperCase()}` : ""}`;
+  })${
+    combinedCurriculumData.examboardTitle
+      ? ` - ${combinedCurriculumData.examboardTitle}`
+      : ""
+  }`;
 
   if (dataWarnings.length > 0) {
     pageTitle = `${capitalizeFirstLetter(
       subjectSlug,
     )} - ${capitalizeFirstLetter(phaseSlug)}${
-      examboardSlug ? ` - ${examboardSlug.toLocaleUpperCase()}` : ""
+      combinedCurriculumData.examboardTitle
+        ? ` - ${combinedCurriculumData.examboardTitle}`
+        : ""
     } (${capitalizeFirstLetter(state)})`;
   }
 
@@ -73,6 +82,11 @@ export default function Page({
     reader.readAsArrayBuffer(file);
   };
 
+  const onChangeState = (newState: string) => {
+    const url = `/teachers/curriculum/docx-poc/${subjectSlug}/${phaseSlug}/${newState}/${examboardSlug}`;
+    router.push(url);
+  };
+
   return (
     <AppLayout
       seoProps={{
@@ -88,6 +102,8 @@ export default function Page({
           pageTitle={pageTitle}
           dataWarnings={dataWarnings}
           onClick={handleLiveDataClick}
+          state={state}
+          onChangeState={onChangeState}
         />
       </OakThemeProvider>
     </AppLayout>
@@ -182,22 +198,23 @@ export const getServerSideProps = async ({
       notFound: true,
     };
   }
-  // const subjectPhaseOptions = await fetchSubjectPhasePickerData();
 
-  // const subject = subjectPhaseOptions.subjects.find(
-  //   (subject) => subject.slug === subjectSlug,
-  // ) as SubjectPhasePickerData["subjects"][number] | undefined;
-  // const examboard =
-  //   subject?.examboards?.find(
-  //     (examboard) => examboard.slug === examboardSlug,
-  //   ) ?? null;
+  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
+  const subject = subjectPhaseOptions.subjects.find(
+    (subject) => subject.slug === subjectSlug,
+  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  const examboard =
+    subject?.examboards?.find(
+      (examboard) => examboard.slug === examboardSlug,
+    ) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
     ...{ state },
-    //examboardTitle: examboard?.title,
+    examboardTitle: examboard?.title,
   };
 
   return {

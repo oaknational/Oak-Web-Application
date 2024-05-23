@@ -11,15 +11,21 @@ import {
 import FileSelect from "@/components/CurriculumComponents/DocxPOC/components/FileSelect";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Box from "@/components/SharedComponents/Box";
+import { Item, Select } from "@/components/GenericPagesComponents/Select";
+import { Label } from "@/components/SharedComponents/ListBox/ListBox";
 
 export default function LiveDataSection({
   pageTitle,
   dataWarnings,
   onClick,
+  state,
+  onChangeState,
 }: {
   pageTitle: string;
   dataWarnings: string[] | null;
   onClick: (file: File) => void;
+  state: string;
+  onChangeState: (newState: string) => void;
 }) {
   const [file, setFile] = useState<File | null>(null);
 
@@ -55,7 +61,34 @@ export default function LiveDataSection({
           </OakLink>
         </OakP>
         <Box $maxWidth={960} $mb={40}>
-          <OakFlex $alignItems={"center"} $mb="space-between-m">
+          <OakFlex
+            $alignItems={"left"}
+            $mb="space-between-m"
+            $gap={"space-between-m"}
+            $flexDirection={"column"}
+          >
+            <Select
+              name="state"
+              label="Published state"
+              items={[
+                { label: "New", value: "new" },
+                { label: "Published", value: "published" },
+              ]}
+              selectedValue={state}
+              onSelectionChange={(key) => onChangeState(key as string)}
+            >
+              {(item) => (
+                <Item
+                  key={item.value}
+                  textValue={item.label}
+                  data-testid={"selectItem"}
+                >
+                  <div>
+                    <Label>{item.label}</Label>
+                  </div>
+                </Item>
+              )}
+            </Select>
             <FileSelect
               label="Choose docx template"
               onChange={(file) => {

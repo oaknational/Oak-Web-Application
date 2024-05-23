@@ -40,7 +40,7 @@ type SelectProps = {
   onSelectionChange: (value: string) => void;
   placeholder?: string;
   icon?: IconName;
-  myRef: Ref<HTMLButtonElement>;
+  myRef?: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
   selectedValue?: string;
