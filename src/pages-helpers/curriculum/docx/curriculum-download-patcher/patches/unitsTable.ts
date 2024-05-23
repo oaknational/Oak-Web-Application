@@ -135,9 +135,11 @@ function buildYear(
     );
   }
 
-  const subjectTierTitle = [slug.childSubject, slug.tier]
-    .filter(Boolean)
-    .join("/");
+  let subjectTierTitleSuffix = "";
+  if (slug.childSubject || slug.tier) {
+    subjectTierTitleSuffix =
+      "- " + [slug.childSubject, slug.tier].filter(Boolean).join("/");
+  }
 
   const xml = `
       <w:p>
@@ -154,7 +156,7 @@ function buildYear(
                 <w:b/>
                 <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
             </w:rPr>
-            <w:t xml:space="preserve">Year ${year} units - ${subjectTierTitle}</w:t>
+            <w:t xml:space="preserve">Year ${year} units ${subjectTierTitleSuffix}</w:t>
         </w:r>
       </w:p>
       <w:p>
