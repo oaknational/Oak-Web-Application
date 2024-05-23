@@ -41,6 +41,9 @@ const subjectDataRaw = z.object({
     phase_slug: z.string().nullable(),
     examboard_slug: z.string().nullable(),
   }),
+  unit_data: z.object({
+    unit_id: z.number(),
+  }),
   unit_slug: z.string(),
   programme_slug: z.string(),
   lesson_slug: z.string(),

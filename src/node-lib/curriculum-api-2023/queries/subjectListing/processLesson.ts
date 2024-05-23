@@ -7,7 +7,7 @@ interface UnprocessedSubject {
     subjectTitle: string;
     subjectSlug: string;
     programmeSlug: string;
-    unitSlugs: Set<string>;
+    unitIds: Set<number>;
     lessonSlugs: Set<string>;
     programmeSlugs: Set<string>;
   };
@@ -29,11 +29,11 @@ export const processLessons = (
 
   for (const lesson of lessons) {
     // eslint-disable-next-line prefer-const
-    let { programme_slug, unit_slug, lesson_slug } = lesson;
+    let { programme_slug, lesson_slug } = lesson;
     const { subject, keystage_slug, tier_slug, examboard_slug } =
       lesson.programme_fields;
+    const { unit_id } = lesson.unit_data;
     const newProgrammeSlug = programme_slug;
-
     // If there's a tier_slug or examboard_slug, slice the programme_slug after the keystage_slug
     if ((tier_slug || examboard_slug) && !isSlugLegacy(programme_slug)) {
       const components = programme_slug.split("-");
@@ -43,16 +43,16 @@ export const processLessons = (
 
     // adds all the slugs to the unitSet, lessonSet and programmeSet
     if (subjects[programme_slug]) {
-      subjects[programme_slug]?.unitSlugs.add(unit_slug);
       subjects[programme_slug]?.lessonSlugs.add(lesson_slug);
       subjects[programme_slug]?.programmeSlugs.add(newProgrammeSlug);
+      subjects[programme_slug]?.unitIds.add(unit_id);
     } else {
       //if the object doesn't exist, create a new object with the programme_slug as the key
       subjects[programme_slug] = {
         subjectTitle: subject,
         subjectSlug: lesson.programme_fields.subject_slug,
         programmeSlug: programme_slug,
-        unitSlugs: new Set([unit_slug]),
+        unitIds: new Set([unit_id]),
         lessonSlugs: new Set([lesson_slug]),
         programmeSlugs: new Set([newProgrammeSlug]),
       };
@@ -65,11 +65,11 @@ export const processLessons = (
       subjectTitle: subject.subjectTitle,
       subjectSlug: subject.subjectSlug,
       programmeSlug: subject.programmeSlug,
-      unitCount: subject.unitSlugs.size,
+      unitCount: subject.unitIds.size,
       lessonCount: subject.lessonSlugs.size,
       programmeCount: subject.programmeSlugs.size,
     }),
   );
-
+  console.log(processedSubjects);
   return processedSubjects;
 };
