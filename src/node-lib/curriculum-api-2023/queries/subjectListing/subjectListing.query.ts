@@ -17,8 +17,6 @@ const subjectListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    console.log("subjectLessons", subjectLessons);
-
     const processedLessons = processLessons(subjectLessons);
 
     const keyStages = key_stages.map((keyStage) => {
