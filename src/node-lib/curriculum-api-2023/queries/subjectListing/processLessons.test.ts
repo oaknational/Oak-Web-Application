@@ -3,7 +3,7 @@ import { SubjectDataArrayRaw } from "./subjectListing.schema";
 
 describe("processLessons", () => {
   it("should process lessons correctly", () => {
-    const lessons: SubjectDataArrayRaw = [
+    const lessons = [
       {
         programme_fields: {
           subject: "Combined science",
@@ -81,7 +81,7 @@ describe("processLessons", () => {
           "electron-microscopy-and-the-size-and-scale-of-cells-including-standard-form",
         is_legacy: false,
       },
-    ];
+    ] as SubjectDataArrayRaw;
 
     const result = processLessons(lessons);
     expect(result).toEqual([
