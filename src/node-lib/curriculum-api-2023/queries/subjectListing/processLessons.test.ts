@@ -35,7 +35,7 @@ describe("processLessons", () => {
           examboard_slug: null,
         },
         unit_data: {
-          unit_id: 1,
+          unit_id: 12,
         },
         unit_slug: "cells-biology-3p8njnj",
         programme_slug: "combined-science-secondary-ks4-foundation-l",
