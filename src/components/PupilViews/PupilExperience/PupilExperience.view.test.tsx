@@ -1,4 +1,7 @@
 import { OakTooltipProps } from "@oaknational/oak-components";
+import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
 
 import {
   PupilExperienceView,
@@ -16,6 +19,8 @@ import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
@@ -172,5 +177,129 @@ describe("PupilExperienceView", () => {
     );
 
     expect(getByText("PupilExpiredView", { exact: false })).toBeInTheDocument();
+  });
+
+  it("should render the content guidance on lessons that have guidance", () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId, getByRole } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+    const dialog = getByRole("alertdialog");
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(contentguidanceLabel);
+    expect(dialog).toHaveTextContent(supervisionLevel);
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      contentguidanceLabel,
+    );
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      supervisionLevel,
+    );
+  });
+
+  it("should close content guidance modal when modal is accepted", async () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId, getByRole } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+    await userEvent.click(getByTestId("acceptButton"));
+    waitFor(() => {
+      expect(getByRole("alertdialog")).not.toBeInTheDocument();
+    });
+  });
+
+  it("should navigate away from page when 'take me back' is clicked", async () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    mockRouter.push("/initial-path");
+
+    const { getByTestId } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          backUrl="/somewhere-else"
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(mockRouter.asPath).toBe("/initial-path");
+    await userEvent.click(getByTestId("declineButton"));
+    expect(mockRouter.asPath).toBe("/somewhere-else");
   });
 });
