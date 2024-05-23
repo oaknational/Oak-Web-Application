@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 
 import PupilLessonListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/units/[unitSlug]/lessons";
+} from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
