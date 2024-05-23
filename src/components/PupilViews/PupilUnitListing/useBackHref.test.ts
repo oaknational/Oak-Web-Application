@@ -11,7 +11,7 @@ describe("useBackHref", () => {
     });
 
     expect(backHref).toBe(
-      "/pupils/beta/programmes/maths-secondary-year-10/options?examboard=aqa",
+      "/pupils/programmes/maths-secondary-year-10/options?examboard=aqa",
     );
     expect(backLabel).toBe("Change tier");
   });
@@ -23,7 +23,7 @@ describe("useBackHref", () => {
       isLegacy: false,
     });
 
-    expect(backHref).toBe("/pupils/beta/years/year-10/subjects");
+    expect(backHref).toBe("/pupils/years/year-10/subjects");
     expect(backLabel).toBe("Change subject");
   });
 
@@ -35,9 +35,7 @@ describe("useBackHref", () => {
       examboardSlug: "aqa",
     });
 
-    expect(backHref).toBe(
-      "/pupils/beta/programmes/maths-secondary-year-10/options",
-    );
+    expect(backHref).toBe("/pupils/programmes/maths-secondary-year-10/options");
     expect(backLabel).toBe("Change examboard");
   });
 });
