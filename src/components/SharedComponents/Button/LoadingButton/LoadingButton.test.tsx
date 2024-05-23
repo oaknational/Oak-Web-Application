@@ -42,4 +42,26 @@ describe("Loading button", () => {
     expect(button).toHaveAttribute("aria-disabled");
     expect(button).toHaveTextContent("Loading...");
   });
+  it("should have aria-live polite", async () => {
+    let loading = false;
+    const setLoading = () => {
+      loading = true;
+    };
+    renderWithTheme(
+      <LoadingButton
+        text="Click"
+        isLoading={loading}
+        loadingText="Loading..."
+        onClick={setLoading}
+        type="button"
+        icon="bell"
+        disabled={false}
+        ariaLive="polite"
+      />,
+    );
+
+    const loadingButton = screen.getByLabelText("Click");
+
+    expect(loadingButton).toHaveAttribute("aria-live", "polite");
+  });
 });
