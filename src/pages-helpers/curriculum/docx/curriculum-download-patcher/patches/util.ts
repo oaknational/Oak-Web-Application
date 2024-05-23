@@ -38,7 +38,8 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
         output[unit.year] = output[unit.year] ?? [];
         if (
           output[unit.year] &&
-          !output[unit.year]!.find((u) => u.slug === unit.slug)
+          // Check if unit is not already within output
+          !output[unit.year]!.find((yearUnit) => yearUnit.slug === unit.slug)
         ) {
           output[unit.year]!.push(unit);
         }
