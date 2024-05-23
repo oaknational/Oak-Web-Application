@@ -78,7 +78,7 @@ exports[`unitsTablePatch should return units table 1`] = `
               },
               "elements": [
                 {
-                  "text": "Year 7 units - ",
+                  "text": "Year 7 units ",
                   "type": "text",
                 },
               ],
