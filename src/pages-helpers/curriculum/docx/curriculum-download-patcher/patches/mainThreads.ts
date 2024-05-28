@@ -52,6 +52,9 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
       for (const [year, units] of Object.entries(threadInfo)) {
         rawXml += `
             <w:p>
+              <w:pPr>
+                <w:keepNext/>
+              </w:pPr>
               <w:r>
                 <w:rPr>
                   <w:b/>
@@ -60,21 +63,12 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
                 <w:t>Year ${year}</w:t>
               </w:r>
             </w:p>
-            <w:p>
-              <w:pPr>
-                <w:sectPr>
-                  <w:type w:val="continuous"/>
-                  <w:pgSz w:w="11909" w:h="16834"/>
-                  <w:pgMar w:top="567" w:right="709" w:bottom="709" w:left="709" w:header="720" w:footer="720" w:gutter="0"/>
-                  <w:cols w:space="720"/>
-                </w:sectPr>
-              </w:pPr>
-            </w:p>
             ${sortByOrder(units)
-              .map((unit) => {
+              .map((unit, index) => {
                 return `
                 <w:p>
                   <w:pPr>
+                    ${index < 3 ? "<w:keepNext/>" : ""}
                     <w:numPr>
                       <w:ilvl w:val="0"/>
                       <w:numId w:val="3"/>
@@ -94,7 +88,7 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
                   <w:type w:val="continuous"/>
                   <w:pgSz w:w="11909" w:h="16834"/>
                   <w:pgMar w:top="567" w:right="709" w:bottom="709" w:left="709" w:header="720" w:footer="720" w:gutter="0"/>
-                  <w:cols w:num="2" w:space="720"/>
+                  <w:cols w:num="1" w:space="720"/>
                 </w:sectPr>
               </w:pPr>
             </w:p>
@@ -103,16 +97,6 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
               <w:r>
                 <w:t></w:t>
               </w:r>
-            </w:p>
-            <w:p>
-              <w:pPr>
-                <w:sectPr>
-                  <w:type w:val="continuous"/>
-                  <w:pgSz w:w="11909" w:h="16834"/>
-                  <w:pgMar w:top="567" w:right="709" w:bottom="709" w:left="709" w:header="720" w:footer="720" w:gutter="0"/>
-                  <w:cols w:space="720"/>
-                </w:sectPr>
-              </w:pPr>
             </w:p>
           `;
       }

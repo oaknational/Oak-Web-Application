@@ -112,6 +112,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -155,57 +165,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -297,7 +258,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -318,59 +279,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -485,6 +393,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -528,57 +446,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -670,7 +539,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -691,59 +560,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -858,6 +674,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -901,57 +727,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -1043,7 +820,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -1064,59 +841,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -1231,6 +955,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -1274,57 +1008,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -1416,7 +1101,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -1437,59 +1122,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -1604,6 +1236,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -1647,57 +1289,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -1789,7 +1382,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -1810,59 +1403,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -1977,6 +1517,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -2020,57 +1570,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -2162,7 +1663,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -2183,59 +1684,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -2350,6 +1798,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -2393,57 +1851,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -2535,7 +1944,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -2556,59 +1965,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -2723,6 +2079,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -2766,57 +2132,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -2908,7 +2225,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -2929,59 +2246,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -3096,6 +2360,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
           "elements": [
             {
               "type": "element",
+              "name": "w:pPr",
+              "elements": [
+                {
+                  "type": "element",
+                  "name": "w:keepNext"
+                }
+              ]
+            },
+            {
+              "type": "element",
               "name": "w:r",
               "elements": [
                 {
@@ -3139,57 +2413,8 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
+                  "name": "w:keepNext"
+                },
                 {
                   "type": "element",
                   "name": "w:numPr",
@@ -3281,7 +2506,7 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "type": "element",
                       "name": "w:cols",
                       "attributes": {
-                        "w:num": "2",
+                        "w:num": "1",
                         "w:space": "720"
                       }
                     }
@@ -3302,59 +2527,6 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                 {
                   "type": "element",
                   "name": "w:t"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "name": "w:p",
-          "elements": [
-            {
-              "type": "element",
-              "name": "w:pPr",
-              "elements": [
-                {
-                  "type": "element",
-                  "name": "w:sectPr",
-                  "elements": [
-                    {
-                      "type": "element",
-                      "name": "w:type",
-                      "attributes": {
-                        "w:val": "continuous"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgSz",
-                      "attributes": {
-                        "w:w": "11909",
-                        "w:h": "16834"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:pgMar",
-                      "attributes": {
-                        "w:top": "567",
-                        "w:right": "709",
-                        "w:bottom": "709",
-                        "w:left": "709",
-                        "w:header": "720",
-                        "w:footer": "720",
-                        "w:gutter": "0"
-                      }
-                    },
-                    {
-                      "type": "element",
-                      "name": "w:cols",
-                      "attributes": {
-                        "w:space": "720"
-                      }
-                    }
-                  ]
                 }
               ]
             }
