@@ -145,6 +145,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       return (
                         <OakFlex
                           key={`${section.navigationTitle} ${index}`}
+                          data-testid="lesson-section"
                           $mb={
                             !isLastSection
                               ? "space-between-xxxl"
@@ -161,6 +162,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       <OakBox
                         key={`${section.navigationTitle} ${index}`}
                         $position={"relative"}
+                        data-testid="lesson-section"
                         $mb={
                           !isLastSection
                             ? "space-between-xxxl"

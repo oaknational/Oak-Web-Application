@@ -34,6 +34,28 @@ describe("pages/lesson-planning.tsx", () => {
     expect(screen.getAllByText("Contents")).toHaveLength(2);
     expect(nav).toBeInTheDocument();
   });
+  it("applies correct margin-bottom size based on section position", () => {
+    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
+
+    const sections = screen.getAllByTestId("lesson-section");
+
+    expect(sections[0]).toHaveStyle("margin-bottom: 5rem");
+    expect(sections[2]).toHaveStyle("margin-bottom: 2rem");
+  });
+  it("Renders the header hero with optional props", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+
+    expect(
+      screen.getByAltText(
+        `${testPlanALessonPageData.hero.author.name} profile picture`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
+    ).toBeInTheDocument();
+  });
 
   describe("SEO", () => {
     it.skip("renders the correct SEO details", () => {
