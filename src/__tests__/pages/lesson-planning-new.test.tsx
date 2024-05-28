@@ -26,6 +26,7 @@ describe("pages/lesson-planning.tsx", () => {
     );
     expect(getByRole("heading", { name: "test" })).toBeInTheDocument();
   });
+
   it("Renders a nav", () => {
     render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
     const nav = screen.getByRole("navigation", {
@@ -34,6 +35,7 @@ describe("pages/lesson-planning.tsx", () => {
     expect(screen.getAllByText("Contents")).toHaveLength(2);
     expect(nav).toBeInTheDocument();
   });
+
   it("applies correct margin-bottom size based on section position", () => {
     render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
 
@@ -42,6 +44,7 @@ describe("pages/lesson-planning.tsx", () => {
     expect(sections[0]).toHaveStyle("margin-bottom: 5rem");
     expect(sections[2]).toHaveStyle("margin-bottom: 2rem");
   });
+
   it("Renders the header hero with optional props", () => {
     render(
       <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
@@ -55,6 +58,40 @@ describe("pages/lesson-planning.tsx", () => {
     expect(
       screen.getByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
     ).toBeInTheDocument();
+  });
+
+  it("Renders the author title if it exists", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+    const authorTitle = testPlanALessonPageData.hero.author.role ?? "";
+    expect(screen.getByText(authorTitle)).toBeInTheDocument();
+  });
+
+  it("Renders the hero image source correctly", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+    const heroImageSrc = imageBuilder
+      .image(testPlanALessonPageData.hero.image?.asset?.url ?? {})
+      .url();
+    const heroImage = screen.getByAltText(
+      testPlanALessonPageData.hero.image?.altText ?? "",
+    );
+    expect(heroImage).toHaveAttribute("src", heroImageSrc);
+  });
+
+  it("Renders the author image source correctly", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+    const authorImageSrc = imageBuilder
+      .image(testPlanALessonPageData.hero.author.image?.asset?.url ?? {})
+      .url();
+    const authorImage = screen.getByAltText(
+      `${testPlanALessonPageData.hero.author.name} profile picture`,
+    );
+    expect(authorImage).toHaveAttribute("src", authorImageSrc);
   });
 
   describe("SEO", () => {
