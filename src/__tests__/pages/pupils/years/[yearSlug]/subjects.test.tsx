@@ -1,7 +1,7 @@
 import PupilSubjectListing, {
   getStaticPaths,
   getStaticProps,
-} from "@/pages/pupils/beta/years/[yearSlug]/subjects";
+} from "@/pages/pupils/years/[yearSlug]/subjects";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";

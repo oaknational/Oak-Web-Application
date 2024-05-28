@@ -1,6 +1,6 @@
 // TESTING
-// http://localhost:3000/pupils/beta/programmes/maths-secondary-year-10/options-l
-// CF http://localhost:3000/pupils/beta/programmes/maths-secondary-year-10/options
+// http://localhost:3000/pupils/programmes/maths-secondary-year-10/options-l
+// CF http://localhost:3000/pupils/programmes/maths-secondary-year-10/options
 
 import { GetStaticProps } from "next";
 
