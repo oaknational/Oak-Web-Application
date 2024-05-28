@@ -13,7 +13,7 @@ describe("constructSubjectsFromLessonData", () => {
           year_slug: "year-10",
           keystage_slug: "ks4",
           keystage_description: "Key Stage 4",
-          phase_slug: "secondary",
+          phase: "secondary",
           examboard_slug: null,
         },
         unit_data: {
@@ -32,7 +32,7 @@ describe("constructSubjectsFromLessonData", () => {
           year_slug: "year-10",
           keystage_slug: "ks4",
           keystage_description: "Key Stage 4",
-          phase_slug: "secondary",
+          phase: "secondary",
           examboard_slug: null,
         },
         unit_data: {
@@ -51,7 +51,7 @@ describe("constructSubjectsFromLessonData", () => {
           year_slug: "year-11",
           keystage_slug: "ks4",
           keystage_description: "Key Stage 4",
-          phase_slug: "secondary",
+          phase: "secondary",
           examboard_slug: "ocr",
         },
         unit_data: {
@@ -70,7 +70,7 @@ describe("constructSubjectsFromLessonData", () => {
           year_slug: "year-11",
           keystage_slug: "ks4",
           keystage_description: "Key Stage 4",
-          phase_slug: "secondary",
+          phase: "secondary",
           examboard_slug: "ocr",
         },
         unit_data: {

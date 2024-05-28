@@ -28,30 +28,46 @@ export const constructSubjectsFromLessonData = (
   lessons: SyntheticUnitvariantLessons[],
 ): ProcessedSubject[] => {
   const subjects = lessons.reduce((acc, lesson) => {
-    const { lesson_slug } = lesson;
-    const { subject, keystage_slug, phase, subject_slug } =
-      lesson.programme_fields;
+    // eslint-disable-next-line prefer-const
+    let { programme_slug, lesson_slug } = lesson;
+    const {
+      subject,
+      keystage_slug,
+      phase,
+      subject_slug,
+      tier_slug,
+      examboard_slug,
+    } = lesson.programme_fields;
     const { unit_id } = lesson.unit_data;
-    const baseProgrammeSlug = `${subject_slug}-${phase}-${keystage_slug}`;
+    const originalProgrammeSlug = programme_slug;
 
-    if (acc[baseProgrammeSlug]) {
-      acc[baseProgrammeSlug]?.lessonSlugs.add(lesson_slug);
-      acc[baseProgrammeSlug]?.programmeSlugs.add(baseProgrammeSlug);
-      acc[baseProgrammeSlug]?.unitIds.add(unit_id);
+    //remove programme factors from new data
+    if (tier_slug || examboard_slug) {
+      const baseProgrammeSlug = `${subject_slug}-${phase}-${keystage_slug}`;
+      programme_slug = baseProgrammeSlug;
+    }
+
+    // adds all the slugs to the unitSet, lessonSet and programmeSet
+    if (acc[programme_slug]) {
+      acc[programme_slug]?.lessonSlugs.add(lesson_slug);
+      acc[programme_slug]?.programmeSlugs.add(originalProgrammeSlug);
+      acc[programme_slug]?.unitIds.add(unit_id);
     } else {
-      acc[baseProgrammeSlug] = {
+      //if the object doesn't exist, create a new object with the programme_slug as the key
+      acc[programme_slug] = {
         subjectTitle: subject,
         subjectSlug: subject_slug,
-        programmeSlug: baseProgrammeSlug,
+        programmeSlug: programme_slug,
         unitIds: new Set([unit_id]),
         lessonSlugs: new Set([lesson_slug]),
-        programmeSlugs: new Set([baseProgrammeSlug]),
+        programmeSlugs: new Set([originalProgrammeSlug]),
       };
     }
 
     return acc;
   }, {} as UnprocessedSubject);
 
+  // convert the Set to its size so it can count of unique unit_slugs, lesson_slugs and programme_slugs
   const processedSubjects: ProcessedSubject[] = Object.values(subjects).map(
     (subject) => ({
       subjectTitle: subject.subjectTitle,
