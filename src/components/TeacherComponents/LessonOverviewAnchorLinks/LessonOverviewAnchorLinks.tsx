@@ -31,10 +31,10 @@ const LessonOverviewAnchorLinks: FC<LessonOverviewAnchorLinksProps> = ({
             variant={isCurrent ? "brushNav" : "minimalNav"}
             $hoverStyles={["underline-link-text"]}
             label={label}
-            disabled={isCurrent}
             isCurrent={isCurrent}
             icon={isCurrent ? "arrow-right" : undefined}
             iconBackground={isCurrent ? "transparent" : undefined}
+            aria-current={isCurrent ? "true" : undefined}
             $iconPosition="trailing"
             key={label}
           />
