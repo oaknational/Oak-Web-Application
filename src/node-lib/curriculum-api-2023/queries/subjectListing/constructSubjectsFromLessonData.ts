@@ -29,7 +29,9 @@ export const constructSubjectsFromLessonData = (
 ): ProcessedSubject[] => {
   const subjects = lessons.reduce((acc, lesson) => {
     // eslint-disable-next-line prefer-const
-    let { programme_slug, lesson_slug } = lesson;
+    let { programme_slug } = lesson;
+    const { lesson_slug } = lesson;
+
     const {
       subject,
       keystage_slug,
