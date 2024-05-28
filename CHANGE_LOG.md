@@ -1,3 +1,39 @@
+## [1.445.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.445.0...v1.445.1) (2024-05-28)
+
+# [1.445.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.444.0...v1.445.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* possible timing issue with unit test ([dc16f81](https://github.com/oaknational/Oak-Web-Application/commit/dc16f81d8caba39c840bd6bef4bdd1a259013b97))
+* update beta urls ([975850e](https://github.com/oaknational/Oak-Web-Application/commit/975850ebb364136317662ec60e6488696526f3f4))
+* update paths in pages tests ([fbcf15c](https://github.com/oaknational/Oak-Web-Application/commit/fbcf15cb4a31d48b06d08e44514055029bb7309a))
+
+
+### Features
+
+* move beta pupil pages ([68fa7b5](https://github.com/oaknational/Oak-Web-Application/commit/68fa7b50c056ebbbf4386d50cc36fc4d92c35702))
+
+# [1.444.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.443.0...v1.444.0) (2024-05-23)
+
+
+### Features
+
+* remove the isSensitive units and lessons from pupil browse ([81ca0a4](https://github.com/oaknational/Oak-Web-Application/commit/81ca0a4432f3c0eaf744ce6744affc42d9603409))
+
+# [1.443.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.442.0...v1.443.0) (2024-05-23)
+
+
+### Bug Fixes
+
+* add unit tests for new contents guidance modal and text area ([5a5d978](https://github.com/oaknational/Oak-Web-Application/commit/5a5d978b5ffc300ca59d50d04003fa2c4d117ced))
+* adding more coverage to PupilExperience view ([f9e72e2](https://github.com/oaknational/Oak-Web-Application/commit/f9e72e2248d7b0526362ac13d80e63e87ae4b57b))
+
+
+### Features
+
+* add content guidance modal and message to sensitive lessons ([215ab29](https://github.com/oaknational/Oak-Web-Application/commit/215ab29b045090d0d99341295d17bbc63664b5d1))
+
 # [1.442.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.441.0...v1.442.0) (2024-05-22)
 
 

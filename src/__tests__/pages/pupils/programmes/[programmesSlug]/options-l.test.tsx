@@ -1,6 +1,6 @@
 import PupilProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/options-l";
+} from "@/pages/pupils/programmes/[programmeSlug]/options-l";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import {
   ProgrammeFields,

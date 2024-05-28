@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
+  OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
 
 import {
@@ -66,6 +69,8 @@ export const PupilPageContent = ({
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     isLegacy,
+    contentGuidance,
+    supervisionLevel,
   } = lessonContent;
 
   const { subject, subjectSlug, yearDescription } = browseData.programmeFields;
@@ -89,6 +94,8 @@ export const PupilPageContent = ({
           subjectSlug={subjectSlug}
           yearTitle={yearDescription}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
+          contentGuidance={contentGuidance}
+          supervisionLevel={supervisionLevel ?? undefined}
           starterQuizNumQuestions={starterQuizNumQuestions}
           exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
@@ -145,6 +152,10 @@ export const PupilExperienceView = ({
   backUrl,
   initialSection,
 }: PupilExperienceViewProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(
+    !!lessonContent.contentGuidance,
+  );
+  const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
 
   return (
@@ -158,22 +169,34 @@ export const PupilExperienceView = ({
         }}
       >
         <OakThemeProvider theme={oakDefaultTheme}>
+          <OakPupilJourneyContentGuidance
+            isOpen={isOpen}
+            onAccept={() => setIsOpen(false)}
+            onDecline={() =>
+              backUrl ? router.replace(backUrl) : router.back()
+            }
+            contentGuidance={lessonContent.contentGuidance}
+            supervisionLevel={lessonContent.supervisionLevel}
+          />
+
           <CookieConsentStyles />
           <LessonEngineProvider
             initialLessonReviewSections={availableSections}
             initialSection={initialSection}
           >
-            <OakBox $height={"100vh"}>
-              {browseData.lessonData.deprecatedFields?.expired ? (
-                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-              ) : (
-                <PupilPageContent
-                  browseData={browseData}
-                  lessonContent={lessonContent}
-                  hasWorksheet={hasWorksheet}
-                  backUrl={backUrl}
-                />
-              )}
+            <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+              <OakBox $height={"100vh"}>
+                {browseData.lessonData.deprecatedFields?.expired ? (
+                  <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+                ) : (
+                  <PupilPageContent
+                    browseData={browseData}
+                    lessonContent={lessonContent}
+                    hasWorksheet={hasWorksheet}
+                    backUrl={backUrl}
+                  />
+                )}
+              </OakBox>
             </OakBox>
           </LessonEngineProvider>
         </OakThemeProvider>
