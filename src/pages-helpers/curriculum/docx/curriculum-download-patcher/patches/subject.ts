@@ -12,7 +12,7 @@ export function subjectPatch(combinedCurriculumData: CombinedCurriculumData) {
         text: textReplacer(
           el.text,
           "{{=SUBJECT}}",
-          `${combinedCurriculumData.phaseTitle} ${combinedCurriculumData.subjectTitle}`,
+          `${combinedCurriculumData.subjectTitle}`,
         ),
       };
     }
