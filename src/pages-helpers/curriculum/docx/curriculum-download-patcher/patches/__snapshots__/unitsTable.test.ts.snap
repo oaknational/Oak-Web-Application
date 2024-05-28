@@ -499,42 +499,6 @@ exports[`unitsTablePatch should return units table 1`] = `
               "elements": [
                 {
                   "attributes": {
-                    "w:color": "F5E9F2",
-                    "w:sz": "48",
-                    "w:val": "single",
-                  },
-                  "name": "w:top",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:color": "F5E9F2",
-                    "w:sz": "48",
-                    "w:val": "single",
-                  },
-                  "name": "w:left",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:color": "F5E9F2",
-                    "w:sz": "48",
-                    "w:val": "single",
-                  },
-                  "name": "w:bottom",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:color": "F5E9F2",
-                    "w:sz": "48",
-                    "w:val": "single",
-                  },
-                  "name": "w:right",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
                     "w:color": "auto",
                     "w:sz": "4",
                     "w:val": "single",
@@ -611,10 +575,19 @@ exports[`unitsTablePatch should return units table 1`] = `
                       "type": "element",
                     },
                     {
+                      "attributes": {
+                        "w:color": "FFFF00",
+                        "w:fill": "F5E9F2",
+                        "w:val": "pct",
+                      },
+                      "name": "w:shd",
+                      "type": "element",
+                    },
+                    {
                       "elements": [
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -623,7 +596,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -632,7 +605,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -641,7 +614,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -930,10 +903,19 @@ exports[`unitsTablePatch should return units table 1`] = `
                       "type": "element",
                     },
                     {
+                      "attributes": {
+                        "w:color": "FFFF00",
+                        "w:fill": "F5E9F2",
+                        "w:val": "pct",
+                      },
+                      "name": "w:shd",
+                      "type": "element",
+                    },
+                    {
                       "elements": [
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -942,7 +924,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -951,7 +933,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -960,7 +942,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -1172,10 +1154,19 @@ exports[`unitsTablePatch should return units table 1`] = `
                       "type": "element",
                     },
                     {
+                      "attributes": {
+                        "w:color": "FFFF00",
+                        "w:fill": "F5E9F2",
+                        "w:val": "pct",
+                      },
+                      "name": "w:shd",
+                      "type": "element",
+                    },
+                    {
                       "elements": [
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -1184,7 +1175,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -1193,7 +1184,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },
@@ -1202,7 +1193,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                         },
                         {
                           "attributes": {
-                            "w:color": "F5E9F2",
+                            "w:color": "FFFFFF",
                             "w:sz": "48",
                             "w:val": "single",
                           },

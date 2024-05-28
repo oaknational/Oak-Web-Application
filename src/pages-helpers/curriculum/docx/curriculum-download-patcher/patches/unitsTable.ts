@@ -41,11 +41,12 @@ function buildYearColumn({
     <w:tc>
       <w:tcPr>
           <w:tcW w:type="pct" w:w="33.333333333333336%"/>
+          <w:shd w:val="pct" w:color="FFFF00" w:fill="F5E9F2"/>
           <w:tcBorders>
-              <w:top w:val="single" w:color="F5E9F2" w:sz="48"/>
-              <w:left w:val="single" w:color="F5E9F2" w:sz="48"/>
-              <w:bottom w:val="single" w:color="F5E9F2" w:sz="48"/>
-              <w:right w:val="single" w:color="F5E9F2" w:sz="48"/>
+              <w:top w:val="single" w:color="FFFFFF" w:sz="48"/>
+              <w:left w:val="single" w:color="FFFFFF" w:sz="48"/>
+              <w:bottom w:val="single" w:color="FFFFFF" w:sz="48"/>
+              <w:right w:val="single" w:color="FFFFFF" w:sz="48"/>
           </w:tcBorders>
           <w:tcMar>
               <w:top w:type="dxa" w:w="226"/>
@@ -249,10 +250,6 @@ function buildYear(
         <w:tblPr>
             <w:tblW w:type="pct" w:w="100%"/>
             <w:tblBorders>
-                <w:top w:val="single" w:color="F5E9F2" w:sz="48"/>
-                <w:left w:val="single" w:color="F5E9F2" w:sz="48"/>
-                <w:bottom w:val="single" w:color="F5E9F2" w:sz="48"/>
-                <w:right w:val="single" w:color="F5E9F2" w:sz="48"/>
                 <w:insideH w:val="single" w:color="auto" w:sz="4"/>
                 <w:insideV w:val="single" w:color="auto" w:sz="4"/>
             </w:tblBorders>
