@@ -110,6 +110,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
           backgroundColor="white"
           displayOnPhone={true}
           isBackgroundWhite={true}
+          title={"Stay up to date"}
         />
       </MaxWidth>
       <Flex $background={"lavender50"} $width={"100%"}>
