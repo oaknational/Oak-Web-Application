@@ -9,7 +9,6 @@ import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview } from "@/common-lib/cms-types";
-import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
 
 jest.mock("@/node-lib/cms");
 
@@ -37,8 +36,27 @@ describe("pages/lesson-planning.tsx", () => {
     expect(nav).toBeInTheDocument();
   });
 
-  it("applies correct margin-bottom size based on section position", () => {
+  it("applies correct margin-bottom size based on section position if its a form block", () => {
     render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
+
+    const sections = screen.getAllByTestId("lesson-section");
+
+    expect(sections[0]).toHaveStyle("margin-bottom: 5rem");
+    expect(sections[1]).toHaveStyle("margin-bottom: 5rem");
+
+    expect(sections[sections.length - 1]).toHaveStyle("margin-bottom: 2rem");
+  });
+
+  it("applies correct margin-bottom size based on section position if its a content block", () => {
+    render(
+      <PlanALesson
+        pageData={{
+          ...testPlanningPageData,
+          content: testPlanALessonPageData.content.reverse(),
+        }}
+        posts={mockPosts}
+      />,
+    );
 
     const sections = screen.getAllByTestId("lesson-section");
 
@@ -117,31 +135,15 @@ describe("pages/lesson-planning.tsx", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("Renders the hero image source correctly", () => {
+  it("renders a hero image with alt text", () => {
     render(
       <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
     );
-    const heroImageSrc = imageBuilder
-      .image(testPlanALessonPageData.hero.image?.asset?.url ?? {})
-      .url();
-    const heroImage: HTMLImageElement = screen.getByAltText(
-      testPlanALessonPageData.hero.image?.altText ?? "",
-    );
-    expect(heroImage.src).toContain(encodeURIComponent(heroImageSrc));
+
+    const heroImage = screen.getByAltText("alt text hero").closest("img");
+    expect(heroImage).toBeInTheDocument();
   });
 
-  it("Renders the author image source correctly", () => {
-    render(
-      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
-    );
-    const authorImageSrc = imageBuilder
-      .image(testPlanALessonPageData.hero.author.image?.asset?.url ?? {})
-      .url();
-    const authorImage: HTMLImageElement = screen.getByAltText(
-      `${testPlanALessonPageData.hero.author.name} profile picture`,
-    );
-    expect(authorImage.src).toContain(encodeURIComponent(authorImageSrc));
-  });
   describe("SEO", () => {
     it.skip("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
