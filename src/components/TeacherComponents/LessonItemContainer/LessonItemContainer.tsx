@@ -8,6 +8,10 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
 
+export const getContainerId = (anchorId: string) => {
+  return `${anchorId}-container`;
+};
+
 /**
  * This replaces the old ExpandingContainer component on the lesson page. It should wrap each item of lesson content.
  *
@@ -67,7 +71,12 @@ export const LessonItemContainer = forwardRef<
   const lowerCaseTitle = title.toLowerCase();
 
   return (
-    <OakFlex $flexDirection="column" $position={"relative"}>
+    <OakFlex
+      $flexDirection="column"
+      $position={"relative"}
+      id={getContainerId(anchorId)}
+      tabIndex={-1}
+    >
       <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
       <OakFlex
         $flexDirection={["column", "row"]}
