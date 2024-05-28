@@ -1,3 +1,10 @@
+# [1.446.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.445.1...v1.446.0) (2024-05-28)
+
+
+### Features
+
+* move focus to active container on click ([1a9ad06](https://github.com/oaknational/Oak-Web-Application/commit/1a9ad0646ef30a5aaf80e739edaa010383d39ee0))
+
 ## [1.445.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.445.0...v1.445.1) (2024-05-28)
 
 # [1.445.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.444.0...v1.445.0) (2024-05-28)
