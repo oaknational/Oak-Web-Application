@@ -17,7 +17,10 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CurriculumDownlodsPatch from "@/pages-helpers/curriculum/docx/curriculum-download-patcher";
+import {
+  CurriculumDownlodsCycle1Patch,
+  CurriculumDownlodsCycle2Patch,
+} from "@/pages-helpers/curriculum/docx/curriculum-download-patcher";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 // import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
@@ -70,10 +73,11 @@ export default function Page({
       }
       const fileContent = event.target.result as ArrayBuffer;
       const uint8Array = new Uint8Array(fileContent);
-      const moddedFile = await CurriculumDownlodsPatch(
-        uint8Array,
-        combinedCurriculumData,
-      );
+      const patcher =
+        state === "new"
+          ? CurriculumDownlodsCycle2Patch
+          : CurriculumDownlodsCycle1Patch;
+      const moddedFile = await patcher(uint8Array, combinedCurriculumData);
 
       download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);
     };
