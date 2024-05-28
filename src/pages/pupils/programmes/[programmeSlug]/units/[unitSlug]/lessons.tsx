@@ -62,12 +62,16 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = await curriculumApi2023.pupilLessonListingQuery({
+      let curriculumData = await curriculumApi2023.pupilLessonListingQuery({
         programmeSlug,
         unitSlug,
       });
 
-      if (!curriculumData) {
+      curriculumData = curriculumData.filter(
+        (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,
+      );
+
+      if (!curriculumData || curriculumData.length === 0) {
         return {
           notFound: true,
         };

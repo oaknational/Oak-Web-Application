@@ -642,32 +642,31 @@ export const OAK_PAGES: {
     pageType: "pupil-lesson",
   }),
   "pupil-lesson-index": createOakPageConfig({
-    pathPattern:
-      "/pupils/beta/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "pupil-lesson-index",
   }),
   "pupil-unit-index": createOakPageConfig({
-    pathPattern: "/pupils/beta/programmes/:programmeSlug/units",
+    pathPattern: "/pupils/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "pupil-unit-index",
   }),
   "pupil-programme-index": createOakPageConfig({
-    pathPattern: "/pupils/beta/programmes/:programmeSlug/:optionSlug",
+    pathPattern: "/pupils/programmes/:programmeSlug/:optionSlug",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "pupil-programme-index",
   }),
   "pupil-subject-index": createOakPageConfig({
-    pathPattern: "/pupils/beta/years/:yearSlug/subjects",
+    pathPattern: "/pupils/years/:yearSlug/subjects",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "pupil-subject-index",
   }),
   "pupil-year-index": createOakPageConfig({
-    pathPattern: "/pupils/beta/years",
+    pathPattern: "/pupils/years",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "pupil-year-index",

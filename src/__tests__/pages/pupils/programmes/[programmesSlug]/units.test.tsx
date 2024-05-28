@@ -2,7 +2,7 @@ import { OakInfoProps } from "@oaknational/oak-components";
 
 import PupilUnitListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/units";
+} from "@/pages/pupils/programmes/[programmeSlug]/units";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
