@@ -46,7 +46,9 @@ describe("unitsTablePatch", () => {
   } as CombinedCurriculumData;
 
   it("should return units table", async () => {
-    const output = await unitsTablePatch("7", {}, inputData.units);
+    const output = await unitsTablePatch("7", {}, inputData.units, {
+      isCycle2Review: false,
+    });
 
     const xml = jsonXmlToXmlString(output);
 
