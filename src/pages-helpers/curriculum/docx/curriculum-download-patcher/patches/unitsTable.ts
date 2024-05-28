@@ -114,7 +114,10 @@ function buildYear(
   year: string,
   unitsInput: CombinedCurriculumData["units"],
   slug: Slug,
-  { isCycle2Review }: { isCycle2Review: boolean },
+  {
+    isCycle2Review,
+    noPrePageBreak,
+  }: { isCycle2Review: boolean; noPrePageBreak: boolean },
 ) {
   const rows = [];
   const units = removeDups(unitsInput);
@@ -145,7 +148,7 @@ function buildYear(
   const xml = `
       <w:p>
         <w:pPr>
-            <w:pageBreakBefore/>
+            ${noPrePageBreak ? "" : `<w:pageBreakBefore/>`}
             <w:sz w:val="44"/>
             <w:szCs w:val="44"/>
         </w:pPr>
@@ -274,9 +277,12 @@ export async function unitsTablePatch(
   year: string,
   slug: Slug,
   units: CombinedCurriculumData["units"],
-  { isCycle2Review }: { isCycle2Review: boolean },
+  {
+    isCycle2Review,
+    noPrePageBreak,
+  }: { isCycle2Review: boolean; noPrePageBreak: boolean },
 ) {
-  const xml = buildYear(year, units, slug, { isCycle2Review });
+  const xml = buildYear(year, units, slug, { isCycle2Review, noPrePageBreak });
 
   return {
     type: "element",

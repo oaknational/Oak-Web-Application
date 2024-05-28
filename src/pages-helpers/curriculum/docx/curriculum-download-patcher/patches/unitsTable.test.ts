@@ -48,6 +48,7 @@ describe("unitsTablePatch", () => {
   it("should return units table", async () => {
     const output = await unitsTablePatch("7", {}, inputData.units, {
       isCycle2Review: false,
+      noPrePageBreak: false,
     });
 
     const xml = jsonXmlToXmlString(output);

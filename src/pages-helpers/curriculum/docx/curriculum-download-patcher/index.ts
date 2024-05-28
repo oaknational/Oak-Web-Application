@@ -39,7 +39,7 @@ export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
   CurriculumUnitsTabData;
 
-function generateUnitOptions(combinedCurriculumData: CombinedCurriculumData) {
+function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
   const data = formatCurriculumUnitsData(combinedCurriculumData);
   const unitOptions = Object.entries(data.yearData).flatMap(
     ([year, { childSubjects, tiers, units }]) => {
@@ -141,17 +141,20 @@ export async function CurriculumDownlodsCycle1Patch(
         docMod1!,
         "UNIT_PAGE",
         async (template: Element) => {
-          const unitOptions = generateUnitOptions(combinedCurriculumData);
+          const groupedUnits = generateGroupedUnits(combinedCurriculumData);
 
-          const promises = unitOptions.map(
-            async ({ units, year, childSubject, tier }) => {
+          const promises = groupedUnits.map(
+            async ({ units, year, childSubject, tier }, index) => {
               const el = structuredClone(template);
 
               const table = await unitsTablePatch(
                 year,
                 { childSubject, tier },
                 units,
-                { isCycle2Review: false },
+                {
+                  isCycle2Review: false,
+                  noPrePageBreak: index === 0,
+                },
               );
 
               const unitsEls = await Promise.all(
@@ -238,17 +241,20 @@ export async function CurriculumDownlodsCycle2Patch(
         docMod1!,
         "UNIT_PAGE",
         async (template: Element) => {
-          const unitOptions = generateUnitOptions(combinedCurriculumData);
+          const groupedUnits = generateGroupedUnits(combinedCurriculumData);
 
-          const promises = unitOptions.map(
-            async ({ units, year, childSubject, tier }) => {
+          const promises = groupedUnits.map(
+            async ({ units, year, childSubject, tier }, index) => {
               const el = structuredClone(template);
 
               const table = await unitsTablePatch(
                 year,
                 { childSubject, tier },
                 units,
-                { isCycle2Review: true },
+                {
+                  isCycle2Review: true,
+                  noPrePageBreak: index === 0,
+                },
               );
 
               const unitsEls = await Promise.all(
