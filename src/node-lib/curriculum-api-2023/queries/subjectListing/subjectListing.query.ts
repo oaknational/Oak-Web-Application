@@ -3,7 +3,7 @@ import { Sdk } from "../../sdk";
 import subjectListingSchema, {
   subjectLisitingRawSchema,
 } from "./subjectListing.schema";
-import { processLessons } from "./processLesson";
+import { constructSubjectsFromLessonData } from "./constructSubjectsFromLessonData";
 
 import OakError from "@/errors/OakError";
 
@@ -17,7 +17,7 @@ const subjectListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const processedLessons = processLessons(subjectLessons);
+    const processedLessons = constructSubjectsFromLessonData(subjectLessons);
 
     const keyStages = key_stages.map((keyStage) => {
       const keyStageNew = {

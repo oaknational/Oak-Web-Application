@@ -1,9 +1,9 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
-import { processLessons } from "./processLesson";
+import { constructSubjectsFromLessonData } from "./constructSubjectsFromLessonData";
 
-describe("processLessons", () => {
-  it("should process lessons correctly", () => {
+describe("constructSubjectsFromLessonData", () => {
+  it("should construct subject objects from lesson data correctly", () => {
     const lessons = [
       {
         programme_fields: {
@@ -84,7 +84,7 @@ describe("processLessons", () => {
       },
     ] as SyntheticUnitvariantLessons[];
 
-    const result = processLessons(lessons);
+    const result = constructSubjectsFromLessonData(lessons);
     expect(result).toEqual([
       {
         subjectTitle: "Combined science",
