@@ -151,6 +151,7 @@ export async function CurriculumDownlodsCycle1Patch(
                 year,
                 { childSubject, tier },
                 units,
+                { isCycle2Review: false },
               );
 
               const unitsEls = await Promise.all(
@@ -247,6 +248,7 @@ export async function CurriculumDownlodsCycle2Patch(
                 year,
                 { childSubject, tier },
                 units,
+                { isCycle2Review: true },
               );
 
               const unitsEls = await Promise.all(

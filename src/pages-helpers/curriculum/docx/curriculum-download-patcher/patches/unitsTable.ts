@@ -114,6 +114,7 @@ function buildYear(
   year: string,
   unitsInput: CombinedCurriculumData["units"],
   slug: Slug,
+  { isCycle2Review }: { isCycle2Review: boolean },
 ) {
   const rows = [];
   const units = removeDups(unitsInput);
@@ -159,6 +160,10 @@ function buildYear(
             <w:t xml:space="preserve">Year ${year} units ${subjectTierTitleSuffix}</w:t>
         </w:r>
       </w:p>
+      ${
+        isCycle2Review
+          ? ""
+          : `
       <w:p>
         <w:pPr>
             <w:rPr>
@@ -224,7 +229,8 @@ function buildYear(
                     </wp:anchor>
                 </w:drawing>
             </w:r>
-      </w:p>
+      </w:p>`
+      }
       <w:p>
         <w:r>
             <w:rPr>
@@ -268,8 +274,9 @@ export async function unitsTablePatch(
   year: string,
   slug: Slug,
   units: CombinedCurriculumData["units"],
+  { isCycle2Review }: { isCycle2Review: boolean },
 ) {
-  const xml = buildYear(year, units, slug);
+  const xml = buildYear(year, units, slug, { isCycle2Review });
 
   return {
     type: "element",
