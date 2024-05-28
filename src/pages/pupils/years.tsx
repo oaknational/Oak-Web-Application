@@ -40,6 +40,7 @@ const YearListingPage = () => {
             title: `Year listing`,
             description: `Listing of all years in the curriculum.`,
           }),
+          ...{ noFollow: true, noIndex: true },
         }}
       >
         <OakPupilJourneyLayout sectionName="year-listing">

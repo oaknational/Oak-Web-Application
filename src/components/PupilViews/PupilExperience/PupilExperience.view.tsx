@@ -166,6 +166,7 @@ export const PupilExperienceView = ({
             title: browseData.lessonData.title,
             description: browseData.lessonData.pupilLessonOutcome,
           }),
+          ...{ noFollow: true, noIndex: true },
         }}
       >
         <OakThemeProvider theme={oakDefaultTheme}>

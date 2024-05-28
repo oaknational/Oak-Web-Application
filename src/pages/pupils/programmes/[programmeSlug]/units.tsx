@@ -43,6 +43,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
             title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
             description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
           }),
+          ...{ noFollow: true, noIndex: true },
         }}
       >
         <PupilViewsUnitListing
