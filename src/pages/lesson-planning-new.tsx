@@ -36,9 +36,6 @@ export type PlanALessonProps = {
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
   const navItems = getNavItems({ ...pageData });
-  const isNewsletterForm = pageData.content.some((section) => {
-    return section.type === "PlanALessonPageFormBlock";
-  });
 
   const blogs = posts.map(postToPostListItem);
 
@@ -190,14 +187,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       </OakBox>
                     );
                   })}
-                  {isNewsletterForm && (
-                    <OakBox
-                      $mb={"space-between-l"}
-                      $display={["block", "none", "none"]}
-                    >
-                      <LandingPageSignUpForm formTitle="Don't miss out" />
-                    </OakBox>
-                  )}
                 </OakFlex>
               </OakFlex>
             </OakGridArea>
