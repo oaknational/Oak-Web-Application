@@ -7,8 +7,7 @@ const footerSections: FooterSections = {
       {
         text: "Learn online",
         type: "page",
-        page: "classroom",
-        icon: "external",
+        page: "pupil-year-index",
       },
     ],
   },

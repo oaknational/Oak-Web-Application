@@ -31,18 +31,20 @@ const PupilTab: FC = () => {
                 Pupils
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Learn online
+                Learn and revise
               </OakHeading>
 
               <OakTypography $font={"body-1"}>
-                Use our online lessons and quizzes to learn and revise.
+                We provide free online lessons with videos, quizzes, and more.
+                Whatever the subject, from primary to GCSE, we've got you
+                covered.
               </OakTypography>
 
               <ButtonAsLink
-                label={"Learn with Oak"}
-                aria-label="Learn with Oak (this will open in a new tab)"
+                label={"Find a lesson"}
+                aria-label="Find a lesson"
                 variant={"brushNav"}
-                page={"classroom"}
+                page={"pupil-year-index"}
                 icon={"arrow-right"}
                 $iconPosition={"trailing"}
                 iconBackground="black"

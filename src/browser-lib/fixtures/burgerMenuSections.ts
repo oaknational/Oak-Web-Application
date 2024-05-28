@@ -85,10 +85,10 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
     header: "Pupils",
     links: [
       {
-        linkTo: { href: "https://classroom.thenational.academy/" },
-        text: "Learn online",
+        linkTo: { page: "pupil-year-index" },
+        text: "Home",
         new: false,
-        external: true,
+        external: false,
       },
     ],
   },
