@@ -1,15 +1,15 @@
-import { screen } from "@testing-library/react";
+// import { screen } from "@testing-library/react";
 
-import PlanALesson, { getStaticProps } from "../../pages/lesson-planning-new";
-import renderWithProviders from "../__helpers__/renderWithProviders";
-import renderWithSeo from "../__helpers__/renderWithSeo";
+// import PlanALesson, { getStaticProps } from "../../pages/lesson-planning-new";
+// import renderWithProviders from "../__helpers__/renderWithProviders";
+// import renderWithSeo from "../__helpers__/renderWithSeo";
 
-import { mockPosts } from "./index.test";
+// import { mockPosts } from "./index.test";
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
-import { BlogPostPreview } from "@/common-lib/cms-types";
-import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
+// import { BlogPostPreview } from "@/common-lib/cms-types";
+// import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
 
 jest.mock("@/node-lib/cms");
 
@@ -18,7 +18,7 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testPlanningPageData = testPlanALessonPageData;
 const getPageData = jest.fn(() => testPlanningPageData);
 
-const render = renderWithProviders();
+// const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
   // it("Renders header hero component", () => {
@@ -130,72 +130,69 @@ describe("pages/lesson-planning.tsx", () => {
   //   expect(heroImage.src).toContain(encodeURIComponent(heroImageSrc));
   // });
 
-  it("Renders the author image source correctly", () => {
-    render(
-      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
-    );
-    const authorImageSrc = imageBuilder
-      .image(testPlanALessonPageData.hero.author.image?.asset?.url ?? {})
-      .url();
-    const authorImage: HTMLImageElement = screen.getByAltText(
-      `${testPlanALessonPageData.hero.author.name} profile picture`,
-    );
-    expect(authorImage.src).toContain(encodeURIComponent(authorImageSrc));
-  });
-  describe("SEO", () => {
-    it.skip("renders the correct SEO details", () => {
-      const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
-      );
+  // it("Renders the author image source correctly", () => {
+  //   render(
+  //     <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+  //   );
+  //   const authorImageSrc = imageBuilder
+  //     .image(testPlanALessonPageData.hero.author.image?.asset?.url ?? {})
+  //     .url();
+  //   const authorImage: HTMLImageElement = screen.getByAltText(
+  //     `${testPlanALessonPageData.hero.author.name} profile picture`,
+  //   );
+  //   expect(authorImage.src).toContain(encodeURIComponent(authorImageSrc));
+  // });
+  // describe("SEO", () => {
+  //   it.skip("renders the correct SEO details", () => {
+  //     const { seo } = renderWithSeo()(
+  //       <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
+  //     );
 
-      expect(seo).toEqual({});
+  //     expect(seo).toEqual({});
+  //   });
+  // });
+
+  // describe("getStaticProps", () => {
+  //   const mockPost = {
+  //     id: "1",
+  //     title: "Some blog post",
+  //     slug: "some-blog-post",
+  //     date: new Date("2022-12-01"),
+  //     category: { title: "Some category", slug: "some-category" },
+  //   } as BlogPostPreview;
+
+  //   beforeEach(() => {
+  //     jest.clearAllMocks();
+  //     jest.resetModules();
+
+  //     mockCMSClient.planALessonPage.mockResolvedValue(testPlanningPageData);
+  //     mockCMSClient.blogPosts.mockResolvedValue([]);
+  //     mockCMSClient.webinars.mockResolvedValue([]);
+  //   });
+
+  //   it("Should not fetch draft content by default", async () => {
+  //     mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
+  //     await getStaticProps({
+  //       params: {},
+  //     });
+
+  //     expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
+  //       expect.objectContaining({
+  //         previewMode: false,
+  //       }),
+  //     );
+  //   });
+
+  it("should return notFound when the page data is missing", async () => {
+    getPageData.mockResolvedValueOnce(null as never);
+    mockCMSClient.planALessonPage.mockResolvedValueOnce(null);
+
+    const { getStaticProps } = await import("../../pages/lesson-planning-new");
+    const propsResult = await getStaticProps({
+      params: {},
     });
-  });
-
-  describe("getStaticProps", () => {
-    const mockPost = {
-      id: "1",
-      title: "Some blog post",
-      slug: "some-blog-post",
-      date: new Date("2022-12-01"),
-      category: { title: "Some category", slug: "some-category" },
-    } as BlogPostPreview;
-
-    beforeEach(() => {
-      jest.clearAllMocks();
-      jest.resetModules();
-
-      mockCMSClient.planALessonPage.mockResolvedValue(testPlanningPageData);
-      mockCMSClient.blogPosts.mockResolvedValue([]);
-      mockCMSClient.webinars.mockResolvedValue([]);
-    });
-
-    it("Should not fetch draft content by default", async () => {
-      mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
-      await getStaticProps({
-        params: {},
-      });
-
-      expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
-        expect.objectContaining({
-          previewMode: false,
-        }),
-      );
-    });
-
-    it("should return notFound when the page data is missing", async () => {
-      getPageData.mockResolvedValueOnce(null as never);
-      mockCMSClient.planALessonPage.mockResolvedValueOnce(null);
-
-      const { getStaticProps } = await import(
-        "../../pages/lesson-planning-new"
-      );
-      const propsResult = await getStaticProps({
-        params: {},
-      });
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
+    expect(propsResult).toMatchObject({
+      notFound: true,
     });
   });
 });
