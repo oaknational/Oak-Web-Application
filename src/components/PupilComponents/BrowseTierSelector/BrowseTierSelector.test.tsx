@@ -54,7 +54,7 @@ describe("BrowseTierSelector", () => {
       const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}/units`,
       );
     }
   });
@@ -75,7 +75,7 @@ describe("BrowseTierSelector", () => {
       const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}-l/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}-l/units`,
       );
     }
   });
@@ -97,7 +97,7 @@ describe("BrowseTierSelector", () => {
       const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}-my-examboard/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}-my-examboard/units`,
       );
     }
   });

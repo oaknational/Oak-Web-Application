@@ -81,7 +81,7 @@ describe("BrowseExamboardSelector", () => {
     for (const e of examboards) {
       const button = getByRole("link", { name: e.examboard ?? "" });
       expect(button.getAttribute("href")).toBe(
-        `/pupils/beta/programmes/my-subject-${e.examboardSlug}-l/units`,
+        `/pupils/programmes/my-subject-${e.examboardSlug}-l/units`,
       );
     }
   });
