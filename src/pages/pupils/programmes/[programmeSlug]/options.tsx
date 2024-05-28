@@ -1,7 +1,7 @@
 // TESTING
-// http://localhost:3000/pupils/beta/programmes/biology-secondary-year-11/options
-// http://localhost:3000/pupils/beta/programmes/maths-secondary-year-10/options
-// http://localhost:3000/pupils/beta/programmes/maths-secondary-year-11/options (should 404)
+// http://localhost:3000/pupils/programmes/biology-secondary-year-11/options
+// http://localhost:3000/pupils/programmes/maths-secondary-year-10/options
+// http://localhost:3000/pupils/programmes/maths-secondary-year-11/options (should 404)
 
 import { GetStaticProps } from "next";
 import { useSearchParams } from "next/navigation";
