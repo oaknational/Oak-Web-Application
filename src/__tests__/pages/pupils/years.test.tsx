@@ -1,4 +1,4 @@
-import YearListingPage from "@/pages/pupils/beta/years";
+import YearListingPage from "@/pages/pupils/years";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
