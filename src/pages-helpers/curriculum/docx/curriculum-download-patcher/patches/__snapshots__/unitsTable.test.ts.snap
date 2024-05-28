@@ -776,10 +776,10 @@ exports[`unitsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend Light",
+                                "w:cs": "Lexend Light",
+                                "w:eastAsia": "Lexend Light",
+                                "w:hAnsi": "Lexend Light",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -1104,10 +1104,10 @@ exports[`unitsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend Light",
+                                "w:cs": "Lexend Light",
+                                "w:eastAsia": "Lexend Light",
+                                "w:hAnsi": "Lexend Light",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -1355,10 +1355,10 @@ exports[`unitsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend Light",
+                                "w:cs": "Lexend Light",
+                                "w:eastAsia": "Lexend Light",
+                                "w:hAnsi": "Lexend Light",
                               },
                               "name": "w:rFonts",
                               "type": "element",
