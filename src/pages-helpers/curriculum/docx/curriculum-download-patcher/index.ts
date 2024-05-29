@@ -154,11 +154,12 @@ async function patchFile(
           const promises = groupedUnits.map(
             async ({ units, year, childSubject, tier }, index) => {
               const el = structuredClone(template);
+              const sortedUnits = sortByOrder(units);
 
               const table = await unitsTablePatch(
                 year,
                 { childSubject, tier },
-                units,
+                sortedUnits,
                 {
                   isCycle2Review: isCycle2Review,
                   noPrePageBreak: index === 0,
@@ -166,7 +167,7 @@ async function patchFile(
               );
 
               const unitsEls = await Promise.all(
-                sortByOrder(units).flatMap((unit, index) => {
+                sortedUnits.flatMap((unit, index) => {
                   if (unit.unit_options.length > 1) {
                     return unit.unit_options.map(
                       (unitOption, unitOptionIndex) => {
