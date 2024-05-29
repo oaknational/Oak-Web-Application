@@ -44,28 +44,21 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
     items: blogs,
     withImage: true,
   });
-
   // Get proxied image URLs
   const finalHeroUrl = useMemo(
     () =>
-      pageData.hero.image?.asset?.url
-        ? imageBuilder
-            .image(pageData.hero.image?.asset?.url)
-            .url()
-            ?.toString()
+      pageData.hero.image
+        ? imageBuilder.image(pageData.hero.image).url()?.toString()
         : null,
-    [pageData.hero.image?.asset?.url],
+    [pageData.hero.image],
   );
 
   const finalAuthorUrl = useMemo(
     () =>
-      pageData.hero.author.image?.asset?.url
-        ? imageBuilder
-            .image(pageData.hero.author.image?.asset?.url)
-            .url()
-            ?.toString()
+      pageData.hero.author.image
+        ? imageBuilder.image(pageData.hero.author.image).url()?.toString()
         : null,
-    [pageData.hero.author.image?.asset?.url],
+    [pageData.hero.author.image],
   );
 
   if (!finalHeroUrl || !finalAuthorUrl) {
