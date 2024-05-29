@@ -34,6 +34,7 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
@@ -110,6 +111,12 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
   return unitOptions;
 }
 
+const sortByOrder = (units: Unit[]) => {
+  return [...units].sort((a, b) => {
+    return a.order - b.order;
+  });
+};
+
 async function patchFile(
   uint8Array: Uint8Array,
   combinedCurriculumData: CombinedCurriculumData,
@@ -159,7 +166,7 @@ async function patchFile(
               );
 
               const unitsEls = await Promise.all(
-                units.flatMap((unit, index) => {
+                sortByOrder(units).flatMap((unit, index) => {
                   if (unit.unit_options.length > 1) {
                     return unit.unit_options.map(
                       (unitOption, unitOptionIndex) => {
