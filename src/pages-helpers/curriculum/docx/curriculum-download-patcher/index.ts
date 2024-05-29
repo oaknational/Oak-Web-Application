@@ -164,7 +164,7 @@ async function patchFile(
 
               const unitsEls = await Promise.all(
                 unitUnitsBySlug.flatMap((unit, index) => {
-                  if (unit.unit_options.length > 1) {
+                  if (unit.unit_options.length > 0) {
                     return unit.unit_options.map(
                       (unitOption, unitOptionIndex) => {
                         // Map in unit varients

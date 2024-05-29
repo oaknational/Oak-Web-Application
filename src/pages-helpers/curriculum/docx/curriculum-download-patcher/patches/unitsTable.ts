@@ -20,7 +20,9 @@ function buildOptions({ unitOptions }: { unitOptions: Unit["unit_options"] }) {
                 <w:shd w:fill="f6e8a0" w:val="clear"/>
                 <w:rtl w:val="0"/>
             </w:rPr>
-            <w:t xml:space="preserve">${unitOptions.length} options</w:t>
+            <w:t xml:space="preserve">${unitOptions.length} option${
+              unitOptions.length > 1 ? "s" : ""
+            }</w:t>
         </w:r>
       </w:p>
     `;
