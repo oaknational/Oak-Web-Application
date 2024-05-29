@@ -166,7 +166,11 @@ async function patchFile(
                         // Map in unit varients
                         return mapOverElements(el, (el, parent) => {
                           return pipeElementThrough(el, parent, [
-                            unitTitlePatch(unit, unitOptionIndex),
+                            unitTitlePatch(
+                              unit,
+                              unit.unit_options,
+                              unitOptionIndex,
+                            ),
                             unitNumberPatch(unit, index),
                             unitLessonsPatch(unitOption),
                             unitYearPatch(unit),
