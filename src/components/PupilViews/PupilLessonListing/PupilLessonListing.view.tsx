@@ -48,8 +48,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     breadcrumb.push(tierDescription);
   }
 
-  console.log(programmeFields);
-
   const optionality = programmeFields?.optionality;
 
   const LessonListingTitle = (
