@@ -4,7 +4,7 @@ import { CombinedCurriculumData } from "..";
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 function buildOptions({ unitOptions }: { unitOptions: Unit["unit_options"] }) {
-  if (unitOptions.length > 1) {
+  if (unitOptions.length > 0) {
     return `
       <w:p>
           <w:pPr>
