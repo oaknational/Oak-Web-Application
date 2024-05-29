@@ -20,14 +20,13 @@ export const generateURLFields = (urls: URLFields) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const teacherSiteMap = await curriculumApi2023.teachersSitemap();
-
   const fields = generateURLFields(teacherSiteMap);
 
   const middleIndex = Math.floor(fields.length / 2);
 
-  const firstHalf = fields.slice(0, middleIndex);
+  const secondHalf = fields.slice(middleIndex);
 
-  return getServerSideSitemap(context, firstHalf);
+  return getServerSideSitemap(context, secondHalf);
 };
 
 export default function Sitemap() {}
