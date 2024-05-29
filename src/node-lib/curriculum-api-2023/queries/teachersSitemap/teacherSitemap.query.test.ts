@@ -11,7 +11,7 @@ describe("teacher sitemap query", () => {
         teachersSitemap: jest.fn(() =>
           Promise.resolve({ teachersSitemap: [] }),
         ),
-      })(false);
+      });
     }).rejects.toThrow(`Resource not found`);
   });
 });

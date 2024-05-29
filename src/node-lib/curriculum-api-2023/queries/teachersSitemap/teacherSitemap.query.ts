@@ -10,7 +10,9 @@ const teachersSitemapSchema = z.array(
   }),
 );
 
-const teachersSitemap = (sdk: Sdk) => async (firstHalf: boolean) => {
+export type TeachersSitemap = z.infer<typeof teachersSitemapSchema>;
+
+const teachersSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.teachersSitemap();
 
   if (!res || res.teachersSitemap.length === 0) {
@@ -24,12 +26,7 @@ const teachersSitemap = (sdk: Sdk) => async (firstHalf: boolean) => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  const middleIndex = Math.floor(res.teachersSitemap.length / 2);
-  const selectedHalf = firstHalf
-    ? res.teachersSitemap.slice(0, middleIndex)
-    : res.teachersSitemap.slice(middleIndex);
-
-  return teachersSitemapSchema.parse(selectedHalf);
+  return teachersSitemapSchema.parse(res.teachersSitemap);
 };
 
 export default teachersSitemap;

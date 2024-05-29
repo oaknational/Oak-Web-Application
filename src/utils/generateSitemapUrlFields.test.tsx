@@ -1,4 +1,8 @@
-import { generateURLFields, URLFields } from "@/utils/generateSitemapUrlFields";
+import {
+  generateURLFields,
+  splitURLsInHalf,
+  URLFields,
+} from "@/utils/generateSitemapUrlFields";
 
 describe("generateURLFields function", () => {
   it("should map each url.urls to loc and generate a lastmod date", () => {
@@ -42,5 +46,30 @@ describe("generateURLFields function", () => {
     ];
     const result = generateURLFields(urls);
     expect(result[0]?.lastmod).toBe(result[1]?.lastmod);
+  });
+});
+
+describe("splitURLsInHalf", () => {
+  const urls = [
+    { urls: "url1" },
+    { urls: "url2" },
+    { urls: "url3" },
+    { urls: "url4" },
+  ];
+  it("should return the first half of the array when firstHalf is true", () => {
+    const result = splitURLsInHalf(urls, true);
+    expect(result).toEqual([{ urls: "url1" }, { urls: "url2" }]);
+  });
+
+  it("should return the second half of the array when firstHalf is false", () => {
+    const result = splitURLsInHalf(urls, false);
+    expect(result).toEqual([{ urls: "url3" }, { urls: "url4" }]);
+  });
+
+  it("should handle odd-length arrays correctly", () => {
+    const resultFirstHalf = splitURLsInHalf(urls.slice(0, 3), true);
+    const resultSecondHalf = splitURLsInHalf(urls.slice(0, 3), false);
+    expect(resultFirstHalf).toEqual([{ urls: "url1" }]);
+    expect(resultSecondHalf).toEqual([{ urls: "url2" }, { urls: "url3" }]);
   });
 });
