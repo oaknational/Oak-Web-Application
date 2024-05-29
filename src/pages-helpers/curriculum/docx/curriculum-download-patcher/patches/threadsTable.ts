@@ -10,12 +10,13 @@ function buildColumn(text: string) {
   return `
     <w:tc>
       <w:tcPr>
+          <w:shd w:val="pct" w:color="FFFF00" w:fill="FEF7D0"/>
           <w:tcW w:type="pct" w:w="33.333333333333336%"/>
           <w:tcBorders>
-              <w:top w:val="single" w:color="FEF7D0" w:sz="48"/>
-              <w:left w:val="single" w:color="FEF7D0" w:sz="48"/>
-              <w:bottom w:val="single" w:color="FEF7D0" w:sz="48"/>
-              <w:right w:val="single" w:color="FEF7D0" w:sz="48"/>
+              <w:top w:val="single" w:color="FFFFFF" w:sz="48"/>
+              <w:left w:val="single" w:color="FFFFFF" w:sz="0"/>
+              <w:bottom w:val="single" w:color="FFFFFF" w:sz="48"/>
+              <w:right w:val="single" w:color="FFFFFF" w:sz="0"/>
           </w:tcBorders>
           <w:tcMar>
               <w:top w:type="dxa" w:w="226"/>
