@@ -1,3 +1,30 @@
+## [1.446.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.1...v1.446.2) (2024-05-28)
+
+## [1.446.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.0...v1.446.1) (2024-05-28)
+
+# [1.446.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.445.1...v1.446.0) (2024-05-28)
+
+
+### Features
+
+* move focus to active container on click ([1a9ad06](https://github.com/oaknational/Oak-Web-Application/commit/1a9ad0646ef30a5aaf80e739edaa010383d39ee0))
+
+## [1.445.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.445.0...v1.445.1) (2024-05-28)
+
+# [1.445.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.444.0...v1.445.0) (2024-05-28)
+
+
+### Bug Fixes
+
+* possible timing issue with unit test ([dc16f81](https://github.com/oaknational/Oak-Web-Application/commit/dc16f81d8caba39c840bd6bef4bdd1a259013b97))
+* update beta urls ([975850e](https://github.com/oaknational/Oak-Web-Application/commit/975850ebb364136317662ec60e6488696526f3f4))
+* update paths in pages tests ([fbcf15c](https://github.com/oaknational/Oak-Web-Application/commit/fbcf15cb4a31d48b06d08e44514055029bb7309a))
+
+
+### Features
+
+* move beta pupil pages ([68fa7b5](https://github.com/oaknational/Oak-Web-Application/commit/68fa7b50c056ebbbf4386d50cc36fc4d92c35702))
+
 # [1.444.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.443.0...v1.444.0) (2024-05-23)
 
 

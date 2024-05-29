@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef, useEffect } from "react";
 import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -35,6 +35,12 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     !isCanonical && unitSlug && programmeSlug && unitTitle;
   const isNextLessonsAvailable = nextLessons && nextLessons.length > 0;
 
+  const focusRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    focusRef.current?.focus();
+  }, []);
+
   return (
     <>
       <Flex
@@ -61,6 +67,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         >
           {unitSlug && unitTitle && programmeSlug ? (
             <ButtonAsLink
+              {...focusRef}
+              htmlAnchorProps={{ tabIndex: 0 }}
               page={
                 isSpecialist ? "specialist-lesson-overview" : "lesson-overview"
               }
@@ -85,6 +93,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             />
           ) : (
             <ButtonAsLink
+              {...focusRef}
               page={"lesson-overview-canonical"}
               lessonSlug={lessonSlug}
               label="Back to lesson"
