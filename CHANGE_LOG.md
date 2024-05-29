@@ -1,3 +1,22 @@
+# [1.447.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.2...v1.447.0) (2024-05-29)
+
+
+### Features
+
+* **main:** merge main ([2ec6b47](https://github.com/oaknational/Oak-Web-Application/commit/2ec6b476e137ba279548a3c2fb5eefa06c343059))
+* **main:** merge main ([9afb031](https://github.com/oaknational/Oak-Web-Application/commit/9afb0315c0a10beb806ebd9036cac808fac7745a))
+* **optionality:** add optionality components to units ([a3d90ac](https://github.com/oaknational/Oak-Web-Application/commit/a3d90ac013e7f8ad80dc4bfcbd109944afedd3cf))
+* **optionality:** add optionality components to units ([42e1829](https://github.com/oaknational/Oak-Web-Application/commit/42e18297e2f15dbb5152c35109d113fe547aade6))
+* **optionality:** add optionality components to units ([be9d134](https://github.com/oaknational/Oak-Web-Application/commit/be9d134c2106bd4a97b67bc0924c8f076d84e9cb))
+* **optionality:** add optionality title to lesson page and fix count regression ([323db68](https://github.com/oaknational/Oak-Web-Application/commit/323db68b764cb77849487f24ae40f9a061be2c38))
+* **optionality:** fix lesson count ([a56c573](https://github.com/oaknational/Oak-Web-Application/commit/a56c573743a5b284f0ce2d08edb0ded1d9be04f3))
+* **optionality:** handle only one option case ([1b773b6](https://github.com/oaknational/Oak-Web-Application/commit/1b773b65efc987899de424fafc3c9b5bd214ca90))
+* **optionality:** merge main ([b1451f8](https://github.com/oaknational/Oak-Web-Application/commit/b1451f8c3c20bfdfe8e5a53957ea2630bfc1abd4))
+* **optionality:** merge main ([b1a9d1e](https://github.com/oaknational/Oak-Web-Application/commit/b1a9d1e1cc9c246646d5f4b8c7f1c0bb87cb57bf))
+* **optionality:** review changes for realiabiltiy ([e45737b](https://github.com/oaknational/Oak-Web-Application/commit/e45737bc9bd5060a1046a145dffaa721dd18f85b))
+* **optionality:** test coverage ([f372b5f](https://github.com/oaknational/Oak-Web-Application/commit/f372b5fa43b77fb39233d1fa28d428a84f1139b8))
+* **optionality:** update package ([72537ae](https://github.com/oaknational/Oak-Web-Application/commit/72537aea88fb4360c25370d4a242b15d2248ae2a))
+
 ## [1.446.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.1...v1.446.2) (2024-05-28)
 
 ## [1.446.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.0...v1.446.1) (2024-05-28)
