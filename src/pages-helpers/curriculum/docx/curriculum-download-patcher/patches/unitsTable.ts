@@ -3,8 +3,8 @@ import { CombinedCurriculumData } from "..";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
-function buildOptions({ threads }: { threads: Unit["threads"] }) {
-  if (threads.length > 1) {
+function buildOptions({ unitOptions }: { unitOptions: Unit["unit_options"] }) {
+  if (unitOptions.length > 1) {
     return `
       <w:p>
           <w:pPr>
@@ -20,7 +20,7 @@ function buildOptions({ threads }: { threads: Unit["threads"] }) {
                 <w:shd w:fill="f6e8a0" w:val="clear"/>
                 <w:rtl w:val="0"/>
             </w:rPr>
-            <w:t xml:space="preserve">${threads.length} options</w:t>
+            <w:t xml:space="preserve">${unitOptions.length} options</w:t>
         </w:r>
       </w:p>
     `;
@@ -31,12 +31,14 @@ function buildOptions({ threads }: { threads: Unit["threads"] }) {
 function buildYearColumn({
   index,
   title,
-  threads,
+  unitOptions,
 }: {
   title: string;
   index: number;
-  threads: Unit["threads"];
+  unitOptions: Unit["unit_options"];
 }) {
+  const columnIndex = index % 3;
+
   return `
     <w:tc>
       <w:tcPr>
@@ -44,9 +46,17 @@ function buildYearColumn({
           <w:shd w:val="pct" w:color="FFFF00" w:fill="F5E9F2"/>
           <w:tcBorders>
               <w:top w:val="single" w:color="FFFFFF" w:sz="48"/>
-              <w:left w:val="single" w:color="FFFFFF" w:sz="48"/>
+              ${
+                columnIndex > 0
+                  ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
+                  : ""
+              }
               <w:bottom w:val="single" w:color="FFFFFF" w:sz="48"/>
-              <w:right w:val="single" w:color="FFFFFF" w:sz="48"/>
+              ${
+                columnIndex < 2
+                  ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
+                  : ""
+              }
           </w:tcBorders>
           <w:tcMar>
               <w:top w:type="dxa" w:w="226"/>
@@ -67,7 +77,7 @@ function buildYearColumn({
                   <w:b/>
                   <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
               </w:rPr>
-              <w:t xml:space="preserve">${index}</w:t>
+              <w:t xml:space="preserve">${index + 1}</w:t>
           </w:r>
       </w:p>
       <w:p>
@@ -81,7 +91,7 @@ function buildYearColumn({
               <w:t xml:space="preserve">${title}</w:t>
           </w:r>
       </w:p>
-      ${buildOptions({ threads })}
+      ${buildOptions({ unitOptions })}
     </w:tc>
   `;
 }
@@ -128,11 +138,11 @@ function buildYear(
         units
           .slice(i, i + 3)
           .map((unit, j) => {
-            const index = i + j + 1;
+            const index = i + j;
             return buildYearColumn({
               index: index,
               title: unit.title,
-              threads: unit.threads,
+              unitOptions: unit.unit_options,
             });
           })
           .join(""),

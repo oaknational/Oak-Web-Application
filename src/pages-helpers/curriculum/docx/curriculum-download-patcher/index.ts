@@ -110,9 +110,10 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
   return unitOptions;
 }
 
-export async function CurriculumDownlodsCycle1Patch(
+async function patchFile(
   uint8Array: Uint8Array,
   combinedCurriculumData: CombinedCurriculumData,
+  isCycle2Review = false,
 ) {
   // NOTE: This is really inefficient at the moment, that's fine for now though
   const moddedFile = await modifyXmlByRootSelector(
@@ -152,24 +153,43 @@ export async function CurriculumDownlodsCycle1Patch(
                 { childSubject, tier },
                 units,
                 {
-                  isCycle2Review: false,
+                  isCycle2Review: isCycle2Review,
                   noPrePageBreak: index === 0,
                 },
               );
 
               const unitsEls = await Promise.all(
-                units.map((unit, index) => {
-                  return mapOverElements(el, (el, parent) => {
-                    return pipeElementThrough(el, parent, [
-                      unitTitlePatch(unit),
-                      unitNumberPatch(unit, index),
-                      unitLessonsPatch(unit),
-                      unitYearPatch(unit),
-                      unitThreadsPatch(unit),
-                      unitPreviousPatch(unit),
-                      unitNextPatch(unit),
-                    ]);
-                  });
+                units.flatMap((unit, index) => {
+                  if (unit.unit_options.length > 1) {
+                    return unit.unit_options.map(
+                      (unitOption, unitOptionIndex) => {
+                        // Map in unit varients
+                        return mapOverElements(el, (el, parent) => {
+                          return pipeElementThrough(el, parent, [
+                            unitTitlePatch(unit, unitOptionIndex),
+                            unitNumberPatch(unit, index),
+                            unitLessonsPatch(unitOption),
+                            unitYearPatch(unit),
+                            unitThreadsPatch(unit),
+                            unitPreviousPatch(unitOption),
+                            unitNextPatch(unitOption),
+                          ]);
+                        });
+                      },
+                    );
+                  } else {
+                    return mapOverElements(el, (el, parent) => {
+                      return pipeElementThrough(el, parent, [
+                        unitTitlePatch(unit),
+                        unitNumberPatch(unit, index),
+                        unitLessonsPatch(unit),
+                        unitYearPatch(unit),
+                        unitThreadsPatch(unit),
+                        unitPreviousPatch(unit),
+                        unitNextPatch(unit),
+                      ]);
+                    });
+                  }
                 }),
               );
 
@@ -210,102 +230,16 @@ export async function CurriculumDownlodsCycle1Patch(
   return moddedFile;
 }
 
+export async function CurriculumDownlodsCycle1Patch(
+  uint8Array: Uint8Array,
+  combinedCurriculumData: CombinedCurriculumData,
+) {
+  return patchFile(uint8Array, combinedCurriculumData, false);
+}
+
 export async function CurriculumDownlodsCycle2Patch(
   uint8Array: Uint8Array,
   combinedCurriculumData: CombinedCurriculumData,
 ) {
-  // NOTE: This is really inefficient at the moment, that's fine for now though
-  const moddedFile = await modifyXmlByRootSelector(
-    uint8Array,
-    "w:document",
-    async (doc) => {
-      const docMod1 = await mapOverElements(
-        doc,
-        (el: Element, parent?: Element) => {
-          return pipeElementThrough(el, parent, [
-            coverPatch(combinedCurriculumData),
-            subjectPatch(combinedCurriculumData),
-            tableOfContentsPatch(),
-            subjectExplainerPatch(combinedCurriculumData),
-            partnerDetailPatch(combinedCurriculumData),
-            partnerNamePatch(combinedCurriculumData),
-            yearPatch(),
-            threadsTablePatch(combinedCurriculumData),
-            backPatch(combinedCurriculumData),
-            endOfDocumentPatch(),
-          ]);
-        },
-      );
-
-      const docMod2 = await withBlock(
-        docMod1!,
-        "UNIT_PAGE",
-        async (template: Element) => {
-          const groupedUnits = generateGroupedUnits(combinedCurriculumData);
-
-          const promises = groupedUnits.map(
-            async ({ units, year, childSubject, tier }, index) => {
-              const el = structuredClone(template);
-
-              const table = await unitsTablePatch(
-                year,
-                { childSubject, tier },
-                units,
-                {
-                  isCycle2Review: true,
-                  noPrePageBreak: index === 0,
-                },
-              );
-
-              const unitsEls = await Promise.all(
-                units.map((unit, index) => {
-                  return mapOverElements(el, (el, parent) => {
-                    return pipeElementThrough(el, parent, [
-                      unitTitlePatch(unit),
-                      unitNumberPatch(unit, index),
-                      unitLessonsPatch(unit),
-                      unitYearPatch(unit),
-                      unitThreadsPatch(unit),
-                      unitPreviousPatch(unit),
-                      unitNextPatch(unit),
-                    ]);
-                  });
-                }),
-              );
-
-              return {
-                type: "element",
-                name: "$FRAGMENT$",
-                elements: [table, ...unitsEls.filter(notUndefined)],
-              } as Element;
-            },
-          );
-
-          return {
-            type: "element",
-            name: "$FRAGMENT$",
-            elements: await Promise.all(promises),
-          };
-        },
-      );
-
-      const docMod3 = await withBlock(
-        docMod2!,
-        "THREAD_PAGE",
-        async (el: Element, parent?: Element) => {
-          return pipeElementThrough(el, parent, [
-            mainThreadsPatch(combinedCurriculumData),
-          ]);
-        },
-      );
-
-      if (!docMod3) {
-        throw new Error("Invalid document!");
-      }
-
-      return docMod3;
-    },
-  );
-
-  return moddedFile;
+  return patchFile(uint8Array, combinedCurriculumData, true);
 }

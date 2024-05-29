@@ -1,7 +1,13 @@
+import { CombinedCurriculumData } from "..";
+
 import {
   Thread,
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
+
+export type UnitLike =
+  | CombinedCurriculumData["units"][number]["unit_options"][number]
+  | Unit;
 
 export function notUndefined<TValue>(
   value: TValue | undefined,

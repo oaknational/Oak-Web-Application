@@ -18,6 +18,11 @@ describe("unitsTablePatch", () => {
             title: "test2",
           },
         ],
+        unit_options: [
+          { title: "one_opt_one" },
+          { title: "one_opt_two" },
+          { title: "one_opt_three" },
+        ],
       },
       {
         slug: "two",
@@ -28,6 +33,7 @@ describe("unitsTablePatch", () => {
             title: "test1",
           },
         ],
+        unit_options: [],
       },
       // Next defines 2 duplicates
       {
@@ -35,12 +41,14 @@ describe("unitsTablePatch", () => {
         title: "TEST_3",
         year: "7",
         threads: [],
+        unit_options: [],
       },
       {
         slug: "three",
         title: "TEST_3",
         year: "7",
         threads: [],
+        unit_options: [],
       },
     ],
   } as CombinedCurriculumData;

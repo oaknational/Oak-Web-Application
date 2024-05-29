@@ -1,15 +1,19 @@
 import type { Element } from "xml-js";
 
-import { CombinedCurriculumData } from "..";
+import { UnitLike, textIncludes, textReplacer } from "./util";
 
-import { textIncludes, textReplacer } from "./util";
-
-export function unitTitlePatch(unit: CombinedCurriculumData["units"][number]) {
+export function unitTitlePatch(unit: UnitLike, unitOptionIndex?: number) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=UNIT.TITLE}}")) {
       return {
         type: "text",
-        text: textReplacer(el.text, "{{=UNIT.TITLE}}", unit.title),
+        text: textReplacer(
+          el.text,
+          "{{=UNIT.TITLE}}",
+          unitOptionIndex !== undefined
+            ? `${unit.title}: Option ${unitOptionIndex + 1}`
+            : unit.title,
+        ),
       } as Element;
     }
     return el;

@@ -600,15 +600,6 @@ exports[`unitsTablePatch should return units table 1`] = `
                             "w:sz": "48",
                             "w:val": "single",
                           },
-                          "name": "w:left",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:color": "FFFFFF",
-                            "w:sz": "48",
-                            "w:val": "single",
-                          },
                           "name": "w:bottom",
                           "type": "element",
                         },
@@ -871,7 +862,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "2 options",
+                              "text": "3 options",
                               "type": "text",
                             },
                           ],
@@ -1189,15 +1180,6 @@ exports[`unitsTablePatch should return units table 1`] = `
                             "w:val": "single",
                           },
                           "name": "w:bottom",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:color": "FFFFFF",
-                            "w:sz": "48",
-                            "w:val": "single",
-                          },
-                          "name": "w:right",
                           "type": "element",
                         },
                       ],

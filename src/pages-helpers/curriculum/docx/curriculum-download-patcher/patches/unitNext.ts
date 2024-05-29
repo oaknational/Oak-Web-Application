@@ -1,10 +1,8 @@
 import type { Element } from "xml-js";
 
-import { CombinedCurriculumData } from "..";
+import { UnitLike, textIncludes, textReplacer } from "./util";
 
-import { textIncludes, textReplacer } from "./util";
-
-export function unitNextPatch(unit: CombinedCurriculumData["units"][number]) {
+export function unitNextPatch(unit: UnitLike) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=UNIT.NEXT}}")) {
       return {

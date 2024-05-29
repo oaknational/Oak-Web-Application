@@ -2,11 +2,10 @@ import type { Element } from "xml-js";
 
 import { checkWithinElement } from "../../docx";
 import { xmlElementToJson } from "../../xml";
-import { CombinedCurriculumData } from "..";
 
-export function unitLessonsPatch(
-  unit: CombinedCurriculumData["units"][number],
-) {
+import { UnitLike } from "./util";
+
+export function unitLessonsPatch(unit: UnitLike) {
   return async (el: Element) => {
     if (
       el.type === "element" &&
