@@ -12,6 +12,7 @@ import {
   OakBox,
   OakLink,
 } from "@oaknational/oak-components";
+import { useMemo } from "react";
 
 import { postToPostListItem, SerializedPost } from ".";
 
@@ -44,6 +45,33 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
     withImage: true,
   });
 
+  // Get proxied image URLs
+  const finalHeroUrl = useMemo(
+    () =>
+      pageData.hero.image?.asset?.url
+        ? imageBuilder
+            .image(pageData.hero.image?.asset?.url)
+            .url()
+            ?.toString()
+        : null,
+    [pageData.hero.image?.asset?.url],
+  );
+
+  const finalAuthorUrl = useMemo(
+    () =>
+      pageData.hero.author.image?.asset?.url
+        ? imageBuilder
+            .image(pageData.hero.author.image?.asset?.url)
+            .url()
+            ?.toString()
+        : null,
+    [pageData.hero.author.image?.asset?.url],
+  );
+
+  if (!finalHeroUrl || !finalAuthorUrl) {
+    return null;
+  }
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Layout
@@ -63,12 +91,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
           subHeadingText={
             pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
           }
-          heroImageSrc={imageBuilder
-            .image(pageData.hero.image?.asset?.url ?? {})
-            .url()}
-          authorImageSrc={imageBuilder
-            .image(pageData.hero.author.image?.asset?.url ?? {})
-            .url()}
+          heroImageSrc={finalHeroUrl}
+          authorImageSrc={finalAuthorUrl}
           breadcrumbs={
             <Breadcrumbs
               breadcrumbs={[
