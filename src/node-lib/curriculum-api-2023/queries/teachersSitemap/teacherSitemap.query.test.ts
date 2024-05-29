@@ -7,11 +7,10 @@ describe("teacher sitemap query", () => {
     await expect(async () => {
       await teacherSitemap({
         ...sdk,
-
         teachersSitemap: jest.fn(() =>
           Promise.resolve({ teachersSitemap: [] }),
         ),
-      });
+      })();
     }).rejects.toThrow(`Resource not found`);
   });
 });
