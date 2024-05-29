@@ -1,4 +1,5 @@
 import { Element } from "xml-js";
+import { uniqBy } from "lodash";
 
 import {
   mapOverElements,
@@ -34,7 +35,6 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
@@ -111,12 +111,6 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
   return unitOptions;
 }
 
-const sortByOrder = (units: Unit[]) => {
-  return [...units].sort((a, b) => {
-    return a.order - b.order;
-  });
-};
-
 async function patchFile(
   uint8Array: Uint8Array,
   combinedCurriculumData: CombinedCurriculumData,
@@ -154,12 +148,14 @@ async function patchFile(
           const promises = groupedUnits.map(
             async ({ units, year, childSubject, tier }, index) => {
               const el = structuredClone(template);
-              const sortedUnits = sortByOrder(units);
+
+              // HACK: this should be in a function higher in the stack somewhere, we need to rewrite that logic anyway.
+              const unitUnitsBySlug = uniqBy(units, "slug");
 
               const table = await unitsTablePatch(
                 year,
                 { childSubject, tier },
-                sortedUnits,
+                unitUnitsBySlug,
                 {
                   isCycle2Review: isCycle2Review,
                   noPrePageBreak: index === 0,
@@ -167,7 +163,7 @@ async function patchFile(
               );
 
               const unitsEls = await Promise.all(
-                sortedUnits.flatMap((unit, index) => {
+                unitUnitsBySlug.flatMap((unit, index) => {
                   if (unit.unit_options.length > 1) {
                     return unit.unit_options.map(
                       (unitOption, unitOptionIndex) => {

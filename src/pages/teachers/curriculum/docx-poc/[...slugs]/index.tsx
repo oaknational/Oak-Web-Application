@@ -142,12 +142,16 @@ export const getServerSideProps = async ({
     // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
     curriculumData = {
       ...curriculumDataUnsorted,
-      units: [...curriculumDataUnsorted.units].sort((a) => {
-        if (a.examboard) {
-          return -1;
-        }
-        return 1;
-      }),
+      units: [...curriculumDataUnsorted.units]
+        .sort((a) => {
+          if (a.examboard) {
+            return -1;
+          }
+          return 1;
+        })
+        .sort((a, b) => {
+          return a.order - b.order;
+        }),
     };
     try {
       curriculumOverviewTabData = await curriculumApi2023.curriculumOverview({
