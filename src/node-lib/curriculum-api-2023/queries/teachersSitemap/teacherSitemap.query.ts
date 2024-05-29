@@ -10,6 +10,8 @@ const teachersSitemapSchema = z.array(
   }),
 );
 
+export type TeachersSitemap = z.infer<typeof teachersSitemapSchema>;
+
 const teachersSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.teachersSitemap();
 

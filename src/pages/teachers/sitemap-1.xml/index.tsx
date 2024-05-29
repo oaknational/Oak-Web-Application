@@ -14,7 +14,7 @@ import {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const teacherSiteMap = await curriculumApi2023.teachersSitemap();
 
-  const sitemapData = splitURLsInHalf(teacherSiteMap, true);
+  const sitemapData = splitURLsInHalf(teacherSiteMap, false);
 
   const fields = generateURLFields(sitemapData);
 
