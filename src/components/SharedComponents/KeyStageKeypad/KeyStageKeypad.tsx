@@ -7,7 +7,11 @@ import {
   OakP,
   OakUL,
 } from "@oaknational/oak-components";
-import { usePostHog, useFeatureFlagVariantKey } from "posthog-js/react";
+import {
+  usePostHog,
+  useFeatureFlagVariantKey,
+  // useFeatureFlagEnabled,
+} from "posthog-js/react";
 
 import Box from "../Box";
 
@@ -101,12 +105,14 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
     "Click here to navigate by key stage",
   );
   const posthog = usePostHog();
-  // const flag = posthog.getFeatureFlag("test-ab");
-  // console.log("flag", flag);
 
-  posthog.featureFlags.override({ "test-ab": "control" });
-  const variant = useFeatureFlagVariantKey("test-ab");
-  console.log("variant", variant);
+  const p = posthog.getFeatureFlag("test-ab");
+  console.log(p, "<< TEST AB ");
+  const y = posthog.getFeatureFlag("about-us--board--bio-modals");
+  console.log(y, "<< TEST AB ");
+  const variant = useFeatureFlagVariantKey("about-us--board--bio-modals");
+  console.log(variant, "<< TEST feature flag variant key ");
+
   useEffect(() => {
     if (variant === "test") {
       setButtonState("View subjects by key stage");
