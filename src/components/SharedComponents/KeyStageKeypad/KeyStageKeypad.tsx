@@ -118,7 +118,8 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
     if (variant === "control") {
       setButtonState("Click here to navigate by key stage");
     }
-  }, [variant]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   keyStages.sort((a, b) =>
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
