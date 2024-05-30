@@ -106,12 +106,13 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   );
   const posthog = usePostHog();
 
-  const p = posthog.getFeatureFlag("test-ab");
-  console.log(p, "<< TEST AB ");
-  const y = posthog.getFeatureFlag("about-us--board--bio-modals");
-  console.log(y, "<< TEST AB ");
-  const variant = useFeatureFlagVariantKey("about-us--board--bio-modals");
-  console.log(variant, "<< TEST feature flag variant key ");
+  const variant = posthog.getFeatureFlag("test-ab");
+  console.log(variant, "<< TEST AB ");
+
+  posthog.featureFlags.override({ "test-ab": "test" });
+
+  const v = useFeatureFlagVariantKey("test-ab");
+  console.log(v, "<< TEST feature flag variant key ");
 
   useEffect(() => {
     if (variant === "test") {
