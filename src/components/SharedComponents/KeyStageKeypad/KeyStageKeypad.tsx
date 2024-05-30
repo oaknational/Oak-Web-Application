@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -7,6 +7,7 @@ import {
   OakP,
   OakUL,
 } from "@oaknational/oak-components";
+import { usePostHog, useFeatureFlagVariantKey } from "posthog-js/react";
 
 import Box from "../Box";
 
@@ -29,6 +30,7 @@ export type KeyStageKeypadProps = {
 const KeypadLink: FC<KeypadItem> = (props) => {
   const { shortCode, slug, title } = props;
   const { track } = useAnalytics();
+
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isCurrent = useIsCurrent({ keyStageSlug: slug });
   const backgroundColour = isCurrent ? "black" : "white";
@@ -90,11 +92,29 @@ const KeyPadGrid = (
  * Used on teachers home page and menu.
  */
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
-  title,
+  // title,
   keyStages,
   years,
 }) => {
   const ksButtonSpanDesktop = keyStages.length > 4 ? 2 : 3;
+  const [buttonState, setButtonState] = useState(
+    "Click here to navigate by key stage",
+  );
+  const posthog = usePostHog();
+  const flag = posthog.getFeatureFlag("test-ab");
+  console.log("flag", flag);
+
+  // posthog.featureFlags.override({ "test-ab": "control" });
+  const variant = useFeatureFlagVariantKey("test-ab");
+  console.log("variant", variant);
+  useEffect(() => {
+    if (variant === "test") {
+      setButtonState("View subjects by key stage");
+    }
+    if (variant === "control") {
+      setButtonState("Click here to navigate by key stage");
+    }
+  }, [variant]);
 
   keyStages.sort((a, b) =>
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
@@ -108,7 +128,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   return (
     <nav aria-label="key stages and year groups">
       <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
-        {title}
+        {buttonState}
       </OakP>
       <Box $display={["none", "block"]}>
         <KeyPadGrid
