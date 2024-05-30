@@ -101,10 +101,10 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
     "Click here to navigate by key stage",
   );
   const posthog = usePostHog();
-  const flag = posthog.getFeatureFlag("test-ab");
-  console.log("flag", flag);
+  // const flag = posthog.getFeatureFlag("test-ab");
+  // console.log("flag", flag);
 
-  // posthog.featureFlags.override({ "test-ab": "control" });
+  posthog.featureFlags.override({ "test-ab": "control" });
   const variant = useFeatureFlagVariantKey("test-ab");
   console.log("variant", variant);
   useEffect(() => {
