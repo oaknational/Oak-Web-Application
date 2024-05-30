@@ -28,11 +28,11 @@ export const textReplacer = (
   input: unknown,
   selector: string,
   value: string,
-) => {
+): string => {
   if (typeof input === "string") {
     return input.replace(selector, value);
   }
-  return input;
+  return input as string;
 };
 
 export function threadUnitByYear(units: Unit[], threadSlug: string) {

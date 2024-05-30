@@ -28,6 +28,7 @@ import { notUndefined } from "./patches/util";
 import { coverPatch } from "./patches/cover";
 import { backPatch } from "./patches/back";
 import { unitsTablePatch } from "./patches/unitsTable";
+import { threadOverviewTitlePatch } from "./patches/threadOverviewTitle";
 
 import {
   CurriculumOverviewMVData,
@@ -127,6 +128,7 @@ async function patchFile(
           return pipeElementThrough(el, parent, [
             coverPatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
+            threadOverviewTitlePatch(combinedCurriculumData),
             tableOfContentsPatch(),
             subjectExplainerPatch(combinedCurriculumData),
             partnerDetailPatch(combinedCurriculumData),

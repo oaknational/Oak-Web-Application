@@ -49,8 +49,13 @@ export function unitLessonsPatch(unit: UnitLike) {
           </w:p>
         ` as Element;
         }) ?? [];
-      const xml = `<w:sectPr>${lessonsXml.join("")}</w:sectPr>`;
-      return xmlElementToJson(xml) as Element;
+
+      const el = xmlElementToJson(`<root>${lessonsXml.join("")}</root>`);
+      return {
+        type: "element",
+        name: "$FRAGMENT$",
+        elements: el.elements,
+      } as Element;
     }
     return el;
   };

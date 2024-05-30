@@ -274,6 +274,11 @@ function buildYear(
         ${rows.join("")}
       </w:tbl>
       <w:p>
+        <w:r>
+            <w:t xml:space="preserve"><![CDATA[ ]]></w:t>
+        </w:r>
+      </w:p>
+      <w:p>
         <w:pPr>
             <w:pageBreakBefore/>
         </w:pPr>

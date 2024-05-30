@@ -1387,6 +1387,31 @@ exports[`unitsTablePatch should return units table 1`] = `
         {
           "elements": [
             {
+              "attributes": {
+                "xml:space": "preserve",
+              },
+              "elements": [
+                {
+                  "cdata": " ",
+                  "type": "cdata",
+                },
+              ],
+              "name": "w:t",
+              "type": "element",
+            },
+          ],
+          "name": "w:r",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "elements": [
+            {
               "name": "w:pageBreakBefore",
               "type": "element",
             },

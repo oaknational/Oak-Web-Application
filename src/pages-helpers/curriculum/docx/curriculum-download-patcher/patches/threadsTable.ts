@@ -73,8 +73,8 @@ export function threadsTablePatch(
         return buildRow(buildColumn(item.title));
       });
 
-      return xmlElementToJson(`
-        <w:sectPr>
+      const rootElement = xmlElementToJson(`
+        <root>
             <w:p>
             <w:r>
                 <w:rPr>
@@ -103,8 +103,14 @@ export function threadsTablePatch(
                 </w:tblGrid>
                 ${rows.join("")}
             </w:tbl>
-        </w:sectPr>
+        </root>
         `);
+
+      return {
+        type: "element",
+        name: "$FRAGMENT$",
+        elements: rootElement.elements,
+      };
     }
     return el;
   };
