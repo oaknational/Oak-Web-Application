@@ -64,26 +64,23 @@ export default function Page({
     } (${capitalizeFirstLetter(state)})`;
   }
 
-  const handleLiveDataClick = (file: File) => {
-    const reader = new FileReader();
+  const onSubmit = async () => {
+    // TODO: This is just a link from Jamies google gdrive currently.
+    // We don't want to store a binary file in git as it'll bloat the repo
+    // pretty quickly. Ideally we'll store it unzipped in the repo and serve
+    // it zipped via a server-side-function.
+    const URL =
+      "https://docs.google.com/document/export?format=docx&id=1Da7ogUUmOzqqV8hg53k14wokLhPh_60o&includes_info_params=true&usp=sharing&cros_files=false&inspectorResult=%7B%22pc%22%3A12%2C%22lplc%22%3A3%7D";
+    const fileContent = await (await fetch(URL)).arrayBuffer();
+    // const fileContent = event.target.result as ArrayBuffer;
+    const uint8Array = new Uint8Array(fileContent);
+    const patcher =
+      state === "new"
+        ? CurriculumDownlodsCycle2Patch
+        : CurriculumDownlodsCycle1Patch;
+    const moddedFile = await patcher(uint8Array, combinedCurriculumData);
 
-    reader.onload = async function (event) {
-      if (!event.target?.result) {
-        return;
-      }
-      const fileContent = event.target.result as ArrayBuffer;
-      const uint8Array = new Uint8Array(fileContent);
-      const patcher =
-        state === "new"
-          ? CurriculumDownlodsCycle2Patch
-          : CurriculumDownlodsCycle1Patch;
-      const moddedFile = await patcher(uint8Array, combinedCurriculumData);
-
-      download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);
-    };
-
-    // Read the file as an ArrayBuffer (binary string)
-    reader.readAsArrayBuffer(file);
+    download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);
   };
 
   const onChangeState = (newState: string) => {
@@ -105,7 +102,7 @@ export default function Page({
         <LiveDataSection
           pageTitle={pageTitle}
           dataWarnings={dataWarnings}
-          onClick={handleLiveDataClick}
+          onSubmit={onSubmit}
           state={state}
           onChangeState={onChangeState}
         />

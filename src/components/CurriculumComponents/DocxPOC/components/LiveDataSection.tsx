@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -8,7 +7,6 @@ import {
   OakFieldError,
 } from "@oaknational/oak-components";
 
-import FileSelect from "@/components/CurriculumComponents/DocxPOC/components/FileSelect";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Box from "@/components/SharedComponents/Box";
 import { Item, Select } from "@/components/GenericPagesComponents/Select";
@@ -17,26 +15,16 @@ import { Label } from "@/components/SharedComponents/ListBox/ListBox";
 export default function LiveDataSection({
   pageTitle,
   dataWarnings,
-  onClick,
+  onSubmit,
   state,
   onChangeState,
 }: {
   pageTitle: string;
   dataWarnings: string[] | null;
-  onClick: (file: File) => void;
+  onSubmit: () => void;
   state: string;
   onChangeState: (newState: string) => void;
 }) {
-  const [file, setFile] = useState<File | null>(null);
-
-  const handleGenerateClick = () => {
-    if (!file) {
-      alert("Please select a file");
-      return;
-    }
-    onClick(file);
-  };
-
   return (
     <OakFlex $justifyContent={"center"} $background={"mint"}>
       <MaxWidth $ph={16}>
@@ -89,19 +77,8 @@ export default function LiveDataSection({
                 </Item>
               )}
             </Select>
-            <FileSelect
-              label="Choose docx template"
-              onChange={(file) => {
-                setFile(file);
-              }}
-            />
-            <Box $ml={20}>{file?.name}</Box>
           </OakFlex>
-          <OakPrimaryButton
-            onClick={handleGenerateClick}
-            iconName="download"
-            disabled={file === null}
-          >
+          <OakPrimaryButton onClick={onSubmit} iconName="download">
             Generate Document
           </OakPrimaryButton>
         </Box>
