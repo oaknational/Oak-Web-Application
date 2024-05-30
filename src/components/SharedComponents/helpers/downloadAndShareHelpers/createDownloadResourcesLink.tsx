@@ -3,7 +3,6 @@ import { z } from "zod";
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
@@ -28,9 +27,7 @@ const createDownloadResourcesLink = async (
   selection: string,
   isLegacyDownload: boolean,
 ) => {
-  const downloadEnpoint = isLegacyDownload
-    ? `${LEGACY_DOWNLOADS_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`
-    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
+  const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
 
   const meta = {
     lessonSlug,
