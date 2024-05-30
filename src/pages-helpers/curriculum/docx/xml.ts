@@ -73,3 +73,7 @@ export function jsonXmlToXmlString(json: Element): string {
   const output = js2xml(collapseFragments(root));
   return output;
 }
+
+export function cdata(input: string | number) {
+  return `<![CDATA[${input}]]>`;
+}

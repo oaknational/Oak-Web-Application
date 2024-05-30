@@ -78,8 +78,8 @@ exports[`unitsTablePatch should return units table 1`] = `
               },
               "elements": [
                 {
-                  "text": "Year 7 units ",
-                  "type": "text",
+                  "cdata": "Year 7 units",
+                  "type": "cdata",
                 },
               ],
               "name": "w:t",
@@ -723,8 +723,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "1",
-                              "type": "text",
+                              "cdata": "1",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -785,8 +785,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "TEST_1",
-                              "type": "text",
+                              "cdata": "TEST_1",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -862,8 +862,16 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "3 options",
+                              "cdata": "3",
+                              "type": "cdata",
+                            },
+                            {
+                              "text": " option",
                               "type": "text",
+                            },
+                            {
+                              "cdata": "s",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -1051,8 +1059,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "2",
-                              "type": "text",
+                              "cdata": "2",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -1113,8 +1121,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "TEST_2",
-                              "type": "text",
+                              "cdata": "TEST_2",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -1293,8 +1301,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "3",
-                              "type": "text",
+                              "cdata": "3",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",
@@ -1355,8 +1363,8 @@ exports[`unitsTablePatch should return units table 1`] = `
                           },
                           "elements": [
                             {
-                              "text": "TEST_3",
-                              "type": "text",
+                              "cdata": "TEST_3",
+                              "type": "cdata",
                             },
                           ],
                           "name": "w:t",

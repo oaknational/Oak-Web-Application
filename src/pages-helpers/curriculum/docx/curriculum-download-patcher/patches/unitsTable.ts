@@ -1,4 +1,4 @@
-import { xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
@@ -20,9 +20,9 @@ function buildOptions({ unitOptions }: { unitOptions: Unit["unit_options"] }) {
                 <w:shd w:fill="f6e8a0" w:val="clear"/>
                 <w:rtl w:val="0"/>
             </w:rPr>
-            <w:t xml:space="preserve">${unitOptions.length} option${
-              unitOptions.length > 1 ? "s" : ""
-            }</w:t>
+            <w:t xml:space="preserve">${cdata(
+              unitOptions.length,
+            )} option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
         </w:r>
       </w:p>
     `;
@@ -79,7 +79,7 @@ function buildYearColumn({
                   <w:b/>
                   <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
               </w:rPr>
-              <w:t xml:space="preserve">${index + 1}</w:t>
+              <w:t xml:space="preserve">${cdata(index + 1)}</w:t>
           </w:r>
       </w:p>
       <w:p>
@@ -90,7 +90,7 @@ function buildYearColumn({
                   <w:szCs w:val="28"/>
                   <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
               </w:rPr>
-              <w:t xml:space="preserve">${title}</w:t>
+              <w:t xml:space="preserve">${cdata(title)}</w:t>
           </w:r>
       </w:p>
       ${buildOptions({ unitOptions })}
@@ -173,7 +173,9 @@ function buildYear(
                 <w:b/>
                 <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
             </w:rPr>
-            <w:t xml:space="preserve">Year ${year} units ${subjectTierTitleSuffix}</w:t>
+            <w:t xml:space="preserve">${cdata(`Year ${year} units`)} ${cdata(
+              subjectTierTitleSuffix,
+            )}</w:t>
         </w:r>
       </w:p>
       ${
