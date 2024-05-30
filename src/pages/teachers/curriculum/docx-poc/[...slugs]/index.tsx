@@ -233,7 +233,7 @@ export const getServerSideProps = async ({
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
     ...{ state },
-    examboardTitle: examboard?.title,
+    examboardTitle: examboard?.title ?? null,
   };
 
   return {
