@@ -127,10 +127,7 @@ function buildYear(
   year: string,
   unitsInput: CombinedCurriculumData["units"],
   slug: Slug,
-  {
-    isCycle2Review,
-    noPrePageBreak,
-  }: { isCycle2Review: boolean; noPrePageBreak: boolean },
+  { isCycle2Review }: { isCycle2Review: boolean; noPrePageBreak: boolean },
 ) {
   const rows = [];
   const units = removeDups(unitsInput);
@@ -161,7 +158,6 @@ function buildYear(
   const xml = `
       <w:p>
         <w:pPr>
-            ${noPrePageBreak ? "" : `<w:pageBreakBefore/>`}
             <w:sz w:val="44"/>
             <w:szCs w:val="44"/>
         </w:pPr>
