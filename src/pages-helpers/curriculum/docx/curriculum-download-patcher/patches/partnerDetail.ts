@@ -1,6 +1,7 @@
 import type { Element } from "xml-js";
 
 import { CombinedCurriculumData } from "..";
+import { cdataJson } from "../../xml";
 
 import { textIncludes, textReplacer } from "./util";
 
@@ -9,14 +10,14 @@ export function partnerDetailPatch(
 ) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=PARTNER_DETAIL}}")) {
-      return {
+      return cdataJson({
         type: "text",
         text: textReplacer(
           el.text,
           "{{=PARTNER_DETAIL}}",
           combinedCurriculumData.partnerBio,
         ),
-      };
+      });
     }
     return el;
   };

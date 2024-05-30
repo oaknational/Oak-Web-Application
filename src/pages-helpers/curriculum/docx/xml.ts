@@ -77,3 +77,13 @@ export function jsonXmlToXmlString(json: Element): string {
 export function cdata(input: string | number) {
   return `<![CDATA[${input}]]>`;
 }
+
+export function cdataJson(input: Element): Element {
+  if (input.type !== "text") {
+    throw new Error("Expecting text node");
+  }
+  return {
+    type: "cdata",
+    cdata: String(input.text),
+  };
+}

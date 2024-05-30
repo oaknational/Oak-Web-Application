@@ -15,8 +15,8 @@ describe("coverPatch", () => {
     });
 
     expect(keyStageNode).toEqual({
-      type: "text",
-      text: " KS1 & KS2 ",
+      type: "cdata",
+      cdata: " KS1 & KS2 ",
     });
 
     const subjectNode = await patcher({
@@ -25,8 +25,8 @@ describe("coverPatch", () => {
     });
 
     expect(subjectNode).toEqual({
-      type: "text",
-      text: " Maths  ",
+      type: "cdata",
+      cdata: " Maths  ",
     });
   });
 
@@ -43,8 +43,8 @@ describe("coverPatch", () => {
     });
 
     expect(keyStageNode).toEqual({
-      type: "text",
-      text: " KS3 & KS4 ",
+      type: "cdata",
+      cdata: " KS3 & KS4 ",
     });
 
     const subjectNode = await patcher({
@@ -53,8 +53,8 @@ describe("coverPatch", () => {
     });
 
     expect(subjectNode).toEqual({
-      type: "text",
-      text: " Science  ",
+      type: "cdata",
+      cdata: " Science  ",
     });
 
     const examboardNode = await patcher({
@@ -63,8 +63,8 @@ describe("coverPatch", () => {
     });
 
     expect(examboardNode).toEqual({
-      type: "text",
-      text: " AQA (KS4) ",
+      type: "cdata",
+      cdata: " AQA (KS4) ",
     });
   });
 

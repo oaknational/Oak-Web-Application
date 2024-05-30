@@ -16,8 +16,8 @@ describe("back", () => {
     });
 
     expect(node).toEqual({
-      type: "text",
-      text: "testing TESTING_PARTNER a node",
+      type: "cdata",
+      cdata: "testing TESTING_PARTNER a node",
     });
   });
 

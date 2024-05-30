@@ -1,6 +1,6 @@
 import { Element } from "xml-js";
 
-import { xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
 import { createThreadOptions, threadUnitByYear } from "./util";
@@ -38,7 +38,7 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
                 <w:sz w:val="36"/>
                 <w:b/>
               </w:rPr>
-              <w:t>${thread.title}</w:t>
+              <w:t>${cdata(thread.title)}</w:t>
             </w:r>
           </w:p>
 
@@ -76,7 +76,7 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
                     <w:ind w:left="426"/>
                   </w:pPr>
                   <w:r>
-                    <w:t>Unit ${unit.order}: ${unit.title}</w:t>
+                    <w:t>${cdata(`Unit ${unit.order}: ${unit.title}`)}</w:t>
                   </w:r>
                 </w:p>
               `;

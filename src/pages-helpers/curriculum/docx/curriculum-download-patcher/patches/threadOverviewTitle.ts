@@ -1,6 +1,7 @@
 import type { Element } from "xml-js";
 
 import { CombinedCurriculumData } from "..";
+import { cdataJson } from "../../xml";
 
 import { textIncludes, textReplacer } from "./util";
 
@@ -9,7 +10,7 @@ export function threadOverviewTitlePatch(
 ) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=THREADS.TITLE}}")) {
-      return {
+      return cdataJson({
         type: "text",
         text: textReplacer(
           el.text,
@@ -18,7 +19,7 @@ export function threadOverviewTitlePatch(
             combinedCurriculumData.subjectTitle
           }`,
         ),
-      };
+      });
     }
     return el;
   };

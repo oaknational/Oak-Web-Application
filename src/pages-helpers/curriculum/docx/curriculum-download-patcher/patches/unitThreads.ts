@@ -1,7 +1,7 @@
 import type { Element } from "xml-js";
 
 import { checkWithinElement } from "../../docx";
-import { xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
 export function unitThreadsPatch(
@@ -35,7 +35,7 @@ export function unitThreadsPatch(
                   <w:rPr>
                       <w:color w:val="222222"/>
                   </w:rPr>
-                  <w:t><![CDATA[${thread.title}]]></w:t>
+                  <w:t>${cdata(thread.title)}</w:t>
               </w:r>
           </w:p>
         ` as Element;

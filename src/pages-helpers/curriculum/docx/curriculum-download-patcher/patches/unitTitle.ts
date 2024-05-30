@@ -1,5 +1,7 @@
 import type { Element } from "xml-js";
 
+import { cdataJson } from "../../xml";
+
 import { UnitLike, textIncludes, textReplacer } from "./util";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
@@ -11,7 +13,7 @@ export function unitTitlePatch(
 ) {
   return async (el: Element) => {
     if (el.type === "text" && textIncludes(el.text, "{{=UNIT.TITLE}}")) {
-      return {
+      return cdataJson({
         type: "text",
         text: textReplacer(
           el.text,
@@ -24,7 +26,7 @@ export function unitTitlePatch(
               }`
             : unit.title,
         ),
-      } as Element;
+      });
     }
     return el;
   };

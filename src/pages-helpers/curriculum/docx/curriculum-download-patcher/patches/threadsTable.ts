@@ -1,7 +1,7 @@
 import type { Element } from "xml-js";
 
 import { checkWithinElement } from "../../docx";
-import { xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
 import { createThreadOptions, textIncludes } from "./util";
@@ -36,7 +36,7 @@ function buildColumn(text: string) {
                   <w:szCs w:val="30"/>
                   <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
               </w:rPr>
-              <w:t xml:space="preserve">${text}</w:t>
+              <w:t xml:space="preserve">${cdata(text)}</w:t>
           </w:r>
       </w:p>
     </w:tc>

@@ -13,7 +13,6 @@ import { tableOfContentsPatch } from "./patches/tableOfContents";
 import { subjectExplainerPatch } from "./patches/subjectExplainer";
 import { partnerDetailPatch } from "./patches/partnerDetail";
 import { partnerNamePatch } from "./patches/partnerName";
-import { yearPatch } from "./patches/year";
 import { threadsTablePatch } from "./patches/threadsTable";
 import { endOfDocumentPatch } from "./patches/endOfDocument";
 import { unitTitlePatch } from "./patches/unitTitle";
@@ -133,7 +132,6 @@ async function patchFile(
             subjectExplainerPatch(combinedCurriculumData),
             partnerDetailPatch(combinedCurriculumData),
             partnerNamePatch(combinedCurriculumData),
-            yearPatch(),
             threadsTablePatch(combinedCurriculumData),
             backPatch(combinedCurriculumData),
             endOfDocumentPatch(),

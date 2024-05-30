@@ -1,7 +1,7 @@
 import type { Element } from "xml-js";
 
 import { checkWithinElement } from "../../docx";
-import { xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 
 import { UnitLike } from "./util";
 
@@ -44,7 +44,7 @@ export function unitLessonsPatch(unit: UnitLike) {
                   <w:rPr>
                       <w:color w:val="222222"/>
                   </w:rPr>
-                  <w:t><![CDATA[${lesson.title}]]></w:t>
+                  <w:t>${cdata(lesson.title)}</w:t>
               </w:r>
           </w:p>
         ` as Element;
