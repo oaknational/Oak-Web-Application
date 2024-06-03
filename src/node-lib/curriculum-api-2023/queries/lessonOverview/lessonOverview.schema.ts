@@ -65,3 +65,12 @@ export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 export default lessonOverviewSchema;
 
 export const baseLessonOverviewData = baseLessonOverviewSchema;
+
+export const lessonOverviewCanonicalSchema = baseLessonOverviewSchema.extend({
+  pathways: z.array(lessonPathwaySchema),
+  downloads: lessonOverviewDownloads,
+});
+
+export type LessonOverviewCanonical = z.infer<
+  typeof lessonOverviewCanonicalSchema
+>;
