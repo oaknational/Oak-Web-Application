@@ -54,7 +54,7 @@ export const PupilViewsSubjectListing = ({
         $flexDirection={"column"}
         $alignItems={"center"}
       >
-        <OakHeading $font={"heading-5"} tag="h1">
+        <OakHeading $font={["heading-6", "heading-5"]} tag="h1">
           Now choose a subject
         </OakHeading>
 
