@@ -14,7 +14,7 @@ query lessonOverview(
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_1_1(
+  content: published_mv_lesson_content_1_2(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -48,5 +48,8 @@ query lessonOverview(
     supplementary_asset_id
     has_supplementary_asset_object
     slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
   }
 }

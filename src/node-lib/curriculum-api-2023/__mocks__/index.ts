@@ -28,7 +28,6 @@ const curriculumApi: Pick<
   | "lessonListing"
   | "programmeListingPage"
   | "teachersHomePage"
-  | "lessonOverviewCanonical"
   | "lessonDownloadsCanonical"
   | "pupilLessonQuery"
   | "pupilLessonListingQuery"
@@ -85,12 +84,6 @@ const curriculumApi: Pick<
   }),
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
-  }),
-  lessonOverviewCanonical: jest.fn(async () => {
-    return {
-      ...lessonOverviewFixture(),
-      pathways: [lessonOverviewFixture()],
-    };
   }),
   lessonDownloadsCanonical: jest.fn(async () => {
     return {

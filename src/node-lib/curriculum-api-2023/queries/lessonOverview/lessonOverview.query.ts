@@ -176,7 +176,7 @@ const transformedLessonOverviewData = (
       isLegacy: browseData.isLegacy,
     }),
 
-    updatedAt: new Date().toISOString(), // need to get this        //
+    updatedAt: browseData.lessonData.updatedAt,
     isLegacy: content.isLegacy || false,
     lessonSlug: browseData.lessonSlug,
     lessonTitle: browseData.lessonData.title,
@@ -185,8 +185,8 @@ const transformedLessonOverviewData = (
     contentGuidance: getContentGuidance(content.contentGuidance),
     misconceptionsAndCommonMistakes: content.misconceptionsAndCommonMistakes,
     teacherTips: content.teacherTips,
-    lessonEquipmentAndResources: [], // add to content
-    additionalMaterialUrl: null,
+    lessonEquipmentAndResources: browseData.lessonData.equipmentAndResources,
+    additionalMaterialUrl: content.supplementaryAssetObjectUrl,
     keyLearningPoints: content.keyLearningPoints,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
@@ -194,16 +194,15 @@ const transformedLessonOverviewData = (
       browseData.lessonData.copyrightContent,
     ),
     supervisionLevel: content.supervisionLevel,
-    worksheetUrl: null,
-    presentationUrl: null,
+    worksheetUrl: content.worksheetAssetObjectUrl,
+    presentationUrl: content.slideDeckAssetObjectUrl,
     videoMuxPlaybackId: content.videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId:
       content.videoWithSignLanguageMuxPlaybackId,
     transcriptSentences: content.transcriptSentences,
-    isWorksheetLandscape:
-      Boolean(
-        browseData.lessonData.deprecatedFields?.worksheet_is_landscape, //check this is correct
-      ) || false,
+    isWorksheetLandscape: Boolean(
+      browseData.lessonData.deprecatedFields?.worksheet_is_landscape,
+    ),
     expired: Boolean(browseData.lessonData.deprecatedFields?.expired) || false,
     starterQuiz: starterQuiz,
     exitQuiz: exitQuiz,
