@@ -1,7 +1,7 @@
 import { getServerSideSitemap } from "next-sitemap";
 import { GetServerSidePropsContext } from "next";
 
-import { getServerSideProps } from "@/pages/teachers/sitemap.xml";
+import { getServerSideProps } from "@/pages/teachers/sitemap-1.xml";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 jest.mock("next-sitemap");

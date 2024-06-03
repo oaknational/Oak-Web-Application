@@ -18,6 +18,7 @@ export type BlogAndWebinarListProps = {
   backgroundColor: OakColorToken;
   displayOnPhone: boolean;
   isBackgroundWhite?: boolean;
+  title: string;
 };
 
 const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
@@ -26,6 +27,7 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
   backgroundColor,
   displayOnPhone,
   isBackgroundWhite,
+  title,
 }) => {
   return (
     <OakBox
@@ -48,7 +50,7 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
           $font={"heading-5"}
           $mb={["space-between-m", "space-between-none"]}
         >
-          Stay up to date
+          {title}
         </OakHeading>
         <OakFlex $flexDirection={"row"}>
           <OakTypography $mr={"space-between-s"} $font={"heading-7"}>
