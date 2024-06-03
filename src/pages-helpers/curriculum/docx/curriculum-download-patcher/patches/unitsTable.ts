@@ -221,7 +221,7 @@ function buildYear(
                                         <pic:cNvPicPr preferRelativeResize="0"/>
                                     </pic:nvPicPr>
                                     <pic:blipFill>
-                                        <a:blip r:embed="rId30"/>
+                                        <a:blip r:embed="rId23"/>
                                         <a:srcRect/>
                                         <a:stretch>
                                             <a:fillRect/>

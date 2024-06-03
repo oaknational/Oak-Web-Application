@@ -193,7 +193,7 @@ function buildUnitOptionTitle(
                                         <pic:cNvPicPr preferRelativeResize="0"/>
                                     </pic:nvPicPr>
                                     <pic:blipFill>
-                                        <a:blip r:embed="rId23"/>
+                                        <a:blip r:embed="rId24"/>
                                         <a:srcRect/>
                                         <a:stretch>
                                             <a:fillRect/>
@@ -319,7 +319,7 @@ function buildUnit(
                                                         <pic:cNvPicPr preferRelativeResize="0"/>
                                                     </pic:nvPicPr>
                                                     <pic:blipFill>
-                                                        <a:blip r:embed="rId24"/>
+                                                        <a:blip r:embed="rId25"/>
                                                         <a:srcRect/>
                                                         <a:stretch>
                                                             <a:fillRect/>
