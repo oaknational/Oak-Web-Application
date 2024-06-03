@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 
-import VideoPage from "@/pages/videos/[videoId]/player";
+import VideoPage from "@/pages/videos/player/[videoId]";
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -9,7 +9,7 @@ jest.mock("next/router", () => ({
     ...jest.requireActual("next/router").useRouter,
     asPath: "asPath test value",
     query: { videoId: "videoId" },
-    pathname: "/video/[videoId]/player",
+    pathname: "/video/player/[videoId]",
   }),
 }));
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
