@@ -101,7 +101,7 @@ describe("createDownloadResourcesLink()", () => {
       });
     }
   });
-  it("should fetch from legacy vercel legacy vercel api if isLegacyDownloads = true", async () => {
+  it("should fetch from new api if isLegacyDownloads = true", async () => {
     await createDownloadResourcesLink(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
@@ -109,7 +109,7 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://api.thenational.academy/api/downloads/lesson/lesson-slug?selection=exit-quiz-answers,worksheet-pdf",
+      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
