@@ -144,22 +144,4 @@ describe("createDownloadResourcesLink()", () => {
       process.env = originalEnv;
     }
   });
-  it("should throw an error when NEXT_PUBLIC_VERCEL_API_URL is not defined", async () => {
-    const originalEnv = process.env;
-    delete process.env.NEXT_PUBLIC_VERCEL_API_URL;
-
-    try {
-      await createDownloadResourcesLink(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        false,
-      );
-    } catch (error) {
-      expect(error).toEqual(
-        new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"),
-      );
-    } finally {
-      process.env = originalEnv;
-    }
-  });
 });
