@@ -24,9 +24,19 @@ import {
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 // import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
+type CurriculumUnitsTabDataIncludeNewUnit =
+  CurriculumUnitsTabDataIncludeNew["units"][number] & {
+    order: NonNullable<
+      CurriculumUnitsTabDataIncludeNew["units"][number]["order"]
+    >;
+  };
+type CurriculumUnitsTabDataIncludeNewWithOrder = {
+  units: CurriculumUnitsTabDataIncludeNewUnit[];
+};
+
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
-  CurriculumUnitsTabDataIncludeNew & { state: string };
+  CurriculumUnitsTabDataIncludeNewWithOrder & { state: string };
 
 type PageProps = {
   combinedCurriculumData: CombinedCurriculumData;
@@ -127,7 +137,7 @@ export const getServerSideProps = async ({
 }) => {
   let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
-  let curriculumData: CurriculumUnitsTabDataIncludeNew | null;
+  let curriculumData: CurriculumUnitsTabDataIncludeNewWithOrder | null;
   const dataWarnings: string[] = [];
 
   try {
@@ -148,6 +158,12 @@ export const getServerSideProps = async ({
             return -1;
           }
           return 1;
+        })
+        .map((unit) => {
+          return {
+            ...unit,
+            order: unit.order === null ? -1000 : unit.order,
+          };
         })
         .sort((a, b) => {
           return a.order - b.order;
