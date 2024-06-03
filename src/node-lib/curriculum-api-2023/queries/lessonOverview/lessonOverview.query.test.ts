@@ -4,6 +4,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
+import { lessonPathwaySchema } from "../../shared.schema";
 
 import lessonOverview, {
   getContentGuidance,
@@ -74,6 +75,59 @@ describe("lessonOverview()", () => {
     );
 
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
+  });
+
+  test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
+    const _syntheticUnitvariantLessonsFixture1 =
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          programme_slug: "lesson-slug-test-1",
+        },
+      });
+    const _syntheticUnitvariantLessonsFixture2 =
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          programme_slug: "lesson-slug-test-2",
+        },
+      });
+    const _syntheticUnitvariantLessonsFixture3 =
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          programme_slug: "lesson-slug-test-3",
+        },
+      });
+
+    const _lessonContentFixture = lessonContentFixture({
+      overrides: {
+        exit_quiz: [],
+        starter_quiz: [],
+      },
+    });
+
+    const lesson = await lessonOverview({
+      ...sdk,
+      lessonOverview: jest.fn(() =>
+        Promise.resolve({
+          browseData: [
+            _syntheticUnitvariantLessonsFixture1,
+            _syntheticUnitvariantLessonsFixture2,
+            _syntheticUnitvariantLessonsFixture3,
+          ],
+          content: [_lessonContentFixture],
+        }),
+      ),
+    })({
+      lessonSlug: "test",
+    });
+    lesson.pathways.forEach((pathway) => {
+      const l = lessonPathwaySchema.safeParse(pathway);
+      expect(l.success).toBeTruthy();
+    });
+    expect(lesson.pathways[0]?.programmeSlug).toEqual("lesson-slug-test-1");
+    expect(lesson.pathways[1]?.programmeSlug).toEqual("lesson-slug-test-2");
+    expect(lesson.pathways[2]?.programmeSlug).toEqual("lesson-slug-test-3");
+
+    expect(lesson.pathways.length).toEqual(3);
   });
 
   test("throws a Zod error if the response is invalid", async () => {
