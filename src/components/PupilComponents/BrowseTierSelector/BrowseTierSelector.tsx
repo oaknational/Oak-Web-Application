@@ -23,17 +23,6 @@ export const BrowseTierSelector = ({
   isLegacy: boolean;
   phaseSlug: PupilProgrammeListingData["programmeFields"]["phaseSlug"];
 }) => {
-  const programmeSlugs = tiers.map(
-    (tier) =>
-      `${baseSlug}-${tier.tierSlug}${examboardSlug ? `-${examboardSlug}` : ""}${
-        isLegacy ? "-l" : ""
-      }`,
-  );
-
-  if (phaseSlug === "foundation" || !phaseSlug) {
-    throw new Error("Foundation phase is not supported");
-  }
-
   const orderedTiers = tiers.sort((a, b) => {
     if (a.tier && b.tier) {
       if (a.tier < b.tier) {
@@ -45,6 +34,17 @@ export const BrowseTierSelector = ({
     }
     return 0;
   });
+
+  const programmeSlugs = orderedTiers.map(
+    (tier) =>
+      `${baseSlug}-${tier.tierSlug}${examboardSlug ? `-${examboardSlug}` : ""}${
+        isLegacy ? "-l" : ""
+      }`,
+  );
+
+  if (phaseSlug === "foundation" || !phaseSlug) {
+    throw new Error("Foundation phase is not supported");
+  }
 
   return (
     <>
