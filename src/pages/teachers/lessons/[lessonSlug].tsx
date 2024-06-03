@@ -98,7 +98,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error.code === "curriculum-api/not-found"
         ) {
           await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverviewCanonical({
+          lesson = await curriculumApi2023.lessonOverview({
             lessonSlug,
           });
         }

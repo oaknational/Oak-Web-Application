@@ -5,7 +5,7 @@ import OwaImage from "@/components/SharedComponents/OwaImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type QuizOakImageProps = {
-  src: StemImageObject["image_object"];
+  src: StemImageObject["imageObject"];
   alt?: string;
   dims:
     | {
@@ -36,7 +36,7 @@ const QuizOakImage: FC<QuizOakImageProps> = ({ src, alt, dims, setDims }) => {
       $objectPosition={["center", "left"]}
       width={dims.width}
       height={dims.height}
-      src={src.secure_url}
+      src={src.secureUrl}
       alt={alt ?? ""}
       style={{ objectFit: "contain" }}
     />
@@ -44,7 +44,7 @@ const QuizOakImage: FC<QuizOakImageProps> = ({ src, alt, dims, setDims }) => {
     <OwaImage
       $objectPosition={["center", "left"]}
       fill
-      src={src.secure_url}
+      src={src.secureUrl}
       alt={alt ?? ""}
       style={{ objectFit: "contain" }}
       onLoad={(e) => {
