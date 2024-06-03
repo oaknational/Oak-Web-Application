@@ -140,6 +140,45 @@ export const checkWithinElement = (
   return false;
 };
 
+export const destroyPastTag = (root: Element, selector: string): Element => {
+  if (root.name !== "w:document") {
+    throw new Error("Expected document element");
+  }
+
+  return {
+    ...root,
+    elements: root.elements?.map((el) => {
+      if (el.name === "w:body") {
+        const newElements = el.elements ? [...el.elements] : [];
+        const startIndex = newElements.findIndex((bodyChildEl) => {
+          if (
+            checkWithinElement(bodyChildEl, (innerEl) => {
+              return (
+                innerEl.type === "text" &&
+                textIncludes(innerEl.text, `{{=${selector}}}`)
+              );
+            })
+          ) {
+            return true;
+          }
+          return false;
+        });
+        const endIndex =
+          newElements.at(-1)?.name === "w:sectPr"
+            ? newElements.length - 2
+            : newElements.length - 1;
+        newElements.splice(startIndex, endIndex - startIndex + 1);
+        const out = {
+          ...el,
+          elements: newElements,
+        };
+        return out;
+      }
+      return el;
+    }),
+  };
+};
+
 /**
  * Map over all elements from a root node
  */
