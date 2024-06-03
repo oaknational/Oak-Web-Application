@@ -8,11 +8,15 @@ import { cdata, xmlElementToJson } from "../../xml";
 import { notUndefined, textIncludes } from "./util";
 import { unitsTablePatch } from "./unitsTable";
 
-import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import {
+  CurriculumUnitsFormattedData,
+  formatCurriculumUnitsData,
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
-  const data = formatCurriculumUnitsData(combinedCurriculumData);
+  const data = formatCurriculumUnitsData(
+    combinedCurriculumData,
+  ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
   const unitOptions = Object.entries(data.yearData).flatMap(
     ([year, { childSubjects, tiers, units }]) => {
       const options: {
@@ -81,6 +85,8 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
 
   return unitOptions;
 }
+
+type Unit = CombinedCurriculumData["units"][number];
 
 function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
   const listRules = {
@@ -239,18 +245,16 @@ function buildUnitOptionTitle(
 function buildUnit(
   unit: Unit,
   unitIndex: number,
-  unitOption?:
-    | CombinedCurriculumData["units"][number]["unit_options"][number]
-    | null,
+  unitOption?: Unit["unit_options"][number] | null,
   unitOptionIndex?: number,
 ) {
   const unitOptionIfAvailable = unitOption ?? unit;
   const unitNumber = unitIndex + 1;
-  const previous = unitOptionIfAvailable.connection_prior_unit_description
-    ? unitOptionIfAvailable.connection_prior_unit_description
+  const description = unitOptionIfAvailable.description
+    ? unitOptionIfAvailable.description
     : "-";
-  const next = unitOptionIfAvailable.connection_future_unit_description
-    ? unitOptionIfAvailable.connection_future_unit_description
+  const whyThisWhyNow = unitOptionIfAvailable.why_this_why_now
+    ? unitOptionIfAvailable.why_this_why_now
     : "-";
   const lessons = buildUnitLessons(unitOptionIfAvailable);
   const threads = buildUnitThreads(unit);
@@ -642,7 +646,7 @@ function buildUnit(
                         <w:rFonts w:ascii="Lexend Light" w:hAnsi="Lexend Light"/>
                         <w:b w:val="0"/>
                     </w:rPr>
-                    <w:t>${cdata(previous)}</w:t>
+                    <w:t>${cdata(description)}</w:t>
                 </w:r>
             </w:p>
             <w:p>
@@ -673,7 +677,7 @@ function buildUnit(
                     <w:rPr>
                         <w:color w:val="222222"/>
                     </w:rPr>
-                    <w:t>${cdata(next)}</w:t>
+                    <w:t>${cdata(whyThisWhyNow)}</w:t>
                 </w:r>
             </w:p>
             <w:p>

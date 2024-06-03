@@ -20,15 +20,13 @@ import { backPatch } from "./patches/back";
 import { threadOverviewTitlePatch } from "./patches/threadOverviewTitle";
 import { unitsPatch } from "./patches/units";
 
-import {
-  CurriculumOverviewMVData,
-  CurriculumUnitsTabData,
-} from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { CurriculumUnitsTabDataIncludeNewWithOrder } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
 export type CombinedCurriculumData = CurriculumOverviewMVData &
   CurriculumOverviewSanityData &
-  CurriculumUnitsTabData;
+  CurriculumUnitsTabDataIncludeNewWithOrder;
 
 async function patchFile(
   uint8Array: Uint8Array,

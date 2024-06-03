@@ -54,9 +54,9 @@ export type CurriculumUnitsYearGroup = {
   ref?: MutableRefObject<HTMLDivElement>;
 };
 
-export type CurriculumUnitsYearData = {
+export type CurriculumUnitsYearData<T = Unit> = {
   [key: string]: {
-    units: Unit[];
+    units: T[];
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
@@ -72,8 +72,8 @@ export type CurriculumUnitsTrackingData = {
   examboardSlug: string | null;
 };
 
-export type CurriculumUnitsFormattedData = {
-  yearData: CurriculumUnitsYearData;
+export type CurriculumUnitsFormattedData<T = Unit> = {
+  yearData: CurriculumUnitsYearData<T>;
   threadOptions: Thread[];
   yearOptions: string[];
   initialYearSelection: YearSelection;

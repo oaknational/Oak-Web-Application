@@ -30,7 +30,7 @@ type CurriculumUnitsTabDataIncludeNewUnit =
       CurriculumUnitsTabDataIncludeNew["units"][number]["order"]
     >;
   };
-type CurriculumUnitsTabDataIncludeNewWithOrder = {
+export type CurriculumUnitsTabDataIncludeNewWithOrder = {
   units: CurriculumUnitsTabDataIncludeNewUnit[];
 };
 
