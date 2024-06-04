@@ -85,11 +85,11 @@ const draftPrefixRegex = /^drafts\./;
 const isDraft = (id: string): boolean => draftPrefixRegex.test(id);
 const trimDraftsPrefix = (id: string) => id.replace(draftPrefixRegex, "");
 
-export const parseResults = <S extends ZodSchema, D>(
+export const parseResults = <O, S extends ZodSchema<O>, D>(
   schema: S,
   data: D,
   isPreviewMode?: boolean,
-): ReturnType<(typeof schema)["parse"]> => {
+): O => {
   if (isPreviewMode) {
     try {
       if (isZodArraySchema(schema)) {
@@ -119,8 +119,7 @@ export const parseResults = <S extends ZodSchema, D>(
         // Explicitly cast the erroneous unknown[] to the right type
         return uniqueItems as ReturnType<S["parse"]>;
       } else {
-        // Had to add a type assertion here as the inferred type was unknown.
-        return schema.parse(data) as ReturnType<S["parse"]>;
+        return schema.parse(data);
       }
     } catch (error) {
       let oakError = error;
@@ -142,6 +141,5 @@ export const parseResults = <S extends ZodSchema, D>(
     }
   }
 
-  // Had to add a type assertion here as the inferred type was unknown.
-  return schema.parse(data) as ReturnType<S["parse"]>;
+  return schema.parse(data);
 };

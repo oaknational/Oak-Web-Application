@@ -99,7 +99,6 @@ const SelectSpan = styled(OakSpan)`
 
 export function Select<
   T extends {
-    // Set type of value as string, is this right?
     value: string;
     label: string;
   },

@@ -81,5 +81,4 @@ export default redirectNetlifySubdomains;
 
 export const config: Config = {
   path: "/*",
-  // onError: "bypass",
 };
