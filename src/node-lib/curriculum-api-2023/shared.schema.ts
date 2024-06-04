@@ -159,34 +159,6 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-// // const schema = z
-// //   .record(z.any()) // Allow any value to handle nested objects
-// //   .transform((x) => mapKeys(x, camel));
-
-// // export const test2 = schema.parse(quizQuestionSchema);
-
-// // type Data = z.infer<typeof schema>;
-// // // type Data = {
-// // //     userId: string
-// // //     contentType: string
-// // // }
-
-// // export const test = schema.parse({
-// //   "user-id": "gid123",
-// //   "content-type": "text",
-// // });
-
-// export const quizQuestionSchemaCamel =
-//   convertSchemaToCamelCase(quizQuestionSchema);
-
-// export const quizSchema = z.union([
-//   z.array(quizQuestionSchemaCamel),
-//   z.array(z.never()),
-//   z.null(),
-// ]);
-
-// export type QuizSchema = z.infer<typeof quizSchema>;
-
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
