@@ -11,6 +11,7 @@ import {
   LessonPathway,
   lessonPathwaySchema,
 } from "../../shared.schema";
+import { toSentenceCase } from "../../helpers";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -156,7 +157,9 @@ const transformedLessonOverviewData = (
     unitSlug: browseData.unitSlug,
     unitTitle: browseData.unitData.title,
     keyStageSlug: browseData.programmeFields.keystageSlug,
-    keyStageTitle: browseData.programmeFields.keystageDescription,
+    keyStageTitle: toSentenceCase(
+      browseData.programmeFields.keystageDescription,
+    ),
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
     yearTitle: browseData.programmeFields.yearDescription,
