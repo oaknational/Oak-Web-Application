@@ -1,3 +1,25 @@
+# [1.449.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.448.1...v1.449.0) (2024-06-04)
+
+
+### Features
+
+* **subjects:** fix padding on subject list ([1a9d1c7](https://github.com/oaknational/Oak-Web-Application/commit/1a9d1c76e415a7fe24f1abd10aca3d4e12be30f2))
+* **subjects:** mobile heading 6 ([aa1551c](https://github.com/oaknational/Oak-Web-Application/commit/aa1551c2ef9210b58d29e51f2f16ff4721ffd9f9))
+
+## [1.448.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.448.0...v1.448.1) (2024-06-04)
+
+
+### Bug Fixes
+
+* use colour instead of opacity for selected thread filter ([788c938](https://github.com/oaknational/Oak-Web-Application/commit/788c938dece47873f2c1d234acc07bfeb1b99d74))
+
+# [1.448.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.447.1...v1.448.0) (2024-06-03)
+
+
+### Features
+
+* **options:** ensure tier link link to correct tier ([d9cb441](https://github.com/oaknational/Oak-Web-Application/commit/d9cb4413170c2fbb6b585e8dc165d065f77e91dc))
+
 ## [1.447.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.447.0...v1.447.1) (2024-05-29)
 
 # [1.447.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.2...v1.447.0) (2024-05-29)
