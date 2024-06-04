@@ -1,3 +1,10 @@
+# [1.448.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.447.1...v1.448.0) (2024-06-03)
+
+
+### Features
+
+* **options:** ensure tier link link to correct tier ([d9cb441](https://github.com/oaknational/Oak-Web-Application/commit/d9cb4413170c2fbb6b585e8dc165d065f77e91dc))
+
 ## [1.447.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.447.0...v1.447.1) (2024-05-29)
 
 # [1.447.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.446.2...v1.447.0) (2024-05-29)
