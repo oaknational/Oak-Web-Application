@@ -180,7 +180,7 @@ const transformedLessonOverviewData = (
     isLegacy: content.isLegacy || false,
     lessonSlug: browseData.lessonSlug,
     lessonTitle: browseData.lessonData.title,
-    tierTitle: browseData.programmeFields.tier,
+    tierTitle: browseData.programmeFields.tierDescription,
     tierSlug: browseData.programmeFields.tierSlug,
     contentGuidance: getContentGuidance(content.contentGuidance),
     misconceptionsAndCommonMistakes: content.misconceptionsAndCommonMistakes,
