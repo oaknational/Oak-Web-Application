@@ -95,6 +95,7 @@ describe("lessonListing()", () => {
             _state: "published",
             _cohort: "2023-2024",
             deprecated_fields: null,
+            updated_at: "2023-04-01",
           },
         },
       });
