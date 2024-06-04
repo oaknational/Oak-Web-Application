@@ -18,55 +18,70 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
     combinedCurriculumData,
   ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
   const unitOptions = Object.entries(data.yearData).flatMap(
-    ([year, { childSubjects, tiers, units }]) => {
-      const options: {
+    ([year, { childSubjects, tiers, units, pathways }]) => {
+      let options: {
         year: string;
         tier?: string;
         childSubject?: string;
+        pathway?: string;
       }[] = [];
 
-      if (childSubjects.length > 0) {
-        for (const childSubject of childSubjects) {
-          if (tiers.length > 0) {
-            for (const tier of tiers) {
-              options.push({
-                year,
-                childSubject: childSubject.subject_slug,
-                tier: tier.tier_slug,
-              });
-            }
-          } else {
-            options.push({
-              year,
-              childSubject: childSubject.subject_slug,
-            });
-          }
-        }
-      } else if (tiers.length > 0) {
-        for (const tier of tiers) {
-          if (childSubjects.length > 0) {
-            for (const childSubject of childSubjects) {
-              options.push({
-                year,
-                childSubject: childSubject.subject_slug,
-                tier: tier.tier_slug,
-              });
-            }
-          } else {
-            options.push({ year, tier: tier.tier_slug });
-          }
-        }
-      } else {
-        options.push({ year });
+      options.push({
+        year,
+      });
+      if (pathways.length > 0) {
+        options = options.flatMap((option) => {
+          return pathways.map((pathway) => {
+            return {
+              ...option,
+              pathway: pathway.pathway_slug,
+            };
+          });
+        });
       }
+      if (childSubjects.length > 0) {
+        options = options.flatMap((option) => {
+          return childSubjects.map((childSubject) => {
+            return {
+              ...option,
+              childSubject: childSubject.subject_slug,
+            };
+          });
+        });
+      }
+      if (tiers.length > 0) {
+        options = options.flatMap((option) => {
+          return tiers.map((tier) => {
+            return {
+              ...option,
+              tier: tier.tier_slug,
+            };
+          });
+        });
+      }
+
       return options.map((option) => {
         return {
           ...option,
           units: units.filter((unit) => {
             if (
+              option.pathway &&
+              unit.pathway_slug !== null &&
+              unit.pathway_slug !== option.pathway
+            ) {
+              return false;
+            }
+            if (
               option.tier &&
               unit.tier_slug !== null &&
               unit.tier_slug !== option.tier
+            ) {
+              return false;
+            }
+            if (
+              option.pathway &&
+              unit.pathway_slug !== null &&
+              unit.pathway_slug !== option.pathway
             ) {
               return false;
             }

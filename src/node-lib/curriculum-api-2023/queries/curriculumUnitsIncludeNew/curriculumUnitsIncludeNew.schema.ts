@@ -35,6 +35,8 @@ const curriculumUnitsIncludeNewSchema = z.object({
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
+      pathway: z.string().nullable().optional(),
+      pathway_slug: z.string().nullable().optional(),
       tags: z
         .array(
           z.object({

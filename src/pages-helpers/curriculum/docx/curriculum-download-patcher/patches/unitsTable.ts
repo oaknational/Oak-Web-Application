@@ -109,7 +109,7 @@ function buildYearRow(children: string) {
   `;
 }
 
-type Slug = { childSubject?: string; tier?: string };
+type Slug = { childSubject?: string; tier?: string; pathway?: string };
 
 function removeDups(units: Unit[]) {
   const unitSlugLookup = new Set();
@@ -152,10 +152,27 @@ function buildYear(
   let subjectTierTitleSuffix = "";
   if (slug.childSubject || slug.tier) {
     subjectTierTitleSuffix =
-      "- " + [slug.childSubject, slug.tier].filter(Boolean).join("/");
+      "- " +
+      [slug.childSubject, slug.tier, slug.pathway].filter(Boolean).join(", ");
   }
 
   const xml = `
+      <w:p>
+        <w:pPr>
+            <w:sz w:val="44"/>
+            <w:szCs w:val="44"/>
+        </w:pPr>
+        <w:r>
+            <w:rPr>
+                <w:color w:val="222222"/>
+                <w:sz w:val="28"/>
+                <w:szCs w:val="28"/>
+                <w:b/>
+                <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
+            </w:rPr>
+            <w:t xml:space="preserve">${cdata(subjectTierTitleSuffix)}</w:t>
+        </w:r>
+      </w:p>
       <w:p>
         <w:pPr>
             <w:sz w:val="44"/>
@@ -169,9 +186,7 @@ function buildYear(
                 <w:b/>
                 <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
             </w:rPr>
-            <w:t xml:space="preserve">${cdata(`Year ${year} units`)} ${cdata(
-              subjectTierTitleSuffix,
-            )}</w:t>
+            <w:t xml:space="preserve">${cdata(`Year ${year} units`)}</w:t>
         </w:r>
       </w:p>
       ${
