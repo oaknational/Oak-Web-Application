@@ -1,3 +1,15 @@
+# [1.451.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.450.0...v1.451.0) (2024-06-05)
+
+
+### Bug Fixes
+
+* landscape worksheets and no exit quiz on eyfs ([668ec3e](https://github.com/oaknational/Oak-Web-Application/commit/668ec3e2e29249f3f69a9b7211b3d3e961d01ef5))
+
+
+### Features
+
+* new lesson overview query ([2e0da92](https://github.com/oaknational/Oak-Web-Application/commit/2e0da925472100eea4789a2b7b53bedac721d6ee))
+
 # [1.450.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.449.0...v1.450.0) (2024-06-05)
 
 
