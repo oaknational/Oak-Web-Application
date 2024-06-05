@@ -35,14 +35,14 @@ export const QuizQuestionsOrderAnswers = ({
               role="listitem"
             >
               <VisuallyHidden>
-                {item.correctOrder} - {removeMarkdown(orderAnswer.text)}
+                {item.correct_order} - {removeMarkdown(orderAnswer.text)}
               </VisuallyHidden>
               <Box $minWidth={32} aria-hidden>
                 <Icon name={"tick"} />
               </Box>
 
               <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
-                {item.correctOrder}
+                {item.correct_order}
               </OakTypography>
 
               <OakTypography $font={["body-2", "body-1"]} aria-hidden>

@@ -54,7 +54,7 @@ export const QuizQuestionsMCAnswers = (props: {
             $maxWidth={encloseAnswer ? 450 : "100%"}
           >
             {choice.answer.map((answerItem, j) => {
-              if (answerItem.type === "text" && !choice.answerIsCorrect) {
+              if (answerItem.type === "text" && !choice.answer_is_correct) {
                 return (
                   <Typography
                     key={`q-${questionNumber}-answer-element-${j}`}
@@ -64,7 +64,10 @@ export const QuizQuestionsMCAnswers = (props: {
                     {removeMarkdown(answerItem.text)}
                   </Typography>
                 );
-              } else if (answerItem.type === "text" && choice.answerIsCorrect) {
+              } else if (
+                answerItem.type === "text" &&
+                choice.answer_is_correct
+              ) {
                 return (
                   <OakFlex
                     key={`q-${questionNumber}-answer-element-${j}`}
@@ -89,14 +92,14 @@ export const QuizQuestionsMCAnswers = (props: {
                 return imageAnswer ? (
                   <QuizImageAnswer
                     key={`q-${questionNumber}-answer-element-${j}`}
-                    src={answerItem.imageObject}
-                    answerIsCorrect={choice.answerIsCorrect && imageAnswer}
+                    src={answerItem.image_object}
+                    answerIsCorrect={choice.answer_is_correct && imageAnswer}
                     alt="An image in a quiz"
                   />
                 ) : (
                   <QuizImage
                     key={`q-${questionNumber}-answer-element-${j}`}
-                    src={answerItem.imageObject}
+                    src={answerItem.image_object}
                   />
                 );
               }

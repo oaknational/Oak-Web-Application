@@ -23,7 +23,6 @@ const lessonOverviewFixture = (
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],
     lessonEquipmentAndResources: null,
     teacherTips: null,
-    pathways: [],
     keyLearningPoints: [
       {
         keyLearningPoint:

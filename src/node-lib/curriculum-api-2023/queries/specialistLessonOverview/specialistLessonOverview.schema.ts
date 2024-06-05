@@ -8,7 +8,6 @@ import {
   baseLessonOverviewSchema,
   legacyAssetObjectSchema,
   lessonOverviewQuizData,
-  lessonPathwaySchema,
 } from "../../shared.schema";
 
 export type SpecialistLessonOverviewData = Omit<
@@ -123,7 +122,6 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   isCanonical: z.literal(false),
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
-  pathways: z.array(lessonPathwaySchema),
 });
 
 export type SpecialistLessonOverview = z.infer<

@@ -12,7 +12,7 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 
 type ImageProps = {
-  src: StemImageObject["imageObject"];
+  src: StemImageObject["image_object"];
   alt?: string;
   answerIsCorrect?: boolean;
 };
