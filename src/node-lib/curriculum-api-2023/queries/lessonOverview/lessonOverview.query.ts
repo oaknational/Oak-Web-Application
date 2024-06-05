@@ -165,8 +165,9 @@ const transformedLessonOverviewData = (
     yearTitle: browseData.programmeFields.yearDescription,
     examBoardTitle: browseData.programmeFields.examboard,
     downloads: getDownloadsArray({
-      hasExitQuiz: Boolean(content.exitQuiz.length > 1),
-      hasStarterQuiz: Boolean(content.exitQuiz.length > 1),
+      hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
+      hasStarterQuiz:
+        content.starterQuiz && Boolean(content.starterQuiz.length > 1),
       hasSupplementaryAssetObject: Boolean(content.hasSupplementaryAssetObject),
       hasWorksheetAnswersAssetObject: Boolean(
         content.hasWorksheetAnswersAssetObject,
@@ -204,7 +205,7 @@ const transformedLessonOverviewData = (
       content.videoWithSignLanguageMuxPlaybackId,
     transcriptSentences: content.transcriptSentences,
     isWorksheetLandscape: Boolean(
-      browseData.lessonData.deprecatedFields?.worksheet_is_landscape,
+      browseData.lessonData.deprecatedFields?.worksheetIsLandscape,
     ),
     expired: Boolean(browseData.lessonData.deprecatedFields?.expired) || false,
     starterQuiz: starterQuiz,
