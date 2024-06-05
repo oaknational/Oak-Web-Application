@@ -1,3 +1,13 @@
+# [1.450.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.449.0...v1.450.0) (2024-06-05)
+
+
+### Features
+
+* **video:** add test coverage ([ad1e477](https://github.com/oaknational/Oak-Web-Application/commit/ad1e4774231c7f8ef199323d67d6e989851495cf))
+* **video:** change pathway and remove gleap ([7b23300](https://github.com/oaknational/Oak-Web-Application/commit/7b23300b7aaf4049a95cb43c9096430d32320f47))
+* **video:** change pathway and remove gleap ([930254e](https://github.com/oaknational/Oak-Web-Application/commit/930254e7487c4e8bd23219275d28e820916f8b2a))
+* **video:** create standalone video page ([22bd027](https://github.com/oaknational/Oak-Web-Application/commit/22bd0276b989a4b491bbf31d8d6a6db520e993b0))
+
 # [1.449.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.448.1...v1.449.0) (2024-06-04)
 
 
