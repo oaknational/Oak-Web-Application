@@ -150,10 +150,19 @@ function buildYear(
   }
 
   let subjectTierPathwayTitle: undefined | string;
-  if (slug.childSubject || slug.tier || slug.pathway) {
-    subjectTierPathwayTitle = [slug.childSubject, slug.tier, slug.pathway]
-      .filter(Boolean)
-      .join(", ");
+
+  // For the building this header we can assume all units will contain the same subject/tier/pathway
+  const firstUnit = units[0];
+  if (firstUnit) {
+    if (firstUnit.subject || firstUnit.tier || firstUnit.pathway) {
+      subjectTierPathwayTitle = [
+        firstUnit.subject,
+        firstUnit.tier,
+        firstUnit.pathway,
+      ]
+        .filter(Boolean)
+        .join(", ");
+    }
   }
 
   const xml = `
