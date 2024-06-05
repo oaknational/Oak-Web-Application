@@ -1,3 +1,10 @@
+# [1.452.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.451.0...v1.452.0) (2024-06-05)
+
+
+### Features
+
+* force build ([d5222be](https://github.com/oaknational/Oak-Web-Application/commit/d5222be5d78e07cfed91f7e1112d63151e2decd5))
+
 # [1.451.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.450.0...v1.451.0) (2024-06-05)
 
 
