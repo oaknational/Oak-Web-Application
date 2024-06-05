@@ -65,13 +65,6 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
           ...option,
           units: units.filter((unit) => {
             if (
-              option.pathway &&
-              unit.pathway_slug !== null &&
-              unit.pathway_slug !== option.pathway
-            ) {
-              return false;
-            }
-            if (
               option.tier &&
               unit.tier_slug !== null &&
               unit.tier_slug !== option.tier
