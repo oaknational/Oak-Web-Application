@@ -156,7 +156,8 @@ function buildYear(
   if (firstUnit) {
     if (firstUnit.subject || firstUnit.tier || firstUnit.pathway) {
       subjectTierPathwayTitle = [
-        firstUnit.subject,
+        // Only if child subject is present.
+        slug.childSubject ? firstUnit.subject : undefined,
         firstUnit.tier,
         firstUnit.pathway,
       ]
