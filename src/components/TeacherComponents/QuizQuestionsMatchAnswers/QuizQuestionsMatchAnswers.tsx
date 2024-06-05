@@ -22,11 +22,11 @@ export const QuizQuestionsMatchAnswers = ({
       $width={"100%"}
     >
       {answers.map((item, i) => {
-        const matchOption = item.matchOption[0];
-        const correctChoice = item.correctChoice[0];
+        const match_option = item.match_option[0];
+        const correct_choice = item.correct_choice[0];
         return (
-          matchOption &&
-          correctChoice && (
+          match_option &&
+          correct_choice && (
             <OakFlex
               $ph="inner-padding-xs"
               $borderRadius="border-radius-m2"
@@ -36,8 +36,8 @@ export const QuizQuestionsMatchAnswers = ({
             >
               <VisuallyHidden>
                 Correct Answer:
-                {removeMarkdown(matchOption.text)},
-                {removeMarkdown(correctChoice.text)}
+                {removeMarkdown(match_option.text)},
+                {removeMarkdown(correct_choice.text)}
               </VisuallyHidden>
               <Icon $mr={8} name={"tick"} />
               <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
@@ -46,14 +46,14 @@ export const QuizQuestionsMatchAnswers = ({
                   $font={["body-2-bold", "body-1-bold"]}
                   aria-hidden
                 >
-                  {removeMarkdown(matchOption.text)}
+                  {removeMarkdown(match_option.text)}
                   <OakSpan>{" -"}&nbsp;</OakSpan>
                 </OakP>
                 <OakP
                   $whiteSpace={["break-spaces", "nowrap"]}
                   $font={["body-2", "body-1"]}
                 >
-                  {removeMarkdown(correctChoice.text)}
+                  {removeMarkdown(correct_choice.text)}
                 </OakP>
               </Flex>
             </OakFlex>
