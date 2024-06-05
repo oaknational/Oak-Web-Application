@@ -746,15 +746,14 @@ async function buildUnits(
   isCycle2Review: boolean,
 ) {
   const groupedUnits = generateGroupedUnits(combinedCurriculumData);
-
   const promises = groupedUnits.map(
-    async ({ units, year, childSubject, tier }, index) => {
+    async ({ units, year, childSubject, tier, pathway }, index) => {
       // HACK: this should be in a function higher in the stack somewhere, we need to rewrite that logic anyway.
       const unitUnitsBySlug = uniqBy(units, "slug");
 
       const table = await unitsTablePatch(
         year,
-        { childSubject, tier },
+        { childSubject, tier, pathway },
         unitUnitsBySlug,
         {
           isCycle2Review: isCycle2Review,

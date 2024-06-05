@@ -149,15 +149,18 @@ function buildYear(
     );
   }
 
-  let subjectTierTitleSuffix = "";
-  if (slug.childSubject || slug.tier) {
-    subjectTierTitleSuffix =
-      "- " +
-      [slug.childSubject, slug.tier, slug.pathway].filter(Boolean).join(", ");
+  let subjectTierPathwayTitle: undefined | string;
+  if (slug.childSubject || slug.tier || slug.pathway) {
+    subjectTierPathwayTitle = [slug.childSubject, slug.tier, slug.pathway]
+      .filter(Boolean)
+      .join(", ");
   }
 
   const xml = `
-      <w:p>
+      ${
+        !subjectTierPathwayTitle
+          ? ""
+          : `<w:p>
         <w:pPr>
             <w:sz w:val="44"/>
             <w:szCs w:val="44"/>
@@ -170,9 +173,10 @@ function buildYear(
                 <w:b/>
                 <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
             </w:rPr>
-            <w:t xml:space="preserve">${cdata(subjectTierTitleSuffix)}</w:t>
+            <w:t xml:space="preserve">${cdata(subjectTierPathwayTitle)}</w:t>
         </w:r>
-      </w:p>
+      </w:p>`
+      }
       <w:p>
         <w:pPr>
             <w:sz w:val="44"/>

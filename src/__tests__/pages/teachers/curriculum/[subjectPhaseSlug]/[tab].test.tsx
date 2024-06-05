@@ -710,6 +710,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           disciplines: [],
           domains: [],
+          pathways: [],
           tiers: [],
           units: [
             {
@@ -806,6 +807,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           disciplines: [],
           domains: [],
+          pathways: [],
           tiers: [
             {
               tier: "Foundation",
@@ -1148,6 +1150,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             },
           ],
           domains: [],
+          pathways: [],
           tiers: [],
           units: [
             {
