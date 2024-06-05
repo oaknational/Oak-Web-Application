@@ -8,15 +8,15 @@ import {
   LessonOverviewQuizData,
 } from "../shared.schema";
 
-export const imageObject: StemImageObject["imageObject"] = {
+export const image_object: StemImageObject["image_object"] = {
   format: "jpg",
   url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-  secureUrl:
+  secure_url:
     "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
   width: 1280,
   height: 852,
   metadata: { attribution: "test attribution picture" },
-  publicId: "Trees",
+  public_id: "Trees",
   version: 1687374653,
 };
 
@@ -34,7 +34,7 @@ export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
   },
   {
     type: "image",
-    imageObject,
+    image_object,
   },
 ];
 
@@ -45,7 +45,7 @@ export const mcqCorrectAnswer: MCAnswer = {
       type: "text",
     },
   ],
-  answerIsCorrect: true,
+  answer_is_correct: true,
 };
 
 export const mcqIncorrectAnswer: MCAnswer = {
@@ -55,7 +55,7 @@ export const mcqIncorrectAnswer: MCAnswer = {
       type: "text",
     },
   ],
-  answerIsCorrect: false,
+  answer_is_correct: false,
 };
 
 export const mcqTextAnswers: MCAnswer[] = [
@@ -67,7 +67,7 @@ export const mcqTextAnswers: MCAnswer[] = [
         type: "text",
       },
     ],
-    answerIsCorrect: false,
+    answer_is_correct: false,
   },
   mcqCorrectAnswer,
   {
@@ -77,7 +77,7 @@ export const mcqTextAnswers: MCAnswer[] = [
         type: "text",
       },
     ],
-    answerIsCorrect: false,
+    answer_is_correct: false,
   },
 ];
 
@@ -86,55 +86,55 @@ export const mcqImageAnswers: MCAnswer[] = [
     answer: [
       {
         type: "image",
-        imageObject,
+        image_object,
       },
       {
         text: "Trees grow from seeds.",
         type: "text",
       },
     ],
-    answerIsCorrect: true,
+    answer_is_correct: true,
   },
   {
     answer: [
       {
         type: "image",
-        imageObject,
+        image_object,
       },
       {
         text: "Trees grow from something different to seeds.",
         type: "text",
       },
     ],
-    answerIsCorrect: false,
+    answer_is_correct: false,
   },
   {
     answer: [
       {
         type: "image",
-        imageObject,
+        image_object,
       },
       {
         text: "Trees are put in the ground by people.",
         type: "text",
       },
     ],
-    answerIsCorrect: false,
+    answer_is_correct: false,
   },
 ];
 
 export const shortAnswers: ShortAnswer[] = [
   {
     answer: [{ text: "earth", type: "text" }],
-    answerIsDefault: true,
+    answer_is_default: true,
   },
   {
     answer: [{ text: "wind", type: "text" }],
-    answerIsDefault: false,
+    answer_is_default: false,
   },
   {
     answer: [{ text: "fire", type: "text" }],
-    answerIsDefault: false,
+    answer_is_default: false,
   },
 ];
 
@@ -146,11 +146,11 @@ export const orderAnswers: OrderAnswer[] = [
         type: "text",
       },
     ],
-    correctOrder: 1,
+    correct_order: 1,
   },
   {
     answer: [{ text: "Edward the Confessor became king.", type: "text" }],
-    correctOrder: 2,
+    correct_order: 2,
   },
   {
     answer: [
@@ -159,26 +159,26 @@ export const orderAnswers: OrderAnswer[] = [
         type: "text",
       },
     ],
-    correctOrder: 3,
+    correct_order: 3,
   },
   {
     answer: [{ text: "Edward the Confessor died.", type: "text" }],
-    correctOrder: 4,
+    correct_order: 4,
   },
 ];
 
 export const matchAnswers: MatchAnswer[] = [
   {
-    correctChoice: [{ text: "producer", type: "text" }],
-    matchOption: [{ text: "grass", type: "text" }],
+    correct_choice: [{ text: "producer", type: "text" }],
+    match_option: [{ text: "grass", type: "text" }],
   },
   {
-    correctChoice: [{ text: "primary consumer", type: "text" }],
-    matchOption: [{ text: "cow", type: "text" }],
+    correct_choice: [{ text: "primary consumer", type: "text" }],
+    match_option: [{ text: "cow", type: "text" }],
   },
   {
-    correctChoice: [{ text: "secondary consumer", type: "text" }],
-    matchOption: [{ text: "human", type: "text" }],
+    correct_choice: [{ text: "secondary consumer", type: "text" }],
+    match_option: [{ text: "human", type: "text" }],
   },
 ];
 
@@ -208,7 +208,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
               type: "text",
             },
           ],
-          answerIsCorrect: true,
+          answer_is_correct: true,
         },
         {
           answer: [
@@ -217,7 +217,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
               type: "text",
             },
           ],
-          answerIsCorrect: false,
+          answer_is_correct: false,
         },
         {
           answer: [
@@ -226,7 +226,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
               type: "text",
             },
           ],
-          answerIsCorrect: false,
+          answer_is_correct: false,
         },
       ],
     },
