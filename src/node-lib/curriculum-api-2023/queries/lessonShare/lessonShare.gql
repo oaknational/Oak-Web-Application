@@ -1,30 +1,27 @@
 query lessonShare(
   $lessonSlug: String!
-  $programmeSlug: String!
   $unitSlug: String!
+  $programmeSlug: String!
 ) {
-  share: published_mv_share_5_0_0(
+  share: published_mv_lesson_content_1_2(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_title
+    starter_quiz
+    exit_quiz
+    video_mux_playback_id
+    worksheet_asset_object_url
+    expired: deprecated_fields(path: "expired")
+  }
+  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     where: {
-      lessonSlug: { _eq: $lessonSlug }
-      programmeSlug: { _eq: $programmeSlug }
-      unitSlug: { _eq: $unitSlug }
+      lesson_slug: { _eq: $lessonSlug }
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
     }
   ) {
-    shareableResources
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    tierTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    examBoardTitle
-    examBoardSlug
-    expired
+    unit_title: unit_data(path: "title")
+    is_legacy
+    programme_fields
   }
 }
