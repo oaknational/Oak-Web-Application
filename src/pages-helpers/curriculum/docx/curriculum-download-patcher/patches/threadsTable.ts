@@ -110,7 +110,7 @@ export function threadsTablePatch(
         type: "element",
         name: "$FRAGMENT$",
         elements: rootElement.elements,
-      };
+      } as Element;
     }
     return el;
   };
