@@ -3,13 +3,14 @@ query lessonShare(
   $unitSlug: String!
   $programmeSlug: String!
 ) {
-  share: published_mv_lesson_content_1_2(
+  share: published_mv_lesson_content_1_3(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_title
     starter_quiz
     exit_quiz
     video_mux_playback_id
+    video_duration
     worksheet_asset_object_url
     expired: deprecated_fields(path: "expired")
   }

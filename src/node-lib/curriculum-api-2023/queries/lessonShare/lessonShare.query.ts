@@ -29,7 +29,7 @@ export const constructShareableResources = (lesson: RawLessonShareSchema) => {
     exists: lesson.video_mux_playback_id !== null,
     type: "video" as const,
     label: "Video",
-    metadata: "mp4", // TODO: get video duration
+    metadata: lesson.video_duration,
   };
   const worksheet = {
     exists: lesson.worksheet_asset_object_url !== null,
@@ -94,12 +94,6 @@ const lessonShareQuery =
     });
 
     return lesson;
-
-    // return lessonShareSchema.parse({
-    //   ...page,
-    //   isLegacy: page?.lessonCohort === LEGACY_COHORT,
-    //   isSpecialist: false,
-    // });
   };
 
 export default lessonShareQuery;
