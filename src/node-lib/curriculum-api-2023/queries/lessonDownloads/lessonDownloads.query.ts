@@ -11,7 +11,6 @@ import getNextLessonsInUnit from "./getNextLessonsInUnit";
 import lessonDownloadsSchema, {
   LessonDownloadsListSchema,
   LessonDownloadsPageData,
-  lessonDownloadsQueryRaw,
   downloadsAssetData,
 } from "./lessonDownloads.schema";
 
@@ -127,7 +126,6 @@ const lessonDownloadsQuery =
     lessonSlug: string;
   }) => {
     const res = await sdk.lessonDownloads(args);
-
     if (
       !res.download_assets ||
       !res.unit_lessons ||
@@ -137,8 +135,7 @@ const lessonDownloadsQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const { download_assets, unit_lessons } =
-      lessonDownloadsQueryRaw.parse(res);
+    const { download_assets, unit_lessons } = res;
 
     const {
       has_slide_deck_asset_object,
@@ -206,7 +203,6 @@ const lessonDownloadsQuery =
         res,
       });
     }
-
     const unitLessonsArray = constructLessonListingObjectArray(
       res.unit_lessons as SyntheticUnitvariantLessons[],
     );

@@ -1,4 +1,5 @@
 import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import { ZodError } from "zod";
 
 import sdk from "../../sdk";
 
@@ -66,5 +67,45 @@ describe("lessonDownloads()", () => {
     });
 
     expect(unit.programmeSlug).toEqual("programme-slug");
+  });
+  test.only("throws a Zod error if the response is invalid", async () => {
+    try {
+      await lessonDownloads({
+        ...sdk,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        lessonDownloads: jest.fn(() =>
+          Promise.resolve({
+            download_assets: [
+              {
+                starter_quiz: null,
+                exit_quiz: null,
+                has_worksheet_asset_object: true,
+                has_worksheet_answers_asset_object: true,
+                has_worksheet_google_drive_downloadable_version: true,
+                has_supplementary_asset_object: true,
+                is_legacy: true,
+              },
+            ],
+            unit_lessons: [syntheticUnitvariantLessonsFixture()],
+          }),
+        ),
+      })({
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        lessonSlug: "lesson-slug",
+      });
+    } catch (error: unknown) {
+      const err = error as ZodError;
+      expect(err.errors).toEqual([
+        {
+          code: "invalid_type",
+          expected: "boolean",
+          message: "Required",
+          path: ["has_slide_deck_asset_object"],
+          received: "undefined",
+        },
+      ]);
+    }
   });
 });

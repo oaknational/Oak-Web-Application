@@ -1,19 +1,28 @@
 query lessonDownloadsCanonical($lessonSlug: String!) {
-  lessonDownloadsCanonical: published_mv_downloads_6_0_0(
-    where: { lessonSlug: { _eq: $lessonSlug } }
+  download_assets: published_mv_lesson_content_1_1(
+    where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
-    downloads
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    expired
-    updatedAt
+    has_slide_deck_asset_object
+    has_worksheet_asset_object
+    has_supplementary_asset_object
+    has_worksheet_answers_asset_object
+    has_worksheet_google_drive_downloadable_version
+    starter_quiz
+    exit_quiz
+    is_legacy
+  }
+
+  lessons_details: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    supplementary_data
+    null_unitvariant
   }
 }
