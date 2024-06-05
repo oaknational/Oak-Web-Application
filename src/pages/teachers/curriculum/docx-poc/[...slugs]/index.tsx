@@ -229,7 +229,6 @@ export const getServerSideProps = async ({
       };
     }
   } catch (error) {
-    console.log(JSON.stringify(error, null, 2));
     return {
       notFound: true,
     };
