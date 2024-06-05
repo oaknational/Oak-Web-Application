@@ -11,8 +11,7 @@ import {
 
 import errorReporter from "@/common-lib/error-reporter";
 
-// TODO: extract to shared
-export const constructShareableResources = (lesson: RawLessonShareSchema) => {
+const constructShareableResources = (lesson: RawLessonShareSchema) => {
   const introQuiz = {
     exists: lesson.starter_quiz !== null,
     type: "intro-quiz-questions" as const,
