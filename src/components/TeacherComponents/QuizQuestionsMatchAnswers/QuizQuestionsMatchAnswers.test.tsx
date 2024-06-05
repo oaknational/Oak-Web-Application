@@ -23,19 +23,19 @@ describe("QuizQuestionsMatchAnswers", () => {
       const t = matchAnswers[i];
 
       if (
-        !t?.correct_choice ||
-        !t?.match_option ||
-        !t?.correct_choice[0] ||
-        !t?.match_option[0]
+        !t?.correctChoice ||
+        !t?.matchOption ||
+        !t?.correctChoice[0] ||
+        !t?.matchOption[0]
       ) {
         throw new Error("Invalid test data");
       }
 
-      const match_option = t.match_option[0];
-      const correct_choice = t.correct_choice[0];
+      const matchOption = t.matchOption[0];
+      const correctChoice = t.correctChoice[0];
 
-      expect(item).toHaveTextContent(match_option.text);
-      expect(item).toHaveTextContent(correct_choice.text);
+      expect(item).toHaveTextContent(matchOption.text);
+      expect(item).toHaveTextContent(correctChoice.text);
     }
   });
 });

@@ -5,7 +5,7 @@ import { calcDims } from "@/components/TeacherComponents/LessonOverviewQuizConta
 import QuizOakImage from "@/components/TeacherComponents/QuizOakImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-type ImageProps = { src: StemImageObject["image_object"]; alt?: string };
+type ImageProps = { src: StemImageObject["imageObject"]; alt?: string };
 
 const QuizImage: FC<ImageProps> = ({ src, alt }) => {
   const [dims, setDims] = useState(calcDims(src.width, src.height));
