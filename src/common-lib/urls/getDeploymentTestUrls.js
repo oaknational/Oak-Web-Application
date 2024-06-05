@@ -53,6 +53,8 @@ function getDeploymentTestUrls() {
     "/teachers/lessons/duncan-as-a-father-figure/downloads",
     "/teachers/lessons/transverse-waves",
     "/teachers/lessons/transverse-waves/downloads",
+    // pupil lessons
+    "/pupils/lessons/introduction-exploring-delicious-fruits-and-vegetables-crvk4t/overview",
   ];
 }
 
