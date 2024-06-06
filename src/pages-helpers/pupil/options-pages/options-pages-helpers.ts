@@ -43,7 +43,6 @@ export const isExamboardSlug = (
 
 export const getPupilOptionData = async (
   context: GetStaticPropsContext<OptionsURLParams>,
-  isLegacy: boolean = false,
 ): Promise<GetStaticPropsResult<ProgrammesPageProps>> => {
   if (!context.params) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
@@ -56,7 +55,6 @@ export const getPupilOptionData = async (
 
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
     baseSlug: programmeSlug,
-    isLegacy,
   });
 
   if (!programmes || programmes.length === 0) {

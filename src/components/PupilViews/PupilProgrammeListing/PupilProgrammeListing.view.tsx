@@ -11,6 +11,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import _ from "lodash";
 
 import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
 import { getExamboardData } from "./getExamboardData";
@@ -29,7 +30,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
-  isLegacy: boolean;
   yearSlug: PupilProgrammeListingData["yearSlug"];
   examboardSlug?: ExamboardData["examboardSlug"];
 };
@@ -37,24 +37,55 @@ export type PupilViewsProgrammeListingProps = {
 export const PupilViewsProgrammeListing = ({
   programmes,
   baseSlug,
-  isLegacy,
   yearSlug,
   examboardSlug,
 }: PupilViewsProgrammeListingProps) => {
-  const tiers = getAvailableProgrammeFactor({
-    programmes,
-    factorPrefix: "tier",
-  });
-  const examboards = getAvailableProgrammeFactor({
-    programmes,
-    factorPrefix: "examboard",
-  }) as ExamboardData[];
+  const allExamboards: { [key: string]: ExamboardData[] } = _.groupBy(
+    getAvailableProgrammeFactor({
+      programmes,
+      factorPrefix: "examboard",
+    }) as ExamboardData[],
+    (examboard: ExamboardData) => examboard.examboard,
+  );
+
+  const examboards = Object.keys(allExamboards)
+    .map((examboard) => {
+      const mappedExamboard = allExamboards[examboard];
+      if (!Array.isArray(mappedExamboard) || mappedExamboard.length < 1) return;
+      return (
+        allExamboards[examboard]?.find(
+          (examboard: ExamboardData) => !examboard.isLegacy,
+        ) || mappedExamboard[0]
+      );
+    })
+    .filter((examboard): examboard is ExamboardData => examboard !== undefined);
 
   const [chosenExamboard, setChosenExamboard] = useState<ExamboardData | null>(
     examboardSlug && examboards.length >= 1
       ? getExamboardData({ examboardSlug, availableExamboards: examboards })
       : null,
   );
+
+  const allTiers: { [key: string]: TierData[] } = _.groupBy(
+    getAvailableProgrammeFactor({
+      programmes: programmes,
+      factorPrefix: "tier",
+    }) as TierData[],
+    (tier: TierData) => tier.tier,
+  );
+  console.log(programmes);
+
+  // This creates an array of tiers giving preference to non-legacy tiers
+  const tiers = Object.keys(allTiers)
+    .map((tierLabel) => {
+      const mappedTier = allTiers[tierLabel];
+      if (!Array.isArray(mappedTier) || mappedTier.length < 1) return;
+      return (
+        allTiers[tierLabel]?.find((tier: TierData) => !tier.isLegacy) ||
+        mappedTier[0]
+      );
+    })
+    .filter((tier): tier is TierData => tier !== undefined);
 
   if (!programmes[0]) {
     throw new Error("No programme data available");
@@ -113,49 +144,28 @@ export const PupilViewsProgrammeListing = ({
   const BrowseOptions = () => {
     return (() => {
       switch (true) {
-        // examboard is chosen and there are multiple tiers
-        case chosenExamboard !== null && tiers.length > 1:
+        case (chosenExamboard !== null && tiers.length > 1) ||
+          (examboards.length <= 1 && tiers.length >= 1):
           return (
             <BrowseTierSelector
               tiers={tiers as TierData[]}
               baseSlug={baseSlug}
-              examboardSlug={chosenExamboard?.examboardSlug} // TS complains chosenExamboard could be null ?!
-              isLegacy={isLegacy}
+              examboardSlug={
+                chosenExamboard ? chosenExamboard.examboardSlug : undefined
+              }
               phaseSlug={phaseSlug}
             />
           );
-        // examboard is not chosen and there are multiple tiers
-        case examboards.length > 1 &&
-          chosenExamboard === null &&
-          tiers.length > 1:
+        case examboards.length > 1 && chosenExamboard === null:
           return (
             <BrowseExamboardSelector
               examboards={examboards}
               baseSlug={baseSlug}
-              onClick={(examboard) => setChosenExamboard(examboard)}
-              isLegacy={isLegacy}
-              phaseSlug={phaseSlug}
-            />
-          );
-        // examboard is not chosen and there is only one or no tiers
-        case examboards.length > 1 &&
-          chosenExamboard === null &&
-          tiers.length <= 1:
-          return (
-            <BrowseExamboardSelector
-              examboards={examboards}
-              baseSlug={baseSlug}
-              isLegacy={isLegacy}
-              phaseSlug={phaseSlug}
-            />
-          );
-        // there are only tiers
-        case examboards.length <= 1 && tiers.length >= 1:
-          return (
-            <BrowseTierSelector
-              tiers={tiers as TierData[]}
-              baseSlug={baseSlug}
-              isLegacy={isLegacy}
+              onClick={
+                tiers.length > 1
+                  ? (examboard) => setChosenExamboard(examboard)
+                  : undefined
+              }
               phaseSlug={phaseSlug}
             />
           );

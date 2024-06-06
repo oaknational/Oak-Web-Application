@@ -9,7 +9,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 
 type PupilViewsSubjectListingProps = {
@@ -75,50 +75,58 @@ export const PupilViewsSubjectListing = ({
             if (subjectData?.[0]?.programmeFields.phaseSlug === "foundation") {
               throw new Error("Foundation phase is not supported");
             }
-
-            if (subjectData?.[0]) {
-              if (subjectData?.length === 1) {
-                return (
-                  <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
-                    <OakFlex $height={"100%"}>
-                      <OakPupilJourneySubjectButton
-                        href={resolveOakHref({
-                          page: "pupil-unit-index",
-                          programmeSlug: subjectData[0].programmeSlug,
-                        })}
-                        element="a"
-                        subjectIconName={`subject-${subjectData[0].programmeFields.subjectSlug}`}
-                        phase={subjectData[0].programmeFields.phaseSlug}
-                      >
-                        {subjectData[0].programmeFields.subject}
-                      </OakPupilJourneySubjectButton>
-                    </OakFlex>
-                  </OakGridArea>
-                );
-              }
-
-              return (
-                <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
-                  <OakFlex $height={"100%"}>
-                    <OakPupilJourneySubjectButton
-                      key={subjectSlug}
-                      element="a"
-                      subjectIconName={`subject-${subjectData[0].programmeFields.subjectSlug}`}
-                      href={resolveOakHref({
-                        page: "pupil-programme-index",
-                        programmeSlug: subjectData[0].baseSlug,
-                        optionSlug: subjectData[0].isLegacy
-                          ? "options-l"
-                          : "options",
-                      })}
-                      phase={subjectData[0].programmeFields.phaseSlug}
-                    >
-                      {subjectData[0].programmeFields.subject}
-                    </OakPupilJourneySubjectButton>
-                  </OakFlex>
-                </OakGridArea>
+            if (!subjectData?.[0]) {
+              throw new Error(
+                `Error no subject data available for ${subjectSlug}`,
               );
             }
+
+            const examOptions = _.groupBy(
+              subjectData,
+              (subject) => subject.programmeFields.examboardSlug,
+            );
+            const tierOptions = _.groupBy(
+              subjectData,
+              (subject) => subject.programmeFields.tierSlug,
+            );
+            const hasTierOrExamOptions =
+              Object.keys(examOptions).length > 1 ||
+              Object.keys(tierOptions).length > 1;
+
+            // If there are multiple matches on subjectSlug, show the non-legacy one.
+            const cycle1Subject = subjectData.find(
+              (subject) => !subject.isLegacy,
+            );
+            const subject = cycle1Subject || subjectData[0];
+
+            const urlOptions: Partial<ResolveOakHrefProps> = {
+              page: "pupil-unit-index",
+              programmeSlug: subject.programmeSlug,
+              ...(hasTierOrExamOptions && {
+                page: "pupil-programme-index",
+                optionSlug: "options",
+              }),
+            };
+
+            return (
+              <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
+                <OakFlex $height={"100%"}>
+                  <OakPupilJourneySubjectButton
+                    key={subjectSlug}
+                    element="a"
+                    subjectIconName={`subject-${subject.programmeFields.subjectSlug}`}
+                    href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
+                    phase={
+                      subject.programmeFields.phaseSlug as
+                        | "primary"
+                        | "secondary"
+                    }
+                  >
+                    {subject.programmeFields.subject}
+                  </OakPupilJourneySubjectButton>
+                </OakFlex>
+              </OakGridArea>
+            );
           })}
         </OakGrid>
       </OakFlex>

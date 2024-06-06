@@ -11,14 +11,22 @@ import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
+  programmeSlug: string;
 };
 
 type PupilUnitListingPageURLParams = {
   programmeSlug: string;
 };
 
-const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
-  if (!curriculumData[0]) {
+const PupilUnitListingPage = ({
+  curriculumData,
+  programmeSlug,
+}: UnitListingPageProps) => {
+  const selectedProgramme = curriculumData.find(
+    (unit) => unit.programmeSlug === programmeSlug,
+  );
+
+  if (!selectedProgramme) {
     throw new Error("No curriculum data");
   }
 
@@ -28,7 +36,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
     return aUnitOrder - bUnitOrder;
   });
 
-  const { programmeFields } = curriculumData[0];
+  const { programmeFields } = selectedProgramme;
   const { subject, phase, yearDescription } = programmeFields;
 
   if (phase === "foundation") {
@@ -48,6 +56,7 @@ const PupilUnitListingPage = ({ curriculumData }: UnitListingPageProps) => {
         <PupilViewsUnitListing
           units={curriculumData}
           programmeFields={programmeFields}
+          programmeSlug={programmeSlug}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -68,13 +77,15 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("no context.params");
       }
+      // TODO - Change directory structure to baseSlug
       const { programmeSlug } = context.params;
       if (!programmeSlug) {
         throw new Error("unexpected context.params");
       }
 
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
-        programmeSlug,
+        // This is gets us the base_slug
+        baseSlug: programmeSlug.replace(/(\d+)(.*)$/, "$1"),
       });
 
       curriculumData = curriculumData.filter(
@@ -90,6 +101,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           curriculumData,
+          programmeSlug,
         },
       };
       return results;
