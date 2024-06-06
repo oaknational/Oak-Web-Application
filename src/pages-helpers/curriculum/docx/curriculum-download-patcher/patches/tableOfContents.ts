@@ -17,9 +17,13 @@ function getYears(data: CombinedCurriculumData) {
 function buildToc(data: CombinedCurriculumData) {
   const years = getYears(data);
   const items: { id: string; text: string; anchor?: string }[] = [
-    // {id: "1", text: "Our curriculum"},
-    // {id: "1", text: "Threads"},
-    // {id: "1", text: `${data.subjectTitle} curriculum overview`},
+    { id: "our_curriculum", text: "Our curriculum", anchor: "our_curriculum" },
+    { id: "what_are_threads", text: "Threads", anchor: "what_are_threads" },
+    {
+      id: "curriculum_overview",
+      text: `${data.subjectTitle} curriculum overview`,
+      anchor: "curriculum_overview",
+    },
     ...years.map((year) => {
       return {
         id: `year_${year}`,
@@ -27,7 +31,7 @@ function buildToc(data: CombinedCurriculumData) {
         anchor: `year_${year}`,
       };
     }),
-    { id: "1", text: "Threads appendix", anchor: "threads" },
+    { id: "threads", text: "Threads appendix", anchor: "threads" },
   ];
 
   const xml = `

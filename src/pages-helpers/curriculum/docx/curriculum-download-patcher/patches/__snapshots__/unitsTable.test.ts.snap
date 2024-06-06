@@ -70,6 +70,14 @@ exports[`unitsTablePatch should return units table 1`] = `
             },
             {
               "attributes": {
+                "w:id": "1",
+                "w:name": "year_7",
+              },
+              "name": "w:bookmarkStart",
+              "type": "element",
+            },
+            {
+              "attributes": {
                 "xml:space": "preserve",
               },
               "elements": [
@@ -79,6 +87,13 @@ exports[`unitsTablePatch should return units table 1`] = `
                 },
               ],
               "name": "w:t",
+              "type": "element",
+            },
+            {
+              "attributes": {
+                "w:id": "1",
+              },
+              "name": "w:bookmarkEnd",
               "type": "element",
             },
           ],

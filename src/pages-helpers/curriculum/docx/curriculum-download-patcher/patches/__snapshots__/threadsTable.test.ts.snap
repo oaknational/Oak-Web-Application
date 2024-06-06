@@ -4,6 +4,21 @@ exports[`threadsTablePatch should return units table 1`] = `
 {
   "elements": [
     {
+      "attributes": {
+        "w:id": "1",
+        "w:name": "threads",
+      },
+      "name": "w:bookmarkStart",
+      "type": "element",
+    },
+    {
+      "attributes": {
+        "w:id": "1",
+      },
+      "name": "w:bookmarkEnd",
+      "type": "element",
+    },
+    {
       "elements": [
         {
           "elements": [

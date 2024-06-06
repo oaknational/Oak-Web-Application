@@ -1,0 +1,665 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tableOfContents should modify node if present 1`] = `
+{
+  "elements": [
+    {
+      "elements": [
+        {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "attributes": {
+                    "w:val": "56",
+                  },
+                  "name": "w:sz",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "w:ascii": "Lexend Bold",
+                    "w:cs": "Lexend Bold",
+                    "w:eastAsia": "Lexend Bold",
+                    "w:hAnsi": "Lexend Bold",
+                  },
+                  "name": "w:rFonts",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "w:val": "222222",
+                  },
+                  "name": "w:color",
+                  "type": "element",
+                },
+              ],
+              "name": "w:rPr",
+              "type": "element",
+            },
+            {
+              "attributes": {
+                "xml:space": "preserve",
+              },
+              "elements": [
+                {
+                  "text": "Contents",
+                  "type": "text",
+                },
+              ],
+              "name": "w:t",
+              "type": "element",
+            },
+          ],
+          "name": "w:r",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "our_curriculum",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Our curriculum",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "what_are_threads",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Threads",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "curriculum_overview",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "undefined curriculum overview",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "year_7",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Year 7",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "year_8",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Year 8",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "year_9",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Year 9",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "year_10",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Year 10",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "year_11",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Year 11",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "attributes": {
+            "w:anchor": "threads",
+          },
+          "elements": [
+            {
+              "elements": [
+                {
+                  "elements": [
+                    {
+                      "attributes": {
+                        "w:val": "32",
+                      },
+                      "name": "w:sz",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:ascii": "Lexend Bold",
+                        "w:cs": "Lexend Bold",
+                        "w:eastAsia": "Lexend Bold",
+                        "w:hAnsi": "Lexend Bold",
+                      },
+                      "name": "w:rFonts",
+                      "type": "element",
+                    },
+                    {
+                      "attributes": {
+                        "w:val": "222222",
+                      },
+                      "name": "w:color",
+                      "type": "element",
+                    },
+                  ],
+                  "name": "w:rPr",
+                  "type": "element",
+                },
+                {
+                  "attributes": {
+                    "xml:space": "preserve",
+                  },
+                  "elements": [
+                    {
+                      "cdata": "Threads appendix",
+                      "type": "cdata",
+                    },
+                  ],
+                  "name": "w:t",
+                  "type": "element",
+                },
+              ],
+              "name": "w:r",
+              "type": "element",
+            },
+          ],
+          "name": "w:hyperlink",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+    {
+      "elements": [
+        {
+          "elements": [
+            {
+              "name": "w:pageBreakBefore",
+              "type": "element",
+            },
+          ],
+          "name": "w:pPr",
+          "type": "element",
+        },
+      ],
+      "name": "w:p",
+      "type": "element",
+    },
+  ],
+  "name": "$FRAGMENT$",
+  "type": "element",
+}
+`;
