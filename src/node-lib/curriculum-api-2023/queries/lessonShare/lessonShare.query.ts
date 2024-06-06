@@ -18,7 +18,7 @@ export const constructShareableResources = (lesson: RawLessonShareSchema) => {
   const introQuiz = {
     exists: lesson.starter_quiz !== null,
     type: "intro-quiz-questions" as const,
-    label: "Starter Quiz",
+    label: "Starter quiz",
     metadata: lesson.starter_quiz
       ? `${starterQuizLength} question${starterQuizLength === 1 ? "" : "s"}`
       : "",
@@ -26,7 +26,7 @@ export const constructShareableResources = (lesson: RawLessonShareSchema) => {
   const exitQuiz = {
     exists: lesson.exit_quiz !== null,
     type: "exit-quiz-questions" as const,
-    label: "Exit Quiz",
+    label: "Exit quiz",
     metadata: lesson.exit_quiz
       ? `${exitQuizLength} question${exitQuizLength === 1 ? "" : "s"}`
       : "",
