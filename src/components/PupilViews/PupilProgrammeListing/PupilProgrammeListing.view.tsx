@@ -73,7 +73,6 @@ export const PupilViewsProgrammeListing = ({
     }) as TierData[],
     (tier: TierData) => tier.tier,
   );
-  console.log(programmes);
 
   // This creates an array of tiers giving preference to non-legacy tiers
   const tiers = Object.keys(allTiers)

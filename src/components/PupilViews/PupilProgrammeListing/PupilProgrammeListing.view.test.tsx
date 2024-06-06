@@ -84,7 +84,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
     const { getByText } = render(
@@ -108,7 +107,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
     const { getByText } = render(
@@ -132,7 +130,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
 

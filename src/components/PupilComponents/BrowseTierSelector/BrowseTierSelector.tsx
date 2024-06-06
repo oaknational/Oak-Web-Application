@@ -23,11 +23,9 @@ export const BrowseTierSelector = ({
   examboardSlug?: string | null;
   phaseSlug: PupilProgrammeListingData["programmeFields"]["phaseSlug"];
 }) => {
-  const orderedTiers = tiers.sort((a, b) => {
-    if (a.tier === null) return 1;
-    if (b.tier === null) return -1;
-    return a.tier.localeCompare(b.tier);
-  });
+  const orderedTiers = tiers.sort(
+    (a, b) => (a.tierDisplayOrder ?? 0) - (b.tierDisplayOrder ?? 0),
+  );
 
   const programmeSlugs = orderedTiers.map(
     (tier) =>

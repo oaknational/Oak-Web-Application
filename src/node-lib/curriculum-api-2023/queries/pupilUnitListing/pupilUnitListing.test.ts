@@ -16,7 +16,7 @@ describe("pupilUnitListing()", () => {
           }) as Promise<PupilUnitListingQuery>, // Add the correct return type
       ),
     })({
-      programmeSlug: "test",
+      baseSlug: "test",
     });
 
     expect(units[0]?.unitSlug).toEqual("unit-slug");

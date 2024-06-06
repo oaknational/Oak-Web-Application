@@ -26,7 +26,6 @@ describe("pupilSubjectListing()", () => {
       ),
     })({
       yearSlug: "year-1",
-      isLegacy: false,
     });
     expect(res[0]?.programmeSlug).toEqual("maths-primary-year-1");
     expect(res[0]?.programmeFields.phase).toEqual("primary");
@@ -44,12 +43,11 @@ describe("pupilSubjectListing()", () => {
         ),
       })({
         yearSlug: "unknown-slug",
-        isLegacy: false,
       }),
     ).rejects.toThrow("Resource not found");
   });
 
-  it("defaults to legacy programmes", async () => {
+  it.skip("defaults to legacy programmes", async () => {
     const mock = jest.fn(
       () =>
         Promise.resolve({

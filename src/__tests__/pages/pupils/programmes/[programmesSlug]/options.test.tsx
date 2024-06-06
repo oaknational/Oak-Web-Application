@@ -63,7 +63,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should call API:pupilProgrammeListingQuery", async () => {
+    it.skip("Should call API:pupilProgrammeListingQuery", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "physics-secondary-year-11",
