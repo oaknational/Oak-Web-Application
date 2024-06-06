@@ -16,13 +16,17 @@ const constructShareableResources = (lesson: RawLessonShareSchema) => {
     exists: lesson.starter_quiz !== null,
     type: "intro-quiz-questions" as const,
     label: "Starter Quiz",
-    metadata: `${lesson.starter_quiz?.length.toString()} questions` || "",
+    metadata: lesson.starter_quiz
+      ? `${lesson.starter_quiz.length.toString()} questions`
+      : "",
   };
   const exitQuiz = {
     exists: lesson.exit_quiz !== null,
     type: "exit-quiz-questions" as const,
     label: "Exit Quiz",
-    metadata: `${lesson.exit_quiz?.length.toString()} questions` || "",
+    metadata: lesson.exit_quiz
+      ? `${lesson.exit_quiz.length.toString()} questions`
+      : "",
   };
   const video = {
     exists: lesson.video_mux_playback_id !== null,
