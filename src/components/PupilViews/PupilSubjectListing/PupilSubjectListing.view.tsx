@@ -45,7 +45,8 @@ export const PupilViewsSubjectListing = ({
     >
       <OakFlex
         $background={"bg-primary"}
-        $pa={"inner-padding-xl"}
+        $pt={["inner-padding-xl5", "inner-padding-xl7"]}
+        $ph={["inner-padding-l", "inner-padding-xl"]}
         $borderRadius={"border-radius-l"}
         $ba={"border-solid-s"}
         $borderColor={"border-decorative1-stronger"}
@@ -53,7 +54,7 @@ export const PupilViewsSubjectListing = ({
         $flexDirection={"column"}
         $alignItems={"center"}
       >
-        <OakHeading $font={"heading-5"} tag="h1">
+        <OakHeading $font={["heading-6", "heading-5"]} tag="h1">
           Now choose a subject
         </OakHeading>
 
