@@ -1,3 +1,5 @@
+import { uniqueId } from "lodash";
+
 import { CombinedCurriculumData } from "..";
 
 import {
@@ -13,6 +15,26 @@ export function notUndefined<TValue>(
   value: TValue | undefined,
 ): value is TValue {
   return value !== undefined;
+}
+
+export function bookmarkBlock(name: string, xml: string) {
+  const uuid = uniqueId();
+  return `
+    <w:bookmarkStart w:id="${uuid}" w:name="${name}" />
+      ${xml}
+    <w:bookmarkEnd w:id="${uuid}" />
+  `;
+}
+
+export function hyperlinkBlock(anchor: string | undefined | null, xml: string) {
+  if (anchor) {
+    return `
+      <w:hyperlink w:anchor="${anchor}">
+        ${xml}
+      </w:hyperlink>
+    `;
+  }
+  return xml;
 }
 
 // Safe version of String#includes(...)

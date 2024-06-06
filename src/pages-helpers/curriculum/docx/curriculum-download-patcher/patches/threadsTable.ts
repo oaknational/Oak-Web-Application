@@ -4,7 +4,7 @@ import { checkWithinElement } from "../../docx";
 import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
-import { createThreadOptions, textIncludes } from "./util";
+import { bookmarkBlock, createThreadOptions, textIncludes } from "./util";
 
 function buildColumn(text: string) {
   return `
@@ -75,6 +75,7 @@ export function threadsTablePatch(
 
       const rootElement = xmlElementToJson(`
         <root>
+            ${bookmarkBlock("threads", "")}
             <w:p>
             <w:r>
                 <w:rPr>

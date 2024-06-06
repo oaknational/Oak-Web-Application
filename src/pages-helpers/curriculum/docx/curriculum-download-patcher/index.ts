@@ -7,6 +7,7 @@ import {
   pipeElementThrough,
   withBlock,
 } from "../docx";
+import { collapseFragments } from "../xml";
 
 import { subjectPatch } from "./patches/subject";
 import { tableOfContentsPatch } from "./patches/tableOfContents";
@@ -45,7 +46,7 @@ async function patchFile(
             coverPatch(combinedCurriculumData),
             subjectPatch(combinedCurriculumData),
             threadOverviewTitlePatch(combinedCurriculumData),
-            tableOfContentsPatch(),
+            tableOfContentsPatch(combinedCurriculumData),
             subjectExplainerPatch(combinedCurriculumData),
             partnerDetailPatch(combinedCurriculumData),
             partnerNamePatch(combinedCurriculumData),
@@ -67,7 +68,9 @@ async function patchFile(
         },
       );
 
-      const docMod3 = destroyPastTag(docMod2!, "END_OF_DOCUMENT");
+      const docMod3 = collapseFragments(
+        destroyPastTag(docMod2!, "END_OF_DOCUMENT"),
+      );
 
       if (!docMod3) {
         throw new Error("Invalid document!");

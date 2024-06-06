@@ -1,6 +1,8 @@
 import { cdata, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData } from "..";
 
+import { bookmarkBlock } from "./util";
+
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 function buildOptions({ unitOptions }: { unitOptions: Unit["unit_options"] }) {
@@ -200,7 +202,12 @@ function buildYear(
                 <w:b/>
                 <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
             </w:rPr>
-            <w:t xml:space="preserve">${cdata(`Year ${year} units`)}</w:t>
+            ${bookmarkBlock(
+              `year_${year}`,
+              `
+              <w:t xml:space="preserve">${cdata(`Year ${year} units`)}</w:t>
+            `,
+            )}
         </w:r>
       </w:p>
       ${
