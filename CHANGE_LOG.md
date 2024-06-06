@@ -1,3 +1,14 @@
+## [1.452.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.4...v1.452.5) (2024-06-06)
+
+
+### Bug Fixes
+
+* protocol in curriculum sitemap ([06d67a2](https://github.com/oaknational/Oak-Web-Application/commit/06d67a253338c486ef5d2078f670569c932fc32e))
+
+## [1.452.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.3...v1.452.4) (2024-06-06)
+
+## [1.452.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.2...v1.452.3) (2024-06-06)
+
 ## [1.452.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.1...v1.452.2) (2024-06-06)
 
 ## [1.452.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.0...v1.452.1) (2024-06-06)
