@@ -51,6 +51,5 @@ query lessonOverview(
     slide_deck_asset_object_url
     worksheet_asset_object_url
     supplementary_asset_object_url
-    video_duration
   }
 }

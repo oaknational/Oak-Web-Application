@@ -14,6 +14,7 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   cohort: true,
   exit_quiz: true,
   starter_quiz: true,
+  video_duration: true,
 });
 
 export type LessonOverviewContent = Omit<

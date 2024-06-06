@@ -39,18 +39,5 @@ query pupilLesson(
     exit_quiz_id
     supervision_level
     video_title
-    has_worksheet_google_drive_downloadable_version
-    has_slide_deck_asset_object
-    worksheet_asset_id
-    has_worksheet_asset_object
-    worksheet_answers_asset_id
-    has_worksheet_answers_asset_object
-    supplementary_asset_id
-    has_supplementary_asset_object
-    slide_deck_asset_id
-    slide_deck_asset_object_url
-    worksheet_asset_object_url
-    supplementary_asset_object_url
-    video_duration
   }
 }
