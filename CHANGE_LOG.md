@@ -1,3 +1,10 @@
+## [1.453.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.0...v1.453.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* child-subject buttons ordering in curriculum visualiser ([556fdca](https://github.com/oaknational/Oak-Web-Application/commit/556fdcaf6e4c26042f8efe8ddbb791cb363d9a4a))
+
 # [1.453.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.6...v1.453.0) (2024-06-06)
 
 
