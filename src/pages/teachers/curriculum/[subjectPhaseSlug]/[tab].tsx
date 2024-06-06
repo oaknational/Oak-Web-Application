@@ -54,6 +54,11 @@ export type CurriculumUnitsYearGroup = {
   ref?: MutableRefObject<HTMLDivElement>;
 };
 
+export type Pathway = {
+  pathway: string;
+  pathway_slug: string;
+};
+
 export type CurriculumUnitsYearData<T = Unit> = {
   [key: string]: {
     units: T[];
@@ -61,6 +66,7 @@ export type CurriculumUnitsYearData<T = Unit> = {
     domains: Domain[];
     tiers: Tier[];
     disciplines: Discipline[];
+    pathways: Pathway[];
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -324,6 +330,7 @@ export function createUnitsListingByYear(
         domains: [],
         tiers: [],
         disciplines: [],
+        pathways: [],
       };
       yearData[unit.year] = currentYearData;
     }
@@ -369,6 +376,19 @@ export function createUnitsListingByYear(
       currentYearData.tiers.push({
         tier: unit.tier,
         tier_slug: unit.tier_slug,
+      });
+    }
+
+    if (
+      unit.pathway &&
+      unit.pathway_slug &&
+      currentYearData.pathways.every(
+        (p) => p.pathway_slug !== unit.pathway_slug,
+      )
+    ) {
+      currentYearData.pathways.push({
+        pathway: unit.pathway,
+        pathway_slug: unit.pathway_slug,
       });
     }
 
