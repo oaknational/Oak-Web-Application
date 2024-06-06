@@ -11,13 +11,16 @@ import {
 
 import errorReporter from "@/common-lib/error-reporter";
 
-const constructShareableResources = (lesson: RawLessonShareSchema) => {
+export const constructShareableResources = (lesson: RawLessonShareSchema) => {
+  const starterQuizLength = lesson.starter_quiz?.length ?? 0;
+  const exitQuizLength = lesson.exit_quiz?.length ?? 0;
+
   const introQuiz = {
     exists: lesson.starter_quiz !== null,
     type: "intro-quiz-questions" as const,
     label: "Starter Quiz",
     metadata: lesson.starter_quiz
-      ? `${lesson.starter_quiz.length.toString()} questions`
+      ? `${starterQuizLength} question${starterQuizLength === 1 ? "" : "s"}`
       : "",
   };
   const exitQuiz = {
@@ -25,7 +28,7 @@ const constructShareableResources = (lesson: RawLessonShareSchema) => {
     type: "exit-quiz-questions" as const,
     label: "Exit Quiz",
     metadata: lesson.exit_quiz
-      ? `${lesson.exit_quiz.length.toString()} questions`
+      ? `${exitQuizLength} question${exitQuizLength === 1 ? "" : "s"}`
       : "",
   };
   const video = {
