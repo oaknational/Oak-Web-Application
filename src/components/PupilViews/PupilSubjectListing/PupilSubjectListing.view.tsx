@@ -101,7 +101,9 @@ export const PupilViewsSubjectListing = ({
 
             const urlOptions: Partial<ResolveOakHrefProps> = {
               page: "pupil-unit-index",
-              programmeSlug: subject.programmeSlug,
+              programmeSlug: hasTierOrExamOptions
+                ? subject.baseSlug
+                : subject.programmeSlug,
               ...(hasTierOrExamOptions && {
                 page: "pupil-programme-index",
                 optionSlug: "options",
