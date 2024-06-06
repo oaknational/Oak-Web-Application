@@ -44883,7 +44883,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_2', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, video_duration?: string | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -44909,7 +44909,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_2', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, video_duration?: string | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -45213,7 +45213,7 @@ export const LessonOverviewDocument = gql`
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_1_2(
+  content: published_mv_lesson_content_1_3(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -45250,6 +45250,7 @@ export const LessonOverviewDocument = gql`
     slide_deck_asset_object_url
     worksheet_asset_object_url
     supplementary_asset_object_url
+    video_duration
   }
 }
     `;
@@ -45304,7 +45305,7 @@ export const PupilLessonDocument = gql`
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_1_2(
+  content: published_mv_lesson_content_1_3(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -45341,6 +45342,7 @@ export const PupilLessonDocument = gql`
     slide_deck_asset_object_url
     worksheet_asset_object_url
     supplementary_asset_object_url
+    video_duration
   }
 }
     `;
