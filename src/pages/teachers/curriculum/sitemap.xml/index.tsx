@@ -46,13 +46,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const fields = [];
   for (const tab of ["overview", "units"]) {
     for (const slug of curriculumPathSlugs) {
+      const url = new URL(sitemapBaseUrl);
+      url.pathname = path.join(basePath, slug, tab);
+
       fields.push({
-        loc: path.join(sitemapBaseUrl, basePath, slug, tab),
+        loc: url.href,
         lastmod: new Date().toISOString(),
       });
     }
   }
-
   return getServerSideSitemap(context, fields);
 };
 
