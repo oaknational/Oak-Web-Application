@@ -1,3 +1,11 @@
+## [1.453.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.1...v1.453.2) (2024-06-07)
+
+
+### Bug Fixes
+
+* add missing fields to pupil lesson content ([d4d6bff](https://github.com/oaknational/Oak-Web-Application/commit/d4d6bff340ad252a3a283fdc8607ce76139183df))
+* remove duplicate field in mock data ([a6508ea](https://github.com/oaknational/Oak-Web-Application/commit/a6508ea1523869d1fd1a02e95e607a56ee6d73a4))
+
 ## [1.453.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.0...v1.453.1) (2024-06-06)
 
 

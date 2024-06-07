@@ -49,9 +49,9 @@ const stemTextObjectSchema = z.object({
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
 
 const stemImageObjectSchema = z.object({
-  image_object: z.object({
+  imageObject: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
-    secure_url: z.string().url(),
+    secureUrl: z.string().url(),
     url: z.string().url().optional(),
     height: z.number().optional(),
     width: z.number().optional(),
@@ -62,7 +62,7 @@ const stemImageObjectSchema = z.object({
         usageRestriction: z.string().optional(),
       }),
     ]),
-    public_id: z.string().optional(),
+    publicId: z.string().optional(),
     version: z.number().optional(),
   }),
   type: z.literal("image"),
@@ -76,28 +76,28 @@ const mcAnswer = z.object({
   answer: z
     .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
     .min(1),
-  answer_is_correct: z.boolean(),
+  answerIsCorrect: z.boolean(),
 });
 
 export type MCAnswer = z.infer<typeof mcAnswer>;
 
 const matchAnswer = z.object({
-  correct_choice: z.array(stemTextObjectSchema).length(1),
-  match_option: z.array(stemTextObjectSchema).length(1),
+  correctChoice: z.array(stemTextObjectSchema).length(1),
+  matchOption: z.array(stemTextObjectSchema).length(1),
 });
 
 export type MatchAnswer = z.infer<typeof matchAnswer>;
 
 const orderAnswer = z.object({
   answer: z.array(stemTextObjectSchema).length(1),
-  correct_order: z.number(),
+  correctOrder: z.number(),
 });
 
 export type OrderAnswer = z.infer<typeof orderAnswer>;
 
 const shortAnswer = z.object({
   answer: z.array(stemTextObjectSchema).length(1),
-  answer_is_default: z.boolean(),
+  answerIsDefault: z.boolean(),
 });
 
 export type ShortAnswer = z.infer<typeof shortAnswer>;
@@ -126,6 +126,8 @@ export const lessonPathwaySchema = z.object({
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
 });
+
+export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
 
 export const lessonOverviewQuizQuestionSchema = z.object({
   questionId: z.number(),
