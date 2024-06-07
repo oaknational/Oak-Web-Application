@@ -32,6 +32,7 @@ export const downloadsAssetData = z.object({
   has_worksheet_google_drive_downloadable_version: z.boolean(),
   has_supplementary_asset_object: z.boolean(),
   is_legacy: z.boolean(),
+  expired: z.boolean().nullable().optional(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({

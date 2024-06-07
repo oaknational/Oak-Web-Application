@@ -1,8 +1,8 @@
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 import { lessonPathwaySchema } from "../../shared.schema";
+import { constructDownloadsArray } from "../lessonDownloads/downloadUtils";
 import { downloadsAssetData } from "../lessonDownloads/lessonDownloads.schema";
-import { getDownloadsArray } from "../lessonDownloads/lessonDownloads.query";
 
 import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
@@ -40,7 +40,7 @@ const lessonDownloadsCanonicalQuery =
       isLegacy: is_legacy,
     };
 
-    const downloads = getDownloadsArray(downloadsData);
+    const downloads = constructDownloadsArray(downloadsData);
 
     const baseDownloads = {
       downloads: downloads,

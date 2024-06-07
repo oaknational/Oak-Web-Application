@@ -128,7 +128,7 @@ export const lessonPathwaySchema = z.object({
 });
 
 export const lessonOverviewQuizQuestionSchema = z.object({
-  questionId: z.number(),
+  questionId: z.number().optional(),
   questionUid: z.string(),
   questionType: z.enum([
     "multiple-choice",

@@ -14,6 +14,7 @@ const downloadAssets = {
   has_worksheet_google_drive_downloadable_version: true,
   has_supplementary_asset_object: true,
   is_legacy: true,
+  expired: true,
 };
 
 describe("lessonDownloads()", () => {
@@ -68,7 +69,7 @@ describe("lessonDownloads()", () => {
 
     expect(unit.programmeSlug).toEqual("programme-slug");
   });
-  test.only("throws a Zod error if the response is invalid", async () => {
+  test("throws a Zod error if the response is invalid", async () => {
     try {
       await lessonDownloads({
         ...sdk,
@@ -85,6 +86,7 @@ describe("lessonDownloads()", () => {
                 has_worksheet_google_drive_downloadable_version: true,
                 has_supplementary_asset_object: true,
                 is_legacy: true,
+                expired: true,
               },
             ],
             unit_lessons: [syntheticUnitvariantLessonsFixture()],
@@ -108,4 +110,6 @@ describe("lessonDownloads()", () => {
       ]);
     }
   });
+
+  test("renders correct download resources", () => {});
 });
