@@ -71,6 +71,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         $display="flex"
         $height="100%"
         $alignItems="center"
+        aria-current={isSelected ? true : undefined}
         {...linkProps}
         htmlAnchorProps={{
           onClick,
