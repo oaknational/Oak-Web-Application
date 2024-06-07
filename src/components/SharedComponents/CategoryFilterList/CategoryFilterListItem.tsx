@@ -75,7 +75,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         {...linkProps}
         htmlAnchorProps={{
           onClick,
-          "aria-current": isSelected ? "page" : undefined,
+          // "aria-current": isSelected ? "page" : undefined,
         }}
       >
         <Icon
