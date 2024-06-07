@@ -16,8 +16,6 @@ import {
   getNextLessonsInUnit,
 } from "./downloadUtils";
 
-// ADD TEST FOR CORRECT RESOURCES
-
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
   async (args: {
@@ -61,9 +59,12 @@ const lessonDownloadsQuery =
       expired,
     } = downloadsAssetData.parse(download_assets[0]);
 
-    const parsedUnitLessons = syntheticUnitvariantLessonsSchema.parse(
-      unit_lessons[0],
+    const currentLesson = unit_lessons.find(
+      (lesson) => lesson.lesson_slug === args.lessonSlug,
     );
+
+    const parsedCurrentLesson =
+      syntheticUnitvariantLessonsSchema.parse(currentLesson);
 
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
@@ -75,6 +76,7 @@ const lessonDownloadsQuery =
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       isLegacy: is_legacy,
+      copyRightContent: parsedCurrentLesson.lesson_data.copyright_content,
     };
 
     const downloads = constructDownloadsArray(downloadsData);
@@ -86,18 +88,18 @@ const lessonDownloadsQuery =
 
     const pageData = {
       downloads,
-      programmeSlug: parsedUnitLessons.programme_slug,
-      keyStageSlug: parsedUnitLessons.programme_fields.keystage_slug,
-      keyStageTitle: parsedUnitLessons.programme_fields.keystage_description,
-      lessonSlug: parsedUnitLessons.lesson_slug,
-      lessonTitle: parsedUnitLessons.lesson_data.title,
-      subjectSlug: parsedUnitLessons.programme_fields.subject_slug,
-      subjectTitle: parsedUnitLessons.programme_fields.subject,
-      unitSlug: parsedUnitLessons.unit_data.slug,
-      unitTitle: parsedUnitLessons.unit_data.title,
-      lessonCohort: parsedUnitLessons.lesson_data._cohort,
+      programmeSlug: parsedCurrentLesson.programme_slug,
+      keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
+      keyStageTitle: parsedCurrentLesson.programme_fields.keystage_description,
+      lessonSlug: parsedCurrentLesson.lesson_slug,
+      lessonTitle: parsedCurrentLesson.lesson_data.title,
+      subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
+      subjectTitle: parsedCurrentLesson.programme_fields.subject,
+      unitSlug: parsedCurrentLesson.unit_data.slug,
+      unitTitle: parsedCurrentLesson.unit_data.title,
+      lessonCohort: parsedCurrentLesson.lesson_data._cohort,
       expired: expired ? expired : null,
-      updatedAt: parsedUnitLessons.lesson_data.updated_at,
+      updatedAt: parsedCurrentLesson.lesson_data.updated_at,
     };
 
     return lessonDownloadsSchema.parse({
