@@ -1,0 +1,5 @@
+query pupilsSitemap {
+  pupilsSitemap: published_mv_pupils_sitemap_6_0_1 {
+    urls
+  }
+}
