@@ -11,9 +11,9 @@ import lessonDownloadsCanonicalSchema, {
 const lessonDownloadsCanonicalQuery =
   (sdk: Sdk) => async (args: { lessonSlug: string }) => {
     const res = await sdk.lessonDownloadsCanonical(args);
-    const { download_assets, lessons_details } = res;
+    const { download_assets, lesson_pathways } = res;
 
-    if (!download_assets.length || !lessons_details.length) {
+    if (!download_assets.length || !lesson_pathways.length) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
@@ -46,11 +46,11 @@ const lessonDownloadsCanonicalQuery =
       downloads: downloads,
       isLegacy: is_legacy,
       lessonSlug: args.lessonSlug,
-      lessonTitle: lessons_details[0]?.lesson_data.title,
+      lessonTitle: lesson_pathways[0]?.lesson_data.title,
       expired: null,
       isSpecialist: false,
-      updatedAt: lessons_details[0]?.lesson_data.updated_at,
-      copyrightContent: lessons_details[0]?.lesson_data.copyright_content,
+      updatedAt: lesson_pathways[0]?.lesson_data.updated_at,
+      copyrightContent: lesson_pathways[0]?.lesson_data.copyright_content,
     };
 
     /**
@@ -59,7 +59,7 @@ const lessonDownloadsCanonicalQuery =
      * pathways array containing all the pathways that the lesson appears in.
      */
 
-    const lessonDownloadsWithPathways = lessons_details.reduce(
+    const lessonDownloadsWithPathways = lesson_pathways.reduce(
       (acc, lesson) => {
         const pathwayLesson = {
           programmeSlug: lesson.programme_slug,

@@ -44867,7 +44867,7 @@ export type LessonDownloadsCanonicalQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsCanonicalQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_1_1', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null }>, lessons_details: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null }> };
+export type LessonDownloadsCanonicalQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_1_1', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null }>, lesson_pathways: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -45178,7 +45178,7 @@ export const LessonDownloadsCanonicalDocument = gql`
     exit_quiz
     is_legacy
   }
-  lessons_details: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+  lesson_pathways: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_slug

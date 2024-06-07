@@ -24,7 +24,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloadsCanonical: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
-            lessons_details: [syntheticUnitvariantLessonsFixture()],
+            lesson_pathways: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
       })({
@@ -32,14 +32,14 @@ describe("lessonDownloadsCanonical()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("throws a not found error if no lessons_details are found", async () => {
+  test("throws a not found error if no lesson_pathways are found", async () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,
         lessonDownloadsCanonical: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssetsFixture],
-            lessons_details: [],
+            lesson_pathways: [],
           }),
         ),
       })({
@@ -64,7 +64,7 @@ describe("lessonDownloadsCanonical()", () => {
               is_legacy: true,
             },
           ],
-          lessons_details: [
+          lesson_pathways: [
             syntheticUnitvariantLessonsFixture(),
             syntheticUnitvariantLessonsFixture({
               overrides: {
@@ -161,7 +161,7 @@ describe("lessonDownloadsCanonical()", () => {
                 is_legacy: true,
               },
             ],
-            lessons_details: [syntheticUnitvariantLessonsFixture()],
+            lesson_pathways: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
       })({
