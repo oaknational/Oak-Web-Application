@@ -12,7 +12,12 @@ const pupilsSitemap = (sdk: Sdk) => async () => {
 
   const DataSnake = res;
 
-  if (!DataSnake) {
+  if (
+    !DataSnake ||
+    DataSnake.programmes.length === 0 ||
+    DataSnake.units.length === 0 ||
+    DataSnake.lessons.length === 0
+  ) {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
