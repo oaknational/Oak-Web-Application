@@ -1,3 +1,44 @@
+## [1.453.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.0...v1.453.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* child-subject buttons ordering in curriculum visualiser ([556fdca](https://github.com/oaknational/Oak-Web-Application/commit/556fdcaf6e4c26042f8efe8ddbb791cb363d9a4a))
+
+# [1.453.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.6...v1.453.0) (2024-06-06)
+
+
+### Bug Fixes
+
+* bring mv up to latest in pupil lesson ([ac6bfba](https://github.com/oaknational/Oak-Web-Application/commit/ac6bfba4b36fa3f87a53ed03ddedbf6f7d3c0861))
+* exclude base_slug from pupil browse schemas ([1166820](https://github.com/oaknational/Oak-Web-Application/commit/11668202973983e6a5691597c3b0864605fe8373))
+* sentence casing for quiz cards ([00e76f2](https://github.com/oaknational/Oak-Web-Application/commit/00e76f28762ec714b2a1acfc7a6e92a281e6ccc6))
+* un-omit playback id ([f332e78](https://github.com/oaknational/Oak-Web-Application/commit/f332e78aebf8d5afbbc7dc94fd46bb88583fa972))
+* use ternary for quiz questions metadata ([a28f0a4](https://github.com/oaknational/Oak-Web-Application/commit/a28f0a45cf4c32fcc2f3443d619d4e64ac0fbb2f))
+
+
+### Features
+
+* add video duration to share resources ([2656345](https://github.com/oaknational/Oak-Web-Application/commit/26563455fdf036e2d89262e7be23d7c4420961c8))
+* update share query ([072b6d1](https://github.com/oaknational/Oak-Web-Application/commit/072b6d12035a04817e7f0eeebb4f5f9b9db6fe95))
+
+## [1.452.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.5...v1.452.6) (2024-06-06)
+
+## [1.452.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.4...v1.452.5) (2024-06-06)
+
+
+### Bug Fixes
+
+* protocol in curriculum sitemap ([06d67a2](https://github.com/oaknational/Oak-Web-Application/commit/06d67a253338c486ef5d2078f670569c932fc32e))
+
+## [1.452.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.3...v1.452.4) (2024-06-06)
+
+## [1.452.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.2...v1.452.3) (2024-06-06)
+
+## [1.452.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.1...v1.452.2) (2024-06-06)
+
+## [1.452.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.0...v1.452.1) (2024-06-06)
+
 # [1.452.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.451.0...v1.452.0) (2024-06-05)
 
 
