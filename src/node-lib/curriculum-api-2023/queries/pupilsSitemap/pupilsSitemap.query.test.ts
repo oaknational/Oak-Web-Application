@@ -7,9 +7,7 @@ describe("teacher sitemap query", () => {
     await expect(async () => {
       await pupilsSitemap({
         ...sdk,
-        teachersSitemap: jest.fn(() =>
-          Promise.resolve({ teachersSitemap: [] }),
-        ),
+        pupilsSitemap: jest.fn(() => Promise.resolve({ pupilsSitemap: [] })),
       })();
     }).rejects.toThrow(`Resource not found`);
   });
