@@ -23,6 +23,7 @@ const serversideSitemapPaths = [
   "/teachers/key-stages/sitemap.xml",
   "/teachers/sitemap.xml",
   "/teachers/sitemap-1.xml",
+  "/pupils/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
