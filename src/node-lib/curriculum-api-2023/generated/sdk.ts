@@ -45768,29 +45768,21 @@ export type LessonListingQueryVariables = Exact<{
 export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, lesson_data?: any | null, lesson_slug?: string | null, is_legacy?: boolean | null, programme_slug?: string | null, unit_data?: any | null, null_unitvariant?: any | null, programme_fields?: any | null, supplementary_data?: any | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
-  lessonSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_6_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, downloads?: any | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: boolean | null, expired?: boolean | null, updatedAt?: string | null }> };
-
-export type LessonOverviewCanonicalQueryVariables = Exact<{
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
   lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_6_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, lessonCohort?: string | null, expired?: boolean | null, downloads?: any | null, updatedAt?: string | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
+  programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_share_5_0_0', shareableResources?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, examBoardTitle?: string | null, examBoardSlug?: string | null, expired?: boolean | null }> };
+export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, programme_fields?: any | null, unit_title?: any | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -45807,7 +45799,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -46103,113 +46095,76 @@ export const LessonListingDocument = gql`
 }
     `;
 export const LessonOverviewDocument = gql`
-    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
-  lesson: published_mv_lesson_overview_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonOverview($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_bool_exp, $lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: $browseDataWhere
   ) {
-    lessonSlug
-    lessonTitle
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardTitle
-    tierTitle
-    misconceptionsAndCommonMistakes
-    lessonEquipmentAndResources
-    teacherTips
-    keyLearningPoints
-    pupilLessonOutcome
-    lessonKeywords
-    copyrightContent
-    contentGuidance
-    additionalMaterialUrl
-    supervisionLevel
-    worksheetUrl
-    presentationUrl
-    videoMuxPlaybackId
-    videoWithSignLanguageMuxPlaybackId
-    transcriptSentences
-    starterQuiz
-    exitQuiz
-    yearTitle
-    downloads
-    videoTitle
-    lessonCohort
-    isWorksheetLandscape
-    transcriptSentences
-    expired
-    updatedAt
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    supplementary_data
   }
-}
-    `;
-export const LessonOverviewCanonicalDocument = gql`
-    query lessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}}
+  content: published_mv_lesson_content_1_3(
+    where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
-    lessonSlug
-    lessonTitle
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardSlug
-    examBoardTitle
-    tierSlug
-    tierTitle
-    misconceptionsAndCommonMistakes
-    lessonEquipmentAndResources
-    teacherTips
-    keyLearningPoints
-    pupilLessonOutcome
-    lessonKeywords
-    copyrightContent
-    contentGuidance
-    additionalMaterialUrl
-    supervisionLevel
-    worksheetUrl
-    presentationUrl
-    videoMuxPlaybackId
-    videoWithSignLanguageMuxPlaybackId
-    transcriptSentences
-    starterQuiz
-    exitQuiz
-    yearTitle
-    lessonCohort
-    expired
-    downloads
-    updatedAt
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+    has_worksheet_google_drive_downloadable_version
+    has_slide_deck_asset_object
+    worksheet_asset_id
+    has_worksheet_asset_object
+    worksheet_answers_asset_id
+    has_worksheet_answers_asset_object
+    supplementary_asset_id
+    has_supplementary_asset_object
+    slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
   }
 }
     `;
 export const LessonShareDocument = gql`
-    query lessonShare($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  share: published_mv_share_5_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonShare($lessonSlug: String!, $unitSlug: String!, $programmeSlug: String!) {
+  share: published_mv_lesson_content_1_3(where: {lesson_slug: {_eq: $lessonSlug}}) {
+    lesson_title
+    starter_quiz
+    exit_quiz
+    video_mux_playback_id
+    video_duration
+    worksheet_asset_object_url
+    expired: deprecated_fields(path: "expired")
+  }
+  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}, unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
-    shareableResources
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    tierTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    examBoardTitle
-    examBoardSlug
-    expired
+    unit_title: unit_data(path: "title")
+    is_legacy
+    programme_fields
   }
 }
     `;
@@ -46240,7 +46195,7 @@ export const PupilLessonDocument = gql`
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_1_0(
+  content: published_mv_lesson_content_1_3(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -46714,9 +46669,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
-    },
-    lessonOverviewCanonical(variables: LessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewCanonicalQuery>(LessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewCanonical', 'query');
     },
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query');

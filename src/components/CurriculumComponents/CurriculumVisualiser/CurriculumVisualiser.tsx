@@ -159,6 +159,19 @@ function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
   return unit.threads.some((t) => t.slug === selectedThread.slug);
 }
 
+function sortChildSubjects(subjects: Subject[]) {
+  return [...subjects].sort((a, b) => {
+    // Special logic we always want combined-science first.
+    if (a.subject_slug === "combined-science") return -10;
+    if (b.subject_slug === "combined-science") return 10;
+
+    // Alphabetical
+    if (a.subject_slug < b.subject_slug) return -1;
+    if (a.subject_slug > b.subject_slug) return 1;
+    return 0;
+  });
+}
+
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -293,22 +306,24 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 )}
                 {childSubjects.length > 0 && (
                   <Box>
-                    {childSubjects.map((subject: Subject) => (
-                      <Button
-                        $mb={20}
-                        $mr={20}
-                        background={
-                          isSelectedSubject(yearSelection, year, subject)
-                            ? "black"
-                            : "white"
-                        }
-                        key={subject.subject_slug}
-                        label={subject.subject}
-                        onClick={() => handleSelectSubject(year, subject)}
-                        size="small"
-                        data-testid="subject-button"
-                      />
-                    ))}
+                    {sortChildSubjects(childSubjects).map(
+                      (subject: Subject) => (
+                        <Button
+                          $mb={20}
+                          $mr={20}
+                          background={
+                            isSelectedSubject(yearSelection, year, subject)
+                              ? "black"
+                              : "white"
+                          }
+                          key={subject.subject_slug}
+                          label={subject.subject}
+                          onClick={() => handleSelectSubject(year, subject)}
+                          size="small"
+                          data-testid="subject-button"
+                        />
+                      ),
+                    )}
                   </Box>
                 )}
                 {domains.length > 0 && (
