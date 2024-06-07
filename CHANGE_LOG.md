@@ -1,3 +1,88 @@
+## [1.453.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.0...v1.453.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* child-subject buttons ordering in curriculum visualiser ([556fdca](https://github.com/oaknational/Oak-Web-Application/commit/556fdcaf6e4c26042f8efe8ddbb791cb363d9a4a))
+
+# [1.453.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.6...v1.453.0) (2024-06-06)
+
+
+### Bug Fixes
+
+* bring mv up to latest in pupil lesson ([ac6bfba](https://github.com/oaknational/Oak-Web-Application/commit/ac6bfba4b36fa3f87a53ed03ddedbf6f7d3c0861))
+* exclude base_slug from pupil browse schemas ([1166820](https://github.com/oaknational/Oak-Web-Application/commit/11668202973983e6a5691597c3b0864605fe8373))
+* sentence casing for quiz cards ([00e76f2](https://github.com/oaknational/Oak-Web-Application/commit/00e76f28762ec714b2a1acfc7a6e92a281e6ccc6))
+* un-omit playback id ([f332e78](https://github.com/oaknational/Oak-Web-Application/commit/f332e78aebf8d5afbbc7dc94fd46bb88583fa972))
+* use ternary for quiz questions metadata ([a28f0a4](https://github.com/oaknational/Oak-Web-Application/commit/a28f0a45cf4c32fcc2f3443d619d4e64ac0fbb2f))
+
+
+### Features
+
+* add video duration to share resources ([2656345](https://github.com/oaknational/Oak-Web-Application/commit/26563455fdf036e2d89262e7be23d7c4420961c8))
+* update share query ([072b6d1](https://github.com/oaknational/Oak-Web-Application/commit/072b6d12035a04817e7f0eeebb4f5f9b9db6fe95))
+
+## [1.452.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.5...v1.452.6) (2024-06-06)
+
+## [1.452.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.4...v1.452.5) (2024-06-06)
+
+
+### Bug Fixes
+
+* protocol in curriculum sitemap ([06d67a2](https://github.com/oaknational/Oak-Web-Application/commit/06d67a253338c486ef5d2078f670569c932fc32e))
+
+## [1.452.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.3...v1.452.4) (2024-06-06)
+
+## [1.452.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.2...v1.452.3) (2024-06-06)
+
+## [1.452.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.1...v1.452.2) (2024-06-06)
+
+## [1.452.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.452.0...v1.452.1) (2024-06-06)
+
+# [1.452.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.451.0...v1.452.0) (2024-06-05)
+
+
+### Features
+
+* force build ([d5222be](https://github.com/oaknational/Oak-Web-Application/commit/d5222be5d78e07cfed91f7e1112d63151e2decd5))
+
+# [1.451.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.450.0...v1.451.0) (2024-06-05)
+
+
+### Bug Fixes
+
+* landscape worksheets and no exit quiz on eyfs ([668ec3e](https://github.com/oaknational/Oak-Web-Application/commit/668ec3e2e29249f3f69a9b7211b3d3e961d01ef5))
+
+
+### Features
+
+* new lesson overview query ([2e0da92](https://github.com/oaknational/Oak-Web-Application/commit/2e0da925472100eea4789a2b7b53bedac721d6ee))
+
+# [1.450.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.449.0...v1.450.0) (2024-06-05)
+
+
+### Features
+
+* **video:** add test coverage ([ad1e477](https://github.com/oaknational/Oak-Web-Application/commit/ad1e4774231c7f8ef199323d67d6e989851495cf))
+* **video:** change pathway and remove gleap ([7b23300](https://github.com/oaknational/Oak-Web-Application/commit/7b23300b7aaf4049a95cb43c9096430d32320f47))
+* **video:** change pathway and remove gleap ([930254e](https://github.com/oaknational/Oak-Web-Application/commit/930254e7487c4e8bd23219275d28e820916f8b2a))
+* **video:** create standalone video page ([22bd027](https://github.com/oaknational/Oak-Web-Application/commit/22bd0276b989a4b491bbf31d8d6a6db520e993b0))
+
+# [1.449.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.448.1...v1.449.0) (2024-06-04)
+
+
+### Features
+
+* **subjects:** fix padding on subject list ([1a9d1c7](https://github.com/oaknational/Oak-Web-Application/commit/1a9d1c76e415a7fe24f1abd10aca3d4e12be30f2))
+* **subjects:** mobile heading 6 ([aa1551c](https://github.com/oaknational/Oak-Web-Application/commit/aa1551c2ef9210b58d29e51f2f16ff4721ffd9f9))
+
+## [1.448.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.448.0...v1.448.1) (2024-06-04)
+
+
+### Bug Fixes
+
+* use colour instead of opacity for selected thread filter ([788c938](https://github.com/oaknational/Oak-Web-Application/commit/788c938dece47873f2c1d234acc07bfeb1b99d74))
+
 # [1.448.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.447.1...v1.448.0) (2024-06-03)
 
 

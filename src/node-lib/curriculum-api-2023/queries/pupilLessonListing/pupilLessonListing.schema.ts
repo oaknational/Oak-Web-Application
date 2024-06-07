@@ -6,6 +6,7 @@ import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 export const lessonBrowseDataSchema = z.array(
   syntheticUnitvariantLessonsSchema.omit({
     null_unitvariant: true,
+    base_slug: true,
   }),
 );
 
