@@ -61,10 +61,10 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     <OakLI
       $display="flex"
       $font={"heading-7"}
-      $opacity={isSelected ? "semi-opaque" : "opaque"}
       $position="relative"
       $overflow="visible"
       $alignItems="center"
+      $color={!isSelected ? "black" : "grey60"}
       $mb="space-between-xs"
     >
       <OwaLink
