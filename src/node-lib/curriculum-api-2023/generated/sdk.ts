@@ -45835,7 +45835,7 @@ export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Arr
 export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PupilsSitemapQuery = { __typename?: 'query_root', pupilsSitemap: Array<{ __typename?: 'published_mv_pupils_sitemap_6_0_1', urls?: string | null }> };
+export type PupilsSitemapQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0', programme_slug?: string | null, unit_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', programme_slug?: string | null, unit_slug?: string | null, lesson_slug?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -46281,8 +46281,17 @@ export const PupilUnitListingDocument = gql`
     `;
 export const PupilsSitemapDocument = gql`
     query pupilsSitemap {
-  pupilsSitemap: published_mv_pupils_sitemap_6_0_1 {
-    urls
+  programmes: published_mv_synthetic_programmes_by_year_7_1_0 {
+    programme_slug
+  }
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0 {
+    programme_slug
+    unit_slug
+  }
+  lessons: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0 {
+    programme_slug
+    unit_slug
+    lesson_slug
   }
 }
     `;

@@ -1,32 +1,25 @@
-import { z } from "zod";
+import {
+  PupilsSitemapBrowseData,
+  pupilsSitemapDataSchema,
+} from "./pupilSitemap.schema";
 
-import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-
-const pupilsSitemapSchema = z.array(
-  z.object({
-    urls: z.string(),
-  }),
-);
-
-export type PupilsSitemap = z.infer<typeof pupilsSitemapSchema>;
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const pupilsSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.pupilsSitemap();
 
-  if (!res || res.pupilsSitemap.length === 0) {
-    errorReporter("curriculum-api-2023::teachersSitemap")(
-      new Error("Resource not found"),
-      {
-        severity: "warning",
-        res,
-      },
-    );
+  const DataSnake = res;
+
+  if (!DataSnake) {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  return pupilsSitemapSchema.parse(res.pupilsSitemap);
+  pupilsSitemapDataSchema.parse(DataSnake);
+
+  const browseData = keysToCamelCase(DataSnake) as PupilsSitemapBrowseData;
+  return browseData;
 };
 
 export default pupilsSitemap;
