@@ -3,10 +3,6 @@ import {
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import errorReporter from "../../../../common-lib/error-reporter";
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
-
 import lessonDownloadsSchema, {
   downloadsAssetData,
 } from "./lessonDownloads.schema";
@@ -15,6 +11,11 @@ import {
   constructLessonListingObjectArray,
   getNextLessonsInUnit,
 } from "./downloadUtils";
+
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -63,8 +64,14 @@ const lessonDownloadsQuery =
       (lesson) => lesson.lesson_slug === args.lessonSlug,
     );
 
+    const copyright = keysToCamelCase(
+      currentLesson?.lesson_data.copyright_content,
+    );
+
     const parsedCurrentLesson =
       syntheticUnitvariantLessonsSchema.parse(currentLesson);
+
+    // parsing currentLesson returns empty copyright object?
 
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
@@ -76,7 +83,7 @@ const lessonDownloadsQuery =
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       isLegacy: is_legacy,
-      copyRightContent: parsedCurrentLesson.lesson_data.copyright_content,
+      copyrightContent: currentLesson?.lesson_data.copyright_content,
     };
 
     const downloads = constructDownloadsArray(downloadsData);
@@ -100,6 +107,7 @@ const lessonDownloadsQuery =
       lessonCohort: parsedCurrentLesson.lesson_data._cohort,
       expired: expired ? expired : null,
       updatedAt: parsedCurrentLesson.lesson_data.updated_at,
+      copyrightContent: copyright,
     };
 
     return lessonDownloadsSchema.parse({
