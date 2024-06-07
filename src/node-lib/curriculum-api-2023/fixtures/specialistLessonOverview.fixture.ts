@@ -113,6 +113,7 @@ const specialistLessonOverviewFixture = (
       { exists: true, type: "presentation" },
     ],
     updatedAt: "2022-02-01T00:00:00Z",
+    pathways: [],
     ...partial,
   };
 };

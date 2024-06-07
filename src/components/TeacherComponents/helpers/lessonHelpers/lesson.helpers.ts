@@ -487,18 +487,18 @@ export const createAttributionObject = (
           const imageStems = questionStem.filter(
             (stem) =>
               stem.type === "image" &&
-              !Array.isArray(stem.image_object.metadata) &&
-              stem.image_object.metadata.attribution &&
-              stem.image_object,
+              !Array.isArray(stem.imageObject.metadata) &&
+              stem.imageObject.metadata.attribution &&
+              stem.imageObject,
           ) as StemImageObject[];
           const mappedAttributions: Attribution[] = imageStems.map((stem) => {
             if (
-              !Array.isArray(stem.image_object.metadata) &&
-              stem.image_object.metadata.attribution
+              !Array.isArray(stem.imageObject.metadata) &&
+              stem.imageObject.metadata.attribution
             ) {
               return {
                 questionNumber,
-                attribution: stem.image_object.metadata.attribution,
+                attribution: stem.imageObject.metadata.attribution,
               };
             }
           }) as Attribution[];
@@ -512,13 +512,13 @@ export const createAttributionObject = (
               answer.forEach((stem) => {
                 if (
                   stem.type === "image" &&
-                  !Array.isArray(stem.image_object.metadata) &&
-                  stem.image_object.metadata &&
-                  stem.image_object.metadata.attribution
+                  !Array.isArray(stem.imageObject.metadata) &&
+                  stem.imageObject.metadata &&
+                  stem.imageObject.metadata.attribution
                 ) {
                   acc.push({
                     questionNumber: `${questionNumber} image ${index + 1}`,
-                    attribution: stem.image_object.metadata.attribution,
+                    attribution: stem.imageObject.metadata.attribution,
                   });
                 }
               });
