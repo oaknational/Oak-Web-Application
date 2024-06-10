@@ -11,6 +11,7 @@ import {
   OakP,
   OakUL,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -69,28 +70,44 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           $flexDirection={["column", "column", "row"]}
           $gap="all-spacing-9"
         >
-          <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
-            <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
-              {props.resourcesHeader}
-            </OakHeading>
-            <FieldError id={"downloads-error"} withoutMarginBottom>
-              {props.errors?.resources?.message}
-            </FieldError>
-            {!props.hideSelectAll && (
-              <Box $maxWidth="max-content">
-                <Checkbox
-                  checked={props.selectAllChecked}
-                  onChange={props.handleToggleSelectAll}
-                  id="select-all"
-                  name="select-all"
-                  variant="withLabel"
-                  labelText="Select all"
-                  labelFontWeight={600}
-                />
-              </Box>
-            )}
-            {props.cardGroup}
-          </Flex>
+          <OakBox
+            $pa={"inner-padding-none"}
+            $ba={"border-solid-none"}
+            as="fieldset"
+          >
+            <OakBox
+              as="legend"
+              $position="absolute"
+              $width="all-spacing-0"
+              $height="all-spacing-0"
+              $pa={"inner-padding-none"}
+              $overflow="hidden"
+            >
+              {`${props.page} ${props.resourcesHeader} checkbox's`}
+            </OakBox>
+            <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
+              <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
+                {props.resourcesHeader}
+              </OakHeading>
+              <FieldError id={"downloads-error"} withoutMarginBottom>
+                {props.errors?.resources?.message}
+              </FieldError>
+              {!props.hideSelectAll && (
+                <Box $maxWidth="max-content">
+                  <Checkbox
+                    checked={props.selectAllChecked}
+                    onChange={props.handleToggleSelectAll}
+                    id="select-all"
+                    name="select-all"
+                    variant="withLabel"
+                    labelText="Select all"
+                    labelFontWeight={600}
+                  />
+                </Box>
+              )}
+              {props.cardGroup}
+            </Flex>
+          </OakBox>
           <Flex
             $flexDirection="column"
             $alignSelf="center"

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
@@ -72,7 +72,17 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
     setSchoolPickerInputValue(value);
   };
   return (
-    <>
+    <OakBox $pa={"inner-padding-none"} $ba={"border-solid-none"} as="fieldset">
+      <OakBox
+        as="legend"
+        $position="absolute"
+        $width="all-spacing-0"
+        $height="all-spacing-0"
+        $pa={"inner-padding-none"}
+        $overflow="hidden"
+      >
+        School details
+      </OakBox>
       <ResourcePageSchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
@@ -94,7 +104,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           data-testid={"checkbox-download"}
         />
       </OakFlex>
-    </>
+    </OakBox>
   );
 };
 
