@@ -199,11 +199,7 @@ const UnitSection = ({
             tooltipPosition="top-left"
           />
 
-          <OakHeading
-            tag="h2"
-            $font={"heading-6"}
-            data-testid="secondary-unit-count"
-          >
+          <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
             {counterText}{" "}
             <OakSpan $font={"heading-light-6"}>({counterLength})</OakSpan>
           </OakHeading>
