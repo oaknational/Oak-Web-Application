@@ -1,3 +1,10 @@
+# [1.454.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.6...v1.454.0) (2024-06-10)
+
+
+### Features
+
+* include resource type in aria label for resource cards ([9571bde](https://github.com/oaknational/Oak-Web-Application/commit/9571bde85e7e490d6ca81e742efbaf79f7a6124b))
+
 ## [1.453.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.5...v1.453.6) (2024-06-10)
 
 
