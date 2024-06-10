@@ -1,7 +1,6 @@
 query lessonDownloads(
   $lessonSlug: String!
-  $programmeSlug: String!
-  $unitSlug: String!
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_bool_exp
 ) {
   download_assets: published_mv_lesson_content_1_3(
     where: { lesson_slug: { _eq: $lessonSlug } }
@@ -17,13 +16,8 @@ query lessonDownloads(
     expired: deprecated_fields(path: "expired")
   }
 
-  unit_lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
-    where: {
-      _and: [
-        { programme_slug: { _eq: $programmeSlug } }
-        { unit_slug: { _eq: $unitSlug } }
-      ]
-    }
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: $browseDataWhere
   ) {
     lesson_slug
     unit_slug

@@ -1,15 +1,50 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
+import {
+  SyntheticUnitvariantLessons,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import {
   LessonDownloadsListSchema,
   LessonDownloadsPageData,
-  LessonListSchema,
 } from "./lessonDownloads.schema";
 
-export const constructLessonListingObjectArray = (
-  unitLessons: SyntheticUnitvariantLessons[],
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+
+export const constructLessonDownloads = (
+  downloads: LessonDownloadsListSchema,
+  lessonSlug: string,
+  browse_data: SyntheticUnitvariantLessons[],
+  expired?: boolean | null,
 ) => {
-  const unitLessonsArray = unitLessons.map((lesson) => {
+  const currentLesson = browse_data.find(
+    (lesson) => lesson.lesson_slug === lessonSlug,
+  );
+
+  const copyright = keysToCamelCase(
+    currentLesson?.lesson_data.copyright_content,
+  );
+
+  const parsedCurrentLesson =
+    syntheticUnitvariantLessonsSchema.parse(currentLesson);
+
+  const downloadsPageData = {
+    downloads,
+    programmeSlug: parsedCurrentLesson.programme_slug,
+    keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
+    keyStageTitle: parsedCurrentLesson.programme_fields.keystage_description,
+    lessonSlug: parsedCurrentLesson.lesson_slug,
+    lessonTitle: parsedCurrentLesson.lesson_data.title,
+    subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
+    subjectTitle: parsedCurrentLesson.programme_fields.subject,
+    unitSlug: parsedCurrentLesson.unit_data.slug,
+    unitTitle: parsedCurrentLesson.unit_data.title,
+    lessonCohort: parsedCurrentLesson.lesson_data._cohort,
+    expired: expired ? expired : null,
+    updatedAt: parsedCurrentLesson.lesson_data.updated_at,
+    copyrightContent: copyright,
+  };
+
+  const unitLessonsArray = browse_data.map((lesson) => {
     return {
       lessonSlug: lesson.lesson_slug,
       lessonTitle: lesson.lesson_data.title,
@@ -27,29 +62,28 @@ export const constructLessonListingObjectArray = (
       lessonCohort: lesson.lesson_data._cohort,
     };
   });
-  return unitLessonsArray;
-};
 
-export const getNextLessonsInUnit = (
-  unit: LessonListSchema,
-  lessonSlug: string,
-) => {
-  const lessonInUnit = unit.find((lesson) => lesson.lessonSlug === lessonSlug);
+  const lessonInUnit = unitLessonsArray.find(
+    (lesson) => lesson.lessonSlug === lessonSlug,
+  );
   const lessonPosition = lessonInUnit?.orderInUnit;
   const nextLessons =
     lessonPosition &&
-    unit
+    unitLessonsArray
       .filter((lesson) =>
         lesson.orderInUnit ? lesson.orderInUnit > lessonPosition : [],
       )
       .splice(0, 3);
 
-  return nextLessons
-    ? nextLessons.map(({ lessonSlug, lessonTitle }) => ({
-        lessonSlug,
-        lessonTitle,
-      }))
-    : [];
+  return {
+    ...downloadsPageData,
+    nextLessons: nextLessons
+      ? nextLessons.map(({ lessonSlug, lessonTitle }) => ({
+          lessonSlug,
+          lessonTitle,
+        }))
+      : [],
+  };
 };
 
 export const constructDownloadsArray = (content: {
@@ -61,7 +95,6 @@ export const constructDownloadsArray = (content: {
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
   isLegacy: boolean;
-  //forbidden: boolean; ??
 }): LessonDownloadsPageData["downloads"] => {
   const downloads: LessonDownloadsListSchema = [
     {
@@ -69,6 +102,7 @@ export const constructDownloadsArray = (content: {
       type: "presentation",
       ext: "pptx",
       label: "Slide deck",
+      forbidden: null,
     },
     {
       exists: content.hasStarterQuiz,

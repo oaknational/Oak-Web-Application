@@ -130,7 +130,7 @@ export const lessonPathwaySchema = z.object({
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
 
 export const lessonOverviewQuizQuestionSchema = z.object({
-  questionId: z.number().optional(),
+  questionId: z.number(),
   questionUid: z.string(),
   questionType: z.enum([
     "multiple-choice",
