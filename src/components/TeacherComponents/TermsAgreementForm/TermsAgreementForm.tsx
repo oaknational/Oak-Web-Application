@@ -60,7 +60,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
         Your details
       </OakHeading>
       {form?.errors.school && (
-        <FieldError id="school-error">{form.errors.school?.message}</FieldError>
+        <FieldError ariaLive="polite" id="school-error">
+          {form.errors.school?.message}
+        </FieldError>
       )}
       {isLoading && (
         <OakP $mb={"space-between-m"} data-testid="loading">

@@ -22,7 +22,11 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 // Reuse the ListBox and Popover from your component library. See below for details.
 
 const ResourcePageSearchComboBox = <T extends School>(
-  props: ComboBoxStateOptions<T> & { hasError?: boolean; required?: boolean },
+  props: ComboBoxStateOptions<T> & {
+    hasError?: boolean;
+    required?: boolean;
+    errorId?: string;
+  },
 ) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
@@ -98,8 +102,9 @@ const ResourcePageSearchComboBox = <T extends School>(
           aria-labelledby={labelId}
           data-testid={"search-combobox-input"}
           placeholder={"Type school name, postcode, or ‘homeschool’"}
-          aria-describedby={undefined}
+          aria-describedby={props.errorId ? props.errorId : undefined}
           required={required}
+          aria-invalid={hasError}
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}

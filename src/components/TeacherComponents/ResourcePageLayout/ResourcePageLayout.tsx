@@ -149,6 +149,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                     data-testid="download-error"
                     variant={"large"}
                     withoutMarginBottom
+                    ariaLive="polite"
                   >
                     {props.apiError}
                   </FieldError>

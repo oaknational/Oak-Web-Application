@@ -15,6 +15,7 @@ type ResourcePageSchoolPickerProps = Omit<
   label: string;
   hasError: boolean;
   required?: boolean;
+  errorId?: string;
 };
 
 export type School = {
@@ -38,6 +39,7 @@ export type School = {
 const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
   return (
     <ResourcePageSearchComboBox
+      errorId={props.errorId}
       hasError={props.hasError}
       label={props.label}
       inputValue={props.schoolPickerInputValue}
