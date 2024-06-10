@@ -153,10 +153,11 @@ export function getSecondUnitSectionProps({
           (unit) => unit.unitData.title,
         ),
       );
-    } else {
+    }
+    if (!props.units || props.units.length === 0) {
       props.units = Object.values(
         _.groupBy(
-          unitsByProgramme[`${programmeSlug}-l`] || [],
+          unitsByProgramme[`${baseSlug}-l`] || [],
           (unit) => unit.unitData.title,
         ),
       );
