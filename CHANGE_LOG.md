@@ -1,3 +1,12 @@
+## [1.453.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.5...v1.453.6) (2024-06-10)
+
+
+### Bug Fixes
+
+* npm version change to get dependabot running again ([1289cdf](https://github.com/oaknational/Oak-Web-Application/commit/1289cdff33a8fbce57336ec79d788d58597900cf))
+
+## [1.453.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.4...v1.453.5) (2024-06-07)
+
 ## [1.453.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.3...v1.453.4) (2024-06-07)
 
 ## [1.453.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.2...v1.453.3) (2024-06-07)
