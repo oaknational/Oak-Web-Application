@@ -76,6 +76,74 @@ describe("constructLessonListingObjectArray()", () => {
       },
     ]);
   });
+
+  test("constructs lesson listing object with multiple lessons", () => {
+    const constructedLesson = constructLessonListingObjectArray([
+      syntheticUnitvariantLessonsFixture(),
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          lesson_slug: "lesson-slug-2",
+          lesson_data: {
+            lesson_id: 1,
+            lesson_uid: "lesson-uid",
+            title: "lesson-title-2",
+            description: "lesson-description-2",
+            slug: "lesson-slug",
+            pupil_lesson_outcome: "pupil-lesson-outcome",
+            key_learning_points: [{}],
+            equipment_and_resources: null,
+            content_guidance_details: null,
+            content_guidance: null,
+            supervision_level: null,
+            thirdpartycontent_list: null,
+            misconceptions_and_common_mistakes: null,
+            keywords: null,
+            video_id: null,
+            sign_language_video_id: null,
+            quiz_id_starter: null,
+            quiz_id_exit: null,
+            asset_id_slidedeck: null,
+            asset_id_worksheet: null,
+            copyright_content: null,
+            _state: "published",
+            _cohort: "2023-2024",
+            updated_at: "2023-01-01T00:00:00.000Z",
+            deprecated_fields: null,
+          },
+        },
+      }),
+    ]);
+    expect(constructedLesson).toEqual([
+      {
+        lessonSlug: "lesson-slug",
+        lessonTitle: "lesson-title",
+        description: "lesson-description",
+        pupilLessonOutcome: "pupil-lesson-outcome",
+        expired: false,
+        quizCount: 0,
+        videoCount: 0,
+        presentationCount: 0,
+        worksheetCount: 0,
+        hasCopyrightMaterial: false,
+        orderInUnit: 1,
+        lessonCohort: "2023-2024",
+      },
+      {
+        lessonSlug: "lesson-slug-2",
+        lessonTitle: "lesson-title-2",
+        description: "lesson-description-2",
+        pupilLessonOutcome: "pupil-lesson-outcome",
+        expired: false,
+        quizCount: 0,
+        videoCount: 0,
+        presentationCount: 0,
+        worksheetCount: 0,
+        hasCopyrightMaterial: false,
+        orderInUnit: 1,
+        lessonCohort: "2023-2024",
+      },
+    ]);
+  });
 });
 
 describe("constructDownloadsArray()", () => {
@@ -146,5 +214,22 @@ describe("constructDownloadsArray()", () => {
         ext: "docx",
       },
     ]);
+  });
+  test("has correct number of resources available for download", () => {
+    const downloads = constructDownloadsArray({
+      hasSlideDeckAssetObject: true,
+      hasStarterQuiz: true,
+      hasExitQuiz: false,
+      hasWorksheetAssetObject: true,
+      hasWorksheetAnswersAssetObject: true,
+      hasWorksheetGoogleDriveDownloadableVersion: true,
+      hasSupplementaryAssetObject: false,
+      isLegacy: true,
+    });
+    const filteredDownloads = downloads.filter(
+      (download) => download.exists === true,
+    );
+
+    expect(filteredDownloads.length).toEqual(5);
   });
 });
