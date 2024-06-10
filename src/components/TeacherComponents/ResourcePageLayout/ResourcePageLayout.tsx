@@ -73,18 +73,20 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           <OakBox
             $pa={"inner-padding-none"}
             $ba={"border-solid-none"}
-            as="fieldset"
+            as={props.page === "download" ? "fieldset" : "box"}
           >
-            <OakBox
-              as="legend"
-              $position="absolute"
-              $width="all-spacing-0"
-              $height="all-spacing-0"
-              $pa={"inner-padding-none"}
-              $overflow="hidden"
-            >
-              {`${props.page} ${props.resourcesHeader}`}
-            </OakBox>
+            {props.page === "download" && (
+              <OakBox
+                as="legend"
+                $position="absolute"
+                $width="all-spacing-0"
+                $height="all-spacing-0"
+                $pa={"inner-padding-none"}
+                $overflow="hidden"
+              >
+                {`Select resources to ${props.page}`}
+              </OakBox>
+            )}
             <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
               <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
                 {props.resourcesHeader}
