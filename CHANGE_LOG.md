@@ -1,3 +1,31 @@
+# [1.454.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.6...v1.454.0) (2024-06-10)
+
+
+### Features
+
+* include resource type in aria label for resource cards ([9571bde](https://github.com/oaknational/Oak-Web-Application/commit/9571bde85e7e490d6ca81e742efbaf79f7a6124b))
+
+## [1.453.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.5...v1.453.6) (2024-06-10)
+
+
+### Bug Fixes
+
+* npm version change to get dependabot running again ([1289cdf](https://github.com/oaknational/Oak-Web-Application/commit/1289cdff33a8fbce57336ec79d788d58597900cf))
+
+## [1.453.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.4...v1.453.5) (2024-06-07)
+
+## [1.453.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.3...v1.453.4) (2024-06-07)
+
+## [1.453.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.2...v1.453.3) (2024-06-07)
+
+## [1.453.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.1...v1.453.2) (2024-06-07)
+
+
+### Bug Fixes
+
+* add missing fields to pupil lesson content ([d4d6bff](https://github.com/oaknational/Oak-Web-Application/commit/d4d6bff340ad252a3a283fdc8607ce76139183df))
+* remove duplicate field in mock data ([a6508ea](https://github.com/oaknational/Oak-Web-Application/commit/a6508ea1523869d1fd1a02e95e607a56ee6d73a4))
+
 ## [1.453.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.0...v1.453.1) (2024-06-06)
 
 
