@@ -3,7 +3,7 @@ import {
   syntheticUnitvariantLessonsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
-import { constructLessonDownloads } from "./constructLessonDownloads";
+import constructLessonDownloads from "./constructLessonDownloads";
 import { downloadAssetsFixture } from "./downloadUtils.test";
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
