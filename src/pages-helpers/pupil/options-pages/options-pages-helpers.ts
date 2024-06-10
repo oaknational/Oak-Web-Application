@@ -47,14 +47,17 @@ export const getPupilOptionData = async (
   if (!context.params) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
-  const { programmeSlug } = context.params;
 
-  if (!programmeSlug) {
+  // For the options path rename programmeSlug to baseSlug as this is the accurate usage of the options page.
+  // I would have created a new folder [baseSlug] but multiple dynamic params on the same segment is not allowed.
+  const { programmeSlug: baseSlug } = context.params;
+
+  if (!baseSlug) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
-    baseSlug: programmeSlug,
+    baseSlug,
   });
 
   if (!programmes || programmes.length === 0) {
@@ -68,7 +71,7 @@ export const getPupilOptionData = async (
       redirect: {
         destination: resolveOakHref({
           page: "pupil-unit-index",
-          programmeSlug,
+          programmeSlug: baseSlug,
         }),
         permanent: false,
       },
@@ -78,6 +81,6 @@ export const getPupilOptionData = async (
   const yearSlug = getYearSlug({ programmes });
 
   return {
-    props: { programmes, baseSlug: programmeSlug, yearSlug },
+    props: { programmes, baseSlug, yearSlug },
   };
 };
