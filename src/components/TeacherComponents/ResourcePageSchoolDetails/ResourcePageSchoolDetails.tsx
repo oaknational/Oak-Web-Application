@@ -95,7 +95,9 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
           aria-invalid={errors?.school?.message ? true : false}
-          aria-describedby={"school-error"}
+          aria-describedby={
+            errors?.school?.message ? "school-error" : undefined
+          }
         />
       </OakFlex>
     </>
