@@ -48,6 +48,7 @@ export const PupilViewsProgrammeListing = ({
     (examboard: ExamboardData) => examboard.examboard,
   );
 
+  // This creates an array of examboards giving preference to non-legacy examboards
   const examboards = Object.keys(allExamboards)
     .map((examboard) => {
       const mappedExamboard = allExamboards[examboard];
@@ -96,8 +97,6 @@ export const PupilViewsProgrammeListing = ({
     throw new Error("Foundation phase is not supported");
   }
 
-  // const examboardData =
-
   const backlink = resolveOakHref({
     page: "pupil-subject-index",
     yearSlug,
@@ -107,6 +106,7 @@ export const PupilViewsProgrammeListing = ({
   const subjectDescription = programmes[0]?.programmeFields.subject;
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
+  // TODO - switch statement can be refactored
   const topNavSlot = () => {
     switch (true) {
       // examboard is chosen and there are multiple tiers
@@ -129,17 +129,17 @@ export const PupilViewsProgrammeListing = ({
   };
 
   const breadcrumbs = () => {
-    switch (true) {
-      // examboard is chosen and there are multiple tiers
-      case chosenExamboard !== null &&
-        tiers.length > 1 &&
-        chosenExamboard.examboard !== null:
-        return [yearDescriptions, chosenExamboard?.examboard] as string[];
-      default:
-        return [yearDescriptions];
+    if (
+      !chosenExamboard ||
+      tiers.length <= 1 ||
+      chosenExamboard.examboard === null
+    ) {
+      return [yearDescriptions];
     }
+    return [yearDescriptions, chosenExamboard.examboard] as string[];
   };
 
+  // TODO - Immediate function and switch statement can be refactored
   const BrowseOptions = () => {
     return (() => {
       switch (true) {
@@ -174,6 +174,7 @@ export const PupilViewsProgrammeListing = ({
     })();
   };
 
+  // TODO - Switch statement can be refactored
   const optionTitles = (): { hint: string; title: string } => {
     switch (true) {
       case examboards.length > 1 && chosenExamboard === null:

@@ -57,6 +57,7 @@ export const PupilViewsUnitListing = ({
     examboardSlug: examboardSlug,
   });
 
+  // TODO - consider moving unitsByProgramme, mainUnits and optionalityUnits to getStaticProps
   const unitsByProgramme = _.groupBy(units, "programmeSlug");
 
   const mainUnits: UnitListingBrowseData[number][] =
@@ -74,84 +75,13 @@ export const PupilViewsUnitListing = ({
     breadcrumbs.push(tierDescription);
   }
 
-  const secondSection: Partial<UnitSectionProps> = {};
-  secondSection.titleSlot = null;
-  secondSection.phase = phase;
-
-  // determine if the desired programme is a legacy programme
-  const isLegacy = programmeSlug.slice(-2) === "-l";
-  if (isLegacy) {
-    //check for new programmes that could be displayed
-    secondSection.units = Object.values(
-      _.groupBy(
-        unitsByProgramme[`${programmeSlug.replace("-l", "")}`] || [],
-        (unit) => unit.unitData.title,
-      ),
-    );
-    secondSection.counterSlot = (
-      <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-        <OakInfo
-          hint="Units are groups of lessons that relate to one another."
-          tooltipPosition="top-left"
-        />
-
-        <OakHeading
-          tag="h2"
-          $font={"heading-6"}
-          data-testid="secondary-unit-count"
-        >
-          Select a new unit{" "}
-          <OakSpan $font={"heading-light-6"}>
-            ({secondSection.units?.length})
-          </OakSpan>
-        </OakHeading>
-      </OakFlex>
-    );
-    secondSection.titleSlot = null;
-  } else {
-    //check for legacy programmes that could be displayed
-    secondSection.units = Object.values(
-      _.groupBy(
-        unitsByProgramme[`${programmeSlug}-l`] || [],
-        (unit) => unit.unitData.title,
-      ),
-    );
-    secondSection.phase = phase;
-    secondSection.counterSlot = (
-      <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-        <OakInfo
-          hint="Units are groups of lessons that relate to one another."
-          tooltipPosition="top-left"
-        />
-
-        <OakHeading
-          tag="h2"
-          $font={"heading-6"}
-          data-testid="secondary-unit-count"
-        >
-          Choose a legacy unit{" "}
-          <OakSpan $font={"heading-light-6"}>
-            ({secondSection.units.length})
-          </OakSpan>
-        </OakHeading>
-      </OakFlex>
-    );
-    secondSection.titleSlot = null;
-  }
-
-  const unitCount = (
-    <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-      <OakInfo
-        hint="Units are groups of lessons that relate to one another."
-        tooltipPosition="top-left"
-      />
-
-      <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-        Choose a unit{" "}
-        <OakSpan $font={"heading-light-6"}>({mainUnits.length})</OakSpan>
-      </OakHeading>
-    </OakFlex>
-  );
+  const secondUnitSectionProps = getSecondUnitSectionProps({
+    programmeSlug,
+    baseSlug,
+    tierSlug,
+    phase,
+    unitsByProgramme,
+  });
 
   return (
     <OakPupilJourneyLayout
@@ -175,41 +105,112 @@ export const PupilViewsUnitListing = ({
           }
           phase={phase}
           units={optionalityUnits}
-          counterSlot={unitCount}
+          counterText="Choose a unit"
+          counterLength={mainUnits.length}
         />
-        {secondSection.units.length > 0 && (
-          <UnitSection
-            titleSlot={secondSection.titleSlot}
-            units={secondSection.units}
-            counterSlot={secondSection.counterSlot}
-            phase={secondSection.phase}
-          />
+        {secondUnitSectionProps && secondUnitSectionProps.units.length > 0 && (
+          <UnitSection {...secondUnitSectionProps} />
         )}
       </OakBox>
     </OakPupilJourneyLayout>
   );
 };
+
+interface GetSecondUnitSectionPropsArgs {
+  programmeSlug: string;
+  baseSlug: string;
+  tierSlug: string | null;
+  phase: "primary" | "secondary";
+  unitsByProgramme: Record<string, UnitListingBrowseData[number][]>;
+}
+
+function getSecondUnitSectionProps({
+  programmeSlug,
+  baseSlug,
+  tierSlug,
+  phase,
+  unitsByProgramme,
+}: GetSecondUnitSectionPropsArgs): UnitSectionProps {
+  // determine if the desired programme is a legacy programme
+  const isLegacy = programmeSlug.slice(-2) === "-l";
+  const props: Partial<UnitSectionProps> = {};
+  if (isLegacy) {
+    //check for new programmes that could be displayed
+    props.units = Object.values(
+      _.groupBy(
+        unitsByProgramme[`${programmeSlug.replace("-l", "")}`] || [],
+        (unit) => unit.unitData.title,
+      ),
+    );
+    props.counterText = "Choose a new unit";
+    props.counterLength = props.units.length;
+  } else {
+    //check for legacy programmes that could be displayed
+    if (tierSlug) {
+      props.units = Object.values(
+        _.groupBy(
+          unitsByProgramme[`${baseSlug}-${tierSlug}-l`] || [],
+          (unit) => unit.unitData.title,
+        ),
+      );
+    } else {
+      props.units = Object.values(
+        _.groupBy(
+          unitsByProgramme[`${programmeSlug}-l`] || [],
+          (unit) => unit.unitData.title,
+        ),
+      );
+    }
+    props.counterText = "Choose a legacy unit";
+    props.counterLength = props.units.length;
+  }
+  return {
+    units: props.units,
+    phase: phase,
+    counterText: props.counterText,
+    counterLength: props.counterLength,
+    titleSlot: null,
+  };
+}
+
 type UnitSectionProps = {
   units: UnitListingBrowseData[number][][];
   phase: "primary" | "secondary";
-  counterSlot: JSX.Element | null;
+  counterText: string | null;
+  counterLength: number | null;
   titleSlot: JSX.Element | null;
 };
+
 const UnitSection = ({
   units,
   phase,
-  counterSlot,
+  counterText,
+  counterLength,
   titleSlot,
 }: UnitSectionProps) => {
   return (
     <OakPupilJourneyList
       phase={phase}
       titleSlot={titleSlot}
-      counterSlot={counterSlot}
+      counterSlot={
+        <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+          <OakInfo
+            hint="Units are groups of lessons that relate to one another."
+            tooltipPosition="top-left"
+          />
+
+          <OakHeading
+            tag="h2"
+            $font={"heading-6"}
+            data-testid="secondary-unit-count"
+          >
+            {counterText}{" "}
+            <OakSpan $font={"heading-light-6"}>({counterLength})</OakSpan>
+          </OakHeading>
+        </OakFlex>
+      }
     >
       {units.map((optionalityUnit, i) => {
-        //console.log(optionalityUnit);
-
         if (optionalityUnit.length === 1) {
           // No optionalities
           if (optionalityUnit[0]) return renderListItem(optionalityUnit[0], i);

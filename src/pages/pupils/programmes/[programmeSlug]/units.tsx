@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps<
 
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
         // This is gets us the base_slug
-        baseSlug: programmeSlug.replace(/(\d+)(.*)$/, "$1"),
+        baseSlug: programmeSlug.replace(/(\d+)(.*?)$/, "$1"),
       });
 
       curriculumData = curriculumData.filter(

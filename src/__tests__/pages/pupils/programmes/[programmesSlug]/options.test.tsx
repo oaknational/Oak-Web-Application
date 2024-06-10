@@ -66,7 +66,6 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
     it("Should call API:pupilProgrammeListingQuery", async () => {
       await getStaticProps({
         params: {
-          // todo need to rename folder to baseSlug
           programmeSlug: "physics-secondary-year-11",
         },
       });
