@@ -8,11 +8,9 @@ import {
 import lessonDownloadsSchema, {
   downloadsAssetData,
 } from "./lessonDownloads.schema";
-import {
-  constructDownloadsArray,
-  constructLessonDownloads,
-} from "./downloadUtils";
+import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
+import constructLessonDownloads from "./constructLessonDownloads";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
