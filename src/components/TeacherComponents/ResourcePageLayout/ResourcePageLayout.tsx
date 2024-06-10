@@ -83,7 +83,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               $pa={"inner-padding-none"}
               $overflow="hidden"
             >
-              {`${props.page} ${props.resourcesHeader} checkbox's`}
+              {`${props.page} ${props.resourcesHeader}`}
             </OakBox>
             <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
               <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
