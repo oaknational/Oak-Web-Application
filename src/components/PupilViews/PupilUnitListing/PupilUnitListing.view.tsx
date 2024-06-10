@@ -124,7 +124,7 @@ interface GetSecondUnitSectionPropsArgs {
   unitsByProgramme: Record<string, UnitListingBrowseData[number][]>;
 }
 
-function getSecondUnitSectionProps({
+export function getSecondUnitSectionProps({
   programmeSlug,
   baseSlug,
   tierSlug,

@@ -1,12 +1,16 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import _ from "lodash";
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { PupilViewsUnitListing } from "./PupilUnitListing.view";
+import {
+  PupilViewsUnitListing,
+  getSecondUnitSectionProps,
+} from "./PupilUnitListing.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
@@ -264,5 +268,99 @@ describe("PupilViewsUnitListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("unit-title-1 - optional title 1")).toBeInTheDocument();
+  });
+
+  it("should create props for secondary section of units correcly (show legacy)", () => {
+    const cycle1Data = unitBrowseDataFixture({
+      programmeSlug: "maths-secondary-year-10-aqa-core",
+    });
+    const legacyData = unitBrowseDataFixture({
+      programmeSlug: "maths-secondary-year-10-aqa-core-l",
+      isLegacy: true,
+    });
+
+    const unitsByProgramme = _.groupBy(
+      [cycle1Data, legacyData],
+      "programmeSlug",
+    );
+
+    const result = getSecondUnitSectionProps({
+      programmeSlug: "maths-secondary-year-10-aqa-core",
+      baseSlug: "maths-secondary-year-10",
+      tierSlug: null,
+      phase: "secondary",
+      unitsByProgramme: unitsByProgramme,
+    });
+
+    if (!result.units || !result.units[0] || !result.units[0][0]) {
+      throw new Error("No units");
+    }
+
+    expect(result.units).toHaveLength(1);
+    expect(result.units[0][0].programmeSlug).toBe(
+      "maths-secondary-year-10-aqa-core-l",
+    );
+  });
+
+  it("should create props for secondary section of units correcly (show new)", () => {
+    const cycle1Data = unitBrowseDataFixture({
+      programmeSlug: "maths-secondary-year-10",
+    });
+    const legacyData = unitBrowseDataFixture({
+      programmeSlug: "maths-secondary-year-10-l",
+      isLegacy: true,
+    });
+
+    const unitsByProgramme = _.groupBy(
+      [cycle1Data, legacyData],
+      "programmeSlug",
+    );
+
+    const result = getSecondUnitSectionProps({
+      programmeSlug: "maths-secondary-year-10-l",
+      baseSlug: "maths-secondary-year-10",
+      tierSlug: null,
+      phase: "secondary",
+      unitsByProgramme: unitsByProgramme,
+    });
+
+    if (!result.units || !result.units[0] || !result.units[0][0]) {
+      throw new Error("No units");
+    }
+
+    expect(result.units).toHaveLength(1);
+    expect(result.units[0][0].programmeSlug).toBe("maths-secondary-year-10");
+  });
+
+  it("should create props for secondary section of units correcly (tier match)", () => {
+    const cycle1Data = unitBrowseDataFixture({
+      programmeSlug: "combined-science-secondary-year-10-higher-aqa",
+    });
+    const legacyData = unitBrowseDataFixture({
+      programmeSlug: "combined-science-secondary-year-10-higher-l",
+      isLegacy: true,
+    });
+
+    const unitsByProgramme = _.groupBy(
+      [cycle1Data, legacyData],
+      "programmeSlug",
+    );
+
+    const result = getSecondUnitSectionProps({
+      programmeSlug: "combined-science-secondary-year-10-higher-aqa",
+      baseSlug: "combined-science-secondary-year-10",
+      tierSlug: "higher",
+      phase: "secondary",
+      unitsByProgramme: unitsByProgramme,
+    });
+
+    if (!result.units || !result.units[0] || !result.units[0][0]) {
+      throw new Error("No units");
+    }
+
+    expect(result.units).toHaveLength(1);
+    expect(result.units[0][0].programmeSlug).toBe(
+      "combined-science-secondary-year-10-higher-l",
+    );
   });
 });
