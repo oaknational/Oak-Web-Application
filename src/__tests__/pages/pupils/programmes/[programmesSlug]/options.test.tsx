@@ -63,9 +63,10 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
   });
 
   describe("getStaticProps", () => {
-    it.skip("Should call API:pupilProgrammeListingQuery", async () => {
+    it("Should call API:pupilProgrammeListingQuery", async () => {
       await getStaticProps({
         params: {
+          // todo need to rename folder to baseSlug
           programmeSlug: "physics-secondary-year-11",
         },
       });
@@ -74,7 +75,6 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
         curriculumApi2023.default.pupilProgrammeListingQuery,
       ).toHaveBeenCalledWith({
         baseSlug: "physics-secondary-year-11",
-        isLegacy: false,
       });
     });
   });

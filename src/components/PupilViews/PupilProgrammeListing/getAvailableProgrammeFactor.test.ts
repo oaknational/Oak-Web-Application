@@ -59,7 +59,7 @@ describe("getAvailableProgrammeFactor", () => {
     }),
   );
 
-  it.skip("should return unique tiers", () => {
+  it("should return unique tiers", () => {
     const result = getAvailableProgrammeFactor({
       programmes,
       factorPrefix: "tier",
@@ -74,12 +74,14 @@ describe("getAvailableProgrammeFactor", () => {
         tierSlug: "core",
         tierDisplayOrder: 2,
         tierDescription: "Core",
+        isLegacy: false,
       },
       {
         tier: "foundation",
         tierSlug: "foundation",
         tierDisplayOrder: 1,
         tierDescription: "Foundation",
+        isLegacy: false,
       },
     ]);
   });

@@ -61,7 +61,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
     });
 
     describe("getStaticProps", () => {
-      it.skip("Should call API:pupilUnitLisitngQuery", async () => {
+      it("Should call API:pupilUnitLisitngQuery", async () => {
         await getStaticProps({
           params: {
             programmeSlug: "ks123",
@@ -71,7 +71,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         expect(
           curriculumApi2023.default.pupilUnitListingQuery,
         ).toHaveBeenCalledWith({
-          programmeSlug: "ks123",
+          baseSlug: "ks123",
         });
       });
     });

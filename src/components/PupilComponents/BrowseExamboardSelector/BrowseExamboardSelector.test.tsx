@@ -24,7 +24,7 @@ describe("BrowseExamboardSelector", () => {
       examboard: "OCR",
       examboardSlug: "ocr",
       examboardDisplayOrder: 3,
-      isLegacy: false,
+      isLegacy: true,
     },
   ];
 
@@ -74,7 +74,7 @@ describe("BrowseExamboardSelector", () => {
     }
   });
 
-  it.skip("should render legacy links when baseSlug and isLegacy are provided", () => {
+  it("should render legacy links when baseSlug and isLegacy are provided", () => {
     const { getByRole } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <BrowseExamboardSelector
@@ -88,7 +88,9 @@ describe("BrowseExamboardSelector", () => {
     for (const e of examboards) {
       const button = getByRole("link", { name: e.examboard ?? "" });
       expect(button.getAttribute("href")).toBe(
-        `/pupils/programmes/my-subject-${e.examboardSlug}-l/units`,
+        `/pupils/programmes/my-subject-${e.examboardSlug}${
+          e.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });

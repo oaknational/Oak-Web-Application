@@ -41,24 +41,24 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Year 1")).toBeInTheDocument();
   });
 
-  it.skip("should render the unit titles and number of lessons", () => {
-    const data = unitBrowseDataFixture({
+  it("should render the unit titles and number of lessons", () => {
+    const unit = unitBrowseDataFixture({
       programmeSlug: "maths-secondary-year-10-aqa-core",
       lessonCount: 26,
     });
+    const data = [unit];
 
-    const { getByText, getAllByText } = render(
+    const { getByText, getByTestId } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
+          units={data}
           programmeSlug="maths-secondary-year-10-aqa-core"
-          programmeFields={data.programmeFields}
-          units={[data]}
+          programmeFields={unit.programmeFields}
         />
       </OakThemeProvider>,
     );
     expect(getByText("unit-title")).toBeInTheDocument();
-    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
-    expect(count).toEqual("(26)");
+    expect(getByTestId("unit-count")).toHaveTextContent(`(${data.length})`);
   });
 
   it("should render the unit titles in the correct order", () => {
@@ -101,13 +101,17 @@ describe("PupilViewsUnitListing", () => {
     expect(e2.compareDocumentPosition(e1)).toBe(2);
   });
 
-  it.skip("should throw an error if the phase is foundation", () => {
+  it("should throw an error if the phase is foundation", () => {
     const data = unitBrowseDataFixture({
       programmeFields: {
         ...unitBrowseDataFixture({}).programmeFields,
         phase: "foundation",
       },
     });
+
+    const consoleErrorFn = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => jest.fn());
 
     expect(() =>
       render(
@@ -120,6 +124,8 @@ describe("PupilViewsUnitListing", () => {
         </OakThemeProvider>,
       ),
     ).toThrow("Foundation phase not supported");
+
+    consoleErrorFn.mockRestore();
   });
 
   it("should render breadcrumbs", () => {
@@ -149,7 +155,7 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Foundation")).toBeInTheDocument();
     expect(getByText("AQA")).toBeInTheDocument();
   });
-  it.skip("should render units with optionality units if more than one option", () => {
+  it("should render units with optionality units if more than one option", () => {
     const data = [
       unitBrowseDataFixture({
         unitData: {
@@ -198,7 +204,7 @@ describe("PupilViewsUnitListing", () => {
       throw new Error("No curriculum data");
     }
 
-    const { getByText, getAllByText } = render(
+    const { getByText, getByTestId } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           programmeSlug="maths-secondary-year-10-aqa-core"
@@ -211,10 +217,9 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("optional title 1")).toBeInTheDocument();
     expect(getByText("optional title 2")).toBeInTheDocument();
 
-    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
-    expect(count).toEqual("(52)");
+    expect(getByTestId("unit-count")).toHaveTextContent(`(${data.length})`);
   });
-  it.skip("should render OakPupilListitem if only one optionality option", () => {
+  it("should render OakPupilListitem if only one optionality option", () => {
     const data = [
       unitBrowseDataFixture({
         unitData: {
@@ -249,7 +254,7 @@ describe("PupilViewsUnitListing", () => {
       throw new Error("No curriculum data");
     }
 
-    const { getByText, getAllByText } = render(
+    const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           programmeSlug="maths-secondary-year-10-aqa-core"
@@ -259,8 +264,5 @@ describe("PupilViewsUnitListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("unit-title-1 - optional title 1")).toBeInTheDocument();
-
-    const count = getAllByText("New lessons")[0]?.children[0]?.textContent;
-    expect(count).toEqual("(26)");
   });
 });

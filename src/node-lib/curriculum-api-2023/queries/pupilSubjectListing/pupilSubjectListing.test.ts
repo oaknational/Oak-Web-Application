@@ -47,7 +47,7 @@ describe("pupilSubjectListing()", () => {
     ).rejects.toThrow("Resource not found");
   });
 
-  it.skip("defaults to legacy programmes", async () => {
+  it("defaults to legacy programmes", async () => {
     const mock = jest.fn(
       () =>
         Promise.resolve({
@@ -64,7 +64,6 @@ describe("pupilSubjectListing()", () => {
 
     expect(mock).toHaveBeenCalledWith({
       yearSlug: "maths-primary-year-1",
-      isLegacy: true,
     });
   });
 });

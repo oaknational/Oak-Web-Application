@@ -17,7 +17,7 @@ describe("BrowseTierSelector", () => {
       tierSlug: "core",
       tierDisplayOrder: 2,
       tierDescription: "Core",
-      isLegacy: false,
+      isLegacy: true,
     },
     {
       tier: "foundation",
@@ -55,27 +55,9 @@ describe("BrowseTierSelector", () => {
       const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/programmes/my-subject-${t.tierSlug}/units`,
-      );
-    }
-  });
-
-  it.skip("should render legacy tiers with correct hrefs", () => {
-    const { getByRole } = render(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseTierSelector
-          tiers={tiers}
-          baseSlug="my-subject"
-          phaseSlug="secondary"
-        />
-      </OakThemeProvider>,
-    );
-
-    for (const t of tiers) {
-      const button = getByRole("link", { name: t.tierDescription ?? "" });
-      expect(button).toHaveAttribute(
-        "href",
-        `/pupils/programmes/my-subject-${t.tierSlug}-l/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}${
+          t.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });
@@ -96,7 +78,9 @@ describe("BrowseTierSelector", () => {
       const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/programmes/my-subject-${t.tierSlug}-my-examboard/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}-my-examboard${
+          t.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });

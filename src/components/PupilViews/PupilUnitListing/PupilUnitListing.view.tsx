@@ -129,7 +129,7 @@ export const PupilViewsUnitListing = ({
           $font={"heading-6"}
           data-testid="secondary-unit-count"
         >
-          Select a legacy unit{" "}
+          Choose a legacy unit{" "}
           <OakSpan $font={"heading-light-6"}>
             ({secondSection.units.length})
           </OakSpan>
@@ -147,7 +147,7 @@ export const PupilViewsUnitListing = ({
       />
 
       <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-        Select a unit{" "}
+        Choose a unit{" "}
         <OakSpan $font={"heading-light-6"}>({mainUnits.length})</OakSpan>
       </OakHeading>
     </OakFlex>
