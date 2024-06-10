@@ -51,8 +51,8 @@ export const constructDownloadsArray = (
   };
   const worksheetPdf = {
     exists:
-      typeof lesson.worksheet_asset_object
-        ?.google_drive_downloadable_version === "string",
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
     type: "worksheet-pdf" as const,
     label: "Worksheet",
     ext: "pdf",
@@ -60,8 +60,8 @@ export const constructDownloadsArray = (
   };
   const worksheetPptx = {
     exists:
-      typeof lesson.worksheet_asset_object
-        ?.google_drive_downloadable_version === "string",
+      typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
+        ?.url === "string",
     type: "worksheet-pptx" as const,
     label: "Worksheet",
     ext: "pptx",
@@ -125,6 +125,7 @@ export const specialistLessonDownloadQuery =
         downloads: downloads,
         nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
         expired: lesson.expired ?? false,
+        updatedAt: "2022",
       },
     };
   };

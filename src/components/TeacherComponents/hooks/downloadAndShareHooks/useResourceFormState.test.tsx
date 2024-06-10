@@ -5,8 +5,8 @@ import {
   useResourceFormState,
 } from "./useResourceFormState";
 
-import { allResources as allDownloadResources } from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
-import { allResources as allShareResources } from "@/node-lib/curriculum-api/fixtures/shareableResources.fixture";
+import { allResources as allDownloadResources } from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
+import { allResources as allShareResources } from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,

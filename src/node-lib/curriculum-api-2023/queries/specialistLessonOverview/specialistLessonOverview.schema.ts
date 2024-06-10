@@ -8,6 +8,7 @@ import {
   baseLessonOverviewSchema,
   legacyAssetObjectSchema,
   lessonOverviewQuizData,
+  lessonPathwaySchema,
 } from "../../shared.schema";
 
 export type SpecialistLessonOverviewData = Omit<
@@ -25,6 +26,7 @@ export type SpecialistLessonOverviewData = Omit<
   phaseTitle: string | null;
   phaseSlug: string | null;
   threads?: Threads[] | null;
+  updatedAt: string;
 };
 
 const content_guidance_schema = z.object({
@@ -120,6 +122,8 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   isSpecialist: z.literal(true),
   isCanonical: z.literal(false),
   downloads: lessonOverviewDownloads,
+  updatedAt: z.string(),
+  pathways: z.array(lessonPathwaySchema),
 });
 
 export type SpecialistLessonOverview = z.infer<

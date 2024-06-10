@@ -1,10 +1,54 @@
 import snakecaseKeys from "snakecase-keys";
 
-import { searchResultsSchema } from "../../search.schema";
-import { SearchHit, SearchQuery } from "../../search.types";
+import {
+  RawSearchResponseData,
+  rawSearchResponseSchema,
+  searchResultsSchema,
+} from "../../search.schema";
+import { SearchQuery } from "../../search.types";
+import { getHighlightFromAllFields } from "../../search.helpers";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
+
+export const transformAndParseSearchResponseData = (
+  rawData: RawSearchResponseData,
+) => {
+  const transformedData = {
+    ...rawData,
+    hits: {
+      ...rawData.hits,
+      hits: rawData.hits.hits.map((hit) => {
+        const source = hit._source;
+        const title =
+          source.type === "lesson" ? source.lessonTitle : source.unitTitle;
+        const slug =
+          source.type === "lesson" ? source.lessonSlug : source.unitSlug;
+        const highlight = getHighlightFromAllFields(
+          hit.highlight,
+          hit._source.pupilLessonOutcome,
+        );
+        return {
+          ...hit,
+          highlight,
+          _source: {
+            ...source,
+            title,
+            slug,
+          },
+        };
+      }),
+    },
+  };
+  const snakecaseData = snakecaseKeys(transformedData, {
+    deep: true,
+    exclude: ["_id", "_index", "_score", "_source"],
+  });
+
+  const data = searchResultsSchema.parse(snakecaseData);
+
+  return data;
+};
 
 export async function fetchResults(query: SearchQuery) {
   const options: RequestInit = {
@@ -23,49 +67,9 @@ export async function fetchResults(query: SearchQuery) {
 
   const unparsedData = await response.json();
 
-  const transformedData: SearchHit = {
-    ...unparsedData,
-    hits: {
-      ...unparsedData.hits,
-      hits: unparsedData.hits.hits.map(
-        (hit: {
-          _source: {
-            type: "lesson" | "unit";
-            lessonTitle?: string;
-            lessonSlug?: string;
-            unitTitle?: string;
-            unitSlug?: string;
-            cohort?: string;
-          };
-        }) => {
-          const source = hit._source;
-          const title =
-            source.type === "lesson" ? source.lessonTitle : source.unitTitle;
-          const slug =
-            source.type === "lesson" ? source.lessonSlug : source.unitSlug;
-          return {
-            ...hit,
-
-            _source: {
-              ...source,
-              title,
-              slug,
-            },
-          };
-        },
-      ),
-    },
-  };
-
-  const snakeaseData = snakecaseKeys(transformedData, {
-    deep: true,
-    exclude: ["_id", "_index", "_score", "_source"],
-  });
-
-  const data = searchResultsSchema.parse(snakeaseData);
-
+  const rawData = rawSearchResponseSchema.parse(unparsedData);
+  const data = transformAndParseSearchResponseData(rawData);
   const { hits } = data;
   const hitList = hits.hits;
-
   return hitList;
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, Fragment } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -6,6 +6,8 @@ import {
   OakHeading,
   OakFlex,
 } from "@oaknational/oak-components";
+
+import { hasLessonMathJax } from "./hasLessonMathJax";
 
 import {
   getPageLinksForLesson,
@@ -86,8 +88,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     downloads,
     copyrightContent,
     isSpecialist,
+    updatedAt,
   } = lesson;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -101,6 +103,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
   } = commonPathway;
+
+  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
+  const isNew = lessonCohort === NEW_COHORT;
+  const isMathJaxLesson = hasLessonMathJax(
+    lesson,
+    subjectSlug,
+    isLegacyLicense,
+  );
+
+  const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -156,9 +168,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
-  const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
-  const isNew = lessonCohort === NEW_COHORT;
-
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
@@ -172,7 +181,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
 
   return (
-    <MathJaxProvider>
+    <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
         {...commonPathway}
@@ -293,6 +302,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
+                    isMathJaxLesson={isMathJaxLesson}
+                    updatedAt={updatedAt}
                   />
                 </LessonItemContainer>
 
@@ -300,7 +311,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     slugs={slugs}
                     title={"Video"}
                     anchorId="video"
@@ -336,7 +347,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "worksheet",
@@ -361,7 +372,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isSpecialist={isSpecialist}
                     ref={starterQuizSectionRef}
                     title={"Starter quiz"}
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     anchorId="starter-quiz"
                     downloadable={
                       getIsResourceDownloadable(
@@ -390,6 +401,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={starterQuiz}
                         imageAttribution={starterQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -412,7 +424,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "exit quiz",
@@ -428,6 +440,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <QuizContainerNew
                         questions={exitQuiz}
                         imageAttribution={exitQuizImageAttribution}
+                        isMathJaxLesson={isMathJaxLesson}
                       />
                     )}
                   </LessonItemContainer>
@@ -450,7 +463,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense}
+                    shareable={isLegacyLicense && !isSpecialist}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "additional material",
@@ -484,6 +497,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </OakGrid>
         )}
       </MaxWidth>
-    </MathJaxProvider>
+    </MathJaxLessonProvider>
   );
 }

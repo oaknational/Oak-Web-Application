@@ -19,7 +19,6 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
@@ -34,9 +33,9 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import shouldUseLegacyApi from "@/utils/slugModifiers/shouldUseLegacyApi";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -67,7 +66,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const themeSlug = router.query["learning-theme"]?.toString();
 
   const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
-
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
@@ -127,7 +125,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
               keyStageSlug,
             },
-            label: keyStageTitle,
+            label: toSentenceCase(keyStageTitle),
           },
           {
             oakLinkProps: {
@@ -142,7 +140,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         background={"lavender30"}
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
-        programmeFactor={keyStageTitle}
+        programmeFactor={toSentenceCase(keyStageTitle)}
         isNew={hasNewContent ?? false}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
@@ -303,36 +301,29 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = shouldUseLegacyApi(programmeSlug)
-        ? await curriculumApi.unitListing({
-            programmeSlug,
-          })
-        : await curriculumApi2023.unitListing({
-            programmeSlug,
-            isLegacy: programmeSlug.endsWith("early-years-foundation-stage-l"),
-          });
+      try {
+        const curriculumData = await curriculumApi2023.unitListing({
+          programmeSlug,
+        });
 
-      if (!curriculumData) {
+        if (!curriculumData) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const results: GetStaticPropsResult<UnitListingPageProps> = {
+          props: {
+            curriculumData,
+          },
+        };
+
+        return results;
+      } catch (error) {
         return {
           notFound: true,
         };
       }
-
-      const unitsCohorts = curriculumData.units.flatMap((unit) =>
-        unit.flatMap((u) => u.cohort ?? "2020-2023"),
-      );
-      const hasNewContent = unitsCohorts.includes(NEW_COHORT);
-
-      const results: GetStaticPropsResult<UnitListingPageProps> = {
-        props: {
-          curriculumData: {
-            ...curriculumData,
-            hasNewContent,
-          },
-        },
-      };
-
-      return results;
     },
   });
 };

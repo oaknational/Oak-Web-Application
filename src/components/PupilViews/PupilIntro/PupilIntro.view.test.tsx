@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
@@ -8,22 +7,23 @@ import { userEvent } from "@testing-library/user-event";
 import { PupilViewsIntro } from "./PupilIntro.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import pupilLessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/pupilLessonOverview.fixture";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
-const curriculumData = pupilLessonOverviewFixture();
+const curriculumData = lessonContentFixture({});
 const equipmentAndResources = [{ equipment: "equipment" }];
-const contentGuidance = [
+const contentGuidance: LessonContent["contentGuidance"] = [
   {
-    contentGuidanceLabel: "content guidance",
-    contentGuidanceDescription: "content guidance",
-    contentGuidanceArea: "content guidance area",
+    contentguidanceLabel: "content guidance",
+    contentguidanceDescription: "content guidance",
+    contentguidanceArea: "content guidance area",
   },
 ];
 const supervisionLevel = "supervision level";
@@ -66,7 +66,7 @@ describe("PupilIntro", () => {
   it("displays the equipment card if there is equipment", () => {
     const curriculumDataWithEquipment = {
       ...curriculumData,
-      lessonEquipmentAndResources: equipmentAndResources,
+      equipmentAndResources,
     };
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

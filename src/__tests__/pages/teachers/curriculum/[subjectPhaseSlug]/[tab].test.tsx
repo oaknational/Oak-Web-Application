@@ -7,6 +7,11 @@ import CurriculumInfoPage, {
   parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
+  formatCurriculumUnitsData,
+  createThreadOptions,
+  createYearOptions,
+  createInitialYearFilterSelection,
+  createUnitsListingByYear,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 import {
@@ -18,6 +23,459 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
+
+const unitData = [
+  {
+    connection_prior_unit_description:
+      "Pupils learned about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
+    connection_future_unit_description:
+      "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
+    connection_future_unit_title: "Gene technology",
+    connection_prior_unit_title: "Hormones and human reproduction",
+    domain: null,
+    domain_id: null,
+    examboard: "AQA",
+    examboard_slug: "aqa",
+    planned_number_of_lessons: 6,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks4",
+    lessons: [
+      { slug: "plant-hormones", title: "Plant hormones", _state: "new" },
+      {
+        slug: "auxins-phototropism-and-gravitropism",
+        title: "Auxins, phototropism and gravitropism",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-light-on-the-growth-of-seedlings",
+        title: "The effect of light on the growth of seedlings ",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-gravity-on-the-growth-of-seedlings",
+        title: "The effect of gravity on the growth of seedlings",
+        _state: "new",
+      },
+      {
+        slug: "the-effects-of-light-and-gravity-on-the-growth-of-seedlings-interpreting-and-explaining-the-results",
+        title:
+          "The effects of light and gravity on the growth of seedlings: interpreting and explaining the results",
+        _state: "new",
+      },
+    ],
+    order: 6,
+    slug: "plant-growth-and-development",
+    subject: "Biology",
+    subject_slug: "biology",
+    subject_parent: "Science",
+    subject_parent_slug: "science",
+    tier: "Foundation",
+    tier_slug: "foundation",
+    tags: [],
+    threads: [
+      {
+        title: "BQ02 Biology: How do living things grow and reproduce?",
+        slug: "bq02-biology-how-do-living-things-grow-and-reproduce",
+        order: 2,
+      },
+    ],
+    title: "Plant growth and development",
+    unit_options: [],
+    year: "11",
+  },
+  {
+    connection_prior_unit_description:
+      "In Y4 pupils learnt about their local environment and to recognise that environments can change. Pupils also explored examples of human impact (both positive and negative) on environments. Pupils looked at a variety of food chains to identify producers, predators and prey.",
+    connection_future_unit_description:
+      "Pupils will move on to construct and interpret pyramids of number and biomass from food chains data. Pupils will learn about how plants and animals are adapted to survive and the impact of changes to the environment on biodiversity. The importance of biodiversity and the importance of gene banks. How to sample plant and animal populations to aid our understanding and monitoring of populations. ",
+    connection_future_unit_title: "Biodiversity",
+    connection_prior_unit_title: "More about food chains",
+    domain: null,
+    domain_id: null,
+    examboard: null,
+    examboard_slug: null,
+    planned_number_of_lessons: 9,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks3",
+    lessons: [
+      { slug: "food-chains", title: "Food chains", _state: "published" },
+      {
+        slug: "predator-prey-relationships",
+        title: "Predator-prey relationships",
+        _state: "published",
+      },
+      {
+        slug: "adaptations-of-predators-and-prey",
+        title: "Adaptations of predators and prey",
+        _state: "published",
+      },
+      { slug: "food-webs", title: "Food webs", _state: "published" },
+      {
+        slug: "ecosystems-and-habitats",
+        title: "Ecosystems and habitats",
+        _state: "published",
+      },
+      {
+        slug: "pollination-and-human-food-security",
+        title: "Pollination and human food security",
+        _state: "published",
+      },
+      {
+        slug: "using-chemicals-in-farming",
+        title: "Using chemicals in farming",
+        _state: "published",
+      },
+      {
+        slug: "bioaccumulation",
+        title: "Bioaccumulation",
+        _state: "published",
+      },
+      {
+        slug: "the-importance-of-biodiversity",
+        title: "The importance of biodiversity",
+        _state: "published",
+      },
+    ],
+    order: 6,
+    slug: "ecosystems",
+    subject: "Science",
+    subject_slug: "science",
+    subject_parent: null,
+    subject_parent_slug: null,
+    tier: null,
+    tier_slug: null,
+    tags: [{ id: 5, title: "Biology", category: "Discipline" }],
+    threads: [
+      {
+        title:
+          "BQ03 Biology: How do living things live together in their environments?",
+        slug: "bq03-biology-how-do-living-things-live-together-in-their-environments",
+        order: 3,
+      },
+    ],
+    title: "Ecosystems",
+    unit_options: [],
+    year: "7",
+  },
+  {
+    connection_prior_unit_description:
+      "Pupils learned about some common non-infectious diseases, factors that increase the risk of developing lifestyle diseases and steps we can take to help prevent them, including the impacts of smoking on the human body, and asthma and its risk factors.",
+    connection_future_unit_description:
+      "Pupils will learn about human and plant defences against pathogens, the role of white blood cells in the human immune system, and the use of vaccination to protect against communicable diseases.",
+    connection_future_unit_title:
+      "Defences against pathogens, the human immune system and vaccination",
+    connection_prior_unit_title: "Disease and drugs",
+    domain: null,
+    domain_id: null,
+    examboard: "AQA",
+    examboard_slug: "aqa",
+    planned_number_of_lessons: 14,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks4",
+    lessons: [
+      { slug: "diseases", title: "Diseases", _state: "new" },
+      {
+        slug: "cardiovascular-disease",
+        title: "Cardiovascular disease",
+        _state: "new",
+      },
+      {
+        slug: "risk-factors-for-non-communicable-diseases",
+        title: "Risk factors for non-communicable diseases",
+        _state: "new",
+      },
+      { slug: "cancer", title: "Cancer", _state: "new" },
+      {
+        slug: "bacterial-and-viral-diseases-in-humans-salmonella-and-measles",
+        title: "Bacterial and viral diseases in humans: salmonella and measles",
+        _state: "new",
+      },
+      {
+        slug: "fungal-and-protist-diseases-in-humans",
+        title: "Fungal and protist diseases in humans",
+        _state: "new",
+      },
+      {
+        slug: "sexually-transmitted-infections",
+        title: "Sexually transmitted infections",
+        _state: "new",
+      },
+      {
+        slug: "plant-diseases-tmv-and-rose-black-spot",
+        title: "Plant diseases: TMV and rose black spot",
+        _state: "published",
+      },
+    ],
+    order: 6,
+    slug: "health-and-disease",
+    subject: "Combined science",
+    subject_slug: "combined-science",
+    subject_parent: "Science",
+    subject_parent_slug: "science",
+    tier: null,
+    tier_slug: null,
+    tags: [],
+    threads: [
+      {
+        title: "BQ05 Biology: How do living things stay healthy?",
+        slug: "bq05-biology-how-do-living-things-stay-healthy",
+        order: 5,
+      },
+    ],
+    title: "Health and disease",
+    unit_options: [],
+    year: "10",
+  },
+  {
+    connection_prior_unit_description:
+      "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+    connection_future_unit_description:
+      "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
+    connection_future_unit_title: "Photosynthesis: factors affecting the rate",
+    connection_prior_unit_title: "Transport and exchange surfaces in plants",
+    domain: null,
+    domain_id: null,
+    examboard: "AQA",
+    examboard_slug: "aqa",
+    planned_number_of_lessons: 13,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks4",
+    lessons: [
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: plan",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-practical",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: practical",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-analysis",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: analysis",
+        _state: "new",
+      },
+      {
+        slug: "the-importance-of-maintaining-a-constant-internal-environment",
+        title: "The importance of maintaining a constant internal environment",
+        _state: "new",
+      },
+      {
+        slug: "the-role-of-the-skin-in-controlling-human-body-temperature",
+        title: "The role of the skin in controlling human body temperature",
+        _state: "new",
+      },
+      {
+        slug: "the-role-of-the-nervous-system-in-controlling-human-body-temperature",
+        title:
+          "The role of the nervous system in controlling human body temperature",
+        _state: "new",
+      },
+      {
+        slug: "the-role-of-the-kidneys-in-controlling-water-balance-in-the-human-body",
+        title:
+          "The role of the kidneys in controlling water balance in the human body",
+        _state: "new",
+      },
+      {
+        slug: "the-roles-of-the-nervous-and-endocrine-systems-in-controlling-water-balance",
+        title:
+          "The roles of the nervous and endocrine systems in controlling water balance",
+        _state: "new",
+      },
+    ],
+    order: 7,
+    slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+    subject: "Biology",
+    subject_slug: "biology",
+    subject_parent: "Science",
+    subject_parent_slug: "science",
+    tier: "Higher",
+    tier_slug: "higher",
+    tags: [],
+    threads: [
+      {
+        title:
+          "BQ01 Biology: What are living things and what are they made of?",
+        slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+        order: 1,
+      },
+    ],
+    title:
+      "Coordination and control: maintaining a constant internal environment",
+    unit_options: [],
+    year: "11",
+  },
+  {
+    connection_prior_unit_description:
+      "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+    connection_future_unit_description:
+      "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
+    connection_future_unit_title: "Photosynthesis: factors affecting the rate",
+    connection_prior_unit_title: "Transport and exchange surfaces in plants",
+    domain: null,
+    domain_id: null,
+    examboard: "AQA",
+    examboard_slug: "aqa",
+    planned_number_of_lessons: 13,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks4",
+    lessons: [
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: plan",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-practical",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: practical",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-analysis",
+        title:
+          "The effect of sugar concentration on mass of plant tissue: analysis",
+        _state: "new",
+      },
+      {
+        slug: "the-importance-of-maintaining-a-constant-body-temperature",
+        title: "The importance of maintaining a constant body temperature",
+        _state: "new",
+      },
+      {
+        slug: "the-importance-of-maintaining-a-constant-water-balance-in-the-body",
+        title:
+          "The importance of maintaining a constant water balance in the body",
+        _state: "new",
+      },
+      {
+        slug: "the-role-of-the-skin-in-controlling-human-body-temperature",
+        title: "The role of the skin in controlling human body temperature",
+        _state: "new",
+      },
+      {
+        slug: "the-role-of-the-kidneys-in-controlling-water-balance-in-the-human-body",
+        title:
+          "The role of the kidneys in controlling water balance in the human body",
+        _state: "new",
+      },
+    ],
+    order: 7,
+    slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+    subject: "Biology",
+    subject_slug: "biology",
+    subject_parent: "Science",
+    subject_parent_slug: "science",
+    tier: "Foundation",
+    tier_slug: "foundation",
+    tags: [],
+    threads: [
+      {
+        title:
+          "BQ01 Biology: What are living things and what are they made of?",
+        slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+        order: 1,
+      },
+    ],
+    title:
+      "Coordination and control: maintaining a constant internal environment",
+    unit_options: [],
+    year: "11",
+  },
+  {
+    connection_prior_unit_description:
+      "Pupils learned about aerobic and anaerobic cellular respiration, including the chemical reactants and products of the processes, and practical ways to measure the rate of cellular respiration in living cells.",
+    connection_future_unit_description:
+      "Pupils will learn about ways in which the human body maintains a constant internal environment in response to internal and external change, including changes in temperature and water balance.",
+    connection_future_unit_title:
+      "Coordination and control: maintaining a constant internal environment",
+    connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
+    domain: null,
+    domain_id: null,
+    examboard: "AQA",
+    examboard_slug: "aqa",
+    planned_number_of_lessons: 12,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    keystage_slug: "ks4",
+    lessons: [
+      {
+        slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
+        title:
+          "A model of diffusion through a selectively-permeable cell membrane ",
+        _state: "new",
+      },
+      {
+        slug: "plant-roots-are-adapted-to-absorb-water-and-mineral-ions",
+        title: "Plant roots are adapted to absorb water and mineral ions",
+        _state: "new",
+      },
+      {
+        slug: "transport-systems-in-plants-xylem-and-phloem",
+        title: "Transport systems in plants: xylem and phloem",
+        _state: "new",
+      },
+      {
+        slug: "transport-systems-in-plants-translocation",
+        title: "Transport systems in plants: translocation",
+        _state: "new",
+      },
+      {
+        slug: "transport-systems-in-plants-transpiration",
+        title: "Transport systems in plants: transpiration",
+        _state: "new",
+      },
+      {
+        slug: "measuring-the-rate-of-water-uptake-by-a-plant",
+        title: "Measuring the rate of water uptake by a plant",
+        _state: "new",
+      },
+      {
+        slug: "the-effect-of-light-intensity-on-the-rate-of-water-uptake-by-a-plant",
+        title:
+          "The effect of light intensity on the rate of water uptake by a plant",
+        _state: "new",
+      },
+      {
+        slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-plants",
+        title:
+          "The importance of exchange surfaces and transport systems in plants",
+        _state: "new",
+      },
+    ],
+    order: 7,
+    slug: "transport-and-exchange-surfaces-in-plants",
+    subject: "Combined science",
+    subject_slug: "combined-science",
+    subject_parent: "Science",
+    subject_parent_slug: "science",
+    tier: null,
+    tier_slug: null,
+    tags: [],
+    threads: [
+      {
+        title:
+          "BQ01 Biology: What are living things and what are they made of?",
+        slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+        order: 1,
+      },
+    ],
+    title: "Transport and exchange surfaces in plants",
+    unit_options: [],
+    year: "11",
+  },
+];
 
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -58,6 +516,9 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 
+const curriculumUnitsFormattedData = formatCurriculumUnitsData(
+  curriculumUnitsTabFixture(),
+);
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -99,11 +560,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -119,11 +580,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
@@ -139,11 +600,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
@@ -159,11 +620,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
 
     it("should return expected props", async () => {
+      const unitsTabFixture = curriculumUnitsTabFixture();
+      unitsTabFixture.units.sort((a, b) => a.order - b.order);
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
+      mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
@@ -180,7 +643,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
-          curriculumUnitsTabData: curriculumUnitsTabFixture(),
+          curriculumUnitsFormattedData:
+            formatCurriculumUnitsData(unitsTabFixture),
         },
       });
     });
@@ -190,6 +654,630 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     it("Should return expected data", async () => {
       const paths = await getStaticPaths();
       expect(paths).toEqual({ fallback: "blocking", paths: [] });
+    });
+  });
+
+  describe("createThreadOptions", () => {
+    it("Should create the correct thread options for secondary science", () => {
+      const scienceSecondaryAQAThreadOptions = [
+        {
+          title:
+            "BQ01 Biology: What are living things and what are they made of?",
+          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+          order: 1,
+        },
+        {
+          title: "BQ02 Biology: How do living things grow and reproduce?",
+          slug: "bq02-biology-how-do-living-things-grow-and-reproduce",
+          order: 2,
+        },
+        {
+          title:
+            "BQ03 Biology: How do living things live together in their environments?",
+          slug: "bq03-biology-how-do-living-things-live-together-in-their-environments",
+          order: 3,
+        },
+        {
+          title: "BQ05 Biology: How do living things stay healthy?",
+          slug: "bq05-biology-how-do-living-things-stay-healthy",
+          order: 5,
+        },
+      ];
+      expect(createThreadOptions(unitData)).toEqual(
+        scienceSecondaryAQAThreadOptions,
+      );
+    });
+  });
+
+  describe("createYearOptions", () => {
+    it("Should create the correct year options for secondary science", () => {
+      const scienceSecondaryAQAYearOptions = ["7", "10", "11"];
+      expect(createYearOptions(unitData)).toEqual(
+        scienceSecondaryAQAYearOptions,
+      );
+    });
+  });
+
+  describe("createUnitsListingByYear", () => {
+    it("Should create unitListingByYear", () => {
+      const unitListingByYear = {
+        "10": {
+          childSubjects: [
+            {
+              subject: "Combined science",
+              subject_slug: "combined-science",
+            },
+          ],
+          disciplines: [],
+          domains: [],
+          tiers: [],
+          units: [
+            {
+              connection_future_unit_description:
+                "Pupils will learn about human and plant defences against pathogens, the role of white blood cells in the human immune system, and the use of vaccination to protect against communicable diseases.",
+              connection_future_unit_title:
+                "Defences against pathogens, the human immune system and vaccination",
+              connection_prior_unit_description:
+                "Pupils learned about some common non-infectious diseases, factors that increase the risk of developing lifestyle diseases and steps we can take to help prevent them, including the impacts of smoking on the human body, and asthma and its risk factors.",
+              connection_prior_unit_title: "Disease and drugs",
+              domain: null,
+              domain_id: null,
+              examboard: "AQA",
+              examboard_slug: "aqa",
+              keystage_slug: "ks4",
+              lessons: [
+                {
+                  _state: "new",
+                  slug: "diseases",
+                  title: "Diseases",
+                },
+                {
+                  _state: "new",
+                  slug: "cardiovascular-disease",
+                  title: "Cardiovascular disease",
+                },
+                {
+                  _state: "new",
+                  slug: "risk-factors-for-non-communicable-diseases",
+                  title: "Risk factors for non-communicable diseases",
+                },
+                {
+                  _state: "new",
+                  slug: "cancer",
+                  title: "Cancer",
+                },
+                {
+                  _state: "new",
+                  slug: "bacterial-and-viral-diseases-in-humans-salmonella-and-measles",
+                  title:
+                    "Bacterial and viral diseases in humans: salmonella and measles",
+                },
+                {
+                  _state: "new",
+                  slug: "fungal-and-protist-diseases-in-humans",
+                  title: "Fungal and protist diseases in humans",
+                },
+                {
+                  _state: "new",
+                  slug: "sexually-transmitted-infections",
+                  title: "Sexually transmitted infections",
+                },
+                {
+                  _state: "published",
+                  slug: "plant-diseases-tmv-and-rose-black-spot",
+                  title: "Plant diseases: TMV and rose black spot",
+                },
+              ],
+              order: 6,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 14,
+              slug: "health-and-disease",
+              subject: "Combined science",
+              subject_parent: "Science",
+              subject_parent_slug: "science",
+              subject_slug: "combined-science",
+              tags: [],
+              threads: [
+                {
+                  order: 5,
+                  slug: "bq05-biology-how-do-living-things-stay-healthy",
+                  title: "BQ05 Biology: How do living things stay healthy?",
+                },
+              ],
+              tier: null,
+              tier_slug: null,
+              title: "Health and disease",
+              unit_options: [],
+              year: "10",
+            },
+          ],
+        },
+        "11": {
+          childSubjects: [
+            {
+              subject: "Biology",
+              subject_slug: "biology",
+            },
+            {
+              subject: "Combined science",
+              subject_slug: "combined-science",
+            },
+          ],
+          disciplines: [],
+          domains: [],
+          tiers: [
+            {
+              tier: "Foundation",
+              tier_slug: "foundation",
+            },
+            {
+              tier: "Higher",
+              tier_slug: "higher",
+            },
+          ],
+          units: [
+            {
+              connection_future_unit_description:
+                "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
+              connection_future_unit_title: "Gene technology",
+              connection_prior_unit_description:
+                "Pupils learned about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
+              connection_prior_unit_title: "Hormones and human reproduction",
+              domain: null,
+              domain_id: null,
+              examboard: "AQA",
+              examboard_slug: "aqa",
+              keystage_slug: "ks4",
+              lessons: [
+                {
+                  _state: "new",
+                  slug: "plant-hormones",
+                  title: "Plant hormones",
+                },
+                {
+                  _state: "new",
+                  slug: "auxins-phototropism-and-gravitropism",
+                  title: "Auxins, phototropism and gravitropism",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-light-on-the-growth-of-seedlings",
+                  title: "The effect of light on the growth of seedlings ",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-gravity-on-the-growth-of-seedlings",
+                  title: "The effect of gravity on the growth of seedlings",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effects-of-light-and-gravity-on-the-growth-of-seedlings-interpreting-and-explaining-the-results",
+                  title:
+                    "The effects of light and gravity on the growth of seedlings: interpreting and explaining the results",
+                },
+              ],
+              order: 6,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 6,
+              slug: "plant-growth-and-development",
+              subject: "Biology",
+              subject_parent: "Science",
+              subject_parent_slug: "science",
+              subject_slug: "biology",
+              tags: [],
+              threads: [
+                {
+                  order: 2,
+                  slug: "bq02-biology-how-do-living-things-grow-and-reproduce",
+                  title:
+                    "BQ02 Biology: How do living things grow and reproduce?",
+                },
+              ],
+              tier: "Foundation",
+              tier_slug: "foundation",
+              title: "Plant growth and development",
+              unit_options: [],
+              year: "11",
+            },
+            {
+              connection_future_unit_description:
+                "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
+              connection_future_unit_title:
+                "Photosynthesis: factors affecting the rate",
+              connection_prior_unit_description:
+                "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+              connection_prior_unit_title:
+                "Transport and exchange surfaces in plants",
+              domain: null,
+              domain_id: null,
+              examboard: "AQA",
+              examboard_slug: "aqa",
+              keystage_slug: "ks4",
+              lessons: [
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: plan",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-practical",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: practical",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-analysis",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: analysis",
+                },
+                {
+                  _state: "new",
+                  slug: "the-importance-of-maintaining-a-constant-internal-environment",
+                  title:
+                    "The importance of maintaining a constant internal environment",
+                },
+                {
+                  _state: "new",
+                  slug: "the-role-of-the-skin-in-controlling-human-body-temperature",
+                  title:
+                    "The role of the skin in controlling human body temperature",
+                },
+                {
+                  _state: "new",
+                  slug: "the-role-of-the-nervous-system-in-controlling-human-body-temperature",
+                  title:
+                    "The role of the nervous system in controlling human body temperature",
+                },
+                {
+                  _state: "new",
+                  slug: "the-role-of-the-kidneys-in-controlling-water-balance-in-the-human-body",
+                  title:
+                    "The role of the kidneys in controlling water balance in the human body",
+                },
+                {
+                  _state: "new",
+                  slug: "the-roles-of-the-nervous-and-endocrine-systems-in-controlling-water-balance",
+                  title:
+                    "The roles of the nervous and endocrine systems in controlling water balance",
+                },
+              ],
+              order: 7,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 13,
+              slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+              subject: "Biology",
+              subject_parent: "Science",
+              subject_parent_slug: "science",
+              subject_slug: "biology",
+              tags: [],
+              threads: [
+                {
+                  order: 1,
+                  slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+                  title:
+                    "BQ01 Biology: What are living things and what are they made of?",
+                },
+              ],
+              tier: "Higher",
+              tier_slug: "higher",
+              title:
+                "Coordination and control: maintaining a constant internal environment",
+              unit_options: [],
+              year: "11",
+            },
+            {
+              connection_future_unit_description:
+                "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
+              connection_future_unit_title:
+                "Photosynthesis: factors affecting the rate",
+              connection_prior_unit_description:
+                "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+              connection_prior_unit_title:
+                "Transport and exchange surfaces in plants",
+              domain: null,
+              domain_id: null,
+              examboard: "AQA",
+              examboard_slug: "aqa",
+              keystage_slug: "ks4",
+              lessons: [
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: plan",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-practical",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: practical",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-analysis",
+                  title:
+                    "The effect of sugar concentration on mass of plant tissue: analysis",
+                },
+                {
+                  _state: "new",
+                  slug: "the-importance-of-maintaining-a-constant-body-temperature",
+                  title:
+                    "The importance of maintaining a constant body temperature",
+                },
+                {
+                  _state: "new",
+                  slug: "the-importance-of-maintaining-a-constant-water-balance-in-the-body",
+                  title:
+                    "The importance of maintaining a constant water balance in the body",
+                },
+                {
+                  _state: "new",
+                  slug: "the-role-of-the-skin-in-controlling-human-body-temperature",
+                  title:
+                    "The role of the skin in controlling human body temperature",
+                },
+                {
+                  _state: "new",
+                  slug: "the-role-of-the-kidneys-in-controlling-water-balance-in-the-human-body",
+                  title:
+                    "The role of the kidneys in controlling water balance in the human body",
+                },
+              ],
+              order: 7,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 13,
+              slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+              subject: "Biology",
+              subject_parent: "Science",
+              subject_parent_slug: "science",
+              subject_slug: "biology",
+              tags: [],
+              threads: [
+                {
+                  order: 1,
+                  slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+                  title:
+                    "BQ01 Biology: What are living things and what are they made of?",
+                },
+              ],
+              tier: "Foundation",
+              tier_slug: "foundation",
+              title:
+                "Coordination and control: maintaining a constant internal environment",
+              unit_options: [],
+              year: "11",
+            },
+            {
+              connection_future_unit_description:
+                "Pupils will learn about ways in which the human body maintains a constant internal environment in response to internal and external change, including changes in temperature and water balance.",
+              connection_future_unit_title:
+                "Coordination and control: maintaining a constant internal environment",
+              connection_prior_unit_description:
+                "Pupils learned about aerobic and anaerobic cellular respiration, including the chemical reactants and products of the processes, and practical ways to measure the rate of cellular respiration in living cells.",
+              connection_prior_unit_title:
+                "Aerobic and anaerobic cellular respiration",
+              domain: null,
+              domain_id: null,
+              examboard: "AQA",
+              examboard_slug: "aqa",
+              keystage_slug: "ks4",
+              lessons: [
+                {
+                  _state: "new",
+                  slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
+                  title:
+                    "A model of diffusion through a selectively-permeable cell membrane ",
+                },
+                {
+                  _state: "new",
+                  slug: "plant-roots-are-adapted-to-absorb-water-and-mineral-ions",
+                  title:
+                    "Plant roots are adapted to absorb water and mineral ions",
+                },
+                {
+                  _state: "new",
+                  slug: "transport-systems-in-plants-xylem-and-phloem",
+                  title: "Transport systems in plants: xylem and phloem",
+                },
+                {
+                  _state: "new",
+                  slug: "transport-systems-in-plants-translocation",
+                  title: "Transport systems in plants: translocation",
+                },
+                {
+                  _state: "new",
+                  slug: "transport-systems-in-plants-transpiration",
+                  title: "Transport systems in plants: transpiration",
+                },
+                {
+                  _state: "new",
+                  slug: "measuring-the-rate-of-water-uptake-by-a-plant",
+                  title: "Measuring the rate of water uptake by a plant",
+                },
+                {
+                  _state: "new",
+                  slug: "the-effect-of-light-intensity-on-the-rate-of-water-uptake-by-a-plant",
+                  title:
+                    "The effect of light intensity on the rate of water uptake by a plant",
+                },
+                {
+                  _state: "new",
+                  slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-plants",
+                  title:
+                    "The importance of exchange surfaces and transport systems in plants",
+                },
+              ],
+              order: 7,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 12,
+              slug: "transport-and-exchange-surfaces-in-plants",
+              subject: "Combined science",
+              subject_parent: "Science",
+              subject_parent_slug: "science",
+              subject_slug: "combined-science",
+              tags: [],
+              threads: [
+                {
+                  order: 1,
+                  slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+                  title:
+                    "BQ01 Biology: What are living things and what are they made of?",
+                },
+              ],
+              tier: null,
+              tier_slug: null,
+              title: "Transport and exchange surfaces in plants",
+              unit_options: [],
+              year: "11",
+            },
+          ],
+        },
+        "7": {
+          childSubjects: [],
+          disciplines: [
+            {
+              id: 5,
+              title: "Biology",
+            },
+          ],
+          domains: [],
+          tiers: [],
+          units: [
+            {
+              connection_future_unit_description:
+                "Pupils will move on to construct and interpret pyramids of number and biomass from food chains data. Pupils will learn about how plants and animals are adapted to survive and the impact of changes to the environment on biodiversity. The importance of biodiversity and the importance of gene banks. How to sample plant and animal populations to aid our understanding and monitoring of populations. ",
+              connection_future_unit_title: "Biodiversity",
+              connection_prior_unit_description:
+                "In Y4 pupils learnt about their local environment and to recognise that environments can change. Pupils also explored examples of human impact (both positive and negative) on environments. Pupils looked at a variety of food chains to identify producers, predators and prey.",
+              connection_prior_unit_title: "More about food chains",
+              domain: null,
+              domain_id: null,
+              examboard: null,
+              examboard_slug: null,
+              keystage_slug: "ks3",
+              lessons: [
+                {
+                  _state: "published",
+                  slug: "food-chains",
+                  title: "Food chains",
+                },
+                {
+                  _state: "published",
+                  slug: "predator-prey-relationships",
+                  title: "Predator-prey relationships",
+                },
+                {
+                  _state: "published",
+                  slug: "adaptations-of-predators-and-prey",
+                  title: "Adaptations of predators and prey",
+                },
+                {
+                  _state: "published",
+                  slug: "food-webs",
+                  title: "Food webs",
+                },
+                {
+                  _state: "published",
+                  slug: "ecosystems-and-habitats",
+                  title: "Ecosystems and habitats",
+                },
+                {
+                  _state: "published",
+                  slug: "pollination-and-human-food-security",
+                  title: "Pollination and human food security",
+                },
+                {
+                  _state: "published",
+                  slug: "using-chemicals-in-farming",
+                  title: "Using chemicals in farming",
+                },
+                {
+                  _state: "published",
+                  slug: "bioaccumulation",
+                  title: "Bioaccumulation",
+                },
+                {
+                  _state: "published",
+                  slug: "the-importance-of-biodiversity",
+                  title: "The importance of biodiversity",
+                },
+              ],
+              order: 6,
+              phase: "Secondary",
+              phase_slug: "secondary",
+              planned_number_of_lessons: 9,
+              slug: "ecosystems",
+              subject: "Science",
+              subject_parent: null,
+              subject_parent_slug: null,
+              subject_slug: "science",
+              tags: [
+                {
+                  category: "Discipline",
+                  id: 5,
+                  title: "Biology",
+                },
+              ],
+              threads: [
+                {
+                  order: 3,
+                  slug: "bq03-biology-how-do-living-things-live-together-in-their-environments",
+                  title:
+                    "BQ03 Biology: How do living things live together in their environments?",
+                },
+              ],
+              tier: null,
+              tier_slug: null,
+              title: "Ecosystems",
+              unit_options: [],
+              year: "7",
+            },
+          ],
+        },
+      };
+      expect(createUnitsListingByYear(unitData)).toEqual(unitListingByYear);
+    });
+  });
+
+  describe("createInitialYearFilterSelection", () => {
+    it("Should return default year filter selection", async () => {
+      const initialYearFilterSelection = {
+        "7": {
+          subject: null,
+          discipline: { id: -1, title: "All" },
+          domain: null,
+          tier: null,
+        },
+        "10": {
+          subject: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+          },
+          discipline: { id: -1, title: "All" },
+          domain: null,
+          tier: null,
+        },
+        "11": {
+          subject: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+          },
+          discipline: { id: -1, title: "All" },
+          domain: null,
+          tier: { tier: "Foundation", tier_slug: "foundation" },
+        },
+      };
+      const yearData = createUnitsListingByYear(unitData);
+      expect(createInitialYearFilterSelection(yearData)).toEqual(
+        initialYearFilterSelection,
+      );
     });
   });
 });

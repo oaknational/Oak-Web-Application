@@ -1,4 +1,4 @@
-import unitListingFixture from "../../node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
 import filterLearningTheme from "./filterLearningTheme";
 
@@ -19,17 +19,16 @@ describe("filterLearningTheme", () => {
           nullTitle: "Data Representation",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
-          keyStageTitle: "Key stage 4",
+          keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
-          themeSlug: "computer-science-1",
-          themeTitle: "Computer Science",
           lessonCount: 9,
-          quizCount: null,
           unitStudyOrder: 1,
+          yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          cohort: "2023-2024",
           learningThemes: [
             {
               themeSlug: "computer-science-1",

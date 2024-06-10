@@ -18,6 +18,7 @@ const { starterQuiz } = lessonOverviewFixture();
 const currentPageItems: QuizQuestionListProps = {
   questions: starterQuiz || [],
   imageAttribution: [],
+  isMathJaxLesson: false,
 };
 
 const Template: ComponentStory<typeof Component> = (args) => {

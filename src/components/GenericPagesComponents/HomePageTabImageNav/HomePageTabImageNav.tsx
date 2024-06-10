@@ -32,6 +32,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="teacher-carrying-stuff-1023-oakgrey4"
           label={"Teaching resources"}
           isCurrent={current === "teachers"}
+          aria-current={current === "teachers" ? "page" : undefined}
           showNewIcon={false}
           onClick={() => setCurrent("teachers")}
         />
@@ -40,15 +41,17 @@ const HomePageTabImageNav = ({
           passiveImageSlug="teacher-reading-map-1023-oakgrey4"
           label={"Curriculum plans"}
           isCurrent={current === "curriculum"}
+          aria-current={current === "curriculum" ? "page" : undefined}
           showNewIcon={false}
           onClick={() => setCurrent("curriculum")}
           data-testid="curriculum-plans-button"
         />
         <HomePageTabImageButton
-          activeImageSlug="juggling-teacher-1023-black"
-          passiveImageSlug="juggling-teacher-1023-oakgrey4"
+          activeImageSlug="robot-waving"
+          passiveImageSlug="robot-waving-grey"
           label={"AI Experiments"}
           isCurrent={current === "ai"}
+          aria-current={current === "ai" ? "page" : undefined}
           showNewIcon={true}
           onClick={() => setCurrent("ai")}
         />
@@ -57,6 +60,7 @@ const HomePageTabImageNav = ({
           passiveImageSlug="three-pupils-standing-1023-oakgrey4"
           label={"Pupils"}
           isCurrent={current === "pupils"}
+          aria-current={current === "pupils" ? "page" : undefined}
           showNewIcon={false}
           onClick={() => setCurrent("pupils")}
         />

@@ -5,7 +5,7 @@ import { ResourceFormProps } from "../types/downloadAndShare.types";
 
 import Component, { LessonShareCardGroupProps } from "./LessonShareCardGroup";
 
-import * as resources from "@/node-lib/curriculum-api/fixtures/shareableResources.fixture";
+import * as resources from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 
 const meta: Meta<typeof Component> = {
   component: Component,

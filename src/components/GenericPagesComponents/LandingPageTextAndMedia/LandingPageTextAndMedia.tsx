@@ -32,7 +32,9 @@ const landingPortableTextComponent: PortableTextComponents = {
           $mb="space-between-l"
           $alignItems={"center"}
         >
-          <OakLI $font={["heading-7", "heading-6"]}>{listItemText}</OakLI>
+          <OakLI $color={"black"} $font={["heading-7", "heading-6"]}>
+            {listItemText}
+          </OakLI>
         </OakFlex>
       );
     },

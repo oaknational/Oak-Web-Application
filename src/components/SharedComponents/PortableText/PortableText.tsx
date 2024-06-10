@@ -135,7 +135,6 @@ export const PTAnchorTarget: PortableTextMarkComponent<{
   return (
     <Box as="span" $position="relative">
       <AnchorTarget id={props.value.anchor} />
-
       {props.children}
     </Box>
   );

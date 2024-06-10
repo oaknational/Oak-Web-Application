@@ -23,6 +23,7 @@ const lessonOverviewFixture = (
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],
     lessonEquipmentAndResources: null,
     teacherTips: null,
+    pathways: [],
     keyLearningPoints: [
       {
         keyLearningPoint:
@@ -76,14 +77,27 @@ const lessonOverviewFixture = (
     copyrightContent: null,
     contentGuidance: [],
     supervisionLevel: null,
-    worksheetUrl: null,
-    presentationUrl: null,
+    presentationUrl:
+      "https://docs.google.com/presentation/d/18ZFU8gdczMK9U3XxmC5mN9GLN7yigCQvbSX1E0SR0WU/embed?start=false&amp;loop=false&amp",
+    worksheetUrl:
+      "https://docs.google.com/presentation/d/1gjXZk0ylpz--95u4cIpTN6UPfEnWoIk6xH6pW23_mqY/embed?start=false&amp;loop=false&amp",
+    isWorksheetLandscape: true,
+    hasCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
-    transcriptSentences: null,
+    transcriptSentences: ["this is a sentence", "this is another sentence"],
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
-    downloads: [],
+    downloads: [
+      { exists: true, type: "intro-quiz-answers" },
+      { exists: true, type: "intro-quiz-questions" },
+      { exists: true, type: "exit-quiz-answers" },
+      { exists: true, type: "exit-quiz-questions" },
+      { exists: true, type: "worksheet-pdf" },
+      { exists: true, type: "worksheet-pptx" },
+      { exists: true, type: "presentation" },
+    ],
+    updatedAt: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };

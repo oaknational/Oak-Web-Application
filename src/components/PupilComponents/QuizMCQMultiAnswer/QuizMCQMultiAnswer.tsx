@@ -17,13 +17,13 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import {
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import {
+  isImage,
+  isText,
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 export type QuizMCQMultiAnswerProps = {
   onChange: () => void;
@@ -36,7 +36,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const questionUid = currentQuestionData?.questionUid;
   const numCorrectAnswers = currentQuestionData?.answers?.[
     "multiple-choice"
-  ]?.filter((a) => a.answer_is_correct === true).length;
+  ]?.filter((a) => a.answerIsCorrect === true).length;
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
@@ -57,20 +57,16 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
       </OakSpan>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {answers.map((answer, index) => {
-          const filterByText = answer.answer.filter(
-            (a) => a.type === "text",
-          ) as StemTextObject[];
-          const filterByImage = answer.answer.filter(
-            (a) => a.type === "image",
-          ) as StemImageObject[];
+          const filterByText = answer.answer.filter(isText);
+          const filterByImage = answer.answer.filter(isImage);
           const answerText = filterByText.length > 0 && filterByText[0];
           const answerImageData =
-            filterByImage.length > 0 && filterByImage[0]?.image_object;
+            filterByImage.length > 0 && filterByImage[0]?.imageObject;
 
           const answerImage =
-            answerImageData && answerImageData.public_id ? (
+            answerImageData && answerImageData.publicId ? (
               <OakCloudinaryImage
-                cloudinaryId={answerImageData.public_id}
+                cloudinaryId={answerImageData.publicId}
                 alt=""
                 width={answerImageData.width}
                 height={answerImageData.height}

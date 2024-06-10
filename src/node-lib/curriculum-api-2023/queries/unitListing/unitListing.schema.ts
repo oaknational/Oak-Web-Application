@@ -1,59 +1,32 @@
 import { z } from "zod";
+import {
+  examboardSlugs,
+  examboards,
+  keystageDescriptions,
+  keystageSlugs,
+  subjectSlugs,
+  subjects,
+  tierSlugs,
+} from "@oaknational/oak-curriculum-schema";
 
-const learningThemesSchema = z.object({
-  themeTitle: z.string().nullable(),
-  themeSlug: z.string().nullable(),
-});
+import { tierSchema } from "./tiers/tiers.schema";
+import { learningThemes } from "./threads/threads.schema";
+import { unitSchema } from "./units/units.schema";
 
-const unitSchema = z.array(
-  z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      nullTitle: z.string(),
-      programmeSlug: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      yearTitle: z.string().nullable(),
-      learningThemes: z.array(learningThemesSchema).nullable(),
-      cohort: z.string().nullable(),
-    }),
-  ),
-);
-const tierSchema = z.array(
-  z.object({
-    tierSlug: z.string(),
-    tierTitle: z.string(),
-    tierProgrammeSlug: z.string(),
-    unitCount: z.number().nullable().optional(),
-    lessonCount: z.number().nullable().optional(),
-  }),
-);
-
-const unitListingSchema = z.object({
+const unitListingData = z.object({
   programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  examBoardSlug: z.string().nullable(),
-  examBoardTitle: z.string().nullable(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  totalUnitCount: z.number(),
+  keyStageSlug: keystageSlugs,
+  keyStageTitle: keystageDescriptions,
+  examBoardSlug: examboardSlugs.nullable(),
+  examBoardTitle: examboards.nullable(),
+  lessonCount: z.number().nullish(),
+  subjectSlug: subjectSlugs,
+  subjectTitle: subjects,
+  tierSlug: tierSlugs.nullable(),
   tiers: tierSchema,
   units: unitSchema,
-  learningThemes: z.array(learningThemesSchema).nullable(),
+  hasNewContent: z.boolean(),
+  learningThemes: learningThemes,
 });
 
-export type unitListingPageData = z.infer<typeof unitListingSchema>;
-
-export default unitListingSchema;
+export type UnitListingData = z.infer<typeof unitListingData>;

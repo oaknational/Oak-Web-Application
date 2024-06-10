@@ -1,10 +1,16 @@
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
   OakHeading,
   OakFlex,
+  OakSecondaryButton,
+  OakP,
+  isValidIconName,
+  OakBox,
+  OakSearchFilterCheckBox,
+  OakSearchFilterCheckBoxProps,
 } from "@oaknational/oak-components";
 
 import { SearchProps } from "./search.view.types";
@@ -13,7 +19,6 @@ import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
@@ -167,14 +172,22 @@ const Search: FC<SearchProps> = (props) => {
     });
   };
 
+  const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
+
   return (
     <OakFlex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
-          <OakGridArea $colSpan={[12, 12, 7]} $mt={"space-between-m"}>
+          <OakGridArea
+            $colSpan={[12, 12, 7]}
+            $colStart={1}
+            $rowStart={1}
+            $mt={"space-between-m"}
+            $mb={"space-between-ssx"}
+          >
             <OakFlex
               $flexDirection={["column"]}
-              $mb={["space-between-l", "space-between-xxl"]}
+              $mb={["space-between-m", "space-between-m2"]}
             >
               <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
                 Search
@@ -188,11 +201,112 @@ const Search: FC<SearchProps> = (props) => {
                 }}
                 analyticsSearchSource={"search page search box"}
               />
+              <OakBox $mt={"space-between-m2"}>
+                <OakFlex
+                  $gap={"space-between-xs"}
+                  $flexWrap={"wrap"}
+                  $position={"absolute"}
+                  $zIndex={"modal-close-button"}
+                >
+                  {searchFilters.contentTypeFilters
+                    .map((contentTypeFilter) => {
+                      const icon = isValidIconName(
+                        `teacher-${contentTypeFilter.slug}`,
+                      )
+                        ? (`teacher-${contentTypeFilter.slug}` as OakSearchFilterCheckBoxProps["icon"])
+                        : undefined;
+
+                      return (
+                        <OakSearchFilterCheckBox
+                          name={"typeFilters"}
+                          displayValue={contentTypeFilter.title}
+                          key={`search-filters-type-${contentTypeFilter.slug}`}
+                          aria-label={`${contentTypeFilter.title} filter`}
+                          id={`search-filters-type-${contentTypeFilter.slug}`}
+                          icon={icon}
+                          value={"Content type filter"}
+                          keepIconColor={true}
+                          {...contentTypeFilter}
+                          onChange={() => {
+                            contentTypeFilter.onChange();
+                            searchRefined(
+                              "Content type filter",
+                              contentTypeFilter.title,
+                            );
+                          }}
+                        />
+                      );
+                    })
+                    .reverse()}
+                </OakFlex>
+                <OakFlex $mb="space-between-m2">
+                  <MobileFilters
+                    $mt={0}
+                    label="Filters"
+                    labelOpened="Close"
+                    iconOpened="cross"
+                    iconClosed="mini-menu"
+                    iconBackground="black"
+                    $alignSelf={"flex-end"}
+                  >
+                    <OakBox $mt={["space-between-m", null, null]}>
+                      <SearchFilters
+                        {...searchFilters}
+                        searchRefined={searchRefined}
+                        isMobileFilter
+                      />
+                    </OakBox>
+                  </MobileFilters>
+                </OakFlex>
+              </OakBox>
             </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
+            <OakBox $height={"space-between-l"}>
+              <SearchActiveFilters searchFilters={searchFilters} />
+            </OakBox>
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 9]} $pr={"inner-padding-m"}>
-            <div role="status">
+          <OakGridArea
+            $colSpan={[12, 3]}
+            $colStart={[1, 10]}
+            $rowStart={2}
+            $pr={"inner-padding-m"}
+          >
+            <OakFlex
+              $flexDirection="column"
+              $mb="space-between-m2"
+              $display={["none", "flex"]}
+            >
+              <OakFlex
+                $mb="space-between-s"
+                $flexDirection="column"
+                $gap="space-between-ssx"
+              >
+                <OakHeading tag="h2" $font="heading-6">
+                  Filters
+                </OakHeading>
+                <OakSecondaryButton
+                  element="a"
+                  href="#search-results"
+                  onFocus={() => setFilterButtonFocussed(true)}
+                  onBlur={() => setFilterButtonFocussed(false)}
+                  style={
+                    filterButtonFocussed
+                      ? {}
+                      : { position: "absolute", top: "-600px" }
+                  }
+                >
+                  Skip to results
+                </OakSecondaryButton>
+              </OakFlex>
+              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
+            </OakFlex>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 9]}
+            $colStart={1}
+            $rowStart={2}
+            $pr={"inner-padding-m"}
+          >
+            <div role="status" aria-live="polite">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
@@ -200,23 +314,14 @@ const Search: FC<SearchProps> = (props) => {
               {shouldShowNoResultsMessage && (
                 <NoSearchResults searchTerm={query.term} />
               )}
+              {shouldShowResults && (
+                <OakP $mb={"space-between-xxl"}>
+                  Showing {results.length} result
+                  {results.length === 1 ? "" : "s"}
+                </OakP>
+              )}
             </div>
-            <OakFlex $mb="space-between-m2">
-              <MobileFilters
-                $mt={0}
-                label="Filters"
-                labelOpened="Close"
-                iconOpened="cross"
-                iconClosed="mini-menu"
-                iconBackground="black"
-                $alignSelf={"flex-start"}
-              >
-                <SearchFilters
-                  {...searchFilters}
-                  searchRefined={searchRefined}
-                />
-              </MobileFilters>
-            </OakFlex>
+
             {shouldShowResults && (
               <SearchResults
                 hits={results}
@@ -235,11 +340,6 @@ const Search: FC<SearchProps> = (props) => {
                 }
               />
             )}
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $pr={"inner-padding-m"}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </Flex>
           </OakGridArea>
         </OakGrid>
       </MaxWidth>

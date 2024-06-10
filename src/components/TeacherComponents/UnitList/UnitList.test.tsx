@@ -1,8 +1,8 @@
-import { act } from "react-dom/test-utils";
+import { act } from "@testing-library/react";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
-import optionalityProps from "@/node-lib/curriculum-api/fixtures/optionality.fixture";
+import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
+import optionalityProps from "@/node-lib/curriculum-api-2023/fixtures/optionality.fixture";
 import UnitList from "@/components/TeacherComponents/UnitList/UnitList";
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
 

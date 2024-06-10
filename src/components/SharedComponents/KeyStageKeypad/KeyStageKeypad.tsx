@@ -10,17 +10,18 @@ import {
 
 import Box from "../Box";
 
-import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import { TeachersHomePageData } from "@/node-lib/curriculum-api-2023";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
 export type KeyStageKeypadProps = {
+  title: string;
   keyStages: KeypadItem[];
   years?: KeypadItem[];
 };
@@ -43,6 +44,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       keyStageSlug={slug}
       page={"subject-index"}
       $isSelected={isCurrent}
+      aria-current={isCurrent ? "page" : undefined}
       aria-label={title}
       role="button"
       onClick={() => {
@@ -60,7 +62,9 @@ const KeypadLink: FC<KeypadItem> = (props) => {
   );
 };
 
-const KeyPadGrid = (props: KeyStageKeypadProps & { ksButtonSpan: 2 | 3 }) => {
+const KeyPadGrid = (
+  props: Omit<KeyStageKeypadProps, "title"> & { ksButtonSpan: 2 | 3 },
+) => {
   return (
     <OakGrid
       $mb={props.years ? "space-between-l" : "space-between-m"}
@@ -86,7 +90,11 @@ const KeyPadGrid = (props: KeyStageKeypadProps & { ksButtonSpan: 2 | 3 }) => {
  * ## Usage
  * Used on teachers home page and menu.
  */
-const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
+const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
+  title,
+  keyStages,
+  years,
+}) => {
   const ksButtonSpanDesktop = keyStages.length > 4 ? 2 : 3;
 
   keyStages.sort((a, b) =>
@@ -101,7 +109,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
       <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
-        Select key stage
+        {title}
       </OakP>
       <Box $display={["none", "block"]}>
         <KeyPadGrid

@@ -35,6 +35,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -51,6 +53,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -68,6 +72,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -85,6 +91,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -102,6 +110,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -119,6 +129,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -136,6 +148,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -153,6 +167,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -170,6 +186,8 @@ describe("LessonOverviewDetails component", () => {
         equipmentAndResources={null}
         contentGuidance={null}
         supervisionLevel={undefined}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
 
@@ -192,6 +210,8 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={null}
         supervisionLevel={undefined}
         isLegacyLicense={true}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
     const preAlbCopyright = getByText(
@@ -214,10 +234,13 @@ describe("LessonOverviewDetails component", () => {
         contentGuidance={null}
         supervisionLevel={undefined}
         isLegacyLicense={false}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
       />,
     );
+
     const preAlbCopyright = getByText(
-      "This content is © Oak National Academy Limited (2023), licensed on",
+      `This content is © Oak National Academy Limited (2024), licensed on`,
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();

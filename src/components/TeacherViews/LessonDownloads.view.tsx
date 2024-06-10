@@ -6,7 +6,6 @@ import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck";
@@ -35,7 +34,10 @@ import {
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
-import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import {
+  LessonDownloadsPageData,
+  NextLesson,
+} from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -48,7 +50,7 @@ type BaseLessonDownload = {
   lessonTitle: string;
   lessonSlug: string;
   lessonCohort?: string | null;
-  downloads: LessonDownloadsData["downloads"];
+  downloads: LessonDownloadsPageData["downloads"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
@@ -56,11 +58,13 @@ type BaseLessonDownload = {
 
 type CanonicalLesson = BaseLessonDownload & {
   pathways: LessonPathway[];
+  updatedAt: string;
   nextLessons?: NextLesson[];
 };
 
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
+  updatedAt: string;
 } & LessonPathway;
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];
@@ -88,6 +92,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     expired,
     isSpecialist,
     copyrightContent,
+    updatedAt,
   } = lesson;
 
   const commonPathway =
@@ -283,21 +288,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>
-
-        <Box $display={isDownloadSuccessful ? "block" : "none"}>
-          <DownloadConfirmation
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            unitSlug={unitSlug}
-            unitTitle={unitTitle}
-            programmeSlug={programmeSlug}
-            data-testid="downloads-confirmation"
-            isCanonical={props.isCanonical}
-            nextLessons={lesson.nextLessons}
-            onwardContentSelected={onwardContentSelected}
-            isSpecialist={isSpecialist}
-          />
-        </Box>
         {!isDownloadSuccessful && (
           <ResourcePageLayout
             page={"download"}
@@ -320,6 +310,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             triggerForm={form.trigger}
             apiError={apiError}
             hideSelectAll={Boolean(expired)}
+            updatedAt={updatedAt}
             cardGroup={
               !showNoResources && (
                 <DownloadCardGroup
@@ -350,6 +341,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             }
           />
         )}
+        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+          <DownloadConfirmation
+            lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
+            onwardContentSelected={onwardContentSelected}
+            isSpecialist={isSpecialist}
+          />
+        </Box>
       </MaxWidth>
     </Box>
   );

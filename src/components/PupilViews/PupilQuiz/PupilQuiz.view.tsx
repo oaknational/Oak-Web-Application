@@ -18,7 +18,6 @@ import {
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { pickFeedBackComponent } from "@/components/PupilComponents/QuizUtils/pickFeedback";
-import type { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   isMatchAnswer,
   isMultiAnswerMCQ,
@@ -28,6 +27,7 @@ import {
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -207,7 +207,7 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   );
 };
 
-function pickTooltip(answers: AnswersSchema) {
+function pickTooltip(answers: QuizQuestionAnswers) {
   switch (true) {
     case isOrderAnswer(answers):
       return "You need to order to move on!";

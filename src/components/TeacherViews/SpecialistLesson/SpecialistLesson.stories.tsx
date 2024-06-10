@@ -17,6 +17,7 @@ export const SpecialistLessonPage: Story = {
   args: {
     lesson: {
       isLegacy: true,
+      pathways: [],
       lessonSlug: "a-birthday-sensory-story",
       lessonTitle: "A birthday sensory story",
       programmeSlug: "changes-and-transtions-123a",
@@ -50,6 +51,7 @@ export const SpecialistLessonPage: Story = {
       exitQuiz: null,
       expired: false,
       downloads: [],
+      updatedAt: "2022-02-22T12:00:00Z",
     },
   },
 };

@@ -1,24 +1,21 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import {
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 
-const lessonOverview = lessonOverviewFixture();
-const starterQuiz = lessonOverview.starterQuiz;
+const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
 const mcqStemImage = starterQuiz ? starterQuiz[1] : null;
 
 describe("QuestionListItem", () => {
   it("renders the primary question text", () => {
     if (!mcqText) throw new Error("mcqText is null");
+    if (!mcqText.questionStem) throw new Error("mcqText.questionStem is null");
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -31,22 +28,22 @@ describe("QuestionListItem", () => {
   });
 
   it("renders question stem images", () => {
-    if (!mcqStemImage) throw new Error("mcqText is null");
+    invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
       </OakThemeProvider>,
     );
-    const image = getByRole("img");
+    const image = getByRole("presentation");
 
     expect(image).toBeInTheDocument();
   });
 
   it("renders text after an image", () => {
-    if (!mcqStemImage) throw new Error("mcqText is null");
+    invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: (StemImageObject | StemTextObject)[] = [
+    const questionStem: ImageOrTextItem[] = [
       ...mcqStemImage.questionStem,
       { text: "This is some text", type: "text" },
     ];

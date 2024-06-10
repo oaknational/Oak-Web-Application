@@ -63,7 +63,7 @@ type PostPortableTextProps = {
   portableText: PortableTextJSON;
 };
 
-const PostPortableText: FC<PostPortableTextProps> = (props) => {
+export const PostPortableText: FC<PostPortableTextProps> = (props) => {
   const { portableText } = props;
 
   const footnotes = extractFootnotes(portableText);

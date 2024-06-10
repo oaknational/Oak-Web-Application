@@ -29,6 +29,7 @@ const TabularNav = ({
             {...link}
             size="small"
             variant="minimal"
+            aria-current={link.isCurrent ? "page" : undefined}
             key={`TabularNav-${link.page}-${i}`}
             $mr={[24, 24]}
           />

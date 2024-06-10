@@ -41,7 +41,7 @@ describe("QuizQuestionsMCAnswers", () => {
     );
 
     const correctAnswer: MCAnswer | undefined = mcqTextAnswers.find(
-      (a) => a.answer_is_correct,
+      (a) => a.answerIsCorrect,
     );
 
     if (!correctAnswer) throw new Error("correctAnswer is null");
@@ -60,6 +60,6 @@ describe("QuizQuestionsMCAnswers", () => {
       <QuizQuestionsMCAnswers answers={mcqImageAnswers} questionNumber={0} />,
     );
 
-    expect(getAllByRole("img").length).toBe(3);
+    expect(getAllByRole("presentation").length).toBe(3);
   });
 });

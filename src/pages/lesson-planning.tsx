@@ -5,6 +5,8 @@ import {
   OakGridArea,
   OakTypography,
   OakHeading,
+  OakBox,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -34,6 +36,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { GridOrderedList } from "@/components/SharedComponents/Typography/OL.deprecated";
+import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -182,6 +185,11 @@ const generateCtaProps = (cta: CTA) => {
 };
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+  const videoCaptions =
+    pageData.learnMoreBlock1.mediaType === "video"
+      ? pageData.learnMoreBlock1.video.captions
+      : null;
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
@@ -372,48 +380,68 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $maxWidth={["100%", 812, "100%"]}
             $pv={24}
             $ph={[16, 24]}
-            $flexDirection={["column", "column", "row"]}
+            $flexDirection={"column"}
             $mt={[56, 80]}
             $mb={32}
             $background="lemon50"
           >
-            <BrushBorders hideOnMobileH color={"lemon50"} />
-            <Box $minWidth={["50%"]}>
-              <Box $display={["block", "block", "none"]}>
-                <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
-                  {pageData.learnMoreBlock1.title}
-                </CardTitle>
+            <OakFlex $flexDirection={["column", "column", "row"]}>
+              <BrushBorders hideOnMobileH color={"lemon50"} />
+              <Box $minWidth={["50%"]}>
+                <Box $display={["block", "block", "none"]}>
+                  <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
+                    {pageData.learnMoreBlock1.title}
+                  </CardTitle>
+                </Box>
+                <Flex
+                  $justifyContent={"center"}
+                  $pb={[24, 24, 0]}
+                  $pr={[0, 0, 72]}
+                  $minWidth={["50%"]}
+                  $flexDirection={["column", "column", "row"]}
+                >
+                  {pageData.learnMoreBlock1.mediaType == "video" && (
+                    <CMSVideo
+                      video={pageData.learnMoreBlock1.video}
+                      location="marketing"
+                      hideCaptions={true}
+                    />
+                  )}
+                  {videoCaptions && videoCaptions?.length > 0 && (
+                    <OakBox
+                      $mt={"space-between-xs"}
+                      $display={["block", "block", "none"]}
+                    >
+                      <TranscriptToggle transcriptSentences={videoCaptions} />
+                    </OakBox>
+                  )}
+                </Flex>
               </Box>
               <Flex
                 $justifyContent={"center"}
-                $pb={[24, 24, 0]}
-                $pr={[0, 0, 72]}
+                $flexDirection={"column"}
                 $minWidth={["50%"]}
               >
-                {pageData.learnMoreBlock1.mediaType == "video" && (
-                  <CMSVideo
-                    video={pageData.learnMoreBlock1.video}
-                    location="marketing"
+                <Box $display={["none", "none", "block"]}>
+                  <CardTitle $font={"heading-4"} tag="h2">
+                    {pageData.learnMoreBlock1.title}
+                  </CardTitle>
+                </Box>
+                <OakTypography $font={["body-2", "body-1"]}>
+                  <PortableTextWithDefaults
+                    value={pageData.learnMoreBlock1.bodyPortableText}
                   />
-                )}
+                </OakTypography>
               </Flex>
-            </Box>
-            <Flex
-              $justifyContent={"center"}
-              $flexDirection={"column"}
-              $minWidth={["50%"]}
-            >
-              <Box $display={["none", "none", "block"]}>
-                <CardTitle $font={"heading-4"} tag="h2">
-                  {pageData.learnMoreBlock1.title}
-                </CardTitle>
-              </Box>
-              <OakTypography $font={["body-2", "body-1"]}>
-                <PortableTextWithDefaults
-                  value={pageData.learnMoreBlock1.bodyPortableText}
-                />
-              </OakTypography>
-            </Flex>
+            </OakFlex>
+            {videoCaptions && (
+              <OakBox
+                $mt={"space-between-xs"}
+                $display={["none", "none", "block"]}
+              >
+                <TranscriptToggle transcriptSentences={videoCaptions} />
+              </OakBox>
+            )}
           </Card>
           <Card
             $pv={[24, 24]}

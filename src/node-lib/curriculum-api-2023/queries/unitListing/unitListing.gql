@@ -1,21 +1,15 @@
-query unitListing($programmeSlug: String!, $isLegacy: Boolean!) {
-  programme: published_mv_unit_listing_page_5_0_0(
-    where: {
-      programmeSlug: { _eq: $programmeSlug }
-      isLegacy: { _eq: $isLegacy }
-    }
+query unitListing($programmeSlug: String!) {
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: { programme_slug: { _eq: $programmeSlug } }
   ) {
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    totalUnitCount: unitCount
-    tiers
-    units
-    examBoardTitle
-    examBoardSlug
-    learningThemes
+    is_legacy
+    lesson_data
+    lesson_slug
+    null_unitvariant
+    programme_fields
+    programme_slug
+    supplementary_data
+    unit_data
+    unit_slug
   }
 }

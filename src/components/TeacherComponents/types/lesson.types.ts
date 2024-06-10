@@ -70,6 +70,7 @@ export type LessonOverviewInPathway = LessonBase & {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
+  updatedAt: string;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (
@@ -84,7 +85,7 @@ export const lessonIsSpecialist = (
   return (
     typeof u === "object" &&
     u !== null &&
-    Object.hasOwn(u, "isSpecialist") &&
+    Object.prototype.hasOwnProperty.call(u, "isSpecialist") &&
     (u as { isSpecialist: boolean }).isSpecialist === true
   );
 };

@@ -1,6 +1,6 @@
 import { LessonDownloadsPageData } from "../queries/lessonDownloads/lessonDownloads.schema";
 
-const lessonDownloadsFixture2023 = (
+const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsPageData>,
 ): LessonDownloadsPageData => {
   return {
@@ -46,8 +46,9 @@ const lessonDownloadsFixture2023 = (
         ext: "PDF",
       },
     ],
+    updatedAt: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };
 
-export default lessonDownloadsFixture2023;
+export default lessonDownloadsFixtures;

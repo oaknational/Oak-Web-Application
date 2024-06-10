@@ -1,37 +1,42 @@
 import { ParsedUrlQuery } from "querystring";
 
-import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 import {
   getFilterForQuery,
   getFiltersFromQuery,
+  getHighlightFromAllFields,
   getLessonObject,
   getSortedSearchFiltersSelected,
   getUnitObject,
   isFilterItem,
 } from "./search.helpers";
-import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
+import { hitsFixture } from "./search-api/2023/searchResults.fixture";
 
 import { LEGACY_COHORT } from "@/config/cohort";
 
 const lessonHit = lessonSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson"),
-);
-const unitHit = unitSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "unit"),
+  hitsFixture.find((hit) => hit._source.type === "lesson"),
 );
 
-const unitHitTier = unitSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find(
-    (hit) => hit._source.slug === "macbeth-narrative-writing-core",
-  ),
+const unitHit = unitSearchHitSchema.parse(
+  hitsFixture.find((hit) => hit._source.type === "unit"),
 );
+
+if (!lessonHit) {
+  throw new Error("Cannot find a lesson result");
+}
+if (!unitHit) {
+  throw new Error("Cannot find a unit result");
+}
+
+const unitHitTier = unitSearchHitSchema.parse(
+  hitsFixture.find((hit) => hit._source.slug === "macbeth-a-tragic-hero"),
+);
+
 const lessonHitTier = lessonSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find(
-    (hit) =>
-      hit._source.slug === "to-analyse-the-opening-of-the-play-macbeth-c9h3cd",
-  ),
+  hitsFixture.find((hit) => hit._source.slug === "macbeth-the-tragic-hero"),
 );
 
 const allKeyStages = searchPageFixture().keyStages;
@@ -43,13 +48,13 @@ describe("search helpers", () => {
       allKeyStages,
     });
 
-    expect(lessonListObject?.keyStageSlug).toEqual("ks2");
+    expect(lessonListObject?.keyStageSlug).toEqual("ks4");
   });
 
   test("getUnitObject maps to new key stage slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
 
-    expect(unitListObject?.keyStageSlug).toEqual("ks2");
+    expect(unitListObject?.keyStageSlug).toEqual("ks4");
   });
 
   test("getProgrammeSlug returns a correct slug", () => {
@@ -70,16 +75,16 @@ describe("search helpers", () => {
       allKeyStages,
     });
     expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "english-primary-ks2",
+      "english-secondary-ks4-eduqas",
     );
     expect(unitListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
-      "english-primary-ks2-l",
+      "english-secondary-ks4-eduqas-l",
     );
     expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "drama-primary-ks2",
+      "english-secondary-ks4-eduqas",
     );
     expect(lessonListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
-      "drama-primary-ks2-l",
+      "english-secondary-ks4-eduqas-l",
     );
   });
   test("getProgrammeSlug returns a correct slug with tier", () => {
@@ -89,10 +94,10 @@ describe("search helpers", () => {
       allKeyStages,
     });
     expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "english-secondary-ks4-core",
+      "english-secondary-ks4-eduqas",
     );
     expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "english-secondary-ks4-higher",
+      "english-secondary-ks4-eduqas",
     );
   });
   test("legacy suffix is only added when legacy flag is true ", () => {
@@ -112,10 +117,10 @@ describe("search helpers", () => {
     });
 
     expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "english-primary-ks2-l",
+      "english-secondary-ks4-eduqas-l",
     );
     expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
-      "drama-primary-ks2-l",
+      "english-secondary-ks4-eduqas-l",
     );
   });
   test("isFilterItem returns true if slug is a filter item", () => {
@@ -162,5 +167,40 @@ describe("search helpers", () => {
 
     const result = getSortedSearchFiltersSelected(query);
     expect(result).toEqual(["english-grammar", "ks2", "lesson", "wjec"]);
+  });
+  test("getHighlightFromAllFields returns highlight when there is pupilLessonOutcome", () => {
+    const rawHighlight = { pupilLessonOutcome: ["<b>Outcome</b>"] };
+    const highlight = getHighlightFromAllFields(rawHighlight, "Outcome");
+    expect(highlight).toBe(rawHighlight);
+  });
+  test("getHighlightFromAllFields transforms highlight from all fields with a single value", () => {
+    const rawHighlight = { all_fields: ["<b>Outcome</b>"] };
+    const highlight = getHighlightFromAllFields(rawHighlight, "Outcome");
+    expect(highlight).toEqual({ pupilLessonOutcome: ["<b>Outcome</b>"] });
+  });
+  test("getHighlightFromAllFields transforms highlight from all fields with multiple values", () => {
+    const rawHighlight = {
+      all_fields: [
+        "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+        "<b>Macbeth</b>: Lady <b>Macbeth</b> as a machiavellian villain",
+        "The relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>",
+      ],
+    };
+    const highlight = getHighlightFromAllFields(
+      rawHighlight,
+      "I can describe the relationship between Macbeth and Lady Macbeth.",
+    );
+    expect(highlight).toEqual({
+      pupilLessonOutcome: [
+        "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
+      ],
+    });
+  });
+  test("getHighlightFromAllFields returns undefined if no match found in all fields or pupilLessonOutcome", () => {
+    const rawHighlight = {
+      all_fields: ["not a match", "<b>not a match</b>"],
+    };
+    const highlight = getHighlightFromAllFields(rawHighlight, "a match");
+    expect(highlight).toBeUndefined();
   });
 });

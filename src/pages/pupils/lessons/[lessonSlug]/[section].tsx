@@ -1,14 +1,6 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   PupilExperienceViewProps,
@@ -20,6 +12,7 @@ import {
   isLessonReviewSection,
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -42,24 +35,15 @@ type PupilCanonicalPageURLParams = {
   section: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<PupilCanonicalPageURLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilCanonicalPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
   PupilExperienceViewProps,
   PupilCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "pupils-lesson-overview-legacy-canonical::getStaticProps",
+    page: "pupils-lesson-experience-canonical::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
@@ -74,42 +58,42 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const curriculumData =
-        await curriculumApi2023.pupilLessonOverviewCanonical({
-          lessonSlug,
-        });
+      const res = await curriculumApi2023.pupilLessonQuery({
+        lessonSlug,
+      });
 
-      if (!curriculumData) {
+      if (!res) {
         return {
           notFound: true,
         };
       }
 
+      const { browseData, content } = res;
+
       // 404 if the lesson does not contain the given section
       if (
         isLessonReviewSection(section) &&
-        !pickAvailableSectionsForLesson(curriculumData).includes(section)
+        !pickAvailableSectionsForLesson(content).includes(section)
       ) {
         return {
           notFound: true,
         };
       }
 
-      const backUrl = curriculumData.isLegacy
-        ? `${resolveOakHref({
-            page: "classroom",
-          })}/units/${curriculumData.unitSlug}`
-        : null;
+      const backUrl = resolveOakHref({
+        page: "pupil-year-index",
+      });
 
       const { transcriptSentences, hasWorksheet } =
-        await requestLessonResources({ curriculumData });
+        await requestLessonResources({ lessonContent: content });
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
-          curriculumData: {
-            ...curriculumData,
+          lessonContent: {
+            ...content,
             transcriptSentences: transcriptSentences ?? [],
           },
+          browseData,
           hasWorksheet,
           backUrl,
           initialSection: section,

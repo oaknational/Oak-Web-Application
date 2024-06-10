@@ -1,7 +1,7 @@
 import SearchPage from "@/pages/teachers/search";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
-import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
+import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 const providers = {
   theme: {},
@@ -10,10 +10,14 @@ const providers = {
   analytics: {},
   cookieConsent: {},
 };
-const keyStages = searchPageFixture().keyStages;
-const subjects = searchPageFixture().subjects;
-const contentTypes = searchPageFixture().contentTypes;
-const examBoards = searchPageFixture().examBoards;
+const fixture = searchPageFixture();
+if (!fixture) {
+  throw new Error("Cannot find search page fixture");
+}
+const keyStages = fixture.keyStages;
+const subjects = fixture.subjects;
+const contentTypes = fixture.contentTypes;
+const examBoards = fixture.examBoards;
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
@@ -47,7 +51,7 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[6]).toHaveAttribute(
       "aria-label",
       "AQA filter",
     );
@@ -59,9 +63,9 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[6]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
       "aria-label",
-      "KS1 filter",
+      "Key stage 1 filter",
     );
   });
   test("renders correct subject filters", () => {
@@ -84,12 +88,12 @@ describe("pages/teachers/search.tsx", () => {
     );
     expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
       "aria-label",
-      "Lessons filter",
+      "Units filter",
     );
 
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
       "aria-label",
-      "Units filter",
+      "Lessons filter",
     );
   });
 });

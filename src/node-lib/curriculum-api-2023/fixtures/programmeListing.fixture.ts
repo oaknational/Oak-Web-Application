@@ -15,7 +15,7 @@ export const programmeListingFixture = (
         subjectTitle: "Maths",
         tierSlug: "foundation",
         tierTitle: "Foundation",
-        tierDisplayOrder: "1",
+        tierDisplayOrder: 1,
         examBoardSlug: null,
         examBoardTitle: null,
         examBoardDisplayOrder: null,
@@ -25,7 +25,7 @@ export const programmeListingFixture = (
         subjectTitle: "Maths",
         tierSlug: "higher",
         tierTitle: "Higher",
-        tierDisplayOrder: "3",
+        tierDisplayOrder: 3,
         examBoardSlug: null,
         examBoardTitle: null,
         examBoardDisplayOrder: null,
@@ -62,6 +62,42 @@ export const generatedLegacyProgrammeData = {
       examBoardDisplayOrder: null,
     },
   ],
+};
+
+export const examBoardProgrammeListingFixture = (
+  partial?: Partial<ProgrammeListingPageData>,
+): ProgrammeListingPageData => {
+  return {
+    keyStageSlug: "ks3",
+    keyStageTitle: "Key stage 3",
+    subjectSlug: "maths",
+    subjectTitle: "Maths",
+    legacy: false,
+    programmes: [
+      {
+        programmeSlug: "history-secondary-ks4-aqa",
+        subjectTitle: "History",
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardSlug: "aqa",
+        examBoardTitle: "AQA",
+        examBoardDisplayOrder: 1,
+      },
+      {
+        programmeSlug: "history-secondary-ks4-edexcel",
+        subjectTitle: "History",
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardSlug: "edexcel",
+        examBoardTitle: "Edexcel",
+        examBoardDisplayOrder: 2,
+      },
+    ],
+
+    ...partial,
+  };
 };
 
 export default programmeListingFixture;

@@ -1,7 +1,4 @@
-import {
-  getStaticPaths,
-  getStaticProps,
-} from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section]";
+import { getStaticProps } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
 jest.mock(
@@ -14,18 +11,8 @@ jest.mock(
 );
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
-  describe("getStaticPaths", () => {
-    it("Should not generate pages at build time", async () => {
-      const res = await getStaticPaths();
-      expect(res).toEqual({
-        fallback: "blocking",
-        paths: [],
-      });
-    });
-  });
-
   describe("getStaticProps", () => {
-    it("Should call API:pupilLessonOverview", async () => {
+    it("Should call API:pupilLessonQuery", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "ks123",
@@ -35,9 +22,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
 
-      expect(
-        curriculumApi2023.default.pupilLessonOverview,
-      ).toHaveBeenCalledWith({
+      expect(curriculumApi2023.default.pupilLessonQuery).toHaveBeenCalledWith({
         programmeSlug: "ks123",
         unitSlug: "unitSlug",
         lessonSlug: "lessonSlug",

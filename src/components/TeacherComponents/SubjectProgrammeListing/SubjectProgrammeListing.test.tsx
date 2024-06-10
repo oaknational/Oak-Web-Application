@@ -4,10 +4,11 @@ import userEvent from "@testing-library/user-event";
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
-import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
+import programmeListingFixture, {
+  examBoardProgrammeListingFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 
-const curriculumData = tieredProgrammeListingFixture();
+const curriculumData = programmeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
@@ -70,12 +71,8 @@ describe("SubjectProgrammeListing", () => {
       <SubjectProgrammeListing onClick={onClick} {...curriculumData} />,
     );
 
-    expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-      "Higher",
-    );
-    expect(getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
-      "Foundation",
-    );
+    expect(getAllByRole("paragraph")[1]?.textContent).toBe("Higher");
+    expect(getAllByRole("paragraph")[0]?.textContent).toBe("Foundation");
   });
 
   test("each card items will link have a link to a different query ", () => {
@@ -107,7 +104,7 @@ describe("SubjectProgrammeListing", () => {
       examBoardTitle: null,
       programmeSlug: "maths-secondary-ks4-higher-l",
       subjectTitle: "Maths",
-      tierDisplayOrder: "3",
+      tierDisplayOrder: 3,
       tierSlug: "higher",
       tierTitle: "Higher",
     });

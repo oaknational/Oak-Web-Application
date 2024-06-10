@@ -3,7 +3,7 @@ import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
-import type { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
@@ -124,15 +124,17 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           $height={"100%"}
         >
           <MathJaxWrap>
-            <QuizQuestionStem
-              questionStem={questionStem}
-              index={currentQuestionIndex}
-              takeFullHeight={
-                currentQuestionData?.questionType === "explanatory-text"
-              }
-            />
+            {questionStem && (
+              <QuizQuestionStem
+                questionStem={questionStem}
+                index={currentQuestionIndex}
+                takeFullHeight={
+                  currentQuestionData?.questionType === "explanatory-text"
+                }
+              />
+            )}
+            {answerRender}
           </MathJaxWrap>
-          {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
       </OakBox>

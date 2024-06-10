@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
 
-import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 
 const downloads = [
   {
@@ -18,6 +18,7 @@ const downloads = [
     downloads: [],
     hasDownloadableResources: true,
     expired: true,
+    updatedAt: "2023-04-01",
   },
   {
     programmeSlug: "programme-slug-1",
@@ -32,6 +33,7 @@ const downloads = [
     downloads: [],
     hasDownloadableResources: true,
     expired: true,
+    updatedAt: "2023-04-01",
   },
 ];
 
