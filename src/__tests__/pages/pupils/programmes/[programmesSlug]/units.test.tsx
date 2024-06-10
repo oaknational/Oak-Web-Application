@@ -64,14 +64,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       it("Should call API:pupilUnitLisitngQuery", async () => {
         await getStaticProps({
           params: {
-            programmeSlug: "ks123",
+            programmeSlug: "biology-secondary-year-10-foundation-aqa",
           },
         });
 
         expect(
           curriculumApi2023.default.pupilUnitListingQuery,
         ).toHaveBeenCalledWith({
-          baseSlug: "ks123",
+          baseSlug: "biology-secondary-year-10",
         });
       });
     });

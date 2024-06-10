@@ -275,7 +275,7 @@ describe("PupilViewsUnitListing", () => {
       programmeSlug: "maths-secondary-year-10-aqa-core",
     });
     const legacyData = unitBrowseDataFixture({
-      programmeSlug: "maths-secondary-year-10-aqa-core-l",
+      programmeSlug: "maths-secondary-year-10-l",
       isLegacy: true,
     });
 
@@ -297,9 +297,7 @@ describe("PupilViewsUnitListing", () => {
     }
 
     expect(result.units).toHaveLength(1);
-    expect(result.units[0][0].programmeSlug).toBe(
-      "maths-secondary-year-10-aqa-core-l",
-    );
+    expect(result.units[0][0].programmeSlug).toBe("maths-secondary-year-10-l");
   });
 
   it("should create props for secondary section of units correcly (show new)", () => {

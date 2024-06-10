@@ -87,7 +87,9 @@ export const getStaticProps: GetStaticProps<
       const baseSlug = extractBaseSlug(programmeSlug);
 
       if (!baseSlug) {
-        throw new Error("baseSlug cannot be determined");
+        throw new Error(
+          `baseSlug cannot be determined from programmeSlug: ${programmeSlug}`,
+        );
       }
 
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
