@@ -8,6 +8,7 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
+import { extractBaseSlug } from "@/pages-helpers/pupil";
 
 type UnitListingPageProps = {
   curriculumData: UnitListingBrowseData;
@@ -83,9 +84,15 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
+      const baseSlug = extractBaseSlug(programmeSlug);
+
+      if (!baseSlug) {
+        throw new Error("baseSlug cannot be determined");
+      }
+
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
         // This is gets us the base_slug
-        baseSlug: programmeSlug.replace(/(\d+)(.*?)$/, "$1"),
+        baseSlug,
       });
 
       curriculumData = curriculumData.filter(
