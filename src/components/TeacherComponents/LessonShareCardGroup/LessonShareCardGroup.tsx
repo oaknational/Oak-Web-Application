@@ -97,6 +97,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
       </OakFlex>
       <ButtonAsLink
         label="Preview as a pupil"
+        aria-label="Share lesson with pupils"
         icon="external"
         $iconPosition="trailing"
         variant="minimal"
