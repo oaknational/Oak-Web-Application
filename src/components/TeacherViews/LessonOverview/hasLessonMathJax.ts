@@ -34,6 +34,7 @@ const hasQuizMathJax = (
       const answerCheck = Object.entries(question.answers ?? {}).some(
         ([type]) => {
           const findMatch = (answer: StemObject[]) => {
+            if (!answer) return false;
             return answer.some(
               (a) => a.type === "text" && containsMathJax(a.text),
             );
@@ -47,7 +48,7 @@ const hasQuizMathJax = (
 
             case "match": {
               return question.answers?.match?.some((ans) =>
-                findMatch(ans.match_option),
+                findMatch(ans.matchOption),
               );
             }
             case "order":
@@ -82,6 +83,7 @@ export const hasLessonMathJax = (
   }
 
   if (
+    lessonPage.contentGuidance &&
     lessonPage.contentGuidance?.some((cg) =>
       containsMathJax(cg.contentGuidanceDescription),
     )

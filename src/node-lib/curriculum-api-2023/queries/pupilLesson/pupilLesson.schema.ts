@@ -42,6 +42,19 @@ export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   state: true,
+  video_duration: true,
+  has_worksheet_google_drive_downloadable_version: true,
+  slide_deck_asset_id: true,
+  has_slide_deck_asset_object: true,
+  worksheet_asset_id: true,
+  has_worksheet_asset_object: true,
+  worksheet_answers_asset_id: true,
+  has_worksheet_answers_asset_object: true,
+  supplementary_asset_id: true,
+  has_supplementary_asset_object: true,
+  supplementary_asset_object_url: true,
+  worksheet_asset_object_url: true,
+  slide_deck_asset_object_url: true,
 });
 
 export type LessonContent = Omit<
