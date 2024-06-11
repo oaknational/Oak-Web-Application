@@ -1,3 +1,10 @@
+## [1.454.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.1...v1.454.2) (2024-06-11)
+
+
+### Reverts
+
+* Revert "[ENG-735] Update Next.js and Netlify runtime (#2377)" ([4c988d9](https://github.com/oaknational/Oak-Web-Application/commit/4c988d954567fcd1232ec66c6c2344b034dfebbf)), closes [#2377](https://github.com/oaknational/Oak-Web-Application/issues/2377)
+
 ## [1.454.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.0...v1.454.1) (2024-06-11)
 
 # [1.454.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.6...v1.454.0) (2024-06-10)
