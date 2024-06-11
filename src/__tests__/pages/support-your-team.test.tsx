@@ -96,7 +96,7 @@ describe("pages/support-your-team.tsx", () => {
           "Support for Schools - Lesson Planning and Curriculum | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Our thousands of free curriculum resources help teachers in your school reduce lesson planning workload, build confidence in curriculum design, manage cover lessons and work for absent pupils. Find out more.",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
       });
     });
   });

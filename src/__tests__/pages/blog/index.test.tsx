@@ -144,7 +144,7 @@ describe("pages/blog/index.tsx", () => {
           ogDescription:
             "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         });
       });
     });

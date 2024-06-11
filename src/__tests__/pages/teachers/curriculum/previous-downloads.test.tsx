@@ -11,7 +11,7 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn().mockReturnValue({
     query: { subject: "" },
     asPath: "",
-    pathname: "/",
+    pathname: "",
   }),
 }));
 
@@ -106,7 +106,7 @@ describe("CurriculumPreviousDownloadsPage", () => {
     (useRouter as jest.Mock).mockReturnValue({
       query: { keystage: "ks4" },
       asPath: "/some-path",
-      pathname: "/",
+      pathname: "",
     });
     const { getByTestId } = renderComponent();
     await waitFor(async () => {

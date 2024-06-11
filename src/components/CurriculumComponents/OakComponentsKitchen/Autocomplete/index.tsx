@@ -48,6 +48,7 @@ const Autocomplete = (props: AutocompleteProps) => {
       listBoxRef,
       popoverRef,
       label: props.inputProps.label,
+      children: props.children,
     },
     state,
   );

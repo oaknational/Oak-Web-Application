@@ -37,7 +37,7 @@ describe("pages/teachers/search.tsx", () => {
       description: "Search for Free Teaching Resources",
       ogTitle: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
       ogDescription: "Search for Free Teaching Resources",
-      ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+      ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
       ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
       canonical: "NEXT_PUBLIC_SEO_APP_URL",
       robots: "index,follow",

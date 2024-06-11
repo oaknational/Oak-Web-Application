@@ -205,8 +205,8 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
      * @TODO we decide which var is required, etc, and set defaults and validations
      */
     if (shouldBePresent && !isPresent) {
-      console.error(`- - - WARNING (getServerConfig): No config value found for required env var:
-      - - - ${envName}`);
+      console.error(`- - - WARNING no config value found for required env var:
+- - - ${envName}`);
     }
     if ("allowedValues" in envVarConfig && envValue) {
       // Explicitly typing allowedValues are currently the only instance

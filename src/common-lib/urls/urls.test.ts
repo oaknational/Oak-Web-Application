@@ -1,6 +1,5 @@
 import { isExternalHref, resolveOakHref, ResolveOakHrefProps } from "./urls";
 
-// Lovely tests.
 describe("urls.ts", () => {
   describe("isExternalHref()", () => {
     test.each([

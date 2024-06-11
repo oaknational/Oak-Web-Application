@@ -192,7 +192,7 @@ describe("pages/teachers/lessons", () => {
           "Lesson: Adverbial complex sentences | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "View lesson content and choose resources to download or share",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -214,7 +214,7 @@ describe("pages/teachers/lessons", () => {
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
             "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           robots: "index,follow",
           title:
             "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
@@ -237,7 +237,7 @@ describe("pages/teachers/lessons", () => {
             "Lesson: Adverbial complex sentences | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
           robots: "index,follow",
         }),
@@ -258,7 +258,7 @@ describe("pages/teachers/lessons", () => {
             "Lesson: Adverbial complex sentences | Higher | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           ogImage:
             "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",

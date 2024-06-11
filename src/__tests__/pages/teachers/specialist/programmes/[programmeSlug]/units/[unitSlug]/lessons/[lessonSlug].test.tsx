@@ -100,7 +100,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
         ogTitle:
           "Lesson: Composition: Following a Recipe | APPLYING LEARNING Communication and language | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Overview of lesson",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
