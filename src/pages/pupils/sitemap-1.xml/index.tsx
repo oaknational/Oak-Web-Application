@@ -6,7 +6,7 @@ import { buildAllUrlFields } from "@/pages-helpers/pupil/sitemap-pages/sitemap-p
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return getServerSideSitemap(
     context,
-    await buildAllUrlFields({ firstHalf: true }),
+    await buildAllUrlFields({ firstHalf: false }),
   );
 };
 

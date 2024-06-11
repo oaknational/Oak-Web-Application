@@ -134,6 +134,7 @@ const curriculumApi2023 = {
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
   pupilSubjectListingQuery: pupilSubjectListingQuery(sdk),
   pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
+  pupilsSitemap: pupilsSitemap(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
@@ -155,7 +156,6 @@ const curriculumApi2023 = {
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
   teachersSitemap: teachersSitemap(sdk),
-  pupilsSitemap: pupilsSitemap(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
