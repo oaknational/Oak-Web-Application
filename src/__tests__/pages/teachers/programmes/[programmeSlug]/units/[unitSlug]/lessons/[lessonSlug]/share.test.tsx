@@ -335,7 +335,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
           "Lesson Share: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
         robots: "index,follow",

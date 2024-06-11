@@ -92,7 +92,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           "Free KS4 Computing teaching resources | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -118,7 +118,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           "Free KS4 Computing teaching resources | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });

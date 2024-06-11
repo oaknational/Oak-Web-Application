@@ -8,12 +8,12 @@
 import React, { ElementType, ReactElement, ReactNode } from "react";
 import {
   render,
-  renderHook,
+  RenderOptions,
+  RenderHookOptions,
+  RenderHookResult,
   queries,
-  type RenderOptions,
-  type RenderHookOptions,
-  type RenderHookResult,
-  type Queries,
+  Queries,
+  renderHook,
 } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
@@ -107,10 +107,9 @@ const renderWithProviders =
     return render(ui, { wrapper: MockedProviders, ...renderOptions });
   };
 
-export const renderHookWithProviders = (
-  providers: Partial<ProviderPartialProps> = allProviders,
-) => {
-  return <
+export const renderHookWithProviders =
+  (providers: Partial<ProviderPartialProps> = allProviders) =>
+  <
     Result,
     Props,
     Q extends Queries = typeof queries,
@@ -124,13 +123,7 @@ export const renderHookWithProviders = (
     >,
   ): RenderHookResult<Result, Props> => {
     const MockedProviders = getMockedProviders(providers);
-    return renderHook(hook, {
-      wrapper: MockedProviders,
-      ...renderHookOptions,
-      // `hydrate is boolean | undefined in the type, but false | undefined in the assignment, setting to false.
-      hydrate: undefined,
-    });
+    return renderHook(hook, { wrapper: MockedProviders, ...renderHookOptions });
   };
-};
 
 export default renderWithProviders;

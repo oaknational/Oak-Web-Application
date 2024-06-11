@@ -138,7 +138,7 @@ describe("pages/about/who-we-are.tsx", () => {
         description: "We're doing the things that need to get done.",
         ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We're doing the things that need to get done.",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
       });
     });
   });

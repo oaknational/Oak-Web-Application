@@ -1,8 +1,4 @@
-import { Context, type Config } from "@netlify/edge-functions";
-
-function logRequestComplete() {
-  console.log("--- Request completed ---");
-}
+import type { Context } from "https://edge.netlify.com";
 
 /**
  * Given a request at the Netlify edge, check if the subdomain matches the pattern
@@ -20,8 +16,8 @@ async function redirectNetlifySubdomains(
   request: Request,
   context: Context,
 ): Promise<Response> {
-  let subdomain: string;
-  let redirected: string | false;
+  let subdomain;
+  let redirected;
 
   console.log(`Request URL: ${request?.url}`);
 
@@ -31,25 +27,21 @@ async function redirectNetlifySubdomains(
     );
     if (Array.isArray(subdomainMatches)) {
       subdomain = subdomainMatches[1];
-    } else {
-      throw new Error(`Subdomain matching failed for domain: ${request.url}`);
     }
     // Determine if the request is coming from the proxying Cloudflare worker.
     redirected = request.headers.get("x-cloudflare-redirect") || false;
 
-    console.log(`Subdomain identified: ${subdomain}`);
-    console.log(`Redirected from Cloudflare: ${redirected}`);
+    console.log(
+      `Subdomain identified: ${subdomain}\nRedirected from Cloudflare: ${redirected}`,
+    );
   } catch (err) {
-    console.error("Error: subdomain matching failed.");
+    console.error("Subdomain matching failed.");
     console.error(err, request.url);
-    logRequestComplete();
-    process.exit(1);
   }
 
   // Netlify makes some requests internally for optimisation functions,
   // skip the redirect for these.
   const allowListPathStarts = [
-    "/500",
     "/_ipx",
     "/_next",
     "/.netlify",
@@ -67,19 +59,13 @@ async function redirectNetlifySubdomains(
       `https://${subdomain}.netlify.thenational.academy/`,
     ).href;
     console.log("Redirected to Cloudflare - ", redirectTargetUrl);
-    logRequestComplete();
 
     return Response.redirect(redirectTargetUrl);
   } else {
-    console.log("Request allowed through");
+    console.log(`Request allowed through`);
     const res = await context.next();
-    logRequestComplete();
     return res;
   }
 }
 
 export default redirectNetlifySubdomains;
-
-export const config: Config = {
-  path: "/*",
-};

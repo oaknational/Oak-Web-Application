@@ -27,8 +27,7 @@ const getGraphqlEndpoint = (opts: {
 }): string => {
   const subdomain = opts.useCDN ? `apicdn` : `api`;
 
-  const sanityUrl = `https://${opts.projectId}.${subdomain}.sanity.io/v1/graphql/${opts.dataset}/${opts.datasetTag}`;
-  return sanityUrl;
+  return `https://${opts.projectId}.${subdomain}.sanity.io/v1/graphql/${opts.dataset}/${opts.datasetTag}`;
 };
 
 const graphqlAPIUrl = getGraphqlEndpoint(sanityConfig);

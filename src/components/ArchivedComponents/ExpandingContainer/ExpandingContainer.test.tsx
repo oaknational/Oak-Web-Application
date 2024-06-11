@@ -312,7 +312,7 @@ describe("comonents/ExpandingContainer", () => {
 
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
     expect(resourceContainerExpanded).toHaveBeenCalledWith({
-      pageName: "Homepage",
+      pageName: null,
       containerTitle: "Video",
       analyticsUseCase: null,
     });
