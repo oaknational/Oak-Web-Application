@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
-import { MathJax } from "better-react-mathjax";
 import {
   OakBox,
   OakDraggableFeedback,
@@ -16,6 +15,7 @@ import { getStemTextData } from "../QuizUtils/stemUtils";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 const StyledUL = styled(OakUL)`
   list-style: none;
@@ -56,15 +56,14 @@ export const QuizMatchAnswer = () => {
   const matchItems: { id: string; label: JSX.Element }[] = [];
   const choiceItems: { id: string; label: JSX.Element }[] = [];
 
-  Object.keys(answers).map((label, index) => {
-    const item = <MathJax key={index}>{label}</MathJax>;
+  Object.entries(answers).forEach(([key, value], index) => {
     matchItems.push({
       id: index.toString(),
-      label: item,
+      label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
     });
     choiceItems.push({
       id: index.toString(),
-      label: <MathJax key={index}>{answers[label]}</MathJax>,
+      label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
     });
   });
 
@@ -128,9 +127,7 @@ export const QuizMatchAnswer = () => {
   return (
     <OakBox>
       <OakQuizMatch
-        // @ts-expect-error Temporary while testing PR, will update component if this works
         initialOptions={choiceItems}
-        // @ts-expect-error Temporary while testing PR, will update component if this works
         initialSlots={matchItems}
         onChange={handleChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
