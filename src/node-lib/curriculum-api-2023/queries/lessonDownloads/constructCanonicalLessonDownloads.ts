@@ -3,10 +3,10 @@ import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema"
 import { lessonPathwaySchema } from "../../shared.schema";
 
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
-import { LessonDownloadsPageData } from "./lessonDownloads.schema";
+import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
 const constructCanonicalLessonDownloads = (
-  downloads: LessonDownloadsPageData["downloads"],
+  downloads: LessonDownloadsListSchema,
   lessonSlug: string,
   browseData: SyntheticUnitvariantLessons[],
   isLegacy: boolean,

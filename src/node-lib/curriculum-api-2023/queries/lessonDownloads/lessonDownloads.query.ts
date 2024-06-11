@@ -1,4 +1,4 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import {
   InputMaybe,
@@ -93,11 +93,15 @@ const lessonDownloadsQuery =
 
     const downloads = constructDownloadsArray(downloadsData);
 
+    const parsedBrowseData = browse_data.map((bd) =>
+      syntheticUnitvariantLessonsSchema.parse(bd),
+    );
+
     if (canonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
         downloads,
         lessonSlug,
-        browse_data as SyntheticUnitvariantLessons[],
+        parsedBrowseData,
         is_legacy,
       );
       return lessonDownloadsCanonicalSchema.parse(
@@ -107,7 +111,7 @@ const lessonDownloadsQuery =
       const lessonDownloads = constructLessonDownloads(
         downloads,
         lessonSlug,
-        browse_data as SyntheticUnitvariantLessons[],
+        parsedBrowseData,
         expired,
       );
 

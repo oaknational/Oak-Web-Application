@@ -1,7 +1,4 @@
-import {
-  LessonDownloadsListSchema,
-  LessonDownloadsPageData,
-} from "./lessonDownloads.schema";
+import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
 export const constructDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -12,7 +9,7 @@ export const constructDownloadsArray = (content: {
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
   isLegacy: boolean;
-}): LessonDownloadsPageData["downloads"] => {
+}): LessonDownloadsListSchema => {
   const downloads: LessonDownloadsListSchema = [
     {
       exists: content.hasSlideDeckAssetObject,
