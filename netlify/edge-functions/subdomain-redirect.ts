@@ -1,4 +1,4 @@
-import { type Config } from "@netlify/edge-functions";
+import { Context, type Config } from "@netlify/edge-functions";
 
 function logRequestComplete() {
   console.log("--- Request completed ---");
@@ -16,7 +16,10 @@ function logRequestComplete() {
  *
  * Note: this function is interpreted in a deno environment.
  */
-async function redirectNetlifySubdomains(request: Request): Promise<Response> {
+async function redirectNetlifySubdomains(
+  request: Request,
+  context: Context,
+): Promise<Response> {
   let subdomain: string;
   let redirected: string | false;
 
@@ -69,9 +72,9 @@ async function redirectNetlifySubdomains(request: Request): Promise<Response> {
     return Response.redirect(redirectTargetUrl);
   } else {
     console.log("Request allowed through");
+    const res = await context.next();
     logRequestComplete();
-    // @ts-expect-error - suggested change by netlify team.
-    return undefined;
+    return res;
   }
 }
 
