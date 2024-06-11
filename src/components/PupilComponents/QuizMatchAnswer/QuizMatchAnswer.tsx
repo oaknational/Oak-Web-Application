@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
+import { MathJax } from "better-react-mathjax";
 import {
   OakBox,
   OakDraggableFeedback,
@@ -51,14 +52,22 @@ export const QuizMatchAnswer = () => {
       return [match.text, choice.text];
     }),
   );
-  const matchItems = Object.keys(answers).map((label, index) => ({
-    id: index.toString(),
-    label,
-  }));
-  const choiceItems = Object.values(answers).map((label, index) => ({
-    id: index.toString(),
-    label,
-  }));
+
+  const matchItems: { id: string; label: JSX.Element }[] = [];
+  const choiceItems: { id: string; label: JSX.Element }[] = [];
+
+  Object.keys(answers).map((label, index) => {
+    const item = <MathJax key={index}>{label}</MathJax>;
+    matchItems.push({
+      id: index.toString(),
+      label: item,
+    });
+    choiceItems.push({
+      id: index.toString(),
+      label: <MathJax key={index}>{answers[label]}</MathJax>,
+    });
+  });
+
   const [currentMatches, setCurrentMatches] = useState<{
     [matchId: string]: string;
   }>({});
@@ -119,7 +128,9 @@ export const QuizMatchAnswer = () => {
   return (
     <OakBox>
       <OakQuizMatch
+        // @ts-expect-error Temporary while testing PR, will update component if this works
         initialOptions={choiceItems}
+        // @ts-expect-error Temporary while testing PR, will update component if this works
         initialSlots={matchItems}
         onChange={handleChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
