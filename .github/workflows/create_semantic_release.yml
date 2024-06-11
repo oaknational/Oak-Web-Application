@@ -17,7 +17,7 @@ on:
     # The loop could happen because we use credentials from the machine
     # user so that a commit to the protected `main` branch is possible
     # (default workflow credentials can't trigger further workflows via
-    # events, to avoid this exact situation)
+    # events, to avoid this exact situation).
     paths-ignore:
       - "CHANGE_LOG.md"
       - "sonar-project.properties"
