@@ -20,8 +20,7 @@ export const getAvailableProgrammeFactor = ({
             tierSlug: programme.programmeFields.tierSlug,
             tierDisplayOrder: programme.programmeFields.tierDisplayOrder,
             tierDescription: programme.programmeFields.tierDescription,
-            isLegacy:
-              programme.programmeFields.legacy === "true" ? true : false,
+            isLegacy: programme.programmeFields.legacy === "true",
           };
         case factorPrefix === "examboard" &&
           !!programme.programmeFields.examboard:
@@ -30,8 +29,7 @@ export const getAvailableProgrammeFactor = ({
             examboardSlug: programme.programmeFields.examboardSlug,
             examboardDisplayOrder:
               programme.programmeFields.examboardDisplayOrder,
-            isLegacy:
-              programme.programmeFields.legacy === "true" ? true : false,
+            isLegacy: programme.programmeFields.legacy === "true",
           };
         default:
           return;

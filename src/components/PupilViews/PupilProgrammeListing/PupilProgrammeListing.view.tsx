@@ -56,7 +56,7 @@ export const PupilViewsProgrammeListing = ({
       return (
         allExamboards[examboard]?.find(
           (examboard: ExamboardData) => !examboard.isLegacy,
-        ) || mappedExamboard[0]
+        ) ?? mappedExamboard[0]
       );
     })
     .filter((examboard): examboard is ExamboardData => examboard !== undefined);
@@ -81,7 +81,7 @@ export const PupilViewsProgrammeListing = ({
       const mappedTier = allTiers[tierLabel];
       if (!Array.isArray(mappedTier) || mappedTier.length < 1) return;
       return (
-        allTiers[tierLabel]?.find((tier: TierData) => !tier.isLegacy) ||
+        allTiers[tierLabel]?.find((tier: TierData) => !tier.isLegacy) ??
         mappedTier[0]
       );
     })
@@ -147,7 +147,7 @@ export const PupilViewsProgrammeListing = ({
           (examboards.length <= 1 && tiers.length >= 1):
           return (
             <BrowseTierSelector
-              tiers={tiers as TierData[]}
+              tiers={tiers}
               baseSlug={baseSlug}
               examboardSlug={
                 chosenExamboard ? chosenExamboard.examboardSlug : undefined

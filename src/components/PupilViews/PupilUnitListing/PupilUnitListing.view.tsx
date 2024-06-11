@@ -132,7 +132,7 @@ export function getSecondUnitSectionProps({
   unitsByProgramme,
 }: GetSecondUnitSectionPropsArgs): UnitSectionProps {
   // determine if the desired programme is a legacy programme
-  const isLegacy = programmeSlug.slice(-2) === "-l";
+  const isLegacy = programmeSlug.endsWith("-l");
   const props: Partial<UnitSectionProps> = {};
   if (isLegacy) {
     //check for new programmes that could be displayed
