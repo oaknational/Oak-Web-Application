@@ -167,7 +167,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       // Lesson resources to download
       const lessonResourcesToDownload = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToDownload.length).toEqual(2);
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
+        exact: false,
+      });
 
       expect(exitQuizQuestions).toBeInTheDocument();
       expect(exitQuizQuestions).toHaveAttribute("name", "resources");
@@ -221,8 +223,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       expect(selectAllCheckbox).toBeChecked();
 
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
-      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
+        exact: false,
+      });
+      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers", {
+        exact: false,
+      });
 
       expect(exitQuizQuestions).toBeChecked();
       expect(exitQuizAnswers).toBeChecked();
@@ -235,8 +241,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       const user = userEvent.setup();
       await user.click(selectAllCheckbox);
 
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
-      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
+        exact: false,
+      });
+      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers", {
+        exact: false,
+      });
       expect(exitQuizQuestions).not.toBeChecked();
       expect(exitQuizAnswers).not.toBeChecked();
     });

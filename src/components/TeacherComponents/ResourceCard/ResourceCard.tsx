@@ -146,6 +146,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     id,
     name,
     label,
+    subtitle,
     onBlur,
     hasError = false,
     useRadio = false,
@@ -176,7 +177,9 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
           onChange={onChange}
           variant={"withoutLabel"}
           slim={true}
-          ariaLabel={label}
+          ariaLabel={`${label} ${
+            subtitle === "PPTX" ? "powerpoint" : subtitle
+          }`}
           onBlur={onBlur}
           hasError={hasError}
         >

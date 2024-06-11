@@ -1,3 +1,31 @@
+# [1.455.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.2...v1.455.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* only add described by if error exists ([4d011bb](https://github.com/oaknational/Oak-Web-Application/commit/4d011bb45088aa1d651b9d1894dfaea9896f2303))
+
+
+### Features
+
+* improve aria form error messaging ([79003c0](https://github.com/oaknational/Oak-Web-Application/commit/79003c0bd2531c3603d235a9e82a5d8e601ee1cd))
+
+## [1.454.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.1...v1.454.2) (2024-06-11)
+
+
+### Reverts
+
+* Revert "[ENG-735] Update Next.js and Netlify runtime (#2377)" ([4c988d9](https://github.com/oaknational/Oak-Web-Application/commit/4c988d954567fcd1232ec66c6c2344b034dfebbf)), closes [#2377](https://github.com/oaknational/Oak-Web-Application/issues/2377)
+
+## [1.454.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.0...v1.454.1) (2024-06-11)
+
+# [1.454.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.6...v1.454.0) (2024-06-10)
+
+
+### Features
+
+* include resource type in aria label for resource cards ([9571bde](https://github.com/oaknational/Oak-Web-Application/commit/9571bde85e7e490d6ca81e742efbaf79f7a6124b))
+
 ## [1.453.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.453.5...v1.453.6) (2024-06-10)
 
 
