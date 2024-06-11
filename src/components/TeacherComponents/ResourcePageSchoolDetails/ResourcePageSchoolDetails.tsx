@@ -81,6 +81,8 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
+        aria-invalid={errors?.school?.message ? true : false}
+        aria-describedby={"school-error"}
       />
       <OakFlex $mt="space-between-xs" $mb="space-between-m2">
         <Checkbox
@@ -92,6 +94,10 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           zIndex={"neutral"}
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
+          aria-invalid={errors?.school?.message ? true : false}
+          aria-describedby={
+            errors?.school?.message ? "school-error" : undefined
+          }
         />
       </OakFlex>
     </>
