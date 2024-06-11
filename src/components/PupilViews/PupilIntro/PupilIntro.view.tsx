@@ -23,7 +23,6 @@ import { useWorksheetDownload } from "./useWorksheetDownload";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
-import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export type PupilViewsIntroProps = LessonContent & {
@@ -105,29 +104,33 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   );
 
   return (
-    <MathJaxProvider>
-      <OakLessonLayout
-        lessonSectionName={"intro"}
-        topNavSlot={topNavSlot}
-        bottomNavSlot={bottomNavSlot}
+    <OakLessonLayout
+      lessonSectionName={"intro"}
+      topNavSlot={topNavSlot}
+      bottomNavSlot={bottomNavSlot}
+    >
+      <OakGrid
+        $cg="all-spacing-4"
+        $maxWidth={["100%", "all-spacing-22", "100%"]}
+        $mb={["space-between-none", "space-between-s"]}
+        $mh="auto"
+        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+        $minHeight="100%"
+        $gridTemplateRows={[
+          "min-content min-content 1fr",
+          "min-content min-content 1fr",
+          "min-content 1fr min-content",
+        ]}
       >
-        <OakGrid
-          $cg="all-spacing-4"
-          $maxWidth={["100%", "all-spacing-22", "100%"]}
-          $mb={["space-between-none", "space-between-s"]}
-          $mh="auto"
-          $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
-          $minHeight="100%"
-          $gridTemplateRows={[
-            "min-content min-content 1fr",
-            "min-content min-content 1fr",
-            "min-content 1fr min-content",
-          ]}
+        <OakGridArea
+          $colStart={[1, 1, 2]}
+          $colSpan={[12, 12, 10]}
+          $mb={["space-between-m", "space-between-l", "space-between-xl"]}
         >
           <OakHeading tag="h1" $font={["heading-5", "heading-4", "heading-3"]}>
             What will you need for this lesson?
           </OakHeading>
-        </OakGrid>
+        </OakGridArea>
         <OakGridArea
           $colSpan={[12, 12, 5]}
           $colStart={[1, 1, 2]}
@@ -217,7 +220,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
           </OakFlex>
           <CopyrightNotice isLegacyLicense={isLegacy ?? false} />
         </OakGridArea>
-      </OakLessonLayout>
-    </MathJaxProvider>
+      </OakGrid>
+    </OakLessonLayout>
   );
 };
