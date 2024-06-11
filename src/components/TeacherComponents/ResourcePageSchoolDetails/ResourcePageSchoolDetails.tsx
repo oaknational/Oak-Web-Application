@@ -96,7 +96,6 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         <Checkbox
           checked={checkboxValue}
           onChange={onCheckboxChange}
-          // aria-label={"my school isn't listed"}
           id={`checkbox-not-listed`}
           name={"checkbox-not-listed"}
           zIndex={"neutral"}
