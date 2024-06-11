@@ -93,25 +93,24 @@ const lessonDownloadsQuery =
 
     const downloads = constructDownloadsArray(downloadsData);
 
-    const canonicalLessonDownloads = constructCanonicalLessonDownloads(
-      downloads,
-      lessonSlug,
-      browse_data as SyntheticUnitvariantLessons[],
-      is_legacy,
-    );
-
-    const lessonDownloads = constructLessonDownloads(
-      downloads,
-      lessonSlug,
-      browse_data as SyntheticUnitvariantLessons[],
-      expired,
-    );
-
     if (canonicalLesson) {
+      const canonicalLessonDownloads = constructCanonicalLessonDownloads(
+        downloads,
+        lessonSlug,
+        browse_data as SyntheticUnitvariantLessons[],
+        is_legacy,
+      );
       return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
       ) as T;
     } else {
+      const lessonDownloads = constructLessonDownloads(
+        downloads,
+        lessonSlug,
+        browse_data as SyntheticUnitvariantLessons[],
+        expired,
+      );
+
       return lessonDownloadsSchema.parse({
         ...lessonDownloads,
         isLegacy: false,
