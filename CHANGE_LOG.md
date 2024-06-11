@@ -1,3 +1,10 @@
+# [1.456.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.455.0...v1.456.0) (2024-06-11)
+
+
+### Features
+
+* fieldset and legend groups on downloads page ([632631e](https://github.com/oaknational/Oak-Web-Application/commit/632631ed00229264b3bd6cbe6be5c6c8bab91b98))
+
 # [1.455.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.454.2...v1.455.0) (2024-06-11)
 
 
