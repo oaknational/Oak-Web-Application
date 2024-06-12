@@ -18,6 +18,7 @@ import CurriculumDownloads, {
   CurriculumDownloadsRef,
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
@@ -50,12 +51,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
 
   const downloads: CurriculumDownload[] = [];
   const links: ButtonAsLinkProps[] = [];
+  const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
+
   for (const category of Object.keys(categoryDocuments)) {
     if (category == activeTab) {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
           label: document.subject,
-          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
+          url: `${LEGACY_DOWNLOADS_API_URL}/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
           icon: document.icon,
         });
       });
