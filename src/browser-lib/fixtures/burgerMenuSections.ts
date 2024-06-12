@@ -89,6 +89,7 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         text: "Home",
         new: false,
         external: false,
+        ariaLabel: "Pupils home",
       },
     ],
   },
