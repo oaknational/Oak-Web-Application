@@ -1,9 +1,10 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 
-import { lessonPathwaySchema } from "../../shared.schema";
-
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructCanonicalLessonDownloads = (
   downloads: LessonDownloadsListSchema,
@@ -29,7 +30,9 @@ const constructCanonicalLessonDownloads = (
         unitSlug: lesson.unit_data.slug,
         unitTitle: lesson.unit_data.title,
         keyStageSlug: lesson.programme_fields.keystage_slug,
-        keyStageTitle: lesson.programme_fields.keystage_description,
+        keyStageTitle: toSentenceCase(
+          lesson.programme_fields.keystage_description,
+        ),
         subjectSlug: lesson.programme_fields.subject_slug,
         subjectTitle: lesson.programme_fields.subject,
         lessonCohort: lesson.lesson_data._cohort,

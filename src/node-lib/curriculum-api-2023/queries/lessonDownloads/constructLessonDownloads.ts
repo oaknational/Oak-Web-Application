@@ -6,6 +6,7 @@ import {
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
@@ -27,7 +28,9 @@ const constructLessonDownloads = (
     downloads,
     programmeSlug: parsedCurrentLesson.programme_slug,
     keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
-    keyStageTitle: parsedCurrentLesson.programme_fields.keystage_description,
+    keyStageTitle: toSentenceCase(
+      parsedCurrentLesson.programme_fields.keystage_description,
+    ),
     lessonSlug: parsedCurrentLesson.lesson_slug,
     lessonTitle: parsedCurrentLesson.lesson_data.title,
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,

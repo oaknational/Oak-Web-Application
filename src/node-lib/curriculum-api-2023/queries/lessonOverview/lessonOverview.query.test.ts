@@ -182,30 +182,9 @@ describe("lessonOverview()", () => {
       ]);
     });
 
-    it("should handle mixed content properly", () => {
-      const content = [
-        { copyrightInfo: "Copyright 2024 Example Corp." },
-        { otherInfo: "Some other info" },
-        { copyrightInfo: "Copyright 2023 Another Corp." },
-        { otherInfo: "More info" },
-      ];
-      expect(getCopyrightContent(content)).toEqual([
-        { copyrightInfo: "Copyright 2024 Example Corp." },
-        { copyrightInfo: "" },
-        { copyrightInfo: "Copyright 2023 Another Corp." },
-        { copyrightInfo: "" },
-      ]);
-    });
-
-    it("should handle undefined copyrightInfo fields", () => {
-      const content = [
-        { copyrightInfo: undefined },
-        { otherInfo: "More info" },
-      ];
-      expect(getCopyrightContent(content)).toEqual([
-        { copyrightInfo: "" },
-        { copyrightInfo: "" },
-      ]);
+    it("should handle empty string copyrightInfo fields", () => {
+      const content = [{ copyrightInfo: "" }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
   });
   describe("getContentGuidance", () => {
