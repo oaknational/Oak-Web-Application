@@ -1,3 +1,10 @@
+## [1.456.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.456.0...v1.456.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* spritesheet chrome bug ([de153e8](https://github.com/oaknational/Oak-Web-Application/commit/de153e8972b12bf68c660dd9a31de8c6de5c0b64))
+
 # [1.456.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.455.0...v1.456.0) (2024-06-11)
 
 
