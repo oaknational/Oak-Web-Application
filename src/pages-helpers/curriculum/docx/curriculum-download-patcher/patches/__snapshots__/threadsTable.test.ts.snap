@@ -139,7 +139,7 @@ exports[`threadsTablePatch should return units table 1`] = `
           "elements": [
             {
               "attributes": {
-                "w:w": "3505",
+                "w:w": "10515",
               },
               "name": "w:gridCol",
               "type": "element",
