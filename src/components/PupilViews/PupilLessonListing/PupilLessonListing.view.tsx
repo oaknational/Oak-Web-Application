@@ -98,7 +98,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
             title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
             description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
           }),
-          ...{ noFollow: true, noIndex: true },
         }}
       >
         {" "}

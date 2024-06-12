@@ -45,7 +45,6 @@ const ProgrammesPage = ({
           title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
           description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
         }),
-        ...{ noFollow: true, noIndex: true },
       }}
     >
       {" "}
