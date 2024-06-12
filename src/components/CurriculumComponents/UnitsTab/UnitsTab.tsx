@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakSpan,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import CurriculumVisualiser, {
   Thread,
@@ -18,7 +19,7 @@ import CurriculumVisualiser, {
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 
-import Box from "@/components/SharedComponents/Box";
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
@@ -61,6 +62,14 @@ export function createProgrammeSlug(
     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
     : "";
 }
+
+const FieldSet = (props: Omit<BoxProps, "as">) => {
+  const Component = styled(Box)`
+    margin: 0;
+    border: none;
+  `;
+  return <Component {...props} as="fieldset" />;
+};
 
 // Function component
 
@@ -227,15 +236,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
-            <Box
+            <FieldSet
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
-              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
+              <OakP as={"legend"} $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </OakHeading>
+              </OakP>
               <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
@@ -295,16 +304,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   );
                 })}
               </RadioGroup>
-            </Box>
-            <Box
+            </FieldSet>
+            <FieldSet
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="year-group-filter-desktop"
             >
-              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
+              <OakP as="legend" $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </OakHeading>
+              </OakP>
               <RadioGroup
                 aria-label="Select a year group"
                 value={selectedYear ?? ""}
@@ -331,7 +340,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   </Box>
                 ))}
               </RadioGroup>
-            </Box>
+            </FieldSet>
           </OakGridArea>
           <CurriculumVisualiser
             unitData={unitData}
