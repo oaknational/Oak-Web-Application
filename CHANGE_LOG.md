@@ -1,3 +1,11 @@
+# [1.457.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.456.1...v1.457.0) (2024-06-12)
+
+
+### Features
+
+* remove legacy downloads api from check resources ([e01bb18](https://github.com/oaknational/Oak-Web-Application/commit/e01bb1848610c0f6a93509a7d0776f916663ac03))
+* use new downloads api for all content ([384a65d](https://github.com/oaknational/Oak-Web-Application/commit/384a65d01167fa61e5414e396be784b38d3d7644))
+
 ## [1.456.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.456.0...v1.456.1) (2024-06-12)
 
 
