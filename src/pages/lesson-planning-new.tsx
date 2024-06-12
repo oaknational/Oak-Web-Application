@@ -36,9 +36,6 @@ export type PlanALessonProps = {
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
   const navItems = getNavItems({ ...pageData });
-  const isNewsletterForm = pageData.content.some((section) => {
-    return section.type === "PlanALessonPageFormBlock";
-  });
 
   const blogs = posts.map(postToPostListItem);
 
@@ -125,73 +122,83 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                 anchorTarget="plan-a-lesson-contents"
               />
             </OakGridArea>
+
             <OakGridArea
               $colSpan={[12, 12, 6]}
               $colStart={[1, 1, 5]}
-              $mh={"space-between-s"}
+              $mh={["space-between-s", null, null]}
+              $justifyContent={"center"}
             >
-              {pageData.content.map((section, index, sections) => {
-                const isLastSection = index === sections.length - 1;
-                if (section.type === "PlanALessonPageFormBlock") {
-                  return (
-                    <OakFlex
-                      key={`${section.navigationTitle} ${index}`}
-                      $mb={
-                        !isLastSection
-                          ? "space-between-xxxl"
-                          : "space-between-m2"
-                      }
-                      $flexDirection={"column"}
-                      $display={["none", "none", "flex"]}
-                    >
-                      <LandingPageSignUpForm formTitle={"Don't miss out"} />
-                    </OakFlex>
-                  );
-                }
-
-                return (
-                  <OakBox
-                    key={`${section.navigationTitle} ${index}`}
-                    $position={"relative"}
-                    $mb={
-                      !isLastSection ? "space-between-xxxl" : "space-between-m2"
-                    }
-                  >
-                    <OakAnchorTarget id={section.anchorSlug.current} />
-                    <LessonPlanningBlog
-                      title={section.navigationTitle}
-                      blogPortableText={section.bodyPortableText}
-                    />
-                    <OakBox
-                      $display={["block", "block", "none"]}
-                      $mt={"space-between-m2"}
-                    >
-                      <OakLink
-                        iconName="arrow-up"
-                        href={"#plan-a-lesson-contents"}
-                        isTrailingIcon
-                      >
-                        {"Back to contents"}
-                      </OakLink>
-                    </OakBox>
-                  </OakBox>
-                );
-              })}
-              {isNewsletterForm && (
-                <OakBox
-                  $mb={"space-between-l"}
-                  $display={["block", "none", "none"]}
+              <OakFlex
+                $width={"100%"}
+                $flexDirection={"column"}
+                $alignItems={"center"}
+              >
+                <OakFlex
+                  $minWidth={[null, "all-spacing-22"]}
+                  $maxWidth={"all-spacing-22"}
+                  $flexDirection={"column"}
                 >
-                  <LandingPageSignUpForm formTitle="Don't miss out" />
-                </OakBox>
-              )}
+                  {pageData.content.map((section, index, sections) => {
+                    const isLastSection = index === sections.length - 1;
+                    if (section.type === "PlanALessonPageFormBlock") {
+                      return (
+                        <OakFlex
+                          key={`${section.navigationTitle} ${index}`}
+                          data-testid="lesson-section"
+                          $mb={
+                            !isLastSection
+                              ? "space-between-xxxl"
+                              : "space-between-m2"
+                          }
+                          $flexDirection={"column"}
+                        >
+                          <LandingPageSignUpForm formTitle={"Don't miss out"} />
+                        </OakFlex>
+                      );
+                    }
+
+                    return (
+                      <OakBox
+                        key={`${section.navigationTitle} ${index}`}
+                        $position={"relative"}
+                        data-testid="lesson-section"
+                        $mb={
+                          !isLastSection
+                            ? "space-between-xxxl"
+                            : "space-between-m2"
+                        }
+                      >
+                        <OakAnchorTarget id={section.anchorSlug.current} />
+                        <LessonPlanningBlog
+                          title={section.navigationTitle}
+                          blogPortableText={section.bodyPortableText}
+                        />
+                        <OakBox
+                          $display={["block", "block", "none"]}
+                          $mt={"space-between-m2"}
+                        >
+                          <OakLink
+                            iconName="arrow-up"
+                            href={"#plan-a-lesson-contents"}
+                            isTrailingIcon
+                          >
+                            {"Back to contents"}
+                          </OakLink>
+                        </OakBox>
+                      </OakBox>
+                    );
+                  })}
+                </OakFlex>
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
           <BlogAndWebinarList
             backgroundColor={"grey20"}
             showImageOnTablet
             blogListPosts={blogListPosts}
-            displayOnPhone={false}
+            displayOnPhone={true}
+            title={"Latest lesson planning blogs"}
           />
         </OakMaxWidth>
       </Layout>

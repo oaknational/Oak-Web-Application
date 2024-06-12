@@ -41,7 +41,7 @@ describe("QuizQuestionsMCAnswers", () => {
     );
 
     const correctAnswer: MCAnswer | undefined = mcqTextAnswers.find(
-      (a) => a.answer_is_correct,
+      (a) => a.answerIsCorrect,
     );
 
     if (!correctAnswer) throw new Error("correctAnswer is null");

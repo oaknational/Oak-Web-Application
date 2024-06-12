@@ -80,7 +80,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       setActiveTab("teachers");
     }
   }, [current]);
-
   const setActiveTab = (tab: HomePageTab) => {
     setCurrent(tab);
     const newUrl = `#${tab}`;
@@ -97,11 +96,11 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <HomePageTabImageNav current={current} setCurrent={setActiveTab} />
       {current === "teachers" && (
-        <TeachersTab keyStages={curriculumData.keyStages} />
+        <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       )}
-      {current === "curriculum" && <CurriculumTab />}
-      {current === "pupils" && <PupilTab />}
-      {current === "ai" && <AiTab />}
+      {current === "curriculum" && <CurriculumTab aria-current="page" />}
+      {current === "pupils" && <PupilTab aria-current="page" />}
+      {current === "ai" && <AiTab aria-current="page" />}
 
       <MaxWidth>
         <BlogAndWebinarList
@@ -110,6 +109,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
           backgroundColor="white"
           displayOnPhone={true}
           isBackgroundWhite={true}
+          title={"Stay up to date"}
         />
       </MaxWidth>
       <Flex $background={"lavender50"} $width={"100%"}>

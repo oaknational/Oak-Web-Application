@@ -88,7 +88,7 @@ describe("hasLessonMathJax", () => {
                     type: "text",
                   },
                 ],
-                answer_is_correct: true,
+                answerIsCorrect: true,
               },
             ],
           },
@@ -120,8 +120,8 @@ describe("hasLessonMathJax", () => {
           answers: {
             match: [
               {
-                correct_choice: [{ text: "$$x^2 - x^2$$", type: "text" }],
-                match_option: [{ text: "$$0$$", type: "text" }],
+                correctChoice: [{ text: "$$x^2 - x^2$$", type: "text" }],
+                matchOption: [{ text: "$$0$$", type: "text" }],
               },
             ],
           },
@@ -152,8 +152,8 @@ describe("hasLessonMathJax", () => {
           answers: {
             match: [
               {
-                correct_choice: [{ text: "$$x^2 - x^2$$", type: "text" }],
-                match_option: [{ text: "$$0$$", type: "text" }],
+                correctChoice: [{ text: "$$x^2 - x^2$$", type: "text" }],
+                matchOption: [{ text: "$$0$$", type: "text" }],
               },
             ],
           },
@@ -188,7 +188,7 @@ describe("hasLessonMathJax", () => {
                 answer: [
                   { text: "First, isolate $$x$$ on one side", type: "text" },
                 ],
-                correct_order: 1,
+                correctOrder: 1,
               },
             ],
           },
@@ -218,7 +218,7 @@ describe("hasLessonMathJax", () => {
             "short-answer": [
               {
                 answer: [{ text: "$$2x$$", type: "text" }],
-                answer_is_default: true,
+                answerIsDefault: true,
               },
             ],
           },
@@ -249,7 +249,7 @@ describe("hasLessonMathJax", () => {
             "multiple-choice": [
               {
                 answer: [{ text: "Answer is $$x = \\pm 2$$", type: "text" }],
-                answer_is_correct: true,
+                answerIsCorrect: true,
               },
             ],
           },

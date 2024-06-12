@@ -42,7 +42,7 @@ async function main() {
     });
     console.log(`✅ Inline sprite asset names written to ${jsonPath}`);
 
-    const spriter = getSpriterInstance({ mode: "defs" });
+    const spriter = getSpriterInstance();
 
     for (const [name, asset] of Object.entries(assetsByName)) {
       if (!asset?.image?.asset?.url) {

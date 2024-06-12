@@ -79,6 +79,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
 
   return (
     <Form
+      noValidate
       onSubmit={handleSubmit(async (data) => {
         setLoading(true);
         setError("");

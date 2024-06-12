@@ -52,7 +52,6 @@ const ProgrammesPage = ({
       <PupilViewsProgrammeListing
         programmes={programmes}
         baseSlug={baseSlug}
-        isLegacy={false}
         yearSlug={yearSlug}
         examboardSlug={examboardSlug}
       />

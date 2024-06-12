@@ -1,6 +1,30 @@
 import { z } from "zod";
+import { lessonContentSchema as lessonContentSchemaFull } from "@oaknational/oak-curriculum-schema";
 
-import { baseLessonOverviewSchema } from "../../shared.schema";
+import {
+  baseLessonOverviewSchema,
+  lessonPathwaySchema,
+} from "../../shared.schema";
+import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
+
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+
+export const lessonContentSchema = lessonContentSchemaFull.omit({
+  state: true,
+  cohort: true,
+  exit_quiz: true,
+  starter_quiz: true,
+  video_duration: true,
+});
+
+export type LessonOverviewContent = Omit<
+  ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
+  "starterQuiz" | "exitQuiz" | "transcriptSentences"
+> & {
+  starterQuiz: QuizQuestion[];
+  exitQuiz: QuizQuestion[];
+  transcriptSentences: string | string[];
+};
 
 export const lessonOverviewDownloads = z.array(
   z.object({
@@ -34,6 +58,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   examBoardTitle: z.string().nullable().optional(),
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
+  pathways: z.array(lessonPathwaySchema),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
@@ -41,3 +66,12 @@ export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 export default lessonOverviewSchema;
 
 export const baseLessonOverviewData = baseLessonOverviewSchema;
+
+export const lessonOverviewCanonicalSchema = baseLessonOverviewSchema.extend({
+  pathways: z.array(lessonPathwaySchema),
+  downloads: lessonOverviewDownloads,
+});
+
+export type LessonOverviewCanonical = z.infer<
+  typeof lessonOverviewCanonicalSchema
+>;
