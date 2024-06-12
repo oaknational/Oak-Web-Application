@@ -4,7 +4,6 @@ import { DownloadResourceType } from "@/components/TeacherComponents/types/downl
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
@@ -67,9 +66,7 @@ const getDownloadResourcesExistence = async (
   resourceTypesString: string,
   isLegacyDownload: boolean,
 ) => {
-  const checkWhichResourcesExistEndpoint = isLegacyDownload
-    ? `${LEGACY_DOWNLOADS_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`
-    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
 
   const meta = {
     lessonSlug,
@@ -88,23 +85,7 @@ const getDownloadResourcesExistence = async (
 
   const json = await res.json();
 
-  const transformLegacyDownloadResponse = (
-    json: LegacyDownloadsApiCheckFilesResponseSchema,
-  ) => {
-    const transformedJson = json.data && {
-      data: {
-        resources: Object.entries(json.data.resources).map(([k, v]) => {
-          return [k, { exists: v, errors: [] }];
-        }),
-      },
-      error: json.error,
-    };
-    return transformedJson;
-  };
-
-  const parsedJson = isLegacyDownload
-    ? schema.safeParse(transformLegacyDownloadResponse(json))
-    : schema.safeParse(json);
+  const parsedJson = schema.safeParse(json);
 
   if (!parsedJson.success) {
     throw new OakError({

@@ -18,14 +18,11 @@ export const pupilSubjectListingQuery =
   (sdk: Sdk) =>
   async ({
     yearSlug,
-    isLegacy = true,
   }: {
     yearSlug: string;
-    isLegacy?: boolean;
   }): Promise<PupilSubjectListingData[]> => {
     const res = await sdk.pupilSubjectListing({
       yearSlug,
-      isLegacy,
     });
 
     if (res.data?.length === 0) {
