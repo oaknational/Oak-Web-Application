@@ -64,7 +64,7 @@ async function main() {
     });
     console.log(`✅ UI graphic names written to ${uiGraphicsPath}`);
 
-    const spriter = getSpriterInstance({ mode: "symbol" });
+    const spriter = getSpriterInstance();
 
     for (const spriteIcon of [...uiIconsRes, ...uiGraphicsRes]) {
       await fetchSvgAndAddToSprite({
