@@ -1,3 +1,36 @@
+# [1.458.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.457.0...v1.458.0) (2024-06-12)
+
+
+### Bug Fixes
+
+* adding legacy units to combined science and refactoring ([ebea256](https://github.com/oaknational/Oak-Web-Application/commit/ebea256c5304ea3b6259b7c409d2c40875d436e4))
+* broken pupil unit test for unit counts ([2ac1a58](https://github.com/oaknational/Oak-Web-Application/commit/2ac1a588d9ff84b87339f8544ad546bc8bb03b85))
+* broken unit test for baseSlug functionality ([ce5d067](https://github.com/oaknational/Oak-Web-Application/commit/ce5d0677d72db5eed956f556e0b473b1a8631383))
+* ensuring subject url is correct ([9556752](https://github.com/oaknational/Oak-Web-Application/commit/95567521237dce691977eaef65f6f3db828326a3))
+* match down to baseSlug on legacy units if tier isn't matched ([7320d9c](https://github.com/oaknational/Oak-Web-Application/commit/7320d9c9a869549ca093e60569bd439ea24e495f))
+* security issue with regex ([bbabb33](https://github.com/oaknational/Oak-Web-Application/commit/bbabb337807091c703d8ffa16252847b18e80943))
+* update pupils lessons copy ([356625a](https://github.com/oaknational/Oak-Web-Application/commit/356625a5075fb316afe6c33cad5d6b9618a706b8))
+
+
+### Features
+
+* changes to support cycle 1 ([2a6b2d5](https://github.com/oaknational/Oak-Web-Application/commit/2a6b2d5b97f417f8e0a9b3bcbca65ab9515f04c1))
+
+# [1.457.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.456.1...v1.457.0) (2024-06-12)
+
+
+### Features
+
+* remove legacy downloads api from check resources ([e01bb18](https://github.com/oaknational/Oak-Web-Application/commit/e01bb1848610c0f6a93509a7d0776f916663ac03))
+* use new downloads api for all content ([384a65d](https://github.com/oaknational/Oak-Web-Application/commit/384a65d01167fa61e5414e396be784b38d3d7644))
+
+## [1.456.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.456.0...v1.456.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* spritesheet chrome bug ([de153e8](https://github.com/oaknational/Oak-Web-Application/commit/de153e8972b12bf68c660dd9a31de8c6de5c0b64))
+
 # [1.456.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.455.0...v1.456.0) (2024-06-11)
 
 

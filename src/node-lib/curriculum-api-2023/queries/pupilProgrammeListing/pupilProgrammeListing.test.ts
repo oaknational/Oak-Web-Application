@@ -24,7 +24,6 @@ describe("pupilUnitListing()", () => {
       ),
     })({
       baseSlug: "maths-primary-year-1",
-      isLegacy: false,
     });
     expect(res[0]?.programmeSlug).toEqual("maths-primary-year-1");
     expect(res[0]?.programmeFields?.phase).toEqual("primary");
@@ -42,7 +41,6 @@ describe("pupilUnitListing()", () => {
         ),
       })({
         baseSlug: "unknown-slug",
-        isLegacy: false,
       }),
     ).rejects.toThrow("Resource not found");
   });
@@ -64,7 +62,6 @@ describe("pupilUnitListing()", () => {
 
     expect(mock).toHaveBeenCalledWith({
       baseSlug: "maths-primary-year-1",
-      isLegacy: true,
     });
   });
 });

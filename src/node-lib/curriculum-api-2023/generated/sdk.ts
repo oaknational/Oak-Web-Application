@@ -45073,7 +45073,6 @@ export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: A
 
 export type PupilProgrammeListingQueryVariables = Exact<{
   baseSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
@@ -45081,18 +45080,17 @@ export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Arra
 
 export type PupilSubjectListingQueryVariables = Exact<{
   yearSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
 export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }> };
 
 export type PupilUnitListingQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
+  baseSlug: Scalars['String']['input'];
 }>;
 
 
-export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0', programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null, expired?: boolean | null }> };
+export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0', base_slug?: string | null, programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null, expired?: boolean | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -45497,9 +45495,9 @@ export const PupilLessonListingDocument = gql`
 }
     `;
 export const PupilProgrammeListingDocument = gql`
-    query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
+    query pupilProgrammeListing($baseSlug: String!) {
   data: published_mv_synthetic_programmes_by_year_7_1_0(
-    where: {base_slug: {_eq: $baseSlug}, is_legacy: {_eq: $isLegacy}}
+    where: {base_slug: {_eq: $baseSlug}}
   ) {
     programme_slug
     year_slug
@@ -45508,9 +45506,9 @@ export const PupilProgrammeListingDocument = gql`
 }
     `;
 export const PupilSubjectListingDocument = gql`
-    query pupilSubjectListing($yearSlug: String!, $isLegacy: Boolean!) {
+    query pupilSubjectListing($yearSlug: String!) {
   data: published_mv_synthetic_programmes_by_year_7_1_0(
-    where: {year_slug: {_eq: $yearSlug}, is_legacy: {_eq: $isLegacy}}
+    where: {year_slug: {_eq: $yearSlug}}
   ) {
     programme_slug
     base_slug
@@ -45521,10 +45519,11 @@ export const PupilSubjectListingDocument = gql`
 }
     `;
 export const PupilUnitListingDocument = gql`
-    query pupilUnitListing($programmeSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0(
-    where: {programme_slug: {_eq: $programmeSlug}}
+    query pupilUnitListing($baseSlug: String!) {
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0(
+    where: {base_slug: {_eq: $baseSlug}}
   ) {
+    base_slug
     programme_slug
     unit_slug
     is_legacy
