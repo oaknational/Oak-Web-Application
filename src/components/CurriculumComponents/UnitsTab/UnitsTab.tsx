@@ -5,6 +5,7 @@ import {
   OakP,
   OakHeading,
   OakSpan,
+  OakPProps,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -63,12 +64,24 @@ export function createProgrammeSlug(
     : "";
 }
 
-const FieldSet = (props: Omit<BoxProps, "as">) => {
+export const FieldSet = (props: Omit<BoxProps, "as">) => {
   const Component = styled(Box)`
-    margin: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
     border: none;
   `;
   return <Component {...props} as="fieldset" />;
+};
+
+export const FieldSetLegend: FC<
+  Omit<OakPProps, "as"> & { children?: React.ReactNode }
+> = (props) => {
+  const Component = styled(OakP)`
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    border: none;
+  `;
+  return <Component {...props} as="legend" />;
 };
 
 // Function component
@@ -242,9 +255,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
-              <OakP as={"legend"} $font={"heading-7"} $mb="space-between-xs">
+              <FieldSetLegend $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </OakP>
+              </FieldSetLegend>
               <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
@@ -311,9 +324,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
               $display={["none", "block"]}
               data-testid="year-group-filter-desktop"
             >
-              <OakP as="legend" $font={"heading-7"} $mb="space-between-xs">
+              <FieldSetLegend $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </OakP>
+              </FieldSetLegend>
               <RadioGroup
                 aria-label="Select a year group"
                 value={selectedYear ?? ""}
