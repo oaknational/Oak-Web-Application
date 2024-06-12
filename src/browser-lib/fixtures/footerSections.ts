@@ -78,10 +78,11 @@ const footerSections: FooterSections = {
   legal: {
     title: "Legal",
     links: [
+      { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
       { text: "Privacy policy", href: "/legal/privacy-policy" },
       { text: "Cookie policy", href: "/legal/cookie-policy" },
       { text: "Manage cookie settings", type: "consent-manager-toggle" },
-      { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
+
       { text: "Copyright notice", href: "/legal/copyright-notice" },
       {
         text: "Accessibility statement",
