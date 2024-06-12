@@ -10,17 +10,16 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
-  browse_data: SyntheticUnitvariantLessons[],
+  parsedBrowseData: SyntheticUnitvariantLessons[],
   expired?: boolean | null,
 ) => {
-  const currentLesson = browse_data.find(
+  const currentLesson = parsedBrowseData.find(
     (lesson) => lesson.lesson_slug === lessonSlug,
   );
 
   const copyright = keysToCamelCase(
     currentLesson?.lesson_data.copyright_content,
   );
-
   const parsedCurrentLesson =
     syntheticUnitvariantLessonsSchema.parse(currentLesson);
 
@@ -41,7 +40,7 @@ const constructLessonDownloads = (
     copyrightContent: copyright,
   };
 
-  const unitLessonsArray = browse_data.map((lesson) => {
+  const unitLessonsArray = parsedBrowseData.map((lesson) => {
     return {
       lessonSlug: lesson.lesson_slug,
       lessonTitle: lesson.lesson_data.title,
