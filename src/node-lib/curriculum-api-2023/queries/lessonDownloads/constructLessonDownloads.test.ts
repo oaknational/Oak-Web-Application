@@ -28,7 +28,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       programmeSlug: "programme-slug",
       keyStageSlug: "ks1",
-      keyStageTitle: "Key Stage 1",
+      keyStageTitle: "Key stage 1",
       lessonSlug: "lesson-slug",
       lessonTitle: "lesson-title",
       subjectSlug: "maths",
