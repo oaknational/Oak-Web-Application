@@ -177,11 +177,9 @@ function buildUnitOptionTitle(
                     <w:color w:val="222222"/>
                     <w:sz w:val="32"/>
                 </w:rPr>
-                <w:t>
-                    Option ${cdata(unitOptionIndex + 1)}: ${cdata(
-                      unitOption.title,
-                    )}
-                </w:t>
+                <w:t>Option ${cdata(unitOptionIndex + 1)}: ${cdata(
+                  unitOption.title,
+                )}</w:t>
             </w:r>
 
             <w:r>
