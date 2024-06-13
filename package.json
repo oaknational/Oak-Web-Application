@@ -72,7 +72,7 @@
     "@mux/mux-node": "^8.5.1",
     "@mux/mux-player-react": "2.7.0-canary.0-7c57cdd",
     "@oaknational/oak-components": "^0.39.1",
-    "@oaknational/oak-curriculum-schema": "^1.15.3",
+    "@oaknational/oak-curriculum-schema": "^1.15.4",
     "@portabletext/react": "^3.0.11",
     "@react-aria/aria-modal-polyfill": "^3.7.7",
     "@sanity/asset-utils": "^1.3.0",

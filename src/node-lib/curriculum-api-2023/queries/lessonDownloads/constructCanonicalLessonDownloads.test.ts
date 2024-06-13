@@ -53,6 +53,7 @@ describe("constructCanonicalLessonDownloads", () => {
       lessonSlug,
       browseData,
       isLegacy,
+      null,
     );
 
     const expectedResult: LessonDownloadsCanonical = {
@@ -161,6 +162,7 @@ describe("constructCanonicalLessonDownloads", () => {
       lessonSlug,
       browseData,
       isLegacy,
+      null,
     );
 
     const expectedResult: LessonDownloadsCanonical = {

@@ -16,6 +16,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import lessonDownloadsCanonicalSchema from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -93,6 +94,14 @@ const lessonDownloadsQuery =
 
     const downloads = constructDownloadsArray(downloadsData);
 
+    // Copyright content pre-parsed
+    const currentLesson = browse_data.find(
+      (lesson) => lesson.lesson_slug === lessonSlug,
+    );
+    const copyright = currentLesson?.lesson_data.copyright_content
+      ? keysToCamelCase(currentLesson?.lesson_data.copyright_content)
+      : null;
+
     const parsedBrowseData = browse_data.map((bd) =>
       syntheticUnitvariantLessonsSchema.parse(bd),
     );
@@ -103,6 +112,7 @@ const lessonDownloadsQuery =
         lessonSlug,
         parsedBrowseData,
         is_legacy,
+        copyright,
       );
       return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
@@ -112,6 +122,7 @@ const lessonDownloadsQuery =
         downloads,
         lessonSlug,
         parsedBrowseData,
+        copyright,
         expired,
       );
 
