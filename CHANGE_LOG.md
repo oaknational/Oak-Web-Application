@@ -1,3 +1,21 @@
+# [1.460.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.459.0...v1.460.0) (2024-06-13)
+
+
+### Bug Fixes
+
+* missing second pupil sitemap from config ([6b03a2d](https://github.com/oaknational/Oak-Web-Application/commit/6b03a2d3921718e67347d6785dbe14b202b7f00f))
+
+
+### Features
+
+* **pupil-sitemap:** add sitemap to config ([fcc4ef8](https://github.com/oaknational/Oak-Web-Application/commit/fcc4ef8deffa0060185233b44229cd974c5c73dc))
+* **pupil-sitemap:** refactor sitemap query to use existing mvs ([811c146](https://github.com/oaknational/Oak-Web-Application/commit/811c146c1cfbb69c2637c1db94207b15bc6d32cb))
+* **pupil-sitemap:** refactor sitemap query to use existing mvs ([c6ab98f](https://github.com/oaknational/Oak-Web-Application/commit/c6ab98f0dea2558e73c091839a94213e33ef0002))
+* **pupils-sitemap:** create pupils site map page ([9b15452](https://github.com/oaknational/Oak-Web-Application/commit/9b15452b8e5da90c4408b89f73743ecb130f9b23))
+* **pupils-sitemap:** create pupils site map page ([4bc1c6c](https://github.com/oaknational/Oak-Web-Application/commit/4bc1c6cf95a51536d2fd9279eb5eb94a1d653eb8))
+* **pupils-sitemap:** create pupils site map page ([18d7bc7](https://github.com/oaknational/Oak-Web-Application/commit/18d7bc755e40c0623e43864a7dc253245711b55c))
+* **pupils-sitemap:** create pupils site map page ([1151677](https://github.com/oaknational/Oak-Web-Application/commit/1151677634c3d997d33d1f6f0399db7051b26a52))
+
 # [1.459.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.458.0...v1.459.0) (2024-06-13)
 
 
