@@ -1,6 +1,6 @@
-query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
+query pupilProgrammeListing($baseSlug: String!) {
   data: published_mv_synthetic_programmes_by_year_7_1_0(
-    where: { base_slug: { _eq: $baseSlug }, is_legacy: { _eq: $isLegacy } }
+    where: { base_slug: { _eq: $baseSlug } }
   ) {
     programme_slug
     year_slug

@@ -19,6 +19,7 @@ import {
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import {
   isImage,
   isText,
@@ -81,16 +82,18 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               : undefined;
 
           return (
-            <OakQuizCheckBox
-              key={`${questionUid}-answer-${index}`}
-              id={`${questionUid}-answer-${index}`}
-              displayValue={answerText ? answerText.text : " "}
-              value={`answer-${index}`}
-              feedback={feedback}
-              image={answerImage}
-              onChange={onChange}
-              isHighlighted={questionState.mode === "incomplete"}
-            />
+            <MathJaxWrap>
+              <OakQuizCheckBox
+                key={`${questionUid}-answer-${index}`}
+                id={`${questionUid}-answer-${index}`}
+                displayValue={answerText ? answerText.text : " "}
+                value={`answer-${index}`}
+                feedback={feedback}
+                image={answerImage}
+                onChange={onChange}
+                isHighlighted={questionState.mode === "incomplete"}
+              />
+            </MathJaxWrap>
           );
         })}
       </OakFlex>

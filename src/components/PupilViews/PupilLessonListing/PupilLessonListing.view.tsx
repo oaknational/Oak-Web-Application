@@ -83,7 +83,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       />
       <OakPupilJourneyListCounter
         count={orderedCurriculumData.length}
-        countHeader="Lessons"
+        countHeader="Choose a lesson"
         tag="h2"
       />
     </OakFlex>
