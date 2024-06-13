@@ -1,3 +1,15 @@
+# [1.461.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.2...v1.461.0) (2024-06-13)
+
+
+### Bug Fixes
+
+* add noindex & nofollow to sensitive lessons ([9de37ca](https://github.com/oaknational/Oak-Web-Application/commit/9de37caeda73ad2fda244c98412a63accac826a9))
+
+
+### Features
+
+* remove 404 for isSensitive lessons as there is now a modal warning in place ([daf64a2](https://github.com/oaknational/Oak-Web-Application/commit/daf64a2d65f4abaff8fc73a9bfa45a924f4a4fa8))
+
 ## [1.460.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.1...v1.460.2) (2024-06-13)
 
 
