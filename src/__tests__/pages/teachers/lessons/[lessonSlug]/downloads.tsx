@@ -49,9 +49,7 @@ describe("LessonDownloadsCanonicalPage", () => {
     });
 
     it("should throw an error if API is not found", async () => {
-      (
-        curriculumApi2023.lessonDownloadsCanonical as jest.Mock
-      ).mockRejectedValueOnce(
+      (curriculumApi2023.lessonDownloads as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
 

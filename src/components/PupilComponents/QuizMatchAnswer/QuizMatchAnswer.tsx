@@ -15,6 +15,7 @@ import { getStemTextData } from "../QuizUtils/stemUtils";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 const StyledUL = styled(OakUL)`
   list-style: none;
@@ -51,14 +52,21 @@ export const QuizMatchAnswer = () => {
       return [match.text, choice.text];
     }),
   );
-  const matchItems = Object.keys(answers).map((label, index) => ({
-    id: index.toString(),
-    label,
-  }));
-  const choiceItems = Object.values(answers).map((label, index) => ({
-    id: index.toString(),
-    label,
-  }));
+
+  const matchItems: { id: string; label: JSX.Element }[] = [];
+  const choiceItems: { id: string; label: JSX.Element }[] = [];
+
+  Object.entries(answers).forEach(([key, value], index) => {
+    matchItems.push({
+      id: index.toString(),
+      label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+    });
+    choiceItems.push({
+      id: index.toString(),
+      label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
+    });
+  });
+
   const [currentMatches, setCurrentMatches] = useState<{
     [matchId: string]: string;
   }>({});
