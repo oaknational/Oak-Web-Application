@@ -158,10 +158,7 @@ export const PupilExperienceView = ({
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
 
-  const isSensitive: boolean =
-    typeof lessonContent.deprecatedFields?.isSensitive === "boolean"
-      ? lessonContent.deprecatedFields.isSensitive
-      : false;
+  const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 
   return (
     <PupilAnalyticsProvider pupilPathwayData={getPupilPathwayData(browseData)}>
