@@ -21,6 +21,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       lessonSlug,
       browse_data,
+      null,
       expired,
     );
 
