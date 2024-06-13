@@ -158,7 +158,10 @@ export const PupilExperienceView = ({
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
 
-  const isSensitive = lessonContent.deprecatedFields?.is_sensitive;
+  const isSensitive: boolean =
+    typeof lessonContent.deprecatedFields?.isSensitive === "boolean"
+      ? lessonContent.deprecatedFields.isSensitive
+      : false;
 
   return (
     <PupilAnalyticsProvider pupilPathwayData={getPupilPathwayData(browseData)}>
@@ -167,8 +170,9 @@ export const PupilExperienceView = ({
           ...getSeoProps({
             title: browseData.lessonData.title,
             description: browseData.lessonData.pupilLessonOutcome,
-            ...{ noIndex: isSensitive, noFollow: isSensitive },
           }),
+          noIndex: isSensitive,
+          noFollow: isSensitive,
         }}
       >
         <OakThemeProvider theme={oakDefaultTheme}>
