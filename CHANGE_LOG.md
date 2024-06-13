@@ -1,3 +1,14 @@
+## [1.460.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.1...v1.460.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* add or null operator to content copyright ([ed1873b](https://github.com/oaknational/Oak-Web-Application/commit/ed1873b95254d283cb25932fea7dfbf9cdf296c5))
+* adds tooltip id ([44d809f](https://github.com/oaknational/Oak-Web-Application/commit/44d809f0c5fd52c654c1be452f837a5aa04f1e7a))
+* amend test to include null value ([e04ccf7](https://github.com/oaknational/Oak-Web-Application/commit/e04ccf75214a2a359fc87ea89b31a595a7f22a66))
+* update curriculum schema to working version ([83f6aae](https://github.com/oaknational/Oak-Web-Application/commit/83f6aaee071bed8055501f1e65d23645f5968cbc))
+* use unparsed copyright content objects ([9c78e38](https://github.com/oaknational/Oak-Web-Application/commit/9c78e38ab8ddc96689f261d35db78294b1f88bff))
+
 ## [1.460.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.0...v1.460.1) (2024-06-13)
 
 # [1.460.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.459.0...v1.460.0) (2024-06-13)
