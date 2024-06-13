@@ -45745,19 +45745,11 @@ export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ _
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  programmeSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_6_0_0', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, copyrightContent?: any | null, expired?: boolean | null, updatedAt?: string | null }>, unit: Array<{ __typename?: 'published_mv_lesson_listing_5_0_1', lessons?: any | null }> };
-
-export type LessonDownloadsCanonicalQueryVariables = Exact<{
-  lessonSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonDownloadsCanonicalQuery = { __typename?: 'query_root', lessonDownloadsCanonical: Array<{ __typename?: 'published_mv_downloads_6_0_0', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, expired?: boolean | null, updatedAt?: string | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_1_3', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -46028,50 +46020,32 @@ export const CurriculumUnitsDocument = gql`
 }
     `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  downloads: published_mv_downloads_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_bool_exp) {
+  download_assets: published_mv_lesson_content_1_3(
+    where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
-    downloads
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    copyrightContent
-    expired
-    updatedAt
+    has_slide_deck_asset_object
+    has_worksheet_asset_object
+    has_supplementary_asset_object
+    has_worksheet_answers_asset_object
+    has_worksheet_google_drive_downloadable_version
+    starter_quiz
+    exit_quiz
+    is_legacy
+    expired: deprecated_fields(path: "expired")
   }
-  unit: published_mv_lesson_listing_5_0_1(
-    where: {programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: $browseDataWhere
   ) {
-    lessons
-  }
-}
-    `;
-export const LessonDownloadsCanonicalDocument = gql`
-    query lessonDownloadsCanonical($lessonSlug: String!) {
-  lessonDownloadsCanonical: published_mv_downloads_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}}
-  ) {
-    downloads
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    expired
-    updatedAt
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    supplementary_data
+    null_unitvariant
   }
 }
     `;
@@ -46668,9 +46642,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
-    },
-    lessonDownloadsCanonical(variables: LessonDownloadsCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsCanonicalQuery>(LessonDownloadsCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadsCanonical', 'query');
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');

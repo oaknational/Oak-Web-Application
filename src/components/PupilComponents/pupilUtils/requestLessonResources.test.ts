@@ -25,7 +25,7 @@ describe("requestLessonResources", () => {
   let getDownloadResourcesExistenceSpy: jest.SpyInstance;
   beforeEach(() => {
     getDownloadResourcesExistenceSpy = jest
-      .spyOn(curriculumApi2023, "lessonDownloadsCanonical")
+      .spyOn(curriculumApi2023, "lessonDownloads")
       .mockResolvedValue({
         ...lessonDownloadsCanonicalResponse,
         isSpecialist: false,
