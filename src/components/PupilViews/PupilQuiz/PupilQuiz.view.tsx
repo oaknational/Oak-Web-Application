@@ -26,7 +26,9 @@ import {
   isSingleAnswerMCQ,
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -74,7 +76,7 @@ const QuizInner = () => {
 
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
     if (answers) {
-      return pickFeedBackComponent(answers);
+      return <MathJaxWrap>{pickFeedBackComponent(answers)}</MathJaxWrap>;
     }
     return null;
   };
@@ -198,7 +200,9 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
       }}
     >
       <QuizEngineProvider questionsArray={questionsArray}>
-        <QuizInner />
+        <MathJaxProvider>
+          <QuizInner />
+        </MathJaxProvider>
       </QuizEngineProvider>
     </OakCloudinaryConfigProvider>
   );
