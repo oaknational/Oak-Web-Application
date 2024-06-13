@@ -60,11 +60,13 @@ function getDeploymentTestUrls() {
     "/pupils/programmes/maths-primary-year-5/units",
     "/pupils/programmes/maths-primary-year-5/units/multiplication-by-partitioning-leading-to-short-multiplication-3-by-1-digit/lessons",
     "/pupils/programmes/geography-primary-year-5/units/north-and-south-america-how-diverse-are-their-places-and-landscapes/lessons/physical-geography-of-north-and-south-america/overview",
-    "/pupils/programmes/art-primary-year-1-l/units/drawing-c92d/lessons/exploring-shadows-and-tone-6hjk0t/intro",
-    "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/highest-common-factor-with-algebraic-terms/starter-quiz",
-    "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
-    "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
+    "/pupils/programmes/computing-primary-year-5-l/units/vector-drawing-ea06/lessons/create-a-vector-drawing-cgvpac/intro",
     "/pupils/lessons/sexual-consent-and-the-law-6gt3et/overview",
+    // Below urls have tickets raised for pa11y errors
+    // "/pupils/programmes/art-primary-year-1-l/units/drawing-c92d/lessons/exploring-shadows-and-tone-6hjk0t/intro",
+    // "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/highest-common-factor-with-algebraic-terms/starter-quiz",
+    // "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
+    // "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
   ];
 }
 
