@@ -98,9 +98,9 @@ const lessonDownloadsQuery =
     const currentLesson = browse_data.find(
       (lesson) => lesson.lesson_slug === lessonSlug,
     );
-    const copyright = keysToCamelCase(
-      currentLesson?.lesson_data.copyright_content,
-    );
+    const copyright = currentLesson?.lesson_data.copyright_content
+      ? keysToCamelCase(currentLesson?.lesson_data.copyright_content)
+      : null;
 
     const parsedBrowseData = browse_data.map((bd) =>
       syntheticUnitvariantLessonsSchema.parse(bd),
