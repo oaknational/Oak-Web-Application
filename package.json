@@ -167,7 +167,7 @@
     "@types/react-transition-group": "^4.4.9",
     "@types/styled-components": "^5.1.30",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "@wdio/browserstack-service": "^8.27.1",
     "@wdio/cli": "^8.27.1",
     "@wdio/local-runner": "^8.27.0",
