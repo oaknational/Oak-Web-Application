@@ -1,3 +1,10 @@
+# [1.462.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.461.0...v1.462.0) (2024-06-13)
+
+
+### Features
+
+* update navigation and copy to make new pupil browse experience live ([c397700](https://github.com/oaknational/Oak-Web-Application/commit/c397700a43387f82ac2f71d19522214e237db2b4))
+
 # [1.461.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.2...v1.461.0) (2024-06-13)
 
 
