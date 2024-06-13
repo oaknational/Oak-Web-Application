@@ -11,7 +11,7 @@ const constructCanonicalLessonDownloads = (
   lessonSlug: string,
   browseData: SyntheticUnitvariantLessons[],
   isLegacy: boolean,
-  lessonCopyRight: { copyrightInfo: string }[],
+  lessonCopyRight: { copyrightInfo: string }[] | null,
 ): LessonDownloadsCanonical => {
   const baseDownloads = {
     downloads: downloads,

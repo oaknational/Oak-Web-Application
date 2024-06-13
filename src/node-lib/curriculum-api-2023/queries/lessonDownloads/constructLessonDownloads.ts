@@ -11,7 +11,7 @@ const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
   parsedBrowseData: SyntheticUnitvariantLessons[],
-  lessonCopyRight: { copyrightInfo: string }[],
+  lessonCopyRight: { copyrightInfo: string }[] | null,
   expired?: boolean | null,
 ) => {
   const currentLesson = parsedBrowseData.find(
