@@ -5,22 +5,19 @@ import {
 
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
   parsedBrowseData: SyntheticUnitvariantLessons[],
+  lessonCopyRight: { copyrightInfo: string }[],
   expired?: boolean | null,
 ) => {
   const currentLesson = parsedBrowseData.find(
     (lesson) => lesson.lesson_slug === lessonSlug,
   );
 
-  const copyright = keysToCamelCase(
-    currentLesson?.lesson_data.copyright_content,
-  );
   const parsedCurrentLesson =
     syntheticUnitvariantLessonsSchema.parse(currentLesson);
 
@@ -40,7 +37,7 @@ const constructLessonDownloads = (
     lessonCohort: parsedCurrentLesson.lesson_data._cohort,
     expired: expired ? expired : null,
     updatedAt: parsedCurrentLesson.lesson_data.updated_at,
-    copyrightContent: copyright,
+    copyrightContent: lessonCopyRight,
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {
