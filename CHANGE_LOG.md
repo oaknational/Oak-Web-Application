@@ -1,3 +1,16 @@
+# [1.459.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.458.0...v1.459.0) (2024-06-13)
+
+
+### Bug Fixes
+
+* draggable mathjax items ([1d8f14e](https://github.com/oaknational/Oak-Web-Application/commit/1d8f14e800040793471367db4d22f2cf8d049fd6))
+* layout issue with lesson introduction page ([8984d43](https://github.com/oaknational/Oak-Web-Application/commit/8984d43dc2922659173fb66fac0e79c0f713552a))
+
+
+### Features
+
+* **PUPIL-582:** add MathJax support to the pupil quiz ([d324222](https://github.com/oaknational/Oak-Web-Application/commit/d324222ce1fe4a9247e6d2790249b9a4f8abd3b7))
+
 # [1.458.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.457.0...v1.458.0) (2024-06-12)
 
 
