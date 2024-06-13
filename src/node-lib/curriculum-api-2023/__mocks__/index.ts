@@ -20,6 +20,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtur
 import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { mockUrls } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
+import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -29,7 +30,6 @@ const curriculumApi: Pick<
   | "lessonListing"
   | "programmeListingPage"
   | "teachersHomePage"
-  | "lessonDownloadsCanonical"
   | "pupilLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
@@ -87,15 +87,9 @@ const curriculumApi: Pick<
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
   }),
-  lessonDownloadsCanonical: jest.fn(async () => {
-    return {
-      ...lessonDownloadsFixtures(),
-      pathways: [lessonDownloadsFixtures()],
-    };
-  }),
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
-  }),
+  }) as jest.Mocked<LessonDownloadsQuery>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }),

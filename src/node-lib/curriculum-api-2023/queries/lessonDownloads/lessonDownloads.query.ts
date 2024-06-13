@@ -1,26 +1,60 @@
-import errorReporter from "../../../../common-lib/error-reporter";
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
-import getNextLessonsInUnit from "./getNextLessonsInUnit";
-import lessonDownloadsSchema from "./lessonDownloads.schema";
+import {
+  InputMaybe,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp,
+} from "../../generated/sdk";
+
+import lessonDownloadsSchema, {
+  downloadsAssetData,
+} from "./lessonDownloads.schema";
+import { constructDownloadsArray } from "./downloadUtils";
+import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
+import constructLessonDownloads from "./constructLessonDownloads";
+
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import lessonDownloadsCanonicalSchema from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
-  async (args: {
-    programmeSlug: string;
-    unitSlug: string;
+  async <T>(args: {
+    programmeSlug?: string;
+    unitSlug?: string;
     lessonSlug: string;
-  }) => {
-    const res = await sdk.lessonDownloads(args);
-    const pages = res.downloads;
-    const units = res.unit;
+  }): Promise<T> => {
+    const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    if (!pages || !units || pages.length === 0 || units.length === 0) {
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp> =
+      {};
+
+    const canonicalLesson = !unitSlug && !programmeSlug;
+
+    if (canonicalLesson) {
+      browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
+    }
+
+    if (unitSlug) {
+      browseDataWhere["unit_slug"] = { _eq: unitSlug };
+    }
+
+    if (programmeSlug) {
+      browseDataWhere["programme_slug"] = { _eq: programmeSlug };
+    }
+
+    const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
+
+    if (
+      !res.download_assets ||
+      !res.browse_data ||
+      res.download_assets.length === 0 ||
+      res.browse_data.length === 0
+    ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (pages.length > 1 || units.length > 1) {
+    if (res.download_assets.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -31,16 +65,63 @@ const lessonDownloadsQuery =
       });
     }
 
-    const page = pages[0];
-    const unit = units[0];
-    const nextLessons = getNextLessonsInUnit(unit?.lessons, args.lessonSlug);
+    const { download_assets, browse_data } = res;
 
-    return lessonDownloadsSchema.parse({
-      ...page,
-      nextLessons,
-      isLegacy: false,
-      isSpecialist: false,
-    });
+    const {
+      has_slide_deck_asset_object,
+      has_worksheet_asset_object,
+      has_supplementary_asset_object,
+      has_worksheet_answers_asset_object,
+      has_worksheet_google_drive_downloadable_version,
+      starter_quiz,
+      exit_quiz,
+      is_legacy,
+      expired,
+    } = downloadsAssetData.parse(download_assets[0]);
+
+    const downloadsData = {
+      hasSlideDeckAssetObject: has_slide_deck_asset_object,
+      hasStarterQuiz: starter_quiz ? true : false,
+      hasExitQuiz: exit_quiz ? true : false,
+      hasWorksheetAssetObject: has_worksheet_asset_object,
+      hasWorksheetAnswersAssetObject: has_worksheet_answers_asset_object,
+      hasWorksheetGoogleDriveDownloadableVersion:
+        has_worksheet_google_drive_downloadable_version,
+      hasSupplementaryAssetObject: has_supplementary_asset_object,
+      isLegacy: is_legacy,
+    };
+
+    const downloads = constructDownloadsArray(downloadsData);
+
+    const parsedBrowseData = browse_data.map((bd) =>
+      syntheticUnitvariantLessonsSchema.parse(bd),
+    );
+
+    if (canonicalLesson) {
+      const canonicalLessonDownloads = constructCanonicalLessonDownloads(
+        downloads,
+        lessonSlug,
+        parsedBrowseData,
+        is_legacy,
+      );
+      return lessonDownloadsCanonicalSchema.parse(
+        canonicalLessonDownloads,
+      ) as T;
+    } else {
+      const lessonDownloads = constructLessonDownloads(
+        downloads,
+        lessonSlug,
+        parsedBrowseData,
+        expired,
+      );
+
+      return lessonDownloadsSchema.parse({
+        ...lessonDownloads,
+        isLegacy: false,
+        isSpecialist: false,
+      }) as T;
+    }
   };
 
+export type LessonDownloadsQuery = ReturnType<typeof lessonDownloadsQuery>;
 export default lessonDownloadsQuery;
