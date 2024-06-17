@@ -10,13 +10,6 @@ import {
 
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 
-/**
- * ! - Render on the correct pages ✅
- * ! - Link to the correct page - remove - l ✅
- * ! - Fix type error ✅
- * ! - Add images to CMS ✅
- */
-
 const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 `;
@@ -26,6 +19,7 @@ type NewContentBannerProps = {
   programmeSlug: string;
   keyStageSlug: string;
   subjectSlug: string;
+  isUnitListing?: boolean;
 };
 
 const renderContentBannerArray = [
@@ -64,6 +58,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
   programmeSlug,
   keyStageSlug,
   subjectSlug,
+  isUnitListing,
 }) => {
   const renderComponent = renderContentBannerArray.some((item) => {
     return (
@@ -93,7 +88,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
     progSlug = "english-primary-ks2";
   }
 
-  if (!renderComponent) {
+  if (!renderComponent || (isUnitListing && subjectSlug === "maths")) {
     return null;
   }
 

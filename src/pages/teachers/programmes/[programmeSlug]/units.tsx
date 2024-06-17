@@ -273,6 +273,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle.toLowerCase()}
                 programmeSlug={programmeSlug}
+                isUnitListing={true}
               />
               <UnitList
                 {...curriculumData}
