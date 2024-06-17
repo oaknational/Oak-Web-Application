@@ -46,10 +46,11 @@ const Autocomplete = (props: AutocompleteProps) => {
   const state = useComboBoxState({
     ...props,
     defaultFilter: contains,
-    defaultInputValue: props.value,
+    inputValue: props.value,
     onSelectionChange: onSelectionChange,
     onInputChange: onInputChange,
     children: props.children,
+    items: props.children as Iterable<HTMLDivElement>,
   });
 
   const { inputProps, listBoxProps } = useComboBox(

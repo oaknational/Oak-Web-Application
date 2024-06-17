@@ -622,11 +622,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />,
       );
       expect(queryByTestId("download-heading")).toBeInTheDocument();
