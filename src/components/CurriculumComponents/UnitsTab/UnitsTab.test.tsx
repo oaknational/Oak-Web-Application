@@ -3,12 +3,179 @@ import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
+import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
+const unitInformationViewed = jest.fn();
+
+const trackingDataSecondaryScience = {
+  subjectTitle: "Science",
+  subjectSlug: "science",
+  examboardSlug: "aqa",
+  phaseSlug: "secondary",
+};
+const secondaryScienceUnits = {
+  units: [
+    {
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      order: 1,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      planned_number_of_lessons: 5,
+      slug: "cellular-respiration-and-atp",
+      subject: "Combined Science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      subject_slug: "combined-science",
+      tags: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Aerobic and anaerobic cellular respiration",
+      unit_options: [],
+      year: "11",
+    },
+    {
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      order: 1,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      planned_number_of_lessons: 5,
+      slug: "nuclear-physics",
+      subject: "Physics",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      subject_slug: "physics",
+      tags: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Nuclear Physics",
+      unit_options: [],
+      year: "11",
+    },
+  ],
+};
+
+const trackingDataPrimaryEnglish = {
+  subjectTitle: "English",
+  subjectSlug: "english",
+  examboardSlug: null,
+  phaseSlug: "primary",
+};
+const primaryEnglishData = {
+  units: [
+    {
+      planned_number_of_lessons: 8,
+      domain: "Grammar",
+      domain_id: 17,
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks2",
+      lessons: [],
+      order: 1,
+      phase: "Primary",
+      phase_slug: "primary",
+      slug: "using-five-sentence-types",
+      subject: "English",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "english",
+      tags: null,
+      threads: [
+        {
+          title: "Developing grammatical knowledge",
+          slug: "developing-grammatical-knowledge",
+          order: 10,
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Using five sentence types",
+      unit_options: [],
+      year: "6",
+    },
+    {
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: "Reading, Writing & Oracy",
+      domain_id: 16,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks2",
+      lessons: [],
+      order: 1,
+      phase: "Primary",
+      phase_slug: "primary",
+      planned_number_of_lessons: 24,
+      slug: "pandas-or-antarctic-animals-non-chronological-report",
+      subject: "English",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "english",
+      tags: null,
+      threads: [
+        {
+          title: "Texts that inform",
+          slug: "texts-that-inform",
+          order: 4,
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Pandas or Antarctic Animals: Non-Chronological Report",
+      unit_options: [
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          lessons: [],
+          title: "Antarctic Animals",
+          unitvariant_id: 774,
+        },
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          lessons: [],
+          title: "Pandas",
+          unitvariant_id: 773,
+        },
+      ],
+      year: "6",
+    },
+  ],
+};
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -16,6 +183,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       curriculumThreadHighlighted,
       yearGroupSelected,
+      unitInformationViewed: (...args: unknown[]) =>
+        unitInformationViewed(...args),
     },
   }),
 }));
@@ -33,7 +202,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
@@ -41,16 +213,28 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     const unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
+    // Find all combined science units as these are displayed by default
+    // const combinedScienceUnits = curriculumUnitsTabFixture().units.filter(
+    //   ({ subject_slug }) => subject_slug === "combined-science",
+    // );
+    // Hard coding this figure for now - as multiple units with the same name
+    const VISIBLE_UNITS = 87;
+    expect(unitCards).toHaveLength(VISIBLE_UNITS);
   });
 
   test("threads with duplicate orders sort alphabetically", async () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
     const isSorted = threadOptions
@@ -141,7 +325,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       ],
     };
     const { findAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataPrimaryEnglish}
+        formattedData={formatCurriculumUnitsData(data)}
+      />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
     expect(threadOptions).toHaveLength(3);
@@ -156,7 +343,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
     const threads = await findAllByTestId("thread-radio");
@@ -171,7 +361,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     expect(await findByTestId("all-years-radio")).toBeInTheDocument();
     const yearOptions = await findAllByTestId("year-radio");
@@ -183,7 +376,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     const yearOptions = await findAllByTestId("year-radio");
     const extractedYears = yearOptions.map((option) =>
@@ -285,8 +481,15 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
+    const formattedData = formatCurriculumUnitsData(data);
+    const trackingData = {
+      subjectTitle: "English",
+      subjectSlug: "english",
+      examboardSlug: "aqa",
+      phaseSlug: "secondary",
+    };
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug={"aqa"} />,
+      <UnitsTab trackingData={trackingData} formattedData={formattedData} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(1);
@@ -296,18 +499,22 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataPrimaryEnglish}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
+      />,
     );
     const threads = queryAllByTestId("thread-radio");
     if (!threads[0]) {
       throw new Error("No thread option found");
     }
     await userEvent.click(threads[0]);
-    const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
-      return unit.threads.some(
+
+    const threadUnits = primaryEnglishData.units.filter((unit) =>
+      unit.threads.some(
         (thread) => thread.slug === threads[0]?.getAttribute("value"),
-      );
-    });
+      ),
+    );
     const highlightedUnits = queryAllByTestId("highlighted-unit-card");
     expect(threadUnits).toHaveLength(highlightedUnits.length);
     const selectedThread = queryByTestId("selected-thread-radio");
@@ -316,7 +523,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     const yearOptions = queryAllByTestId("year-radio");
     if (!yearOptions[0]) {
@@ -331,68 +541,11 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can filter units by parent subject", async () => {
-    const data = {
-      units: [
-        {
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks4",
-          lessons: [],
-          order: 1,
-          phase: "Secondary",
-          phase_slug: "secondary",
-          planned_number_of_lessons: 5,
-          slug: "cellular-respiration-and-atp",
-          subject: "Combined Science",
-          subject_parent: "Science",
-          subject_parent_slug: "science",
-          subject_slug: "combined-science",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Aerobic and anaerobic cellular respiration",
-          unit_options: [],
-          year: "11",
-        },
-        {
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks4",
-          lessons: [],
-          order: 1,
-          phase: "Secondary",
-          phase_slug: "secondary",
-          planned_number_of_lessons: 5,
-          slug: "nuclear-physics",
-          subject: "Physics",
-          subject_parent: "Science",
-          subject_parent_slug: "science",
-          subject_slug: "physics",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Nuclear Physics",
-          unit_options: [],
-          year: "11",
-        },
-      ],
-    };
     const { findAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug={"aqa"} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(secondaryScienceUnits)}
+      />,
     );
     let unitCards = await findAllByTestId("unit-card");
     // Combined science is selected by default, so only 1 expected
@@ -411,72 +564,16 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can filter units by domain", async () => {
-    const data = {
-      units: [
-        {
-          planned_number_of_lessons: 8,
-          domain: "Grammar",
-          domain_id: 17,
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks1",
-          lessons: [],
-          order: 1,
-          phase: "Primary",
-          phase_slug: "primary",
-          slug: "word-class",
-          subject: "English",
-          subject_parent: null,
-          subject_parent_slug: null,
-          subject_slug: "english",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Word Class",
-          unit_options: [],
-          year: "1",
-        },
-        {
-          planned_number_of_lessons: 8,
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: "Reading, Writing & Oracy",
-          domain_id: 16,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks1",
-          lessons: [],
-          order: 2,
-          phase: "Primary",
-          phase_slug: "primary",
-          slug: "a-superhero-like-you-reading-and-writing",
-          subject: "English",
-          subject_parent: null,
-          subject_parent_slug: null,
-          subject_slug: "english",
-          tier: null,
-          tier_slug: null,
-          tags: null,
-          threads: [],
-          title: "’A Superhero Like You!’: Reading and Writing",
-          unit_options: [],
-          year: "1",
-        },
-      ],
-    };
     const { findAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataPrimaryEnglish}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
+      />,
     );
 
+    let unitCards = null;
     await act(async () => {
-      const unitCards = await findAllByTestId("unit-card");
+      unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
     });
 
@@ -486,25 +583,38 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     if (!domainButtons[1]) {
       throw new Error("Missing second domain button");
     }
-    await userEvent.click(domainButtons[1]);
-    const unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(1);
+    userEvent.click(domainButtons[1]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+    });
   });
 
   test("user can filter units by discipline", async () => {
     const data = curriculumUnitsTabFixture();
     const { findAllByTestId, queryAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
 
     const yearOptions = (await queryAllByTestId(
       "year-radio",
     )) as HTMLInputElement[];
 
-    const year10Option = yearOptions.find((option) => option.value === "10");
-    if (!year10Option) {
-      throw new Error("No year 10 option found");
+    const year7Option = yearOptions.find((option) => option.value === "7");
+    if (!year7Option) {
+      throw new Error("No year 7 option found");
     }
+
+    // Check we only have 14 units for year 7 to start with (combined science).
+    await userEvent.click(year7Option);
+    let unitCards;
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(14);
+    });
 
     const disciplineButtons = await findAllByTestId("discipline-button");
 
@@ -518,32 +628,39 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     expect(disciplineButtons[0]).toHaveTextContent("All");
     expect(disciplineButtons[1]).toHaveTextContent("Biology");
-    expect(disciplineButtons[2]).toHaveTextContent("Physics");
+    expect(disciplineButtons[2]).toHaveTextContent("Chemistry");
 
-    // Check we only have 2 units for year 10 to start with.
-    await userEvent.click(year10Option);
-    let unitCards;
-    await waitFor(async () => {
-      unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(2);
-    });
-
-    // Check we have 1 unit after clicking the Biology button.
+    // Check we have 6 units after clicking the Biology button.
     await userEvent.click(disciplineButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(1);
-      if (!data.units[1]?.title) {
+      expect(unitCards).toHaveLength(6);
+      const cellsUnit = data.units.filter((unit) => {
+        const yearFilter = unit.year === "7";
+        const disciplineFilter =
+          unit.tags && unit.tags[0] && unit.tags[0]?.title === "Biology";
+
+        return yearFilter && disciplineFilter;
+      });
+
+      if (!cellsUnit[0]) {
         throw new Error("No unit title in fixture");
       }
-      expect(unitCards[0]).toHaveTextContent(data.units[1]?.title);
+      expect(unitCards[0]).toHaveTextContent(cellsUnit[0].title);
+    });
+
+    // Check we have 4 units after clicking the Chemistry button.
+    await userEvent.click(disciplineButtons[2]);
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(4);
     });
 
     // Check we have 2 units after clicking the All button.
     await userEvent.click(disciplineButtons[0]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(2);
+      expect(unitCards).toHaveLength(14);
     });
   });
 
@@ -668,7 +785,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       ],
     };
     const { findAllByTestId } = render(
-      <UnitsTab data={data} examboardSlug="aqa" />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(data)}
+      />,
     );
     let unitCards = await findAllByTestId("unit-card");
     // Foundation selected by default, so only 2 (including blank) expected
@@ -687,59 +807,11 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can see correct number of unit options", async () => {
-    const data = {
-      units: [
-        {
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          domain: "Reading, Writing & Oracy",
-          domain_id: 16,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks2",
-          lessons: [],
-          order: 1,
-          phase: "Primary",
-          phase_slug: "primary",
-          planned_number_of_lessons: 24,
-          slug: "pandas-or-antarctic-animals-non-chronological-report",
-          subject: "English",
-          subject_parent: null,
-          subject_parent_slug: null,
-          subject_slug: "english",
-          tags: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Pandas or Antarctic Animals: Non-Chronological Report",
-          unit_options: [
-            {
-              connection_future_unit_description: null,
-              connection_prior_unit_description: null,
-              connection_future_unit_title: null,
-              connection_prior_unit_title: null,
-              lessons: [],
-              title: "Antarctic Animals",
-              unitvariant_id: 774,
-            },
-            {
-              connection_future_unit_description: null,
-              connection_prior_unit_description: null,
-              connection_future_unit_title: null,
-              connection_prior_unit_title: null,
-              lessons: [],
-              title: "Pandas",
-              unitvariant_id: 773,
-            },
-          ],
-          year: "6",
-        },
-      ],
-    };
     const { findByTestId } = render(
-      <UnitsTab data={data} examboardSlug={null} />,
+      <UnitsTab
+        trackingData={trackingDataPrimaryEnglish}
+        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
+      />,
     );
     const tag = await findByTestId("options-tag");
     expect(tag).toHaveTextContent("2");
@@ -824,7 +896,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     resizeWindow(390, 844);
 
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     // Open thread modal
     const filterThreadsButton = await findByTestId("mobile-highlight-thread");
@@ -832,10 +907,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const threadRadios = await findAllByTestId("thread-radio-mobile");
     const doneButton = await findByTestId("mobile-done-thread-modal-button");
-    const aspectsOfNarrativeThread = threadRadios[0];
-    if (aspectsOfNarrativeThread && doneButton) {
+    const livingThingsThread = threadRadios[0];
+    if (livingThingsThread && doneButton) {
       // Select the first thread
-      await userEvent.click(aspectsOfNarrativeThread);
+      await userEvent.click(livingThingsThread);
       await userEvent.click(doneButton);
 
       const highlightedThreadsBox = await findByTestId(
@@ -845,15 +920,20 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         "highlighted-units-box-mobile",
       );
       expect(highlightedThreadsBox).toBeInTheDocument();
-      expect(highlightedThreadsBox).toHaveTextContent("Aspects of narrative");
-      expect(highlightedUnitsBox).toHaveTextContent("1 units highlighted");
+      expect(highlightedThreadsBox).toHaveTextContent(
+        "BQ01 Biology: What are living things and what are they made of?",
+      );
+      expect(highlightedUnitsBox).toHaveTextContent("16 units highlighted");
     }
   });
   test("mobile: mobile filter options visible", async () => {
     resizeWindow(390, 844);
 
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
     const mobileThreadButton = await findByTestId("mobile-highlight-thread");
     const mobileYearFilter = await findByTestId("year-selection-mobile");
@@ -862,13 +942,16 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
     expect(mobileThreadButton).toBeInTheDocument();
     expect(mobileYearFilter).toBeInTheDocument();
-    expect(mobileYearFilterButtons).toHaveLength(9);
+    expect(mobileYearFilterButtons).toHaveLength(5);
   });
   test("desktop filters are not visible in mobile", async () => {
     resizeWindow(390, 844);
 
     const { findByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
 
     const yearsRadio = await findByTestId("year-group-filter-desktop");
@@ -883,7 +966,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     resizeWindow(390, 844);
 
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug="aqa" />,
+      <UnitsTab
+        trackingData={trackingDataSecondaryScience}
+        formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
+      />,
     );
 
     const yearFilterButtons = await findAllByTestId("year-group-filter-button");

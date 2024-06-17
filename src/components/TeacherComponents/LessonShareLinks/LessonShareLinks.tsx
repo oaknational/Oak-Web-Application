@@ -51,6 +51,7 @@ const LessonShareLinks: FC<{
           success={isShareSuccessful}
           type="button"
           ariaLabel="Copy link to clipboard"
+          ariaLive={"polite"}
           onClick={() =>
             copyToClipboard(
               getHrefForSocialSharing({
@@ -95,6 +96,7 @@ const LessonShareLinks: FC<{
               props.onSubmit(link.avoMedium);
             }}
             ariaLabel={`Share to ${link.name}`}
+            ariaLive={"polite"}
           />
         ))}
       </OakFlex>

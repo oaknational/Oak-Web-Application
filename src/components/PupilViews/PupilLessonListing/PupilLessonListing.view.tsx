@@ -1,15 +1,15 @@
 import {
   OakFlex,
-  OakHeading,
   OakInfo,
   OakPupilJourneyHeader,
   OakPupilJourneyLayout,
   OakPupilJourneyListItem,
-  OakSpan,
   OakTertiaryButton,
   OakThemeProvider,
   oakDefaultTheme,
   OakPupilJourneyList,
+  OakPupilJourneyListCounter,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -41,12 +41,14 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (tierDescription) {
-    breadcrumb.push(tierDescription);
-  }
   if (examboardDescription) {
     breadcrumb.push(examboardDescription);
   }
+  if (tierDescription) {
+    breadcrumb.push(tierDescription);
+  }
+
+  const optionality = programmeFields?.optionality;
 
   const LessonListingTitle = (
     <OakPupilJourneyHeader
@@ -54,6 +56,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       iconName={`subject-${subjectSlug}`}
       title={unitData?.title}
       breadcrumbs={breadcrumb}
+      optionalityTitle={optionality}
     />
   );
 
@@ -70,6 +73,22 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     </OakTertiaryButton>
   );
 
+  const lessonCount = (
+    <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
+      <OakInfo
+        tooltipPosition="top-left"
+        hint={
+          "We've put the lessons in order helping you build on what you've learned before so it’s best to start with the first lesson of a unit."
+        }
+      />
+      <OakPupilJourneyListCounter
+        count={orderedCurriculumData.length}
+        countHeader="Choose a lesson"
+        tag="h2"
+      />
+    </OakFlex>
+  );
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       {" "}
@@ -84,42 +103,34 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
         {" "}
         <OakPupilJourneyLayout
           sectionName={"lesson-listing"}
-          titleSlot={LessonListingTitle}
           phase={phaseSlug}
           topNavSlot={BacktoUnits}
         >
-          <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
-            <OakInfo
-              tooltipPosition="top-left"
-              hint={
-                "We've put the lessons in order helping you build on what you've learned before so it’s best to start with the first lesson of a unit."
-              }
-            />
-            <OakHeading tag="h2" $font={["heading-6", "heading-6"]}>
-              Lessons
-              <OakSpan
-                $font={"heading-light-6"}
-              >{` (${orderedCurriculumData.length})`}</OakSpan>
-            </OakHeading>
-          </OakFlex>
-          <OakPupilJourneyList phase={phaseSlug}>
-            {orderedCurriculumData.map((lesson, index) => {
-              const lessonData = lesson.lessonData;
-              return (
-                <OakPupilJourneyListItem
-                  href={resolveOakHref({
-                    page: "pupil-lesson",
-                    lessonSlug: lesson.lessonSlug,
-                    programmeSlug: lesson.programmeSlug,
-                    unitSlug: lesson.unitSlug,
-                  })}
-                  index={index + 1}
-                  title={lessonData.title}
-                  role="listitem"
-                />
-              );
-            })}
-          </OakPupilJourneyList>
+          <OakBox $mb={"space-between-xl"}>
+            {" "}
+            <OakPupilJourneyList
+              titleSlot={LessonListingTitle}
+              phase={phaseSlug}
+              counterSlot={lessonCount}
+            >
+              {orderedCurriculumData.map((lesson, index) => {
+                return (
+                  <OakPupilJourneyListItem
+                    href={resolveOakHref({
+                      page: "pupil-lesson",
+                      lessonSlug: lesson.lessonSlug,
+                      programmeSlug: lesson.programmeSlug,
+                      unitSlug: lesson.unitSlug,
+                    })}
+                    index={index + 1}
+                    title={lesson.lessonData.title}
+                    role="listitem"
+                    unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
+                  />
+                );
+              })}
+            </OakPupilJourneyList>
+          </OakBox>
         </OakPupilJourneyLayout>
       </AppLayout>
     </OakThemeProvider>

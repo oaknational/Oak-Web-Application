@@ -61,20 +61,21 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     <OakLI
       $display="flex"
       $font={"heading-7"}
-      $opacity={isSelected ? "semi-opaque" : "opaque"}
       $position="relative"
       $overflow="visible"
       $alignItems="center"
+      $color={!isSelected ? "black" : "grey60"}
       $mb="space-between-xs"
     >
       <OwaLink
         $display="flex"
         $height="100%"
         $alignItems="center"
+        aria-current={isSelected ? true : undefined}
         {...linkProps}
         htmlAnchorProps={{
           onClick,
-          "aria-current": isSelected ? "page" : undefined,
+          // "aria-current": isSelected ? "page" : undefined,
         }}
       >
         <Icon

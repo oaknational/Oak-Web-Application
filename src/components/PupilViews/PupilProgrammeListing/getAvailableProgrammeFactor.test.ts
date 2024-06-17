@@ -12,6 +12,7 @@ describe("getAvailableProgrammeFactor", () => {
     {
       tier: "foundation",
       tierSlug: "foundation",
+      tierDescription: "Foundation",
       tierDisplayOrder: 1,
       examboard: "AQA",
       examboardSlug: "aqa",
@@ -20,6 +21,7 @@ describe("getAvailableProgrammeFactor", () => {
     {
       tier: "foundation",
       tierSlug: "foundation",
+      tierDescription: "Foundation",
       tierDisplayOrder: 1,
       examboard: "Edexcel",
       examboardSlug: "edexcel",
@@ -29,6 +31,7 @@ describe("getAvailableProgrammeFactor", () => {
       tier: "core",
       tierSlug: "core",
       tierDisplayOrder: 2,
+      tierDescription: "Core",
       examboard: "Edexcel",
       examboardSlug: "edexcel",
       examboardDisplayOrder: 2,
@@ -37,6 +40,7 @@ describe("getAvailableProgrammeFactor", () => {
       tier: "core",
       tierSlug: "core",
       tierDisplayOrder: 2,
+      tierDescription: "Core",
       examboard: "AQA",
       examboardSlug: "aqa",
       examboardDisplayOrder: 1,
@@ -69,11 +73,15 @@ describe("getAvailableProgrammeFactor", () => {
         tier: "core",
         tierSlug: "core",
         tierDisplayOrder: 2,
+        tierDescription: "Core",
+        isLegacy: false,
       },
       {
         tier: "foundation",
         tierSlug: "foundation",
         tierDisplayOrder: 1,
+        tierDescription: "Foundation",
+        isLegacy: false,
       },
     ]);
   });
@@ -89,11 +97,13 @@ describe("getAvailableProgrammeFactor", () => {
         examboard: "AQA",
         examboardSlug: "aqa",
         examboardDisplayOrder: 1,
+        isLegacy: false,
       },
       {
         examboard: "Edexcel",
         examboardSlug: "edexcel",
         examboardDisplayOrder: 2,
+        isLegacy: false,
       },
     ]);
   });

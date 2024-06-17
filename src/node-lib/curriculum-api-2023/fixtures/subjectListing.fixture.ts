@@ -9,10 +9,10 @@ const subjectPagePropsFixture = (
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     keyStages: [
-      { slug: "ks1", title: "Key stage 1", shortCode: "KS1" },
-      { slug: "ks2", title: "Key stage 2", shortCode: "KS2" },
-      { slug: "ks3", title: "Key stage 3", shortCode: "KS3" },
-      { slug: "ks4", title: "Key stage 4", shortCode: "KS4" },
+      { slug: "ks1", title: "Key Stage 1", shortCode: "KS1" },
+      { slug: "ks2", title: "Key Stage 2", shortCode: "KS2" },
+      { slug: "ks3", title: "Key Stage 3", shortCode: "KS3" },
+      { slug: "ks4", title: "Key Stage 4", shortCode: "KS4" },
     ],
     subjects: [
       {
@@ -86,12 +86,12 @@ export const subjectListingFixture2023 = (
 ): SubjectListingPageData => {
   return {
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
+    keyStageTitle: "Key Stage 4",
     keyStages: [
-      { slug: "ks1", title: "Key stage 1", shortCode: "KS1" },
-      { slug: "ks2", title: "Key stage 2", shortCode: "KS2" },
-      { slug: "ks3", title: "Key stage 3", shortCode: "KS3" },
-      { slug: "ks4", title: "Key stage 4", shortCode: "KS4" },
+      { slug: "ks1", title: "Key Stage 1", shortCode: "KS1" },
+      { slug: "ks2", title: "Key Stage 2", shortCode: "KS2" },
+      { slug: "ks3", title: "Key Stage 3", shortCode: "KS3" },
+      { slug: "ks4", title: "Key Stage 4", shortCode: "KS4" },
     ],
     subjects: [
       {

@@ -1,5 +1,9 @@
-import { act, render } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { act } from "@testing-library/react";
+import {
+  OakInfoProps,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import {
   PupilViewsProgrammeListing,
@@ -11,6 +15,20 @@ import {
   PupilProgrammeListingData,
 } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
+
+jest.mock("@oaknational/oak-components", () => {
+  return {
+    ...jest.requireActual("@oaknational/oak-components"),
+    OakInfo: ({ hint }: OakInfoProps) => (
+      <>
+        <div role="tooltip">{hint}</div>
+      </>
+    ),
+  };
+});
 
 describe("PublicProgrammeListing", () => {
   const overrides: Partial<ProgrammeFields>[] = [
@@ -34,6 +52,7 @@ describe("PublicProgrammeListing", () => {
       tier: "core",
       tierSlug: "core",
       tierDisplayOrder: 2,
+      tierDescription: "Core",
       examboard: "Edexcel",
       examboardSlug: "edexcel",
       examboardDisplayOrder: 2,
@@ -41,6 +60,7 @@ describe("PublicProgrammeListing", () => {
     {
       tier: "core",
       tierSlug: "core",
+      tierDescription: "Core",
       tierDisplayOrder: 2,
       examboard: "AQA",
       examboardSlug: "aqa",
@@ -64,7 +84,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
     const { getByText } = render(
@@ -73,7 +92,7 @@ describe("PublicProgrammeListing", () => {
       </OakThemeProvider>,
     );
 
-    expect(getByText("Choose an Examboard")).toBeInTheDocument();
+    expect(getByText("Choose an exam board")).toBeInTheDocument();
   });
 
   it("renders BrowseTierSelector when there are multiple tiers and only one examboard", () => {
@@ -88,7 +107,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
     const { getByText } = render(
@@ -112,7 +130,6 @@ describe("PublicProgrammeListing", () => {
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
       baseSlug: "baseSlug",
-      isLegacy: false,
       yearSlug: "year-11",
     };
 
@@ -128,6 +145,6 @@ describe("PublicProgrammeListing", () => {
       getByRole("button", { name: "AQA" }).click();
     });
 
-    expect(getByRole("link", { name: "foundation" })).toBeInTheDocument();
+    expect(getByRole("link", { name: "Core" })).toBeInTheDocument();
   });
 });

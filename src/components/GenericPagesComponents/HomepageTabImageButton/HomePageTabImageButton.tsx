@@ -120,6 +120,7 @@ const HomePageTabImageButton = forwardRef<
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       aria-disabled={disabled}
       isCurrent={isCurrent}
+      aria-current={isCurrent ? "page" : undefined}
       disabled={disabled}
     >
       <OakFlex $flexDirection={"column"} $alignItems={"center"}>

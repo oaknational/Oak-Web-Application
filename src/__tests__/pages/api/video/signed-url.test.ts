@@ -2,14 +2,14 @@ import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/video/signed-url";
 
 const signPlaybackId = jest.fn().mockReturnValue("some-token");
-jest.mock("@mux/mux-node", () => ({
-  __esModule: true,
-  default: {
-    JWT: {
+
+jest.mock("@mux/mux-node", () => {
+  return jest.fn().mockImplementation(() => ({
+    jwt: {
       signPlaybackId: (...args: []) => signPlaybackId(...args),
     },
-  },
-}));
+  }));
+});
 
 describe("/api/video/signed-url", () => {
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "true",
       },
     });
@@ -32,7 +32,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
       },
     });
 
@@ -42,7 +42,7 @@ describe("/api/video/signed-url", () => {
       expect.objectContaining({
         keyId: "123",
         keySecret: "super secret",
-        type: "some-type",
+        type: "video",
       }),
     );
   });
@@ -50,7 +50,7 @@ describe("/api/video/signed-url", () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "true",
       },
     });
@@ -61,7 +61,7 @@ describe("/api/video/signed-url", () => {
       expect.objectContaining({
         keyId: "123-2020",
         keySecret: "super secret-2020",
-        type: "some-type",
+        type: "video",
       }),
     );
   });
@@ -97,11 +97,29 @@ describe("/api/video/signed-url", () => {
       }),
     );
   });
+  it("should fail if type is not valid string", async () => {
+    const { req, res } = createNextApiMocks({
+      query: {
+        id: "some-id",
+        type: "invalid-type",
+        legacy: "true",
+      },
+    });
+
+    await handler(req, res);
+    expect(res._getStatusCode()).toBe(400);
+    expect(res._getJSONData()).toEqual(
+      JSON.stringify({
+        message:
+          "Query parameter 'type' must be one of video, thumbnail, gif, storyboard, stats",
+      }),
+    );
+  });
   it("should fail 'legacy' if exists but not 'true'", async () => {
     const { req, res } = createNextApiMocks({
       query: {
         id: "some-id",
-        type: "some-type",
+        type: "video",
         legacy: "false",
       },
     });

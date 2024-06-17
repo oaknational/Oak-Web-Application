@@ -52,7 +52,7 @@ describe("PostCategoryList", () => {
       "/webinars/categories/lesson-planning",
     );
   });
-  test("current link should be signposted with aria-current='page'", () => {
+  test("current link should be signposted with aria-current=true", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
@@ -64,7 +64,7 @@ describe("PostCategoryList", () => {
         selectedCategorySlug="lesson-planning"
       />,
     );
-    const currentLink = getByRole("link", { current: "page" });
+    const currentLink = getByRole("link", { current: true });
     expect(currentLink).toHaveAccessibleName("Lesson Planning");
   });
   test("selectedCategorySlug null should mean All is current", () => {
@@ -79,7 +79,7 @@ describe("PostCategoryList", () => {
         selectedCategorySlug={null}
       />,
     );
-    const currentLink = getByRole("link", { current: "page" });
+    const currentLink = getByRole("link", { current: true });
     expect(currentLink).toHaveAccessibleName("All");
   });
   test("non current links should not be signposted with aria-current", () => {

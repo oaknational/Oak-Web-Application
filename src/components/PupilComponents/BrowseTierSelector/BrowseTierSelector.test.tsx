@@ -5,9 +5,27 @@ import { BrowseTierSelector, TierData } from "./BrowseTierSelector";
 
 describe("BrowseTierSelector", () => {
   const tiers: TierData[] = [
-    { tier: "higher", tierSlug: "higher", tierDisplayOrder: 3 },
-    { tier: "core", tierSlug: "core", tierDisplayOrder: 2 },
-    { tier: "foundation", tierSlug: "foundation", tierDisplayOrder: 1 },
+    {
+      tier: "higher",
+      tierSlug: "higher",
+      tierDisplayOrder: 3,
+      tierDescription: "Higher",
+      isLegacy: false,
+    },
+    {
+      tier: "core",
+      tierSlug: "core",
+      tierDisplayOrder: 2,
+      tierDescription: "Core",
+      isLegacy: true,
+    },
+    {
+      tier: "foundation",
+      tierSlug: "foundation",
+      tierDisplayOrder: 1,
+      tierDescription: "Foundation",
+      isLegacy: false,
+    },
   ];
 
   it("should render", () => {
@@ -16,7 +34,7 @@ describe("BrowseTierSelector", () => {
         <BrowseTierSelector
           tiers={tiers}
           baseSlug="my-subject"
-          isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
@@ -28,36 +46,18 @@ describe("BrowseTierSelector", () => {
         <BrowseTierSelector
           tiers={tiers}
           baseSlug="my-subject"
-          isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
 
     for (const t of tiers) {
-      const button = getByRole("link", { name: t.tier ?? "" });
+      const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}/units`,
-      );
-    }
-  });
-
-  it("should render legacy tiers with correct hrefs", () => {
-    const { getByRole } = render(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseTierSelector
-          tiers={tiers}
-          baseSlug="my-subject"
-          isLegacy={true}
-        />
-      </OakThemeProvider>,
-    );
-
-    for (const t of tiers) {
-      const button = getByRole("link", { name: t.tier ?? "" });
-      expect(button).toHaveAttribute(
-        "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}-l/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}${
+          t.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });
@@ -69,16 +69,18 @@ describe("BrowseTierSelector", () => {
           tiers={tiers}
           baseSlug="my-subject"
           examboardSlug="my-examboard"
-          isLegacy={false}
+          phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
 
     for (const t of tiers) {
-      const button = getByRole("link", { name: t.tier ?? "" });
+      const button = getByRole("link", { name: t.tierDescription ?? "" });
       expect(button).toHaveAttribute(
         "href",
-        `/pupils/beta/programmes/my-subject-${t.tierSlug}-my-examboard/units`,
+        `/pupils/programmes/my-subject-${t.tierSlug}-my-examboard${
+          t.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });

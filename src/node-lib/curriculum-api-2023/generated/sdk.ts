@@ -690,6 +690,8 @@ export type Cat_Contentguidance = {
   lessons_with_contentguidance?: Maybe<Array<Lessons>>;
   /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
   lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__permitted_programme_fields" */
+  permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
   programme_fields: Scalars['jsonb']['output'];
   /** An object relationship */
   supervisionlevel?: Maybe<Cat_Supervisionlevels>;
@@ -711,6 +713,16 @@ export type Cat_ContentguidanceLessons_With_ContentguidanceArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Lessons_Order_By>>;
   where?: InputMaybe<Lessons_Bool_Exp>;
+};
+
+
+/** columns and relationships of "cat_contentguidance" */
+export type Cat_ContentguidancePermitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
 };
 
 
@@ -760,8 +772,6 @@ export type Cat_Contentguidance_Avg_Fields = {
   __typename?: 'cat_contentguidance_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -783,6 +793,7 @@ export type Cat_Contentguidance_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   lessons_with_contentguidance?: InputMaybe<Lessons_Bool_Exp>;
   lessons_with_contentguidance_count?: InputMaybe<Int_Comparison_Exp>;
+  permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   supervisionlevel?: InputMaybe<Cat_Supervisionlevels_Bool_Exp>;
   supervisionlevel_id?: InputMaybe<Int_Comparison_Exp>;
@@ -851,8 +862,6 @@ export type Cat_Contentguidance_Max_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -869,8 +878,6 @@ export type Cat_Contentguidance_Min_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -906,6 +913,7 @@ export type Cat_Contentguidance_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   lessons_with_contentguidance_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   lessons_with_contentguidance_count?: InputMaybe<Order_By>;
+  permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   supervisionlevel?: InputMaybe<Cat_Supervisionlevels_Order_By>;
   supervisionlevel_id?: InputMaybe<Order_By>;
@@ -979,8 +987,6 @@ export type Cat_Contentguidance_Stddev_Fields = {
   __typename?: 'cat_contentguidance_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -989,8 +995,6 @@ export type Cat_Contentguidance_Stddev_Pop_Fields = {
   __typename?: 'cat_contentguidance_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -999,8 +1003,6 @@ export type Cat_Contentguidance_Stddev_Samp_Fields = {
   __typename?: 'cat_contentguidance_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1035,8 +1037,6 @@ export type Cat_Contentguidance_Sum_Fields = {
   __typename?: 'cat_contentguidance_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1096,8 +1096,6 @@ export type Cat_Contentguidance_Var_Pop_Fields = {
   __typename?: 'cat_contentguidance_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1106,8 +1104,6 @@ export type Cat_Contentguidance_Var_Samp_Fields = {
   __typename?: 'cat_contentguidance_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1116,8 +1112,6 @@ export type Cat_Contentguidance_Variance_Fields = {
   __typename?: 'cat_contentguidance_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1132,6 +1126,8 @@ export type Cat_Examboardspecs = {
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id: Scalars['Int']['output'];
+  /** A computed field, executes function "function__cat_examboardspecs__permitted_programme_fields" */
+  permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
   programme_fields: Scalars['jsonb']['output'];
   title?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_examboardspecs__units" */
@@ -1145,6 +1141,16 @@ export type Cat_Examboardspecs = {
 /** columns and relationships of "cat_examboardspecs" */
 export type Cat_ExamboardspecsDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "cat_examboardspecs" */
+export type Cat_ExamboardspecsPermitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
 };
 
 
@@ -1204,8 +1210,6 @@ export type Cat_Examboardspecs_Avg_Fields = {
   __typename?: 'cat_examboardspecs_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_examboardspecs". All fields are combined with a logical 'AND'. */
@@ -1221,6 +1225,7 @@ export type Cat_Examboardspecs_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   examboardspecs_id?: InputMaybe<Int_Comparison_Exp>;
+  permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   units_with_exam_board_specification?: InputMaybe<Units_Bool_Exp>;
@@ -1230,7 +1235,7 @@ export type Cat_Examboardspecs_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_examboardspecs" */
 export enum Cat_Examboardspecs_Constraint {
-  /** unique or primary key constraint on columns "examboardspecs_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "examboardspecs_id" */
   CatExamboardspecsPkey = 'cat_examboardspecs_pkey'
 }
 
@@ -1283,8 +1288,6 @@ export type Cat_Examboardspecs_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1298,8 +1301,6 @@ export type Cat_Examboardspecs_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1329,6 +1330,7 @@ export type Cat_Examboardspecs_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   examboardspecs_id?: InputMaybe<Order_By>;
+  permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   units_with_exam_board_specification_aggregate?: InputMaybe<Units_Aggregate_Order_By>;
@@ -1394,8 +1396,6 @@ export type Cat_Examboardspecs_Stddev_Fields = {
   __typename?: 'cat_examboardspecs_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1403,8 +1403,6 @@ export type Cat_Examboardspecs_Stddev_Pop_Fields = {
   __typename?: 'cat_examboardspecs_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1412,8 +1410,6 @@ export type Cat_Examboardspecs_Stddev_Samp_Fields = {
   __typename?: 'cat_examboardspecs_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_examboardspecs" */
@@ -1444,8 +1440,6 @@ export type Cat_Examboardspecs_Sum_Fields = {
   __typename?: 'cat_examboardspecs_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_examboardspecs" */
@@ -1498,8 +1492,6 @@ export type Cat_Examboardspecs_Var_Pop_Fields = {
   __typename?: 'cat_examboardspecs_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1507,8 +1499,6 @@ export type Cat_Examboardspecs_Var_Samp_Fields = {
   __typename?: 'cat_examboardspecs_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1516,8 +1506,6 @@ export type Cat_Examboardspecs_Variance_Fields = {
   __typename?: 'cat_examboardspecs_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_nationalcurriculum" */
@@ -1531,6 +1519,8 @@ export type Cat_Nationalcurriculum = {
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id: Scalars['Int']['output'];
+  /** A computed field, executes function "function__cat_nationalcurriculum__permitted_programme_fields" */
+  permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
   programme_fields: Scalars['jsonb']['output'];
   title?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_nationalcurriculum__units" */
@@ -1544,6 +1534,16 @@ export type Cat_Nationalcurriculum = {
 /** columns and relationships of "cat_nationalcurriculum" */
 export type Cat_NationalcurriculumDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "cat_nationalcurriculum" */
+export type Cat_NationalcurriculumPermitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
 };
 
 
@@ -1603,8 +1603,6 @@ export type Cat_Nationalcurriculum_Avg_Fields = {
   __typename?: 'cat_nationalcurriculum_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_nationalcurriculum". All fields are combined with a logical 'AND'. */
@@ -1620,6 +1618,7 @@ export type Cat_Nationalcurriculum_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   nationalcurriculum_id?: InputMaybe<Int_Comparison_Exp>;
+  permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   units_with_national_curriculum_content?: InputMaybe<Units_Bool_Exp>;
@@ -1682,8 +1681,6 @@ export type Cat_Nationalcurriculum_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1697,8 +1694,6 @@ export type Cat_Nationalcurriculum_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1728,6 +1723,7 @@ export type Cat_Nationalcurriculum_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   nationalcurriculum_id?: InputMaybe<Order_By>;
+  permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   units_with_national_curriculum_content_aggregate?: InputMaybe<Units_Aggregate_Order_By>;
@@ -1793,8 +1789,6 @@ export type Cat_Nationalcurriculum_Stddev_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1802,8 +1796,6 @@ export type Cat_Nationalcurriculum_Stddev_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1811,8 +1803,6 @@ export type Cat_Nationalcurriculum_Stddev_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_nationalcurriculum" */
@@ -1843,8 +1833,6 @@ export type Cat_Nationalcurriculum_Sum_Fields = {
   __typename?: 'cat_nationalcurriculum_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_nationalcurriculum" */
@@ -1897,8 +1885,6 @@ export type Cat_Nationalcurriculum_Var_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1906,8 +1892,6 @@ export type Cat_Nationalcurriculum_Var_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1915,8 +1899,486 @@ export type Cat_Nationalcurriculum_Variance_Fields = {
   __typename?: 'cat_nationalcurriculum_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
+};
+
+/** columns and relationships of "cat_subjectcategories" */
+export type Cat_Subjectcategories = {
+  __typename?: 'cat_subjectcategories';
+  _cohort: Scalars['String']['output'];
+  _deleted: Scalars['Boolean']['output'];
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state: Scalars['String']['output'];
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__permitted_programme_fields" */
+  permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
+  programme_fields: Scalars['jsonb']['output'];
+  subjectcategory_id: Scalars['Int']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units" */
+  units_with_subjectcategory?: Maybe<Array<Units>>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_subjectcategories" */
+export type Cat_SubjectcategoriesDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "cat_subjectcategories" */
+export type Cat_SubjectcategoriesPermitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+};
+
+
+/** columns and relationships of "cat_subjectcategories" */
+export type Cat_SubjectcategoriesProgramme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "cat_subjectcategories" */
+export type Cat_SubjectcategoriesUnits_With_SubjectcategoryArgs = {
+  distinct_on?: InputMaybe<Array<Units_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Units_Order_By>>;
+  where?: InputMaybe<Units_Bool_Exp>;
+};
+
+/** aggregated selection of "cat_subjectcategories" */
+export type Cat_Subjectcategories_Aggregate = {
+  __typename?: 'cat_subjectcategories_aggregate';
+  aggregate?: Maybe<Cat_Subjectcategories_Aggregate_Fields>;
+  nodes: Array<Cat_Subjectcategories>;
+};
+
+/** aggregate fields of "cat_subjectcategories" */
+export type Cat_Subjectcategories_Aggregate_Fields = {
+  __typename?: 'cat_subjectcategories_aggregate_fields';
+  avg?: Maybe<Cat_Subjectcategories_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Cat_Subjectcategories_Max_Fields>;
+  min?: Maybe<Cat_Subjectcategories_Min_Fields>;
+  stddev?: Maybe<Cat_Subjectcategories_Stddev_Fields>;
+  stddev_pop?: Maybe<Cat_Subjectcategories_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Cat_Subjectcategories_Stddev_Samp_Fields>;
+  sum?: Maybe<Cat_Subjectcategories_Sum_Fields>;
+  var_pop?: Maybe<Cat_Subjectcategories_Var_Pop_Fields>;
+  var_samp?: Maybe<Cat_Subjectcategories_Var_Samp_Fields>;
+  variance?: Maybe<Cat_Subjectcategories_Variance_Fields>;
+};
+
+
+/** aggregate fields of "cat_subjectcategories" */
+export type Cat_Subjectcategories_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Aggregate_Order_By = {
+  avg?: InputMaybe<Cat_Subjectcategories_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Cat_Subjectcategories_Max_Order_By>;
+  min?: InputMaybe<Cat_Subjectcategories_Min_Order_By>;
+  stddev?: InputMaybe<Cat_Subjectcategories_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Cat_Subjectcategories_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Cat_Subjectcategories_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Cat_Subjectcategories_Sum_Order_By>;
+  var_pop?: InputMaybe<Cat_Subjectcategories_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Cat_Subjectcategories_Var_Samp_Order_By>;
+  variance?: InputMaybe<Cat_Subjectcategories_Variance_Order_By>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Cat_Subjectcategories_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Cat_Subjectcategories_Avg_Fields = {
+  __typename?: 'cat_subjectcategories_avg_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Avg_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "cat_subjectcategories". All fields are combined with a logical 'AND'. */
+export type Cat_Subjectcategories_Bool_Exp = {
+  _and?: InputMaybe<Array<Cat_Subjectcategories_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+  _or?: InputMaybe<Array<Cat_Subjectcategories_Bool_Exp>>;
+  _release_id?: InputMaybe<Int_Comparison_Exp>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  subjectcategory_id?: InputMaybe<Int_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  units_with_subjectcategory?: InputMaybe<Units_Bool_Exp>;
+  units_with_subjectcategory_count?: InputMaybe<Int_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "cat_subjectcategories" */
+export enum Cat_Subjectcategories_Constraint {
+  /** unique or primary key constraint on columns "_state", "subjectcategory_id" */
+  CatSubjectcategoriesPkey = 'cat_subjectcategories_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Cat_Subjectcategories_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Cat_Subjectcategories_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+  programme_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Cat_Subjectcategories_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+  programme_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Inc_Input = {
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Insert_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Cat_Subjectcategories_Max_Fields = {
+  __typename?: 'cat_subjectcategories_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by max() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Max_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Cat_Subjectcategories_Min_Fields = {
+  __typename?: 'cat_subjectcategories_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Min_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Mutation_Response = {
+  __typename?: 'cat_subjectcategories_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Cat_Subjectcategories>;
+};
+
+/** on_conflict condition type for table "cat_subjectcategories" */
+export type Cat_Subjectcategories_On_Conflict = {
+  constraint: Cat_Subjectcategories_Constraint;
+  update_columns?: Array<Cat_Subjectcategories_Update_Column>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "cat_subjectcategories". */
+export type Cat_Subjectcategories_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  units_with_subjectcategory_aggregate?: InputMaybe<Units_Aggregate_Order_By>;
+  units_with_subjectcategory_count?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: cat_subjectcategories */
+export type Cat_Subjectcategories_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  subjectcategory_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Cat_Subjectcategories_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "cat_subjectcategories" */
+export enum Cat_Subjectcategories_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  SubjectcategoryId = 'subjectcategory_id',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Set_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Cat_Subjectcategories_Stddev_Fields = {
+  __typename?: 'cat_subjectcategories_stddev_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Stddev_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Cat_Subjectcategories_Stddev_Pop_Fields = {
+  __typename?: 'cat_subjectcategories_stddev_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Stddev_Pop_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Cat_Subjectcategories_Stddev_Samp_Fields = {
+  __typename?: 'cat_subjectcategories_stddev_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Stddev_Samp_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Cat_Subjectcategories_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Cat_Subjectcategories_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Cat_Subjectcategories_Sum_Fields = {
+  __typename?: 'cat_subjectcategories_sum_fields';
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by sum() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Sum_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "cat_subjectcategories" */
+export enum Cat_Subjectcategories_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  SubjectcategoryId = 'subjectcategory_id',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Cat_Subjectcategories_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Cat_Subjectcategories_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Cat_Subjectcategories_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Cat_Subjectcategories_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Cat_Subjectcategories_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Cat_Subjectcategories_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Cat_Subjectcategories_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Cat_Subjectcategories_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Cat_Subjectcategories_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Cat_Subjectcategories_Var_Pop_Fields = {
+  __typename?: 'cat_subjectcategories_var_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Var_Pop_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Cat_Subjectcategories_Var_Samp_Fields = {
+  __typename?: 'cat_subjectcategories_var_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Var_Samp_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Cat_Subjectcategories_Variance_Fields = {
+  __typename?: 'cat_subjectcategories_variance_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "cat_subjectcategories" */
+export type Cat_Subjectcategories_Variance_Order_By = {
+  _release_id?: InputMaybe<Order_By>;
+  subjectcategory_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "cat_supervisionlevels" */
@@ -2322,6 +2784,8 @@ export type Cat_Tags = {
   lessons_with_tag?: Maybe<Array<Lessons>>;
   /** A computed field, executes function "function__cat_tags__lessons__count" */
   lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_tags__permitted_programme_fields" */
+  permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
   programme_fields: Scalars['jsonb']['output'];
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id: Scalars['Int']['output'];
@@ -2347,6 +2811,16 @@ export type Cat_TagsLessons_With_TagArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Lessons_Order_By>>;
   where?: InputMaybe<Lessons_Bool_Exp>;
+};
+
+
+/** columns and relationships of "cat_tags" */
+export type Cat_TagsPermitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
 };
 
 
@@ -2420,11 +2894,7 @@ export type Cat_Tags_Append_Input = {
 export type Cat_Tags_Avg_Fields = {
   __typename?: 'cat_tags_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_tags" */
@@ -2447,6 +2917,7 @@ export type Cat_Tags_Bool_Exp = {
   description?: InputMaybe<String_Comparison_Exp>;
   lessons_with_tag?: InputMaybe<Lessons_Bool_Exp>;
   lessons_with_tag_count?: InputMaybe<Int_Comparison_Exp>;
+  permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   tag_category?: InputMaybe<String_Comparison_Exp>;
   tag_id?: InputMaybe<Int_Comparison_Exp>;
@@ -2458,7 +2929,7 @@ export type Cat_Tags_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_tags" */
 export enum Cat_Tags_Constraint {
-  /** unique or primary key constraint on columns "_state", "tag_id" */
+  /** unique or primary key constraint on columns "tag_id", "_state" */
   CatTagsPkey = 'cat_tags_pkey'
 }
 
@@ -2510,13 +2981,9 @@ export type Cat_Tags_Max_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2541,13 +3008,9 @@ export type Cat_Tags_Min_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2591,6 +3054,7 @@ export type Cat_Tags_Order_By = {
   description?: InputMaybe<Order_By>;
   lessons_with_tag_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   lessons_with_tag_count?: InputMaybe<Order_By>;
+  permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   tag_category?: InputMaybe<Order_By>;
   tag_id?: InputMaybe<Order_By>;
@@ -2660,11 +3124,7 @@ export type Cat_Tags_Set_Input = {
 export type Cat_Tags_Stddev_Fields = {
   __typename?: 'cat_tags_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_tags" */
@@ -2677,11 +3137,7 @@ export type Cat_Tags_Stddev_Order_By = {
 export type Cat_Tags_Stddev_Pop_Fields = {
   __typename?: 'cat_tags_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_tags" */
@@ -2694,11 +3150,7 @@ export type Cat_Tags_Stddev_Pop_Order_By = {
 export type Cat_Tags_Stddev_Samp_Fields = {
   __typename?: 'cat_tags_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_tags" */
@@ -2735,11 +3187,7 @@ export type Cat_Tags_Stream_Cursor_Value_Input = {
 export type Cat_Tags_Sum_Fields = {
   __typename?: 'cat_tags_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_tags" */
@@ -2799,11 +3247,7 @@ export type Cat_Tags_Updates = {
 export type Cat_Tags_Var_Pop_Fields = {
   __typename?: 'cat_tags_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_tags" */
@@ -2816,11 +3260,7 @@ export type Cat_Tags_Var_Pop_Order_By = {
 export type Cat_Tags_Var_Samp_Fields = {
   __typename?: 'cat_tags_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_tags" */
@@ -2833,11 +3273,7 @@ export type Cat_Tags_Var_Samp_Order_By = {
 export type Cat_Tags_Variance_Fields = {
   __typename?: 'cat_tags_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_tags" */
@@ -3865,10 +4301,6 @@ export type Internal_Review_Lessons_Max_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
-  firstapproval?: Maybe<Scalars['timestamp']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
-  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -3912,10 +4344,6 @@ export type Internal_Review_Lessons_Min_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
-  firstapproval?: Maybe<Scalars['timestamp']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
-  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -5798,6 +6226,10 @@ export type Mutation_Root = {
   delete_cat_nationalcurriculum?: Maybe<Cat_Nationalcurriculum_Mutation_Response>;
   /** delete single row from the table: "cat_nationalcurriculum" */
   delete_cat_nationalcurriculum_by_pk?: Maybe<Cat_Nationalcurriculum>;
+  /** delete data from the table: "cat_subjectcategories" */
+  delete_cat_subjectcategories?: Maybe<Cat_Subjectcategories_Mutation_Response>;
+  /** delete single row from the table: "cat_subjectcategories" */
+  delete_cat_subjectcategories_by_pk?: Maybe<Cat_Subjectcategories>;
   /** delete data from the table: "cat_supervisionlevels" */
   delete_cat_supervisionlevels?: Maybe<Cat_Supervisionlevels_Mutation_Response>;
   /** delete single row from the table: "cat_supervisionlevels" */
@@ -5834,6 +6266,10 @@ export type Mutation_Root = {
   delete_pf_keystages?: Maybe<Pf_Keystages_Mutation_Response>;
   /** delete single row from the table: "pf_keystages" */
   delete_pf_keystages_by_pk?: Maybe<Pf_Keystages>;
+  /** delete data from the table: "pf_pathways" */
+  delete_pf_pathways?: Maybe<Pf_Pathways_Mutation_Response>;
+  /** delete single row from the table: "pf_pathways" */
+  delete_pf_pathways_by_pk?: Maybe<Pf_Pathways>;
   /** delete data from the table: "pf_phases" */
   delete_pf_phases?: Maybe<Pf_Phases_Mutation_Response>;
   /** delete single row from the table: "pf_phases" */
@@ -5882,6 +6318,8 @@ export type Mutation_Root = {
   delete_quizzes?: Maybe<Quizzes_Mutation_Response>;
   /** delete single row from the table: "quizzes" */
   delete_quizzes_by_pk?: Maybe<Quizzes>;
+  /** delete data from the table: "templates.permitted_programme_fields" */
+  delete_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
   /** delete data from the table: "thirdpartycontent" */
   delete_thirdpartycontent?: Maybe<Thirdpartycontent_Mutation_Response>;
   /** delete single row from the table: "thirdpartycontent" */
@@ -5934,6 +6372,10 @@ export type Mutation_Root = {
   insert_cat_nationalcurriculum?: Maybe<Cat_Nationalcurriculum_Mutation_Response>;
   /** insert a single row into the table: "cat_nationalcurriculum" */
   insert_cat_nationalcurriculum_one?: Maybe<Cat_Nationalcurriculum>;
+  /** insert data into the table: "cat_subjectcategories" */
+  insert_cat_subjectcategories?: Maybe<Cat_Subjectcategories_Mutation_Response>;
+  /** insert a single row into the table: "cat_subjectcategories" */
+  insert_cat_subjectcategories_one?: Maybe<Cat_Subjectcategories>;
   /** insert data into the table: "cat_supervisionlevels" */
   insert_cat_supervisionlevels?: Maybe<Cat_Supervisionlevels_Mutation_Response>;
   /** insert a single row into the table: "cat_supervisionlevels" */
@@ -5970,6 +6412,10 @@ export type Mutation_Root = {
   insert_pf_keystages?: Maybe<Pf_Keystages_Mutation_Response>;
   /** insert a single row into the table: "pf_keystages" */
   insert_pf_keystages_one?: Maybe<Pf_Keystages>;
+  /** insert data into the table: "pf_pathways" */
+  insert_pf_pathways?: Maybe<Pf_Pathways_Mutation_Response>;
+  /** insert a single row into the table: "pf_pathways" */
+  insert_pf_pathways_one?: Maybe<Pf_Pathways>;
   /** insert data into the table: "pf_phases" */
   insert_pf_phases?: Maybe<Pf_Phases_Mutation_Response>;
   /** insert a single row into the table: "pf_phases" */
@@ -6018,6 +6464,10 @@ export type Mutation_Root = {
   insert_quizzes?: Maybe<Quizzes_Mutation_Response>;
   /** insert a single row into the table: "quizzes" */
   insert_quizzes_one?: Maybe<Quizzes>;
+  /** insert data into the table: "templates.permitted_programme_fields" */
+  insert_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
+  /** insert a single row into the table: "templates.permitted_programme_fields" */
+  insert_templates_permitted_programme_fields_one?: Maybe<Templates_Permitted_Programme_Fields>;
   /** insert data into the table: "thirdpartycontent" */
   insert_thirdpartycontent?: Maybe<Thirdpartycontent_Mutation_Response>;
   /** insert a single row into the table: "thirdpartycontent" */
@@ -6078,6 +6528,12 @@ export type Mutation_Root = {
   update_cat_nationalcurriculum_by_pk?: Maybe<Cat_Nationalcurriculum>;
   /** update multiples rows of table: "cat_nationalcurriculum" */
   update_cat_nationalcurriculum_many?: Maybe<Array<Maybe<Cat_Nationalcurriculum_Mutation_Response>>>;
+  /** update data of the table: "cat_subjectcategories" */
+  update_cat_subjectcategories?: Maybe<Cat_Subjectcategories_Mutation_Response>;
+  /** update single row of the table: "cat_subjectcategories" */
+  update_cat_subjectcategories_by_pk?: Maybe<Cat_Subjectcategories>;
+  /** update multiples rows of table: "cat_subjectcategories" */
+  update_cat_subjectcategories_many?: Maybe<Array<Maybe<Cat_Subjectcategories_Mutation_Response>>>;
   /** update data of the table: "cat_supervisionlevels" */
   update_cat_supervisionlevels?: Maybe<Cat_Supervisionlevels_Mutation_Response>;
   /** update single row of the table: "cat_supervisionlevels" */
@@ -6132,6 +6588,12 @@ export type Mutation_Root = {
   update_pf_keystages_by_pk?: Maybe<Pf_Keystages>;
   /** update multiples rows of table: "pf_keystages" */
   update_pf_keystages_many?: Maybe<Array<Maybe<Pf_Keystages_Mutation_Response>>>;
+  /** update data of the table: "pf_pathways" */
+  update_pf_pathways?: Maybe<Pf_Pathways_Mutation_Response>;
+  /** update single row of the table: "pf_pathways" */
+  update_pf_pathways_by_pk?: Maybe<Pf_Pathways>;
+  /** update multiples rows of table: "pf_pathways" */
+  update_pf_pathways_many?: Maybe<Array<Maybe<Pf_Pathways_Mutation_Response>>>;
   /** update data of the table: "pf_phases" */
   update_pf_phases?: Maybe<Pf_Phases_Mutation_Response>;
   /** update single row of the table: "pf_phases" */
@@ -6204,6 +6666,10 @@ export type Mutation_Root = {
   update_quizzes_by_pk?: Maybe<Quizzes>;
   /** update multiples rows of table: "quizzes" */
   update_quizzes_many?: Maybe<Array<Maybe<Quizzes_Mutation_Response>>>;
+  /** update data of the table: "templates.permitted_programme_fields" */
+  update_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
+  /** update multiples rows of table: "templates.permitted_programme_fields" */
+  update_templates_permitted_programme_fields_many?: Maybe<Array<Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>>>;
   /** update data of the table: "thirdpartycontent" */
   update_thirdpartycontent?: Maybe<Thirdpartycontent_Mutation_Response>;
   /** update single row of the table: "thirdpartycontent" */
@@ -6310,6 +6776,19 @@ export type Mutation_RootDelete_Cat_NationalcurriculumArgs = {
 export type Mutation_RootDelete_Cat_Nationalcurriculum_By_PkArgs = {
   _state: Scalars['String']['input'];
   nationalcurriculum_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cat_SubjectcategoriesArgs = {
+  where: Cat_Subjectcategories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cat_Subjectcategories_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  subjectcategory_id: Scalars['Int']['input'];
 };
 
 
@@ -6427,6 +6906,19 @@ export type Mutation_RootDelete_Pf_KeystagesArgs = {
 export type Mutation_RootDelete_Pf_Keystages_By_PkArgs = {
   _state: Scalars['String']['input'];
   keystage_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pf_PathwaysArgs = {
+  where: Pf_Pathways_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pf_Pathways_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  pathway_id: Scalars['Int']['input'];
 };
 
 
@@ -6584,6 +7076,12 @@ export type Mutation_RootDelete_QuizzesArgs = {
 export type Mutation_RootDelete_Quizzes_By_PkArgs = {
   _state: Scalars['String']['input'];
   quiz_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Templates_Permitted_Programme_FieldsArgs = {
+  where: Templates_Permitted_Programme_Fields_Bool_Exp;
 };
 
 
@@ -6763,6 +7261,20 @@ export type Mutation_RootInsert_Cat_Nationalcurriculum_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Cat_SubjectcategoriesArgs = {
+  objects: Array<Cat_Subjectcategories_Insert_Input>;
+  on_conflict?: InputMaybe<Cat_Subjectcategories_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cat_Subjectcategories_OneArgs = {
+  object: Cat_Subjectcategories_Insert_Input;
+  on_conflict?: InputMaybe<Cat_Subjectcategories_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Cat_SupervisionlevelsArgs = {
   objects: Array<Cat_Supervisionlevels_Insert_Input>;
   on_conflict?: InputMaybe<Cat_Supervisionlevels_On_Conflict>;
@@ -6885,6 +7397,20 @@ export type Mutation_RootInsert_Pf_KeystagesArgs = {
 export type Mutation_RootInsert_Pf_Keystages_OneArgs = {
   object: Pf_Keystages_Insert_Input;
   on_conflict?: InputMaybe<Pf_Keystages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pf_PathwaysArgs = {
+  objects: Array<Pf_Pathways_Insert_Input>;
+  on_conflict?: InputMaybe<Pf_Pathways_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pf_Pathways_OneArgs = {
+  object: Pf_Pathways_Insert_Input;
+  on_conflict?: InputMaybe<Pf_Pathways_On_Conflict>;
 };
 
 
@@ -7053,6 +7579,18 @@ export type Mutation_RootInsert_QuizzesArgs = {
 export type Mutation_RootInsert_Quizzes_OneArgs = {
   object: Quizzes_Insert_Input;
   on_conflict?: InputMaybe<Quizzes_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Permitted_Programme_FieldsArgs = {
+  objects: Array<Templates_Permitted_Programme_Fields_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Permitted_Programme_Fields_OneArgs = {
+  object: Templates_Permitted_Programme_Fields_Insert_Input;
 };
 
 
@@ -7307,6 +7845,38 @@ export type Mutation_RootUpdate_Cat_Nationalcurriculum_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Cat_Nationalcurriculum_ManyArgs = {
   updates: Array<Cat_Nationalcurriculum_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cat_SubjectcategoriesArgs = {
+  _append?: InputMaybe<Cat_Subjectcategories_Append_Input>;
+  _delete_at_path?: InputMaybe<Cat_Subjectcategories_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Cat_Subjectcategories_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Cat_Subjectcategories_Delete_Key_Input>;
+  _inc?: InputMaybe<Cat_Subjectcategories_Inc_Input>;
+  _prepend?: InputMaybe<Cat_Subjectcategories_Prepend_Input>;
+  _set?: InputMaybe<Cat_Subjectcategories_Set_Input>;
+  where: Cat_Subjectcategories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cat_Subjectcategories_By_PkArgs = {
+  _append?: InputMaybe<Cat_Subjectcategories_Append_Input>;
+  _delete_at_path?: InputMaybe<Cat_Subjectcategories_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Cat_Subjectcategories_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Cat_Subjectcategories_Delete_Key_Input>;
+  _inc?: InputMaybe<Cat_Subjectcategories_Inc_Input>;
+  _prepend?: InputMaybe<Cat_Subjectcategories_Prepend_Input>;
+  _set?: InputMaybe<Cat_Subjectcategories_Set_Input>;
+  pk_columns: Cat_Subjectcategories_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cat_Subjectcategories_ManyArgs = {
+  updates: Array<Cat_Subjectcategories_Updates>;
 };
 
 
@@ -7585,6 +8155,38 @@ export type Mutation_RootUpdate_Pf_Keystages_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Keystages_ManyArgs = {
   updates: Array<Pf_Keystages_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pf_PathwaysArgs = {
+  _append?: InputMaybe<Pf_Pathways_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Pathways_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Pathways_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Pathways_Delete_Key_Input>;
+  _inc?: InputMaybe<Pf_Pathways_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Pathways_Prepend_Input>;
+  _set?: InputMaybe<Pf_Pathways_Set_Input>;
+  where: Pf_Pathways_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pf_Pathways_By_PkArgs = {
+  _append?: InputMaybe<Pf_Pathways_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Pathways_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Pathways_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Pathways_Delete_Key_Input>;
+  _inc?: InputMaybe<Pf_Pathways_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Pathways_Prepend_Input>;
+  _set?: InputMaybe<Pf_Pathways_Set_Input>;
+  pk_columns: Pf_Pathways_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pf_Pathways_ManyArgs = {
+  updates: Array<Pf_Pathways_Updates>;
 };
 
 
@@ -7949,6 +8551,25 @@ export type Mutation_RootUpdate_Quizzes_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Quizzes_ManyArgs = {
   updates: Array<Quizzes_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Permitted_Programme_FieldsArgs = {
+  _append?: InputMaybe<Templates_Permitted_Programme_Fields_Append_Input>;
+  _delete_at_path?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_Key_Input>;
+  _inc?: InputMaybe<Templates_Permitted_Programme_Fields_Inc_Input>;
+  _prepend?: InputMaybe<Templates_Permitted_Programme_Fields_Prepend_Input>;
+  _set?: InputMaybe<Templates_Permitted_Programme_Fields_Set_Input>;
+  where: Templates_Permitted_Programme_Fields_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Permitted_Programme_Fields_ManyArgs = {
+  updates: Array<Templates_Permitted_Programme_Fields_Updates>;
 };
 
 
@@ -8342,7 +8963,7 @@ export type Pf_Developmentstages_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_developmentstages" */
 export enum Pf_Developmentstages_Constraint {
-  /** unique or primary key constraint on columns "_state", "developmentstage_id" */
+  /** unique or primary key constraint on columns "developmentstage_id", "_state" */
   PfDevelopmentstagesPkey = 'pf_developmentstages_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfDevelopmentstagesSlugStateCohortKey = 'pf_developmentstages_slug__state__cohort_key'
@@ -8423,6 +9044,13 @@ export type Pf_Developmentstages_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Pf_Developmentstages>;
+};
+
+/** input type for inserting object relation for remote table "pf_developmentstages" */
+export type Pf_Developmentstages_Obj_Rel_Insert_Input = {
+  data: Pf_Developmentstages_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Developmentstages_On_Conflict>;
 };
 
 /** on_conflict condition type for table "pf_developmentstages" */
@@ -8800,6 +9428,13 @@ export type Pf_Examboards_Mutation_Response = {
   returning: Array<Pf_Examboards>;
 };
 
+/** input type for inserting object relation for remote table "pf_examboards" */
+export type Pf_Examboards_Obj_Rel_Insert_Input = {
+  data: Pf_Examboards_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Examboards_On_Conflict>;
+};
+
 /** on_conflict condition type for table "pf_examboards" */
 export type Pf_Examboards_On_Conflict = {
   constraint: Pf_Examboards_Constraint;
@@ -9175,6 +9810,13 @@ export type Pf_Keystages_Mutation_Response = {
   returning: Array<Pf_Keystages>;
 };
 
+/** input type for inserting object relation for remote table "pf_keystages" */
+export type Pf_Keystages_Obj_Rel_Insert_Input = {
+  data: Pf_Keystages_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Keystages_On_Conflict>;
+};
+
 /** on_conflict condition type for table "pf_keystages" */
 export type Pf_Keystages_On_Conflict = {
   constraint: Pf_Keystages_Constraint;
@@ -9380,6 +10022,388 @@ export type Pf_Keystages_Variance_Fields = {
   keystage_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "pf_pathways" */
+export type Pf_Pathways = {
+  __typename?: 'pf_pathways';
+  _cohort: Scalars['String']['output'];
+  _deleted: Scalars['Boolean']['output'];
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state: Scalars['String']['output'];
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_id: Scalars['Int']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_pathways" */
+export type Pf_PathwaysDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "pf_pathways" */
+export type Pf_Pathways_Aggregate = {
+  __typename?: 'pf_pathways_aggregate';
+  aggregate?: Maybe<Pf_Pathways_Aggregate_Fields>;
+  nodes: Array<Pf_Pathways>;
+};
+
+/** aggregate fields of "pf_pathways" */
+export type Pf_Pathways_Aggregate_Fields = {
+  __typename?: 'pf_pathways_aggregate_fields';
+  avg?: Maybe<Pf_Pathways_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Pf_Pathways_Max_Fields>;
+  min?: Maybe<Pf_Pathways_Min_Fields>;
+  stddev?: Maybe<Pf_Pathways_Stddev_Fields>;
+  stddev_pop?: Maybe<Pf_Pathways_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pf_Pathways_Stddev_Samp_Fields>;
+  sum?: Maybe<Pf_Pathways_Sum_Fields>;
+  var_pop?: Maybe<Pf_Pathways_Var_Pop_Fields>;
+  var_samp?: Maybe<Pf_Pathways_Var_Samp_Fields>;
+  variance?: Maybe<Pf_Pathways_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pf_pathways" */
+export type Pf_Pathways_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Pf_Pathways_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Pathways_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Pf_Pathways_Avg_Fields = {
+  __typename?: 'pf_pathways_avg_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "pf_pathways". All fields are combined with a logical 'AND'. */
+export type Pf_Pathways_Bool_Exp = {
+  _and?: InputMaybe<Array<Pf_Pathways_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Pf_Pathways_Bool_Exp>;
+  _or?: InputMaybe<Array<Pf_Pathways_Bool_Exp>>;
+  _release_id?: InputMaybe<Int_Comparison_Exp>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  display_order?: InputMaybe<Int_Comparison_Exp>;
+  pathway?: InputMaybe<String_Comparison_Exp>;
+  pathway_id?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pf_pathways" */
+export enum Pf_Pathways_Constraint {
+  /** unique or primary key constraint on columns "_state", "pathway_id" */
+  PfPathwaysPkey = 'pf_pathways_pkey',
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
+  PfPathwaysSlugStateCohortKey = 'pf_pathways_slug__state__cohort_key'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Pathways_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Pathways_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Pathways_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "pf_pathways" */
+export type Pf_Pathways_Inc_Input = {
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "pf_pathways" */
+export type Pf_Pathways_Insert_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  pathway?: InputMaybe<Scalars['String']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Pf_Pathways_Max_Fields = {
+  __typename?: 'pf_pathways_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Pf_Pathways_Min_Fields = {
+  __typename?: 'pf_pathways_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "pf_pathways" */
+export type Pf_Pathways_Mutation_Response = {
+  __typename?: 'pf_pathways_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pf_Pathways>;
+};
+
+/** input type for inserting object relation for remote table "pf_pathways" */
+export type Pf_Pathways_Obj_Rel_Insert_Input = {
+  data: Pf_Pathways_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Pathways_On_Conflict>;
+};
+
+/** on_conflict condition type for table "pf_pathways" */
+export type Pf_Pathways_On_Conflict = {
+  constraint: Pf_Pathways_Constraint;
+  update_columns?: Array<Pf_Pathways_Update_Column>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pf_pathways". */
+export type Pf_Pathways_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  display_order?: InputMaybe<Order_By>;
+  pathway?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: pf_pathways */
+export type Pf_Pathways_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  pathway_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Pathways_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "pf_pathways" */
+export enum Pf_Pathways_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Pathway = 'pathway',
+  /** column name */
+  PathwayId = 'pathway_id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pf_pathways" */
+export type Pf_Pathways_Set_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  pathway?: InputMaybe<Scalars['String']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Pf_Pathways_Stddev_Fields = {
+  __typename?: 'pf_pathways_stddev_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pf_Pathways_Stddev_Pop_Fields = {
+  __typename?: 'pf_pathways_stddev_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pf_Pathways_Stddev_Samp_Fields = {
+  __typename?: 'pf_pathways_stddev_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "pf_pathways" */
+export type Pf_Pathways_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pf_Pathways_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pf_Pathways_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  pathway?: InputMaybe<Scalars['String']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Pf_Pathways_Sum_Fields = {
+  __typename?: 'pf_pathways_sum_fields';
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "pf_pathways" */
+export enum Pf_Pathways_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Pathway = 'pathway',
+  /** column name */
+  PathwayId = 'pathway_id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Pf_Pathways_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Pathways_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Pathways_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Pathways_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Pathways_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Pf_Pathways_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Pathways_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Pf_Pathways_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Pf_Pathways_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Pf_Pathways_Var_Pop_Fields = {
+  __typename?: 'pf_pathways_var_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pf_Pathways_Var_Samp_Fields = {
+  __typename?: 'pf_pathways_var_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Pf_Pathways_Variance_Fields = {
+  __typename?: 'pf_pathways_variance_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "pf_phases" */
 export type Pf_Phases = {
   __typename?: 'pf_phases';
@@ -9467,7 +10491,7 @@ export type Pf_Phases_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_phases" */
 export enum Pf_Phases_Constraint {
-  /** unique or primary key constraint on columns "_state", "phase_id" */
+  /** unique or primary key constraint on columns "phase_id", "_state" */
   PfPhasesPkey = 'pf_phases_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfPhasesSlugStateCohortKey = 'pf_phases_slug__state__cohort_key'
@@ -9548,6 +10572,13 @@ export type Pf_Phases_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Pf_Phases>;
+};
+
+/** input type for inserting object relation for remote table "pf_phases" */
+export type Pf_Phases_Obj_Rel_Insert_Input = {
+  data: Pf_Phases_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Phases_On_Conflict>;
 };
 
 /** on_conflict condition type for table "pf_phases" */
@@ -9833,8 +10864,6 @@ export type Pf_Subjects_Avg_Fields = {
   __typename?: 'pf_subjects_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -9918,8 +10947,6 @@ export type Pf_Subjects_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -9936,8 +10963,6 @@ export type Pf_Subjects_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -9952,6 +10977,13 @@ export type Pf_Subjects_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Pf_Subjects>;
+};
+
+/** input type for inserting object relation for remote table "pf_subjects" */
+export type Pf_Subjects_Obj_Rel_Insert_Input = {
+  data: Pf_Subjects_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Subjects_On_Conflict>;
 };
 
 /** on_conflict condition type for table "pf_subjects" */
@@ -10043,8 +11075,6 @@ export type Pf_Subjects_Stddev_Fields = {
   __typename?: 'pf_subjects_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10054,8 +11084,6 @@ export type Pf_Subjects_Stddev_Pop_Fields = {
   __typename?: 'pf_subjects_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10065,8 +11093,6 @@ export type Pf_Subjects_Stddev_Samp_Fields = {
   __typename?: 'pf_subjects_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10101,8 +11127,6 @@ export type Pf_Subjects_Sum_Fields = {
   __typename?: 'pf_subjects_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
   subject_parent_id?: Maybe<Scalars['Int']['output']>;
 };
@@ -10161,8 +11185,6 @@ export type Pf_Subjects_Var_Pop_Fields = {
   __typename?: 'pf_subjects_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10172,8 +11194,6 @@ export type Pf_Subjects_Var_Samp_Fields = {
   __typename?: 'pf_subjects_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10183,8 +11203,6 @@ export type Pf_Subjects_Variance_Fields = {
   __typename?: 'pf_subjects_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10276,7 +11294,7 @@ export type Pf_Tiers_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_tiers" */
 export enum Pf_Tiers_Constraint {
-  /** unique or primary key constraint on columns "_state", "tier_id" */
+  /** unique or primary key constraint on columns "tier_id", "_state" */
   PfTiersPkey = 'pf_tiers_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfTiersSlugStateCohortKey = 'pf_tiers_slug__state__cohort_key'
@@ -10357,6 +11375,13 @@ export type Pf_Tiers_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Pf_Tiers>;
+};
+
+/** input type for inserting object relation for remote table "pf_tiers" */
+export type Pf_Tiers_Obj_Rel_Insert_Input = {
+  data: Pf_Tiers_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Tiers_On_Conflict>;
 };
 
 /** on_conflict condition type for table "pf_tiers" */
@@ -10732,6 +11757,13 @@ export type Pf_Years_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Pf_Years>;
+};
+
+/** input type for inserting object relation for remote table "pf_years" */
+export type Pf_Years_Obj_Rel_Insert_Input = {
+  data: Pf_Years_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pf_Years_On_Conflict>;
 };
 
 /** on_conflict condition type for table "pf_years" */
@@ -11147,7 +12179,7 @@ export type Programme_Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "programme_threads" */
 export enum Programme_Threads_Constraint {
-  /** unique or primary key constraint on columns "thread_id", "_state", "programme_id" */
+  /** unique or primary key constraint on columns "_state", "thread_id", "programme_id" */
   ProgrammeThreadsPkey = 'programme_threads_pkey'
 }
 
@@ -14263,610 +15295,1900 @@ export type Published_Mv_Curriculum_Units_0_3_Variance_Fields = {
   planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0 = {
-  __typename?: 'published_mv_downloads_4_0_0';
-  downloads?: Maybe<Scalars['jsonb']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  hasDownloadableResources?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+/** columns and relationships of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4 = {
+  __typename?: 'published_mv_curriculum_units_0_4';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0DownloadsArgs = {
+/** columns and relationships of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4LessonsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0_Aggregate = {
-  __typename?: 'published_mv_downloads_4_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Downloads_4_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Downloads_4_0_0>;
+
+/** columns and relationships of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4TagsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_downloads_4_0_0_aggregate_fields';
+
+/** columns and relationships of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_0_4_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_0_4_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_0_4>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_0_4_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Downloads_4_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Downloads_4_0_0_Min_Fields>;
+  max?: Maybe<Published_Mv_Curriculum_Units_0_4_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_0_4_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_0_4_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_0_4_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_0_4_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_0_4_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_0_4_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_0_4_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_0_4_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_downloads_4_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Downloads_4_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Bool_Exp>>;
-  downloads?: InputMaybe<Jsonb_Comparison_Exp>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  hasDownloadableResources?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_0_4_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_0_4". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_0_4_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Downloads_4_0_0_Max_Fields = {
-  __typename?: 'published_mv_downloads_4_0_0_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_0_4_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Downloads_4_0_0_Min_Fields = {
-  __typename?: 'published_mv_downloads_4_0_0_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_0_4_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_downloads_4_0_0". */
-export type Published_Mv_Downloads_4_0_0_Order_By = {
-  downloads?: InputMaybe<Order_By>;
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  hasDownloadableResources?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_curriculum_units_0_4". */
+export type Published_Mv_Curriculum_Units_0_4_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_downloads_4_0_0" */
-export enum Published_Mv_Downloads_4_0_0_Select_Column {
+/** select columns of table "published.mv_curriculum_units_0_4" */
+export enum Published_Mv_Curriculum_Units_0_4_Select_Column {
   /** column name */
-  Downloads = 'downloads',
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
   /** column name */
-  ExamBoardSlug = 'examBoardSlug',
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
   /** column name */
-  ExamBoardTitle = 'examBoardTitle',
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
   /** column name */
-  Expired = 'expired',
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
   /** column name */
-  HasDownloadableResources = 'hasDownloadableResources',
+  Domain = 'domain',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  DomainId = 'domain_id',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  Examboard = 'examboard',
   /** column name */
-  LessonCohort = 'lessonCohort',
+  ExamboardSlug = 'examboard_slug',
   /** column name */
-  LessonSlug = 'lessonSlug',
+  KeystageSlug = 'keystage_slug',
   /** column name */
-  LessonTitle = 'lessonTitle',
+  Lessons = 'lessons',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  Order = 'order',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  Phase = 'phase',
   /** column name */
-  SubjectTitle = 'subjectTitle',
+  PhaseSlug = 'phase_slug',
   /** column name */
-  TierSlug = 'tierSlug',
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
   /** column name */
-  TierTitle = 'tierTitle',
+  Slug = 'slug',
   /** column name */
-  UnitSlug = 'unitSlug',
+  Subject = 'subject',
   /** column name */
-  UnitTitle = 'unitTitle'
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  Year = 'year'
 }
 
-/** Streaming cursor of the table "published_mv_downloads_4_0_0" */
-export type Published_Mv_Downloads_4_0_0_Stream_Cursor_Input = {
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_0_4_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_0_4_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_0_4_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_0_4" */
+export type Published_Mv_Curriculum_Units_0_4_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Downloads_4_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Curriculum_Units_0_4_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Downloads_4_0_0_Stream_Cursor_Value_Input = {
-  downloads?: InputMaybe<Scalars['jsonb']['input']>;
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  hasDownloadableResources?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
+export type Published_Mv_Curriculum_Units_0_4_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** columns and relationships of "published.mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0 = {
-  __typename?: 'published_mv_downloads_5_0_0';
-  downloads?: Maybe<Scalars['jsonb']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  hasDownloadableResources?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_0_4_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_0_4_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_0_4_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_0_4_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_0_4_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1 = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0DownloadsArgs = {
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1LessonsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0_Aggregate = {
-  __typename?: 'published_mv_downloads_5_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Downloads_5_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Downloads_5_0_0>;
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1TagsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_downloads_5_0_0_aggregate_fields';
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Downloads_5_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Downloads_5_0_0_Min_Fields>;
+  max?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_downloads_5_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Downloads_5_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Bool_Exp>>;
-  downloads?: InputMaybe<Jsonb_Comparison_Exp>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  hasDownloadableResources?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_including_new_0_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Downloads_5_0_0_Max_Fields = {
-  __typename?: 'published_mv_downloads_5_0_0_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Downloads_5_0_0_Min_Fields = {
-  __typename?: 'published_mv_downloads_5_0_0_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_downloads_5_0_0". */
-export type Published_Mv_Downloads_5_0_0_Order_By = {
-  downloads?: InputMaybe<Order_By>;
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  hasDownloadableResources?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_curriculum_units_including_new_0_0_1". */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_downloads_5_0_0" */
-export enum Published_Mv_Downloads_5_0_0_Select_Column {
+/** select columns of table "published.mv_curriculum_units_including_new_0_0_1" */
+export enum Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column {
   /** column name */
-  Downloads = 'downloads',
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
   /** column name */
-  ExamBoardSlug = 'examBoardSlug',
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
   /** column name */
-  ExamBoardTitle = 'examBoardTitle',
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
   /** column name */
-  Expired = 'expired',
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
   /** column name */
-  HasDownloadableResources = 'hasDownloadableResources',
+  Domain = 'domain',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  DomainId = 'domain_id',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  Examboard = 'examboard',
   /** column name */
-  LessonCohort = 'lessonCohort',
+  ExamboardSlug = 'examboard_slug',
   /** column name */
-  LessonSlug = 'lessonSlug',
+  KeystageSlug = 'keystage_slug',
   /** column name */
-  LessonTitle = 'lessonTitle',
+  Lessons = 'lessons',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  Order = 'order',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  Phase = 'phase',
   /** column name */
-  SubjectTitle = 'subjectTitle',
+  PhaseSlug = 'phase_slug',
   /** column name */
-  TierSlug = 'tierSlug',
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
   /** column name */
-  TierTitle = 'tierTitle',
+  Slug = 'slug',
   /** column name */
-  UnitSlug = 'unitSlug',
+  State = 'state',
   /** column name */
-  UnitTitle = 'unitTitle'
+  Subject = 'subject',
+  /** column name */
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  Year = 'year'
 }
 
-/** Streaming cursor of the table "published_mv_downloads_5_0_0" */
-export type Published_Mv_Downloads_5_0_0_Stream_Cursor_Input = {
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_including_new_0_0_1" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Downloads_5_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Downloads_5_0_0_Stream_Cursor_Value_Input = {
-  downloads?: InputMaybe<Scalars['jsonb']['input']>;
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  hasDownloadableResources?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** columns and relationships of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1 = {
-  __typename?: 'published_mv_downloads_5_0_1';
-  copyrightContent?: Maybe<Scalars['jsonb']['output']>;
-  downloads?: Maybe<Scalars['jsonb']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_1_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_1_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2 = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1CopyrightContentArgs = {
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2LessonsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** columns and relationships of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1DownloadsArgs = {
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2TagsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1_Aggregate = {
-  __typename?: 'published_mv_downloads_5_0_1_aggregate';
-  aggregate?: Maybe<Published_Mv_Downloads_5_0_1_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Downloads_5_0_1>;
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1_Aggregate_Fields = {
-  __typename?: 'published_mv_downloads_5_0_1_aggregate_fields';
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_Including_New_0_0_2>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Downloads_5_0_1_Max_Fields>;
-  min?: Maybe<Published_Mv_Downloads_5_0_1_Min_Fields>;
+  max?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Select_Column>>;
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_downloads_5_0_1". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Downloads_5_0_1_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Bool_Exp>>;
-  copyrightContent?: InputMaybe<Jsonb_Comparison_Exp>;
-  downloads?: InputMaybe<Jsonb_Comparison_Exp>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_including_new_0_0_2". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  why_this_why_now?: InputMaybe<String_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Downloads_5_0_1_Max_Fields = {
-  __typename?: 'published_mv_downloads_5_0_1_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Downloads_5_0_1_Min_Fields = {
-  __typename?: 'published_mv_downloads_5_0_1_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_downloads_5_0_1". */
-export type Published_Mv_Downloads_5_0_1_Order_By = {
-  copyrightContent?: InputMaybe<Order_By>;
-  downloads?: InputMaybe<Order_By>;
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_curriculum_units_including_new_0_0_2". */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  why_this_why_now?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_downloads_5_0_1" */
-export enum Published_Mv_Downloads_5_0_1_Select_Column {
+/** select columns of table "published.mv_curriculum_units_including_new_0_0_2" */
+export enum Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column {
   /** column name */
-  CopyrightContent = 'copyrightContent',
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
   /** column name */
-  Downloads = 'downloads',
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
   /** column name */
-  ExamBoardSlug = 'examBoardSlug',
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
   /** column name */
-  ExamBoardTitle = 'examBoardTitle',
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
   /** column name */
-  Expired = 'expired',
+  Description = 'description',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  Domain = 'domain',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  DomainId = 'domain_id',
   /** column name */
-  LessonCohort = 'lessonCohort',
+  Examboard = 'examboard',
   /** column name */
-  LessonSlug = 'lessonSlug',
+  ExamboardSlug = 'examboard_slug',
   /** column name */
-  LessonTitle = 'lessonTitle',
+  KeystageSlug = 'keystage_slug',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  Lessons = 'lessons',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  Order = 'order',
   /** column name */
-  SubjectTitle = 'subjectTitle',
+  Phase = 'phase',
   /** column name */
-  TierSlug = 'tierSlug',
+  PhaseSlug = 'phase_slug',
   /** column name */
-  TierTitle = 'tierTitle',
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
   /** column name */
-  UnitSlug = 'unitSlug',
+  Slug = 'slug',
   /** column name */
-  UnitTitle = 'unitTitle'
+  State = 'state',
+  /** column name */
+  Subject = 'subject',
+  /** column name */
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  WhyThisWhyNow = 'why_this_why_now',
+  /** column name */
+  Year = 'year'
 }
 
-/** Streaming cursor of the table "published_mv_downloads_5_0_1" */
-export type Published_Mv_Downloads_5_0_1_Stream_Cursor_Input = {
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_including_new_0_0_2" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Downloads_5_0_1_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Curriculum_Units_Including_New_0_0_2_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Downloads_5_0_1_Stream_Cursor_Value_Input = {
-  copyrightContent?: InputMaybe<Scalars['jsonb']['input']>;
-  downloads?: InputMaybe<Scalars['jsonb']['input']>;
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  why_this_why_now?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_2_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_2_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3 = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3LessonsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3TagsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_Including_New_0_0_3>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_including_new_0_0_3". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  why_this_why_now?: InputMaybe<String_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_curriculum_units_including_new_0_0_3". */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  why_this_why_now?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_curriculum_units_including_new_0_0_3" */
+export enum Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column {
+  /** column name */
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
+  /** column name */
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
+  /** column name */
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
+  /** column name */
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Domain = 'domain',
+  /** column name */
+  DomainId = 'domain_id',
+  /** column name */
+  Examboard = 'examboard',
+  /** column name */
+  ExamboardSlug = 'examboard_slug',
+  /** column name */
+  KeystageSlug = 'keystage_slug',
+  /** column name */
+  Lessons = 'lessons',
+  /** column name */
+  Order = 'order',
+  /** column name */
+  Phase = 'phase',
+  /** column name */
+  PhaseSlug = 'phase_slug',
+  /** column name */
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  State = 'state',
+  /** column name */
+  Subject = 'subject',
+  /** column name */
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  WhyThisWhyNow = 'why_this_why_now',
+  /** column name */
+  Year = 'year'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_including_new_0_0_3" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Curriculum_Units_Including_New_0_0_3_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  why_this_why_now?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_3_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_3_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4 = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  lessons?: Maybe<Scalars['jsonb']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_slug?: Maybe<Scalars['String']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Scalars['jsonb']['output']>;
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_options?: Maybe<Scalars['jsonb']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4LessonsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4TagsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4Unit_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_aggregate';
+  aggregate?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Curriculum_Units_Including_New_0_0_4>;
+};
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_aggregate_fields';
+  avg?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Max_Fields>;
+  min?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Avg_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_avg_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_curriculum_units_including_new_0_0_4". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>>;
+  connection_future_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_future_unit_title?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_description?: InputMaybe<String_Comparison_Exp>;
+  connection_prior_unit_title?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  domain?: InputMaybe<String_Comparison_Exp>;
+  domain_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<String_Comparison_Exp>;
+  examboard_slug?: InputMaybe<String_Comparison_Exp>;
+  keystage_slug?: InputMaybe<String_Comparison_Exp>;
+  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  pathway?: InputMaybe<String_Comparison_Exp>;
+  pathway_slug?: InputMaybe<String_Comparison_Exp>;
+  phase?: InputMaybe<String_Comparison_Exp>;
+  phase_slug?: InputMaybe<String_Comparison_Exp>;
+  planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  subject?: InputMaybe<String_Comparison_Exp>;
+  subject_parent?: InputMaybe<String_Comparison_Exp>;
+  subject_parent_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  tags?: InputMaybe<Jsonb_Comparison_Exp>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  tier?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  why_this_why_now?: InputMaybe<String_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Max_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_max_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_slug?: Maybe<Scalars['String']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Min_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_min_fields';
+  connection_future_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_future_unit_title?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_description?: Maybe<Scalars['String']['output']>;
+  connection_prior_unit_title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  domain?: Maybe<Scalars['String']['output']>;
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  examboard?: Maybe<Scalars['String']['output']>;
+  examboard_slug?: Maybe<Scalars['String']['output']>;
+  keystage_slug?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  pathway?: Maybe<Scalars['String']['output']>;
+  pathway_slug?: Maybe<Scalars['String']['output']>;
+  phase?: Maybe<Scalars['String']['output']>;
+  phase_slug?: Maybe<Scalars['String']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  subject?: Maybe<Scalars['String']['output']>;
+  subject_parent?: Maybe<Scalars['String']['output']>;
+  subject_parent_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  tier?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  why_this_why_now?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_curriculum_units_including_new_0_0_4". */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Order_By = {
+  connection_future_unit_description?: InputMaybe<Order_By>;
+  connection_future_unit_title?: InputMaybe<Order_By>;
+  connection_prior_unit_description?: InputMaybe<Order_By>;
+  connection_prior_unit_title?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  domain?: InputMaybe<Order_By>;
+  domain_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Order_By>;
+  examboard_slug?: InputMaybe<Order_By>;
+  keystage_slug?: InputMaybe<Order_By>;
+  lessons?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  pathway?: InputMaybe<Order_By>;
+  pathway_slug?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Order_By>;
+  phase_slug?: InputMaybe<Order_By>;
+  planned_number_of_lessons?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Order_By>;
+  subject_parent?: InputMaybe<Order_By>;
+  subject_parent_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  tags?: InputMaybe<Order_By>;
+  threads?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_options?: InputMaybe<Order_By>;
+  why_this_why_now?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_curriculum_units_including_new_0_0_4" */
+export enum Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column {
+  /** column name */
+  ConnectionFutureUnitDescription = 'connection_future_unit_description',
+  /** column name */
+  ConnectionFutureUnitTitle = 'connection_future_unit_title',
+  /** column name */
+  ConnectionPriorUnitDescription = 'connection_prior_unit_description',
+  /** column name */
+  ConnectionPriorUnitTitle = 'connection_prior_unit_title',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Domain = 'domain',
+  /** column name */
+  DomainId = 'domain_id',
+  /** column name */
+  Examboard = 'examboard',
+  /** column name */
+  ExamboardSlug = 'examboard_slug',
+  /** column name */
+  KeystageSlug = 'keystage_slug',
+  /** column name */
+  Lessons = 'lessons',
+  /** column name */
+  Order = 'order',
+  /** column name */
+  Pathway = 'pathway',
+  /** column name */
+  PathwaySlug = 'pathway_slug',
+  /** column name */
+  Phase = 'phase',
+  /** column name */
+  PhaseSlug = 'phase_slug',
+  /** column name */
+  PlannedNumberOfLessons = 'planned_number_of_lessons',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  State = 'state',
+  /** column name */
+  Subject = 'subject',
+  /** column name */
+  SubjectParent = 'subject_parent',
+  /** column name */
+  SubjectParentSlug = 'subject_parent_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  Tags = 'tags',
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  Tier = 'tier',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitOptions = 'unit_options',
+  /** column name */
+  WhyThisWhyNow = 'why_this_why_now',
+  /** column name */
+  Year = 'year'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_stddev_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_stddev_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_stddev_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_curriculum_units_including_new_0_0_4" */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Curriculum_Units_Including_New_0_0_4_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Stream_Cursor_Value_Input = {
+  connection_future_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_future_unit_title?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_description?: InputMaybe<Scalars['String']['input']>;
+  connection_prior_unit_title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
+  domain_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Scalars['String']['input']>;
+  examboard_slug?: InputMaybe<Scalars['String']['input']>;
+  keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  lessons?: InputMaybe<Scalars['jsonb']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  pathway?: InputMaybe<Scalars['String']['input']>;
+  pathway_slug?: InputMaybe<Scalars['String']['input']>;
+  phase?: InputMaybe<Scalars['String']['input']>;
+  phase_slug?: InputMaybe<Scalars['String']['input']>;
+  planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  subject?: InputMaybe<Scalars['String']['input']>;
+  subject_parent?: InputMaybe<Scalars['String']['input']>;
+  subject_parent_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Scalars['jsonb']['input']>;
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  tier?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_options?: InputMaybe<Scalars['jsonb']['input']>;
+  why_this_why_now?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Sum_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_sum_fields';
+  domain_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Var_Pop_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_var_pop_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Var_Samp_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_var_samp_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Curriculum_Units_Including_New_0_0_4_Variance_Fields = {
+  __typename?: 'published_mv_curriculum_units_including_new_0_0_4_variance_fields';
+  domain_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  planned_number_of_lessons?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.mv_downloads_5_0_2" */
@@ -15517,368 +17839,6 @@ export type Published_Mv_Key_Stages_2_0_0_Variance_Fields = {
   display_order?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1 = {
-  __typename?: 'published_mv_lesson_content_0_1';
-  content_guidance?: Maybe<Scalars['jsonb']['output']>;
-  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
-  equipment_and_resources?: Maybe<Scalars['json']['output']>;
-  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
-  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  key_learning_points?: Maybe<Scalars['json']['output']>;
-  lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_keywords?: Maybe<Scalars['json']['output']>;
-  lesson_slug?: Maybe<Scalars['String']['output']>;
-  lesson_title?: Maybe<Scalars['String']['output']>;
-  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
-  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
-  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
-  state?: Maybe<Scalars['String']['output']>;
-  supervision_level?: Maybe<Scalars['String']['output']>;
-  teacher_tips?: Maybe<Scalars['json']['output']>;
-  transcript_sentences?: Maybe<Scalars['String']['output']>;
-  video_id?: Maybe<Scalars['Int']['output']>;
-  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
-  video_title?: Maybe<Scalars['String']['output']>;
-  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Content_GuidanceArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Deprecated_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Equipment_And_ResourcesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Exit_QuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Key_Learning_PointsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Lesson_KeywordsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Misconceptions_And_Common_MistakesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Starter_QuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1Teacher_TipsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1_Aggregate = {
-  __typename?: 'published_mv_lesson_content_0_1_aggregate';
-  aggregate?: Maybe<Published_Mv_Lesson_Content_0_1_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Lesson_Content_0_1>;
-};
-
-/** aggregate fields of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1_Aggregate_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_aggregate_fields';
-  avg?: Maybe<Published_Mv_Lesson_Content_0_1_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Lesson_Content_0_1_Max_Fields>;
-  min?: Maybe<Published_Mv_Lesson_Content_0_1_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Lesson_Content_0_1_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Lesson_Content_0_1_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Lesson_Content_0_1_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Lesson_Content_0_1_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Lesson_Content_0_1_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Lesson_Content_0_1_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Lesson_Content_0_1_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_Mv_Lesson_Content_0_1_Avg_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_avg_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_lesson_content_0_1". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Lesson_Content_0_1_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Bool_Exp>>;
-  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
-  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
-  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
-  lesson_id?: InputMaybe<Int_Comparison_Exp>;
-  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
-  lesson_slug?: InputMaybe<String_Comparison_Exp>;
-  lesson_title?: InputMaybe<String_Comparison_Exp>;
-  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
-  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
-  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
-  state?: InputMaybe<String_Comparison_Exp>;
-  supervision_level?: InputMaybe<String_Comparison_Exp>;
-  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
-  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
-  video_id?: InputMaybe<Int_Comparison_Exp>;
-  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
-  video_title?: InputMaybe<String_Comparison_Exp>;
-  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Lesson_Content_0_1_Max_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_max_fields';
-  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
-  lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_slug?: Maybe<Scalars['String']['output']>;
-  lesson_title?: Maybe<Scalars['String']['output']>;
-  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
-  state?: Maybe<Scalars['String']['output']>;
-  supervision_level?: Maybe<Scalars['String']['output']>;
-  transcript_sentences?: Maybe<Scalars['String']['output']>;
-  video_id?: Maybe<Scalars['Int']['output']>;
-  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
-  video_title?: Maybe<Scalars['String']['output']>;
-  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Lesson_Content_0_1_Min_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_min_fields';
-  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
-  lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_slug?: Maybe<Scalars['String']['output']>;
-  lesson_title?: Maybe<Scalars['String']['output']>;
-  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
-  state?: Maybe<Scalars['String']['output']>;
-  supervision_level?: Maybe<Scalars['String']['output']>;
-  transcript_sentences?: Maybe<Scalars['String']['output']>;
-  video_id?: Maybe<Scalars['Int']['output']>;
-  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
-  video_title?: Maybe<Scalars['String']['output']>;
-  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_lesson_content_0_1". */
-export type Published_Mv_Lesson_Content_0_1_Order_By = {
-  content_guidance?: InputMaybe<Order_By>;
-  deprecated_fields?: InputMaybe<Order_By>;
-  equipment_and_resources?: InputMaybe<Order_By>;
-  exit_quiz?: InputMaybe<Order_By>;
-  exit_quiz_id?: InputMaybe<Order_By>;
-  is_legacy?: InputMaybe<Order_By>;
-  key_learning_points?: InputMaybe<Order_By>;
-  lesson_id?: InputMaybe<Order_By>;
-  lesson_keywords?: InputMaybe<Order_By>;
-  lesson_slug?: InputMaybe<Order_By>;
-  lesson_title?: InputMaybe<Order_By>;
-  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
-  pupil_lesson_outcome?: InputMaybe<Order_By>;
-  starter_quiz?: InputMaybe<Order_By>;
-  starter_quiz_id?: InputMaybe<Order_By>;
-  state?: InputMaybe<Order_By>;
-  supervision_level?: InputMaybe<Order_By>;
-  teacher_tips?: InputMaybe<Order_By>;
-  transcript_sentences?: InputMaybe<Order_By>;
-  video_id?: InputMaybe<Order_By>;
-  video_mux_playback_id?: InputMaybe<Order_By>;
-  video_title?: InputMaybe<Order_By>;
-  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_lesson_content_0_1" */
-export enum Published_Mv_Lesson_Content_0_1_Select_Column {
-  /** column name */
-  ContentGuidance = 'content_guidance',
-  /** column name */
-  DeprecatedFields = 'deprecated_fields',
-  /** column name */
-  EquipmentAndResources = 'equipment_and_resources',
-  /** column name */
-  ExitQuiz = 'exit_quiz',
-  /** column name */
-  ExitQuizId = 'exit_quiz_id',
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  KeyLearningPoints = 'key_learning_points',
-  /** column name */
-  LessonId = 'lesson_id',
-  /** column name */
-  LessonKeywords = 'lesson_keywords',
-  /** column name */
-  LessonSlug = 'lesson_slug',
-  /** column name */
-  LessonTitle = 'lesson_title',
-  /** column name */
-  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
-  /** column name */
-  PupilLessonOutcome = 'pupil_lesson_outcome',
-  /** column name */
-  StarterQuiz = 'starter_quiz',
-  /** column name */
-  StarterQuizId = 'starter_quiz_id',
-  /** column name */
-  State = 'state',
-  /** column name */
-  SupervisionLevel = 'supervision_level',
-  /** column name */
-  TeacherTips = 'teacher_tips',
-  /** column name */
-  TranscriptSentences = 'transcript_sentences',
-  /** column name */
-  VideoId = 'video_id',
-  /** column name */
-  VideoMuxPlaybackId = 'video_mux_playback_id',
-  /** column name */
-  VideoTitle = 'video_title',
-  /** column name */
-  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id'
-}
-
-/** aggregate stddev on columns */
-export type Published_Mv_Lesson_Content_0_1_Stddev_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_stddev_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_Mv_Lesson_Content_0_1_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_stddev_pop_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_Mv_Lesson_Content_0_1_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_stddev_samp_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_mv_lesson_content_0_1" */
-export type Published_Mv_Lesson_Content_0_1_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Lesson_Content_0_1_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Lesson_Content_0_1_Stream_Cursor_Value_Input = {
-  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
-  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
-  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  key_learning_points?: InputMaybe<Scalars['json']['input']>;
-  lesson_id?: InputMaybe<Scalars['Int']['input']>;
-  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
-  lesson_slug?: InputMaybe<Scalars['String']['input']>;
-  lesson_title?: InputMaybe<Scalars['String']['input']>;
-  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
-  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
-  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
-  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
-  state?: InputMaybe<Scalars['String']['input']>;
-  supervision_level?: InputMaybe<Scalars['String']['input']>;
-  teacher_tips?: InputMaybe<Scalars['json']['input']>;
-  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
-  video_id?: InputMaybe<Scalars['Int']['input']>;
-  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
-  video_title?: InputMaybe<Scalars['String']['input']>;
-  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_Mv_Lesson_Content_0_1_Sum_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_sum_fields';
-  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
-  lesson_id?: Maybe<Scalars['Int']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
-  video_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_Mv_Lesson_Content_0_1_Var_Pop_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_var_pop_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_Mv_Lesson_Content_0_1_Var_Samp_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_var_samp_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_Mv_Lesson_Content_0_1_Variance_Fields = {
-  __typename?: 'published_mv_lesson_content_0_1_variance_fields';
-  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
-  lesson_id?: Maybe<Scalars['Float']['output']>;
-  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
-  video_id?: Maybe<Scalars['Float']['output']>;
-};
-
 /** columns and relationships of "published.mv_lesson_content_1_0" */
 export type Published_Mv_Lesson_Content_1_0 = {
   __typename?: 'published_mv_lesson_content_1_0';
@@ -16241,264 +18201,1428 @@ export type Published_Mv_Lesson_Content_1_0_Variance_Fields = {
   video_id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0 = {
-  __typename?: 'published_mv_lesson_listing_5_0_0';
-  examboardSlug?: Maybe<Scalars['String']['output']>;
-  examboardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessons?: Maybe<Scalars['jsonb']['output']>;
-  lessonsCount?: Maybe<Scalars['bigint']['output']>;
-  optionality?: Maybe<Scalars['String']['output']>;
-  phaseSlug?: Maybe<Scalars['String']['output']>;
-  phaseTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1 = {
+  __typename?: 'published_mv_lesson_content_1_1';
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0LessonsArgs = {
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Content_GuidanceArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0_Aggregate = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Lesson_Listing_5_0_0>;
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_aggregate_fields';
-  avg?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Avg_Fields>;
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Exit_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1_Aggregate = {
+  __typename?: 'published_mv_lesson_content_1_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Content_1_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Content_1_1>;
+};
+
+/** aggregate fields of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Content_1_1_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Lesson_Listing_5_0_0_Variance_Fields>;
+  max?: Maybe<Published_Mv_Lesson_Content_1_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Content_1_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Content_1_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Content_1_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Content_1_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Content_1_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Content_1_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Content_1_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Content_1_1_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** aggregate avg on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Avg_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_avg_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Avg_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_lesson_listing_5_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Lesson_Listing_5_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>>;
-  examboardSlug?: InputMaybe<String_Comparison_Exp>;
-  examboardTitle?: InputMaybe<String_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessons?: InputMaybe<Jsonb_Comparison_Exp>;
-  lessonsCount?: InputMaybe<Bigint_Comparison_Exp>;
-  optionality?: InputMaybe<String_Comparison_Exp>;
-  phaseSlug?: InputMaybe<String_Comparison_Exp>;
-  phaseTitle?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
-  yearTitle?: InputMaybe<String_Comparison_Exp>;
+/** Boolean expression to filter rows from the table "published.mv_lesson_content_1_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Content_1_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Bool_Exp>>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Max_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_max_fields';
-  examboardSlug?: Maybe<Scalars['String']['output']>;
-  examboardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonsCount?: Maybe<Scalars['bigint']['output']>;
-  optionality?: Maybe<Scalars['String']['output']>;
-  phaseSlug?: Maybe<Scalars['String']['output']>;
-  phaseTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Max_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_max_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Min_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_min_fields';
-  examboardSlug?: Maybe<Scalars['String']['output']>;
-  examboardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonsCount?: Maybe<Scalars['bigint']['output']>;
-  optionality?: Maybe<Scalars['String']['output']>;
-  phaseSlug?: Maybe<Scalars['String']['output']>;
-  phaseTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Min_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_min_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_lesson_listing_5_0_0". */
-export type Published_Mv_Lesson_Listing_5_0_0_Order_By = {
-  examboardSlug?: InputMaybe<Order_By>;
-  examboardTitle?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessons?: InputMaybe<Order_By>;
-  lessonsCount?: InputMaybe<Order_By>;
-  optionality?: InputMaybe<Order_By>;
-  phaseSlug?: InputMaybe<Order_By>;
-  phaseTitle?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
-  yearTitle?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_lesson_content_1_1". */
+export type Published_Mv_Lesson_Content_1_1_Order_By = {
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_lesson_listing_5_0_0" */
-export enum Published_Mv_Lesson_Listing_5_0_0_Select_Column {
+/** select columns of table "published.mv_lesson_content_1_1" */
+export enum Published_Mv_Lesson_Content_1_1_Select_Column {
   /** column name */
-  ExamboardSlug = 'examboardSlug',
+  ContentGuidance = 'content_guidance',
   /** column name */
-  ExamboardTitle = 'examboardTitle',
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  EquipmentAndResources = 'equipment_and_resources',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  ExitQuiz = 'exit_quiz',
   /** column name */
-  Lessons = 'lessons',
+  ExitQuizId = 'exit_quiz_id',
   /** column name */
-  LessonsCount = 'lessonsCount',
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
   /** column name */
-  Optionality = 'optionality',
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
   /** column name */
-  PhaseSlug = 'phaseSlug',
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
   /** column name */
-  PhaseTitle = 'phaseTitle',
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  IsLegacy = 'is_legacy',
   /** column name */
-  SubjectTitle = 'subjectTitle',
+  KeyLearningPoints = 'key_learning_points',
   /** column name */
-  TierSlug = 'tierSlug',
+  LessonId = 'lesson_id',
   /** column name */
-  TierTitle = 'tierTitle',
+  LessonKeywords = 'lesson_keywords',
   /** column name */
-  UnitSlug = 'unitSlug',
+  LessonSlug = 'lesson_slug',
   /** column name */
-  UnitTitle = 'unitTitle',
+  LessonTitle = 'lesson_title',
   /** column name */
-  YearTitle = 'yearTitle'
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  State = 'state',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id'
 }
 
 /** aggregate stddev on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Stddev_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_stddev_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_stddev_pop_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_stddev_samp_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Streaming cursor of the table "published_mv_lesson_listing_5_0_0" */
-export type Published_Mv_Lesson_Listing_5_0_0_Stream_Cursor_Input = {
+/** Streaming cursor of the table "published_mv_lesson_content_1_1" */
+export type Published_Mv_Lesson_Content_1_1_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Lesson_Listing_5_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Lesson_Content_1_1_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Lesson_Listing_5_0_0_Stream_Cursor_Value_Input = {
-  examboardSlug?: InputMaybe<Scalars['String']['input']>;
-  examboardTitle?: InputMaybe<Scalars['String']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessons?: InputMaybe<Scalars['jsonb']['input']>;
-  lessonsCount?: InputMaybe<Scalars['bigint']['input']>;
-  optionality?: InputMaybe<Scalars['String']['input']>;
-  phaseSlug?: InputMaybe<Scalars['String']['input']>;
-  phaseTitle?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
-  yearTitle?: InputMaybe<Scalars['String']['input']>;
+export type Published_Mv_Lesson_Content_1_1_Stream_Cursor_Value_Input = {
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** aggregate sum on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Sum_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_sum_fields';
-  lessonsCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Sum_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_pop on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Var_Pop_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_var_pop_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Var_Samp_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_var_samp_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
-export type Published_Mv_Lesson_Listing_5_0_0_Variance_Fields = {
-  __typename?: 'published_mv_lesson_listing_5_0_0_variance_fields';
-  lessonsCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Lesson_Content_1_1_Variance_Fields = {
+  __typename?: 'published_mv_lesson_content_1_1_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2 = {
+  __typename?: 'published_mv_lesson_content_1_2';
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Content_GuidanceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Exit_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2_Aggregate = {
+  __typename?: 'published_mv_lesson_content_1_2_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Content_1_2_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Content_1_2>;
+};
+
+/** aggregate fields of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Content_1_2_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Content_1_2_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Content_1_2_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Content_1_2_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Content_1_2_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Content_1_2_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Content_1_2_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Content_1_2_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Content_1_2_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Content_1_2_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Content_1_2_Avg_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_content_1_2". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Content_1_2_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Bool_Exp>>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  slide_deck_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  supplementary_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Content_1_2_Max_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_max_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Content_1_2_Min_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_min_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_content_1_2". */
+export type Published_Mv_Lesson_Content_1_2_Order_By = {
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  slide_deck_asset_object_url?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  supplementary_asset_object_url?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_object_url?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_content_1_2" */
+export enum Published_Mv_Lesson_Content_1_2_Select_Column {
+  /** column name */
+  ContentGuidance = 'content_guidance',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  EquipmentAndResources = 'equipment_and_resources',
+  /** column name */
+  ExitQuiz = 'exit_quiz',
+  /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
+  /** column name */
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
+  /** column name */
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
+  /** column name */
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
+  /** column name */
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeyLearningPoints = 'key_learning_points',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  LessonKeywords = 'lesson_keywords',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  SlideDeckAssetObjectUrl = 'slide_deck_asset_object_url',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  State = 'state',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  SupplementaryAssetObjectUrl = 'supplementary_asset_object_url',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id',
+  /** column name */
+  WorksheetAssetObjectUrl = 'worksheet_asset_object_url'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Content_1_2_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Content_1_2_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Content_1_2_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_content_1_2" */
+export type Published_Mv_Lesson_Content_1_2_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Content_1_2_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Content_1_2_Stream_Cursor_Value_Input = {
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  slide_deck_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  supplementary_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Content_1_2_Sum_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Content_1_2_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Content_1_2_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Content_1_2_Variance_Fields = {
+  __typename?: 'published_mv_lesson_content_1_2_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3 = {
+  __typename?: 'published_mv_lesson_content_1_3';
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Content_GuidanceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Exit_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3_Aggregate = {
+  __typename?: 'published_mv_lesson_content_1_3_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Content_1_3_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Content_1_3>;
+};
+
+/** aggregate fields of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Content_1_3_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Content_1_3_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Content_1_3_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Content_1_3_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Content_1_3_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Content_1_3_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Content_1_3_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Content_1_3_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Content_1_3_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Content_1_3_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Content_1_3_Avg_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_content_1_3". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Content_1_3_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Bool_Exp>>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  slide_deck_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  supplementary_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  video_duration?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Content_1_3_Max_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_max_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Content_1_3_Min_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_min_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_content_1_3". */
+export type Published_Mv_Lesson_Content_1_3_Order_By = {
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  slide_deck_asset_object_url?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  supplementary_asset_object_url?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  video_duration?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_object_url?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_content_1_3" */
+export enum Published_Mv_Lesson_Content_1_3_Select_Column {
+  /** column name */
+  ContentGuidance = 'content_guidance',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  EquipmentAndResources = 'equipment_and_resources',
+  /** column name */
+  ExitQuiz = 'exit_quiz',
+  /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
+  /** column name */
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
+  /** column name */
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
+  /** column name */
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
+  /** column name */
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeyLearningPoints = 'key_learning_points',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  LessonKeywords = 'lesson_keywords',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  SlideDeckAssetObjectUrl = 'slide_deck_asset_object_url',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  State = 'state',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  SupplementaryAssetObjectUrl = 'supplementary_asset_object_url',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  VideoDuration = 'video_duration',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id',
+  /** column name */
+  WorksheetAssetObjectUrl = 'worksheet_asset_object_url'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Content_1_3_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Content_1_3_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Content_1_3_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_content_1_3" */
+export type Published_Mv_Lesson_Content_1_3_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Content_1_3_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Content_1_3_Stream_Cursor_Value_Input = {
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  slide_deck_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  supplementary_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  video_duration?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Content_1_3_Sum_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Content_1_3_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Content_1_3_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Content_1_3_Variance_Fields = {
+  __typename?: 'published_mv_lesson_content_1_3_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.mv_lesson_listing_5_0_1" */
@@ -18345,1072 +21469,6 @@ export type Published_Mv_Lesson_Overview_5_0_0_Variance_Fields = {
   unitVariantId?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1 = {
-  __typename?: 'published_mv_lesson_overview_5_0_1';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  contentGuidance?: Maybe<Scalars['jsonb']['output']>;
-  copyrightContent?: Maybe<Scalars['jsonb']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuiz?: Maybe<Scalars['jsonb']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  hasDownloadableResources?: Maybe<Scalars['Boolean']['output']>;
-  isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  isSensitive?: Maybe<Scalars['Boolean']['output']>;
-  isWorksheetLandscape?: Maybe<Scalars['Boolean']['output']>;
-  keyLearningPoints?: Maybe<Scalars['jsonb']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonEquipmentAndResources?: Maybe<Scalars['jsonb']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonKeywords?: Maybe<Scalars['jsonb']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  misconceptionsAndCommonMistakes?: Maybe<Scalars['jsonb']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuiz?: Maybe<Scalars['jsonb']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  teacherTips?: Maybe<Scalars['jsonb']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1ContentGuidanceArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1CopyrightContentArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1ExitQuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1KeyLearningPointsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1LessonEquipmentAndResourcesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1LessonKeywordsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1MisconceptionsAndCommonMistakesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1StarterQuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1TeacherTipsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1_Aggregate = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_aggregate';
-  aggregate?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Lesson_Overview_5_0_1>;
-};
-
-/** aggregate fields of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1_Aggregate_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_aggregate_fields';
-  avg?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Max_Fields>;
-  min?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Lesson_Overview_5_0_1_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Avg_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_avg_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_lesson_overview_5_0_1". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Lesson_Overview_5_0_1_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>>;
-  additionalMaterialUrl?: InputMaybe<String_Comparison_Exp>;
-  contentGuidance?: InputMaybe<Jsonb_Comparison_Exp>;
-  copyrightContent?: InputMaybe<Jsonb_Comparison_Exp>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  exitQuiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  exitQuizId?: InputMaybe<Int_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  hasDownloadableResources?: InputMaybe<Boolean_Comparison_Exp>;
-  isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  isSensitive?: InputMaybe<Boolean_Comparison_Exp>;
-  isWorksheetLandscape?: InputMaybe<Boolean_Comparison_Exp>;
-  keyLearningPoints?: InputMaybe<Jsonb_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonEquipmentAndResources?: InputMaybe<Jsonb_Comparison_Exp>;
-  lessonId?: InputMaybe<Int_Comparison_Exp>;
-  lessonKeywords?: InputMaybe<Jsonb_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Jsonb_Comparison_Exp>;
-  nullUnitVariantId?: InputMaybe<Int_Comparison_Exp>;
-  presentationUrl?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  pupilLessonOutcome?: InputMaybe<String_Comparison_Exp>;
-  starterQuiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  starterQuizId?: InputMaybe<Int_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  supervisionLevel?: InputMaybe<String_Comparison_Exp>;
-  teacherTips?: InputMaybe<Jsonb_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  transcriptSentences?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
-  unitVariantId?: InputMaybe<Int_Comparison_Exp>;
-  videoMuxPlaybackId?: InputMaybe<String_Comparison_Exp>;
-  videoTitle?: InputMaybe<String_Comparison_Exp>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<String_Comparison_Exp>;
-  worksheetUrl?: InputMaybe<String_Comparison_Exp>;
-  yearSlug?: InputMaybe<String_Comparison_Exp>;
-  yearTitle?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Max_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_max_fields';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Min_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_min_fields';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_lesson_overview_5_0_1". */
-export type Published_Mv_Lesson_Overview_5_0_1_Order_By = {
-  additionalMaterialUrl?: InputMaybe<Order_By>;
-  contentGuidance?: InputMaybe<Order_By>;
-  copyrightContent?: InputMaybe<Order_By>;
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  exitQuiz?: InputMaybe<Order_By>;
-  exitQuizId?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  hasDownloadableResources?: InputMaybe<Order_By>;
-  isLegacy?: InputMaybe<Order_By>;
-  isSensitive?: InputMaybe<Order_By>;
-  isWorksheetLandscape?: InputMaybe<Order_By>;
-  keyLearningPoints?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonEquipmentAndResources?: InputMaybe<Order_By>;
-  lessonId?: InputMaybe<Order_By>;
-  lessonKeywords?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Order_By>;
-  nullUnitVariantId?: InputMaybe<Order_By>;
-  presentationUrl?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  pupilLessonOutcome?: InputMaybe<Order_By>;
-  starterQuiz?: InputMaybe<Order_By>;
-  starterQuizId?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  supervisionLevel?: InputMaybe<Order_By>;
-  teacherTips?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  transcriptSentences?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
-  unitVariantId?: InputMaybe<Order_By>;
-  videoMuxPlaybackId?: InputMaybe<Order_By>;
-  videoTitle?: InputMaybe<Order_By>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<Order_By>;
-  worksheetUrl?: InputMaybe<Order_By>;
-  yearSlug?: InputMaybe<Order_By>;
-  yearTitle?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_lesson_overview_5_0_1" */
-export enum Published_Mv_Lesson_Overview_5_0_1_Select_Column {
-  /** column name */
-  AdditionalMaterialUrl = 'additionalMaterialUrl',
-  /** column name */
-  ContentGuidance = 'contentGuidance',
-  /** column name */
-  CopyrightContent = 'copyrightContent',
-  /** column name */
-  ExamBoardSlug = 'examBoardSlug',
-  /** column name */
-  ExamBoardTitle = 'examBoardTitle',
-  /** column name */
-  ExitQuiz = 'exitQuiz',
-  /** column name */
-  ExitQuizId = 'exitQuizId',
-  /** column name */
-  Expired = 'expired',
-  /** column name */
-  HasDownloadableResources = 'hasDownloadableResources',
-  /** column name */
-  IsLegacy = 'isLegacy',
-  /** column name */
-  IsSensitive = 'isSensitive',
-  /** column name */
-  IsWorksheetLandscape = 'isWorksheetLandscape',
-  /** column name */
-  KeyLearningPoints = 'keyLearningPoints',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  LessonCohort = 'lessonCohort',
-  /** column name */
-  LessonEquipmentAndResources = 'lessonEquipmentAndResources',
-  /** column name */
-  LessonId = 'lessonId',
-  /** column name */
-  LessonKeywords = 'lessonKeywords',
-  /** column name */
-  LessonSlug = 'lessonSlug',
-  /** column name */
-  LessonTitle = 'lessonTitle',
-  /** column name */
-  MisconceptionsAndCommonMistakes = 'misconceptionsAndCommonMistakes',
-  /** column name */
-  NullUnitVariantId = 'nullUnitVariantId',
-  /** column name */
-  PresentationUrl = 'presentationUrl',
-  /** column name */
-  ProgrammeSlug = 'programmeSlug',
-  /** column name */
-  PupilLessonOutcome = 'pupilLessonOutcome',
-  /** column name */
-  StarterQuiz = 'starterQuiz',
-  /** column name */
-  StarterQuizId = 'starterQuizId',
-  /** column name */
-  SubjectSlug = 'subjectSlug',
-  /** column name */
-  SubjectTitle = 'subjectTitle',
-  /** column name */
-  SupervisionLevel = 'supervisionLevel',
-  /** column name */
-  TeacherTips = 'teacherTips',
-  /** column name */
-  TierSlug = 'tierSlug',
-  /** column name */
-  TierTitle = 'tierTitle',
-  /** column name */
-  TranscriptSentences = 'transcriptSentences',
-  /** column name */
-  UnitSlug = 'unitSlug',
-  /** column name */
-  UnitTitle = 'unitTitle',
-  /** column name */
-  UnitVariantId = 'unitVariantId',
-  /** column name */
-  VideoMuxPlaybackId = 'videoMuxPlaybackId',
-  /** column name */
-  VideoTitle = 'videoTitle',
-  /** column name */
-  VideoWithSignLanguageMuxPlaybackId = 'videoWithSignLanguageMuxPlaybackId',
-  /** column name */
-  WorksheetUrl = 'worksheetUrl',
-  /** column name */
-  YearSlug = 'yearSlug',
-  /** column name */
-  YearTitle = 'yearTitle'
-}
-
-/** aggregate stddev on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Stddev_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_stddev_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_stddev_pop_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_stddev_samp_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_mv_lesson_overview_5_0_1" */
-export type Published_Mv_Lesson_Overview_5_0_1_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Lesson_Overview_5_0_1_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Lesson_Overview_5_0_1_Stream_Cursor_Value_Input = {
-  additionalMaterialUrl?: InputMaybe<Scalars['String']['input']>;
-  contentGuidance?: InputMaybe<Scalars['jsonb']['input']>;
-  copyrightContent?: InputMaybe<Scalars['jsonb']['input']>;
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  exitQuiz?: InputMaybe<Scalars['jsonb']['input']>;
-  exitQuizId?: InputMaybe<Scalars['Int']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  hasDownloadableResources?: InputMaybe<Scalars['Boolean']['input']>;
-  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  isSensitive?: InputMaybe<Scalars['Boolean']['input']>;
-  isWorksheetLandscape?: InputMaybe<Scalars['Boolean']['input']>;
-  keyLearningPoints?: InputMaybe<Scalars['jsonb']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonEquipmentAndResources?: InputMaybe<Scalars['jsonb']['input']>;
-  lessonId?: InputMaybe<Scalars['Int']['input']>;
-  lessonKeywords?: InputMaybe<Scalars['jsonb']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Scalars['jsonb']['input']>;
-  nullUnitVariantId?: InputMaybe<Scalars['Int']['input']>;
-  presentationUrl?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  pupilLessonOutcome?: InputMaybe<Scalars['String']['input']>;
-  starterQuiz?: InputMaybe<Scalars['jsonb']['input']>;
-  starterQuizId?: InputMaybe<Scalars['Int']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  supervisionLevel?: InputMaybe<Scalars['String']['input']>;
-  teacherTips?: InputMaybe<Scalars['jsonb']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  transcriptSentences?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
-  unitVariantId?: InputMaybe<Scalars['Int']['input']>;
-  videoMuxPlaybackId?: InputMaybe<Scalars['String']['input']>;
-  videoTitle?: InputMaybe<Scalars['String']['input']>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<Scalars['String']['input']>;
-  worksheetUrl?: InputMaybe<Scalars['String']['input']>;
-  yearSlug?: InputMaybe<Scalars['String']['input']>;
-  yearTitle?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Sum_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_sum_fields';
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Var_Pop_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_var_pop_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Var_Samp_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_var_samp_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_Mv_Lesson_Overview_5_0_1_Variance_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_1_variance_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2 = {
-  __typename?: 'published_mv_lesson_overview_5_0_2';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  contentGuidance?: Maybe<Scalars['jsonb']['output']>;
-  copyrightContent?: Maybe<Scalars['jsonb']['output']>;
-  downloads?: Maybe<Scalars['jsonb']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuiz?: Maybe<Scalars['jsonb']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  isSensitive?: Maybe<Scalars['Boolean']['output']>;
-  isWorksheetLandscape?: Maybe<Scalars['Boolean']['output']>;
-  keyLearningPoints?: Maybe<Scalars['jsonb']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonEquipmentAndResources?: Maybe<Scalars['jsonb']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonKeywords?: Maybe<Scalars['jsonb']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  misconceptionsAndCommonMistakes?: Maybe<Scalars['jsonb']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuiz?: Maybe<Scalars['jsonb']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  teacherTips?: Maybe<Scalars['jsonb']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2ContentGuidanceArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2CopyrightContentArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2DownloadsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2ExitQuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2KeyLearningPointsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2LessonEquipmentAndResourcesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2LessonKeywordsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2MisconceptionsAndCommonMistakesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2StarterQuizArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2TeacherTipsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2_Aggregate = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_aggregate';
-  aggregate?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Lesson_Overview_5_0_2>;
-};
-
-/** aggregate fields of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2_Aggregate_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_aggregate_fields';
-  avg?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Max_Fields>;
-  min?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Lesson_Overview_5_0_2_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Avg_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_avg_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_lesson_overview_5_0_2". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Lesson_Overview_5_0_2_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>>;
-  additionalMaterialUrl?: InputMaybe<String_Comparison_Exp>;
-  contentGuidance?: InputMaybe<Jsonb_Comparison_Exp>;
-  copyrightContent?: InputMaybe<Jsonb_Comparison_Exp>;
-  downloads?: InputMaybe<Jsonb_Comparison_Exp>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  exitQuiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  exitQuizId?: InputMaybe<Int_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  isSensitive?: InputMaybe<Boolean_Comparison_Exp>;
-  isWorksheetLandscape?: InputMaybe<Boolean_Comparison_Exp>;
-  keyLearningPoints?: InputMaybe<Jsonb_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonEquipmentAndResources?: InputMaybe<Jsonb_Comparison_Exp>;
-  lessonId?: InputMaybe<Int_Comparison_Exp>;
-  lessonKeywords?: InputMaybe<Jsonb_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Jsonb_Comparison_Exp>;
-  nullUnitVariantId?: InputMaybe<Int_Comparison_Exp>;
-  presentationUrl?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  pupilLessonOutcome?: InputMaybe<String_Comparison_Exp>;
-  starterQuiz?: InputMaybe<Jsonb_Comparison_Exp>;
-  starterQuizId?: InputMaybe<Int_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  supervisionLevel?: InputMaybe<String_Comparison_Exp>;
-  teacherTips?: InputMaybe<Jsonb_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  transcriptSentences?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
-  unitVariantId?: InputMaybe<Int_Comparison_Exp>;
-  videoMuxPlaybackId?: InputMaybe<String_Comparison_Exp>;
-  videoTitle?: InputMaybe<String_Comparison_Exp>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<String_Comparison_Exp>;
-  worksheetUrl?: InputMaybe<String_Comparison_Exp>;
-  yearSlug?: InputMaybe<String_Comparison_Exp>;
-  yearTitle?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Max_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_max_fields';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Min_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_min_fields';
-  additionalMaterialUrl?: Maybe<Scalars['String']['output']>;
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  presentationUrl?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  pupilLessonOutcome?: Maybe<Scalars['String']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  supervisionLevel?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  transcriptSentences?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-  videoMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  videoTitle?: Maybe<Scalars['String']['output']>;
-  videoWithSignLanguageMuxPlaybackId?: Maybe<Scalars['String']['output']>;
-  worksheetUrl?: Maybe<Scalars['String']['output']>;
-  yearSlug?: Maybe<Scalars['String']['output']>;
-  yearTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_lesson_overview_5_0_2". */
-export type Published_Mv_Lesson_Overview_5_0_2_Order_By = {
-  additionalMaterialUrl?: InputMaybe<Order_By>;
-  contentGuidance?: InputMaybe<Order_By>;
-  copyrightContent?: InputMaybe<Order_By>;
-  downloads?: InputMaybe<Order_By>;
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  exitQuiz?: InputMaybe<Order_By>;
-  exitQuizId?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  isLegacy?: InputMaybe<Order_By>;
-  isSensitive?: InputMaybe<Order_By>;
-  isWorksheetLandscape?: InputMaybe<Order_By>;
-  keyLearningPoints?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonEquipmentAndResources?: InputMaybe<Order_By>;
-  lessonId?: InputMaybe<Order_By>;
-  lessonKeywords?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Order_By>;
-  nullUnitVariantId?: InputMaybe<Order_By>;
-  presentationUrl?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  pupilLessonOutcome?: InputMaybe<Order_By>;
-  starterQuiz?: InputMaybe<Order_By>;
-  starterQuizId?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  supervisionLevel?: InputMaybe<Order_By>;
-  teacherTips?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  transcriptSentences?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
-  unitVariantId?: InputMaybe<Order_By>;
-  videoMuxPlaybackId?: InputMaybe<Order_By>;
-  videoTitle?: InputMaybe<Order_By>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<Order_By>;
-  worksheetUrl?: InputMaybe<Order_By>;
-  yearSlug?: InputMaybe<Order_By>;
-  yearTitle?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_lesson_overview_5_0_2" */
-export enum Published_Mv_Lesson_Overview_5_0_2_Select_Column {
-  /** column name */
-  AdditionalMaterialUrl = 'additionalMaterialUrl',
-  /** column name */
-  ContentGuidance = 'contentGuidance',
-  /** column name */
-  CopyrightContent = 'copyrightContent',
-  /** column name */
-  Downloads = 'downloads',
-  /** column name */
-  ExamBoardSlug = 'examBoardSlug',
-  /** column name */
-  ExamBoardTitle = 'examBoardTitle',
-  /** column name */
-  ExitQuiz = 'exitQuiz',
-  /** column name */
-  ExitQuizId = 'exitQuizId',
-  /** column name */
-  Expired = 'expired',
-  /** column name */
-  IsLegacy = 'isLegacy',
-  /** column name */
-  IsSensitive = 'isSensitive',
-  /** column name */
-  IsWorksheetLandscape = 'isWorksheetLandscape',
-  /** column name */
-  KeyLearningPoints = 'keyLearningPoints',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  LessonCohort = 'lessonCohort',
-  /** column name */
-  LessonEquipmentAndResources = 'lessonEquipmentAndResources',
-  /** column name */
-  LessonId = 'lessonId',
-  /** column name */
-  LessonKeywords = 'lessonKeywords',
-  /** column name */
-  LessonSlug = 'lessonSlug',
-  /** column name */
-  LessonTitle = 'lessonTitle',
-  /** column name */
-  MisconceptionsAndCommonMistakes = 'misconceptionsAndCommonMistakes',
-  /** column name */
-  NullUnitVariantId = 'nullUnitVariantId',
-  /** column name */
-  PresentationUrl = 'presentationUrl',
-  /** column name */
-  ProgrammeSlug = 'programmeSlug',
-  /** column name */
-  PupilLessonOutcome = 'pupilLessonOutcome',
-  /** column name */
-  StarterQuiz = 'starterQuiz',
-  /** column name */
-  StarterQuizId = 'starterQuizId',
-  /** column name */
-  SubjectSlug = 'subjectSlug',
-  /** column name */
-  SubjectTitle = 'subjectTitle',
-  /** column name */
-  SupervisionLevel = 'supervisionLevel',
-  /** column name */
-  TeacherTips = 'teacherTips',
-  /** column name */
-  TierSlug = 'tierSlug',
-  /** column name */
-  TierTitle = 'tierTitle',
-  /** column name */
-  TranscriptSentences = 'transcriptSentences',
-  /** column name */
-  UnitSlug = 'unitSlug',
-  /** column name */
-  UnitTitle = 'unitTitle',
-  /** column name */
-  UnitVariantId = 'unitVariantId',
-  /** column name */
-  VideoMuxPlaybackId = 'videoMuxPlaybackId',
-  /** column name */
-  VideoTitle = 'videoTitle',
-  /** column name */
-  VideoWithSignLanguageMuxPlaybackId = 'videoWithSignLanguageMuxPlaybackId',
-  /** column name */
-  WorksheetUrl = 'worksheetUrl',
-  /** column name */
-  YearSlug = 'yearSlug',
-  /** column name */
-  YearTitle = 'yearTitle'
-}
-
-/** aggregate stddev on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Stddev_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_stddev_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_stddev_pop_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_stddev_samp_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_mv_lesson_overview_5_0_2" */
-export type Published_Mv_Lesson_Overview_5_0_2_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Lesson_Overview_5_0_2_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Lesson_Overview_5_0_2_Stream_Cursor_Value_Input = {
-  additionalMaterialUrl?: InputMaybe<Scalars['String']['input']>;
-  contentGuidance?: InputMaybe<Scalars['jsonb']['input']>;
-  copyrightContent?: InputMaybe<Scalars['jsonb']['input']>;
-  downloads?: InputMaybe<Scalars['jsonb']['input']>;
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  exitQuiz?: InputMaybe<Scalars['jsonb']['input']>;
-  exitQuizId?: InputMaybe<Scalars['Int']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  isSensitive?: InputMaybe<Scalars['Boolean']['input']>;
-  isWorksheetLandscape?: InputMaybe<Scalars['Boolean']['input']>;
-  keyLearningPoints?: InputMaybe<Scalars['jsonb']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonEquipmentAndResources?: InputMaybe<Scalars['jsonb']['input']>;
-  lessonId?: InputMaybe<Scalars['Int']['input']>;
-  lessonKeywords?: InputMaybe<Scalars['jsonb']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  misconceptionsAndCommonMistakes?: InputMaybe<Scalars['jsonb']['input']>;
-  nullUnitVariantId?: InputMaybe<Scalars['Int']['input']>;
-  presentationUrl?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  pupilLessonOutcome?: InputMaybe<Scalars['String']['input']>;
-  starterQuiz?: InputMaybe<Scalars['jsonb']['input']>;
-  starterQuizId?: InputMaybe<Scalars['Int']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  supervisionLevel?: InputMaybe<Scalars['String']['input']>;
-  teacherTips?: InputMaybe<Scalars['jsonb']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  transcriptSentences?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
-  unitVariantId?: InputMaybe<Scalars['Int']['input']>;
-  videoMuxPlaybackId?: InputMaybe<Scalars['String']['input']>;
-  videoTitle?: InputMaybe<Scalars['String']['input']>;
-  videoWithSignLanguageMuxPlaybackId?: InputMaybe<Scalars['String']['input']>;
-  worksheetUrl?: InputMaybe<Scalars['String']['input']>;
-  yearSlug?: InputMaybe<Scalars['String']['input']>;
-  yearTitle?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Sum_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_sum_fields';
-  exitQuizId?: Maybe<Scalars['Int']['output']>;
-  lessonId?: Maybe<Scalars['Int']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Int']['output']>;
-  starterQuizId?: Maybe<Scalars['Int']['output']>;
-  unitVariantId?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Var_Pop_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_var_pop_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Var_Samp_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_var_samp_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_Mv_Lesson_Overview_5_0_2_Variance_Fields = {
-  __typename?: 'published_mv_lesson_overview_5_0_2_variance_fields';
-  exitQuizId?: Maybe<Scalars['Float']['output']>;
-  lessonId?: Maybe<Scalars['Float']['output']>;
-  nullUnitVariantId?: Maybe<Scalars['Float']['output']>;
-  starterQuizId?: Maybe<Scalars['Float']['output']>;
-  unitVariantId?: Maybe<Scalars['Float']['output']>;
-};
-
 /** columns and relationships of "published.mv_lesson_overview_5_0_3" */
 export type Published_Mv_Lesson_Overview_5_0_3 = {
   __typename?: 'published_mv_lesson_overview_5_0_3';
@@ -20491,6 +22549,194 @@ export type Published_Mv_Lesson_Overview_6_0_0_Variance_Fields = {
   unitVariantId?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0 = {
+  __typename?: 'published_mv_openapi_downloads_1_0_0';
+  exitQuiz?: Maybe<Scalars['jsonb']['output']>;
+  exitQuizAnswers?: Maybe<Scalars['jsonb']['output']>;
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  lessonTitle?: Maybe<Scalars['String']['output']>;
+  slidedeck?: Maybe<Scalars['jsonb']['output']>;
+  starterQuizAnswers?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  supplementaryResource?: Maybe<Scalars['jsonb']['output']>;
+  videos?: Maybe<Scalars['jsonb']['output']>;
+  worksheet?: Maybe<Scalars['jsonb']['output']>;
+  worksheetAnswers?: Maybe<Scalars['jsonb']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0ExitQuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0ExitQuizAnswersArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0SlidedeckArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0StarterQuizAnswersArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0SupplementaryResourceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0VideosArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0WorksheetArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0WorksheetAnswersArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0_Aggregate = {
+  __typename?: 'published_mv_openapi_downloads_1_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Openapi_Downloads_1_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Openapi_Downloads_1_0_0>;
+};
+
+/** aggregate fields of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_openapi_downloads_1_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Openapi_Downloads_1_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Openapi_Downloads_1_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_openapi_downloads_1_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>>;
+  exitQuiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exitQuizAnswers?: InputMaybe<Jsonb_Comparison_Exp>;
+  lessonSlug?: InputMaybe<String_Comparison_Exp>;
+  lessonTitle?: InputMaybe<String_Comparison_Exp>;
+  slidedeck?: InputMaybe<Jsonb_Comparison_Exp>;
+  starterQuizAnswers?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  supplementaryResource?: InputMaybe<Jsonb_Comparison_Exp>;
+  videos?: InputMaybe<Jsonb_Comparison_Exp>;
+  worksheet?: InputMaybe<Jsonb_Comparison_Exp>;
+  worksheetAnswers?: InputMaybe<Jsonb_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Openapi_Downloads_1_0_0_Max_Fields = {
+  __typename?: 'published_mv_openapi_downloads_1_0_0_max_fields';
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  lessonTitle?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Openapi_Downloads_1_0_0_Min_Fields = {
+  __typename?: 'published_mv_openapi_downloads_1_0_0_min_fields';
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  lessonTitle?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_openapi_downloads_1_0_0". */
+export type Published_Mv_Openapi_Downloads_1_0_0_Order_By = {
+  exitQuiz?: InputMaybe<Order_By>;
+  exitQuizAnswers?: InputMaybe<Order_By>;
+  lessonSlug?: InputMaybe<Order_By>;
+  lessonTitle?: InputMaybe<Order_By>;
+  slidedeck?: InputMaybe<Order_By>;
+  starterQuizAnswers?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  supplementaryResource?: InputMaybe<Order_By>;
+  videos?: InputMaybe<Order_By>;
+  worksheet?: InputMaybe<Order_By>;
+  worksheetAnswers?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_openapi_downloads_1_0_0" */
+export enum Published_Mv_Openapi_Downloads_1_0_0_Select_Column {
+  /** column name */
+  ExitQuiz = 'exitQuiz',
+  /** column name */
+  ExitQuizAnswers = 'exitQuizAnswers',
+  /** column name */
+  LessonSlug = 'lessonSlug',
+  /** column name */
+  LessonTitle = 'lessonTitle',
+  /** column name */
+  Slidedeck = 'slidedeck',
+  /** column name */
+  StarterQuizAnswers = 'starterQuizAnswers',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  SupplementaryResource = 'supplementaryResource',
+  /** column name */
+  Videos = 'videos',
+  /** column name */
+  Worksheet = 'worksheet',
+  /** column name */
+  WorksheetAnswers = 'worksheetAnswers'
+}
+
+/** Streaming cursor of the table "published_mv_openapi_downloads_1_0_0" */
+export type Published_Mv_Openapi_Downloads_1_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Openapi_Downloads_1_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Openapi_Downloads_1_0_0_Stream_Cursor_Value_Input = {
+  exitQuiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exitQuizAnswers?: InputMaybe<Scalars['jsonb']['input']>;
+  lessonSlug?: InputMaybe<Scalars['String']['input']>;
+  lessonTitle?: InputMaybe<Scalars['String']['input']>;
+  slidedeck?: InputMaybe<Scalars['jsonb']['input']>;
+  starterQuizAnswers?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  supplementaryResource?: InputMaybe<Scalars['jsonb']['input']>;
+  videos?: InputMaybe<Scalars['jsonb']['input']>;
+  worksheet?: InputMaybe<Scalars['jsonb']['input']>;
+  worksheetAnswers?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** columns and relationships of "published.mv_openapi_unit_curriculum_content_1_0_1" */
 export type Published_Mv_Openapi_Unit_Curriculum_Content_1_0_1 = {
   __typename?: 'published_mv_openapi_unit_curriculum_content_1_0_1';
@@ -21043,128 +23289,6 @@ export type Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Variance_Fields =
   unitId?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0 = {
-  __typename?: 'published_mv_programme_listing_4_0_0';
-  baseSlug?: Maybe<Scalars['String']['output']>;
-  isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  programmes?: Maybe<Scalars['jsonb']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0ProgrammesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0_Aggregate = {
-  __typename?: 'published_mv_programme_listing_4_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Programme_Listing_4_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Programme_Listing_4_0_0>;
-};
-
-/** aggregate fields of "published.mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_programme_listing_4_0_0_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Programme_Listing_4_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Programme_Listing_4_0_0_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_programme_listing_4_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Programme_Listing_4_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>>;
-  baseSlug?: InputMaybe<String_Comparison_Exp>;
-  isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  programmes?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Programme_Listing_4_0_0_Max_Fields = {
-  __typename?: 'published_mv_programme_listing_4_0_0_max_fields';
-  baseSlug?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Programme_Listing_4_0_0_Min_Fields = {
-  __typename?: 'published_mv_programme_listing_4_0_0_min_fields';
-  baseSlug?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_programme_listing_4_0_0". */
-export type Published_Mv_Programme_Listing_4_0_0_Order_By = {
-  baseSlug?: InputMaybe<Order_By>;
-  isLegacy?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  programmes?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_programme_listing_4_0_0" */
-export enum Published_Mv_Programme_Listing_4_0_0_Select_Column {
-  /** column name */
-  BaseSlug = 'baseSlug',
-  /** column name */
-  IsLegacy = 'isLegacy',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  Programmes = 'programmes',
-  /** column name */
-  SubjectSlug = 'subjectSlug',
-  /** column name */
-  SubjectTitle = 'subjectTitle'
-}
-
-/** Streaming cursor of the table "published_mv_programme_listing_4_0_0" */
-export type Published_Mv_Programme_Listing_4_0_0_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Programme_Listing_4_0_0_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Programme_Listing_4_0_0_Stream_Cursor_Value_Input = {
-  baseSlug?: InputMaybe<Scalars['String']['input']>;
-  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  programmes?: InputMaybe<Scalars['jsonb']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** columns and relationships of "published.mv_programme_listing_5_0_0" */
 export type Published_Mv_Programme_Listing_5_0_0 = {
   __typename?: 'published_mv_programme_listing_5_0_0';
@@ -21485,206 +23609,6 @@ export type Published_Mv_Search_Page_3_Stream_Cursor_Value_Input = {
   exam_boards?: InputMaybe<Scalars['json']['input']>;
   key_stages?: InputMaybe<Scalars['json']['input']>;
   subjects?: InputMaybe<Scalars['json']['input']>;
-};
-
-/** columns and relationships of "published.mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0 = {
-  __typename?: 'published_mv_share_4_0_0';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  expired?: Maybe<Scalars['Boolean']['output']>;
-  hasShareableResources?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  shareableResources?: Maybe<Scalars['jsonb']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0ShareableResourcesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0_Aggregate = {
-  __typename?: 'published_mv_share_4_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Share_4_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Share_4_0_0>;
-};
-
-/** aggregate fields of "published.mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_share_4_0_0_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Share_4_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Share_4_0_0_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Share_4_0_0_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_share_4_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Share_4_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Share_4_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Share_4_0_0_Bool_Exp>>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  expired?: InputMaybe<Boolean_Comparison_Exp>;
-  hasShareableResources?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  lessonCohort?: InputMaybe<String_Comparison_Exp>;
-  lessonSlug?: InputMaybe<String_Comparison_Exp>;
-  lessonTitle?: InputMaybe<String_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  shareableResources?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tierTitle?: InputMaybe<String_Comparison_Exp>;
-  unitSlug?: InputMaybe<String_Comparison_Exp>;
-  unitTitle?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Share_4_0_0_Max_Fields = {
-  __typename?: 'published_mv_share_4_0_0_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Share_4_0_0_Min_Fields = {
-  __typename?: 'published_mv_share_4_0_0_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  lessonCohort?: Maybe<Scalars['String']['output']>;
-  lessonSlug?: Maybe<Scalars['String']['output']>;
-  lessonTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tierTitle?: Maybe<Scalars['String']['output']>;
-  unitSlug?: Maybe<Scalars['String']['output']>;
-  unitTitle?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_share_4_0_0". */
-export type Published_Mv_Share_4_0_0_Order_By = {
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  expired?: InputMaybe<Order_By>;
-  hasShareableResources?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  lessonCohort?: InputMaybe<Order_By>;
-  lessonSlug?: InputMaybe<Order_By>;
-  lessonTitle?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  shareableResources?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tierTitle?: InputMaybe<Order_By>;
-  unitSlug?: InputMaybe<Order_By>;
-  unitTitle?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_share_4_0_0" */
-export enum Published_Mv_Share_4_0_0_Select_Column {
-  /** column name */
-  ExamBoardSlug = 'examBoardSlug',
-  /** column name */
-  ExamBoardTitle = 'examBoardTitle',
-  /** column name */
-  Expired = 'expired',
-  /** column name */
-  HasShareableResources = 'hasShareableResources',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  LessonCohort = 'lessonCohort',
-  /** column name */
-  LessonSlug = 'lessonSlug',
-  /** column name */
-  LessonTitle = 'lessonTitle',
-  /** column name */
-  ProgrammeSlug = 'programmeSlug',
-  /** column name */
-  ShareableResources = 'shareableResources',
-  /** column name */
-  SubjectSlug = 'subjectSlug',
-  /** column name */
-  SubjectTitle = 'subjectTitle',
-  /** column name */
-  TierSlug = 'tierSlug',
-  /** column name */
-  TierTitle = 'tierTitle',
-  /** column name */
-  UnitSlug = 'unitSlug',
-  /** column name */
-  UnitTitle = 'unitTitle'
-}
-
-/** Streaming cursor of the table "published_mv_share_4_0_0" */
-export type Published_Mv_Share_4_0_0_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Share_4_0_0_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Share_4_0_0_Stream_Cursor_Value_Input = {
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  expired?: InputMaybe<Scalars['Boolean']['input']>;
-  hasShareableResources?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  lessonCohort?: InputMaybe<Scalars['String']['input']>;
-  lessonSlug?: InputMaybe<Scalars['String']['input']>;
-  lessonTitle?: InputMaybe<Scalars['String']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  shareableResources?: InputMaybe<Scalars['jsonb']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tierTitle?: InputMaybe<Scalars['String']['input']>;
-  unitSlug?: InputMaybe<Scalars['String']['input']>;
-  unitTitle?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "published.mv_share_5_0_0" */
@@ -22783,242 +24707,6 @@ export type Published_Mv_Specialist_1_0_3_Variance_Fields = {
   order_in_unit?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0 = {
-  __typename?: 'published_mv_subject_listing_4_0_0';
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  keyStages?: Maybe<Scalars['jsonb']['output']>;
-  subjects?: Maybe<Scalars['jsonb']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0KeyStagesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0SubjectsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0_Aggregate = {
-  __typename?: 'published_mv_subject_listing_4_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Subject_Listing_4_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Subject_Listing_4_0_0>;
-};
-
-/** aggregate fields of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_subject_listing_4_0_0_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Subject_Listing_4_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Subject_Listing_4_0_0_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_subject_listing_4_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Subject_Listing_4_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  keyStages?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjects?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjectsUnavailable?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Subject_Listing_4_0_0_Max_Fields = {
-  __typename?: 'published_mv_subject_listing_4_0_0_max_fields';
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Subject_Listing_4_0_0_Min_Fields = {
-  __typename?: 'published_mv_subject_listing_4_0_0_min_fields';
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_subject_listing_4_0_0". */
-export type Published_Mv_Subject_Listing_4_0_0_Order_By = {
-  is_legacy?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  keyStages?: InputMaybe<Order_By>;
-  subjects?: InputMaybe<Order_By>;
-  subjectsUnavailable?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_subject_listing_4_0_0" */
-export enum Published_Mv_Subject_Listing_4_0_0_Select_Column {
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  KeyStages = 'keyStages',
-  /** column name */
-  Subjects = 'subjects',
-  /** column name */
-  SubjectsUnavailable = 'subjectsUnavailable'
-}
-
-/** Streaming cursor of the table "published_mv_subject_listing_4_0_0" */
-export type Published_Mv_Subject_Listing_4_0_0_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Subject_Listing_4_0_0_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Subject_Listing_4_0_0_Stream_Cursor_Value_Input = {
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  keyStages?: InputMaybe<Scalars['jsonb']['input']>;
-  subjects?: InputMaybe<Scalars['jsonb']['input']>;
-  subjectsUnavailable?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** columns and relationships of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0 = {
-  __typename?: 'published_mv_subject_listing_5_0_0';
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  keyStages?: Maybe<Scalars['jsonb']['output']>;
-  subjects?: Maybe<Scalars['jsonb']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0KeyStagesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0SubjectsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0_Aggregate = {
-  __typename?: 'published_mv_subject_listing_5_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Subject_Listing_5_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Subject_Listing_5_0_0>;
-};
-
-/** aggregate fields of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_subject_listing_5_0_0_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Subject_Listing_5_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Subject_Listing_5_0_0_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.mv_subject_listing_5_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Subject_Listing_5_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  keyStages?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjects?: InputMaybe<Jsonb_Comparison_Exp>;
-  subjectsUnavailable?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_Mv_Subject_Listing_5_0_0_Max_Fields = {
-  __typename?: 'published_mv_subject_listing_5_0_0_max_fields';
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Mv_Subject_Listing_5_0_0_Min_Fields = {
-  __typename?: 'published_mv_subject_listing_5_0_0_min_fields';
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.mv_subject_listing_5_0_0". */
-export type Published_Mv_Subject_Listing_5_0_0_Order_By = {
-  is_legacy?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  keyStages?: InputMaybe<Order_By>;
-  subjects?: InputMaybe<Order_By>;
-  subjectsUnavailable?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.mv_subject_listing_5_0_0" */
-export enum Published_Mv_Subject_Listing_5_0_0_Select_Column {
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  KeyStageSlug = 'keyStageSlug',
-  /** column name */
-  KeyStageTitle = 'keyStageTitle',
-  /** column name */
-  KeyStages = 'keyStages',
-  /** column name */
-  Subjects = 'subjects',
-  /** column name */
-  SubjectsUnavailable = 'subjectsUnavailable'
-}
-
-/** Streaming cursor of the table "published_mv_subject_listing_5_0_0" */
-export type Published_Mv_Subject_Listing_5_0_0_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Mv_Subject_Listing_5_0_0_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Mv_Subject_Listing_5_0_0_Stream_Cursor_Value_Input = {
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  keyStages?: InputMaybe<Scalars['jsonb']['input']>;
-  subjects?: InputMaybe<Scalars['jsonb']['input']>;
-  subjectsUnavailable?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** columns and relationships of "published.mv_subject_listing_5_0_1" */
 export type Published_Mv_Subject_Listing_5_0_1 = {
   __typename?: 'published_mv_subject_listing_5_0_1';
@@ -23473,6 +25161,182 @@ export type Published_Mv_Subject_Phase_Options_1_Variance_Fields = {
   display_order?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1 = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  examboards?: Maybe<Scalars['jsonb']['output']>;
+  phases?: Maybe<Scalars['jsonb']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1ExamboardsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1PhasesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+};
+
+/** aggregate fields of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Avg_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_avg_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_subject_phase_options_including_new_0_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>>;
+  display_order?: InputMaybe<Int_Comparison_Exp>;
+  examboards?: InputMaybe<Jsonb_Comparison_Exp>;
+  phases?: InputMaybe<Jsonb_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  state?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Max_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_max_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Min_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_min_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  state?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_subject_phase_options_including_new_0_0_1". */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By = {
+  display_order?: InputMaybe<Order_By>;
+  examboards?: InputMaybe<Order_By>;
+  phases?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  state?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_subject_phase_options_including_new_0_0_1" */
+export enum Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column {
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Examboards = 'examboards',
+  /** column name */
+  Phases = 'phases',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  State = 'state',
+  /** column name */
+  Title = 'title'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_stddev_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_subject_phase_options_including_new_0_0_1" */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Value_Input = {
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  examboards?: InputMaybe<Scalars['jsonb']['input']>;
+  phases?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Sum_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_sum_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_var_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_var_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Variance_Fields = {
+  __typename?: 'published_mv_subject_phase_options_including_new_0_0_1_variance_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_synthetic_programmes_by_year_7_0_0" */
 export type Published_Mv_Synthetic_Programmes_By_Year_7_0_0 = {
   __typename?: 'published_mv_synthetic_programmes_by_year_7_0_0';
@@ -23701,6 +25565,378 @@ export type Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Stream_Cursor_Value_
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
   year_slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0 = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0';
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_data?: Maybe<Scalars['jsonb']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Lesson_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Null_UnitvariantArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Supplementary_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_max_fields';
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_min_fields';
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0". */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Order_By = {
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_data?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export enum Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column {
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  LessonData = 'lesson_data',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  NullUnitvariant = 'null_unitvariant',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  SupplementaryData = 'supplementary_data',
+  /** column name */
+  UnitData = 'unit_data',
+  /** column name */
+  UnitSlug = 'unit_slug'
+}
+
+/** Streaming cursor of the table "published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Stream_Cursor_Value_Input = {
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_data?: InputMaybe<Scalars['jsonb']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0 = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0';
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_data?: Maybe<Scalars['jsonb']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Lesson_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Null_UnitvariantArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Supplementary_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Avg_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_avg_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_max_fields';
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_min_fields';
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0". */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Order_By = {
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_data?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unitvariant_id?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export enum Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column {
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  LessonData = 'lesson_data',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  NullUnitvariant = 'null_unitvariant',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  SupplementaryData = 'supplementary_data',
+  /** column name */
+  UnitData = 'unit_data',
+  /** column name */
+  UnitSlug = 'unit_slug',
+  /** column name */
+  UnitvariantId = 'unitvariant_id'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_stddev_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_stddev_pop_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_stddev_samp_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stream_Cursor_Value_Input = {
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_data?: InputMaybe<Scalars['jsonb']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
+  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Sum_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_sum_fields';
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_var_pop_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_var_samp_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Variance_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_variance_fields';
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_year_6_0_0" */
@@ -24055,472 +26291,560 @@ export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_6_0_0_Va
   lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0 = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  learningThemes?: Maybe<Scalars['jsonb']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tiers?: Maybe<Scalars['jsonb']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
-  units?: Maybe<Scalars['jsonb']['output']>;
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0 = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0';
+  expired?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0LearningThemesArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Null_UnitvariantArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0TiersArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Programme_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0UnitsArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Supplementary_DataArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Aggregate = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Unit_Listing_Page_4_0_0>;
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_aggregate_fields';
-  avg?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Avg_Fields>;
+/** aggregated selection of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Unit_Listing_Page_4_0_0_Variance_Fields>;
+  max?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** aggregate avg on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Avg_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_avg_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Avg_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_avg_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_unit_listing_page_4_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  learningThemes?: InputMaybe<Jsonb_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tiers?: InputMaybe<Jsonb_Comparison_Exp>;
-  unitCount?: InputMaybe<Bigint_Comparison_Exp>;
-  units?: InputMaybe<Jsonb_Comparison_Exp>;
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>>;
+  expired?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_count?: InputMaybe<Int_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Max_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_max_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Min_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_min_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_unit_listing_page_4_0_0". */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Order_By = {
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  isLegacy?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  learningThemes?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tiers?: InputMaybe<Order_By>;
-  unitCount?: InputMaybe<Order_By>;
-  units?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0". */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Order_By = {
+  expired?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_count?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_unit_listing_page_4_0_0" */
-export enum Published_Mv_Unit_Listing_Page_4_0_0_Select_Column {
+/** select columns of table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export enum Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column {
   /** column name */
-  ExamBoardSlug = 'examBoardSlug',
+  Expired = 'expired',
   /** column name */
-  ExamBoardTitle = 'examBoardTitle',
+  IsLegacy = 'is_legacy',
   /** column name */
-  IsLegacy = 'isLegacy',
+  LessonCount = 'lesson_count',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  NullUnitvariant = 'null_unitvariant',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  ProgrammeFields = 'programme_fields',
   /** column name */
-  LearningThemes = 'learningThemes',
+  ProgrammeSlug = 'programme_slug',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  SupplementaryData = 'supplementary_data',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  UnitData = 'unit_data',
   /** column name */
-  SubjectTitle = 'subjectTitle',
-  /** column name */
-  TierSlug = 'tierSlug',
-  /** column name */
-  Tiers = 'tiers',
-  /** column name */
-  UnitCount = 'unitCount',
-  /** column name */
-  Units = 'units'
+  UnitSlug = 'unit_slug'
 }
 
 /** aggregate stddev on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_stddev_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_stddev_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_stddev_pop_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_stddev_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_stddev_samp_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_stddev_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Streaming cursor of the table "published_mv_unit_listing_page_4_0_0" */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Stream_Cursor_Input = {
+/** Streaming cursor of the table "published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Unit_Listing_Page_4_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Stream_Cursor_Value_Input = {
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  learningThemes?: InputMaybe<Scalars['jsonb']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tiers?: InputMaybe<Scalars['jsonb']['input']>;
-  unitCount?: InputMaybe<Scalars['bigint']['input']>;
-  units?: InputMaybe<Scalars['jsonb']['input']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stream_Cursor_Value_Input = {
+  expired?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_count?: InputMaybe<Scalars['Int']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate sum on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Sum_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_sum_fields';
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Sum_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_sum_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_pop on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Var_Pop_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_var_pop_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_var_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Var_Samp_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_var_samp_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_var_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
-export type Published_Mv_Unit_Listing_Page_4_0_0_Variance_Fields = {
-  __typename?: 'published_mv_unit_listing_page_4_0_0_variance_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Variance_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_variance_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0 = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  isLegacy?: Maybe<Scalars['Boolean']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  learningThemes?: Maybe<Scalars['jsonb']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  tiers?: Maybe<Scalars['jsonb']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
-  units?: Maybe<Scalars['jsonb']['output']>;
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0 = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0LearningThemesArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Null_UnitvariantArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0TiersArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Programme_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** columns and relationships of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0UnitsArgs = {
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Supplementary_DataArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregated selection of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Aggregate = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Unit_Listing_Page_5_0_0>;
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** aggregate fields of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_aggregate_fields';
-  avg?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Avg_Fields>;
+/** aggregated selection of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Avg_Fields>;
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Min_Fields>;
-  stddev?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Sum_Fields>;
-  var_pop?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Var_Samp_Fields>;
-  variance?: Maybe<Published_Mv_Unit_Listing_Page_5_0_0_Variance_Fields>;
+  max?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Variance_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** aggregate avg on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Avg_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_avg_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Avg_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_avg_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_unit_listing_page_5_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>>;
-  examBoardSlug?: InputMaybe<String_Comparison_Exp>;
-  examBoardTitle?: InputMaybe<String_Comparison_Exp>;
-  isLegacy?: InputMaybe<Boolean_Comparison_Exp>;
-  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
-  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
-  learningThemes?: InputMaybe<Jsonb_Comparison_Exp>;
-  programmeSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectSlug?: InputMaybe<String_Comparison_Exp>;
-  subjectTitle?: InputMaybe<String_Comparison_Exp>;
-  tierSlug?: InputMaybe<String_Comparison_Exp>;
-  tiers?: InputMaybe<Jsonb_Comparison_Exp>;
-  unitCount?: InputMaybe<Bigint_Comparison_Exp>;
-  units?: InputMaybe<Jsonb_Comparison_Exp>;
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  expired?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_count?: InputMaybe<Int_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Max_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_max_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_max_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Min_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_min_fields';
-  examBoardSlug?: Maybe<Scalars['String']['output']>;
-  examBoardTitle?: Maybe<Scalars['String']['output']>;
-  keyStageSlug?: Maybe<Scalars['String']['output']>;
-  keyStageTitle?: Maybe<Scalars['String']['output']>;
-  programmeSlug?: Maybe<Scalars['String']['output']>;
-  subjectSlug?: Maybe<Scalars['String']['output']>;
-  subjectTitle?: Maybe<Scalars['String']['output']>;
-  tierSlug?: Maybe<Scalars['String']['output']>;
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_min_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_unit_listing_page_5_0_0". */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Order_By = {
-  examBoardSlug?: InputMaybe<Order_By>;
-  examBoardTitle?: InputMaybe<Order_By>;
-  isLegacy?: InputMaybe<Order_By>;
-  keyStageSlug?: InputMaybe<Order_By>;
-  keyStageTitle?: InputMaybe<Order_By>;
-  learningThemes?: InputMaybe<Order_By>;
-  programmeSlug?: InputMaybe<Order_By>;
-  subjectSlug?: InputMaybe<Order_By>;
-  subjectTitle?: InputMaybe<Order_By>;
-  tierSlug?: InputMaybe<Order_By>;
-  tiers?: InputMaybe<Order_By>;
-  unitCount?: InputMaybe<Order_By>;
-  units?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0". */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Order_By = {
+  base_slug?: InputMaybe<Order_By>;
+  expired?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_count?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_unit_listing_page_5_0_0" */
-export enum Published_Mv_Unit_Listing_Page_5_0_0_Select_Column {
+/** select columns of table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export enum Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column {
   /** column name */
-  ExamBoardSlug = 'examBoardSlug',
+  BaseSlug = 'base_slug',
   /** column name */
-  ExamBoardTitle = 'examBoardTitle',
+  Expired = 'expired',
   /** column name */
-  IsLegacy = 'isLegacy',
+  IsLegacy = 'is_legacy',
   /** column name */
-  KeyStageSlug = 'keyStageSlug',
+  LessonCount = 'lesson_count',
   /** column name */
-  KeyStageTitle = 'keyStageTitle',
+  NullUnitvariant = 'null_unitvariant',
   /** column name */
-  LearningThemes = 'learningThemes',
+  ProgrammeFields = 'programme_fields',
   /** column name */
-  ProgrammeSlug = 'programmeSlug',
+  ProgrammeSlug = 'programme_slug',
   /** column name */
-  SubjectSlug = 'subjectSlug',
+  SupplementaryData = 'supplementary_data',
   /** column name */
-  SubjectTitle = 'subjectTitle',
+  UnitData = 'unit_data',
   /** column name */
-  TierSlug = 'tierSlug',
-  /** column name */
-  Tiers = 'tiers',
-  /** column name */
-  UnitCount = 'unitCount',
-  /** column name */
-  Units = 'units'
+  UnitSlug = 'unit_slug'
 }
 
 /** aggregate stddev on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_stddev_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_stddev_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Pop_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_stddev_pop_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_stddev_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Stddev_Samp_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_stddev_samp_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_stddev_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** Streaming cursor of the table "published_mv_unit_listing_page_5_0_0" */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Stream_Cursor_Input = {
+/** Streaming cursor of the table "published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Unit_Listing_Page_5_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Stream_Cursor_Value_Input = {
-  examBoardSlug?: InputMaybe<Scalars['String']['input']>;
-  examBoardTitle?: InputMaybe<Scalars['String']['input']>;
-  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
-  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
-  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
-  learningThemes?: InputMaybe<Scalars['jsonb']['input']>;
-  programmeSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectTitle?: InputMaybe<Scalars['String']['input']>;
-  tierSlug?: InputMaybe<Scalars['String']['input']>;
-  tiers?: InputMaybe<Scalars['jsonb']['input']>;
-  unitCount?: InputMaybe<Scalars['bigint']['input']>;
-  units?: InputMaybe<Scalars['jsonb']['input']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stream_Cursor_Value_Input = {
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  expired?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_count?: InputMaybe<Scalars['Int']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate sum on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Sum_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_sum_fields';
-  unitCount?: Maybe<Scalars['bigint']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Sum_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_sum_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_pop on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Var_Pop_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_var_pop_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_var_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Var_Samp_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_var_samp_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_var_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
-export type Published_Mv_Unit_Listing_Page_5_0_0_Variance_Fields = {
-  __typename?: 'published_mv_unit_listing_page_5_0_0_variance_fields';
-  unitCount?: Maybe<Scalars['Float']['output']>;
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Variance_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_variance_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0 = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0';
+  threads?: Maybe<Scalars['jsonb']['output']>;
+  unit_id?: Maybe<Scalars['Int']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0ThreadsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0_Aggregate = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Threads_By_Unit_1_0_0>;
+};
+
+/** aggregate fields of "published.mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Threads_By_Unit_1_0_0_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Avg_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_avg_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_threads_by_unit_1_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>>;
+  threads?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_id?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Max_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_max_fields';
+  unit_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Min_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_min_fields';
+  unit_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_threads_by_unit_1_0_0". */
+export type Published_Mv_Threads_By_Unit_1_0_0_Order_By = {
+  threads?: InputMaybe<Order_By>;
+  unit_id?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_threads_by_unit_1_0_0" */
+export enum Published_Mv_Threads_By_Unit_1_0_0_Select_Column {
+  /** column name */
+  Threads = 'threads',
+  /** column name */
+  UnitId = 'unit_id'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_stddev_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_stddev_pop_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_stddev_samp_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_threads_by_unit_1_0_0" */
+export type Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Value_Input = {
+  threads?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Sum_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_sum_fields';
+  unit_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_var_pop_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_var_samp_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Threads_By_Unit_1_0_0_Variance_Fields = {
+  __typename?: 'published_mv_threads_by_unit_1_0_0_variance_fields';
+  unit_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.mv_unit_listing_page_5_0_1" */
@@ -28831,6 +31155,12 @@ export type Query_Root = {
   cat_nationalcurriculum_aggregate: Cat_Nationalcurriculum_Aggregate;
   /** fetch data from the table: "cat_nationalcurriculum" using primary key columns */
   cat_nationalcurriculum_by_pk?: Maybe<Cat_Nationalcurriculum>;
+  /** fetch data from the table: "cat_subjectcategories" */
+  cat_subjectcategories: Array<Cat_Subjectcategories>;
+  /** fetch aggregated fields from the table: "cat_subjectcategories" */
+  cat_subjectcategories_aggregate: Cat_Subjectcategories_Aggregate;
+  /** fetch data from the table: "cat_subjectcategories" using primary key columns */
+  cat_subjectcategories_by_pk?: Maybe<Cat_Subjectcategories>;
   /** fetch data from the table: "cat_supervisionlevels" */
   cat_supervisionlevels: Array<Cat_Supervisionlevels>;
   /** fetch aggregated fields from the table: "cat_supervisionlevels" */
@@ -28885,6 +31215,12 @@ export type Query_Root = {
   pf_keystages_aggregate: Pf_Keystages_Aggregate;
   /** fetch data from the table: "pf_keystages" using primary key columns */
   pf_keystages_by_pk?: Maybe<Pf_Keystages>;
+  /** fetch data from the table: "pf_pathways" */
+  pf_pathways: Array<Pf_Pathways>;
+  /** fetch aggregated fields from the table: "pf_pathways" */
+  pf_pathways_aggregate: Pf_Pathways_Aggregate;
+  /** fetch data from the table: "pf_pathways" using primary key columns */
+  pf_pathways_by_pk?: Maybe<Pf_Pathways>;
   /** fetch data from the table: "pf_phases" */
   pf_phases: Array<Pf_Phases>;
   /** fetch aggregated fields from the table: "pf_phases" */
@@ -28951,18 +31287,26 @@ export type Query_Root = {
   published_mv_curriculum_units_0_3: Array<Published_Mv_Curriculum_Units_0_3>;
   /** fetch aggregated fields from the table: "published.mv_curriculum_units_0_3" */
   published_mv_curriculum_units_0_3_aggregate: Published_Mv_Curriculum_Units_0_3_Aggregate;
-  /** fetch data from the table: "published.mv_downloads_4_0_0" */
-  published_mv_downloads_4_0_0: Array<Published_Mv_Downloads_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_4_0_0" */
-  published_mv_downloads_4_0_0_aggregate: Published_Mv_Downloads_4_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_downloads_5_0_0" */
-  published_mv_downloads_5_0_0: Array<Published_Mv_Downloads_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_5_0_0" */
-  published_mv_downloads_5_0_0_aggregate: Published_Mv_Downloads_5_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_downloads_5_0_1" */
-  published_mv_downloads_5_0_1: Array<Published_Mv_Downloads_5_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_5_0_1" */
-  published_mv_downloads_5_0_1_aggregate: Published_Mv_Downloads_5_0_1_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_0_4" */
+  published_mv_curriculum_units_0_4: Array<Published_Mv_Curriculum_Units_0_4>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_0_4" */
+  published_mv_curriculum_units_0_4_aggregate: Published_Mv_Curriculum_Units_0_4_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_2" */
+  published_mv_curriculum_units_including_new_0_0_2: Array<Published_Mv_Curriculum_Units_Including_New_0_0_2>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_2" */
+  published_mv_curriculum_units_including_new_0_0_2_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_3" */
+  published_mv_curriculum_units_including_new_0_0_3: Array<Published_Mv_Curriculum_Units_Including_New_0_0_3>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_3" */
+  published_mv_curriculum_units_including_new_0_0_3_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_4" */
+  published_mv_curriculum_units_including_new_0_0_4: Array<Published_Mv_Curriculum_Units_Including_New_0_0_4>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_4" */
+  published_mv_curriculum_units_including_new_0_0_4_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate;
   /** fetch data from the table: "published.mv_downloads_5_0_2" */
   published_mv_downloads_5_0_2: Array<Published_Mv_Downloads_5_0_2>;
   /** fetch aggregated fields from the table: "published.mv_downloads_5_0_2" */
@@ -28979,18 +31323,22 @@ export type Query_Root = {
   published_mv_key_stages_2_0_0: Array<Published_Mv_Key_Stages_2_0_0>;
   /** fetch aggregated fields from the table: "published.mv_key_stages_2_0_0" */
   published_mv_key_stages_2_0_0_aggregate: Published_Mv_Key_Stages_2_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_lesson_content_0_1" */
-  published_mv_lesson_content_0_1: Array<Published_Mv_Lesson_Content_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_content_0_1" */
-  published_mv_lesson_content_0_1_aggregate: Published_Mv_Lesson_Content_0_1_Aggregate;
   /** fetch data from the table: "published.mv_lesson_content_1_0" */
   published_mv_lesson_content_1_0: Array<Published_Mv_Lesson_Content_1_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_content_1_0" */
   published_mv_lesson_content_1_0_aggregate: Published_Mv_Lesson_Content_1_0_Aggregate;
-  /** fetch data from the table: "published.mv_lesson_listing_5_0_0" */
-  published_mv_lesson_listing_5_0_0: Array<Published_Mv_Lesson_Listing_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_listing_5_0_0" */
-  published_mv_lesson_listing_5_0_0_aggregate: Published_Mv_Lesson_Listing_5_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_content_1_1" */
+  published_mv_lesson_content_1_1: Array<Published_Mv_Lesson_Content_1_1>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_1" */
+  published_mv_lesson_content_1_1_aggregate: Published_Mv_Lesson_Content_1_1_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_content_1_2" */
+  published_mv_lesson_content_1_2: Array<Published_Mv_Lesson_Content_1_2>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_2" */
+  published_mv_lesson_content_1_2_aggregate: Published_Mv_Lesson_Content_1_2_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_content_1_3" */
+  published_mv_lesson_content_1_3: Array<Published_Mv_Lesson_Content_1_3>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_3" */
+  published_mv_lesson_content_1_3_aggregate: Published_Mv_Lesson_Content_1_3_Aggregate;
   /** fetch data from the table: "published.mv_lesson_listing_5_0_1" */
   published_mv_lesson_listing_5_0_1: Array<Published_Mv_Lesson_Listing_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_lesson_listing_5_0_1" */
@@ -29007,14 +31355,6 @@ export type Query_Root = {
   published_mv_lesson_overview_5_0_0: Array<Published_Mv_Lesson_Overview_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_0" */
   published_mv_lesson_overview_5_0_0_aggregate: Published_Mv_Lesson_Overview_5_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_lesson_overview_5_0_1" */
-  published_mv_lesson_overview_5_0_1: Array<Published_Mv_Lesson_Overview_5_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_1" */
-  published_mv_lesson_overview_5_0_1_aggregate: Published_Mv_Lesson_Overview_5_0_1_Aggregate;
-  /** fetch data from the table: "published.mv_lesson_overview_5_0_2" */
-  published_mv_lesson_overview_5_0_2: Array<Published_Mv_Lesson_Overview_5_0_2>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_2" */
-  published_mv_lesson_overview_5_0_2_aggregate: Published_Mv_Lesson_Overview_5_0_2_Aggregate;
   /** fetch data from the table: "published.mv_lesson_overview_5_0_3" */
   published_mv_lesson_overview_5_0_3: Array<Published_Mv_Lesson_Overview_5_0_3>;
   /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_3" */
@@ -29023,6 +31363,10 @@ export type Query_Root = {
   published_mv_lesson_overview_6_0_0: Array<Published_Mv_Lesson_Overview_6_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_overview_6_0_0" */
   published_mv_lesson_overview_6_0_0_aggregate: Published_Mv_Lesson_Overview_6_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_openapi_downloads_1_0_0" */
+  published_mv_openapi_downloads_1_0_0: Array<Published_Mv_Openapi_Downloads_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_openapi_downloads_1_0_0" */
+  published_mv_openapi_downloads_1_0_0_aggregate: Published_Mv_Openapi_Downloads_1_0_0_Aggregate;
   /** fetch data from the table: "published.mv_openapi_unit_curriculum_content_1_0_1" */
   published_mv_openapi_unit_curriculum_content_1_0_1: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_1>;
   /** fetch aggregated fields from the table: "published.mv_openapi_unit_curriculum_content_1_0_1" */
@@ -29031,10 +31375,6 @@ export type Query_Root = {
   published_mv_openapi_unit_curriculum_content_1_0_2: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2>;
   /** fetch aggregated fields from the table: "published.mv_openapi_unit_curriculum_content_1_0_2" */
   published_mv_openapi_unit_curriculum_content_1_0_2_aggregate: Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggregate;
-  /** fetch data from the table: "published.mv_programme_listing_4_0_0" */
-  published_mv_programme_listing_4_0_0: Array<Published_Mv_Programme_Listing_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_programme_listing_4_0_0" */
-  published_mv_programme_listing_4_0_0_aggregate: Published_Mv_Programme_Listing_4_0_0_Aggregate;
   /** fetch data from the table: "published.mv_programme_listing_5_0_0" */
   published_mv_programme_listing_5_0_0: Array<Published_Mv_Programme_Listing_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_programme_listing_5_0_0" */
@@ -29047,10 +31387,6 @@ export type Query_Root = {
   published_mv_search_page_3_0_1_aggregate: Published_Mv_Search_Page_3_0_1_Aggregate;
   /** fetch aggregated fields from the table: "published.mv_search_page_3" */
   published_mv_search_page_3_aggregate: Published_Mv_Search_Page_3_Aggregate;
-  /** fetch data from the table: "published.mv_share_4_0_0" */
-  published_mv_share_4_0_0: Array<Published_Mv_Share_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_share_4_0_0" */
-  published_mv_share_4_0_0_aggregate: Published_Mv_Share_4_0_0_Aggregate;
   /** fetch data from the table: "published.mv_share_5_0_0" */
   published_mv_share_5_0_0: Array<Published_Mv_Share_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_share_5_0_0" */
@@ -29071,14 +31407,6 @@ export type Query_Root = {
   published_mv_specialist_1_0_3: Array<Published_Mv_Specialist_1_0_3>;
   /** fetch aggregated fields from the table: "published.mv_specialist_1_0_3" */
   published_mv_specialist_1_0_3_aggregate: Published_Mv_Specialist_1_0_3_Aggregate;
-  /** fetch data from the table: "published.mv_subject_listing_4_0_0" */
-  published_mv_subject_listing_4_0_0: Array<Published_Mv_Subject_Listing_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_subject_listing_4_0_0" */
-  published_mv_subject_listing_4_0_0_aggregate: Published_Mv_Subject_Listing_4_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_subject_listing_5_0_0" */
-  published_mv_subject_listing_5_0_0: Array<Published_Mv_Subject_Listing_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_subject_listing_5_0_0" */
-  published_mv_subject_listing_5_0_0_aggregate: Published_Mv_Subject_Listing_5_0_0_Aggregate;
   /** fetch data from the table: "published.mv_subject_listing_5_0_1" */
   published_mv_subject_listing_5_0_1: Array<Published_Mv_Subject_Listing_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_listing_5_0_1" */
@@ -29091,6 +31419,10 @@ export type Query_Root = {
   published_mv_subject_phase_options_1: Array<Published_Mv_Subject_Phase_Options_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1_aggregate: Published_Mv_Subject_Phase_Options_1_Aggregate;
+  /** fetch data from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_aggregate: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate;
   /** fetch data from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
   published_mv_synthetic_programmes_by_year_7_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
@@ -29099,6 +31431,14 @@ export type Query_Root = {
   published_mv_synthetic_programmes_by_year_7_1_0: Array<Published_Mv_Synthetic_Programmes_By_Year_7_1_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_7_1_0" */
   published_mv_synthetic_programmes_by_year_7_1_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_aggregate: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate;
   /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_year_6_0_0" */
   published_mv_synthetic_unitvariant_lessons_by_year_6_0_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_year_6_0_0" */
@@ -29107,14 +31447,18 @@ export type Query_Root = {
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_6_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_6_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_unit_listing_page_4_0_0" */
-  published_mv_unit_listing_page_4_0_0: Array<Published_Mv_Unit_Listing_Page_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_unit_listing_page_4_0_0" */
-  published_mv_unit_listing_page_4_0_0_aggregate: Published_Mv_Unit_Listing_Page_4_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_unit_listing_page_5_0_0" */
-  published_mv_unit_listing_page_5_0_0: Array<Published_Mv_Unit_Listing_Page_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_unit_listing_page_5_0_0" */
-  published_mv_unit_listing_page_5_0_0_aggregate: Published_Mv_Unit_Listing_Page_5_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_threads_by_unit_1_0_0" */
+  published_mv_threads_by_unit_1_0_0: Array<Published_Mv_Threads_By_Unit_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_threads_by_unit_1_0_0" */
+  published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
   /** fetch data from the table: "published.mv_unit_listing_page_5_0_1" */
   published_mv_unit_listing_page_5_0_1: Array<Published_Mv_Unit_Listing_Page_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_unit_listing_page_5_0_1" */
@@ -29221,6 +31565,10 @@ export type Query_Root = {
   quizzes_aggregate: Quizzes_Aggregate;
   /** fetch data from the table: "quizzes" using primary key columns */
   quizzes_by_pk?: Maybe<Quizzes>;
+  /** fetch data from the table: "templates.permitted_programme_fields" */
+  templates_permitted_programme_fields: Array<Templates_Permitted_Programme_Fields>;
+  /** fetch aggregated fields from the table: "templates.permitted_programme_fields" */
+  templates_permitted_programme_fields_aggregate: Templates_Permitted_Programme_Fields_Aggregate;
   /** An array relationship */
   thirdpartycontent: Array<Thirdpartycontent>;
   /** An aggregate relationship */
@@ -29371,6 +31719,30 @@ export type Query_RootCat_Nationalcurriculum_AggregateArgs = {
 export type Query_RootCat_Nationalcurriculum_By_PkArgs = {
   _state: Scalars['String']['input'];
   nationalcurriculum_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootCat_SubjectcategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Cat_Subjectcategories_Order_By>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+};
+
+
+export type Query_RootCat_Subjectcategories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Cat_Subjectcategories_Order_By>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+};
+
+
+export type Query_RootCat_Subjectcategories_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  subjectcategory_id: Scalars['Int']['input'];
 };
 
 
@@ -29587,6 +31959,30 @@ export type Query_RootPf_Keystages_AggregateArgs = {
 export type Query_RootPf_Keystages_By_PkArgs = {
   _state: Scalars['String']['input'];
   keystage_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootPf_PathwaysArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Pathways_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Pathways_Order_By>>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
+};
+
+
+export type Query_RootPf_Pathways_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Pathways_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Pathways_Order_By>>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
+};
+
+
+export type Query_RootPf_Pathways_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  pathway_id: Scalars['Int']['input'];
 };
 
 
@@ -29868,57 +32264,93 @@ export type Query_RootPublished_Mv_Curriculum_Units_0_3_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_Mv_Downloads_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_0_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Downloads_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_0_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Downloads_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Downloads_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Downloads_5_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Downloads_5_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Select_Column>>;
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_3Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_3_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Curriculum_Units_Including_New_0_0_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
 };
 
 
@@ -29994,24 +32426,6 @@ export type Query_RootPublished_Mv_Key_Stages_2_0_0_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_Mv_Lesson_Content_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Lesson_Content_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_Mv_Lesson_Content_1_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30030,21 +32444,57 @@ export type Query_RootPublished_Mv_Lesson_Content_1_0_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_Mv_Lesson_Listing_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Lesson_Content_1_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Lesson_Listing_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Lesson_Content_1_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_1_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_1_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_1_3Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_1_3_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
 };
 
 
@@ -30120,42 +32570,6 @@ export type Query_RootPublished_Mv_Lesson_Overview_5_0_0_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_Mv_Lesson_Overview_5_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Lesson_Overview_5_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Lesson_Overview_5_0_2Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Lesson_Overview_5_0_2_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_Mv_Lesson_Overview_5_0_3Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30192,6 +32606,24 @@ export type Query_RootPublished_Mv_Lesson_Overview_6_0_0_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_Mv_Openapi_Downloads_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Openapi_Downloads_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_1Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30225,24 +32657,6 @@ export type Query_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggrega
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Order_By>>;
   where?: InputMaybe<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Programme_Listing_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Programme_Listing_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
 };
 
 
@@ -30297,24 +32711,6 @@ export type Query_RootPublished_Mv_Search_Page_3_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Search_Page_3_Order_By>>;
   where?: InputMaybe<Published_Mv_Search_Page_3_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Share_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Share_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Share_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Share_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Share_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Share_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
 };
 
 
@@ -30408,42 +32804,6 @@ export type Query_RootPublished_Mv_Specialist_1_0_3_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_Mv_Subject_Listing_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Subject_Listing_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Subject_Listing_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Mv_Subject_Listing_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_Mv_Subject_Listing_5_0_1Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30498,6 +32858,24 @@ export type Query_RootPublished_Mv_Subject_Phase_Options_1_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Synthetic_Programmes_By_Year_7_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30531,6 +32909,42 @@ export type Query_RootPublished_Mv_Synthetic_Programmes_By_Year_7_1_0_AggregateA
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
 };
 
 
@@ -30570,39 +32984,57 @@ export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Yea
 };
 
 
-export type Query_RootPublished_Mv_Unit_Listing_Page_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Unit_Listing_Page_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Unit_Listing_Page_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Unit_Listing_Page_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Threads_By_Unit_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Threads_By_Unit_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
 };
 
 
@@ -31064,6 +33496,24 @@ export type Query_RootQuizzes_AggregateArgs = {
 export type Query_RootQuizzes_By_PkArgs = {
   _state: Scalars['String']['input'];
   quiz_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootTemplates_Permitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+};
+
+
+export type Query_RootTemplates_Permitted_Programme_Fields_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
 };
 
 
@@ -32122,7 +34572,7 @@ export type Quiz_Questions_Bool_Exp = {
 
 /** unique or primary key constraints on table "quiz_questions" */
 export enum Quiz_Questions_Constraint {
-  /** unique or primary key constraint on columns "quiz_id", "question_id", "_state" */
+  /** unique or primary key constraint on columns "question_id", "quiz_id", "_state" */
   QuizQuestionsPkey = 'quiz_questions_pkey'
 }
 
@@ -33128,6 +35578,14 @@ export type Subscription_Root = {
   cat_nationalcurriculum_by_pk?: Maybe<Cat_Nationalcurriculum>;
   /** fetch data from the table in a streaming manner: "cat_nationalcurriculum" */
   cat_nationalcurriculum_stream: Array<Cat_Nationalcurriculum>;
+  /** fetch data from the table: "cat_subjectcategories" */
+  cat_subjectcategories: Array<Cat_Subjectcategories>;
+  /** fetch aggregated fields from the table: "cat_subjectcategories" */
+  cat_subjectcategories_aggregate: Cat_Subjectcategories_Aggregate;
+  /** fetch data from the table: "cat_subjectcategories" using primary key columns */
+  cat_subjectcategories_by_pk?: Maybe<Cat_Subjectcategories>;
+  /** fetch data from the table in a streaming manner: "cat_subjectcategories" */
+  cat_subjectcategories_stream: Array<Cat_Subjectcategories>;
   /** fetch data from the table: "cat_supervisionlevels" */
   cat_supervisionlevels: Array<Cat_Supervisionlevels>;
   /** fetch aggregated fields from the table: "cat_supervisionlevels" */
@@ -33200,6 +35658,14 @@ export type Subscription_Root = {
   pf_keystages_by_pk?: Maybe<Pf_Keystages>;
   /** fetch data from the table in a streaming manner: "pf_keystages" */
   pf_keystages_stream: Array<Pf_Keystages>;
+  /** fetch data from the table: "pf_pathways" */
+  pf_pathways: Array<Pf_Pathways>;
+  /** fetch aggregated fields from the table: "pf_pathways" */
+  pf_pathways_aggregate: Pf_Pathways_Aggregate;
+  /** fetch data from the table: "pf_pathways" using primary key columns */
+  pf_pathways_by_pk?: Maybe<Pf_Pathways>;
+  /** fetch data from the table in a streaming manner: "pf_pathways" */
+  pf_pathways_stream: Array<Pf_Pathways>;
   /** fetch data from the table: "pf_phases" */
   pf_phases: Array<Pf_Phases>;
   /** fetch aggregated fields from the table: "pf_phases" */
@@ -33292,24 +35758,36 @@ export type Subscription_Root = {
   published_mv_curriculum_units_0_3_aggregate: Published_Mv_Curriculum_Units_0_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_0_3" */
   published_mv_curriculum_units_0_3_stream: Array<Published_Mv_Curriculum_Units_0_3>;
-  /** fetch data from the table: "published.mv_downloads_4_0_0" */
-  published_mv_downloads_4_0_0: Array<Published_Mv_Downloads_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_4_0_0" */
-  published_mv_downloads_4_0_0_aggregate: Published_Mv_Downloads_4_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_downloads_4_0_0" */
-  published_mv_downloads_4_0_0_stream: Array<Published_Mv_Downloads_4_0_0>;
-  /** fetch data from the table: "published.mv_downloads_5_0_0" */
-  published_mv_downloads_5_0_0: Array<Published_Mv_Downloads_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_5_0_0" */
-  published_mv_downloads_5_0_0_aggregate: Published_Mv_Downloads_5_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_downloads_5_0_0" */
-  published_mv_downloads_5_0_0_stream: Array<Published_Mv_Downloads_5_0_0>;
-  /** fetch data from the table: "published.mv_downloads_5_0_1" */
-  published_mv_downloads_5_0_1: Array<Published_Mv_Downloads_5_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_downloads_5_0_1" */
-  published_mv_downloads_5_0_1_aggregate: Published_Mv_Downloads_5_0_1_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_downloads_5_0_1" */
-  published_mv_downloads_5_0_1_stream: Array<Published_Mv_Downloads_5_0_1>;
+  /** fetch data from the table: "published.mv_curriculum_units_0_4" */
+  published_mv_curriculum_units_0_4: Array<Published_Mv_Curriculum_Units_0_4>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_0_4" */
+  published_mv_curriculum_units_0_4_aggregate: Published_Mv_Curriculum_Units_0_4_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_0_4" */
+  published_mv_curriculum_units_0_4_stream: Array<Published_Mv_Curriculum_Units_0_4>;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_including_new_0_0_1" */
+  published_mv_curriculum_units_including_new_0_0_1_stream: Array<Published_Mv_Curriculum_Units_Including_New_0_0_1>;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_2" */
+  published_mv_curriculum_units_including_new_0_0_2: Array<Published_Mv_Curriculum_Units_Including_New_0_0_2>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_2" */
+  published_mv_curriculum_units_including_new_0_0_2_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_2_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_including_new_0_0_2" */
+  published_mv_curriculum_units_including_new_0_0_2_stream: Array<Published_Mv_Curriculum_Units_Including_New_0_0_2>;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_3" */
+  published_mv_curriculum_units_including_new_0_0_3: Array<Published_Mv_Curriculum_Units_Including_New_0_0_3>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_3" */
+  published_mv_curriculum_units_including_new_0_0_3_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_3_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_including_new_0_0_3" */
+  published_mv_curriculum_units_including_new_0_0_3_stream: Array<Published_Mv_Curriculum_Units_Including_New_0_0_3>;
+  /** fetch data from the table: "published.mv_curriculum_units_including_new_0_0_4" */
+  published_mv_curriculum_units_including_new_0_0_4: Array<Published_Mv_Curriculum_Units_Including_New_0_0_4>;
+  /** fetch aggregated fields from the table: "published.mv_curriculum_units_including_new_0_0_4" */
+  published_mv_curriculum_units_including_new_0_0_4_aggregate: Published_Mv_Curriculum_Units_Including_New_0_0_4_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_curriculum_units_including_new_0_0_4" */
+  published_mv_curriculum_units_including_new_0_0_4_stream: Array<Published_Mv_Curriculum_Units_Including_New_0_0_4>;
   /** fetch data from the table: "published.mv_downloads_5_0_2" */
   published_mv_downloads_5_0_2: Array<Published_Mv_Downloads_5_0_2>;
   /** fetch aggregated fields from the table: "published.mv_downloads_5_0_2" */
@@ -33334,24 +35812,30 @@ export type Subscription_Root = {
   published_mv_key_stages_2_0_0_aggregate: Published_Mv_Key_Stages_2_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_key_stages_2_0_0" */
   published_mv_key_stages_2_0_0_stream: Array<Published_Mv_Key_Stages_2_0_0>;
-  /** fetch data from the table: "published.mv_lesson_content_0_1" */
-  published_mv_lesson_content_0_1: Array<Published_Mv_Lesson_Content_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_content_0_1" */
-  published_mv_lesson_content_0_1_aggregate: Published_Mv_Lesson_Content_0_1_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_0_1" */
-  published_mv_lesson_content_0_1_stream: Array<Published_Mv_Lesson_Content_0_1>;
   /** fetch data from the table: "published.mv_lesson_content_1_0" */
   published_mv_lesson_content_1_0: Array<Published_Mv_Lesson_Content_1_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_content_1_0" */
   published_mv_lesson_content_1_0_aggregate: Published_Mv_Lesson_Content_1_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_content_1_0" */
   published_mv_lesson_content_1_0_stream: Array<Published_Mv_Lesson_Content_1_0>;
-  /** fetch data from the table: "published.mv_lesson_listing_5_0_0" */
-  published_mv_lesson_listing_5_0_0: Array<Published_Mv_Lesson_Listing_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_listing_5_0_0" */
-  published_mv_lesson_listing_5_0_0_aggregate: Published_Mv_Lesson_Listing_5_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_lesson_listing_5_0_0" */
-  published_mv_lesson_listing_5_0_0_stream: Array<Published_Mv_Lesson_Listing_5_0_0>;
+  /** fetch data from the table: "published.mv_lesson_content_1_1" */
+  published_mv_lesson_content_1_1: Array<Published_Mv_Lesson_Content_1_1>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_1" */
+  published_mv_lesson_content_1_1_aggregate: Published_Mv_Lesson_Content_1_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_1_1" */
+  published_mv_lesson_content_1_1_stream: Array<Published_Mv_Lesson_Content_1_1>;
+  /** fetch data from the table: "published.mv_lesson_content_1_2" */
+  published_mv_lesson_content_1_2: Array<Published_Mv_Lesson_Content_1_2>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_2" */
+  published_mv_lesson_content_1_2_aggregate: Published_Mv_Lesson_Content_1_2_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_1_2" */
+  published_mv_lesson_content_1_2_stream: Array<Published_Mv_Lesson_Content_1_2>;
+  /** fetch data from the table: "published.mv_lesson_content_1_3" */
+  published_mv_lesson_content_1_3: Array<Published_Mv_Lesson_Content_1_3>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_1_3" */
+  published_mv_lesson_content_1_3_aggregate: Published_Mv_Lesson_Content_1_3_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_1_3" */
+  published_mv_lesson_content_1_3_stream: Array<Published_Mv_Lesson_Content_1_3>;
   /** fetch data from the table: "published.mv_lesson_listing_5_0_1" */
   published_mv_lesson_listing_5_0_1: Array<Published_Mv_Lesson_Listing_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_lesson_listing_5_0_1" */
@@ -33376,18 +35860,6 @@ export type Subscription_Root = {
   published_mv_lesson_overview_5_0_0_aggregate: Published_Mv_Lesson_Overview_5_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_overview_5_0_0" */
   published_mv_lesson_overview_5_0_0_stream: Array<Published_Mv_Lesson_Overview_5_0_0>;
-  /** fetch data from the table: "published.mv_lesson_overview_5_0_1" */
-  published_mv_lesson_overview_5_0_1: Array<Published_Mv_Lesson_Overview_5_0_1>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_1" */
-  published_mv_lesson_overview_5_0_1_aggregate: Published_Mv_Lesson_Overview_5_0_1_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_lesson_overview_5_0_1" */
-  published_mv_lesson_overview_5_0_1_stream: Array<Published_Mv_Lesson_Overview_5_0_1>;
-  /** fetch data from the table: "published.mv_lesson_overview_5_0_2" */
-  published_mv_lesson_overview_5_0_2: Array<Published_Mv_Lesson_Overview_5_0_2>;
-  /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_2" */
-  published_mv_lesson_overview_5_0_2_aggregate: Published_Mv_Lesson_Overview_5_0_2_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_lesson_overview_5_0_2" */
-  published_mv_lesson_overview_5_0_2_stream: Array<Published_Mv_Lesson_Overview_5_0_2>;
   /** fetch data from the table: "published.mv_lesson_overview_5_0_3" */
   published_mv_lesson_overview_5_0_3: Array<Published_Mv_Lesson_Overview_5_0_3>;
   /** fetch aggregated fields from the table: "published.mv_lesson_overview_5_0_3" */
@@ -33400,6 +35872,12 @@ export type Subscription_Root = {
   published_mv_lesson_overview_6_0_0_aggregate: Published_Mv_Lesson_Overview_6_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_overview_6_0_0" */
   published_mv_lesson_overview_6_0_0_stream: Array<Published_Mv_Lesson_Overview_6_0_0>;
+  /** fetch data from the table: "published.mv_openapi_downloads_1_0_0" */
+  published_mv_openapi_downloads_1_0_0: Array<Published_Mv_Openapi_Downloads_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_openapi_downloads_1_0_0" */
+  published_mv_openapi_downloads_1_0_0_aggregate: Published_Mv_Openapi_Downloads_1_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_openapi_downloads_1_0_0" */
+  published_mv_openapi_downloads_1_0_0_stream: Array<Published_Mv_Openapi_Downloads_1_0_0>;
   /** fetch data from the table: "published.mv_openapi_unit_curriculum_content_1_0_1" */
   published_mv_openapi_unit_curriculum_content_1_0_1: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_1>;
   /** fetch aggregated fields from the table: "published.mv_openapi_unit_curriculum_content_1_0_1" */
@@ -33412,12 +35890,6 @@ export type Subscription_Root = {
   published_mv_openapi_unit_curriculum_content_1_0_2_aggregate: Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_openapi_unit_curriculum_content_1_0_2" */
   published_mv_openapi_unit_curriculum_content_1_0_2_stream: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2>;
-  /** fetch data from the table: "published.mv_programme_listing_4_0_0" */
-  published_mv_programme_listing_4_0_0: Array<Published_Mv_Programme_Listing_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_programme_listing_4_0_0" */
-  published_mv_programme_listing_4_0_0_aggregate: Published_Mv_Programme_Listing_4_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_programme_listing_4_0_0" */
-  published_mv_programme_listing_4_0_0_stream: Array<Published_Mv_Programme_Listing_4_0_0>;
   /** fetch data from the table: "published.mv_programme_listing_5_0_0" */
   published_mv_programme_listing_5_0_0: Array<Published_Mv_Programme_Listing_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_programme_listing_5_0_0" */
@@ -33436,12 +35908,6 @@ export type Subscription_Root = {
   published_mv_search_page_3_aggregate: Published_Mv_Search_Page_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_search_page_3" */
   published_mv_search_page_3_stream: Array<Published_Mv_Search_Page_3>;
-  /** fetch data from the table: "published.mv_share_4_0_0" */
-  published_mv_share_4_0_0: Array<Published_Mv_Share_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_share_4_0_0" */
-  published_mv_share_4_0_0_aggregate: Published_Mv_Share_4_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_share_4_0_0" */
-  published_mv_share_4_0_0_stream: Array<Published_Mv_Share_4_0_0>;
   /** fetch data from the table: "published.mv_share_5_0_0" */
   published_mv_share_5_0_0: Array<Published_Mv_Share_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_share_5_0_0" */
@@ -33472,18 +35938,6 @@ export type Subscription_Root = {
   published_mv_specialist_1_0_3_aggregate: Published_Mv_Specialist_1_0_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_specialist_1_0_3" */
   published_mv_specialist_1_0_3_stream: Array<Published_Mv_Specialist_1_0_3>;
-  /** fetch data from the table: "published.mv_subject_listing_4_0_0" */
-  published_mv_subject_listing_4_0_0: Array<Published_Mv_Subject_Listing_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_subject_listing_4_0_0" */
-  published_mv_subject_listing_4_0_0_aggregate: Published_Mv_Subject_Listing_4_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_subject_listing_4_0_0" */
-  published_mv_subject_listing_4_0_0_stream: Array<Published_Mv_Subject_Listing_4_0_0>;
-  /** fetch data from the table: "published.mv_subject_listing_5_0_0" */
-  published_mv_subject_listing_5_0_0: Array<Published_Mv_Subject_Listing_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_subject_listing_5_0_0" */
-  published_mv_subject_listing_5_0_0_aggregate: Published_Mv_Subject_Listing_5_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_subject_listing_5_0_0" */
-  published_mv_subject_listing_5_0_0_stream: Array<Published_Mv_Subject_Listing_5_0_0>;
   /** fetch data from the table: "published.mv_subject_listing_5_0_1" */
   published_mv_subject_listing_5_0_1: Array<Published_Mv_Subject_Listing_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_listing_5_0_1" */
@@ -33502,6 +35956,12 @@ export type Subscription_Root = {
   published_mv_subject_phase_options_1_aggregate: Published_Mv_Subject_Phase_Options_1_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1_stream: Array<Published_Mv_Subject_Phase_Options_1>;
+  /** fetch data from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_aggregate: Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_including_new_0_0_1" */
+  published_mv_subject_phase_options_including_new_0_0_1_stream: Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1>;
   /** fetch data from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
   published_mv_synthetic_programmes_by_year_7_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_7_0_0" */
@@ -33514,6 +35974,18 @@ export type Subscription_Root = {
   published_mv_synthetic_programmes_by_year_7_1_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_synthetic_programmes_by_year_7_1_0" */
   published_mv_synthetic_programmes_by_year_7_1_0_stream: Array<Published_Mv_Synthetic_Programmes_By_Year_7_1_0>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_aggregate: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_0_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_stream: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_aggregate: Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariant_lessons_by_keystage_6_1_0" */
+  published_mv_synthetic_unitvariant_lessons_by_keystage_6_1_0_stream: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0>;
   /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_year_6_0_0" */
   published_mv_synthetic_unitvariant_lessons_by_year_6_0_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_year_6_0_0" */
@@ -33526,18 +35998,24 @@ export type Subscription_Root = {
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_6_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_6_0_0>;
-  /** fetch data from the table: "published.mv_unit_listing_page_4_0_0" */
-  published_mv_unit_listing_page_4_0_0: Array<Published_Mv_Unit_Listing_Page_4_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_unit_listing_page_4_0_0" */
-  published_mv_unit_listing_page_4_0_0_aggregate: Published_Mv_Unit_Listing_Page_4_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_unit_listing_page_4_0_0" */
-  published_mv_unit_listing_page_4_0_0_stream: Array<Published_Mv_Unit_Listing_Page_4_0_0>;
-  /** fetch data from the table: "published.mv_unit_listing_page_5_0_0" */
-  published_mv_unit_listing_page_5_0_0: Array<Published_Mv_Unit_Listing_Page_5_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_unit_listing_page_5_0_0" */
-  published_mv_unit_listing_page_5_0_0_aggregate: Published_Mv_Unit_Listing_Page_5_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_unit_listing_page_5_0_0" */
-  published_mv_unit_listing_page_5_0_0_stream: Array<Published_Mv_Unit_Listing_Page_5_0_0>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
+  /** fetch data from the table: "published.mv_threads_by_unit_1_0_0" */
+  published_mv_threads_by_unit_1_0_0: Array<Published_Mv_Threads_By_Unit_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_threads_by_unit_1_0_0" */
+  published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_threads_by_unit_1_0_0" */
+  published_mv_threads_by_unit_1_0_0_stream: Array<Published_Mv_Threads_By_Unit_1_0_0>;
   /** fetch data from the table: "published.mv_unit_listing_page_5_0_1" */
   published_mv_unit_listing_page_5_0_1: Array<Published_Mv_Unit_Listing_Page_5_0_1>;
   /** fetch aggregated fields from the table: "published.mv_unit_listing_page_5_0_1" */
@@ -33692,6 +36170,12 @@ export type Subscription_Root = {
   quizzes_by_pk?: Maybe<Quizzes>;
   /** fetch data from the table in a streaming manner: "quizzes" */
   quizzes_stream: Array<Quizzes>;
+  /** fetch data from the table: "templates.permitted_programme_fields" */
+  templates_permitted_programme_fields: Array<Templates_Permitted_Programme_Fields>;
+  /** fetch aggregated fields from the table: "templates.permitted_programme_fields" */
+  templates_permitted_programme_fields_aggregate: Templates_Permitted_Programme_Fields_Aggregate;
+  /** fetch data from the table in a streaming manner: "templates.permitted_programme_fields" */
+  templates_permitted_programme_fields_stream: Array<Templates_Permitted_Programme_Fields>;
   /** An array relationship */
   thirdpartycontent: Array<Thirdpartycontent>;
   /** An aggregate relationship */
@@ -33888,6 +36372,37 @@ export type Subscription_RootCat_Nationalcurriculum_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Cat_Nationalcurriculum_Stream_Cursor_Input>>;
   where?: InputMaybe<Cat_Nationalcurriculum_Bool_Exp>;
+};
+
+
+export type Subscription_RootCat_SubjectcategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Cat_Subjectcategories_Order_By>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+};
+
+
+export type Subscription_RootCat_Subjectcategories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Cat_Subjectcategories_Order_By>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
+};
+
+
+export type Subscription_RootCat_Subjectcategories_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  subjectcategory_id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootCat_Subjectcategories_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Cat_Subjectcategories_Stream_Cursor_Input>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
 };
 
 
@@ -34167,6 +36682,37 @@ export type Subscription_RootPf_Keystages_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Pf_Keystages_Stream_Cursor_Input>>;
   where?: InputMaybe<Pf_Keystages_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_PathwaysArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Pathways_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Pathways_Order_By>>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_Pathways_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Pathways_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Pathways_Order_By>>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_Pathways_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  pathway_id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootPf_Pathways_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Pf_Pathways_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pf_Pathways_Bool_Exp>;
 };
 
 
@@ -34539,78 +37085,128 @@ export type Subscription_RootPublished_Mv_Curriculum_Units_0_3_StreamArgs = {
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_0_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_0_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_4_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Curriculum_Units_0_4_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Downloads_4_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Downloads_4_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_0_4_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_0_4_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_1_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Downloads_5_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_1_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Select_Column>>;
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Downloads_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Downloads_5_0_1_StreamArgs = {
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_2_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Downloads_5_0_1_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Downloads_5_0_1_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_3Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_3_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_3_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Curriculum_Units_Including_New_0_0_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Curriculum_Units_Including_New_0_0_4_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_4_Bool_Exp>;
 };
 
 
@@ -34714,31 +37310,6 @@ export type Subscription_RootPublished_Mv_Key_Stages_2_0_0_StreamArgs = {
 };
 
 
-export type Subscription_RootPublished_Mv_Lesson_Content_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Content_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Content_0_1_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_0_1_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Lesson_Content_0_1_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_Mv_Lesson_Content_1_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -34764,28 +37335,78 @@ export type Subscription_RootPublished_Mv_Lesson_Content_1_0_StreamArgs = {
 };
 
 
-export type Subscription_RootPublished_Mv_Lesson_Listing_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Lesson_Content_1_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Lesson_Listing_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Lesson_Content_1_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Lesson_Listing_5_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Lesson_Content_1_1_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Lesson_Listing_5_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_1_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_2_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_1_2_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_3Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_3_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_1_3_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_1_3_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_1_3_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_1_3_Bool_Exp>;
 };
 
 
@@ -34889,56 +37510,6 @@ export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_0_StreamArgs = {
 };
 
 
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_1Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_1_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_1_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_1_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_2Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_2_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_2_Order_By>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_2_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Lesson_Overview_5_0_2_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_Mv_Lesson_Overview_5_0_3Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Overview_5_0_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -34989,6 +37560,31 @@ export type Subscription_RootPublished_Mv_Lesson_Overview_6_0_0_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_Mv_Openapi_Downloads_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Openapi_Downloads_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Openapi_Downloads_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Openapi_Downloads_1_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Openapi_Downloads_1_0_0_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_1Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35036,31 +37632,6 @@ export type Subscription_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_2_
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Programme_Listing_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Programme_Listing_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Programme_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Programme_Listing_4_0_0_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Programme_Listing_4_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Programme_Listing_4_0_0_Bool_Exp>;
 };
 
 
@@ -35136,31 +37707,6 @@ export type Subscription_RootPublished_Mv_Search_Page_3_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Search_Page_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Search_Page_3_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Share_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Share_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Share_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Share_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Share_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Share_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Share_4_0_0_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Share_4_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Share_4_0_0_Bool_Exp>;
 };
 
 
@@ -35289,56 +37835,6 @@ export type Subscription_RootPublished_Mv_Specialist_1_0_3_StreamArgs = {
 };
 
 
-export type Subscription_RootPublished_Mv_Subject_Listing_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Subject_Listing_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Subject_Listing_4_0_0_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Subject_Listing_4_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_4_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Subject_Listing_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Subject_Listing_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Mv_Subject_Listing_5_0_0_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Subject_Listing_5_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Subject_Listing_5_0_0_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_Mv_Subject_Listing_5_0_1Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_5_0_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35414,6 +37910,31 @@ export type Subscription_RootPublished_Mv_Subject_Phase_Options_1_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_Including_New_0_0_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_Including_New_0_0_1_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_7_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_7_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35461,6 +37982,56 @@ export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_7_1_0_Str
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_7_1_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_1_0_Bool_Exp>;
 };
 
 
@@ -35514,53 +38085,78 @@ export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_4_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_4_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_4_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_4_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_4_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_8_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_5_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_5_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_5_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Unit_Listing_Page_5_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Unit_Listing_Page_5_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Threads_By_Unit_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Threads_By_Unit_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Threads_By_Unit_1_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
 };
 
 
@@ -36193,6 +38789,31 @@ export type Subscription_RootQuizzes_StreamArgs = {
 };
 
 
+export type Subscription_RootTemplates_Permitted_Programme_FieldsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Permitted_Programme_Fields_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Order_By>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Permitted_Programme_Fields_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Templates_Permitted_Programme_Fields_Stream_Cursor_Input>>;
+  where?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+};
+
+
 export type Subscription_RootThirdpartycontentArgs = {
   distinct_on?: InputMaybe<Array<Thirdpartycontent_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -36473,6 +39094,524 @@ export type Subscription_RootVideos_StreamArgs = {
   where?: InputMaybe<Videos_Bool_Exp>;
 };
 
+/** columns and relationships of "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields = {
+  __typename?: 'templates_permitted_programme_fields';
+  /** An object relationship */
+  developmentstage?: Maybe<Pf_Developmentstages>;
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  examboard?: Maybe<Pf_Examboards>;
+  examboard_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  keystage?: Maybe<Pf_Keystages>;
+  keystage_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  pathway?: Maybe<Pf_Pathways>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  phase?: Maybe<Pf_Phases>;
+  phase_id?: Maybe<Scalars['Int']['output']>;
+  programme_fields: Scalars['jsonb']['output'];
+  /** An object relationship */
+  subject?: Maybe<Pf_Subjects>;
+  subject_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  tier?: Maybe<Pf_Tiers>;
+  tier_id?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  year?: Maybe<Pf_Years>;
+  year_id?: Maybe<Scalars['Int']['output']>;
+};
+
+
+/** columns and relationships of "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_FieldsProgramme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Aggregate = {
+  __typename?: 'templates_permitted_programme_fields_aggregate';
+  aggregate?: Maybe<Templates_Permitted_Programme_Fields_Aggregate_Fields>;
+  nodes: Array<Templates_Permitted_Programme_Fields>;
+};
+
+/** aggregate fields of "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Aggregate_Fields = {
+  __typename?: 'templates_permitted_programme_fields_aggregate_fields';
+  avg?: Maybe<Templates_Permitted_Programme_Fields_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Templates_Permitted_Programme_Fields_Max_Fields>;
+  min?: Maybe<Templates_Permitted_Programme_Fields_Min_Fields>;
+  stddev?: Maybe<Templates_Permitted_Programme_Fields_Stddev_Fields>;
+  stddev_pop?: Maybe<Templates_Permitted_Programme_Fields_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Templates_Permitted_Programme_Fields_Stddev_Samp_Fields>;
+  sum?: Maybe<Templates_Permitted_Programme_Fields_Sum_Fields>;
+  var_pop?: Maybe<Templates_Permitted_Programme_Fields_Var_Pop_Fields>;
+  var_samp?: Maybe<Templates_Permitted_Programme_Fields_Var_Samp_Fields>;
+  variance?: Maybe<Templates_Permitted_Programme_Fields_Variance_Fields>;
+};
+
+
+/** aggregate fields of "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Aggregate_Order_By = {
+  avg?: InputMaybe<Templates_Permitted_Programme_Fields_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Templates_Permitted_Programme_Fields_Max_Order_By>;
+  min?: InputMaybe<Templates_Permitted_Programme_Fields_Min_Order_By>;
+  stddev?: InputMaybe<Templates_Permitted_Programme_Fields_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Templates_Permitted_Programme_Fields_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Templates_Permitted_Programme_Fields_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Templates_Permitted_Programme_Fields_Sum_Order_By>;
+  var_pop?: InputMaybe<Templates_Permitted_Programme_Fields_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Templates_Permitted_Programme_Fields_Var_Samp_Order_By>;
+  variance?: InputMaybe<Templates_Permitted_Programme_Fields_Variance_Order_By>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Templates_Permitted_Programme_Fields_Append_Input = {
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Templates_Permitted_Programme_Fields_Avg_Fields = {
+  __typename?: 'templates_permitted_programme_fields_avg_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Avg_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "templates.permitted_programme_fields". All fields are combined with a logical 'AND'. */
+export type Templates_Permitted_Programme_Fields_Bool_Exp = {
+  _and?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Bool_Exp>>;
+  _not?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
+  _or?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Bool_Exp>>;
+  developmentstage?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+  developmentstage_id?: InputMaybe<Int_Comparison_Exp>;
+  examboard?: InputMaybe<Pf_Examboards_Bool_Exp>;
+  examboard_id?: InputMaybe<Int_Comparison_Exp>;
+  keystage?: InputMaybe<Pf_Keystages_Bool_Exp>;
+  keystage_id?: InputMaybe<Int_Comparison_Exp>;
+  pathway?: InputMaybe<Pf_Pathways_Bool_Exp>;
+  pathway_id?: InputMaybe<Int_Comparison_Exp>;
+  phase?: InputMaybe<Pf_Phases_Bool_Exp>;
+  phase_id?: InputMaybe<Int_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  subject?: InputMaybe<Pf_Subjects_Bool_Exp>;
+  subject_id?: InputMaybe<Int_Comparison_Exp>;
+  tier?: InputMaybe<Pf_Tiers_Bool_Exp>;
+  tier_id?: InputMaybe<Int_Comparison_Exp>;
+  year?: InputMaybe<Pf_Years_Bool_Exp>;
+  year_id?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Templates_Permitted_Programme_Fields_Delete_At_Path_Input = {
+  programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Templates_Permitted_Programme_Fields_Delete_Elem_Input = {
+  programme_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Templates_Permitted_Programme_Fields_Delete_Key_Input = {
+  programme_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Inc_Input = {
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard_id?: InputMaybe<Scalars['Int']['input']>;
+  keystage_id?: InputMaybe<Scalars['Int']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  phase_id?: InputMaybe<Scalars['Int']['input']>;
+  subject_id?: InputMaybe<Scalars['Int']['input']>;
+  tier_id?: InputMaybe<Scalars['Int']['input']>;
+  year_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Insert_Input = {
+  developmentstage?: InputMaybe<Pf_Developmentstages_Obj_Rel_Insert_Input>;
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard?: InputMaybe<Pf_Examboards_Obj_Rel_Insert_Input>;
+  examboard_id?: InputMaybe<Scalars['Int']['input']>;
+  keystage?: InputMaybe<Pf_Keystages_Obj_Rel_Insert_Input>;
+  keystage_id?: InputMaybe<Scalars['Int']['input']>;
+  pathway?: InputMaybe<Pf_Pathways_Obj_Rel_Insert_Input>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  phase?: InputMaybe<Pf_Phases_Obj_Rel_Insert_Input>;
+  phase_id?: InputMaybe<Scalars['Int']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subject?: InputMaybe<Pf_Subjects_Obj_Rel_Insert_Input>;
+  subject_id?: InputMaybe<Scalars['Int']['input']>;
+  tier?: InputMaybe<Pf_Tiers_Obj_Rel_Insert_Input>;
+  tier_id?: InputMaybe<Scalars['Int']['input']>;
+  year?: InputMaybe<Pf_Years_Obj_Rel_Insert_Input>;
+  year_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate max on columns */
+export type Templates_Permitted_Programme_Fields_Max_Fields = {
+  __typename?: 'templates_permitted_programme_fields_max_fields';
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  examboard_id?: Maybe<Scalars['Int']['output']>;
+  keystage_id?: Maybe<Scalars['Int']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  phase_id?: Maybe<Scalars['Int']['output']>;
+  subject_id?: Maybe<Scalars['Int']['output']>;
+  tier_id?: Maybe<Scalars['Int']['output']>;
+  year_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by max() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Max_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Templates_Permitted_Programme_Fields_Min_Fields = {
+  __typename?: 'templates_permitted_programme_fields_min_fields';
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  examboard_id?: Maybe<Scalars['Int']['output']>;
+  keystage_id?: Maybe<Scalars['Int']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  phase_id?: Maybe<Scalars['Int']['output']>;
+  subject_id?: Maybe<Scalars['Int']['output']>;
+  tier_id?: Maybe<Scalars['Int']['output']>;
+  year_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by min() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Min_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Mutation_Response = {
+  __typename?: 'templates_permitted_programme_fields_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Templates_Permitted_Programme_Fields>;
+};
+
+/** Ordering options when selecting data from "templates.permitted_programme_fields". */
+export type Templates_Permitted_Programme_Fields_Order_By = {
+  developmentstage?: InputMaybe<Pf_Developmentstages_Order_By>;
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard?: InputMaybe<Pf_Examboards_Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage?: InputMaybe<Pf_Keystages_Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway?: InputMaybe<Pf_Pathways_Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase?: InputMaybe<Pf_Phases_Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Pf_Subjects_Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier?: InputMaybe<Pf_Tiers_Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year?: InputMaybe<Pf_Years_Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Templates_Permitted_Programme_Fields_Prepend_Input = {
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "templates.permitted_programme_fields" */
+export enum Templates_Permitted_Programme_Fields_Select_Column {
+  /** column name */
+  DevelopmentstageId = 'developmentstage_id',
+  /** column name */
+  ExamboardId = 'examboard_id',
+  /** column name */
+  KeystageId = 'keystage_id',
+  /** column name */
+  PathwayId = 'pathway_id',
+  /** column name */
+  PhaseId = 'phase_id',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  SubjectId = 'subject_id',
+  /** column name */
+  TierId = 'tier_id',
+  /** column name */
+  YearId = 'year_id'
+}
+
+/** input type for updating data in table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Set_Input = {
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard_id?: InputMaybe<Scalars['Int']['input']>;
+  keystage_id?: InputMaybe<Scalars['Int']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  phase_id?: InputMaybe<Scalars['Int']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subject_id?: InputMaybe<Scalars['Int']['input']>;
+  tier_id?: InputMaybe<Scalars['Int']['input']>;
+  year_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Templates_Permitted_Programme_Fields_Stddev_Fields = {
+  __typename?: 'templates_permitted_programme_fields_stddev_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Stddev_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Templates_Permitted_Programme_Fields_Stddev_Pop_Fields = {
+  __typename?: 'templates_permitted_programme_fields_stddev_pop_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Stddev_Pop_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Templates_Permitted_Programme_Fields_Stddev_Samp_Fields = {
+  __typename?: 'templates_permitted_programme_fields_stddev_samp_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Stddev_Samp_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "templates_permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Templates_Permitted_Programme_Fields_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Templates_Permitted_Programme_Fields_Stream_Cursor_Value_Input = {
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  examboard_id?: InputMaybe<Scalars['Int']['input']>;
+  keystage_id?: InputMaybe<Scalars['Int']['input']>;
+  pathway_id?: InputMaybe<Scalars['Int']['input']>;
+  phase_id?: InputMaybe<Scalars['Int']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subject_id?: InputMaybe<Scalars['Int']['input']>;
+  tier_id?: InputMaybe<Scalars['Int']['input']>;
+  year_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Templates_Permitted_Programme_Fields_Sum_Fields = {
+  __typename?: 'templates_permitted_programme_fields_sum_fields';
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  examboard_id?: Maybe<Scalars['Int']['output']>;
+  keystage_id?: Maybe<Scalars['Int']['output']>;
+  pathway_id?: Maybe<Scalars['Int']['output']>;
+  phase_id?: Maybe<Scalars['Int']['output']>;
+  subject_id?: Maybe<Scalars['Int']['output']>;
+  tier_id?: Maybe<Scalars['Int']['output']>;
+  year_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by sum() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Sum_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+export type Templates_Permitted_Programme_Fields_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Templates_Permitted_Programme_Fields_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Templates_Permitted_Programme_Fields_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Templates_Permitted_Programme_Fields_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Templates_Permitted_Programme_Fields_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Templates_Permitted_Programme_Fields_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Templates_Permitted_Programme_Fields_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Templates_Permitted_Programme_Fields_Var_Pop_Fields = {
+  __typename?: 'templates_permitted_programme_fields_var_pop_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Var_Pop_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Templates_Permitted_Programme_Fields_Var_Samp_Fields = {
+  __typename?: 'templates_permitted_programme_fields_var_samp_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Var_Samp_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Templates_Permitted_Programme_Fields_Variance_Fields = {
+  __typename?: 'templates_permitted_programme_fields_variance_fields';
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  examboard_id?: Maybe<Scalars['Float']['output']>;
+  keystage_id?: Maybe<Scalars['Float']['output']>;
+  pathway_id?: Maybe<Scalars['Float']['output']>;
+  phase_id?: Maybe<Scalars['Float']['output']>;
+  subject_id?: Maybe<Scalars['Float']['output']>;
+  tier_id?: Maybe<Scalars['Float']['output']>;
+  year_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "templates.permitted_programme_fields" */
+export type Templates_Permitted_Programme_Fields_Variance_Order_By = {
+  developmentstage_id?: InputMaybe<Order_By>;
+  examboard_id?: InputMaybe<Order_By>;
+  keystage_id?: InputMaybe<Order_By>;
+  pathway_id?: InputMaybe<Order_By>;
+  phase_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+  tier_id?: InputMaybe<Order_By>;
+  year_id?: InputMaybe<Order_By>;
+};
+
 /** columns and relationships of "thirdpartycontent" */
 export type Thirdpartycontent = {
   __typename?: 'thirdpartycontent';
@@ -36689,7 +39828,7 @@ export type Thirdpartycontent_Bool_Exp = {
 
 /** unique or primary key constraints on table "thirdpartycontent" */
 export enum Thirdpartycontent_Constraint {
-  /** unique or primary key constraint on columns "_state", "thirdpartycontent_id" */
+  /** unique or primary key constraint on columns "thirdpartycontent_id", "_state" */
   ThirdpartycontentPkey = 'thirdpartycontent_pkey'
 }
 
@@ -37450,7 +40589,7 @@ export type Thread_Units_Bool_Exp = {
 
 /** unique or primary key constraints on table "thread_units" */
 export enum Thread_Units_Constraint {
-  /** unique or primary key constraint on columns "unit_id", "thread_id", "_state" */
+  /** unique or primary key constraint on columns "unit_id", "_state", "thread_id" */
   ThreadUnitsPkey = 'thread_units_pkey'
 }
 
@@ -38103,7 +41242,7 @@ export type Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "threads" */
 export enum Threads_Constraint {
-  /** unique or primary key constraint on columns "thread_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "thread_id" */
   ThreadsPkey = 'threads_pkey'
 }
 
@@ -38547,6 +41686,7 @@ export type Tpc_Media = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   external_id?: Maybe<Scalars['String']['output']>;
   external_url?: Maybe<Scalars['String']['output']>;
+  file_hash?: Maybe<Scalars['jsonb']['output']>;
   /** A computed field, executes function "function__tpc_media__lessons" */
   lessons?: Maybe<Array<Lessons>>;
   media_id: Scalars['Int']['output'];
@@ -38554,6 +41694,12 @@ export type Tpc_Media = {
   media_uid?: Maybe<Scalars['bpchar']['output']>;
   metadata?: Maybe<Scalars['jsonb']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "tpc_media" */
+export type Tpc_MediaFile_HashArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -38625,6 +41771,7 @@ export type Tpc_Media_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Tpc_Media_Append_Input = {
+  file_hash?: InputMaybe<Scalars['jsonb']['input']>;
   media_object?: InputMaybe<Scalars['jsonb']['input']>;
   metadata?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -38656,6 +41803,7 @@ export type Tpc_Media_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   external_id?: InputMaybe<String_Comparison_Exp>;
   external_url?: InputMaybe<String_Comparison_Exp>;
+  file_hash?: InputMaybe<Jsonb_Comparison_Exp>;
   lessons?: InputMaybe<Lessons_Bool_Exp>;
   media_id?: InputMaybe<Int_Comparison_Exp>;
   media_object?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -38666,24 +41814,27 @@ export type Tpc_Media_Bool_Exp = {
 
 /** unique or primary key constraints on table "tpc_media" */
 export enum Tpc_Media_Constraint {
-  /** unique or primary key constraint on columns "_state", "media_id" */
+  /** unique or primary key constraint on columns "media_id", "_state" */
   TpcMediaPkey = 'tpc_media_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Tpc_Media_Delete_At_Path_Input = {
+  file_hash?: InputMaybe<Array<Scalars['String']['input']>>;
   media_object?: InputMaybe<Array<Scalars['String']['input']>>;
   metadata?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Tpc_Media_Delete_Elem_Input = {
+  file_hash?: InputMaybe<Scalars['Int']['input']>;
   media_object?: InputMaybe<Scalars['Int']['input']>;
   metadata?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Tpc_Media_Delete_Key_Input = {
+  file_hash?: InputMaybe<Scalars['String']['input']>;
   media_object?: InputMaybe<Scalars['String']['input']>;
   metadata?: InputMaybe<Scalars['String']['input']>;
 };
@@ -38705,6 +41856,7 @@ export type Tpc_Media_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   external_id?: InputMaybe<Scalars['String']['input']>;
   external_url?: InputMaybe<Scalars['String']['input']>;
+  file_hash?: InputMaybe<Scalars['jsonb']['input']>;
   media_id?: InputMaybe<Scalars['Int']['input']>;
   media_object?: InputMaybe<Scalars['jsonb']['input']>;
   media_uid?: InputMaybe<Scalars['bpchar']['input']>;
@@ -38801,6 +41953,7 @@ export type Tpc_Media_Order_By = {
   created_at?: InputMaybe<Order_By>;
   external_id?: InputMaybe<Order_By>;
   external_url?: InputMaybe<Order_By>;
+  file_hash?: InputMaybe<Order_By>;
   lessons_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   media_id?: InputMaybe<Order_By>;
   media_object?: InputMaybe<Order_By>;
@@ -38817,6 +41970,7 @@ export type Tpc_Media_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Tpc_Media_Prepend_Input = {
+  file_hash?: InputMaybe<Scalars['jsonb']['input']>;
   media_object?: InputMaybe<Scalars['jsonb']['input']>;
   metadata?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -38842,6 +41996,8 @@ export enum Tpc_Media_Select_Column {
   /** column name */
   ExternalUrl = 'external_url',
   /** column name */
+  FileHash = 'file_hash',
+  /** column name */
   MediaId = 'media_id',
   /** column name */
   MediaObject = 'media_object',
@@ -38864,6 +42020,7 @@ export type Tpc_Media_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   external_id?: InputMaybe<Scalars['String']['input']>;
   external_url?: InputMaybe<Scalars['String']['input']>;
+  file_hash?: InputMaybe<Scalars['jsonb']['input']>;
   media_id?: InputMaybe<Scalars['Int']['input']>;
   media_object?: InputMaybe<Scalars['jsonb']['input']>;
   media_uid?: InputMaybe<Scalars['bpchar']['input']>;
@@ -38929,6 +42086,7 @@ export type Tpc_Media_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   external_id?: InputMaybe<Scalars['String']['input']>;
   external_url?: InputMaybe<Scalars['String']['input']>;
+  file_hash?: InputMaybe<Scalars['jsonb']['input']>;
   media_id?: InputMaybe<Scalars['Int']['input']>;
   media_object?: InputMaybe<Scalars['jsonb']['input']>;
   media_uid?: InputMaybe<Scalars['bpchar']['input']>;
@@ -38969,6 +42127,8 @@ export enum Tpc_Media_Update_Column {
   ExternalId = 'external_id',
   /** column name */
   ExternalUrl = 'external_url',
+  /** column name */
+  FileHash = 'file_hash',
   /** column name */
   MediaId = 'media_id',
   /** column name */
@@ -39078,6 +42238,7 @@ export type Units = {
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   prior_knowledge_requirements?: Maybe<Scalars['json']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
+  subjectcategories?: Maybe<Scalars['jsonb']['output']>;
   tags?: Maybe<Scalars['json']['output']>;
   /** An array relationship */
   thirdpartycontent: Array<Thirdpartycontent>;
@@ -39093,6 +42254,8 @@ export type Units = {
   unit_programmes_all_states: Array<Programme_Units>;
   /** An aggregate relationship */
   unit_programmes_all_states_aggregate: Programme_Units_Aggregate;
+  /** A computed field, executes function "function__units__cat_subjectcategories" */
+  unit_subjectcategories?: Maybe<Array<Cat_Subjectcategories>>;
   /** A computed field, executes function "function__units__cat_tags" */
   unit_tags?: Maybe<Array<Cat_Tags>>;
   /** An array relationship */
@@ -39200,6 +42363,12 @@ export type UnitsPrior_Knowledge_RequirementsArgs = {
 
 
 /** columns and relationships of "units" */
+export type UnitsSubjectcategoriesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "units" */
 export type UnitsTagsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
@@ -39262,6 +42431,16 @@ export type UnitsUnit_Programmes_All_States_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Programme_Units_Order_By>>;
   where?: InputMaybe<Programme_Units_Bool_Exp>;
+};
+
+
+/** columns and relationships of "units" */
+export type UnitsUnit_SubjectcategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Cat_Subjectcategories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Cat_Subjectcategories_Order_By>>;
+  where?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
 };
 
 
@@ -39429,6 +42608,7 @@ export type Units_Aggregate_Order_By = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Units_Append_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectcategories?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** input type for inserting array relation for remote table "units" */
@@ -39493,6 +42673,7 @@ export type Units_Bool_Exp = {
   planned_number_of_lessons?: InputMaybe<Int_Comparison_Exp>;
   prior_knowledge_requirements?: InputMaybe<Json_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
+  subjectcategories?: InputMaybe<Jsonb_Comparison_Exp>;
   tags?: InputMaybe<Json_Comparison_Exp>;
   thirdpartycontent?: InputMaybe<Thirdpartycontent_Bool_Exp>;
   thirdpartycontent_aggregate?: InputMaybe<Thirdpartycontent_Aggregate_Bool_Exp>;
@@ -39502,6 +42683,7 @@ export type Units_Bool_Exp = {
   unit_programmes_aggregate?: InputMaybe<Programme_Units_Aggregate_Bool_Exp>;
   unit_programmes_all_states?: InputMaybe<Programme_Units_Bool_Exp>;
   unit_programmes_all_states_aggregate?: InputMaybe<Programme_Units_Aggregate_Bool_Exp>;
+  unit_subjectcategories?: InputMaybe<Cat_Subjectcategories_Bool_Exp>;
   unit_tags?: InputMaybe<Cat_Tags_Bool_Exp>;
   unit_threads?: InputMaybe<Thread_Units_Bool_Exp>;
   unit_threads_aggregate?: InputMaybe<Thread_Units_Aggregate_Bool_Exp>;
@@ -39525,16 +42707,19 @@ export enum Units_Constraint {
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Units_Delete_At_Path_Input = {
   deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  subjectcategories?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Units_Delete_Elem_Input = {
   deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+  subjectcategories?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Units_Delete_Key_Input = {
   deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+  subjectcategories?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** input type for incrementing numeric columns in table "units" */
@@ -39575,6 +42760,7 @@ export type Units_Insert_Input = {
   planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
   prior_knowledge_requirements?: InputMaybe<Scalars['json']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  subjectcategories?: InputMaybe<Scalars['jsonb']['input']>;
   tags?: InputMaybe<Scalars['json']['input']>;
   thirdpartycontent?: InputMaybe<Thirdpartycontent_Arr_Rel_Insert_Input>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -39603,8 +42789,6 @@ export type Units_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -39650,8 +42834,6 @@ export type Units_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -39736,12 +42918,14 @@ export type Units_Order_By = {
   planned_number_of_lessons?: InputMaybe<Order_By>;
   prior_knowledge_requirements?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
+  subjectcategories?: InputMaybe<Order_By>;
   tags?: InputMaybe<Order_By>;
   thirdpartycontent_aggregate?: InputMaybe<Thirdpartycontent_Aggregate_Order_By>;
   title?: InputMaybe<Order_By>;
   unit_id?: InputMaybe<Order_By>;
   unit_programmes_aggregate?: InputMaybe<Programme_Units_Aggregate_Order_By>;
   unit_programmes_all_states_aggregate?: InputMaybe<Programme_Units_Aggregate_Order_By>;
+  unit_subjectcategories_aggregate?: InputMaybe<Cat_Subjectcategories_Aggregate_Order_By>;
   unit_tags_aggregate?: InputMaybe<Cat_Tags_Aggregate_Order_By>;
   unit_threads_aggregate?: InputMaybe<Thread_Units_Aggregate_Order_By>;
   unit_threads_all_states_aggregate?: InputMaybe<Thread_Units_Aggregate_Order_By>;
@@ -39761,6 +42945,7 @@ export type Units_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Units_Prepend_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectcategories?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "units" */
@@ -39809,6 +42994,8 @@ export enum Units_Select_Column {
   PriorKnowledgeRequirements = 'prior_knowledge_requirements',
   /** column name */
   Slug = 'slug',
+  /** column name */
+  Subjectcategories = 'subjectcategories',
   /** column name */
   Tags = 'tags',
   /** column name */
@@ -39863,6 +43050,7 @@ export type Units_Set_Input = {
   planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
   prior_knowledge_requirements?: InputMaybe<Scalars['json']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  subjectcategories?: InputMaybe<Scalars['jsonb']['input']>;
   tags?: InputMaybe<Scalars['json']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -39966,6 +43154,7 @@ export type Units_Stream_Cursor_Value_Input = {
   planned_number_of_lessons?: InputMaybe<Scalars['Int']['input']>;
   prior_knowledge_requirements?: InputMaybe<Scalars['json']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  subjectcategories?: InputMaybe<Scalars['jsonb']['input']>;
   tags?: InputMaybe<Scalars['json']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -40041,6 +43230,8 @@ export enum Units_Update_Column {
   PriorKnowledgeRequirements = 'prior_knowledge_requirements',
   /** column name */
   Slug = 'slug',
+  /** column name */
+  Subjectcategories = 'subjectcategories',
   /** column name */
   Tags = 'tags',
   /** column name */
@@ -40985,7 +44176,7 @@ export type Unitvariants_Bool_Exp = {
 export enum Unitvariants_Constraint {
   /** unique or primary key constraint on columns "unitvariant_id", "_state" */
   UnitvariantsPkey = 'unitvariants_pkey',
-  /** unique or primary key constraint on columns "programme_fields", "unit_id", "_state" */
+  /** unique or primary key constraint on columns "unit_id", "programme_fields", "_state" */
   UnitvariantsUnitIdProgrammeFieldsStateKey = 'unitvariants_unit_id_programme_fields__state_key'
 }
 
@@ -41603,7 +44794,7 @@ export type Videocaptions_Bool_Exp = {
 
 /** unique or primary key constraints on table "videocaptions" */
 export enum Videocaptions_Constraint {
-  /** unique or primary key constraint on columns "_state", "caption_id" */
+  /** unique or primary key constraint on columns "caption_id", "_state" */
   VideocaptionsPkey = 'videocaptions_pkey'
 }
 
@@ -42201,7 +45392,7 @@ export type Videos_Bool_Exp = {
 
 /** unique or primary key constraints on table "videos" */
 export enum Videos_Constraint {
-  /** unique or primary key constraint on columns "_state", "video_id" */
+  /** unique or primary key constraint on columns "video_id", "_state" */
   VideosPkey = 'videos_pkey'
 }
 
@@ -42700,19 +45891,11 @@ export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ _
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  programmeSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_6_0_0', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, copyrightContent?: any | null, expired?: boolean | null, updatedAt?: string | null }>, unit: Array<{ __typename?: 'published_mv_lesson_listing_5_0_1', lessons?: any | null }> };
-
-export type LessonDownloadsCanonicalQueryVariables = Exact<{
-  lessonSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonDownloadsCanonicalQuery = { __typename?: 'query_root', lessonDownloadsCanonical: Array<{ __typename?: 'published_mv_downloads_6_0_0', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, expired?: boolean | null, updatedAt?: string | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_1_3', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -42720,32 +45903,24 @@ export type LessonListingQueryVariables = Exact<{
 }>;
 
 
-export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_5_0_1', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierTitle?: string | null, lessons?: any | null, yearTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null }> };
+export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', unit_slug?: string | null, lesson_data?: any | null, lesson_slug?: string | null, is_legacy?: boolean | null, programme_slug?: string | null, unit_data?: any | null, null_unitvariant?: any | null, programme_fields?: any | null, supplementary_data?: any | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
-  lessonSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
-}>;
-
-
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_6_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, downloads?: any | null, videoTitle?: string | null, lessonCohort?: string | null, isWorksheetLandscape?: boolean | null, expired?: boolean | null, updatedAt?: string | null }> };
-
-export type LessonOverviewCanonicalQueryVariables = Exact<{
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp>;
   lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_6_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardSlug?: string | null, examBoardTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, lessonCohort?: string | null, expired?: boolean | null, downloads?: any | null, updatedAt?: string | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
+  programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_share_5_0_0', shareableResources?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, lessonCohort?: string | null, examBoardTitle?: string | null, examBoardSlug?: string | null, expired?: boolean | null }> };
+export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, programme_fields?: any | null, unit_title?: any | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -42754,7 +45929,7 @@ export type ProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing_5_0_0', keyStageTitle?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, programmes?: any | null }> };
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
 
 export type PupilLessonQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_6_0_0_Bool_Exp>;
@@ -42762,7 +45937,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_1_3', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -42774,7 +45949,6 @@ export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: A
 
 export type PupilProgrammeListingQueryVariables = Exact<{
   baseSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
@@ -42782,18 +45956,22 @@ export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Arra
 
 export type PupilSubjectListingQueryVariables = Exact<{
   yearSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
 }>;
 
 
 export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }> };
 
 export type PupilUnitListingQueryVariables = Exact<{
-  programmeSlug: Scalars['String']['input'];
+  baseSlug: Scalars['String']['input'];
 }>;
 
 
-export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0', programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null }> };
+export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0', base_slug?: string | null, programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null, expired?: boolean | null }> };
+
+export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PupilsSitemapQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0', programme_slug?: string | null, unit_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', programme_slug?: string | null, unit_slug?: string | null, lesson_slug?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -42897,12 +46075,12 @@ export type SpecialistUnitListingQueryVariables = Exact<{
 export type SpecialistUnitListingQuery = { __typename?: 'query_root', specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', synthetic_programme_slug?: string | null, unit_slug?: string | null, unit_title?: string | null, order_in_programme?: number | null, combined_programme_fields?: any | null, contains_copyright_content?: boolean | null, threads?: any | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
-  keyStageSlug: Scalars['String']['input'];
-  isLegacy: Scalars['Boolean']['input'];
+  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
+  isLegacy?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing_5_0_1', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null, keyStages?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant?: any | null, supplementary_data?: any | null, lesson_data?: any | null, unit_data?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'pf_keystages', keystage?: string | null, slug?: string | null, description?: string | null, display_order?: number | null }> };
 
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -42919,12 +46097,27 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', teachersSitemap: Array<{ __typename?: 'published_mv_sitemap_6_0_1', urls?: string | null }> };
 
+export type ThreadsForUnitQueryVariables = Exact<{
+  unitId?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ThreadsForUnitQuery = { __typename?: 'query_root', threads: Array<{ __typename?: 'published_mv_threads_by_unit_1_0_0', threads?: any | null, unit_id?: number | null }> };
+
+export type TiersQueryVariables = Exact<{
+  _contains: Scalars['jsonb']['input'];
+  isLegacy: Scalars['Boolean']['input'];
+}>;
+
+
+export type TiersQuery = { __typename?: 'query_root', tiers: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', programme_fields?: any | null, programme_slug?: string | null }> };
+
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_5_0_1', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0', is_legacy?: boolean | null, lesson_data?: any | null, lesson_slug?: string | null, null_unitvariant?: any | null, programme_fields?: any | null, programme_slug?: string | null, supplementary_data?: any | null, unit_data?: any | null, unit_slug?: string | null }> };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -42973,194 +46166,136 @@ export const CurriculumUnitsDocument = gql`
 }
     `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  downloads: published_mv_downloads_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_bool_exp) {
+  download_assets: published_mv_lesson_content_1_3(
+    where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
-    downloads
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    copyrightContent
-    expired
-    updatedAt
+    has_slide_deck_asset_object
+    has_worksheet_asset_object
+    has_supplementary_asset_object
+    has_worksheet_answers_asset_object
+    has_worksheet_google_drive_downloadable_version
+    starter_quiz
+    exit_quiz
+    is_legacy
+    expired: deprecated_fields(path: "expired")
   }
-  unit: published_mv_lesson_listing_5_0_1(
-    where: {programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: $browseDataWhere
   ) {
-    lessons
-  }
-}
-    `;
-export const LessonDownloadsCanonicalDocument = gql`
-    query lessonDownloadsCanonical($lessonSlug: String!) {
-  lessonDownloadsCanonical: published_mv_downloads_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}}
-  ) {
-    downloads
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    expired
-    updatedAt
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    supplementary_data
+    null_unitvariant
   }
 }
     `;
 export const LessonListingDocument = gql`
     query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_lesson_listing_5_0_1(
-    where: {programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardSlug: examboardSlug
-    examBoardTitle: examboardTitle
-    tierTitle
-    lessons
-    yearTitle
+    unit_slug
+    lesson_data
+    lesson_slug
+    is_legacy
+    programme_slug
+    unit_data
+    null_unitvariant
+    programme_fields
+    supplementary_data
   }
 }
     `;
 export const LessonOverviewDocument = gql`
-    query lessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
-  lesson: published_mv_lesson_overview_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonOverview($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0_bool_exp, $lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: $browseDataWhere
   ) {
-    lessonSlug
-    lessonTitle
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardTitle
-    tierTitle
-    misconceptionsAndCommonMistakes
-    lessonEquipmentAndResources
-    teacherTips
-    keyLearningPoints
-    pupilLessonOutcome
-    lessonKeywords
-    copyrightContent
-    contentGuidance
-    additionalMaterialUrl
-    supervisionLevel
-    worksheetUrl
-    presentationUrl
-    videoMuxPlaybackId
-    videoWithSignLanguageMuxPlaybackId
-    transcriptSentences
-    starterQuiz
-    exitQuiz
-    yearTitle
-    downloads
-    videoTitle
-    lessonCohort
-    isWorksheetLandscape
-    transcriptSentences
-    expired
-    updatedAt
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    supplementary_data
   }
-}
-    `;
-export const LessonOverviewCanonicalDocument = gql`
-    query lessonOverviewCanonical($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_6_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}}
+  content: published_mv_lesson_content_1_3(
+    where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
-    lessonSlug
-    lessonTitle
-    programmeSlug
-    unitSlug
-    unitTitle
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    examBoardSlug
-    examBoardTitle
-    tierSlug
-    tierTitle
-    misconceptionsAndCommonMistakes
-    lessonEquipmentAndResources
-    teacherTips
-    keyLearningPoints
-    pupilLessonOutcome
-    lessonKeywords
-    copyrightContent
-    contentGuidance
-    additionalMaterialUrl
-    supervisionLevel
-    worksheetUrl
-    presentationUrl
-    videoMuxPlaybackId
-    videoWithSignLanguageMuxPlaybackId
-    transcriptSentences
-    starterQuiz
-    exitQuiz
-    yearTitle
-    lessonCohort
-    expired
-    downloads
-    updatedAt
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+    has_worksheet_google_drive_downloadable_version
+    has_slide_deck_asset_object
+    worksheet_asset_id
+    has_worksheet_asset_object
+    worksheet_answers_asset_id
+    has_worksheet_answers_asset_object
+    supplementary_asset_id
+    has_supplementary_asset_object
+    slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
   }
 }
     `;
 export const LessonShareDocument = gql`
-    query lessonShare($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  share: published_mv_share_5_0_0(
-    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+    query lessonShare($lessonSlug: String!, $unitSlug: String!, $programmeSlug: String!) {
+  share: published_mv_lesson_content_1_3(where: {lesson_slug: {_eq: $lessonSlug}}) {
+    lesson_title
+    starter_quiz
+    exit_quiz
+    video_mux_playback_id
+    video_duration
+    worksheet_asset_object_url
+    expired: deprecated_fields(path: "expired")
+  }
+  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}, unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
-    shareableResources
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    lessonSlug
-    lessonTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    tierTitle
-    unitSlug
-    unitTitle
-    lessonCohort
-    examBoardTitle
-    examBoardSlug
-    expired
+    unit_title: unit_data(path: "title")
+    is_legacy
+    programme_fields
   }
 }
     `;
 export const ProgrammeListingDocument = gql`
     query programmeListing($keyStageSlug: String, $subjectSlug: String, $isLegacy: Boolean) {
-  programmes: published_mv_programme_listing_5_0_0(
-    where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}, isLegacy: {_eq: $isLegacy}}
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {programme_fields: {_contains: {subject_slug: $subjectSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
+    distinct_on: programme_slug
   ) {
-    keyStageTitle
-    keyStageSlug
-    subjectSlug
-    subjectTitle
-    programmes
+    lesson_data
+    programme_fields
+    is_legacy
+    programme_slug
   }
 }
     `;
@@ -43178,7 +46313,7 @@ export const PupilLessonDocument = gql`
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_1_0(
+  content: published_mv_lesson_content_1_3(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -43223,9 +46358,9 @@ export const PupilLessonListingDocument = gql`
 }
     `;
 export const PupilProgrammeListingDocument = gql`
-    query pupilProgrammeListing($baseSlug: String!, $isLegacy: Boolean!) {
+    query pupilProgrammeListing($baseSlug: String!) {
   data: published_mv_synthetic_programmes_by_year_7_1_0(
-    where: {base_slug: {_eq: $baseSlug}, is_legacy: {_eq: $isLegacy}}
+    where: {base_slug: {_eq: $baseSlug}}
   ) {
     programme_slug
     year_slug
@@ -43234,9 +46369,9 @@ export const PupilProgrammeListingDocument = gql`
 }
     `;
 export const PupilSubjectListingDocument = gql`
-    query pupilSubjectListing($yearSlug: String!, $isLegacy: Boolean!) {
+    query pupilSubjectListing($yearSlug: String!) {
   data: published_mv_synthetic_programmes_by_year_7_1_0(
-    where: {year_slug: {_eq: $yearSlug}, is_legacy: {_eq: $isLegacy}}
+    where: {year_slug: {_eq: $yearSlug}}
   ) {
     programme_slug
     base_slug
@@ -43247,10 +46382,11 @@ export const PupilSubjectListingDocument = gql`
 }
     `;
 export const PupilUnitListingDocument = gql`
-    query pupilUnitListing($programmeSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_6_0_0(
-    where: {programme_slug: {_eq: $programmeSlug}}
+    query pupilUnitListing($baseSlug: String!) {
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0(
+    where: {base_slug: {_eq: $baseSlug}}
   ) {
+    base_slug
     programme_slug
     unit_slug
     is_legacy
@@ -43258,6 +46394,23 @@ export const PupilUnitListingDocument = gql`
     unit_data
     supplementary_data
     lesson_count
+    expired
+  }
+}
+    `;
+export const PupilsSitemapDocument = gql`
+    query pupilsSitemap {
+  programmes: published_mv_synthetic_programmes_by_year_7_1_0 {
+    programme_slug
+  }
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0 {
+    programme_slug
+    unit_slug
+  }
+  lessons: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0 {
+    programme_slug
+    unit_slug
+    lesson_slug
   }
 }
     `;
@@ -43538,15 +46691,25 @@ export const SpecialistUnitListingDocument = gql`
 }
     `;
 export const SubjectListingDocument = gql`
-    query subjectListing($keyStageSlug: String!, $isLegacy: Boolean!) {
-  keyStageSubjects: published_mv_subject_listing_5_0_1(
-    where: {keyStageSlug: {_eq: $keyStageSlug}, is_legacy: {_eq: $isLegacy}}
+    query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
+  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
   ) {
-    keyStageSlug
-    keyStageTitle
-    subjects
-    subjectsUnavailable
-    keyStages
+    programme_fields
+    is_legacy
+    null_unitvariant
+    supplementary_data
+    lesson_data
+    unit_data
+    unit_slug
+    lesson_slug
+    programme_slug
+  }
+  key_stages: pf_keystages(where: {slug: {_neq: "ks5"}}) {
+    keystage
+    slug
+    description
+    display_order
   }
 }
     `;
@@ -43574,23 +46737,38 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
+export const ThreadsForUnitDocument = gql`
+    query threadsForUnit($unitId: Int) {
+  threads: published_mv_threads_by_unit_1_0_0(where: {unit_id: {_eq: $unitId}}) {
+    threads
+    unit_id
+  }
+}
+    `;
+export const TiersDocument = gql`
+    query tiers($_contains: jsonb!, $isLegacy: Boolean!) {
+  tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {programme_fields: {_contains: $_contains}, is_legacy: {_eq: $isLegacy}}
+  ) {
+    programme_fields
+    programme_slug
+  }
+}
+    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_5_0_1(
-    where: {programmeSlug: {_eq: $programmeSlug}}
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    where: {programme_slug: {_eq: $programmeSlug}}
   ) {
-    programmeSlug
-    keyStageSlug
-    keyStageTitle
-    subjectSlug
-    subjectTitle
-    tierSlug
-    totalUnitCount: unitCount
-    tiers
-    units
-    examBoardTitle
-    examBoardSlug
-    learningThemes
+    is_legacy
+    lesson_data
+    lesson_slug
+    null_unitvariant
+    programme_fields
+    programme_slug
+    supplementary_data
+    unit_data
+    unit_slug
   }
 }
     `;
@@ -43611,17 +46789,11 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
-    lessonDownloadsCanonical(variables: LessonDownloadsCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsCanonicalQuery>(LessonDownloadsCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadsCanonical', 'query');
-    },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
-    },
-    lessonOverviewCanonical(variables: LessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewCanonicalQuery>(LessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewCanonical', 'query');
     },
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query');
@@ -43643,6 +46815,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query');
+    },
+    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilsSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>(PupilsSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilsSitemap', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
@@ -43686,7 +46861,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query');
     },
-    subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
+    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
     subjectPhaseOptions(variables?: SubjectPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsQuery> {
@@ -43697,6 +46872,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query');
+    },
+    threadsForUnit(variables?: ThreadsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ThreadsForUnitQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query');
+    },
+    tiers(variables: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query');
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');

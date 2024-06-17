@@ -77,11 +77,12 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonDownloads({
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      });
+      const curriculumData =
+        await curriculumApi2023.lessonDownloads<LessonDownloadsPageData>({
+          programmeSlug,
+          unitSlug,
+          lessonSlug,
+        });
 
       if (!curriculumData) {
         return {

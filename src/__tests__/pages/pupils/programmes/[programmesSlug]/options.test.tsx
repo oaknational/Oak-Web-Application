@@ -1,8 +1,6 @@
-import { render } from "@testing-library/react";
-
 import PupilProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/options";
+} from "@/pages/pupils/programmes/[programmeSlug]/options";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import {
   ProgrammeFields,
@@ -10,6 +8,9 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 jest.mock(
   "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view",
@@ -73,7 +74,6 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
         curriculumApi2023.default.pupilProgrammeListingQuery,
       ).toHaveBeenCalledWith({
         baseSlug: "physics-secondary-year-11",
-        isLegacy: false,
       });
     });
   });

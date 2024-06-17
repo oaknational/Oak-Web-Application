@@ -1,5 +1,7 @@
 import { OakTertiaryButton } from "@oaknational/oak-components";
 
+import { resolveOakHref } from "@/common-lib/urls";
+
 type ViewAllLessonsButtonProps = {
   href?: string | null;
 };
@@ -9,6 +11,18 @@ type ViewAllLessonsButtonProps = {
  */
 export const ViewAllLessonsButton = ({ href }: ViewAllLessonsButtonProps) => {
   if (href) {
+    if (
+      href ===
+      resolveOakHref({
+        page: "pupil-year-index",
+      })
+    ) {
+      return (
+        <OakTertiaryButton iconName="arrow-left" href={href} element="a">
+          Take me home
+        </OakTertiaryButton>
+      );
+    }
     return (
       <OakTertiaryButton iconName="arrow-left" href={href} element="a">
         View all lessons
