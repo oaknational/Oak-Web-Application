@@ -74,7 +74,6 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
         curriculumApi2023.default.pupilProgrammeListingQuery,
       ).toHaveBeenCalledWith({
         baseSlug: "physics-secondary-year-11",
-        isLegacy: false,
       });
     });
   });

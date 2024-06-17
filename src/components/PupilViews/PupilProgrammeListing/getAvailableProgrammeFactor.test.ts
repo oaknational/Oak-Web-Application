@@ -74,12 +74,14 @@ describe("getAvailableProgrammeFactor", () => {
         tierSlug: "core",
         tierDisplayOrder: 2,
         tierDescription: "Core",
+        isLegacy: false,
       },
       {
         tier: "foundation",
         tierSlug: "foundation",
         tierDisplayOrder: 1,
         tierDescription: "Foundation",
+        isLegacy: false,
       },
     ]);
   });
@@ -95,11 +97,13 @@ describe("getAvailableProgrammeFactor", () => {
         examboard: "AQA",
         examboardSlug: "aqa",
         examboardDisplayOrder: 1,
+        isLegacy: false,
       },
       {
         examboard: "Edexcel",
         examboardSlug: "edexcel",
         examboardDisplayOrder: 2,
+        isLegacy: false,
       },
     ]);
   });

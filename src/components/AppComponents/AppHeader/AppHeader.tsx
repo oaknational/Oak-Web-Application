@@ -13,15 +13,21 @@ import Box from "@/components/SharedComponents/Box";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
-import Icon from "@/components/SharedComponents/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+
+export const siteAreas = {
+  teachers: "TEACHERS",
+  pupils: "PUPILS",
+} as const;
+
+export type SelectedArea = (typeof siteAreas)[keyof typeof siteAreas];
 
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
  *
  */
-const AppHeader: FC<HeaderProps> = () => {
+const AppHeader: FC<HeaderProps> = ({ selectedArea = siteAreas.teachers }) => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
@@ -57,21 +63,25 @@ const AppHeader: FC<HeaderProps> = () => {
             $isSelected={true}
           >
             Teachers
-            <ActiveLinkUnderline name="horizontal-rule" />
+            {selectedArea == siteAreas.teachers && (
+              <ActiveLinkUnderline name="horizontal-rule" />
+            )}
           </OwaLink>
           <OakFlex $alignItems="center" $gap="all-spacing-1">
             <OwaLink
-              page="classroom"
+              page="pupil-year-index"
               $focusStyles={["underline"]}
               htmlAnchorProps={{
                 onClick: () =>
                   track.classroomSelected({ navigatedFrom: "header" }),
-                "aria-label": "Pupils (opens in a new tab)",
+                "aria-label": "Pupils browse years",
               }}
             >
               Pupils
+              {selectedArea == siteAreas.pupils && (
+                <ActiveLinkUnderline name="horizontal-rule" />
+              )}
             </OwaLink>
-            <Icon name="external" />
           </OakFlex>
           <IconButton
             aria-label="Menu"
