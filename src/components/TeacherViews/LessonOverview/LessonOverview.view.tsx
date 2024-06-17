@@ -47,6 +47,7 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
@@ -222,6 +223,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showDownloadAll={showDownloadAll}
       />
       <MaxWidth $ph={16} $pb={80}>
+        <NewContentBanner
+          keyStageSlug={keyStageSlug ?? ""}
+          subjectSlug={subjectSlug ?? ""}
+          subjectTitle={subjectTitle ? subjectTitle.toLowerCase() : ""}
+          programmeSlug={programmeSlug ?? ""}
+        />
         {expired ? (
           <Box $pa={16} $mb={64}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">

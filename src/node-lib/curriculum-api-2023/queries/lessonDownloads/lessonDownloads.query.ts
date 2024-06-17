@@ -92,6 +92,8 @@ const lessonDownloadsQuery =
       isLegacy: is_legacy,
     };
 
+    console.log(downloadsData, "<<< DOWNLOPADS DATA");
+
     const downloads = constructDownloadsArray(downloadsData);
 
     // Copyright content pre-parsed

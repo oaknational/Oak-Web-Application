@@ -5,6 +5,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -49,9 +50,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         }),
       }}
     >
-      <LessonOverview
-        lesson={{ ...curriculumData, isCanonical: false, isSpecialist: false }}
-      />
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonOverview
+          lesson={{
+            ...curriculumData,
+            isCanonical: false,
+            isSpecialist: false,
+          }}
+        />
+      </OakThemeProvider>
     </AppLayout>
   );
 };

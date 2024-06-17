@@ -269,6 +269,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 )}
               </Flex>
               <NewContentBanner
+                keyStageSlug={keyStageSlug}
+                subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle.toLowerCase()}
                 programmeSlug={programmeSlug}
               />
