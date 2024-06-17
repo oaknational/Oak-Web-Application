@@ -118,6 +118,7 @@ const QuizInner = () => {
         !isFeedbackMode &&
         !isExplanatoryText && (
           <OakTooltip
+            id="quiz-tooltip"
             tooltip={pickTooltip(currentQuestionData.answers)}
             isOpen={currentQuestionState?.mode === "incomplete"}
             tooltipPosition="top-right"
