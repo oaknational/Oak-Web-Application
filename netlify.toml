@@ -41,6 +41,9 @@ package = "./netlify/plugins/slack-reporting"
 
 # On preview and branch deploys, use the subdomain redirect edge function
 # to force all access through our managed TLD.
+# Note that the edge function is deployed in every context, but only
+# has a path assigned in preview and branch deploys, effectively
+# disabling it in production.
 [[context.deploy-preview.edge_functions]]
 path = '/*'
 function = 'subdomain-redirect'

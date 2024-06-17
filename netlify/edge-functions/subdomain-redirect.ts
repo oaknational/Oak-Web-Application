@@ -1,4 +1,4 @@
-import { Context, type Config } from "@netlify/edge-functions";
+import { Context } from "@netlify/edge-functions";
 
 function logRequestComplete() {
   console.log("--- Request completed ---");
@@ -79,7 +79,3 @@ async function redirectNetlifySubdomains(
 }
 
 export default redirectNetlifySubdomains;
-
-export const config: Config = {
-  path: "/*",
-};
