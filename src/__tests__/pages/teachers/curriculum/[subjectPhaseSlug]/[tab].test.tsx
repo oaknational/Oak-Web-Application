@@ -555,6 +555,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         query: { tab: "overview" },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
+        asPath: "",
       });
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
@@ -575,6 +576,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         query: { tab: "overview" },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
+        asPath: "",
       });
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
@@ -596,6 +598,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         query: { tab: "units" },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
+        asPath: "",
       });
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
