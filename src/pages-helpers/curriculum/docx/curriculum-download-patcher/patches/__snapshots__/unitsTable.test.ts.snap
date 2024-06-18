@@ -690,7 +690,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                             {
                               "attributes": {
                                 "w:ascii": "Lexend-Bold",
-                                "w:cs": "Lexend",
+                                "w:cs": "Lexend-Bold",
                                 "w:eastAsia": "Lexend-Bold",
                                 "w:hAnsi": "Lexend-Bold",
                               },
@@ -1022,7 +1022,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                             {
                               "attributes": {
                                 "w:ascii": "Lexend-Bold",
-                                "w:cs": "Lexend",
+                                "w:cs": "Lexend-Bold",
                                 "w:eastAsia": "Lexend-Bold",
                                 "w:hAnsi": "Lexend-Bold",
                               },
@@ -1260,7 +1260,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                             {
                               "attributes": {
                                 "w:ascii": "Lexend-Bold",
-                                "w:cs": "Lexend",
+                                "w:cs": "Lexend-Bold",
                                 "w:eastAsia": "Lexend-Bold",
                                 "w:hAnsi": "Lexend-Bold",
                               },

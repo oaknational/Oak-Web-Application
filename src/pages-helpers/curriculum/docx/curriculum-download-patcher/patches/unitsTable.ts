@@ -76,7 +76,7 @@ function buildYearColumn({
                   <w:color w:val="222222"/>
                   <w:sz w:val="44"/>
                   <w:szCs w:val="44"/>
-                  <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
+                  <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
               </w:rPr>
               <w:t xml:space="preserve">${cdata(index + 1)}</w:t>
           </w:r>
