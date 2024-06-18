@@ -24,29 +24,21 @@ type NewContentBannerProps = {
   isUnitListing?: boolean;
 };
 
-const renderContentBannerArray = [
-  { keyStageSlug: "ks1", subjectSlug: "english" },
-  { keyStageSlug: "ks1", subjectSlug: "geography" },
-  { keyStageSlug: "ks1", subjectSlug: "history" },
-  { keyStageSlug: "ks1", subjectSlug: "science" },
-  { keyStageSlug: "ks2", subjectSlug: "english" },
-  { keyStageSlug: "ks2", subjectSlug: "english-grammar" },
-  { keyStageSlug: "ks2", subjectSlug: "english-reading-for-pleasure" },
-  { keyStageSlug: "ks2", subjectSlug: "english-spelling" },
-  { keyStageSlug: "ks2", subjectSlug: "geography" },
-  { keyStageSlug: "ks2", subjectSlug: "history" },
-  { keyStageSlug: "ks2", subjectSlug: "science" },
-  { keyStageSlug: "ks3", subjectSlug: "english" },
-  { keyStageSlug: "ks3", subjectSlug: "history" },
-  { keyStageSlug: "ks3", subjectSlug: "science" },
-  { keyStageSlug: "ks4", subjectSlug: "biology" },
-  { keyStageSlug: "ks4", subjectSlug: "chemistry" },
-  { keyStageSlug: "ks4", subjectSlug: "combined-science" },
-  { keyStageSlug: "ks1", subjectSlug: "maths" },
-  { keyStageSlug: "ks2", subjectSlug: "maths" },
-  { keyStageSlug: "ks3", subjectSlug: "maths" },
-  { keyStageSlug: "ks4", subjectSlug: "maths" },
-];
+const renderContentBannerRecord: Record<string, string[]> = {
+  ks1: ["english", "geography", "history", "science", "maths"],
+  ks2: [
+    "english",
+    "english-grammar",
+    "english-reading-for-pleasure",
+    "english-spelling",
+    "geography",
+    "history",
+    "science",
+    "maths",
+  ],
+  ks3: ["english", "history", "science", "maths"],
+  ks4: ["biology", "chemistry", "combined-science", "maths"],
+};
 
 const NewContentBanner: FC<NewContentBannerProps> = ({
   subjectTitle,
@@ -55,11 +47,8 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
   subjectSlug,
   isUnitListing,
 }) => {
-  const renderComponent = renderContentBannerArray.some((item) => {
-    return (
-      item.keyStageSlug === keyStageSlug && item.subjectSlug === subjectSlug
-    );
-  });
+  const renderComponent =
+    renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
 
   let navigationPage: OakPageType = "unit-index";
   let progSlug = removeLegacySlugSuffix(programmeSlug);
