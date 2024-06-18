@@ -155,7 +155,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {...curriculumData}
         />
         <MaxWidth $ph={16}>
-          <OakFlex $maxWidth={["all-spacing-19", "all-spacing-23"]}>
+          <OakFlex $maxWidth={"all-spacing-23"}>
             <NewContentBanner
               keyStageSlug={keyStageSlug}
               subjectSlug={subjectSlug}
