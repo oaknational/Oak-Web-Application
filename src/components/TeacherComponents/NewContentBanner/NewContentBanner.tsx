@@ -22,6 +22,7 @@ type NewContentBannerProps = {
   keyStageSlug: string;
   subjectSlug: string;
   isUnitListing?: boolean;
+  isLegacy?: boolean;
 };
 
 const renderContentBannerRecord: Record<string, string[]> = {
@@ -46,6 +47,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
   keyStageSlug,
   subjectSlug,
   isUnitListing,
+  isLegacy,
 }) => {
   const renderComponent =
     renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
@@ -74,7 +76,11 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
     subjTitle = "english";
   }
 
-  if (!renderComponent || (isUnitListing && subjectSlug === "maths")) {
+  if (
+    !renderComponent ||
+    (isUnitListing && subjectSlug === "maths") ||
+    (!isLegacy && isUnitListing)
+  ) {
     return null;
   }
 
@@ -96,7 +102,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       $alignItems={"center"}
       $justifyContent={"space-between"}
       $mv={"space-between-m"}
-      $maxWidth={["all-spacing-24"]}
+      // $maxWidth={["all-spacing-24"]}
       $borderColor={"grey40"}
       $dropShadow={"drop-shadow-grey"}
       $borderRadius={"border-radius-m2"}
@@ -105,7 +111,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
     >
       <OakFlex
         $flexDirection={"column"}
-        $maxWidth={["all-spacing-21", "all-spacing-22"]}
+        // $maxWidth={["all-spacing-21", "all-spacing-22"]}
         $gap={"space-between-xs"}
       >
         <OakHeading tag="h3" $font={"heading-5"}>

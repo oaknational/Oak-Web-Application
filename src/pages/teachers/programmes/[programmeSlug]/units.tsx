@@ -8,7 +8,6 @@ import {
   NextPage,
 } from "next";
 import {
-  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -155,15 +154,18 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {...curriculumData}
         />
         <MaxWidth $ph={16}>
-          <OakFlex $maxWidth={"all-spacing-23"}>
-            <NewContentBanner
-              keyStageSlug={keyStageSlug}
-              subjectSlug={subjectSlug}
-              subjectTitle={subjectTitle.toLowerCase()}
-              programmeSlug={programmeSlug}
-              isUnitListing={true}
-            />
-          </OakFlex>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 8, 9]}>
+              <NewContentBanner
+                keyStageSlug={keyStageSlug}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle.toLowerCase()}
+                programmeSlug={programmeSlug}
+                isUnitListing={true}
+                isLegacy={isSlugLegacy(programmeSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
           <OakGrid>
             <OakGridArea
               $order={[0, 2]}
