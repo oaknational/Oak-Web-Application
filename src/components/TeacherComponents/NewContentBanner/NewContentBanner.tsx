@@ -8,6 +8,8 @@ import {
   OakImage,
 } from "@oaknational/oak-components";
 
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 
 const StyledOakFlex = styled(OakFlex)`
@@ -46,13 +48,6 @@ const renderContentBannerArray = [
   { keyStageSlug: "ks4", subjectSlug: "maths" },
 ];
 
-const removeSuffix = (str: string) => {
-  if (str.endsWith("-l")) {
-    return str.slice(0, -2);
-  }
-  return str;
-};
-
 const NewContentBanner: FC<NewContentBannerProps> = ({
   subjectTitle,
   programmeSlug,
@@ -67,7 +62,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
   });
 
   let navigationPage: OakPageType = "unit-index";
-  let progSlug = removeSuffix(programmeSlug);
+  let progSlug = removeLegacySlugSuffix(programmeSlug);
   let subjTitle = subjectTitle;
 
   if (
@@ -152,7 +147,11 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           $width={"all-spacing-18"}
           $height={"all-spacing-15"}
           alt="new content banner image"
-          src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1718639479/teacher-journey/content-banner.png`}
+          src={`https://${getBrowserConfig(
+            "oakComponentsAssetsHost",
+          )}/${getBrowserConfig(
+            "oakComponentsAssetsPath",
+          )}/v1718639479/teacher-journey/content-banner.png`}
         />
       </OakFlex>
     </StyledOakFlex>
