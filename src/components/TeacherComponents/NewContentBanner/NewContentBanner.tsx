@@ -68,6 +68,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 
   let navigationPage: OakPageType = "unit-index";
   let progSlug = removeSuffix(programmeSlug);
+  let subjTitle = subjectTitle;
 
   if (
     keyStageSlug === "ks4" &&
@@ -86,6 +87,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       subjectSlug === "english-grammar")
   ) {
     progSlug = "english-primary-ks2";
+    subjTitle = "english";
   }
 
   if (!renderComponent || (isUnitListing && subjectSlug === "maths")) {
@@ -106,11 +108,11 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 
   return (
     <StyledOakFlex
-      $flexDirection={"row"}
+      $flexDirection={["column-reverse", "row"]}
       $alignItems={"center"}
       $justifyContent={"space-between"}
       $mv={"space-between-m"}
-      $maxWidth={"all-spacing-24"}
+      $maxWidth={["all-spacing-24"]}
       $borderColor={"grey40"}
       $dropShadow={"drop-shadow-grey"}
       $borderRadius={"border-radius-m2"}
@@ -119,15 +121,15 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
     >
       <OakFlex
         $flexDirection={"column"}
-        $width={"all-spacing-22"}
+        $maxWidth={["all-spacing-21", "all-spacing-22"]}
         $gap={"space-between-xs"}
       >
         <OakHeading tag="h3" $font={"heading-5"}>
-          Designed for classroom
+          Switch to our new {subjTitle} teaching resources
         </OakHeading>
-        <OakP>
-          Adaptable lesson planning resources that are made by teachers, checked
-          by subject experts and tested in classroom.
+        <OakP $font={"heading-light-7"}>
+          Slide decks, worksheets, quizzes and lesson planning guidance designed
+          for your classroom.
         </OakP>
         <OakTertiaryButton
           iconName={"chevron-right"}
@@ -135,18 +137,18 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           element="a"
           href={resolveHref}
         >
-          {`Go to new ${subjectTitle} content`}
+          Go to {subjTitle} resources
         </OakTertiaryButton>
       </OakFlex>
       <OakFlex
-        $display={["none", "none", "block"]}
+        $display={"block"}
         $justifyContent={"center"}
         $width={"all-spacing-18"}
         $height={"all-spacing-15"}
         $alignItems={"center"}
       >
         <OakImage
-          $display={["none", "none", "block"]}
+          $display={"block"}
           $width={"all-spacing-18"}
           $height={"all-spacing-15"}
           alt="new content banner image"

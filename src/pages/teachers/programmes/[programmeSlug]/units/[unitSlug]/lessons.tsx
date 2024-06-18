@@ -6,6 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 import {
+  OakFlex,
   OakGrid,
   OakGridArea,
   OakThemeProvider,
@@ -156,17 +157,19 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {...curriculumData}
         />
         <MaxWidth $ph={16}>
+          <OakFlex $maxWidth={["all-spacing-23"]}>
+            <NewContentBanner
+              keyStageSlug={keyStageSlug}
+              subjectSlug={subjectSlug}
+              subjectTitle={subjectTitle.toLowerCase()}
+              programmeSlug={programmeSlug}
+            />
+          </OakFlex>
           <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
             >
-              <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-              />
               <LessonList
                 {...curriculumData}
                 lessonCount={lessons.length}
