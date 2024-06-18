@@ -99,7 +99,7 @@ export function threadsTablePatch(
                     </w:tblBorders>
                 </w:tblPr>
                 <w:tblGrid>
-                    <w:gridCol w:w="3505"/>
+                    <w:gridCol w:w="10515"/>
                 </w:tblGrid>
                 ${rows.join("")}
             </w:tbl>

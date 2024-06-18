@@ -77,6 +77,9 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
                     <w:ind w:left="426"/>
                   </w:pPr>
                   <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
+                    </w:rPr>
                     <w:t>${cdata(`Unit ${unit.order}: ${unit.title}`)}</w:t>
                   </w:r>
                 </w:p>

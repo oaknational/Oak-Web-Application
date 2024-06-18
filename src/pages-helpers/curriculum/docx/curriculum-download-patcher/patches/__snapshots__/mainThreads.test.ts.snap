@@ -224,6 +224,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
                   "name": "w:t",
                   "elements": [
                     {
@@ -525,6 +541,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "type": "element",
               "name": "w:r",
               "elements": [
+                {
+                  "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
                 {
                   "type": "element",
                   "name": "w:t",
@@ -830,6 +862,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
                   "name": "w:t",
                   "elements": [
                     {
@@ -1131,6 +1179,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "type": "element",
               "name": "w:r",
               "elements": [
+                {
+                  "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
                 {
                   "type": "element",
                   "name": "w:t",
@@ -1436,6 +1500,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
                   "name": "w:t",
                   "elements": [
                     {
@@ -1737,6 +1817,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "type": "element",
               "name": "w:r",
               "elements": [
+                {
+                  "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
                 {
                   "type": "element",
                   "name": "w:t",
@@ -2042,6 +2138,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
                   "name": "w:t",
                   "elements": [
                     {
@@ -2345,6 +2457,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "elements": [
                 {
                   "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
                   "name": "w:t",
                   "elements": [
                     {
@@ -2646,6 +2774,22 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
               "type": "element",
               "name": "w:r",
               "elements": [
+                {
+                  "type": "element",
+                  "name": "w:rPr",
+                  "elements": [
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light",
+                        "w:cs": "Lexend-Light"
+                      }
+                    }
+                  ]
+                },
                 {
                   "type": "element",
                   "name": "w:t",

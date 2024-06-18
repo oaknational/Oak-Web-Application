@@ -125,6 +125,7 @@ function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
               </w:pPr>
               <w:r>
                   <w:rPr>
+                      <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
                       <w:color w:val="222222"/>
                   </w:rPr>
                   <w:t>${cdata(lesson.title)}</w:t>
@@ -155,6 +156,7 @@ function buildUnitThreads(unit: Unit) {
               </w:pPr>
               <w:r>
                   <w:rPr>
+                      <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
                       <w:color w:val="222222"/>
                   </w:rPr>
                   <w:t>${cdata(thread.title)}</w:t>
@@ -177,11 +179,9 @@ function buildUnitOptionTitle(
                     <w:color w:val="222222"/>
                     <w:sz w:val="32"/>
                 </w:rPr>
-                <w:t>
-                    Option ${cdata(unitOptionIndex + 1)}: ${cdata(
-                      unitOption.title,
-                    )}
-                </w:t>
+                <w:t>Option ${cdata(unitOptionIndex + 1)}: ${cdata(
+                  unitOption.title,
+                )}</w:t>
             </w:r>
 
             <w:r>
@@ -595,20 +595,7 @@ function buildUnit(
                     <w:t>Threads</w:t>
                 </w:r>
             </w:p>
-            <w:p>
-                <w:pPr>
-                    <w:widowControl w:val="0"/>
-                    <w:rPr>
-                        <w:color w:val="222222"/>
-                    </w:rPr>
-                </w:pPr>
-                <w:r>
-                    <w:rPr>
-                        <w:color w:val="222222"/>
-                    </w:rPr>
-                    <w:t>${threads}</w:t>
-                </w:r>
-            </w:p>
+            ${threads}
             <w:p>
                 <w:pPr>
                     <w:ind w:left="30" w:hanging="30"/>
@@ -671,6 +658,7 @@ function buildUnit(
                 <w:r>
                     <w:rPr>
                         <w:color w:val="222222"/>
+                        <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
                     </w:rPr>
                     <w:t>${cdata(whyThisWhyNow)}</w:t>
                 </w:r>
@@ -690,17 +678,7 @@ function buildUnit(
                     <w:t>Lessons in unit</w:t>
                 </w:r>
             </w:p>
-            <w:p>
-                <w:pPr>
-                    <w:ind w:right="-1032"/>
-                </w:pPr>
-                <w:r>
-                    <w:rPr>
-                        <w:color w:val="222222"/>
-                    </w:rPr>
-                    <w:t>${lessons}</w:t>
-                </w:r>
-            </w:p>
+            ${lessons}
             <w:p>
                 <w:pPr>
                     <w:ind w:right="-1032"/>
