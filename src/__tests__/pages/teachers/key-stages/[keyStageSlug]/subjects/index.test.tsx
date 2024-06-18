@@ -1,6 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import SubjectListingPage, {
+  SubjectListingPageProps,
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
@@ -100,6 +101,55 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
     });
     it("should throw error when not provided context params", async () => {
       await expect(getStaticProps({})).rejects.toThrowError("No keyStageSlug");
+    });
+    it("should combine maths subjects into a single card", async () => {
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce({
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjects: [
+          {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 28,
+            lessonCount: 390,
+            programmeSlug: "maths-secondary-ks3",
+            programmeCount: 1,
+          },
+        ],
+        keyStages: [
+          {
+            slug: "ks3",
+            title: "Key Stage 3",
+            shortCode: "KS3",
+            displayOrder: 4,
+          },
+        ],
+      });
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce({
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjects: [
+          {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 53,
+            lessonCount: 432,
+            programmeSlug: "maths-secondary-ks3-l",
+            programmeCount: 1,
+          },
+        ],
+        keyStages: [],
+      });
+      const res = (await getStaticProps({
+        params: {
+          keyStageSlug: "ks3",
+        },
+      })) as { props: SubjectListingPageProps };
+
+      const maths = res?.props.subjects.find((s) => s.subjectSlug === "maths");
+
+      expect(maths?.old).toBeNull();
+      expect(maths?.new?.subjectSlug).toBe("maths");
     });
   });
 });
