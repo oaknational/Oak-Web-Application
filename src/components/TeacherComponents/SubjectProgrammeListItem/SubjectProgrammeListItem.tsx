@@ -6,6 +6,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 export type SubjectProgrammeListItemProps = {
   programme: ProgrammeListingPageData["programmes"][number];
@@ -42,6 +43,10 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
           aria-label={ariaLabel}
         >
           <OakP $font={"heading-7"}>{heading}</OakP>
+          <LessonMetadata
+            $color={"grey60"}
+            metadataArray={["unit", "lesson"]}
+          />
         </OwaLink>
       </OakFlex>
 
