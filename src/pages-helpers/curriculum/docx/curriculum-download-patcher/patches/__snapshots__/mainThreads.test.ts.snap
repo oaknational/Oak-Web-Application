@@ -37,6 +37,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -72,7 +82,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -130,7 +146,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -318,6 +340,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -353,7 +385,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -411,7 +449,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -599,6 +643,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -634,7 +688,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -692,7 +752,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -880,6 +946,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -915,7 +991,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -973,7 +1055,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -1161,6 +1249,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -1196,7 +1294,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -1254,7 +1358,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -1442,6 +1552,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -1477,7 +1597,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -1535,7 +1661,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -1723,6 +1855,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -1758,7 +1900,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -1816,7 +1964,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -2004,6 +2158,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -2039,7 +2203,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -2097,7 +2267,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",
@@ -2285,6 +2461,16 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                       "attributes": {
                         "w:val": "36"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Light",
+                        "w:cs": "Lexend-Light",
+                        "w:eastAsia": "Lexend-Light",
+                        "w:hAnsi": "Lexend-Light"
+                      }
                     }
                   ]
                 },
@@ -2320,7 +2506,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                     },
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     }
                   ]
                 },
@@ -2378,7 +2570,13 @@ exports[`coverPatch should modify node for KS1-2 1`] = `
                   "elements": [
                     {
                       "type": "element",
-                      "name": "w:b"
+                      "name": "w:rFonts",
+                      "attributes": {
+                        "w:ascii": "Lexend-Bold",
+                        "w:cs": "Lexend-Bold",
+                        "w:eastAsia": "Lexend-Bold",
+                        "w:hAnsi": "Lexend-Bold"
+                      }
                     },
                     {
                       "type": "element",

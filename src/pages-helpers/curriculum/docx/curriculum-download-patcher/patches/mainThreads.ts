@@ -30,13 +30,14 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
             <w:r>
               <w:rPr>
                 <w:sz w:val="36"/>
+                <w:rFonts w:ascii="Lexend-Light" w:cs="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light"/>
               </w:rPr>
               <w:t xml:space="preserve">Thread: </w:t>
             </w:r>
             <w:r>
               <w:rPr>
                 <w:sz w:val="36"/>
-                <w:b/>
+                <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
               </w:rPr>
               <w:t>${cdata(thread.title)}</w:t>
             </w:r>
@@ -57,7 +58,7 @@ export function mainThreadsPatch(data: CombinedCurriculumData) {
               </w:pPr>
               <w:r>
                 <w:rPr>
-                  <w:b/>
+                  <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
                   <w:sz w:val="28"/>
                 </w:rPr>
                 <w:t>Year ${year}</w:t>

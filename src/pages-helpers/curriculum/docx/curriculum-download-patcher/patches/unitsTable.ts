@@ -76,8 +76,7 @@ function buildYearColumn({
                   <w:color w:val="222222"/>
                   <w:sz w:val="44"/>
                   <w:szCs w:val="44"/>
-                  <w:b/>
-                  <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
+                  <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
               </w:rPr>
               <w:t xml:space="preserve">${cdata(index + 1)}</w:t>
           </w:r>
@@ -88,7 +87,7 @@ function buildYearColumn({
                   <w:color w:val="222222"/>
                   <w:sz w:val="28"/>
                   <w:szCs w:val="28"/>
-                  <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
+                  <w:rFonts w:ascii="Lexend-SemiBold" w:cs="Lexend-SemiBold" w:eastAsia="Lexend-SemiBold" w:hAnsi="Lexend-SemiBold"/>
               </w:rPr>
               <w:t xml:space="preserve">${cdata(title)}</w:t>
           </w:r>
@@ -180,8 +179,7 @@ function buildYear(
                 <w:color w:val="222222"/>
                 <w:sz w:val="28"/>
                 <w:szCs w:val="28"/>
-                <w:b/>
-                <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
+                <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
             </w:rPr>
             <w:t xml:space="preserve">${cdata(subjectTierPathwayTitle)}</w:t>
         </w:r>
@@ -197,8 +195,7 @@ function buildYear(
                 <w:color w:val="222222"/>
                 <w:sz w:val="56"/>
                 <w:szCs w:val="56"/>
-                <w:b/>
-                <w:rFonts w:ascii="Lexend" w:cs="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend"/>
+                <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
             </w:rPr>
             <w:t xml:space="preserve">${cdata(`Year ${year} units`)}</w:t>
         </w:r>
@@ -216,8 +213,7 @@ function buildYear(
         </w:pPr>
         <w:r>
             <w:rPr>
-                <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                <w:b/>
+                <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                 <w:sz w:val="28"/>
                 <w:szCs w:val="28"/>
                 <w:u w:val="single"/>
@@ -280,7 +276,7 @@ function buildYear(
                 <w:color w:val="222222"/>
                 <w:sz w:val="44"/>
                 <w:szCs w:val="44"/>
-                <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
+                <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
             </w:rPr>
             <w:t xml:space="preserve"> </w:t>
         </w:r>

@@ -173,7 +173,7 @@ function buildUnitOptionTitle(
         <w:p>
             <w:r>
                 <w:rPr>
-                    <w:rFonts w:ascii="Lexend Bold" w:eastAsia="Lexend Bold" w:hAnsi="Lexend Bold" w:cs="Lexend Bold"/>
+                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                     <w:color w:val="222222"/>
                     <w:sz w:val="32"/>
                 </w:rPr>
@@ -298,8 +298,7 @@ function buildUnit(
                             <w:pPr>
                                 <w:jc w:val="center"/>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                 </w:rPr>
                             </w:pPr>
@@ -364,8 +363,7 @@ function buildUnit(
                             <w:pPr>
                                 <w:jc w:val="center"/>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -373,8 +371,7 @@ function buildUnit(
                             </w:pPr>
                             <w:r>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -397,15 +394,13 @@ function buildUnit(
                         <w:p>
                             <w:pPr>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                 </w:rPr>
                             </w:pPr>
                             <w:r>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                 </w:rPr>
                                 <w:t>Year ${cdata(unit.year)}</w:t>
@@ -414,8 +409,7 @@ function buildUnit(
                         <w:p>
                             <w:pPr>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -423,8 +417,7 @@ function buildUnit(
                             </w:pPr>
                             <w:r>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -463,8 +456,7 @@ function buildUnit(
                         <w:p>
                             <w:pPr>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -472,8 +464,7 @@ function buildUnit(
                             </w:pPr>
                             <w:r>
                                 <w:rPr>
-                                    <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                                    <w:b/>
+                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="36"/>
                                     <w:szCs w:val="36"/>
@@ -487,8 +478,7 @@ function buildUnit(
             <w:p>
                 <w:pPr>
                     <w:rPr>
-                        <w:rFonts w:ascii="Lexend" w:eastAsia="Lexend" w:hAnsi="Lexend" w:cs="Lexend"/>
-                        <w:b/>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                         <w:color w:val="222222"/>
                         <w:sz w:val="36"/>
                         <w:szCs w:val="36"/>
@@ -588,8 +578,6 @@ function buildUnit(
             }
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                     <w:sectPr w:rsidR="007C63E4" w:rsidSect="00142874">
                         <w:pgSz w:w="11909" w:h="16834"/>
                         <w:pgMar w:top="567" w:right="709" w:bottom="709" w:left="709" w:header="720" w:footer="720" w:gutter="0"/>
@@ -599,10 +587,11 @@ function buildUnit(
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
                     <w:t>Threads</w:t>
                 </w:r>
             </w:p>
@@ -630,19 +619,18 @@ function buildUnit(
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
                     <w:t>Unit description</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading4"/>
-                    <w:widowControl w:val="0"/>
                     <w:rPr>
-                        <w:rFonts w:ascii="Lexend Light" w:hAnsi="Lexend Light"/>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
                         <w:b w:val="0"/>
                         <w:highlight w:val="white"/>
                     </w:rPr>
@@ -651,7 +639,7 @@ function buildUnit(
                 <w:bookmarkEnd w:id="13"/>
                 <w:r w:rsidRPr="00DF5931">
                     <w:rPr>
-                        <w:rFonts w:ascii="Lexend Light" w:hAnsi="Lexend Light"/>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
                         <w:b w:val="0"/>
                     </w:rPr>
                     <w:t>${cdata(description)}</w:t>
@@ -659,16 +647,15 @@ function buildUnit(
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                 </w:pPr>
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
                     <w:t>Why this, why now?</w:t>
                 </w:r>
             </w:p>
@@ -690,8 +677,6 @@ function buildUnit(
             </w:p>
             <w:p>
                 <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                    <w:widowControl w:val="0"/>
                 </w:pPr>
                 <w:bookmarkStart w:id="15" w:name="_96kd3c8qkmgf" w:colFirst="0" w:colLast="0"/>
                 <w:bookmarkEnd w:id="15"/>
@@ -699,6 +684,9 @@ function buildUnit(
                     <w:br w:type="column"/>
                 </w:r>
                 <w:r w:rsidR="002B59E3">
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
                     <w:t>Lessons in unit</w:t>
                 </w:r>
             </w:p>

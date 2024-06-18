@@ -32,10 +32,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                 },
                 {
                   "attributes": {
-                    "w:ascii": "Lexend SemiBold",
-                    "w:cs": "Lexend SemiBold",
-                    "w:eastAsia": "Lexend SemiBold",
-                    "w:hAnsi": "Lexend SemiBold",
+                    "w:ascii": "Lexend-Bold",
+                    "w:cs": "Lexend-Bold",
+                    "w:eastAsia": "Lexend-Bold",
+                    "w:hAnsi": "Lexend-Bold",
                   },
                   "name": "w:rFonts",
                   "type": "element",
@@ -308,10 +308,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend-Bold",
+                                "w:cs": "Lexend-Bold",
+                                "w:eastAsia": "Lexend-Bold",
+                                "w:hAnsi": "Lexend-Bold",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -509,10 +509,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend-Bold",
+                                "w:cs": "Lexend-Bold",
+                                "w:eastAsia": "Lexend-Bold",
+                                "w:hAnsi": "Lexend-Bold",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -710,10 +710,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend-Bold",
+                                "w:cs": "Lexend-Bold",
+                                "w:eastAsia": "Lexend-Bold",
+                                "w:hAnsi": "Lexend-Bold",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -911,10 +911,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend-Bold",
+                                "w:cs": "Lexend-Bold",
+                                "w:eastAsia": "Lexend-Bold",
+                                "w:hAnsi": "Lexend-Bold",
                               },
                               "name": "w:rFonts",
                               "type": "element",
@@ -1112,10 +1112,10 @@ exports[`threadsTablePatch should return units table 1`] = `
                             },
                             {
                               "attributes": {
-                                "w:ascii": "Lexend SemiBold",
-                                "w:cs": "Lexend SemiBold",
-                                "w:eastAsia": "Lexend SemiBold",
-                                "w:hAnsi": "Lexend SemiBold",
+                                "w:ascii": "Lexend-Bold",
+                                "w:cs": "Lexend-Bold",
+                                "w:eastAsia": "Lexend-Bold",
+                                "w:hAnsi": "Lexend-Bold",
                               },
                               "name": "w:rFonts",
                               "type": "element",

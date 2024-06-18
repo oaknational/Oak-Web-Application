@@ -34,7 +34,7 @@ function buildColumn(text: string) {
                   <w:color w:val="222222"/>
                   <w:sz w:val="30"/>
                   <w:szCs w:val="30"/>
-                  <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
+                  <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
               </w:rPr>
               <w:t xml:space="preserve">${cdata(text)}</w:t>
           </w:r>
@@ -81,7 +81,7 @@ export function threadsTablePatch(
                     <w:color w:val="222222"/>
                     <w:sz w:val="44"/>
                     <w:szCs w:val="44"/>
-                    <w:rFonts w:ascii="Lexend SemiBold" w:cs="Lexend SemiBold" w:eastAsia="Lexend SemiBold" w:hAnsi="Lexend SemiBold"/>
+                    <w:rFonts w:ascii="Lexend-Bold" w:cs="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold"/>
                 </w:rPr>
                 <w:t xml:space="preserve"> </w:t>
             </w:r>
