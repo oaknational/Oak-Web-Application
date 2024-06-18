@@ -119,9 +119,6 @@ function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
                   </w:numPr>
                   <w:spacing w:line="240" w:lineRule="auto"/>
                   <w:ind w:left="425" w:right="-17"/>
-                  <w:rPr>
-                      <w:color w:val="222222"/>
-                  </w:rPr>
               </w:pPr>
               <w:r>
                   <w:rPr>
@@ -150,9 +147,6 @@ function buildUnitThreads(unit: Unit) {
                 </w:numPr>
                 <w:spacing w:line="240" w:lineRule="auto"/>
                 <w:ind w:left="425" w:right="0"/>
-                <w:rPr>
-                    <w:color w:val="222222"/>
-                </w:rPr>
               </w:pPr>
               <w:r>
                   <w:rPr>
@@ -302,7 +296,7 @@ function buildUnit(
                                     <w:color w:val="222222"/>
                                 </w:rPr>
                             </w:pPr>
-                            <w:r w:rsidRPr="00B01EF1">
+                            <w:r>
                                 <w:rPr>
                                     <w:noProof/>
                                     <w:color w:val="222222"/>
@@ -362,12 +356,6 @@ function buildUnit(
                         <w:p>
                             <w:pPr>
                                 <w:jc w:val="center"/>
-                                <w:rPr>
-                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                                    <w:color w:val="222222"/>
-                                    <w:sz w:val="36"/>
-                                    <w:szCs w:val="36"/>
-                                </w:rPr>
                             </w:pPr>
                             <w:r>
                                 <w:rPr>
@@ -392,12 +380,6 @@ function buildUnit(
                             <w:tcW w:w="9389" w:type="dxa"/>
                         </w:tcPr>
                         <w:p>
-                            <w:pPr>
-                                <w:rPr>
-                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                                    <w:color w:val="222222"/>
-                                </w:rPr>
-                            </w:pPr>
                             <w:r>
                                 <w:rPr>
                                     <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -407,14 +389,6 @@ function buildUnit(
                             </w:r>
                         </w:p>
                         <w:p>
-                            <w:pPr>
-                                <w:rPr>
-                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                                    <w:color w:val="222222"/>
-                                    <w:sz w:val="36"/>
-                                    <w:szCs w:val="36"/>
-                                </w:rPr>
-                            </w:pPr>
                             <w:r>
                                 <w:rPr>
                                     <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -454,14 +428,6 @@ function buildUnit(
                             <w:tcW w:w="10481" w:type="dxa"/>
                         </w:tcPr>
                         <w:p>
-                            <w:pPr>
-                                <w:rPr>
-                                    <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                                    <w:color w:val="222222"/>
-                                    <w:sz w:val="36"/>
-                                    <w:szCs w:val="36"/>
-                                </w:rPr>
-                            </w:pPr>
                             <w:r>
                                 <w:rPr>
                                     <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -578,7 +544,7 @@ function buildUnit(
             }
             <w:p>
                 <w:pPr>
-                    <w:sectPr w:rsidR="007C63E4" w:rsidSect="00142874">
+                    <w:sectPr>
                         <w:pgSz w:w="11909" w:h="16834"/>
                         <w:pgMar w:top="567" w:right="709" w:bottom="709" w:left="709" w:header="720" w:footer="720" w:gutter="0"/>
                         <w:cols w:space="720"/>
@@ -586,8 +552,6 @@ function buildUnit(
                 </w:pPr>
             </w:p>
             <w:p>
-                <w:pPr>
-                </w:pPr>
                 <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -605,8 +569,6 @@ function buildUnit(
                 </w:pPr>
             </w:p>
             <w:p>
-                <w:pPr>
-                </w:pPr>
                 <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -615,16 +577,9 @@ function buildUnit(
                 </w:r>
             </w:p>
             <w:p>
-                <w:pPr>
-                    <w:rPr>
-                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
-                        <w:b w:val="0"/>
-                        <w:highlight w:val="white"/>
-                    </w:rPr>
-                </w:pPr>
                 <w:bookmarkStart w:id="13" w:name="_wf3kyqlrau0x" w:colFirst="0" w:colLast="0"/>
                 <w:bookmarkEnd w:id="13"/>
-                <w:r w:rsidRPr="00DF5931">
+                <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
                         <w:b w:val="0"/>
@@ -637,8 +592,6 @@ function buildUnit(
                 </w:pPr>
             </w:p>
             <w:p>
-                <w:pPr>
-                </w:pPr>
                 <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
@@ -649,9 +602,6 @@ function buildUnit(
             <w:p>
                 <w:pPr>
                     <w:ind w:left="30" w:hanging="30"/>
-                    <w:rPr>
-                        <w:color w:val="222222"/>
-                    </w:rPr>
                 </w:pPr>
                 <w:bookmarkStart w:id="14" w:name="_dt40g52dsciy" w:colFirst="0" w:colLast="0"/>
                 <w:bookmarkEnd w:id="14"/>
@@ -664,14 +614,12 @@ function buildUnit(
                 </w:r>
             </w:p>
             <w:p>
-                <w:pPr>
-                </w:pPr>
                 <w:bookmarkStart w:id="15" w:name="_96kd3c8qkmgf" w:colFirst="0" w:colLast="0"/>
                 <w:bookmarkEnd w:id="15"/>
                 <w:r>
                     <w:br w:type="column"/>
                 </w:r>
-                <w:r w:rsidR="002B59E3">
+                <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                     </w:rPr>
