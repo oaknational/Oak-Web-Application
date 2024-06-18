@@ -151,12 +151,46 @@ export const getStaticProps: GetStaticProps<
           : foundSubject;
       };
 
+      // We are trialling combining the maths subjects from the legacy and new curriculums
+      const getMaths = () => {
+        const newMaths = curriculumData.subjects.find(
+          (subject) => subject.subjectSlug === "maths",
+        );
+        const legacyMaths = curriculumDataLegacy.subjects.find(
+          (subject) => subject.subjectSlug === "maths",
+        );
+
+        if (!newMaths || !legacyMaths) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const combinedMaths: KeyStageSubjectData = {
+          programmeSlug: newMaths.programmeSlug,
+          programmeCount: newMaths.programmeCount + legacyMaths.programmeCount,
+          subjectSlug: newMaths.subjectSlug,
+          subjectTitle: newMaths.subjectTitle,
+          unitCount: newMaths.unitCount + legacyMaths.unitCount,
+          lessonCount: newMaths.lessonCount + legacyMaths.lessonCount,
+        };
+
+        return combinedMaths;
+      };
+
       const subjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
+          const isMaths = subjectSlug === "maths";
           return {
             subjectSlug: subjectSlug,
-            old: getSubject(curriculumDataLegacy, subjectSlug, true),
-            new: isEyfs ? null : getSubject(curriculumData, subjectSlug, false),
+            old: isMaths
+              ? null
+              : getSubject(curriculumDataLegacy, subjectSlug, true),
+            new: isEyfs
+              ? null
+              : isMaths
+                ? getMaths()
+                : getSubject(curriculumData, subjectSlug, false),
           };
         })
         // Filter out subjects that don't exist in either curriculum
