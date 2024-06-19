@@ -168,7 +168,8 @@ export const getStaticProps: GetStaticProps<
 
         const combinedMaths: KeyStageSubjectData = {
           programmeSlug: newMaths.programmeSlug,
-          programmeCount: newMaths.programmeCount + legacyMaths.programmeCount,
+          programmeCount:
+            newMaths.programmeCount + legacyMaths.programmeCount - 1,
           subjectSlug: newMaths.subjectSlug,
           subjectTitle: newMaths.subjectTitle,
           unitCount: newMaths.unitCount + legacyMaths.unitCount,
