@@ -17,6 +17,7 @@ import CurriculumVisualiser, {
   isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
+import SkipLink from "../OakComponentsKitchen/SkipLink";
 
 import Box from "@/components/SharedComponents/Box";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
@@ -254,6 +255,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                     None highlighted
                   </Radio>
                 </Box>
+                <SkipLink href="#content">Skip to units</SkipLink>
                 {threadOptions.map((threadOption) => {
                   const isSelected = isSelectedThread(threadOption);
                   const highlightedCount = highlightedUnitCount();
