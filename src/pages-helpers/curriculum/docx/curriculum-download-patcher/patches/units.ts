@@ -296,14 +296,13 @@ function buildUnit(
                                     <w:color w:val="222222"/>
                                 </w:rPr>
                             </w:pPr>
-                            <w:r>
+                            <w:r w:rsidR="002859F6" w:rsidRPr="00D13F46">
                                 <w:rPr>
                                     <w:noProof/>
                                     <w:color w:val="222222"/>
                                 </w:rPr>
-                                <w:lastRenderedPageBreak/>
                                 <w:drawing>
-                                    <wp:anchor distT="114300" distB="114300" distL="114300" distR="114300" simplePos="0" relativeHeight="251735040" behindDoc="1" locked="0" layoutInCell="1" hidden="0" allowOverlap="1" wp14:anchorId="63FFAED0" wp14:editId="008BED1E">
+                                    <wp:anchor distT="114300" distB="114300" distL="114300" distR="114300" simplePos="0" relativeHeight="251732992" behindDoc="1" locked="0" layoutInCell="1" hidden="0" allowOverlap="1" wp14:anchorId="06FB74C3" wp14:editId="77BB2033">
                                         <wp:simplePos x="0" y="0"/>
                                         <wp:positionH relativeFrom="column">
                                             <wp:posOffset>-46990</wp:posOffset>
@@ -314,13 +313,13 @@ function buildUnit(
                                         <wp:extent cx="630000" cy="630000"/>
                                         <wp:effectExtent l="0" t="0" r="5080" b="5080"/>
                                         <wp:wrapNone/>
-                                        <wp:docPr id="47" name="image10.png" descr="A purple circle with black background&#xA;&#xA;Description automatically generated"/>
+                                        <wp:docPr id="47" name="image12.png" descr="A purple circle with black background&#xA;&#xA;Description automatically generated"/>
                                         <wp:cNvGraphicFramePr/>
                                         <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
                                             <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
                                                 <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
                                                     <pic:nvPicPr>
-                                                        <pic:cNvPr id="47" name="image10.png" descr="A purple circle with black background&#xA;&#xA;Description automatically generated"/>
+                                                        <pic:cNvPr id="47" name="image12.png" descr="A purple circle with black background&#xA;&#xA;Description automatically generated"/>
                                                         <pic:cNvPicPr preferRelativeResize="0"/>
                                                     </pic:nvPicPr>
                                                     <pic:blipFill>
@@ -458,7 +457,7 @@ function buildUnit(
                     <mc:AlternateContent>
                         <mc:Choice Requires="wps">
                             <w:drawing>
-                                <wp:anchor distT="114300" distB="114300" distL="114300" distR="114300" simplePos="0" relativeHeight="251732992" behindDoc="1" locked="0" layoutInCell="1" hidden="0" allowOverlap="1" wp14:anchorId="3DDDBE16" wp14:editId="3C1FC2FA">
+                                <wp:anchor distT="114300" distB="114300" distL="114300" distR="114300" simplePos="0" relativeHeight="251608576" behindDoc="1" locked="0" layoutInCell="1" hidden="0" allowOverlap="1" wp14:anchorId="26D686B5" wp14:editId="0EFA9C0F">
                                     <wp:simplePos x="0" y="0"/>
                                     <wp:positionH relativeFrom="page">
                                         <wp:posOffset>14990</wp:posOffset>
@@ -492,7 +491,7 @@ function buildUnit(
                                                 </wps:spPr>
                                                 <wps:txbx>
                                                     <w:txbxContent>
-                                                        <w:p w14:paraId="2AE5D6A0" w14:textId="77777777" w:rsidR="009F6245" w:rsidRDefault="009F6245" w:rsidP="009F6245">
+                                                        <w:p w14:paraId="6B3B6397" w14:textId="77777777" w:rsidR="009F6245" w:rsidRDefault="009F6245" w:rsidP="009F6245">
                                                             <w:pPr>
                                                                 <w:spacing w:line="240" w:lineRule="auto"/>
                                                                 <w:jc w:val="center"/>
@@ -518,10 +517,10 @@ function buildUnit(
                         </mc:Choice>
                         <mc:Fallback>
                             <w:pict>
-                                <v:rect w14:anchorId="3DDDBE16" id="Rectangle 10" o:spid="_x0000_s1028" style="position:absolute;margin-left:1.2pt;margin-top:-36.6pt;width:594.45pt;height:139.3pt;z-index:-251583488;visibility:visible;mso-wrap-style:square;mso-width-percent:0;mso-height-percent:0;mso-wrap-distance-left:9pt;mso-wrap-distance-top:9pt;mso-wrap-distance-right:9pt;mso-wrap-distance-bottom:9pt;mso-position-horizontal:absolute;mso-position-horizontal-relative:page;mso-position-vertical:absolute;mso-position-vertical-relative:page;mso-width-percent:0;mso-height-percent:0;mso-width-relative:margin;mso-height-relative:margin;v-text-anchor:middle" o:gfxdata="UEsDBBQABgAIAAAAIQC2gziS/gAAAOEBAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbJSRQU7DMBBF&#xD;&#xA;90jcwfIWJU67QAgl6YK0S0CoHGBkTxKLZGx5TGhvj5O2G0SRWNoz/78nu9wcxkFMGNg6quQqL6RA&#xD;&#xA;0s5Y6ir5vt9lD1JwBDIwOMJKHpHlpr69KfdHjyxSmriSfYz+USnWPY7AufNIadK6MEJMx9ApD/oD&#xD;&#xA;OlTrorhX2lFEilmcO2RdNtjC5xDF9pCuTyYBB5bi6bQ4syoJ3g9WQ0ymaiLzg5KdCXlKLjvcW893&#xD;&#xA;SUOqXwnz5DrgnHtJTxOsQfEKIT7DmDSUCaxw7Rqn8787ZsmRM9e2VmPeBN4uqYvTtW7jvijg9N/y&#xD;&#xA;JsXecLq0q+WD6m8AAAD//wMAUEsDBBQABgAIAAAAIQA4/SH/1gAAAJQBAAALAAAAX3JlbHMvLnJl&#xD;&#xA;bHOkkMFqwzAMhu+DvYPRfXGawxijTi+j0GvpHsDYimMaW0Yy2fr2M4PBMnrbUb/Q94l/f/hMi1qR&#xD;&#xA;JVI2sOt6UJgd+ZiDgffL8ekFlFSbvV0oo4EbChzGx4f9GRdb25HMsYhqlCwG5lrLq9biZkxWOiqY&#xD;&#xA;22YiTra2kYMu1l1tQD30/bPm3wwYN0x18gb45AdQl1tp5j/sFB2T0FQ7R0nTNEV3j6o9feQzro1i&#xD;&#xA;OWA14Fm+Q8a1a8+Bvu/d/dMb2JY5uiPbhG/ktn4cqGU/er3pcvwCAAD//wMAUEsDBBQABgAIAAAA&#xD;&#xA;IQBLLDKnxQEAAIEDAAAOAAAAZHJzL2Uyb0RvYy54bWysU9uK2zAQfS/0H4TeG8fpXhITZym7TSks&#xD;&#xA;bWC3HyDLUiyQJXVGiZ2/70hJk7T7VopB1hmNjs+cGS8fxt6yvQI03tW8nEw5U0761rhtzX+8rj/M&#xD;&#xA;OcMoXCusd6rmB4X8YfX+3XIIlZr5zttWASMSh9UQat7FGKqiQNmpXuDEB+XoUHvoRSQI26IFMRB7&#xD;&#xA;b4vZdHpXDB7aAF4qRIo+HQ/5KvNrrWT8rjWqyGzNSVvMK+S1SWuxWopqCyJ0Rp5kiH9Q0Qvj6KNn&#xD;&#xA;qicRBduBeUPVGwkevY4T6fvCa22kyjVQNeX0r2peOhFUroXMwXC2Cf8frfy2fwkbIBuGgBXSNlUx&#xD;&#xA;aujTm/SxMZt1OJulxsgkBe9vbxbUAc4knZX3d/P5x0Wys7hcD4Dxi/I9S5uaA3UjmyT2zxiPqb9T&#xD;&#xA;0tfQW9OujbUZwLZ5tMD2gjr3eZ2eE/sfadalZOfTtSNjihSXYtIujs3ITFvzWaJIkca3hw0wDHJt&#xD;&#xA;SNuzwLgRQJ0vORtoGmqOP3cCFGf2qyO7F+XN7JbG5xrANWiugXCy8zRkMgJnR/AY89AdxX7aRa9N&#xD;&#xA;duAi5qSa+pw9PM1kGqRrnLMuf87qFwAAAP//AwBQSwMEFAAGAAgAAAAhAP8Id43iAAAADwEAAA8A&#xD;&#xA;AABkcnMvZG93bnJldi54bWxMj8FuwjAQRO+V+g/WIvUGTkJa3BAHVUU9U0I/wMRLEhHbkW0g7dd3&#xD;&#xA;ObWXlVZvdnam3ExmYFf0oXdWQrpIgKFtnO5tK+Hr8DEXwEJUVqvBWZTwjQE21eNDqQrtbnaP1zq2&#xD;&#xA;jExsKJSELsax4Dw0HRoVFm5ES+zkvFGRVt9y7dWNzM3AsyR54Ub1lj50asT3DptzfTESPncTD8Lv&#xD;&#xA;Ttt8X3tciZ8gxEHKp9m0XdN4WwOLOMW/C7h3oPxQUbCju1gd2CAhy0koYb5aZsDuPH1Nl8CORJLn&#xD;&#xA;HHhV8v89ql8AAAD//wMAUEsBAi0AFAAGAAgAAAAhALaDOJL+AAAA4QEAABMAAAAAAAAAAAAAAAAA&#xD;&#xA;AAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECLQAUAAYACAAAACEAOP0h/9YAAACUAQAACwAAAAAA&#xD;&#xA;AAAAAAAAAAAvAQAAX3JlbHMvLnJlbHNQSwECLQAUAAYACAAAACEASywyp8UBAACBAwAADgAAAAAA&#xD;&#xA;AAAAAAAAAAAuAgAAZHJzL2Uyb0RvYy54bWxQSwECLQAUAAYACAAAACEA/wh3jeIAAAAPAQAADwAA&#xD;&#xA;AAAAAAAAAAAAAAAfBAAAZHJzL2Rvd25yZXYueG1sUEsFBgAAAAAEAAQA8wAAAC4FAAAAAA==&#xD;&#xA;" fillcolor="#efefef" stroked="f">
+                                <v:rect w14:anchorId="26D686B5" id="Rectangle 10" o:spid="_x0000_s1027" style="position:absolute;margin-left:1.2pt;margin-top:-36.6pt;width:594.45pt;height:139.3pt;z-index:-251707904;visibility:visible;mso-wrap-style:square;mso-width-percent:0;mso-height-percent:0;mso-wrap-distance-left:9pt;mso-wrap-distance-top:9pt;mso-wrap-distance-right:9pt;mso-wrap-distance-bottom:9pt;mso-position-horizontal:absolute;mso-position-horizontal-relative:page;mso-position-vertical:absolute;mso-position-vertical-relative:page;mso-width-percent:0;mso-height-percent:0;mso-width-relative:margin;mso-height-relative:margin;v-text-anchor:middle" o:gfxdata="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&#xA;" fillcolor="#efefef" stroked="f">
                                     <v:textbox inset="2.53958mm,2.53958mm,2.53958mm,2.53958mm">
                                         <w:txbxContent>
-                                            <w:p w14:paraId="2AE5D6A0" w14:textId="77777777" w:rsidR="009F6245" w:rsidRDefault="009F6245" w:rsidP="009F6245">
+                                            <w:p w14:paraId="6B3B6397" w14:textId="77777777" w:rsidR="009F6245" w:rsidRDefault="009F6245" w:rsidP="009F6245">
                                                 <w:pPr>
                                                     <w:spacing w:line="240" w:lineRule="auto"/>
                                                     <w:jc w:val="center"/>
@@ -586,10 +585,6 @@ function buildUnit(
                     </w:rPr>
                     <w:t>${cdata(description)}</w:t>
                 </w:r>
-            </w:p>
-            <w:p>
-                <w:pPr>
-                </w:pPr>
             </w:p>
             <w:p>
                 <w:r>
