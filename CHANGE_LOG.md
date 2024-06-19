@@ -1,3 +1,17 @@
+## [1.462.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.1...v1.462.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* remove meet our teachers section from about us ([124a053](https://github.com/oaknational/Oak-Web-Application/commit/124a053643e75d8515be5c2bd08a29c70582078f))
+
+## [1.462.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.0...v1.462.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* pa11y error in lesson listings ([6cccef2](https://github.com/oaknational/Oak-Web-Application/commit/6cccef2deebe767d3ac2ae17a96f2d497652dde8))
+
 # [1.462.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.461.0...v1.462.0) (2024-06-13)
 
 
