@@ -3,12 +3,11 @@ import {
   EventFn,
   IdentifyFn,
 } from "../../context/Analytics/AnalyticsProvider";
-import { ServiceType } from "../cookie-consent/types";
 
 import withQueue from "./withQueue";
 
 const originalService: AnalyticsService<unknown> = {
-  name: "test service" as ServiceType,
+  name: "posthog",
   init: jest.fn(),
   state: jest.fn(() => "pending"),
   track: jest.fn(),

@@ -51,3 +51,5 @@ jest.mock("./src/common-lib/error-reporter", () => ({
   default: () => () => null,
   initialiseBugsnag: jest.fn(),
 }));
+
+jest.mock("@oaknational/oak-consent-client");

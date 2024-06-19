@@ -1,10 +1,11 @@
 import { PostHog } from "posthog-js";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
 import getLegacyAnonymousId from "../analytics/getLegacyAnonymousId";
 import getBrowserConfig from "../getBrowserConfig";
+import { consentClient } from "../cookie-consent/consentClient";
+import { ServicePolicyMap } from "../cookie-consent/ServicePolicyMap";
 
 export type PosthogDistinctId = string;
 export type MaybeDistinctId = string | null;
@@ -54,7 +55,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.opt_out_capturing();
   },
   state: () => {
-    switch (getHasConsentedTo("posthog")) {
+    switch (consentClient.getConsent(ServicePolicyMap.POSTHOG)) {
       case "denied":
         return "disabled";
       case "granted":

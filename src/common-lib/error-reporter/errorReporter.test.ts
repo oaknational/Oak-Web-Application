@@ -10,12 +10,9 @@ import errorReporter, {
   getBugsnagOnError,
 } from "./errorReporter";
 
-const getHasConsentedTo = jest.fn();
+import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 
-jest.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
-  __esModule: true,
-  default: (service: string) => getHasConsentedTo(service),
-}));
+jest.mock("../../browser-lib/cookie-consent/consentClient");
 
 const parentMetaFields = {
   query: { paramName: "paramValue" },
@@ -152,9 +149,9 @@ describe("common-lib/error-reporter", () => {
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
+      jest.spyOn(consentClient, "getConsent").mockReturnValue("granted");
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
-      getHasConsentedTo.mockImplementation(() => true);
     });
     it("calls bugsnag.notify with the error", async () => {
       reportError(testError);
@@ -251,7 +248,7 @@ describe("common-lib/error-reporter", () => {
   describe("[disabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      getHasConsentedTo.mockImplementation(() => false);
+      jest.spyOn(consentClient, "getConsent").mockReturnValue("denied");
     });
     it("does not call bugsnag.notify with the error", async () => {
       reportError(testError);

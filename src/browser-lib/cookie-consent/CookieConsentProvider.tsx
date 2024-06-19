@@ -5,10 +5,10 @@
  */
 import {
   createContext,
-  FC,
   PropsWithChildren,
   useContext,
   useEffect,
+  useMemo,
 } from "react";
 import {
   OakConsentProvider,
@@ -22,62 +22,46 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-import {
-  CookieConsent,
-  CookieConsentState,
-  CookiePolicyName,
-  servicePolicyMap,
-  ServiceType,
-} from "./types";
 import { consentClient } from "./consentClient";
 
-export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
-export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
-export type HasConsentedToPolicy = (
-  policyName: CookiePolicyName,
-) => CookieConsentState;
-
 export type CookieConsentContext = {
-  // makes consent manager modal visible
+  /**
+   * Show the cookie consent modal
+   */
   showConsentManager: () => void;
-  // whether the user has granted consent to the latest version of a partular policy
-  hasConsentedTo: HasConsentedTo;
-  // consent by policyName
-  hasConsentedToPolicy: HasConsentedToPolicy;
+  /**
+   * Get the current consent state for a given policy
+   */
+  getConsentState: (
+    policyName: "strictly-necessary" | "embedded-content" | "statistics",
+  ) => "granted" | "denied" | "pending";
 };
 
 export const cookieConsentContext = createContext<CookieConsentContext | null>(
   null,
 );
 
+/**
+ * Provides methods to open the consent settings and get the current consent state for a policy
+ */
 export const useCookieConsent = () => {
-  const cookieConsentsContext = useContext(cookieConsentContext);
-  if (!cookieConsentsContext) {
+  const context = useContext(cookieConsentContext);
+
+  if (!context) {
     throw new Error(
       "useCookieConsent() called outside of cookieConsentContext provider",
     );
   }
-  return cookieConsentsContext;
+
+  return context;
 };
 
-type CookieConsentProviderProps = {
-  children?: React.ReactNode;
-  __testMockValue?: CookieConsentContext;
-};
-
-const CookieConsentContextProvider: FC<CookieConsentProviderProps> = (
-  props,
-) => {
-  const { getConsent, state } = useOakConsent();
-  const { openSettings: showConsentManager, showBanner } = useCookieConsentUI();
-  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return getConsent(policyName);
-  };
-  const hasConsentedTo = (serviceType: ServiceType) => {
-    const policyName = servicePolicyMap[serviceType];
-
-    return hasConsentedToPolicy(policyName);
-  };
+const CookieConsentContextProvider = (props: PropsWithChildren) => {
+  const { state, getConsent: getConsentState } = useOakConsent();
+  const { showBanner, openSettings: showConsentManager } = useCookieConsentUI();
+  const value = useMemo(() => {
+    return { getConsentState, showConsentManager };
+  }, [getConsentState, showConsentManager]);
 
   useEffect(() => {
     if (state.requiresInteraction) {
@@ -85,16 +69,10 @@ const CookieConsentContextProvider: FC<CookieConsentProviderProps> = (
     }
   }, [state.requiresInteraction, showBanner]);
 
-  return (
-    <cookieConsentContext.Provider
-      {...props}
-      value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
-    />
-  );
+  return <cookieConsentContext.Provider {...props} value={value} />;
 };
 
-const CookieConsentUIProvider = (props: PropsWithChildren) => {
-  const { children } = props;
+const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
   const { state, logConsents } = useOakConsent();
   const policies = state.policyConsents.map((policyConsent) => ({
     id: policyConsent.policyId,
@@ -108,7 +86,7 @@ const CookieConsentUIProvider = (props: PropsWithChildren) => {
   }));
 
   const currentConsents = state.policyConsents.reduce<{
-    [policyId: string]: Exclude<CookieConsentState, "pending">;
+    [policyId: string]: "granted" | "denied";
   }>((acc, policyConsent) => {
     if (policyConsent.consentState !== "pending") {
       acc[policyConsent.policyId] = policyConsent.consentState;
@@ -127,7 +105,6 @@ const CookieConsentUIProvider = (props: PropsWithChildren) => {
             consentState,
           }),
         );
-        console.log("Logging consents", consentsToLog);
 
         logConsents(consentsToLog);
       }}
@@ -140,7 +117,7 @@ const CookieConsentUIProvider = (props: PropsWithChildren) => {
   );
 };
 
-const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => (
+const CookieConsentProvider = (props: PropsWithChildren) => (
   <OakConsentProvider client={consentClient}>
     <CookieConsentUIProvider>
       <CookieConsentContextProvider {...props} />

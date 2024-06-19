@@ -2,12 +2,11 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import { ServiceType } from "../cookie-consent/types";
 
 import useAnalyticsService from "./useAnalyticsService";
 
 const service: AnalyticsService<unknown> = {
-  name: "test service" as ServiceType,
+  name: "posthog",
   init: jest.fn(() => Promise.resolve("test-posthog-distinct-id")),
   state: jest.fn(() => "pending"),
   track: jest.fn(),
