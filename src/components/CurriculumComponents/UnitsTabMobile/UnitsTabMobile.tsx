@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, useEffect } from "react";
 import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
 
 import { Thread } from "../CurriculumVisualiser/CurriculumVisualiser";
-import { FieldSet, FieldSetLegend } from "../UnitsTab/UnitsTab";
+import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -85,7 +85,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           aria-expanded={open}
         />
       </Box>
-      <FieldSet
+      <Fieldset
         $ml={16}
         $mt={32}
         $mr={16}
@@ -93,9 +93,9 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
         $height={"85%"}
         $overflow={"scroll"}
       >
-        <FieldSetLegend $font={"heading-7"} $mb="space-between-m">
+        <FieldsetLegend $font={"heading-7"} $mb="space-between-m">
           Highlight a thread
-        </FieldSetLegend>
+        </FieldsetLegend>
         <OakP $mb="space-between-m">
           Threads are groups of units across the curriculum that build a common
           body of knowledge
@@ -160,7 +160,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
             })}
           </Box>
         </RadioGroup>
-      </FieldSet>
+      </Fieldset>
       <OakFlex
         $position={"fixed"}
         $width={"100%"}

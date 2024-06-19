@@ -5,9 +5,7 @@ import {
   OakP,
   OakHeading,
   OakSpan,
-  OakPProps,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import CurriculumVisualiser, {
   Thread,
@@ -19,8 +17,9 @@ import CurriculumVisualiser, {
   isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
+import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 
-import Box, { BoxProps } from "@/components/SharedComponents/Box";
+import Box from "@/components/SharedComponents/Box";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
@@ -63,26 +62,6 @@ export function createProgrammeSlug(
     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
     : "";
 }
-
-export const FieldSet = (props: Omit<BoxProps, "as">) => {
-  const Component = styled(Box)`
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    border: none;
-  `;
-  return <Component {...props} as="fieldset" />;
-};
-
-export const FieldSetLegend: FC<
-  Omit<OakPProps, "as"> & { children?: React.ReactNode }
-> = (props) => {
-  const Component = styled(OakP)`
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    border: none;
-  `;
-  return <Component {...props} as="legend" />;
-};
 
 // Function component
 
@@ -249,15 +228,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
-            <FieldSet
+            <Fieldset
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
-              <FieldSetLegend $font={"heading-7"} $mb="space-between-xs">
+              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </FieldSetLegend>
+              </FieldsetLegend>
               <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
@@ -317,16 +296,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   );
                 })}
               </RadioGroup>
-            </FieldSet>
-            <FieldSet
+            </Fieldset>
+            <Fieldset
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="year-group-filter-desktop"
             >
-              <FieldSetLegend $font={"heading-7"} $mb="space-between-xs">
+              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </FieldSetLegend>
+              </FieldsetLegend>
               <RadioGroup
                 aria-label="Select a year group"
                 value={selectedYear ?? ""}
@@ -353,7 +332,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   </Box>
                 ))}
               </RadioGroup>
-            </FieldSet>
+            </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser
             unitData={unitData}
