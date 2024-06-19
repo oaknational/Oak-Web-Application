@@ -178,18 +178,18 @@ export const getStaticProps: GetStaticProps<
         return combinedMaths;
       };
 
-      const getOldSubjects = (subjectSlug: string, keyStageSlug: string) => {
-        if (subjectSlug === "maths" && keyStageSlug === "ks4") {
+      const getOldSubjects = (subjectSlug: string) => {
+        if (subjectSlug === "maths") {
           return null;
         } else {
           return getSubject(curriculumDataLegacy, subjectSlug, true);
         }
       };
 
-      const getNewSubjects = (subjectSlug: string, keyStageSlug: string) => {
+      const getNewSubjects = (subjectSlug: string) => {
         if (isEyfs) {
           return null;
-        } else if (subjectSlug === "maths" && keyStageSlug === "ks4") {
+        } else if (subjectSlug === "maths") {
           return getMaths();
         } else {
           return getSubject(curriculumData, subjectSlug, false);
@@ -200,8 +200,8 @@ export const getStaticProps: GetStaticProps<
         .map((subjectSlug) => {
           return {
             subjectSlug: subjectSlug,
-            old: getOldSubjects(subjectSlug, keyStageSlug),
-            new: getNewSubjects(subjectSlug, keyStageSlug),
+            old: getOldSubjects(subjectSlug),
+            new: getNewSubjects(subjectSlug),
           };
         })
         // Filter out subjects that don't exist in either curriculum
