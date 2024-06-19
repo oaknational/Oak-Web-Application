@@ -131,7 +131,6 @@ export default function YourDetails({
       >
         <Autocomplete
           isControlled={true}
-          key={data.schoolId}
           data-testid="school"
           inputProps={{
             label: "School (required)",
