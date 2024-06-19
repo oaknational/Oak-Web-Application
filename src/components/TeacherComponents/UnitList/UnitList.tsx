@@ -1,6 +1,11 @@
 import React, { FC } from "react";
-import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
+import {
+  OakLI,
+  OakUL,
+  OakFlex,
+  OakUnitsContainer,
+} from "@oaknational/oak-components";
 import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
@@ -33,7 +38,8 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems, onClick } = props;
+  const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
+    props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
 
   const isUnitOption = (
@@ -46,46 +52,55 @@ const UnitList: FC<UnitListProps> = (props) => {
     }
   };
 
+  const unitCards = currentPageItems.map((item, index) => (
+    <OakLI
+      key={`UnitList-UnitListItem-${item[0]?.slug}`}
+      data-testid="unit-list-item"
+      $width="100%"
+    >
+      {item.length > 1 && isUnitOption(item) ? (
+        <UnitListOptionalityCard
+          unitOptions={item}
+          index={index + pageSize * (currentPage - 1)}
+          onClick={onClick}
+        />
+      ) : (
+        <OakFlex>
+          {item.map((unitOption) => {
+            return (
+              <UnitListItem
+                {...props}
+                {...unitOption}
+                key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+                hideTopHeading
+                index={index + pageSize * (currentPage - 1)}
+                firstItemRef={index === 0 ? firstItemRef : null}
+                onClick={onClick}
+              />
+            );
+          })}
+        </OakFlex>
+      )}
+    </OakLI>
+  ));
+
   return (
     <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
-        <>
+        subjectSlug === "maths" ? (
+          <OakUnitsContainer
+            isLegacy={false}
+            subject="maths"
+            phase={"secondary"}
+            curriculumHref=""
+            showHeader={true}
+            unitCards={unitCards}
+          />
+        ) : (
           <OakUL aria-label="A list of units" $reset>
-            {currentPageItems.map((item, index) => (
-              <OakLI
-                key={`UnitList-UnitListItem-${item[0]?.slug}`}
-                data-testid="unit-list-item"
-              >
-                {item.length > 1 && isUnitOption(item) ? (
-                  <>
-                    <UnitListOptionalityCard
-                      unitOptions={item}
-                      index={index + pageSize * (currentPage - 1)}
-                      onClick={onClick}
-                    />
-                  </>
-                ) : (
-                  <OakFlex>
-                    {" "}
-                    {item.map((unitOption) => {
-                      return (
-                        <UnitListItem
-                          {...props}
-                          {...unitOption}
-                          key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                          hideTopHeading
-                          index={index + pageSize * (currentPage - 1)}
-                          firstItemRef={index === 0 ? firstItemRef : null}
-                          onClick={onClick}
-                        />
-                      );
-                    })}
-                  </OakFlex>
-                )}
-              </OakLI>
-            ))}
+            {...unitCards}
           </OakUL>
-        </>
+        )
       ) : null}
       {units.length > 5 ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
