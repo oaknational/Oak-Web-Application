@@ -285,9 +285,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   Year {year}
                 </OakHeading>
                 {disciplines?.length > 1 && (
-                  <Box>
+                  <Box role="radiogroup" aria-label="Disciplines">
                     {disciplines.map((discipline, index) => (
                       <Button
+                        role="radio"
                         $mb={20}
                         $mr={20}
                         background={
@@ -297,6 +298,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         }
                         key={index}
                         label={discipline.title}
+                        aria-label={discipline.title}
                         onClick={() => handleSelectDiscipline(year, discipline)}
                         size="small"
                         data-testid="discipline-button"
@@ -305,10 +307,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   </Box>
                 )}
                 {childSubjects.length > 0 && (
-                  <Box>
+                  <Box role="radiogroup" aria-label="Child Subjects">
                     {sortChildSubjects(childSubjects).map(
                       (subject: Subject) => (
                         <Button
+                          role="radio"
                           $mb={20}
                           $mr={20}
                           background={
@@ -317,6 +320,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                               : "white"
                           }
                           key={subject.subject_slug}
+                          aria-label={subject.subject}
                           label={subject.subject}
                           onClick={() => handleSelectSubject(year, subject)}
                           size="small"
@@ -327,9 +331,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   </Box>
                 )}
                 {domains.length > 0 && (
-                  <Box>
+                  <Box role="radiogroup" aria-label="Domains">
                     {domains.map((domain: Domain) => (
                       <Button
+                        role="radio"
                         $mb={20}
                         $mr={20}
                         background={
@@ -339,6 +344,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         }
                         key={domain.domain_id}
                         label={domain.domain}
+                        aria-label={domain.domain}
                         onClick={() => handleSelectDomain(year, domain)}
                         size="small"
                         data-testid="domain-button"
