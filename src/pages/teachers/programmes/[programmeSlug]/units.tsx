@@ -306,6 +306,17 @@ export const getStaticProps: GetStaticProps<
           programmeSlug,
         });
 
+        if (programmeSlug.startsWith("maths-")) {
+          const legacyCurriculumData = await curriculumApi2023.unitListing({
+            programmeSlug: programmeSlug + "-l",
+          });
+
+          curriculumData.units = [
+            ...curriculumData.units,
+            ...legacyCurriculumData.units,
+          ];
+        }
+
         if (!curriculumData) {
           return {
             notFound: true,
