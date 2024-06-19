@@ -3,12 +3,11 @@ import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
 
 import { Thread } from "../CurriculumVisualiser/CurriculumVisualiser";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
+import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import Radio from "@/components/SharedComponents/RadioButtons/Radio";
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 
 // Types and interfaces
 
@@ -101,19 +100,19 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           body of knowledge
         </OakP>
         <RadioGroup
-          aria-label="Highlight a thread"
+          name="thread"
           value={selectedThread ? selectedThread.slug : ""}
-          onChange={handleSelectThread}
+          onChange={(e) => handleSelectThread(e.target.value)}
         >
           <Box>
             <Box $mv={16} $position={"relative"}>
-              <Radio
+              <RadioButton
                 aria-label={"None highlighted"}
                 value={""}
                 data-testid={"no-threads-radio-mobile"}
               >
                 None highlighted
-              </Radio>
+              </RadioButton>
             </Box>
             {threadOptions.map((threadOption) => {
               const isSelectedMobile = isSelectedThread(threadOption);
@@ -132,7 +131,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                   $mb={8}
                   key={threadOption.slug}
                 >
-                  <Radio
+                  <RadioButton
                     aria-label={threadOption.title}
                     value={threadOption.slug}
                     data-testid={
@@ -154,7 +153,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                         )}
                       </OakSpan>
                     </OakSpan>
-                  </Radio>
+                  </RadioButton>
                 </Box>
               );
             })}
