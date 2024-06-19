@@ -1,6 +1,11 @@
 import { FC } from "react";
-import { OakHeading, OakSpan } from "@oaknational/oak-components";
 
+import {
+  OakFlex,
+  OakHeading,
+  OakSpan,
+  OakTypography,
+} from "@oaknational/oak-components";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
@@ -9,6 +14,7 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { OakColorName } from "@/styles/theme";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { getUnitListingPageDescription } from "@/utils/getUnitListingPageDescription";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -84,13 +90,18 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 programmeFactor
               )}
             </OakSpan>
-            <OakHeading
-              $mb={"space-between-m"}
-              tag={"h1"}
-              $font={["heading-5", "heading-3"]}
-            >
-              {title}
-            </OakHeading>
+            <OakFlex $flexDirection="column">
+              <OakHeading
+                $mb={"space-between-m"}
+                tag={"h1"}
+                $font={["heading-5", "heading-3"]}
+              >
+                {title}
+              </OakHeading>
+              <OakTypography $font="body-1" $display={["none", "flex"]}>
+                {getUnitListingPageDescription(subjectSlug, keyStageSlug) ?? ""}
+              </OakTypography>
+            </OakFlex>
             <Flex $display={["none", "flex"]}>
               {hasCurriculumDownload && isKeyStagesAvailable && (
                 <HeaderListingCurriculumDownloadButton
