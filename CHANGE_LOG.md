@@ -1,3 +1,44 @@
+## [1.462.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.2...v1.462.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* give the inline svg spritesheet a width and height of 0 ([e268847](https://github.com/oaknational/Oak-Web-Application/commit/e268847ff34507814c54888727f4f39b0278df8e))
+* wrap and hide inline svg sprite ([60380e6](https://github.com/oaknational/Oak-Web-Application/commit/60380e6d4e24b1fc879e6078e96b69f4c4c58c75))
+
+## [1.462.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.1...v1.462.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* remove meet our teachers section from about us ([124a053](https://github.com/oaknational/Oak-Web-Application/commit/124a053643e75d8515be5c2bd08a29c70582078f))
+
+## [1.462.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.0...v1.462.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* pa11y error in lesson listings ([6cccef2](https://github.com/oaknational/Oak-Web-Application/commit/6cccef2deebe767d3ac2ae17a96f2d497652dde8))
+
+# [1.462.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.461.0...v1.462.0) (2024-06-13)
+
+
+### Features
+
+* update navigation and copy to make new pupil browse experience live ([c397700](https://github.com/oaknational/Oak-Web-Application/commit/c397700a43387f82ac2f71d19522214e237db2b4))
+
+# [1.461.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.2...v1.461.0) (2024-06-13)
+
+
+### Bug Fixes
+
+* add noindex & nofollow to sensitive lessons ([9de37ca](https://github.com/oaknational/Oak-Web-Application/commit/9de37caeda73ad2fda244c98412a63accac826a9))
+
+
+### Features
+
+* remove 404 for isSensitive lessons as there is now a modal warning in place ([daf64a2](https://github.com/oaknational/Oak-Web-Application/commit/daf64a2d65f4abaff8fc73a9bfa45a924f4a4fa8))
+
 ## [1.460.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.1...v1.460.2) (2024-06-13)
 
 
