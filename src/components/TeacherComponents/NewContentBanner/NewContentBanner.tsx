@@ -73,7 +73,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       subjectSlug === "english-grammar")
   ) {
     progSlug = "english-primary-ks2";
-    subjTitle = "english";
+    subjTitle = "English";
   }
 
   if (
@@ -102,19 +102,14 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       $alignItems={"center"}
       $justifyContent={"space-between"}
       $mv={"space-between-m"}
-      // $maxWidth={["all-spacing-24"]}
       $borderColor={"grey40"}
       $dropShadow={"drop-shadow-grey"}
       $borderRadius={"border-radius-m2"}
       $gap={"space-between-m2"}
       $pa={"inner-padding-xl"}
     >
-      <OakFlex
-        $flexDirection={"column"}
-        // $maxWidth={["all-spacing-21", "all-spacing-22"]}
-        $gap={"space-between-xs"}
-      >
-        <OakHeading tag="h3" $font={"heading-5"}>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-xs"}>
+        <OakHeading tag="h2" $font={"heading-5"}>
           Switch to our new {subjTitle} teaching resources
         </OakHeading>
         <OakP $font={"heading-light-7"}>
@@ -141,7 +136,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           $display={"block"}
           $width={"all-spacing-18"}
           $height={"all-spacing-15"}
-          alt="new content banner image"
+          alt=""
           src={`https://${getBrowserConfig(
             "oakComponentsAssetsHost",
           )}/${getBrowserConfig(
