@@ -23,7 +23,6 @@ import {
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-
 export type Tier = {
   title: string;
   slug: string;
@@ -58,6 +57,10 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
+  const newAndLegacyUnitsOnPage =
+    currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
+    currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
+
   const getUnitCards = (
     pageItems: CurrenPageItemsProps[] | SpecialistUnit[][],
   ) =>
@@ -67,9 +70,6 @@ const UnitList: FC<UnitListProps> = (props) => {
       let calculatedIndex = baseIndex;
 
       if (subjectSlug === "maths") {
-        const newAndLegacyUnitsOnPage =
-          pageSize * currentPage >= indexOfFirstLegacyUnit &&
-          indexOfFirstLegacyUnit >= pageSize * (currentPage - 1);
         const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
         if (isItemLegacy) {
@@ -155,7 +155,11 @@ const UnitList: FC<UnitListProps> = (props) => {
             keystage: keystageSlug,
           },
         })}
-        showHeader={newPageItems.length ? true : false}
+        showHeader={
+          newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+            ? true
+            : false
+        }
         unitCards={getUnitCards(legacyPageItems)}
       />
     ) : null;
