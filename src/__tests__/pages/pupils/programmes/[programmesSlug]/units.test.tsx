@@ -32,6 +32,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
     it("should render the unit titles in the correct order", () => {
       const { getByText } = render(
         <PupilUnitListingPage
+          programmeSlug="maths-secondary-year-10-aqa-core"
           curriculumData={[
             unitBrowseDataFixture({
               unitData: {
@@ -63,14 +64,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       it("Should call API:pupilUnitLisitngQuery", async () => {
         await getStaticProps({
           params: {
-            programmeSlug: "ks123",
+            programmeSlug: "biology-secondary-year-10-foundation-aqa",
           },
         });
 
         expect(
           curriculumApi2023.default.pupilUnitListingQuery,
         ).toHaveBeenCalledWith({
-          programmeSlug: "ks123",
+          baseSlug: "biology-secondary-year-10",
         });
       });
     });

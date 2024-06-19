@@ -13,7 +13,7 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
+import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 
@@ -80,9 +80,10 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonDownloadsCanonical({
-        lessonSlug,
-      });
+      const curriculumData =
+        await curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({
+          lessonSlug,
+        });
 
       if (!curriculumData) {
         return {
@@ -92,7 +93,9 @@ export const getStaticProps: GetStaticProps<
 
       const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+          },
         },
       };
       return results;

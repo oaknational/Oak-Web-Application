@@ -9,19 +9,19 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type ExamboardData = Pick<
   ProgrammeFields,
   "examboard" | "examboardSlug" | "examboardDisplayOrder"
->;
+> & {
+  isLegacy: boolean;
+};
 
 export const BrowseExamboardSelector = ({
   examboards,
   baseSlug,
   onClick,
-  isLegacy,
   phaseSlug,
 }: {
   examboards: ExamboardData[];
   baseSlug?: string;
   onClick?: (examboard: ExamboardData) => void;
-  isLegacy: boolean;
   phaseSlug: PupilProgrammeListingData["programmeFields"]["phaseSlug"];
 }) => {
   if (phaseSlug === "foundation" || !phaseSlug) {
@@ -58,7 +58,7 @@ export const BrowseExamboardSelector = ({
                 href={resolveOakHref({
                   page: "pupil-unit-index",
                   programmeSlug: `${baseSlug}-${examboard.examboardSlug}${
-                    isLegacy ? "-l" : ""
+                    examboard.isLegacy ? "-l" : ""
                   }`,
                 })}
               >

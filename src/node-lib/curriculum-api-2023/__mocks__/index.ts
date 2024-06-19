@@ -19,6 +19,8 @@ import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/les
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { mockUrls } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
+import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
+import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -28,7 +30,6 @@ const curriculumApi: Pick<
   | "lessonListing"
   | "programmeListingPage"
   | "teachersHomePage"
-  | "lessonDownloadsCanonical"
   | "pupilLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
@@ -42,6 +43,7 @@ const curriculumApi: Pick<
   | "lessonDownloads"
   | "unitListing"
   | "teachersSitemap"
+  | "pupilsSitemap"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -85,15 +87,9 @@ const curriculumApi: Pick<
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
   }),
-  lessonDownloadsCanonical: jest.fn(async () => {
-    return {
-      ...lessonDownloadsFixtures(),
-      pathways: [lessonDownloadsFixtures()],
-    };
-  }),
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
-  }),
+  }) as jest.Mocked<LessonDownloadsQuery>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }),
@@ -115,6 +111,9 @@ const curriculumApi: Pick<
   }),
   teachersSitemap: jest.fn(async () => {
     return [...mockUrls];
+  }),
+  pupilsSitemap: jest.fn(async () => {
+    return mockedSiteMapResponse;
   }),
 };
 

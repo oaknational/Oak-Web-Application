@@ -83,7 +83,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       />
       <OakPupilJourneyListCounter
         count={orderedCurriculumData.length}
-        countHeader="Lessons"
+        countHeader="Choose a lesson"
         tag="h2"
       />
     </OakFlex>
@@ -124,7 +124,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                     })}
                     index={index + 1}
                     title={lesson.lessonData.title}
-                    role="listitem"
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
                 );
