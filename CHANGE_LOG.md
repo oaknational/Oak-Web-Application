@@ -1,3 +1,11 @@
+## [1.462.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.2...v1.462.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* give the inline svg spritesheet a width and height of 0 ([e268847](https://github.com/oaknational/Oak-Web-Application/commit/e268847ff34507814c54888727f4f39b0278df8e))
+* wrap and hide inline svg sprite ([60380e6](https://github.com/oaknational/Oak-Web-Application/commit/60380e6d4e24b1fc879e6078e96b69f4c4c58c75))
+
 ## [1.462.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.1...v1.462.2) (2024-06-19)
 
 
