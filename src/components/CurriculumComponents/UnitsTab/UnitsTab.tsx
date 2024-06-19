@@ -246,6 +246,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 value={selectedThread ? selectedThread.slug : ""}
                 onChange={handleSelectThread}
               >
+                <SkipLink href="#content">Skip to units</SkipLink>
                 <Box $mv={16}>
                   <Radio
                     aria-label={"None highlighted"}
@@ -255,7 +256,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                     None highlighted
                   </Radio>
                 </Box>
-                <SkipLink href="#content">Skip to units</SkipLink>
                 {threadOptions.map((threadOption) => {
                   const isSelected = isSelectedThread(threadOption);
                   const highlightedCount = highlightedUnitCount();
