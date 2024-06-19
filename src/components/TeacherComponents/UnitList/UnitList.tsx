@@ -116,6 +116,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   const phaseSlug = (props as UnitListingData).phase ?? "";
   const examBoardSlug = (props as UnitListingData).examBoardSlug ?? "";
+  const keystageSlug = (props as UnitListingData).keyStageSlug ?? "";
 
   const newPageItems = currentPageItems.filter(
     (item) => !isSlugLegacy(item[0]!.programmeSlug),
@@ -148,10 +149,11 @@ const UnitList: FC<UnitListProps> = (props) => {
         subject="maths"
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
-          page: "curriculum-units",
-          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
-            examBoardSlug ? `-${examBoardSlug}` : ""
-          }`,
+          page: "curriculum-previous-downloads",
+          query: {
+            subject: subjectSlug,
+            keystage: keystageSlug,
+          },
         })}
         showHeader={newPageItems.length ? true : false}
         unitCards={getUnitCards(legacyPageItems)}
