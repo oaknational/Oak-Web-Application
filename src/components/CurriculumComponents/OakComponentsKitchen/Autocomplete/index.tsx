@@ -24,6 +24,7 @@ type AutocompleteProps = {
   value?: string;
   onChange: (value: string, textValue: string) => void;
   onInputChange?: (value: string) => void;
+  isControlled?: boolean;
   children: CollectionChildren<HTMLDivElement>;
 };
 const Autocomplete = (props: AutocompleteProps) => {
@@ -46,11 +47,11 @@ const Autocomplete = (props: AutocompleteProps) => {
   const state = useComboBoxState({
     ...props,
     defaultFilter: contains,
-    inputValue: props.value,
     onSelectionChange: onSelectionChange,
     onInputChange: onInputChange,
-    children: props.children,
-    items: props.children as Iterable<HTMLDivElement>,
+    [props.isControlled ? "defaultInputValue" : "inputValue"]: props.value,
+    [props.isControlled ? "items" : "children"]:
+      props.children as Iterable<HTMLDivElement>,
   });
 
   const { inputProps, listBoxProps } = useComboBox(

@@ -130,6 +130,7 @@ export default function YourDetails({
         $gap={"space-between-xs"}
       >
         <Autocomplete
+          isControlled={true}
           key={data.schoolId}
           data-testid="school"
           inputProps={{
