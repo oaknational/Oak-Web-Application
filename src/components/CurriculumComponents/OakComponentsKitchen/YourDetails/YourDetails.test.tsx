@@ -34,7 +34,7 @@ describe("YourDetails", () => {
 
     it("choose", () => {
       const onChange = jest.fn();
-      const { getByRole, getAllByTestId } = renderWithTheme(
+      const { rerender, getByRole, getAllByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[
@@ -55,14 +55,36 @@ describe("YourDetails", () => {
         </OakThemeProvider>,
       );
 
-      const inputElement = getByRole("combobox");
       expect(onChange).toHaveBeenCalledTimes(0);
-      expect(inputElement).toHaveValue("");
 
+      const inputElement = getByRole("combobox");
       act(() => {
         inputElement.focus();
         fireEvent.change(inputElement, { target: { value: "Test School" } });
       });
+
+      rerender(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <YourDetails
+            schools={[
+              {
+                urn: "TEST",
+                name: "Test School",
+                la: "test",
+                postcode: "ZZ00 0ZZ",
+              },
+            ]}
+            data={{
+              schoolId: "",
+              schoolName: "Test School",
+            }}
+            errors={{}}
+            onChange={onChange}
+          />
+        </OakThemeProvider>,
+      );
+
+      expect(inputElement).toHaveValue("Test School");
 
       const allOptions = getAllByTestId("listbox-option");
       act(() => {
@@ -75,6 +97,7 @@ describe("YourDetails", () => {
         schoolNotListed: false,
       });
     });
+
     it("clear", () => {
       const onChange = jest.fn();
       const { getByRole } = renderWithTheme(

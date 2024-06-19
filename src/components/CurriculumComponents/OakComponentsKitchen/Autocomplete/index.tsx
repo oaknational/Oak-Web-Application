@@ -49,7 +49,7 @@ const Autocomplete = (props: AutocompleteProps) => {
     defaultFilter: contains,
     onSelectionChange: onSelectionChange,
     onInputChange: onInputChange,
-    [props.isControlled ? "defaultInputValue" : "inputValue"]: props.value,
+    [props.isControlled ? "inputValue" : "defaultInputValue"]: props.value,
     [props.isControlled ? "items" : "children"]:
       props.children as Iterable<HTMLDivElement>,
   });

@@ -1,6 +1,5 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
-import { useArgs } from "@storybook/preview-api";
 
 import { STATES } from "./seeds";
 
@@ -19,8 +18,6 @@ export const Autocomplete: Story = {
     value: "",
   },
   render: function Render(args) {
-    const [, updateArgs] = useArgs();
-
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
         <Component
@@ -29,17 +26,16 @@ export const Autocomplete: Story = {
             id: "states",
             error: undefined,
           }}
-          onChange={(value) => updateArgs({ value })}
+          onChange={(value) => console.log({ value })}
           value={args.value}
         >
           {STATES.map((state) => {
             const key = state.toLocaleLowerCase();
             const textValue = state;
 
-            const element = <div>🇺🇸 {textValue}</div>;
             return (
               <AutocompleteItem key={key} textValue={textValue}>
-                {element}
+                <div>🇺🇸 {textValue}</div>
               </AutocompleteItem>
             );
           })}
