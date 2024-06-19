@@ -3,13 +3,25 @@
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
+import {
+  createContext,
+  FC,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+} from "react";
+import {
+  OakConsentProvider,
+  useOakConsent,
+} from "@oaknational/oak-consent-client";
+import {
+  OakCookieConsent,
+  OakCookieConsentProvider,
+  oakDefaultTheme,
+  OakThemeProvider,
+  useCookieConsent as useCookieConsentUI,
+} from "@oaknational/oak-components";
 
-import { createContext, FC, useContext } from "react";
-
-// eslint-disable-next-line
-// @ts-ignore
-import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
-import useConfirmicConsents from "./confirmic/useConfirmicConsents";
 import {
   CookieConsent,
   CookieConsentState,
@@ -17,6 +29,7 @@ import {
   servicePolicyMap,
   ServiceType,
 } from "./types";
+import { consentClient } from "./consentClient";
 
 export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
 export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
@@ -51,35 +64,88 @@ type CookieConsentProviderProps = {
   children?: React.ReactNode;
   __testMockValue?: CookieConsentContext;
 };
-const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
-  const { children } = props;
-  const consents = useConfirmicConsents();
 
-  const showConsentManager = () => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    window.Metomic("ConsentManager:show");
+const CookieConsentContextProvider: FC<CookieConsentProviderProps> = (
+  props,
+) => {
+  const { getConsent, state } = useOakConsent();
+  const { openSettings: showConsentManager, showBanner } = useCookieConsentUI();
+  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
+    return getConsent(policyName);
   };
-
   const hasConsentedTo = (serviceType: ServiceType) => {
     const policyName = servicePolicyMap[serviceType];
 
-    return consents[policyName].state;
+    return hasConsentedToPolicy(policyName);
   };
 
-  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return consents[policyName].state;
-  };
+  useEffect(() => {
+    if (state.requiresInteraction) {
+      showBanner();
+    }
+  }, [state.requiresInteraction, showBanner]);
 
   return (
-    <MetomicProvider projectId="prj:ecbd577f-d069-4aae-aae2-b622504679cd">
-      <cookieConsentContext.Provider
-        value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
-      >
-        {children}
-      </cookieConsentContext.Provider>
-    </MetomicProvider>
+    <cookieConsentContext.Provider
+      {...props}
+      value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
+    />
   );
 };
+
+const CookieConsentUIProvider = (props: PropsWithChildren) => {
+  const { children } = props;
+  const { state, logConsents } = useOakConsent();
+  const policies = state.policyConsents.map((policyConsent) => ({
+    id: policyConsent.policyId,
+    label: policyConsent.policyLabel,
+    description: policyConsent.policyDescription,
+    strictlyNecessary: policyConsent.isStrictlyNecessary,
+    parties: policyConsent.policyParties.map((party) => ({
+      name: party.name,
+      policyURL: party.url,
+    })),
+  }));
+
+  const currentConsents = state.policyConsents.reduce<{
+    [policyId: string]: Exclude<CookieConsentState, "pending">;
+  }>((acc, policyConsent) => {
+    if (policyConsent.consentState !== "pending") {
+      acc[policyConsent.policyId] = policyConsent.consentState;
+    }
+    return acc;
+  }, {});
+
+  return (
+    <OakCookieConsentProvider
+      policies={policies}
+      currentConsents={currentConsents}
+      onConsentChange={(consents) => {
+        const consentsToLog = Object.entries(consents).map(
+          ([policyId, consentState]) => ({
+            policyId,
+            consentState,
+          }),
+        );
+        console.log("Logging consents", consentsToLog);
+
+        logConsents(consentsToLog);
+      }}
+    >
+      {children}
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+      </OakThemeProvider>
+    </OakCookieConsentProvider>
+  );
+};
+
+const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => (
+  <OakConsentProvider client={consentClient}>
+    <CookieConsentUIProvider>
+      <CookieConsentContextProvider {...props} />
+    </CookieConsentUIProvider>
+  </OakConsentProvider>
+);
 
 export default CookieConsentProvider;

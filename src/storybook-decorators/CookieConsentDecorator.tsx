@@ -12,9 +12,9 @@ export default function CookieConsentDecorator(Story: Story) {
   const [state] = useState({
     showConsentManager: noop,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    hasConsentedTo: (serviceType: ServiceType) => "disabled",
+    hasConsentedTo: (serviceType: ServiceType) => "denied",
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    hasConsentedToPolicy: (policyName: CookiePolicyName) => "disabled",
+    hasConsentedToPolicy: (policyName: CookiePolicyName) => "denied",
   });
 
   return (

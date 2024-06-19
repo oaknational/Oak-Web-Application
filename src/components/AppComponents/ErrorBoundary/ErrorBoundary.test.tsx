@@ -37,8 +37,8 @@ const WithStatisticsConsent: FC = (props) => {
         {...props}
         __testMockValue={{
           showConsentManager: jest.fn(),
-          hasConsentedTo: () => "enabled",
-          hasConsentedToPolicy: () => "enabled",
+          hasConsentedTo: () => "granted",
+          hasConsentedToPolicy: () => "granted",
         }}
       />
     </ThemeProvider>
@@ -51,8 +51,8 @@ const WithoutStatisticsConsent: FC = (props) => {
         {...props}
         __testMockValue={{
           showConsentManager: jest.fn(),
-          hasConsentedTo: () => "disabled",
-          hasConsentedToPolicy: () => "disabled",
+          hasConsentedTo: () => "denied",
+          hasConsentedToPolicy: () => "denied",
         }}
       />
     </ThemeProvider>

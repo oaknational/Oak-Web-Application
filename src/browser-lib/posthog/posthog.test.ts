@@ -90,9 +90,9 @@ describe("posthog.ts", () => {
   });
   test("state", () => {
     expect(posthog.state()).toBe("pending");
-    getHasConsentedTo.mockImplementationOnce(() => "enabled");
+    getHasConsentedTo.mockImplementationOnce(() => "granted");
     expect(posthog.state()).toBe("enabled");
-    getHasConsentedTo.mockImplementationOnce(() => "disabled");
+    getHasConsentedTo.mockImplementationOnce(() => "denied");
     expect(posthog.state()).toBe("disabled");
   });
 });

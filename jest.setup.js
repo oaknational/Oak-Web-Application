@@ -30,14 +30,6 @@ jest.mock("./src/node-lib/curriculum-api-2023", () =>
   jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
 );
 
-jest.mock(
-  "./src/browser-lib/cookie-consent/confirmic/metomic-react.hacked.ts",
-  () => ({
-    __esModule: true,
-    MetomicProvider: ({ children }) => children,
-  }),
-);
-
 jest.mock("posthog-js", () => ({
   __esModule: true,
   default: {

@@ -53,7 +53,16 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   optOut: () => {
     client.opt_out_capturing();
   },
-  state: () => getHasConsentedTo("posthog"),
+  state: () => {
+    switch (getHasConsentedTo("posthog")) {
+      case "denied":
+        return "disabled";
+      case "granted":
+        return "enabled";
+      default:
+        return "pending";
+    }
+  },
 });
 
 export default (client: PostHog) =>

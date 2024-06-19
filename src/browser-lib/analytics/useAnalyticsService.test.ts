@@ -30,7 +30,7 @@ describe("useAnalyticsService", () => {
   });
   test("should not call service.init() if consentState:disabled", () => {
     renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "disabled" }),
+      useAnalyticsService({ service, config: null, consentState: "denied" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
@@ -45,7 +45,7 @@ describe("useAnalyticsService", () => {
       useAnalyticsService({
         service,
         config: { foo: "bar" },
-        consentState: "enabled",
+        consentState: "granted",
       }),
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
@@ -55,7 +55,7 @@ describe("useAnalyticsService", () => {
       useAnalyticsService({
         service,
         config: { foo: "bar" },
-        consentState: "enabled",
+        consentState: "granted",
         setPosthogDistinctId,
       }),
     );

@@ -37,7 +37,7 @@ const useAnalyticsService = <T>({
         setLoaded(true);
       }
     };
-    if (consentState === "enabled" && !hasAttemptedInit) {
+    if (consentState === "granted" && !hasAttemptedInit) {
       attemptInit();
     }
   }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
@@ -45,10 +45,10 @@ const useAnalyticsService = <T>({
   useEffect(() => {
     // do not track
     if (loaded) {
-      if (consentState === "enabled") {
+      if (consentState === "granted") {
         service.optIn();
       }
-      if (consentState === "disabled") {
+      if (consentState === "granted") {
         service.optOut();
         if (setPosthogDistinctId) {
           setPosthogDistinctId(null);

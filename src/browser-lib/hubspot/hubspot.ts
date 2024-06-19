@@ -110,7 +110,16 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
     _hsp.push(["revokeCookieConsent"]);
     _hsq.push(["doNotTrack"]);
   },
-  state: () => getHasConsentedTo("hubspot"),
+  state: () => {
+    switch (getHasConsentedTo("hubspot")) {
+      case "denied":
+        return "disabled";
+      case "granted":
+        return "enabled";
+      default:
+        return "pending";
+    }
+  },
 };
 
 export default withQueue(hubspotWithoutQueue);

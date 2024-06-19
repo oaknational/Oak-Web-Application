@@ -1,11 +1,11 @@
 import isBrowser from "../../utils/isBrowser";
 
-import { getConsentsFromLocalStorage } from "./confirmic/useConfirmicConsents";
+import { consentClient } from "./consentClient";
 import { HasConsentedTo } from "./CookieConsentProvider";
 import { servicePolicyMap } from "./types";
 
 /**
- * Gets the latest cookie consent choices from local storage.
+ * Gets the latest cookie consent choices from oak-consent-client.
  * Use this function when you need to access the user's
  * consent choices from outside of the React component
  * lifecycle. If you need to use the user's consent choices
@@ -19,7 +19,7 @@ const getHasConsentedTo: HasConsentedTo = (serviceType) => {
 
   const policyName = servicePolicyMap[serviceType];
 
-  return getConsentsFromLocalStorage()[policyName].state;
+  return consentClient.getConsent(policyName);
 };
 
 export default getHasConsentedTo;

@@ -229,7 +229,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     <analyticsContext.Provider value={analytics}>
       {children}
       <HubspotScript
-        shouldLoad={hubspotConsent === "enabled"}
+        shouldLoad={hubspotConsent === "granted"}
         onLoad={onHubspotScriptLoaded}
         {...hubspotConfig}
       />

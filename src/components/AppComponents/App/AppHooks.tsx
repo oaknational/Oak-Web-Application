@@ -27,12 +27,12 @@ const useAppHooks = () => {
   const { posthogDistinctId } = useAnalytics();
   const router = useRouter();
   useBugsnag({
-    enabled: hasConsentedTo("bugsnag") === "enabled",
+    enabled: hasConsentedTo("bugsnag") === "granted",
     userId: posthogDistinctId,
   });
   useGleap({
     enabled:
-      hasConsentedTo("gleap") === "enabled" &&
+      hasConsentedTo("gleap") === "granted" &&
       !router.pathname.startsWith("/pupils") && // Disable Gleap for pupils
       !router.pathname.startsWith("/videos"), // Disable Gleap for standalone video pages
   });
