@@ -21,6 +21,8 @@ import {
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type Tier = {
   title: string;
@@ -52,53 +54,121 @@ const UnitList: FC<UnitListProps> = (props) => {
     }
   };
 
-  const unitCards = currentPageItems.map((item, index) => (
-    <OakLI
-      key={`UnitList-UnitListItem-${item[0]?.slug}`}
-      data-testid="unit-list-item"
-      $width="100%"
-    >
-      {item.length > 1 && isUnitOption(item) ? (
-        <UnitListOptionalityCard
-          unitOptions={item}
-          index={index + pageSize * (currentPage - 1)}
-          onClick={onClick}
-        />
-      ) : (
-        <OakFlex>
-          {item.map((unitOption) => {
-            return (
-              <UnitListItem
-                {...props}
-                {...unitOption}
-                key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                hideTopHeading
-                index={index + pageSize * (currentPage - 1)}
-                firstItemRef={index === 0 ? firstItemRef : null}
-                onClick={onClick}
-              />
-            );
-          })}
-        </OakFlex>
-      )}
-    </OakLI>
-  ));
+  const indexOfFirstLegacyUnit = units
+    .map((u) => isSlugLegacy(u[0]!.programmeSlug))
+    .indexOf(true);
+
+  const getUnitCards = (
+    pageItems: CurrenPageItemsProps[] | SpecialistUnit[][],
+  ) =>
+    pageItems.map((item, index) => {
+      const baseIndex = index + pageSize * (currentPage - 1);
+
+      let calculatedIndex = baseIndex;
+
+      if (subjectSlug === "maths") {
+        const newAndLegacyUnitsOnPage =
+          pageSize * currentPage >= indexOfFirstLegacyUnit &&
+          indexOfFirstLegacyUnit >= pageSize * (currentPage - 1);
+        const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
+
+        if (isItemLegacy) {
+          if (newAndLegacyUnitsOnPage) {
+            calculatedIndex = index;
+          } else {
+            calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
+          }
+        }
+      }
+
+      return (
+        <OakLI
+          key={`UnitList-UnitListItem-${item[0]?.slug}`}
+          data-testid="unit-list-item"
+          $width="100%"
+        >
+          {item.length > 1 && isUnitOption(item) ? (
+            <UnitListOptionalityCard
+              unitOptions={item}
+              index={calculatedIndex}
+              onClick={onClick}
+            />
+          ) : (
+            <OakFlex>
+              {item.map((unitOption) => {
+                return (
+                  <UnitListItem
+                    {...props}
+                    {...unitOption}
+                    key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+                    hideTopHeading
+                    index={calculatedIndex}
+                    firstItemRef={index === 0 ? firstItemRef : null}
+                    onClick={onClick}
+                  />
+                );
+              })}
+            </OakFlex>
+          )}
+        </OakLI>
+      );
+    });
+
+  const phaseSlug = (props as UnitListingData).phase ?? "";
+  const examBoardSlug = (props as UnitListingData).examBoardSlug ?? "";
+
+  const newPageItems = currentPageItems.filter(
+    (item) => !isSlugLegacy(item[0]!.programmeSlug),
+  );
+  const legacyPageItems = currentPageItems.filter((item) =>
+    isSlugLegacy(item[0]!.programmeSlug),
+  );
+
+  const NewUnits = () =>
+    newPageItems.length ? (
+      <OakUnitsContainer
+        isLegacy={false}
+        subject="maths"
+        phase={phaseSlug}
+        curriculumHref={resolveOakHref({
+          page: "curriculum-units",
+          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
+            examBoardSlug ? `-${examBoardSlug}` : ""
+          }`,
+        })}
+        showHeader={paginationProps.currentPage === 1}
+        unitCards={getUnitCards(newPageItems)}
+      />
+    ) : null;
+
+  const LegacyUnits = () =>
+    legacyPageItems.length ? (
+      <OakUnitsContainer
+        isLegacy={true}
+        subject="maths"
+        phase={phaseSlug}
+        curriculumHref={resolveOakHref({
+          page: "curriculum-units",
+          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
+            examBoardSlug ? `-${examBoardSlug}` : ""
+          }`,
+        })}
+        showHeader={newPageItems.length ? true : false}
+        unitCards={getUnitCards(legacyPageItems)}
+      />
+    ) : null;
 
   return (
     <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
         subjectSlug === "maths" ? (
-          <OakUnitsContainer
-            isLegacy={false}
-            subject="maths"
-            phase={"secondary"}
-            curriculumHref=""
-            showHeader={true}
-            unitCards={unitCards}
-          />
+          <OakFlex $flexDirection="column" $gap="space-between-xxl">
+            <NewUnits />
+            <LegacyUnits />
+          </OakFlex>
         ) : (
           <OakUL aria-label="A list of units" $reset>
-            {...unitCards}
+            {...getUnitCards(currentPageItems)}
           </OakUL>
         )
       ) : null}

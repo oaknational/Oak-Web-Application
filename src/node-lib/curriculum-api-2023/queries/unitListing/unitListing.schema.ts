@@ -27,6 +27,7 @@ const unitListingData = z.object({
   units: unitSchema,
   hasNewContent: z.boolean(),
   learningThemes: learningThemes,
+  phase: z.string(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;
