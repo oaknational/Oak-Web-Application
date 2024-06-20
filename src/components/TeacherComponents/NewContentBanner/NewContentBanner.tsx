@@ -66,6 +66,10 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
     navigationPage = "programme-index";
   }
 
+  if (subjectSlug === "english") {
+    subjTitle = "English";
+  }
+
   if (
     keyStageSlug === "ks2" &&
     (subjectSlug === "english-reading-for-pleasure" ||
