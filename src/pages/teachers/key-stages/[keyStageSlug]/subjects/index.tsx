@@ -166,10 +166,14 @@ export const getStaticProps: GetStaticProps<
           };
         }
 
+        const progCount =
+          newMaths.programmeCount === 1 && legacyMaths.programmeCount === 1
+            ? 1
+            : Math.max(newMaths.programmeCount, legacyMaths.programmeCount);
+
         const combinedMaths: KeyStageSubjectData = {
           programmeSlug: newMaths.programmeSlug,
-          programmeCount:
-            newMaths.programmeCount + legacyMaths.programmeCount - 1,
+          programmeCount: progCount,
           subjectSlug: newMaths.subjectSlug,
           subjectTitle: newMaths.subjectTitle,
           unitCount: newMaths.unitCount + legacyMaths.unitCount,
