@@ -1,5 +1,5 @@
 query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_new_0_0_4_bool_exp) {
-  units: published_mv_curriculum_units_including_new_0_0_4(where: $where) {
+  units: published_mv_curriculum_units_including_new_0_0_7(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
