@@ -83,7 +83,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
   if (
     !renderComponent ||
     (isUnitListing && subjectSlug === "maths") ||
-    (!isLegacy && isUnitListing)
+    !isLegacy
   ) {
     return null;
   }

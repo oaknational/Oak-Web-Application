@@ -163,6 +163,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle.toLowerCase()}
                 programmeSlug={programmeSlug}
+                isLegacy={isSlugLegacy(programmeSlug)}
               />
             </OakGridArea>
           </OakGrid>

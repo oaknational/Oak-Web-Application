@@ -228,6 +228,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           subjectSlug={subjectSlug ?? ""}
           subjectTitle={subjectTitle ? subjectTitle.toLowerCase() : ""}
           programmeSlug={programmeSlug ?? ""}
+          isLegacy={lessonCohort === LEGACY_COHORT}
         />
         {expired ? (
           <Box $pa={16} $mb={64}>
