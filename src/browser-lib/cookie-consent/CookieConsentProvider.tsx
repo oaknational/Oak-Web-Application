@@ -118,7 +118,11 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
         {isMounted && (
-          <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+          <OakCookieConsent
+            policyURL="/legal/cookie-policy"
+            isFixed
+            zIndex={99999}
+          />
         )}
       </OakThemeProvider>
     </OakCookieConsentProvider>
