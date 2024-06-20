@@ -9,6 +9,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useState,
 } from "react";
 import {
   OakConsentProvider,
@@ -84,7 +85,6 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       policyURL: party.url,
     })),
   }));
-
   const currentConsents = state.policyConsents.reduce<{
     [policyId: string]: "granted" | "denied";
   }>((acc, policyConsent) => {
@@ -93,6 +93,12 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
     }
     return acc;
   }, {});
+  // Suppress an SSR warning around using `useLayoutEffect` on the server
+  // by only rendering the consent UI on the client
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <OakCookieConsentProvider
@@ -111,7 +117,9 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
     >
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+        {isMounted && (
+          <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+        )}
       </OakThemeProvider>
     </OakCookieConsentProvider>
   );
