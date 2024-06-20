@@ -305,4 +305,86 @@ describe("PupilExperienceView", () => {
       expect(mockRouter.asPath).toBe("/somewhere-else");
     });
   });
+  it("should have robots meta tag with index & follow", async () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+
+    render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          backUrl="/somewhere-else"
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(
+      document.querySelector("meta[name=robots]")?.getAttribute("content"),
+    ).toEqual("index,follow");
+  });
+
+  it("should have robots meta tag with noindex & nofollow", async () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      deprecatedFields: {
+        isSensitive: true,
+      },
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+
+    render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          backUrl="/somewhere-else"
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(
+      document.querySelector("meta[name=robots]")?.getAttribute("content"),
+    ).toEqual("noindex,nofollow");
+  });
 });
