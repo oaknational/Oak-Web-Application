@@ -187,7 +187,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           </OakFlex>
         ) : (
           <OakUL aria-label="A list of units" $reset>
-            {...getUnitCards(currentPageItems)}
+            {getUnitCards(currentPageItems)}
           </OakUL>
         )
       ) : null}
