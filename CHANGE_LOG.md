@@ -1,3 +1,76 @@
+## [1.463.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.0...v1.463.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* amend spacing on unit listing page ([e85472d](https://github.com/oaknational/Oak-Web-Application/commit/e85472dd217fd9e62c5596396c05dcafb06c70d9))
+* return components to previous version ([63ed5cc](https://github.com/oaknational/Oak-Web-Application/commit/63ed5cc6c24c52af4a283dbebf1504cae22ae603))
+
+# [1.463.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.3...v1.463.0) (2024-06-20)
+
+
+### Bug Fixes
+
+* added fieldset/legend fixes to mobile view of curriculum unit sequence ([1f2ea1f](https://github.com/oaknational/Oak-Web-Application/commit/1f2ea1f1f9f3ae42bdeacf9ab3f88be19ad234b9))
+* added fieldset/legend fixes to the curriculum unit sequence page ([11be468](https://github.com/oaknational/Oak-Web-Application/commit/11be4684e3971eb91a8289d6192742861e74a8ef))
+
+
+### Features
+
+* added <SimpleRadio/> as a replacement for improved a11y ([e979225](https://github.com/oaknational/Oak-Web-Application/commit/e9792259e93ac5c394068939396ba26ef64874db))
+
+## [1.462.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.2...v1.462.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* give the inline svg spritesheet a width and height of 0 ([e268847](https://github.com/oaknational/Oak-Web-Application/commit/e268847ff34507814c54888727f4f39b0278df8e))
+* wrap and hide inline svg sprite ([60380e6](https://github.com/oaknational/Oak-Web-Application/commit/60380e6d4e24b1fc879e6078e96b69f4c4c58c75))
+
+## [1.462.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.1...v1.462.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* remove meet our teachers section from about us ([124a053](https://github.com/oaknational/Oak-Web-Application/commit/124a053643e75d8515be5c2bd08a29c70582078f))
+
+## [1.462.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.0...v1.462.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* pa11y error in lesson listings ([6cccef2](https://github.com/oaknational/Oak-Web-Application/commit/6cccef2deebe767d3ac2ae17a96f2d497652dde8))
+
+# [1.462.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.461.0...v1.462.0) (2024-06-13)
+
+
+### Features
+
+* update navigation and copy to make new pupil browse experience live ([c397700](https://github.com/oaknational/Oak-Web-Application/commit/c397700a43387f82ac2f71d19522214e237db2b4))
+
+# [1.461.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.2...v1.461.0) (2024-06-13)
+
+
+### Bug Fixes
+
+* add noindex & nofollow to sensitive lessons ([9de37ca](https://github.com/oaknational/Oak-Web-Application/commit/9de37caeda73ad2fda244c98412a63accac826a9))
+
+
+### Features
+
+* remove 404 for isSensitive lessons as there is now a modal warning in place ([daf64a2](https://github.com/oaknational/Oak-Web-Application/commit/daf64a2d65f4abaff8fc73a9bfa45a924f4a4fa8))
+
+## [1.460.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.1...v1.460.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* add or null operator to content copyright ([ed1873b](https://github.com/oaknational/Oak-Web-Application/commit/ed1873b95254d283cb25932fea7dfbf9cdf296c5))
+* adds tooltip id ([44d809f](https://github.com/oaknational/Oak-Web-Application/commit/44d809f0c5fd52c654c1be452f837a5aa04f1e7a))
+* amend test to include null value ([e04ccf7](https://github.com/oaknational/Oak-Web-Application/commit/e04ccf75214a2a359fc87ea89b31a595a7f22a66))
+* update curriculum schema to working version ([83f6aae](https://github.com/oaknational/Oak-Web-Application/commit/83f6aaee071bed8055501f1e65d23645f5968cbc))
+* use unparsed copyright content objects ([9c78e38](https://github.com/oaknational/Oak-Web-Application/commit/9c78e38ab8ddc96689f261d35db78294b1f88bff))
+
 ## [1.460.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.460.0...v1.460.1) (2024-06-13)
 
 # [1.460.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.459.0...v1.460.0) (2024-06-13)

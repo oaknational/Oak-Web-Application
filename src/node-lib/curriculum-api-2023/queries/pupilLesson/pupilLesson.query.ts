@@ -50,10 +50,6 @@ export const pupilLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (browseDataSnake.lesson_data?.deprecated_fields?.is_sensitive) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
     if (res.browseData.length > 1 && unitSlug && programmeSlug) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
