@@ -1,7 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 import {
-  OakFlex,
   OakMaxWidth,
   OakHeading,
   OakGrid,
@@ -17,13 +16,10 @@ import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSumma
 import getPageProps from "@/node-lib/getPageProps";
 import { SpacingProps } from "@/styles/utils/spacing";
 import Layout from "@/components/AppComponents/Layout";
-import Illustration from "@/components/SharedComponents/Illustration";
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -62,38 +58,6 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             priority: true,
           }}
           bodyPortableText={pageData.introPortableText}
-        />
-
-        <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
-          $font={["heading-6", "heading-5"]}
-          tag={"h2"}
-        >
-          Meet our teachers
-        </OakHeading>
-        <OakFlex
-          $alignItems={"center"}
-          $justifyContent={"center"}
-          $minWidth={"100%"}
-          $minHeight={["all-spacing-17", "all-spacing-19"]}
-          $mb={"space-between-l"}
-          $position={"relative"}
-        >
-          <Illustration
-            sizes={getSizes([95, 178])}
-            slug="teacher-carrying-more-stuff"
-            $objectPosition={"center center"}
-            fill
-            $objectFit="contain"
-          />
-        </OakFlex>
-        <ButtonAsLink
-          icon={"arrow-right"}
-          $iconPosition={"trailing"}
-          label={"Our teachers"}
-          page="our-teachers"
-          $mh="auto"
-          $mb={[80, 92]}
         />
 
         <OakHeading

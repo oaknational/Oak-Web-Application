@@ -12,6 +12,7 @@ export type BurgerMenuLink = {
   new: boolean;
   external: boolean;
   linkTo: ResolveOakHrefProps | HrefLink;
+  ariaLabel?: string;
 };
 
 export type AppHeaderBurgerMenuLinkProps = {
@@ -33,7 +34,7 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
     <OakFlex $alignItems="center" $gap="all-spacing-2">
       <ButtonAsLink
         icon={link.external ? "external" : undefined}
-        aria-label={`${link.text}${
+        aria-label={`${link.ariaLabel ?? link.text}${
           link.external ? " (opens in a new tab)" : ""
         }`}
         label={link.text}
