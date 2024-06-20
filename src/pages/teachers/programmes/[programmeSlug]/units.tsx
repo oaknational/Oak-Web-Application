@@ -7,7 +7,13 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -112,114 +118,67 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   return (
-    <AppLayout seoProps={unitsSEO}>
-      <HeaderListing
-        breadcrumbs={[
-          {
-            oakLinkProps: { page: "home" },
-            label: "Home",
-          },
-          {
-            oakLinkProps: {
-              page: "subject-index",
-
-              keyStageSlug,
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout seoProps={unitsSEO}>
+        <HeaderListing
+          breadcrumbs={[
+            {
+              oakLinkProps: { page: "home" },
+              label: "Home",
             },
-            label: toSentenceCase(keyStageTitle),
-          },
-          {
-            oakLinkProps: {
-              page: "unit-index",
+            {
+              oakLinkProps: {
+                page: "subject-index",
 
-              programmeSlug,
+                keyStageSlug,
+              },
+              label: toSentenceCase(keyStageTitle),
             },
-            label: subjectTitle,
-            disabled: true,
-          },
-        ]}
-        background={"lavender30"}
-        subjectIconBackgroundColor={"lavender"}
-        title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
-        programmeFactor={toSentenceCase(keyStageTitle)}
-        isNew={hasNewContent ?? false}
-        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
-        {...curriculumData}
-      />
-      <MaxWidth $ph={16}>
-        <OakGrid>
-          <OakGridArea
-            $order={[0, 2]}
-            $colSpan={[12, 4, 3]}
-            $pl={["inner-padding-xl"]}
-          >
-            <Box
-              $display={["none", "block"]}
-              $position={[null, "sticky"]}
-              $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 24]}
-              $pt={[48]}
+            {
+              oakLinkProps: {
+                page: "unit-index",
+
+                programmeSlug,
+              },
+              label: subjectTitle,
+              disabled: true,
+            },
+          ]}
+          background={"lavender30"}
+          subjectIconBackgroundColor={"lavender"}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
+          programmeFactor={toSentenceCase(keyStageTitle)}
+          isNew={hasNewContent ?? false}
+          hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+          {...curriculumData}
+        />
+        <MaxWidth $ph={16}>
+          <OakGrid>
+            <OakGridArea
+              $order={[0, 2]}
+              $colSpan={[12, 4, 3]}
+              $pl={["inner-padding-xl"]}
             >
-              {learningThemes?.length > 1 && (
-                <Flex $flexDirection={"column"}>
-                  <OakHeading
-                    id={learningThemesId}
-                    tag="h3"
-                    $font="body-3"
-                    $mb="space-between-s"
-                  >
-                    {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                    Filter by thread
-                  </OakHeading>
-                  <UnitsLearningThemeFilters
-                    labelledBy={learningThemesId}
-                    learningThemes={learningThemes}
-                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                    linkProps={{
-                      page: "unit-index",
-                      programmeSlug,
-                    }}
-                    trackingProps={{
-                      keyStageSlug,
-                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                      subjectTitle,
-                      subjectSlug,
-                    }}
-                  />
-                </Flex>
-              )}
-            </Box>
-          </OakGridArea>
-
-          <OakGridArea
-            $order={[1, 0]}
-            $colSpan={[12, 8, 9]}
-            $mt={"space-between-m2"}
-          >
-            <Flex $flexDirection={["column-reverse", "column"]}>
-              <Flex
-                $flexDirection={"row"}
-                $minWidth={"100%"}
-                $justifyContent={"space-between"}
-                $position={"relative"}
-                $alignItems={"center"}
+              <Box
+                $display={["none", "block"]}
+                $position={[null, "sticky"]}
+                $top={[null, HEADER_HEIGHT]}
+                $mt={[0, 24]}
+                $pt={[48]}
               >
-                {tiers.length === 0 && (
-                  <Flex $minWidth={120} $mb={16} $position={"relative"}>
-                    <OakHeading $font={"heading-5"} tag={"h2"}>
-                      {`Units (${unitsFilteredByLearningTheme.length})`}
+                {learningThemes?.length > 1 && (
+                  <Flex $flexDirection={"column"}>
+                    <OakHeading
+                      id={learningThemesId}
+                      tag="h3"
+                      $font="body-3"
+                      $mb="space-between-s"
+                    >
+                      {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
+                      Filter by thread
                     </OakHeading>
-                  </Flex>
-                )}
-
-                {learningThemes.length > 1 && (
-                  <MobileFilters
-                    providedId={learningThemesFilterId}
-                    label="Threads"
-                    $mt={0}
-                    $mb={[16, 0]}
-                  >
                     <UnitsLearningThemeFilters
-                      labelledBy={learningThemesFilterId}
+                      labelledBy={learningThemesId}
                       learningThemes={learningThemes}
                       selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
@@ -233,42 +192,92 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         subjectSlug,
                       }}
                     />
-                  </MobileFilters>
+                  </Flex>
+                )}
+              </Box>
+            </OakGridArea>
+
+            <OakGridArea
+              $order={[1, 0]}
+              $colSpan={[12, 8, 9]}
+              $mt={"space-between-m2"}
+            >
+              <Flex $flexDirection={["column-reverse", "column"]}>
+                <Flex
+                  $flexDirection={"row"}
+                  $minWidth={"100%"}
+                  $justifyContent={"space-between"}
+                  $position={"relative"}
+                  $alignItems={"center"}
+                >
+                  {tiers.length === 0 && (
+                    <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                      <OakHeading $font={"heading-5"} tag={"h2"}>
+                        {`Units (${unitsFilteredByLearningTheme.length})`}
+                      </OakHeading>
+                    </Flex>
+                  )}
+
+                  {learningThemes.length > 1 && (
+                    <MobileFilters
+                      providedId={learningThemesFilterId}
+                      label="Threads"
+                      $mt={0}
+                      $mb={[16, 0]}
+                    >
+                      <UnitsLearningThemeFilters
+                        labelledBy={learningThemesFilterId}
+                        learningThemes={learningThemes}
+                        selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                        linkProps={{
+                          page: "unit-index",
+                          programmeSlug,
+                        }}
+                        trackingProps={{
+                          keyStageSlug,
+                          keyStageTitle:
+                            keyStageTitle as KeyStageTitleValueType,
+                          subjectTitle,
+                          subjectSlug,
+                        }}
+                      />
+                    </MobileFilters>
+                  )}
+                </Flex>
+
+                {tiers.length > 0 && (
+                  <nav aria-label="tiers" data-testid="tiers-nav">
+                    <TabularNav
+                      $mb={[10, 24]}
+                      label="tiers"
+                      links={tiers.map(
+                        ({
+                          tierTitle: title,
+                          tierSlug: slug,
+                          tierProgrammeSlug,
+                        }) => ({
+                          label: title,
+                          programmeSlug: tierProgrammeSlug,
+                          page: "unit-index",
+                          isCurrent: tierSlug === slug,
+                          currentStyles: ["underline"],
+                        }),
+                      )}
+                    />
+                  </nav>
                 )}
               </Flex>
-
-              {tiers.length > 0 && (
-                <nav aria-label="tiers" data-testid="tiers-nav">
-                  <TabularNav
-                    $mb={[10, 24]}
-                    label="tiers"
-                    links={tiers.map(
-                      ({
-                        tierTitle: title,
-                        tierSlug: slug,
-                        tierProgrammeSlug,
-                      }) => ({
-                        label: title,
-                        programmeSlug: tierProgrammeSlug,
-                        page: "unit-index",
-                        isCurrent: tierSlug === slug,
-                        currentStyles: ["underline"],
-                      }),
-                    )}
-                  />
-                </nav>
-              )}
-            </Flex>
-            <UnitList
-              {...curriculumData}
-              currentPageItems={currentPageItems}
-              paginationProps={paginationProps}
-              onClick={trackUnitSelected}
-            />
-          </OakGridArea>
-        </OakGrid>
-      </MaxWidth>
-    </AppLayout>
+              <UnitList
+                {...curriculumData}
+                currentPageItems={currentPageItems}
+                paginationProps={paginationProps}
+                onClick={trackUnitSelected}
+              />
+            </OakGridArea>
+          </OakGrid>
+        </MaxWidth>
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
@@ -305,6 +314,18 @@ export const getStaticProps: GetStaticProps<
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
         });
+
+        // We are trialling combining the new and legacy curriculum data for Maths
+        if (programmeSlug.startsWith("maths")) {
+          const legacyCurriculumData = await curriculumApi2023.unitListing({
+            programmeSlug: programmeSlug + "-l",
+          });
+
+          curriculumData.units = [
+            ...curriculumData.units,
+            ...legacyCurriculumData.units,
+          ];
+        }
 
         if (!curriculumData) {
           return {
