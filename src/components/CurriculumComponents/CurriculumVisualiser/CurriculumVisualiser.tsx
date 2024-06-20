@@ -285,90 +285,115 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   Year {year}
                 </OakHeading>
                 {disciplines?.length > 1 && (
-                  <Box role="radiogroup" aria-label="Disciplines">
-                    {disciplines.map((discipline, index) => (
-                      <Button
-                        role="radio"
-                        $mb={20}
-                        $mr={20}
-                        background={
-                          isSelectedDiscipline(yearSelection, year, discipline)
-                            ? "black"
-                            : "white"
-                        }
-                        key={index}
-                        label={discipline.title}
-                        aria-label={discipline.title}
-                        onClick={() => handleSelectDiscipline(year, discipline)}
-                        size="small"
-                        data-testid="discipline-button"
-                      />
-                    ))}
+                  <Box role="group" aria-label="Disciplines">
+                    {disciplines.map((discipline, index) => {
+                      const isSelected = isSelectedDiscipline(
+                        yearSelection,
+                        year,
+                        discipline,
+                      )
+                        ? "black"
+                        : "white";
+
+                      return (
+                        <Button
+                          $mb={20}
+                          $mr={20}
+                          background={isSelected}
+                          key={index}
+                          label={discipline.title}
+                          onClick={() =>
+                            handleSelectDiscipline(year, discipline)
+                          }
+                          size="small"
+                          data-testid="discipline-button"
+                          aria-pressed={isSelected}
+                        />
+                      );
+                    })}
                   </Box>
                 )}
                 {childSubjects.length > 0 && (
-                  <Box role="radiogroup" aria-label="Child Subjects">
+                  <Box role="group" aria-label="Child Subjects">
                     {sortChildSubjects(childSubjects).map(
-                      (subject: Subject) => (
-                        <Button
-                          role="radio"
-                          $mb={20}
-                          $mr={20}
-                          background={
-                            isSelectedSubject(yearSelection, year, subject)
-                              ? "black"
-                              : "white"
-                          }
-                          key={subject.subject_slug}
-                          aria-label={subject.subject}
-                          label={subject.subject}
-                          onClick={() => handleSelectSubject(year, subject)}
-                          size="small"
-                          data-testid="subject-button"
-                        />
-                      ),
+                      (subject: Subject) => {
+                        const isSelected = isSelectedSubject(
+                          yearSelection,
+                          year,
+                          subject,
+                        )
+                          ? "black"
+                          : "white";
+
+                        return (
+                          <Button
+                            $mb={20}
+                            $mr={20}
+                            background={isSelected}
+                            key={subject.subject_slug}
+                            label={subject.subject}
+                            onClick={() => handleSelectSubject(year, subject)}
+                            size="small"
+                            data-testid="subject-button"
+                            aria-pressed={isSelected}
+                          />
+                        );
+                      },
                     )}
                   </Box>
                 )}
                 {domains.length > 0 && (
-                  <Box role="radiogroup" aria-label="Domains">
-                    {domains.map((domain: Domain) => (
-                      <Button
-                        role="radio"
-                        $mb={20}
-                        $mr={20}
-                        background={
-                          isSelectedDomain(yearSelection, year, domain)
-                            ? "black"
-                            : "white"
-                        }
-                        key={domain.domain_id}
-                        label={domain.domain}
-                        aria-label={domain.domain}
-                        onClick={() => handleSelectDomain(year, domain)}
-                        size="small"
-                        data-testid="domain-button"
-                      />
-                    ))}
+                  <Box role="group" aria-label="Domains">
+                    {domains.map((domain: Domain) => {
+                      const isSelected = isSelectedDomain(
+                        yearSelection,
+                        year,
+                        domain,
+                      )
+                        ? "black"
+                        : "white";
+
+                      return (
+                        <Button
+                          $mb={20}
+                          $mr={20}
+                          background={isSelected}
+                          key={domain.domain_id}
+                          label={domain.domain}
+                          onClick={() => handleSelectDomain(year, domain)}
+                          size="small"
+                          data-testid="domain-button"
+                          aria-pressed={isSelected}
+                        />
+                      );
+                    })}
                   </Box>
                 )}
                 {tiers.length > 0 && (
-                  <Box>
-                    {tiers.map((tier: Tier) => (
-                      <Button
-                        $font={"heading-6"}
-                        $mb={20}
-                        $mr={24}
-                        key={tier.tier_slug}
-                        label={tier.tier}
-                        onClick={() => handleSelectTier(year, tier)}
-                        size="small"
-                        variant="minimal"
-                        isCurrent={isSelectedTier(yearSelection, year, tier)}
-                        currentStyles={["underline"]}
-                        data-testid={`tier-button`}
-                      />
-                    ))}
+                  <Box role="group" aria-label="Tiers">
+                    {tiers.map((tier: Tier) => {
+                      const isSelected = isSelectedTier(
+                        yearSelection,
+                        year,
+                        tier,
+                      );
+                      return (
+                        <Button
+                          $font={"heading-6"}
+                          $mb={20}
+                          $mr={24}
+                          key={tier.tier_slug}
+                          label={tier.tier}
+                          onClick={() => handleSelectTier(year, tier)}
+                          size="small"
+                          variant="minimal"
+                          isCurrent={isSelected}
+                          currentStyles={["underline"]}
+                          data-testid={`tier-button`}
+                          aria-pressed={isSelected}
+                        />
+                      );
+                    })}
                   </Box>
                 )}
                 <OakFlex
