@@ -7,7 +7,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-
 import {
   OakGrid,
   OakGridArea,
@@ -15,6 +14,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,

@@ -1,19 +1,19 @@
 import { FC } from "react";
-
 import {
   OakFlex,
   OakHeading,
   OakSpan,
   OakTypography,
 } from "@oaknational/oak-components";
+
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { OakColorName } from "@/styles/theme";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { OakColorName } from "@/styles/theme";
 import { getUnitListingPageDescription } from "@/utils/getUnitListingPageDescription";
 
 /**
