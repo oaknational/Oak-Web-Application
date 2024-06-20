@@ -54,6 +54,12 @@ const isUnitOption = (
   }
 };
 
+const isUnitListData = (
+  u: UnitListingData | SpecialistUnitListingData,
+): u is UnitListingData => {
+  return (u as UnitListingData).keyStageSlug !== undefined;
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
@@ -120,9 +126,10 @@ const UnitList: FC<UnitListProps> = (props) => {
       );
     });
 
-  const phaseSlug = (props as UnitListingData).phase ?? "";
-  const examBoardSlug = (props as UnitListingData).examBoardSlug ?? "";
-  const keystageSlug = (props as UnitListingData).keyStageSlug ?? "";
+  // TODO: handle specialist pages properly, as we are only handling maths currently
+  const phaseSlug = isUnitListData(props) ? props.phase : undefined;
+  const examBoardSlug = isUnitListData(props) ? props.examBoardSlug : undefined;
+  const keystageSlug = isUnitListData(props) ? props.keyStageSlug : undefined;
 
   const newPageItems = isCurrentPageItems(currentPageItems)
     ? currentPageItems.filter((item) => !isSlugLegacy(item[0]!.programmeSlug))
@@ -132,7 +139,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     : [];
 
   const NewUnits = () =>
-    newPageItems.length ? (
+    newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
         subject="maths"
@@ -149,7 +156,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     ) : null;
 
   const LegacyUnits = () =>
-    legacyPageItems.length ? (
+    legacyPageItems.length && keystageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
         subject="maths"
