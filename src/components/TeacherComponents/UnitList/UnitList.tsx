@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-
 import {
   OakLI,
   OakUL,
   OakFlex,
   OakUnitsContainer,
 } from "@oaknational/oak-components";
+
 import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
@@ -30,28 +30,34 @@ export type Tier = {
 };
 
 type PageSize = { pageSize: number };
-type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
+type CurrentPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
 export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
-  currentPageItems: CurrenPageItemsProps[] | SpecialistUnit[][];
+  currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
+};
+
+const isCurrentPageItems = (
+  u: CurrentPageItemsProps[] | SpecialistUnit[][],
+): u is CurrentPageItemsProps[] => {
+  return (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined;
+};
+
+const isUnitOption = (
+  x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
+): x is UnitOption[] => {
+  if (x[0]) {
+    return "keyStageTitle" in x[0];
+  } else {
+    return false;
+  }
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
-
-  const isUnitOption = (
-    x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
-  ): x is UnitOption[] => {
-    if (x[0]) {
-      return "keyStageTitle" in x[0];
-    } else {
-      return false;
-    }
-  };
 
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
@@ -62,7 +68,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
 
   const getUnitCards = (
-    pageItems: CurrenPageItemsProps[] | SpecialistUnit[][],
+    pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
   ) =>
     pageItems.map((item, index) => {
       const baseIndex = index + pageSize * (currentPage - 1);
@@ -118,12 +124,12 @@ const UnitList: FC<UnitListProps> = (props) => {
   const examBoardSlug = (props as UnitListingData).examBoardSlug ?? "";
   const keystageSlug = (props as UnitListingData).keyStageSlug ?? "";
 
-  const newPageItems = currentPageItems.filter(
-    (item) => !isSlugLegacy(item[0]!.programmeSlug),
-  );
-  const legacyPageItems = currentPageItems.filter((item) =>
-    isSlugLegacy(item[0]!.programmeSlug),
-  );
+  const newPageItems = isCurrentPageItems(currentPageItems)
+    ? currentPageItems.filter((item) => !isSlugLegacy(item[0]!.programmeSlug))
+    : [];
+  const legacyPageItems = isCurrentPageItems(currentPageItems)
+    ? currentPageItems.filter((item) => isSlugLegacy(item[0]!.programmeSlug))
+    : [];
 
   const NewUnits = () =>
     newPageItems.length ? (

@@ -4,6 +4,7 @@ import {
   examboards,
   keystageDescriptions,
   keystageSlugs,
+  phaseSlugs,
   subjectSlugs,
   subjects,
   tierSlugs,
@@ -27,7 +28,7 @@ const unitListingData = z.object({
   units: unitSchema,
   hasNewContent: z.boolean(),
   learningThemes: learningThemes,
-  phase: z.string(),
+  phase: phaseSlugs,
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;
