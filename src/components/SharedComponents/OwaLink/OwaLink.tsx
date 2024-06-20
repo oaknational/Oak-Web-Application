@@ -83,7 +83,6 @@ const StyledNextLink = styled.a<StyleProps>`
 export const ActiveLinkUnderline = styled(Svg)`
   position: absolute;
   height: 8px;
-  width: 72px;
   bottom: -26px;
   left: 0px;
   ${StyledNextLink}:focus & {

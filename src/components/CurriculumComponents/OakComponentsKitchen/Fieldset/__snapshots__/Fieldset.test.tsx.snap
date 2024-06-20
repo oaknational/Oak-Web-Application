@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fieldset render 1`] = `
+<body>
+  <div>
+    <fieldset
+      class="sc-ad0ad6f5-0 sc-3dab0ad0-0 eENcGS fMxjKk"
+    >
+      <legend
+        class="sc-imWYAI sc-3dab0ad0-1 ieWUIa fOKyMZ"
+      >
+        testing
+      </legend>
+    </fieldset>
+  </div>
+</body>
+`;

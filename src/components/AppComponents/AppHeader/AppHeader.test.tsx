@@ -75,9 +75,6 @@ describe("components/AppHeader", () => {
       throw new Error("Failed to find link to classroom");
     }
 
-    expect(pupilsLink.closest("a")).toHaveAttribute(
-      "href",
-      "https://classroom.thenational.academy",
-    );
+    expect(pupilsLink.closest("a")).toHaveAttribute("href", "/pupils/years");
   });
 });
