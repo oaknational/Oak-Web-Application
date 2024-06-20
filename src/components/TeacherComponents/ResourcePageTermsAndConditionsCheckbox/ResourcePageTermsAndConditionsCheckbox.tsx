@@ -16,7 +16,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
   <>
     {errorMessage && (
       <Box $mb={16}>
-        <FieldError id={"terms-error"} withoutMarginBottom>
+        <FieldError ariaLive="polite" id={"terms-error"} withoutMarginBottom>
           {errorMessage}
         </FieldError>
       </Box>

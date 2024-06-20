@@ -9,11 +9,11 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const pupilUnitListingQuery =
   (sdk: Sdk) =>
-  async (args: { programmeSlug: string }): Promise<UnitListingBrowseData> => {
-    const { programmeSlug } = args;
+  async (args: { baseSlug: string }): Promise<UnitListingBrowseData> => {
+    const { baseSlug } = args;
 
     const res = await sdk.pupilUnitListing({
-      programmeSlug,
+      baseSlug,
     });
 
     const browseDataSnake = res.browseData;

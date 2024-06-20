@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
@@ -72,7 +72,17 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
     setSchoolPickerInputValue(value);
   };
   return (
-    <>
+    <OakBox $pa={"inner-padding-none"} $ba={"border-solid-none"} as="fieldset">
+      <OakBox
+        as="legend"
+        $position="absolute"
+        $width="all-spacing-0"
+        $height="all-spacing-0"
+        $pa={"inner-padding-none"}
+        $overflow="hidden"
+      >
+        School details
+      </OakBox>
       <ResourcePageSchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
@@ -81,20 +91,25 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
+        aria-invalid={errors?.school?.message ? true : false}
+        aria-describedby={"school-error"}
       />
       <OakFlex $mt="space-between-xs" $mb="space-between-m2">
         <Checkbox
           checked={checkboxValue}
           onChange={onCheckboxChange}
-          aria-label={"my school isn't listed"}
           id={`checkbox-not-listed`}
           name={"checkbox-not-listed"}
           zIndex={"neutral"}
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
+          aria-invalid={errors?.school?.message ? true : false}
+          aria-describedby={
+            errors?.school?.message ? "school-error" : undefined
+          }
         />
       </OakFlex>
-    </>
+    </OakBox>
   );
 };
 

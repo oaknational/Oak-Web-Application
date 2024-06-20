@@ -1,4 +1,5 @@
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
 
@@ -22,7 +23,7 @@ export const requestLessonResources = async ({
   // Resolve the requests for the transcript and worksheet existence in parallel
   const [transcriptSentences, lessonDownloads] = await Promise.all([
     resolveTranscriptSentences,
-    curriculumApi2023.lessonDownloadsCanonical({ lessonSlug }),
+    curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({ lessonSlug }),
   ]);
 
   return {

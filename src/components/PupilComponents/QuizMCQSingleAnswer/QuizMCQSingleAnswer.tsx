@@ -12,6 +12,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 // testing
 //text only
@@ -72,14 +73,14 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
               key={`${questionUid}-answer-${i}`}
               tabIndex={i}
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
-              label={label?.text}
+              label={<MathJaxWrap>{label?.text}</MathJaxWrap>}
               feedback={feedback}
               image={image}
               isHighlighted={questionState?.mode === "incomplete"}
             />
           );
         })}
-      </OakRadioGroup>{" "}
+      </OakRadioGroup>
     </OakFlex>
   );
 };

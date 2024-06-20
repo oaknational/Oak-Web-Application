@@ -4,14 +4,13 @@ describe("useBackHref", () => {
   it("should render a link which links back to tiers if the programme has tiers and examboards", () => {
     const [backHref, backLabel] = useBackHref({
       baseSlug: "maths-secondary-year-10",
-      isLegacy: false,
       tierSlug: "core",
       yearSlug: "year-10",
       examboardSlug: "aqa",
     });
 
     expect(backHref).toBe(
-      "/pupils/beta/programmes/maths-secondary-year-10/options?examboard=aqa",
+      "/pupils/programmes/maths-secondary-year-10/options?examboard=aqa",
     );
     expect(backLabel).toBe("Change tier");
   });
@@ -20,10 +19,9 @@ describe("useBackHref", () => {
     const [backHref, backLabel] = useBackHref({
       baseSlug: "maths-secondary-year-10",
       yearSlug: "year-10",
-      isLegacy: false,
     });
 
-    expect(backHref).toBe("/pupils/beta/years/year-10/subjects");
+    expect(backHref).toBe("/pupils/years/year-10/subjects");
     expect(backLabel).toBe("Change subject");
   });
 
@@ -31,13 +29,10 @@ describe("useBackHref", () => {
     const [backHref, backLabel] = useBackHref({
       baseSlug: "maths-secondary-year-10",
       yearSlug: "year-10",
-      isLegacy: false,
       examboardSlug: "aqa",
     });
 
-    expect(backHref).toBe(
-      "/pupils/beta/programmes/maths-secondary-year-10/options",
-    );
+    expect(backHref).toBe("/pupils/programmes/maths-secondary-year-10/options");
     expect(backLabel).toBe("Change examboard");
   });
 });

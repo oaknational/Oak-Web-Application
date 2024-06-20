@@ -13,8 +13,6 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
-import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
-import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
@@ -32,9 +30,7 @@ import specialistLessonOverviewCanonical from "./queries/specialistLessonOvervie
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
-import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
-import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
-import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
+import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -107,10 +103,6 @@ export type CurriculumDownloadsTabData = z.infer<
 export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
 
 export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
-export type CurriculumUnitsTabDataIncludeNew = z.infer<
-  typeof curriculumUnitsIncludeNewSchema
->;
-
 export type CurriculumUnit = z.infer<
   typeof curriculumUnitsSchema
 >["units"][number];
@@ -129,25 +121,22 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
-  curriculumUnitsIncludeNew: curriculumUnitsIncludeNewQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
-  lessonDownloadsCanonical: lessonDownloadsCanonicalQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
   pupilSubjectListingQuery: pupilSubjectListingQuery(sdk),
   pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
-  lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
+  pupilsSitemap: pupilsSitemap(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  subjectPhaseOptionsIncludeNew: subjectPhaseOptionsIncludeNewQuery(sdk),
   unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

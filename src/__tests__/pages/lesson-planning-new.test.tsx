@@ -26,6 +26,7 @@ describe("pages/lesson-planning.tsx", () => {
     );
     expect(getByRole("heading", { name: "test" })).toBeInTheDocument();
   });
+
   it("Renders a nav", () => {
     render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
     const nav = screen.getByRole("navigation", {
@@ -33,6 +34,114 @@ describe("pages/lesson-planning.tsx", () => {
     });
     expect(screen.getAllByText("Contents")).toHaveLength(2);
     expect(nav).toBeInTheDocument();
+  });
+
+  it("applies correct margin-bottom size based on section position if its a form block", () => {
+    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
+
+    const sections = screen.getAllByTestId("lesson-section");
+
+    expect(sections[0]).toHaveStyle("margin-bottom: 5rem");
+    expect(sections[1]).toHaveStyle("margin-bottom: 5rem");
+
+    expect(sections[sections.length - 1]).toHaveStyle("margin-bottom: 2rem");
+  });
+
+  it("applies correct margin-bottom size based on section position if its a content block", () => {
+    render(
+      <PlanALesson
+        pageData={{
+          ...testPlanningPageData,
+          content: testPlanALessonPageData.content.reverse(),
+        }}
+        posts={mockPosts}
+      />,
+    );
+
+    const sections = screen.getAllByTestId("lesson-section");
+
+    expect(sections[0]).toHaveStyle("margin-bottom: 5rem");
+    expect(sections[1]).toHaveStyle("margin-bottom: 5rem");
+
+    expect(sections[sections.length - 1]).toHaveStyle("margin-bottom: 2rem");
+  });
+
+  it("Renders the header hero with optional props", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+
+    expect(
+      screen.getByAltText(
+        `${testPlanALessonPageData.hero.author.name} profile picture`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
+    ).toBeInTheDocument();
+  });
+  it("Renders the header hero without author", () => {
+    render(
+      <PlanALesson
+        pageData={{
+          ...testPlanALessonPageData,
+          hero: {
+            ...testPlanALessonPageData.hero,
+            author: { ...testPlanALessonPageData.hero.author, image: null },
+          },
+        }}
+        posts={mockPosts}
+      />,
+    );
+
+    expect(
+      screen.queryByAltText(
+        `${testPlanALessonPageData.hero.author.name} profile picture`,
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
+    ).not.toBeInTheDocument();
+  });
+
+  it("Renders the author title if it exists", () => {
+    render(
+      <PlanALesson
+        pageData={{
+          ...testPlanALessonPageData,
+          hero: {
+            ...testPlanALessonPageData.hero,
+            author: {
+              id: "13719a7b-4f00-4816-883a-8aded2a5c703",
+              name: "Katie Marl",
+              image: {
+                asset: {
+                  _id: "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
+                  url: "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png",
+                },
+                hotspot: null,
+              },
+              bioPortableText: null,
+              socials: null,
+            },
+          },
+        }}
+        posts={mockPosts}
+      />,
+    );
+
+    expect(
+      screen.queryByText("Primary Curriculum Design Lead"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders a hero image with alt text", () => {
+    render(
+      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+    );
+
+    const heroImage = screen.getByAltText("alt text hero").closest("img");
+    expect(heroImage).toBeInTheDocument();
   });
 
   describe("SEO", () => {
