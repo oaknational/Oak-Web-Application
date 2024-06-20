@@ -124,7 +124,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                     })}
                     index={index + 1}
                     title={lesson.lessonData.title}
-                    role="listitem"
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
                 );
