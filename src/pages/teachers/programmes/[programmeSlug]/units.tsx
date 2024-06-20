@@ -42,6 +42,7 @@ import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/U
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -153,6 +154,18 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {...curriculumData}
         />
         <MaxWidth $ph={16}>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 8, 9]}>
+              <NewContentBanner
+                keyStageSlug={keyStageSlug}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle.toLowerCase()}
+                programmeSlug={programmeSlug}
+                isUnitListing={true}
+                isLegacy={isSlugLegacy(programmeSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
           <OakGrid>
             <OakGridArea
               $order={[0, 2]}

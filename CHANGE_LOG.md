@@ -1,3 +1,24 @@
+## [1.463.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.0...v1.463.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* amend spacing on unit listing page ([e85472d](https://github.com/oaknational/Oak-Web-Application/commit/e85472dd217fd9e62c5596396c05dcafb06c70d9))
+* return components to previous version ([63ed5cc](https://github.com/oaknational/Oak-Web-Application/commit/63ed5cc6c24c52af4a283dbebf1504cae22ae603))
+
+# [1.463.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.3...v1.463.0) (2024-06-20)
+
+
+### Bug Fixes
+
+* added fieldset/legend fixes to mobile view of curriculum unit sequence ([1f2ea1f](https://github.com/oaknational/Oak-Web-Application/commit/1f2ea1f1f9f3ae42bdeacf9ab3f88be19ad234b9))
+* added fieldset/legend fixes to the curriculum unit sequence page ([11be468](https://github.com/oaknational/Oak-Web-Application/commit/11be4684e3971eb91a8289d6192742861e74a8ef))
+
+
+### Features
+
+* added <SimpleRadio/> as a replacement for improved a11y ([e979225](https://github.com/oaknational/Oak-Web-Application/commit/e9792259e93ac5c394068939396ba26ef64874db))
+
 ## [1.462.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.2...v1.462.3) (2024-06-19)
 
 

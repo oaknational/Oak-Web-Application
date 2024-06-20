@@ -3,7 +3,11 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -43,14 +47,18 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverview lesson={{ ...lesson, isCanonical: true, isSpecialist }} />
-      {!isSpecialist && (
-        <OakFlex $background={"pink50"} $width={"100%"}>
-          <MaxWidth $pv={96}>
-            <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-          </MaxWidth>
-        </OakFlex>
-      )}
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonOverview
+          lesson={{ ...lesson, isCanonical: true, isSpecialist }}
+        />
+        {!isSpecialist && (
+          <OakFlex $background={"pink50"} $width={"100%"}>
+            <MaxWidth $pv={96}>
+              <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
+            </MaxWidth>
+          </OakFlex>
+        )}
+      </OakThemeProvider>
     </AppLayout>
   );
 }
