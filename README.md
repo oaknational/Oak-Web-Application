@@ -1,5 +1,7 @@
 # Oak Web Application
 
+![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)
+
 The Oak National Academy Web Application code base.
 
 - [Getting started](#getting-started)
@@ -137,11 +139,9 @@ We don't currently accept external contributions to the code base, but this is u
 
 ## Open Source Acknowledgements
 
-As will all web projects we are dependent on open source libraries maintained by others. While it is not practical to acknowledge them all, we would nevertheless like to express our gratitude for the contributions and efforts of the OSS community. Our dependency list can be found in our [package.json](package.json) file.
+As with all web projects we are dependent on open source libraries maintained by others. While it is not practical to acknowledge them all, we would nevertheless like to express our gratitude for the contributions and efforts of the OSS community. Our dependency list can be found in our [package.json](package.json) file.
 
 ## License
-
-![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)
 
 Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any Oak National Academy trademarks or logos are included, these are not released under the [MIT License][mit], and should be used in line with [Oak National Academy brand guidelines][brand].
 
