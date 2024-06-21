@@ -141,10 +141,13 @@ As will all web projects we are dependent on open source libraries maintained by
 
 ## License
 
-Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any Oak National Academy trademarks or logos are included, these are not released under the [MIT License][mit], and should be used in line with Oak National Academy brand guidelines.
+![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)
+
+Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any Oak National Academy trademarks or logos are included, these are not released under the [MIT License][mit], and should be used in line with [Oak National Academy brand guidelines][brand].
 
 Any documentation included is © [Oak National Academy][oak] and available under the terms of the [Open Government Licence v3.0][ogl], except where otherwise stated.
 
 [mit]: LICENCE
 [oak]: https://www.thenational.academy/
 [ogl]: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+[brand]: https://support.thenational.academy/using-the-oak-brand
