@@ -1,3 +1,11 @@
+## [1.463.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.0...v1.463.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* amend spacing on unit listing page ([e85472d](https://github.com/oaknational/Oak-Web-Application/commit/e85472dd217fd9e62c5596396c05dcafb06c70d9))
+* return components to previous version ([63ed5cc](https://github.com/oaknational/Oak-Web-Application/commit/63ed5cc6c24c52af4a283dbebf1504cae22ae603))
+
 # [1.463.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.3...v1.463.0) (2024-06-20)
 
 
