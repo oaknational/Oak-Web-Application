@@ -9,8 +9,6 @@ import {
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import OakError from "@/errors/OakError";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
-import AppLayout from "@/components/SharedComponents/AppLayout";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const ProgrammesPage = ({
@@ -19,27 +17,13 @@ const ProgrammesPage = ({
   yearSlug,
   examboardSlug,
 }: ProgrammesPageProps) => {
-  const subjectDescription = programmes[0]?.programmeFields.subject;
-  const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
-  const phaseSlug = programmes[0]?.programmeFields.phaseSlug;
-
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
-          description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
-        }),
-      }}
-    >
-      {" "}
-      <PupilViewsProgrammeListing
-        programmes={programmes}
-        baseSlug={baseSlug}
-        yearSlug={yearSlug}
-        examboardSlug={examboardSlug}
-      />
-    </AppLayout>
+    <PupilViewsProgrammeListing
+      programmes={programmes}
+      baseSlug={baseSlug}
+      yearSlug={yearSlug}
+      examboardSlug={examboardSlug}
+    />
   );
 };
 export type OptionsExamboardURLParams = OptionsURLParams & {

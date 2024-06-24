@@ -26,6 +26,8 @@ import {
   TierData,
 } from "@/components/PupilComponents/BrowseTierSelector";
 import { resolveOakHref } from "@/common-lib/urls";
+import AppLayout from "@/components/SharedComponents/AppLayout";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -201,28 +203,38 @@ export const PupilViewsProgrammeListing = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakPupilJourneyLayout
-        sectionName={"tier-listing"}
-        phase={phaseSlug}
-        topNavSlot={topNavSlot()}
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
+            description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
+          }),
+        }}
       >
-        <OakBox $mb={"space-between-xxl"}>
-          <OakPupilJourneyProgrammeOptions
-            optionTitleSlot={optionTitleSlot}
-            phase={phaseSlug}
-            titleSlot={
-              <OakPupilJourneyHeader
-                iconBackground={phaseSlug}
-                iconName={`subject-${subjectSlug}`}
-                title={subjectDescription}
-                breadcrumbs={breadcrumbs()}
-              />
-            }
-          >
-            <BrowseOptions />
-          </OakPupilJourneyProgrammeOptions>
-        </OakBox>
-      </OakPupilJourneyLayout>
+        {" "}
+        <OakPupilJourneyLayout
+          sectionName={"tier-listing"}
+          phase={phaseSlug}
+          topNavSlot={topNavSlot()}
+        >
+          <OakBox $mb={"space-between-xxl"}>
+            <OakPupilJourneyProgrammeOptions
+              optionTitleSlot={optionTitleSlot}
+              phase={phaseSlug}
+              titleSlot={
+                <OakPupilJourneyHeader
+                  iconBackground={phaseSlug}
+                  iconName={`subject-${subjectSlug}`}
+                  title={subjectDescription}
+                  breadcrumbs={breadcrumbs()}
+                />
+              }
+            >
+              <BrowseOptions />
+            </OakPupilJourneyProgrammeOptions>
+          </OakBox>
+        </OakPupilJourneyLayout>
+      </AppLayout>
     </OakThemeProvider>
   );
 };
