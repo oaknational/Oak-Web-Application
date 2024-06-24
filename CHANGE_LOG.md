@@ -1,3 +1,11 @@
+## [1.464.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.0...v1.464.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* added radiogroup semantics to domain/subject/tier filters in curriculum visualiser ([a6beb5e](https://github.com/oaknational/Oak-Web-Application/commit/a6beb5eab95df290fbd86ac80aa83e12a54c8345))
+* switch to using aria-pressed and role="group" for better a11y ([d0e2942](https://github.com/oaknational/Oak-Web-Application/commit/d0e294218d79b9406a84937deff88d357f55ba25))
+
 # [1.464.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.1...v1.464.0) (2024-06-24)
 
 
