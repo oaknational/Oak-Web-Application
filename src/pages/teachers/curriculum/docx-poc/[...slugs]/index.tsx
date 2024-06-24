@@ -1,9 +1,15 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
+import {
+  OakFieldError,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakPrimaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import { fetchSubjectPhasePickerData } from "../..";
 
-import LiveDataSection from "@/components/CurriculumComponents/DocxPOC/components/LiveDataSection";
 import {
   capitalizeFirstLetter,
   download,
@@ -22,6 +28,8 @@ import {
   CurriculumDownlodsCycle2Patch,
 } from "@/pages-helpers/curriculum/docx/curriculum-download-patcher";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
 // import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type CurriculumUnitsTabDataIncludeNewUnit =
@@ -49,13 +57,11 @@ type PageProps = {
 
 export default function Page({
   combinedCurriculumData,
-  examboardSlug,
   subjectSlug,
   phaseSlug,
   state,
   dataWarnings,
 }: PageProps) {
-  const router = useRouter();
   let pageTitle: string = `${combinedCurriculumData?.subjectTitle} - ${combinedCurriculumData?.phaseTitle} - (${
     combinedCurriculumData.state
   })${
@@ -89,11 +95,6 @@ export default function Page({
     download(moddedFile, `${pageTitle} - ${formattedDate(new Date())}.docx`);
   };
 
-  const onChangeState = (newState: string) => {
-    const url = `/teachers/curriculum/docx-poc/${subjectSlug}/${phaseSlug}/${newState}/${examboardSlug}`;
-    router.push(url);
-  };
-
   return (
     <AppLayout
       seoProps={{
@@ -105,13 +106,31 @@ export default function Page({
       $background={"grey20"}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LiveDataSection
-          pageTitle={pageTitle}
-          dataWarnings={dataWarnings}
-          onSubmit={onSubmit}
-          state={state}
-          onChangeState={onChangeState}
-        />
+        <OakFlex $justifyContent={"center"} $background={"mint"}>
+          <MaxWidth $ph={16}>
+            <OakHeading tag="h1" $font={"heading-3"} $mt="space-between-l">
+              {combinedCurriculumData.subjectTitle}
+            </OakHeading>
+            <OakP $font={"heading-5"} $mb="space-between-s">
+              {[
+                combinedCurriculumData.phaseTitle,
+                combinedCurriculumData.examboardTitle,
+              ]
+                .filter(Boolean)
+                .join(", ")}{" "}
+              ({combinedCurriculumData.state})
+            </OakP>
+
+            {dataWarnings?.map((warning, index) => (
+              <OakFieldError key={index}>{warning}</OakFieldError>
+            ))}
+            <Box $maxWidth={960} $mb={40} $mt={20}>
+              <OakPrimaryButton onClick={onSubmit} iconName="download">
+                Generate Document
+              </OakPrimaryButton>
+            </Box>
+          </MaxWidth>
+        </OakFlex>
       </OakThemeProvider>
     </AppLayout>
   );
