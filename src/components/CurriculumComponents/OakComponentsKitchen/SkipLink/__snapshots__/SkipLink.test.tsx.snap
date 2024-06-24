@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkipLink functions as expected 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gFqAkR byGiag eKlxvq"
+    >
+      <div
+        class="sc-aXZVg eruIHC grey-shadow"
+      />
+      <div
+        class="sc-aXZVg eruIHC yellow-shadow"
+      />
+      <a
+        class="sc-eldPxv sc-fPXMVe exjdrA ilyVBN internal-button"
+        data-testid="skip-link"
+        href="foo"
+        style=""
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer gqPLj krHAKs"
+        >
+          <span
+            class="sc-eqUAAy dBieuz"
+          >
+            test
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
