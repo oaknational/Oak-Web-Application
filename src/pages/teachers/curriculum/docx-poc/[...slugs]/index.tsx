@@ -75,13 +75,9 @@ export default function Page({
   }
 
   const onSubmit = async () => {
-    // TODO: This is just a link from Jamies google gdrive currently.
-    // We don't want to store a binary file in git as it'll bloat the repo
-    // pretty quickly. Ideally we'll store it unzipped in the repo and serve
-    // it zipped via a server-side-function.
-    const URL =
-      "https://docs.google.com/document/export?format=docx&id=1Da7ogUUmOzqqV8hg53k14wokLhPh_60o&includes_info_params=true&usp=sharing&cros_files=false&inspectorResult=%7B%22pc%22%3A12%2C%22lplc%22%3A3%7D";
-    const fileContent = await (await fetch(URL)).arrayBuffer();
+    const templateUrl =
+      "https://storage.googleapis.com/oak-curriculum-download/curriculum-docx-template.docx";
+    const fileContent = await (await fetch(templateUrl)).arrayBuffer();
     // const fileContent = event.target.result as ArrayBuffer;
     const uint8Array = new Uint8Array(fileContent);
     const patcher =
