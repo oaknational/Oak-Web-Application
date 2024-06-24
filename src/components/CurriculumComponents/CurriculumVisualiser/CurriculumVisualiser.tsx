@@ -240,6 +240,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
+  // FIXME: This is kind of a HACK, currently units don't have tier_slug if
+  // they are across multiple year. So we have to do this awkward step.
+  const unitDataTier = unitData?.year
+    ? yearSelection[unitData?.year]?.tier?.tier_slug
+    : undefined;
+
   return (
     <OakGridArea
       id="content"
@@ -499,7 +505,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           displayModal={displayModal}
           onClose={handleCloseModal}
           lessons={currentUnitLessons}
-          programmeSlug={createProgrammeSlug(unitData, examboardSlug)}
+          programmeSlug={createProgrammeSlug(
+            unitData,
+            examboardSlug,
+            unitDataTier,
+          )}
           unitOptionsAvailable={unitOptionsAvailable}
           unitSlug={unitData?.slug}
           unitVariantID={unitVariantID}
