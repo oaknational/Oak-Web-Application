@@ -54,9 +54,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
       iconName={`subject-${subjectSlug}`}
-      title={unitData?.title}
+      title={optionality ? optionality : unitData?.title}
       breadcrumbs={breadcrumb}
-      optionalityTitle={optionality}
+      optionalityTitle={optionality ? unitData?.title : undefined}
     />
   );
 
