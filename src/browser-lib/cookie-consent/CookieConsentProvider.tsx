@@ -75,24 +75,6 @@ const CookieConsentContextProvider = (props: PropsWithChildren) => {
 
 const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
   const { state, logConsents } = useOakConsent();
-  const policies = state.policyConsents.map((policyConsent) => ({
-    id: policyConsent.policyId,
-    label: policyConsent.policyLabel,
-    description: policyConsent.policyDescription,
-    strictlyNecessary: policyConsent.isStrictlyNecessary,
-    parties: policyConsent.policyParties.map((party) => ({
-      name: party.name,
-      policyURL: party.url,
-    })),
-  }));
-  const currentConsents = state.policyConsents.reduce<{
-    [policyId: string]: "granted" | "denied";
-  }>((acc, policyConsent) => {
-    if (policyConsent.consentState !== "pending") {
-      acc[policyConsent.policyId] = policyConsent.consentState;
-    }
-    return acc;
-  }, {});
   // Suppress an SSR warning around using `useLayoutEffect` on the server
   // by only rendering the consent UI on the client
   const [isMounted, setIsMounted] = useState(false);
@@ -102,18 +84,8 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <OakCookieConsentProvider
-      policies={policies}
-      currentConsents={currentConsents}
-      onConsentChange={(consents) => {
-        const consentsToLog = Object.entries(consents).map(
-          ([policyId, consentState]) => ({
-            policyId,
-            consentState,
-          }),
-        );
-
-        logConsents(consentsToLog);
-      }}
+      policyConsents={state.policyConsents}
+      onConsentChange={logConsents}
     >
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
