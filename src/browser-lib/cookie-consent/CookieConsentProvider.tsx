@@ -8,7 +8,6 @@ import {
   PropsWithChildren,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import {
@@ -60,9 +59,6 @@ export const useCookieConsent = () => {
 const CookieConsentContextProvider = (props: PropsWithChildren) => {
   const { state, getConsent: getConsentState } = useOakConsent();
   const { showBanner, openSettings: showConsentManager } = useCookieConsentUI();
-  const value = useMemo(() => {
-    return { getConsentState, showConsentManager };
-  }, [getConsentState, showConsentManager]);
 
   useEffect(() => {
     if (state.requiresInteraction) {
@@ -70,7 +66,13 @@ const CookieConsentContextProvider = (props: PropsWithChildren) => {
     }
   }, [state.requiresInteraction, showBanner]);
 
-  return <cookieConsentContext.Provider {...props} value={value} />;
+  return (
+    <cookieConsentContext.Provider
+      {...props}
+      // This value should not be memoised as it should always trigger a render whenever `state` changes
+      value={{ getConsentState, showConsentManager }}
+    />
+  );
 };
 
 const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
