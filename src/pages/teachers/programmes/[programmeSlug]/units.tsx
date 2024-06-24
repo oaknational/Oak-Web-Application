@@ -239,7 +239,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       label="Threads"
                       $mt={0}
                       $mb={[16, 16, 0]}
-                      applyForTablet={subjectSlug === "maths"}
+                      applyForTablet
                     >
                       <UnitsLearningThemeFilters
                         labelledBy={learningThemesFilterId}
