@@ -1,3 +1,12 @@
+# [1.465.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.1...v1.465.0) (2024-06-24)
+
+
+### Features
+
+* **optionality-unit-title:** fix maintainability bug ([9563fce](https://github.com/oaknational/Oak-Web-Application/commit/9563fce8ff3eb85d640e113f2d6487b9df25b1b3))
+* **optionality-unit-title:** fix maintainability bug ([65133c2](https://github.com/oaknational/Oak-Web-Application/commit/65133c20f1257410e58a018ea44bdf614394d2b7))
+* **optionality-unit-title:** for optionality units page make optionaility main title ([0e2a6d0](https://github.com/oaknational/Oak-Web-Application/commit/0e2a6d0b1d446bc0fd92288e2ff6994a7d881dfc))
+
 ## [1.464.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.0...v1.464.1) (2024-06-24)
 
 
