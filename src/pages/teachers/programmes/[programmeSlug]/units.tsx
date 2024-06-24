@@ -1,6 +1,5 @@
 import React, { useId } from "react";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -8,6 +7,7 @@ import {
   NextPage,
 } from "next";
 import {
+  OakBox,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -26,7 +26,6 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -80,10 +79,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   });
 
   const { currentPageItems, paginationTitle } = paginationProps;
-
-  const theme = useTheme();
-
-  const HEADER_HEIGHT = theme.header.height;
 
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
@@ -172,12 +167,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 4, 3]}
               $pl={["inner-padding-xl"]}
             >
-              <Box
+              <OakBox
                 $display={["none", "block"]}
                 $position={[null, "sticky"]}
-                $top={[null, HEADER_HEIGHT]}
-                $mt={[0, 24]}
-                $pt={[48]}
+                $top={[null, "all-spacing-12"]}
+                $mt={["space-between-none", "space-between-m"]}
+                $pt={["inner-padding-xl4"]}
+                as="aside"
               >
                 {learningThemes?.length > 1 && (
                   <Flex $flexDirection={"column"}>
@@ -207,7 +203,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     />
                   </Flex>
                 )}
-              </Box>
+              </OakBox>
             </OakGridArea>
 
             <OakGridArea
