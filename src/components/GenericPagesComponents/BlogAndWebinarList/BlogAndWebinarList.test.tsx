@@ -22,6 +22,7 @@ const blogAndWebinarListData: BlogAndWebinarListProps = {
   backgroundColor: "white",
   displayOnPhone: true,
   showImageOnTablet: true,
+  title: "Stay up to date",
 };
 
 describe("components/BlogAndWebinarList", () => {

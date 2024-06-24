@@ -7,12 +7,13 @@ export const testPlanALessonPageData: PlanALessonPage = {
   hero: {
     heading: "test",
     summaryPortableText: portableTextFromString("test"),
-    image: mockImageAsset(),
+    image: { ...mockImageAsset(), altText: "alt text hero" },
     author: {
       id: "13719a7b-4f00-4816-883a-8aded2a5c703",
       name: "Katie Marl",
       role: "Primary Curriculum Design Lead",
       image: {
+        altText: "alt text",
         asset: {
           _id: "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
           url: "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png",

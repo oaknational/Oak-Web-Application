@@ -67,11 +67,10 @@ async function writeJson({ data, fileName }) {
   return path;
 }
 
-function getSpriterInstance({ mode }) {
+function getSpriterInstance() {
   const config = {
     mode: {
-      defs: mode === "defs" ? { inline: true } : undefined,
-      symbol: mode === "symbol" ? { inline: true } : undefined,
+      defs: true,
     },
     shape: {
       id: {

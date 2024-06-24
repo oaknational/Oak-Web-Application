@@ -7,6 +7,8 @@ const curriculumUnitsIncludeNewSchema = z.object({
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
       connection_prior_unit_title: z.string().nullable(),
+      description: z.string().nullable(),
+      why_this_why_now: z.string().nullable(),
       domain: z.string().nullable(),
       domain_id: z.number().nullable(),
       examboard: z.string().nullable(),
@@ -24,7 +26,7 @@ const curriculumUnitsIncludeNewSchema = z.object({
           }),
         )
         .nullable(),
-      order: z.number(),
+      order: z.number().nullable(),
       slug: z.string(),
       state: z.string(),
       subject: z.string(),
@@ -33,6 +35,8 @@ const curriculumUnitsIncludeNewSchema = z.object({
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
+      pathway: z.string().nullable().optional(),
+      pathway_slug: z.string().nullable().optional(),
       tags: z
         .array(
           z.object({
@@ -56,6 +60,8 @@ const curriculumUnitsIncludeNewSchema = z.object({
           connection_future_unit_description: z.string().nullable(),
           connection_prior_unit_title: z.string().nullable(),
           connection_future_unit_title: z.string().nullable(),
+          description: z.string().nullable().optional(),
+          why_this_why_now: z.string().nullable().optional(),
           state: z.string(),
           title: z.string(),
           unitvariant_id: z.number(),

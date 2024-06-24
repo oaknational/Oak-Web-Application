@@ -1,6 +1,6 @@
 import PupilProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/options";
+} from "@/pages/pupils/programmes/[programmeSlug]/options";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import {
   ProgrammeFields,
@@ -74,7 +74,6 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
         curriculumApi2023.default.pupilProgrammeListingQuery,
       ).toHaveBeenCalledWith({
         baseSlug: "physics-secondary-year-11",
-        isLegacy: false,
       });
     });
   });

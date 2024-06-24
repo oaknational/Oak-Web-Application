@@ -8,10 +8,6 @@ exports[`unitsTablePatch should return units table 1`] = `
         {
           "elements": [
             {
-              "name": "w:pageBreakBefore",
-              "type": "element",
-            },
-            {
               "attributes": {
                 "w:val": "44",
               },
@@ -331,7 +327,7 @@ exports[`unitsTablePatch should return units table 1`] = `
                                   "elements": [
                                     {
                                       "attributes": {
-                                        "r:embed": "rId30",
+                                        "r:embed": "rId23",
                                       },
                                       "name": "a:blip",
                                       "type": "element",

@@ -48,12 +48,15 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     breadcrumb.push(tierDescription);
   }
 
+  const optionality = programmeFields?.optionality;
+
   const LessonListingTitle = (
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
       iconName={`subject-${subjectSlug}`}
       title={unitData?.title}
       breadcrumbs={breadcrumb}
+      optionalityTitle={optionality}
     />
   );
 
@@ -80,7 +83,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       />
       <OakPupilJourneyListCounter
         count={orderedCurriculumData.length}
-        countHeader="Lessons"
+        countHeader="Choose a lesson"
         tag="h2"
       />
     </OakFlex>
@@ -121,7 +124,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                     })}
                     index={index + 1}
                     title={lesson.lessonData.title}
-                    role="listitem"
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
                 );

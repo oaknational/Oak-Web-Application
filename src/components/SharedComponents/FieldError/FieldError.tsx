@@ -10,6 +10,7 @@ type FieldErrorProps = {
   children: ReactNode;
   withoutMarginBottom?: boolean;
   variant?: FieldErrorVariant | null;
+  ariaLive?: "off" | "polite" | "assertive";
 };
 
 const FieldError = (props: FieldErrorProps) => {
@@ -34,6 +35,7 @@ const FieldError = (props: FieldErrorProps) => {
         $color="red"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
         id={id}
+        aria-live={props.ariaLive || "off"}
       >
         {children}
       </OakSpan>

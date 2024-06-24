@@ -1,6 +1,32 @@
 import { z } from "zod";
+import {
+  lessonContentSchema,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import { lessonShareResourceSchema } from "../../shared.schema";
+
+export const rawLessonShareSchema = z.object({
+  expired: z.boolean().nullable(),
+  ...lessonContentSchema.pick({
+    lesson_title: true,
+    starter_quiz: true,
+    exit_quiz: true,
+    video_mux_playback_id: true,
+    video_duration: true,
+    worksheet_asset_object_url: true,
+  }).shape,
+});
+
+export const rawShareBrowseData = z.object({
+  unit_title: z.string(),
+  ...syntheticUnitvariantLessonsSchema.pick({
+    is_legacy: true,
+    programme_fields: true,
+  }).shape,
+});
+
+export type RawLessonShareSchema = z.infer<typeof rawLessonShareSchema>;
 
 export const lessonShareSchema = z.object({
   isSpecialist: z.literal(false),
@@ -17,7 +43,6 @@ export const lessonShareSchema = z.object({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
-  lessonCohort: z.string().nullish(),
   shareableResources: z.array(lessonShareResourceSchema),
   isLegacy: z.boolean(),
   expired: z.boolean().nullable(),

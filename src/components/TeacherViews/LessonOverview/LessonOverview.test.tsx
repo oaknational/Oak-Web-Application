@@ -7,7 +7,7 @@ describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
     ]);
     expect(result).toBe("pupil lesson outcome");
   });
-  it("should return undefined if pupilLessonOutcome is undefined", () => {
+  it("should return undefined if pupilLessonOutcome is undefined ", () => {
     const result = getDedupedPupilLessonOutcome(undefined, [
       { keyLearningPoint: "key learning point" },
     ]);

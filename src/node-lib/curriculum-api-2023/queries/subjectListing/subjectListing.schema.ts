@@ -1,4 +1,9 @@
 import { z } from "zod";
+import {
+  syntheticUnitvariantLessonsSchema,
+  keystageSlugs,
+  keystageDescriptions,
+} from "@oaknational/oak-curriculum-schema";
 
 export const subjectSchema = z.object({
   subjectSlug: z.string(),
@@ -9,18 +14,30 @@ export const subjectSchema = z.object({
   programmeCount: z.number(),
 });
 
+const keyStageDataRaw = z.object({
+  slug: keystageSlugs,
+  description: keystageDescriptions,
+  keystage: z.string(),
+  display_order: z.number().optional(),
+});
+
 const keyStageSchema = z.object({
-  slug: z.string(),
-  title: z.string(),
+  slug: keystageSlugs,
+  title: keystageDescriptions,
   shortCode: z.string(),
   displayOrder: z.number().optional(),
 });
 
 const subjectListingSchema = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
+  keyStageSlug: keystageSlugs,
+  keyStageTitle: keystageDescriptions,
   subjects: z.array(subjectSchema),
   keyStages: z.array(keyStageSchema),
+});
+
+export const subjectLisitingRawSchema = z.object({
+  subjectLessons: z.array(syntheticUnitvariantLessonsSchema),
+  key_stages: z.array(keyStageDataRaw),
 });
 
 export type KeyStageSubjectData = z.infer<typeof subjectSchema>;
