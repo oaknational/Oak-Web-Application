@@ -1,3 +1,15 @@
+# [1.464.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.1...v1.464.0) (2024-06-24)
+
+
+### Bug Fixes
+
+* move skip-link above "None highlighted" ([590e409](https://github.com/oaknational/Oak-Web-Application/commit/590e40998cab0521b08b2a639147f87cd8853a63))
+
+
+### Features
+
+* added a11y skip link to curriculum visualiser ([fc820df](https://github.com/oaknational/Oak-Web-Application/commit/fc820df52a22f912186f408b329075ca972afdbf))
+
 ## [1.463.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.0...v1.463.1) (2024-06-20)
 
 

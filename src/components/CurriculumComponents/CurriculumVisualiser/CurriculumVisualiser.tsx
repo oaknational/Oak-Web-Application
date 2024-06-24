@@ -242,6 +242,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
   return (
     <OakGridArea
+      id="content"
       $colSpan={[12, 9]}
       data-testid="curriculum-visualiser"
       ref={visualiserRef}
