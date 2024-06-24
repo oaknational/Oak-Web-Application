@@ -86,7 +86,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
   return (
     <Flex
       $mt={props.$mt ?? 24}
-      $display={["flex", "none"]}
+      $display={["flex", "flex", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       {...flexProps}
@@ -132,7 +132,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
             height: isOpen ? categoryListHeight : 0,
             clipPath: "inset(0px 0px -15px 0px)",
           }}
-          $display={["block", "none"]}
+          $display={["block", "block", "none"]}
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
