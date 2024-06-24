@@ -74,5 +74,25 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
         baseSlug: "physics-secondary-year-11",
       });
     });
+    it("Should throw erro oak error if baseSlug is not provided", async () => {
+      await expect(
+        getStaticProps({
+          params: {
+            examboardSlug: "aqa",
+            programmeSlug: "",
+          },
+        }),
+      ).rejects.toThrowError();
+    });
+    it("Should throw erro oak error if examboardSlug is not provided", async () => {
+      await expect(
+        getStaticProps({
+          params: {
+            examboardSlug: "fake-examboard",
+            programmeSlug: "physics-secondary-year-11",
+          },
+        }),
+      ).rejects.toThrowError();
+    });
   });
 });
