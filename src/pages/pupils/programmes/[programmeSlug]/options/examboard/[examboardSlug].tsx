@@ -11,7 +11,7 @@ import OakError from "@/errors/OakError";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-const ProgrammesPage = ({
+const ProgrammesWithExamboardPage = ({
   programmes,
   baseSlug,
   yearSlug,
@@ -68,4 +68,4 @@ export const getStaticProps: GetStaticProps<
   };
 };
 
-export default ProgrammesPage;
+export default ProgrammesWithExamboardPage;
