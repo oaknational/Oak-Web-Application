@@ -19,7 +19,7 @@ jest.mock(
   }),
 );
 
-describe("pages/pupils/programmes/[programmeSlug]/options", () => {
+describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => {
   const overrides: Partial<ProgrammeFields>[] = [
     {
       examboard: "AQA",
