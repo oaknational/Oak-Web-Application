@@ -76,6 +76,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   const lessonCount = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
       <OakInfo
+        id="lesson-listing-info"
         tooltipPosition="top-left"
         hint={
           "We've put the lessons in order helping you build on what you've learned before so it’s best to start with the first lesson of a unit."
