@@ -260,6 +260,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const { units, childSubjects, domains, tiers, disciplines } =
               yearData[year] as YearData[string];
 
+            const ref = (element: HTMLDivElement) => {
+              itemEls.current[index] = element;
+            };
             const filteredUnits = units.filter((unit: Unit) =>
               isVisibleUnit(yearSelection, year, unit),
             );
@@ -276,7 +279,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 $borderRadius={4}
                 className="mobileYearDisplay"
                 id={year}
-                ref={(element) => (itemEls.current[index] = element)}
+                ref={ref}
               >
                 <AnchorTarget
                   $paddingTop={mobileHeaderScrollOffset}

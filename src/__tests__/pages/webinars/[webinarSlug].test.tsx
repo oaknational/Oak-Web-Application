@@ -140,7 +140,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
           description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
           ogTitle: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
           ogImage:
             "https://image.mux.com/5678/thumbnail.png?width=1600&height=900&fit_mode=smartcrop&time=1",
           ogImageAlt: undefined,
