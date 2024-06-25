@@ -33,7 +33,8 @@ const useAppHooks = () => {
   useGleap({
     enabled:
       hasConsentedTo("gleap") === "enabled" &&
-      !router.pathname.startsWith("/pupils"), // Disable Gleap for pupils
+      !router.pathname.startsWith("/pupils") && // Disable Gleap for pupils
+      !router.pathname.startsWith("/videos"), // Disable Gleap for standalone video pages
   });
   useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
 };

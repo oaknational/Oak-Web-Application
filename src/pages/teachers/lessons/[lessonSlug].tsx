@@ -3,7 +3,11 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -11,7 +15,6 @@ import {
   shouldSkipInitialBuild,
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
-import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -19,6 +22,7 @@ import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn"
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import OakError from "@/errors/OakError";
+import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -43,14 +47,18 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverview lesson={{ ...lesson, isCanonical: true, isSpecialist }} />
-      {!isSpecialist && (
-        <OakFlex $background={"pink50"} $width={"100%"}>
-          <MaxWidth $pv={96}>
-            <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-          </MaxWidth>
-        </OakFlex>
-      )}
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonOverview
+          lesson={{ ...lesson, isCanonical: true, isSpecialist }}
+        />
+        {!isSpecialist && (
+          <OakFlex $background={"pink50"} $width={"100%"}>
+            <MaxWidth $pv={96}>
+              <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
+            </MaxWidth>
+          </OakFlex>
+        )}
+      </OakThemeProvider>
     </AppLayout>
   );
 }
@@ -98,7 +106,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error.code === "curriculum-api/not-found"
         ) {
           await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverviewCanonical({
+          lesson = await curriculumApi2023.lessonOverview({
             lessonSlug,
           });
         }

@@ -1,7 +1,8 @@
-query pupilUnitListing($programmeSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0(
-    where: { programme_slug: { _eq: $programmeSlug } }
+query pupilUnitListing($baseSlug: String!) {
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0(
+    where: { base_slug: { _eq: $baseSlug } }
   ) {
+    base_slug
     programme_slug
     unit_slug
     is_legacy

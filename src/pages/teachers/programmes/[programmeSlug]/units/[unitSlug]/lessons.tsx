@@ -5,7 +5,12 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -31,6 +36,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
+import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -62,6 +68,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     unitTitle,
     subjectTitle,
     programmeSlug,
+    subjectSlug,
   } = curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
@@ -105,66 +112,79 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       }}
       $background="white"
     >
-      <HeaderListing
-        breadcrumbs={[
-          {
-            oakLinkProps: {
-              page: "home",
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <HeaderListing
+          breadcrumbs={[
+            {
+              oakLinkProps: {
+                page: "home",
+              },
+              label: "Home",
             },
-            label: "Home",
-          },
-          {
-            oakLinkProps: {
-              page: "subject-index",
-              keyStageSlug,
+            {
+              oakLinkProps: {
+                page: "subject-index",
+                keyStageSlug,
+              },
+              label: keyStageTitle,
             },
-            label: keyStageTitle,
-          },
-          {
-            oakLinkProps: {
-              page: "unit-index",
-              programmeSlug,
-            },
-            label: subjectTitle,
-          },
-
-          {
-            oakLinkProps: {
-              page: "lesson-index",
-              unitSlug,
-              programmeSlug: programmeSlug,
+            {
+              oakLinkProps: {
+                page: "unit-index",
+                programmeSlug,
+              },
+              label: subjectTitle,
             },
 
-            label: unitTitle,
-            disabled: true,
-          },
-        ]}
-        background={"pink30"}
-        subjectIconBackgroundColor={"pink"}
-        title={unitTitle}
-        programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={isNew}
-        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
-        {...curriculumData}
-      />
-      <MaxWidth $ph={16}>
-        <OakGrid>
-          <OakGridArea
-            $colSpan={[12, 9]}
-            $mt={["space-between-s", "space-between-m2"]}
-          >
-            <LessonList
-              {...curriculumData}
-              lessonCount={lessons.length}
-              currentPageItems={currentPageItems}
-              paginationProps={paginationProps}
-              headingTag={"h2"}
-              unitTitle={unitTitle}
-              onClick={trackLessonSelected}
-            />
-          </OakGridArea>
-        </OakGrid>
-      </MaxWidth>
+            {
+              oakLinkProps: {
+                page: "lesson-index",
+                unitSlug,
+                programmeSlug: programmeSlug,
+              },
+
+              label: unitTitle,
+              disabled: true,
+            },
+          ]}
+          background={"pink30"}
+          subjectIconBackgroundColor={"pink"}
+          title={unitTitle}
+          programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
+          isNew={isNew}
+          hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+          {...curriculumData}
+        />
+        <MaxWidth $ph={16}>
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 9]}>
+              <NewContentBanner
+                keyStageSlug={keyStageSlug}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle.toLowerCase()}
+                programmeSlug={programmeSlug}
+                isLegacy={isSlugLegacy(programmeSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
+          <OakGrid>
+            <OakGridArea
+              $colSpan={[12, 9]}
+              $mt={["space-between-s", "space-between-m2"]}
+            >
+              <LessonList
+                {...curriculumData}
+                lessonCount={lessons.length}
+                currentPageItems={currentPageItems}
+                paginationProps={paginationProps}
+                headingTag={"h2"}
+                unitTitle={unitTitle}
+                onClick={trackLessonSelected}
+              />
+            </OakGridArea>
+          </OakGrid>
+        </MaxWidth>
+      </OakThemeProvider>
     </AppLayout>
   );
 };

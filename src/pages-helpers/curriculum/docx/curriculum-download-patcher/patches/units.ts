@@ -1,5 +1,5 @@
 import type { Element } from "xml-js";
-import { uniqBy } from "lodash";
+import { sortBy, uniqBy } from "lodash";
 
 import { checkWithinElement } from "../../docx";
 import { CombinedCurriculumData } from "..";
@@ -31,7 +31,8 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
       });
       if (pathways.length > 0) {
         options = options.flatMap((option) => {
-          return pathways.map((pathway) => {
+          // TODO: This should be sorted by pathway_display_order, however we need to change the way this is handled.
+          return sortBy(pathways, ["pathway_slug"]).map((pathway) => {
             return {
               ...option,
               pathway: pathway.pathway_slug,

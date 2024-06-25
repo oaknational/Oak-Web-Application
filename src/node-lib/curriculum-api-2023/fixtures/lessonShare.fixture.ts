@@ -20,7 +20,6 @@ const lessonShareFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
-    lessonCohort: "2020-2023",
     shareableResources: [
       {
         type: "exit-quiz-questions",

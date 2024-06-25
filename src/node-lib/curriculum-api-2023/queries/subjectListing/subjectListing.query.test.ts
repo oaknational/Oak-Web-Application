@@ -9,8 +9,8 @@ describe("subjectListing()", () => {
         ...sdk,
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            keyStageSubjects: [],
-            keyStages: [{ keyStages: [] }],
+            subjectLessons: [],
+            key_stages: [],
           }),
         ),
       })({
@@ -28,21 +28,30 @@ describe("subjectListing()", () => {
         // @ts-ignore
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            keyStages: [{ keyStages: [] }],
-            keyStageSubjects: [
+            key_stages: [
               {
-                keyStageSlug: "ks4",
-                // keyStageTitle: "Key stage 4", // missing from response
-                subjects: [
-                  {
-                    subjectSlug: "biology",
-                    subjectTitle: "Biology",
-                    unitCount: 1,
-                    lessonCount: 18,
-                    programmeSlug: "biology-secondary-ks4",
-                  },
-                ],
-                subjectsUnavailable: null,
+                // slug: "slug",
+                description: "description",
+                keystage: "ks4",
+                display_order: 1,
+              },
+            ],
+            subjectLessons: [
+              {
+                programme_fields: {
+                  subject: "subject",
+                  subject_slug: "subject-slug",
+                  tier_slug: null,
+                  year_slug: null,
+                  keystage_slug: "ks4",
+                  keystage_description: "Key Stage 4",
+                  phase_slug: null,
+                  examboard_slug: null,
+                },
+                unit_slug: "unit-slug",
+                programme_slug: "programme-slug",
+                lesson_slug: "lesson-slug",
+                is_legacy: false,
               },
             ],
           }),
@@ -51,6 +60,6 @@ describe("subjectListing()", () => {
         keyStageSlug: "slug",
         isLegacy: false,
       });
-    }).rejects.toThrow(`keyStageTitle`);
+    }).rejects.toThrow();
   });
 });

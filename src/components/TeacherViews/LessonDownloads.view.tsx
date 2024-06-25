@@ -288,21 +288,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>
-
-        <Box $display={isDownloadSuccessful ? "block" : "none"}>
-          <DownloadConfirmation
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            unitSlug={unitSlug}
-            unitTitle={unitTitle}
-            programmeSlug={programmeSlug}
-            data-testid="downloads-confirmation"
-            isCanonical={props.isCanonical}
-            nextLessons={lesson.nextLessons}
-            onwardContentSelected={onwardContentSelected}
-            isSpecialist={isSpecialist}
-          />
-        </Box>
         {!isDownloadSuccessful && (
           <ResourcePageLayout
             page={"download"}
@@ -356,6 +341,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             }
           />
         )}
+        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+          <DownloadConfirmation
+            lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
+            onwardContentSelected={onwardContentSelected}
+            isSpecialist={isSpecialist}
+          />
+        </Box>
       </MaxWidth>
     </Box>
   );

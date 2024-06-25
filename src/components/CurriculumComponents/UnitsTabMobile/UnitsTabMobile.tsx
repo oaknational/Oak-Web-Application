@@ -1,18 +1,13 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import {
-  OakP,
-  OakHeading,
-  OakFlex,
-  OakSpan,
-} from "@oaknational/oak-components";
+import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
 
 import { Thread } from "../CurriculumVisualiser/CurriculumVisualiser";
+import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
+import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import Radio from "@/components/SharedComponents/RadioButtons/Radio";
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 
 // Types and interfaces
 
@@ -89,7 +84,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           aria-expanded={open}
         />
       </Box>
-      <Box
+      <Fieldset
         $ml={16}
         $mt={32}
         $mr={16}
@@ -97,27 +92,27 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
         $height={"85%"}
         $overflow={"scroll"}
       >
-        <OakHeading tag={"h4"} $font={"heading-7"} $mb="space-between-m">
+        <FieldsetLegend $font={"heading-7"} $mb="space-between-m">
           Highlight a thread
-        </OakHeading>
+        </FieldsetLegend>
         <OakP $mb="space-between-m">
           Threads are groups of units across the curriculum that build a common
           body of knowledge
         </OakP>
         <RadioGroup
-          aria-label="Highlight a thread"
+          name="thread"
           value={selectedThread ? selectedThread.slug : ""}
-          onChange={handleSelectThread}
+          onChange={(e) => handleSelectThread(e.target.value)}
         >
           <Box>
             <Box $mv={16} $position={"relative"}>
-              <Radio
+              <RadioButton
                 aria-label={"None highlighted"}
                 value={""}
                 data-testid={"no-threads-radio-mobile"}
               >
                 None highlighted
-              </Radio>
+              </RadioButton>
             </Box>
             {threadOptions.map((threadOption) => {
               const isSelectedMobile = isSelectedThread(threadOption);
@@ -136,7 +131,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                   $mb={8}
                   key={threadOption.slug}
                 >
-                  <Radio
+                  <RadioButton
                     aria-label={threadOption.title}
                     value={threadOption.slug}
                     data-testid={
@@ -158,13 +153,13 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                         )}
                       </OakSpan>
                     </OakSpan>
-                  </Radio>
+                  </RadioButton>
                 </Box>
               );
             })}
           </Box>
         </RadioGroup>
-      </Box>
+      </Fieldset>
       <OakFlex
         $position={"fixed"}
         $width={"100%"}

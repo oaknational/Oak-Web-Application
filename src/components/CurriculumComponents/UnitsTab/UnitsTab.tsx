@@ -1,4 +1,4 @@
-import React, { FC, useState, useLayoutEffect } from "react";
+import React, { FC, useState, useLayoutEffect, ChangeEvent } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -17,10 +17,10 @@ import CurriculumVisualiser, {
   isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
+import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
+import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
 import Box from "@/components/SharedComponents/Box";
-import Radio from "@/components/SharedComponents/RadioButtons/Radio";
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -100,7 +100,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     setSelectedThread(thread);
   }
 
-  function handleSelectYear(year: string): void {
+  function handleSelectYear(e: ChangeEvent<HTMLInputElement>): void {
+    const year = e.target.value;
     trackSelectYear(year);
     setSelectedYear(year);
   }
@@ -227,32 +228,32 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
-            <Box
+            <Fieldset
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="threads-filter-desktop"
             >
-              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
+              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
                 Highlight a thread
-              </OakHeading>
+              </FieldsetLegend>
               <OakP $mb="space-between-xs">
                 Threads are groups of units across the curriculum that build a
                 common body of knowledge
               </OakP>
               <RadioGroup
-                aria-label="Highlight a thread"
+                name="thread"
+                onChange={(e) => handleSelectThread(e.target.value)}
                 value={selectedThread ? selectedThread.slug : ""}
-                onChange={handleSelectThread}
               >
                 <Box $mv={16}>
-                  <Radio
+                  <RadioButton
                     aria-label={"None highlighted"}
                     value={""}
                     data-testid={"no-threads-radio"}
                   >
                     None highlighted
-                  </Radio>
+                  </RadioButton>
                 </Box>
                 {threadOptions.map((threadOption) => {
                   const isSelected = isSelectedThread(threadOption);
@@ -270,7 +271,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                       $mb={8}
                       key={threadOption.slug}
                     >
-                      <Radio
+                      <RadioButton
                         aria-label={threadOption.title}
                         value={threadOption.slug}
                         data-testid={
@@ -290,48 +291,40 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                             )}
                           </OakSpan>
                         </OakSpan>
-                      </Radio>
+                      </RadioButton>
                     </Box>
                   );
                 })}
               </RadioGroup>
-            </Box>
-            <Box
+            </Fieldset>
+            <Fieldset
               $mr={16}
               $mb={32}
               $display={["none", "block"]}
               data-testid="year-group-filter-desktop"
             >
-              <OakHeading tag={"h3"} $font={"heading-7"} $mb="space-between-xs">
+              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
                 Year group
-              </OakHeading>
+              </FieldsetLegend>
               <RadioGroup
-                aria-label="Select a year group"
-                value={selectedYear ?? ""}
+                name="year"
+                value={selectedYear}
                 onChange={handleSelectYear}
               >
                 <Box $mb={16}>
-                  <Radio
-                    aria-label="All"
-                    value={""}
-                    data-testid={"all-years-radio"}
-                  >
+                  <RadioButton value={""} data-testid={"all-years-radio"}>
                     All
-                  </Radio>
+                  </RadioButton>
                 </Box>
                 {yearOptions.map((yearOption) => (
                   <Box key={yearOption} $mb={16}>
-                    <Radio
-                      aria-label={`Year ${yearOption}`}
-                      value={yearOption}
-                      data-testid={"year-radio"}
-                    >
+                    <RadioButton value={yearOption} data-testid={"year-radio"}>
                       Year {yearOption}
-                    </Radio>
+                    </RadioButton>
                   </Box>
                 ))}
               </RadioGroup>
-            </Box>
+            </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser
             unitData={unitData}

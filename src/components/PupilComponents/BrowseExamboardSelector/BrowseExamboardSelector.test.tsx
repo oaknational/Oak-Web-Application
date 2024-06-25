@@ -8,13 +8,24 @@ import {
 
 describe("BrowseExamboardSelector", () => {
   const examboards: ExamboardData[] = [
-    { examboard: "AQA", examboardSlug: "aqa", examboardDisplayOrder: 1 },
+    {
+      examboard: "AQA",
+      examboardSlug: "aqa",
+      examboardDisplayOrder: 1,
+      isLegacy: false,
+    },
     {
       examboard: "Edexcel",
       examboardSlug: "edexcel",
       examboardDisplayOrder: 2,
+      isLegacy: false,
     },
-    { examboard: "OCR", examboardSlug: "ocr", examboardDisplayOrder: 3 },
+    {
+      examboard: "OCR",
+      examboardSlug: "ocr",
+      examboardDisplayOrder: 3,
+      isLegacy: true,
+    },
   ];
 
   it("should render", () => {
@@ -23,7 +34,6 @@ describe("BrowseExamboardSelector", () => {
         <BrowseExamboardSelector
           examboards={examboards}
           baseSlug="my-subject"
-          isLegacy={false}
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
@@ -36,7 +46,6 @@ describe("BrowseExamboardSelector", () => {
         <BrowseExamboardSelector
           examboards={examboards}
           onClick={() => {}}
-          isLegacy={false}
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
@@ -54,7 +63,6 @@ describe("BrowseExamboardSelector", () => {
         <BrowseExamboardSelector
           examboards={examboards}
           baseSlug="my-subject"
-          isLegacy={false}
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
@@ -72,7 +80,6 @@ describe("BrowseExamboardSelector", () => {
         <BrowseExamboardSelector
           examboards={examboards}
           baseSlug="my-subject"
-          isLegacy={true}
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
@@ -81,7 +88,9 @@ describe("BrowseExamboardSelector", () => {
     for (const e of examboards) {
       const button = getByRole("link", { name: e.examboard ?? "" });
       expect(button.getAttribute("href")).toBe(
-        `/pupils/beta/programmes/my-subject-${e.examboardSlug}-l/units`,
+        `/pupils/programmes/my-subject-${e.examboardSlug}${
+          e.isLegacy ? "-l" : ""
+        }/units`,
       );
     }
   });

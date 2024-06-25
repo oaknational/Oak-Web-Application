@@ -2,7 +2,7 @@ import { OakInfoProps } from "@oaknational/oak-components";
 
 import PupilUnitListingPage, {
   getStaticProps,
-} from "@/pages/pupils/beta//programmes/[programmeSlug]/units";
+} from "@/pages/pupils/programmes/[programmeSlug]/units";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -32,6 +32,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
     it("should render the unit titles in the correct order", () => {
       const { getByText } = render(
         <PupilUnitListingPage
+          programmeSlug="maths-secondary-year-10-aqa-core"
           curriculumData={[
             unitBrowseDataFixture({
               unitData: {
@@ -63,14 +64,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       it("Should call API:pupilUnitLisitngQuery", async () => {
         await getStaticProps({
           params: {
-            programmeSlug: "ks123",
+            programmeSlug: "biology-secondary-year-10-foundation-aqa",
           },
         });
 
         expect(
           curriculumApi2023.default.pupilUnitListingQuery,
         ).toHaveBeenCalledWith({
-          programmeSlug: "ks123",
+          baseSlug: "biology-secondary-year-10",
         });
       });
     });

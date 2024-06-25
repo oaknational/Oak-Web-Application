@@ -56,7 +56,7 @@ export default function Page({
               $mt="space-between-l"
               $mb="space-between-s"
             >
-              Curriculum downloads Test Harness
+              Curriculum downloads
             </OakHeading>
             <Box $maxWidth={960} $mb={40}>
               <Flex
@@ -68,8 +68,8 @@ export default function Page({
                 <OakBox $mb="space-between-m">
                   <Autocomplete
                     inputProps={{
-                      label: "Type & select curriculum",
-                      id: "programme",
+                      label: "Choose curriculum",
+                      id: "curriculum",
                       error: undefined,
                     }}
                     onChange={(value) => {

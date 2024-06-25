@@ -10,11 +10,13 @@ describe("getExamboardData", () => {
         examboardSlug: "aqa",
         examboard: "AQA",
         examboardDisplayOrder: 1,
+        isLegacy: false,
       },
       {
         examboardSlug: "edexcel",
         examboard: "Edexcel",
         examboardDisplayOrder: 2,
+        isLegacy: false,
       },
     ];
     const result = getExamboardData({
@@ -25,6 +27,7 @@ describe("getExamboardData", () => {
       examboardSlug: "aqa",
       examboard: "AQA",
       examboardDisplayOrder: 1,
+      isLegacy: false,
     });
   });
 
@@ -35,11 +38,13 @@ describe("getExamboardData", () => {
         examboardSlug: "aqa",
         examboard: "AQA",
         examboardDisplayOrder: 1,
+        isLegacy: false,
       },
       {
         examboardSlug: "edexcel",
         examboard: "Edexcel",
         examboardDisplayOrder: 2,
+        isLegacy: false,
       },
     ];
     expect(() =>

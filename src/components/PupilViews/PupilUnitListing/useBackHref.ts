@@ -3,19 +3,17 @@ import { resolveOakHref } from "@/common-lib/urls";
 export const useBackHref = ({
   baseSlug,
   yearSlug,
-  isLegacy = false,
   tierSlug,
   examboardSlug,
 }: {
   baseSlug: string;
   yearSlug: string;
-  isLegacy: boolean;
   tierSlug?: string | null;
   examboardSlug?: string | null;
 }) => {
   const hasTier = tierSlug && tierSlug !== null;
   const hasExamboard = examboardSlug && examboardSlug !== null;
-  const optionSlug = `options${isLegacy ? "-l" : ""}`;
+  const optionSlug = `options`;
 
   switch (true) {
     case hasTier && hasExamboard:
