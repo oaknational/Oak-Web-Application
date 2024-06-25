@@ -6,7 +6,7 @@ export default async function handler(
 ) {
   const buffer = await (
     await fetch(
-      "https://storage.googleapis.com/oak-curriculum-download/template.docx",
+      "https://storage.googleapis.com/oak-curriculum-download/template-prefixed-fonts.docx",
     )
   ).arrayBuffer();
   res
