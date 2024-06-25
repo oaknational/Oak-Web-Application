@@ -1,3 +1,34 @@
+## [1.465.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.1...v1.465.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **types:** curriculum visualiser ref ([98c22be](https://github.com/oaknational/Oak-Web-Application/commit/98c22be34a5d9d8f47e4b126e3bd2ff4584c434e))
+
+## [1.465.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.0...v1.465.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* mock downloads api url in env ([4b38c9a](https://github.com/oaknational/Oak-Web-Application/commit/4b38c9adf139b07d0fd9fc542007cf328dc95c41))
+
+# [1.465.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.1...v1.465.0) (2024-06-24)
+
+
+### Features
+
+* **optionality-unit-title:** fix maintainability bug ([9563fce](https://github.com/oaknational/Oak-Web-Application/commit/9563fce8ff3eb85d640e113f2d6487b9df25b1b3))
+* **optionality-unit-title:** fix maintainability bug ([65133c2](https://github.com/oaknational/Oak-Web-Application/commit/65133c20f1257410e58a018ea44bdf614394d2b7))
+* **optionality-unit-title:** for optionality units page make optionaility main title ([0e2a6d0](https://github.com/oaknational/Oak-Web-Application/commit/0e2a6d0b1d446bc0fd92288e2ff6994a7d881dfc))
+
+## [1.464.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.0...v1.464.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* added radiogroup semantics to domain/subject/tier filters in curriculum visualiser ([a6beb5e](https://github.com/oaknational/Oak-Web-Application/commit/a6beb5eab95df290fbd86ac80aa83e12a54c8345))
+* switch to using aria-pressed and role="group" for better a11y ([d0e2942](https://github.com/oaknational/Oak-Web-Application/commit/d0e294218d79b9406a84937deff88d357f55ba25))
+
 # [1.464.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.1...v1.464.0) (2024-06-24)
 
 
