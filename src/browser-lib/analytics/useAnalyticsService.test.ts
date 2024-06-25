@@ -16,8 +16,6 @@ const service: AnalyticsService<unknown> = {
   optIn: jest.fn(),
 };
 
-const setPosthogDistinctId = jest.fn();
-
 describe("useAnalyticsService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -27,7 +25,7 @@ describe("useAnalyticsService", () => {
       default: jest.fn(errorReporter),
     }));
   });
-  test("should not call service.init() if consentState:disabled", () => {
+  test("should not call service.init() if consentState:denied", () => {
     renderHook(() =>
       useAnalyticsService({ service, config: null, consentState: "denied" }),
     );
@@ -39,7 +37,7 @@ describe("useAnalyticsService", () => {
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should call service.init(config) if consentState:enabled", () => {
+  test("should call service.init(config) if consentState:granted", () => {
     renderHook(() =>
       useAnalyticsService({
         service,
@@ -50,6 +48,8 @@ describe("useAnalyticsService", () => {
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
   test("should set posthog distinct if callback passed", async () => {
+    const setPosthogDistinctId = jest.fn();
+
     renderHook(() =>
       useAnalyticsService({
         service,
@@ -62,6 +62,34 @@ describe("useAnalyticsService", () => {
       expect(setPosthogDistinctId).toHaveBeenCalledWith(
         "test-posthog-distinct-id",
       );
+    });
+  });
+
+  test("should clear posthog distinct id when loaded and consentState:denied", async () => {
+    const setPosthogDistinctId = jest.fn();
+
+    const result = renderHook(
+      (...args: Parameters<typeof useAnalyticsService>) =>
+        useAnalyticsService(...args),
+      {
+        initialProps: {
+          service,
+          config: { foo: "bar" },
+          consentState: "granted",
+          setPosthogDistinctId,
+        },
+      },
+    );
+
+    result.rerender({
+      service,
+      config: { foo: "bar" },
+      consentState: "denied",
+      setPosthogDistinctId,
+    });
+
+    await waitFor(() => {
+      expect(setPosthogDistinctId).toHaveBeenLastCalledWith(null);
     });
   });
 });

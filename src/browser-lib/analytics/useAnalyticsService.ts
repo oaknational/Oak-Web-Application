@@ -47,7 +47,7 @@ const useAnalyticsService = <T>({
       if (consentState === "granted") {
         service.optIn();
       }
-      if (consentState === "granted") {
+      if (consentState === "denied") {
         service.optOut();
         if (setPosthogDistinctId) {
           setPosthogDistinctId(null);
