@@ -17,6 +17,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
   return res.unit
     .map((l) => {
       const lesson = syntheticUnitvariantLessonsSchema.parse(l);
+
       const transformedLesson = {
         lessonSlug: lesson.lesson_slug,
         lessonTitle: lesson.lesson_data.title,
@@ -31,7 +32,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         videoCount: lesson.lesson_data.video_id ? 1 : 0,
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-        hasCopyrightMaterial: false, // this is hardcoded to false in previous lesson listing mv (data tools)
+        hasCopyrightMaterial: l.lesson_data.copyright_content ? true : false,
         orderInUnit: lesson.supplementary_data.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
       };
@@ -66,6 +67,8 @@ const lessonListingQuery =
     const res = await sdk.lessonListing(args);
 
     const [unit] = res.unit;
+
+    console.log(unit, "unit");
 
     if (!unit) {
       throw new OakError({ code: "curriculum-api/not-found" });
