@@ -19,6 +19,7 @@ import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -38,6 +39,7 @@ export type ProviderProps = {
 type ProviderPropsByName = {
   cookieConsent: { __testMockValue: CookieConsentContext };
   theme: { theme: OakTheme };
+  oakTheme: { theme: typeof oakDefaultTheme };
   errorBoundary: Record<string, never>;
   analytics: Record<string, never>;
   router: MemoryRouterProviderProps;
@@ -58,6 +60,7 @@ const providersByName: {
 } = {
   cookieConsent: [MockedCookieConsentProvider],
   theme: [ThemeProvider, { theme }],
+  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
   analytics: [MockedAnalyticsProvider],
   router: [MemoryRouterProvider],
