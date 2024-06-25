@@ -242,6 +242,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
   return (
     <OakGridArea
+      id="content"
       $colSpan={[12, 9]}
       data-testid="curriculum-visualiser"
       ref={visualiserRef}
@@ -253,6 +254,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const { units, childSubjects, domains, tiers, disciplines } =
               yearData[year] as YearData[string];
 
+            const ref = (element: HTMLDivElement) => {
+              itemEls.current[index] = element;
+            };
             const filteredUnits = units.filter((unit: Unit) =>
               isVisibleUnit(yearSelection, year, unit),
             );
@@ -269,7 +273,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 $borderRadius={4}
                 className="mobileYearDisplay"
                 id={year}
-                ref={(element) => (itemEls.current[index] = element)}
+                ref={ref}
               >
                 <AnchorTarget
                   $paddingTop={mobileHeaderScrollOffset}
@@ -285,84 +289,115 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   Year {year}
                 </OakHeading>
                 {disciplines?.length > 1 && (
-                  <Box>
-                    {disciplines.map((discipline, index) => (
-                      <Button
-                        $mb={20}
-                        $mr={20}
-                        background={
-                          isSelectedDiscipline(yearSelection, year, discipline)
-                            ? "black"
-                            : "white"
-                        }
-                        key={index}
-                        label={discipline.title}
-                        onClick={() => handleSelectDiscipline(year, discipline)}
-                        size="small"
-                        data-testid="discipline-button"
-                      />
-                    ))}
-                  </Box>
-                )}
-                {childSubjects.length > 0 && (
-                  <Box>
-                    {sortChildSubjects(childSubjects).map(
-                      (subject: Subject) => (
+                  <Box role="group" aria-label="Disciplines">
+                    {disciplines.map((discipline, index) => {
+                      const isSelected = isSelectedDiscipline(
+                        yearSelection,
+                        year,
+                        discipline,
+                      )
+                        ? "black"
+                        : "white";
+
+                      return (
                         <Button
                           $mb={20}
                           $mr={20}
-                          background={
-                            isSelectedSubject(yearSelection, year, subject)
-                              ? "black"
-                              : "white"
+                          background={isSelected}
+                          key={index}
+                          label={discipline.title}
+                          onClick={() =>
+                            handleSelectDiscipline(year, discipline)
                           }
-                          key={subject.subject_slug}
-                          label={subject.subject}
-                          onClick={() => handleSelectSubject(year, subject)}
                           size="small"
-                          data-testid="subject-button"
+                          data-testid="discipline-button"
+                          aria-pressed={isSelected}
                         />
-                      ),
+                      );
+                    })}
+                  </Box>
+                )}
+                {childSubjects.length > 0 && (
+                  <Box role="group" aria-label="Child Subjects">
+                    {sortChildSubjects(childSubjects).map(
+                      (subject: Subject) => {
+                        const isSelected = isSelectedSubject(
+                          yearSelection,
+                          year,
+                          subject,
+                        )
+                          ? "black"
+                          : "white";
+
+                        return (
+                          <Button
+                            $mb={20}
+                            $mr={20}
+                            background={isSelected}
+                            key={subject.subject_slug}
+                            label={subject.subject}
+                            onClick={() => handleSelectSubject(year, subject)}
+                            size="small"
+                            data-testid="subject-button"
+                            aria-pressed={isSelected}
+                          />
+                        );
+                      },
                     )}
                   </Box>
                 )}
                 {domains.length > 0 && (
-                  <Box>
-                    {domains.map((domain: Domain) => (
-                      <Button
-                        $mb={20}
-                        $mr={20}
-                        background={
-                          isSelectedDomain(yearSelection, year, domain)
-                            ? "black"
-                            : "white"
-                        }
-                        key={domain.domain_id}
-                        label={domain.domain}
-                        onClick={() => handleSelectDomain(year, domain)}
-                        size="small"
-                        data-testid="domain-button"
-                      />
-                    ))}
+                  <Box role="group" aria-label="Domains">
+                    {domains.map((domain: Domain) => {
+                      const isSelected = isSelectedDomain(
+                        yearSelection,
+                        year,
+                        domain,
+                      )
+                        ? "black"
+                        : "white";
+
+                      return (
+                        <Button
+                          $mb={20}
+                          $mr={20}
+                          background={isSelected}
+                          key={domain.domain_id}
+                          label={domain.domain}
+                          onClick={() => handleSelectDomain(year, domain)}
+                          size="small"
+                          data-testid="domain-button"
+                          aria-pressed={isSelected}
+                        />
+                      );
+                    })}
                   </Box>
                 )}
                 {tiers.length > 0 && (
-                  <Box>
-                    {tiers.map((tier: Tier) => (
-                      <Button
-                        $font={"heading-6"}
-                        $mb={20}
-                        $mr={24}
-                        key={tier.tier_slug}
-                        label={tier.tier}
-                        onClick={() => handleSelectTier(year, tier)}
-                        size="small"
-                        variant="minimal"
-                        isCurrent={isSelectedTier(yearSelection, year, tier)}
-                        currentStyles={["underline"]}
-                        data-testid={`tier-button`}
-                      />
-                    ))}
+                  <Box role="group" aria-label="Tiers">
+                    {tiers.map((tier: Tier) => {
+                      const isSelected = isSelectedTier(
+                        yearSelection,
+                        year,
+                        tier,
+                      );
+                      return (
+                        <Button
+                          $font={"heading-6"}
+                          $mb={20}
+                          $mr={24}
+                          key={tier.tier_slug}
+                          label={tier.tier}
+                          onClick={() => handleSelectTier(year, tier)}
+                          size="small"
+                          variant="minimal"
+                          isCurrent={isSelected}
+                          currentStyles={["underline"]}
+                          data-testid={`tier-button`}
+                          aria-pressed={isSelected}
+                        />
+                      );
+                    })}
                   </Box>
                 )}
                 <OakFlex

@@ -17,6 +17,7 @@ import CurriculumVisualiser, {
   isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
+import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
@@ -246,6 +247,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 onChange={(e) => handleSelectThread(e.target.value)}
                 value={selectedThread ? selectedThread.slug : ""}
               >
+                <SkipLink href="#content">Skip to units</SkipLink>
                 <Box $mv={16}>
                   <RadioButton
                     aria-label={"None highlighted"}

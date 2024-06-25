@@ -6,6 +6,7 @@ import {
 } from "next";
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -148,36 +149,38 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }
 
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: buildCurriculumMetadata({
-            metadataType: "title",
-            subjectSlug: subjectSlug,
-            examboardSlug: examboardSlug,
-            keyStagesData: keyStagesData,
-            tab: tab,
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: buildCurriculumMetadata({
+              metadataType: "title",
+              subjectSlug: subjectSlug,
+              examboardSlug: examboardSlug,
+              keyStagesData: keyStagesData,
+              tab: tab,
+            }),
+            description: buildCurriculumMetadata({
+              metadataType: "description",
+              subjectSlug: subjectSlug,
+              examboardSlug: examboardSlug,
+              keyStagesData: keyStagesData,
+              tab: tab,
+            }),
           }),
-          description: buildCurriculumMetadata({
-            metadataType: "description",
-            subjectSlug: subjectSlug,
-            examboardSlug: examboardSlug,
-            keyStagesData: keyStagesData,
-            tab: tab,
-          }),
-        }),
-      }}
-      $background={"white"}
-    >
-      <CurriculumHeader
-        subjectPhaseOptions={subjectPhaseOptions}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-        color1="mint"
-        color2="mint30"
-      />
+        }}
+        $background={"white"}
+      >
+        <CurriculumHeader
+          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          color1="mint"
+          color2="mint30"
+        />
 
-      <Box $background={"white"}>{tabContent}</Box>
-    </AppLayout>
+        <Box $background={"white"}>{tabContent}</Box>
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 

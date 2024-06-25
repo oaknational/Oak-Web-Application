@@ -53,7 +53,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
           "Free KS4 Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Search by subject for free KS4 teaching resources to download and share",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });

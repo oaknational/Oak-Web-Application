@@ -203,8 +203,8 @@ describe("<SearchForm />", () => {
 
     expect(searchAttempted).toHaveBeenCalledTimes(1);
     expect(searchAttempted).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      pageName: null,
+      analyticsUseCase: "Teacher",
+      pageName: "Homepage",
       searchFilterOptionSelected: [],
       searchSource: "homepage search box",
       searchTerm: "search me",

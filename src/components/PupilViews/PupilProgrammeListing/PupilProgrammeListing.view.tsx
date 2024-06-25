@@ -192,7 +192,11 @@ export const PupilViewsProgrammeListing = ({
 
   const optionTitleSlot = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
-      <OakInfo tooltipPosition="top-left" hint={optionTitles().hint} />
+      <OakInfo
+        id="option-info"
+        tooltipPosition="top-left"
+        hint={optionTitles().hint}
+      />
       <OakHeading $font={["heading-6", "heading-5"]} tag="h2">
         {optionTitles().title}
       </OakHeading>
