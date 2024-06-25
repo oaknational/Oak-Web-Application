@@ -1,3 +1,10 @@
+## [1.465.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.2...v1.465.3) (2024-06-25)
+
+
+### Bug Fixes
+
+* adding ids to OakInfo components to resolve pa11y issues ([2d768b5](https://github.com/oaknational/Oak-Web-Application/commit/2d768b563fd14ac579676cbb1bc01aaac505aaf8))
+
 ## [1.465.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.1...v1.465.2) (2024-06-25)
 
 
