@@ -1,12 +1,14 @@
 import { z } from "zod";
 
-const curriculumUnitsSchema = z.object({
+const curriculumUnitsIncludeNewSchema = z.object({
   units: z
     .object({
       connection_prior_unit_description: z.string().nullable(),
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
       connection_prior_unit_title: z.string().nullable(),
+      description: z.string().nullable(),
+      why_this_why_now: z.string().nullable(),
       domain: z.string().nullable(),
       domain_id: z.number().nullable(),
       examboard: z.string().nullable(),
@@ -24,8 +26,9 @@ const curriculumUnitsSchema = z.object({
           }),
         )
         .nullable(),
-      order: z.number(),
+      order: z.number().nullable(),
       slug: z.string(),
+      state: z.string(),
       subject: z.string(),
       subject_slug: z.string(),
       subject_parent: z.string().nullable(),
@@ -57,6 +60,9 @@ const curriculumUnitsSchema = z.object({
           connection_future_unit_description: z.string().nullable(),
           connection_prior_unit_title: z.string().nullable(),
           connection_future_unit_title: z.string().nullable(),
+          description: z.string().nullable().optional(),
+          why_this_why_now: z.string().nullable().optional(),
+          state: z.string(),
           title: z.string(),
           unitvariant_id: z.number(),
           lessons: z.array(
@@ -74,4 +80,4 @@ const curriculumUnitsSchema = z.object({
     .array(),
 });
 
-export default curriculumUnitsSchema;
+export default curriculumUnitsIncludeNewSchema;
