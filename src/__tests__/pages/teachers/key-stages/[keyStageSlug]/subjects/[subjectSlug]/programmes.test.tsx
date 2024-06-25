@@ -45,7 +45,7 @@ describe("programmes listing page", () => {
         description: "Choose foundation or higher tier for GCSE Maths",
         ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose foundation or higher tier for GCSE Maths",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -97,7 +97,7 @@ describe("programmes listing page", () => {
         description: "Choose core, foundation or higher tier for GCSE Maths",
         ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose core, foundation or higher tier for GCSE Maths",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -139,7 +139,7 @@ describe("programmes listing page", () => {
         description: "Choose from the most popular exam boards in GCSE Maths",
         ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose from the most popular exam boards in GCSE Maths",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -183,7 +183,7 @@ describe("programmes listing page", () => {
         ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Choose foundation or higher tier from the most popular exam boards in GCSE Maths",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
