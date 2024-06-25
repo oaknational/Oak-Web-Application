@@ -81,8 +81,7 @@ export default function Page({
   }
 
   const onSubmit = async () => {
-    const templateUrl =
-      "https://storage.googleapis.com/oak-curriculum-download/curriculum-docx-template.docx";
+    const templateUrl = "/api/curriculum-downloads.docx";
     const fileContent = await (await fetch(templateUrl)).arrayBuffer();
     // const fileContent = event.target.result as ArrayBuffer;
     const uint8Array = new Uint8Array(fileContent);
