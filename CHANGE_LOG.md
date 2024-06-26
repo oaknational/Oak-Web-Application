@@ -1,3 +1,52 @@
+# [1.467.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.466.1...v1.467.0) (2024-06-26)
+
+
+### Bug Fixes
+
+* added required prop to `useComboBoxState` for controlled component ([5ca39a4](https://github.com/oaknational/Oak-Web-Application/commit/5ca39a468674ec126ee12ff79f3c80091e228429))
+* allow for controlled/uncontrolled mode for <AutoComplete/> ([8bffe1c](https://github.com/oaknational/Oak-Web-Application/commit/8bffe1ceeb69f909dac39782e6dc54b178e05547))
+* drop react key resetting <AutoComplete/> state ([c4e1366](https://github.com/oaknational/Oak-Web-Application/commit/c4e1366636fd2d1bcae9719b8cfa81d66cd917b8))
+* hide pre-release components via wrapper ([ccccda1](https://github.com/oaknational/Oak-Web-Application/commit/ccccda1d627e4cd00b35469e97a4183d798dc3fb))
+* initial hydrate state in <CurriculumDownloadTab/> ([b39a0ca](https://github.com/oaknational/Oak-Web-Application/commit/b39a0ca43a0705b9c52af23a604db8cdf11873a9))
+* prevent errors from overlapping download button ([78aed75](https://github.com/oaknational/Oak-Web-Application/commit/78aed75a4e1a34c8ce5f71b7be83e77ac3544649))
+* remove invalid "role" and <fieldset/> from <form/> ([297dd3a](https://github.com/oaknational/Oak-Web-Application/commit/297dd3a4ec621f08ec007230a731c688e2492b95))
+* remove old conditional ([83ae060](https://github.com/oaknational/Oak-Web-Application/commit/83ae0606fbb66e6b60197d3e96bd7ad68610330a))
+* reset `schoolName` when setting `schoolNotListed` ([5ae5584](https://github.com/oaknational/Oak-Web-Application/commit/5ae558485ba94631b8d3a8ec02604e0f3250621f))
+* switched from <LoadingButton/> to <OakPrimaryButton/> ([a965658](https://github.com/oaknational/Oak-Web-Application/commit/a9656585031430f48b8252d9507318051aba4ad8))
+* zod use intersection to force superRefine to always run ([3f3ae93](https://github.com/oaknational/Oak-Web-Application/commit/3f3ae93195373f1bec09c5ac6701ac7589acda0e))
+
+
+### Features
+
+* added autocomplete into download preview ([c48329e](https://github.com/oaknational/Oak-Web-Application/commit/c48329e73c003b030b0a437788c7ed358031ea8d))
+* added prerelease cookie ([c482fed](https://github.com/oaknational/Oak-Web-Application/commit/c482feda2b4f199e56e7ff7b942880a80e3f9851))
+* get user details from from localStorage in CurriculumDownloadTab ([8104647](https://github.com/oaknational/Oak-Web-Application/commit/81046475e56aac5cdd4c3e5c381ffb05f420cca1))
+* initial curriculum download panel ([d9f3009](https://github.com/oaknational/Oak-Web-Application/commit/d9f3009e80d78ce01a1979d87f11b607ea6e319c))
+
+## [1.466.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.466.0...v1.466.1) (2024-06-26)
+
+# [1.466.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.4...v1.466.0) (2024-06-26)
+
+
+### Features
+
+* **options-page:** add comment ([04029c8](https://github.com/oaknational/Oak-Web-Application/commit/04029c85665c7364a1e369eb9d14054c1d30acf5))
+* **options-page:** add test coverage ([f97a754](https://github.com/oaknational/Oak-Web-Application/commit/f97a7542b37eb756c75097d5a982009a1f17c0da))
+* **options-page:** add test coverage ([5092b17](https://github.com/oaknational/Oak-Web-Application/commit/5092b17b84e9ba03c3129569e3012f9a1fea08fc))
+* **options-page:** add test coverage ([d4d3bee](https://github.com/oaknational/Oak-Web-Application/commit/d4d3beebdc490ef094416be368cd1b77cd432a15))
+* **options-page:** fix glitch after back to programmes and tiered options ([fc970f0](https://github.com/oaknational/Oak-Web-Application/commit/fc970f0ba7385e22d71d6bd50edbb71cab9f61de))
+* **options-page:** fix glitch after back to programmes and tiered options ([8ceb908](https://github.com/oaknational/Oak-Web-Application/commit/8ceb90839a1fba2d4b49b81075b20edb245d8c3b))
+* **options-page:** remove layout code duplication ([ed5775e](https://github.com/oaknational/Oak-Web-Application/commit/ed5775ecfba58b717db1f9ce0b93861df12b3fe7))
+* **options-page:** remove layout code duplication ([14747e5](https://github.com/oaknational/Oak-Web-Application/commit/14747e534dfd5b722e58be5dae75a4ac43bd5126))
+* **options-page:** remove layout code duplication ([546d2fd](https://github.com/oaknational/Oak-Web-Application/commit/546d2fd70f64b701ebc667b10e859a0804c7952c))
+
+## [1.465.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.3...v1.465.4) (2024-06-25)
+
+
+### Bug Fixes
+
+* pass in current tier_slug because it isn't set on all units ([7747fd7](https://github.com/oaknational/Oak-Web-Application/commit/7747fd70d364249dad8697a5114bac9e2bc7d993))
+
 ## [1.465.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.2...v1.465.3) (2024-06-25)
 
 
