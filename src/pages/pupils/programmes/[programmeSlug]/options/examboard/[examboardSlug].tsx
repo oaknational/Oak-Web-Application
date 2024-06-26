@@ -11,6 +11,8 @@ import OakError from "@/errors/OakError";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
+// This page is for moving back through pupil journey from subject with examboards and tiers
+
 const ProgrammesWithExamboardPage = ({
   programmes,
   baseSlug,
