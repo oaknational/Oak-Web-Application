@@ -9,7 +9,11 @@ import { FC } from "react";
 import InlineSpriteSheetSvg from "@/image-data/generated/inline-sprite.svg";
 
 const InlineSpriteSheet: FC = () => {
-  return <InlineSpriteSheetSvg />;
+  return (
+    <div style={{ display: "none" }}>
+      <InlineSpriteSheetSvg />
+    </div>
+  );
 };
 
 export default InlineSpriteSheet;

@@ -1,3 +1,104 @@
+# [1.466.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.4...v1.466.0) (2024-06-26)
+
+
+### Features
+
+* **options-page:** add comment ([04029c8](https://github.com/oaknational/Oak-Web-Application/commit/04029c85665c7364a1e369eb9d14054c1d30acf5))
+* **options-page:** add test coverage ([f97a754](https://github.com/oaknational/Oak-Web-Application/commit/f97a7542b37eb756c75097d5a982009a1f17c0da))
+* **options-page:** add test coverage ([5092b17](https://github.com/oaknational/Oak-Web-Application/commit/5092b17b84e9ba03c3129569e3012f9a1fea08fc))
+* **options-page:** add test coverage ([d4d3bee](https://github.com/oaknational/Oak-Web-Application/commit/d4d3beebdc490ef094416be368cd1b77cd432a15))
+* **options-page:** fix glitch after back to programmes and tiered options ([fc970f0](https://github.com/oaknational/Oak-Web-Application/commit/fc970f0ba7385e22d71d6bd50edbb71cab9f61de))
+* **options-page:** fix glitch after back to programmes and tiered options ([8ceb908](https://github.com/oaknational/Oak-Web-Application/commit/8ceb90839a1fba2d4b49b81075b20edb245d8c3b))
+* **options-page:** remove layout code duplication ([ed5775e](https://github.com/oaknational/Oak-Web-Application/commit/ed5775ecfba58b717db1f9ce0b93861df12b3fe7))
+* **options-page:** remove layout code duplication ([14747e5](https://github.com/oaknational/Oak-Web-Application/commit/14747e534dfd5b722e58be5dae75a4ac43bd5126))
+* **options-page:** remove layout code duplication ([546d2fd](https://github.com/oaknational/Oak-Web-Application/commit/546d2fd70f64b701ebc667b10e859a0804c7952c))
+
+## [1.465.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.3...v1.465.4) (2024-06-25)
+
+
+### Bug Fixes
+
+* pass in current tier_slug because it isn't set on all units ([7747fd7](https://github.com/oaknational/Oak-Web-Application/commit/7747fd70d364249dad8697a5114bac9e2bc7d993))
+
+## [1.465.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.2...v1.465.3) (2024-06-25)
+
+
+### Bug Fixes
+
+* adding ids to OakInfo components to resolve pa11y issues ([2d768b5](https://github.com/oaknational/Oak-Web-Application/commit/2d768b563fd14ac579676cbb1bc01aaac505aaf8))
+
+## [1.465.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.1...v1.465.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **types:** curriculum visualiser ref ([98c22be](https://github.com/oaknational/Oak-Web-Application/commit/98c22be34a5d9d8f47e4b126e3bd2ff4584c434e))
+
+## [1.465.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.0...v1.465.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* mock downloads api url in env ([4b38c9a](https://github.com/oaknational/Oak-Web-Application/commit/4b38c9adf139b07d0fd9fc542007cf328dc95c41))
+
+# [1.465.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.1...v1.465.0) (2024-06-24)
+
+
+### Features
+
+* **optionality-unit-title:** fix maintainability bug ([9563fce](https://github.com/oaknational/Oak-Web-Application/commit/9563fce8ff3eb85d640e113f2d6487b9df25b1b3))
+* **optionality-unit-title:** fix maintainability bug ([65133c2](https://github.com/oaknational/Oak-Web-Application/commit/65133c20f1257410e58a018ea44bdf614394d2b7))
+* **optionality-unit-title:** for optionality units page make optionaility main title ([0e2a6d0](https://github.com/oaknational/Oak-Web-Application/commit/0e2a6d0b1d446bc0fd92288e2ff6994a7d881dfc))
+
+## [1.464.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.0...v1.464.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* added radiogroup semantics to domain/subject/tier filters in curriculum visualiser ([a6beb5e](https://github.com/oaknational/Oak-Web-Application/commit/a6beb5eab95df290fbd86ac80aa83e12a54c8345))
+* switch to using aria-pressed and role="group" for better a11y ([d0e2942](https://github.com/oaknational/Oak-Web-Application/commit/d0e294218d79b9406a84937deff88d357f55ba25))
+
+# [1.464.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.1...v1.464.0) (2024-06-24)
+
+
+### Bug Fixes
+
+* move skip-link above "None highlighted" ([590e409](https://github.com/oaknational/Oak-Web-Application/commit/590e40998cab0521b08b2a639147f87cd8853a63))
+
+
+### Features
+
+* added a11y skip link to curriculum visualiser ([fc820df](https://github.com/oaknational/Oak-Web-Application/commit/fc820df52a22f912186f408b329075ca972afdbf))
+
+## [1.463.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.463.0...v1.463.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* amend spacing on unit listing page ([e85472d](https://github.com/oaknational/Oak-Web-Application/commit/e85472dd217fd9e62c5596396c05dcafb06c70d9))
+* return components to previous version ([63ed5cc](https://github.com/oaknational/Oak-Web-Application/commit/63ed5cc6c24c52af4a283dbebf1504cae22ae603))
+
+# [1.463.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.3...v1.463.0) (2024-06-20)
+
+
+### Bug Fixes
+
+* added fieldset/legend fixes to mobile view of curriculum unit sequence ([1f2ea1f](https://github.com/oaknational/Oak-Web-Application/commit/1f2ea1f1f9f3ae42bdeacf9ab3f88be19ad234b9))
+* added fieldset/legend fixes to the curriculum unit sequence page ([11be468](https://github.com/oaknational/Oak-Web-Application/commit/11be4684e3971eb91a8289d6192742861e74a8ef))
+
+
+### Features
+
+* added <SimpleRadio/> as a replacement for improved a11y ([e979225](https://github.com/oaknational/Oak-Web-Application/commit/e9792259e93ac5c394068939396ba26ef64874db))
+
+## [1.462.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.2...v1.462.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* give the inline svg spritesheet a width and height of 0 ([e268847](https://github.com/oaknational/Oak-Web-Application/commit/e268847ff34507814c54888727f4f39b0278df8e))
+* wrap and hide inline svg sprite ([60380e6](https://github.com/oaknational/Oak-Web-Application/commit/60380e6d4e24b1fc879e6078e96b69f4c4c58c75))
+
 ## [1.462.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.462.1...v1.462.2) (2024-06-19)
 
 

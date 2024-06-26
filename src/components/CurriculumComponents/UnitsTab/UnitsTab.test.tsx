@@ -818,7 +818,69 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   describe("programme slugs are created correctly", () => {
-    test("unit data with exam board returns the correct programme slug", () => {
+    test("unit data ks2 returns correct programme slug", () => {
+      const unitData = {
+        planned_number_of_lessons: 5,
+        connection_future_unit_description: null,
+        connection_prior_unit_description: null,
+        connection_future_unit_title: null,
+        connection_prior_unit_title: null,
+        domain: null,
+        domain_id: null,
+        examboard: null,
+        examboard_slug: null,
+        keystage_slug: "ks2",
+        lessons: [],
+        order: 1,
+        phase: "Primary",
+        phase_slug: "primary",
+        slug: "cellular-respiration-and-atp",
+        subject: "Science",
+        subject_parent: null,
+        subject_parent_slug: null,
+        subject_slug: "science",
+        tags: null,
+        threads: [],
+        tier: null,
+        tier_slug: null,
+        title: "Aerobic and anaerobic cellular respiration",
+        unit_options: [],
+        year: "11",
+      };
+      expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks2");
+    });
+    test("unit data ks4 returns correct programme slug", () => {
+      const unitData = {
+        planned_number_of_lessons: 5,
+        connection_future_unit_description: null,
+        connection_prior_unit_description: null,
+        connection_future_unit_title: null,
+        connection_prior_unit_title: null,
+        domain: null,
+        domain_id: null,
+        examboard: null,
+        examboard_slug: null,
+        keystage_slug: "ks4",
+        lessons: [],
+        order: 1,
+        phase: "Primary",
+        phase_slug: "primary",
+        slug: "cellular-respiration-and-atp",
+        subject: "Science",
+        subject_parent: null,
+        subject_parent_slug: null,
+        subject_slug: "science",
+        tags: null,
+        threads: [],
+        tier: null,
+        tier_slug: null,
+        title: "Aerobic and anaerobic cellular respiration",
+        unit_options: [],
+        year: "11",
+      };
+      expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks4");
+    });
+    test("unit data with exam board and tier returns the correct programme slug", () => {
       const unitData = {
         planned_number_of_lessons: 5,
         connection_future_unit_description: null,
@@ -841,13 +903,13 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_slug: "combined-science",
         tags: null,
         threads: [],
-        tier: "Foundation",
-        tier_slug: "foundation",
+        tier: null,
+        tier_slug: null,
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
       };
-      expect(createProgrammeSlug(unitData, "aqa")).toEqual(
+      expect(createProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
         "combined-science-secondary-ks4-foundation-aqa",
       );
     });
@@ -874,8 +936,42 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_slug: "combined-science",
         tags: null,
         threads: [],
-        tier: "Foundation",
-        tier_slug: "foundation",
+        tier: null,
+        tier_slug: null,
+        title: "Aerobic and anaerobic cellular respiration",
+        unit_options: [],
+        year: "9",
+      };
+      expect(createProgrammeSlug(unitData, "aqa")).toEqual(
+        "combined-science-secondary-ks3",
+      );
+    });
+
+    test("unit data for ks3 returns the correct programme slug", () => {
+      const unitData = {
+        planned_number_of_lessons: 5,
+        connection_future_unit_description: null,
+        connection_prior_unit_description: null,
+        connection_future_unit_title: null,
+        connection_prior_unit_title: null,
+        domain: null,
+        domain_id: null,
+        examboard: null,
+        examboard_slug: null,
+        keystage_slug: "ks3",
+        lessons: [],
+        order: 1,
+        phase: "Secondary",
+        phase_slug: "secondary",
+        slug: "cellular-respiration-and-atp",
+        subject: "Combined Science",
+        subject_parent: "Science",
+        subject_parent_slug: "science",
+        subject_slug: "combined-science",
+        tags: null,
+        threads: [],
+        tier: null,
+        tier_slug: null,
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "9",

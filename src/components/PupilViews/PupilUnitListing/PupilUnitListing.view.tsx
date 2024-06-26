@@ -107,9 +107,10 @@ export const PupilViewsUnitListing = ({
           units={optionalityUnits}
           counterText="Choose a unit"
           counterLength={mainUnits.length}
+          id="first-section"
         />
         {secondUnitSectionProps && secondUnitSectionProps.units.length > 0 && (
-          <UnitSection {...secondUnitSectionProps} />
+          <UnitSection {...secondUnitSectionProps} id="second-section" />
         )}
       </OakBox>
     </OakPupilJourneyLayout>
@@ -180,6 +181,7 @@ type UnitSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
+  id?: string;
 };
 
 const UnitSection = ({
@@ -188,6 +190,7 @@ const UnitSection = ({
   counterText,
   counterLength,
   titleSlot,
+  id = "0",
 }: UnitSectionProps) => {
   return (
     <OakPupilJourneyList
@@ -196,6 +199,7 @@ const UnitSection = ({
       counterSlot={
         <OakFlex $gap="space-between-xs" $alignItems={"center"}>
           <OakInfo
+            id={`unit-info-${id}`}
             hint="Units are groups of lessons that relate to one another."
             tooltipPosition="top-left"
           />
