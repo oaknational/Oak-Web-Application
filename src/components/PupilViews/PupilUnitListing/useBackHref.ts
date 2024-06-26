@@ -22,7 +22,7 @@ export const useBackHref = ({
           page: "pupil-programme-index",
           programmeSlug: baseSlug,
           optionSlug,
-        })}?examboard=${examboardSlug}`,
+        })}/examboard/${examboardSlug}`,
         "Change tier",
       ];
     case hasTier && !hasExamboard:

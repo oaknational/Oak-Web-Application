@@ -50,11 +50,12 @@ export interface YearSelection {
 export function createProgrammeSlug(
   unitData?: Unit | null,
   examboardSlug?: string | null,
+  tierSlug?: string,
 ) {
   if (unitData?.keystage_slug === "ks4") {
     return `${unitData.subject_slug}-${unitData.phase_slug}-${
       unitData.keystage_slug
-    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+    }${tierSlug ? "-" + tierSlug : ""}${
       examboardSlug ? "-" + examboardSlug : ""
     }`;
   }
