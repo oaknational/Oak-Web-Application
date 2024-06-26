@@ -12,7 +12,7 @@ describe("HeaderListingCurriculumDownloadButton", () => {
         subjectSlug={"english"}
       />,
     );
-    const downloadLink = getByTestId("curriculum-download-link");
+    const downloadLink = getByTestId("curriculum-downloads-link");
     expect(downloadLink).toHaveAttribute(
       "href",
       "/teachers/curriculum/previous-downloads?subject=english&keystage=ks4",

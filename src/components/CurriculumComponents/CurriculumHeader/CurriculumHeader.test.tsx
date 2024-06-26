@@ -1,9 +1,12 @@
+import { findAllByRole } from "@testing-library/dom";
+
 import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { mockPrerelease } from "@/utils/mocks";
 
 const render = renderWithProviders();
 
@@ -77,6 +80,23 @@ describe("Component - Curriculum Header", () => {
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
+    const links = await findAllByRole(tabularNav, "link");
+    expect(links).toHaveLength(2);
+    expect(links[0]).toHaveTextContent("Unit sequence");
+    expect(links[1]).toHaveTextContent("Overview");
+  });
+
+  test("user can see the tabular navigation (downloads prerelease)", async () => {
+    // NOTE: This is only active during testing.
+    mockPrerelease("curriculum.downloads");
+    const { findByTestId } = renderComponent();
+    const tabularNav = await findByTestId("tabularNav");
+    expect(tabularNav).toBeInTheDocument();
+    const links = await findAllByRole(tabularNav, "link");
+    expect(links).toHaveLength(3);
+    expect(links[0]).toHaveTextContent("Unit sequence");
+    expect(links[1]).toHaveTextContent("Overview");
+    expect(links[2]).toHaveTextContent("Download");
   });
 
   test("keyStage metadata", () => {
