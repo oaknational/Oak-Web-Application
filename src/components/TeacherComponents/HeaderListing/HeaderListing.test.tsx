@@ -26,7 +26,7 @@ describe("HeaderListing", () => {
 
   it("renders the curriculum download buttons by default", () => {
     const { queryAllByTestId } = renderWithTheme(<HeaderListing {...props} />);
-    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    const downloadLinks = queryAllByTestId("curriculum-downloads-link");
     expect(downloadLinks).toHaveLength(2);
   });
 
@@ -34,7 +34,7 @@ describe("HeaderListing", () => {
     const { queryAllByTestId } = renderWithTheme(
       <HeaderListing hasCurriculumDownload={false} {...props} />,
     );
-    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    const downloadLinks = queryAllByTestId("curriculum-downloads-link");
     expect(downloadLinks).toHaveLength(0);
   });
 
@@ -46,7 +46,7 @@ describe("HeaderListing", () => {
         {...props}
       />,
     );
-    const downloadLinks = queryAllByTestId("curriculum-download-link");
+    const downloadLinks = queryAllByTestId("curriculum-downloads-link");
     expect(downloadLinks).toHaveLength(2);
   });
 });
