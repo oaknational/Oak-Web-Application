@@ -1,3 +1,18 @@
+# [1.466.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.4...v1.466.0) (2024-06-26)
+
+
+### Features
+
+* **options-page:** add comment ([04029c8](https://github.com/oaknational/Oak-Web-Application/commit/04029c85665c7364a1e369eb9d14054c1d30acf5))
+* **options-page:** add test coverage ([f97a754](https://github.com/oaknational/Oak-Web-Application/commit/f97a7542b37eb756c75097d5a982009a1f17c0da))
+* **options-page:** add test coverage ([5092b17](https://github.com/oaknational/Oak-Web-Application/commit/5092b17b84e9ba03c3129569e3012f9a1fea08fc))
+* **options-page:** add test coverage ([d4d3bee](https://github.com/oaknational/Oak-Web-Application/commit/d4d3beebdc490ef094416be368cd1b77cd432a15))
+* **options-page:** fix glitch after back to programmes and tiered options ([fc970f0](https://github.com/oaknational/Oak-Web-Application/commit/fc970f0ba7385e22d71d6bd50edbb71cab9f61de))
+* **options-page:** fix glitch after back to programmes and tiered options ([8ceb908](https://github.com/oaknational/Oak-Web-Application/commit/8ceb90839a1fba2d4b49b81075b20edb245d8c3b))
+* **options-page:** remove layout code duplication ([ed5775e](https://github.com/oaknational/Oak-Web-Application/commit/ed5775ecfba58b717db1f9ce0b93861df12b3fe7))
+* **options-page:** remove layout code duplication ([14747e5](https://github.com/oaknational/Oak-Web-Application/commit/14747e534dfd5b722e58be5dae75a4ac43bd5126))
+* **options-page:** remove layout code duplication ([546d2fd](https://github.com/oaknational/Oak-Web-Application/commit/546d2fd70f64b701ebc667b10e859a0804c7952c))
+
 ## [1.465.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.3...v1.465.4) (2024-06-25)
 
 
