@@ -21,6 +21,7 @@ import {
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import { mockPrerelease } from "@/utils/mocks";
 
 const render = renderWithProviders();
 
@@ -612,6 +613,26 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
+    });
+
+    it("renders the Curriculum Downloads Tab (with prerelease)", () => {
+      mockPrerelease("curriculum.downloads");
+      (useRouter as jest.Mock).mockReturnValue({
+        query: { tab: "downloads" },
+        isPreview: false,
+        pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
+      });
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const { queryByTestId } = render(
+        <CurriculumInfoPage
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          curriculumSelectionSlugs={slugs}
+          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+          curriculumOverviewTabData={curriculumOverviewMVFixture()}
+        />,
+      );
+      expect(queryByTestId("download-heading")).toBeInTheDocument();
     });
   });
 
