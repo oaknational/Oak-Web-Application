@@ -31,7 +31,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     global.fetch = jest.fn((url) => {
       if (
         url ===
-        "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
+        "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
       ) {
         return Promise.resolve(successResponse);
       } else {
@@ -51,15 +51,6 @@ describe("checkIfDownloadResourcesExist()", () => {
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
       false,
-    );
-    expect(downloadResourcesExist).toEqual(data);
-  });
-
-  it("should return correct data if legacy fetch is successful", async () => {
-    downloadResourcesExist = await getDownloadResourcesExistence(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
     );
     expect(downloadResourcesExist).toEqual(data);
   });
@@ -147,19 +138,18 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownload = false", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-
       false,
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
 });
