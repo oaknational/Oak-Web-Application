@@ -30,6 +30,7 @@ import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
+import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumDownloadTab";
 import {
   Thread,
   Subject,
@@ -88,7 +89,7 @@ export type CurriculumInfoPageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
-const VALID_TABS = ["overview", "units"] as const;
+const VALID_TABS = ["overview", "units", "downloads"] as const;
 export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -143,6 +144,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           trackingData={curriculumUnitsTrackingData}
         />
       );
+      break;
+    case "downloads":
+      tabContent = <CurriculumDownloadTab />;
       break;
     default:
       throw new Error("Not a valid tab");
