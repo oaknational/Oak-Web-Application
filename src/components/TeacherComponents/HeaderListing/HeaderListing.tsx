@@ -108,7 +108,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   size="large"
                   variant="minimal"
                   $iconPosition={"trailing"}
-                  data-testid="curriculum-download-link"
+                  data-testid="curriculum-downloads-link"
                 />
               )}
             </Flex>
@@ -132,7 +132,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             size="large"
             variant="minimal"
             $iconPosition={"trailing"}
-            data-testid="curriculum-download-link"
+            data-testid="curriculum-downloads-link"
           />
         )}
       </Flex>

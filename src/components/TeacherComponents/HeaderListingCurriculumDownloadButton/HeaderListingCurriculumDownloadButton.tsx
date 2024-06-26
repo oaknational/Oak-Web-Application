@@ -26,7 +26,7 @@ const HeaderListingCurriculumDownloadButton: FC<
             subject: subjectSlug,
             keystage: keyStageSlug,
           }}
-          data-testid="curriculum-download-link"
+          data-testid="curriculum-downloads-link"
         />
       </OakFlex>
     </>
