@@ -10,7 +10,7 @@ describe("useBackHref", () => {
     });
 
     expect(backHref).toBe(
-      "/pupils/programmes/maths-secondary-year-10/options/examboard/aqa",
+      "/pupils/programmes/maths-secondary-year-10/options?examboard=aqa",
     );
     expect(backLabel).toBe("Change tier");
   });

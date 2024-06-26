@@ -17,7 +17,6 @@ export type ProgrammesPageProps = {
   baseSlug: string;
   programmes: PupilProgrammeListingData[];
   yearSlug: PupilProgrammeListingData["yearSlug"];
-  examboardSlug?: ProgrammeFields["examboard_slug"] | null;
 };
 
 export const getYearSlug = ({
