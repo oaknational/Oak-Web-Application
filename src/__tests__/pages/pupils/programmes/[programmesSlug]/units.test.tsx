@@ -101,5 +101,26 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         });
       });
     });
+    it("Should return not found if no params", async () => {
+      // @ts-expect-error - Testing incorrect params
+      const result = await getStaticProps({ params: {} });
+      expect(result).toEqual({
+        notFound: true,
+      });
+    });
+    it("Should return not found if no programmeSlug", async () => {
+      const result = await getStaticProps({ params: { programmeSlug: "" } });
+      expect(result).toEqual({
+        notFound: true,
+      });
+    });
+    it("Should return not found if no params", async () => {
+      const result = await getStaticProps({
+        params: { programmeSlug: "notvalidforbaseslug" },
+      });
+      expect(result).toEqual({
+        notFound: true,
+      });
+    });
   });
 });

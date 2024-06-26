@@ -16,6 +16,7 @@ import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { UseBackHrefProps } from "@/components/PupilViews/PupilUnitListing/useBackHref";
 import { getSecondUnitSection } from "@/pages-helpers/pupil/units-page/units-page-helper";
+import OakError from "@/errors/OakError";
 
 export type UnitsSectionData = {
   title: string | null;
@@ -80,20 +81,17 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params) {
-        throw new Error("no context.params");
+        throw new OakError({ code: "curriculum-api/params-incorrect" });
       }
 
       const { programmeSlug } = context.params;
       if (!programmeSlug) {
-        throw new Error("unexpected context.params");
+        throw new OakError({ code: "curriculum-api/params-incorrect" });
       }
 
       const baseSlug = extractBaseSlug(programmeSlug);
-
       if (!baseSlug) {
-        throw new Error(
-          `baseSlug cannot be determined from programmeSlug: ${programmeSlug}`,
-        );
+        throw new OakError({ code: "curriculum-api/params-incorrect" });
       }
 
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({

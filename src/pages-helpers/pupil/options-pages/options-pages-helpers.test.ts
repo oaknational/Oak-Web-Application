@@ -10,6 +10,8 @@ import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/ind
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
+import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
+import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 describe("options-pages-helpers", () => {
   describe("getYearSlug", () => {
@@ -92,14 +94,51 @@ describe("options-pages-helpers", () => {
       ).mockResolvedValueOnce([syntheticProgrammesByYearFixture()]);
 
       const result = await getPupilOptionData({
-        params: { programmeSlug: "programme-slug" },
+        params: { programmeSlug: "maths-primary-year-1" },
       });
       expect(result).toEqual({
         redirect: {
-          destination: "/pupils/programmes/programme-slug/units",
+          destination: "/pupils/programmes/maths-primary-year-1/units",
           permanent: false,
         },
       });
+    });
+    it("should work for valid examboard_slug params", async () => {
+      (
+        curriculumApi2023.default.pupilProgrammeListingQuery as jest.Mock
+      ).mockResolvedValueOnce([
+        subjectBrowseDataFixture({}),
+        subjectBrowseDataFixture({}),
+      ]);
+
+      const result = await getPupilOptionData({
+        params: { programmeSlug: "maths-primary-year-1", examboardSlug: "aqa" },
+      });
+      let props: PupilViewsProgrammeListingProps | undefined;
+      if ("props" in result) {
+        props = result.props;
+      }
+
+      expect(props).not.toBeNull();
+      expect(props?.programmes).toHaveLength(2);
+      expect(props?.baseSlug).toEqual("maths-primary-year-1");
+      expect(props?.yearSlug).toEqual("year-1");
+    });
+    it("should throw an error if the examboard_slug params are incorrect", async () => {
+      expect.assertions(2);
+      try {
+        await getPupilOptionData({
+          params: {
+            programmeSlug: "maths-primary-year-1",
+            examboardSlug: "NoEXAM",
+          },
+        });
+      } catch (error) {
+        expect(error).toBeInstanceOf(OakError);
+        expect(error).toMatchObject({
+          errorInfo: { code: "curriculum-api/params-incorrect" },
+        });
+      }
     });
   });
 });

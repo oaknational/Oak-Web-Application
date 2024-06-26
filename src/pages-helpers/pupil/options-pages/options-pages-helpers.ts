@@ -12,24 +12,16 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getAvailableProgrammeFactor } from "@/components/PupilViews/PupilProgrammeListing/getAvailableProgrammeFactor";
 import { ExamboardData } from "@/components/PupilComponents/BrowseExamboardSelector";
 import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
+import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 export type OptionsURLParams = {
   programmeSlug: string;
   examboardSlug?: string;
 };
 
-export type ProgrammesPageProps = {
-  baseSlug: string;
-  programmes: PupilProgrammeListingData[];
-  yearSlug: PupilProgrammeListingData["yearSlug"];
-  examboardSlug: ProgrammeFields["examboard_slug"] | null;
-  examboards: ExamboardData[];
-  tiers: TierData[];
-};
-
 export const getPupilOptionData = async (
   context: GetStaticPropsContext<OptionsURLParams>,
-): Promise<GetStaticPropsResult<ProgrammesPageProps>> => {
+): Promise<GetStaticPropsResult<PupilViewsProgrammeListingProps>> => {
   if (!context.params || !context.params.programmeSlug) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
@@ -95,7 +87,6 @@ export const getYearSlug = ({
   programmes: PupilProgrammeListingData[];
 }) => {
   const yearSlug = programmes[0]?.yearSlug;
-
   if (
     programmes.filter((programme) => programme.yearSlug !== yearSlug).length >
       0 ||
