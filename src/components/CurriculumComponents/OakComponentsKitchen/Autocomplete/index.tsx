@@ -1,6 +1,6 @@
 import { useComboBoxState } from "@react-stately/combobox";
-import { ComponentProps, Key, useRef } from "react";
-import { CollectionChildren } from "@react-types/shared";
+import { ComponentProps, useRef } from "react";
+import { CollectionChildren, Key } from "@react-types/shared";
 import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
 import { OakBox } from "@oaknational/oak-components";
