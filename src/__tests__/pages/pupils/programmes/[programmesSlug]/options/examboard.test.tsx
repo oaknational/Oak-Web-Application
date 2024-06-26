@@ -1,6 +1,6 @@
 import PupilProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/pupils/programmes/[programmeSlug]/options";
+} from "@/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import {
   ProgrammeFields,
@@ -19,7 +19,7 @@ jest.mock(
   }),
 );
 
-describe("pages/pupils/programmes/[programmeSlug]/options", () => {
+describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => {
   const overrides: Partial<ProgrammeFields>[] = [
     {
       examboard: "AQA",
@@ -52,6 +52,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
           programmes={programmes}
           baseSlug="physics-secondary-year-11"
           yearSlug="year-11"
+          examboardSlug={"aqa"}
         />,
       );
       expect(PupilViewsProgrammeListing).toHaveBeenCalled();
@@ -63,6 +64,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
       await getStaticProps({
         params: {
           programmeSlug: "physics-secondary-year-11",
+          examboardSlug: "aqa",
         },
       });
 
@@ -71,6 +73,26 @@ describe("pages/pupils/programmes/[programmeSlug]/options", () => {
       ).toHaveBeenCalledWith({
         baseSlug: "physics-secondary-year-11",
       });
+    });
+    it("Should throw erro oak error if baseSlug is not provided", async () => {
+      await expect(
+        getStaticProps({
+          params: {
+            examboardSlug: "aqa",
+            programmeSlug: "",
+          },
+        }),
+      ).rejects.toThrowError();
+    });
+    it("Should throw erro oak error if examboardSlug is not provided", async () => {
+      await expect(
+        getStaticProps({
+          params: {
+            examboardSlug: "fake-examboard",
+            programmeSlug: "physics-secondary-year-11",
+          },
+        }),
+      ).rejects.toThrowError();
     });
   });
 });
