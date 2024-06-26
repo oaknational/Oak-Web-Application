@@ -263,7 +263,9 @@ const renderListItem = (unit: UnitListingBrowseData[number], index: number) => (
         : ""
     }`}
     index={index + 1}
-    numberOfLessons={unit.lessonCount}
+    numberOfLessons={
+      unit.lessonCount - unit.lessonExpiredCount - unit.lessonSensitiveCount
+    }
     as="a"
     href={resolveOakHref({
       page: "pupil-lesson-index",
