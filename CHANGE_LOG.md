@@ -1,3 +1,10 @@
+## [1.465.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.3...v1.465.4) (2024-06-25)
+
+
+### Bug Fixes
+
+* pass in current tier_slug because it isn't set on all units ([7747fd7](https://github.com/oaknational/Oak-Web-Application/commit/7747fd70d364249dad8697a5114bac9e2bc7d993))
+
 ## [1.465.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.2...v1.465.3) (2024-06-25)
 
 
