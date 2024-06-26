@@ -104,7 +104,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           htmlAnchorProps={{
             onClick: () =>
               track.teacherHubSelected({ navigatedFrom: "footer" }),
-            "aria-label": props.ariaLabel || undefined,
+            "aria-label": props.ariaLabel ?? undefined,
           }}
         >
           {props.text}
@@ -118,7 +118,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
-          htmlAnchorProps={{ "aria-label": props.ariaLabel || undefined }}
+          htmlAnchorProps={{ "aria-label": props.ariaLabel ?? undefined }}
           {...props}
         >
           {props.text}
@@ -134,7 +134,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           $focusStyles={["underline"]}
           page={null}
           href={props.href}
-          htmlAnchorProps={{ "aria-label": props.ariaLabel || undefined }}
+          htmlAnchorProps={{ "aria-label": props.ariaLabel ?? undefined }}
         >
           {props.text}
         </OwaLink>
