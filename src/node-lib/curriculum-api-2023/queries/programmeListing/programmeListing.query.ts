@@ -27,7 +27,7 @@ export const getTransformedProgrammeData = (
   const programmes = programmeData.map((programme): Programme => {
     return {
       programmeSlug: programme.programme_slug,
-      subjectTitle: programme.programme_fields.subject_description,
+      subjectTitle: programme.programme_fields.subject,
       tierSlug: programme.programme_fields.tier_slug,
       tierTitle: programme.programme_fields.tier_description,
       tierDisplayOrder: programme.programme_fields.tier_display_order,
