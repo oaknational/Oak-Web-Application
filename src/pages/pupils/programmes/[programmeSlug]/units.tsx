@@ -1,5 +1,10 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import _ from "lodash";
+import {
+  OakIconProps,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
@@ -9,10 +14,25 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
+import { UseBackHrefProps } from "@/components/PupilViews/PupilUnitListing/useBackHref";
+import { getSecondUnitSection } from "@/pages-helpers/pupil/units-page/units-page-helper";
 
-type UnitListingPageProps = {
-  curriculumData: UnitListingBrowseData;
-  programmeSlug: string;
+export type UnitsSectionData = {
+  title: string | null;
+  phase: "primary" | "secondary";
+  icon?: OakIconProps["iconName"];
+  units: UnitListingBrowseData[number][][];
+  counterText: string | null;
+  counterLength: number | null;
+};
+
+export type UnitListingPageProps = {
+  subject: string;
+  phase: "primary" | "secondary";
+  backHrefSlugs: UseBackHrefProps;
+  breadcrumbs: string[];
+  yearDescription: string;
+  unitSections: UnitsSectionData[];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -20,30 +40,13 @@ type PupilUnitListingPageURLParams = {
 };
 
 const PupilUnitListingPage = ({
-  curriculumData,
-  programmeSlug,
+  subject,
+  phase,
+  backHrefSlugs,
+  breadcrumbs,
+  yearDescription,
+  unitSections,
 }: UnitListingPageProps) => {
-  const selectedProgramme = curriculumData.find(
-    (unit) => unit.programmeSlug === programmeSlug,
-  );
-
-  if (!selectedProgramme) {
-    throw new Error("No curriculum data");
-  }
-
-  curriculumData.sort((a, b) => {
-    const aUnitOrder = a.supplementaryData.unitOrder;
-    const bUnitOrder = b.supplementaryData.unitOrder;
-    return aUnitOrder - bUnitOrder;
-  });
-
-  const { programmeFields } = selectedProgramme;
-  const { subject, phase, yearDescription } = programmeFields;
-
-  if (phase === "foundation") {
-    throw new Error("Foundation phase not supported");
-  }
-
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
@@ -55,9 +58,10 @@ const PupilUnitListingPage = ({
         }}
       >
         <PupilViewsUnitListing
-          units={curriculumData}
-          programmeFields={programmeFields}
-          programmeSlug={programmeSlug}
+          unitSections={unitSections}
+          phase={phase}
+          backHrefSlugs={backHrefSlugs}
+          breadcrumbs={breadcrumbs}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -78,7 +82,7 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("no context.params");
       }
-      // TODO - Change directory structure to baseSlug
+
       const { programmeSlug } = context.params;
       if (!programmeSlug) {
         throw new Error("unexpected context.params");
@@ -93,7 +97,6 @@ export const getStaticProps: GetStaticProps<
       }
 
       let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
-        // This is gets us the base_slug
         baseSlug,
       });
 
@@ -107,10 +110,85 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      curriculumData.sort((a, b) => {
+        const aUnitOrder = a.supplementaryData.unitOrder;
+        const bUnitOrder = b.supplementaryData.unitOrder;
+        return aUnitOrder - bUnitOrder;
+      });
+
+      const selectedProgramme = curriculumData.find(
+        (unit) => unit.programmeSlug === programmeSlug,
+      );
+      if (!selectedProgramme) {
+        throw new Error("No curriculum data");
+      }
+
+      const { programmeFields } = selectedProgramme;
+      const {
+        subject,
+        phase,
+        yearDescription,
+        subjectSlug,
+        tierSlug,
+        tierDescription,
+        yearSlug,
+        examboard,
+        examboardSlug,
+      } = programmeFields;
+
+      if (phase === "foundation") {
+        throw new Error("Foundation phase not supported");
+      }
+
+      const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
+
+      const mainUnits: UnitListingBrowseData[number][] =
+        unitsByProgramme[programmeSlug] || [];
+
+      const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
+        _.groupBy(mainUnits, (unit) => unit?.unitData.title),
+      );
+
+      const firstUnitSection: UnitsSectionData = {
+        units: optionalityUnits,
+        phase,
+        icon: `subject-${subjectSlug}`,
+        counterText: "Choose a unit",
+        counterLength: mainUnits.length,
+        title: subject,
+      };
+
+      const secondUnitSection: UnitsSectionData = getSecondUnitSection({
+        programmeSlug,
+        baseSlug,
+        tierSlug,
+        phase,
+        unitsByProgramme,
+      });
+
+      const backHrefSlugs: UseBackHrefProps = {
+        baseSlug,
+        yearSlug,
+        tierSlug,
+        examboardSlug,
+      };
+
+      const breadcrumbs: string[] = [yearDescription];
+      if (examboard) {
+        breadcrumbs.push(examboard);
+      }
+      if (tierDescription) {
+        breadcrumbs.push(tierDescription);
+      }
+
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
-          curriculumData,
-          programmeSlug,
+          subject,
+          phase,
+          yearDescription,
+          backHrefSlugs,
+          breadcrumbs,
+          unitSections: [firstUnitSection, secondUnitSection],
         },
       };
       return results;

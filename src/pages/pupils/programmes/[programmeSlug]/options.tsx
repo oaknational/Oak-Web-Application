@@ -5,7 +5,6 @@
 
 import { GetStaticProps } from "next";
 
-import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import {
   ProgrammesPageProps,
   OptionsURLParams,
@@ -13,19 +12,7 @@ import {
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 
-const ProgrammesPage = ({
-  programmes,
-  baseSlug,
-  yearSlug,
-}: ProgrammesPageProps) => {
-  return (
-    <PupilViewsProgrammeListing
-      programmes={programmes}
-      baseSlug={baseSlug}
-      yearSlug={yearSlug}
-    />
-  );
-};
+export { PupilViewsProgrammeListing as default } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 export const getStaticPaths = getStaticPathsTemplate<OptionsURLParams>;
 
@@ -35,5 +22,3 @@ export const getStaticProps: GetStaticProps<
 > = (context) => {
   return getPupilOptionData(context);
 };
-
-export default ProgrammesPage;
