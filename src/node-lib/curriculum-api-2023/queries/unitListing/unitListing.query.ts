@@ -67,6 +67,7 @@ const unitListingQuery =
       tierSlug: programmeFields.tier_slug,
       tiers: tiers,
       units: units,
+      phase: programmeFields.phase_slug,
       learningThemes: learningThemes,
       hasNewContent,
     };
