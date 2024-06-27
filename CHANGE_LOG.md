@@ -1,3 +1,34 @@
+# [1.469.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.468.0...v1.469.0) (2024-06-27)
+
+
+### Features
+
+* add aria label to footer links which open in a new tab ([8324d90](https://github.com/oaknational/Oak-Web-Application/commit/8324d901f00daa22035fa9cc59580a3974ea897b))
+
+# [1.468.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.467.0...v1.468.0) (2024-06-26)
+
+
+### Bug Fixes
+
+* direct to combined maths unit listing page in breadcrumbs ([876089a](https://github.com/oaknational/Oak-Web-Application/commit/876089af0e5f27dc9305cc2446b024565fd69851))
+* direct to single unit listing page from maths lesson listing page ([16e72d4](https://github.com/oaknational/Oak-Web-Application/commit/16e72d42768b45af75e469b0c3395ecef9bce9d0))
+* logic for when to show header and indices calculation ([472f666](https://github.com/oaknational/Oak-Web-Application/commit/472f666eacf5f4f94577a25531b2a1a9ee6efa43))
+* only use mobile layout for table on unit listing page maths ([35d997b](https://github.com/oaknational/Oak-Web-Application/commit/35d997bcda14771fe00350e397da07469fbd0d98))
+* show threads at tablet view for all subjects ([7ed9eaa](https://github.com/oaknational/Oak-Web-Application/commit/7ed9eaac5fefca1f36310f2ddbb0ee66ee68aedd))
+* types ([70eecdc](https://github.com/oaknational/Oak-Web-Application/commit/70eecdc5565627c8000198efd04b129243d5fa02))
+* unit card children ([6b8b936](https://github.com/oaknational/Oak-Web-Application/commit/6b8b93689bbc33b3b13a522937cae54c024f6ec2))
+
+
+### Features
+
+* add description for maths units ([2d7b225](https://github.com/oaknational/Oak-Web-Application/commit/2d7b225d4d31338dab170f1fd5c6b680bab4abfe))
+* combine maths legacy and new on subject listing page ([b798a85](https://github.com/oaknational/Oak-Web-Application/commit/b798a852b5a8ca6b19a7aa40e70ced0dad161e86))
+* fetch legacy units for maths ([287cc76](https://github.com/oaknational/Oak-Web-Application/commit/287cc760f3f6066a3f0be5ac61227d811040b8a1))
+* link to legacy curriculum downloads ([536a7ce](https://github.com/oaknational/Oak-Web-Application/commit/536a7ce58744fb27bf264b812ae8d0e56065dd9d))
+* split units into separate new and legacy lists ([189649c](https://github.com/oaknational/Oak-Web-Application/commit/189649cf7f8060b44831f468cfbdcd5ab83016a8))
+* use mobile layout for threads at tablet size on unit listing page ([9274032](https://github.com/oaknational/Oak-Web-Application/commit/9274032288e887da4c1539f161715a82a872dbc7))
+* use new container component for maths units ([4259ee4](https://github.com/oaknational/Oak-Web-Application/commit/4259ee4ec584bca4beb09e58426177f043a1ed45))
+
 # [1.467.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.466.1...v1.467.0) (2024-06-26)
 
 
