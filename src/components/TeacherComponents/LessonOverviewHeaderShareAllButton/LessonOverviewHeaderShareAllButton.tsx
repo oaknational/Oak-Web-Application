@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -79,13 +78,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
         disabled={!isShareable}
         onClick={onClickShareAll}
       />
-      <OakFlex $mt={["space-between-xs", "space-between-none"]}>
-        {!isShareable && (
-          <OakSpan $color={"grey50"} $font={"body-3"}>
-            Share function coming soon...
-          </OakSpan>
-        )}
-      </OakFlex>
     </Flex>
   );
 };
