@@ -14,6 +14,7 @@ import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import useSelectedArea from "@/hooks/useSelectedArea";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -27,10 +28,11 @@ export type SelectedArea = (typeof siteAreas)[keyof typeof siteAreas];
  * header for the app, not a landing page
  *
  */
-const AppHeader: FC<HeaderProps> = ({ selectedArea = siteAreas.teachers }) => {
+const AppHeader: FC<HeaderProps> = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
+  const selectedArea = useSelectedArea();
 
   return (
     <StyledHeader
