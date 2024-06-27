@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import { CookieConsentState } from "../cookie-consent/types";
 import { MaybeDistinctId } from "../posthog/posthog";
 
 const useAnalyticsService = <T>({
@@ -17,7 +16,7 @@ const useAnalyticsService = <T>({
    * using consent state from props rather than sevice.state() because otherwise
    * we'd be reading from local-storage every render
    */
-  consentState: CookieConsentState;
+  consentState: "pending" | "granted" | "denied";
   setPosthogDistinctId?: (id: MaybeDistinctId) => void;
   scriptLoaded?: boolean;
 }) => {
@@ -37,7 +36,7 @@ const useAnalyticsService = <T>({
         setLoaded(true);
       }
     };
-    if (consentState === "enabled" && !hasAttemptedInit) {
+    if (consentState === "granted" && !hasAttemptedInit) {
       attemptInit();
     }
   }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
@@ -45,10 +44,10 @@ const useAnalyticsService = <T>({
   useEffect(() => {
     // do not track
     if (loaded) {
-      if (consentState === "enabled") {
+      if (consentState === "granted") {
         service.optIn();
       }
-      if (consentState === "disabled") {
+      if (consentState === "denied") {
         service.optOut();
         if (setPosthogDistinctId) {
           setPosthogDistinctId(null);

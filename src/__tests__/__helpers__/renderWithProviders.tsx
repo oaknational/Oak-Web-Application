@@ -37,7 +37,7 @@ export type ProviderProps = {
 };
 
 type ProviderPropsByName = {
-  cookieConsent: { __testMockValue: CookieConsentContext };
+  cookieConsent: { value: CookieConsentContext };
   theme: { theme: OakTheme };
   oakTheme: { theme: typeof oakDefaultTheme };
   errorBoundary: Record<string, never>;
