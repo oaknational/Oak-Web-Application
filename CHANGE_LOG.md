@@ -1,3 +1,10 @@
+# [1.469.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.468.0...v1.469.0) (2024-06-27)
+
+
+### Features
+
+* add aria label to footer links which open in a new tab ([8324d90](https://github.com/oaknational/Oak-Web-Application/commit/8324d901f00daa22035fa9cc59580a3974ea897b))
+
 # [1.468.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.467.0...v1.468.0) (2024-06-26)
 
 
