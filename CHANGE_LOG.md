@@ -1,3 +1,11 @@
+# [1.472.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.471.0...v1.472.0) (2024-06-27)
+
+
+### Features
+
+* remove coming soon message ([e64406f](https://github.com/oaknational/Oak-Web-Application/commit/e64406f825d01ac5dd529eb9136d0759d0ce8833))
+* shareable new content ([150ec83](https://github.com/oaknational/Oak-Web-Application/commit/150ec83c22418b48876626838ae7c7d9741e317a))
+
 # [1.471.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.1...v1.471.0) (2024-06-27)
 
 
