@@ -8,7 +8,7 @@ import {
 
 const useSelectedArea = () => {
   const { asPath, pathname } = useRouter();
-  const serverBasedSelectedArea = pathname.includes("/pupils")
+  const serverBasedSelectedArea = pathname?.includes("/pupils")
     ? siteAreas.pupils
     : siteAreas.teachers;
 
@@ -22,7 +22,7 @@ const useSelectedArea = () => {
     // We have to wait until we are client-side and then we can query asPath to get the url that we are on.
     // For info - One solution to this is to set getServerSideProps on the 404 & 500 pages. This means the asPath would be set and the pages would be ssr.
     // But that also makes the 404 & 500 pages a larger load on the server in a large incident, therefore I think it's better to keep them as fully static pages.
-    const clientBasedSelectedArea = asPath.includes("/pupils")
+    const clientBasedSelectedArea = asPath?.includes("/pupils")
       ? siteAreas.pupils
       : siteAreas.teachers;
 
