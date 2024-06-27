@@ -53,6 +53,8 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
           baseSlug="physics-secondary-year-11"
           yearSlug="year-11"
           examboardSlug={"aqa"}
+          examboards={[]}
+          tiers={[]}
         />,
       );
       expect(PupilViewsProgrammeListing).toHaveBeenCalled();
