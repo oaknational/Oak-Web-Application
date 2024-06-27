@@ -58,6 +58,14 @@ describe("PupilViewsLessonListing", () => {
         },
         supplementaryData: { orderInUnit: 1, unitOrder: 4 },
       }),
+      lessonBrowseDataFixture({
+        lessonData: {
+          ...lessonBrowseDataFixture({}).lessonData,
+          title: "lesson-title-3",
+          deprecatedFields: { expired: true },
+        },
+        supplementaryData: { orderInUnit: 3, unitOrder: 4 },
+      }),
     ],
     programmeSlug: lessonBrowseDataFixture({
       lessonData: {
@@ -90,5 +98,14 @@ describe("PupilViewsLessonListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("lesson-title-1")).toBeInTheDocument();
+  });
+  it("should only count none expired lessons in the lesson count", () => {
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {" "}
+        <PupilViewsLessonListing {...props} />
+      </OakThemeProvider>,
+    );
+    expect(getByText("(2)")).toBeInTheDocument();
   });
 });
