@@ -1,5 +1,7 @@
 import { OakInfoProps } from "@oaknational/oak-components";
+import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 import PupilUnitListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units";
@@ -147,7 +149,16 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           expect(error).toMatchObject({ message: "No curriculum data" });
         }
       });
-      it("Should add breadcrumbs", async () => {
+      it("Should add breadcrumbs to unit sections", async () => {
+        const programmeFieldsSnake = programmeFieldsFixture({
+          overrides: {
+            year_description: "Year 10",
+            examboard: "AQA",
+            tier_description: "Higher",
+          },
+        });
+        const programmeFields = keysToCamelCase(programmeFieldsSnake);
+
         (
           curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
         ).mockResolvedValueOnce([
@@ -159,11 +170,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
             supplementaryData: { unitOrder: 1 },
             programmeSlug: "maths-secondary-year-10-foundation",
             unitSlug: "unit-slug-2",
-            programmeFields: {
-              yearDescription: "Year 10",
-              examboard: "AQA",
-              tierDescription: "Higher",
-            },
+            programmeFields,
           }),
         ]);
 
