@@ -119,8 +119,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   return (
-    <AppLayout seoProps={unitsSEO}>
-      <OakThemeProvider theme={oakDefaultTheme}>
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <AppLayout seoProps={unitsSEO}>
         <HeaderListing
           breadcrumbs={[
             {
@@ -155,7 +155,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         />
         <MaxWidth $ph={16}>
           <OakGrid>
-            <OakGridArea $colSpan={[12, 8, 9]}>
+            <OakGridArea $colSpan={[12, 12, 9]}>
               <NewContentBanner
                 keyStageSlug={keyStageSlug}
                 subjectSlug={subjectSlug}
@@ -168,15 +168,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           </OakGrid>
           <OakGrid>
             <OakGridArea
-              $order={[0, 2]}
-              $colSpan={[12, 4, 3]}
+              $order={[0, 2, 2]}
+              $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
               <Box
-                $display={["none", "block"]}
-                $position={[null, "sticky"]}
-                $top={[null, HEADER_HEIGHT]}
-                $mt={[0, 24]}
+                $display={["none", "none", "block"]}
+                $position={[null, null, "sticky"]}
+                $top={[null, null, HEADER_HEIGHT]}
+                $mt={[0, 0, 24]}
                 $pt={[48]}
               >
                 {learningThemes?.length > 1 && (
@@ -211,14 +211,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             </OakGridArea>
 
             <OakGridArea
-              $order={[1, 0]}
-              $colSpan={[12, 8, 9]}
+              $order={[1, 1, 0]}
+              $colSpan={[12, 12, 9]}
               $mt={"space-between-m2"}
             >
-              <Flex $flexDirection={["column-reverse", "column"]}>
+              <Flex
+                $flexDirection={["column-reverse", "column-reverse", "column"]}
+              >
                 <Flex
                   $flexDirection={"row"}
-                  $minWidth={"100%"}
+                  $minWidth={["100%", "auto"]}
                   $justifyContent={"space-between"}
                   $position={"relative"}
                   $alignItems={"center"}
@@ -236,7 +238,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       providedId={learningThemesFilterId}
                       label="Threads"
                       $mt={0}
-                      $mb={[16, 0]}
+                      $mb={[16, 16, 0]}
+                      applyForTablet
                     >
                       <UnitsLearningThemeFilters
                         labelledBy={learningThemesFilterId}
@@ -261,7 +264,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {tiers.length > 0 && (
                   <nav aria-label="tiers" data-testid="tiers-nav">
                     <TabularNav
-                      $mb={[10, 24]}
+                      $mb={[10, 10, 24]}
                       label="tiers"
                       links={tiers.map(
                         ({
@@ -280,7 +283,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   </nav>
                 )}
               </Flex>
-
               <UnitList
                 {...curriculumData}
                 currentPageItems={currentPageItems}
@@ -290,8 +292,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </MaxWidth>
-      </OakThemeProvider>
-    </AppLayout>
+      </AppLayout>
+    </OakThemeProvider>
   );
 };
 
@@ -328,6 +330,18 @@ export const getStaticProps: GetStaticProps<
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
         });
+
+        // We are trialling combining the new and legacy curriculum data for Maths
+        if (programmeSlug.startsWith("maths")) {
+          const legacyCurriculumData = await curriculumApi2023.unitListing({
+            programmeSlug: programmeSlug + "-l",
+          });
+
+          curriculumData.units = [
+            ...curriculumData.units,
+            ...legacyCurriculumData.units,
+          ];
+        }
 
         if (!curriculumData) {
           return {
