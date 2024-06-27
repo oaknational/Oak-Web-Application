@@ -165,7 +165,7 @@ export function Select<
           isFocusVisible={isFocusVisible}
           isPlaceholder={!state.selectedItem}
           id={buttonId}
-          role="combobox"
+          role="listbox"
         >
           <SelectInner $pt={8} $alignItems={"center"}>
             {props.icon && <Icon $mr={8} name={props.icon} />}
