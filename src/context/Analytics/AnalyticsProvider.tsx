@@ -13,20 +13,22 @@ import { usePostHog } from "posthog-js/react";
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
 import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
-import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
 import posthogToAnalyticsService, {
   MaybeDistinctId,
   PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
-import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
 import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
+import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+
+type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot";
 export type UserId = string;
 export type EventName = string;
 export type EventProperties = Record<string, unknown>;
@@ -45,7 +47,7 @@ export type IdentifyFn = (
   /**
    * if services not specifed, then all services called
    */
-  services?: ServiceType[],
+  services?: ServiceName[],
 ) => void;
 
 export type TrackEventName = Extract<
@@ -69,7 +71,7 @@ type AnalyticsContext = {
 };
 
 export type AnalyticsService<ServiceConfig> = {
-  name: ServiceType;
+  name: ServiceName;
   init: (config: ServiceConfig) => Promise<MaybeDistinctId>;
   state: () => "enabled" | "disabled" | "pending";
   track: EventFn;
@@ -114,7 +116,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const posthogService = useRef(
     posthogToAnalyticsService(posthogClient),
   ).current;
-  const posthogConsent = useHasConsentedTo("posthog");
+  const posthogConsent = useCookieConsent().getConsentState(
+    ServicePolicyMap.POSTHOG,
+  );
   const posthog = useAnalyticsService({
     service: posthogService,
     config: {
@@ -132,7 +136,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     portalId: getBrowserConfig("hubspotPortalId"),
     scriptDomain: getBrowserConfig("hubspotScriptDomain"),
   };
-  const hubspotConsent = useHasConsentedTo("hubspot");
+  const hubspotConsent = useCookieConsent().getConsentState(
+    ServicePolicyMap.HUBSPOT,
+  );
   const hubspot = useAnalyticsService({
     service: hubspotWithQueue,
     config: hubspotConfig,
@@ -229,7 +235,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     <analyticsContext.Provider value={analytics}>
       {children}
       <HubspotScript
-        shouldLoad={hubspotConsent === "enabled"}
+        shouldLoad={hubspotConsent === "granted"}
         onLoad={onHubspotScriptLoaded}
         {...hubspotConfig}
       />
