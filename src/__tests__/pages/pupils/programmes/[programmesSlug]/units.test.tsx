@@ -59,6 +59,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         },
       });
 
+      expect.assertions(1);
       if ("props" in getStaticPropsResult) {
         const { getByText } = render(
           <PupilUnitListingPage {...getStaticPropsResult.props} />,
@@ -100,26 +101,85 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           baseSlug: "maths-secondary-year-10",
         });
       });
-    });
-    it("Should return not found if no params", async () => {
-      // @ts-expect-error - Testing incorrect params
-      const result = await getStaticProps({ params: {} });
-      expect(result).toEqual({
-        notFound: true,
+
+      it("Should return not found if no params", async () => {
+        const result = await getStaticProps({});
+        expect(result).toEqual({
+          notFound: true,
+        });
       });
-    });
-    it("Should return not found if no programmeSlug", async () => {
-      const result = await getStaticProps({ params: { programmeSlug: "" } });
-      expect(result).toEqual({
-        notFound: true,
+      it("Should return not found if no programmeSlug", async () => {
+        const result = await getStaticProps({ params: { programmeSlug: "" } });
+        expect(result).toEqual({
+          notFound: true,
+        });
       });
-    });
-    it("Should return not found if no params", async () => {
-      const result = await getStaticProps({
-        params: { programmeSlug: "notvalidforbaseslug" },
+      it("Should return not found if no params", async () => {
+        const result = await getStaticProps({
+          params: { programmeSlug: "notvalidforbaseslug" },
+        });
+        expect(result).toEqual({
+          notFound: true,
+        });
       });
-      expect(result).toEqual({
-        notFound: true,
+      it("Should return not found if no curriculum data", async () => {
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+          }),
+        ]);
+
+        expect.assertions(2);
+        try {
+          await getStaticProps({
+            params: { programmeSlug: "english-secondary-year-11" },
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toMatchObject({ message: "No curriculum data" });
+        }
+      });
+      it("Should add breadcrumbs", async () => {
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+            programmeFields: {
+              yearDescription: "Year 10",
+              examboard: "AQA",
+              tierDescription: "Higher",
+            },
+          }),
+        ]);
+
+        const result = await getStaticProps({
+          params: {
+            programmeSlug: "maths-secondary-year-10-foundation",
+          },
+        });
+        expect.assertions(1);
+        if ("props" in result && result?.props?.unitSections[0]?.breadcrumbs) {
+          expect(result?.props?.unitSections[0]?.breadcrumbs).toEqual([
+            "Year 10",
+            "AQA",
+            "Higher",
+          ]);
+        }
       });
     });
   });
