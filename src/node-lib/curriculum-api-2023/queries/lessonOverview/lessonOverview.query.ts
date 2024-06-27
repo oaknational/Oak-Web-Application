@@ -25,6 +25,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -290,9 +291,27 @@ const lessonOverviewQuery =
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
     const content = keysToCamelCase(contentSnake) as LessonOverviewContent;
 
-    return lessonOverviewSchema.parse(
+    const transformedLesson = lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
     );
+
+    const { videoTitle, transcriptSentences } = transformedLesson;
+    if (videoTitle && !transcriptSentences) {
+      // For new content we need to fetch the captions file from gCloud and parse the result to generate
+      // the transcript sentences.
+      const fileName = `${videoTitle}.vtt`;
+      const transcript = await getCaptionsFromFile(fileName);
+      if (transcript) {
+        transformedLesson.transcriptSentences = transcript;
+      }
+    } else if (transcriptSentences && !Array.isArray(transcriptSentences)) {
+      const splitTranscript = transcriptSentences.split(/\r?\n/);
+      const formattedTranscript = formatSentences(splitTranscript);
+
+      transformedLesson.transcriptSentences = formattedTranscript;
+    }
+
+    return transformedLesson;
   };
 
 export default lessonOverviewQuery;
