@@ -8,6 +8,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
   OakHandDrawnHR,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -113,7 +114,17 @@ const YearListingPage = () => {
                           })}
                           width={"100%"}
                         >
-                          {year.yearDescription}
+                          <OakBox
+                            $minWidth={[
+                              "all-spacing-16",
+                              "all-spacing-13",
+                              "all-spacing-13",
+                            ]}
+                            $mh={["space-between-sssx", "auto", "auto"]}
+                            $textAlign={"center"}
+                          >
+                            {year.yearDescription}
+                          </OakBox>
                         </OakPupilJourneyYearButton>
                       </OakGridArea>
                     );
