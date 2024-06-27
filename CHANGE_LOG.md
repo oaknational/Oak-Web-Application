@@ -1,3 +1,11 @@
+## [1.473.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.0...v1.473.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* check for length of copyright content ([ed61244](https://github.com/oaknational/Oak-Web-Application/commit/ed612446421c7756f05af6d53e0ceab66df912f4))
+* check for non empty string in copyright info ([c8cfe12](https://github.com/oaknational/Oak-Web-Application/commit/c8cfe121813f691f33f2d03808799c6a8639fae3))
+
 # [1.473.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.472.0...v1.473.0) (2024-06-27)
 
 
