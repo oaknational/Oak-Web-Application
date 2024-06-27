@@ -118,6 +118,11 @@ const mockParse = jest
     cues: [],
     errors: ["this is the error message"],
     time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 1" }, { text: "sentence 2" }],
+    errors: [],
+    time: 0,
   });
 
 jest.mock("webvtt-parser", () => ({
@@ -147,20 +152,17 @@ describe("populateLessonWithTranscript", () => {
   it("handles lessons with transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
       lessonOverviewFixture({
-        transcriptSentences: ["sentence 1", "sentence 2"],
+        transcriptSentences: "sentence 1, sentence 2",
       }),
     );
 
-    expect(lesson.transcriptSentences).toEqual(["sentence 1", "sentence 2"]);
+    expect(lesson.transcriptSentences).toEqual(["sentence 1, sentence 2."]);
   });
   it("handles lessons without transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
-      lessonOverviewFixture({ videoTitle: "test" }),
+      lessonOverviewFixture({ videoTitle: "test", transcriptSentences: null }),
     );
 
-    expect(lesson.transcriptSentences).toEqual([
-      "this is a sentence",
-      "this is another sentence",
-    ]);
+    expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2."]);
   });
 });
