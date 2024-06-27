@@ -1,3 +1,18 @@
+# [1.473.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.472.0...v1.473.0) (2024-06-27)
+
+
+### Features
+
+* **lesson-counts:** add correct lesson count for units with sensitive and expired lessons ([94fedca](https://github.com/oaknational/Oak-Web-Application/commit/94fedca9921394c968bbfaa2103760e61c8f32a3))
+* **pupil-lesson-list:** oak compoentns latest ([dac8f75](https://github.com/oaknational/Oak-Web-Application/commit/dac8f7504471e8a100ef3160f831004a450c4495))
+* **pupil-lesson-list:** oak compoentns latest ([ff9fe23](https://github.com/oaknational/Oak-Web-Application/commit/ff9fe2364f95a90885a18baa46fef738ccced147))
+* **pupil-lesson-list:** oak compoentns latest ([0cd3c36](https://github.com/oaknational/Oak-Web-Application/commit/0cd3c36dc465d317858578e60085b77abbeb9da9))
+* **pupil-lesson-list:** oak compoentns latest ([a2fd10f](https://github.com/oaknational/Oak-Web-Application/commit/a2fd10f26b475fc2aaecf77d63badf3d38bb738e))
+* **pupil-lesson-list:** oak compoentns latest ([8cf29a7](https://github.com/oaknational/Oak-Web-Application/commit/8cf29a7cf107c8013317e7834274d9708d38a218))
+* **pupil-lesson-list:** only count none expired lessons ([f821d44](https://github.com/oaknational/Oak-Web-Application/commit/f821d44f52c0780ca8bb0a2557865ae3ada0b0d4))
+* **pupil-lesson-list:** only count none expired lessons ([446e1bc](https://github.com/oaknational/Oak-Web-Application/commit/446e1bca9e22a6901a3b52cbc6d05a9a84fe7e4b))
+* **pupil-lesson-list:** only count none expired lessons ([f472e14](https://github.com/oaknational/Oak-Web-Application/commit/f472e14dfb889b685a707315bc6511a97c122865))
+
 # [1.472.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.471.0...v1.472.0) (2024-06-27)
 
 
