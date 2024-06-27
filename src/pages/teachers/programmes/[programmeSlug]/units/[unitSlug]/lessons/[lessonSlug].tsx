@@ -17,6 +17,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -104,9 +105,11 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const lessonPageData = await populateLessonWithTranscript(curriculumData);
+
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: lessonPageData,
         },
       };
 

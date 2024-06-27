@@ -12,11 +12,6 @@ import lessonOverview, {
   getDownloadsArray,
 } from "./lessonOverview.query";
 
-jest.mock("@/utils/handleTranscript", () => ({
-  getCaptionsFromFile: jest.fn().mockResolvedValue(["transcript", "sentences"]),
-  formatSentences: jest.fn().mockReturnValue("formatted transcript"),
-}));
-
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
@@ -170,40 +165,6 @@ describe("lessonOverview()", () => {
         programmeSlug: "programme-slug",
       });
     }).rejects.toThrow("Resource not found");
-  });
-  test("gets transcript for new lessons", async () => {
-    const _syntheticUnitvariantLessonsFixture =
-      syntheticUnitvariantLessonsFixture({
-        overrides: {
-          lesson_slug: "lesson-slug-test",
-          unit_slug: "unit-slug-test",
-          programme_slug: "programme-slug-test",
-          is_legacy: false,
-        },
-      });
-
-    const _lessonContentFixture = lessonContentFixture({
-      overrides: {
-        exit_quiz: [],
-        starter_quiz: [],
-        video_title: "video",
-        transcript_sentences: null,
-      },
-    });
-
-    const lesson = await lessonOverview({
-      ...sdk,
-      lessonOverview: jest.fn(() =>
-        Promise.resolve({
-          browseData: [_syntheticUnitvariantLessonsFixture],
-          content: [_lessonContentFixture],
-        }),
-      ),
-    })({
-      lessonSlug: "test",
-    });
-
-    expect(lesson.transcriptSentences).toEqual(["transcript", "sentences"]);
   });
   describe("getCopyrightContent", () => {
     it("should return null if content is null", () => {
