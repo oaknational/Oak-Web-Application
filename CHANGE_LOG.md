@@ -1,3 +1,17 @@
+# [1.471.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.1...v1.471.0) (2024-06-27)
+
+
+### Bug Fixes
+
+* broken unit tests with router mock ([d5bcdff](https://github.com/oaknational/Oak-Web-Application/commit/d5bcdffa498d7315c47eb1f5a636fc02d075e680))
+
+
+### Features
+
+* error pages have correct highlighted section of site ([5f0dcbb](https://github.com/oaknational/Oak-Web-Application/commit/5f0dcbbb3a6f6d05392b1366ac2fd9783e254175))
+
+## [1.470.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.0...v1.470.1) (2024-06-27)
+
 # [1.470.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.469.0...v1.470.0) (2024-06-27)
 
 

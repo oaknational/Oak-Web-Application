@@ -17,10 +17,6 @@ import LandingPagesHeader, {
 } from "@/components/AppComponents/LayoutLandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
-import {
-  SelectedArea,
-  siteAreas,
-} from "@/components/AppComponents/AppHeader/AppHeader";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -34,11 +30,9 @@ const StyledLayout = styled.main`
   flex-grow: 1;
   width: 100%;
 `;
-
 export type HeaderProps = {
   children?: React.ReactNode;
   breadcrumbs?: Breadcrumb[];
-  selectedArea?: SelectedArea;
 };
 
 export type HeaderVariant = "app" | "landing-pages" | "client-error";
@@ -81,11 +75,7 @@ const Layout: FC<LayoutProps> = (props) => {
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
 
-  const { isPreview, pathname } = useRouter();
-
-  const selectedArea = pathname?.includes("/pupils")
-    ? siteAreas.pupils
-    : siteAreas.teachers;
+  const { isPreview } = useRouter();
 
   return (
     <>
@@ -96,11 +86,7 @@ const Layout: FC<LayoutProps> = (props) => {
       <OrganizationJsonLd />
       <Container $background={$background}>
         {banner}
-        <Header
-          breadcrumbs={breadcrumbs}
-          headerCta={props.headerCta}
-          selectedArea={selectedArea}
-        />
+        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
         <StyledLayout>{children}</StyledLayout>
         <Footer />
         {isPreview && <LayoutPreviewControls />}
