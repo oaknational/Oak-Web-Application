@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Oak Storybook
+
+Welcome to Oak's Storybook. Browse our component examples and usage guidelines.
+
+## Folder structure:
+
+* AppComponents
+* ArchivedComponents
+* CurriculumComponents
+* GenericPagesComponents
+* GenericPagesViews
+* PupilComponents
+* PupilViews
+* SharedComponents
+* TeacherComponents
+* TeacherViews
+
+## Rules
+
+* **AppComponents**
+  * app related components such as header, footer, menu, layout, etc.
+* **ArchivedComponents**
+  * components that are not imported aynwhere
+* **CurriculumComponents**
+  * curriculum related components (components used in `/teachers/curriculum/` belong here rather than in `TeacherComponents`)
+* **GenericPagesComponents**
+  * components related to generic pages, such as Contact or About us
+* **GenericPagesViews**
+  * views related to generic pages, such as Contact or About us
+* **PupilComponents**
+  * components related to pupil journey
+* **PupilViews**
+  * views related to pupil journey
+* **SharedComponents**
+  * components imported by components from multiple folders or another component in `SharedComponents`
+  * this folder will be replaced by `oak-components` and deprecated one day
+* **TeacherComponents**
+  * components related to teacher journey
+* **TeacherViews**
+  * views related to teacher journey
+
+**Renaming:**
+
+* Anything prefaced with Oak is now prefaced with OWA
+  * NB. OakComponents from the external library will not be changed
+  * NB. Pupil components use OakComponents so no changes should happen here
+* If something is used only by one component/related to one page, prefix it accordingly
+  * for example `ButtonLinkNav` becomes `AboutUsNavButton` if it is only used on About us page
+  * if you reuse the component in another place, update the naming accordignly/move to relevant folder (for example if you reuse `AboutUsNavButton` in one of the `TeacherComponents` you should move it to `SharedComponents` and rename to `NavButton`)
+
+**Views:**
+
+* Anything with suffix `.page` goes into a relevant view folder and changes suffix to `.view`
+
+**Outcome:**
+
+* No nesting beyond two levels (extracting all nested components)
+* The above rule about nesting is currently implemented in all components except `ShharedComponents` as those will be deprecated one day and we didn't want to spend time on improving them

@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
+import { fn } from "@storybook/test";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
@@ -26,7 +27,10 @@ OriginalNextImage.defaultProps = {
 // });
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: {
+    // 👇 Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked
+    args: { onClick: fn(), onSubmit: fn() },
+  },
   controls: {
     // sorts component props into alphbetical order
     sort: "alpha",
