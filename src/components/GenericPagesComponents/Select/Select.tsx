@@ -169,11 +169,13 @@ export function Select<
         >
           <SelectInner $pt={8} $alignItems={"center"}>
             {props.icon && <Icon $mr={8} name={props.icon} />}
+
             <SelectSpan
               id={valueId}
               data-testid={"select-span"}
               title={props.placeholder}
               $font={"body-2"}
+              role="textbox"
             >
               {state.selectedItem
                 ? state.selectedItem.rendered
