@@ -125,6 +125,7 @@ describe("unitListing()", () => {
       subjectSlug: "maths",
       subjectTitle: "Maths",
       tierSlug: "foundation",
+      phase: "primary",
       tiers: [
         {
           tierSlug: "foundation",

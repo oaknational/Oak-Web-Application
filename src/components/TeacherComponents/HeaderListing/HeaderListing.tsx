@@ -7,8 +7,8 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { OakColorName } from "@/styles/theme";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { OakColorName } from "@/styles/theme";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).

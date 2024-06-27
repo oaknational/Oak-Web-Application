@@ -2,12 +2,11 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import { ServiceType } from "../cookie-consent/types";
 
 import useAnalyticsService from "./useAnalyticsService";
 
 const service: AnalyticsService<unknown> = {
-  name: "test service" as ServiceType,
+  name: "posthog",
   init: jest.fn(() => Promise.resolve("test-posthog-distinct-id")),
   state: jest.fn(() => "pending"),
   track: jest.fn(),
@@ -16,8 +15,6 @@ const service: AnalyticsService<unknown> = {
   optOut: jest.fn(),
   optIn: jest.fn(),
 };
-
-const setPosthogDistinctId = jest.fn();
 
 describe("useAnalyticsService", () => {
   beforeEach(() => {
@@ -28,9 +25,9 @@ describe("useAnalyticsService", () => {
       default: jest.fn(errorReporter),
     }));
   });
-  test("should not call service.init() if consentState:disabled", () => {
+  test("should not call service.init() if consentState:denied", () => {
     renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "disabled" }),
+      useAnalyticsService({ service, config: null, consentState: "denied" }),
     );
     expect(service.init).not.toHaveBeenCalled();
   });
@@ -40,22 +37,24 @@ describe("useAnalyticsService", () => {
     );
     expect(service.init).not.toHaveBeenCalled();
   });
-  test("should call service.init(config) if consentState:enabled", () => {
+  test("should call service.init(config) if consentState:granted", () => {
     renderHook(() =>
       useAnalyticsService({
         service,
         config: { foo: "bar" },
-        consentState: "enabled",
+        consentState: "granted",
       }),
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
   test("should set posthog distinct if callback passed", async () => {
+    const setPosthogDistinctId = jest.fn();
+
     renderHook(() =>
       useAnalyticsService({
         service,
         config: { foo: "bar" },
-        consentState: "enabled",
+        consentState: "granted",
         setPosthogDistinctId,
       }),
     );
@@ -63,6 +62,34 @@ describe("useAnalyticsService", () => {
       expect(setPosthogDistinctId).toHaveBeenCalledWith(
         "test-posthog-distinct-id",
       );
+    });
+  });
+
+  test("should clear posthog distinct id when loaded and consentState:denied", async () => {
+    const setPosthogDistinctId = jest.fn();
+
+    const result = renderHook(
+      (...args: Parameters<typeof useAnalyticsService>) =>
+        useAnalyticsService(...args),
+      {
+        initialProps: {
+          service,
+          config: { foo: "bar" },
+          consentState: "granted",
+          setPosthogDistinctId,
+        },
+      },
+    );
+
+    result.rerender({
+      service,
+      config: { foo: "bar" },
+      consentState: "denied",
+      setPosthogDistinctId,
+    });
+
+    await waitFor(() => {
+      expect(setPosthogDistinctId).toHaveBeenLastCalledWith(null);
     });
   });
 });

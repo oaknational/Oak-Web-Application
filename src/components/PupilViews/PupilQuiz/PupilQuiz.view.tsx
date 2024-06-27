@@ -121,6 +121,7 @@ const QuizInner = () => {
             tooltip={pickTooltip(currentQuestionData.answers)}
             isOpen={currentQuestionState?.mode === "incomplete"}
             tooltipPosition="top-right"
+            id="quiz-tooltip"
           >
             <OakPrimaryButton
               form={formId}
