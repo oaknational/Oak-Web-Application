@@ -1,3 +1,21 @@
+## [1.470.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.0...v1.470.1) (2024-06-27)
+
+# [1.470.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.469.0...v1.470.0) (2024-06-27)
+
+
+### Bug Fixes
+
+* **ENG-797:** memoised `value` causing children not to re-render when `state` changes ([7d197da](https://github.com/oaknational/Oak-Web-Application/commit/7d197daa1c8afadf5a22cbc4ee85dbf3c043e427))
+* **ENG-797:** posthog id not being unset when user revokes consent ([43414f2](https://github.com/oaknational/Oak-Web-Application/commit/43414f283b58ca6dbf6efa61386ed217a351f50f))
+* **ENG-797:** suppress a warning about using `useLayoutEffect` with SSR ([91b28d5](https://github.com/oaknational/Oak-Web-Application/commit/91b28d5e4cdb697be6a010cd99a85da02398af69))
+* **ENG-797:** the consent banner being rendered below the pupil quiz footer ([c4391a4](https://github.com/oaknational/Oak-Web-Application/commit/c4391a4bf01a5ee034a3e9ed8985ae8171d63fa9))
+
+
+### Features
+
+* **ENG-797:** add a singleton instance of OakConsentClient ([66d98ab](https://github.com/oaknational/Oak-Web-Application/commit/66d98ab9fe7dfe55c0310931327e1a828858c9ce))
+* **ENG-797:** replace Confirmic with `OakConsentClient` ([060a733](https://github.com/oaknational/Oak-Web-Application/commit/060a7330dae97bb7a3da5691032650ad17492c8e))
+
 # [1.469.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.468.0...v1.469.0) (2024-06-27)
 
 

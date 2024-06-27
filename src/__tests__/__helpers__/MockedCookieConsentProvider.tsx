@@ -7,15 +7,14 @@ import {
 
 import noop from "./noop";
 
-const MockedAnalyticsProvider: FC<{
+const MockedCookieConsentProvider: FC<{
   children?: React.ReactNode;
   value?: CookieConsentContext;
 }> = ({ children, value }) => {
   return (
     <cookieConsentContext.Provider
       value={{
-        hasConsentedTo: () => "pending",
-        hasConsentedToPolicy: () => "pending",
+        getConsentState: () => "pending",
         showConsentManager: noop,
         ...value,
       }}
@@ -25,4 +24,4 @@ const MockedAnalyticsProvider: FC<{
   );
 };
 
-export default MockedAnalyticsProvider;
+export default MockedCookieConsentProvider;

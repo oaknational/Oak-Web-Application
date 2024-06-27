@@ -2,7 +2,6 @@ import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
-import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 import OakError from "../../errors/OakError";
 import {
@@ -11,6 +10,9 @@ import {
 } from "../../browser-lib/posthog/posthog";
 
 import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
+
+import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
+import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
 /**
  * Test if a user agent matches any in a list of regex patterns.
@@ -217,8 +219,8 @@ const errorReporter = (
       }
 
       if (isBrowser) {
-        const bugsnagAllowed = getHasConsentedTo("bugsnag");
-        if (!bugsnagAllowed) {
+        const consentState = consentClient.getConsent(ServicePolicyMap.BUGSNAG);
+        if (consentState !== "granted") {
           // Do not continue if user has not given consent to send data bugsnag
           return;
         }

@@ -50,5 +50,9 @@
   "sanity": {
     "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
     "requiredSecrets": ["SANITY_AUTH_SECRET"]
+  },
+  "oakConsent": {
+    "policiesUrl": "https://example.com/policies/",
+    "consentLogUrl": "https://example.com/consent/"
   }
 }
