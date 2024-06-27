@@ -1,5 +1,5 @@
 query pupilUnitListing($baseSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0(
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0(
     where: { base_slug: { _eq: $baseSlug } }
   ) {
     base_slug
@@ -10,6 +10,8 @@ query pupilUnitListing($baseSlug: String!) {
     unit_data
     supplementary_data
     lesson_count
+    lesson_expired_count
+    lesson_sensitive_count
     expired
   }
 }
