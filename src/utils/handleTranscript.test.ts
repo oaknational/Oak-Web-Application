@@ -2,7 +2,10 @@ import {
   getCaptionsFromFile,
   formatSentences,
   removeWebVttCharacters,
+  populateLessonWithTranscript,
 } from "./handleTranscript";
+
+import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -137,5 +140,27 @@ describe("getCaptionFromFile", () => {
     const result = await getCaptionsFromFile("test.vtt");
 
     expect(result).toBeUndefined();
+  });
+});
+
+describe("populateLessonWithTranscript", () => {
+  it("handles lessons with transcript sentences", async () => {
+    const lesson = await populateLessonWithTranscript(
+      lessonOverviewFixture({
+        transcriptSentences: ["sentence 1", "sentence 2"],
+      }),
+    );
+
+    expect(lesson.transcriptSentences).toEqual(["sentence 1", "sentence 2"]);
+  });
+  it("handles lessons without transcript sentences", async () => {
+    const lesson = await populateLessonWithTranscript(
+      lessonOverviewFixture({ videoTitle: "test" }),
+    );
+
+    expect(lesson.transcriptSentences).toEqual([
+      "this is a sentence",
+      "this is another sentence",
+    ]);
   });
 });
