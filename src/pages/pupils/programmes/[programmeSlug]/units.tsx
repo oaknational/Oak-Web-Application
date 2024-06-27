@@ -23,6 +23,7 @@ export type UnitsSectionData = {
   phase: "primary" | "secondary";
   icon?: OakIconProps["iconName"];
   units: UnitListingBrowseData[number][][];
+  breadcrumbs: string[];
   counterText: string | null;
   counterLength: number | null;
 };
@@ -31,7 +32,6 @@ export type UnitListingPageProps = {
   subject: string;
   phase: "primary" | "secondary";
   backHrefSlugs: UseBackHrefProps;
-  breadcrumbs: string[];
   yearDescription: string;
   unitSections: UnitsSectionData[];
 };
@@ -44,7 +44,6 @@ const PupilUnitListingPage = ({
   subject,
   phase,
   backHrefSlugs,
-  breadcrumbs,
   yearDescription,
   unitSections,
 }: UnitListingPageProps) => {
@@ -62,7 +61,6 @@ const PupilUnitListingPage = ({
           unitSections={unitSections}
           phase={phase}
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={breadcrumbs}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -147,10 +145,19 @@ export const getStaticProps: GetStaticProps<
         _.groupBy(mainUnits, (unit) => unit?.unitData.title),
       );
 
+      const breadcrumbs: string[] = [yearDescription];
+      if (examboard) {
+        breadcrumbs.push(examboard);
+      }
+      if (tierDescription) {
+        breadcrumbs.push(tierDescription);
+      }
+
       const firstUnitSection: UnitsSectionData = {
         units: optionalityUnits,
         phase,
         icon: `subject-${subjectSlug}`,
+        breadcrumbs,
         counterText: "Choose a unit",
         counterLength: mainUnits.length,
         title: subject,
@@ -162,6 +169,7 @@ export const getStaticProps: GetStaticProps<
         tierSlug,
         phase,
         unitsByProgramme,
+        breadcrumbs,
       });
 
       const backHrefSlugs: UseBackHrefProps = {
@@ -171,21 +179,12 @@ export const getStaticProps: GetStaticProps<
         examboardSlug,
       };
 
-      const breadcrumbs: string[] = [yearDescription];
-      if (examboard) {
-        breadcrumbs.push(examboard);
-      }
-      if (tierDescription) {
-        breadcrumbs.push(tierDescription);
-      }
-
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           subject,
           phase,
           yearDescription,
           backHrefSlugs,
-          breadcrumbs,
           unitSections: [firstUnitSection, secondUnitSection],
         },
       };

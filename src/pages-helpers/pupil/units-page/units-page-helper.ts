@@ -9,6 +9,7 @@ interface GetSecondUnitSectionArgs {
   tierSlug: string | null;
   phase: "primary" | "secondary";
   unitsByProgramme: Record<string, UnitListingBrowseData[number][]>;
+  breadcrumbs: string[];
 }
 
 export function getSecondUnitSection({
@@ -17,6 +18,7 @@ export function getSecondUnitSection({
   tierSlug,
   phase,
   unitsByProgramme,
+  breadcrumbs,
 }: GetSecondUnitSectionArgs): UnitsSectionData {
   // Determine if the desired programme is a legacy programme
   const isLegacy = programmeSlug.endsWith("-l");
@@ -60,5 +62,6 @@ export function getSecondUnitSection({
     counterText: result.counterText,
     counterLength: result.counterLength,
     title: null,
+    breadcrumbs,
   };
 }

@@ -29,6 +29,7 @@ export const UnitsSection = ({
   titleSlot,
   id = "0",
 }: UnitsSectionProps) => {
+  if (units.length === 0) return null;
   return (
     <OakPupilJourneyList
       phase={phase}

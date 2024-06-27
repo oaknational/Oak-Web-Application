@@ -14,14 +14,12 @@ export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
   phase: "primary" | "secondary";
   backHrefSlugs: UseBackHrefProps;
-  breadcrumbs: string[];
 };
 
 export const PupilViewsUnitListing = ({
   unitSections,
   phase,
   backHrefSlugs,
-  breadcrumbs,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
 
@@ -45,7 +43,7 @@ export const PupilViewsUnitListing = ({
                   title={unitSection.title}
                   iconName={unitSection.icon}
                   iconBackground={phase}
-                  breadcrumbs={breadcrumbs}
+                  breadcrumbs={unitSection.breadcrumbs}
                 />
               ) : null
             }

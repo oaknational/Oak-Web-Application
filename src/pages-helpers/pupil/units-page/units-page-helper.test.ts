@@ -24,6 +24,7 @@ describe("units-page-helper", () => {
       tierSlug: null,
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
+      breadcrumbs: ["Maths", "Year 10"],
     });
 
     if (!result.units || !result.units[0] || !result.units[0][0]) {
@@ -53,6 +54,7 @@ describe("units-page-helper", () => {
       tierSlug: null,
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
+      breadcrumbs: ["Maths", "Year 10"],
     });
 
     if (!result.units || !result.units[0] || !result.units[0][0]) {
@@ -82,6 +84,7 @@ describe("units-page-helper", () => {
       tierSlug: "higher",
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
+      breadcrumbs: ["Combined science", "Year 10"],
     });
 
     if (!result.units || !result.units[0] || !result.units[0][0]) {

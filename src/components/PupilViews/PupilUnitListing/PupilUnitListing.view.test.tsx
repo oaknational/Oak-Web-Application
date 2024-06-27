@@ -53,6 +53,7 @@ const unitSections: UnitsSectionData[] = [
     ],
     counterText: "Units",
     counterLength: 2,
+    breadcrumbs: ["Maths", "Year 10"],
   },
 ];
 
@@ -107,6 +108,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
     ],
     counterText: "Units",
     counterLength: 2,
+    breadcrumbs: ["Maths", "Year 10"],
   },
 ];
 
@@ -128,7 +130,6 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={["Maths", "Year 10"]}
         />
       </OakThemeProvider>,
     );
@@ -143,7 +144,6 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={["Maths", "Year 10"]}
         />
       </OakThemeProvider>,
     );
@@ -154,13 +154,21 @@ describe("PupilViewsUnitListing", () => {
   });
 
   it("should render breadcrumbs", () => {
+    if (unitSections[0]) {
+      unitSections[0].breadcrumbs = [
+        "Combined science",
+        "Year 11",
+        "Foundation",
+        "AQA",
+      ];
+    }
+
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsUnitListing
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={["Combined science", "Year 11", "Foundation", "AQA"]}
         />
       </OakThemeProvider>,
     );
@@ -177,7 +185,6 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={["Maths", "Year 10"]}
         />
       </OakThemeProvider>,
     );
@@ -191,7 +198,6 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitsWithOptionality}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
-          breadcrumbs={["Maths", "Year 10"]}
         />
       </OakThemeProvider>,
     );
