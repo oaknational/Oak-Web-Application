@@ -1,8 +1,8 @@
 import { buildAllUrlFields } from "./sitemap-pages-helper";
 
-import { teachersSitemapDataFixture } from "@/browser-lib/fixtures/teacherSitemap.fixture";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { teachersSitemapDataSchema } from "@/node-lib/curriculum-api-2023/queries/teachersSitemap/teacherSitemap.schema";
+import { teachersSitemapDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 
 describe("teacher sitemaps", () => {
   describe("buildAllUrlFields", () => {

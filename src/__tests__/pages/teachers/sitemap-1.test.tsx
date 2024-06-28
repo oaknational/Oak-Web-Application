@@ -3,7 +3,7 @@ import { GetServerSidePropsContext } from "next";
 
 import { getServerSideProps } from "@/pages/teachers/sitemap-1.xml";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { teachersSitemapDataFixture } from "@/browser-lib/fixtures/teacherSitemap.fixture";
+import { teachersSitemapDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 
 jest.mock("next-sitemap");
 
