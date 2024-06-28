@@ -1,49 +1,46 @@
 import { z } from "zod";
-import {
-  syntheticUnitvariantLessonsByKsSchema,
-  keystageSlugs,
-} from "@oaknational/oak-curriculum-schema";
+import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const teachersSitemapDataSchema = z.object({
   keyStages: z.array(keystageSlugs),
   programmes: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
+    z.object({
+      programme_slug: z.string(),
     }),
   ),
   units: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
-      unit_slug: true,
+    z.object({
+      programme_slug: z.string(),
+      unit_slug: z.string(),
     }),
   ),
   lessons: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
-      unit_slug: true,
-      lesson_slug: true,
+    z.object({
+      programme_slug: z.string(),
+      unit_slug: z.string(),
+      lesson_slug: z.string(),
     }),
   ),
 
   specialistProgrammes: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
+    z.object({
+      programme_slug: z.string(),
     }),
   ),
 
   specialistUnits: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
-      unit_slug: true,
+    z.object({
+      programme_slug: z.string(),
+      unit_slug: z.string(),
     }),
   ),
   specialistLessons: z.array(
-    syntheticUnitvariantLessonsByKsSchema.pick({
-      programme_slug: true,
-      unit_slug: true,
-      lesson_slug: true,
+    z.object({
+      programme_slug: z.string(),
+      unit_slug: z.string(),
+      lesson_slug: z.string(),
     }),
   ),
 });

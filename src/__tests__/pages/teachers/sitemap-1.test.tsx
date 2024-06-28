@@ -3,6 +3,7 @@ import { GetServerSidePropsContext } from "next";
 
 import { getServerSideProps } from "@/pages/teachers/sitemap-1.xml";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { teachersSitemapDataFixture } from "@/browser-lib/fixtures/teacherSitemap.fixture";
 
 jest.mock("next-sitemap");
 
@@ -10,7 +11,7 @@ describe("getServerSideProps", () => {
   describe("getServerSideProps", () => {
     it("fetches data and generates fields correctly", async () => {
       const context = {} as GetServerSidePropsContext;
-      const mockSiteMap = [{ urls: "https://example.com" }];
+      const mockSiteMap = teachersSitemapDataFixture;
       const mockFields = [
         {
           loc: "https://example.com",

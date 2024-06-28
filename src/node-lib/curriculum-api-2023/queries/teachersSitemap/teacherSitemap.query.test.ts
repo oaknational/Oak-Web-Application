@@ -8,7 +8,15 @@ describe("teacher sitemap query", () => {
       await teacherSitemap({
         ...sdk,
         teachersSitemap: jest.fn(() =>
-          Promise.resolve({ teachersSitemap: [] }),
+          Promise.resolve({
+            keyStages: [],
+            programmes: [],
+            units: [],
+            lessons: [],
+            specialistProgrammes: [],
+            specialistUnits: [],
+            specialistLessons: [],
+          }),
         ),
       })();
     }).rejects.toThrow(`Resource not found`);
