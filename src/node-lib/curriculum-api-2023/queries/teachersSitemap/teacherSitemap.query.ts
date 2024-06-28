@@ -1,8 +1,14 @@
 import { z } from "zod";
 
+import {
+  TeachersSitemapBrowseData,
+  teachersSitemapDataSchema,
+} from "./teacherSitemap.schema";
+
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const teachersSitemapSchema = z.array(
   z.object({
@@ -15,7 +21,18 @@ export type TeachersSitemap = z.infer<typeof teachersSitemapSchema>;
 const teachersSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.teachersSitemap();
 
-  if (!res || res.teachersSitemap.length === 0) {
+  const sitemapData = res;
+
+  if (
+    !sitemapData ||
+    sitemapData.keyStages.length === 0 ||
+    sitemapData.programmes.length === 0 ||
+    sitemapData.units.length === 0 ||
+    sitemapData.lessons.length === 0 ||
+    sitemapData.specialistProgrammes.length === 0 ||
+    sitemapData.specialistUnits.length === 0 ||
+    sitemapData.specialistLessons.length === 0
+  ) {
     errorReporter("curriculum-api-2023::teachersSitemap")(
       new Error("Resource not found"),
       {
@@ -26,7 +43,15 @@ const teachersSitemap = (sdk: Sdk) => async () => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  return teachersSitemapSchema.parse(res.teachersSitemap);
+  const teacherBrowseData = teachersSitemapDataSchema.parse({
+    ...sitemapData,
+    keyStages: sitemapData.keyStages.map((ks) => ks.slug),
+  });
+
+  const browseData = keysToCamelCase({
+    ...teacherBrowseData,
+  }) as TeachersSitemapBrowseData;
+  return browseData;
 };
 
 export default teachersSitemap;
