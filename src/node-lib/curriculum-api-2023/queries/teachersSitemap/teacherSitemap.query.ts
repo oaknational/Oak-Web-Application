@@ -45,7 +45,6 @@ const teachersSitemap = (sdk: Sdk) => async () => {
 
   const teacherBrowseData = teachersSitemapDataSchema.parse({
     ...sitemapData,
-    keyStages: sitemapData.keyStages.map((ks) => ks.slug),
   });
 
   const browseData = keysToCamelCase({

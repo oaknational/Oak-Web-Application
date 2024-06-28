@@ -58,10 +58,10 @@ export async function buildAllUrlFields({
   );
 
   const keyStageSubjectsURLs = keyStages.map(
-    (keyStageSlug) =>
+    (keyStage) =>
       `${baseUrl}${resolveOakHref({
         page: "subject-index",
-        keyStageSlug,
+        keyStageSlug: keyStage.slug,
       })}`,
   );
 

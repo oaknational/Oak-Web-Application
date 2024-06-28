@@ -1,9 +1,9 @@
-import { teachersSitemapDataSchema } from "../queries/teachersSitemap/teacherSitemap.schema";
+import { TeachersSitemapDataSchemaSnake } from "../queries/teachersSitemap/teacherSitemap.schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-export const teachersSitemapDataFixture = {
-  keyStages: ["ks1", "ks2"],
+export const teachersSitemapDataFixture: TeachersSitemapDataSchemaSnake = {
+  keyStages: [{ slug: "ks1" }, { slug: "ks2" }],
   programmes: [
     {
       programme_slug: "programme-1",
@@ -66,12 +66,8 @@ export const teachersSitemapDataFixture = {
   ],
 };
 
-const parsedFixture = teachersSitemapDataSchema.parse(
-  teachersSitemapDataFixture,
-);
-
 export const teachersSitemapDataFixtureCamelCase = keysToCamelCase({
-  ...parsedFixture,
+  ...teachersSitemapDataFixture,
 });
 
 const newDate = new Date();
