@@ -36,6 +36,10 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     phaseSlug,
   } = programmeFields;
 
+  const noneExpiredLessons = orderedCurriculumData.filter(
+    (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
+  );
+
   if (phaseSlug === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
@@ -54,9 +58,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
       iconName={`subject-${subjectSlug}`}
-      title={unitData?.title}
+      title={optionality ?? unitData?.title}
       breadcrumbs={breadcrumb}
-      optionalityTitle={optionality}
+      optionalityTitle={optionality && unitData?.title}
     />
   );
 
@@ -76,13 +80,14 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   const lessonCount = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
       <OakInfo
+        id="lesson-listing-info"
         tooltipPosition="top-left"
         hint={
           "We've put the lessons in order helping you build on what you've learned before so it’s best to start with the first lesson of a unit."
         }
       />
       <OakPupilJourneyListCounter
-        count={orderedCurriculumData.length}
+        count={noneExpiredLessons.length}
         countHeader="Choose a lesson"
         tag="h2"
       />

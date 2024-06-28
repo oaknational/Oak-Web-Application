@@ -8,17 +8,18 @@
 import React, { ElementType, ReactElement, ReactNode } from "react";
 import {
   render,
-  RenderOptions,
-  RenderHookOptions,
-  RenderHookResult,
-  queries,
-  Queries,
   renderHook,
+  queries,
+  type RenderOptions,
+  type RenderHookOptions,
+  type RenderHookResult,
+  type Queries,
 } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -36,8 +37,9 @@ export type ProviderProps = {
 };
 
 type ProviderPropsByName = {
-  cookieConsent: { __testMockValue: CookieConsentContext };
+  cookieConsent: { value: CookieConsentContext };
   theme: { theme: OakTheme };
+  oakTheme: { theme: typeof oakDefaultTheme };
   errorBoundary: Record<string, never>;
   analytics: Record<string, never>;
   router: MemoryRouterProviderProps;
@@ -58,6 +60,7 @@ const providersByName: {
 } = {
   cookieConsent: [MockedCookieConsentProvider],
   theme: [ThemeProvider, { theme }],
+  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
   analytics: [MockedAnalyticsProvider],
   router: [MemoryRouterProvider],
@@ -107,9 +110,10 @@ const renderWithProviders =
     return render(ui, { wrapper: MockedProviders, ...renderOptions });
   };
 
-export const renderHookWithProviders =
-  (providers: Partial<ProviderPartialProps> = allProviders) =>
-  <
+export const renderHookWithProviders = (
+  providers: Partial<ProviderPartialProps> = allProviders,
+) => {
+  return <
     Result,
     Props,
     Q extends Queries = typeof queries,
@@ -123,7 +127,13 @@ export const renderHookWithProviders =
     >,
   ): RenderHookResult<Result, Props> => {
     const MockedProviders = getMockedProviders(providers);
-    return renderHook(hook, { wrapper: MockedProviders, ...renderHookOptions });
+    return renderHook(hook, {
+      wrapper: MockedProviders,
+      ...renderHookOptions,
+      // `hydrate is boolean | undefined in the type, but false | undefined in the assignment, setting to false.
+      hydrate: undefined,
+    });
   };
+};
 
 export default renderWithProviders;

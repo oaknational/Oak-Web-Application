@@ -16,10 +16,25 @@ export const RadioContext = createContext<RadioGroupState | null>(null);
 const RadioGroup: FC<
   AriaRadioGroupProps & { children: React.ReactNode; hasError?: boolean }
 > = (props) => {
-  const { children, label, description, errorMessage, hasError } = props;
+  const {
+    children,
+    label,
+    description,
+    errorMessage: errorMessageCandidate,
+    hasError,
+  } = props;
   const state = useRadioGroupState(props);
   const { radioGroupProps, labelProps, descriptionProps, errorMessageProps } =
     useRadioGroup(props, state);
+
+  // Type predicate to make sure errorMessage is a React.ReactNode and not a validation function.
+  // Can we get rid of this?
+  const isErrorMessage = (
+    e: typeof errorMessageCandidate,
+  ): e is React.ReactNode => typeof e !== "function";
+  const errorMessage = isErrorMessage(errorMessageCandidate)
+    ? errorMessageCandidate
+    : undefined;
 
   radioGroupProps.id = useId();
   return (

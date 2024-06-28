@@ -19,10 +19,6 @@ jest.mock(
   }),
 );
 
-jest.mock("next/navigation", () => ({
-  useSearchParams: () => ({ get: jest.fn() }),
-}));
-
 describe("pages/pupils/programmes/[programmeSlug]/options", () => {
   const overrides: Partial<ProgrammeFields>[] = [
     {

@@ -22,7 +22,6 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
   const ariaLabel = `${programme.tierTitle ? programme.tierTitle : ""} ${
     programme.examBoardTitle ? programme.examBoardTitle : ""
   }`;
-
   return (
     <Card
       $overflow={"hidden"}

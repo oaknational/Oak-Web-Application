@@ -1,6 +1,6 @@
 import { useComboBoxState } from "@react-stately/combobox";
-import { ComponentProps, Key, useRef } from "react";
-import { CollectionChildren } from "@react-types/shared";
+import { ComponentProps, useRef } from "react";
+import { CollectionChildren, Key } from "@react-types/shared";
 import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
 import { OakBox } from "@oaknational/oak-components";
@@ -11,11 +11,20 @@ import Input from "@/components/SharedComponents/Input";
 
 export const AutocompleteItem = Item;
 
+/*
+ * Waiting for the following components to be in oak-components
+ *
+ *  - <Popover />
+ *  - <ListBox />
+ *  - <Input />
+ */
+
 type AutocompleteProps = {
-  inputProps: Omit<ComponentProps<typeof Input>, "value">;
+  inputProps: ComponentProps<typeof Input>;
   value?: string;
-  onChange: (value: string) => void;
+  onChange: (value: string, textValue: string) => void;
   onInputChange?: (value: string) => void;
+  isControlled?: boolean;
   children: CollectionChildren<HTMLDivElement>;
 };
 const Autocomplete = (props: AutocompleteProps) => {
@@ -25,7 +34,10 @@ const Autocomplete = (props: AutocompleteProps) => {
   const { contains } = useFilter({ sensitivity: "base" });
 
   const onSelectionChange = (key: Key) => {
-    props.onChange(String(key));
+    const textValue = state.collection.getItem(key);
+    if (textValue) {
+      props.onChange(String(key), textValue.textValue);
+    }
   };
 
   const onInputChange = (key: string) => {
@@ -35,10 +47,11 @@ const Autocomplete = (props: AutocompleteProps) => {
   const state = useComboBoxState({
     ...props,
     defaultFilter: contains,
-    defaultInputValue: props.value,
     onSelectionChange: onSelectionChange,
     onInputChange: onInputChange,
-    children: props.children,
+    [props.isControlled ? "inputValue" : "defaultInputValue"]: props.value,
+    [props.isControlled ? "items" : "children"]:
+      props.children as Iterable<HTMLDivElement>,
   });
 
   const { inputProps, listBoxProps } = useComboBox(
@@ -48,7 +61,6 @@ const Autocomplete = (props: AutocompleteProps) => {
       listBoxRef,
       popoverRef,
       label: props.inputProps.label,
-      children: props.children,
     },
     state,
   );

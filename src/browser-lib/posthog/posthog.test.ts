@@ -1,5 +1,7 @@
 import posthogJs from "posthog-js";
 
+import { consentClient } from "../cookie-consent/consentClient";
+
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
 
 const getLegacyAnonymousId = jest.fn();
@@ -14,15 +16,10 @@ const capture = jest.fn();
 const register = jest.fn();
 const optInCapturing = jest.fn();
 const optOutCapturing = jest.fn();
-const getHasConsentedTo = jest.fn(() => "pending");
 
 const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 const textDistinctId = "test-distinct-id";
 
-jest.mock("../cookie-consent/getHasConsentedTo", () => ({
-  __esModule: true,
-  default: (...args: []) => getHasConsentedTo(...args),
-}));
 jest.mock("posthog-js", () => ({
   init: (key: unknown, config: unknown) => init(key, config),
   identify: (...args: unknown[]) => identify(...args),
@@ -90,9 +87,13 @@ describe("posthog.ts", () => {
   });
   test("state", () => {
     expect(posthog.state()).toBe("pending");
-    getHasConsentedTo.mockImplementationOnce(() => "enabled");
+    jest
+      .spyOn(consentClient, "getConsent")
+      .mockImplementationOnce(() => "granted");
     expect(posthog.state()).toBe("enabled");
-    getHasConsentedTo.mockImplementationOnce(() => "disabled");
+    jest
+      .spyOn(consentClient, "getConsent")
+      .mockImplementationOnce(() => "denied");
     expect(posthog.state()).toBe("disabled");
   });
 });

@@ -39,7 +39,6 @@ const SubjectListingCardDoubleCountCard: FC<
   }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
     !isLegacyLesson ? "- new content" : ""
   }`;
-
   const oakLinkProps: ProgrammeListingLinkProps | UnitListingLinkProps =
     programmeCount > 1
       ? // If there are multiple programmes, link to the programme listing page

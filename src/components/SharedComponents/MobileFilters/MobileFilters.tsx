@@ -29,6 +29,7 @@ export type MobileFiltersProps = {
   labelOpened?: string;
   providedId?: string;
   iconBackground?: OakColorName;
+  applyForTablet?: boolean;
 } & FlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +60,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     label,
     labelOpened = label,
     providedId,
+    applyForTablet,
     ...flexProps
   } = props;
 
@@ -86,7 +88,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
   return (
     <Flex
       $mt={props.$mt ?? 24}
-      $display={["flex", "none"]}
+      $display={["flex", applyForTablet ? "flex" : "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       {...flexProps}
@@ -132,7 +134,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
             height: isOpen ? categoryListHeight : 0,
             clipPath: "inset(0px 0px -15px 0px)",
           }}
-          $display={["block", "none"]}
+          $display={["block", applyForTablet ? "block" : "none", "none"]}
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"

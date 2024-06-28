@@ -17,6 +17,7 @@ import CurriculumVisualiser, {
   isVisibleUnit,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
+import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
@@ -49,11 +50,12 @@ export interface YearSelection {
 export function createProgrammeSlug(
   unitData?: Unit | null,
   examboardSlug?: string | null,
+  tierSlug?: string,
 ) {
   if (unitData?.keystage_slug === "ks4") {
     return `${unitData.subject_slug}-${unitData.phase_slug}-${
       unitData.keystage_slug
-    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+    }${tierSlug ? "-" + tierSlug : ""}${
       examboardSlug ? "-" + examboardSlug : ""
     }`;
   }
@@ -246,6 +248,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 onChange={(e) => handleSelectThread(e.target.value)}
                 value={selectedThread ? selectedThread.slug : ""}
               >
+                <SkipLink href="#content">Skip to units</SkipLink>
                 <Box $mv={16}>
                   <RadioButton
                     aria-label={"None highlighted"}

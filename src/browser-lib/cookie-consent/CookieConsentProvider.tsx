@@ -3,83 +3,112 @@
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
-
-import { createContext, FC, useContext } from "react";
-
-// eslint-disable-next-line
-// @ts-ignore
-import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
-import useConfirmicConsents from "./confirmic/useConfirmicConsents";
 import {
-  CookieConsent,
-  CookieConsentState,
-  CookiePolicyName,
-  servicePolicyMap,
-  ServiceType,
-} from "./types";
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import {
+  OakConsentProvider,
+  useOakConsent,
+} from "@oaknational/oak-consent-client";
+import {
+  OakCookieConsent,
+  OakCookieConsentProvider,
+  oakDefaultTheme,
+  OakThemeProvider,
+  useCookieConsent as useCookieConsentUI,
+} from "@oaknational/oak-components";
 
-export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
-export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
-export type HasConsentedToPolicy = (
-  policyName: CookiePolicyName,
-) => CookieConsentState;
+import { consentClient } from "./consentClient";
 
 export type CookieConsentContext = {
-  // makes consent manager modal visible
+  /**
+   * Show the cookie consent modal
+   */
   showConsentManager: () => void;
-  // whether the user has granted consent to the latest version of a partular policy
-  hasConsentedTo: HasConsentedTo;
-  // consent by policyName
-  hasConsentedToPolicy: HasConsentedToPolicy;
+  /**
+   * Get the current consent state for a given policy
+   */
+  getConsentState: (
+    policyName: "strictly-necessary" | "embedded-content" | "statistics",
+  ) => "granted" | "denied" | "pending";
 };
 
 export const cookieConsentContext = createContext<CookieConsentContext | null>(
   null,
 );
 
+/**
+ * Provides methods to open the consent settings and get the current consent state for a policy
+ */
 export const useCookieConsent = () => {
-  const cookieConsentsContext = useContext(cookieConsentContext);
-  if (!cookieConsentsContext) {
+  const context = useContext(cookieConsentContext);
+
+  if (!context) {
     throw new Error(
       "useCookieConsent() called outside of cookieConsentContext provider",
     );
   }
-  return cookieConsentsContext;
+
+  return context;
 };
 
-type CookieConsentProviderProps = {
-  children?: React.ReactNode;
-  __testMockValue?: CookieConsentContext;
-};
-const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
-  const { children } = props;
-  const consents = useConfirmicConsents();
+const CookieConsentContextProvider = (props: PropsWithChildren) => {
+  const { state, getConsent: getConsentState } = useOakConsent();
+  const { showBanner, openSettings: showConsentManager } = useCookieConsentUI();
 
-  const showConsentManager = () => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    window.Metomic("ConsentManager:show");
-  };
-
-  const hasConsentedTo = (serviceType: ServiceType) => {
-    const policyName = servicePolicyMap[serviceType];
-
-    return consents[policyName].state;
-  };
-
-  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return consents[policyName].state;
-  };
+  useEffect(() => {
+    if (state.requiresInteraction) {
+      showBanner();
+    }
+  }, [state.requiresInteraction, showBanner]);
 
   return (
-    <MetomicProvider projectId="prj:ecbd577f-d069-4aae-aae2-b622504679cd">
-      <cookieConsentContext.Provider
-        value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
-      >
-        {children}
-      </cookieConsentContext.Provider>
-    </MetomicProvider>
+    <cookieConsentContext.Provider
+      {...props}
+      // This value should not be memoised as it should always trigger a render whenever `state` changes
+      value={{ getConsentState, showConsentManager }}
+    />
   );
 };
+
+const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
+  const { state, logConsents } = useOakConsent();
+  // Suppress an SSR warning around using `useLayoutEffect` on the server
+  // by only rendering the consent UI on the client
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return (
+    <OakCookieConsentProvider
+      policyConsents={state.policyConsents}
+      onConsentChange={logConsents}
+    >
+      {children}
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {isMounted && (
+          <OakCookieConsent
+            policyURL="/legal/cookie-policy"
+            isFixed
+            zIndex={99999}
+          />
+        )}
+      </OakThemeProvider>
+    </OakCookieConsentProvider>
+  );
+};
+
+const CookieConsentProvider = (props: PropsWithChildren) => (
+  <OakConsentProvider client={consentClient}>
+    <CookieConsentUIProvider>
+      <CookieConsentContextProvider {...props} />
+    </CookieConsentUIProvider>
+  </OakConsentProvider>
+);
 
 export default CookieConsentProvider;

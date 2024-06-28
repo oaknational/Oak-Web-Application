@@ -209,7 +209,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={isLegacyLicense && !expired}
+        isShareable={!expired}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
