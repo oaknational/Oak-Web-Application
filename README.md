@@ -20,7 +20,7 @@ The Oak National Academy Web Application code base.
   - [Contributing to the Code](#contributing-to-the-code)
 - [Open Source Acknowledgements](#open-source-acknowledgements)
 
-Other documentation can be found in standalone README documents:
+Other documentation can be found in standalone READMEs:
 
 - Build
   - [Fetching Config](./scripts/build/fetch_config)
