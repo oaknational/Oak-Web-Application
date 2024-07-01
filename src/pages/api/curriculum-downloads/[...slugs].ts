@@ -1,118 +1,37 @@
-import {
-  OakFieldError,
-  OakFlex,
-  OakHeading,
-  OakP,
-  OakPrimaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-
-import { fetchSubjectPhasePickerData } from "../..";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { formattedDate } from "@/components/CurriculumComponents/DocxPOC/util";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
   CurriculumOverviewMVData,
-  CurriculumUnitsTabDataIncludeNew,
 } from "@/node-lib/curriculum-api-2023";
-import AppLayout from "@/components/SharedComponents/AppLayout";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Box from "@/components/SharedComponents/Box";
+import docx, {
+  CombinedCurriculumData,
+  CurriculumUnitsTabDataIncludeNewWithOrder,
+} from "@/pages-helpers/curriculum/docx/v2";
+import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 
-type CurriculumUnitsTabDataIncludeNewUnit =
-  CurriculumUnitsTabDataIncludeNew["units"][number] & {
-    order: NonNullable<
-      CurriculumUnitsTabDataIncludeNew["units"][number]["order"]
-    >;
-  };
-export type CurriculumUnitsTabDataIncludeNewWithOrder = {
-  units: CurriculumUnitsTabDataIncludeNewUnit[];
-};
-
-export type CombinedCurriculumData = CurriculumOverviewMVData &
-  CurriculumOverviewSanityData &
-  CurriculumUnitsTabDataIncludeNewWithOrder & { state: string };
-
-type PageProps = {
-  combinedCurriculumData: CombinedCurriculumData;
-  examboardSlug: string;
+type getDataReturn =
+  | { notFound: true }
+  | {
+      notFound: false;
+      combinedCurriculumData: CombinedCurriculumData;
+      examboardSlug: string;
+      subjectSlug: string;
+      phaseSlug: string;
+      state: string;
+      dataWarnings: string[];
+    };
+async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
+  examboardSlug: string;
   state: string;
-  dataWarnings: string[];
-};
+}): Promise<getDataReturn> {
+  const { subjectSlug, phaseSlug, examboardSlug, state } = opts;
 
-export default function Page({
-  combinedCurriculumData,
-  subjectSlug,
-  phaseSlug,
-  examboardSlug,
-  state,
-  dataWarnings,
-}: PageProps) {
-  const router = useRouter();
-  const onSubmit = async () => {
-    const slug = [subjectSlug, phaseSlug, state, examboardSlug].join("/");
-    const redirectPath = `/api/curriculum-downloads/${slug}`;
-    router.push(redirectPath);
-  };
-
-  return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: "Curriculum downloads - DOCX POC",
-          description: "Curriculum downloads - DOCX POC",
-        }),
-      }}
-      $background={"grey20"}
-    >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakFlex $justifyContent={"center"} $background={"mint"}>
-          <MaxWidth $ph={16}>
-            <OakHeading tag="h1" $font={"heading-3"} $mt="space-between-l">
-              {combinedCurriculumData.subjectTitle}
-            </OakHeading>
-            <OakP $font={"heading-5"} $mb="space-between-s">
-              {[
-                combinedCurriculumData.phaseTitle,
-                combinedCurriculumData.examboardTitle,
-              ]
-                .filter(Boolean)
-                .join(", ")}{" "}
-              ({combinedCurriculumData.state})
-            </OakP>
-
-            {dataWarnings?.map((warning, index) => (
-              <OakFieldError key={index}>{warning}</OakFieldError>
-            ))}
-            <Box $maxWidth={960} $mb={40} $mt={20}>
-              <OakPrimaryButton onClick={onSubmit} iconName="download">
-                Generate Document
-              </OakPrimaryButton>
-            </Box>
-          </MaxWidth>
-        </OakFlex>
-      </OakThemeProvider>
-    </AppLayout>
-  );
-}
-
-interface PageParams {
-  slugs: string[];
-}
-
-export const getServerSideProps = async ({
-  params: {
-    slugs: [subjectSlug = "", phaseSlug = "", state = "", examboardSlug = ""],
-  },
-}: {
-  params: PageParams;
-}) => {
   let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
   let curriculumData: CurriculumUnitsTabDataIncludeNewWithOrder | null;
@@ -231,13 +150,57 @@ export const getServerSideProps = async ({
   };
 
   return {
-    props: {
-      combinedCurriculumData,
-      examboardSlug, // Temporary, as it seems the examboard value isn't being brought over in CurriculumOverviewMVData
-      subjectSlug,
-      phaseSlug,
-      state,
-      dataWarnings,
-    },
+    notFound: false,
+    combinedCurriculumData,
+    examboardSlug,
+    subjectSlug,
+    phaseSlug,
+    state,
+    dataWarnings,
   };
-};
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Buffer>,
+) {
+  const [subjectSlug = "", phaseSlug = "", state = "", examboardSlug = ""] =
+    Array.isArray(req.query.slugs) ? req.query.slugs : [req.query.slugs];
+
+  const data = await getData({
+    subjectSlug,
+    phaseSlug,
+    examboardSlug,
+    state,
+  });
+
+  // FIXME: Poor use of types here
+  if (!data.notFound) {
+    const buffer = await docx(data.combinedCurriculumData, {
+      subjectSlug: data.subjectSlug,
+      phaseSlug: data.phaseSlug,
+      keyStageSlug: data.phaseSlug,
+      examboardSlug: data.examboardSlug,
+    });
+
+    const pageTitle: string = `${data.combinedCurriculumData
+      ?.subjectTitle} - ${data.combinedCurriculumData
+      ?.phaseTitle} - (${state})${
+      data.combinedCurriculumData.examboardTitle
+        ? ` - ${data.combinedCurriculumData.examboardTitle}`
+        : ""
+    }`;
+
+    const filename = `${pageTitle} - ${formattedDate(new Date())}.docx`;
+
+    res
+      .setHeader("content-type", "application/msword")
+      .setHeader("Content-Disposition", `attachment; filename="${filename}`)
+      .status(200)
+      .send(Buffer.from(buffer));
+    return;
+  } else {
+    res.status(404).end();
+    return;
+  }
+}
