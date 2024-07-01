@@ -78,40 +78,6 @@ const classroomActivityMap: Partial<
   video: "video",
 };
 
-// Temporary - list of subjects live on pupil experience for sharing
-const pupilSubjectsLive = [
-  "english",
-  "english-grammar",
-  "english-reading-for-pleasure",
-  "english-spelling",
-  "french",
-  "german",
-  "spanish",
-  "latin",
-  "citizenship",
-  "drama",
-  "religious-education",
-  "history",
-  "geography",
-  "maths",
-  "science",
-  "combined-science",
-  "chemistry",
-  "biology",
-  "physics",
-  "art",
-  "computing",
-  "design-technology",
-  "music",
-  "physical-education",
-  "computing-non-gcse",
-  "expressive-arts-and-design",
-  "literacy",
-  "personal-social-and-emotional-development",
-  "understanding-the-world",
-  // "rshe-pshe", // excluded for now because of special handling of is_sensitive content
-];
-
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
   const {
@@ -139,14 +105,10 @@ export function LessonShare(props: LessonShareProps) {
       : getCommonPathway(
           props.isCanonical ? props.lesson.pathways : [props.lesson],
         );
-  const { programmeSlug, unitSlug, subjectSlug } = commonPathway;
+  const { programmeSlug, unitSlug } = commonPathway;
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
-
-  // Temporary - integrate with the new pupil experience for select subjects only
-  const shareToNewPupilExperience =
-    subjectSlug !== null && pupilSubjectsLive.includes(subjectSlug);
 
   const {
     form,
@@ -262,7 +224,7 @@ export function LessonShare(props: LessonShareProps) {
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
-          hideSelectAll={shareToNewPupilExperience || Boolean(expired)}
+          hideSelectAll={Boolean(expired)}
           //updateAt hardcoded, only legacy share available currently
           updatedAt={"2022"}
           cardGroup={
@@ -271,13 +233,12 @@ export function LessonShare(props: LessonShareProps) {
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}
               shareableResources={expired ? [] : shareableResources}
-              hideCheckboxes={shareToNewPupilExperience}
+              hideCheckboxes={true}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
                 selectedActivities: selectedResources,
                 schoolUrn: schoolUrn,
                 linkConfig: shareLinkConfig.copy,
-                usePupils: shareToNewPupilExperience,
               })}
             />
           }
@@ -297,7 +258,6 @@ export function LessonShare(props: LessonShareProps) {
                     onFormSubmit(data, shareMedium);
                   })() // https://github.com/orgs/react-hook-form/discussions/8622
               }
-              usePupils={shareToNewPupilExperience}
             />
           }
         />
