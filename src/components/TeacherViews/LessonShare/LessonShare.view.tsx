@@ -210,7 +210,7 @@ export function LessonShare(props: LessonShareProps) {
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
-          header="Share"
+          header="Share your lesson"
           showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
           email={emailFromLocalStorage}
@@ -222,7 +222,6 @@ export function LessonShare(props: LessonShareProps) {
           register={form.register}
           control={form.control}
           showPostAlbCopyright={!isLegacy}
-          resourcesHeader="Share your lesson"
           triggerForm={form.trigger}
           hideSelectAll={true}
           //updateAt hardcoded, only legacy share available currently
