@@ -109,7 +109,7 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
+      "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
@@ -120,7 +120,7 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
+      "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {

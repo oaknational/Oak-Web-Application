@@ -5,10 +5,10 @@ import { ThemeProvider } from "styled-components";
 
 import ErrorBoundary from ".";
 
-import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import noop from "@/__tests__/__helpers__/noop";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import theme from "@/styles/theme";
+import MockedCookieConsentProvider from "@/__tests__/__helpers__/MockedCookieConsentProvider";
 
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
@@ -33,12 +33,11 @@ const TantrumChild = () => {
 const WithStatisticsConsent: FC = (props) => {
   return (
     <ThemeProvider theme={theme}>
-      <CookieConsentProvider
+      <MockedCookieConsentProvider
         {...props}
-        __testMockValue={{
+        value={{
           showConsentManager: jest.fn(),
-          hasConsentedTo: () => "enabled",
-          hasConsentedToPolicy: () => "enabled",
+          getConsentState: () => "granted",
         }}
       />
     </ThemeProvider>
@@ -47,12 +46,11 @@ const WithStatisticsConsent: FC = (props) => {
 const WithoutStatisticsConsent: FC = (props) => {
   return (
     <ThemeProvider theme={theme}>
-      <CookieConsentProvider
+      <MockedCookieConsentProvider
         {...props}
-        __testMockValue={{
+        value={{
           showConsentManager: jest.fn(),
-          hasConsentedTo: () => "disabled",
-          hasConsentedToPolicy: () => "disabled",
+          getConsentState: () => "denied",
         }}
       />
     </ThemeProvider>

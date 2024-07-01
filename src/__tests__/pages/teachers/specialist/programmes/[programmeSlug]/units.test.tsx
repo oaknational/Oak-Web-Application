@@ -71,7 +71,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
           "Free Specialist Communication and Language Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "We have resources for development stages: Building Understanding, Applying Learning",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });
@@ -95,7 +95,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
         ogTitle:
           "Free Specialist Communication and Language Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Specialist programme units",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
       });

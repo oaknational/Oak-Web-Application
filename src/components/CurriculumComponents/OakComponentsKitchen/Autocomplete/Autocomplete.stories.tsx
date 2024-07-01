@@ -1,6 +1,5 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
 
 import { STATES } from "./seeds";
 
@@ -14,36 +13,34 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-const TestComponent = () => {
-  const [state, setState] = useState("");
-
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <Component
-        inputProps={{
-          label: "Pick a state",
-          id: "states",
-          error: undefined,
-        }}
-        onChange={setState}
-        value={state}
-      >
-        {STATES.map((state) => {
-          const key = state.toLocaleLowerCase();
-          const textValue = state;
-
-          const element = <div>🇺🇸 {textValue}</div>;
-          return (
-            <AutocompleteItem key={key} textValue={textValue}>
-              {element}
-            </AutocompleteItem>
-          );
-        })}
-      </Component>
-    </OakThemeProvider>
-  );
-};
-
 export const Autocomplete: Story = {
-  render: TestComponent,
+  args: {
+    value: "",
+  },
+  render: function Render(args) {
+    return (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Component
+          inputProps={{
+            label: "Pick a state",
+            id: "states",
+            error: undefined,
+          }}
+          onChange={(value) => console.log({ value })}
+          value={args.value}
+        >
+          {STATES.map((state) => {
+            const key = state.toLocaleLowerCase();
+            const textValue = state;
+
+            return (
+              <AutocompleteItem key={key} textValue={textValue}>
+                <div>🇺🇸 {textValue}</div>
+              </AutocompleteItem>
+            );
+          })}
+        </Component>
+      </OakThemeProvider>
+    );
+  },
 };

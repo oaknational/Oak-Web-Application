@@ -16,6 +16,8 @@ import {
   CurriculumSelectionSlugs,
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
+import usePrereleaseFlag from "@/hooks/usePrereleaseFlag";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -30,6 +32,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   curriculumSelectionSlugs,
   subjectPhaseOptions,
 }) => {
+  const downloadsEnabled = usePrereleaseFlag("curriculum.downloads");
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -68,6 +71,36 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     default:
       pageTitle = "";
       break;
+  }
+
+  const links: ButtonAsLinkProps[] = [
+    {
+      label: "Unit sequence",
+      page: "curriculum-units",
+      subjectPhaseSlug: subjectPhaseSlug,
+      isCurrent: tab === "units",
+      currentStyles: ["underline"],
+      scroll: false,
+    },
+    {
+      label: "Overview",
+      page: "curriculum-overview",
+      subjectPhaseSlug: subjectPhaseSlug,
+      isCurrent: tab === "overview",
+      currentStyles: ["underline"],
+      scroll: false,
+    },
+  ];
+
+  if (downloadsEnabled) {
+    links.push({
+      label: "Download",
+      page: "curriculum-downloads",
+      subjectPhaseSlug: subjectPhaseSlug,
+      isCurrent: tab === "downloads",
+      currentStyles: ["underline"],
+      scroll: false,
+    });
   }
 
   return (
@@ -151,24 +184,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           $mh={"auto"}
           $ph={18}
           label="Curriculum Selection"
-          links={[
-            {
-              label: "Unit sequence",
-              page: "curriculum-units",
-              subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "units",
-              currentStyles: ["underline"],
-              scroll: false,
-            },
-            {
-              label: "Overview",
-              page: "curriculum-overview",
-              subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "overview",
-              currentStyles: ["underline"],
-              scroll: false,
-            },
-          ]}
+          links={links}
           data-testid="tabularNav"
         />
       </Box>

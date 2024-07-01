@@ -217,6 +217,14 @@ async function main() {
     NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION:
       process.env.NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION ||
       oakConfig.cloudinary?.secureDistribution,
+
+    // oak-consent
+    NEXT_PUBLIC_OAK_CONSENT_POLICIES_URL:
+      process.env.NEXT_PUBLIC_OAK_CONSENT_POLICIES_URL ||
+      oakConfig.oakConsent?.policiesUrl,
+    NEXT_PUBLIC_OAK_CONSENT_LOG_URL:
+      process.env.NEXT_PUBLIC_OAK_CONSENT_LOG_URL ||
+      oakConfig.oakConsent?.consentLogUrl,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

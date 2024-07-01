@@ -7,7 +7,7 @@ exports[`Fieldset render / none 1`] = `
       style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
     >
       <div
-        style="border: 0px; clip-path: inset(50%); height: 1px; margin: 0px -1px -1px 0px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
       >
         <input
           name="testing"
@@ -16,7 +16,7 @@ exports[`Fieldset render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jhcmGr"
+        class="sc-3299cdd2-0 jFTuAP"
       />
       one
     </label>
@@ -24,7 +24,7 @@ exports[`Fieldset render / none 1`] = `
       style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
     >
       <div
-        style="border: 0px; clip-path: inset(50%); height: 1px; margin: 0px -1px -1px 0px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
       >
         <input
           name="testing"
@@ -33,7 +33,7 @@ exports[`Fieldset render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jhcmGr"
+        class="sc-3299cdd2-0 jFTuAP"
       />
       two
     </label>
@@ -48,7 +48,7 @@ exports[`Fieldset render / selected 1`] = `
       style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
     >
       <div
-        style="border: 0px; clip-path: inset(50%); height: 1px; margin: 0px -1px -1px 0px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
       >
         <input
           checked=""
@@ -58,7 +58,7 @@ exports[`Fieldset render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 uPGfu"
+        class="sc-3299cdd2-0 dMCIkW"
       />
       one
     </label>
@@ -66,7 +66,7 @@ exports[`Fieldset render / selected 1`] = `
       style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
     >
       <div
-        style="border: 0px; clip-path: inset(50%); height: 1px; margin: 0px -1px -1px 0px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
       >
         <input
           name="testing"
@@ -75,7 +75,7 @@ exports[`Fieldset render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jhcmGr"
+        class="sc-3299cdd2-0 jFTuAP"
       />
       two
     </label>

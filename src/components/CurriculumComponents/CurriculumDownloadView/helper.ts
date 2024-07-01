@@ -1,0 +1,39 @@
+import { ZodType } from "zod";
+
+export type School = {
+  urn: string;
+  la: string;
+  name: string;
+  postcode: string;
+  fullInfo: string;
+  status: string;
+};
+export function parseSchoolToListItems(schools: School[]) {
+  return schools.map((item) => {
+    const comboItemKey = `${item.urn}-${item.name}`;
+    const textValue = `${item.name}, ${item.la}, ${item.postcode}`;
+
+    return {
+      key: comboItemKey,
+      textValue: String(textValue),
+    };
+  });
+}
+
+export function runSchema<T extends Record<string, unknown>>(
+  schema: ZodType,
+  data: T,
+) {
+  const rslt = schema.safeParse(data);
+  const newErrors: Partial<Record<keyof T, string>> = {};
+  if (!rslt.success) {
+    for (const issue of rslt.error.issues) {
+      const dataKey = String(issue.path[0]);
+      newErrors[dataKey as keyof T] = issue.message;
+    }
+  }
+  return {
+    success: rslt.success,
+    errors: newErrors,
+  };
+}

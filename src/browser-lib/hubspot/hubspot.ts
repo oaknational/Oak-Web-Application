@@ -7,8 +7,9 @@
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import OakError from "../../errors/OakError";
-import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
+import { ServicePolicyMap } from "../cookie-consent/ServicePolicyMap";
+import { consentClient } from "../cookie-consent/consentClient";
 
 import { HubspotConfig } from "./HubspotScript";
 
@@ -110,7 +111,16 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
     _hsp.push(["revokeCookieConsent"]);
     _hsq.push(["doNotTrack"]);
   },
-  state: () => getHasConsentedTo("hubspot"),
+  state: () => {
+    switch (consentClient.getConsent(ServicePolicyMap.HUBSPOT)) {
+      case "denied":
+        return "disabled";
+      case "granted":
+        return "enabled";
+      default:
+        return "pending";
+    }
+  },
 };
 
 export default withQueue(hubspotWithoutQueue);

@@ -35,19 +35,6 @@ Tests live next to the code they are testing wherever possible. Next does not al
 
 Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`.
 
-## E2E Browser Tests
-
-We use WebdriverIO. Note you will need to regularly update the dependency `chromedriver` in order for it to work locally with the evergreen browser Chrome.
-
-```bash
-npm i --save-dev chromedriver@latest
-```
-
-### When They Run
-
-- Manually locally with `npm run wdio`. The dev server will need to already be running.
-- In CI against Browserstack triggered in a GitHub workflow `npm run wdio:ci`.
-
 ### Location
 
 The current tests live [here](../e2e_tests/browser/engineering/). The naming is intended to leave room for creating some product-facing tests using feature files, this is subject to change.
