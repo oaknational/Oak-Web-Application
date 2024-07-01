@@ -1,3 +1,165 @@
+## [1.473.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.0...v1.473.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* check for length of copyright content ([ed61244](https://github.com/oaknational/Oak-Web-Application/commit/ed612446421c7756f05af6d53e0ceab66df912f4))
+* check for non empty string in copyright info ([c8cfe12](https://github.com/oaknational/Oak-Web-Application/commit/c8cfe121813f691f33f2d03808799c6a8639fae3))
+
+# [1.473.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.472.0...v1.473.0) (2024-06-27)
+
+
+### Features
+
+* **lesson-counts:** add correct lesson count for units with sensitive and expired lessons ([94fedca](https://github.com/oaknational/Oak-Web-Application/commit/94fedca9921394c968bbfaa2103760e61c8f32a3))
+* **pupil-lesson-list:** oak compoentns latest ([dac8f75](https://github.com/oaknational/Oak-Web-Application/commit/dac8f7504471e8a100ef3160f831004a450c4495))
+* **pupil-lesson-list:** oak compoentns latest ([ff9fe23](https://github.com/oaknational/Oak-Web-Application/commit/ff9fe2364f95a90885a18baa46fef738ccced147))
+* **pupil-lesson-list:** oak compoentns latest ([0cd3c36](https://github.com/oaknational/Oak-Web-Application/commit/0cd3c36dc465d317858578e60085b77abbeb9da9))
+* **pupil-lesson-list:** oak compoentns latest ([a2fd10f](https://github.com/oaknational/Oak-Web-Application/commit/a2fd10f26b475fc2aaecf77d63badf3d38bb738e))
+* **pupil-lesson-list:** oak compoentns latest ([8cf29a7](https://github.com/oaknational/Oak-Web-Application/commit/8cf29a7cf107c8013317e7834274d9708d38a218))
+* **pupil-lesson-list:** only count none expired lessons ([f821d44](https://github.com/oaknational/Oak-Web-Application/commit/f821d44f52c0780ca8bb0a2557865ae3ada0b0d4))
+* **pupil-lesson-list:** only count none expired lessons ([446e1bc](https://github.com/oaknational/Oak-Web-Application/commit/446e1bca9e22a6901a3b52cbc6d05a9a84fe7e4b))
+* **pupil-lesson-list:** only count none expired lessons ([f472e14](https://github.com/oaknational/Oak-Web-Application/commit/f472e14dfb889b685a707315bc6511a97c122865))
+
+# [1.472.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.471.0...v1.472.0) (2024-06-27)
+
+
+### Features
+
+* remove coming soon message ([e64406f](https://github.com/oaknational/Oak-Web-Application/commit/e64406f825d01ac5dd529eb9136d0759d0ce8833))
+* shareable new content ([150ec83](https://github.com/oaknational/Oak-Web-Application/commit/150ec83c22418b48876626838ae7c7d9741e317a))
+
+# [1.471.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.1...v1.471.0) (2024-06-27)
+
+
+### Bug Fixes
+
+* broken unit tests with router mock ([d5bcdff](https://github.com/oaknational/Oak-Web-Application/commit/d5bcdffa498d7315c47eb1f5a636fc02d075e680))
+
+
+### Features
+
+* error pages have correct highlighted section of site ([5f0dcbb](https://github.com/oaknational/Oak-Web-Application/commit/5f0dcbbb3a6f6d05392b1366ac2fd9783e254175))
+
+## [1.470.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.470.0...v1.470.1) (2024-06-27)
+
+# [1.470.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.469.0...v1.470.0) (2024-06-27)
+
+
+### Bug Fixes
+
+* **ENG-797:** memoised `value` causing children not to re-render when `state` changes ([7d197da](https://github.com/oaknational/Oak-Web-Application/commit/7d197daa1c8afadf5a22cbc4ee85dbf3c043e427))
+* **ENG-797:** posthog id not being unset when user revokes consent ([43414f2](https://github.com/oaknational/Oak-Web-Application/commit/43414f283b58ca6dbf6efa61386ed217a351f50f))
+* **ENG-797:** suppress a warning about using `useLayoutEffect` with SSR ([91b28d5](https://github.com/oaknational/Oak-Web-Application/commit/91b28d5e4cdb697be6a010cd99a85da02398af69))
+* **ENG-797:** the consent banner being rendered below the pupil quiz footer ([c4391a4](https://github.com/oaknational/Oak-Web-Application/commit/c4391a4bf01a5ee034a3e9ed8985ae8171d63fa9))
+
+
+### Features
+
+* **ENG-797:** add a singleton instance of OakConsentClient ([66d98ab](https://github.com/oaknational/Oak-Web-Application/commit/66d98ab9fe7dfe55c0310931327e1a828858c9ce))
+* **ENG-797:** replace Confirmic with `OakConsentClient` ([060a733](https://github.com/oaknational/Oak-Web-Application/commit/060a7330dae97bb7a3da5691032650ad17492c8e))
+
+# [1.469.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.468.0...v1.469.0) (2024-06-27)
+
+
+### Features
+
+* add aria label to footer links which open in a new tab ([8324d90](https://github.com/oaknational/Oak-Web-Application/commit/8324d901f00daa22035fa9cc59580a3974ea897b))
+
+# [1.468.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.467.0...v1.468.0) (2024-06-26)
+
+
+### Bug Fixes
+
+* direct to combined maths unit listing page in breadcrumbs ([876089a](https://github.com/oaknational/Oak-Web-Application/commit/876089af0e5f27dc9305cc2446b024565fd69851))
+* direct to single unit listing page from maths lesson listing page ([16e72d4](https://github.com/oaknational/Oak-Web-Application/commit/16e72d42768b45af75e469b0c3395ecef9bce9d0))
+* logic for when to show header and indices calculation ([472f666](https://github.com/oaknational/Oak-Web-Application/commit/472f666eacf5f4f94577a25531b2a1a9ee6efa43))
+* only use mobile layout for table on unit listing page maths ([35d997b](https://github.com/oaknational/Oak-Web-Application/commit/35d997bcda14771fe00350e397da07469fbd0d98))
+* show threads at tablet view for all subjects ([7ed9eaa](https://github.com/oaknational/Oak-Web-Application/commit/7ed9eaac5fefca1f36310f2ddbb0ee66ee68aedd))
+* types ([70eecdc](https://github.com/oaknational/Oak-Web-Application/commit/70eecdc5565627c8000198efd04b129243d5fa02))
+* unit card children ([6b8b936](https://github.com/oaknational/Oak-Web-Application/commit/6b8b93689bbc33b3b13a522937cae54c024f6ec2))
+
+
+### Features
+
+* add description for maths units ([2d7b225](https://github.com/oaknational/Oak-Web-Application/commit/2d7b225d4d31338dab170f1fd5c6b680bab4abfe))
+* combine maths legacy and new on subject listing page ([b798a85](https://github.com/oaknational/Oak-Web-Application/commit/b798a852b5a8ca6b19a7aa40e70ced0dad161e86))
+* fetch legacy units for maths ([287cc76](https://github.com/oaknational/Oak-Web-Application/commit/287cc760f3f6066a3f0be5ac61227d811040b8a1))
+* link to legacy curriculum downloads ([536a7ce](https://github.com/oaknational/Oak-Web-Application/commit/536a7ce58744fb27bf264b812ae8d0e56065dd9d))
+* split units into separate new and legacy lists ([189649c](https://github.com/oaknational/Oak-Web-Application/commit/189649cf7f8060b44831f468cfbdcd5ab83016a8))
+* use mobile layout for threads at tablet size on unit listing page ([9274032](https://github.com/oaknational/Oak-Web-Application/commit/9274032288e887da4c1539f161715a82a872dbc7))
+* use new container component for maths units ([4259ee4](https://github.com/oaknational/Oak-Web-Application/commit/4259ee4ec584bca4beb09e58426177f043a1ed45))
+
+# [1.467.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.466.1...v1.467.0) (2024-06-26)
+
+
+### Bug Fixes
+
+* added required prop to `useComboBoxState` for controlled component ([5ca39a4](https://github.com/oaknational/Oak-Web-Application/commit/5ca39a468674ec126ee12ff79f3c80091e228429))
+* allow for controlled/uncontrolled mode for <AutoComplete/> ([8bffe1c](https://github.com/oaknational/Oak-Web-Application/commit/8bffe1ceeb69f909dac39782e6dc54b178e05547))
+* drop react key resetting <AutoComplete/> state ([c4e1366](https://github.com/oaknational/Oak-Web-Application/commit/c4e1366636fd2d1bcae9719b8cfa81d66cd917b8))
+* hide pre-release components via wrapper ([ccccda1](https://github.com/oaknational/Oak-Web-Application/commit/ccccda1d627e4cd00b35469e97a4183d798dc3fb))
+* initial hydrate state in <CurriculumDownloadTab/> ([b39a0ca](https://github.com/oaknational/Oak-Web-Application/commit/b39a0ca43a0705b9c52af23a604db8cdf11873a9))
+* prevent errors from overlapping download button ([78aed75](https://github.com/oaknational/Oak-Web-Application/commit/78aed75a4e1a34c8ce5f71b7be83e77ac3544649))
+* remove invalid "role" and <fieldset/> from <form/> ([297dd3a](https://github.com/oaknational/Oak-Web-Application/commit/297dd3a4ec621f08ec007230a731c688e2492b95))
+* remove old conditional ([83ae060](https://github.com/oaknational/Oak-Web-Application/commit/83ae0606fbb66e6b60197d3e96bd7ad68610330a))
+* reset `schoolName` when setting `schoolNotListed` ([5ae5584](https://github.com/oaknational/Oak-Web-Application/commit/5ae558485ba94631b8d3a8ec02604e0f3250621f))
+* switched from <LoadingButton/> to <OakPrimaryButton/> ([a965658](https://github.com/oaknational/Oak-Web-Application/commit/a9656585031430f48b8252d9507318051aba4ad8))
+* zod use intersection to force superRefine to always run ([3f3ae93](https://github.com/oaknational/Oak-Web-Application/commit/3f3ae93195373f1bec09c5ac6701ac7589acda0e))
+
+
+### Features
+
+* added autocomplete into download preview ([c48329e](https://github.com/oaknational/Oak-Web-Application/commit/c48329e73c003b030b0a437788c7ed358031ea8d))
+* added prerelease cookie ([c482fed](https://github.com/oaknational/Oak-Web-Application/commit/c482feda2b4f199e56e7ff7b942880a80e3f9851))
+* get user details from from localStorage in CurriculumDownloadTab ([8104647](https://github.com/oaknational/Oak-Web-Application/commit/81046475e56aac5cdd4c3e5c381ffb05f420cca1))
+* initial curriculum download panel ([d9f3009](https://github.com/oaknational/Oak-Web-Application/commit/d9f3009e80d78ce01a1979d87f11b607ea6e319c))
+
+## [1.466.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.466.0...v1.466.1) (2024-06-26)
+
+# [1.466.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.4...v1.466.0) (2024-06-26)
+
+
+### Features
+
+* **options-page:** add comment ([04029c8](https://github.com/oaknational/Oak-Web-Application/commit/04029c85665c7364a1e369eb9d14054c1d30acf5))
+* **options-page:** add test coverage ([f97a754](https://github.com/oaknational/Oak-Web-Application/commit/f97a7542b37eb756c75097d5a982009a1f17c0da))
+* **options-page:** add test coverage ([5092b17](https://github.com/oaknational/Oak-Web-Application/commit/5092b17b84e9ba03c3129569e3012f9a1fea08fc))
+* **options-page:** add test coverage ([d4d3bee](https://github.com/oaknational/Oak-Web-Application/commit/d4d3beebdc490ef094416be368cd1b77cd432a15))
+* **options-page:** fix glitch after back to programmes and tiered options ([fc970f0](https://github.com/oaknational/Oak-Web-Application/commit/fc970f0ba7385e22d71d6bd50edbb71cab9f61de))
+* **options-page:** fix glitch after back to programmes and tiered options ([8ceb908](https://github.com/oaknational/Oak-Web-Application/commit/8ceb90839a1fba2d4b49b81075b20edb245d8c3b))
+* **options-page:** remove layout code duplication ([ed5775e](https://github.com/oaknational/Oak-Web-Application/commit/ed5775ecfba58b717db1f9ce0b93861df12b3fe7))
+* **options-page:** remove layout code duplication ([14747e5](https://github.com/oaknational/Oak-Web-Application/commit/14747e534dfd5b722e58be5dae75a4ac43bd5126))
+* **options-page:** remove layout code duplication ([546d2fd](https://github.com/oaknational/Oak-Web-Application/commit/546d2fd70f64b701ebc667b10e859a0804c7952c))
+
+## [1.465.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.3...v1.465.4) (2024-06-25)
+
+
+### Bug Fixes
+
+* pass in current tier_slug because it isn't set on all units ([7747fd7](https://github.com/oaknational/Oak-Web-Application/commit/7747fd70d364249dad8697a5114bac9e2bc7d993))
+
+## [1.465.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.2...v1.465.3) (2024-06-25)
+
+
+### Bug Fixes
+
+* adding ids to OakInfo components to resolve pa11y issues ([2d768b5](https://github.com/oaknational/Oak-Web-Application/commit/2d768b563fd14ac579676cbb1bc01aaac505aaf8))
+
+## [1.465.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.1...v1.465.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **types:** curriculum visualiser ref ([98c22be](https://github.com/oaknational/Oak-Web-Application/commit/98c22be34a5d9d8f47e4b126e3bd2ff4584c434e))
+
+## [1.465.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.465.0...v1.465.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* mock downloads api url in env ([4b38c9a](https://github.com/oaknational/Oak-Web-Application/commit/4b38c9adf139b07d0fd9fc542007cf328dc95c41))
+
 # [1.465.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.464.1...v1.465.0) (2024-06-24)
 
 

@@ -318,6 +318,22 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "The private Cloudinary origin from which to serve user generated content",
   },
+  oakConsentPoliciesUrl: {
+    value: process.env.NEXT_PUBLIC_OAK_CONSENT_POLICIES_URL,
+    envName: "NEXT_PUBLIC_OAK_CONSENT_POLICIES_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL from which to fetch consent policies",
+  },
+  oakConsentLogUrl: {
+    value: process.env.NEXT_PUBLIC_OAK_CONSENT_LOG_URL,
+    envName: "NEXT_PUBLIC_OAK_CONSENT_LOG_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to log consent choices to",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
@@ -336,7 +352,7 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
    * @TODO we decide which var is required, etc, and set defaults and validations
    */
   if (shouldBePresent && !isPresent) {
-    console.error(`- - - WARNING no config value found for required env var:
+    console.error(`- - - WARNING (getBrowserConfig): No config value found for required env var:
 - - - ${envName}`);
   }
   if ("allowedValues" in envVarConfig && envValue) {

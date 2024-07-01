@@ -11,7 +11,6 @@ import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   state: true,
-  cohort: true,
   exit_quiz: true,
   starter_quiz: true,
   video_duration: true,

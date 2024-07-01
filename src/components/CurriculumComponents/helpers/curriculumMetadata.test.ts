@@ -46,4 +46,40 @@ describe("buildCurriculumMetadata", () => {
       "Explore our free KS3-4 History curriculum unit sequences, easily select units and topics and view in our interactive tool now.",
     );
   });
+
+  it('should return the description string for "download" tab and "description" metadataType', () => {
+    const result = buildCurriculumMetadata({
+      metadataType: "description",
+      tab: "downloads",
+      keyStagesData: "KS3-4",
+      subjectSlug: "History",
+    });
+    expect(result).toBe(
+      "Explore our free KS3-4 History curriculum unit downloads.",
+    );
+  });
+
+  it('should return the title string for "download" tab and "title" metadataType', () => {
+    const result = buildCurriculumMetadata({
+      metadataType: "title",
+      tab: "downloads",
+      keyStagesData: "KS3-4",
+      subjectSlug: "English",
+      examboardSlug: "edexcel",
+    });
+    expect(result).toBe("KS3-4 English Edexcel Curriculum Downloads");
+  });
+
+  it("should throw if invalid", () => {
+    expect(() => {
+      buildCurriculumMetadata({
+        // @ts-expect-error because we want to test for bad values
+        metadataType: "foo",
+        tab: "downloads",
+        keyStagesData: "KS3-4",
+        subjectSlug: "English",
+        examboardSlug: "edexcel",
+      });
+    }).toThrow();
+  });
 });
