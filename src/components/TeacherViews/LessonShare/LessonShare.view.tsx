@@ -222,7 +222,7 @@ export function LessonShare(props: LessonShareProps) {
           register={form.register}
           control={form.control}
           showPostAlbCopyright={!isLegacy}
-          resourcesHeader="Select online activities"
+          resourcesHeader="Share your lesson"
           triggerForm={form.trigger}
           hideSelectAll={Boolean(expired)}
           //updateAt hardcoded, only legacy share available currently

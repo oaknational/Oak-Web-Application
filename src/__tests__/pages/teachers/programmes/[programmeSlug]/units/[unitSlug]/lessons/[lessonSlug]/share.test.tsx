@@ -61,7 +61,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Select online activities",
+        "Share your lesson",
       );
       expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
         "Your details",
