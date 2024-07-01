@@ -301,15 +301,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         yearSelection,
                         year,
                         discipline,
-                      )
-                        ? "black"
-                        : "white";
+                      );
 
                       return (
                         <Button
                           $mb={20}
                           $mr={20}
-                          background={isSelected}
+                          background={isSelected ? "black" : "white"}
                           key={index}
                           label={discipline.title}
                           onClick={() =>
@@ -331,15 +329,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           yearSelection,
                           year,
                           subject,
-                        )
-                          ? "black"
-                          : "white";
+                        );
 
                         return (
                           <Button
                             $mb={20}
                             $mr={20}
-                            background={isSelected}
+                            background={isSelected ? "black" : "white"}
                             key={subject.subject_slug}
                             label={subject.subject}
                             onClick={() => handleSelectSubject(year, subject)}
@@ -359,15 +355,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         yearSelection,
                         year,
                         domain,
-                      )
-                        ? "black"
-                        : "white";
+                      );
 
                       return (
                         <Button
                           $mb={20}
                           $mr={20}
-                          background={isSelected}
+                          background={isSelected ? "black" : "white"}
                           key={domain.domain_id}
                           label={domain.domain}
                           onClick={() => handleSelectDomain(year, domain)}
