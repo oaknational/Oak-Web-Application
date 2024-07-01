@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData, Slugs } from "..";
 
 import {
@@ -23,15 +23,14 @@ export default async function generate(
   });
   const images = await insertImages(zip, {
     curriculumScreenshot:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/our-curriculum-screenshot.png",
+      "src/pages-helpers/curriculum/docx/builder/images/our-curriculum-screenshot.png",
     threadScreenshot:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/threads-screenshot.png",
-    underline:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/underline.png",
+      "src/pages-helpers/curriculum/docx/builder/images/threads-screenshot.png",
+    underline: "src/pages-helpers/curriculum/docx/builder/images/underline.png",
     jumpOutArrow:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/jump-out-arrow.png",
+      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow.png",
     downArrow:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/down-arrow.png",
+      "src/pages-helpers/curriculum/docx/builder/images/down-arrow.png",
   });
 
   const whatAreThreadsContent =

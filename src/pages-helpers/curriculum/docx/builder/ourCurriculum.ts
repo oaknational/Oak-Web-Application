@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 
 import {
   appendBodyElements,
@@ -13,7 +13,7 @@ import {
 export default async function generate(zip: JSZip) {
   const images = await insertImages(zip, {
     oakCurriculum:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/oak-curriculum.png",
+      "src/pages-helpers/curriculum/docx/builder/images/oak-curriculum.png",
   });
 
   const points = [

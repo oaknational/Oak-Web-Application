@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData, Slugs } from "..";
 
 import {

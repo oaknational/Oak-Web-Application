@@ -1,8 +1,8 @@
 import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
-import { cdata, xmlElementToJson } from "../../xml";
-import icons from "../../../../../image-data/generated/subject-icons.json";
+import { cdata, xmlElementToJson } from "../xml";
+import icons from "../../../../image-data/generated/subject-icons.json";
 
 import {
   appendBodyElements,
@@ -25,7 +25,7 @@ function getSubjectIcon(iconKey: string) {
     // @ts-expect-error: this is not type-safe right now (FIXME)
     return icons[iconKey].url;
   } else {
-    return "src/pages-helpers/curriculum/docx/v2/builder/images/icon.png";
+    return "src/pages-helpers/curriculum/docx/builder/images/icon.png";
   }
 }
 
@@ -36,8 +36,8 @@ export default async function generate(
   const iconKey = data.subjectTitle.toLowerCase();
   const images = await insertImages(zip, {
     icon: getSubjectIcon(iconKey),
-    arrow: "src/pages-helpers/curriculum/docx/v2/builder/images/arrow.png",
-    logo: "src/pages-helpers/curriculum/docx/v2/builder/images/logo.png",
+    arrow: "src/pages-helpers/curriculum/docx/builder/images/arrow.png",
+    logo: "src/pages-helpers/curriculum/docx/builder/images/logo.png",
   });
 
   const phaseTitle = keyStageFromPhaseTitle(data.phaseTitle);

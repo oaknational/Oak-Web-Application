@@ -7,8 +7,8 @@ import JSZip from "jszip";
 import type {
   CurriculumOverviewMVData,
   CurriculumUnitsTabDataIncludeNew,
-} from "../../../../node-lib/curriculum-api-2023";
-import type { CurriculumOverviewSanityData } from "../../../../common-lib/cms-types";
+} from "../../../node-lib/curriculum-api-2023";
+import type { CurriculumOverviewSanityData } from "../../../common-lib/cms-types";
 
 import * as builder from "./builder";
 
@@ -34,7 +34,7 @@ export type Slugs = {
 };
 
 export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
-  const basedir = "./src/pages-helpers/curriculum/docx/v2/empty-document.docx";
+  const basedir = "./src/pages-helpers/curriculum/docx/empty-document.docx";
   const files = await glob(`${basedir}/**/*`, { dot: true });
 
   const zip = new JSZip();

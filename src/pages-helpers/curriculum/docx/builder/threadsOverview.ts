@@ -1,8 +1,8 @@
 import JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { createThreadOptions } from "../../util";
+import { createThreadOptions } from "../util";
 
 import {
   appendBodyElements,
@@ -18,7 +18,7 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    upArrow: "src/pages-helpers/curriculum/docx/v2/builder/images/up-arrow.png",
+    upArrow: "src/pages-helpers/curriculum/docx/builder/images/up-arrow.png",
   });
 
   const threads = createThreadOptions(data.units);

@@ -10,7 +10,7 @@ import curriculumApi2023, {
 import docx, {
   CombinedCurriculumData,
   CurriculumUnitsTabDataIncludeNewWithOrder,
-} from "@/pages-helpers/curriculum/docx/v2";
+} from "@/pages-helpers/curriculum/docx";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 
 type getDataReturn =

@@ -5,8 +5,8 @@ import { createHash } from "crypto";
 import type JSZip from "jszip";
 import type { Element } from "xml-js";
 
-import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "../../xml";
-import { modifyZipXmlByRootSelector } from "../../docx";
+import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "../xml";
+import { modifyZipXmlByRootSelector } from "../docx";
 
 function getHash(buffer: Buffer | string) {
   const hash = createHash("sha1");

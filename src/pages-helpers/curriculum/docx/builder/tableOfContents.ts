@@ -1,7 +1,7 @@
 import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 
 import { appendBodyElements, wrapInLinkToBookmark } from "./helper";
 

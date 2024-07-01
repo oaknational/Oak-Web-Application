@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 
 import {
@@ -15,10 +15,10 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    oglLogo: "src/pages-helpers/curriculum/docx/v2/builder/images/ogl-logo.png",
+    oglLogo: "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
     peopleIcon:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/people-icon.png",
-    box: "src/pages-helpers/curriculum/docx/v2/builder/images/box.png",
+      "src/pages-helpers/curriculum/docx/builder/images/people-icon.png",
+    box: "src/pages-helpers/curriculum/docx/builder/images/box.png",
   });
 
   const pageXml = `

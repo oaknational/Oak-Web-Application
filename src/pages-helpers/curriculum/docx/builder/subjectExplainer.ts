@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 
 import {
@@ -17,7 +17,7 @@ export default async function generate(
 ) {
   const images = await insertImages(zip, {
     educationRoad:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/education-road.png",
+      "src/pages-helpers/curriculum/docx/builder/images/education-road.png",
   });
 
   console.log(data);

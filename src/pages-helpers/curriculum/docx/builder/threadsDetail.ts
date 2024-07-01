@@ -1,8 +1,8 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { createThreadOptions, threadUnitByYear } from "../../util";
+import { createThreadOptions, threadUnitByYear } from "../util";
 
 import { appendBodyElements } from "./helper";
 

@@ -1,6 +1,6 @@
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 
 import {
@@ -15,11 +15,10 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    arrowBullet:
-      "src/pages-helpers/curriculum/docx/v2/builder/images/arrow-bullet.png",
+    partnerImage:
+      data.curriculumPartner.image?.asset?.url ??
+      "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
   });
-
-  console.log({ data });
 
   const pageXml = `
         <root>
@@ -28,23 +27,19 @@ export default async function generate(
                     <w:pStyle w:val="Heading3"/>
                 </w:pPr>
                 <w:r>
-                    <w:t>${cdata("Subject principals")}</w:t>
+                    <w:t>${cdata("Our curriculum partner")}</w:t>
                 </w:r>
             </w:p>
-            ${data.subjectPrinciples.map((subjectPrincipal) => {
-              return `
-                    <w:p>
-                        <w:r>
-                            <w:t>${cdata(subjectPrincipal)}</w:t>
-                        </w:r>
-                    </w:p>
-                `;
-            })}
             <w:p>
                 <w:r>
-                    ${createImage(images.arrowBullet, {
-                      width: cmToEmu(1.11),
-                      height: cmToEmu(1.03),
+                    <w:t>${cdata(data.partnerBio)}</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:r>
+                    ${createImage(images.partnerImage, {
+                      width: cmToEmu(7.95),
+                      height: cmToEmu(7.95),
                       isDecorative: true,
                     })}
                 </w:r>
