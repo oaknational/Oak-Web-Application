@@ -429,7 +429,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 <OakP $mb="space-between-s">
                   Explore our new curricula for 2023/2024.
                 </OakP>
-                <Box role="radiogroup" aria-labelledby={subjectInputId}>
+                <Box
+                  role="radiogroup"
+                  aria-labelledby={subjectInputId}
+                  aria-required="true"
+                >
                   {subjects.map((subject) => (
                     <ButtonContainer
                       className={isSelected(subject) ? "selected" : ""}
@@ -610,6 +614,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   <Box
                     radioGroup="radiogroup"
                     aria-labelledby={schoolPhaseInputId}
+                    aria-required="true"
                   >
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
                       <ButtonContainer className="multi-line" key={phase.slug}>
@@ -643,6 +648,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <Box
                           role="radiogroup"
                           aria-labelledby={examBoardInputId}
+                          aria-required="true"
                         >
                           {selectedSubject.examboards.map(
                             (examboard, index) => (

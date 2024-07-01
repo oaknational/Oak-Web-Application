@@ -1,3 +1,12 @@
+## [1.473.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.2...v1.473.3) (2024-07-01)
+
+
+### Bug Fixes
+
+* aria-pressed black/white to true/false ([d1f3671](https://github.com/oaknational/Oak-Web-Application/commit/d1f36715b2dba4ca2231abc7adfdea0fd2da4ee5))
+
+## [1.473.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.1...v1.473.2) (2024-07-01)
+
 ## [1.473.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.0...v1.473.1) (2024-06-27)
 
 
