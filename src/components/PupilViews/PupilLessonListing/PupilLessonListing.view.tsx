@@ -36,6 +36,10 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     phaseSlug,
   } = programmeFields;
 
+  const noneExpiredLessons = orderedCurriculumData.filter(
+    (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
+  );
+
   if (phaseSlug === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
@@ -83,7 +87,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
         }
       />
       <OakPupilJourneyListCounter
-        count={orderedCurriculumData.length}
+        count={noneExpiredLessons.length}
         countHeader="Choose a lesson"
         tag="h2"
       />
