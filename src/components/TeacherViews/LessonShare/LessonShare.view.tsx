@@ -224,7 +224,7 @@ export function LessonShare(props: LessonShareProps) {
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Share your lesson"
           triggerForm={form.trigger}
-          hideSelectAll={Boolean(expired)}
+          hideSelectAll={true}
           //updateAt hardcoded, only legacy share available currently
           updatedAt={"2022"}
           cardGroup={
