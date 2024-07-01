@@ -87,6 +87,7 @@
     "gleap": "^13.2.8",
     "html-react-parser": "^4.2.2",
     "js-cookie": "^3.0.5",
+    "jszip": "^3.10.1",
     "lodash": "^4.17.21",
     "mathjax": "^3.2.2",
     "next": "^14.2.4",
@@ -117,6 +118,7 @@
     "util": "^0.12.5",
     "uuid": "^9.0.1",
     "webvtt-parser": "^2.2.0",
+    "xml-js": "^1.6.11",
     "zod": "^3.23.8"
   },
   "devDependencies": {
