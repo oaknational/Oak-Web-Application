@@ -16,7 +16,6 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
-        usePupils={false}
       />,
     );
     const shareHeader = screen.getByRole("heading");
@@ -30,7 +29,6 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
-        usePupils={false}
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -50,7 +48,6 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
-        usePupils={false}
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -70,7 +67,6 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
-        usePupils={false}
       />,
     );
 
