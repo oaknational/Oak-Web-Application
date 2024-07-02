@@ -18,7 +18,7 @@ import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonS
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
-import { mockUrls } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
+import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 
@@ -110,7 +110,7 @@ const curriculumApi: Pick<
     };
   }),
   teachersSitemap: jest.fn(async () => {
-    return [...mockUrls];
+    return teachersSitemapDataFixtureCamelCase;
   }),
   pupilsSitemap: jest.fn(async () => {
     return mockedSiteMapResponse;
