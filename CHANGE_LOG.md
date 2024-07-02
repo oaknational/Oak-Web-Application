@@ -1,3 +1,20 @@
+## [1.473.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.3...v1.473.4) (2024-07-02)
+
+
+### Bug Fixes
+
+* fetch transcripts in lesson overview query ([9d0568b](https://github.com/oaknational/Oak-Web-Application/commit/9d0568ba6bfecdfee226a33c7afc6fc831290a26))
+* test the correct cases ([d458a03](https://github.com/oaknational/Oak-Web-Application/commit/d458a03498f5b8c36e34851a8cb1c01a8306451a))
+
+## [1.473.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.2...v1.473.3) (2024-07-01)
+
+
+### Bug Fixes
+
+* aria-pressed black/white to true/false ([d1f3671](https://github.com/oaknational/Oak-Web-Application/commit/d1f36715b2dba4ca2231abc7adfdea0fd2da4ee5))
+
+## [1.473.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.1...v1.473.2) (2024-07-01)
+
 ## [1.473.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.0...v1.473.1) (2024-06-27)
 
 
