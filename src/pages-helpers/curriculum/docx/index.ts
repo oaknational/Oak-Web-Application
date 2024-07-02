@@ -1,9 +1,3 @@
-import { relative } from "path";
-import { readFile, stat } from "fs/promises";
-
-import { glob } from "glob";
-import JSZip from "jszip";
-
 import type {
   CurriculumOverviewMVData,
   CurriculumUnitsTabDataIncludeNew,
@@ -11,6 +5,7 @@ import type {
 import type { CurriculumOverviewSanityData } from "../../../common-lib/cms-types";
 
 import * as builder from "./builder";
+import { generateEmptyDocx } from "./docx";
 
 type CurriculumUnitsTabDataIncludeNewUnit =
   CurriculumUnitsTabDataIncludeNew["units"][number] & {
@@ -34,25 +29,13 @@ export type Slugs = {
 };
 
 export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
-  const basedir = "./src/pages-helpers/curriculum/docx/empty-document.docx";
-  const files = await glob(`${basedir}/**/*`, { dot: true });
-
-  const zip = new JSZip();
-  for await (const file of files) {
-    const zippath = relative(basedir, file);
-    const res = await stat(file);
-    if (res.isDirectory()) {
-      zip.folder(zippath);
-    } else {
-      zip.file(zippath, await readFile(file));
-    }
-  }
+  const zip = await generateEmptyDocx();
 
   // Run through the builders
   await builder.frontCover(zip, { data });
   await builder.tableOfContents(zip, { data });
   await builder.ourCurriculum(zip);
-  await builder.threadsExplainer(zip, { data, slugs });
+  await builder.threadsExplainer(zip, { slugs });
   await builder.subjectExplainer(zip, { data });
   await builder.subjectPrincipals(zip, { data });
   await builder.ourPartner(zip, { data });

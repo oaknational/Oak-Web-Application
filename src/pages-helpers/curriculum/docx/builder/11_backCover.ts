@@ -2,13 +2,12 @@ import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-
 import {
   appendBodyElements,
   cmToEmu,
   createImage,
   insertImages,
-} from "./helper";
+} from "../docx";
 
 export default async function generate(
   zip: JSZip,

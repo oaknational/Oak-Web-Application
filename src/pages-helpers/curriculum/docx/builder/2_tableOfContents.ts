@@ -2,8 +2,7 @@ import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
 import { cdata, xmlElementToJson } from "../xml";
-
-import { appendBodyElements, wrapInLinkToBookmark } from "./helper";
+import { appendBodyElements, wrapInLinkToBookmark } from "../docx";
 
 export default async function generate(
   zip: JSZip,

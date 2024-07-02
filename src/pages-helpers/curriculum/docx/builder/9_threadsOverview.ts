@@ -1,31 +1,28 @@
-import type JSZip from "jszip";
+import JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-
 import {
   appendBodyElements,
   cmToEmu,
   createImage,
   insertImages,
   wrapInBookmarkPoint,
-} from "./helper";
+  wrapInLinkToBookmark,
+} from "../docx";
+
+import { createThreadOptions } from "./helper";
+
 
 export default async function generate(
   zip: JSZip,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    educationRoad:
-      "src/pages-helpers/curriculum/docx/builder/images/education-road.png",
+    upArrow: "src/pages-helpers/curriculum/docx/builder/images/up-arrow.png",
   });
 
-  console.log(data);
-
-  const curriculaDescLines = data.curriculaDesc
-    .split("\n")
-    .filter((line) => line !== "");
-
+  const threads = createThreadOptions(data.units);
   const pageXml = `
         <root>
             <w:p>
@@ -33,44 +30,42 @@ export default async function generate(
                     <w:pStyle w:val="Heading2"/>
                 </w:pPr>
                 ${wrapInBookmarkPoint(
-                  "section_curriculum_overview",
+                  "section_threads_appendix",
                   `
                     <w:r>
-                        <w:t>${cdata(
-                          `${data.subjectTitle} curriculum overview`,
-                        )}</w:t>
+                        <w:t>${cdata(`Threads in ${data.subjectTitle}`)}</w:t>
                     </w:r>
                 `,
                 )}
             </w:p>
             <w:p>
-                <w:pPr>
-                    <w:pStyle w:val="Heading3"/>
-                </w:pPr>
+                ${wrapInLinkToBookmark(
+                  "section_threads",
+                  `
+                    <w:r>
+                        <w:t>${cdata(`See how to use threads`)}</w:t>
+                    </w:r>
+                `,
+                )}
                 <w:r>
-                    <w:t>${cdata(`Curriculum explainer`)}</w:t>
+                    ${createImage(images.upArrow, {
+                      width: cmToEmu(0.58),
+                      height: cmToEmu(0.58),
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
-            ${curriculaDescLines
-              .map((line) => {
+            ${threads
+              .map((thread) => {
                 return `
                     <w:p>
                         <w:r>
-                            <w:t>${cdata(line)}</w:t>
+                            <w:t>${cdata(`Threads in ${thread.title}`)}</w:t>
                         </w:r>
                     </w:p>
                 `;
               })
               .join("")}
-            <w:p>
-                <w:r>
-                    ${createImage(images.educationRoad, {
-                      width: cmToEmu(13.92),
-                      height: cmToEmu(10.29),
-                      isDecorative: true,
-                    })}
-                </w:r>
-            </w:p>
             <w:p>
                 <w:r>
                     <w:br w:type="page"/>

@@ -2,13 +2,12 @@ import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData, Slugs } from "..";
-
 import {
   appendBodyElements,
   insertLinks,
   wrapInBookmarkPoint,
   wrapInLinkTo,
-} from "./helper";
+} from "../docx";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 

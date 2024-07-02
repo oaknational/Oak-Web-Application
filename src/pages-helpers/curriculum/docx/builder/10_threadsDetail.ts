@@ -2,9 +2,10 @@ import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { createThreadOptions, threadUnitByYear } from "../util";
+import { appendBodyElements } from "../docx";
 
-import { appendBodyElements } from "./helper";
+import { createThreadOptions, threadUnitByYear } from "./helper";
+
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 

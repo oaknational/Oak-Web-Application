@@ -1,229 +1,56 @@
-import { extname, join } from "path";
-import { readFile } from "fs/promises";
-import { createHash } from "crypto";
+import {
+  Thread,
+  Unit,
+} from "@/components/CurriculumComponents/CurriculumVisualiser";
 
-import type JSZip from "jszip";
-import type { Element } from "xml-js";
+// TODO: This is from from Sonali's work that's not yet merged
+export function createThreadOptions(units: Unit[]): Thread[] {
+  const threadOptions = [] as Thread[];
 
-import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "../xml";
-import { modifyZipXmlByRootSelector } from "../docx";
+  units.forEach((unit: Unit) => {
+    // Populate threads object
 
-function getHash(buffer: Buffer | string) {
-  const hash = createHash("sha1");
-  hash.setEncoding("hex");
-  hash.write(buffer);
-  hash.end();
-  return hash.read();
-}
-
-export async function insertImages<T extends Record<string, string>>(
-  zip: JSZip,
-  images: T,
-) {
-  const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
-
-  const existingImageIds = json.elements[0].elements
-    .map((element: Element) => element.attributes?.Id)
-    .filter(Boolean);
-
-  const output: Record<keyof typeof images, string> = {} as Record<
-    keyof typeof images,
-    string
-  >;
-  const elements = await Promise.all(
-    Object.entries(images).map(
-      async ([key, filePathOrUrl]: [keyof typeof images, string]) => {
-        const imagePathHash = getHash(filePathOrUrl);
-        const id = "rId" + imagePathHash;
-        output[key] = id;
-
-        if (existingImageIds.includes(id)) {
-          console.log("skipping");
-          return null;
-        }
-
-        let file: Buffer;
-        if (filePathOrUrl.match(/^https?:/)) {
-          file = Buffer.from(await (await fetch(filePathOrUrl)).arrayBuffer());
-        } else {
-          file = await readFile(filePathOrUrl);
-        }
-
-        const ext = extname(filePathOrUrl);
-        const filepath = `media/hash_${imagePathHash}${ext}`;
-        zip.file(join("word", filepath), file);
-        return xmlElementToJson(`
-                <Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="${filepath}"/>
-            `);
-      },
-    ),
-  );
-
-  for (const element of elements) {
-    if (element) {
-      json.elements[0].elements.push(element);
-    }
-  }
-
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
-  return output;
-}
-
-export async function insertLinks<T extends Record<string, string>>(
-  zip: JSZip,
-  links: T,
-) {
-  const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
-
-  const existingIds = json.elements[0].elements
-    .map((element: Element) => element.attributes?.Id)
-    .filter(Boolean);
-  const output: Record<keyof typeof links, string> = {} as Record<
-    keyof typeof links,
-    string
-  >;
-  const elements = Object.entries(links).map(([key, url]) => {
-    const linkHash = getHash(url);
-    const id = "rId" + linkHash;
-    output[key as keyof T] = id;
-
-    if (existingIds.includes(id)) {
-      return;
-    }
-    return xmlElementToJson(`
-            <Relationship Id="rId${linkHash}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${url}" TargetMode="External"/>
-        `);
+    unit.threads.forEach((thread) => {
+      if (threadOptions.every((to) => to.slug !== thread.slug)) {
+        threadOptions.push(thread);
+      }
+    });
   });
 
-  for (const element of elements) {
-    if (element) {
-      json.elements[0].elements.push(element);
-    }
+  // Sort threads
+
+  const threadOrders = new Set(threadOptions.map((to) => to.order));
+  if (threadOptions.length > threadOrders.size) {
+    // In secondary science multiple threads can have the same order value due
+    // to multiple subjects (eg biology, chemistry, physics) being shown, so
+    // if orders are not unique, sort alphabetically by slug
+
+    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
+  } else {
+    // If orders are unique, use them to sort
+
+    threadOptions.sort((a, b) => a.order - b.order);
   }
-
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
-  return output;
+  return threadOptions;
 }
 
-// English Metric Unit (EMU): A measurement in computer typography. There are
-// 635 EMUs per twip, 6,350 EMUs per half-point, 12,700 EMUs per point, and
-// 914,400 EMUs per inch. These units are used to translate on-screen layouts
-// to printed layouts for specified printer hardware.
-export function cmToEmu(cm: number) {
-  const inches = cm / 2.54;
-  return Math.round(inches * 914400);
-}
+export function threadUnitByYear(units: Unit[], threadSlug: string) {
+  const output = {} as Record<string, Unit[]>;
 
-export function wrapInLinkTo(id: string, childXml: string) {
-  return `<w:hyperlink r:id="${id}">${childXml}</w:hyperlink>`;
-}
-
-export function wrapInLinkToBookmark(anchor: string, childXml: string) {
-  return `<w:hyperlink w:anchor="${anchor}">${childXml}</w:hyperlink>`;
-}
-
-let bookmarkId = 10000;
-export function wrapInBookmarkPoint(anchor: string, childXml: string) {
-  bookmarkId++;
-  return `
-        <w:bookmarkStart w:id="${bookmarkId}" w:name="${anchor}"/>
-        ${childXml}
-        <w:bookmarkEnd w:id="${bookmarkId}"/>
-    `;
-}
-
-let IMAGE_ID = 10000;
-type ImageOpts = {
-  name?: string;
-  desc?: string;
-  width?: number;
-  height?: number;
-  isDecorative?: boolean;
-};
-export function createImage(rId: string, opts: ImageOpts = {}) {
-  const uid = IMAGE_ID++;
-  const {
-    width = 1000000,
-    height = 1000000,
-    name = "",
-    desc = "",
-    isDecorative = false,
-  } = opts;
-
-  const isDecorativeVal = isDecorative ? 1 : 0;
-
-  return `
-        <w:drawing>
-            <wp:inline distT="0" distB="0" distL="0" distR="0">
-                <wp:extent cx="${width}" cy="${height}"/>
-                <wp:effectExtent l="0" t="0" r="0" b="0"/>
-                <wp:docPr id="${uid}" name="${name}" descr="${desc}">
-                    <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
-                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
-                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="${isDecorativeVal}"/>
-                        </a:ext>
-                    </a:extLst>
-                </wp:docPr>
-                <wp:cNvGraphicFramePr>
-                    <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>
-                </wp:cNvGraphicFramePr>
-                <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
-                    <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
-                        <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
-                            <pic:nvPicPr>
-                                <pic:cNvPr id="${uid}" name="${name}" descr="${desc}">
-                                    <a:extLst>
-                                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
-                                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="${isDecorativeVal}"/>
-                                        </a:ext>
-                                    </a:extLst>
-                                </pic:cNvPr>
-                                <pic:cNvPicPr/>
-                            </pic:nvPicPr>
-                            <pic:blipFill>
-                                <a:blip r:embed="${rId}">
-                                    <a:extLst>
-                                        <a:ext uri="{28A0092B-C50C-407E-A947-70E740481C1C}">
-                                            <a14:useLocalDpi xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" val="0"/>
-                                        </a:ext>
-                                    </a:extLst>
-                                </a:blip>
-                                <a:stretch>
-                                    <a:fillRect/>
-                                </a:stretch>
-                            </pic:blipFill>
-                            <pic:spPr>
-                                <a:xfrm>
-                                    <a:off x="0" y="0"/>
-                                    <a:ext cx="${width}" cy="${height}"/>
-                                </a:xfrm>
-                                <a:prstGeom prst="rect">
-                                    <a:avLst/>
-                                </a:prstGeom>
-                            </pic:spPr>
-                        </pic:pic>
-                    </a:graphicData>
-                </a:graphic>
-            </wp:inline>
-        </w:drawing>
-    `;
-}
-
-export async function appendBodyElements(zip: JSZip, childElements: Element[]) {
-  await modifyZipXmlByRootSelector(zip, "w:document", async (doc) => {
-    if (!doc.elements) {
-      throw new Error("expected doc.elements");
-    }
-    const oldElements = doc.elements[0]!.elements!;
-    const oldElementStart = oldElements.slice(0, -1);
-    const endElements = oldElements.slice(-1);
-    doc.elements[0]!.elements = [
-      ...oldElementStart,
-      ...childElements,
-      ...endElements,
-    ];
-    return doc;
+  units.forEach((unit: Unit) => {
+    unit.threads.forEach((thread) => {
+      if (thread.slug === threadSlug) {
+        output[unit.year] = output[unit.year] ?? [];
+        if (
+          output[unit.year] &&
+          // Check if unit is not already within output
+          !output[unit.year]!.find((yearUnit) => yearUnit.slug === unit.slug)
+        ) {
+          output[unit.year]!.push(unit);
+        }
+      }
+    });
   });
+
+  return output;
 }

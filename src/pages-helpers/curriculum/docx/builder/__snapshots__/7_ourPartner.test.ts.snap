@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`7_ourPartner with partner image 1`] = `Promise {}`;
+
+exports[`7_ourPartner without partner image 1`] = `Promise {}`;

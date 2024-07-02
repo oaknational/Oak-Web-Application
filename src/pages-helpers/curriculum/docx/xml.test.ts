@@ -1,4 +1,6 @@
 import {
+  cdata,
+  cdataJson,
   collapseFragments,
   createFragment,
   jsonXmlToXmlString,
@@ -248,6 +250,27 @@ describe("xml", () => {
         name: "$FRAGMENT$",
         elements: [],
       });
+    });
+  });
+
+  describe("cdata", () => {
+    it("should return correct format", () => {
+      expect(cdata("testing")).toEqual(`<![CDATA[testing]]>`);
+    });
+  });
+
+  describe("cdata", () => {
+    it("valid should return correct format", () => {
+      expect(cdataJson({ type: "text", text: "hello" })).toEqual({
+        type: "cdata",
+        cdata: "hello",
+      });
+    });
+
+    it("invalid should throw", () => {
+      expect(() => cdataJson({ type: "w:t", elements: [] })).toThrow(
+        "Expecting text node",
+      );
     });
   });
 });

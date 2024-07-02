@@ -3,13 +3,12 @@ import type JSZip from "jszip";
 import { CombinedCurriculumData } from "..";
 import { cdata, xmlElementToJson } from "../xml";
 import icons from "../../../../image-data/generated/subject-icons.json";
-
 import {
   appendBodyElements,
   cmToEmu,
   createImage,
   insertImages,
-} from "./helper";
+} from "../docx";
 
 function keyStageFromPhaseTitle(phaseTitle: string) {
   if (phaseTitle === "Primary") {

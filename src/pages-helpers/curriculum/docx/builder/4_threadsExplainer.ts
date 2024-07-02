@@ -1,8 +1,7 @@
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData, Slugs } from "..";
-
+import { Slugs } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -12,11 +11,11 @@ import {
   wrapInLinkToBookmark,
   wrapInLinkTo,
   wrapInBookmarkPoint,
-} from "./helper";
+} from "../docx";
 
 export default async function generate(
   zip: JSZip,
-  { slugs }: { data: CombinedCurriculumData; slugs: Slugs },
+  { slugs }: { slugs: Slugs },
 ) {
   const links = await insertLinks(zip, {
     onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${slugs.subjectSlug}-${slugs.phaseSlug}/units`,
