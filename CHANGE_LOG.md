@@ -1,3 +1,16 @@
+# [1.474.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.4...v1.474.0) (2024-07-02)
+
+
+### Bug Fixes
+
+* hide select all box ([783df52](https://github.com/oaknational/Oak-Web-Application/commit/783df528cc1b33d3bb0f6b15d948b90839cbb8cf))
+
+
+### Features
+
+* make subheading optional on resource page and remove on share page ([73b4120](https://github.com/oaknational/Oak-Web-Application/commit/73b4120e30fba24271c7f7cbb165531278a6983c))
+* share all lessons to the new pupil experience ([6d67594](https://github.com/oaknational/Oak-Web-Application/commit/6d67594a44bc85109866808aa0acebfd64c57415))
+
 ## [1.473.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.3...v1.473.4) (2024-07-02)
 
 
