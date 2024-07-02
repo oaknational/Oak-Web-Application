@@ -198,7 +198,7 @@
     "postcss-scss": "^4.0.9",
     "prettier": "3.1.1",
     "properties-file": "^3.3.16",
-    "puppeteer": "^21.11.0",
+    "puppeteer": "^22.12.1",
     "semantic-release": "^21.1.1",
     "sharp": "^0.33.4",
     "start-server-and-test": "^2.0.3",
