@@ -46,6 +46,11 @@ type PageProps = {
   dataWarnings: string[];
 };
 
+function getMvRefreshTime() {
+  // TODO: Replace me with MV last refresh time
+  return Date.now();
+}
+
 export default function Page({
   combinedCurriculumData,
   subjectSlug,
@@ -57,7 +62,7 @@ export default function Page({
   const router = useRouter();
   const onSubmit = async () => {
     const slug = [subjectSlug, phaseSlug, state, examboardSlug].join("/");
-    const redirectPath = `/api/curriculum-downloads/${slug}`;
+    const redirectPath = `/api/curriculum-downloads/${getMvRefreshTime()}/${slug}`;
     router.push(redirectPath);
   };
 

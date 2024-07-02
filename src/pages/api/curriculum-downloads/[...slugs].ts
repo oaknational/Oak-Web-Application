@@ -160,12 +160,24 @@ async function getData(opts: {
   };
 }
 
+const stale_while_revalidate_seconds = 60 * 3;
+const s_maxage_seconds = 60 * 60 * 24;
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
-  const [subjectSlug = "", phaseSlug = "", state = "", examboardSlug = ""] =
-    Array.isArray(req.query.slugs) ? req.query.slugs : [req.query.slugs];
+  const [
+    mvRefreshTime = "",
+    subjectSlug = "",
+    phaseSlug = "",
+    state = "",
+    examboardSlug = "",
+  ] = Array.isArray(req.query.slugs) ? req.query.slugs : [req.query.slugs];
+
+  // TODO: Check `mvRefreshTime` against database, if it doesn't match redirect
+  // to the newly found `mvRefreshTime` so we can use the cache as per normal.
+  console.log({ mvRefreshTime });
 
   const data = await getData({
     subjectSlug,
@@ -195,6 +207,10 @@ export default async function handler(
 
     res
       .setHeader("content-type", "application/msword")
+      .setHeader(
+        "Cache-Control",
+        `public, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
+      )
       .setHeader("Content-Disposition", `attachment; filename="${filename}`)
       .status(200)
       .send(Buffer.from(buffer));
