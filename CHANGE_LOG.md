@@ -1,3 +1,10 @@
+## [1.474.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.0...v1.474.1) (2024-07-02)
+
+
+### Bug Fixes
+
+* **ENG-813:** consent banner being stacked on top of modals ([1331255](https://github.com/oaknational/Oak-Web-Application/commit/13312559c415dcb565809b708fbe615c9938011a))
+
 # [1.474.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.473.4...v1.474.0) (2024-07-02)
 
 
