@@ -70,7 +70,7 @@ const CookieConsentContextProvider = (props: PropsWithChildren) => {
     <cookieConsentContext.Provider
       {...props}
       // This value should not be memoised as it should always trigger a render whenever `state` changes
-      value={{ getConsentState, showConsentManager }}
+      value={{ getConsentState, showConsentManager }} //NOSONAR
     />
   );
 };
@@ -92,11 +92,7 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
         {isMounted && (
-          <OakCookieConsent
-            policyURL="/legal/cookie-policy"
-            isFixed
-            zIndex={99999}
-          />
+          <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
         )}
       </OakThemeProvider>
     </OakCookieConsentProvider>
