@@ -10,7 +10,7 @@ jest.mock("next-sitemap");
 
 describe("getServerSideProps", () => {
   describe("getServerSideProps", () => {
-    it("fetches data and generates fields correctly - sitemap.xml", async () => {
+    it("fetches data and generates fields correctly - sitemap.xml ", async () => {
       const context = {} as GetServerSidePropsContext;
       const mockSiteMap = teachersSitemapDataFixture;
       const mockFields = [
