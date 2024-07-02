@@ -48,7 +48,8 @@ type PageProps = {
 
 function getMvRefreshTime() {
   // TODO: Replace me with MV last refresh time
-  return Date.now();
+  // Test by changing key every 30mins
+  return Math.floor(Date.now() / (1000 * 60 * 30));
 }
 
 export default function Page({
