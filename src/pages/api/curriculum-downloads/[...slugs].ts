@@ -209,7 +209,7 @@ export default async function handler(
       .setHeader("content-type", "application/msword")
       .setHeader(
         "Cache-Control",
-        `public, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
+        `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
       )
       .setHeader("Content-Disposition", `attachment; filename="${filename}`)
       .status(200)
