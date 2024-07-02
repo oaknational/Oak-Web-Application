@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
@@ -21,15 +23,26 @@ export default async function generate(
     onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${slugs.subjectSlug}-${slugs.phaseSlug}/units`,
   });
   const images = await insertImages(zip, {
-    curriculumScreenshot:
+    curriculumScreenshot: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/our-curriculum-screenshot.png",
-    threadScreenshot:
+    ),
+    threadScreenshot: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/threads-screenshot.png",
-    underline: "src/pages-helpers/curriculum/docx/builder/images/underline.png",
-    jumpOutArrow:
+    ),
+    underline: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/underline.png",
+    ),
+    jumpOutArrow: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow.png",
-    downArrow:
+    ),
+    downArrow: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/down-arrow.png",
+    ),
   });
 
   const whatAreThreadsContent =

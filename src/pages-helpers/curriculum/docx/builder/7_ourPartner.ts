@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
@@ -16,7 +18,10 @@ export default async function generate(
   const images = await insertImages(zip, {
     partnerImage:
       data.curriculumPartner.image?.asset?.url ??
-      "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
+      join(
+        process.cwd(),
+        "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
+      ),
   });
 
   const pageXml = `

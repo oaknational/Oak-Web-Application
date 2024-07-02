@@ -329,6 +329,7 @@ export async function mapOverElements(
 
 export async function generateEmptyDocx() {
   const basedir = join(
+    process.cwd(),
     "./src/pages-helpers/curriculum/docx/empty-document.docx",
   );
   const files = await glob(`${basedir}/**/*`, { dot: true });

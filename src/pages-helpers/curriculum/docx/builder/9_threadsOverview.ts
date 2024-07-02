@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
@@ -13,13 +15,15 @@ import {
 
 import { createThreadOptions } from "./helper";
 
-
 export default async function generate(
   zip: JSZip,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    upArrow: "src/pages-helpers/curriculum/docx/builder/images/up-arrow.png",
+    upArrow: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/up-arrow.png",
+    ),
   });
 
   const threads = createThreadOptions(data.units);

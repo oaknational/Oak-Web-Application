@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
@@ -15,8 +17,10 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    educationRoad:
+    educationRoad: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/education-road.png",
+    ),
   });
 
   const curriculaDescLines = data.curriculaDesc

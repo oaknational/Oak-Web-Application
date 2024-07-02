@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
@@ -14,8 +16,10 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    arrowBullet:
+    arrowBullet: join(
+      process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow-bullet.png",
+    ),
   });
 
   const pageXml = `
