@@ -116,7 +116,7 @@ const YearListingPage = () => {
                         >
                           <OakBox
                             $minWidth={[
-                              "all-spacing-16",
+                              "auto",
                               "all-spacing-13",
                               "all-spacing-13",
                             ]}
