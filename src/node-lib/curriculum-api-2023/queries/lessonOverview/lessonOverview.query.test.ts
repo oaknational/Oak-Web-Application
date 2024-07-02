@@ -220,8 +220,6 @@ describe("lessonOverview()", () => {
       ]);
     });
   });
-  // getDownloadsArray.test.ts
-
   describe("getDownloadsArray", () => {
     it("should return correct downloads array when all content flags are true and isLegacy is false", () => {
       const content = {

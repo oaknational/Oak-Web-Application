@@ -1,3 +1,4 @@
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { Cue, WebVTTParser } from "webvtt-parser";
 
@@ -47,4 +48,26 @@ export const removeWebVttCharacters = (
 
 export const getTextFromCues = (cueList: Cue[]): Array<string> => {
   return Object.values(cueList).map((cue) => cue.text);
+};
+
+export const populateLessonWithTranscript = async (
+  lesson: LessonOverviewPageData,
+) => {
+  const { videoTitle, transcriptSentences } = lesson;
+  if (videoTitle && !transcriptSentences) {
+    // For new content we need to fetch the captions file from gCloud and parse the result to generate
+    // the transcript sentences.
+    const fileName = `${videoTitle}.vtt`;
+    const transcript = await getCaptionsFromFile(fileName);
+    if (transcript) {
+      lesson.transcriptSentences = transcript;
+    }
+  } else if (transcriptSentences && !Array.isArray(transcriptSentences)) {
+    const splitTranscript = transcriptSentences.split(/\r?\n/);
+    const formattedTranscript = formatSentences(splitTranscript);
+
+    lesson.transcriptSentences = formattedTranscript;
+  }
+
+  return lesson;
 };
