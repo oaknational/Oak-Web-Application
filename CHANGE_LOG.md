@@ -1,3 +1,10 @@
+## [1.475.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.0...v1.475.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* types for autocomplete and school picker ([86c526f](https://github.com/oaknational/Oak-Web-Application/commit/86c526f9d75fdf3d36b5dcc72de4f777ebc430e3))
+
 # [1.475.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.3...v1.475.0) (2024-07-03)
 
 

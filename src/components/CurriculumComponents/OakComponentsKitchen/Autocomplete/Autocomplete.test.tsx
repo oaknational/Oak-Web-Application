@@ -67,7 +67,7 @@ const ControlledWrapper = ({
 };
 
 describe("Autocomplete", () => {
-  describe("uncontrolled", () => {
+  describe("uncontrolled ", () => {
     test("render / basic", async () => {
       const { getByRole, getByTestId } = renderWithTheme(
         <Autocomplete
