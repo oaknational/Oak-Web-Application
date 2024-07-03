@@ -26,6 +26,7 @@ const HomePageTabImageNav = ({
         $justifyContent={"center"}
         $background={getBackgroundColorByHomePageTab(current)}
         {...flexProps}
+        aria-label="Site sections"
       >
         <HomePageTabImageButton
           activeImageSlug="teacher-carrying-stuff-1023-black"
