@@ -12,6 +12,7 @@ const ERROR_CODES = [
   "hubspot/invalid-email",
   "hubspot/unknown",
   "video/unknown",
+  "video/persistent-unknown",
   "video/fetch-signed-token",
   "hubspot/not-loaded",
   "hubspot/script-failed-to-load",
@@ -94,6 +95,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "video/unknown": {
     message: "Sorry this video couldn't play, please try again",
+    shouldNotify: true,
+  },
+  "video/persistent-unknown": {
+    message: "Sorry this video couldn't play persistently, please try again",
     shouldNotify: true,
   },
   "video/fetch-signed-token": {

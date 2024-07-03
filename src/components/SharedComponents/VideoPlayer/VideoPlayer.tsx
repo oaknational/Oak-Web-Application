@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -63,6 +63,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
+  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [reloadPlayerErrors, setReloadPlayerErrors] = useState<number[]>([]);
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -117,6 +119,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // shadow DOM, useful for simple automated test tools
     // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
+    setVideoIsPlaying(true);
     videoTracking.onPlay();
     userEventCallback({
       event: "play",
@@ -127,6 +130,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const onPause = () => {
     mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
+    setVideoIsPlaying(false);
     videoTracking.onPause();
     userEventCallback({
       event: "pause",
@@ -153,9 +157,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     }
   };
   const onError = (evt: Event) => {
+    const reloadErrors = [...reloadPlayerErrors];
+    if (reloadErrors.length < 3) {
+      const timeElapsed = getTimeElapsed(mediaElRef);
+      reloadErrors.push(timeElapsed || 0);
+      setReloadPlayerErrors(reloadErrors);
+    }
+
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
-      code: "video/unknown",
+      code:
+        reloadErrors.length < 3 ? "video/unknown" : "video/persistent-unknown",
       originalError,
       meta: metadata,
     });
@@ -202,7 +214,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       : undefined,
   };
 
-  return (
+  const existingComponent = (
     <OakFlex
       $flexDirection={"column"}
       $ba={"border-solid-l"}
@@ -213,11 +225,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       }}
     >
       <MuxPlayer
+        key={reloadPlayerErrors.length}
         preload="metadata"
         ref={mediaElRef}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        start-time={
+          reloadPlayerErrors.length > 0
+            ? reloadPlayerErrors[reloadPlayerErrors.length - 1]
+            : 0
+        }
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
@@ -230,12 +248,32 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onPause={onPause}
         onError={onError}
         onTimeUpdate={onTimeUpdate}
+        onCanPlay={() => {
+          if (reloadPlayerErrors.length > 0 && videoIsPlaying) {
+            mediaElRef.current?.play();
+          }
+        }}
         style={{
           aspectRatio: "16/9",
           overflow: "hidden",
         }}
       />
     </OakFlex>
+  );
+  return (
+    <>
+      {existingComponent}
+      <OakFlex $mt={"space-between-m"} $justifyContent="center">
+        {" "}
+        <OakPrimaryButton
+          onClick={() => {
+            onError(new Event("timeout"));
+          }}
+        >
+          Trigger Error count ({reloadPlayerErrors.length})
+        </OakPrimaryButton>
+      </OakFlex>
+    </>
   );
 };
 
