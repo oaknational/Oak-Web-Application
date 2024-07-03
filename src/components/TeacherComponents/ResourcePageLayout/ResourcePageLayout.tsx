@@ -46,7 +46,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     showSavedDetails: boolean;
     cta: React.ReactNode;
     page: "share" | "download";
-    resourcesHeader: string;
+    resourcesHeader?: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
@@ -88,9 +88,11 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </OakBox>
             )}
             <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
-              <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
-                {props.resourcesHeader}
-              </OakHeading>
+              {props.resourcesHeader && (
+                <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
+                  {props.resourcesHeader}
+                </OakHeading>
+              )}
               <FieldError id={"downloads-error"} withoutMarginBottom>
                 {props.errors?.resources?.message}
               </FieldError>
