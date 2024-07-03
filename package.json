@@ -65,7 +65,7 @@
     "@bugsnag/plugin-react": "^7.24.0",
     "@google-cloud/storage": "^7.11.2",
     "@hookform/resolvers": "^3.7.0",
-    "@hubspot/api-client": "^9.1.1",
+    "@hubspot/api-client": "^11.1.0",
     "@mux/mux-node": "^8.8.0",
     "@mux/mux-player-react": "2.7.0-canary.0-7c57cdd",
     "@oaknational/oak-components": "^1.1.0",
