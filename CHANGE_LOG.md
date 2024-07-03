@@ -1,3 +1,11 @@
+## [1.475.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.1...v1.475.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* only combine unit listing pages for ks1-4 maths ([6ac5410](https://github.com/oaknational/Oak-Web-Application/commit/6ac54103b9fbe3c1fd8ac55e6a9007ece9a7e627))
+* only remove legacy slug from non-eyfs maths ([75278e7](https://github.com/oaknational/Oak-Web-Application/commit/75278e7e9f7d7770942b5bd10844d00982e22069))
+
 ## [1.475.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.0...v1.475.1) (2024-07-03)
 
 
