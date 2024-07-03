@@ -106,7 +106,6 @@
     "react-stately": "^3.26.0",
     "react-string-replace": "^1.1.1",
     "react-transition-group": "^4.4.5",
-    "semver": "^7.5.4",
     "snakecase-keys": "^8.0.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
