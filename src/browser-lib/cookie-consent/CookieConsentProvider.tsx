@@ -3,14 +3,10 @@
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
+import { PropsWithChildren, useEffect, useState } from "react";
 import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import {
+  MockOakConsentClient,
+  OakConsentClient,
   OakConsentProvider,
   useOakConsent,
 } from "@oaknational/oak-consent-client";
@@ -24,41 +20,9 @@ import {
 
 import { consentClient } from "./consentClient";
 
-export type CookieConsentContext = {
-  /**
-   * Show the cookie consent modal
-   */
-  showConsentManager: () => void;
-  /**
-   * Get the current consent state for a given policy
-   */
-  getConsentState: (
-    policyName: "strictly-necessary" | "embedded-content" | "statistics",
-  ) => "granted" | "denied" | "pending";
-};
-
-export const cookieConsentContext = createContext<CookieConsentContext | null>(
-  null,
-);
-
-/**
- * Provides methods to open the consent settings and get the current consent state for a policy
- */
-export const useCookieConsent = () => {
-  const context = useContext(cookieConsentContext);
-
-  if (!context) {
-    throw new Error(
-      "useCookieConsent() called outside of cookieConsentContext provider",
-    );
-  }
-
-  return context;
-};
-
-const CookieConsentContextProvider = (props: PropsWithChildren) => {
-  const { state, getConsent: getConsentState } = useOakConsent();
-  const { showBanner, openSettings: showConsentManager } = useCookieConsentUI();
+const RequiresInteraction = () => {
+  const { state } = useOakConsent();
+  const { showBanner } = useCookieConsentUI();
 
   useEffect(() => {
     if (state.requiresInteraction) {
@@ -66,13 +30,7 @@ const CookieConsentContextProvider = (props: PropsWithChildren) => {
     }
   }, [state.requiresInteraction, showBanner]);
 
-  return (
-    <cookieConsentContext.Provider
-      {...props}
-      // This value should not be memoised as it should always trigger a render whenever `state` changes
-      value={{ getConsentState, showConsentManager }} //NOSONAR
-    />
-  );
+  return null;
 };
 
 const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
@@ -92,18 +50,22 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
         {isMounted && (
-          <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+          <>
+            <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+            <RequiresInteraction />
+          </>
         )}
       </OakThemeProvider>
     </OakCookieConsentProvider>
   );
 };
 
-const CookieConsentProvider = (props: PropsWithChildren) => (
-  <OakConsentProvider client={consentClient}>
-    <CookieConsentUIProvider>
-      <CookieConsentContextProvider {...props} />
-    </CookieConsentUIProvider>
+const CookieConsentProvider = ({
+  children,
+  client = consentClient,
+}: PropsWithChildren<{ client?: OakConsentClient | MockOakConsentClient }>) => (
+  <OakConsentProvider client={client}>
+    <CookieConsentUIProvider>{children}</CookieConsentUIProvider>
   </OakConsentProvider>
 );
 

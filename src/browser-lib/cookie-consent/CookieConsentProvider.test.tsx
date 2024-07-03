@@ -1,14 +1,12 @@
 import { act, render } from "@testing-library/react";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
-import CookieConsentProvider, {
-  useCookieConsent,
-} from "./CookieConsentProvider";
-import { consentClient } from "./consentClient";
+import CookieConsentProvider from "./CookieConsentProvider";
 
 describe("CookieConsentProvider", () => {
   test("should render its children", () => {
     const { getByTestId } = render(
-      <CookieConsentProvider>
+      <CookieConsentProvider client={new MockOakConsentClient()}>
         <div data-testid="child" />
       </CookieConsentProvider>,
     );
@@ -16,8 +14,8 @@ describe("CookieConsentProvider", () => {
     expect(getByTestId("child")).toBeInTheDocument();
   });
 
-  test("consents are logged on change", async () => {
-    const getStateSpy = jest.spyOn(consentClient, "getState").mockReturnValue({
+  test("consents are logged on change", () => {
+    const client = new MockOakConsentClient({
       policyConsents: [
         {
           policyId: "test-policy",
@@ -32,24 +30,16 @@ describe("CookieConsentProvider", () => {
       ],
       requiresInteraction: true,
     });
-    const logConsentsSpy = jest.spyOn(consentClient, "logConsents");
-    const { getByText } = render(<CookieConsentProvider />);
 
-    await act(() => {
+    jest.spyOn(client, "logConsents");
+    const { getByText } = render(<CookieConsentProvider client={client} />);
+
+    act(() => {
       getByText("Accept all cookies").click();
     });
 
-    expect(consentClient.logConsents).toHaveBeenCalledWith([
+    expect(client.logConsents).toHaveBeenCalledWith([
       { consentState: "granted", policyId: "test-policy" },
     ]);
-
-    getStateSpy.mockRestore();
-    logConsentsSpy.mockRestore();
-  });
-});
-
-describe("useCookieConsent", () => {
-  test("should throw an error when used outside of CookieConsentProvider", () => {
-    expect(() => useCookieConsent()).toThrow();
   });
 });
