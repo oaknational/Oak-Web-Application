@@ -23,6 +23,7 @@ import OakError from "@/errors/OakError";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
+const RELOAD_ATTEMPTS = 5;
 
 export type VideoStyleConfig = {
   controls: {
@@ -157,9 +158,16 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     }
   };
   const onError = (evt: Event) => {
+    const networkError =
+      (evt as CustomEvent).detail?.data?.type === "networkError";
+    // Don't report network errors.
+    if (networkError) {
+      return;
+    }
+
     const reloadErrors = [...reloadPlayerErrors];
-    if (reloadErrors.length < 3) {
-      const timeElapsed = getTimeElapsed(mediaElRef);
+    if (reloadErrors.length < RELOAD_ATTEMPTS) {
+      const timeElapsed = getTimeElapsed(mediaElRef) || 0;
       reloadErrors.push(timeElapsed || 0);
       setReloadPlayerErrors(reloadErrors);
     }
@@ -167,17 +175,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
       code:
-        reloadErrors.length < 3 ? "video/unknown" : "video/persistent-unknown",
+        reloadErrors.length < RELOAD_ATTEMPTS
+          ? "video/unknown"
+          : "video/persistent-unknown",
       originalError,
       meta: metadata,
     });
 
-    // Don't report network errors
-    const networkError =
-      (evt as CustomEvent).detail?.data?.type === "networkError";
-    if (!networkError) {
-      reportError(error, { ...getState() });
-    }
+    reportError(error, { ...getState() });
   };
 
   if (process.env.NODE_ENV === "test") {
@@ -214,6 +219,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       : undefined,
   };
 
+  const reloadingDueToErrors = reloadPlayerErrors.length > 0;
+  let startTime = 0;
+
+  if (reloadingDueToErrors) {
+    startTime = reloadPlayerErrors[reloadPlayerErrors.length - 1] || 0;
+  }
+
   const existingComponent = (
     <OakFlex
       $flexDirection={"column"}
@@ -231,11 +243,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        start-time={
-          reloadPlayerErrors.length > 0
-            ? reloadPlayerErrors[reloadPlayerErrors.length - 1]
-            : 0
-        }
+        start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
@@ -249,7 +257,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onError={onError}
         onTimeUpdate={onTimeUpdate}
         onCanPlay={() => {
-          if (reloadPlayerErrors.length > 0 && videoIsPlaying) {
+          if (reloadingDueToErrors && videoIsPlaying) {
             mediaElRef.current?.play();
           }
         }}
