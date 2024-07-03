@@ -31,9 +31,10 @@ const AiTab: FC = () => {
                 AI tools created for educators
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                Plan lessons and create quizzes with Oak AI Experiments, a new
-                and freely available suite of practical AI tools designed to
-                help save teachers time.
+                Create lessons and resources tailored to you and your students
+                in minutes with Aila (Beta), our new AI lesson assistant – part
+                of Oak AI Experiments, freely available practical tools that
+                help reduce your workload.
               </OakTypography>
               <ButtonAsLink
                 label={"Go to Oak AI Experiments"}
