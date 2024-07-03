@@ -131,7 +131,7 @@
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/typescript": "^4.0.9",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
-    "@graphql-codegen/typescript-operations": "^4.2.1",
+    "@graphql-codegen/typescript-operations": "^4.2.3",
     "@netlify/edge-functions": "^2.8.1",
     "@netlify/plugin-nextjs": "^5.3.3",
     "@next/bundle-analyzer": "^14.2.4",
