@@ -93,7 +93,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
       onExited={removeFocus}
     >
       {(state) => (
-        <Box $position="absolute" ref={ref}>
+        <Box $position="absolute" ref={ref} $zIndex="modalDialog">
           <MenuBackdrop state={state} />
           <FocusOn
             enabled={open}

@@ -37,6 +37,8 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -131,7 +133,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             {
               oakLinkProps: {
                 page: "unit-index",
-                programmeSlug,
+                programmeSlug:
+                  subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
+                    ? removeLegacySlugSuffix(programmeSlug)
+                    : programmeSlug,
               },
               label: subjectTitle,
             },

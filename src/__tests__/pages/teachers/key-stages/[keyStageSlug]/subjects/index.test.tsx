@@ -1,6 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import SubjectListingPage, {
+  SubjectListingPageProps,
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
@@ -36,6 +37,50 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         "EYFS areas of learning",
       );
     });
+  });
+  it("Renders maths with correct counts in EYFS", () => {
+    renderWithProviders()(
+      <SubjectListingPage
+        {...props}
+        keyStageSlug="early-years-foundation-stage"
+        keyStageTitle="Early years foundation stage"
+        subjects={[
+          {
+            subjectSlug: "maths",
+            old: {
+              subjectSlug: "maths",
+              subjectTitle: "Maths",
+              unitCount: 1,
+              lessonCount: 6,
+              programmeSlug: "maths-early-years-foundation-stage",
+              programmeCount: 2,
+            },
+            new: {
+              subjectSlug: "maths",
+              subjectTitle: "Maths",
+              unitCount: 1,
+              lessonCount: 6,
+              programmeSlug: "maths-early-years-foundation-stage",
+              programmeCount: 1,
+            },
+          },
+        ]}
+      />,
+    );
+    expect(screen.getByText("Maths")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Maths: 1 unit, 6 lessons" }),
+    ).toBeInTheDocument();
+  });
+  it("renders correct counts for non EYFS subjects", () => {
+    renderWithProviders()(<SubjectListingPage {...props} />);
+
+    expect(screen.getByText("Biology")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Biology: 6 units, 35 lessons - new content",
+      }),
+    ).toBeInTheDocument();
   });
 
   describe("SEO", () => {
@@ -100,6 +145,89 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
     });
     it("should throw error when not provided context params", async () => {
       await expect(getStaticProps({})).rejects.toThrowError("No keyStageSlug");
+    });
+    it("should combine maths subjects into a single card", async () => {
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce({
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjects: [
+          {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 28,
+            lessonCount: 390,
+            programmeSlug: "maths-secondary-ks3",
+            programmeCount: 1,
+          },
+        ],
+        keyStages: [
+          {
+            slug: "ks3",
+            title: "Key Stage 3",
+            shortCode: "KS3",
+            displayOrder: 4,
+          },
+        ],
+      });
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce({
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key Stage 3",
+        subjects: [
+          {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 53,
+            lessonCount: 432,
+            programmeSlug: "maths-secondary-ks3-l",
+            programmeCount: 1,
+          },
+        ],
+        keyStages: [],
+      });
+      const res = (await getStaticProps({
+        params: {
+          keyStageSlug: "ks3",
+        },
+      })) as { props: SubjectListingPageProps };
+
+      const maths = res?.props.subjects.find((s) => s.subjectSlug === "maths");
+
+      expect(maths?.old).toBeNull();
+      expect(maths?.new?.subjectSlug).toBe("maths");
+    });
+    it("should not combine counts for EYFS maths", async () => {
+      const mockEyfsMathsResponse = {
+        keyStageSlug: "early-years-foundation-stage",
+        keyStageTitle: "Early years foundation stage",
+        subjects: [
+          {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 1,
+            lessonCount: 6,
+            programmeSlug: "maths-early-years-foundation-stage-l",
+            programmeCount: 1,
+          },
+        ],
+        keyStages: [],
+      };
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
+        mockEyfsMathsResponse,
+      );
+      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
+        mockEyfsMathsResponse,
+      );
+      const res = (await getStaticProps({
+        params: {
+          keyStageSlug: "early-years-foundation-stage",
+        },
+      })) as { props: SubjectListingPageProps };
+
+      const maths = res?.props.subjects.find((s) => s.subjectSlug === "maths");
+      expect(maths?.old).not.toBeNull();
+      expect(maths?.new).toBeNull();
+      expect(maths?.old?.unitCount).toBe(1);
+      expect(maths?.old?.lessonCount).toBe(6);
     });
   });
 });

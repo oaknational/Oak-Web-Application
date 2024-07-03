@@ -151,12 +151,72 @@ export const getStaticProps: GetStaticProps<
           : foundSubject;
       };
 
+      // We are trialling combining the maths subjects from the legacy and new curriculums in ks1-4
+      const getMaths = () => {
+        const newMaths = curriculumData.subjects.find(
+          (subject) => subject.subjectSlug === "maths",
+        );
+        const legacyMaths = curriculumDataLegacy.subjects.find(
+          (subject) => subject.subjectSlug === "maths",
+        );
+
+        if (!newMaths || !legacyMaths) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const programmeCount = Math.max(
+          newMaths.programmeCount,
+          legacyMaths.programmeCount,
+        );
+        const unitCount = isEyfs
+          ? legacyMaths.unitCount
+          : newMaths.unitCount + legacyMaths.unitCount;
+        const lessonCount = isEyfs
+          ? legacyMaths.lessonCount
+          : newMaths.lessonCount + legacyMaths.lessonCount;
+
+        const combinedMaths: KeyStageSubjectData = {
+          programmeSlug: newMaths.programmeSlug,
+          programmeCount,
+          subjectSlug: newMaths.subjectSlug,
+          subjectTitle: newMaths.subjectTitle,
+          unitCount,
+          lessonCount,
+        };
+
+        return combinedMaths;
+      };
+
+      const getOldSubjects = (subjectSlug: string) => {
+        if (subjectSlug === "maths") {
+          if (isEyfs) {
+            return getMaths();
+          } else {
+            return null;
+          }
+        } else {
+          return getSubject(curriculumDataLegacy, subjectSlug, true);
+        }
+      };
+
+      const getNewSubjects = (subjectSlug: string) => {
+        if (isEyfs) {
+          return null;
+        } else if (subjectSlug === "maths") {
+          return getMaths();
+        } else {
+          return getSubject(curriculumData, subjectSlug, false);
+        }
+      };
+
       const subjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
           return {
             subjectSlug: subjectSlug,
-            old: getSubject(curriculumDataLegacy, subjectSlug, true),
-            new: isEyfs ? null : getSubject(curriculumData, subjectSlug, false),
+            old: getOldSubjects(subjectSlug),
+            new: getNewSubjects(subjectSlug),
           };
         })
         // Filter out subjects that don't exist in either curriculum

@@ -17,6 +17,12 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
   return res.unit
     .map((l) => {
       const lesson = syntheticUnitvariantLessonsSchema.parse(l);
+      const hasCopyrightMaterial =
+        l.lesson_data.copyright_content?.find(
+          (c: { copyright_info: string }) =>
+            c.copyright_info === "This lesson contains copyright material.",
+        ) !== undefined;
+
       const transformedLesson = {
         lessonSlug: lesson.lesson_slug,
         lessonTitle: lesson.lesson_data.title,
@@ -31,7 +37,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         videoCount: lesson.lesson_data.video_id ? 1 : 0,
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-        hasCopyrightMaterial: false, // this is hardcoded to false in previous lesson listing mv (data tools)
+        hasCopyrightMaterial,
         orderInUnit: lesson.supplementary_data.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
       };

@@ -15,6 +15,8 @@ import {
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 /**
  * Returns the intersection different pathways.
@@ -293,6 +295,14 @@ export const getBreadcrumbsForLessonPathway = (
     unitTitle,
   } = lesson;
 
+  let programmeSlugForMathsUnits = programmeSlug;
+
+  if (subjectTitle === "Maths") {
+    if (programmeSlug && !isSlugEYFS(programmeSlug)) {
+      programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
+    }
+  }
+
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
       oakLinkProps: {
@@ -309,11 +319,11 @@ export const getBreadcrumbsForLessonPathway = (
           label: keyStageTitle,
         }
       : null,
-    subjectTitle && programmeSlug
+    subjectTitle && programmeSlug && programmeSlugForMathsUnits
       ? {
           oakLinkProps: {
             page: "unit-index",
-            programmeSlug,
+            programmeSlug: programmeSlugForMathsUnits,
           },
           label: subjectTitle,
         }
