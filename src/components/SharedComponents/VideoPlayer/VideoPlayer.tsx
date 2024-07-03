@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -265,13 +265,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       {existingComponent}
       <OakFlex $mt={"space-between-m"} $justifyContent="center">
         {" "}
-        <OakPrimaryButton
+        <button
           onClick={() => {
             onError(new Event("timeout"));
           }}
         >
           Trigger Error count ({reloadPlayerErrors.length})
-        </OakPrimaryButton>
+        </button>
       </OakFlex>
     </>
   );
