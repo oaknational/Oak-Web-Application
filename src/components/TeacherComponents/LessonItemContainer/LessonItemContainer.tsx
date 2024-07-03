@@ -3,6 +3,8 @@ import {
   OakHeading,
   OakFlex,
   OakSecondaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
 } from "@oaknational/oak-components";
 
 import {
@@ -86,70 +88,72 @@ export const LessonItemContainer = forwardRef<
   const lowerCaseTitle = title.toLowerCase();
 
   return (
-    <OakFlex
-      $flexDirection="column"
-      $position={"relative"}
-      id={getContainerId(anchorId)}
-      tabIndex={-1}
-    >
-      <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
+    <OakThemeProvider theme={oakDefaultTheme}>
       <OakFlex
-        $flexDirection={["column", "row"]}
-        $alignItems={["start", "end"]}
-        $gap={["all-spacing-3", "all-spacing-8"]}
-        $mb={["space-between-m"]}
+        $flexDirection="column"
         $position={"relative"}
+        id={getContainerId(anchorId)}
+        tabIndex={-1}
       >
-        {title && (
-          <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
-            {title}
-          </OakHeading>
-        )}
-        {downloadable && slugs && (
-          <LessonItemContainerLink
-            page={"download"}
-            resourceTitle={lowerCaseTitle}
-            onClick={onDownloadButtonClick}
-            preselected={preselectedDownload}
-            isSpecialist={props.isSpecialist}
-            {...slugs}
-          />
-        )}
-        {shareable && slugs && (
-          <LessonItemContainerLink
-            page={"share"}
-            resourceTitle={lowerCaseTitle}
-            onClick={onDownloadButtonClick}
-            preselected={preselectedShare}
-            isSpecialist={props.isSpecialist}
-            {...slugs}
-          />
-        )}
-        {skipContentAnchor && (
-          <OakSecondaryButton
-            onClick={() => {
-              document.getElementById(skipContentAnchor)?.scrollIntoView();
-              document
-                .getElementById(getContainerId(skipContentAnchor))
-                ?.focus();
-            }}
-            onFocus={() => setSkipVideoButtonFocused(true)}
-            onBlur={() => setSkipVideoButtonFocused(false)}
-            style={
-              skipVideoButtonFocused
-                ? {}
-                : { position: "absolute", left: "-1000px", opacity: 0 }
-            }
-          >
-            {`Skip ${lowerCaseTitle}`}
-          </OakSecondaryButton>
+        <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
+        <OakFlex
+          $flexDirection={["column", "row"]}
+          $alignItems={["start", "end"]}
+          $gap={["all-spacing-3", "all-spacing-8"]}
+          $mb={["space-between-m"]}
+          $position={"relative"}
+        >
+          {title && (
+            <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+              {title}
+            </OakHeading>
+          )}
+          {downloadable && slugs && (
+            <LessonItemContainerLink
+              page={"download"}
+              resourceTitle={lowerCaseTitle}
+              onClick={onDownloadButtonClick}
+              preselected={preselectedDownload}
+              isSpecialist={props.isSpecialist}
+              {...slugs}
+            />
+          )}
+          {shareable && slugs && (
+            <LessonItemContainerLink
+              page={"share"}
+              resourceTitle={lowerCaseTitle}
+              onClick={onDownloadButtonClick}
+              preselected={preselectedShare}
+              isSpecialist={props.isSpecialist}
+              {...slugs}
+            />
+          )}
+          {skipContentAnchor && (
+            <OakSecondaryButton
+              onClick={() => {
+                document.getElementById(skipContentAnchor)?.scrollIntoView();
+                document
+                  .getElementById(getContainerId(skipContentAnchor))
+                  ?.focus();
+              }}
+              onFocus={() => setSkipVideoButtonFocused(true)}
+              onBlur={() => setSkipVideoButtonFocused(false)}
+              style={
+                skipVideoButtonFocused
+                  ? {}
+                  : { position: "absolute", left: "-1000px", opacity: 0 }
+              }
+            >
+              {`Skip ${lowerCaseTitle}`}
+            </OakSecondaryButton>
+          )}
+        </OakFlex>
+
+        <Box>{children}</Box>
+        {!props.isFinalElement && (
+          <Hr $color={"pink"} $mt={[24, 56]} $mb={[12, 24]} />
         )}
       </OakFlex>
-
-      <Box>{children}</Box>
-      {!props.isFinalElement && (
-        <Hr $color={"pink"} $mt={[24, 56]} $mb={[12, 24]} />
-      )}
-    </OakFlex>
+    </OakThemeProvider>
   );
 });
