@@ -49,7 +49,7 @@ const subjectPagePropsFixture = (
           subjectTitle: "Maths",
           unitCount: 6,
           lessonCount: 35,
-          programmeSlug: "biology-secondary-ks4",
+          programmeSlug: "maths-secondary-ks4",
           programmeCount: 1,
         },
       },
@@ -76,7 +76,6 @@ const subjectPagePropsFixture = (
         },
       },
     ],
-
     ...partial,
   };
 };

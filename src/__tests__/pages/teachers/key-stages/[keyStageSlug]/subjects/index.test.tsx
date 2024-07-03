@@ -38,6 +38,50 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       );
     });
   });
+  it("Renders maths with correct counts in EYFS", () => {
+    renderWithProviders()(
+      <SubjectListingPage
+        {...props}
+        keyStageSlug="early-years-foundation-stage"
+        keyStageTitle="Early years foundation stage"
+        subjects={[
+          {
+            subjectSlug: "maths",
+            old: {
+              subjectSlug: "maths",
+              subjectTitle: "Maths",
+              unitCount: 1,
+              lessonCount: 6,
+              programmeSlug: "maths-early-years-foundation-stage",
+              programmeCount: 2,
+            },
+            new: {
+              subjectSlug: "maths",
+              subjectTitle: "Maths",
+              unitCount: 1,
+              lessonCount: 6,
+              programmeSlug: "maths-early-years-foundation-stage",
+              programmeCount: 1,
+            },
+          },
+        ]}
+      />,
+    );
+    expect(screen.getByText("Maths")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Maths: 1 unit, 6 lessons" }),
+    ).toBeInTheDocument();
+  });
+  it("renders correct counts for non EYFS subjects", () => {
+    renderWithProviders()(<SubjectListingPage {...props} />);
+
+    expect(screen.getByText("Biology")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Biology: 6 units, 35 lessons - new content",
+      }),
+    ).toBeInTheDocument();
+  });
 
   describe("SEO", () => {
     it("renders the correct SEO details ", async () => {
