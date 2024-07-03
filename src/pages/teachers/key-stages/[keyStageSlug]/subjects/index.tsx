@@ -166,26 +166,36 @@ export const getStaticProps: GetStaticProps<
           };
         }
 
-        const progCount =
-          newMaths.programmeCount === 1 && legacyMaths.programmeCount === 1
-            ? 1
-            : Math.max(newMaths.programmeCount, legacyMaths.programmeCount);
+        const programmeCount = Math.max(
+          newMaths.programmeCount,
+          legacyMaths.programmeCount,
+        );
+        const unitCount = isEyfs
+          ? legacyMaths.unitCount
+          : newMaths.unitCount + legacyMaths.unitCount;
+        const lessonCount = isEyfs
+          ? legacyMaths.lessonCount
+          : newMaths.lessonCount + legacyMaths.lessonCount;
 
         const combinedMaths: KeyStageSubjectData = {
           programmeSlug: newMaths.programmeSlug,
-          programmeCount: progCount,
+          programmeCount,
           subjectSlug: newMaths.subjectSlug,
           subjectTitle: newMaths.subjectTitle,
-          unitCount: newMaths.unitCount + legacyMaths.unitCount,
-          lessonCount: newMaths.lessonCount + legacyMaths.lessonCount,
+          unitCount,
+          lessonCount,
         };
 
         return combinedMaths;
       };
 
       const getOldSubjects = (subjectSlug: string) => {
-        if (subjectSlug === "maths" && !isEyfs) {
-          return null;
+        if (subjectSlug === "maths") {
+          if (isEyfs) {
+            return getMaths();
+          } else {
+            return null;
+          }
         } else {
           return getSubject(curriculumDataLegacy, subjectSlug, true);
         }
@@ -194,7 +204,7 @@ export const getStaticProps: GetStaticProps<
       const getNewSubjects = (subjectSlug: string) => {
         if (isEyfs) {
           return null;
-        } else if (subjectSlug === "maths" && !isEyfs) {
+        } else if (subjectSlug === "maths") {
           return getMaths();
         } else {
           return getSubject(curriculumData, subjectSlug, false);
