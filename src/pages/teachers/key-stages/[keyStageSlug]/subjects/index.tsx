@@ -151,7 +151,7 @@ export const getStaticProps: GetStaticProps<
           : foundSubject;
       };
 
-      // We are trialling combining the maths subjects from the legacy and new curriculums
+      // We are trialling combining the maths subjects from the legacy and new curriculums in ks1-4
       const getMaths = () => {
         const newMaths = curriculumData.subjects.find(
           (subject) => subject.subjectSlug === "maths",
@@ -184,7 +184,7 @@ export const getStaticProps: GetStaticProps<
       };
 
       const getOldSubjects = (subjectSlug: string) => {
-        if (subjectSlug === "maths") {
+        if (subjectSlug === "maths" && !isEyfs) {
           return null;
         } else {
           return getSubject(curriculumDataLegacy, subjectSlug, true);
@@ -194,7 +194,7 @@ export const getStaticProps: GetStaticProps<
       const getNewSubjects = (subjectSlug: string) => {
         if (isEyfs) {
           return null;
-        } else if (subjectSlug === "maths") {
+        } else if (subjectSlug === "maths" && !isEyfs) {
           return getMaths();
         } else {
           return getSubject(curriculumData, subjectSlug, false);
