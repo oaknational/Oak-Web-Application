@@ -28,16 +28,7 @@ export const getPupilOptionData = async (
 
   // For the options route we rename programmeSlug to baseSlug as this is the accurate usage of the options page.
   // I would have created a new folder [baseSlug] but multiple dynamic params on the same segment is not allowed.
-  const { programmeSlug: baseSlug, examboardSlug: rawExamboardSlug = null } =
-    context.params;
-
-  let examboardSlug: ProgrammeFields["examboard_slug"] | null = null;
-  if (rawExamboardSlug) {
-    if (!isExamboardSlug(rawExamboardSlug)) {
-      throw new OakError({ code: "curriculum-api/params-incorrect" });
-    }
-    examboardSlug = rawExamboardSlug;
-  }
+  const { programmeSlug: baseSlug, examboardSlug = null } = context.params;
 
   if (examboardSlug && !isExamboardSlug(examboardSlug)) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });

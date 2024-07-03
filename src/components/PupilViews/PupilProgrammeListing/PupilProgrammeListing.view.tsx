@@ -124,7 +124,7 @@ export const PupilViewsProgrammeListing = ({
         />
       );
     } else {
-      return <div>No programme factors to be selected</div>;
+      return <OakBox>No programme factors to be selected</OakBox>;
     }
   };
 
