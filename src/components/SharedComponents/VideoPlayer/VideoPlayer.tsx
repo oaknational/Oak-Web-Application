@@ -214,6 +214,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       : undefined,
   };
 
+  const reloadingDueToErrors = reloadPlayerErrors.length > 0;
+  const startTime = !reloadingDueToErrors
+    ? 0
+    : reloadPlayerErrors[reloadPlayerErrors.length - 1] || 0;
+
   const existingComponent = (
     <OakFlex
       $flexDirection={"column"}
@@ -231,11 +236,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        start-time={
-          reloadPlayerErrors.length > 0
-            ? reloadPlayerErrors[reloadPlayerErrors.length - 1]
-            : 0
-        }
+        start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
@@ -249,7 +250,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onError={onError}
         onTimeUpdate={onTimeUpdate}
         onCanPlay={() => {
-          if (reloadPlayerErrors.length > 0 && videoIsPlaying) {
+          if (reloadingDueToErrors && videoIsPlaying) {
             mediaElRef.current?.play();
           }
         }}
