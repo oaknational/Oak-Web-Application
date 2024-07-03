@@ -28,7 +28,7 @@ const AiTab: FC = () => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                AI tools created for educators
+                AI tools created for teachers
               </OakHeading>
               <OakTypography $font={"body-1"}>
                 Create lessons and resources tailored to you and your students
