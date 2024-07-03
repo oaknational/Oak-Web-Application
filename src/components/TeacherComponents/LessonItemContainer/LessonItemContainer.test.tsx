@@ -1,5 +1,6 @@
 import userEvent from "@testing-library/user-event";
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { LessonItemContainer } from "./LessonItemContainer";
 
@@ -32,6 +33,7 @@ describe("LessonItemContainer", () => {
         title={"Slide deck"}
         anchorId={"slide-deck"}
         isSpecialist={false}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -47,6 +49,7 @@ describe("LessonItemContainer", () => {
         title={"Slide deck"}
         anchorId="slide-deck"
         isSpecialist={false}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -64,6 +67,7 @@ describe("LessonItemContainer", () => {
         anchorId={"slide-deck"}
         isSpecialist={false}
         slugs={lessonOverview}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -80,6 +84,7 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         isSpecialist={false}
         anchorId="slide-deck"
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -97,6 +102,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={true}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -114,6 +120,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={false}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
@@ -135,6 +142,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -156,6 +164,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         anchorId="worksheet"
         slugs={lessonOverview}
+        pageLinks={[]}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -168,5 +177,61 @@ describe("LessonItemContainer", () => {
       "href",
       "/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?preselected=worksheet",
     );
+  });
+
+  test("skip button becomes visible when focussed", async () => {
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonItemContainer
+          title={"Slide deck"}
+          downloadable={true}
+          isSpecialist={false}
+          anchorId="slide-deck"
+          slugs={lessonOverview}
+          pageLinks={[
+            { anchorId: "slide-deck", label: "Slide deck" },
+            { anchorId: "video", label: "Video" },
+          ]}
+        >
+          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+            Grid box
+          </Card>
+        </LessonItemContainer>
+        <LessonItemContainer
+          title={"Video"}
+          downloadable={true}
+          isSpecialist={false}
+          anchorId="video"
+          slugs={lessonOverview}
+          pageLinks={[
+            { anchorId: "slide-deck", label: "Slide deck" },
+            { anchorId: "video", label: "Video" },
+          ]}
+        >
+          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+            Grid box
+          </Card>
+        </LessonItemContainer>
+      </OakThemeProvider>,
+    );
+
+    const slideDeckButton = getByText("Skip slide deck").closest("button");
+
+    if (!slideDeckButton) {
+      throw new Error("Could not find button");
+    }
+    expect(slideDeckButton).not.toBeVisible();
+
+    act(() => {
+      slideDeckButton.focus();
+    });
+    expect(slideDeckButton).toHaveFocus();
+    expect(slideDeckButton).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      slideDeckButton.blur();
+    });
+    expect(slideDeckButton).not.toHaveFocus();
+    expect(slideDeckButton).not.toBeVisible();
   });
 });

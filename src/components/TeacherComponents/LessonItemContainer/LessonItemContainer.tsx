@@ -1,7 +1,14 @@
-import { forwardRef } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { forwardRef, useState } from "react";
+import {
+  OakHeading,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
 
-import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import {
+  getPageLinksForLesson,
+  LessonPageLinkAnchorId,
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import { Hr } from "@/components/SharedComponents/Typography";
@@ -42,6 +49,7 @@ export interface LessonItemContainerProps {
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
   isSpecialist: boolean;
+  pageLinks: ReturnType<typeof getPageLinksForLesson>;
 }
 
 const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
@@ -64,9 +72,16 @@ export const LessonItemContainer = forwardRef<
     slugs,
     anchorId,
     shareable,
+    pageLinks,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(title);
   const preselectedShare = getPreselectedQueryFromTitle(title);
+  const [skipVideoButtonFocused, setSkipVideoButtonFocused] =
+    useState<boolean>(false);
+
+  const skipContentAnchor =
+    pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
+      ?.anchorId || pageLinks[0]?.anchorId;
 
   const lowerCaseTitle = title.toLowerCase();
 
@@ -109,6 +124,25 @@ export const LessonItemContainer = forwardRef<
             isSpecialist={props.isSpecialist}
             {...slugs}
           />
+        )}
+        {skipContentAnchor && (
+          <OakSecondaryButton
+            onClick={() => {
+              document.getElementById(skipContentAnchor)?.scrollIntoView();
+              document
+                .getElementById(getContainerId(skipContentAnchor))
+                ?.focus();
+            }}
+            onFocus={() => setSkipVideoButtonFocused(true)}
+            onBlur={() => setSkipVideoButtonFocused(false)}
+            style={
+              skipVideoButtonFocused
+                ? {}
+                : { position: "absolute", left: "-1000px", opacity: 0 }
+            }
+          >
+            {`Skip ${lowerCaseTitle}`}
+          </OakSecondaryButton>
         )}
       </OakFlex>
 
