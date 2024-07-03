@@ -30,7 +30,7 @@ export const getPupilOptionData = async (
   // I would have created a new folder [baseSlug] but multiple dynamic params on the same segment is not allowed.
   const { programmeSlug: baseSlug, examboardSlug = null } = context.params;
 
-  if (examboardSlug && !isExamboardSlug(examboardSlug)) {
+  if (examboardSlug !== null && !isExamboardSlug(examboardSlug)) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
@@ -65,7 +65,7 @@ export const getPupilOptionData = async (
       programmes,
       baseSlug,
       yearSlug,
-      examboardSlug: examboardSlug,
+      examboardSlug,
       examboards,
       tiers,
     },
