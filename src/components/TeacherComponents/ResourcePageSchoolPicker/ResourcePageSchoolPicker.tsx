@@ -45,7 +45,11 @@ const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
       inputValue={props.schoolPickerInputValue}
       onInputChange={props.setSchoolPickerInputValue}
       defaultItems={props.schools || []}
-      onSelectionChange={(value) => props.setSelectedSchool(value)}
+      onSelectionChange={(value) => {
+        if (value !== null) {
+          props.setSelectedSchool(value);
+        }
+      }}
       required={props.required}
     >
       {(item) => {
