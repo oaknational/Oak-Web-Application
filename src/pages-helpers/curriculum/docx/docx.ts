@@ -39,8 +39,9 @@ export async function insertImages<T extends Record<string, string>>(
         output[key] = id;
 
         if (existingImageIds.includes(id)) {
-          console.log("skipping");
           return null;
+        } else {
+          existingImageIds.push(id);
         }
 
         let file: Buffer;
@@ -84,16 +85,20 @@ export async function insertLinks<T extends Record<string, string>>(
     keyof typeof links,
     string
   >;
+
   const elements = Object.entries(links).map(([key, url]) => {
     const linkHash = generateHash(url);
     const id = "rId" + linkHash;
     output[key as keyof T] = id;
 
     if (existingIds.includes(id)) {
-      return;
+      return null;
+    } else {
+      existingIds.push(id);
     }
+
     return xmlElementToJson(`
-            <Relationship Id="rId${linkHash}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${url}" TargetMode="External"/>
+            <Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${url}" TargetMode="External"/>
         `);
   });
 
