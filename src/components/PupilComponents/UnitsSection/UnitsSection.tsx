@@ -8,6 +8,7 @@ import {
   OakPupilJourneyOptionalityItem,
   OakPupilJourneyOptionalityButton,
 } from "@oaknational/oak-components";
+import _ from "lodash";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -18,6 +19,8 @@ export type UnitsSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
+  filterSlot?: JSX.Element | null;
+  filterItems: string[];
   id?: string;
 };
 
@@ -27,29 +30,44 @@ export const UnitsSection = ({
   counterText,
   counterLength,
   titleSlot,
+  filterSlot,
+  filterItems,
   id = "0",
 }: UnitsSectionProps) => {
-  if (units.length === 0) return null;
+  const filteredUnits =
+    filterItems.length > 0
+      ? units.filter(
+          (unit) =>
+            unit[0] &&
+            _.intersection(unit[0].unitData.subjectcategories, filterItems)
+              .length > 0,
+        )
+      : units;
+
+  if (filteredUnits.length === 0) return null;
+
   return (
     <OakPupilJourneyList
       phase={phase}
       titleSlot={titleSlot}
       counterSlot={
-        <OakFlex $gap="space-between-xs" $alignItems={"center"}>
-          <OakInfo
-            id={`unit-info-${id}`}
-            hint="Units are groups of lessons that relate to one another."
-            tooltipPosition="top-left"
-          />
-
-          <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-            {counterText}{" "}
-            <OakSpan $font={"heading-light-6"}>({counterLength})</OakSpan>
-          </OakHeading>
+        <OakFlex $flexDirection={"column"} $width={"100%"}>
+          <OakFlex $alignSelf={"end"}>{filterSlot}</OakFlex>
+          <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+            <OakInfo
+              id={`unit-info-${id}`}
+              hint="Units are groups of lessons that relate to one another."
+              tooltipPosition="top-left"
+            />
+            <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
+              {counterText}{" "}
+              <OakSpan $font={"heading-light-6"}>({counterLength})</OakSpan>
+            </OakHeading>
+          </OakFlex>
         </OakFlex>
       }
     >
-      {units.map((optionalityUnit, i) => {
+      {filteredUnits.map((optionalityUnit, i) => {
         if (optionalityUnit.length === 1) {
           // No optionalities
           if (optionalityUnit[0]) return renderListItem(optionalityUnit[0], i);

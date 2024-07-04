@@ -76,7 +76,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
     });
 
     describe("getStaticProps", () => {
-      it("Should call API:pupilUnitLisitngQuery", async () => {
+      it("Should call API:pupilUnitListingQuery", async () => {
         (
           curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
         ).mockResolvedValueOnce([
@@ -186,6 +186,56 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
             "AQA",
             "Higher",
           ]);
+        }
+      });
+
+      it("Should produce unique list of subject categories", async () => {
+        const programmeFieldsSnake = programmeFieldsFixture({
+          overrides: {
+            subject: "Maths",
+          },
+        });
+        const programmeFields = keysToCamelCase(programmeFieldsSnake);
+
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-1",
+              subjectcategories: ["Trigonometry", "Geometry"],
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-1",
+            programmeFields,
+          }),
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+              subjectcategories: ["Algebra"],
+            },
+            supplementaryData: { unitOrder: 2 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+            programmeFields,
+          }),
+        ]);
+
+        const result = await getStaticProps({
+          params: {
+            programmeSlug: "maths-secondary-year-10-foundation",
+          },
+        });
+        expect.assertions(3);
+        if ("props" in result) {
+          expect(result.props.subjectCategories).toContain("Trigonometry");
+          expect(result.props.subjectCategories).toContain("Geometry");
+          expect(result.props.subjectCategories).toContain("Algebra");
+        } else {
+          throw new Error("getStaticProps did not return props.");
         }
       });
     });

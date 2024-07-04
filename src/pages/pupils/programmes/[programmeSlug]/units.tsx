@@ -141,13 +141,15 @@ export const getStaticProps: GetStaticProps<
 
       const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
 
-      const subjectCategories = _.uniq(
-        curriculumData
-          .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
-          .flat(),
-      ).filter((s) => !!s);
+      // a unique list of subject categories that appear in the unit listing
 
-      console.log({ subjectCategories });
+      const allSubjectCategories = curriculumData
+        .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
+        .flat()
+        .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
+        .filter((s) => !!s);
+
+      const subjectCategories = _.uniq(allSubjectCategories);
 
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];

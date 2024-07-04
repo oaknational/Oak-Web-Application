@@ -1,8 +1,11 @@
+import { useState } from "react";
 import {
   OakPupilJourneyLayout,
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
+  OakFlex,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
@@ -24,8 +27,15 @@ export const PupilViewsUnitListing = ({
   subjectCategories,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
+  const [filterItems, setFilterItems] = useState<string[]>(subjectCategories);
 
-  console.log(subjectCategories);
+  const applyFilter = (subjectCategory: string) => {
+    if (subjectCategory === "All") {
+      setFilterItems(subjectCategories);
+    } else {
+      setFilterItems([subjectCategory]);
+    }
+  };
 
   return (
     <OakPupilJourneyLayout
@@ -51,6 +61,23 @@ export const PupilViewsUnitListing = ({
                 />
               ) : null
             }
+            filterSlot={
+              unitSection.title &&
+              unitSection.icon &&
+              subjectCategories.length > 0 ? (
+                <OakFlex>
+                  <OakSecondaryButton onClick={() => applyFilter("All")}>
+                    All
+                  </OakSecondaryButton>
+                  {subjectCategories.map((category) => (
+                    <OakSecondaryButton onClick={() => applyFilter(category)}>
+                      {category}
+                    </OakSecondaryButton>
+                  ))}
+                </OakFlex>
+              ) : null
+            }
+            filterItems={filterItems}
             phase={phase}
             units={unitSection.units}
             counterText={unitSection.counterText}
