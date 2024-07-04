@@ -215,7 +215,7 @@ describe("LessonItemContainer", () => {
       </OakThemeProvider>,
     );
 
-    const slideDeckButton = getByText("Skip slide deck").closest("button");
+    const slideDeckButton = getByText("Skip slide deck").closest("a");
 
     if (!slideDeckButton) {
       throw new Error("Could not find button");
