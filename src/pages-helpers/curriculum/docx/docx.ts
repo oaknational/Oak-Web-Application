@@ -107,6 +107,10 @@ export async function insertLinks<T extends Record<string, string>>(
   return output;
 }
 
+export function cmToTwip(cm: number) {
+  return cm * 0.3937007874 * 1440;
+}
+
 // English Metric Unit (EMU): A measurement in computer typography. There are
 // 635 EMUs per twip, 6,350 EMUs per half-point, 12,700 EMUs per point, and
 // 914,400 EMUs per inch. These units are used to translate on-screen layouts
@@ -247,14 +251,9 @@ export async function appendBodyElements(zip: JSZip, childElements: Element[]) {
   if (!doc.elements) {
     throw new Error("expected doc.elements");
   }
-  const oldElements = doc.elements[0]!.elements!;
-  const oldElementStart = oldElements.slice(0, -1);
-  const endElements = oldElements.slice(-1);
-  doc.elements[0]!.elements = [
-    ...oldElementStart,
-    ...childElements,
-    ...endElements,
-  ];
+
+  const oldElements = doc.elements[0]!.elements![0].elements;
+  doc.elements[0]!.elements![0].elements = [...oldElements, ...childElements];
 
   zip.file("word/document.xml", json2xml(JSON.stringify(doc)));
 }

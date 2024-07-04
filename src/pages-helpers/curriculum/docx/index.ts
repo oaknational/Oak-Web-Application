@@ -43,6 +43,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
   await builder.threadsOverview(zip, { data });
   await builder.threadsDetail(zip, { data });
   await builder.backCover(zip, { data });
+  await builder.pageLayout(zip);
 
   return await zip.generateAsync({
     type: "uint8array",

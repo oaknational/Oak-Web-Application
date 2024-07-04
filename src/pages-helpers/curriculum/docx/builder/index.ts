@@ -9,3 +9,4 @@ export { default as units } from "./8_units";
 export { default as threadsOverview } from "./9_threadsOverview";
 export { default as threadsDetail } from "./10_threadsDetail";
 export { default as backCover } from "./11_backCover";
+export { default as pageLayout } from "./12_pageLayout";
