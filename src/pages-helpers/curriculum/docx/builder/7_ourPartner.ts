@@ -31,11 +31,22 @@ export default async function generate(
                     <w:pStyle w:val="Heading3"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                        <w:color w:val="222222"/>
+                        <w:sz w:val="36"/>
+                        <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("Our curriculum partner")}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                        <w:color w:val="222222"/>
+                        <w:sz w:val="24"/>
+                    </w:rPr>
                     <w:t>${cdata(data.partnerBio)}</w:t>
                 </w:r>
             </w:p>

@@ -53,19 +53,25 @@ export default async function generate(
             </w:p>
             <w:p>
                 <w:r>
+                    ${createImage(images.box, {
+                      width: cmToEmu(18.26),
+                      height: cmToEmu(7.49),
+                      xPos: cmToEmu(1.38),
+                      yPos: cmToEmu(18.14),
+                      isDecorative: true,
+                    })}
                     ${createImage(images.oglLogo, {
                       width: cmToEmu(2.18),
                       height: cmToEmu(1.1),
+                      xPos: cmToEmu(16.29),
+                      yPos: cmToEmu(22.96),
                       isDecorative: true,
                     })}
                     ${createImage(images.peopleIcon, {
                       width: cmToEmu(9.56),
                       height: cmToEmu(13.05),
-                      isDecorative: true,
-                    })}
-                    ${createImage(images.box, {
-                      width: cmToEmu(18.26),
-                      height: cmToEmu(7.49),
+                      xPos: cmToEmu(5.63),
+                      yPos: cmToEmu(3.27),
                       isDecorative: true,
                     })}
                 </w:r>

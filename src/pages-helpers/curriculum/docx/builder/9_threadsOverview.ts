@@ -37,6 +37,12 @@ export default async function generate(
                   "section_threads_appendix",
                   `
                     <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:color w:val="222222"/>
+                            <w:sz w:val="56"/>
+                            <w:b/>
+                        </w:rPr>
                         <w:t>${cdata(`Threads in ${data.subjectTitle}`)}</w:t>
                     </w:r>
                 `,
@@ -47,6 +53,13 @@ export default async function generate(
                   "section_threads",
                   `
                     <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:color w:val="222222"/>
+                            <w:sz w:val="24"/>
+                            <w:b/>
+                            <w:u w:val="single"/>
+                        </w:rPr>
                         <w:t>${cdata(`See how to use threads`)}</w:t>
                     </w:r>
                 `,

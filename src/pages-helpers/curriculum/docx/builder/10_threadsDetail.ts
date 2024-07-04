@@ -6,7 +6,6 @@ import { appendBodyElements } from "../docx";
 
 import { createThreadOptions, threadUnitByYear } from "./helper";
 
-
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 function sortByOrder(units: Unit[]) {
@@ -26,6 +25,12 @@ export default async function generate(
                     <w:pPr>
                     </w:pPr>
                     <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:color w:val="222222"/>
+                            <w:sz w:val="28"/>
+                            <w:b/>
+                        </w:rPr>
                         <w:t>${cdata(`Year ${year}`)}</w:t>
                     </w:r>
                 </w:p>
@@ -35,7 +40,12 @@ export default async function generate(
                         <w:p>
                             <w:pPr>
                             </w:pPr>
-                            <w:r>   
+                            <w:r>
+                                <w:rPr>
+                                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                    <w:color w:val="222222"/>
+                                    <w:sz w:val="24"/>
+                                </w:rPr>
                                 <w:t>${cdata(
                                   `Unit ${unit.order}: ${unit.title}`,
                                 )}</w:t>
@@ -52,6 +62,11 @@ export default async function generate(
                 <w:pPr>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                        <w:color w:val="222222"/>
+                        <w:sz w:val="36"/>
+                    </w:rPr>
                     <w:t>${cdata(`Thread: ${thread.title}`)}</w:t>
                 </w:r>
             </w:p>

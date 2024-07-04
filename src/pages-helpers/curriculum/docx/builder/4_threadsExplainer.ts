@@ -67,6 +67,12 @@ export default async function generate(
                   "section_threads",
                   `
                     <w:r>
+                        <w:rPr>
+                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                              <w:color w:val="222222"/>
+                              <w:sz w:val="56"/>
+                              <w:b/>
+                        </w:rPr>
                         <w:t>${cdata("Threads")}</w:t>
                     </w:r>
                 `,
@@ -77,11 +83,22 @@ export default async function generate(
                     <w:pStyle w:val="Heading2"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="36"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("What are threads?")}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                    </w:rPr>
                     <w:t>${cdata(whatAreThreadsContent)}</w:t>
                 </w:r>
             </w:p>
@@ -90,6 +107,12 @@ export default async function generate(
                     <w:pStyle w:val="Heading2"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="36"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("How to use threads?")}</w:t>
                 </w:r>
             </w:p>
@@ -98,6 +121,11 @@ export default async function generate(
                 return `
                     <w:p>
                         <w:r>
+                            <w:rPr>
+                                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                  <w:color w:val="222222"/>
+                                  <w:sz w:val="24"/>
+                            </w:rPr>
                             <w:t>${cdata(howToUseThreadsItem)}</w:t>
                         </w:r>
                     </w:p>
@@ -110,6 +138,12 @@ export default async function generate(
                     <w:pStyle w:val="Heading2"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="36"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("Tools for using threads")}</w:t>
                 </w:r>
             </w:p>
@@ -119,11 +153,22 @@ export default async function generate(
                     <w:pStyle w:val="Heading3"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="28"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("Online curriculum")}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                    </w:rPr>
                     <w:t>${cdata(
                       "Our interactive tool enables you to visualise how threads are sequenced across our curriculum plans.",
                     )}</w:t>
@@ -134,6 +179,13 @@ export default async function generate(
                   links.onlineCurriculum,
                   `
                     <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:color w:val="222222"/>
+                            <w:sz w:val="24"/>
+                            <w:b/>
+                            <w:u w:val="single"/>
+                        </w:rPr>
                         <w:t>${cdata("Go to online curriculum.")}</w:t>
                     </w:r>
                 `,
@@ -153,11 +205,22 @@ export default async function generate(
                     <w:pStyle w:val="Heading3"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="28"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("Threads in this document")}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                    </w:rPr>
                     <w:t>${cdata(
                       "The appendix displays the threads and their related units.",
                     )}</w:t>
@@ -168,6 +231,13 @@ export default async function generate(
                   "section_threads_appendix",
                   `
                     <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:color w:val="222222"/>
+                            <w:sz w:val="24"/>
+                            <w:b/>
+                            <w:u w:val="single"/>
+                        </w:rPr>
                         <w:t>${cdata("Go to threads appendix")}</w:t>
                     </w:r>
                 `,

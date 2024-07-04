@@ -56,6 +56,12 @@ export default async function generate(zip: JSZip) {
                   "section_our_curriculum",
                   `
                     <w:r>
+                        <w:rPr>
+                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                              <w:color w:val="222222"/>
+                              <w:sz w:val="56"/>
+                              <w:b/>
+                        </w:rPr>
                         <w:t>${cdata("Our curriculum")}</w:t>
                     </w:r>
                 `,
@@ -67,11 +73,22 @@ export default async function generate(zip: JSZip) {
                 return `
                     <w:p>
                         <w:r>
+                            <w:rPr>
+                                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                  <w:color w:val="222222"/>
+                                  <w:sz w:val="36"/>
+                                  <w:b/>
+                            </w:rPr>
                             <w:t>${cdata(point.title)}</w:t>
                         </w:r>
                     </w:p>
                     <w:p>
                         <w:r>
+                            <w:rPr>
+                                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                  <w:color w:val="222222"/>
+                                  <w:sz w:val="24"/>
+                            </w:rPr>
                             <w:t>${cdata(point.text)}</w:t>
                         </w:r>
                     </w:p>
