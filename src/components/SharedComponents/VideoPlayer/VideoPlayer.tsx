@@ -65,7 +65,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [reloadPlayerErrors, setReloadPlayerErrors] = useState<number[]>([]);
+  const [reloadOnErrors, setReloadOnErrors] = useState<number[]>([]);
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -165,23 +165,33 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       return;
     }
 
-    const reloadErrors = [...reloadPlayerErrors];
-    if (reloadErrors.length < RELOAD_ATTEMPTS) {
+    const newReloadOnErrors = [...reloadOnErrors];
+    const prevReloadOnErrorsLength = reloadOnErrors.length;
+    if (newReloadOnErrors.length < RELOAD_ATTEMPTS) {
       const timeElapsed = getTimeElapsed(mediaElRef) || 0;
-      reloadErrors.push(timeElapsed || 0);
-      setReloadPlayerErrors(reloadErrors);
+      newReloadOnErrors.push(timeElapsed || 0);
+      setReloadOnErrors(newReloadOnErrors);
     }
 
+    const hasMaxAttempts = newReloadOnErrors.length === RELOAD_ATTEMPTS;
+    const isFirstAttempt = newReloadOnErrors.length === 1;
+    const willReload = prevReloadOnErrorsLength !== newReloadOnErrors.length;
+    // Only report the first and last error
+    const shouldReport =
+      hasMaxAttempts || (willReload && (isFirstAttempt || hasMaxAttempts));
+
+    if (!shouldReport) {
+      return;
+    }
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
       code:
-        reloadErrors.length < RELOAD_ATTEMPTS
+        newReloadOnErrors.length < RELOAD_ATTEMPTS
           ? "video/unknown"
           : "video/persistent-unknown",
       originalError,
       meta: metadata,
     });
-
     reportError(error, { ...getState() });
   };
 
@@ -219,11 +229,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       : undefined,
   };
 
-  const reloadingDueToErrors = reloadPlayerErrors.length > 0;
+  const reloadingDueToErrors = reloadOnErrors.length > 0;
   let startTime = 0;
 
   if (reloadingDueToErrors) {
-    startTime = reloadPlayerErrors[reloadPlayerErrors.length - 1] || 0;
+    startTime = reloadOnErrors[reloadOnErrors.length - 1] || 0;
   }
 
   const existingComponent = (
@@ -237,7 +247,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       }}
     >
       <MuxPlayer
-        key={reloadPlayerErrors.length}
+        key={reloadOnErrors.length}
         preload="metadata"
         ref={mediaElRef}
         envKey={envKey}
@@ -278,7 +288,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             onError(new Event("timeout"));
           }}
         >
-          Trigger Error count ({reloadPlayerErrors.length})
+          Trigger Error count ({reloadOnErrors.length})
         </button>
       </OakFlex>
     </>
