@@ -87,16 +87,30 @@ export default async function generate(
               .join("")}
             ${data.units
               .map((unit, unitIndex) => {
+                const someLessonsPublished = unit.lessons?.some(
+                  (lesson) => lesson._state === "published",
+                );
                 return `
                     <w:p>
-                        ${wrapInLinkTo(
-                          links[`unit_${unitIndex}_onlineResources`]!,
-                          `
+                        <w:r>
+                          <w:t>${unit.title}</w:t>
+                        </w:r>
+                        ${
+                          !someLessonsPublished
+                            ? `
+                        <w:r>
+                          <w:t> / No lessons published</w:t>
+                        </w:r>
+                        `
+                            : wrapInLinkTo(
+                                links[`unit_${unitIndex}_onlineResources`]!,
+                                `
                             <w:r>
-                                <w:t>${unit.title} / Go to unit resources</w:t>
+                                <w:t> / Go to unit resources</w:t>
                             </w:r>
                         `,
-                        )}
+                              )
+                        }
                     </w:p>
                 `;
               })
