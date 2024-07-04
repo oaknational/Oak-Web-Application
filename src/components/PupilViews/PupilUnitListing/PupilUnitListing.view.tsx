@@ -14,14 +14,18 @@ export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
   phase: "primary" | "secondary";
   backHrefSlugs: UseBackHrefProps;
+  subjectCategories: string[];
 };
 
 export const PupilViewsUnitListing = ({
   unitSections,
   phase,
   backHrefSlugs,
+  subjectCategories,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
+
+  console.log(subjectCategories);
 
   return (
     <OakPupilJourneyLayout
