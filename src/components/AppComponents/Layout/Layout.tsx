@@ -1,7 +1,13 @@
 import Head from "next/head";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakSecondaryButton,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
@@ -74,23 +80,50 @@ const Layout: FC<LayoutProps> = (props) => {
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
-
+  const [skipVideoButtonFocused, setSkipVideoButtonFocused] = useState(false);
   const { isPreview } = useRouter();
 
   return (
     <>
-      <Seo {...seoProps} />
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <OrganizationJsonLd />
-      <Container $background={$background}>
-        {banner}
-        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-        <StyledLayout>{children}</StyledLayout>
-        <Footer />
-        {isPreview && <LayoutPreviewControls />}
-      </Container>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Seo {...seoProps} />
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <OrganizationJsonLd />
+        <Container $background={$background}>
+          <OakBox
+            $position={"absolute"}
+            $height={"all-spacing-13"}
+            $width={"all-spacing-11"}
+            $zIndex={"in-front"}
+            $top={"all-spacing-14"}
+            $left={"all-spacing-6"}
+          >
+            <OakSecondaryButton
+              element="a"
+              href={`#main`}
+              onFocus={() => setSkipVideoButtonFocused(true)}
+              onBlur={() => setSkipVideoButtonFocused(false)}
+              style={
+                skipVideoButtonFocused
+                  ? {}
+                  : {
+                      left: "-1000px",
+                      opacity: 0,
+                    }
+              }
+            >
+              Skip to content
+            </OakSecondaryButton>
+          </OakBox>
+          {banner}
+          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+          <StyledLayout id="main">{children}</StyledLayout>
+          <Footer />
+          {isPreview && <LayoutPreviewControls />}
+        </Container>
+      </OakThemeProvider>
     </>
   );
 };

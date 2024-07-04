@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 
 import Layout from "./Layout";
 
@@ -21,5 +21,25 @@ describe("Layout", () => {
     const main = screen.getByRole("main");
 
     expect(main).toBeInTheDocument();
+  });
+  it("renders a hidden skip to content button until focused", () => {
+    render(<Layout seoProps={DEFAULT_SEO_PROPS} />);
+    const skipButtonLink = screen.getByText("Skip to content").closest("a");
+
+    if (!skipButtonLink) {
+      throw new Error("Could not find filter button");
+    }
+    expect(skipButtonLink).not.toBeVisible();
+    act(() => {
+      skipButtonLink.focus();
+    });
+    expect(skipButtonLink).toHaveFocus();
+    expect(skipButtonLink).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      skipButtonLink.blur();
+    });
+    expect(skipButtonLink).not.toHaveFocus();
+    expect(skipButtonLink).not.toBeVisible();
   });
 });
