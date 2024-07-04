@@ -139,12 +139,8 @@ export const LessonItemContainer = forwardRef<
           )}
           {skipContentAnchor && (
             <OakSecondaryButton
-              onClick={() => {
-                document.getElementById(skipContentAnchor)?.scrollIntoView();
-                document
-                  .getElementById(getContainerId(skipContentAnchor))
-                  ?.focus();
-              }}
+              element="a"
+              href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
               onFocus={() => setSkipVideoButtonFocused(true)}
               onBlur={() => setSkipVideoButtonFocused(false)}
               style={
