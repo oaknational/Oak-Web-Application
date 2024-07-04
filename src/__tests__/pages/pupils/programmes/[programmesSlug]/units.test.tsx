@@ -1,5 +1,7 @@
 import { OakInfoProps } from "@oaknational/oak-components";
+import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 import PupilUnitListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units";
@@ -29,50 +31,162 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
       jest.resetModules();
     });
 
-    it("should render the unit titles in the correct order", () => {
-      const { getByText } = render(
-        <PupilUnitListingPage
-          programmeSlug="maths-secondary-year-10-aqa-core"
-          curriculumData={[
-            unitBrowseDataFixture({
-              unitData: {
-                ...unitBrowseDataFixture({}).unitData,
-                title: "unit-title-2",
-              },
-              supplementaryData: { unitOrder: 2 },
-              programmeSlug: "maths-secondary-year-10-aqa-core",
-              unitSlug: "unit-slug-2",
-            }),
-            unitBrowseDataFixture({
-              unitData: {
-                ...unitBrowseDataFixture({}).unitData,
-                title: "unit-title-1",
-              },
-              supplementaryData: { unitOrder: 1 },
-              programmeSlug: "maths-secondary-year-10-aqa-core",
-              unitSlug: "unit-slug-1",
-            }),
-          ]}
-        />,
-      );
-      const e1 = getByText("unit-title-1");
-      const e2 = getByText("unit-title-2");
-      expect(e2.compareDocumentPosition(e1)).toBe(2);
+    it("should render the unit titles in the correct order", async () => {
+      (
+        curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+      ).mockResolvedValueOnce([
+        unitBrowseDataFixture({
+          unitData: {
+            ...unitBrowseDataFixture({}).unitData,
+            title: "unit-title-2",
+          },
+          supplementaryData: { unitOrder: 2 },
+          programmeSlug: "maths-secondary-year-10-foundation",
+          unitSlug: "unit-slug-2",
+        }),
+        unitBrowseDataFixture({
+          unitData: {
+            ...unitBrowseDataFixture({}).unitData,
+            title: "unit-title-1",
+          },
+          supplementaryData: { unitOrder: 1 },
+          programmeSlug: "maths-secondary-year-10-foundation",
+          unitSlug: "unit-slug-1",
+        }),
+      ]);
+
+      const getStaticPropsResult = await getStaticProps({
+        params: {
+          programmeSlug: "maths-secondary-year-10-foundation",
+        },
+      });
+
+      expect.assertions(1);
+      if ("props" in getStaticPropsResult) {
+        const { getByText } = render(
+          <PupilUnitListingPage {...getStaticPropsResult.props} />,
+        );
+
+        const e1 = getByText("unit-title-1");
+        const e2 = getByText("unit-title-2");
+        expect(e2.compareDocumentPosition(e1)).toBe(2);
+      } else {
+        throw new Error("getStaticProps did not return props.");
+      }
     });
 
     describe("getStaticProps", () => {
       it("Should call API:pupilUnitLisitngQuery", async () => {
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+          }),
+        ]);
+
         await getStaticProps({
           params: {
-            programmeSlug: "biology-secondary-year-10-foundation-aqa",
+            programmeSlug: "maths-secondary-year-10-foundation",
           },
         });
 
         expect(
           curriculumApi2023.default.pupilUnitListingQuery,
         ).toHaveBeenCalledWith({
-          baseSlug: "biology-secondary-year-10",
+          baseSlug: "maths-secondary-year-10",
         });
+      });
+
+      it("Should return not found if no params", async () => {
+        const result = await getStaticProps({});
+        expect(result).toEqual({
+          notFound: true,
+        });
+      });
+      it("Should return not found if no programmeSlug", async () => {
+        const result = await getStaticProps({ params: { programmeSlug: "" } });
+        expect(result).toEqual({
+          notFound: true,
+        });
+      });
+      it("Should return not found if no params", async () => {
+        const result = await getStaticProps({
+          params: { programmeSlug: "notvalidforbaseslug" },
+        });
+        expect(result).toEqual({
+          notFound: true,
+        });
+      });
+      it("Should return not found if no curriculum data", async () => {
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+          }),
+        ]);
+
+        expect.assertions(2);
+        try {
+          await getStaticProps({
+            params: { programmeSlug: "english-secondary-year-11" },
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toMatchObject({ message: "No curriculum data" });
+        }
+      });
+      it("Should add breadcrumbs to unit sections", async () => {
+        const programmeFieldsSnake = programmeFieldsFixture({
+          overrides: {
+            year_description: "Year 10",
+            examboard: "AQA",
+            tier_description: "Higher",
+          },
+        });
+        const programmeFields = keysToCamelCase(programmeFieldsSnake);
+
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+            programmeFields,
+          }),
+        ]);
+
+        const result = await getStaticProps({
+          params: {
+            programmeSlug: "maths-secondary-year-10-foundation",
+          },
+        });
+        expect.assertions(1);
+        if ("props" in result && result?.props?.unitSections[0]?.breadcrumbs) {
+          expect(result?.props?.unitSections[0]?.breadcrumbs).toEqual([
+            "Year 10",
+            "AQA",
+            "Higher",
+          ]);
+        }
       });
     });
   });

@@ -15,9 +15,9 @@ describe("components/AppHeader", () => {
   });
 
   test("it should be the teachers header colour", () => {
-    const { getByRole } = render(<AppHeader />);
+    const { getByTestId } = render(<AppHeader />);
 
-    expect(getByRole("banner")).toHaveStyle(
+    expect(getByTestId("app-header")).toHaveStyle(
       "background-color: rgb(255, 255, 255);",
     );
   });

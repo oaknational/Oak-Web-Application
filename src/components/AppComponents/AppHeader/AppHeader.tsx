@@ -35,75 +35,79 @@ const AppHeader: FC<HeaderProps> = () => {
   const selectedArea = useSelectedArea();
 
   return (
-    <StyledHeader
-      $background="white"
-      as="header"
-      $justifyContent={["space-between"]}
-      $alignItems={["center"]}
-      $zIndex="fixedHeader"
-      $position={"relative"}
-    >
-      <OakFlex
-        $justifyContent={"space-between"}
-        $flexGrow={1}
-        $alignItems={"center"}
+    <header>
+      <StyledHeader
+        $background="white"
+        $justifyContent={["space-between"]}
+        $alignItems={["center"]}
+        $zIndex="fixedHeader"
+        $position={"relative"}
+        data-testid="app-header"
       >
-        <OakFlex $justifyContent={"center"} $alignItems={"center"}>
-          <OwaLink page={"home"}>
-            <Box $display={["block", "none"]}>
-              <Logo height={48} width={31} variant="without text" />
-            </Box>
-            <Box $display={["none", "block"]}>
-              <Logo variant="with text" height={48} width={104} />
-            </Box>
-          </OwaLink>
-        </OakFlex>
-        <OakFlex $alignItems={"center"} $gap="all-spacing-6" $font="heading-7">
-          <OwaLink
-            page={"home"}
-            $focusStyles={["underline"]}
-            $isSelected={true}
+        <OakFlex
+          $justifyContent={"space-between"}
+          $flexGrow={1}
+          $alignItems={"center"}
+        >
+          <OakFlex $justifyContent={"center"} $alignItems={"center"}>
+            <OwaLink page={"home"}>
+              <Box $display={["block", "none"]}>
+                <Logo height={48} width={31} variant="without text" />
+              </Box>
+              <Box $display={["none", "block"]}>
+                <Logo variant="with text" height={48} width={104} />
+              </Box>
+            </OwaLink>
+          </OakFlex>
+          <OakFlex
+            $alignItems={"center"}
+            $gap="all-spacing-6"
+            $font="heading-7"
           >
-            Teachers
-            {selectedArea == siteAreas.teachers && (
-              <ActiveLinkUnderline name="horizontal-rule" />
-            )}
-          </OwaLink>
-          <OakFlex $alignItems="center" $gap="all-spacing-1">
             <OwaLink
-              page="pupil-year-index"
+              page={"home"}
               $focusStyles={["underline"]}
-              htmlAnchorProps={{
-                onClick: () =>
-                  track.classroomSelected({ navigatedFrom: "header" }),
-                "aria-label": "Pupils browse years",
-              }}
+              $isSelected={true}
             >
-              Pupils
-              {selectedArea == siteAreas.pupils && (
+              Teachers
+              {selectedArea == siteAreas.teachers && (
                 <ActiveLinkUnderline name="horizontal-rule" />
               )}
             </OwaLink>
+            <OakFlex $alignItems="center" $gap="all-spacing-1">
+              <OwaLink
+                page="pupil-year-index"
+                $focusStyles={["underline"]}
+                htmlAnchorProps={{
+                  onClick: () =>
+                    track.classroomSelected({ navigatedFrom: "header" }),
+                  "aria-label": "Pupils browse years",
+                }}
+              >
+                Pupils
+                {selectedArea == siteAreas.pupils && (
+                  <ActiveLinkUnderline name="horizontal-rule" />
+                )}
+              </OwaLink>
+            </OakFlex>
+            <IconButton
+              aria-label="Menu"
+              icon={"hamburger"}
+              variant={"minimal"}
+              size={"large"}
+              ref={menuButtonRef}
+              onClick={openMenu}
+              aria-expanded={open}
+            />
           </OakFlex>
-          <IconButton
-            aria-label="Menu"
-            icon={"hamburger"}
-            variant={"minimal"}
-            size={"large"}
-            ref={menuButtonRef}
-            onClick={openMenu}
-            aria-expanded={open}
-          />
         </OakFlex>
+        <AppHeaderUnderline />
+      </StyledHeader>
 
-        <AppHeaderMenu menuButtonRef={menuButtonRef}>
-          <AppHeaderBurgerMenuSections
-            burgerMenuSections={burgerMenuSections}
-          />
-        </AppHeaderMenu>
-      </OakFlex>
-      <AppHeaderUnderline />
-    </StyledHeader>
+      <AppHeaderMenu menuButtonRef={menuButtonRef}>
+        <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />
+      </AppHeaderMenu>
+    </header>
   );
 };
 

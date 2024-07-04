@@ -1,16 +1,18 @@
 import { resolveOakHref } from "@/common-lib/urls";
 
+export type UseBackHrefProps = {
+  baseSlug: string;
+  yearSlug: string;
+  tierSlug?: string | null;
+  examboardSlug?: string | null;
+};
+
 export const useBackHref = ({
   baseSlug,
   yearSlug,
   tierSlug,
   examboardSlug,
-}: {
-  baseSlug: string;
-  yearSlug: string;
-  tierSlug?: string | null;
-  examboardSlug?: string | null;
-}) => {
+}: UseBackHrefProps) => {
   const hasTier = tierSlug && tierSlug !== null;
   const hasExamboard = examboardSlug && examboardSlug !== null;
   const optionSlug = `options`;

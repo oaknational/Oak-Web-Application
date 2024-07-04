@@ -33,7 +33,8 @@ const Autocomplete = (props: AutocompleteProps) => {
   const popoverRef = useRef(null);
   const { contains } = useFilter({ sensitivity: "base" });
 
-  const onSelectionChange = (key: Key) => {
+  const onSelectionChange = (key: Key | null) => {
+    if (key === null) return;
     const textValue = state.collection.getItem(key);
     if (textValue) {
       props.onChange(String(key), textValue.textValue);
