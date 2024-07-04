@@ -81,13 +81,6 @@ export default async function generate(
 
   const pageXml = `
         <root>
-            <w:p>
-                <w:pPr>
-                </w:pPr>
-                <w:r>
-                    <w:t>${cdata("Threads detail")}</w:t>
-                </w:r>
-            </w:p>
             ${elements.join("")}
         </root>
     `;
