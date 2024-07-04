@@ -5,6 +5,24 @@ import {
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
+export function uncapitalize(input: string) {
+  const chars = input.split("");
+  let output = ``;
+  for (let i = 0; i < chars.length; i++) {
+    if (
+      chars[i]?.match(/[A-Z]/) &&
+      (i == 0 || chars[i - 1]?.match(/[^A-Z.]/)) &&
+      (i === chars.length - 1 || chars[i + 1]?.match(/[^A-Z]/))
+    ) {
+      console.log("match");
+      output += chars[i]?.toLowerCase();
+    } else {
+      output += chars[i];
+    }
+  }
+  return output;
+}
+
 export function createProgrammeSlug(
   unitData?: Unit | null,
   examboardSlug?: string | null,

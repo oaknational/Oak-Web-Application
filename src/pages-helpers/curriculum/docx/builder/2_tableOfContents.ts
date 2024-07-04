@@ -4,6 +4,8 @@ import { CombinedCurriculumData } from "..";
 import { cdata, xmlElementToJson } from "../xml";
 import { appendBodyElements, wrapInLinkToBookmark } from "../docx";
 
+import { uncapitalize } from "./helper";
+
 export default async function generate(
   zip: JSZip,
   { data }: { data: CombinedCurriculumData },
@@ -33,7 +35,7 @@ export default async function generate(
     }),
     {
       anchorId: "section_threads_appendix",
-      text: `Threads in ${data.subjectTitle}`,
+      text: `Threads in ${uncapitalize(data.subjectTitle)}`,
     },
   ];
 
