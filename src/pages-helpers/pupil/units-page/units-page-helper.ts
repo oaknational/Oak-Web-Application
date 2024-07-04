@@ -53,7 +53,7 @@ export function getSecondUnitSection({
         ),
       );
     }
-    result.counterText = "Choose a legacy unit";
+    result.counterText = "Choose a previously released unit";
     result.counterLength = result.units.length;
   }
   return {
