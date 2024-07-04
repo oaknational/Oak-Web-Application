@@ -1,4 +1,5 @@
 import { forwardRef, useState } from "react";
+
 import {
   OakHeading,
   OakFlex,
@@ -6,7 +7,6 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
 import {
   getPageLinksForLesson,
   LessonPageLinkAnchorId,
@@ -82,8 +82,12 @@ export const LessonItemContainer = forwardRef<
     useState<boolean>(false);
 
   const skipContentAnchor =
-    pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
-      ?.anchorId || pageLinks[0]?.anchorId;
+    anchorId === "video" ||
+    anchorId === "worksheet" ||
+    anchorId === "slide-deck"
+      ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
+          ?.anchorId || undefined
+      : undefined;
 
   const lowerCaseTitle = title.toLowerCase();
 
