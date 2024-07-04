@@ -55,6 +55,21 @@ export default async function generate(
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                    </w:rPr>
+                    <w:t></w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                    </w:rPr>
                     <w:t></w:t>
                 </w:r>
             </w:p>
