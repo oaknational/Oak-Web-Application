@@ -67,6 +67,23 @@ export default async function generate(
                     })}
                 </w:r>
             </w:p>
+            ${Array(6)
+              .fill(true)
+              .map(() => {
+                return `
+                <w:p>
+                    <w:r>
+                        <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="24"/>
+                        </w:rPr>
+                        <w:t> </w:t>
+                    </w:r>
+                </w:p>
+              `;
+              })
+              .join("")}
             <w:p>
                 <w:pPr>
                     <w:pStyle w:val="Heading1"/>
