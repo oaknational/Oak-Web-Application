@@ -55,23 +55,6 @@ export default async function generate(
 
   const pageXml = `
         <root>
-            <w:p>
-                <w:pPr>
-                </w:pPr>
-                <w:r>
-                    <w:t>${cdata("Units")}</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                ${wrapInLinkTo(
-                  links.interactiveSequence!,
-                  `
-                    <w:r>
-                        <w:t>View interactive sequence online</w:t>
-                    </w:r>
-                `,
-                )}
-            </w:p>
             ${years
               .map((year) => {
                 return `
@@ -83,7 +66,30 @@ export default async function generate(
                           `section_year_${year}`,
                           `
                             <w:r>
-                                <w:t>Year ${year}</w:t>
+                                <w:rPr>
+                                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                    <w:color w:val="222222"/>
+                                    <w:sz w:val="56"/>
+                                    <w:b/>
+                                </w:rPr>
+                                <w:t>Year ${cdata(year)} units</w:t>
+                            </w:r>
+                        `,
+                        )}
+                    </w:p>
+                    <w:p>
+                        ${wrapInLinkTo(
+                          links.interactiveSequence!,
+                          `
+                            <w:r>
+                                <w:rPr>
+                                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                    <w:color w:val="222222"/>
+                                    <w:sz w:val="24"/>
+                                    <w:b/>
+                                    <w:u w:val="single"/>
+                                </w:rPr>
+                                <w:t>View interactive sequence online</w:t>
                             </w:r>
                         `,
                         )}
