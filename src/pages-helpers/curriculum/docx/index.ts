@@ -5,7 +5,7 @@ import type {
 import type { CurriculumOverviewSanityData } from "../../../common-lib/cms-types";
 
 import * as builder from "./builder";
-import { generateEmptyDocx } from "./docx";
+import { cmToTwip, generateEmptyDocx } from "./docx";
 
 type CurriculumUnitsTabDataIncludeNewUnit =
   CurriculumUnitsTabDataIncludeNew["units"][number] & {
@@ -42,8 +42,28 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
   await builder.units(zip, { data, slugs });
   await builder.threadsOverview(zip, { data });
   await builder.threadsDetail(zip, { data });
+  await builder.pageLayout(zip, {
+    margins: {
+      top: cmToTwip(1.25),
+      right: cmToTwip(1.25),
+      bottom: cmToTwip(1.25),
+      left: cmToTwip(1.25),
+      header: cmToTwip(1.25),
+      footer: cmToTwip(1.25),
+    },
+  });
   await builder.backCover(zip, { data });
-  await builder.pageLayout(zip);
+  await builder.pageLayout(zip, {
+    isLast: true,
+    margins: {
+      top: cmToTwip(1.25),
+      right: cmToTwip(2.25),
+      bottom: cmToTwip(1.25),
+      left: cmToTwip(2.25),
+      header: cmToTwip(1.25),
+      footer: cmToTwip(1.25),
+    },
+  });
 
   return await zip.generateAsync({
     type: "uint8array",
