@@ -72,29 +72,49 @@ export default async function generate(
                     <w:pStyle w:val="Heading1"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                      <w:color w:val="222222"/>
+                      <w:sz w:val="80"/>
+                      <w:b/>
+                    </w:rPr>
                     <w:t>${cdata(subjectTitle)}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                      <w:color w:val="222222"/>
+                      <w:sz w:val="30"/>
+                    </w:rPr>
                     <w:t>${cdata(phaseTitle)}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                      <w:color w:val="222222"/>
+                      <w:sz w:val="30"/>
+                    </w:rPr>
                     <w:t>${cdata(examboardTitle)}</w:t>
                 </w:r>
             </w:p>
             <w:p>
                 <w:r>
-                    ${createImage(images.icon, {
-                      width: cmToEmu(12.59),
-                      height: cmToEmu(12.59),
-                      isDecorative: true,
-                    })}
                     ${createImage(images.arrow, {
                       width: cmToEmu(20.54),
                       height: cmToEmu(15.18),
+                      xPos: cmToEmu(0.25),
+                      yPos: cmToEmu(13.13),
+                      isDecorative: true,
+                    })}
+                    ${createImage(images.icon, {
+                      width: cmToEmu(12.59),
+                      height: cmToEmu(12.59),
+                      xPos: cmToEmu(7.92),
+                      yPos: cmToEmu(13.11),
                       isDecorative: true,
                     })}
                 </w:r>

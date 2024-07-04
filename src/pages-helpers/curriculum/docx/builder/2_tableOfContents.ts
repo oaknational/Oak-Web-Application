@@ -44,6 +44,12 @@ export default async function generate(
                     <w:pStyle w:val="Heading2"/>
                 </w:pPr>
                 <w:r>
+                    <w:rPr>
+                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                          <w:color w:val="222222"/>
+                          <w:sz w:val="56"/>
+                          <w:b/>
+                    </w:rPr>
                     <w:t>${cdata("Contents")}</w:t>
                 </w:r>
             </w:p>
@@ -61,6 +67,12 @@ export default async function generate(
                           link.anchorId,
                           `
                             <w:r>
+                                <w:rPr>
+                                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                      <w:color w:val="222222"/>
+                                      <w:sz w:val="28"/>
+                                      <w:b/>
+                                </w:rPr>
                                 <w:t>${cdata(link.text)}</w:t>
                             </w:r>
                         `,

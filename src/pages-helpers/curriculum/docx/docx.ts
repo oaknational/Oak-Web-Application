@@ -140,6 +140,8 @@ type ImageOpts = {
   desc?: string;
   width?: number;
   height?: number;
+  xPos?: number;
+  yPos?: number;
   isDecorative?: boolean;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
@@ -149,16 +151,36 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     height = 1000000,
     name = "",
     desc = "",
+    xPos = undefined,
+    yPos = undefined,
     isDecorative = false,
   } = opts;
 
   const isDecorativeVal = isDecorative ? 1 : 0;
 
+  const wrapInPosition = (xmlString: string) => {
+    if (xPos === undefined && yPos === undefined) {
+      return `<wp:inline distT="0" distB="0" distL="0" distR="0">${xmlString}</wp:inline>`;
+    } else {
+      return `<wp:anchor distT="0" distB="0" distL="114300" distR="114300" simplePos="0" relativeHeight="251658240" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1" wp14:anchorId="77F9B03D" wp14:editId="7F972CA2">
+        <wp:simplePos x="0" y="0"/>
+        <wp:positionH relativeFrom="page">
+            <wp:posOffset>${xPos}</wp:posOffset>
+        </wp:positionH>
+        <wp:positionV relativeFrom="page">
+            <wp:posOffset>${yPos}</wp:posOffset>
+        </wp:positionV>
+        ${xmlString}
+      </wp:anchor>`;
+    }
+  };
+
   return `
         <w:drawing>
-            <wp:inline distT="0" distB="0" distL="0" distR="0">
+            ${wrapInPosition(`
                 <wp:extent cx="${width}" cy="${height}"/>
                 <wp:effectExtent l="0" t="0" r="0" b="0"/>
+                ${xPos ? `<wp:wrapSquare wrapText="bothSides"/>` : ""}
                 <wp:docPr id="${uid}" name="${name}" descr="${desc}">
                     <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
                         <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
@@ -206,7 +228,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
                         </pic:pic>
                     </a:graphicData>
                 </a:graphic>
-            </wp:inline>
+            `)}
         </w:drawing>
     `;
 }
