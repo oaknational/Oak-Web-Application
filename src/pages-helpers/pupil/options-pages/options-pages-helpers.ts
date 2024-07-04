@@ -1,4 +1,5 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import _ from "lodash";
 import {
   ProgrammeFields,
   examboardSlugs,
@@ -8,52 +9,28 @@ import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/querie
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getAvailableProgrammeFactor } from "@/components/PupilViews/PupilProgrammeListing/getAvailableProgrammeFactor";
+import { ExamboardData } from "@/components/PupilComponents/BrowseExamboardSelector";
+import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
+import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 export type OptionsURLParams = {
   programmeSlug: string;
+  examboardSlug?: string;
 };
-
-export type ProgrammesPageProps = {
-  baseSlug: string;
-  programmes: PupilProgrammeListingData[];
-  yearSlug: PupilProgrammeListingData["yearSlug"];
-  examboardSlug?: ProgrammeFields["examboard_slug"] | null;
-};
-
-export const getYearSlug = ({
-  programmes,
-}: {
-  programmes: PupilProgrammeListingData[];
-}) => {
-  const yearSlug = programmes[0]?.yearSlug;
-
-  if (
-    programmes.filter((programme) => programme.yearSlug !== yearSlug).length >
-      0 ||
-    !yearSlug
-  ) {
-    throw new OakError({ code: "curriculum-api/params-incorrect" });
-  }
-  return yearSlug;
-};
-
-export const isExamboardSlug = (
-  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
-): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
 
 export const getPupilOptionData = async (
   context: GetStaticPropsContext<OptionsURLParams>,
-): Promise<GetStaticPropsResult<ProgrammesPageProps>> => {
-  if (!context.params) {
+): Promise<GetStaticPropsResult<PupilViewsProgrammeListingProps>> => {
+  if (!context.params || !context.params.programmeSlug) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
-  // For the options path rename programmeSlug to baseSlug as this is the accurate usage of the options page.
+  // For the options route we rename programmeSlug to baseSlug as this is the accurate usage of the options page.
   // I would have created a new folder [baseSlug] but multiple dynamic params on the same segment is not allowed.
-  const { programmeSlug: baseSlug } = context.params;
+  const { programmeSlug: baseSlug, examboardSlug = null } = context.params;
 
-  if (!baseSlug) {
+  if (examboardSlug !== null && !isExamboardSlug(examboardSlug)) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
@@ -80,8 +57,87 @@ export const getPupilOptionData = async (
   }
 
   const yearSlug = getYearSlug({ programmes });
+  const examboards = getExamboards(programmes);
+  const tiers = getTiers(programmes);
 
   return {
-    props: { programmes, baseSlug, yearSlug },
+    props: {
+      programmes,
+      baseSlug,
+      yearSlug,
+      examboardSlug,
+      examboards,
+      tiers,
+    },
   };
+};
+
+export const getYearSlug = ({
+  programmes,
+}: {
+  programmes: PupilProgrammeListingData[];
+}) => {
+  const yearSlug = programmes[0]?.yearSlug;
+  if (
+    programmes.filter((programme) => programme.yearSlug !== yearSlug).length >
+      0 ||
+    !yearSlug
+  ) {
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
+  }
+  return yearSlug;
+};
+
+export const isExamboardSlug = (
+  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
+): examboardSlug is ProgrammeFields["examboard_slug"] =>
+  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+
+const getExamboards = (programmes: PupilProgrammeListingData[]) => {
+  const allExamboards: { [key: string]: ExamboardData[] } = _.groupBy(
+    getAvailableProgrammeFactor({
+      programmes,
+      factorPrefix: "examboard",
+    }) as ExamboardData[],
+    (examboard: ExamboardData) => examboard.examboard,
+  );
+
+  // This creates an array of examboards giving preference to non-legacy examboards
+  const examboards = Object.keys(allExamboards)
+    .map((examboard) => {
+      const mappedExamboard = allExamboards[examboard];
+      if (!Array.isArray(mappedExamboard) || mappedExamboard.length < 1) return;
+      return (
+        allExamboards[examboard]?.find(
+          (examboard: ExamboardData) => !examboard.isLegacy,
+        ) ?? mappedExamboard[0]
+      );
+    })
+    .filter((examboard): examboard is ExamboardData => examboard !== undefined);
+
+  return examboards;
+};
+
+const getTiers = (programmes: PupilProgrammeListingData[]) => {
+  const allTiers: { [key: string]: TierData[] } = _.groupBy(
+    getAvailableProgrammeFactor({
+      programmes: programmes,
+      factorPrefix: "tier",
+    }) as TierData[],
+    (tier: TierData) => tier.tier,
+  );
+
+  // This creates an array of tiers giving preference to non-legacy tiers
+  const tiers = Object.keys(allTiers)
+    .map((tierLabel) => {
+      const mappedTier = allTiers[tierLabel];
+      if (!Array.isArray(mappedTier) || mappedTier.length < 1) return;
+      return (
+        allTiers[tierLabel]?.find((tier: TierData) => !tier.isLegacy) ??
+        mappedTier[0]
+      );
+    })
+    .filter((tier): tier is TierData => tier !== undefined);
+
+  return tiers;
 };

@@ -1,5 +1,41 @@
 query teachersSitemap {
-  teachersSitemap: published_mv_sitemap_6_0_1 {
-    urls
+  keyStages: published_mv_key_stages_2_0_0 {
+    slug
+  }
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    distinct_on: programme_slug
+  ) {
+    programme_slug
+  }
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    distinct_on: [programme_slug, unit_slug]
+  ) {
+    unit_slug
+    programme_slug
+  }
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
+    distinct_on: [programme_slug, unit_slug, lesson_slug]
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+  }
+  specialistProgrammes: published_mv_specialist_1_0_3(
+    distinct_on: [synthetic_programme_slug]
+  ) {
+    programme_slug: synthetic_programme_slug
+  }
+  specialistUnits: published_mv_specialist_1_0_3(
+    distinct_on: [synthetic_programme_slug, unit_slug]
+  ) {
+    programme_slug: synthetic_programme_slug
+    unit_slug
+  }
+  specialistLessons: published_mv_specialist_1_0_3(
+    distinct_on: [synthetic_programme_slug, unit_slug, lesson_slug]
+  ) {
+    programme_slug: synthetic_programme_slug
+    unit_slug
+    lesson_slug
   }
 }

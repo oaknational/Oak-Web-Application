@@ -23,6 +23,7 @@ import { groupLessonPathways } from "@/components/TeacherComponents/helpers/less
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -109,6 +110,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await curriculumApi2023.lessonOverview({
             lessonSlug,
           });
+          lesson = await populateLessonWithTranscript(lesson);
         }
       }
 
