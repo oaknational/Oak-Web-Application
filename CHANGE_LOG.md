@@ -1,3 +1,29 @@
+## [1.475.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.1...v1.475.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* only combine unit listing pages for ks1-4 maths ([6ac5410](https://github.com/oaknational/Oak-Web-Application/commit/6ac54103b9fbe3c1fd8ac55e6a9007ece9a7e627))
+* only remove legacy slug from non-eyfs maths ([75278e7](https://github.com/oaknational/Oak-Web-Application/commit/75278e7e9f7d7770942b5bd10844d00982e22069))
+
+## [1.475.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.0...v1.475.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* types for autocomplete and school picker ([86c526f](https://github.com/oaknational/Oak-Web-Application/commit/86c526f9d75fdf3d36b5dcc72de4f777ebc430e3))
+
+# [1.475.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.3...v1.475.0) (2024-07-03)
+
+
+### Features
+
+* **package:** latest oak compoents for d and d bug fix ([fe4d54b](https://github.com/oaknational/Oak-Web-Application/commit/fe4d54b0351c13f52c60577852b0c62bbb419230))
+* **package:** latest oak compoents for d and d bug fix ([80f1a31](https://github.com/oaknational/Oak-Web-Application/commit/80f1a31878a4b583e4bb8999bda529259d40a8b9))
+* **package:** latest oak compoents for d and d bug fix ([a8024a6](https://github.com/oaknational/Oak-Web-Application/commit/a8024a62d3abcc0236974998cd806aa312110c94))
+
+## [1.474.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.2...v1.474.3) (2024-07-03)
+
 ## [1.474.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.1...v1.474.2) (2024-07-02)
 
 ## [1.474.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.474.0...v1.474.1) (2024-07-02)

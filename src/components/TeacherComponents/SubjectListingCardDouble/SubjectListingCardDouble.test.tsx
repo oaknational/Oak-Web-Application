@@ -104,7 +104,7 @@ describe("SubjectListingCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/teachers/programmes/biology-secondary-ks4/units",
+      "/teachers/programmes/maths-secondary-ks4/units",
     );
   });
   test("new units are labeled as 'new'", () => {
