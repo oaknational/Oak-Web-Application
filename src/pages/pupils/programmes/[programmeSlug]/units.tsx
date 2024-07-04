@@ -119,7 +119,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No curriculum data");
       }
 
-      const { programmeFields } = selectedProgramme;
+      const { programmeFields, isLegacy } = selectedProgramme;
       const {
         subject,
         phase,
@@ -158,7 +158,9 @@ export const getStaticProps: GetStaticProps<
         phase,
         icon: `subject-${subjectSlug}`,
         breadcrumbs,
-        counterText: "Choose a unit",
+        counterText: isLegacy
+          ? "Choose a previously released unit"
+          : "Choose a unit",
         counterLength: mainUnits.length,
         title: subject,
       };

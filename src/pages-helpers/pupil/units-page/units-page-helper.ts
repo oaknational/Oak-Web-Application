@@ -31,7 +31,7 @@ export function getSecondUnitSection({
         (unit) => unit.unitData.title,
       ),
     );
-    result.counterText = "Choose a new unit";
+    result.counterText = "Choose a unit";
     result.counterLength = result.units.length;
   } else {
     // Check for "legacy" programmes that could be displayed
