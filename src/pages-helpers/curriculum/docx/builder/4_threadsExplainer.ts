@@ -90,6 +90,15 @@ export default async function generate(
                           <w:b/>
                     </w:rPr>
                     <w:t>${cdata("What are threads?")}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(5.92),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
             <w:p>
@@ -114,6 +123,15 @@ export default async function generate(
                           <w:b/>
                     </w:rPr>
                     <w:t>${cdata("How to use threads")}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(6.71),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
             ${howToUseThreadsItems
@@ -145,6 +163,15 @@ export default async function generate(
                           <w:b/>
                     </w:rPr>
                     <w:t>${cdata("Tools for using threads")}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(7.5),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
 

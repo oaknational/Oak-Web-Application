@@ -21,6 +21,10 @@ export default async function generate(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/education-road.png",
     ),
+    underline: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/underline.png",
+    ),
   });
 
   const curriculaDescLines = data.curriculaDesc
@@ -62,6 +66,15 @@ export default async function generate(
                         <w:b/>
                     </w:rPr>
                     <w:t>${cdata(`Curriculum explainer`)}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(6.97),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
             ${curriculaDescLines

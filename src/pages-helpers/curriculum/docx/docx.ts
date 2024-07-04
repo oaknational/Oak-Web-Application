@@ -142,6 +142,8 @@ type ImageOpts = {
   height?: number;
   xPos?: number;
   yPos?: number;
+  xPosAnchor?: string;
+  yPosAnchor?: string;
   isDecorative?: boolean;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
@@ -153,6 +155,8 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     desc = "",
     xPos = undefined,
     yPos = undefined,
+    xPosAnchor = "page",
+    yPosAnchor = "page",
     isDecorative = false,
   } = opts;
 
@@ -164,10 +168,10 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     } else {
       return `<wp:anchor distT="0" distB="0" distL="114300" distR="114300" simplePos="0" relativeHeight="251658240" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1" wp14:anchorId="77F9B03D" wp14:editId="7F972CA2">
         <wp:simplePos x="0" y="0"/>
-        <wp:positionH relativeFrom="page">
+        <wp:positionH relativeFrom="${xPosAnchor}">
             <wp:posOffset>${xPos}</wp:posOffset>
         </wp:positionH>
-        <wp:positionV relativeFrom="page">
+        <wp:positionV relativeFrom="${yPosAnchor}">
             <wp:posOffset>${yPos}</wp:posOffset>
         </wp:positionV>
         ${xmlString}

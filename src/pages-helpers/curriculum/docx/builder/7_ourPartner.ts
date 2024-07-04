@@ -22,6 +22,10 @@ export default async function generate(
         process.cwd(),
         "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
       ),
+    underline: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/underline.png",
+    ),
   });
 
   const pageXml = `
@@ -38,6 +42,15 @@ export default async function generate(
                         <w:b/>
                     </w:rPr>
                     <w:t>${cdata("Our curriculum partner")}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(7.74),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
             <w:p>

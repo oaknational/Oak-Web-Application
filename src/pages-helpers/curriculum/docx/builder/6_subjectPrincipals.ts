@@ -20,6 +20,10 @@ export default async function generate(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow-bullet.png",
     ),
+    underline: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/underline.png",
+    ),
   });
 
   const pageXml = `
@@ -36,6 +40,15 @@ export default async function generate(
                         <w:b/>
                     </w:rPr>
                     <w:t>${cdata("Subject principals")}</w:t>
+                    ${createImage(images.underline, {
+                      width: cmToEmu(5.96),
+                      height: cmToEmu(0.21),
+                      xPos: cmToEmu(-0.19),
+                      yPos: cmToEmu(0.9),
+                      xPosAnchor: "column",
+                      yPosAnchor: "paragraph",
+                      isDecorative: true,
+                    })}
                 </w:r>
             </w:p>
             ${data.subjectPrinciples.map((subjectPrincipal) => {
