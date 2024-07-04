@@ -46,7 +46,7 @@ export default async function generate(
   });
 
   const whatAreThreadsContent =
-    "Threads are one way that we provide coherence across the curriculum. Threads highlight where and how units link together, with each specific thread containing knowledge and ideas to help frame units. Providing these threads means that we are able to support teachers' understanding of unit coherence, giving them an increasing ability to deliver great lessons to pupils.";
+    "We use threads to signpost groups of units that link to one another, that together build a common body of knowledge over time. We use the term thread, rather than vertical concepts, themes or big ideas, because it helps us bring to mind the visual concept of a thread weaving through the curriculum.";
   const howToUseThreadsItems = [
     "Familiarise yourself with all of the threads relating to the subject",
     "Identify the unit you will be delivering",
@@ -113,7 +113,7 @@ export default async function generate(
                           <w:sz w:val="36"/>
                           <w:b/>
                     </w:rPr>
-                    <w:t>${cdata("How to use threads?")}</w:t>
+                    <w:t>${cdata("How to use threads")}</w:t>
                 </w:r>
             </w:p>
             ${howToUseThreadsItems

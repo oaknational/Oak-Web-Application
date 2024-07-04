@@ -22,15 +22,15 @@ export default async function generate(zip: JSZip) {
   const points = [
     {
       title: "Knowledge and vocabulary rich",
-      text: "Lessons and units are knowledge and vocabulary rich so that pupils build on what they already know to develop powerful knowledge.",
+      text: "Lessons and units are knowledge and vocabulary rich. Pupils will build on what they already know to develop deep knowledge and apply this knowledge in the form of skills.",
     },
     {
       title: "Accessible",
-      text: "Creating an accessible curriculum that addresses the needs of all pupils is achieved to accessibility guidelines and requirements.",
+      text: "Creating an accessible curriculum that addresses the needs of all pupils and meets accessibility guidelines and requirements.",
     },
     {
       title: "Sequenced and coherent",
-      text: "Knowledge is sequenced and mapped in a coherent format so that pupils make meaningful connections.",
+      text: "Careful sequencing and attention to building coherence via vertical threads so that pupils build on prior knowledge and make meaningful connections.",
     },
     {
       title: "Diverse",
@@ -42,7 +42,7 @@ export default async function generate(zip: JSZip) {
     },
     {
       title: "Evidence-informed",
-      text: "Our curriculum is evidence-informed through rigorous application of best practice and the science of learning.",
+      text: "We take an evidence-informed approach applying the science of learning and subject-specific research.",
     },
   ];
 
