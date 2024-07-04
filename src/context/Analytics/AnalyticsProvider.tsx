@@ -9,6 +9,7 @@ import {
 } from "react";
 import router from "next/router";
 import { usePostHog } from "posthog-js/react";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -25,7 +26,6 @@ import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
 import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
-import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
 type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot";
@@ -116,9 +116,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const posthogService = useRef(
     posthogToAnalyticsService(posthogClient),
   ).current;
-  const posthogConsent = useCookieConsent().getConsentState(
-    ServicePolicyMap.POSTHOG,
-  );
+  const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const posthog = useAnalyticsService({
     service: posthogService,
     config: {
@@ -136,9 +134,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     portalId: getBrowserConfig("hubspotPortalId"),
     scriptDomain: getBrowserConfig("hubspotScriptDomain"),
   };
-  const hubspotConsent = useCookieConsent().getConsentState(
-    ServicePolicyMap.HUBSPOT,
-  );
+  const hubspotConsent = useOakConsent().getConsent(ServicePolicyMap.HUBSPOT);
   const hubspot = useAnalyticsService({
     service: hubspotWithQueue,
     config: hubspotConfig,
