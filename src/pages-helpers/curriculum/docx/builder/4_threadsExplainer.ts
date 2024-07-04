@@ -186,7 +186,7 @@ export default async function generate(
                             <w:b/>
                             <w:u w:val="single"/>
                         </w:rPr>
-                        <w:t>${cdata("Go to online curriculum.")}</w:t>
+                        <w:t>${cdata("Go to online curriculum")}</w:t>
                     </w:r>
                 `,
                 )}
