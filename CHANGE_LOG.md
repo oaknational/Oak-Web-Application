@@ -1,3 +1,11 @@
+# [1.477.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.476.0...v1.477.0) (2024-07-04)
+
+
+### Features
+
+* reduce skip to just video worksheet and slide deck ([49c2ab8](https://github.com/oaknational/Oak-Web-Application/commit/49c2ab8f542f15dab0ece47208aac60ecc48e4f5))
+* skip button for lesson overview ([8bce13f](https://github.com/oaknational/Oak-Web-Application/commit/8bce13f7f8e64f1dca03e4a14960a95d972a92fc))
+
 # [1.476.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.4...v1.476.0) (2024-07-04)
 
 
