@@ -225,6 +225,9 @@ async function main() {
     NEXT_PUBLIC_OAK_CONSENT_LOG_URL:
       process.env.NEXT_PUBLIC_OAK_CONSENT_LOG_URL ||
       oakConfig.oakConsent?.consentLogUrl,
+    NEXT_PUBLIC_OAK_USER_LOG_URL:
+      process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
+      oakConfig.oakConsent?.userLogUrl,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

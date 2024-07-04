@@ -1,5 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useCookieConsent } from "@oaknational/oak-components";
 
 import {
   PTAnchorLink,
@@ -13,11 +14,15 @@ import portableTextFixture from "./portableTextFixture.json";
 
 import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
+jest.mock("@oaknational/oak-components", () => {
+  return {
+    __esModule: true,
+    ...jest.requireActual("@oaknational/oak-components"),
+    useCookieConsent: jest.fn(),
+  };
+});
 
 const consoleWarnSpy = jest.spyOn(console, "warn");
-
-jest.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
 
 const reportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -142,9 +147,9 @@ describe("PortableText", () => {
 
   describe("PTActionTrigger", () => {
     it("renders a button that triggers cookie consent manager ", async () => {
-      const showConsentManager = jest.fn();
+      const openSettings = jest.fn();
       (useCookieConsent as jest.Mock).mockImplementation(() => ({
-        showConsentManager,
+        openSettings,
       }));
       const user = userEvent.setup();
 
@@ -167,7 +172,7 @@ describe("PortableText", () => {
       await user.click(button);
 
       await waitFor(() => {
-        expect(showConsentManager).toHaveBeenCalled();
+        expect(openSettings).toHaveBeenCalled();
       });
     });
   });

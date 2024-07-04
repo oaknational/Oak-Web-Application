@@ -53,6 +53,7 @@
   },
   "oakConsent": {
     "policiesUrl": "https://example.com/policies/",
-    "consentLogUrl": "https://example.com/consent/"
+    "consentLogUrl": "https://example.com/consent/",
+    "userLogUrl": "https://example.com/user/"
   }
 }

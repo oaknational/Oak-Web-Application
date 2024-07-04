@@ -20,24 +20,24 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
 import { MenuProvider } from "../../context/Menu";
 import { ToastProvider } from "../../context/Toast";
-import { CookieConsentContext } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
-import MockedCookieConsentProvider from "./MockedCookieConsentProvider";
 
 import theme, { OakTheme } from "@/styles/theme";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 export type ProviderProps = {
   children?: React.ReactNode;
 };
 
 type ProviderPropsByName = {
-  cookieConsent: { value: CookieConsentContext };
+  cookieConsent: { client: MockOakConsentClient };
   theme: { theme: OakTheme };
   oakTheme: { theme: typeof oakDefaultTheme };
   errorBoundary: Record<string, never>;
@@ -58,7 +58,10 @@ const providersByName: {
     Partial<ProviderPropsByName[K]>?,
   ];
 } = {
-  cookieConsent: [MockedCookieConsentProvider],
+  cookieConsent: [
+    CookieConsentProvider,
+    { client: new MockOakConsentClient() },
+  ],
   theme: [ThemeProvider, { theme }],
   oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
