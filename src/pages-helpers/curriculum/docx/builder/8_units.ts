@@ -9,27 +9,7 @@ import {
   wrapInLinkTo,
 } from "../docx";
 
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
-
-export function createProgrammeSlug(
-  unitData?: Unit | null,
-  examboardSlug?: string | null,
-) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
-  }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
-}
-
-export function createCurriculumSlug(slugs: Slugs) {
-  return `${slugs.subjectSlug}-${slugs.phaseSlug}`;
-}
+import { createCurriculumSlug, createProgrammeSlug } from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -40,11 +20,14 @@ export default async function generate(
     `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
       slugs,
     )}/units`;
+
+  const tier_slug = data.units.find((u) => u.tier_slug)?.tier_slug;
   data.units.forEach((unit, unitIndex) => {
     linkDefs[`unit_${unitIndex}_onlineResources`] =
       `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
         unit,
         slugs.examboardSlug,
+        tier_slug,
       )}/units/${unit.slug}/lessons`;
   });
   const links = await insertLinks(zip, linkDefs);

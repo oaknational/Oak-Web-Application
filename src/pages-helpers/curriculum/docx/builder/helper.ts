@@ -1,7 +1,33 @@
+import { Slugs } from "..";
+
 import {
   Thread,
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
+
+export function createProgrammeSlug(
+  unitData?: Unit | null,
+  examboardSlug?: string | null,
+  tierSlug?: string | null,
+) {
+  tierSlug = tierSlug ?? unitData?.tier_slug;
+  if (unitData?.keystage_slug === "ks4") {
+    return `${unitData.subject_slug}-${unitData.phase_slug}-${
+      unitData.keystage_slug
+    }${tierSlug ? "-" + tierSlug : ""}${
+      examboardSlug ? "-" + examboardSlug : ""
+    }`;
+  }
+  return unitData
+    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+    : "";
+}
+
+export function createCurriculumSlug(slugs: Slugs) {
+  return `${slugs.subjectSlug}-${slugs.phaseSlug}${
+    slugs.examboardSlug ? `-${slugs.examboardSlug}` : ""
+  }`;
+}
 
 // TODO: This is from from Sonali's work that's not yet merged
 export function createThreadOptions(units: Unit[]): Thread[] {

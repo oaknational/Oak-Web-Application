@@ -15,12 +15,16 @@ import {
   wrapInBookmarkPoint,
 } from "../docx";
 
+import { createCurriculumSlug } from "./helper";
+
 export default async function generate(
   zip: JSZip,
   { slugs }: { slugs: Slugs },
 ) {
   const links = await insertLinks(zip, {
-    onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${slugs.subjectSlug}-${slugs.phaseSlug}/units`,
+    onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
+      slugs,
+    )}/units`,
   });
   const images = await insertImages(zip, {
     curriculumScreenshot: join(
