@@ -39,7 +39,7 @@ export default async function generate(
                         <w:sz w:val="36"/>
                         <w:b/>
                     </w:rPr>
-                    <w:t>${cdata("Subject principals")}</w:t>
+                    <w:t>${cdata("Subject principles")}</w:t>
                     ${createImage(images.underline, {
                       width: cmToEmu(5.96),
                       height: cmToEmu(0.21),
