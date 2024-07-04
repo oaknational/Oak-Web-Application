@@ -210,7 +210,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "svg-sprite": "^2.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.1.6",
+    "typescript": "^5.5.3",
     "typescript-plugin-css-modules": "^5.0.2",
     "webpack": "^5.89.0",
     "webpack-bugsnag-plugins": "^1.8.0",
