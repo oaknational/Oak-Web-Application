@@ -285,6 +285,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }}
                       slugs={slugs}
                       anchorId="slide-deck"
+                      pageLinks={pageLinks}
                     >
                       <LessonOverviewPresentation
                         asset={presentationUrl}
@@ -298,6 +299,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
+                  pageLinks={pageLinks}
                 >
                   <LessonDetails
                     keyLearningPoints={keyLearningPoints}
@@ -327,6 +329,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks.findIndex((p) => p.label === "Video") ===
                       pageLinks.length - 1
                     }
+                    pageLinks={pageLinks}
                   >
                     <LessonOverviewVideo
                       video={videoMuxPlaybackId}
@@ -343,6 +346,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
+                    pageLinks={pageLinks}
                     downloadable={
                       getIsResourceDownloadable(
                         "worksheet-pdf",
@@ -382,6 +386,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Starter quiz"}
                     shareable={isLegacyLicense && !isSpecialist}
                     anchorId="starter-quiz"
+                    pageLinks={pageLinks}
                     downloadable={
                       getIsResourceDownloadable(
                         "intro-quiz-answers",
@@ -418,6 +423,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={exitQuizSectionRef}
+                    pageLinks={pageLinks}
                     title={"Exit quiz"}
                     anchorId="exit-quiz"
                     downloadable={
@@ -457,6 +463,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={additionalMaterialSectionRef}
+                    pageLinks={pageLinks}
                     title={"Additional material"}
                     anchorId="additional-material"
                     downloadable={

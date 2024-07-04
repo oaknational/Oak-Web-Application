@@ -16,6 +16,7 @@ import {
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
+import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 /**
  * Returns the intersection different pathways.
@@ -294,12 +295,13 @@ export const getBreadcrumbsForLessonPathway = (
     unitTitle,
   } = lesson;
 
-  const programmeSlugForMathsUnits =
-    subjectTitle === "Maths"
-      ? programmeSlug
-        ? removeLegacySlugSuffix(programmeSlug)
-        : null
-      : programmeSlug;
+  let programmeSlugForMathsUnits = programmeSlug;
+
+  if (subjectTitle === "Maths") {
+    if (programmeSlug && !isSlugEYFS(programmeSlug)) {
+      programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
+    }
+  }
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {

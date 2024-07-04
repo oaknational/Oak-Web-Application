@@ -17,6 +17,45 @@ import {
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+const examboards: PupilViewsProgrammeListingProps["examboards"] = [
+  {
+    examboard: "AQA",
+    examboardSlug: "aqa",
+    examboardDisplayOrder: 1,
+    isLegacy: false,
+  },
+  {
+    examboard: "Edexcel",
+    examboardSlug: "edexcel",
+    examboardDisplayOrder: 2,
+    isLegacy: false,
+  },
+];
+
+const tiers: PupilViewsProgrammeListingProps["tiers"] = [
+  {
+    tier: "foundation",
+    tierSlug: "foundation",
+    tierDisplayOrder: 1,
+    tierDescription: "Foundation",
+    isLegacy: false,
+  },
+  {
+    tier: "core",
+    tierSlug: "core",
+    tierDisplayOrder: 2,
+    tierDescription: "Core",
+    isLegacy: true,
+  },
+  {
+    tier: "higher",
+    tierSlug: "higher",
+    tierDisplayOrder: 3,
+    tierDescription: "Higher",
+    isLegacy: false,
+  },
+];
+
 const render = renderWithProviders();
 
 jest.mock("@oaknational/oak-components", () => {
@@ -85,6 +124,9 @@ describe("PublicProgrammeListing", () => {
       programmes: programmes,
       baseSlug: "baseSlug",
       yearSlug: "year-11",
+      examboardSlug: undefined,
+      examboards,
+      tiers: [],
     };
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -106,8 +148,11 @@ describe("PublicProgrammeListing", () => {
 
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
-      baseSlug: "baseSlug",
-      yearSlug: "year-11",
+      baseSlug: "maths-secondary-year-10",
+      yearSlug: "year-10",
+      examboardSlug: undefined,
+      examboards: [],
+      tiers,
     };
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -129,8 +174,11 @@ describe("PublicProgrammeListing", () => {
 
     const props: PupilViewsProgrammeListingProps = {
       programmes: programmes,
-      baseSlug: "baseSlug",
-      yearSlug: "year-11",
+      baseSlug: "maths-secondary-year-10",
+      yearSlug: "year-10",
+      examboardSlug: undefined,
+      examboards: examboards,
+      tiers,
     };
 
     const { getByRole } = render(
