@@ -100,7 +100,7 @@ export const LessonItemContainer = forwardRef<
           $flexDirection={["column", "row"]}
           $alignItems={["start", "end"]}
           $gap={["all-spacing-3", "all-spacing-8"]}
-          $mb={["space-between-m"]}
+          $mb={["space-between-xs", "space-between-m", "space-between-m"]}
           $position={"relative"}
         >
           {title && (
@@ -141,7 +141,11 @@ export const LessonItemContainer = forwardRef<
               style={
                 skipVideoButtonFocused
                   ? {}
-                  : { position: "absolute", left: "-1000px", opacity: 0 }
+                  : {
+                      position: "absolute",
+                      left: "-1000px",
+                      opacity: 0,
+                    }
               }
             >
               {`Skip ${lowerCaseTitle}`}
