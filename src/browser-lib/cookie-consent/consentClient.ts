@@ -12,6 +12,7 @@ export const consentClient = new OakConsentClient({
   appSlug: "owa",
   policiesUrl: getBrowserConfig("oakConsentPoliciesUrl"),
   consentLogUrl: getBrowserConfig("oakConsentLogUrl"),
+  userLogUrl: getBrowserConfig("oakUserLogUrl"),
   onError(error) {
     console.error("`OakConsentClient` error", error);
 

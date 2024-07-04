@@ -1,3 +1,10 @@
+# [1.476.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.4...v1.476.0) (2024-07-04)
+
+
+### Features
+
+* **ENG-795:** upgrade oak-consent-client to log first user visit ([cc9f659](https://github.com/oaknational/Oak-Web-Application/commit/cc9f659797720202d074719ee6a40f8c55c079a3))
+
 ## [1.475.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.3...v1.475.4) (2024-07-04)
 
 
