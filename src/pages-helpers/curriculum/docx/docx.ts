@@ -175,7 +175,18 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     if (xPos === undefined && yPos === undefined) {
       return `<wp:inline distT="0" distB="0" distL="0" distR="0">${xmlString}</wp:inline>`;
     } else {
-      return `<wp:anchor distT="0" distB="0" distL="114300" distR="114300" simplePos="0" relativeHeight="251658240" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1" wp14:anchorId="77F9B03D" wp14:editId="7F972CA2">
+      return `<wp:anchor
+        distT="0"
+        distB="0"
+        distL="114300"
+        distR="114300"
+        simplePos="0"
+        relativeHeight="251658240"
+        behindDoc="1"
+        locked="0"
+        layoutInCell="1"
+        allowOverlap="1"
+      >
         <wp:simplePos x="0" y="0"/>
         <wp:positionH relativeFrom="${xPosAnchor}">
             <wp:posOffset>${xPos}</wp:posOffset>
@@ -193,7 +204,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
             ${wrapInPosition(`
                 <wp:extent cx="${width}" cy="${height}"/>
                 <wp:effectExtent l="0" t="0" r="0" b="0"/>
-                ${xPos ? `<wp:wrapSquare wrapText="bothSides"/>` : ""}
+                ${xPos ? `<wp:wrapNone />` : ""}
                 <wp:docPr id="${uid}" name="${name}" descr="${desc}">
                     <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
                         <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
