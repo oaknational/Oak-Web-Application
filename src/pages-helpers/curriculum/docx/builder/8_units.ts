@@ -102,8 +102,9 @@ export default async function generate(
                 `;
               })
               .join("")}
-            ${data.units.map((unit, unitIndex) => {
-              return `
+            ${data.units
+              .map((unit, unitIndex) => {
+                return `
                     <w:p>
                         ${wrapInLinkTo(
                           links[`unit_${unitIndex}_onlineResources`]!,
@@ -115,7 +116,8 @@ export default async function generate(
                         )}
                     </w:p>
                 `;
-            })}
+              })
+              .join("")}
             ${
               years.length > 0
                 ? ""
@@ -132,3 +134,4 @@ export default async function generate(
 
   await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
 }
+2.5 - 1.25;
