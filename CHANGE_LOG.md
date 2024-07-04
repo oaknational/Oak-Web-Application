@@ -1,3 +1,12 @@
+## [1.475.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.3...v1.475.4) (2024-07-04)
+
+
+### Bug Fixes
+
+* add min widths to prevent CLS on year selection page ([49930a8](https://github.com/oaknational/Oak-Web-Application/commit/49930a863a1ee5e485659c703105c0d8d9ac90f0))
+
+## [1.475.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.2...v1.475.3) (2024-07-04)
+
 ## [1.475.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.1...v1.475.2) (2024-07-03)
 
 
