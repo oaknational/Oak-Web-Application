@@ -39,7 +39,9 @@ export default async function Page() {
         {user ? <SignOut username={user} /> : <SignIn />}
         <Link href="/downloads">Download free lesson resources</Link>
         <Link href="/downloads/restricted">
-          Download restricted lesson resources
+          {user
+            ? "Download restricted lesson resources"
+            : "Log in to download restricted lesson resources"}
         </Link>
       </div>
     </section>
