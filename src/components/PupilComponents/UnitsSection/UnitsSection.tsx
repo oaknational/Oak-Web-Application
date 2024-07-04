@@ -28,23 +28,24 @@ export const UnitsSection = ({
   units,
   phase,
   counterText,
-  counterLength,
   titleSlot,
   filterSlot,
   filterItems,
   id = "0",
 }: UnitsSectionProps) => {
+  const indexedUnits = units.map((unit, i) =>
+    unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
+  );
+
   const filteredUnits =
     filterItems.length > 0
-      ? units.filter(
+      ? indexedUnits.filter(
           (unit) =>
             unit[0] &&
             _.intersection(unit[0].unitData.subjectcategories, filterItems)
               .length > 0,
         )
-      : units;
-
-  if (filteredUnits.length === 0) return null;
+      : indexedUnits;
 
   return (
     <OakPupilJourneyList
@@ -61,51 +62,59 @@ export const UnitsSection = ({
             />
             <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
               {counterText}{" "}
-              <OakSpan $font={"heading-light-6"}>({counterLength})</OakSpan>
+              <OakSpan $font={"heading-light-6"}>
+                ({filteredUnits.length})
+              </OakSpan>
             </OakHeading>
           </OakFlex>
         </OakFlex>
       }
     >
-      {filteredUnits.map((optionalityUnit, i) => {
-        if (optionalityUnit.length === 1) {
-          // No optionalities
-          if (optionalityUnit[0]) return renderListItem(optionalityUnit[0], i);
-        } else if (optionalityUnit.length === 2) {
-          // 2 optionalities, doesn't need sublistings but the unit with optionality should be used for the title.
-          const unit = optionalityUnit.find(
-            (unit) => unit.programmeFields.optionality,
-          );
-          if (unit) return renderListItem(unit, i);
-        } else {
-          // More than 2 optionalities and therefore needs sublistings
-          if (optionalityUnit[0])
-            return (
-              <OakPupilJourneyOptionalityItem
-                key={i}
-                index={i + 1}
-                title={optionalityUnit[0]?.unitData.title}
-              >
-                {optionalityUnit.map(
-                  (unit, index) =>
-                    unit.programmeFields.optionality && (
-                      <OakPupilJourneyOptionalityButton
-                        key={index}
-                        title={unit.programmeFields.optionality}
-                        numberOfLessons={unit.lessonCount}
-                        href={resolveOakHref({
-                          page: "pupil-lesson-index",
-                          programmeSlug: unit.programmeSlug,
-                          unitSlug: unit.unitSlug,
-                        })}
-                        unavailable={unit.expired}
-                      />
-                    ),
-                )}
-              </OakPupilJourneyOptionalityItem>
-            );
-        }
-      })}
+      {filteredUnits.length > 0
+        ? filteredUnits.map((optionalityUnit, i) => {
+            if (optionalityUnit.length === 1) {
+              // No optionalities
+              if (optionalityUnit[0])
+                return renderListItem(
+                  optionalityUnit[0],
+                  optionalityUnit[0].supplementaryData.unitOrder,
+                );
+            } else if (optionalityUnit.length === 2) {
+              // 2 optionalities, doesn't need sublistings but the unit with optionality should be used for the title.
+              const unit = optionalityUnit.find(
+                (unit) => unit.programmeFields.optionality,
+              );
+              if (unit) return renderListItem(unit, i);
+            } else {
+              // More than 2 optionalities and therefore needs sublistings
+              if (optionalityUnit[0])
+                return (
+                  <OakPupilJourneyOptionalityItem
+                    key={i}
+                    index={i + 1}
+                    title={optionalityUnit[0]?.unitData.title}
+                  >
+                    {optionalityUnit.map(
+                      (unit, index) =>
+                        unit.programmeFields.optionality && (
+                          <OakPupilJourneyOptionalityButton
+                            key={index}
+                            title={unit.programmeFields.optionality}
+                            numberOfLessons={unit.lessonCount}
+                            href={resolveOakHref({
+                              page: "pupil-lesson-index",
+                              programmeSlug: unit.programmeSlug,
+                              unitSlug: unit.unitSlug,
+                            })}
+                            unavailable={unit.expired}
+                          />
+                        ),
+                    )}
+                  </OakPupilJourneyOptionalityItem>
+                );
+            }
+          })
+        : "No units found"}
     </OakPupilJourneyList>
   );
 };
