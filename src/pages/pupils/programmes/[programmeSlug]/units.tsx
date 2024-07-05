@@ -164,21 +164,15 @@ export const getStaticProps: GetStaticProps<
 
       const secondSectionLength = secondUnitSection.units.length;
 
-      const firstSectionText = (() => {
-        switch (true) {
-          case secondSectionLength > 0 && isLegacy:
-            return "Choose a previously released unit";
-          default:
-            return "Choose a unit";
-        }
-      })();
-
       const firstUnitSection: UnitsSectionData = {
         units: optionalityUnits,
         phase,
         icon: `subject-${subjectSlug}`,
         breadcrumbs,
-        counterText: firstSectionText,
+        counterText:
+          secondSectionLength > 0 && isLegacy
+            ? "Choose a previously released unit"
+            : "Choose a unit",
         counterLength: mainUnits.length,
         title: subject,
       };
