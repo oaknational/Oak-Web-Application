@@ -153,18 +153,6 @@ export const getStaticProps: GetStaticProps<
         breadcrumbs.push(tierDescription);
       }
 
-      const firstUnitSection: UnitsSectionData = {
-        units: optionalityUnits,
-        phase,
-        icon: `subject-${subjectSlug}`,
-        breadcrumbs,
-        counterText: isLegacy
-          ? "Choose a previously released unit"
-          : "Choose a unit",
-        counterLength: mainUnits.length,
-        title: subject,
-      };
-
       const secondUnitSection: UnitsSectionData = getSecondUnitSection({
         programmeSlug,
         baseSlug,
@@ -173,6 +161,27 @@ export const getStaticProps: GetStaticProps<
         unitsByProgramme,
         breadcrumbs,
       });
+
+      const secondSectionLength = secondUnitSection.units.length;
+
+      const firstSectionText = (() => {
+        switch (true) {
+          case secondSectionLength > 0 && isLegacy:
+            return "Choose a previously released unit";
+          default:
+            return "Choose a unit";
+        }
+      })();
+
+      const firstUnitSection: UnitsSectionData = {
+        units: optionalityUnits,
+        phase,
+        icon: `subject-${subjectSlug}`,
+        breadcrumbs,
+        counterText: firstSectionText,
+        counterLength: mainUnits.length,
+        title: subject,
+      };
 
       const backHrefSlugs: UseBackHrefProps = {
         baseSlug,
