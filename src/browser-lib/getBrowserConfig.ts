@@ -334,6 +334,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
     description: "URL to log consent choices to",
   },
+  oakUserLogUrl: {
+    value: process.env.NEXT_PUBLIC_OAK_USER_LOG_URL,
+    envName: "NEXT_PUBLIC_OAK_USER_LOG_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to log the first user visit to",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

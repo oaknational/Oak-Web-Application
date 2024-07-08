@@ -149,6 +149,40 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           expect(error).toMatchObject({ message: "No curriculum data" });
         }
       });
+      it("should throw error is phase is foundation", async () => {
+        const programmeFieldsSnake = programmeFieldsFixture({
+          overrides: {
+            phase: "foundation",
+          },
+        });
+        const programmeFields = keysToCamelCase(programmeFieldsSnake);
+
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "maths-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+            programmeFields,
+          }),
+        ]);
+
+        expect.assertions(1);
+        try {
+          await getStaticProps({
+            params: {
+              programmeSlug: "maths-secondary-year-10-foundation",
+            },
+          });
+        } catch (error) {
+          expect(error).toMatchObject({});
+        }
+      });
       it("Should add breadcrumbs to unit sections", async () => {
         const programmeFieldsSnake = programmeFieldsFixture({
           overrides: {

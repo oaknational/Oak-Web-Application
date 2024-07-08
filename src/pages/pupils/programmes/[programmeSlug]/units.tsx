@@ -122,7 +122,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No curriculum data");
       }
 
-      const { programmeFields } = selectedProgramme;
+      const { programmeFields, isLegacy } = selectedProgramme;
       const {
         subject,
         phase,
@@ -166,16 +166,6 @@ export const getStaticProps: GetStaticProps<
         breadcrumbs.push(tierDescription);
       }
 
-      const firstUnitSection: UnitsSectionData = {
-        units: optionalityUnits,
-        phase,
-        icon: `subject-${subjectSlug}`,
-        breadcrumbs,
-        counterText: "Choose a unit",
-        counterLength: mainUnits.length,
-        title: subject,
-      };
-
       const secondUnitSection: UnitsSectionData = getSecondUnitSection({
         programmeSlug,
         baseSlug,
@@ -184,6 +174,21 @@ export const getStaticProps: GetStaticProps<
         unitsByProgramme,
         breadcrumbs,
       });
+
+      const secondSectionLength = secondUnitSection.units.length;
+
+      const firstUnitSection: UnitsSectionData = {
+        units: optionalityUnits,
+        phase,
+        icon: `subject-${subjectSlug}`,
+        breadcrumbs,
+        counterText:
+          secondSectionLength > 0 && isLegacy
+            ? "Choose a previously released unit"
+            : "Choose a unit",
+        counterLength: mainUnits.length,
+        title: subject,
+      };
 
       const backHrefSlugs: UseBackHrefProps = {
         baseSlug,

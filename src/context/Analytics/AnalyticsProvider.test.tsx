@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import AnalyticsProvider from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
-import MockedCookieConsentProvider from "@/__tests__/__helpers__/MockedCookieConsentProvider";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 const posthogIdentify = jest.fn();
 const posthogCapture = jest.fn();
@@ -32,7 +33,7 @@ const ChildCallingIdentify = () => {
 
 const CallIdentify = () => {
   return (
-    <MockedCookieConsentProvider>
+    <CookieConsentProvider client={new MockOakConsentClient()}>
       <PostHogProvider
         // eslint-disable-next-line
         // @ts-ignore
@@ -46,7 +47,7 @@ const CallIdentify = () => {
           <ChildCallingIdentify />
         </AnalyticsProvider>
       </PostHogProvider>
-    </MockedCookieConsentProvider>
+    </CookieConsentProvider>
   );
 };
 
