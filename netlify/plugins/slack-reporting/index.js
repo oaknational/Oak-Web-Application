@@ -1,13 +1,13 @@
-const { getAppVersion, getIsPluginDisabled } = require("../lib");
+import { getAppVersion, getIsPluginDisabled } from "../lib";
 
-const {
+import {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
-} = require("./slack/create_slack_message");
-const getSlackConfig = require("./slack/get_slack_config");
-const sendMessage = require("./slack/send_message");
+} from "./slack/create_slack_message";
+import getSlackConfig from "./slack/get_slack_config";
+import sendMessage from "./slack/send_message";
 
-module.exports = function slackBuildReporterPlugin() {
+export default function slackBuildReporterPlugin() {
   let sharedInfo = {};
 
   /**
@@ -208,4 +208,4 @@ module.exports = function slackBuildReporterPlugin() {
       }
     },
   };
-};
+}
