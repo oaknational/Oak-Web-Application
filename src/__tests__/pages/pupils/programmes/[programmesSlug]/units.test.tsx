@@ -39,6 +39,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "unit-title-2",
+            subjectcategories: null,
           },
           supplementaryData: { unitOrder: 2 },
           programmeSlug: "maths-secondary-year-10-foundation",
@@ -48,6 +49,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "unit-title-1",
+            subjectcategories: null,
           },
           supplementaryData: { unitOrder: 1 },
           programmeSlug: "maths-secondary-year-10-foundation",
@@ -55,6 +57,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         }),
       ]);
 
+      //TODO : ensure subjectcategories is mocked correctly
       const getStaticPropsResult = await getStaticProps({
         params: {
           programmeSlug: "maths-secondary-year-10-foundation",
