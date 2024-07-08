@@ -1,16 +1,19 @@
 // You need to specify the env variables in the .env file.
 // See workspaces/google_cloud_functions/slack_build_reporter/.example.env
-require("dotenv").config({ path: "./.env.local" });
+
+import dotenv from "dotenv";
 
 /**
  * Run the function locally for development.
  */
-const {
+import {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
-} = require("./create_slack_message");
-const getSlackConfig = require("./get_slack_config");
-const sendMessage = require("./send_message");
+} from "./create_slack_message";
+import getSlackConfig from "./get_slack_config";
+import sendMessage from "./send_message";
+
+dotenv.config({ path: "./.env.local" });
 
 const messageConfigProdStart = {
   siteName: "fake test app name",

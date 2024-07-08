@@ -1,6 +1,6 @@
-const { getIsPluginDisabled } = require("../lib");
+import { getIsPluginDisabled } from "../lib";
 
-const { createDeployment, updateDeployment } = require("./actions");
+import { createDeployment, updateDeployment } from "./actions";
 
 function validateSuccessCode(statusCode) {
   if (statusCode < 200 || statusCode > 299) {

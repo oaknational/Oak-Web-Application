@@ -1,4 +1,4 @@
-const github = require("@actions/github");
+import { github } from "@actions/github";
 
 /**
  * Enum for GitHub deployment status states.
@@ -143,8 +143,4 @@ const createComment = async (token, options) => {
   });
 };
 
-module.exports = {
-  createComment,
-  createDeployment,
-  updateDeployment,
-};
+export { createComment, createDeployment, updateDeployment };
