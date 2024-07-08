@@ -2,6 +2,11 @@ import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
@@ -17,6 +22,7 @@ import LandingPagesHeader, {
 } from "@/components/AppComponents/LayoutLandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -74,23 +80,34 @@ const Layout: FC<LayoutProps> = (props) => {
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
-
   const { isPreview } = useRouter();
 
   return (
     <>
-      <Seo {...seoProps} />
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <OrganizationJsonLd />
-      <Container $background={$background}>
-        {banner}
-        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-        <StyledLayout>{children}</StyledLayout>
-        <Footer />
-        {isPreview && <LayoutPreviewControls />}
-      </Container>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Seo {...seoProps} />
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <OrganizationJsonLd />
+        <Container $background={$background}>
+          <OakBox
+            $position={"absolute"}
+            $height={"all-spacing-13"}
+            $width={"all-spacing-11"}
+            $zIndex={"in-front"}
+            $top={"all-spacing-14"}
+            $left={"all-spacing-6"}
+          >
+            <SkipLink href="#main">Skip to content</SkipLink>
+          </OakBox>
+          {banner}
+          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+          <StyledLayout id="main">{children}</StyledLayout>
+          <Footer />
+          {isPreview && <LayoutPreviewControls />}
+        </Container>
+      </OakThemeProvider>
     </>
   );
 };

@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { PortableTextMarkComponent } from "@portabletext/react";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakSpan, useCookieConsent } from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
-import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 enum AllowedActions {
   OPEN_COOKIE_SETTINGS = "OPEN_COOKIE_SETTINGS",
@@ -28,14 +27,14 @@ export const PTActionTrigger: PortableTextMarkComponent<{
 };
 
 const ConsentManagerTrigger: FC<{ children?: React.ReactNode }> = (props) => {
-  const { showConsentManager } = useCookieConsent();
+  const { openSettings } = useCookieConsent();
 
   return (
     <UnstyledButton
       $color="navy"
       $textDecoration={"underline"}
       $display="inline"
-      onClick={showConsentManager}
+      onClick={openSettings}
     >
       <OakSpan $color="navy">{props.children}</OakSpan>
     </UnstyledButton>

@@ -8,6 +8,7 @@ import {
   OakLI,
   OakP,
   OakFlex,
+  useCookieConsent,
 } from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
@@ -20,7 +21,6 @@ import Svg from "@/components/SharedComponents/Svg";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
@@ -60,7 +60,7 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { track } = useAnalytics();
-  const { showConsentManager } = useCookieConsent();
+  const { openSettings } = useCookieConsent();
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
 
@@ -70,7 +70,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         variant="minimal"
         $font={"body-2"}
         label={props.text}
-        onClick={showConsentManager}
+        onClick={openSettings}
         labelColor={"black"}
         $hoverStyles={["underline-link-text"]}
       />

@@ -16,6 +16,7 @@ const props: LessonItemContainerProps = {
   isSpecialist: false,
   slugs: { lessonSlug, unitSlug, programmeSlug },
   anchorId: "slide-deck",
+  pageLinks: [],
 };
 
 const meta: Meta<typeof LessonItemContainer> = {
