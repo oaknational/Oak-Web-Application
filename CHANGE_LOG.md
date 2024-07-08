@@ -1,3 +1,10 @@
+# [1.478.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.4...v1.478.0) (2024-07-08)
+
+
+### Features
+
+* skip to main content button ([66dbd88](https://github.com/oaknational/Oak-Web-Application/commit/66dbd886ed8164ac1d74291aad79d7f800f7587a))
+
 ## [1.477.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.3...v1.477.4) (2024-07-08)
 
 ## [1.477.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.2...v1.477.3) (2024-07-08)
