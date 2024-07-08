@@ -23,6 +23,18 @@ export function uncapitalize(input: string) {
   return output;
 }
 
+export function oakUncapitalize(input: string) {
+  const outputWithoutSpecialCases = uncapitalize(input);
+  return outputWithoutSpecialCases.replace(
+    /\b(english|french|spanish|german)\b/gi,
+    (word) => {
+      const firstLetter = word.slice(0, 1);
+      const rest = word.slice(1);
+      return `${firstLetter.toUpperCase()}${rest}`;
+    },
+  );
+}
+
 export function createProgrammeSlug(
   unitData?: Unit | null,
   examboardSlug?: string | null,

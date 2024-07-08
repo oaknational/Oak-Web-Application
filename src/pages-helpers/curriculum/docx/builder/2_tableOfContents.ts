@@ -4,7 +4,7 @@ import { CombinedCurriculumData } from "..";
 import { cdata, xmlElementToJson } from "../xml";
 import { appendBodyElements, wrapInLinkToBookmark } from "../docx";
 
-import { uncapitalize } from "./helper";
+import { oakUncapitalize } from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -35,7 +35,7 @@ export default async function generate(
     }),
     {
       anchorId: "section_threads_appendix",
-      text: `Threads in ${uncapitalize(data.subjectTitle)}`,
+      text: `Threads in ${oakUncapitalize(data.subjectTitle)}`,
     },
   ];
 
