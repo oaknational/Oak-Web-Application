@@ -1,3 +1,21 @@
+# [1.478.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.4...v1.478.0) (2024-07-08)
+
+
+### Features
+
+* skip to main content button ([66dbd88](https://github.com/oaknational/Oak-Web-Application/commit/66dbd886ed8164ac1d74291aad79d7f800f7587a))
+
+## [1.477.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.3...v1.477.4) (2024-07-08)
+
+## [1.477.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.2...v1.477.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* add aria label to homepage tab nav bar ([cf1c43d](https://github.com/oaknational/Oak-Web-Application/commit/cf1c43dc0c17a3f5ba249ca23e45cfbf88f59892))
+* resolve conflicts ([671cf0b](https://github.com/oaknational/Oak-Web-Application/commit/671cf0b2a167834b52857f178ff99a53e9d89301))
+* resolve conflicts ([7f1b8da](https://github.com/oaknational/Oak-Web-Application/commit/7f1b8daf8192527f2478d720fdd12c768f861aa1))
+
 ## [1.477.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.1...v1.477.2) (2024-07-08)
 
 
