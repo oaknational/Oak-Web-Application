@@ -113,7 +113,7 @@ export async function insertLinks<T extends Record<string, string>>(
 }
 
 export function cmToTwip(cm: number) {
-  return cm * 0.3937007874 * 1440;
+  return Math.round(cm * 0.3937007874 * 1440);
 }
 
 // English Metric Unit (EMU): A measurement in computer typography. There are
@@ -123,6 +123,10 @@ export function cmToTwip(cm: number) {
 export function cmToEmu(cm: number) {
   const inches = cm / 2.54;
   return Math.round(inches * 914400);
+}
+
+export function emuToCm(emu: number) {
+  return (emu / 914400) * 2.54;
 }
 
 export function wrapInLinkTo(id: string, childXml: string) {
@@ -154,6 +158,7 @@ type ImageOpts = {
   xPosAnchor?: string;
   yPosAnchor?: string;
   isDecorative?: boolean;
+  isWrapTight?: boolean;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
   const uid = IMAGE_ID++;
@@ -167,6 +172,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     xPosAnchor = "page",
     yPosAnchor = "page",
     isDecorative = false,
+    isWrapTight = false,
   } = opts;
 
   const isDecorativeVal = isDecorative ? 1 : 0;
@@ -178,7 +184,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
       return `<wp:anchor
         distT="0"
         distB="0"
-        distL="114300"
+        distL="0"
         distR="114300"
         simplePos="0"
         relativeHeight="251658240"
@@ -204,7 +210,25 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
             ${wrapInPosition(`
                 <wp:extent cx="${width}" cy="${height}"/>
                 <wp:effectExtent l="0" t="0" r="0" b="0"/>
-                ${xPos ? `<wp:wrapNone />` : ""}
+                
+                ${xPos && !isWrapTight ? "<wp:wrapNone />" : ""}
+                ${
+                  !isWrapTight
+                    ? ""
+                    : `
+                  <wp:wrapTight wrapText="bothSides">
+                    <wp:wrapPolygon edited="0" >
+                      <wp:start x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                    </wp:wrapPolygon>
+                  </wp:wrapTight>
+                `
+                }
                 <wp:docPr id="${uid}" name="${name}" descr="${desc}">
                     <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
                         <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">

@@ -1,12 +1,17 @@
+import { join } from "path";
+
 import type JSZip from "jszip";
 
 import { cdata, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData, Slugs } from "..";
 import {
   appendBodyElements,
+  insertImages,
   insertLinks,
   wrapInBookmarkPoint,
   wrapInLinkTo,
+  createImage,
+  cmToEmu,
 } from "../docx";
 
 import { createCurriculumSlug, createProgrammeSlug } from "./helper";
@@ -15,6 +20,13 @@ export default async function generate(
   zip: JSZip,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
+  const images = await insertImages(zip, {
+    jumpOutArrow: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow.png",
+    ),
+  });
+
   const linkDefs: Record<string, string> = {};
   linkDefs["interactiveSequence"] =
     `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
@@ -51,9 +63,9 @@ export default async function generate(
                             <w:r>
                                 <w:rPr>
                                     <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                    <w:b />
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="56"/>
-                                    <w:b/>
                                 </w:rPr>
                                 <w:t>Year ${cdata(year)} units</w:t>
                             </w:r>
@@ -67,12 +79,22 @@ export default async function generate(
                             <w:r>
                                 <w:rPr>
                                     <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                    <w:b />
                                     <w:color w:val="222222"/>
                                     <w:sz w:val="24"/>
-                                    <w:b/>
                                     <w:u w:val="single"/>
                                 </w:rPr>
                                 <w:t>View interactive sequence online</w:t>
+                                ${createImage(images.jumpOutArrow, {
+                                  width: cmToEmu(0.57),
+                                  height: cmToEmu(0.57),
+                                  xPos: cmToEmu(0.3),
+                                  yPos: cmToEmu(-0.01),
+                                  xPosAnchor: "character",
+                                  yPosAnchor: "line",
+                                  isDecorative: true,
+                                  isWrapTight: true,
+                                })}
                             </w:r>
                         `,
                         )}
@@ -115,17 +137,11 @@ export default async function generate(
                 `;
               })
               .join("")}
-            ${
-              years.length > 0
-                ? ""
-                : `
-                <w:p>
-                    <w:r>
-                        <w:br w:type="page"/>
-                    </w:r>
-                </w:p> 
-            `
-            }          
+            <w:p>
+                <w:r>
+                    <w:br w:type="page"/>
+                </w:r>
+            </w:p> 
         </root>
     `;
 

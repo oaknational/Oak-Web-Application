@@ -35,9 +35,9 @@ export default async function generate(
                 <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                        <w:b />
                         <w:color w:val="222222"/>
                         <w:sz w:val="36"/>
-                        <w:b/>
                     </w:rPr>
                     <w:t>${cdata("Subject principles")}</w:t>
                     ${createImage(images.underline, {
@@ -72,11 +72,6 @@ export default async function generate(
                       height: cmToEmu(1.03),
                       isDecorative: true,
                     })}
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:br w:type="page"/>
                 </w:r>
             </w:p>
         </root>

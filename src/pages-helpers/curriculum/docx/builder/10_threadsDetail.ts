@@ -27,9 +27,9 @@ export default async function generate(
                     <w:r>
                         <w:rPr>
                             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                            <w:b w:val="true"/>
                             <w:color w:val="222222"/>
                             <w:sz w:val="28"/>
-                            <w:b/>
                         </w:rPr>
                         <w:t>${cdata(`Year ${year}`)}</w:t>
                     </w:r>
@@ -67,7 +67,16 @@ export default async function generate(
                         <w:color w:val="222222"/>
                         <w:sz w:val="36"/>
                     </w:rPr>
-                    <w:t>${cdata(`Thread: ${thread.title}`)}</w:t>
+                    <w:t xml:space="preserve">${cdata(`Thread: `)}</w:t>
+                </w:r>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                        <w:b />
+                        <w:color w:val="222222"/>
+                        <w:sz w:val="36"/>
+                    </w:rPr>
+                    <w:t>${cdata(thread.title)}</w:t>
                 </w:r>
             </w:p>
             ${yearElements.join("")}
