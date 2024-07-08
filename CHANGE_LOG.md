@@ -1,3 +1,25 @@
+# [1.477.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.476.0...v1.477.0) (2024-07-04)
+
+
+### Features
+
+* reduce skip to just video worksheet and slide deck ([49c2ab8](https://github.com/oaknational/Oak-Web-Application/commit/49c2ab8f542f15dab0ece47208aac60ecc48e4f5))
+* skip button for lesson overview ([8bce13f](https://github.com/oaknational/Oak-Web-Application/commit/8bce13f7f8e64f1dca03e4a14960a95d972a92fc))
+
+# [1.476.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.4...v1.476.0) (2024-07-04)
+
+
+### Features
+
+* **ENG-795:** upgrade oak-consent-client to log first user visit ([cc9f659](https://github.com/oaknational/Oak-Web-Application/commit/cc9f659797720202d074719ee6a40f8c55c079a3))
+
+## [1.475.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.3...v1.475.4) (2024-07-04)
+
+
+### Bug Fixes
+
+* add min widths to prevent CLS on year selection page ([49930a8](https://github.com/oaknational/Oak-Web-Application/commit/49930a863a1ee5e485659c703105c0d8d9ac90f0))
+
 ## [1.475.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.2...v1.475.3) (2024-07-04)
 
 ## [1.475.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.475.1...v1.475.2) (2024-07-03)
