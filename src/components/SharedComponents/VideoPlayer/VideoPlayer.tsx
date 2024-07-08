@@ -195,12 +195,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     reportError(error, { ...getState() });
   };
 
-  if (process.env.NODE_ENV === "test") {
-    /**
-     * @todo add mocked video player or tests for video player
-     */
-    return null;
-  }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
       <OakFlex
