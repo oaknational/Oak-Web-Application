@@ -1,11 +1,10 @@
 import Head from "next/head";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
   OakBox,
   oakDefaultTheme,
-  OakSecondaryButton,
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
@@ -23,6 +22,7 @@ import LandingPagesHeader, {
 } from "@/components/AppComponents/LayoutLandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -80,7 +80,6 @@ const Layout: FC<LayoutProps> = (props) => {
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
-  const [skipVideoButtonFocused, setSkipVideoButtonFocused] = useState(false);
   const { isPreview } = useRouter();
 
   return (
@@ -100,22 +99,7 @@ const Layout: FC<LayoutProps> = (props) => {
             $top={"all-spacing-14"}
             $left={"all-spacing-6"}
           >
-            <OakSecondaryButton
-              element="a"
-              href={`#main`}
-              onFocus={() => setSkipVideoButtonFocused(true)}
-              onBlur={() => setSkipVideoButtonFocused(false)}
-              style={
-                skipVideoButtonFocused
-                  ? {}
-                  : {
-                      left: "-1000px",
-                      opacity: 0,
-                    }
-              }
-            >
-              Skip to content
-            </OakSecondaryButton>
+            <SkipLink href="#main">Skip to content</SkipLink>
           </OakBox>
           {banner}
           <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />

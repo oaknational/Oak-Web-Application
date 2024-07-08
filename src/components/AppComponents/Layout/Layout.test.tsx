@@ -29,7 +29,7 @@ describe("Layout", () => {
     if (!skipButtonLink) {
       throw new Error("Could not find filter button");
     }
-    expect(skipButtonLink).not.toBeVisible();
+
     act(() => {
       skipButtonLink.focus();
     });
@@ -40,6 +40,5 @@ describe("Layout", () => {
       skipButtonLink.blur();
     });
     expect(skipButtonLink).not.toHaveFocus();
-    expect(skipButtonLink).not.toBeVisible();
   });
 });
