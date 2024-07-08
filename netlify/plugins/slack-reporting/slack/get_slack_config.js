@@ -1,4 +1,4 @@
-import { camelCase } from "change-case";
+const { camelCase } = require("change-case");
 
 const SLACK_BOT_TOKEN = "SLACK_BOT_TOKEN";
 const SLACK_SIGNING_SECRET = "SLACK_SIGNING_SECRET";
@@ -24,7 +24,7 @@ const slackConfigKeys = [
  * @returns {SlackConfig} The Slack app config.
  * @throws {TypeError} Throws if necessary env variables are undefined.
  */
-export default function getSlackConfig() {
+module.exports = function getSlackConfig() {
   const missingValueLabel = "<-- MISSING VALUE";
   const slackConfigEntries = slackConfigKeys.map((key) => [
     camelCase(key.replace("SLACK_", "")),
@@ -44,4 +44,4 @@ export default function getSlackConfig() {
   }
 
   return slackConfig;
-}
+};
