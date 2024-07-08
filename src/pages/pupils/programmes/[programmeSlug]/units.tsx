@@ -149,7 +149,8 @@ export const getStaticProps: GetStaticProps<
         .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
         .filter((s) => !!s);
 
-      const subjectCategories = _.uniq(allSubjectCategories);
+      // ts will not accept that the above removes the possibility of undefined
+      const subjectCategories = _.uniq(allSubjectCategories) as string[];
 
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];
