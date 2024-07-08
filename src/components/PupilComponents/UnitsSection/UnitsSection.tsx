@@ -51,9 +51,9 @@ export const UnitsSection = ({
     <OakPupilJourneyList
       phase={phase}
       titleSlot={titleSlot}
+      filterSlot={filterSlot}
       counterSlot={
         <OakFlex $flexDirection={"column"} $width={"100%"}>
-          <OakFlex $alignSelf={"end"}>{filterSlot}</OakFlex>
           <OakFlex $gap="space-between-xs" $alignItems={"center"}>
             <OakInfo
               id={`unit-info-${id}`}

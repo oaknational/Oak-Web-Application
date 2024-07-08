@@ -4,8 +4,8 @@ import {
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
-  OakFlex,
-  OakSecondaryButton,
+  OakButtonAsRadioGroup,
+  OakSecondaryButtonAsRadio,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
@@ -64,17 +64,25 @@ export const PupilViewsUnitListing = ({
             filterSlot={
               unitSection.title &&
               unitSection.icon &&
-              subjectCategories.length > 0 ? (
-                <OakFlex>
-                  <OakSecondaryButton onClick={() => applyFilter("All")}>
+              subjectCategories.length > 1 ? (
+                <OakButtonAsRadioGroup
+                  name="categories"
+                  ariaLabel="categories"
+                  onChange={(value) => {
+                    console.log(value);
+                    applyFilter(value);
+                  }}
+                  defaultValue="All"
+                >
+                  <OakSecondaryButtonAsRadio value={"All"}>
                     All
-                  </OakSecondaryButton>
+                  </OakSecondaryButtonAsRadio>
                   {subjectCategories.map((category) => (
-                    <OakSecondaryButton onClick={() => applyFilter(category)}>
+                    <OakSecondaryButtonAsRadio key={category} value={category}>
                       {category}
-                    </OakSecondaryButton>
+                    </OakSecondaryButtonAsRadio>
                   ))}
-                </OakFlex>
+                </OakButtonAsRadioGroup>
               ) : null
             }
             filterItems={filterItems}
