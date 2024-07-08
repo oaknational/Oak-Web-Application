@@ -102,9 +102,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       $flexDirection={"column"}
                       $height={"100%"}
                     >
-                      <OakHeading $font={"heading-7"} tag={"h3"}>
-                        {doc.title}
-                      </OakHeading>
+                      <OakP $font={"heading-7"}>{doc.title}</OakP>
                       <OakFlex
                         $alignItems={"center"}
                         $justifyContent={"space-between"}
