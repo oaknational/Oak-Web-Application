@@ -9,7 +9,7 @@
 // For a more general set up with interactivity see https://api.slack.com/start/building/bolt-js .
 
 // https://api.slack.com/start/building/bolt-js
-const { App } = require("@slack/bolt");
+import { App } from "@slack/bolt";
 
 /**
  * Send a message to a Slack channel via a Slack app.
@@ -20,7 +20,7 @@ const { App } = require("@slack/bolt");
  * @param {string} slackConfig.signingSecret The Slack app's signing secret.
  * @param {string} slackConfig.channelId The Slack channel ID to report to. The app must be a member of the channel.
  */
-module.exports = async function sendMessage(slackMessage, slackConfig) {
+export default async function sendMessage(slackMessage, slackConfig) {
   const encodedBlocks = JSON.stringify(slackMessage.blocks);
   const shortText = slackMessage.shortText;
 
@@ -45,4 +45,4 @@ module.exports = async function sendMessage(slackMessage, slackConfig) {
   } catch (error) {
     console.error(error);
   }
-};
+}

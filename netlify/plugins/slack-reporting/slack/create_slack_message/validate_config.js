@@ -8,7 +8,7 @@
  *
  * @throws {TypeError} Throws if the config has missing values.
  */
-module.exports = function validateConfig(configKeys, config) {
+export default function validateConfig(configKeys, config) {
   const checkedConfig = {};
   const missingValueLabel = "<-- MISSING VALUE";
   configKeys.forEach(
@@ -22,4 +22,4 @@ module.exports = function validateConfig(configKeys, config) {
       \nreceived:\n${JSON.stringify(checkedConfig, undefined, 2)}`,
     );
   }
-};
+}
