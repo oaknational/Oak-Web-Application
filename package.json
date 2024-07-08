@@ -78,7 +78,6 @@
     "@types/uuid": "^10.0.0",
     "better-react-mathjax": "^2.0.3",
     "buffer": "^6.0.3",
-    "change-case": "^5.4.4",
     "crypto-browserify": "^3.12.0",
     "date-fns": "^3.6.0",
     "favicons": "^7.1.5",
