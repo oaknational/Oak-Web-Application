@@ -5,6 +5,11 @@ import {
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
+/**
+ * Uncapitalize everything except acronyms
+ * @param input capitalized string
+ * @returns uncapitalized string
+ */
 export function uncapitalize(input: string) {
   const chars = input.split("");
   let output = ``;
@@ -14,7 +19,6 @@ export function uncapitalize(input: string) {
       (i == 0 || chars[i - 1]?.match(/[^A-Z.]/)) &&
       (i === chars.length - 1 || chars[i + 1]?.match(/[^A-Z]/))
     ) {
-      console.log("match");
       output += chars[i]?.toLowerCase();
     } else {
       output += chars[i];
@@ -23,7 +27,12 @@ export function uncapitalize(input: string) {
   return output;
 }
 
-export function oakUncapitalize(input: string) {
+/**
+ * Uncapitalize with language exceptions
+ * @param input capitalized string
+ * @returns uncapitalized string
+ */
+export function uncapitalizeSubject(input: string) {
   const outputWithoutSpecialCases = uncapitalize(input);
   return outputWithoutSpecialCases.replace(
     /\b(english|french|spanish|german)\b/gi,

@@ -13,7 +13,7 @@ import {
   wrapInLinkToBookmark,
 } from "../docx";
 
-import { createThreadOptions, oakUncapitalize } from "./helper";
+import { createThreadOptions, uncapitalizeSubject } from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -44,7 +44,9 @@ export default async function generate(
                             <w:b/>
                         </w:rPr>
                         <w:t>${cdata(
-                          `Threads in ${oakUncapitalize(data.subjectTitle)}`,
+                          `Threads in ${uncapitalizeSubject(
+                            data.subjectTitle,
+                          )}`,
                         )}</w:t>
                     </w:r>
                 `,
