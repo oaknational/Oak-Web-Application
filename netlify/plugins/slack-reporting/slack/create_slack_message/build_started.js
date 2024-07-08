@@ -1,4 +1,4 @@
-import validateConfig from "./validate_config";
+const validateConfig = require("./validate_config");
 
 /**
  * Construct a "build started" Slack message using Block Kit format.
@@ -50,4 +50,4 @@ function createBuildStartedSlackMessage(config) {
   };
 }
 
-export default createBuildStartedSlackMessage;
+module.exports = createBuildStartedSlackMessage;
