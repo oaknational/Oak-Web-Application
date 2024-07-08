@@ -236,7 +236,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     startTime = reloadOnErrors[reloadOnErrors.length - 1] || 0;
   }
 
-  const existingComponent = (
+  return (
     <OakFlex
       $flexDirection={"column"}
       $ba={"border-solid-l"}
@@ -277,21 +277,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         }}
       />
     </OakFlex>
-  );
-  return (
-    <>
-      {existingComponent}
-      <OakFlex $mt={"space-between-m"} $justifyContent="center">
-        {" "}
-        <button
-          onClick={() => {
-            onError(new Event("timeout"));
-          }}
-        >
-          Trigger Error count ({reloadOnErrors.length})
-        </button>
-      </OakFlex>
-    </>
   );
 };
 
