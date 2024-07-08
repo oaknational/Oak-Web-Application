@@ -1,7 +1,7 @@
-const createBuildStartedSlackMessage = require("./build_started").default;
-const createBuildCompleteSlackMessage = require("./build_complete").default;
+import createBuildStartedSlackMessage from "./build_started";
+import createBuildCompleteSlackMessage from "./build_complete";
 
-module.exports = {
+export default {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
 };
