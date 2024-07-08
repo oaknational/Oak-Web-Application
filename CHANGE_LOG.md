@@ -1,3 +1,10 @@
+## [1.477.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.1...v1.477.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **sec:** encode URI ([a1e2a1c](https://github.com/oaknational/Oak-Web-Application/commit/a1e2a1ca93262a1927e9db8f689dd6ec8449a6ef))
+
 ## [1.477.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.0...v1.477.1) (2024-07-08)
 
 
