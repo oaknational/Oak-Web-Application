@@ -1,3 +1,15 @@
+## [1.477.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.0...v1.477.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* **units:** count copy for legacy units ([a550576](https://github.com/oaknational/Oak-Web-Application/commit/a5505762a670c72267233873a0872849b48c3c11))
+* **units:** count copy for legacy units ([ab87cc9](https://github.com/oaknational/Oak-Web-Application/commit/ab87cc9226601aabd1692271028c27ace486667c))
+* **units:** count copy for legacy units ([3bd0b55](https://github.com/oaknational/Oak-Web-Application/commit/3bd0b551f5caa2a1285f89f949dc0e9883602408))
+* **units:** count copy for legacy units ([d95099e](https://github.com/oaknational/Oak-Web-Application/commit/d95099ef754e0a47abcb2d34a03d13cbfd1f0321))
+* **units:** fix unit text for legacy and cycle 1 unit list ([e958542](https://github.com/oaknational/Oak-Web-Application/commit/e95854251a8e2069a076b1e785b5120d9795d57e))
+* **units:** fix unit text for legacy and cycle 1 unit list ([65393fd](https://github.com/oaknational/Oak-Web-Application/commit/65393fdc4f2418e892f1e82450cbc19bc4d447c4))
+
 # [1.477.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.476.0...v1.477.0) (2024-07-04)
 
 
