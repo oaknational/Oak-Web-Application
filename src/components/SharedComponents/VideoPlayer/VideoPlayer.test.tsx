@@ -2,24 +2,36 @@ import React, { forwardRef } from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import VideoPlayer, { VideoPlayerProps } from "./VideoPlayer";
+import VideoPlayer, {
+  VideoEventCallbackArgs,
+  VideoPlayerProps,
+} from "./VideoPlayer";
 
 let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 // Override the global mock for @mux/mux-player-react/lazy
 jest.mock("@mux/mux-player-react/lazy", () => {
-  // @ts-expect-error ref wanted, but not needed for this test
-  return forwardRef(({ onError }) => (
-    <div data-testid="mux-player">
-      <button
-        data-testid="error-button"
-        onClick={() => {
-          onError(currentErrorEvent);
-        }}
-      >
-        Error
-      </button>
-    </div>
-  ));
+  // @ts-expect-error - MuxPlayer mock
+  return forwardRef(({ onError, onPlay, onPause }, ref) => {
+    ref; // This prevents warning about ref not being used
+    return (
+      <div data-testid="mux-player">
+        <button
+          data-testid="error-button"
+          onClick={() => {
+            onError(currentErrorEvent);
+          }}
+        >
+          Error
+        </button>
+        <button data-testid="play-button" onClick={onPlay}>
+          Play
+        </button>
+        <button data-testid="pause-button" onClick={onPause}>
+          Pause
+        </button>
+      </div>
+    );
+  });
 });
 
 // Mocking custom hooks and utility functions
@@ -54,14 +66,17 @@ jest.mock("@/common-lib/error-reporter", () =>
   jest.fn(() => mockErrorReporter),
 );
 
+type MockVideoCallbackArgs = jest.Mock<void, [VideoEventCallbackArgs]>;
+
 describe("VideoPlayer", () => {
+  const userEventCallbackMock = jest.fn() as MockVideoCallbackArgs;
   const defaultProps: VideoPlayerProps = {
     playbackId: "testPlaybackId",
     playbackPolicy: "public",
     title: "Test Video",
     location: "pupil",
     isLegacy: false,
-    userEventCallback: jest.fn(),
+    userEventCallback: userEventCallbackMock,
   };
 
   it("handles and doesn't report network error event", async () => {
@@ -95,6 +110,32 @@ describe("VideoPlayer", () => {
         title: "Test Video",
       },
     );
+  });
+
+  it("handles and reports onPlay event", async () => {
+    render(<VideoPlayer {...defaultProps} />);
+    const playButton = screen.getByTestId("play-button");
+    jest.clearAllMocks();
+    await userEvent.click(playButton);
+
+    expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
+      duration: 100,
+      event: "play",
+      timeElapsed: 0,
+    });
+  });
+
+  it("handles and reports onPause event", async () => {
+    render(<VideoPlayer {...defaultProps} />);
+    const pauseButton = screen.getByTestId("pause-button");
+    jest.clearAllMocks();
+    await userEvent.click(pauseButton);
+
+    expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
+      duration: 100,
+      event: "pause",
+      timeElapsed: 0,
+    });
   });
 
   // This passes, but I'm confident its not working as expected
