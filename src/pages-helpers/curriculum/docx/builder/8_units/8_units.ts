@@ -14,7 +14,7 @@ import {
   createImage,
   cmToEmu,
 } from "../../docx";
-import { createCurriculumSlug, createProgrammeSlug } from "../helper";
+import { createCurriculumSlug } from "../helper";
 
 import { buildUnit } from "./unit_detail";
 
@@ -109,18 +109,6 @@ export default async function generate(
   zip: JSZip,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
-  const linkDefs: Record<string, string> = {};
-  const tier_slug = data.units.find((u) => u.tier_slug)?.tier_slug;
-  data.units.forEach((unit, unitIndex) => {
-    linkDefs[`unit_${unitIndex}_onlineResources`] =
-      `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
-        unit,
-        slugs.examboardSlug,
-        tier_slug,
-      )}/units/${unit.slug}/lessons`;
-  });
-  const links = await insertLinks(zip, linkDefs);
-
   const yearXml: string[] = [];
   const groupedUnits = generateGroupedUnits(data);
   for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
@@ -132,39 +120,6 @@ export default async function generate(
   const pageXml = `
     <root>
         ${yearXml.join("")}
-        ${
-          false &&
-          data.units
-            .map((unit, unitIndex) => {
-              const someLessonsPublished = unit.lessons?.some(
-                (lesson) => lesson._state === "published",
-              );
-              return `
-                <w:p>
-                    <w:r>
-                      <w:t>${unit.title}</w:t>
-                    </w:r>
-                    ${
-                      !someLessonsPublished
-                        ? `
-                    <w:r>
-                      <w:t> / No lessons published</w:t>
-                    </w:r>
-                    `
-                        : wrapInLinkTo(
-                            links[`unit_${unitIndex}_onlineResources`]!,
-                            `
-                        <w:r>
-                            <w:t> / Go to unit resources</w:t>
-                        </w:r>
-                    `,
-                          )
-                    }
-                </w:p>
-            `;
-            })
-            .join("")
-        }
         <w:p>
             <w:r>
                 <w:br w:type="page"/>
@@ -351,17 +306,39 @@ async function buildYear(
 
   const unitsXml: string[] = [];
   const unitUnitsBySlug = uniqBy(units, "slug");
-  unitUnitsBySlug.forEach((unit, unitIndex) => {
+
+  // FIXME: This is slow
+  const tierSlug = units.find((u) => u.tier_slug)?.tier_slug ?? undefined;
+  for (let unitIndex = 0; unitIndex < unitUnitsBySlug.length; unitIndex++) {
+    const unit = unitUnitsBySlug[unitIndex]!;
     if (unit.unit_options.length > 0) {
-      unit.unit_options.forEach((unitOption, unitOptionIndex) => {
+      for (
+        let unitOptionIndex = 0;
+        unitOptionIndex < unit.unit_options.length;
+        unitOptionIndex++
+      ) {
+        const unitOption = unit.unit_options[unitOptionIndex]!;
         unitsXml.push(
-          buildUnit(unit, unitIndex, unitOption, unitOptionIndex, images),
+          await buildUnit(
+            zip,
+            unit,
+            unitIndex,
+            unitOption,
+            unitOptionIndex,
+            images,
+            { ...slugs, tierSlug },
+          ),
         );
-      });
+      }
     } else {
-      unitsXml.push(buildUnit(unit, unitIndex, undefined, undefined, images));
+      unitsXml.push(
+        await buildUnit(zip, unit, unitIndex, undefined, undefined, images, {
+          ...slugs,
+          tierSlug,
+        }),
+      );
     }
-  });
+  }
 
   let subjectTierPathwayTitle: undefined | string;
 

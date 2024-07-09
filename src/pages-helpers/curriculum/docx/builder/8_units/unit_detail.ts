@@ -1,8 +1,10 @@
 import type { Element } from "xml-js";
+import JSZip from "jszip";
 
 import { cdata } from "../../xml";
 import { CombinedCurriculumData } from "../..";
-import { cmToEmu, createImage } from "../../docx";
+import { cmToEmu, createImage, insertLinks, wrapInLinkTo } from "../../docx";
+import { createProgrammeSlug } from "../helper";
 
 type Unit = CombinedCurriculumData["units"][number];
 
@@ -152,7 +154,8 @@ function buildUnitOptionTitle(
     `;
 }
 
-export function buildUnit(
+export async function buildUnit(
+  zip: JSZip,
   unit: Unit,
   unitIndex: number,
   unitOption: undefined | Unit["unit_options"][number] | null,
@@ -161,11 +164,23 @@ export function buildUnit(
     greenCircle: string;
     underline: string;
   },
+  slugs: {
+    examboardSlug?: string;
+    tierSlug?: string;
+  },
 ) {
   const unitOptionIfAvailable = unitOption ?? unit;
   const unitNumber = unitIndex + 1;
   const lessons = buildUnitLessons(unitOptionIfAvailable);
   const threads = buildUnitThreads(unit);
+
+  const links = await insertLinks(zip, {
+    onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
+      unit,
+      slugs.examboardSlug,
+      slugs.tierSlug,
+    )}/units/${unit.slug}/lessons`,
+  });
 
   let unitDescriptions: string = "";
   if (
@@ -299,6 +314,16 @@ export function buildUnit(
                 </w:rPr>
                 <w:t>${cdata(whyThisWhyNow)}</w:t>
             </w:r>
+        </w:p>
+        <w:p>
+            ${wrapInLinkTo(
+              links.onlineResources,
+              `
+                <w:r>
+                    <w:t>Go to unit resources</w:t>
+                </w:r>
+            `,
+            )}
         </w:p>
     `;
   }
