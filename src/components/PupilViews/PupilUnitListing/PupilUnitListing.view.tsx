@@ -27,14 +27,10 @@ export const PupilViewsUnitListing = ({
   subjectCategories,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
-  const [filterItems, setFilterItems] = useState<string[]>(subjectCategories);
+  const [filterItems, setFilterItems] = useState<string[]>(["All"]);
 
   const applyFilter = (subjectCategory: string) => {
-    if (subjectCategory === "All") {
-      setFilterItems(subjectCategories);
-    } else {
-      setFilterItems([subjectCategory]);
-    }
+    setFilterItems([subjectCategory]);
   };
 
   return (

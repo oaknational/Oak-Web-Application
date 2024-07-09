@@ -42,8 +42,9 @@ export const UnitsSection = ({
       ? indexedUnits.filter(
           (unit) =>
             unit[0] &&
-            _.intersection(unit[0].unitData.subjectcategories, filterItems)
-              .length > 0,
+            (_.intersection(unit[0].unitData.subjectcategories, filterItems)
+              .length > 0 ||
+              filterItems.includes("All")),
         )
       : indexedUnits;
 
