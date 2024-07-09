@@ -35,13 +35,13 @@ export default async function generate(
       ${Array(20)
         .fill(true)
         .map(() => {
-          return `
-                <w:p>
-                  <w:r>
-                      <w:t> </w:t>
-                  </w:r>
-                </w:p>
-              `;
+          return safeXml`
+            <w:p>
+              <w:r>
+                <w:t />
+              </w:r>
+            </w:p>
+          `;
         })
         .join("")}
       <w:p>

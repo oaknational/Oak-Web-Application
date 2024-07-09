@@ -77,7 +77,6 @@ export default async function generate(
       ${yearElements.join("")}
 
 
-
       <w:p>
         <w:r>
           <w:br w:type="page" />

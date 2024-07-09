@@ -78,50 +78,60 @@ export default async function generate(zip: JSZip) {
         ${groupedIntoSets(points, 2)
           .flatMap((row) => {
             const rows = row.map((point, columnIndex) => {
-              return `
-              <w:tc>
-                <w:tcPr>
-                    <w:tcW w:type="pct" w:w="50%"/>
+              return safeXml`
+                <w:tc>
+                  <w:tcPr>
+                    <w:tcW w:type="pct" w:w="50%" />
                     <w:tcBorders>
-                        <w:top w:val="single" w:color="FFFFFF" w:sz="0"/>
-                        <w:start w:val="single" w:color="FFFFFF" w:sz="0"/>
-                        <w:bottom w:val="single" w:color="FFFFFF" w:sz="0"/>
-                        <w:end w:val="single" w:color="FFFFFF" w:sz="0"/>
+                      <w:top w:val="single" w:color="FFFFFF" w:sz="0" />
+                      <w:start w:val="single" w:color="FFFFFF" w:sz="0" />
+                      <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
+                      <w:end w:val="single" w:color="FFFFFF" w:sz="0" />
                     </w:tcBorders>
                     <w:tcMar>
-                        <w:top w:type="dxa" w:w="0"/>
-                        <w:start w:type="dxa" w:w="${
-                          columnIndex === 0 ? "0" : "226"
-                        }"/>
-                        <w:bottom w:type="dxa" w:w="226"/>
-                        <w:end w:type="dxa" w:w="${
-                          columnIndex === 1 ? "0" : "226"
-                        }"/>
+                      <w:top w:type="dxa" w:w="0" />
+                      <w:start
+                        w:type="dxa"
+                        w:w="${columnIndex === 0 ? "0" : "226"}"
+                      />
+                      <w:bottom w:type="dxa" w:w="226" />
+                      <w:end
+                        w:type="dxa"
+                        w:w="${columnIndex === 1 ? "0" : "226"}"
+                      />
                     </w:tcMar>
-                </w:tcPr>
-                <w:p>
+                  </w:tcPr>
+                  <w:p>
                     <w:r>
-                        <w:rPr>
-                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                              <w:b />
-                              <w:color w:val="222222"/>
-                              <w:sz w:val="36"/>
-                        </w:rPr>
-                        <w:t>${cdata(point.title)}</w:t>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="36" />
+                      </w:rPr>
+                      <w:t>${cdata(point.title)}</w:t>
                     </w:r>
-                </w:p>
-                <w:p>
+                  </w:p>
+                  <w:p>
                     <w:r>
-                        <w:rPr>
-                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                              <w:color w:val="222222"/>
-                              <w:sz w:val="24"/>
-                        </w:rPr>
-                        <w:t>${cdata(point.text)}</w:t>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                      </w:rPr>
+                      <w:t>${cdata(point.text)}</w:t>
                     </w:r>
-                </w:p>
-              </w:tc>
-            `;
+                  </w:p>
+                </w:tc>
+              `;
             });
 
             return `<w:tr>${rows}</w:tr>`;
@@ -139,17 +149,21 @@ export default async function generate(zip: JSZip) {
                 </w:pPr>
                 ${wrapInBookmarkPoint(
                   "section_our_curriculum",
-                  `
+                  safeXml`
                     <w:r>
-                        <w:rPr>
-                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                              <w:b />
-                              <w:color w:val="222222"/>
-                              <w:sz w:val="56"/>
-                        </w:rPr>
-                        <w:t>${cdata("Our curriculum")}</w:t>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="56" />
+                      </w:rPr>
+                      <w:t>${cdata("Our curriculum")}</w:t>
                     </w:r>
-                `,
+                  `,
                 )}
             </w:p>
             <w:p>

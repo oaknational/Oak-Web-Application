@@ -241,28 +241,28 @@ export default async function generate(
             <w:p>
               ${wrapInLinkTo(
                 links.onlineCurriculum,
-                `
-                          <w:r>
-                              <w:rPr>
-                                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                                  <w:b />
-                                  <w:color w:val="222222"/>
-                                  <w:sz w:val="24"/>
-                                  <w:u w:val="single"/>
-                              </w:rPr>
-                              <w:t>${cdata("Go to online curriculum")}</w:t>
-                              ${createImage(images.jumpOutArrow, {
-                                width: cmToEmu(0.57),
-                                height: cmToEmu(0.57),
-                                xPos: cmToEmu(0.3),
-                                yPos: cmToEmu(-0.01),
-                                xPosAnchor: "character",
-                                yPosAnchor: "line",
-                                isDecorative: true,
-                                isWrapTight: true,
-                              })}
-                          </w:r>
-                      `,
+                safeXml`
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:b />
+                      <w:color w:val="222222" />
+                      <w:sz w:val="24" />
+                      <w:u w:val="single" />
+                    </w:rPr>
+                    <w:t>${cdata("Go to online curriculum")}</w:t>
+                    ${createImage(images.jumpOutArrow, {
+                      width: cmToEmu(0.57),
+                      height: cmToEmu(0.57),
+                      xPos: cmToEmu(0.3),
+                      yPos: cmToEmu(-0.01),
+                      xPosAnchor: "character",
+                      yPosAnchor: "line",
+                      isDecorative: true,
+                      isWrapTight: true,
+                    })}
+                  </w:r>
+                `,
               )}
             </w:p>
           </w:tc>
