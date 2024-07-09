@@ -152,7 +152,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                           }
                           $flexDirection={"column"}
                         >
-                          <LandingPageSignUpForm formTitle={"Don't miss out"} />
+                          <LandingPageSignUpForm
+                            formTitle={"Don't miss out"}
+                            dontDescribe={true}
+                          />
                         </OakFlex>
                       );
                     }
