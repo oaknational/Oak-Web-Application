@@ -1,3 +1,17 @@
+# [1.479.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.4...v1.479.0) (2024-07-09)
+
+
+### Bug Fixes
+
+* pa11y issues ([99c5889](https://github.com/oaknational/Oak-Web-Application/commit/99c5889662ad437034a79685912ba87130283f1c))
+* remove describedby attribute on form on lesson planning page ([4101a4d](https://github.com/oaknational/Oak-Web-Application/commit/4101a4d0e44576b544687b60d7b7fe7af7e0c711))
+* remove describedby on postform ([613f1af](https://github.com/oaknational/Oak-Web-Application/commit/613f1af99878d5e32a7a2b66b455491f73124334))
+
+
+### Features
+
+* remove old plan a lesson page and promote new one ([8e8af34](https://github.com/oaknational/Oak-Web-Application/commit/8e8af34c97bad9fc3cd8e0c0bf9a1c9ebbe9d8bc))
+
 ## [1.478.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.3...v1.478.4) (2024-07-09)
 
 
