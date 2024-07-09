@@ -33,7 +33,7 @@ export function safeXml(
   }
 
   // Just for assertion
-  xmlRootToJson(`<root>${outXml}</root>`);
+  xmlRootToJson(outXml);
 
   return outXml;
 }
@@ -43,13 +43,13 @@ export function xmlElementToJson(xmlData: string) {
   if (rootNode.elements.length !== 1) {
     throw new Error("Expecting a single root node in XML");
   }
-  return rootNode.elements[0];
+  return collapseFragments(rootNode)?.elements?.[0];
 }
 
 export function createFragment(elements: Element[]): Element {
   return {
     type: "element",
-    name: "$FRAGMENT$",
+    name: "XML_FRAGMENT",
     elements: elements,
   };
 }
@@ -85,7 +85,7 @@ export function collapseFragments(root: Element) {
       }
     }
 
-    if (node.name === "$FRAGMENT$") {
+    if (node.name === "XML_FRAGMENT") {
       return node.elements ?? [];
     }
     return node;

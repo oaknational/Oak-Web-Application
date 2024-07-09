@@ -122,7 +122,7 @@ describe("xml", () => {
     it("should return fragment if top level is fragment", () => {
       const input = {
         type: "element",
-        name: "$FRAGMENT$",
+        name: "XML_FRAGMENT",
         elements: [],
       };
       expect(collapseFragments(input)).toEqual(input);
@@ -136,11 +136,11 @@ describe("xml", () => {
           },
           {
             type: "element",
-            name: "$FRAGMENT$",
+            name: "XML_FRAGMENT",
             elements: [
               {
                 type: "element",
-                name: "$FRAGMENT$",
+                name: "XML_FRAGMENT",
                 elements: [
                   {
                     type: "element",
@@ -152,7 +152,7 @@ describe("xml", () => {
                       },
                       {
                         type: "element",
-                        name: "$FRAGMENT$",
+                        name: "XML_FRAGMENT",
                         elements: [
                           {
                             type: "text",
@@ -162,7 +162,7 @@ describe("xml", () => {
                       },
                       {
                         type: "element",
-                        name: "$FRAGMENT$",
+                        name: "XML_FRAGMENT",
                       },
                       {
                         type: "element",
@@ -247,7 +247,7 @@ describe("xml", () => {
       const out = createFragment([]);
       expect(out).toEqual({
         type: "element",
-        name: "$FRAGMENT$",
+        name: "XML_FRAGMENT",
         elements: [],
       });
     });

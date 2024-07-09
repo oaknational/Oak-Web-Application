@@ -141,63 +141,60 @@ export default async function generate(zip: JSZip) {
     `;
   }
 
-  const pageXml = `
-        <root>
-            <w:p>
-                <w:pPr>
-                    <w:pStyle w:val="Heading2"/>
-                </w:pPr>
-                ${wrapInBookmarkPoint(
-                  "section_our_curriculum",
-                  safeXml`
-                    <w:r>
-                      <w:rPr>
-                        <w:rFonts
-                          w:ascii="Arial"
-                          w:hAnsi="Arial"
-                          w:cs="Arial"
-                        />
-                        <w:b />
-                        <w:color w:val="222222" />
-                        <w:sz w:val="56" />
-                      </w:rPr>
-                      <w:t>${cdata("Our curriculum")}</w:t>
-                    </w:r>
-                  `,
-                )}
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:rPr>
-                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                          <w:color w:val="222222"/>
-                          <w:sz w:val="24"/>
-                    </w:rPr>
-                    <w:t>${cdata(
-                      "All of our curricula share the same set of principles that guide our curriculum design to ensure our curricula are high-quality. They are:",
-                    )}</w:t>
-                </w:r>
-            </w:p>
+  const pageXml = safeXml`
+    <root>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading2" />
+        </w:pPr>
+        ${wrapInBookmarkPoint(
+          "section_our_curriculum",
+          safeXml`
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="56" />
+              </w:rPr>
+              <w:t>${cdata("Our curriculum")}</w:t>
+            </w:r>
+          `,
+        )}
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t>
+            ${cdata(
+              "All of our curricula share the same set of principles that guide our curriculum design to ensure our curricula are high-quality. They are:",
+            )}
+          </w:t>
+        </w:r>
+      </w:p>
 
-            ${createTable()}
-
-            <w:p>
-                <w:pPr>
-                  <w:jc w:val="center"/>
-                </w:pPr>
-                <w:r>
-                    ${createImage(images.oakCurriculum, {
-                      width: cmToEmu(12.54),
-                      height: cmToEmu(11.61),
-                      desc: "A bee hive diagram showing each of Oak's 6 curriculum principles",
-                    })}
-                </w:r>
-                <w:r>
-                    <w:br w:type="page"/>
-                </w:r>
-            </w:p>
-        </root>
-    `;
+      ${createTable()}
+      <w:p>
+        <w:pPr>
+          <w:jc w:val="center" />
+        </w:pPr>
+        <w:r>
+          ${createImage(images.oakCurriculum, {
+            width: cmToEmu(12.54),
+            height: cmToEmu(11.61),
+            desc: "A bee hive diagram showing each of Oak's 6 curriculum principles",
+          })}
+        </w:r>
+        <w:r>
+          <w:br w:type="page" />
+        </w:r>
+      </w:p>
+    </root>
+  `;
 
   await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
 }
