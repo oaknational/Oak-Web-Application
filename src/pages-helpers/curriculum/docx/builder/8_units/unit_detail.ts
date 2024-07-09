@@ -209,6 +209,7 @@ export async function buildUnit(
   images: {
     greenCircle: string;
     underline: string;
+    jumpOutArrow: string;
   },
   slugs: {
     examboardSlug?: string;
@@ -398,16 +399,6 @@ export async function buildUnit(
             <w:t>${cdata(whyThisWhyNow)}</w:t>
           </w:r>
         </w:p>
-        <w:p>
-          ${wrapInLinkTo(
-            links.onlineResources,
-            safeXml`
-              <w:r>
-                <w:t>Go to unit resources</w:t>
-              </w:r>
-            `,
-          )}
-        </w:p>
       </XML_FRAGMENT>
     `;
   }
@@ -541,6 +532,36 @@ export async function buildUnit(
                 <w:t>${cdata(unit.title)}</w:t>
               </w:r>
             </w:p>
+            <w:p>
+              ${wrapInLinkTo(
+                links.onlineResources,
+                safeXml`
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts
+                        w:ascii="Arial"
+                        w:eastAsia="Arial"
+                        w:hAnsi="Arial"
+                        w:cs="Arial"
+                      />
+                      <w:b />
+                      <w:u w:val="single" />
+                    </w:rPr>
+                    <w:t>Go to unit resources</w:t>
+                    ${createImage(images.jumpOutArrow, {
+                      width: cmToEmu(0.62),
+                      height: cmToEmu(0.62),
+                      xPos: cmToEmu(0.3),
+                      yPos: cmToEmu(-0.01),
+                      xPosAnchor: "character",
+                      yPosAnchor: "line",
+                      isDecorative: true,
+                      isWrapTight: true,
+                    })}
+                  </w:r>
+                `,
+              )}
+            </w:p>
           </w:tc>
         </w:tr>
       </w:tbl>
@@ -606,7 +627,7 @@ export async function buildUnit(
             width: cmToEmu(19.3),
             height: cmToEmu(0.16),
             xPos: cmToEmu(0.83),
-            yPos: cmToEmu(3.63),
+            yPos: cmToEmu(4.63),
             isDecorative: true,
           })}
         </w:r>
