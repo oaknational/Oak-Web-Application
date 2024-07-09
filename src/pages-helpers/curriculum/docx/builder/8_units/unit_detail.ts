@@ -328,8 +328,6 @@ export async function buildUnit(
     `;
   }
 
-  console.log({ unitOptionIfAvailable });
-
   const xml = `
             <w:tbl>
                 <w:tblPr>
@@ -467,14 +465,6 @@ export async function buildUnit(
                 </w:tr>
             </w:tbl>
             <w:p>
-                <w:pPr>
-                    <w:rPr>
-                        <w:rFonts w:ascii="Arial" w:eastAsia="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                        <w:color w:val="222222"/>
-                        <w:sz w:val="36"/>
-                        <w:szCs w:val="36"/>
-                    </w:rPr>
-                </w:pPr>
                 <w:r>
                     <w:rPr>
                         <w:noProof/>

@@ -362,10 +362,6 @@ async function buildYear(
         !subjectTierPathwayTitle
           ? ""
           : `<w:p>
-        <w:pPr>
-            <w:sz w:val="44"/>
-            <w:szCs w:val="44"/>
-        </w:pPr>
         <w:r>
             <w:rPr>
                 <w:rFonts w:ascii="Arial" w:cs="Arial" w:eastAsia="Arial" w:hAnsi="Arial"/>

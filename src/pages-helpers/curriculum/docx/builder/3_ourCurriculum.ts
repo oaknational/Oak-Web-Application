@@ -55,7 +55,6 @@ export default async function generate(zip: JSZip) {
         group[j] = input[i + j]!;
       }
     }
-    console.log(JSON.stringify(output, null, 2));
     return output;
   }
 
