@@ -146,6 +146,7 @@ export const getStaticProps: GetStaticProps<
       const allSubjectCategories = curriculumData
         .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
         .flat()
+        .filter((s) => s?.toLocaleLowerCase() !== subjectSlug)
         .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
         .filter((s) => !!s);
 

@@ -50,7 +50,7 @@ export const PupilViewsUnitListing = ({
       <OakBox $mb={"space-between-xl"}>
         {unitSections.map((unitSection, i) => (
           <UnitsSection
-            key={i}
+            key={unitSection.title}
             titleSlot={
               unitSection.title && unitSection.icon ? (
                 <OakPupilJourneyHeader
@@ -64,12 +64,11 @@ export const PupilViewsUnitListing = ({
             filterSlot={
               unitSection.title &&
               unitSection.icon &&
-              subjectCategories.length > 1 ? (
+              subjectCategories.length > 0 ? (
                 <OakButtonAsRadioGroup
                   name="categories"
                   ariaLabel="categories"
                   onChange={(value) => {
-                    console.log(value);
                     applyFilter(value);
                   }}
                   defaultValue="All"
