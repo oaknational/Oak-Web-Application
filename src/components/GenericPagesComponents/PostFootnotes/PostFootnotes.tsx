@@ -100,7 +100,7 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   }
 
   return (
-    <Box as="footer" role="doc-endnotes" $pt={20}>
+    <Box as="footer" $pt={20}>
       <h3>References</h3>
 
       <Box as="ol" $pl={16}>
