@@ -1,3 +1,22 @@
+## [1.478.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.1...v1.478.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* remove dependency change-case ([fd8998b](https://github.com/oaknational/Oak-Web-Application/commit/fd8998b87fef0717ce3bd5088c3b536ffb794f9e))
+
+
+### Reverts
+
+* slack plugin back to commonjs ([a6973bd](https://github.com/oaknational/Oak-Web-Application/commit/a6973bd92e9dafc07b38e9f13db5a2d79bf9cd74))
+
+## [1.478.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.0...v1.478.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* update netlify slack plugin code to esm syntax ([fe2983a](https://github.com/oaknational/Oak-Web-Application/commit/fe2983abf97da227f8dc1813dc2dbaff11097e44))
+
 # [1.478.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.477.4...v1.478.0) (2024-07-08)
 
 

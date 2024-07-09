@@ -1,5 +1,3 @@
-const { camelCase } = require("change-case");
-
 const SLACK_BOT_TOKEN = "SLACK_BOT_TOKEN";
 const SLACK_SIGNING_SECRET = "SLACK_SIGNING_SECRET";
 const SLACK_CHANNEL_ID_PRODUCTION = "SLACK_CHANNEL_ID_PRODUCTION";
@@ -10,6 +8,10 @@ const slackConfigKeys = [
   SLACK_CHANNEL_ID_PRODUCTION,
   SLACK_CHANNEL_ID_PREVIEW,
 ];
+
+function camelCase(s) {
+  return s.toLowerCase().replace(/(_\w)/g, (_, m) => m[1].toUpperCase());
+}
 
 /**
  * An object of config strings for a Slack app.
