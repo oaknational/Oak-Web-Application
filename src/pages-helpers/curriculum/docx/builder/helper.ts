@@ -62,6 +62,12 @@ export function createProgrammeSlug(
     : "";
 }
 
+export function notUndefined<TValue>(
+  value: TValue | undefined,
+): value is TValue {
+  return value !== undefined;
+}
+
 export function createCurriculumSlug(slugs: Slugs) {
   return `${slugs.subjectSlug}-${slugs.phaseSlug}${
     slugs.examboardSlug ? `-${slugs.examboardSlug}` : ""
