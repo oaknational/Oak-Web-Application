@@ -7,9 +7,10 @@ import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTit
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
 
-export const LandingPageSignUpForm: FC<{ formTitle: string }> = ({
-  formTitle,
-}) => {
+export const LandingPageSignUpForm: FC<{
+  formTitle: string;
+  dontDescribe?: boolean;
+}> = ({ formTitle, dontDescribe }) => {
   const { onSubmit } = useNewsletterForm();
   const id = useId();
   const descriptionId = `${id}-newsletter-form-description`;
@@ -41,7 +42,7 @@ export const LandingPageSignUpForm: FC<{ formTitle: string }> = ({
         <NewsletterForm
           onSubmit={onSubmit}
           id={id}
-          descriptionId={descriptionId}
+          descriptionId={dontDescribe ? undefined : descriptionId}
         />
       </Box>
     </Card>

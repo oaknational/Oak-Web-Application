@@ -53,7 +53,7 @@ type NewsletterFormValues = z.infer<typeof schema>;
 export type NewsletterFormProps = BoxProps & {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
   id: string;
-  descriptionId: string;
+  descriptionId?: string;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
