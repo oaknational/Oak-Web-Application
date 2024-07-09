@@ -1,3 +1,10 @@
+## [1.478.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.3...v1.478.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* added reload to mux player when error triggered, temp trigger button ([b381c72](https://github.com/oaknational/Oak-Web-Application/commit/b381c720616f8663ae0bb9bddd4208bca25c8c52))
+
 ## [1.478.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.2...v1.478.3) (2024-07-09)
 
 ## [1.478.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.1...v1.478.2) (2024-07-08)
