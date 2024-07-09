@@ -89,5 +89,5 @@ export default async function generate(
 
   const pageXml = safeXml` <root>${elements.join("")}</root> `;
 
-  await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
+  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
 }

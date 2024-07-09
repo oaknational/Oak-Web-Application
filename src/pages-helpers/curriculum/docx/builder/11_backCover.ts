@@ -95,5 +95,5 @@ export default async function generate(
     </root>
   `;
 
-  await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
+  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
 }

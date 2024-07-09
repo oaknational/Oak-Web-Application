@@ -281,7 +281,10 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     `;
 }
 
-export async function appendBodyElements(zip: JSZip, childElements: Element[]) {
+export async function appendBodyElements(
+  zip: JSZip,
+  childElements: Element[] = [],
+) {
   const docRaw = await zip.file("word/document.xml")?.async("string");
   if (!docRaw) {
     throw new Error("Missing ./word/document.xml");

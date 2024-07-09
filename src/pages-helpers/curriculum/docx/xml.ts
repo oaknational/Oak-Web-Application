@@ -38,12 +38,13 @@ export function safeXml(
   return outXml;
 }
 
-export function xmlElementToJson(xmlData: string) {
+export function xmlElementToJson(xmlData?: string) {
+  if (!xmlData) return;
   const rootNode = xmlRootToJson(xmlData);
   if (rootNode.elements.length !== 1) {
     throw new Error("Expecting a single root node in XML");
   }
-  return collapseFragments(rootNode)?.elements?.[0];
+  return collapseFragments(rootNode as Element)?.elements?.[0];
 }
 
 export function createFragment(elements: Element[]): Element {

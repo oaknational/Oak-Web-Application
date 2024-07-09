@@ -196,5 +196,5 @@ export default async function generate(zip: JSZip) {
     </root>
   `;
 
-  await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
+  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
 }
