@@ -8,6 +8,36 @@ export function xmlRootToJson(xmlData: string) {
   });
 }
 
+/**
+ * To support <https://prettier.io/docs/en/options#embedded-language-formatting> as well as assertion.
+ *
+ * NOTE: This must called `xml`
+ *
+ * @param strings template strings
+ * @param values tamplate values
+ * @returns xml string
+ */
+export function safeXml(
+  strings: TemplateStringsArray,
+  ...values: (string | number | string[])[]
+) {
+  let outXml = "";
+  for (let i = 0; i < strings.length; i++) {
+    if (values[i] !== undefined) {
+      const valueRaw = values[i];
+      const value = Array.isArray(valueRaw) ? valueRaw.join("") : valueRaw;
+      outXml += `${strings[i]!}${value}`;
+    } else {
+      outXml += `${strings[i]!}`;
+    }
+  }
+
+  // Just for assertion
+  xmlRootToJson(`<root>${outXml}</root>`);
+
+  return outXml;
+}
+
 export function xmlElementToJson(xmlData: string) {
   const rootNode = xmlRootToJson(xmlData);
   if (rootNode.elements.length !== 1) {

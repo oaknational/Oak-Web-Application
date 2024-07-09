@@ -1,7 +1,7 @@
 import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
-import { cdata, xmlElementToJson } from "../xml";
+import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { appendBodyElements, wrapInLinkToBookmark } from "../docx";
 
 import { uncapitalizeSubject } from "./helper";
@@ -39,72 +39,72 @@ export default async function generate(
     },
   ];
 
-  const pageXml = `
-        <root>
+  const pageXml = safeXml`
+    <root>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading2" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b w:val="true" />
+            <w:color w:val="222222" />
+            <w:sz w:val="56" />
+          </w:rPr>
+          <w:t>${cdata("Contents")}</w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+
+      ${links
+        .map((link) => {
+          return safeXml`
             <w:p>
-                <w:pPr>
-                    <w:pStyle w:val="Heading2"/>
-                </w:pPr>
-                <w:r>
+              ${wrapInLinkToBookmark(
+                link.anchorId,
+                safeXml`
+                  <w:r>
                     <w:rPr>
-                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                          <w:b w:val="true"/>
-                          <w:color w:val="222222"/>
-                          <w:sz w:val="56"/>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:b w:val="true" />
+                      <w:color w:val="222222" />
+                      <w:sz w:val="28" />
                     </w:rPr>
-                    <w:t>${cdata("Contents")}</w:t>
-                </w:r>
+                    <w:t>${cdata(link.text)}</w:t>
+                  </w:r>
+                `,
+              )}
             </w:p>
-            <w:p>
-                <w:r>
-                    <w:rPr>
-                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                          <w:color w:val="222222"/>
-                          <w:sz w:val="24"/>
-                    </w:rPr>
-                    <w:t></w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:rPr>
-                          <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                          <w:color w:val="222222"/>
-                          <w:sz w:val="24"/>
-                    </w:rPr>
-                    <w:t></w:t>
-                </w:r>
-            </w:p>
-            
-            ${links
-              .map((link) => {
-                return `
-                    <w:p>
-                        ${wrapInLinkToBookmark(
-                          link.anchorId,
-                          `
-                            <w:r>
-                                <w:rPr>
-                                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                                      <w:b w:val="true"/>
-                                      <w:color w:val="222222"/>
-                                      <w:sz w:val="28"/>
-                                </w:rPr>
-                                <w:t>${cdata(link.text)}</w:t>
-                            </w:r>
-                        `,
-                        )}
-                    </w:p>
-                `;
-              })
-              .join("")}
-            <w:p>
-                <w:r>
-                    <w:br w:type="page"/>
-                </w:r>
-            </w:p>
-        </root>
-    `;
+          `;
+        })
+        .join("")}
+      <w:p>
+        <w:r>
+          <w:br w:type="page" />
+        </w:r>
+      </w:p>
+    </root>
+  `;
 
   await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
 }

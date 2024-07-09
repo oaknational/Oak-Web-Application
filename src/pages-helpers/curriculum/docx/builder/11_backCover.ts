@@ -2,7 +2,7 @@ import { join } from "path";
 
 import type JSZip from "jszip";
 
-import { cdata, xmlElementToJson } from "../xml";
+import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
@@ -30,65 +30,70 @@ export default async function generate(
     ),
   });
 
-  const pageXml = `
-        <root>
-            ${Array(20)
-              .fill(true)
-              .map(() => {
-                return `
+  const pageXml = safeXml`
+    <root>
+      ${Array(20)
+        .fill(true)
+        .map(() => {
+          return `
                 <w:p>
                   <w:r>
                       <w:t> </w:t>
                   </w:r>
                 </w:p>
               `;
-              })}
-            <w:p>
-                <w:r>
-                    <w:t>${cdata("© Oak National Academy 2024.")}</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:t>${cdata(
-                      `Produced in partnership with ${data.curriculumPartner.name}.`,
-                    )}</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:t>${cdata(
-                      "Licensed on the Open Government Licence v3.0, except where otherwise stated. See Oak terms and conditions.",
-                    )}</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    ${createImage(images.box, {
-                      width: cmToEmu(18.26),
-                      height: cmToEmu(7.49),
-                      xPos: cmToEmu(1.38),
-                      yPos: cmToEmu(18.14),
-                      isDecorative: true,
-                    })}
+        })
+        .join("")}
+      <w:p>
+        <w:r>
+          <w:t>${cdata("© Oak National Academy 2024.")}</w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:t>
+            ${cdata(
+              `Produced in partnership with ${data.curriculumPartner.name}.`,
+            )}
+          </w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:t>
+            ${cdata(
+              "Licensed on the Open Government Licence v3.0, except where otherwise stated. See Oak terms and conditions.",
+            )}
+          </w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          ${createImage(images.box, {
+            width: cmToEmu(18.26),
+            height: cmToEmu(7.49),
+            xPos: cmToEmu(1.38),
+            yPos: cmToEmu(18.14),
+            isDecorative: true,
+          })}
                     ${createImage(images.oglLogo, {
-                      width: cmToEmu(2.18),
-                      height: cmToEmu(1.1),
-                      xPos: cmToEmu(16.29),
-                      yPos: cmToEmu(22.96),
-                      isDecorative: true,
-                    })}
+            width: cmToEmu(2.18),
+            height: cmToEmu(1.1),
+            xPos: cmToEmu(16.29),
+            yPos: cmToEmu(22.96),
+            isDecorative: true,
+          })}
                     ${createImage(images.peopleIcon, {
-                      width: cmToEmu(9.56),
-                      height: cmToEmu(13.05),
-                      xPos: cmToEmu(5.63),
-                      yPos: cmToEmu(3.27),
-                      isDecorative: true,
-                    })}
-                </w:r>
-            </w:p>
-        </root>
-    `;
+            width: cmToEmu(9.56),
+            height: cmToEmu(13.05),
+            xPos: cmToEmu(5.63),
+            yPos: cmToEmu(3.27),
+            isDecorative: true,
+          })}
+        </w:r>
+      </w:p>
+    </root>
+  `;
 
   await appendBodyElements(zip, xmlElementToJson(pageXml).elements);
 }
