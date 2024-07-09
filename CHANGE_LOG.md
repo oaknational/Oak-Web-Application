@@ -1,3 +1,17 @@
+## [1.478.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.2...v1.478.3) (2024-07-09)
+
+## [1.478.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.1...v1.478.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* remove dependency change-case ([fd8998b](https://github.com/oaknational/Oak-Web-Application/commit/fd8998b87fef0717ce3bd5088c3b536ffb794f9e))
+
+
+### Reverts
+
+* slack plugin back to commonjs ([a6973bd](https://github.com/oaknational/Oak-Web-Application/commit/a6973bd92e9dafc07b38e9f13db5a2d79bf9cd74))
+
 ## [1.478.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.0...v1.478.1) (2024-07-08)
 
 
