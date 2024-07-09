@@ -16,7 +16,7 @@ export default async function generate(
   { margins, isLast = false }: { margins: Margins; isLast?: boolean },
 ) {
   const wrapInParagraphIfNotLast = (isLast: boolean, xml: string) => {
-    if (isLast) {
+    if (!isLast) {
       return safeXml`
         <w:p>
           <w:pPr>${xml}</w:pPr>
