@@ -1,7 +1,7 @@
 import type { Element } from "xml-js";
 import JSZip from "jszip";
 
-import { cdata } from "../../xml";
+import { cdata, safeXml } from "../../xml";
 import { CombinedCurriculumData } from "../..";
 import { cmToEmu, createImage, insertLinks, wrapInLinkTo } from "../../docx";
 import { createProgrammeSlug } from "../helper";
@@ -47,29 +47,43 @@ function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
 }
 
 function buildUnitThreads(unit: Unit) {
-  const threadsXmls =
-    unit.threads.map((thread) => {
-      return `
-          <w:p>
-              <w:pPr>
-                <w:widowControl w:val="0"/>
-                <w:numPr>
-                    <w:ilvl w:val="0"/>
-                    <w:numId w:val="3"/>
-                </w:numPr>
-                <w:spacing w:line="240" w:lineRule="auto"/>
-                <w:ind w:left="425" w:right="0"/>
-              </w:pPr>
-              <w:r>
-                  <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:eastAsia="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-                      <w:color w:val="222222"/>
-                  </w:rPr>
-                  <w:t>${cdata(thread.title)}</w:t>
-              </w:r>
-          </w:p>
-        ` as Element;
-    }) ?? [];
+  if (unit.threads.length === 0) {
+    return safeXml`
+      <w:p>
+        <w:r>
+          <w:t>—</w:t>
+        </w:r>
+      </w:p>
+    `;
+  }
+
+  const threadsXmls = unit.threads.map((thread) => {
+    return safeXml`
+      <w:p>
+        <w:pPr>
+          <w:widowControl w:val="0" />
+          <w:numPr>
+            <w:ilvl w:val="0" />
+            <w:numId w:val="3" />
+          </w:numPr>
+          <w:spacing w:line="240" w:lineRule="auto" />
+          <w:ind w:left="425" w:right="0" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:color w:val="222222" />
+          </w:rPr>
+          <w:t>${cdata(thread.title)}</w:t>
+        </w:r>
+      </w:p>
+    ` as Element;
+  });
   return threadsXmls.join("");
 }
 
