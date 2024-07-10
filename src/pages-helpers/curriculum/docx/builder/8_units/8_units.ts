@@ -13,6 +13,7 @@ import {
   wrapInLinkTo,
   createImage,
   cmToEmu,
+  // insertNumbering,
 } from "../../docx";
 import { createCurriculumSlug } from "../helper";
 
@@ -138,7 +139,7 @@ function buildOptions({
 }) {
   if (unitOptions.length > 0) {
     return safeXml`
-      <XML_FRAMGMENT>
+      <XML_FRAGMENT>
         <w:p>
           <w:pPr>
             <w:spacing w:line="240" w:lineRule="auto" />
@@ -157,7 +158,7 @@ function buildOptions({
               )} option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
           </w:r>
         </w:p>
-      </XML_FRAMGMENT>
+      </XML_FRAGMENT>
     `;
   }
   return "";
@@ -270,6 +271,31 @@ async function buildYear(
   yearSlugs: Slug,
   slugs: Slugs,
 ) {
+  // const numbering = await insertNumbering(zip, {
+  //   lessonNumbering: safeXml`
+  //     <XML_FRAGMENT>
+  //       <w:nsid w:val="099A081C" />
+  //       <w:multiLevelType w:val="hybridMultilevel" />
+  //       <w:lvl w:ilvl="0">
+  //         <w:start w:val="1" />
+  //         <w:numFmt w:val="upperLetter" />
+  //         <w:lvlText w:val="%1." />
+  //         <w:lvlJc w:val="start" />
+  //         <w:pPr>
+  //           <w:ind w:start="360" w:hanging="360" />
+  //         </w:pPr>
+  //         <w:rPr>
+  //           <w:rFonts w:ascii="Arial Black" w:hAnsi="Arial Black" />
+  //           <w:color w:val="C00000" />
+  //           <w:sz w:val="28" />
+  //         </w:rPr>
+  //       </w:lvl>
+  //     </XML_FRAGMENT>
+  //   `,
+  // });
+
+  // console.log({ numbering });
+
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),
