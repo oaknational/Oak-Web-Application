@@ -111,11 +111,14 @@ export async function insertImages<T extends Record<string, string>>(
 
         let ext: string;
         let file: Buffer;
-        if (filePathOrUrl.match(/^(https?|data):/)) {
+        if (filePathOrUrl.match(/^(data):/)) {
           file = Buffer.from(await (await fetch(filePathOrUrl)).arrayBuffer());
           ext =
             filePathOrUrl.match(/^data:image\/([^;]+);base64/)?.[1] ??
             "unknown";
+        } else if (filePathOrUrl.match(/^(https?):/)) {
+          file = Buffer.from(await (await fetch(filePathOrUrl)).arrayBuffer());
+          ext = extname(filePathOrUrl);
         } else {
           file = await readFile(filePathOrUrl);
           ext = extname(filePathOrUrl);
