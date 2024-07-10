@@ -44,7 +44,7 @@ export const PupilViewsSubjectListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakFlex $flexDirection="column">
+      <OakFlex $flexDirection="column" $pb="inner-padding-xl2">
         <OakFlex
           $background={"bg-primary"}
           $pt={["inner-padding-xl5", "inner-padding-xl7"]}
@@ -52,7 +52,7 @@ export const PupilViewsSubjectListing = ({
           $borderRadius={"border-radius-l"}
           $ba={"border-solid-s"}
           $borderColor={"border-decorative1-stronger"}
-          $mb={"space-between-xxl"}
+          $mb={"space-between-m2"}
           $flexDirection={"column"}
           $alignItems={"center"}
         >

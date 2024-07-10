@@ -53,7 +53,6 @@ export default function SignpostTeachersInlineBanner() {
       {(state) => (
         <ExpandInBox ref={transitionRef} $state={state} $overflow={"hidden"}>
           <OakInlineBanner
-            $mb="space-between-xxl"
             canDismiss
             type="neutral"
             title="Teachers"
