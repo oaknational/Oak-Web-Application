@@ -8,8 +8,6 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { fetchSubjectPhasePickerData } from "../..";
-
 import {
   capitalizeFirstLetter,
   download,
@@ -245,11 +243,13 @@ export const getServerSideProps = async ({
     };
   }
 
-  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+  const subjectPhaseOptions = {
+    subjects: await curriculumApi2023.subjectPhaseOptionsIncludeNew(),
+  };
 
-  const subject = subjectPhaseOptions.subjects.find(
-    (subject) => subject.slug === subjectSlug,
-  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  const subject = subjectPhaseOptions.subjects.find((subject) => {
+    return subject.slug === subjectSlug && subject.state === state;
+  }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const examboard =
     subject?.examboards?.find(
       (examboard) => examboard.slug === examboardSlug,
