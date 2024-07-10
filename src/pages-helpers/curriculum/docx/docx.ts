@@ -6,7 +6,13 @@ import { glob } from "glob";
 import JSZip from "jszip";
 import { json2xml, type Element } from "xml-js";
 
-import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
+import {
+  collapseFragments,
+  jsonXmlToXmlString,
+  safeXml,
+  xmlElementToJson,
+  xmlRootToJson,
+} from "./xml";
 
 function generateHash(buffer: Buffer | string) {
   const hash = createHash("sha1");
@@ -14,6 +20,65 @@ function generateHash(buffer: Buffer | string) {
   hash.write(buffer);
   hash.end();
   return hash.read();
+}
+
+/**
+ * Generates a <w:abstractNum/> / <w:num/> pair
+ * @param zip docx zip file
+ * @param numberingDefinition key / definition rules
+ * @returns key / id lookup table
+ */
+export async function insertNumbering(
+  zip: JSZip,
+  numberingDefinition: Record<string, string>,
+) {
+  const lookup: Record<string, string> = {};
+
+  const docNumberingPath = "word/numbering.xml";
+  const json = xmlRootToJson(await zip.file(docNumberingPath)!.async("text"));
+
+  let maxId: number = 0;
+  json.elements.forEach((element: Element) => {
+    if (element.name === "w:abstractNum") {
+      maxId = Math.max(
+        maxId,
+        Number(element.attributes?.["w:abstractNumId"] ?? 0),
+      );
+    } else if (element.name === "w:num") {
+      maxId = Math.max(maxId, Number(element.attributes?.["w:numId"] ?? 0));
+    }
+  });
+
+  console.log({ maxId });
+
+  for (const [key, definition] of Object.entries(numberingDefinition)) {
+    const abstractNumId = maxId++;
+    const numId = maxId++;
+    lookup[key] = String(numId);
+    json.elements.push(
+      xmlRootToJson(safeXml`
+        <w:abstractNum w:abstractNumId="${abstractNumId}">
+          ${definition}
+        </w:abstractNum>
+      `),
+    );
+
+    json.elements.push(
+      xmlRootToJson(safeXml`
+        <w:num w:numId="${numId}">
+          <w:abstractNumId w:val="${abstractNumId}" />
+        </w:num>
+      `),
+    );
+  }
+
+  zip.file(
+    docNumberingPath,
+    jsonXmlToXmlString(collapseFragments(json as Element)),
+  );
+
+  console.log({ lookup });
+  return lookup;
 }
 
 export async function insertImages<T extends Record<string, string>>(
@@ -44,14 +109,18 @@ export async function insertImages<T extends Record<string, string>>(
           existingImageIds.push(id);
         }
 
+        let ext: string;
         let file: Buffer;
         if (filePathOrUrl.match(/^(https?|data):/)) {
           file = Buffer.from(await (await fetch(filePathOrUrl)).arrayBuffer());
+          ext =
+            filePathOrUrl.match(/^data:image\/([^;]+);base64/)?.[1] ??
+            "unknown";
         } else {
           file = await readFile(filePathOrUrl);
+          ext = extname(filePathOrUrl);
         }
 
-        const ext = extname(filePathOrUrl);
         const filepath = `media/hash_${imagePathHash}${ext}`;
         zip.file(join("word", filepath), file);
         return xmlElementToJson(`

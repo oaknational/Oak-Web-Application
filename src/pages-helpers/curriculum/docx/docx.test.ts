@@ -1,5 +1,6 @@
 import { Element } from "xml-js";
 import { sortBy } from "lodash";
+import jsonDiff from "json-diff";
 
 import {
   checkWithinElement,
@@ -8,6 +9,7 @@ import {
   CURRENT_BOOKMARK,
   emuToCm,
   generateEmptyDocx,
+  insertImages,
   lineHeight,
   mapOverElements,
   pointToDxa,
@@ -165,6 +167,62 @@ describe("docx", () => {
           "word/_rels/document.xml.rels",
         ]),
       );
+    });
+  });
+
+  const EMPTY_PNG_BASE64 =
+    "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAAIRlWElmTU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABgAAAAAQAAAGAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAAWgAwAEAAAAAQAAAAUAAAAAY82dNQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDYuMC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KGV7hBwAAAAxJREFUCB1jYKATAAAAaQABgxuGDAAAAABJRU5ErkJggg==";
+
+  describe("insertImages", () => {
+    it("test", async () => {
+      const zip = await generateEmptyDocx();
+
+      const EMPTY_PNG = `data:image/png;base64,${EMPTY_PNG_BASE64}`;
+      const initialState = await zipToSimpleObject(zip, {
+        convertXmlToJson: true,
+      });
+      await insertImages(zip, {
+        foobar: EMPTY_PNG,
+      });
+      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+
+      const diffResults = jsonDiff.diff(initialState, newState);
+      expect(Object.keys(diffResults)).toEqual([
+        "word/media/__added",
+        "word/media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng__added",
+        "word/_rels/document.xml.rels",
+      ]);
+
+      expect(diffResults["word/media/__added"]).toEqual("");
+      // expect(diffResults["word/media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng__added"]).toEqual(Buffer.from(EMPTY_PNG, "base64"))
+      expect(diffResults["word/_rels/document.xml.rels"]).toEqual({
+        elements: [
+          [
+            "~",
+            {
+              elements: [
+                [" "],
+                [" "],
+                [" "],
+                [" "],
+                [
+                  "+",
+                  {
+                    type: "element",
+                    name: "Relationship",
+                    attributes: {
+                      Id: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
+                      Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+                      Target:
+                        "media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng",
+                    },
+                  },
+                ],
+              ],
+            },
+          ],
+        ],
+      });
     });
   });
 
