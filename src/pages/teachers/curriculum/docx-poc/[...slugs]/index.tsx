@@ -20,6 +20,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Box from "@/components/SharedComponents/Box";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 type CurriculumUnitsTabDataIncludeNewUnit =
   CurriculumUnitsTabDataIncludeNew["units"][number] & {
@@ -41,14 +42,9 @@ type PageProps = {
   subjectSlug: string;
   phaseSlug: string;
   state: string;
+  cache: number;
   dataWarnings: string[];
 };
-
-function getMvRefreshTime() {
-  // TODO: Replace me with MV last refresh time
-  // Test by changing key every 30mins
-  return Math.floor(Date.now() / (1000 * 60 * 30));
-}
 
 export default function Page({
   combinedCurriculumData,
@@ -56,12 +52,13 @@ export default function Page({
   phaseSlug,
   examboardSlug,
   state,
+  cache,
   dataWarnings,
 }: PageProps) {
   const router = useRouter();
   const onSubmit = async () => {
     const slug = [subjectSlug, phaseSlug, state, examboardSlug].join("/");
-    const redirectPath = `/api/curriculum-downloads/${getMvRefreshTime()}/${slug}`;
+    const redirectPath = `/api/curriculum-downloads/${cache}/${slug}`;
     router.push(redirectPath);
   };
 
@@ -236,6 +233,8 @@ export const getServerSideProps = async ({
     examboardTitle: examboard?.title ?? null,
   };
 
+  const cache = await getMvRefreshTime();
+
   return {
     props: {
       combinedCurriculumData,
@@ -243,6 +242,7 @@ export const getServerSideProps = async ({
       subjectSlug,
       phaseSlug,
       state,
+      cache,
       dataWarnings,
     },
   };
