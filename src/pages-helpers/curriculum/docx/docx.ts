@@ -125,6 +125,14 @@ export function cmToEmu(cm: number) {
   return Math.round(inches * 914400);
 }
 
+export function pointToDxa(input: number) {
+  return input * 20;
+}
+
+export function lineHeight(pointHeight: number, multiplier: number) {
+  return Math.round(pointToDxa(pointHeight) * multiplier);
+}
+
 export function emuToCm(emu: number) {
   return (emu / 914400) * 2.54;
 }
@@ -137,14 +145,10 @@ export function wrapInLinkToBookmark(anchor: string, childXml: string) {
   return `<w:hyperlink w:anchor="${anchor}">${childXml}</w:hyperlink>`;
 }
 
-let bookmarkId = 10000;
+export const CURRENT_BOOKMARK = { id: 10000 };
 export function wrapInBookmarkPoint(anchor: string, childXml: string) {
-  bookmarkId++;
-  return `
-        <w:bookmarkStart w:id="${bookmarkId}" w:name="${anchor}"/>
-        ${childXml}
-        <w:bookmarkEnd w:id="${bookmarkId}"/>
-    `;
+  CURRENT_BOOKMARK.id++;
+  return `<w:bookmarkStart w:id="${CURRENT_BOOKMARK.id}" w:name="${anchor}"/>${childXml}<w:bookmarkEnd w:id="${CURRENT_BOOKMARK.id}"/>`;
 }
 
 let IMAGE_ID = 10000;

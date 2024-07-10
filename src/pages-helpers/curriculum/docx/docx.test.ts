@@ -1,7 +1,20 @@
 import { Element } from "xml-js";
 import { sortBy } from "lodash";
 
-import { checkWithinElement, generateEmptyDocx, mapOverElements } from "./docx";
+import {
+  checkWithinElement,
+  cmToEmu,
+  cmToTwip,
+  CURRENT_BOOKMARK,
+  emuToCm,
+  generateEmptyDocx,
+  lineHeight,
+  mapOverElements,
+  pointToDxa,
+  wrapInBookmarkPoint,
+  wrapInLinkTo,
+  wrapInLinkToBookmark,
+} from "./docx";
 import { zipToSimpleObject } from "./zip";
 
 describe("docx", () => {
@@ -153,5 +166,43 @@ describe("docx", () => {
         ]),
       );
     });
+  });
+
+  test("cmToEmu", () => {
+    expect(cmToEmu(1)).toEqual(360000);
+  });
+
+  test("emuToCm", () => {
+    expect(emuToCm(360000)).toEqual(1);
+  });
+
+  test("lineHeight", () => {
+    expect(lineHeight(12, 1.15)).toEqual(276);
+  });
+
+  test("pointToDxa", () => {
+    expect(pointToDxa(12)).toEqual(240);
+  });
+
+  test("cmToTwip", () => {
+    expect(cmToTwip(1)).toEqual(567);
+  });
+
+  test("wrapInLinkTo", () => {
+    expect(wrapInLinkTo("rId1", "Testing")).toEqual(
+      `<w:hyperlink r:id="rId1">Testing</w:hyperlink>`,
+    );
+  });
+
+  test("wrapInLinkToBookmark", () => {
+    expect(wrapInLinkToBookmark("foobar", "Testing")).toEqual(
+      `<w:hyperlink w:anchor="foobar">Testing</w:hyperlink>`,
+    );
+  });
+
+  test("wrapInBookmarkPoint", () => {
+    expect(wrapInBookmarkPoint("testing", "<w:p/>")).toEqual(
+      `<w:bookmarkStart w:id="${CURRENT_BOOKMARK.id}" w:name="testing"/><w:p/><w:bookmarkEnd w:id="${CURRENT_BOOKMARK.id}"/>`,
+    );
   });
 });
