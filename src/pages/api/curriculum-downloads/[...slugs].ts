@@ -11,7 +11,6 @@ import docx, {
   CombinedCurriculumData,
   CurriculumUnitsTabDataIncludeNewWithOrder,
 } from "@/pages-helpers/curriculum/docx";
-import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 
 type getDataReturn =
   | { notFound: true }
@@ -131,11 +130,13 @@ async function getData(opts: {
     };
   }
 
-  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+  const subjectPhaseOptions = {
+    subjects: await curriculumApi2023.subjectPhaseOptionsIncludeNew(),
+  };
 
-  const subject = subjectPhaseOptions.subjects.find(
-    (subject) => subject.slug === subjectSlug,
-  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  const subject = subjectPhaseOptions.subjects.find((subject) => {
+    return subject.slug === subjectSlug && subject.state === state;
+  }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const examboard =
     subject?.examboards?.find(
       (examboard) => examboard.slug === examboardSlug,

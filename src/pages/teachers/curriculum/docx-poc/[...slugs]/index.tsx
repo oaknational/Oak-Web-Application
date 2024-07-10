@@ -9,8 +9,6 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
-import { fetchSubjectPhasePickerData } from "../..";
-
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
@@ -218,11 +216,13 @@ export const getServerSideProps = async ({
     };
   }
 
-  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+  const subjectPhaseOptions = {
+    subjects: await curriculumApi2023.subjectPhaseOptionsIncludeNew(),
+  };
 
-  const subject = subjectPhaseOptions.subjects.find(
-    (subject) => subject.slug === subjectSlug,
-  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  const subject = subjectPhaseOptions.subjects.find((subject) => {
+    return subject.slug === subjectSlug && subject.state === state;
+  }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const examboard =
     subject?.examboards?.find(
       (examboard) => examboard.slug === examboardSlug,
