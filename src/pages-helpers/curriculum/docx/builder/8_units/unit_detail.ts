@@ -465,7 +465,7 @@ export async function buildUnit(
                 ${createImage(images.greenCircle, {
                   width: cmToEmu(1.77),
                   height: cmToEmu(1.6),
-                  xPos: cmToEmu(0.07),
+                  xPos: cmToEmu(0.05),
                   yPos: cmToEmu(0.41),
                   isDecorative: true,
                 })}
