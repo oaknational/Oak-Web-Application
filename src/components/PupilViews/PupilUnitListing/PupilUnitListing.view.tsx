@@ -4,44 +4,12 @@ import {
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
-  OakPupilJourneyUnitsFilter,
-  OakFlex,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
 
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import { UnitsSection } from "@/components/PupilComponents/UnitsSection/UnitsSection";
-
-const FilterSlot = ({
-  subjectCategories,
-  applyFilter,
-}: {
-  subjectCategories: string[];
-  applyFilter: (subjectCategory: string) => void;
-}) => {
-  if (subjectCategories.length === 0) {
-    return null;
-  }
-
-  return (
-    <OakFlex $justifyContent={["start", "start", "end"]}>
-      <OakPupilJourneyUnitsFilter
-        menuItems={[
-          { value: "All", displayText: "All" },
-          subjectCategories.map((category) => ({
-            value: category,
-            displayText: category,
-          })),
-        ].flat()}
-        onSelected={(value) => {
-          applyFilter(value.value);
-        }}
-        selected={"All"}
-      />
-    </OakFlex>
-  );
-};
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -87,15 +55,9 @@ export const PupilViewsUnitListing = ({
                 />
               ) : null
             }
-            filterSlot={
-              unitSection.title && unitSection.icon ? (
-                <FilterSlot
-                  subjectCategories={subjectCategories}
-                  applyFilter={applyFilter}
-                />
-              ) : null
-            }
+            subjectCategories={subjectCategories}
             filterItems={filterItems}
+            applyFilter={applyFilter}
             phase={phase}
             units={unitSection.units}
             counterText={unitSection.counterText}

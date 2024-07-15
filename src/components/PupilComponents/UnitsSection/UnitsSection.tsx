@@ -7,11 +7,42 @@ import {
   OakSpan,
   OakPupilJourneyOptionalityItem,
   OakPupilJourneyOptionalityButton,
+  OakPupilJourneyUnitsFilter,
 } from "@oaknational/oak-components";
 import _ from "lodash";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
+
+const FilterSlot = ({
+  subjectCategories,
+  applyFilter,
+}: {
+  subjectCategories: string[];
+  applyFilter: (subjectCategory: string) => void;
+}) => {
+  if (subjectCategories.length === 0) {
+    return null;
+  }
+
+  return (
+    <OakFlex $justifyContent={["start", "start", "end"]}>
+      <OakPupilJourneyUnitsFilter
+        menuItems={[
+          { value: "All", displayText: "All" },
+          subjectCategories.map((category) => ({
+            value: category,
+            displayText: category,
+          })),
+        ].flat()}
+        onSelected={(value) => {
+          applyFilter(value.value);
+        }}
+        selected={"All"}
+      />
+    </OakFlex>
+  );
+};
 
 export type UnitsSectionProps = {
   units: UnitListingBrowseData[number][][];
@@ -19,8 +50,9 @@ export type UnitsSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
-  filterSlot?: JSX.Element | null;
+  subjectCategories: string[];
   filterItems: string[];
+  applyFilter: (subjectCategory: string) => void;
   id?: string;
 };
 
@@ -29,8 +61,9 @@ export const UnitsSection = ({
   phase,
   counterText,
   titleSlot,
-  filterSlot,
+  subjectCategories,
   filterItems,
+  applyFilter,
   id = "0",
 }: UnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
@@ -47,6 +80,13 @@ export const UnitsSection = ({
               filterItems.includes("All")),
         )
       : indexedUnits;
+
+  const filterSlot = titleSlot ? (
+    <FilterSlot
+      subjectCategories={subjectCategories}
+      applyFilter={applyFilter}
+    />
+  ) : null;
 
   return (
     <OakPupilJourneyList
