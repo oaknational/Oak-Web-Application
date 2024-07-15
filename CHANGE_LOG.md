@@ -1,3 +1,17 @@
+# [1.480.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.479.0...v1.480.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* test ([62e1ba7](https://github.com/oaknational/Oak-Web-Application/commit/62e1ba7023ce4953f53ce058a696eb5512d0a7f8))
+
+
+### Features
+
+* lesson review updates ([edf64b2](https://github.com/oaknational/Oak-Web-Application/commit/edf64b2913378f4ad74058e85f6b4e1782e5e4ae))
+* lesson review updates ([51f12f9](https://github.com/oaknational/Oak-Web-Application/commit/51f12f9b1638f84945f67b6275e778c3413bb7b9))
+* storybook for easy review of ViewReview ([457f00b](https://github.com/oaknational/Oak-Web-Application/commit/457f00b5e9013faaf03bc23480be5b39856013f2))
+
 # [1.479.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.4...v1.479.0) (2024-07-09)
 
 
