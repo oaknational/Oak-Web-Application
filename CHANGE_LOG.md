@@ -1,3 +1,38 @@
+# [1.480.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.479.0...v1.480.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* test ([62e1ba7](https://github.com/oaknational/Oak-Web-Application/commit/62e1ba7023ce4953f53ce058a696eb5512d0a7f8))
+
+
+### Features
+
+* lesson review updates ([edf64b2](https://github.com/oaknational/Oak-Web-Application/commit/edf64b2913378f4ad74058e85f6b4e1782e5e4ae))
+* lesson review updates ([51f12f9](https://github.com/oaknational/Oak-Web-Application/commit/51f12f9b1638f84945f67b6275e778c3413bb7b9))
+* storybook for easy review of ViewReview ([457f00b](https://github.com/oaknational/Oak-Web-Application/commit/457f00b5e9013faaf03bc23480be5b39856013f2))
+
+# [1.479.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.4...v1.479.0) (2024-07-09)
+
+
+### Bug Fixes
+
+* pa11y issues ([99c5889](https://github.com/oaknational/Oak-Web-Application/commit/99c5889662ad437034a79685912ba87130283f1c))
+* remove describedby attribute on form on lesson planning page ([4101a4d](https://github.com/oaknational/Oak-Web-Application/commit/4101a4d0e44576b544687b60d7b7fe7af7e0c711))
+* remove describedby on postform ([613f1af](https://github.com/oaknational/Oak-Web-Application/commit/613f1af99878d5e32a7a2b66b455491f73124334))
+
+
+### Features
+
+* remove old plan a lesson page and promote new one ([8e8af34](https://github.com/oaknational/Oak-Web-Application/commit/8e8af34c97bad9fc3cd8e0c0bf9a1c9ebbe9d8bc))
+
+## [1.478.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.3...v1.478.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* added reload to mux player when error triggered, temp trigger button ([b381c72](https://github.com/oaknational/Oak-Web-Application/commit/b381c720616f8663ae0bb9bddd4208bca25c8c52))
+
 ## [1.478.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.2...v1.478.3) (2024-07-09)
 
 ## [1.478.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.478.1...v1.478.2) (2024-07-08)

@@ -11,6 +11,8 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
+import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -29,6 +31,11 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     lessonReviewSections,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+
+  const { finalFeedback } = useLessonReviewFeedback(
+    isLessonComplete,
+    sectionResults,
+  );
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -118,9 +125,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $font="heading-5"
                 $textAlign={["center", "left", "left"]}
               >
-                {isLessonComplete
-                  ? "Fantastic job, well done!"
-                  : "Well done, you're Oaking it!"}
+                {finalFeedback}
               </OakFlex>
             </OakHandDrawnCard>
           </OakFlex>

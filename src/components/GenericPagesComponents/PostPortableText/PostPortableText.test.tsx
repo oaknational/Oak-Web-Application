@@ -218,31 +218,23 @@ describe("components/PostPortableText", () => {
       );
     });
     test("footnote references are rendered with backlinks", () => {
-      const { getByRole } = render(
+      const { getByText } = render(
         <PostPortableText portableText={withFootnotes} />,
       );
 
-      const footnotes = within(getByRole("doc-endnotes")).getAllByRole(
-        "listitem",
-      );
+      const footnote = getByText("The citation for the first footnote");
+      const footnote2 = getByText("And the second, with a link");
 
-      expect(footnotes[0]).toHaveTextContent(
-        "The citation for the first footnote",
+      const firstFootnoteBacklink = within(footnote as HTMLElement).getByRole(
+        "doc-backlink",
       );
-
-      const firstFootnoteBacklink = within(
-        footnotes[0] as HTMLElement,
-      ).getByRole("doc-backlink");
 
       expect(firstFootnoteBacklink).toHaveAttribute(
         "href",
         "#footnote-note-FOOTNOTE_MARK_1",
       );
 
-      const footnoteWithSource = within(footnotes[1] as HTMLElement).getByRole(
-        "link",
-      );
-      expect(footnoteWithSource).toHaveAttribute("href", "https://example.com");
+      expect(footnote2).toHaveAttribute("href", "https://example.com");
     });
 
     test("does not render the footnotes section when none exist", () => {
