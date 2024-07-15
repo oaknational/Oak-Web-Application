@@ -158,9 +158,11 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
   }
 };
 
+export type LessonSectionResults = LessonEngineState["sections"];
+
 export type LessonEngineContextType = {
   currentSection: LessonSection;
-  sectionResults: LessonEngineState["sections"];
+  sectionResults: LessonSectionResults;
   isLessonComplete: boolean;
   completeSection: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
