@@ -9,6 +9,7 @@ import { UseBackHrefProps, useBackHref } from "./useBackHref";
 
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import { UnitsSection } from "@/components/PupilComponents/UnitsSection/UnitsSection";
+import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -33,7 +34,7 @@ export const PupilViewsUnitListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakBox $mb={"space-between-xl"}>
+      <OakBox $mb={"space-between-m2"}>
         {unitSections.map((unitSection, i) => (
           <UnitsSection
             key={i}
@@ -54,6 +55,9 @@ export const PupilViewsUnitListing = ({
             id={`section-${i}`}
           />
         ))}
+        <OakBox $mt={"space-between-m2"}>
+          <SignpostTeachersInlineBanner />
+        </OakBox>
       </OakBox>
     </OakPupilJourneyLayout>
   );
