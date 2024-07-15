@@ -1,510 +1,210 @@
-import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakGrid,
   OakGridArea,
-  OakTypography,
-  OakHeading,
-  OakBox,
+  OakMaxWidth,
   OakFlex,
+  OakTertiaryOLNav,
+  OakThemeProvider,
+  oakDefaultTheme,
+  OakAnchorTarget,
+  OakHeaderHero,
+  OakBox,
+  OakLink,
 } from "@oaknational/oak-components";
 
-import CMSClient from "@/node-lib/cms";
-import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
-import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { postToPostListItem, SerializedPost } from ".";
+
 import Layout from "@/components/AppComponents/Layout";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import LessonPlanningElementLinks from "@/components/TeacherComponents/LessonPlanningElementLinks";
-import { OakColorName } from "@/styles/theme";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Circle from "@/components/SharedComponents/Circle";
-import Box from "@/components/SharedComponents/Box";
-import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Cover from "@/components/SharedComponents/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Illustration from "@/components/SharedComponents/Illustration";
-import { IllustrationSlug } from "@/image-data";
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
-import { GridOrderedList } from "@/components/SharedComponents/Typography/OL.deprecated";
-import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
+import CMSClient from "@/node-lib/cms";
+import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
+import { getNavItems } from "@/pages-helpers/homesite/plan-a-lesson/getNavItems";
+import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
+import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
+import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
+import usePostList from "@/components/SharedComponents/PostList/usePostList";
+import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
+import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
 
 export type PlanALessonProps = {
-  pageData: PlanningPage;
+  pageData: PlanALessonPage;
+  posts: SerializedPost[];
 };
 
-const lessonElementIds = {
-  introQuiz: "intro-quiz",
-  video: "video",
-  slides: "lesson-slides",
-  worksheet: "worksheet",
-  exitQuiz: "exit-quiz",
-};
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
+  const navItems = getNavItems({ ...pageData });
 
-const getLessonElementCards = (
-  planningPage: PlanningPage,
-): {
-  id: string;
-  icon: IconName;
-  title: string;
-  portableText: PortableTextJSON;
-  background?: OakColorName;
-}[] => [
-  {
-    id: lessonElementIds.introQuiz,
-    icon: "quiz",
-    title: planningPage.lessonElements.introQuiz.title,
-    portableText: planningPage.lessonElements.introQuiz.bodyPortableText,
-  },
-  {
-    id: lessonElementIds.video,
-    icon: "video",
-    title: planningPage.lessonElements.video.title,
-    portableText: planningPage.lessonElements.video.bodyPortableText,
-  },
-  {
-    id: lessonElementIds.slides,
-    icon: "slide-deck",
-    title: planningPage.lessonElements.slides.title,
-    portableText: planningPage.lessonElements.slides.bodyPortableText,
-  },
-  {
-    id: lessonElementIds.worksheet,
-    icon: "worksheet",
-    title: planningPage.lessonElements.worksheet.title,
-    portableText: planningPage.lessonElements.worksheet.bodyPortableText,
-  },
-  {
-    id: lessonElementIds.exitQuiz,
-    icon: "quiz",
-    title: planningPage.lessonElements.exitQuiz.title,
-    portableText: planningPage.lessonElements.exitQuiz.bodyPortableText,
-  },
-];
+  const blogs = posts.map(postToPostListItem);
 
-const getLessonPlanningCards = (planningPage: PlanningPage) => {
-  /**
-   * @todo should we check here that planningPage.steps.length === 4?
-   * Since that is what this layout is designed for?
-   */
-
-  const getTitle = (i: number) => `${i + 1}. ${planningPage.steps[i]?.title}`;
-  const getPortableText = (i: number) =>
-    planningPage.steps[i]?.bodyPortableText;
-
-  const planningSteps: {
-    id: string;
-    imageSlug: IllustrationSlug;
-    title: string;
-    portableText?: PortableTextJSON;
-    withSearchCTA?: boolean;
-  }[] = [
-    {
-      id: "find",
-      imageSlug: "calendar",
-      title: getTitle(0),
-      portableText: getPortableText(0),
-    },
-    {
-      id: "personalise",
-      imageSlug: "atoms",
-      title: getTitle(1),
-      portableText: getPortableText(1),
-    },
-    {
-      id: "tailor",
-      imageSlug: "test-tubes",
-      title: getTitle(2),
-      portableText: getPortableText(2),
-    },
-    {
-      id: "teach",
-      imageSlug: "pupils-at-desk",
-      title: getTitle(3),
-      portableText: getPortableText(3),
-      withSearchCTA: true,
-    },
-  ];
-
-  return planningSteps;
-};
-
-const SectionHeader: FC<{ children?: React.ReactNode }> = (props) => {
-  return <Box as="header" $width={"100%"} {...props} />;
-};
-
-const SectionTitle: FC<{ children?: React.ReactNode }> = (props) => {
-  return (
-    <Flex
-      $justifyContent="center"
-      $maxWidth={["100%", "50%"]}
-      $mh="auto"
-      $pt={[56, 80]}
-      $pb={48}
-      $ph={16}
-      $mt={12}
-    >
-      <OakHeading
-        $font={["heading-6", "heading-5"]}
-        $textAlign="center"
-        tag="h2"
-        {...props}
-      />
-    </Flex>
-  );
-};
-
-const LessonElementsCard: FC<CardProps> = (props) => (
-  <Card
-    $alignItems="flex-start"
-    $flexDirection="column"
-    $ph={[16, 24]}
-    $pv={24}
-    {...props}
-  />
-);
-
-const generateCtaProps = (cta: CTA) => {
-  return {
-    page: null,
-    href: getLinkHref(cta),
-    label: cta.label,
-    htmlAnchorProps: {
-      target: "_self",
-    },
-  };
-};
-
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const videoCaptions =
-    pageData.learnMoreBlock1.mediaType === "video"
-      ? pageData.learnMoreBlock1.video.captions
-      : null;
+  const blogListPosts = usePostList({
+    items: blogs,
+    withImage: true,
+  });
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $pt={[72, 80, 80]}>
-        <SummaryCard
-          {...pageData}
-          imageContainerProps={{
-            $minHeight: 160,
-          }}
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Layout
+        seoProps={{
+          ...getSeoProps(pageData.seo),
+        }}
+        $background={"white"}
+      >
+        <OakHeaderHero
+          authorImageAlt={`${pageData.hero.author.name} profile picture`}
+          heroImageAlt={pageData.hero.image?.altText ?? ""}
+          data-testid="header-hero"
+          headingTitle={pageData.hero.heading}
+          authorName={pageData.hero.author.name}
+          authorTitle={pageData.hero.author.role ?? ""}
+          subHeadingText={
+            pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
+          }
+          heroImageSrc={imageBuilder
+            .image(pageData.hero.image?.asset?.url ?? {})
+            .url()}
+          authorImageSrc={imageBuilder
+            .image(pageData.hero.author.image?.asset?.url ?? {})
+            .url()}
+          breadcrumbs={
+            <Breadcrumbs
+              breadcrumbs={[
+                {
+                  oakLinkProps: {
+                    page: "home",
+                  },
+                  label: "Home",
+                },
+
+                {
+                  oakLinkProps: {
+                    page: "lesson-planning",
+                  },
+                  label: "Plan a lesson",
+                  disabled: true,
+                },
+              ]}
+            />
+          }
         />
-        {/* Elements of lesson cards */}
-        <section>
-          <SectionHeader>
-            <Flex
-              $justifyContent="center"
-              $maxWidth={["100%", "50%"]}
-              $mh="auto"
-              $pt={64}
-              $pb={48}
-              $ph={12}
+        <OakFlex
+          $background={"bg-decorative3-very-subdued"}
+          $display={["block", "block", "none"]}
+          $pv={"inner-padding-xl"}
+          $ph={["inner-padding-m", "inner-padding-none", "inner-padding-none"]}
+        >
+          <OakMaxWidth>
+            <OakTertiaryOLNav
+              items={navItems}
+              ariaLabel="plan a lesson contents"
+              title={"Contents"}
+              anchorTarget={"plan-a-lesson-contents"}
+            />
+          </OakMaxWidth>
+        </OakFlex>
+
+        <OakMaxWidth $height={"auto"}>
+          <OakGrid $mt={"space-between-l"} $position={"relative"}>
+            <OakGridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={["static", "static", "sticky"]}
+              $top={"all-spacing-10"}
+              $display={["none", "none", "block"]}
             >
-              <OakHeading $font="heading-5" $textAlign="center" tag="h2">
-                Learn more about our different resources and how they can
-                support your planning
-              </OakHeading>
-            </Flex>
-            <Flex
-              $flexDirection="column"
+              <OakTertiaryOLNav
+                items={navItems}
+                ariaLabel="plan a lesson contents"
+                title={"Contents"}
+                anchorTarget="plan-a-lesson-contents"
+              />
+            </OakGridArea>
+
+            <OakGridArea
+              $colSpan={[12, 12, 6]}
+              $colStart={[1, 1, 5]}
+              $mh={["space-between-s", null, null]}
               $justifyContent={"center"}
-              $alignItems="center"
-              $width={"100%"}
-              $mb={[0, 48]}
             >
-              <LessonPlanningElementLinks linkTargetIds={lessonElementIds} />
-            </Flex>
-          </SectionHeader>
-          <OakGrid
-            $cg={["all-spacing-0", "all-spacing-8"]}
-            $rg={["all-spacing-10"]}
-          >
-            {getLessonElementCards(pageData).map(
-              ({ title, portableText, icon, id }) => (
-                <OakGridArea
-                  key={`plan-a-lessing--element-card--${id}`}
-                  $colSpan={[12, 6]}
-                >
-                  <LessonElementsCard $background={"pink50"}>
-                    <BrushBorders hideOnMobileH color={"pink50"} />
-                    <AnchorTarget id={id} />
-                    <Circle
-                      size={120}
-                      $mb={40}
-                      $background={"lemon"}
-                      $alignSelf={"center"}
-                    >
-                      <Icon size={80} name={icon} />
-                    </Circle>
-                    <CardTitle $font={["heading-5", "heading-4"]} tag="h3">
-                      {title}
-                    </CardTitle>
-                    <OakTypography $font="body-1">
-                      <PortableTextWithDefaults
-                        value={portableText}
-                        withoutDefaultComponents
-                      />
-                    </OakTypography>
-                  </LessonElementsCard>
-                </OakGridArea>
-              ),
-            )}
-            <OakGridArea $colSpan={[12, 6]}>
-              <Card
-                $position="relative"
-                $width={["100%", "auto"]}
-                $minWidth={"50%"}
-                $height={[360, 240]}
-                $background="aqua"
-                $justifyContent={"flex-end"}
-                $alignItems={["center", "center", "flex-end"]}
-                $pr={[0, 24]}
-                $pb={24}
-                $pa={0}
+              <OakFlex
+                $width={"100%"}
+                $flexDirection={"column"}
+                $alignItems={"center"}
               >
-                <BrushBorders hideOnMobileH color={"aqua"} />
-                <Cover
-                  $right={[0, 0, "50%"]}
-                  $left={[0, 0, 32]}
-                  $top={48}
-                  $bottom={[92, 92, 20]}
+                <OakFlex
+                  $minWidth={[null, "all-spacing-22"]}
+                  $maxWidth={"all-spacing-22"}
+                  $flexDirection={"column"}
                 >
-                  <Illustration
-                    sizes={getSizes([210, 110, 173])}
-                    slug="teacher-carrying-stuff"
-                    fill
-                    $width="auto"
-                    $objectFit="contain"
-                    $objectPosition="center bottom"
-                  />
-                </Cover>
-                <ButtonAsLink
-                  icon="search"
-                  $iconPosition="trailing"
-                  {...generateCtaProps(pageData.lessonElementsCTA)}
-                />
-              </Card>
+                  {pageData.content.map((section, index, sections) => {
+                    const isLastSection = index === sections.length - 1;
+                    if (section.type === "PlanALessonPageFormBlock") {
+                      return (
+                        <OakFlex
+                          key={`${section.navigationTitle} ${index}`}
+                          data-testid="lesson-section"
+                          $mb={
+                            !isLastSection
+                              ? "space-between-xxxl"
+                              : "space-between-m2"
+                          }
+                          $flexDirection={"column"}
+                        >
+                          <LandingPageSignUpForm
+                            formTitle={"Don't miss out"}
+                            dontDescribe={true}
+                          />
+                        </OakFlex>
+                      );
+                    }
+
+                    return (
+                      <OakBox
+                        key={`${section.navigationTitle} ${index}`}
+                        $position={"relative"}
+                        data-testid="lesson-section"
+                        $mb={
+                          !isLastSection
+                            ? "space-between-xxxl"
+                            : "space-between-m2"
+                        }
+                      >
+                        <OakAnchorTarget id={section.anchorSlug.current} />
+                        <LessonPlanningBlog
+                          title={section.navigationTitle}
+                          blogPortableText={section.bodyPortableText}
+                        />
+                        <OakBox
+                          $display={["block", "block", "none"]}
+                          $mt={"space-between-m2"}
+                        >
+                          <OakLink
+                            iconName="arrow-up"
+                            href={"#plan-a-lesson-contents"}
+                            isTrailingIcon
+                          >
+                            {"Back to contents"}
+                          </OakLink>
+                        </OakBox>
+                      </OakBox>
+                    );
+                  })}
+                </OakFlex>
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
-        </section>
-      </MaxWidth>
-
-      {/* How to plan a lesson */}
-
-      <section>
-        <MaxWidth>
-          <SectionHeader>
-            <SectionTitle>{pageData.stepsHeading}</SectionTitle>
-          </SectionHeader>
-          <GridOrderedList $cg={24} $rg={0}>
-            {getLessonPlanningCards(pageData).map(
-              ({ title, portableText, imageSlug, withSearchCTA }, i, arr) => {
-                const isFirstOrLast = i === 0 || i == arr.length - 1;
-                return (
-                  <GridAreaListItem
-                    key={`plan-a-lesson--planning-card--${i}`}
-                    $alignItems={"center"}
-                    $justifyContent={"center"}
-                    $colSpan={[12, isFirstOrLast ? 12 : 6]}
-                    $mb={i !== arr.length - 1 ? [24, 56] : 0}
-                    listStyle="none"
-                    $display="flex"
-                  >
-                    <Card
-                      $width={["100%", isFirstOrLast ? "50%" : "100%"]}
-                      $alignItems="flex-start"
-                      $flexDirection="column"
-                      $ph={[16, 24]}
-                      $pv={24}
-                    >
-                      <Box
-                        $position="relative"
-                        $width={[120, "100%"]}
-                        $mb={24}
-                        $mh={["auto", null]}
-                      >
-                        <Illustration
-                          $objectFit="contain"
-                          $objectPosition="left bottom"
-                          slug={imageSlug}
-                          height={80}
-                          $height={80}
-                          noCrop
-                        />
-                      </Box>
-
-                      <Flex $flexDirection={"column"}>
-                        <OakHeading
-                          $mb="space-between-m"
-                          tag={"h3"}
-                          $font={["heading-5", "heading-6"]}
-                        >
-                          {title}
-                        </OakHeading>
-                        <OakTypography $font={"body-1"}>
-                          <PortableTextWithDefaults value={portableText} />
-                        </OakTypography>
-                        {withSearchCTA && (
-                          <Flex $justifyContent={["center", "flex-start"]}>
-                            <ButtonAsLink
-                              icon="search"
-                              $iconPosition="trailing"
-                              $mt={24}
-                              {...generateCtaProps(pageData.stepsCTA)}
-                            />
-                          </Flex>
-                        )}
-                      </Flex>
-                    </Card>
-                  </GridAreaListItem>
-                );
-              },
-            )}
-          </GridOrderedList>
-        </MaxWidth>
-      </section>
-      <section>
-        {/* `Plan for section` */}
-        <MaxWidth $mb={120} $alignItems={"center"}>
-          <Card
-            $maxWidth={["100%", 812, "100%"]}
-            $pv={24}
-            $ph={[16, 24]}
-            $flexDirection={"column"}
-            $mt={[56, 80]}
-            $mb={32}
-            $background="lemon50"
-          >
-            <OakFlex $flexDirection={["column", "column", "row"]}>
-              <BrushBorders hideOnMobileH color={"lemon50"} />
-              <Box $minWidth={["50%"]}>
-                <Box $display={["block", "block", "none"]}>
-                  <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
-                    {pageData.learnMoreBlock1.title}
-                  </CardTitle>
-                </Box>
-                <Flex
-                  $justifyContent={"center"}
-                  $pb={[24, 24, 0]}
-                  $pr={[0, 0, 72]}
-                  $minWidth={["50%"]}
-                  $flexDirection={["column", "column", "row"]}
-                >
-                  {pageData.learnMoreBlock1.mediaType == "video" && (
-                    <CMSVideo
-                      video={pageData.learnMoreBlock1.video}
-                      location="marketing"
-                      hideCaptions={true}
-                    />
-                  )}
-                  {videoCaptions && videoCaptions?.length > 0 && (
-                    <OakBox
-                      $mt={"space-between-xs"}
-                      $display={["block", "block", "none"]}
-                    >
-                      <TranscriptToggle transcriptSentences={videoCaptions} />
-                    </OakBox>
-                  )}
-                </Flex>
-              </Box>
-              <Flex
-                $justifyContent={"center"}
-                $flexDirection={"column"}
-                $minWidth={["50%"]}
-              >
-                <Box $display={["none", "none", "block"]}>
-                  <CardTitle $font={"heading-4"} tag="h2">
-                    {pageData.learnMoreBlock1.title}
-                  </CardTitle>
-                </Box>
-                <OakTypography $font={["body-2", "body-1"]}>
-                  <PortableTextWithDefaults
-                    value={pageData.learnMoreBlock1.bodyPortableText}
-                  />
-                </OakTypography>
-              </Flex>
-            </OakFlex>
-            {videoCaptions && (
-              <OakBox
-                $mt={"space-between-xs"}
-                $display={["none", "none", "block"]}
-              >
-                <TranscriptToggle transcriptSentences={videoCaptions} />
-              </OakBox>
-            )}
-          </Card>
-          <Card
-            $pv={[24, 24]}
-            $ph={[0, 24, 24]}
-            $flexDirection={["column", "column", "row"]}
-            $background={"lemon50"}
-            $alignItems="center"
-            $maxWidth={["100%", 812, "100%"]}
-          >
-            <BrushBorders hideOnMobileH color={"lemon50"} />
-            <Box
-              $minWidth={"50%"}
-              $pr={[null, null, 72]}
-              $mb={[48, 48, 0]}
-              $ph={[16, 0, 0]}
-            >
-              <CardTitle $font={["heading-5", "heading-4"]} tag={"h2"}>
-                {pageData.learnMoreBlock2.title}
-              </CardTitle>
-              <OakTypography $font={["body-2", "body-1"]}>
-                <PortableTextWithDefaults
-                  value={pageData.learnMoreBlock2.bodyPortableText}
-                />
-              </OakTypography>
-            </Box>
-            <Card
-              $position="relative"
-              $width={["100%", "100%", "auto"]}
-              $minWidth={"50%"}
-              $height={[360, 240]}
-              $background="aqua"
-              $justifyContent={"flex-end"}
-              $alignItems={["center", "center", "flex-end"]}
-              $pr={[0, 24]}
-              $pb={24}
-              $pa={0}
-            >
-              <Cover
-                $right={[0, 0, "50%"]}
-                $left={[0, 0, 16]}
-                $top={16}
-                $bottom={[92, 92, 20]}
-              >
-                <Illustration
-                  sizes={getSizes([210, 110, 173])}
-                  slug="teacher-carrying-stuff"
-                  fill
-                  $width="auto"
-                  $objectFit="contain"
-                  $objectPosition="center bottom"
-                />
-              </Cover>
-
-              <ButtonAsLink
-                icon="search"
-                $iconPosition="trailing"
-                {...generateCtaProps(pageData.lessonElementsCTA)}
-              />
-            </Card>
-          </Card>
-        </MaxWidth>
-      </section>
-    </Layout>
+          <BlogAndWebinarList
+            backgroundColor={"grey20"}
+            showImageOnTablet
+            blogListPosts={blogListPosts}
+            displayOnPhone={true}
+            title={"Latest lesson planning blogs"}
+          />
+        </OakMaxWidth>
+      </Layout>
+    </OakThemeProvider>
   );
 };
 
@@ -512,24 +212,29 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   context,
 ) => {
   return getPageProps({
-    page: "lesson-planning::getStaticProps",
+    page: "lesson-planning-new::getStaticProps",
     context,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
-
-      const planningPage = await CMSClient.planningPage({
+      const planALessonPage = await CMSClient.planALessonPage({
         previewMode: isPreviewMode,
       });
 
-      if (!planningPage) {
+      if (!planALessonPage) {
         return {
           notFound: true,
         };
       }
 
+      const posts = await getAndMergeWebinarsAndBlogs(
+        isPreviewMode,
+        undefined,
+        "lesson-planning",
+      );
       const results: GetStaticPropsResult<PlanALessonProps> = {
         props: {
-          pageData: planningPage,
+          pageData: planALessonPage,
+          posts,
         },
       };
 
