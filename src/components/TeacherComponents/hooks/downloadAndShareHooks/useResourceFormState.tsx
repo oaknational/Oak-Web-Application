@@ -34,7 +34,8 @@ export type UseResourceFormStateProps =
       downloadResources: LessonDownloadsPageData["downloads"];
       type: "download";
     }
-  | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
+  | { curriculumResources: CurriculumDownload[]; type: "curriculum" }
+  | { curriculumResourcesFileTypes: string[]; type: "curriculumDocx" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const {
@@ -49,6 +50,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
+
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
@@ -62,6 +64,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         return props.downloadResources;
       case "curriculum":
         return props.curriculumResources;
+      case "curriculumDocx":
+        return props.curriculumResourcesFileTypes;
     }
   })();
 
@@ -78,6 +82,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       return (resources as CurriculumDownload[]).map(
         (resource) => resource.url,
       );
+    } else if (props.type === "curriculumDocx") {
+      return (resources as string[]).map((resource) => resource);
     } else {
       throw new Error("Invalid resource type");
     }

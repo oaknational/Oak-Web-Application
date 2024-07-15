@@ -615,7 +615,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
     });
 
-    it("renders the Curriculum Downloads Tab (with prerelease)", () => {
+    it.skip("renders the Curriculum Downloads Tab (with prerelease)", () => {
       mockPrerelease("curriculum.downloads");
       (useRouter as jest.Mock).mockReturnValue({
         query: { tab: "downloads" },

@@ -1,20 +1,12 @@
-import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import CurriculumDownloadView, {
-  CurriculumDownloadViewData,
-} from "../CurriculumDownloadView";
-import { School } from "../CurriculumDownloadView/helper";
+import CurriculumDownloadView from "../CurriculumDownloadView";
 import SuccessMessage from "../SuccessMessage";
 
-import {
-  saveDownloadsDataToLocalStorage,
-  useDownloadsLocalStorage,
-} from "./helper";
-
 import Box from "@/components/SharedComponents/Box";
-import { useFetch } from "@/hooks/useFetch";
-import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
+// import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -30,56 +22,18 @@ function ScrollIntoViewWhenVisisble({
   return <div ref={ref}>{children}</div>;
 }
 
-const CurriculumDownloadTab: FC = () => {
-  const { isLoading, data: localStorageData } = useDownloadsLocalStorage();
+interface CurriculumDownloadTabProps {
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  cache: number;
+}
+
+const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
+  curriculumSelectionSlugs,
+  cache,
+}) => {
   const [isDone, setIsDone] = useState(false);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
-    schoolId: undefined,
-    schoolName: undefined,
-    email: undefined,
-    downloadType: "word",
-    termsAndConditions: false,
-    schoolNotListed: false,
-    schools: [],
-  }));
-
-  useLayoutEffect(() => {
-    if (localStorageData) {
-      setData({
-        schoolId: localStorageData.schoolId,
-        schoolName: localStorageData.schoolName,
-        email: localStorageData.email,
-        downloadType: "word",
-        termsAndConditions: localStorageData.termsAndConditions,
-        schoolNotListed: localStorageData.schoolNotListed,
-        schools: [],
-      });
-    }
-  }, [localStorageData]);
-
-  const schoolPickerInputValue = data.schoolName;
-  const { data: schoolList } = useFetch<School[]>(
-    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
-    "school-picker/fetch-suggestions",
-  );
-
-  const onSubmit = async (data: CurriculumDownloadViewData) => {
-    setIsSubmitting(true);
-    console.log("onSubmit", { data });
-
-    saveDownloadsDataToLocalStorage({
-      schoolId: data.schoolId!,
-      schoolName: data.schoolName!,
-      email: data.email!,
-      termsAndConditions: data.termsAndConditions!,
-      schoolNotListed: data.schoolNotListed!,
-    });
-
-    // TODO: Actually generate file here (async)
-
-    setIsSubmitting(false);
+  const onDownloadComplete = () => {
     setIsDone(true);
   };
 
@@ -103,18 +57,14 @@ const CurriculumDownloadTab: FC = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
-        {!isLoading && (
-          <CurriculumDownloadView
-            isSubmitting={isSubmitting}
-            onSubmit={onSubmit}
-            onChange={setData}
-            schools={schoolList ?? []}
-            data={data}
-          />
-        )}
+        <CurriculumDownloadView
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          cache={cache}
+          onDownloadComplete={onDownloadComplete}
+        />
       </Box>
     </OakThemeProvider>
   );
 };
 
-export default wrapPreRelease(CurriculumDownloadTab, "curriculum.downloads");
+export default CurriculumDownloadTab;

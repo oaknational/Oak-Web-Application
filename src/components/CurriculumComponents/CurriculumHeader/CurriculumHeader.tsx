@@ -97,7 +97,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       label: "Download",
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
-      isCurrent: tab === "downloads",
+      isCurrent: router.pathname.endsWith("downloads"),
       currentStyles: ["underline"],
       scroll: false,
     });

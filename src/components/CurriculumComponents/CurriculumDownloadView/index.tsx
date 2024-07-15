@@ -1,130 +1,161 @@
 import {
   OakBox,
-  OakFieldError,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
-  OakLI,
-  OakP,
   OakPrimaryButton,
-  OakRadioButton,
-  OakRadioGroup,
-  OakUL,
 } from "@oaknational/oak-components";
-import { FC, FormEvent, useId, useState } from "react";
-import styled from "styled-components";
+import { FC, useEffect, useState } from "react";
 
-import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
-import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
-import YourDetails from "../OakComponentsKitchen/YourDetails";
-
-import { submitSchema } from "./schema";
-import { School, runSchema } from "./helper";
+import { formattedDate } from "../DocxPOC/util";
 
 import Box from "@/components/SharedComponents/Box";
-import flex, { FlexCssProps } from "@/styles/utils/flex";
-import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
-
-const StyledForm = styled.form<FlexCssProps & SpacingProps>`
-  ${flex}
-  ${spacing}
-  display: flex;
-`;
-
-const Container = styled(OakFlex)`
-  flex-direction: row;
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
-`;
-
-const validDownloadTypes = ["word", "pdf"] as const;
-export type DownloadType = (typeof validDownloadTypes)[number];
-
-const assertValidDownloadType = (val: string) => {
-  if (!validDownloadTypes.includes(val as DownloadType)) {
-    throw new Error("Invalid ");
-  }
-  return val as DownloadType;
-};
-
-const DOWNLOAD_LABELS: [DownloadType, string][] = [
-  ["word", "Word"],
-  ["pdf", "PDF"],
-];
-
-export type CurriculumDownloadViewData = {
-  schools: School[];
-  schoolId?: string;
-  schoolName?: string;
-  email?: string;
-  downloadType: DownloadType;
-  termsAndConditions?: boolean;
-  schoolNotListed?: boolean;
-};
-
-export type CurriculumDownloadViewErrors = Partial<{
-  schoolId: string;
-  email: string;
-  termsAndConditions: string;
-  schoolNotListed: string;
-}>;
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import {
+  UseResourceFormStateProps,
+  useResourceFormState,
+} from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+// import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
+import FieldError from "@/components/SharedComponents/FieldError";
+import errorReporter from "@/common-lib/error-reporter";
 
 export type CurriculumDownloadViewProps = {
-  isSubmitting: boolean;
-  data: CurriculumDownloadViewData;
-  schools: School[];
-  onChange?: (value: CurriculumDownloadViewData) => void;
-  onSubmit?: (value: CurriculumDownloadViewData) => void;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  cache: number;
+  onDownloadComplete: () => void;
 };
+
+const resources: UseResourceFormStateProps = {
+  type: "curriculumDocx",
+  curriculumResourcesFileTypes: ["docx"],
+};
+
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
-  schools,
-  data,
-  onChange,
-  onSubmit,
-  isSubmitting,
+  curriculumSelectionSlugs,
+  cache,
+  onDownloadComplete,
 }) => {
-  const errorMessageListId = useId();
-  const [errors, setErrors] = useState<CurriculumDownloadViewErrors>(
-    () => ({}),
-  );
-  const hasErrors = Object.keys(errors).length;
+  const {
+    form,
+    emailFromLocalStorage,
+    schoolIdFromLocalStorage,
+    schoolNameFromLocalStorage,
+    isLocalStorageLoading,
+    setSchool,
+    shouldDisplayDetailsCompleted,
+    handleEditDetailsCompletedClick,
+    editDetailsClicked,
+    hasFormErrors,
+    localStorageDetails,
+  } = useResourceFormState(resources);
 
-  const onChangeLocal = (partial: Partial<CurriculumDownloadViewData>) => {
-    const newData = {
-      ...data,
-      ...partial,
-    };
-    onChange?.(newData);
-  };
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [origin, setOrigin] = useState<string | null>(null);
+  const [isAttemptingDownload, setIsAttemptingDownload] =
+    useState<boolean>(false);
+  // const { onHubspotSubmit } = useHubspotSubmit();
+  const reportError = errorReporter("CurriculumDownloadView/index.tsx");
 
-  const onSubmitLocal = (e: FormEvent) => {
-    e.preventDefault();
-    if (onSubmit) {
-      const newSubmitValidatioResults = runSchema(submitSchema, data);
-      setErrors(newSubmitValidatioResults.errors);
-      if (newSubmitValidatioResults.success) {
-        onSubmit(data);
-      }
+  const { subjectSlug, phaseSlug, examboardSlug } = curriculumSelectionSlugs;
+  const slug = [subjectSlug, phaseSlug, "published", examboardSlug].join("/");
+  const filename = `${subjectSlug} - ${phaseSlug} - ${examboardSlug} - ${formattedDate(
+    new Date(),
+  )}.docx`;
+  const downloadPath = `/api/curriculum-downloads/${cache}/${slug}`;
+
+  const {
+    setSchoolInLocalStorage,
+    setEmailInLocalStorage,
+    setTermsInLocalStorage,
+  } = useLocalStorageForDownloads();
+
+  const handleLocalStorageUpdates = (data: {
+    email?: string | undefined;
+    school: string;
+    schoolName: string;
+    terms: boolean;
+  }) => {
+    const { email, school, schoolName, terms } = data;
+    if (email) setEmailInLocalStorage(email);
+    if (terms) setTermsInLocalStorage(terms);
+
+    const isSpecialSchool = school === "homeschool" || school === "notListed";
+    if (school) {
+      setSchoolInLocalStorage({
+        schoolId: school,
+        schoolName: isSpecialSchool ? school : schoolName,
+      });
     }
   };
 
-  const [isComplete, setIsComplete] = useState(() => {
-    return (
-      (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
-      data.termsAndConditions
-    );
-  });
+  const onFormSubmit = async (data: ResourceFormProps) => {
+    // console.log(data);
+    // await onHubspotSubmit(data);
+    setIsAttemptingDownload(true);
+
+    const { email, school, schoolName, terms } = data;
+    handleLocalStorageUpdates({
+      email,
+      school,
+      schoolName: schoolName || "", // Ensure schoolName is a string
+      terms,
+    });
+
+    fetch(downloadPath)
+      .then((resp) => {
+        if (resp.status === 200) {
+          return resp.blob();
+        } else {
+          throw new Error(`Error: ${resp.status} ${resp.statusText}`);
+        }
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+        setIsAttemptingDownload(false);
+        onDownloadComplete();
+      })
+      .catch((error) => {
+        reportError(
+          "There was an error downloading the curriculum docx.",
+          error,
+        );
+        setIsAttemptingDownload(false);
+        setApiError(
+          "There was an error downloading your files. Please try again.",
+        );
+      });
+
+    if (editDetailsClicked && !data.email) setEmailInLocalStorage("");
+  };
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   return (
     <OakBox $color="black">
       <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
         Download
       </OakHeading>
-      <Container $gap={["space-between-m2", "space-between-l"]}>
-        <Box $width={["100%", 510]} $textAlign={"left"}>
-          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakGrid>
+        <OakGridArea $colSpan={[12, 12, 6]} $pr="inner-padding-xl">
+          <OakFlex
+            $flexDirection={"column"}
+            $gap={"space-between-s"}
+            $maxWidth={["all-spacing-22", null, null]}
+          >
             <OakHeading
               tag="h3"
               $font={["heading-5"]}
@@ -132,121 +163,99 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
             >
               Document preview
             </OakHeading>
-            <CurriculumDocumentPreview />
+            {/* <iframe
+              src={`https://view.officeapps.live.com/op/embed.aspx?src=${window.location.origin}${downloadPath}`}
+              width="100%"
+              style={{ aspectRatio: 210 / 297 }}
+              frameBorder="0"
+            >
+              This is an embedded{" "}
+              <a target="_blank" href="http://office.com">
+                Microsoft Office
+              </a>{" "}
+              document, powered by{" "}
+              <a target="_blank" href="http://office.com/webapps">
+                Office Online
+              </a>
+              .
+            </iframe> */}
+            <OakBox
+              $position="relative"
+              $borderStyle="solid"
+              $borderColor="black"
+            >
+              {origin && (
+                <iframe
+                  width="100%"
+                  frameBorder={0}
+                  style={{ aspectRatio: 210 / 297 }}
+                  src={`https://docs.google.com/gview?url=${origin}${downloadPath}&embedded=true`}
+                />
+              )}
+            </OakBox>
           </OakFlex>
-        </Box>
-        <Box $maxWidth={["100%", 400]} $textAlign={"left"}>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, 12, 6]}>
           <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-            <OakHeading tag="h3" $font={["heading-5"]}>
-              Your details
-            </OakHeading>
-            <StyledForm onSubmit={onSubmitLocal} $alignItems={"center"}>
-              <OakFlex $flexDirection={"column"}>
-                {!isComplete && (
-                  <OakFlex
-                    $width={"100%"}
-                    $flexDirection={"column"}
-                    $alignItems={"start"}
-                    $gap={["space-between-l"]}
-                  >
-                    <YourDetails
-                      schools={schools}
-                      data={data}
-                      errors={errors}
-                      onChange={onChangeLocal}
-                    />
-
-                    <AcceptTerms
-                      value={!!data.termsAndConditions}
-                      error={errors.termsAndConditions}
-                      onChange={(v) =>
-                        onChangeLocal({
-                          termsAndConditions: v,
-                        })
-                      }
-                    />
-                  </OakFlex>
-                )}
-
-                {isComplete && (
-                  <ResourcePageDetailsCompleted
-                    school={
-                      data.schoolNotListed
-                        ? "My school isn’t listed"
-                        : data.schoolName
-                    }
-                    email={data.email}
-                    onEditClick={() => setIsComplete(false)}
-                  />
-                )}
-
-                <Box>
-                  <OakFlex
-                    $flexDirection={"column"}
-                    $width={"100%"}
-                    $gap={"space-between-s"}
-                    $mv={"space-between-m2"}
-                  >
-                    <OakHeading tag={"h3"} $font={"heading-7"}>
-                      Download options
-                    </OakHeading>
-                    <OakRadioGroup
-                      aria-label="Download type"
-                      name="download-type"
-                      data-testid="download-download-type"
-                      value={data.downloadType}
-                      onChange={(e) =>
-                        onChangeLocal({
-                          downloadType: assertValidDownloadType(e.target.value),
-                        })
-                      }
-                      $gap={"space-between-s"}
-                      $flexDirection={"column"}
-                    >
-                      {DOWNLOAD_LABELS.map(
-                        ([downloadTypeValue, downloadTypeLabel]) => {
-                          return (
-                            <OakRadioButton
-                              id={downloadTypeValue}
-                              key={downloadTypeValue}
-                              label={downloadTypeLabel}
-                              value={downloadTypeValue}
-                              data-testid={downloadTypeValue}
-                            />
-                          );
-                        },
-                      )}
-                    </OakRadioGroup>
-                  </OakFlex>
-                </Box>
-
-                <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-                  {hasErrors > 0 && (
-                    <div id={errorMessageListId}>
-                      <OakFieldError>
-                        <OakP>To download fix following errors:</OakP>
-                        <OakUL>
-                          {Object.entries(errors).map(([key, value]) => {
-                            return <OakLI key={key}>{value}</OakLI>;
-                          })}
-                        </OakUL>
-                      </OakFieldError>
-                    </div>
-                  )}
+            <OakFlex
+              $flexDirection={"column"}
+              $alignItems={["start", "start", "center"]}
+            >
+              <Box $maxWidth={[null, 420, 420]}>
+                <TermsAgreementForm
+                  form={form}
+                  email={emailFromLocalStorage}
+                  schoolId={schoolIdFromLocalStorage}
+                  schoolName={schoolNameFromLocalStorage}
+                  isLoading={isLocalStorageLoading}
+                  setSchool={setSchool}
+                  showSavedDetails={shouldDisplayDetailsCompleted}
+                  //copyrightYear value hard coded
+                  copyrightYear="2023"
+                  handleEditDetailsCompletedClick={
+                    handleEditDetailsCompletedClick
+                  }
+                />
+                <OakFlex
+                  $flexDirection={"column"}
+                  $width={"100%"}
+                  $gap={"space-between-m"}
+                  $mv={"space-between-m2"}
+                  $alignItems={"start"}
+                  $justifyContent={"start"}
+                  data-testid="download-options"
+                >
+                  <OakHeading tag={"h3"} $font={"heading-7"}>
+                    Word Document (docx)
+                  </OakHeading>
                   <OakPrimaryButton
-                    aria-errormessage={errorMessageListId}
-                    isLoading={isSubmitting}
+                    isLoading={isAttemptingDownload}
                     type="submit"
-                    disabled={false}
+                    disabled={
+                      hasFormErrors ||
+                      (!form.formState.isValid && !localStorageDetails)
+                    }
+                    onClick={(event) => {
+                      form.handleSubmit(onFormSubmit)(event);
+                    }}
                   >
                     Download
                   </OakPrimaryButton>
+                  {apiError && !hasFormErrors && (
+                    <FieldError
+                      id="download-error"
+                      variant={"large"}
+                      withoutMarginBottom
+                    >
+                      {apiError}
+                    </FieldError>
+                  )}
                 </OakFlex>
-              </OakFlex>
-            </StyledForm>
+              </Box>
+            </OakFlex>
           </OakFlex>
-        </Box>
-      </Container>
+        </OakGridArea>
+      </OakGrid>
     </OakBox>
   );
 };
