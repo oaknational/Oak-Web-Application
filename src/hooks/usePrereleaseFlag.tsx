@@ -27,14 +27,3 @@ export function wrapPreRelease<T extends ComponentType<P>, P extends object>(
     }
   };
 }
-
-// export function wrapPreRelease<T extends ComponentType<any>>(Component: T, key: string): FC<React.ComponentProps<T>> {
-//   return function Prerelease(props: React.ComponentProps<T>) {
-//     const enabled = usePrereleaseFlag(key);
-//     if (enabled) {
-//       return <Component {...props} />;
-//     } else {
-//       return <div />;
-//     }
-//   };
-// }

@@ -29,8 +29,6 @@ export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     schoolName: { order: 5, message: "" },
   };
 
-  console.log(errorsArray);
-
   const sortedErrorsArray = errorsArray.sort(
     (a, b) => errorMessagesAndOrder[a]?.order - errorMessagesAndOrder[b]?.order,
   );
