@@ -9,7 +9,7 @@ import {
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
 
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
-import { UnitsSection } from "@/components/PupilComponents/UnitsSection/UnitsSection";
+import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -43,7 +43,7 @@ export const PupilViewsUnitListing = ({
     >
       <OakBox $mb={"space-between-xl"}>
         {unitSections.map((unitSection, i) => (
-          <UnitsSection
+          <PupilUnitsSection
             key={unitSection.title}
             titleSlot={
               unitSection.title && unitSection.icon ? (

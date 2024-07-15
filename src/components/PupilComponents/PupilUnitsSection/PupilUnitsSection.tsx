@@ -44,7 +44,7 @@ const FilterSlot = ({
   );
 };
 
-export type UnitsSectionProps = {
+export type PupilUnitsSectionProps = {
   units: UnitListingBrowseData[number][][];
   phase: "primary" | "secondary";
   counterText: string | null;
@@ -56,7 +56,7 @@ export type UnitsSectionProps = {
   id?: string;
 };
 
-export const UnitsSection = ({
+export const PupilUnitsSection = ({
   units,
   phase,
   counterText,
@@ -65,7 +65,7 @@ export const UnitsSection = ({
   filterItems,
   applyFilter,
   id = "0",
-}: UnitsSectionProps) => {
+}: PupilUnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
     unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
   );
