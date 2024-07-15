@@ -54,6 +54,6 @@ describe("PupilReview", () => {
       </OakThemeProvider>,
     );
 
-    expect(queryByText("Fantastic job, well done!")).toBeInTheDocument();
+    expect(queryByText("Fantastic job - well done!")).toBeInTheDocument();
   });
 });
