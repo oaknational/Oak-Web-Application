@@ -188,8 +188,6 @@ const QuizInner = () => {
 };
 
 export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
-  console.log({ questionsArray });
-
   return (
     <OakCloudinaryConfigProvider
       value={{
