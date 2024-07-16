@@ -228,6 +228,14 @@ async function main() {
     NEXT_PUBLIC_OAK_USER_LOG_URL:
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
+
+    // Auth0
+    AUTH0_SECRET: process.env.AUTH0_SECRET || oakConfig.auth0?.secret,
+    AUTH0_ISSUER_BASE_URL:
+      process.env.AUTH0_ISSUER_BASE_URL || oakConfig.auth0?.issuerBaseUrl,
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || oakConfig.auth0?.clientId,
+    AUTH0_CLIENT_SECRET:
+      process.env.AUTH0_CLIENT_SECRET || oakConfig.auth0?.clientSecret,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
