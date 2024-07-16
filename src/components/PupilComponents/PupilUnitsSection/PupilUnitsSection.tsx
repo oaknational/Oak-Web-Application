@@ -70,6 +70,11 @@ export const PupilUnitsSection = ({
     unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
   );
 
+  console.log(
+    "indexedUnits",
+    indexedUnits[0].map((unit) => unit?.unitData),
+  );
+
   const filteredUnits =
     filterItems.length > 0
       ? indexedUnits.filter(
@@ -80,6 +85,8 @@ export const PupilUnitsSection = ({
               filterItems.includes("All")),
         )
       : indexedUnits;
+
+  console.log("filteredUnits", filteredUnits);
 
   const filterSlot = titleSlot ? (
     <FilterSlot
@@ -102,7 +109,7 @@ export const PupilUnitsSection = ({
               tooltipPosition="top-left"
             />
             <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-              {counterText}{" "}
+              {counterText}
               <OakSpan $font={"heading-light-6"}>
                 ({filteredUnits.length})
               </OakSpan>

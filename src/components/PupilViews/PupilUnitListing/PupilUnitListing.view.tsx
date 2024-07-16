@@ -25,6 +25,7 @@ export const PupilViewsUnitListing = ({
   subjectCategories,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
+
   const [filterItems, setFilterItems] = useState<string[]>(["All"]);
 
   const applyFilter = (subjectCategory: string) => {
