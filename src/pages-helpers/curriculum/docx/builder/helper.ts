@@ -10,19 +10,37 @@ import {
  * @param input capitalized string
  * @returns uncapitalized string
  */
-export function uncapitalize(input: string) {
+export function uncapitalize(input: string, titleCaseWords: string[] = []) {
   const chars = input.split("");
   let output = ``;
   for (let i = 0; i < chars.length; i++) {
-    if (
-      chars[i]?.match(/[A-Z]/) &&
-      (i == 0 || chars[i - 1]?.match(/[^A-Z.]/)) &&
-      (i === chars.length - 1 || chars[i + 1]?.match(/[^A-Z]/))
-    ) {
-      output += chars[i]?.toLowerCase();
-    } else {
-      output += chars[i];
+    let j = i;
+    let allUpperCase = true;
+    let doBreak = false;
+    let word = "";
+    while (j < chars.length) {
+      if (chars[j] === " ") {
+        doBreak = true;
+      } else {
+        if (!chars[j]!.match(/[A-Z]/)) {
+          allUpperCase = false;
+        }
+      }
+      word += chars[j];
+      j++;
+      if (doBreak) break;
     }
+
+    if (titleCaseWords.includes(word.toLowerCase())) {
+      const firstLetter = word.slice(0, 1);
+      const rest = word.slice(1);
+      output += `${firstLetter.toUpperCase()}${rest}`;
+    } else if (allUpperCase) {
+      output += word;
+    } else {
+      output += word.toLowerCase();
+    }
+    i = j - 1;
   }
   return output;
 }
@@ -33,33 +51,7 @@ export function uncapitalize(input: string) {
  * @returns uncapitalized string
  */
 export function uncapitalizeSubject(input: string) {
-  const outputWithoutSpecialCases = uncapitalize(input);
-  return outputWithoutSpecialCases.replace(
-    /\b(english|french|spanish|german)\b/gi,
-    (word) => {
-      const firstLetter = word.slice(0, 1);
-      const rest = word.slice(1);
-      return `${firstLetter.toUpperCase()}${rest}`;
-    },
-  );
-}
-
-export function createProgrammeSlug(
-  unitData?: Unit | null,
-  examboardSlug?: string | null,
-  tierSlug?: string | null,
-) {
-  tierSlug = tierSlug ?? unitData?.tier_slug;
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${tierSlug ? "-" + tierSlug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
-  }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
+  return uncapitalize(input, ["english", "french", "spanish", "german"]);
 }
 
 export function notUndefined<TValue>(

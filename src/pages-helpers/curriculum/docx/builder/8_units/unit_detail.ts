@@ -10,7 +10,8 @@ import {
   insertNumbering,
   wrapInLinkTo,
 } from "../../docx";
-import { createProgrammeSlug } from "../helper";
+
+import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
 type Unit = CombinedCurriculumData["units"][number];
 

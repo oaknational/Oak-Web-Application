@@ -19,13 +19,16 @@ export async function zipToSimpleObject(
         if (opts.convertXmlToJson) {
           output[file.name] = xmlRootToJson(content);
         } else {
-          output[file.name] = json2xml(xmlRootToJson(content) as Element, {
-            spaces: 2,
-            compact: false,
-            indentText: true,
-            fullTagEmptyElement: true,
-            indentAttributes: true,
-          });
+          output[file.name] = json2xml(
+            JSON.stringify(xmlRootToJson(content) as Element),
+            {
+              spaces: 2,
+              compact: false,
+              indentText: true,
+              fullTagEmptyElement: true,
+              indentAttributes: true,
+            },
+          );
         }
       } else {
         output[file.name] = content;
