@@ -371,10 +371,6 @@ export async function appendBodyElements(
   }
   const doc = xmlRootToJson(docRaw);
 
-  if (!doc.elements) {
-    throw new Error("expected doc.elements");
-  }
-
   const oldElements = doc.elements[0]!.elements![0].elements;
   doc.elements[0]!.elements![0].elements = [...oldElements, ...childElements];
 
@@ -383,36 +379,6 @@ export async function appendBodyElements(
 
 function notUndefined<TValue>(value: TValue | undefined): value is TValue {
   return value !== undefined;
-}
-
-export async function modifyZipXmlByRootSelector(
-  zipContent: JSZip,
-  selector: string,
-  handler: (current: Element) => Promise<Element>,
-) {
-  for (const [key, value] of Object.entries(zipContent.files)) {
-    if (!key.endsWith(".xml") && !key.endsWith(".rels")) {
-      continue;
-    }
-
-    const json = xmlRootToJson(await value.async("text"));
-
-    if (json.elements) {
-      const docIndex = json.elements.findIndex(
-        (el: Element) => el.name === selector,
-      );
-      if (docIndex > -1) {
-        // Modify
-        const newElements = [...json.elements];
-        newElements[docIndex] = await handler(json.elements![docIndex]!);
-        const newJson = {
-          ...json,
-          elements: newElements,
-        } as Element;
-        zipContent.file(key, jsonXmlToXmlString(newJson));
-      }
-    }
-  }
 }
 
 export const checkWithinElement = (

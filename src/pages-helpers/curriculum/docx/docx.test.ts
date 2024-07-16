@@ -1,8 +1,9 @@
 import { Element } from "xml-js";
 import { sortBy } from "lodash";
-import jsonDiff from "json-diff";
+import { diff } from "json-diff";
 
 import {
+  appendBodyElements,
   checkWithinElement,
   cmToEmu,
   cmToTwip,
@@ -10,6 +11,7 @@ import {
   emuToCm,
   generateEmptyDocx,
   insertImages,
+  insertLinks,
   insertNumbering,
   lineHeight,
   mapOverElements,
@@ -160,6 +162,7 @@ describe("docx", () => {
           "word/styles.xml",
           "word/settings.xml",
           "word/fontTable.xml",
+          "word/numbering.xml",
           "word/document.xml",
           "word/_rels/",
           "docProps/core.xml",
@@ -184,10 +187,11 @@ describe("docx", () => {
       });
       await insertImages(zip, {
         foobar: EMPTY_PNG,
+        baz: EMPTY_PNG,
       });
       const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
 
-      const diffResults = jsonDiff.diff(initialState, newState);
+      const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
         "word/media/__added",
         "word/media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng__added",
@@ -227,8 +231,57 @@ describe("docx", () => {
     });
   });
 
+  describe("insertLinks", () => {
+    it("test", async () => {
+      const zip = await generateEmptyDocx();
+
+      const initialState = await zipToSimpleObject(zip, {
+        convertXmlToJson: true,
+      });
+      await insertLinks(zip, {
+        foobar: "http://example.com",
+        baz: "http://example.com",
+      });
+      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+
+      const diffResults = diff(initialState, newState);
+      expect(Object.keys(diffResults)).toEqual([
+        "word/_rels/document.xml.rels",
+      ]);
+
+      expect(diffResults["word/_rels/document.xml.rels"]).toEqual({
+        elements: [
+          [
+            "~",
+            {
+              elements: [
+                [" "],
+                [" "],
+                [" "],
+                [" "],
+                [
+                  "+",
+                  {
+                    type: "element",
+                    name: "Relationship",
+                    attributes: {
+                      Id: "rId89dce6a446a69d6b9bdc01ac75251e4c322bcdff",
+                      Target: "http://example.com",
+                      TargetMode: "External",
+                      Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+                    },
+                  },
+                ],
+              ],
+            },
+          ],
+        ],
+      });
+    });
+  });
+
   describe("insertNumbering", () => {
-    it.skip("test", async () => {
+    it("test", async () => {
       const zip = await generateEmptyDocx();
 
       const initialState = await zipToSimpleObject(zip, {
@@ -282,8 +335,9 @@ describe("docx", () => {
       });
 
       const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
-      const diffResults = jsonDiff.diff(initialState, newState);
-      console.log({ diffResults });
+      const diffResults = diff(initialState, newState);
+      expect(Object.keys(diffResults)).toEqual(["word/numbering.xml"]);
+      expect(diffResults).toMatchSnapshot();
     });
   });
 
@@ -323,5 +377,56 @@ describe("docx", () => {
     expect(wrapInBookmarkPoint("testing", "<w:p/>")).toEqual(
       `<w:bookmarkStart w:id="${CURRENT_BOOKMARK.id}" w:name="testing"/><w:p/><w:bookmarkEnd w:id="${CURRENT_BOOKMARK.id}"/>`,
     );
+  });
+
+  describe("appendBodyElements", () => {
+    test("invalid", async () => {
+      const zip = await generateEmptyDocx();
+      zip.remove("word/document.xml");
+      await expect(
+        appendBodyElements(zip, [{ type: "text", text: "test" }]),
+      ).rejects.toThrow();
+    });
+    test("valid", async () => {
+      const zip = await generateEmptyDocx();
+      const initialState = await zipToSimpleObject(zip, {
+        convertXmlToJson: true,
+      });
+      await appendBodyElements(zip, [{ type: "text", text: "test" }]);
+
+      const newState = await zipToSimpleObject(zip, {
+        convertXmlToJson: true,
+      });
+      const diffResults = diff(initialState, newState);
+
+      expect(diffResults).toEqual({
+        "word/document.xml": {
+          elements: [
+            [
+              "~",
+              {
+                elements: [
+                  [
+                    "~",
+                    {
+                      elements: [
+                        [" "],
+                        [
+                          "+",
+                          {
+                            type: "text",
+                            text: "test",
+                          },
+                        ],
+                      ],
+                    },
+                  ],
+                ],
+              },
+            ],
+          ],
+        },
+      });
+    });
   });
 });

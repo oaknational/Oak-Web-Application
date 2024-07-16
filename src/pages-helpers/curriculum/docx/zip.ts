@@ -1,11 +1,11 @@
 import NodeBuffer, { Buffer } from "node:buffer";
 
 import JSZip from "jszip";
-import { ElementCompact, Element } from "xml-js";
+import { ElementCompact, Element, json2xml } from "xml-js";
 
 import { xmlRootToJson } from "./xml";
 
-type zipToSimpleObjectOpts = { convertXmlToJson?: true };
+type zipToSimpleObjectOpts = { convertXmlToJson?: boolean };
 export async function zipToSimpleObject(
   zip: JSZip,
   opts: zipToSimpleObjectOpts = {},
@@ -15,8 +15,18 @@ export async function zipToSimpleObject(
     const buffer = await file.async("nodebuffer");
     if (NodeBuffer.isUtf8(buffer)) {
       const content = buffer.toString();
-      if (opts.convertXmlToJson && content.startsWith(`<?xml version="1.0"`)) {
-        output[file.name] = xmlRootToJson(content);
+      if (content.startsWith(`<?xml version="1.0"`)) {
+        if (opts.convertXmlToJson) {
+          output[file.name] = xmlRootToJson(content);
+        } else {
+          output[file.name] = json2xml(xmlRootToJson(content) as Element, {
+            spaces: 2,
+            compact: false,
+            indentText: true,
+            fullTagEmptyElement: true,
+            indentAttributes: true,
+          });
+        }
       } else {
         output[file.name] = content;
       }

@@ -19,7 +19,7 @@ export function xmlRootToJson(xmlData: string) {
  */
 export function safeXml(
   strings: TemplateStringsArray,
-  ...values: (string | number | string[])[]
+  ...values: (string | number | (string | number)[])[]
 ) {
   let outXml = "";
   for (let i = 0; i < strings.length; i++) {

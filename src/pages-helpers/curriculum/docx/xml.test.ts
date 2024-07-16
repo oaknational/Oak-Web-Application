@@ -4,6 +4,7 @@ import {
   collapseFragments,
   createFragment,
   jsonXmlToXmlString,
+  safeXml,
   xmlElementToJson,
   xmlRootToJson,
 } from "./xml";
@@ -24,6 +25,11 @@ describe("xml", () => {
           },
         ],
       });
+    });
+
+    it("should return empty if empty", () => {
+      const json = xmlElementToJson(undefined);
+      expect(json).toEqual(undefined);
     });
 
     it("should throw with valid XML with multiple root nodes", () => {
@@ -271,6 +277,34 @@ describe("xml", () => {
       expect(() => cdataJson({ type: "w:t", elements: [] })).toThrow(
         "Expecting text node",
       );
+    });
+  });
+
+  describe("safeXml", () => {
+    it("string", () => {
+      const element = safeXml`<test>${"testing"}</test>`;
+      expect(element).toEqual("<test>testing</test>");
+    });
+
+    it("number", () => {
+      const element = safeXml`<test>${1234}</test>`;
+      expect(element).toEqual("<test>1234</test>");
+    });
+
+    it("string[]", () => {
+      const element = safeXml`<test>${["a", "b", "c"]}</test>`;
+      expect(element).toEqual("<test>abc</test>");
+    });
+
+    it("number[]", () => {
+      const element = safeXml`<test>${[1, 2, 3]}</test>`;
+      expect(element).toEqual("<test>123</test>");
+    });
+
+    it("throws", () => {
+      expect(() => {
+        safeXml`<test>${"testing"}</testing>`;
+      }).toThrow();
     });
   });
 });
