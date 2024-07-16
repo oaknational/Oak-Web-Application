@@ -3,24 +3,52 @@ import JSZip from "jszip";
 
 import { cdata, safeXml } from "../../xml";
 import { CombinedCurriculumData } from "../..";
-import { cmToEmu, createImage, insertLinks, wrapInLinkTo } from "../../docx";
+import {
+  cmToEmu,
+  createImage,
+  insertLinks,
+  insertNumbering,
+  wrapInLinkTo,
+} from "../../docx";
 import { createProgrammeSlug } from "../helper";
 
 type Unit = CombinedCurriculumData["units"][number];
 
-function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
-  const listRules = {
-    // TODO: We should be using numbering here, but the numbered lists don't reset currently.
-    numbering: safeXml` <w:ilvl w:val="0" /><w:numId w:val="8" /> `,
-    bullets: safeXml` <w:ilvl w:val="0" /><w:numId w:val="3" /> `,
-  };
+async function buildUnitLessons(
+  zip: JSZip,
+  unit: Unit | Unit["unit_options"][number],
+) {
+  const numbering = await insertNumbering(zip, {
+    lessonNumbering: safeXml`
+      <XML_FRAGMENT>
+        <w:nsid w:val="099A081C" />
+        <w:multiLevelType w:val="hybridMultilevel" />
+        <w:lvl w:ilvl="0">
+          <w:start w:val="1" />
+          <w:numFmt w:val="upperLetter" />
+          <w:lvlText w:val="%1." />
+          <w:lvlJc w:val="start" />
+          <w:pPr>
+            <w:ind w:start="360" w:hanging="360" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial Black" w:hAnsi="Arial Black" />
+            <w:color w:val="C00000" />
+            <w:sz w:val="28" />
+          </w:rPr>
+        </w:lvl>
+      </XML_FRAGMENT>
+    `,
+  });
 
   const lessonsXmls =
     unit.lessons?.map((lesson) => {
       return safeXml`
         <w:p>
           <w:pPr>
-            <w:numPr>${listRules.bullets}</w:numPr>
+            <w:numPr>
+              <w:numId w:val="${numbering.lessonNumbering}" />
+            </w:numPr>
             <w:spacing w:line="240" w:lineRule="auto" />
             <w:ind w:left="425" w:right="-17" />
           </w:pPr>
@@ -43,7 +71,30 @@ function buildUnitLessons(unit: Unit | Unit["unit_options"][number]) {
   return lessonsXmls.join("");
 }
 
-function buildUnitThreads(unit: Unit) {
+async function buildUnitThreads(zip: JSZip, unit: Unit) {
+  const numbering = await insertNumbering(zip, {
+    threadsNumbering: safeXml`
+      <XML_FRAGMENT>
+        <w:multiLevelType w:val="multilevel" />
+        <w:lvl w:ilvl="0">
+          <w:start w:val="1" />
+          <w:numFmt w:val="bullet" />
+          <w:lvlText w:val="" />
+          <w:lvlJc w:val="left" />
+          <w:pPr>
+            <w:tabs>
+              <w:tab w:val="num" w:pos="720" />
+            </w:tabs>
+            <w:ind w:left="720" w:hanging="720" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+          </w:rPr>
+        </w:lvl>
+      </XML_FRAGMENT>
+    `,
+  });
+
   if (unit.threads.length === 0) {
     return safeXml`
       <w:p>
@@ -58,13 +109,10 @@ function buildUnitThreads(unit: Unit) {
     return safeXml`
       <w:p>
         <w:pPr>
-          <w:widowControl w:val="0" />
           <w:numPr>
             <w:ilvl w:val="0" />
-            <w:numId w:val="3" />
+            <w:numId w:val="${numbering.threadsNumbering}" />
           </w:numPr>
-          <w:spacing w:line="240" w:lineRule="auto" />
-          <w:ind w:left="425" w:right="0" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -76,7 +124,7 @@ function buildUnitThreads(unit: Unit) {
             />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>${cdata(thread.title)}</w:t>
+          <w:t>${cdata(thread.title)} ${numbering.threadsNumbering}</w:t>
         </w:r>
       </w:p>
     ` as Element;
@@ -87,6 +135,7 @@ function buildUnitThreads(unit: Unit) {
 function buildUnitOptionTitle(
   unitOption: CombinedCurriculumData["units"][number]["unit_options"][number],
   unitOptionIndex: number,
+  images: { greenUnderline: string },
 ) {
   return safeXml`
     <XML_FRAGMENT>
@@ -106,85 +155,13 @@ function buildUnitOptionTitle(
             Option ${cdata(unitOptionIndex + 1)}: ${cdata(unitOption.title)}
           </w:t>
         </w:r>
-        <w:r>
-          <w:drawing>
-            <wp:anchor
-              distT="114300"
-              distB="114300"
-              distL="114300"
-              distR="114300"
-              simplePos="0"
-              relativeHeight="251735040"
-              behindDoc="1"
-              locked="0"
-              layoutInCell="1"
-              hidden="0"
-              allowOverlap="1"
-              wp14:anchorId="63FFAED0"
-              wp14:editId="008BED1E"
-            >
-              <wp:simplePos x="0" y="0" />
-              <wp:positionH relativeFrom="column">
-                <wp:posOffset>0</wp:posOffset>
-              </wp:positionH>
-              <wp:positionV relativeFrom="paragraph">
-                <wp:posOffset>219075</wp:posOffset>
-              </wp:positionV>
-              <wp:extent cx="954964" cy="104140" />
-              <wp:effectExtent b="0" l="0" r="0" t="0" />
-              <wp:wrapNone />
-              <wp:docPr
-                id="47"
-                name="image10.png"
-                descr="A purple circle with black background&#xA;&#xA;Description automatically generated"
-              />
-              <wp:cNvGraphicFramePr />
-              <a:graphic
-                xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-              >
-                <a:graphicData
-                  uri="http://schemas.openxmlformats.org/drawingml/2006/picture"
-                >
-                  <pic:pic
-                    xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
-                  >
-                    <pic:nvPicPr>
-                      <pic:cNvPr
-                        id="47"
-                        name="image10.png"
-                        descr="A purple circle with black background&#xA;&#xA;Description automatically generated"
-                      />
-                      <pic:cNvPicPr preferRelativeResize="0" />
-                    </pic:nvPicPr>
-                    <pic:blipFill>
-                      <a:blip r:embed="rId24" />
-                      <a:srcRect />
-                      <a:stretch>
-                        <a:fillRect />
-                      </a:stretch>
-                    </pic:blipFill>
-                    <pic:spPr>
-                      <a:xfrm>
-                        <a:off x="0" y="0" />
-                        <a:ext cx="1954964" cy="104140" />
-                      </a:xfrm>
-                      <a:prstGeom prst="rect">
-                        <a:avLst />
-                      </a:prstGeom>
-                      <a:ln />
-                    </pic:spPr>
-                  </pic:pic>
-                </a:graphicData>
-              </a:graphic>
-              <wp14:sizeRelH relativeFrom="margin">
-                <wp14:pctWidth>0</wp14:pctWidth>
-              </wp14:sizeRelH>
-              <wp14:sizeRelV relativeFrom="margin">
-                <wp14:pctHeight>0</wp14:pctHeight>
-              </wp14:sizeRelV>
-            </wp:anchor>
-          </w:drawing>
-        </w:r>
+        ${createImage(images.greenUnderline, {
+          width: cmToEmu(2.74),
+          height: cmToEmu(0.27),
+          xPos: cmToEmu(0.05),
+          yPos: cmToEmu(0.41),
+          isDecorative: true,
+        })}
       </w:p>
       <w:p>
         <w:r>
@@ -210,6 +187,7 @@ export async function buildUnit(
     greenCircle: string;
     underline: string;
     jumpOutArrow: string;
+    greenUnderline: string;
   },
   slugs: {
     examboardSlug?: string;
@@ -218,8 +196,8 @@ export async function buildUnit(
 ) {
   const unitOptionIfAvailable = unitOption ?? unit;
   const unitNumber = unitIndex + 1;
-  const lessons = buildUnitLessons(unitOptionIfAvailable);
-  const threads = buildUnitThreads(unit);
+  const lessons = await buildUnitLessons(zip, unitOptionIfAvailable);
+  const threads = await buildUnitThreads(zip, unit);
 
   const links = await insertLinks(zip, {
     onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
@@ -633,7 +611,7 @@ export async function buildUnit(
         </w:r>
       </w:p>
       ${unitOption && unitOptionIndex !== undefined
-        ? buildUnitOptionTitle(unitOption, unitOptionIndex)
+        ? buildUnitOptionTitle(unitOption, unitOptionIndex, images)
         : ""}
       <w:p>
         <w:pPr>

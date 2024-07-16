@@ -10,6 +10,7 @@ import {
   emuToCm,
   generateEmptyDocx,
   insertImages,
+  insertNumbering,
   lineHeight,
   mapOverElements,
   pointToDxa,
@@ -223,6 +224,66 @@ describe("docx", () => {
           ],
         ],
       });
+    });
+  });
+
+  describe("insertNumbering", () => {
+    it.skip("test", async () => {
+      const zip = await generateEmptyDocx();
+
+      const initialState = await zipToSimpleObject(zip, {
+        convertXmlToJson: true,
+      });
+
+      await insertNumbering(zip, {
+        lessonNumbering: `
+          <XML_FRAGMENT>
+            <w:nsid w:val="099A081C" />
+            <w:multiLevelType w:val="hybridMultilevel" />
+            <w:lvl w:ilvl="0">
+              <w:start w:val="1" />
+              <w:numFmt w:val="upperLetter" />
+              <w:lvlText w:val="%1." />
+              <w:lvlJc w:val="start" />
+              <w:pPr>
+                <w:ind w:start="360" w:hanging="360" />
+              </w:pPr>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial Black" w:hAnsi="Arial Black" />
+                <w:color w:val="C00000" />
+                <w:sz w:val="28" />
+              </w:rPr>
+            </w:lvl>
+          </XML_FRAGMENT>
+        `,
+      });
+
+      await insertNumbering(zip, {
+        lessonNumbering: `
+          <XML_FRAGMENT>
+            <w:nsid w:val="099A081C" />
+            <w:multiLevelType w:val="hybridMultilevel" />
+            <w:lvl w:ilvl="0">
+              <w:start w:val="1" />
+              <w:numFmt w:val="upperLetter" />
+              <w:lvlText w:val="%1." />
+              <w:lvlJc w:val="start" />
+              <w:pPr>
+                <w:ind w:start="360" w:hanging="360" />
+              </w:pPr>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial Black" w:hAnsi="Arial Black" />
+                <w:color w:val="C00000" />
+                <w:sz w:val="28" />
+              </w:rPr>
+            </w:lvl>
+          </XML_FRAGMENT>
+        `,
+      });
+
+      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const diffResults = jsonDiff.diff(initialState, newState);
+      console.log({ diffResults });
     });
   });
 

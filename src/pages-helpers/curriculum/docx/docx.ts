@@ -22,49 +22,54 @@ function generateHash(buffer: Buffer | string) {
   return hash.read();
 }
 
+let maxId = 10000;
 /**
  * Generates a <w:abstractNum/> / <w:num/> pair
  * @param zip docx zip file
  * @param numberingDefinition key / definition rules
  * @returns key / id lookup table
  */
-export async function insertNumbering(
+export async function insertNumbering<T extends Record<string, string>>(
   zip: JSZip,
-  numberingDefinition: Record<string, string>,
+  numberingDefinition: T,
 ) {
-  const lookup: Record<string, string> = {};
+  const lookup: Record<keyof typeof numberingDefinition, string> = {} as Record<
+    keyof typeof numberingDefinition,
+    string
+  >;
 
   const docNumberingPath = "word/numbering.xml";
-  const json = xmlRootToJson(await zip.file(docNumberingPath)!.async("text"));
+  const xmlStr = await zip.file(docNumberingPath)!.async("text");
+  const json = xmlRootToJson(xmlStr);
 
-  let maxId: number = 0;
-  json.elements.forEach((element: Element) => {
-    if (element.name === "w:abstractNum") {
-      maxId = Math.max(
-        maxId,
-        Number(element.attributes?.["w:abstractNumId"] ?? 0),
-      );
-    } else if (element.name === "w:num") {
-      maxId = Math.max(maxId, Number(element.attributes?.["w:numId"] ?? 0));
-    }
-  });
+  // json.elements.forEach((element: Element) => {
+  //   console.log({element})
+  //   if (element.name === "w:abstractNum") {
+  //     maxId = Math.max(
+  //       maxId,
+  //       Number(element.attributes?.["w:abstractNumId"] ?? 0),
+  //     );
+  //   } else if (element.name === "w:num") {
+  //     maxId = Math.max(maxId, Number(element.attributes?.["w:numId"] ?? 0));
+  //   }
+  // });
 
-  console.log({ maxId });
+  json.elements[0].elements = json.elements[0].elements ?? [];
 
   for (const [key, definition] of Object.entries(numberingDefinition)) {
     const abstractNumId = maxId++;
     const numId = maxId++;
-    lookup[key] = String(numId);
-    json.elements.push(
-      xmlRootToJson(safeXml`
+    lookup[key as keyof T] = String(numId);
+    json.elements[0].elements.push(
+      xmlElementToJson(safeXml`
         <w:abstractNum w:abstractNumId="${abstractNumId}">
           ${definition}
         </w:abstractNum>
       `),
     );
 
-    json.elements.push(
-      xmlRootToJson(safeXml`
+    json.elements[0].elements.push(
+      xmlElementToJson(safeXml`
         <w:num w:numId="${numId}">
           <w:abstractNumId w:val="${abstractNumId}" />
         </w:num>
@@ -77,7 +82,6 @@ export async function insertNumbering(
     jsonXmlToXmlString(collapseFragments(json as Element)),
   );
 
-  console.log({ lookup });
   return lookup;
 }
 
