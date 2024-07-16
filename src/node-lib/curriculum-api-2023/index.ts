@@ -34,6 +34,7 @@ import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
 import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
 import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
+import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -141,6 +142,7 @@ const curriculumApi2023 = {
   pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
   pupilsSitemap: pupilsSitemap(sdk),
   programmeListingPage: programmeListingQuery(sdk),
+  refreshedMVTime: refreshedMVTimeQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
