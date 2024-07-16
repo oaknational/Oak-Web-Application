@@ -32,6 +32,7 @@ type ErrorViewProps = {
 };
 const ErrorView: FC<ErrorViewProps> = (props) => {
   const { onBackClick, statusCode, headerVariant, footerVariant } = props;
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -63,7 +64,9 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             $font={["heading-5", "heading-4"]}
             tag={"h2"}
           >
-            Whoops! It looks like you have fallen too far from the tree.
+            {statusCode === 401
+              ? "Only teachers from the UK are allowed access"
+              : "Whoops! It looks like you have fallen too far from the tree."}
           </OakHeading>
 
           <OakP $mb="space-between-m">Let's get you back to browsing</OakP>

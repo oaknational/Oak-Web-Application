@@ -1,4 +1,7 @@
 import { useMemo, useState } from "react";
+import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/router";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
@@ -246,6 +249,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isLegacyDownload: isLegacyDownload,
   });
 
+  const { user } = useUser();
+
+  const router = useRouter();
   const showNoResources =
     !hasResources ||
     Boolean(expired) ||
@@ -322,22 +328,40 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               )
             }
             cta={
-              <LoadingButton
-                type="button"
-                onClick={
-                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                }
-                text={"Download .zip"}
-                icon={"download"}
-                isLoading={isAttemptingDownload}
-                disabled={
-                  hasFormErrors ||
-                  noResourcesSelected ||
-                  showNoResources ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                loadingText={"Downloading..."}
-              />
+              user ? (
+                <OakFlex $gap="space-between-s">
+                  <LoadingButton
+                    type="button"
+                    onClick={
+                      (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                    }
+                    text={"Download .zip"}
+                    icon={"download"}
+                    isLoading={isAttemptingDownload}
+                    disabled={
+                      hasFormErrors ||
+                      noResourcesSelected ||
+                      showNoResources ||
+                      (!form.formState.isValid && !localStorageDetails)
+                    }
+                    loadingText={"Downloading..."}
+                  />
+                  <OakPrimaryButton
+                    element="a"
+                    href={`/api/auth/logout?returnTo=${router.asPath}`}
+                    rel="nofollow"
+                  >
+                    Log out
+                  </OakPrimaryButton>
+                </OakFlex>
+              ) : (
+                <OakPrimaryButton
+                  element="a"
+                  href={`/api/auth/login?returnTo=${router.asPath}`}
+                >
+                  Login to download
+                </OakPrimaryButton>
+              )
             }
           />
         )}

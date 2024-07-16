@@ -5,7 +5,12 @@
  *
  * @see https://testing-library.com/docs/react-testing-library/setup#custom-render
  */
-import React, { ElementType, ReactElement, ReactNode } from "react";
+import React, {
+  ElementType,
+  ReactElement,
+  ReactNode,
+  ComponentProps,
+} from "react";
 import {
   render,
   renderHook,
@@ -21,6 +26,7 @@ import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -46,6 +52,7 @@ type ProviderPropsByName = {
   overlay: Record<string, never>;
   toast: Record<string, never>;
   menu: Record<string, never>;
+  user: ComponentProps<typeof UserProvider>;
 };
 
 export type ProviderPartialProps = {
@@ -70,6 +77,7 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
+  user: [UserProvider, { user: { email: "foo@example.com" } }],
 };
 
 type ProviderName = keyof ProviderPropsByName;

@@ -185,6 +185,48 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  auth0Secret: {
+    value: process.env.AUTH0_SECRET,
+    envName: "AUTH0_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0IssuerBaseURL: {
+    value: process.env.AUTH0_ISSUER_BASE_URL,
+    envName: "AUTH0_ISSUER_BASE_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0ClientId: {
+    value: process.env.AUTH0_CLIENT_ID,
+    envName: "AUTH0_CLIENT_ID",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0ClientSecret: {
+    value: process.env.AUTH0_CLIENT_SECRET,
+    envName: "AUTH0_CLIENT_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0Audience: {
+    value: process.env.AUTH0_AUDIENCE,
+    envName: "AUTH0_AUDIENCE",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0BaseUrl: {
+    value: process.env.AUTH0_BASE_URL,
+    envName: "AUTH0_BASE_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

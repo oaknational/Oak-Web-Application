@@ -55,5 +55,12 @@
     "policiesUrl": "https://example.com/policies/",
     "consentLogUrl": "https://example.com/consent/",
     "userLogUrl": "https://example.com/user/"
+  },
+  "auth0": {
+    "secret": "AUTH0_SECRET",
+    "issuerBaseUrl": "https://auth.example.com",
+    "clientId": "AUTH0_CLIENT_ID",
+    "clientSecret": "AUTH0_CLIENT_SECRET",
+    "audience": "AUTH0_AUDIENCE"
   }
 }
