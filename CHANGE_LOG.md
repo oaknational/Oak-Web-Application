@@ -1,3 +1,10 @@
+## [1.481.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.0...v1.481.1) (2024-07-16)
+
+
+### Bug Fixes
+
+* ensure review section started is tracked ([75c62f8](https://github.com/oaknational/Oak-Web-Application/commit/75c62f81fdad262265a16c48652f2b04ad161108))
+
 # [1.481.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.480.0...v1.481.0) (2024-07-16)
 
 
