@@ -236,21 +236,27 @@ export const LessonEngineProvider = memo(
       if (track.lessonSectionCompleted) {
         track.lessonSectionCompleted(getSectionTrackingData(section));
       }
+
       if (
         state.lessonReviewSections.every(
-          (section) => state.sections[section]?.isComplete,
+          (s) => state.sections[s]?.isComplete || s === section, // the current section will only be marked as complete on the next render
         )
       ) {
         if (track.lessonCompleted) {
           track.lessonCompleted({});
         }
+
+        // this is the only transition that doesn't happen via the other methods
+        // so we need to ensure tracking happens
+        trackSectionStarted("review");
       }
       dispatch({ type: "completeSection", section });
     };
 
     const trackSectionStarted = (section: LessonSection) => {
       trackLessonStarted();
-      if (isLessonReviewSection(section)) {
+      // confusingly review is not a review section as it does not have stored results
+      if (isLessonReviewSection(section) || section === "review") {
         if (track.lessonSectionStarted) {
           track.lessonSectionStarted({
             pupilExperienceLessonSection: section,
