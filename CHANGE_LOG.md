@@ -1,3 +1,10 @@
+# [1.481.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.480.0...v1.481.0) (2024-07-16)
+
+
+### Features
+
+* **ENG-818:** update with additional logging through oak-consent-client ([8dc5527](https://github.com/oaknational/Oak-Web-Application/commit/8dc5527ea3b75614c39dfbcb9c9494f3b5a4c107))
+
 # [1.480.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.479.0...v1.480.0) (2024-07-15)
 
 
