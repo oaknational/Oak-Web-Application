@@ -102,7 +102,7 @@ export const PupilUnitsSection = ({
               tooltipPosition="top-left"
             />
             <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-              {counterText}
+              {counterText}{" "}
               <OakSpan $font={"heading-light-6"}>
                 ({filteredUnits.length})
               </OakSpan>
