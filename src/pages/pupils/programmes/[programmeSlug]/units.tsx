@@ -34,6 +34,7 @@ export type UnitListingPageProps = {
   backHrefSlugs: UseBackHrefProps;
   yearDescription: string;
   unitSections: UnitsSectionData[];
+  subjectCategories: string[];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -46,6 +47,7 @@ const PupilUnitListingPage = ({
   backHrefSlugs,
   yearDescription,
   unitSections,
+  subjectCategories,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -61,6 +63,7 @@ const PupilUnitListingPage = ({
           unitSections={unitSections}
           phase={phase}
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={subjectCategories}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -138,6 +141,18 @@ export const getStaticProps: GetStaticProps<
 
       const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
 
+      // a unique list of subject categories that appear in the unit listing
+
+      const allSubjectCategories = curriculumData
+        .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
+        .flat()
+        .filter((s) => s?.toLocaleLowerCase() !== subjectSlug)
+        .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
+        .filter((s) => !!s);
+
+      // ts will not accept that the above removes the possibility of undefined
+      const subjectCategories = _.uniq(allSubjectCategories) as string[];
+
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];
 
@@ -190,6 +205,7 @@ export const getStaticProps: GetStaticProps<
           phase,
           yearDescription,
           backHrefSlugs,
+          subjectCategories,
           unitSections: [firstUnitSection, secondUnitSection],
         },
       };
