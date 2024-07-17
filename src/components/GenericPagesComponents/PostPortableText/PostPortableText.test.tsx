@@ -217,7 +217,7 @@ describe("components/PostPortableText", () => {
         "#footnote-ref-FOOTNOTE_MARK_1",
       );
     });
-    test.only("footnote references are rendered with backlinks", () => {
+    test("footnote references are rendered with backlinks", () => {
       const { getByText, getAllByRole } = render(
         <PostPortableText portableText={withFootnotes} />,
       );
