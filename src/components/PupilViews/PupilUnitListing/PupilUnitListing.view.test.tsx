@@ -130,6 +130,7 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
         />
       </OakThemeProvider>,
     );
@@ -144,6 +145,7 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
         />
       </OakThemeProvider>,
     );
@@ -169,6 +171,7 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
         />
       </OakThemeProvider>,
     );
@@ -185,6 +188,7 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitSections}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
         />
       </OakThemeProvider>,
     );
@@ -198,6 +202,7 @@ describe("PupilViewsUnitListing", () => {
           unitSections={unitsWithOptionality}
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
         />
       </OakThemeProvider>,
     );
