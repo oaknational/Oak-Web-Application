@@ -21,10 +21,8 @@ export function uncapitalize(input: string, titleCaseWords: string[] = []) {
     while (j < chars.length) {
       if (chars[j] === " ") {
         doBreak = true;
-      } else {
-        if (!chars[j]!.match(/[A-Z]/)) {
-          allUpperCase = false;
-        }
+      } else if (!chars[j]!.match(/[A-Z]/)) {
+        allUpperCase = false;
       }
       word += chars[j];
       j++;
@@ -116,4 +114,13 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   });
 
   return output;
+}
+
+export function keyStageFromPhaseTitle(phaseTitle: string) {
+  if (phaseTitle === "Primary") {
+    return "KS1 & KS2";
+  } else if (phaseTitle === "Secondary") {
+    return "KS3 & KS4";
+  }
+  return phaseTitle;
 }

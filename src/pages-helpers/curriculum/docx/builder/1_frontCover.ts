@@ -4,7 +4,6 @@ import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import icons from "../../../../image-data/generated/subject-icons.json";
 import {
   appendBodyElements,
   cmToEmu,
@@ -12,26 +11,9 @@ import {
   insertImages,
 } from "../docx";
 
-function keyStageFromPhaseTitle(phaseTitle: string) {
-  if (phaseTitle === "Primary") {
-    return "KS1 & KS2";
-  } else if (phaseTitle === "Secondary") {
-    return "KS3 & KS4";
-  }
-  return phaseTitle;
-}
+import { keyStageFromPhaseTitle } from "./helper";
 
-function getSubjectIcon(iconKey: string) {
-  if (iconKey in icons) {
-    // @ts-expect-error: this is not type-safe right now (FIXME)
-    return icons[iconKey].url;
-  } else {
-    return join(
-      process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/icon.png",
-    );
-  }
-}
+import { getSubjectIconAsset } from "@/image-data";
 
 export default async function generate(
   zip: JSZip,
@@ -39,7 +21,12 @@ export default async function generate(
 ) {
   const iconKey = data.subjectTitle.toLowerCase();
   const images = await insertImages(zip, {
-    icon: getSubjectIcon(iconKey),
+    icon:
+      getSubjectIconAsset(iconKey)?.url ??
+      join(
+        process.cwd(),
+        "src/pages-helpers/curriculum/docx/builder/images/icon.png",
+      ),
     arrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",

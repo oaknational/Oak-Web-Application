@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { format } from "date-fns";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { formattedDate } from "@/components/CurriculumComponents/DocxPOC/util";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
@@ -204,7 +204,10 @@ export default async function handler(
         : ""
     }`;
 
-    const filename = `${pageTitle} - ${formattedDate(new Date())}.docx`;
+    const filename = `${pageTitle} - ${format(
+      Date.now(),
+      "dd-MM-YYY HH:mm:ss",
+    )}.docx`;
 
     res
       .setHeader("content-type", "application/msword")

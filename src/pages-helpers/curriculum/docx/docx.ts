@@ -15,7 +15,7 @@ import {
 } from "./xml";
 
 function generateHash(buffer: Buffer | string) {
-  const hash = createHash("sha1");
+  const hash = createHash("SHA-256");
   hash.setEncoding("hex");
   hash.write(buffer);
   hash.end();
@@ -41,18 +41,6 @@ export async function insertNumbering<T extends Record<string, string>>(
   const docNumberingPath = "word/numbering.xml";
   const xmlStr = await zip.file(docNumberingPath)!.async("text");
   const json = xmlRootToJson(xmlStr);
-
-  // json.elements.forEach((element: Element) => {
-  //   console.log({element})
-  //   if (element.name === "w:abstractNum") {
-  //     maxId = Math.max(
-  //       maxId,
-  //       Number(element.attributes?.["w:abstractNumId"] ?? 0),
-  //     );
-  //   } else if (element.name === "w:num") {
-  //     maxId = Math.max(maxId, Number(element.attributes?.["w:numId"] ?? 0));
-  //   }
-  // });
 
   json.elements[0].elements = json.elements[0].elements ?? [];
 

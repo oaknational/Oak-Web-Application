@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`12_pageLayout isLast 1`] = `Promise {}`;
+
+exports[`12_pageLayout section 1`] = `Promise {}`;

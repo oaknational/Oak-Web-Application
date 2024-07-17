@@ -55,44 +55,44 @@ export function createFragment(elements: Element[]): Element {
   };
 }
 
-export function collapseFragments(root: Element) {
-  const run = (orig: Element) => {
-    let node = orig;
-    const cloneIfRequired = () => {
-      if (node === orig) {
-        return {
-          ...node,
-          elements: node.elements ? [...node.elements] : undefined,
-        };
-      }
-      return node;
-    };
-    if (node.elements) {
-      for (let i = node.elements.length - 1; i >= 0; i--) {
-        if (node.elements) {
-          const child = node.elements[i]!;
-          const out = run(child);
+function _collapseFragments(orig: Element) {
+  let node = orig;
+  const cloneIfRequired = () => {
+    if (node === orig) {
+      return {
+        ...node,
+        elements: node.elements ? [...node.elements] : undefined,
+      };
+    }
+    return node;
+  };
+  if (node.elements) {
+    for (let i = node.elements.length - 1; i >= 0; i--) {
+      if (node.elements) {
+        const child = node.elements[i]!;
+        const out = _collapseFragments(child);
 
-          if (Array.isArray(out)) {
-            node = cloneIfRequired();
-            node.elements!.splice(i, 1, ...out);
-          } else if (out !== child) {
-            node = cloneIfRequired();
-            if (node.elements) {
-              node.elements[i] = out;
-            }
+        if (Array.isArray(out)) {
+          node = cloneIfRequired();
+          node.elements!.splice(i, 1, ...out);
+        } else if (out !== child) {
+          node = cloneIfRequired();
+          if (node.elements) {
+            node.elements[i] = out;
           }
         }
       }
     }
+  }
 
-    if (node.name === "XML_FRAGMENT") {
-      return node.elements ?? [];
-    }
-    return node;
-  };
+  if (node.name === "XML_FRAGMENT") {
+    return node.elements ?? [];
+  }
+  return node;
+}
 
-  const out = run(root);
+export function collapseFragments(root: Element) {
+  const out = _collapseFragments(root);
   if (Array.isArray(out)) {
     return createFragment(out);
   }

@@ -1,4 +1,9 @@
-import { notUndefined, uncapitalize, uncapitalizeSubject } from "./helper";
+import {
+  keyStageFromPhaseTitle,
+  notUndefined,
+  uncapitalize,
+  uncapitalizeSubject,
+} from "./helper";
 
 describe("helper", () => {
   it("uncapitalize", async () => {
@@ -34,5 +39,10 @@ describe("helper", () => {
       expect(notUndefined("")).toEqual(true);
       expect(notUndefined(false)).toEqual(true);
     });
+  });
+
+  it("keyStageFromPhaseTitle", () => {
+    expect(keyStageFromPhaseTitle("Primary")).toEqual("KS1 & KS2");
+    expect(keyStageFromPhaseTitle("Secondary")).toEqual("KS3 & KS4");
   });
 });
