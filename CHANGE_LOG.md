@@ -1,3 +1,10 @@
+## [1.481.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.1...v1.481.2) (2024-07-17)
+
+
+### Bug Fixes
+
+* updates PostFootnates component and removes additional provider ([65f5993](https://github.com/oaknational/Oak-Web-Application/commit/65f5993be70d38e57ec951218d814df0cda317f0))
+
 ## [1.481.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.0...v1.481.1) (2024-07-16)
 
 
