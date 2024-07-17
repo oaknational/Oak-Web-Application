@@ -1,3 +1,10 @@
+# [1.483.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.482.0...v1.483.0) (2024-07-17)
+
+
+### Features
+
+* updating the quizzes to show hints ([4461539](https://github.com/oaknational/Oak-Web-Application/commit/44615390fa97f67c1f2e6cb353713ffdc1323ae2))
+
 # [1.482.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.2...v1.482.0) (2024-07-17)
 
 
