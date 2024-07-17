@@ -117,7 +117,7 @@ export const PupilUnitsSection = ({
       }
     >
       {filteredUnits.length > 0
-        ? filteredUnits.map((optionalityUnit, i) => {
+        ? filteredUnits.map((optionalityUnit) => {
             if (optionalityUnit.length === 1) {
               // No optionalities
               if (optionalityUnit[0])
@@ -130,21 +130,22 @@ export const PupilUnitsSection = ({
               const unit = optionalityUnit.find(
                 (unit) => unit.programmeFields.optionality,
               );
-              if (unit) return renderListItem(unit, i);
+              if (unit)
+                return renderListItem(unit, unit.supplementaryData.unitOrder);
             } else {
               // More than 2 optionalities and therefore needs sublistings
               if (optionalityUnit[0])
                 return (
                   <OakPupilJourneyOptionalityItem
-                    key={i}
-                    index={i + 1}
+                    key={optionalityUnit[0]?.unitData.slug}
+                    index={optionalityUnit[0].supplementaryData.unitOrder + 1}
                     title={optionalityUnit[0]?.unitData.title}
                   >
                     {optionalityUnit.map(
-                      (unit, index) =>
+                      (unit) =>
                         unit.programmeFields.optionality && (
                           <OakPupilJourneyOptionalityButton
-                            key={index}
+                            key={unit.unitSlug}
                             title={unit.programmeFields.optionality}
                             numberOfLessons={unit.lessonCount}
                             href={resolveOakHref({
