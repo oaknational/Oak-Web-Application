@@ -41,7 +41,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        href={backUrl}
+        href={backUrl || undefined}
         iconName="arrow-right"
         isTrailingIcon
         width={["100%", "max-content"]}
