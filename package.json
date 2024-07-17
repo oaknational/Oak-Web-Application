@@ -92,7 +92,7 @@
     "node-fetch": "^2.6.7",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1",
-    "posthog-js": "^1.96.1",
+    "posthog-js": "^1.148.0",
     "posthog-node": "^3.3.0",
     "querystring-es3": "^0.2.1",
     "react": "^18.3.1",
