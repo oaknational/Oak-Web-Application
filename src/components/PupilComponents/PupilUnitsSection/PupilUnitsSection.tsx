@@ -88,6 +88,11 @@ export const PupilUnitsSection = ({
     />
   ) : null;
 
+  // don't display empty listings (NB. this scenario shouldn't happen with non-legacy data)
+  if (filteredUnits.length === 0) {
+    return null;
+  }
+
   return (
     <OakPupilJourneyList
       phase={phase}
