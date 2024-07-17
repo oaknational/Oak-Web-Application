@@ -218,11 +218,12 @@ describe("components/PostPortableText", () => {
       );
     });
     test("footnote references are rendered with backlinks", () => {
-      const { getByText } = render(
+      const { getByText, getAllByRole } = render(
         <PostPortableText portableText={withFootnotes} />,
       );
 
-      const footnote = getByText("The citation for the first footnote");
+      const footnote = getAllByRole("listitem")[0];
+
       const footnote2 = getByText("And the second, with a link");
 
       const firstFootnoteBacklink = within(footnote as HTMLElement).getByRole(
