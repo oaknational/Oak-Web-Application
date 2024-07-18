@@ -218,7 +218,7 @@ export default async function handler(
 
     const filename = `${pageTitle} - ${format(
       Date.now(),
-      "dd-MM-YYY HH:mm:ss",
+      "dd-MM-yyyy HH:mm:ss",
     )}.docx`;
 
     res
