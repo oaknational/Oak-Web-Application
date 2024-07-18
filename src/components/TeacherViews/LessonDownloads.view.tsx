@@ -1,4 +1,10 @@
 import { useMemo, useState } from "react";
+import {
+  SignInButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
@@ -322,22 +328,30 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               )
             }
             cta={
-              <LoadingButton
-                type="button"
-                onClick={
-                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                }
-                text={"Download .zip"}
-                icon={"download"}
-                isLoading={isAttemptingDownload}
-                disabled={
-                  hasFormErrors ||
-                  noResourcesSelected ||
-                  showNoResources ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                loadingText={"Downloading..."}
-              />
+              <>
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <LoadingButton
+                    type="button"
+                    onClick={
+                      (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                    }
+                    text={"Download .zip"}
+                    icon={"download"}
+                    isLoading={isAttemptingDownload}
+                    disabled={
+                      hasFormErrors ||
+                      noResourcesSelected ||
+                      showNoResources ||
+                      (!form.formState.isValid && !localStorageDetails)
+                    }
+                    loadingText={"Downloading..."}
+                  />
+                  <SignOutButton />
+                </SignedIn>
+              </>
             }
           />
         )}

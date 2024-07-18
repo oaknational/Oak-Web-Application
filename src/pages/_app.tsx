@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { ClerkProvider } from "@clerk/nextjs";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -35,7 +36,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   const { theme } = useOakTheme();
 
   return (
-    <>
+    <ClerkProvider>
       <GlobalStyle />
       <CookieConsentProvider>
         <ThemeProvider theme={theme}>
@@ -58,7 +59,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
           <InlineSpriteSheet />
         </ThemeProvider>
       </CookieConsentProvider>
-    </>
+    </ClerkProvider>
   );
 };
 
