@@ -20,6 +20,8 @@ import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import "@/__tests__/__helpers__/IntersectionObserverMock";
+import "@/__tests__/__helpers__/ResizeObserverMock";
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
@@ -56,10 +58,8 @@ describe("PupilExperienceView", () => {
           videoMuxPlaybackId: "123",
         }),
       );
-
       expect(sections).toEqual(allLessonReviewSections);
     });
-
     it("should not include a section if it has no content", () => {
       const withoutStarterQuiz = pickAvailableSectionsForLesson(
         lessonContentFixture({
@@ -76,7 +76,6 @@ describe("PupilExperienceView", () => {
           videoMuxPlaybackId: null,
         }),
       );
-
       expect(withoutStarterQuiz).not.toContain("starter-quiz");
       expect(withoutExitQuiz).not.toContain("exit-quiz");
       expect(withoutVideo).not.toContain("video");
