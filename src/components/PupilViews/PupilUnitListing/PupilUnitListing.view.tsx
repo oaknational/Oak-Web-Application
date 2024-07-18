@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   OakPupilJourneyLayout,
   OakTertiaryButton,
@@ -8,20 +9,28 @@ import {
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
 
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
-import { UnitsSection } from "@/components/PupilComponents/UnitsSection/UnitsSection";
+import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
   phase: "primary" | "secondary";
   backHrefSlugs: UseBackHrefProps;
+  subjectCategories: string[];
 };
 
 export const PupilViewsUnitListing = ({
   unitSections,
   phase,
   backHrefSlugs,
+  subjectCategories,
 }: PupilViewsUnitListingProps) => {
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
+
+  const [filterItems, setFilterItems] = useState<string[]>(["All"]);
+
+  const applyFilter = (subjectCategory: string) => {
+    setFilterItems([subjectCategory]);
+  };
 
   return (
     <OakPupilJourneyLayout
@@ -35,8 +44,8 @@ export const PupilViewsUnitListing = ({
     >
       <OakBox $mb={"space-between-xl"}>
         {unitSections.map((unitSection, i) => (
-          <UnitsSection
-            key={i}
+          <PupilUnitsSection
+            key={unitSection.title}
             titleSlot={
               unitSection.title && unitSection.icon ? (
                 <OakPupilJourneyHeader
@@ -47,6 +56,9 @@ export const PupilViewsUnitListing = ({
                 />
               ) : null
             }
+            subjectCategories={subjectCategories}
+            filterItems={filterItems}
+            applyFilter={applyFilter}
             phase={phase}
             units={unitSection.units}
             counterText={unitSection.counterText}

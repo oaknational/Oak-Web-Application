@@ -105,6 +105,7 @@ const QuizInner = () => {
 
   const bottomNavSlot = (
     <OakLessonBottomNav
+      hint={currentQuestionData?.hint}
       feedback={
         isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
       }

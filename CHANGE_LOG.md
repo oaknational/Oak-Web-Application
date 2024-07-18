@@ -1,3 +1,38 @@
+# [1.483.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.482.0...v1.483.0) (2024-07-17)
+
+
+### Features
+
+* updating the quizzes to show hints ([4461539](https://github.com/oaknational/Oak-Web-Application/commit/44615390fa97f67c1f2e6cb353713ffdc1323ae2))
+
+# [1.482.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.2...v1.482.0) (2024-07-17)
+
+
+### Bug Fixes
+
+* add missign prop to tests ([4aae4b9](https://github.com/oaknational/Oak-Web-Application/commit/4aae4b9e95de49a9891af9c99f45f8b5aad887b5))
+* add subject categories to mocked data ([1150868](https://github.com/oaknational/Oak-Web-Application/commit/1150868578ec20a1e7a4ab4098dd2401092baeb5))
+* conflicts ([92b9671](https://github.com/oaknational/Oak-Web-Application/commit/92b9671d9180b8830a01c8edb36241c9e2a50ee5))
+* conflicts ([bfbbdf5](https://github.com/oaknational/Oak-Web-Application/commit/bfbbdf527b2ed1d52718b805f8c51247d4066637))
+* don't display units when there are none ([7aa01a3](https://github.com/oaknational/Oak-Web-Application/commit/7aa01a325b9153925fb09c11c5d34c5b0729af18))
+* filter subjectcategories matching subject slug ([a90c275](https://github.com/oaknational/Oak-Web-Application/commit/a90c275bb57d79c1bfaf2c02332d08462f53e621))
+* filter unit order instead of index for optionality ([7254cb3](https://github.com/oaknational/Oak-Web-Application/commit/7254cb30bbaff6e6f391194be91cffa2ecb07189))
+* fliter All just passes all units ([0cdfec6](https://github.com/oaknational/Oak-Web-Application/commit/0cdfec68e97198abb66e1a815cf0d614e6694b3e))
+* merge conflictds ([607113f](https://github.com/oaknational/Oak-Web-Application/commit/607113f0554375ef2aa9d1cd008ddbe0391bbb12))
+* missing space ([84b07e5](https://github.com/oaknational/Oak-Web-Application/commit/84b07e5421404ca6bd983c1b7b358b00c25e45e2))
+* refactor to put filter component inside UnitsSection ([6d5aaf5](https://github.com/oaknational/Oak-Web-Application/commit/6d5aaf581b4d93c59ea547ed2f7b69596df29767))
+* remove console.logs ([c61b3b6](https://github.com/oaknational/Oak-Web-Application/commit/c61b3b667daf832632aba0d13fe78c356de09017))
+* ts error ([4fb1a1b](https://github.com/oaknational/Oak-Web-Application/commit/4fb1a1b27f0a7f7f5d55b520c2e17045ff714858))
+
+
+### Features
+
+* filter using oak components ([e81687f](https://github.com/oaknational/Oak-Web-Application/commit/e81687f2d9df35c7ace3ac273b05781d525a8b76))
+* maintain original numbering after filter applied ([7949deb](https://github.com/oaknational/Oak-Web-Application/commit/7949deb1aca2912ca9bd825b29500936518f317f))
+* passing subject categories to unit view ([2ba550f](https://github.com/oaknational/Oak-Web-Application/commit/2ba550fea1873170695343dd9e9352146c34997c))
+* subjectcategory filter logic ([b9bc48d](https://github.com/oaknational/Oak-Web-Application/commit/b9bc48d8fcdc5c299a36e3eaf7446eac6cb2fad2))
+* using OakPupilJourneyUnitsFilter ([2caaf57](https://github.com/oaknational/Oak-Web-Application/commit/2caaf57f621c10738a14f3b9e9e62501d7bd2737))
+
 ## [1.481.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.1...v1.481.2) (2024-07-17)
 
 
