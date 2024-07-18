@@ -228,6 +228,7 @@ export default async function handler(
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
       )
       .setHeader("Content-Disposition", `attachment; filename="${filename}`)
+      .setHeader("x-filename", `${filename}`)
       .status(200)
       .send(Buffer.from(buffer));
     return;

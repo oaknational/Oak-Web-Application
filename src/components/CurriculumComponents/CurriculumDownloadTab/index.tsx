@@ -15,6 +15,7 @@ import {
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -30,7 +31,14 @@ function ScrollIntoViewWhenVisisble({
   return <div ref={ref}>{children}</div>;
 }
 
-const CurriculumDownloadTab: FC = () => {
+type CurriculumDownloadTabProps = {
+  mvRefreshTime: number;
+  slugs: CurriculumSelectionSlugs;
+};
+const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
+  mvRefreshTime,
+  slugs,
+}) => {
   const { isLoading, data: localStorageData } = useDownloadsLocalStorage();
   const [isDone, setIsDone] = useState(false);
 
@@ -65,22 +73,59 @@ const CurriculumDownloadTab: FC = () => {
     "school-picker/fetch-suggestions",
   );
 
+  const downloadBlob = (blob: Blob, filename: string) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+
+    // Note: Optionally use 'x-filename' so we get the same filename on server and client
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  };
+
+  const downloadFileFromUrl = async (downloadPath: string) => {
+    const resp = await fetch(downloadPath);
+
+    if (resp.status !== 200) {
+      throw new Error(`Error: ${resp.status} ${resp.statusText}`);
+    }
+
+    const blob = await resp.blob();
+    const filename = resp.headers.get("x-filename") ?? "download.docx";
+    downloadBlob(blob, filename);
+  };
+
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
-    console.log("onSubmit", { data });
 
-    saveDownloadsDataToLocalStorage({
+    const slug = [
+      slugs.subjectSlug,
+      slugs.phaseSlug,
+      "published",
+      slugs.examboardSlug,
+    ].join("/");
+    const downloadPath = `/api/curriculum-downloads/${mvRefreshTime}/${slug}`;
+
+    const schoolData = {
       schoolId: data.schoolId!,
       schoolName: data.schoolName!,
       email: data.email!,
       termsAndConditions: data.termsAndConditions!,
       schoolNotListed: data.schoolNotListed!,
-    });
+    };
+    saveDownloadsDataToLocalStorage(schoolData);
 
-    // TODO: Actually generate file here (async)
-
-    setIsSubmitting(false);
-    setIsDone(true);
+    try {
+      await downloadFileFromUrl(downloadPath);
+      // TODO: Log to hubspot here...
+    } finally {
+      setIsSubmitting(false);
+      setIsDone(true);
+    }
   };
 
   if (isDone) {
