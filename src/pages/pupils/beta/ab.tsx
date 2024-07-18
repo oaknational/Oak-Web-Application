@@ -8,11 +8,11 @@ export type BetaABPageProps = {
 
 const BetaAb = () => {
   const posthog = usePostHog();
-  const variant = posthog.getFeatureFlag("pupil-ab-test");
 
   useEffect(() => {
+    const variant = posthog.getFeatureFlag("pupil-ab-test");
     console.log("Variant", variant);
-  }, [variant]);
+  });
 
   if (variant === "variant-design") {
     // Do something differently for this user
