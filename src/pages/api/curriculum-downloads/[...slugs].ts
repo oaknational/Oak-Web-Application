@@ -11,6 +11,7 @@ import docx, {
   CombinedCurriculumData,
   CurriculumUnitsTabDataIncludeNewWithOrder,
 } from "@/pages-helpers/curriculum/docx";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 type getDataReturn =
   | { notFound: true }
@@ -168,17 +169,28 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
+  const slugs = Array.isArray(req.query.slugs)
+    ? req.query.slugs
+    : [req.query.slugs];
   const [
-    mvRefreshTime = "",
+    mvRefreshTimeRaw = "",
     subjectSlug = "",
     phaseSlug = "",
     state = "",
     examboardSlug = "",
-  ] = Array.isArray(req.query.slugs) ? req.query.slugs : [req.query.slugs];
+  ] = slugs;
 
-  // TODO: Check `mvRefreshTime` against database, if it doesn't match redirect
-  // to the newly found `mvRefreshTime` so we can use the cache as per normal.
-  console.log({ mvRefreshTime });
+  const mvRefreshTime = parseInt(mvRefreshTimeRaw);
+  const actualMvRefreshTime = await getMvRefreshTime();
+
+  // Check if we should redirect (new cache-hit)
+  if (mvRefreshTime !== actualMvRefreshTime) {
+    const newSlugs = [...slugs];
+    newSlugs[0] = String(actualMvRefreshTime);
+    const redirectUrl = `/api/curriculum-downloads/${newSlugs.join("/")}`;
+    res.redirect(307, redirectUrl);
+    return;
+  }
 
   const data = await getData({
     subjectSlug,
