@@ -8,12 +8,10 @@ import {
   // OakImage,
 } from "@oaknational/oak-components";
 
-import LessonOverviewVideo from "../LessonOverviewVideo";
-
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 // import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
-// import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
@@ -141,11 +139,11 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         $height={"all-spacing-15"}
         $alignItems={"center"}
       >
-        <LessonOverviewVideo
-          video={videoPlaybackID}
-          signLanguageVideo={null}
+        <VideoPlayer
+          playbackId={videoPlaybackID}
+          playbackPolicy={"public"}
           title={"title"}
-          transcriptSentences={null}
+          location={"marketing"}
           isLegacy={false}
         />
       </OakFlex>
