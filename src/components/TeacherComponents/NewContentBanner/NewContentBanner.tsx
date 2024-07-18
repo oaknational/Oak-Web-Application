@@ -5,11 +5,9 @@ import {
   OakHeading,
   OakP,
   OakTertiaryButton,
-  // OakImage,
 } from "@oaknational/oak-components";
 
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-// import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -133,17 +131,17 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         </OakTertiaryButton>
       </OakFlex>
       <OakFlex
+        $mb={"space-between-m"}
         $display={"block"}
         $justifyContent={"center"}
-        $width={"all-spacing-18"}
-        $height={"all-spacing-15"}
-        $alignItems={"center"}
+        $width={["all-spacing-18", "all-spacing-21"]}
+        $alignSelf={["flex-start", "center"]}
       >
         <VideoPlayer
           playbackId={videoPlaybackID}
           playbackPolicy={"signed"}
-          title={"title"}
-          location={"lesson"}
+          title={"Oak Promo Video"}
+          location={"marketing"}
           isLegacy={true}
         />
       </OakFlex>
