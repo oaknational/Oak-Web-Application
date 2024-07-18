@@ -9,6 +9,7 @@ export type BetaABPageProps = {
 const BetaAb = () => {
   const posthog = usePostHog();
   const [variant] = useState(() => {
+    console.log(posthog.getFeatureFlag("pupil-ab-test"));
     return posthog.getFeatureFlag("pupil-ab-test");
   });
 
