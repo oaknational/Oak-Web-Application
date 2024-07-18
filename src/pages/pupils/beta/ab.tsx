@@ -1,20 +1,22 @@
 import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
-import { usePostHog } from "posthog-js/react";
-import { useEffect, useState } from "react";
+import { usePostHog, useFeatureFlagVariantKey } from "posthog-js/react";
+import { useEffect } from "react";
 
 export type BetaABPageProps = {
   variant: string | boolean | undefined;
 };
 
 const ABData = () => {
-  const [variantKey, setVariantKey] = useState<string | boolean | undefined>();
+  // const [variantKey, setVariantKey] = useState<string | boolean | undefined>();
 
   const posthog = usePostHog();
+  const variantKey = useFeatureFlagVariantKey("pupil-ab-dev");
 
   useEffect(() => {
     const flag = posthog.featureFlags.getFeatureFlag("pupil-ab-dev");
-    setVariantKey(flag);
-  }, [setVariantKey, posthog]);
+    console.log("flag", flag);
+    // setVariantKey(flag);
+  }, [posthog]);
 
   if (variantKey === "variant-design-dev") {
     // Do something differently for this user
