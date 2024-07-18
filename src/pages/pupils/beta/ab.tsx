@@ -1,22 +1,14 @@
-import { useEffect } from "react";
 import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
-import { usePostHog } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 export type BetaABPageProps = {
   variant: string | boolean | undefined;
 };
 
-const BetaAb = () => {
-  const variant = "variant-design";
+const ABData = () => {
+  const variantKey = useFeatureFlagVariantKey("pupil-ab-test");
 
-  const posthog = usePostHog();
-
-  useEffect(() => {
-    posthog.featureFlags.override({ "pupil-ab-test": "test" });
-    console.log(posthog.getFeatureFlag("pupil-ab-test"));
-  });
-
-  if (variant === "variant-design") {
+  if (variantKey === "variant-design") {
     // Do something differently for this user
     return (
       <OakFlex
@@ -29,7 +21,7 @@ const BetaAb = () => {
       >
         <OakHeading tag="h1">Pupil Beta AB experiment</OakHeading>
         <OakHeading tag="h2">Variant version</OakHeading>
-        <OakSpan>Design variant - {variant}</OakSpan>
+        <OakSpan>Design variant - {variantKey}</OakSpan>
       </OakFlex>
     );
   } else {
@@ -46,10 +38,14 @@ const BetaAb = () => {
       >
         <OakHeading tag="h1">Pupil Beta AB experiment</OakHeading>
         <OakHeading tag="h2">Default version</OakHeading>
-        <OakSpan>Design variant - {variant}</OakSpan>
+        <OakSpan>Design variant - {variantKey}</OakSpan>
       </OakFlex>
     );
   }
+};
+
+const BetaAb = () => {
+  return <ABData />;
 };
 
 // export const getServerSideProps = async (context) => {
