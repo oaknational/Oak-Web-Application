@@ -482,11 +482,15 @@ jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
+  refreshedMVTime: jest.fn(),
 }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
   >;
+const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as MockedFunction<
+  typeof curriculumApi.refreshedMVTime
+>;
 
 jest.mock("@/node-lib/cms");
 
@@ -562,6 +566,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
@@ -583,6 +588,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
@@ -604,6 +610,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
@@ -625,6 +632,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
@@ -649,6 +657,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
+      mockedRefreshedMVTime.mockResolvedValue({
+        data: [
+          {
+            last_refresh_finish: "2024-07-07T00:00:04.01694+00:00",
+            materializedview_name: "mv_curriculum_units_including_new_0_0_4",
+          },
+        ],
+      });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
       mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
@@ -663,6 +679,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
       expect(props).toEqual({
         props: {
+          mvRefreshTime: 1720310404016,
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
