@@ -7,7 +7,6 @@ import {
   OakTertiaryButton,
   // OakImage,
 } from "@oaknational/oak-components";
-import MuxPlayer from "@mux/mux-player-react";
 
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 // import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -146,14 +145,6 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           title={"title"}
           location={"marketing"}
           isLegacy={false}
-        />
-        <MuxPlayer
-          streamType="on-demand"
-          playbackId="cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k"
-          metadataVideoTitle="Placeholder (optional)"
-          metadataViewerUserId="Placeholder (optional)"
-          primaryColor="#FFFFFF"
-          secondaryColor="#000000"
         />
       </OakFlex>
     </StyledOakFlex>
