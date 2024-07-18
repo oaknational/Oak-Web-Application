@@ -5,12 +5,15 @@ import {
   OakHeading,
   OakP,
   OakTertiaryButton,
-  OakImage,
+  // OakImage,
 } from "@oaknational/oak-components";
 
+import LessonOverviewVideo from "../LessonOverviewVideo";
+
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+// import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
+// import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
@@ -24,6 +27,8 @@ type NewContentBannerProps = {
   isUnitListing?: boolean;
   isLegacy?: boolean;
 };
+
+const videoPlaybackID = "cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k ";
 
 const renderContentBannerRecord: Record<string, string[]> = {
   ks1: ["english", "geography", "history", "science", "maths"],
@@ -136,16 +141,12 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         $height={"all-spacing-15"}
         $alignItems={"center"}
       >
-        <OakImage
-          $display={"block"}
-          $width={"all-spacing-18"}
-          $height={"all-spacing-15"}
-          alt=""
-          src={`https://${getBrowserConfig(
-            "oakComponentsAssetsHost",
-          )}/${getBrowserConfig(
-            "oakComponentsAssetsPath",
-          )}/v1718639479/teacher-journey/content-banner.png`}
+        <LessonOverviewVideo
+          video={videoPlaybackID}
+          signLanguageVideo={null}
+          title={"title"}
+          transcriptSentences={null}
+          isLegacy={false}
         />
       </OakFlex>
     </StyledOakFlex>
