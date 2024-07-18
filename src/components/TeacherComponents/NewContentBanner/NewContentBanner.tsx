@@ -26,7 +26,7 @@ type NewContentBannerProps = {
   isLegacy?: boolean;
 };
 
-const videoPlaybackID = "cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k ";
+const videoPlaybackID = "cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k";
 
 const renderContentBannerRecord: Record<string, string[]> = {
   ks1: ["english", "geography", "history", "science", "maths"],
@@ -141,10 +141,10 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       >
         <VideoPlayer
           playbackId={videoPlaybackID}
-          playbackPolicy={"public"}
+          playbackPolicy={"signed"}
           title={"title"}
-          location={"marketing"}
-          isLegacy={false}
+          location={"lesson"}
+          isLegacy={true}
         />
       </OakFlex>
     </StyledOakFlex>

@@ -23,7 +23,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
   const hasCaptions = transcriptSentences && transcriptSentences.length > 0;
-  console.log(video, "<<<");
   const toggleSignLanguage = () => {
     setSignLanguageOn(!signLanguageOn);
   };
@@ -43,7 +42,9 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
     <OakFlex $flexDirection={"column"} $gap={["all-spacing-6"]}>
       {video && (
         <VideoPlayer
-          playbackId={"cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k"}
+          playbackId={
+            signLanguageVideo && signLanguageOn ? signLanguageVideo : video
+          }
           playbackPolicy={"signed"}
           title={title}
           location={"lesson"}
