@@ -209,8 +209,7 @@ export default async function handler(
     });
 
     const pageTitle: string = `${data.combinedCurriculumData
-      ?.subjectTitle} - ${data.combinedCurriculumData
-      ?.phaseTitle} - (${state})${
+      ?.subjectTitle} - ${data.combinedCurriculumData?.phaseTitle}${
       data.combinedCurriculumData.examboardTitle
         ? ` - ${data.combinedCurriculumData.examboardTitle}`
         : ""
@@ -218,7 +217,8 @@ export default async function handler(
 
     const filename = `${pageTitle} - ${format(
       Date.now(),
-      "dd-MM-yyyy HH:mm:ss",
+      // Note: dashes "-" rather than ":" because colon is invalid on windows
+      "dd-MM-yyyy HH-mm-ss",
     )}.docx`;
 
     res
