@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import {
   OakFlex,
@@ -15,6 +15,16 @@ const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
+const StyledVideoPlayerFlex = styled(OakFlex)<{ expand: boolean }>`
+  transition: width 0.4s ease-in;
+
+  p {
+    @media (min-width: 768px) {
+      display: ${({ expand }) => (expand ? "none" : "block")};
+    }
+  }
+`;
+
 type NewContentBannerProps = {
   subjectTitle: string;
   programmeSlug: string;
@@ -24,7 +34,7 @@ type NewContentBannerProps = {
   isLegacy?: boolean;
 };
 
-const videoPlaybackID = "cyUC4RCgrr6mfBz9dQ8doz5LkLWkk6UVhjewLkaCM8k";
+const videoPlaybackID = "CjDAe0153o6v65Te4npM9165RqrAJd6YrSeOufA02RKLE";
 
 const renderContentBannerRecord: Record<string, string[]> = {
   ks1: ["english", "geography", "history", "science", "maths"],
@@ -52,6 +62,8 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 }) => {
   const renderComponent =
     renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
+
+  const [expandVideo, setExpandVideo] = useState(false);
 
   let navigationPage: OakPageType = "unit-index";
   let progSlug = removeLegacySlugSuffix(programmeSlug);
@@ -130,21 +142,30 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           Go to {subjTitle} resources
         </OakTertiaryButton>
       </OakFlex>
-      <OakFlex
+      <StyledVideoPlayerFlex
+        onClick={() => setExpandVideo(!expandVideo)}
         $mb={"space-between-m"}
         $display={"block"}
         $justifyContent={"center"}
-        $width={["all-spacing-18", "all-spacing-21"]}
+        $width={
+          expandVideo
+            ? ["all-spacing-19", "all-spacing-21"]
+            : ["all-spacing-19"]
+        }
         $alignSelf={["flex-start", "center"]}
+        $gap={"space-between-l"}
+        expand={expandVideo}
       >
         <VideoPlayer
           playbackId={videoPlaybackID}
-          playbackPolicy={"signed"}
+          playbackPolicy={"public"}
           title={"Oak Promo Video"}
           location={"marketing"}
-          isLegacy={true}
+          isLegacy={false}
+          thumbnailTime={30.8}
         />
-      </OakFlex>
+        <OakP $font={"body-3-bold"}>Play new resources video</OakP>
+      </StyledVideoPlayerFlex>
     </StyledOakFlex>
   );
 };
