@@ -148,13 +148,13 @@ function buildOptions({
         <w:p>
           <w:r>
             <w:rPr>
-              <w:color w:val="222222" />
-              <w:shd w:val="solid" w:fill="417A3D" />
+              <w:color w:val="ffffff" />
+              <w:shd w:val="clear" w:fill="287c34" />
               <w:rtl w:val="0" />
             </w:rPr>
             <w:t xml:space="preserve">${cdata(
                 unitOptions.length,
-              )} option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
+              )} unit option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
           </w:r>
         </w:p>
       </XML_FRAGMENT>
