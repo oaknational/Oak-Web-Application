@@ -10,16 +10,15 @@ import {
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import { VideoEventCallbackArgs } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
-const StyledVideoPlayerFlex = styled(OakFlex)`
-  transition: width 0.4s ease-in;
-`;
-
 const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
+  transition: width 0.4s ease-in;
+
   p {
     @media (min-width: 768px) {
       display: ${({ expand }) => (expand ? "none" : "block")};
@@ -115,6 +114,14 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           programmeSlug: progSlug,
         });
 
+  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
+    if (event.event === "playing") {
+      setExpandVideo(true);
+    } else {
+      setExpandVideo(false);
+    }
+  };
+
   return (
     <StyledOakFlex
       $flexDirection={["column-reverse", "row"]}
@@ -148,26 +155,17 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         $alignSelf={["flex-start", "center"]}
         expand={expandVideo}
         $flexDirection={"column"}
+        $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
       >
-        <StyledVideoPlayerFlex
-          onClick={() => setExpandVideo(!expandVideo)}
-          $display={"block"}
-          $justifyContent={"center"}
-          $width={
-            expandVideo
-              ? ["all-spacing-19", "all-spacing-21"]
-              : ["100%", "all-spacing-19"]
-          }
-        >
-          <VideoPlayer
-            playbackId={videoPlaybackID}
-            playbackPolicy={"public"}
-            title={"Oak Promo Video"}
-            location={"marketing"}
-            isLegacy={false}
-            thumbnailTime={30.8}
-          />
-        </StyledVideoPlayerFlex>
+        <VideoPlayer
+          playbackId={videoPlaybackID}
+          playbackPolicy={"public"}
+          title={"Oak Promo Video"}
+          location={"marketing"}
+          isLegacy={false}
+          thumbnailTime={30.8}
+          userEventCallback={handleVideoEvent}
+        />
         <OakP $font={"body-3-bold"}>Play new resources video</OakP>
       </StyledVideoFlex>
     </StyledOakFlex>
