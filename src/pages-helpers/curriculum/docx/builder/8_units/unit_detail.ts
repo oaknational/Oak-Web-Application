@@ -205,7 +205,9 @@ export async function buildUnit(
       unit,
       slugs.examboardSlug,
       slugs.tierSlug,
-    )}/units/${unit.slug}/lessons`,
+    )}/units/${unit.slug}${
+      unitOption?.unitvariant_id ? `-${unitOption?.unitvariant_id}` : ""
+    }/lessons`,
   });
 
   let unitDescriptions: string = "";
