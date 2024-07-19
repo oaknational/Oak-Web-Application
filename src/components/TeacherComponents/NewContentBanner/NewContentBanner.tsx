@@ -15,9 +15,11 @@ const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
-const StyledVideoPlayerFlex = styled(OakFlex)<{ expand: boolean }>`
+const StyledVideoPlayerFlex = styled(OakFlex)`
   transition: width 0.4s ease-in;
+`;
 
+const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
   p {
     @media (min-width: 768px) {
       display: ${({ expand }) => (expand ? "none" : "block")};
@@ -142,30 +144,32 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           Go to {subjTitle} resources
         </OakTertiaryButton>
       </OakFlex>
-      <StyledVideoPlayerFlex
-        onClick={() => setExpandVideo(!expandVideo)}
-        $mb={"space-between-m"}
-        $display={"block"}
-        $justifyContent={"center"}
-        $width={
-          expandVideo
-            ? ["all-spacing-19", "all-spacing-21"]
-            : ["all-spacing-19"]
-        }
+      <StyledVideoFlex
         $alignSelf={["flex-start", "center"]}
-        $gap={"space-between-l"}
         expand={expandVideo}
+        $flexDirection={"column"}
       >
-        <VideoPlayer
-          playbackId={videoPlaybackID}
-          playbackPolicy={"public"}
-          title={"Oak Promo Video"}
-          location={"marketing"}
-          isLegacy={false}
-          thumbnailTime={30.8}
-        />
+        <StyledVideoPlayerFlex
+          onClick={() => setExpandVideo(!expandVideo)}
+          $display={"block"}
+          $justifyContent={"center"}
+          $width={
+            expandVideo
+              ? ["all-spacing-19", "all-spacing-21"]
+              : ["100%", "all-spacing-19"]
+          }
+        >
+          <VideoPlayer
+            playbackId={videoPlaybackID}
+            playbackPolicy={"public"}
+            title={"Oak Promo Video"}
+            location={"marketing"}
+            isLegacy={false}
+            thumbnailTime={30.8}
+          />
+        </StyledVideoPlayerFlex>
         <OakP $font={"body-3-bold"}>Play new resources video</OakP>
-      </StyledVideoPlayerFlex>
+      </StyledVideoFlex>
     </StyledOakFlex>
   );
 };
