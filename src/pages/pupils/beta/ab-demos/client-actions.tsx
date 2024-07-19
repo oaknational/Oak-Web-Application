@@ -11,6 +11,13 @@ import { useState } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
+/**
+ *
+ * This page demonstrates how to configure AB testing with posthog using a client-side implementation.
+ *
+ *
+ */
+
 const Page = () => {
   const { track } = useAnalytics();
   const variantKey = useFeatureFlagVariantKey("pupil-client-action-demo");
