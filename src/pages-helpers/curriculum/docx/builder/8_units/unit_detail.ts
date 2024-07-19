@@ -206,7 +206,7 @@ export async function buildUnit(
       slugs.examboardSlug,
       slugs.tierSlug,
     )}/units/${unit.slug}${
-      unitOption?.unitvariant_id ? `-${unitOption?.unitvariant_id}` : ""
+      unitOption?.unitvariant_id ? `-${unitOption.unitvariant_id}` : ""
     }/lessons`,
   });
 
