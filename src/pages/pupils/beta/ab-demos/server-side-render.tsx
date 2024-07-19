@@ -14,7 +14,7 @@ type PageProps = {
 /**
  *
  * This page demonstrates how to configure AB testing with posthog using a server-side implementation.
- *
+ * For more information see https://www.notion.so/oaknationalacademy/Running-Posthog-AB-tests-6eb76901e0cc44dca1b30338720026da?pvs=4
  *
  */
 
