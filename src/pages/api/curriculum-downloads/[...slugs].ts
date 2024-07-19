@@ -218,7 +218,7 @@ export default async function handler(
     const filename = `${pageTitle} - ${format(
       Date.now(),
       // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy HH-mm-ss",
+      "dd-MM-yyyy",
     )}.docx`;
 
     res
