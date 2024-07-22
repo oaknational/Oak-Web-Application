@@ -82,7 +82,7 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="80" />
           </w:rPr>
-          <w:t>${cdata(phaseTitle)} ${cdata(subjectTitle)} curriculum plan</w:t>
+          <w:t>${cdata(`${phaseTitle} ${subjectTitle} curriculum plan`)}</w:t>
         </w:r>
       </w:p>
       <w:p>
