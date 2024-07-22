@@ -26,6 +26,8 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import "@/__tests__/__helpers__/IntersectionObserverMock";
+import "@/__tests__/__helpers__/ResizeObserverMock";
 
 jest.mock("@oaknational/oak-components", () => {
   return {

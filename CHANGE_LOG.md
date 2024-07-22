@@ -1,3 +1,90 @@
+# [1.485.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.484.0...v1.485.0) (2024-07-22)
+
+
+### Bug Fixes
+
+* get async ([7ae37cd](https://github.com/oaknational/Oak-Web-Application/commit/7ae37cde219fb5ffe89ce7ba07ae28a0bf944f00))
+* get async ([6db1e7a](https://github.com/oaknational/Oak-Web-Application/commit/6db1e7abf9c7b21cd2e01c1502381fd904d9b396))
+* get async ([2c2e4b2](https://github.com/oaknational/Oak-Web-Application/commit/2c2e4b2bff997648e9ab632625574f613b4855cd))
+* get async ([255c689](https://github.com/oaknational/Oak-Web-Application/commit/255c68905148d9944b026d47da98fa49f46501f8))
+* posthog ([9fa1d79](https://github.com/oaknational/Oak-Web-Application/commit/9fa1d79c8105edf84eac4beea9f888019f052298))
+* revert to useEffect ([7a5f37b](https://github.com/oaknational/Oak-Web-Application/commit/7a5f37b8dd01553151061fbf402da80ca0caf8fc))
+* revert to useFeatureFlagVariantKey ([259b12c](https://github.com/oaknational/Oak-Web-Application/commit/259b12cf4c9cc957c32e38b2b914b1c461625698))
+* sonar exclusions ([6c1c66f](https://github.com/oaknational/Oak-Web-Application/commit/6c1c66f2b8045f9c75c4710970057cbfc889da21))
+* still trying to get posthog data ([45f694a](https://github.com/oaknational/Oak-Web-Application/commit/45f694a89141880aee93e3832f9967028e964505))
+* use-layout ([94bf9c3](https://github.com/oaknational/Oak-Web-Application/commit/94bf9c3b356649900d18ccd84ff51312bed2ebd9))
+
+
+### Features
+
+* client action demo ([a700dff](https://github.com/oaknational/Oak-Web-Application/commit/a700dff077a3642d843969582033fef6e86e3d7a))
+* demoing AB testing capabilities ([a110c10](https://github.com/oaknational/Oak-Web-Application/commit/a110c10666cb2b4bb3d527ed6af563e3317873b0))
+* spiking ab testing ([c7a132a](https://github.com/oaknational/Oak-Web-Application/commit/c7a132a8453724e681f5834f425450fbc4cdba82))
+* trying with hooks ([3e11c41](https://github.com/oaknational/Oak-Web-Application/commit/3e11c416fec7a4dfc26bd699f9b4ddf1961b39c9))
+
+# [1.484.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.483.0...v1.484.0) (2024-07-22)
+
+
+### Features
+
+* update buttons on lesson review page ([13c142d](https://github.com/oaknational/Oak-Web-Application/commit/13c142d8dc69598f1f63c15de9edfd9439d0c0e8))
+
+# [1.483.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.482.0...v1.483.0) (2024-07-17)
+
+
+### Features
+
+* updating the quizzes to show hints ([4461539](https://github.com/oaknational/Oak-Web-Application/commit/44615390fa97f67c1f2e6cb353713ffdc1323ae2))
+
+# [1.482.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.2...v1.482.0) (2024-07-17)
+
+
+### Bug Fixes
+
+* add missign prop to tests ([4aae4b9](https://github.com/oaknational/Oak-Web-Application/commit/4aae4b9e95de49a9891af9c99f45f8b5aad887b5))
+* add subject categories to mocked data ([1150868](https://github.com/oaknational/Oak-Web-Application/commit/1150868578ec20a1e7a4ab4098dd2401092baeb5))
+* conflicts ([92b9671](https://github.com/oaknational/Oak-Web-Application/commit/92b9671d9180b8830a01c8edb36241c9e2a50ee5))
+* conflicts ([bfbbdf5](https://github.com/oaknational/Oak-Web-Application/commit/bfbbdf527b2ed1d52718b805f8c51247d4066637))
+* don't display units when there are none ([7aa01a3](https://github.com/oaknational/Oak-Web-Application/commit/7aa01a325b9153925fb09c11c5d34c5b0729af18))
+* filter subjectcategories matching subject slug ([a90c275](https://github.com/oaknational/Oak-Web-Application/commit/a90c275bb57d79c1bfaf2c02332d08462f53e621))
+* filter unit order instead of index for optionality ([7254cb3](https://github.com/oaknational/Oak-Web-Application/commit/7254cb30bbaff6e6f391194be91cffa2ecb07189))
+* fliter All just passes all units ([0cdfec6](https://github.com/oaknational/Oak-Web-Application/commit/0cdfec68e97198abb66e1a815cf0d614e6694b3e))
+* merge conflictds ([607113f](https://github.com/oaknational/Oak-Web-Application/commit/607113f0554375ef2aa9d1cd008ddbe0391bbb12))
+* missing space ([84b07e5](https://github.com/oaknational/Oak-Web-Application/commit/84b07e5421404ca6bd983c1b7b358b00c25e45e2))
+* refactor to put filter component inside UnitsSection ([6d5aaf5](https://github.com/oaknational/Oak-Web-Application/commit/6d5aaf581b4d93c59ea547ed2f7b69596df29767))
+* remove console.logs ([c61b3b6](https://github.com/oaknational/Oak-Web-Application/commit/c61b3b667daf832632aba0d13fe78c356de09017))
+* ts error ([4fb1a1b](https://github.com/oaknational/Oak-Web-Application/commit/4fb1a1b27f0a7f7f5d55b520c2e17045ff714858))
+
+
+### Features
+
+* filter using oak components ([e81687f](https://github.com/oaknational/Oak-Web-Application/commit/e81687f2d9df35c7ace3ac273b05781d525a8b76))
+* maintain original numbering after filter applied ([7949deb](https://github.com/oaknational/Oak-Web-Application/commit/7949deb1aca2912ca9bd825b29500936518f317f))
+* passing subject categories to unit view ([2ba550f](https://github.com/oaknational/Oak-Web-Application/commit/2ba550fea1873170695343dd9e9352146c34997c))
+* subjectcategory filter logic ([b9bc48d](https://github.com/oaknational/Oak-Web-Application/commit/b9bc48d8fcdc5c299a36e3eaf7446eac6cb2fad2))
+* using OakPupilJourneyUnitsFilter ([2caaf57](https://github.com/oaknational/Oak-Web-Application/commit/2caaf57f621c10738a14f3b9e9e62501d7bd2737))
+
+## [1.481.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.1...v1.481.2) (2024-07-17)
+
+
+### Bug Fixes
+
+* updates PostFootnates component and removes additional provider ([65f5993](https://github.com/oaknational/Oak-Web-Application/commit/65f5993be70d38e57ec951218d814df0cda317f0))
+
+## [1.481.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.481.0...v1.481.1) (2024-07-16)
+
+
+### Bug Fixes
+
+* ensure review section started is tracked ([75c62f8](https://github.com/oaknational/Oak-Web-Application/commit/75c62f81fdad262265a16c48652f2b04ad161108))
+
+# [1.481.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.480.0...v1.481.0) (2024-07-16)
+
+
+### Features
+
+* **ENG-818:** update with additional logging through oak-consent-client ([8dc5527](https://github.com/oaknational/Oak-Web-Application/commit/8dc5527ea3b75614c39dfbcb9c9494f3b5a4c107))
+
 # [1.480.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.479.0...v1.480.0) (2024-07-15)
 
 
