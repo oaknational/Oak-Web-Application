@@ -1,3 +1,10 @@
+## [1.485.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.485.0...v1.485.1) (2024-07-22)
+
+
+### Bug Fixes
+
+* amend position based on if there are tiers ([4889639](https://github.com/oaknational/Oak-Web-Application/commit/4889639a316a4ff1aec7bf52730fcb584639e5dc))
+
 # [1.485.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.484.0...v1.485.0) (2024-07-22)
 
 
