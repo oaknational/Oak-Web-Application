@@ -1,3 +1,16 @@
+# [1.486.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.485.1...v1.486.0) (2024-07-22)
+
+
+### Bug Fixes
+
+* add teachers signpost to unit and options page ([86d6686](https://github.com/oaknational/Oak-Web-Application/commit/86d668698315260c09176516947860f76ff0d300))
+* fixing merge issue with package-lock ([ddebc67](https://github.com/oaknational/Oak-Web-Application/commit/ddebc677f8995299e45a2991b7447c9b5c7edd03))
+
+
+### Features
+
+* signpost teachers landing in pupil subjects area ([183a4ab](https://github.com/oaknational/Oak-Web-Application/commit/183a4abf077c67c95003c0b1de0ad159a37698c6))
+
 ## [1.485.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.485.0...v1.485.1) (2024-07-22)
 
 
