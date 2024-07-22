@@ -8,6 +8,7 @@ import {
   OakPupilJourneyOptionalityItem,
   OakPupilJourneyOptionalityButton,
   OakPupilJourneyUnitsFilter,
+  OakBulletList,
 } from "@oaknational/oak-components";
 import _ from "lodash";
 
@@ -51,6 +52,7 @@ export type PupilUnitsSectionProps = {
   counterLength: number | null;
   titleSlot: JSX.Element | null;
   subjectCategories: string[];
+  labels?: string[] | undefined;
   filterItems: string[];
   applyFilter: (subjectCategory: string) => void;
   id?: string;
@@ -62,6 +64,7 @@ export const PupilUnitsSection = ({
   counterText,
   titleSlot,
   subjectCategories,
+  labels,
   filterItems,
   applyFilter,
   id = "0",
@@ -98,20 +101,44 @@ export const PupilUnitsSection = ({
       phase={phase}
       titleSlot={titleSlot}
       filterSlot={filterSlot}
-      counterSlot={
+      subheadingSlot={
         <OakFlex $flexDirection={"column"} $width={"100%"}>
-          <OakFlex $gap="space-between-xs" $alignItems={"center"}>
+          <OakFlex
+            $gap="space-between-xs"
+            $alignItems={"center"}
+            $justifyContent="center"
+          >
             <OakInfo
               id={`unit-info-${id}`}
               hint="Units are groups of lessons that relate to one another."
               tooltipPosition="top-left"
             />
-            <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
-              {counterText}{" "}
-              <OakSpan $font={"heading-light-6"}>
-                ({filteredUnits.length})
-              </OakSpan>
-            </OakHeading>
+            <OakFlex
+              $flexDirection={["column", "row"]}
+              $flexWrap={"wrap"}
+              $justifyContent={"space-between"}
+              $flexGrow={[null, 1]}
+              $alignItems={["flex-start", "center"]}
+              $gap={"space-between-m"}
+            >
+              <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
+                {counterText}{" "}
+                <OakSpan $font={"heading-light-6"}>
+                  ({filteredUnits.length})
+                </OakSpan>
+              </OakHeading>
+              {labels && (
+                <OakBulletList
+                  listItems={labels}
+                  $background={"bg-decorative5-very-subdued"}
+                  $borderRadius={"border-radius-s"}
+                  $borderColor={"border-decorative5"}
+                  $ba={"border-solid-s"}
+                  $ph={"inner-padding-xs"}
+                  $pv={"inner-padding-ssx"}
+                />
+              )}
+            </OakFlex>
           </OakFlex>
         </OakFlex>
       }

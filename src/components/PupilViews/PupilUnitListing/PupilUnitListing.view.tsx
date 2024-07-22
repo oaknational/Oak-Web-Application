@@ -43,29 +43,48 @@ export const PupilViewsUnitListing = ({
       }
     >
       <OakBox $mb={"space-between-xl"}>
-        {unitSections.map((unitSection, i) => (
-          <PupilUnitsSection
-            key={unitSection.title}
-            titleSlot={
-              unitSection.title && unitSection.icon ? (
-                <OakPupilJourneyHeader
-                  title={unitSection.title}
-                  iconName={unitSection.icon}
-                  iconBackground={phase}
-                  breadcrumbs={unitSection.breadcrumbs}
-                />
-              ) : null
-            }
-            subjectCategories={subjectCategories}
-            filterItems={filterItems}
-            applyFilter={applyFilter}
-            phase={phase}
-            units={unitSection.units}
-            counterText={unitSection.counterText}
-            counterLength={unitSection.counterLength}
-            id={`section-${i}`}
-          />
-        ))}
+        {unitSections.map((unitSection, i) => {
+          let subjectLabel = unitSection.labels?.subject;
+          if (
+            unitSection.labels?.subject &&
+            unitSections[1]?.labels?.subject &&
+            filterItems[0] !== undefined &&
+            filterItems[0] !== "All"
+          ) {
+            subjectLabel = filterItems[0];
+          }
+
+          const labelsArray = [
+            unitSection.labels?.year,
+            subjectLabel,
+            unitSection.labels?.tier,
+          ].filter((label): label is string => Boolean(label));
+
+          return (
+            <PupilUnitsSection
+              key={unitSection.title}
+              titleSlot={
+                unitSection.title && unitSection.icon ? (
+                  <OakPupilJourneyHeader
+                    title={unitSection.title}
+                    iconName={unitSection.icon}
+                    iconBackground={phase}
+                    breadcrumbs={unitSection.breadcrumbs}
+                  />
+                ) : null
+              }
+              subjectCategories={subjectCategories}
+              filterItems={filterItems}
+              applyFilter={applyFilter}
+              phase={phase}
+              units={unitSection.units}
+              counterText={unitSection.counterText}
+              counterLength={unitSection.counterLength}
+              labels={labelsArray.length ? labelsArray : undefined}
+              id={`section-${i}`}
+            />
+          );
+        })}
       </OakBox>
     </OakPupilJourneyLayout>
   );
