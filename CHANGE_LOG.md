@@ -1,3 +1,27 @@
+# [1.485.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.484.0...v1.485.0) (2024-07-22)
+
+
+### Bug Fixes
+
+* get async ([7ae37cd](https://github.com/oaknational/Oak-Web-Application/commit/7ae37cde219fb5ffe89ce7ba07ae28a0bf944f00))
+* get async ([6db1e7a](https://github.com/oaknational/Oak-Web-Application/commit/6db1e7abf9c7b21cd2e01c1502381fd904d9b396))
+* get async ([2c2e4b2](https://github.com/oaknational/Oak-Web-Application/commit/2c2e4b2bff997648e9ab632625574f613b4855cd))
+* get async ([255c689](https://github.com/oaknational/Oak-Web-Application/commit/255c68905148d9944b026d47da98fa49f46501f8))
+* posthog ([9fa1d79](https://github.com/oaknational/Oak-Web-Application/commit/9fa1d79c8105edf84eac4beea9f888019f052298))
+* revert to useEffect ([7a5f37b](https://github.com/oaknational/Oak-Web-Application/commit/7a5f37b8dd01553151061fbf402da80ca0caf8fc))
+* revert to useFeatureFlagVariantKey ([259b12c](https://github.com/oaknational/Oak-Web-Application/commit/259b12cf4c9cc957c32e38b2b914b1c461625698))
+* sonar exclusions ([6c1c66f](https://github.com/oaknational/Oak-Web-Application/commit/6c1c66f2b8045f9c75c4710970057cbfc889da21))
+* still trying to get posthog data ([45f694a](https://github.com/oaknational/Oak-Web-Application/commit/45f694a89141880aee93e3832f9967028e964505))
+* use-layout ([94bf9c3](https://github.com/oaknational/Oak-Web-Application/commit/94bf9c3b356649900d18ccd84ff51312bed2ebd9))
+
+
+### Features
+
+* client action demo ([a700dff](https://github.com/oaknational/Oak-Web-Application/commit/a700dff077a3642d843969582033fef6e86e3d7a))
+* demoing AB testing capabilities ([a110c10](https://github.com/oaknational/Oak-Web-Application/commit/a110c10666cb2b4bb3d527ed6af563e3317873b0))
+* spiking ab testing ([c7a132a](https://github.com/oaknational/Oak-Web-Application/commit/c7a132a8453724e681f5834f425450fbc4cdba82))
+* trying with hooks ([3e11c41](https://github.com/oaknational/Oak-Web-Application/commit/3e11c416fec7a4dfc26bd699f9b4ddf1961b39c9))
+
 # [1.484.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.483.0...v1.484.0) (2024-07-22)
 
 
