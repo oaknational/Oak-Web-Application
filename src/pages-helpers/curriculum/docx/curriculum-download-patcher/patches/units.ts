@@ -245,6 +245,146 @@ function buildUnitOptionTitle(
     `;
 }
 
+function generatePreviousAndNext(
+  unitOptionIfAvailable: Unit | Unit["unit_options"][number],
+) {
+  if (
+    unitOptionIfAvailable.connection_prior_unit_title ||
+    unitOptionIfAvailable.connection_future_unit_title
+  ) {
+    const priorUnitTitle = unitOptionIfAvailable.connection_prior_unit_title
+      ? unitOptionIfAvailable.connection_prior_unit_title
+      : "-";
+    const futureUnitTitle = unitOptionIfAvailable.connection_future_unit_title
+      ? unitOptionIfAvailable.connection_future_unit_title
+      : "-";
+
+    return `
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
+                    <w:t>Unit description</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:bookmarkStart w:id="13" w:name="_wf3kyqlrau0x" w:colFirst="0" w:colLast="0"/>
+                <w:bookmarkEnd w:id="13"/>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
+                        <w:b w:val="1"/>
+                    </w:rPr>
+                    <w:t>${cdata(priorUnitTitle)}</w:t>
+                </w:r>
+            </w:p>
+            ${
+              !unitOptionIfAvailable.connection_prior_unit_description
+                ? ""
+                : `<w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
+                    </w:rPr>
+                    <w:t>${cdata(
+                      unitOptionIfAvailable.connection_prior_unit_description,
+                    )}</w:t>
+                </w:r>
+            </w:p>`
+            }
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
+                    <w:t>Why this, why now?</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:pPr>
+                    <w:ind w:left="30" w:hanging="30"/>
+                </w:pPr>
+                <w:bookmarkStart w:id="14" w:name="_dt40g52dsciy" w:colFirst="0" w:colLast="0"/>
+                <w:bookmarkEnd w:id="14"/>
+                <w:r>
+                    <w:rPr>
+                        <w:color w:val="222222"/>
+                        <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
+                        <w:b w:val="1"/>
+                    </w:rPr>
+                    <w:t>${cdata(futureUnitTitle)}</w:t>
+                </w:r>
+            </w:p>
+            ${
+              !unitOptionIfAvailable.connection_future_unit_description
+                ? ""
+                : `<w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
+                    </w:rPr>
+                    <w:t>${cdata(
+                      unitOptionIfAvailable.connection_future_unit_description,
+                    )}</w:t>
+                </w:r>
+            </w:p>`
+            }
+        `;
+  } else {
+    const description = unitOptionIfAvailable.description
+      ? unitOptionIfAvailable.description
+      : "-";
+    const whyThisWhyNow = unitOptionIfAvailable.why_this_why_now
+      ? unitOptionIfAvailable.why_this_why_now
+      : "-";
+
+    return `
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
+                    <w:t>Unit description</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:bookmarkStart w:id="13" w:name="_wf3kyqlrau0x" w:colFirst="0" w:colLast="0"/>
+                <w:bookmarkEnd w:id="13"/>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
+                        <w:b w:val="0"/>
+                    </w:rPr>
+                    <w:t>${cdata(description)}</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
+                    </w:rPr>
+                    <w:t>Why this, why now?</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:pPr>
+                    <w:ind w:left="30" w:hanging="30"/>
+                </w:pPr>
+                <w:bookmarkStart w:id="14" w:name="_dt40g52dsciy" w:colFirst="0" w:colLast="0"/>
+                <w:bookmarkEnd w:id="14"/>
+                <w:r>
+                    <w:rPr>
+                        <w:color w:val="222222"/>
+                        <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
+                    </w:rPr>
+                    <w:t>${cdata(whyThisWhyNow)}</w:t>
+                </w:r>
+            </w:p>    
+        `;
+  }
+}
+
 function buildUnit(
   unit: Unit,
   unitIndex: number,
@@ -253,14 +393,10 @@ function buildUnit(
 ) {
   const unitOptionIfAvailable = unitOption ?? unit;
   const unitNumber = unitIndex + 1;
-  const description = unitOptionIfAvailable.description
-    ? unitOptionIfAvailable.description
-    : "-";
-  const whyThisWhyNow = unitOptionIfAvailable.why_this_why_now
-    ? unitOptionIfAvailable.why_this_why_now
-    : "-";
   const lessons = buildUnitLessons(unitOptionIfAvailable);
   const threads = buildUnitThreads(unit);
+
+  const previousNextSection = generatePreviousAndNext(unitOptionIfAvailable);
 
   const xml = `
         <root>
@@ -568,47 +704,7 @@ function buildUnit(
                     </w:rPr>
                 </w:pPr>
             </w:p>
-            <w:p>
-                <w:r>
-                    <w:rPr>
-                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                    </w:rPr>
-                    <w:t>Unit description</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:bookmarkStart w:id="13" w:name="_wf3kyqlrau0x" w:colFirst="0" w:colLast="0"/>
-                <w:bookmarkEnd w:id="13"/>
-                <w:r>
-                    <w:rPr>
-                        <w:rFonts w:ascii="Lexend-Light" w:hAnsi="Lexend-Light"/>
-                        <w:b w:val="0"/>
-                    </w:rPr>
-                    <w:t>${cdata(description)}</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:r>
-                    <w:rPr>
-                        <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
-                    </w:rPr>
-                    <w:t>Why this, why now?</w:t>
-                </w:r>
-            </w:p>
-            <w:p>
-                <w:pPr>
-                    <w:ind w:left="30" w:hanging="30"/>
-                </w:pPr>
-                <w:bookmarkStart w:id="14" w:name="_dt40g52dsciy" w:colFirst="0" w:colLast="0"/>
-                <w:bookmarkEnd w:id="14"/>
-                <w:r>
-                    <w:rPr>
-                        <w:color w:val="222222"/>
-                        <w:rFonts w:ascii="Lexend-Light" w:eastAsia="Lexend-Light" w:hAnsi="Lexend-Light" w:cs="Lexend-Light"/>
-                    </w:rPr>
-                    <w:t>${cdata(whyThisWhyNow)}</w:t>
-                </w:r>
-            </w:p>
+            ${previousNextSection}
             <w:p>
                 <w:bookmarkStart w:id="15" w:name="_96kd3c8qkmgf" w:colFirst="0" w:colLast="0"/>
                 <w:bookmarkEnd w:id="15"/>
