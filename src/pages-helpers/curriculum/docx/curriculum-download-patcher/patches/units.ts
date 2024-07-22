@@ -295,6 +295,11 @@ function generatePreviousAndNext(
             }
             <w:p>
                 <w:r>
+                    <w:t> </w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:r>
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                     </w:rPr>
@@ -357,6 +362,11 @@ function generatePreviousAndNext(
                         <w:b w:val="0"/>
                     </w:rPr>
                     <w:t>${cdata(description)}</w:t>
+                </w:r>
+            </w:p>
+            <w:p>
+                <w:r>
+                    <w:t> </w:t>
                 </w:r>
             </w:p>
             <w:p>
