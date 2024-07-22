@@ -161,9 +161,14 @@ export async function insertLinks<T extends Record<string, string>>(
       existingIds.push(id);
     }
 
-    return xmlElementToJson(`
-            <Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${url}" TargetMode="External"/>
-        `);
+    return xmlElementToJson(safeXml`
+      <Relationship
+        Id="${id}"
+        Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+        Target="${url}"
+        TargetMode="External"
+      />
+    `);
   });
 
   for (const element of elements) {
@@ -174,6 +179,88 @@ export async function insertLinks<T extends Record<string, string>>(
 
   zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
   return output;
+}
+
+async function addToContentTypesXml(zip: JSZip, xml: string) {
+  const contentXml = xmlRootToJson(
+    await zip.file("[Content_Types].xml")!.async("text"),
+  );
+  console.log(JSON.stringify(contentXml, null, 2));
+  contentXml.elements[0].elements.push(xmlElementToJson(xml));
+  zip.file("[Content_Types].xml", jsonXmlToXmlString(contentXml as Element));
+}
+
+async function insertHeaderFooters<T extends Record<string, string>>(
+  type: "header" | "footer",
+  zip: JSZip,
+  content: T,
+) {
+  const DOC_RELS = "word/_rels/document.xml.rels";
+  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+
+  const existingIds = json.elements[0].elements
+    .map((element: Element) => element.attributes?.Id)
+    .filter(Boolean);
+  const output: Record<keyof typeof content, string> = {} as Record<
+    keyof typeof content,
+    string
+  >;
+
+  const elements = await Promise.all(
+    Object.entries(content).map(async ([key, content]) => {
+      const contentHash = generateHash(content).slice(0, 12);
+      const id = "rId" + contentHash;
+      output[key as keyof T] = id;
+
+      if (existingIds.includes(id)) {
+        return null;
+      } else {
+        existingIds.push(id);
+      }
+
+      const filepath = `header-${contentHash}.xml`;
+      const zipfilepath = `word/${filepath}`;
+
+      await addToContentTypesXml(
+        zip,
+        safeXml`
+          <Override
+            PartName="/${zipfilepath}"
+            ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.${type}+xml"
+          />
+        `,
+      );
+
+      zip.file(zipfilepath, content.trim());
+
+      return xmlElementToJson(`
+        <Relationship Id="${id}" Type="http://purl.oclc.org/ooxml/officeDocument/relationships/${type}" Target="${filepath}" />
+      `);
+    }),
+  );
+
+  for (const element of elements) {
+    if (element) {
+      json.elements[0].elements.push(element);
+    }
+  }
+
+  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  return output;
+}
+
+export async function insertHeaders<T extends Record<string, string>>(
+  zip: JSZip,
+  content: T,
+) {
+  return insertHeaderFooters("header", zip, content);
+}
+
+export async function insertFooters<T extends Record<string, string>>(
+  zip: JSZip,
+  content: T,
+) {
+  return insertHeaderFooters("footer", zip, content);
 }
 
 export function cmToTwip(cm: number) {
@@ -199,6 +286,14 @@ export function lineHeight(pointHeight: number, multiplier: number) {
 
 export function emuToCm(emu: number) {
   return (emu / 914400) * 2.54;
+}
+
+export function createHeader(id: string, type: string) {
+  return safeXml`<w:headerReference r:id="${id}" w:type="${type}" />`;
+}
+
+export function createFooter(id: string, type: string) {
+  return safeXml`<w:footerReference r:id="${id}" w:type="${type}" />`;
 }
 
 export function wrapInLinkTo(id: string, childXml: string) {

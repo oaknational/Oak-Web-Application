@@ -161,7 +161,9 @@ describe("docx", () => {
           "word/webSettings.xml",
           "word/styles.xml",
           "word/settings.xml",
+          "word/endnotes.xml",
           "word/fontTable.xml",
+          "word/footnotes.xml",
           "word/numbering.xml",
           "word/document.xml",
           "word/_rels/",
@@ -213,6 +215,8 @@ describe("docx", () => {
             "~",
             {
               elements: [
+                [" "],
+                [" "],
                 [" "],
                 [" "],
                 [" "],
@@ -275,6 +279,8 @@ describe("docx", () => {
             "~",
             {
               elements: [
+                [" "],
+                [" "],
                 [" "],
                 [" "],
                 [" "],

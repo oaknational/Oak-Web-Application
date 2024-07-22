@@ -927,4 +927,49 @@
             <w:spacing w:val="5"/>
         </w:rPr>
     </w:style>
+    
+    <w:style w:type="paragraph" w:styleId="Header">
+        <w:name w:val="header"/>
+        <w:basedOn w:val="Normal"/>
+        <w:link w:val="HeaderChar"/>
+        <w:uiPriority w:val="99"/>
+        <w:unhideWhenUsed/>
+        <w:rsid w:val="00797BD0"/>
+        <w:pPr>
+            <w:tabs>
+                <w:tab w:val="center" w:pos="4513"/>
+                <w:tab w:val="right" w:pos="9026"/>
+            </w:tabs>
+            <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+        </w:pPr>
+    </w:style>
+    <w:style w:type="character" w:customStyle="1" w:styleId="HeaderChar">
+        <w:name w:val="Header Char"/>
+        <w:basedOn w:val="DefaultParagraphFont"/>
+        <w:link w:val="Header"/>
+        <w:uiPriority w:val="99"/>
+        <w:rsid w:val="00797BD0"/>
+    </w:style>
+    <w:style w:type="paragraph" w:styleId="Footer">
+        <w:name w:val="footer"/>
+        <w:basedOn w:val="Normal"/>
+        <w:link w:val="FooterChar"/>
+        <w:uiPriority w:val="99"/>
+        <w:unhideWhenUsed/>
+        <w:rsid w:val="00797BD0"/>
+        <w:pPr>
+            <w:tabs>
+                <w:tab w:val="center" w:pos="4513"/>
+                <w:tab w:val="right" w:pos="9026"/>
+            </w:tabs>
+            <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+        </w:pPr>
+    </w:style>
+    <w:style w:type="character" w:customStyle="1" w:styleId="FooterChar">
+        <w:name w:val="Footer Char"/>
+        <w:basedOn w:val="DefaultParagraphFont"/>
+        <w:link w:val="Footer"/>
+        <w:uiPriority w:val="99"/>
+        <w:rsid w:val="00797BD0"/>
+    </w:style>
 </w:styles>
