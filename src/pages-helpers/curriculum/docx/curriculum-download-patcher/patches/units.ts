@@ -265,7 +265,7 @@ function generatePreviousAndNext(
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                     </w:rPr>
-                    <w:t>Unit description</w:t>
+                    <w:t>Previous unit description</w:t>
                 </w:r>
             </w:p>
             <w:p>
@@ -298,7 +298,7 @@ function generatePreviousAndNext(
                     <w:rPr>
                         <w:rFonts w:ascii="Lexend-Bold" w:eastAsia="Lexend-Bold" w:hAnsi="Lexend-Bold" w:cs="Lexend-Bold"/>
                     </w:rPr>
-                    <w:t>Why this, why now?</w:t>
+                    <w:t>Future unit description</w:t>
                 </w:r>
             </w:p>
             <w:p>
