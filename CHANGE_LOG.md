@@ -1,3 +1,10 @@
+# [1.484.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.483.0...v1.484.0) (2024-07-22)
+
+
+### Features
+
+* update buttons on lesson review page ([13c142d](https://github.com/oaknational/Oak-Web-Application/commit/13c142d8dc69598f1f63c15de9edfd9439d0c0e8))
+
 # [1.483.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.482.0...v1.483.0) (2024-07-17)
 
 
