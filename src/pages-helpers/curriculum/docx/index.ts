@@ -33,15 +33,17 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
 
   // Run through the builders
   await builder.frontCover(zip, { data });
+  await builder.pageLayout(zip, {
+    margins: {
+      top: cmToTwip(1.5),
+      right: cmToTwip(1.5),
+      bottom: cmToTwip(1.5),
+      left: cmToTwip(1.5),
+      header: cmToTwip(1.5),
+      footer: cmToTwip(1.5),
+    },
+  });
   await builder.tableOfContents(zip, { data });
-  await builder.ourCurriculum(zip);
-  await builder.threadsExplainer(zip, { slugs });
-  await builder.subjectExplainer(zip, { data });
-  await builder.subjectPrincipals(zip, { data });
-  await builder.ourPartner(zip, { data });
-  await builder.units(zip, { data, slugs });
-  await builder.threadsOverview(zip, { data });
-  await builder.threadsDetail(zip, { data });
   await builder.pageLayout(zip, {
     margins: {
       top: cmToTwip(1.25),
@@ -50,6 +52,34 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
       left: cmToTwip(1.25),
       header: cmToTwip(1.25),
       footer: cmToTwip(1.25),
+    },
+  });
+  await builder.ourCurriculum(zip);
+  await builder.threadsExplainer(zip, { slugs });
+  await builder.subjectExplainer(zip, { data });
+  await builder.subjectPrincipals(zip, { data });
+  await builder.ourPartner(zip, { data });
+  await builder.units(zip, { data, slugs });
+  await builder.threadsOverview(zip, { data });
+  await builder.pageLayout(zip, {
+    margins: {
+      top: cmToTwip(1.5),
+      right: cmToTwip(1.5),
+      bottom: cmToTwip(1.5),
+      left: cmToTwip(1.5),
+      header: cmToTwip(1.5),
+      footer: cmToTwip(1.5),
+    },
+  });
+  await builder.threadsDetail(zip, { data });
+  await builder.pageLayout(zip, {
+    margins: {
+      top: cmToTwip(1.75),
+      right: cmToTwip(1.75),
+      bottom: cmToTwip(1.75),
+      left: cmToTwip(1.75),
+      header: cmToTwip(1.75),
+      footer: cmToTwip(1.75),
     },
   });
   await builder.backCover(zip, { data });

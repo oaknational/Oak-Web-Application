@@ -51,6 +51,7 @@ export default async function generate(
             <w:tcPr>
               <w:tcMar>
                 <w:right w:type="dxa" w:w="${cmToTwip(1)}" />
+                <w:left w:type="dxa" w:w="${cmToTwip(0)}" />
               </w:tcMar>
               <w:vAlign w:val="center" />
             </w:tcPr>
@@ -77,6 +78,17 @@ export default async function generate(
                 })}
               </w:r>
             </w:p>
+
+            <w:p>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:sz w:val="36" />
+                </w:rPr>
+                <w:t />
+              </w:r>
+            </w:p>
+
             <w:p>
               <w:r>
                 <w:rPr>

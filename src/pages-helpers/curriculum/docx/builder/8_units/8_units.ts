@@ -141,11 +141,14 @@ function buildOptions({
       <XML_FRAGMENT>
         <w:p>
           <w:pPr>
-            <w:spacing w:line="240" w:lineRule="auto" />
+            <w:spacing w:line="240" w:lineRule="auto" w:after="0" />
           </w:pPr>
           <w:r />
         </w:p>
         <w:p>
+          <w:pPr>
+            <w:spacing w:line="240" w:lineRule="auto" w:after="0" />
+          </w:pPr>
           <w:r>
             <w:rPr>
               <w:color w:val="ffffff" />
@@ -198,7 +201,7 @@ function buildYearColumn({
       </w:tcPr>
       <w:p>
         <w:pPr>
-          <w:spacing w:line="240" w:lineRule="auto" />
+          <w:spacing w:line="240" w:lineRule="auto" w:after="0" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -217,6 +220,9 @@ function buildYearColumn({
         </w:r>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:spacing w:line="240" w:lineRule="auto" w:after="0" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts

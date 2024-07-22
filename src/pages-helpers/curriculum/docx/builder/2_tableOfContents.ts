@@ -2,7 +2,12 @@ import type JSZip from "jszip";
 
 import { CombinedCurriculumData } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { appendBodyElements, wrapInLinkToBookmark } from "../docx";
+import {
+  appendBodyElements,
+  lineHeight,
+  pointToDxa,
+  wrapInLinkToBookmark,
+} from "../docx";
 
 import { uncapitalizeSubject } from "./helper";
 
@@ -80,6 +85,13 @@ export default async function generate(
         .map((link) => {
           return safeXml`
             <w:p>
+              <w:pPr>
+                <w:spacing
+                  w:line="${lineHeight(12, 1.5)}"
+                  w:lineRule="auto"
+                  w:before="${pointToDxa(3)}"
+                />
+              </w:pPr>
               ${wrapInLinkToBookmark(
                 link.anchorId,
                 safeXml`

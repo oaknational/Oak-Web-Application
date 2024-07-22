@@ -84,6 +84,15 @@ export default async function generate(
         )}
       </w:p>
       <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:sz w:val="56" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading2" />
         </w:pPr>
@@ -110,12 +119,36 @@ export default async function generate(
         <w:r>
           <w:rPr>
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
           <w:t>${cdata(whatAreThreadsContent)}</w:t>
         </w:r>
       </w:p>
+      ${Array(3)
+        .fill(true)
+        .map(() => {
+          return safeXml`
+            <w:p>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:sz w:val="24" />
+                </w:rPr>
+                <w:t />
+              </w:r>
+            </w:p>
+          `;
+        })}
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading2" />
@@ -137,6 +170,15 @@ export default async function generate(
             yPosAnchor: "paragraph",
             isDecorative: true,
           })}
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t />
         </w:r>
       </w:p>
       ${howToUseThreadsItems
@@ -207,6 +249,7 @@ export default async function generate(
             <w:tcPr>
               <w:tcMar>
                 <w:right w:type="dxa" w:w="${cmToTwip(1)}" />
+                <w:left w:type="dxa" w:w="${cmToTwip(0)}" />
               </w:tcMar>
               <w:vAlign w:val="center" />
             </w:tcPr>
@@ -238,6 +281,16 @@ export default async function generate(
                 </w:t>
               </w:r>
             </w:p>
+
+            <w:p>
+              <w:r>
+                <w:rPr>
+                  <w:sz w:val="24" />
+                </w:rPr>
+                <w:t />
+              </w:r>
+            </w:p>
+
             <w:p>
               ${wrapInLinkTo(
                 links.onlineCurriculum,
@@ -342,6 +395,16 @@ export default async function generate(
                 </w:t>
               </w:r>
             </w:p>
+
+            <w:p>
+              <w:r>
+                <w:rPr>
+                  <w:sz w:val="24" />
+                </w:rPr>
+                <w:t />
+              </w:r>
+            </w:p>
+
             <w:p>
               ${wrapInLinkToBookmark(
                 "section_threads_appendix",

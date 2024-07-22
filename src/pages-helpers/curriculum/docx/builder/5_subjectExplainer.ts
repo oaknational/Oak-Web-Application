@@ -53,6 +53,17 @@ export default async function generate(
         )}
       </w:p>
       <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="56" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />
         </w:pPr>
@@ -73,6 +84,15 @@ export default async function generate(
             yPosAnchor: "paragraph",
             isDecorative: true,
           })}
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t />
         </w:r>
       </w:p>
       ${curriculaDescLines

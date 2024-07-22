@@ -10,7 +10,7 @@ import {
 } from "../docx";
 
 const DISABLE_HEADERS = true;
-const DISABLE_FOOTERS = true;
+const DISABLE_FOOTERS = false;
 
 type Margins = {
   top: number;
@@ -79,7 +79,7 @@ export default async function generate(
             <w:pStyle w:val="Header" />
           </w:pPr>
           <w:r>
-            <w:t>test</w:t>
+            <w:t />
           </w:r>
         </w:p>
       </w:hdr>
@@ -130,7 +130,7 @@ export default async function generate(
             <w:pStyle w:val="Footer" />
           </w:pPr>
           <w:r>
-            <w:t>test</w:t>
+            <w:t />
           </w:r>
         </w:p>
       </w:ftr>

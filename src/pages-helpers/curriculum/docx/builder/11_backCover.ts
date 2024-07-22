@@ -32,7 +32,7 @@ export default async function generate(
 
   const pageXml = safeXml`
     <root>
-      ${Array(20)
+      ${Array(30)
         .fill(true)
         .map(() => {
           return safeXml`

@@ -5,6 +5,7 @@ import { cdata, safeXml } from "../../xml";
 import { CombinedCurriculumData } from "../..";
 import {
   cmToEmu,
+  cmToTwip,
   createImage,
   insertLinks,
   insertNumbering,
@@ -266,6 +267,15 @@ export async function buildUnit(
         <w:p>
           <w:r>
             <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+              <w:b />
+            </w:rPr>
+            <w:t />
+          </w:r>
+        </w:p>
+        <w:p>
+          <w:r>
+            <w:rPr>
               <w:rFonts
                 w:ascii="Arial"
                 w:eastAsia="Arial"
@@ -345,6 +355,15 @@ export async function buildUnit(
               <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
             </w:rPr>
             <w:t>${cdata(description)}</w:t>
+          </w:r>
+        </w:p>
+        <w:p>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+              <w:b />
+            </w:rPr>
+            <w:t />
           </w:r>
         </w:p>
         <w:p>
@@ -621,12 +640,12 @@ export async function buildUnit(
           <w:sectPr>
             <w:pgSz w:w="11909" w:h="16834" />
             <w:pgMar
-              w:top="567"
-              w:right="709"
-              w:bottom="709"
-              w:left="709"
-              w:header="720"
-              w:footer="720"
+              w:top="${cmToTwip(1.5)}"
+              w:right="${cmToTwip(1.5)}"
+              w:bottom="${cmToTwip(1.5)}"
+              w:left="${cmToTwip(1.5)}"
+              w:header="${cmToTwip(1.5)}"
+              w:footer="${cmToTwip(1.5)}"
               w:gutter="0"
             />
             <w:cols w:space="720" />

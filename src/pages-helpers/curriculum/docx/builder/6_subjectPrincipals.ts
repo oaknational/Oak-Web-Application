@@ -51,6 +51,14 @@ export default async function generate(
           })}
         </w:r>
       </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
       ${data.subjectPrinciples
         .map((subjectPrincipal) => {
           return safeXml`

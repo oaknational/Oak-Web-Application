@@ -51,6 +51,15 @@ export default async function generate(
               `;
             })
             .join("")}
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:sz w:val="28" />
+              </w:rPr>
+              <w:t />
+            </w:r>
+          </w:p>
         </XML_FRAGMENT>
       `;
     });
@@ -77,6 +86,17 @@ export default async function generate(
             <w:t>${cdata(thread.title)}</w:t>
           </w:r>
         </w:p>
+
+        <w:p>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:sz w:val="24" />
+            </w:rPr>
+            <w:t xml:space="preserve"> </w:t>
+          </w:r>
+        </w:p>
+
         ${yearElements.join("")}
         <w:p>
           <w:r>

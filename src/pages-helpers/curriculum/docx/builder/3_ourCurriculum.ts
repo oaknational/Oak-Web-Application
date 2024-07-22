@@ -92,12 +92,12 @@ export default async function generate(zip: JSZip) {
                       <w:top w:type="dxa" w:w="0" />
                       <w:start
                         w:type="dxa"
-                        w:w="${columnIndex === 0 ? "0" : "226"}"
+                        w:w="${columnIndex === 0 ? "0" : "113"}"
                       />
                       <w:bottom w:type="dxa" w:w="226" />
                       <w:end
                         w:type="dxa"
-                        w:w="${columnIndex === 1 ? "0" : "226"}"
+                        w:w="${columnIndex === 1 ? "0" : "113"}"
                       />
                     </w:tcMar>
                   </w:tcPr>
@@ -174,6 +174,16 @@ export default async function generate(zip: JSZip) {
               "All of our curricula share the same set of principles that guide our curriculum design to ensure our curricula are high-quality. They are:",
             )}
           </w:t>
+        </w:r>
+      </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
         </w:r>
       </w:p>
 
