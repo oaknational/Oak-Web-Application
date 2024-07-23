@@ -478,15 +478,50 @@ const unitData = [
   },
 ];
 
+const mockCurriculumDownloadsData = {
+  child_subjects: [
+    {
+      subject: "Biology",
+      subject_slug: "biology",
+    },
+    {
+      subject: "Chemistry",
+      subject_slug: "chemistry",
+    },
+    {
+      subject: "Combined science",
+      subject_slug: "combined-science",
+    },
+    {
+      subject: "Physics",
+      subject_slug: "physics",
+    },
+  ],
+  tiers: [
+    {
+      tier: "Foundation",
+      tier_slug: "foundation",
+    },
+    {
+      tier: "Higher",
+      tier_slug: "higher",
+    },
+  ],
+};
+
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
+  refreshedMVTime: jest.fn(),
 }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
   >;
+const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as MockedFunction<
+  typeof curriculumApi.refreshedMVTime
+>;
 
 jest.mock("@/node-lib/cms");
 
@@ -562,11 +597,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -583,11 +620,19 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{
+            tiers: [
+              { tier: "Higher", tier_slug: " higher" },
+              { tier: "Foundation", tier_slug: "foundation" },
+            ],
+            child_subjects: [],
+          }}
         />,
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
@@ -604,11 +649,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
@@ -625,11 +672,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("download-heading")).toBeInTheDocument();
@@ -649,6 +698,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
+      mockedRefreshedMVTime.mockResolvedValue({
+        data: [
+          {
+            last_refresh_finish: "2024-07-07T00:00:04.01694+00:00",
+            materializedview_name: "mv_curriculum_units_including_new_0_0_4",
+          },
+        ],
+      });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
       mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
@@ -663,12 +720,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
       expect(props).toEqual({
         props: {
+          mvRefreshTime: 1720310404016,
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
           curriculumUnitsFormattedData:
             formatCurriculumUnitsData(unitsTabFixture),
+          curriculumDownloadsTabData: mockCurriculumDownloadsData,
         },
       });
     });
@@ -734,6 +793,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           disciplines: [],
           domains: [],
+          pathways: [],
           tiers: [],
           units: [
             {
@@ -830,6 +890,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           disciplines: [],
           domains: [],
+          pathways: [],
           tiers: [
             {
               tier: "Foundation",
@@ -1172,6 +1233,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             },
           ],
           domains: [],
+          pathways: [],
           tiers: [],
           units: [
             {
