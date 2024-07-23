@@ -163,11 +163,11 @@ const QuizInner = () => {
   const topNavSlot = (
     <OakLessonTopNav
       backLinkSlot={
-        showBackLink && (
+        showBackLink ? (
           <OakBackLink
             {...getSectionLinkProps("overview", updateCurrentSection)}
           />
-        )
+        ) : null
       }
       counterSlot={
         !isExplanatoryText && (
