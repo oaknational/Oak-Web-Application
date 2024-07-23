@@ -108,4 +108,28 @@ describe("PupilViewsLessonListing", () => {
     );
     expect(getByText("(2)")).toBeInTheDocument();
   });
+  it("should render the expired lessons banner", () => {
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {" "}
+        <PupilViewsLessonListing {...props} />
+      </OakThemeProvider>,
+    );
+    expect(
+      getByText("Some of these lessons will soon be taken down."),
+    ).toBeInTheDocument();
+  });
+  it.only("should remove banner when dismissed", () => {
+    const { getByText, getByTestId, getByLabelText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {" "}
+        <PupilViewsLessonListing {...props} />
+      </OakThemeProvider>,
+    );
+    expect(
+      getByText("Some of these lessons will soon be taken down."),
+    ).toBeInTheDocument();
+    getByLabelText("Dismiss banner").click();
+    expect(getByTestId("oak-inline-banner")).toHaveStyle("display: none");
+  });
 });
