@@ -478,6 +478,37 @@ const unitData = [
   },
 ];
 
+const mockCurriculumDownloadsData = {
+  child_subjects: [
+    {
+      subject: "Biology",
+      subject_slug: "biology",
+    },
+    {
+      subject: "Combined science",
+      subject_slug: "combined-science",
+    },
+    {
+      subject: "Chemistry",
+      subject_slug: "chemistry",
+    },
+    {
+      subject: "Physics",
+      subject_slug: "physics",
+    },
+  ],
+  tiers: [
+    {
+      tier: "Foundation",
+      tier_slug: "foundation",
+    },
+    {
+      tier: "Higher",
+      tier_slug: "higher",
+    },
+  ],
+};
+
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
@@ -572,6 +603,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [] }}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -686,6 +718,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
           curriculumUnitsFormattedData:
             formatCurriculumUnitsData(unitsTabFixture),
+          curriculumDownloadsTabData: mockCurriculumDownloadsData,
         },
       });
     });
