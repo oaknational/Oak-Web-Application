@@ -9,12 +9,12 @@ import {
   OakLessonLayout,
   OakLessonReviewItem,
   OakPrimaryButton,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsReviewProps = {
@@ -41,12 +41,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", updateCurrentSection)}
+        href={backUrl || undefined}
         iconName="arrow-right"
         isTrailingIcon
         width={["100%", "max-content"]}
       >
-        Lesson overview
+        View all lessons
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
@@ -65,7 +65,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton href={backUrl} />
+          <OakTertiaryButton
+            iconName="arrow-left"
+            element="a"
+            {...getSectionLinkProps("overview", updateCurrentSection)}
+          >
+            Lesson overview
+          </OakTertiaryButton>
 
           <OakFlex $mv="space-between-xl">
             <OakFlex

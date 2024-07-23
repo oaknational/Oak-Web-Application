@@ -26,6 +26,7 @@ import {
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -170,21 +171,24 @@ export const PupilViewsProgrammeListing = ({
           phase={phaseSlug}
           topNavSlot={topNavSlot()}
         >
-          <OakBox $mb={"space-between-xxl"}>
-            <OakPupilJourneyProgrammeOptions
-              optionTitleSlot={optionTitleSlot}
-              phase={phaseSlug}
-              titleSlot={
-                <OakPupilJourneyHeader
-                  iconBackground={phaseSlug}
-                  iconName={`subject-${subjectSlug}`}
-                  title={subjectDescription}
-                  breadcrumbs={breadcrumbs}
-                />
-              }
-            >
-              <BrowseOptions />
-            </OakPupilJourneyProgrammeOptions>
+          <OakBox $mb={"space-between-m2"}>
+            <OakBox $mb={"space-between-m2"}>
+              <OakPupilJourneyProgrammeOptions
+                optionTitleSlot={optionTitleSlot}
+                phase={phaseSlug}
+                titleSlot={
+                  <OakPupilJourneyHeader
+                    iconBackground={phaseSlug}
+                    iconName={`subject-${subjectSlug}`}
+                    title={subjectDescription}
+                    breadcrumbs={breadcrumbs}
+                  />
+                }
+              >
+                <BrowseOptions />
+              </OakPupilJourneyProgrammeOptions>
+            </OakBox>
+            <SignpostTeachersInlineBanner />
           </OakBox>
         </OakPupilJourneyLayout>
       </AppLayout>
