@@ -20,6 +20,7 @@ describe(PupilViewsLessonOverview, () => {
             subjectSlug="english"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -50,6 +51,7 @@ describe(PupilViewsLessonOverview, () => {
               subjectSlug="english"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
+              expirationDate={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -76,6 +78,7 @@ describe(PupilViewsLessonOverview, () => {
             subjectSlug="english"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -94,6 +97,7 @@ describe(PupilViewsLessonOverview, () => {
             subjectSlug="english"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -153,6 +157,7 @@ describe(PupilViewsLessonOverview, () => {
               subjectSlug="english"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
+              expirationDate={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
