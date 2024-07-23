@@ -1,4 +1,7 @@
+import { sum } from "lodash";
+
 import { Slugs } from "..";
+import { safeXml } from "../xml";
 
 import {
   Thread,
@@ -137,4 +140,18 @@ export function makeTransparentIfSanity(input: string, height?: number) {
     url.searchParams.set("h", String(Math.round(height)));
   }
   return url.href;
+}
+
+export function generateGridCols(amount: number, sizes: number[] = []) {
+  const alreadyAccountedFor = sum(sizes);
+  const width = Math.floor(
+    (9016 - alreadyAccountedFor) / (amount - sizes.length),
+  );
+  return Array(amount)
+    .fill(true)
+    .map((_, index) => {
+      const colWidth = index < sizes.length ? sizes : width;
+      return safeXml` <w:gridCol w:w="${colWidth}" /> `;
+    })
+    .join("");
 }

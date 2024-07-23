@@ -12,7 +12,7 @@ import {
   insertImages,
 } from "../docx";
 
-import { makeTransparentIfSanity } from "./helper";
+import { generateGridCols, makeTransparentIfSanity } from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -46,9 +46,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
         <w:tr>
           <w:tc>
             <w:tcPr>

@@ -13,7 +13,11 @@ import {
   wrapInLinkToBookmark,
 } from "../docx";
 
-import { createThreadOptions, uncapitalizeSubject } from "./helper";
+import {
+  createThreadOptions,
+  generateGridCols,
+  uncapitalizeSubject,
+} from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -98,9 +102,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(1)}</w:tblGrid>
         ${threads
           .map((thread) => {
             return safeXml`

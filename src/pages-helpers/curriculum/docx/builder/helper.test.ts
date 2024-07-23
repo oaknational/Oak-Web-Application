@@ -1,4 +1,5 @@
 import {
+  generateGridCols,
   keyStageFromPhaseTitle,
   notUndefined,
   uncapitalize,
@@ -44,5 +45,17 @@ describe("helper", () => {
   it("keyStageFromPhaseTitle", () => {
     expect(keyStageFromPhaseTitle("Primary")).toEqual("KS1 & KS2");
     expect(keyStageFromPhaseTitle("Secondary")).toEqual("KS3 & KS4");
+  });
+
+  describe("generateGridCols", () => {
+    it("single", () => {
+      expect(generateGridCols(1)).toEqual("");
+    });
+    it("multiple", () => {
+      expect(generateGridCols(3)).toEqual("");
+    });
+    it("with defined columns", () => {
+      expect(generateGridCols(3, [1000])).toEqual("");
+    });
   });
 });

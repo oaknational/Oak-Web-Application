@@ -16,7 +16,7 @@ import {
   cmToTwip,
 } from "../docx";
 
-import { createCurriculumSlug } from "./helper";
+import { createCurriculumSlug, generateGridCols } from "./helper";
 
 export default async function generate(
   zip: JSZip,
@@ -42,7 +42,7 @@ export default async function generate(
     ),
     jumpOutArrow: join(
       process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow.png",
+      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow-2.png",
     ),
     downArrow: join(
       process.cwd(),
@@ -94,7 +94,7 @@ export default async function generate(
       </w:p>
       <w:p>
         <w:pPr>
-          <w:pStyle w:val="Heading2" />
+          <w:pStyle w:val="Heading3" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -151,7 +151,7 @@ export default async function generate(
         })}
       <w:p>
         <w:pPr>
-          <w:pStyle w:val="Heading2" />
+          <w:pStyle w:val="Heading3" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -241,9 +241,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
         <w:tr>
           <w:tc>
             <w:tcPr>
@@ -303,16 +301,15 @@ export default async function generate(
                       <w:sz w:val="24" />
                       <w:u w:val="single" />
                     </w:rPr>
-                    <w:t>${cdata("Go to online curriculum")}</w:t>
+                    <w:t xml:space="preserve">${cdata(
+                        "Go to online curriculum",
+                      )}</w:t>
                     ${createImage(images.jumpOutArrow, {
-                      width: cmToEmu(0.57),
-                      height: cmToEmu(0.57),
-                      xPos: cmToEmu(0.3),
-                      yPos: cmToEmu(-0.01),
+                      width: cmToEmu(0.34),
+                      height: cmToEmu(0.34),
                       xPosAnchor: "character",
                       yPosAnchor: "line",
                       isDecorative: true,
-                      isWrapTight: true,
                     })}
                   </w:r>
                 `,
@@ -345,9 +342,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
         <w:tr>
           <w:tc>
             <w:p>

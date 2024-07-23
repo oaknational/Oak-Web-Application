@@ -11,6 +11,8 @@ import {
   wrapInBookmarkPoint,
 } from "../docx";
 
+import { generateGridCols } from "./helper";
+
 export default async function generate(zip: JSZip) {
   const images = await insertImages(zip, {
     oakCurriculum: join(
@@ -72,9 +74,7 @@ export default async function generate(zip: JSZip) {
             <w:insideV w:val="single" w:color="auto" w:sz="4" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
         ${groupedIntoSets(points, 2)
           .flatMap((row) => {
             const rows = row.map((point, columnIndex) => {
@@ -102,6 +102,9 @@ export default async function generate(zip: JSZip) {
                     </w:tcMar>
                   </w:tcPr>
                   <w:p>
+                    <w:pPr>
+                      <w:pStyle w:val="Heading3" />
+                    </w:pPr>
                     <w:r>
                       <w:rPr>
                         <w:rFonts
@@ -194,8 +197,8 @@ export default async function generate(zip: JSZip) {
         </w:pPr>
         <w:r>
           ${createImage(images.oakCurriculum, {
-            width: cmToEmu(12.22),
-            height: cmToEmu(11.31),
+            width: cmToEmu(11.93),
+            height: cmToEmu(11.04),
             desc: "A bee hive diagram showing each of Oak's 6 curriculum principles",
           })}
         </w:r>

@@ -14,7 +14,7 @@ import {
   createImage,
   cmToEmu,
 } from "../../docx";
-import { createCurriculumSlug } from "../helper";
+import { createCurriculumSlug, generateGridCols } from "../helper";
 
 import { buildUnit } from "./unit_detail";
 
@@ -307,7 +307,7 @@ async function buildYear(
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow.png",
+      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow-2.png",
     ),
     greenCircle: join(
       process.cwd(),
@@ -458,16 +458,13 @@ async function buildYear(
                 <w:sz w:val="24" />
                 <w:u w:val="single" />
               </w:rPr>
-              <w:t>View interactive sequence online</w:t>
+              <w:t xml:space="preserve">View interactive sequence online</w:t>
               ${createImage(images.jumpOutArrow, {
-                width: cmToEmu(0.57),
-                height: cmToEmu(0.57),
-                xPos: cmToEmu(0.3),
-                yPos: cmToEmu(-0.01),
+                width: cmToEmu(0.34),
+                height: cmToEmu(0.34),
                 xPosAnchor: "character",
                 yPosAnchor: "line",
                 isDecorative: true,
-                isWrapTight: true,
               })}
             </w:r>
           `,
@@ -497,11 +494,7 @@ async function buildYear(
             <w:insideV w:val="single" w:color="auto" w:sz="4" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="3505" />
-          <w:gridCol w:w="3505" />
-          <w:gridCol w:w="3505" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(3)}</w:tblGrid>
         ${rows.join("")}
       </w:tbl>
       <w:p>

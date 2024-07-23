@@ -11,6 +11,7 @@ import {
   insertNumbering,
   wrapInLinkTo,
 } from "../../docx";
+import { generateGridCols } from "../helper";
 
 import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
@@ -241,6 +242,9 @@ export async function buildUnit(
     unitDescriptions = safeXml`
       <XML_FRAGMENT>
         <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading4" />
+          </w:pPr>
           <w:r>
             <w:rPr>
               <w:rFonts
@@ -290,6 +294,9 @@ export async function buildUnit(
           </w:r>
         </w:p>
         <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading4" />
+          </w:pPr>
           <w:r>
             <w:rPr>
               <w:rFonts
@@ -351,6 +358,9 @@ export async function buildUnit(
     unitDescriptions = safeXml`
       <XML_FRAGMENT>
         <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading4" />
+          </w:pPr>
           <w:r>
             <w:rPr>
               <w:rFonts
@@ -383,6 +393,9 @@ export async function buildUnit(
           </w:r>
         </w:p>
         <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading4" />
+          </w:pPr>
           <w:r>
             <w:rPr>
               <w:rFonts
@@ -467,10 +480,7 @@ export async function buildUnit(
             w:noVBand="1"
           />
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="1092" />
-          <w:gridCol w:w="9389" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2, [1092])}</w:tblGrid>
         <w:tr>
           <w:tc>
             <w:p>
@@ -570,17 +580,14 @@ export async function buildUnit(
                       <w:u w:val="single" />
                     </w:rPr>
                     <w:t>Go to unit resources</w:t>
-                    ${createImage(images.jumpOutArrow, {
-                      width: cmToEmu(0.62),
-                      height: cmToEmu(0.62),
-                      xPos: cmToEmu(0.3),
-                      yPos: cmToEmu(-0.01),
-                      xPosAnchor: "character",
-                      yPosAnchor: "line",
-                      isDecorative: true,
-                      isWrapTight: true,
-                    })}
                   </w:r>
+                  ${createImage(images.jumpOutArrow, {
+                    width: cmToEmu(0.34),
+                    height: cmToEmu(0.34),
+                    xPosAnchor: "character",
+                    yPosAnchor: "line",
+                    isDecorative: true,
+                  })}
                 `,
               )}
             </w:p>
@@ -625,6 +632,9 @@ export async function buildUnit(
         </w:pPr>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading4" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts
@@ -649,7 +659,11 @@ export async function buildUnit(
         </w:pPr>
       </w:p>
       ${unitDescriptions}
+      ${DISABLE_COLUMN_BREAKS ? safeXml` <w:p /> ` : ""}
       <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading4" />
+        </w:pPr>
         ${DISABLE_COLUMN_BREAKS
           ? ""
           : `<w:r>
