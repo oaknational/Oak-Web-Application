@@ -21,6 +21,10 @@ jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
 });
 
 describe("NewContentBanner component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders NewContentBanner component", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -59,6 +63,26 @@ describe("NewContentBanner component", () => {
     );
   });
 
+  it("resolves href for programme-index page", () => {
+    const { getByRole } = render(
+      <NewContentBanner
+        subjectSlug="biology"
+        subjectTitle="Biology"
+        programmeSlug="biology-secondary-ks4"
+        keyStageSlug="ks4"
+        isUnitListing={false}
+        isLegacy={true}
+      />,
+    );
+
+    const linkElement = getByRole("link");
+
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "/teachers/key-stages/ks4/subjects/biology/programmes",
+    );
+  });
+
   it("renders video player and text text when video is playing", () => {
     const { getByTestId, getByText } = render(
       <NewContentBanner
@@ -75,7 +99,7 @@ describe("NewContentBanner component", () => {
     expect(getByTestId("video-player")).toBeInTheDocument();
   });
 
-  test("displays the paragraph correctly based on the expand prop and screen width", () => {
+  it("displays the paragraph correctly based on the expand prop and screen width", () => {
     const { getByText } = render(
       <NewContentBanner
         subjectSlug="english-reading-for-pleasure"
