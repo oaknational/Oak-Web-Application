@@ -9,6 +9,7 @@ import {
   OakSpan,
   OakTooltip,
 } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
   QuestionsArray,
@@ -44,6 +45,7 @@ const QuizInner = () => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const variant = useFeatureFlagVariantKey("pupil-quiz-back-button-test");
 
   if (!isQuizSection(currentSection)) {
     return null;
@@ -148,13 +150,21 @@ const QuizInner = () => {
     </OakLessonBottomNav>
   );
 
-  const topNavSlot = (
-    <OakLessonTopNav
-      backLinkSlot={
+  const backLinkSlot = ((variant: string | boolean | undefined) => {
+    if (!variant || variant === "control") {
+      return (
         <OakBackLink
           {...getSectionLinkProps("overview", updateCurrentSection)}
         />
-      }
+      );
+    } else if (variant === "variant-1") {
+      return null;
+    }
+  })(variant);
+
+  const topNavSlot = (
+    <OakLessonTopNav
+      backLinkSlot={backLinkSlot}
       counterSlot={
         !isExplanatoryText && (
           <OakQuizCounter
