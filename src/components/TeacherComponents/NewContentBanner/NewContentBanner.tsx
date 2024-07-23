@@ -16,7 +16,7 @@ const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
-const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
+export const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
   transition: width 0.4s ease-in;
 
   p {

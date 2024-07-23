@@ -1,6 +1,6 @@
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import NewContentBanner from "./NewContentBanner";
+import NewContentBanner, { StyledVideoFlex } from "./NewContentBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer";
@@ -115,7 +115,7 @@ describe("NewContentBanner component", () => {
     expect(paragraph).toHaveStyle("display: block");
   });
 
-  it("video container", () => {
+  it("video container renders at correct width", () => {
     const { getByTestId } = render(
       <NewContentBanner
         subjectSlug="english-reading-for-pleasure"
@@ -129,5 +129,19 @@ describe("NewContentBanner component", () => {
 
     const videoSection = getByTestId("video-player-container");
     expect(videoSection).toHaveStyle("width: 15rem");
+  });
+
+  describe("StyledVideoFlex", () => {
+    test("renders with correct styles when expand is true", () => {
+      const { container } = render(
+        <StyledVideoFlex expand={true}>
+          <p>Test</p>
+        </StyledVideoFlex>,
+      );
+
+      const paragraph = container.querySelector("p");
+
+      expect(paragraph).toHaveStyle("display: block");
+    });
   });
 });
