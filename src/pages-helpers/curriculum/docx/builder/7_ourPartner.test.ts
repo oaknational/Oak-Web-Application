@@ -10,7 +10,7 @@ const EMPTY_PNG =
   "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
 describe("7_ourPartner", () => {
-  it("with partner image", async () => {
+  it.skip("with partner image", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {

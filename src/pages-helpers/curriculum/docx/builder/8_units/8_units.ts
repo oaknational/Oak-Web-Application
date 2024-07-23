@@ -166,6 +166,34 @@ function buildOptions({
   return "";
 }
 
+function buildEmpty(columnIndex: number) {
+  return safeXml`
+    <w:tc>
+      <w:tcPr>
+        <w:tcW w:type="pct" w:w="33.333333333333336%" />
+        <w:tcBorders>
+          <w:top w:val="single" w:color="FFFFFF" w:sz="48" />
+          ${columnIndex > 0
+            ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
+            : ""}
+          <w:bottom w:val="single" w:color="FFFFFF" w:sz="48" />
+          ${columnIndex < 2
+            ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
+            : ""}
+        </w:tcBorders>
+        <w:shd w:val="solid" w:color="FFFFFF" w:fill="FFFFFF" />
+        <w:tcMar>
+          <w:top w:type="dxa" w:w="226" />
+          <w:left w:type="dxa" w:w="226" />
+          <w:bottom w:type="dxa" w:w="226" />
+          <w:right w:type="dxa" w:w="226" />
+        </w:tcMar>
+      </w:tcPr>
+      <w:p />
+    </w:tc>
+  `;
+}
+
 function buildYearColumn({
   index,
   title,
@@ -304,21 +332,22 @@ async function buildYear(
   const rows = [];
   const units = removeDups(unitsInput);
   for (let i = 0; i < units.length; i += 3) {
-    rows.push(
-      buildYearRow(
-        units
-          .slice(i, i + 3)
-          .map((unit, j) => {
-            const index = i + j;
-            return buildYearColumn({
-              index: index,
-              title: unit.title,
-              unitOptions: unit.unit_options,
-            });
-          })
-          .join(""),
-      ),
-    );
+    const unitsColumns = Array(3)
+      .fill(true)
+      .map((_, colIdx) => {
+        const index = i + colIdx;
+        const unit = units[index];
+        if (unit) {
+          return buildYearColumn({
+            index: index,
+            title: unit.title,
+            unitOptions: unit.unit_options,
+          });
+        } else {
+          return buildEmpty(index);
+        }
+      });
+    rows.push(buildYearRow(unitsColumns.join("")));
   }
 
   const unitsXml: string[] = [];

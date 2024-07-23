@@ -12,17 +12,20 @@ import {
   insertImages,
 } from "../docx";
 
+import { makeTransparentIfSanity } from "./helper";
+
 export default async function generate(
   zip: JSZip,
   { data }: { data: CombinedCurriculumData },
 ) {
+  const sanityUrl = data.curriculumPartner.image?.asset?.url;
   const images = await insertImages(zip, {
-    partnerImage:
-      data.curriculumPartner.image?.asset?.url ??
-      join(
-        process.cwd(),
-        "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
-      ),
+    partnerImage: sanityUrl
+      ? makeTransparentIfSanity(sanityUrl)
+      : join(
+          process.cwd(),
+          "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
+        ),
     underline: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/underline.png",

@@ -59,29 +59,64 @@ export default async function generate(
           <w:t />
         </w:r>
       </w:p>
-      ${data.subjectPrinciples
-        .map((subjectPrincipal) => {
-          return safeXml`
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                <w:t>${cdata(subjectPrincipal)}</w:t>
-              </w:r>
-            </w:p>
-          `;
-        })
-        .join("")}
+      <w:tbl>
+        <w:tblPr>
+          <w:tblW w:type="pct" w:w="100%" />
+          <w:tblBorders>
+            <w:top w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:left w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:right w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:insideH w:val="single" w:color="FFFFFF" w:sz="4" />
+            <w:insideV w:val="single" w:color="FFFFFF" w:sz="4" />
+          </w:tblBorders>
+        </w:tblPr>
+        <w:tblGrid>
+          <w:gridCol w:w="10" />
+          <w:gridCol w:w="10515" />
+        </w:tblGrid>
+        ${data.subjectPrinciples
+          .map((subjectPrincipal) => {
+            return safeXml`
+              <w:tr>
+                <w:tc>
+                  <w:p>
+                    <w:r>
+                      ${createImage(images.arrowBullet, {
+                        width: cmToEmu(1.11),
+                        height: cmToEmu(1.03),
+                        isDecorative: true,
+                      })}
+                    </w:r>
+                  </w:p>
+                </w:tc>
+                <w:tc>
+                  <w:p>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                      </w:rPr>
+                      <w:t>${cdata(subjectPrincipal)}</w:t>
+                    </w:r>
+                  </w:p>
+                </w:tc>
+              </w:tr>
+            `;
+          })
+          .join("")}
+      </w:tbl>
       <w:p>
         <w:r>
-          ${createImage(images.arrowBullet, {
-            width: cmToEmu(1.11),
-            height: cmToEmu(1.03),
-            isDecorative: true,
-          })}
+          <w:rPr>
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t />
         </w:r>
       </w:p>
     </root>

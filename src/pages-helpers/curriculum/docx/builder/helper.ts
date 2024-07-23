@@ -124,3 +124,17 @@ export function keyStageFromPhaseTitle(phaseTitle: string) {
   }
   return phaseTitle;
 }
+
+export function cmToPxDpi(cm: number) {
+  return (cm / 2.54) * 300;
+}
+
+export function makeTransparentIfSanity(input: string, height?: number) {
+  const url = new URL(input);
+  url.searchParams.set("fm", "png");
+  url.searchParams.set("bg", "00FFFFFF");
+  if (height) {
+    url.searchParams.set("h", String(Math.round(height)));
+  }
+  return url.href;
+}

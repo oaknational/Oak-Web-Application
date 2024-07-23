@@ -38,6 +38,11 @@ export default async function generate(
           return safeXml`
             <w:p>
               <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                </w:rPr>
                 <w:t />
               </w:r>
             </w:p>
@@ -46,11 +51,31 @@ export default async function generate(
         .join("")}
       <w:p>
         <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
           <w:t>${cdata("© Oak National Academy 2024.")}</w:t>
         </w:r>
       </w:p>
       <w:p>
         <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
           <w:t>
             ${cdata(
               `Produced in partnership with ${data.curriculumPartner.name}.`,
@@ -60,6 +85,21 @@ export default async function generate(
       </w:p>
       <w:p>
         <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
           <w:t>
             ${cdata(
               "Licensed on the Open Government Licence v3.0, except where otherwise stated. See Oak terms and conditions.",

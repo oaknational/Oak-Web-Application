@@ -11,7 +11,11 @@ import {
   insertImages,
 } from "../docx";
 
-import { keyStageFromPhaseTitle } from "./helper";
+import {
+  cmToPxDpi,
+  keyStageFromPhaseTitle,
+  makeTransparentIfSanity,
+} from "./helper";
 
 import { getSubjectIconAsset } from "@/image-data";
 
@@ -20,13 +24,15 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const iconKey = data.subjectTitle.toLowerCase();
+
+  const sanityUrl = getSubjectIconAsset(iconKey)?.url;
   const images = await insertImages(zip, {
-    icon:
-      getSubjectIconAsset(iconKey)?.url ??
-      join(
-        process.cwd(),
-        "src/pages-helpers/curriculum/docx/builder/images/icon.png",
-      ),
+    icon: sanityUrl
+      ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
+      : join(
+          process.cwd(),
+          "src/pages-helpers/curriculum/docx/builder/images/icon.png",
+        ),
     arrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",

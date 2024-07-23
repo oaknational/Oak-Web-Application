@@ -73,6 +73,10 @@ export async function insertNumbering<T extends Record<string, string>>(
   return lookup;
 }
 
+function extnameWithoutQuery(filepath: string) {
+  return extname(filepath).replace(/\?.*$/, "");
+}
+
 export async function insertImages<T extends Record<string, string>>(
   zip: JSZip,
   images: T,
@@ -109,18 +113,26 @@ export async function insertImages<T extends Record<string, string>>(
             filePathOrUrl.match(/^data:image\/([^;]+);base64/)?.[1] ??
             "unknown";
         } else if (filePathOrUrl.match(/^(https?):/)) {
-          file = Buffer.from(await (await fetch(filePathOrUrl)).arrayBuffer());
-          ext = extname(filePathOrUrl);
+          const res = await fetch(filePathOrUrl);
+          ext =
+            "." + res.headers.get("content-type")?.split("/")[1] ?? "unknown";
+          file = Buffer.from(await res.arrayBuffer());
+          // ext = extnameWithoutQuery(filePathOrUrl);
         } else {
           file = await readFile(filePathOrUrl);
-          ext = extname(filePathOrUrl);
+          ext = extnameWithoutQuery(filePathOrUrl);
         }
 
         const filepath = `media/hash_${imagePathHash}${ext}`;
+
         zip.file(join("word", filepath), file);
-        return xmlElementToJson(`
-                <Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="${filepath}"/>
-            `);
+        return xmlElementToJson(safeXml`
+          <Relationship
+            Id="${id}"
+            Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+            Target="${filepath}"
+          />
+        `);
       },
     ),
   );
@@ -278,6 +290,11 @@ export function cmToEmu(cm: number) {
 
 export function pointToDxa(input: number) {
   return input * 20;
+}
+
+export function cmToDxa(cm: number) {
+  const inches = cm / 2.54;
+  return inches * 72 * 20;
 }
 
 export function lineHeight(pointHeight: number, multiplier: number) {
