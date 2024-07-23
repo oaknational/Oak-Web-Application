@@ -119,7 +119,7 @@ describe("PupilViewsLessonListing", () => {
       getByText("Some of these lessons will soon be taken down."),
     ).toBeInTheDocument();
   });
-  it.only("should remove banner when dismissed", () => {
+  it("should remove banner when dismissed", () => {
     const { getByText, getByTestId, getByLabelText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         {" "}
