@@ -45,8 +45,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
   );
 
-  console.log(noneExpiredLessons, "noneExpiredLessons");
-
   if (phaseSlug === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
