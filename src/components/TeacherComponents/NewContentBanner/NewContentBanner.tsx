@@ -154,7 +154,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         expand={expandVideo}
         $flexDirection={"column"}
         $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
-        data-testid="video-element"
+        data-testid="video"
       >
         <VideoPlayer
           playbackId={videoPlaybackID}
