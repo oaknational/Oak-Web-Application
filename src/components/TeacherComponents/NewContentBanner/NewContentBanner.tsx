@@ -63,7 +63,6 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 }) => {
   const renderComponent =
     renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
-
   const [expandVideo, setExpandVideo] = useState(false);
 
   let navigationPage: OakPageType = "unit-index";
@@ -121,7 +120,6 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       setExpandVideo(false);
     }
   };
-
   return (
     <StyledOakFlex
       $flexDirection={["column-reverse", "row"]}
@@ -156,6 +154,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
         expand={expandVideo}
         $flexDirection={"column"}
         $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
+        data-testid="video-element"
       >
         <VideoPlayer
           playbackId={videoPlaybackID}
