@@ -9,6 +9,7 @@ import {
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
 
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
+import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
 
 export type PupilViewsUnitListingProps = {
@@ -42,30 +43,53 @@ export const PupilViewsUnitListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakBox $mb={"space-between-xl"}>
-        {unitSections.map((unitSection, i) => (
-          <PupilUnitsSection
-            key={unitSection.title}
-            titleSlot={
-              unitSection.title && unitSection.icon ? (
-                <OakPupilJourneyHeader
-                  title={unitSection.title}
-                  iconName={unitSection.icon}
-                  iconBackground={phase}
-                  breadcrumbs={unitSection.breadcrumbs}
-                />
-              ) : null
-            }
-            subjectCategories={subjectCategories}
-            filterItems={filterItems}
-            applyFilter={applyFilter}
-            phase={phase}
-            units={unitSection.units}
-            counterText={unitSection.counterText}
-            counterLength={unitSection.counterLength}
-            id={`section-${i}`}
-          />
-        ))}
+      <OakBox $mb={"space-between-m2"}>
+        {unitSections.map((unitSection, i) => {
+          let subjectLabel = unitSection.labels?.subject;
+          if (
+            unitSection.labels?.subject &&
+            unitSections[1]?.labels?.subject &&
+            filterItems[0] !== undefined &&
+            filterItems[0] !== "All"
+          ) {
+            subjectLabel = filterItems[0];
+          }
+
+          const labelsArray = [
+            unitSection.labels?.year,
+            subjectLabel,
+            unitSection.labels?.tier,
+          ].filter((label): label is string => Boolean(label));
+
+          return (
+            <PupilUnitsSection
+              key={unitSection.title}
+              titleSlot={
+                unitSection.title && unitSection.icon ? (
+                  <OakPupilJourneyHeader
+                    title={unitSection.title}
+                    iconName={unitSection.icon}
+                    iconBackground={phase}
+                    breadcrumbs={unitSection.breadcrumbs}
+                  />
+                ) : null
+              }
+              subjectCategories={subjectCategories}
+              filterItems={filterItems}
+              applyFilter={applyFilter}
+              phase={phase}
+              units={unitSection.units}
+              counterText={unitSection.counterText}
+              counterLength={unitSection.counterLength}
+              labels={labelsArray.length ? labelsArray : undefined}
+              showTooltip={i === 0}
+              id={`section-${i}`}
+            />
+          );
+        })}
+        <OakBox $mt={"space-between-m2"}>
+          <SignpostTeachersInlineBanner />
+        </OakBox>
       </OakBox>
     </OakPupilJourneyLayout>
   );

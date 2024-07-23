@@ -144,7 +144,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
             <OakPupilJourneyList
               titleSlot={LessonListingTitle}
               phase={phaseSlug}
-              counterSlot={lessonCount}
+              subheadingSlot={lessonCount}
             >
               {orderedCurriculumData.map((lesson, index) => {
                 return (
@@ -156,6 +156,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                       unitSlug: lesson.unitSlug,
                     })}
                     index={index + 1}
+                    key={index}
                     title={lesson.lessonData.title}
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
                   />
