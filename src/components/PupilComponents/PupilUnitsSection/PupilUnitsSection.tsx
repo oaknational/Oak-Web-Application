@@ -55,6 +55,7 @@ export type PupilUnitsSectionProps = {
   labels?: string[] | undefined;
   filterItems: string[];
   applyFilter: (subjectCategory: string) => void;
+  showTooltip?: boolean;
   id?: string;
 };
 
@@ -67,6 +68,7 @@ export const PupilUnitsSection = ({
   labels,
   filterItems,
   applyFilter,
+  showTooltip = true,
   id = "0",
 }: PupilUnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
@@ -106,17 +108,19 @@ export const PupilUnitsSection = ({
           <OakFlex
             $gap="space-between-xs"
             $alignItems={"center"}
-            $justifyContent="center"
+            $justifyContent="start"
           >
-            <OakInfo
-              id={`unit-info-${id}`}
-              hint="Units are groups of lessons that relate to one another."
-              tooltipPosition="top-left"
-            />
+            {showTooltip && (
+              <OakInfo
+                id={`unit-info-${id}`}
+                hint="Units are groups of lessons that relate to one another."
+                tooltipPosition="top-left"
+              />
+            )}
             <OakFlex
               $flexDirection={["column", "row"]}
               $flexWrap={"wrap"}
-              $justifyContent={"space-between"}
+              $justifyContent={["start", "space-between"]}
               $flexGrow={[null, 1]}
               $alignItems={["flex-start", "center"]}
               $gap={"space-between-m"}

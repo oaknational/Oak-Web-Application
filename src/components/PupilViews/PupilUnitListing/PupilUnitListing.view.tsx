@@ -81,6 +81,7 @@ export const PupilViewsUnitListing = ({
               counterText={unitSection.counterText}
               counterLength={unitSection.counterLength}
               labels={labelsArray.length ? labelsArray : undefined}
+              showTooltip={i === 0}
               id={`section-${i}`}
             />
           );
