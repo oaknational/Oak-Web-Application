@@ -40,6 +40,7 @@ import {
   Unit,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -56,13 +57,19 @@ export type CurriculumUnitsYearGroup = {
   ref?: MutableRefObject<HTMLDivElement>;
 };
 
-export type CurriculumUnitsYearData = {
+export type Pathway = {
+  pathway: string;
+  pathway_slug: string;
+};
+
+export type CurriculumUnitsYearData<T = Unit> = {
   [key: string]: {
-    units: Unit[];
+    units: T[];
     childSubjects: Subject[];
     domains: Domain[];
     tiers: Tier[];
     disciplines: Discipline[];
+    pathways: Pathway[];
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -74,8 +81,8 @@ export type CurriculumUnitsTrackingData = {
   examboardSlug: string | null;
 };
 
-export type CurriculumUnitsFormattedData = {
-  yearData: CurriculumUnitsYearData;
+export type CurriculumUnitsFormattedData<T = Unit> = {
+  yearData: CurriculumUnitsYearData<T>;
   threadOptions: Thread[];
   yearOptions: string[];
   initialYearSelection: YearSelection;
@@ -87,6 +94,7 @@ export type CurriculumInfoPageProps = {
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  mvRefreshTime: number;
 };
 
 const VALID_TABS = ["overview", "units", "downloads"] as const;
@@ -98,6 +106,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumOverviewTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
+  mvRefreshTime,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
@@ -146,7 +155,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       );
       break;
     case "downloads":
-      tabContent = <CurriculumDownloadTab />;
+      tabContent = (
+        <CurriculumDownloadTab
+          mvRefreshTime={mvRefreshTime}
+          slugs={curriculumSelectionSlugs}
+        />
+      );
       break;
     default:
       throw new Error("Not a valid tab");
@@ -331,6 +345,7 @@ export function createUnitsListingByYear(
         domains: [],
         tiers: [],
         disciplines: [],
+        pathways: [],
       };
       yearData[unit.year] = currentYearData;
     }
@@ -376,6 +391,19 @@ export function createUnitsListingByYear(
       currentYearData.tiers.push({
         tier: unit.tier,
         tier_slug: unit.tier_slug,
+      });
+    }
+
+    if (
+      unit.pathway &&
+      unit.pathway_slug &&
+      currentYearData.pathways.every(
+        (p) => p.pathway_slug !== unit.pathway_slug,
+      )
+    ) {
+      currentYearData.pathways.push({
+        pathway: unit.pathway,
+        pathway_slug: unit.pathway_slug,
       });
     }
 
@@ -466,6 +494,8 @@ export const getStaticProps: GetStaticProps<
         curriculumUnitsTabData,
       );
 
+      const mvRefreshTime = await getMvRefreshTime();
+
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -474,6 +504,7 @@ export const getStaticProps: GetStaticProps<
           curriculumOverviewTabData,
           curriculumOverviewSanityData,
           curriculumUnitsFormattedData,
+          mvRefreshTime,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

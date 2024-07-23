@@ -1,0 +1,113 @@
+import type JSZip from "jszip";
+
+import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { CombinedCurriculumData } from "..";
+import { appendBodyElements } from "../docx";
+
+import { createThreadOptions, threadUnitByYear } from "./helper";
+
+import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+
+function sortByOrder(units: Unit[]) {
+  return [...units].sort((a, b) => a.order - b.order);
+}
+
+export default async function generate(
+  zip: JSZip,
+  { data }: { data: CombinedCurriculumData },
+) {
+  const elements = createThreadOptions(data.units).map((thread) => {
+    const threadInfo = threadUnitByYear(data.units, thread.slug);
+
+    const yearElements = Object.entries(threadInfo).map(([year, units]) => {
+      return safeXml`
+        <XML_FRAGMENT>
+          <w:p>
+            <w:pPr />
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b w:val="true" />
+                <w:color w:val="222222" />
+                <w:sz w:val="28" />
+              </w:rPr>
+              <w:t>${cdata(`Year ${year}`)}</w:t>
+            </w:r>
+          </w:p>
+          ${sortByOrder(units)
+            .map((unit) => {
+              return safeXml`
+                <w:p>
+                  <w:pPr />
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:color w:val="222222" />
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:t>${cdata(`Unit ${unit.order}: ${unit.title}`)}</w:t>
+                  </w:r>
+                </w:p>
+              `;
+            })
+            .join("")}
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:sz w:val="28" />
+              </w:rPr>
+              <w:t />
+            </w:r>
+          </w:p>
+        </XML_FRAGMENT>
+      `;
+    });
+
+    return safeXml`
+      <XML_FRAGMENT>
+        <w:p>
+          <w:pPr />
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:color w:val="222222" />
+              <w:sz w:val="36" />
+            </w:rPr>
+            <w:t xml:space="preserve">${cdata(`Thread: `)}</w:t>
+          </w:r>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="36" />
+            </w:rPr>
+            <w:t>${cdata(thread.title)}</w:t>
+          </w:r>
+        </w:p>
+
+        <w:p>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:sz w:val="24" />
+            </w:rPr>
+            <w:t xml:space="preserve"> </w:t>
+          </w:r>
+        </w:p>
+
+        ${yearElements.join("")}
+        <w:p>
+          <w:r>
+            <w:br w:type="page" />
+          </w:r>
+        </w:p>
+      </XML_FRAGMENT>
+    `;
+  });
+
+  const pageXml = safeXml` <root>${elements.join("")}</root> `;
+
+  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
+}
