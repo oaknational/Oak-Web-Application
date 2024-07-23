@@ -150,21 +150,25 @@ const QuizInner = () => {
     </OakLessonBottomNav>
   );
 
-  const backLinkSlot = ((variant: string | boolean | undefined) => {
-    if (!variant || variant === "control") {
-      return (
-        <OakBackLink
-          {...getSectionLinkProps("overview", updateCurrentSection)}
-        />
-      );
-    } else if (variant === "variant-1") {
-      return null;
+  const showBackLink = ((variant: string | boolean | undefined) => {
+    if (variant === "only-first-question") {
+      return currentQuestionIndex === 0;
+    } else if (variant === "all-except-last-question") {
+      return currentQuestionIndex < numQuestions - 1;
+    } else {
+      return true;
     }
   })(variant);
 
   const topNavSlot = (
     <OakLessonTopNav
-      backLinkSlot={backLinkSlot}
+      backLinkSlot={
+        showBackLink && (
+          <OakBackLink
+            {...getSectionLinkProps("overview", updateCurrentSection)}
+          />
+        )
+      }
       counterSlot={
         !isExplanatoryText && (
           <OakQuizCounter

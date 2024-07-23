@@ -43,6 +43,12 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
+const useFeatureFlagVariantKey = jest.fn();
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey,
+}));
+
 describe("PupilQuizView", () => {
   it("renders heading, mode and answer when there is currentQuestionData", () => {
     const { getByText } = renderWithTheme(
@@ -160,4 +166,18 @@ describe("PupilQuizView", () => {
       expect(getByRole("tooltip")).toHaveTextContent(tooltipText);
     },
   );
+
+  it("chooses whether to render the backlink based on AB test variant", () => {
+    useFeatureFlagVariantKey.mockReturnValue("only-first-question");
+
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(getByRole("link", { name: /Back/ })).toBeInTheDocument();
+  });
 });
