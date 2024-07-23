@@ -117,4 +117,20 @@ describe("NewContentBanner component", () => {
     const paragraph = getByText(/Play new resources video/i);
     expect(paragraph).toHaveStyle("display: block");
   });
+
+  it.only("video container", () => {
+    const { getByTestId } = render(
+      <NewContentBanner
+        subjectSlug="english-reading-for-pleasure"
+        subjectTitle="English"
+        programmeSlug="english-primary-ks2"
+        keyStageSlug="ks2"
+        isUnitListing={true}
+        isLegacy={true}
+      />,
+    );
+
+    const videoSection = getByTestId("video-player-container");
+    expect(videoSection).toHaveStyle("width: 15rem");
+  });
 });
