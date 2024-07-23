@@ -1,19 +1,29 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import {
   OakFlex,
   OakHeading,
   OakP,
   OakTertiaryButton,
-  OakImage,
 } from "@oaknational/oak-components";
 
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import { VideoEventCallbackArgs } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 const StyledOakFlex = styled(OakFlex)`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+`;
+
+export const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
+  transition: width 0.4s ease-in;
+
+  p {
+    @media (min-width: 768px) {
+      display: ${({ expand }) => (expand ? "none" : "block")};
+    }
+  }
 `;
 
 type NewContentBannerProps = {
@@ -24,6 +34,8 @@ type NewContentBannerProps = {
   isUnitListing?: boolean;
   isLegacy?: boolean;
 };
+
+const videoPlaybackID = "CjDAe0153o6v65Te4npM9165RqrAJd6YrSeOufA02RKLE";
 
 const renderContentBannerRecord: Record<string, string[]> = {
   ks1: ["english", "geography", "history", "science", "maths"],
@@ -51,6 +63,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 }) => {
   const renderComponent =
     renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
+  const [expandVideo, setExpandVideo] = useState(false);
 
   let navigationPage: OakPageType = "unit-index";
   let progSlug = removeLegacySlugSuffix(programmeSlug);
@@ -100,6 +113,13 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           programmeSlug: progSlug,
         });
 
+  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
+    if (event.event === "playing") {
+      setExpandVideo(true);
+    } else {
+      setExpandVideo(false);
+    }
+  };
   return (
     <StyledOakFlex
       $flexDirection={["column-reverse", "row"]}
@@ -129,25 +149,24 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           Go to {subjTitle} resources
         </OakTertiaryButton>
       </OakFlex>
-      <OakFlex
-        $display={"block"}
-        $justifyContent={"center"}
-        $width={"all-spacing-18"}
-        $height={"all-spacing-15"}
-        $alignItems={"center"}
+      <StyledVideoFlex
+        $alignSelf={["flex-start", "center"]}
+        expand={expandVideo}
+        $flexDirection={"column"}
+        $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
+        data-testid="video-player-container"
       >
-        <OakImage
-          $display={"block"}
-          $width={"all-spacing-18"}
-          $height={"all-spacing-15"}
-          alt=""
-          src={`https://${getBrowserConfig(
-            "oakComponentsAssetsHost",
-          )}/${getBrowserConfig(
-            "oakComponentsAssetsPath",
-          )}/v1718639479/teacher-journey/content-banner.png`}
+        <VideoPlayer
+          playbackId={videoPlaybackID}
+          playbackPolicy={"public"}
+          title={"Oak Promo Video"}
+          location={"marketing"}
+          isLegacy={false}
+          thumbnailTime={30.8}
+          userEventCallback={handleVideoEvent}
         />
-      </OakFlex>
+        <OakP $font={"body-3-bold"}>Play new resources video</OakP>
+      </StyledVideoFlex>
     </StyledOakFlex>
   );
 };
