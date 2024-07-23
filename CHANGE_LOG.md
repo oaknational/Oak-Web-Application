@@ -1,3 +1,15 @@
+# [1.487.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.486.0...v1.487.0) (2024-07-23)
+
+
+### Bug Fixes
+
+* updating section subheading layout ([24c5db8](https://github.com/oaknational/Oak-Web-Application/commit/24c5db80ff1d5a5c43b94357a2ac623b42a2dc86))
+
+
+### Features
+
+* add labels to unit sections ([4cd9ae0](https://github.com/oaknational/Oak-Web-Application/commit/4cd9ae00f44644d100d7519a40ee40748303eef5))
+
 # [1.486.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.485.1...v1.486.0) (2024-07-22)
 
 
