@@ -1,3 +1,10 @@
+# [1.488.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.487.0...v1.488.0) (2024-07-23)
+
+
+### Features
+
+* adds the video to the new content banner ([693debe](https://github.com/oaknational/Oak-Web-Application/commit/693debe1240bebd9ee67132e67ac60ea4426da60))
+
 # [1.487.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.486.0...v1.487.0) (2024-07-23)
 
 
