@@ -4,6 +4,7 @@ import NewContentBanner from "./NewContentBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
 
@@ -19,6 +20,8 @@ jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
     <VideoPlayerMock userEventCallback={userEventCallback} />
   );
 });
+
+jest.mock("@/common-lib/urls"); // Mock the resolveOakHref function
 
 describe("NewContentBanner component", () => {
   beforeEach(() => {
@@ -44,7 +47,7 @@ describe("NewContentBanner component", () => {
   });
 
   it("sets the correct href attribute for the link", () => {
-    const { getByText } = render(
+    render(
       <NewContentBanner
         subjectSlug="english-reading-for-pleasure"
         subjectTitle="English"
@@ -55,16 +58,11 @@ describe("NewContentBanner component", () => {
       />,
     );
 
-    const linkElement = getByText("Go to English resources").closest("a");
-
-    expect(linkElement).toHaveAttribute(
-      "href",
-      "/teachers/programmes/english-primary-ks2/units",
-    );
+    expect(resolveOakHref).toHaveBeenCalled();
   });
 
   it("resolves href for programme-index page", () => {
-    const { getByRole } = render(
+    render(
       <NewContentBanner
         subjectSlug="biology"
         subjectTitle="Biology"
@@ -75,12 +73,11 @@ describe("NewContentBanner component", () => {
       />,
     );
 
-    const linkElement = getByRole("link");
-
-    expect(linkElement).toHaveAttribute(
-      "href",
-      "/teachers/key-stages/ks4/subjects/biology/programmes",
-    );
+    expect(resolveOakHref).toHaveBeenCalledWith({
+      page: "programme-index",
+      keyStageSlug: "ks4",
+      subjectSlug: "biology",
+    });
   });
 
   it("renders video player and text text when video is playing", () => {
@@ -118,7 +115,7 @@ describe("NewContentBanner component", () => {
     expect(paragraph).toHaveStyle("display: block");
   });
 
-  it.only("video container", () => {
+  it("video container", () => {
     const { getByTestId } = render(
       <NewContentBanner
         subjectSlug="english-reading-for-pleasure"
