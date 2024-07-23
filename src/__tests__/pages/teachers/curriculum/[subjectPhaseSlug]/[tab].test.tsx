@@ -485,12 +485,12 @@ const mockCurriculumDownloadsData = {
       subject_slug: "biology",
     },
     {
-      subject: "Combined science",
-      subject_slug: "combined-science",
-    },
-    {
       subject: "Chemistry",
       subject_slug: "chemistry",
+    },
+    {
+      subject: "Combined science",
+      subject_slug: "combined-science",
     },
     {
       subject: "Physics",
@@ -603,7 +603,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{ tiers: [] }}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -626,6 +626,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{
+            tiers: [
+              { tier: "Higher", tier_slug: " higher" },
+              { tier: "Foundation", tier_slug: "foundation" },
+            ],
+            child_subjects: [],
+          }}
         />,
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
@@ -648,6 +655,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
@@ -670,6 +678,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("download-heading")).toBeInTheDocument();

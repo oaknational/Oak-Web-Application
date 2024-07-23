@@ -3,7 +3,9 @@ import {
   OakDownloadsJourneyChildSubjectTierSelector,
   OakThemeProvider,
   oakDefaultTheme,
- Tier, Subject } from "@oaknational/oak-components";
+  Tier,
+  Subject,
+} from "@oaknational/oak-components";
 import _ from "lodash";
 
 import CurriculumDownloadView, {
@@ -146,6 +148,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     childSubjectSlug?: string | null,
   ) => {
     setSubjectTierSelectionVisible(false);
+    // null action
     console.log(tierSlug, childSubjectSlug);
   };
 
