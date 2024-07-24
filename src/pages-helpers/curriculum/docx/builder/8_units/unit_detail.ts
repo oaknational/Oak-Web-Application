@@ -128,7 +128,7 @@ async function buildUnitThreads(zip: JSZip, unit: Unit) {
             />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>${cdata(thread.title)} ${numbering.threadsNumbering}</w:t>
+          <w:t>${cdata(thread.title)}</w:t>
         </w:r>
       </w:p>
     ` as Element;
@@ -170,15 +170,13 @@ function buildUnitOptionTitle(
             <w:sz w:val="32" />
           </w:rPr>
           <w:t>${cdata(unitOption.title)}</w:t>
-        </w:r>
-        <w:r>
           ${createImage(images.greenUnderline, {
             width: cmToEmu(2.74),
             height: cmToEmu(0.27),
             xPos: cmToEmu(-0.21),
             yPos: cmToEmu(0.66),
             xPosAnchor: "column",
-            yPosAnchor: "line",
+            yPosAnchor: "paragraph",
             isDecorative: true,
           })}
         </w:r>
