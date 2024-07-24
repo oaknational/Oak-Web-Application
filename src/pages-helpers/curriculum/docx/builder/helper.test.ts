@@ -1,3 +1,5 @@
+import { xmlRootToJson } from "../xml";
+
 import {
   generateGridCols,
   keyStageFromPhaseTitle,
@@ -49,13 +51,36 @@ describe("helper", () => {
 
   describe("generateGridCols", () => {
     it("single", () => {
-      expect(generateGridCols(1)).toEqual("");
+      const xml = xmlRootToJson(generateGridCols(1));
+      expect(xml).toEqual({
+        elements: [
+          {
+            attributes: { "w:w": "10200" },
+            name: "w:gridCol",
+            type: "element",
+          },
+        ],
+      });
     });
     it("multiple", () => {
-      expect(generateGridCols(3)).toEqual("");
+      const xml = xmlRootToJson(generateGridCols(3));
+      expect(xml).toEqual({
+        elements: [
+          { attributes: { "w:w": "3400" }, name: "w:gridCol", type: "element" },
+          { attributes: { "w:w": "3400" }, name: "w:gridCol", type: "element" },
+          { attributes: { "w:w": "3400" }, name: "w:gridCol", type: "element" },
+        ],
+      });
     });
     it("with defined columns", () => {
-      expect(generateGridCols(3, [1000])).toEqual("");
+      const xml = xmlRootToJson(generateGridCols(3, [1000]));
+      expect(xml).toEqual({
+        elements: [
+          { attributes: { "w:w": "1000" }, name: "w:gridCol", type: "element" },
+          { attributes: { "w:w": "4600" }, name: "w:gridCol", type: "element" },
+          { attributes: { "w:w": "4600" }, name: "w:gridCol", type: "element" },
+        ],
+      });
     });
   });
 });

@@ -450,23 +450,34 @@ async function buildYear(
         ${wrapInLinkTo(
           links.interactiveSequence!,
           safeXml`
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="24" />
-                <w:u w:val="single" />
-              </w:rPr>
-              <w:t xml:space="preserve">View interactive sequence online</w:t>
-              ${createImage(images.jumpOutArrow, {
-                width: cmToEmu(0.34),
-                height: cmToEmu(0.34),
-                xPosAnchor: "character",
-                yPosAnchor: "line",
-                isDecorative: true,
-              })}
-            </w:r>
+            <XML_FRAGMENT>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                  <w:u w:val="single" />
+                </w:rPr>
+                <w:t xml:space="preserve">View interactive sequence online</w:t>
+              </w:r>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                  <w:u w:val="none" />
+                </w:rPr>
+                ${createImage(images.jumpOutArrow, {
+                  width: cmToEmu(0.41),
+                  height: cmToEmu(0.35),
+                  xPosAnchor: "character",
+                  yPosAnchor: "line",
+                  isDecorative: true,
+                })}
+              </w:r>
+            </XML_FRAGMENT>
           `,
         )}
       </w:p>

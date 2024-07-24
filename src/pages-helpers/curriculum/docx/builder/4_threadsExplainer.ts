@@ -293,25 +293,40 @@ export default async function generate(
               ${wrapInLinkTo(
                 links.onlineCurriculum,
                 safeXml`
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                      <w:b />
-                      <w:color w:val="222222" />
-                      <w:sz w:val="24" />
-                      <w:u w:val="single" />
-                    </w:rPr>
-                    <w:t xml:space="preserve">${cdata(
-                        "Go to online curriculum",
-                      )}</w:t>
-                    ${createImage(images.jumpOutArrow, {
-                      width: cmToEmu(0.34),
-                      height: cmToEmu(0.34),
-                      xPosAnchor: "character",
-                      yPosAnchor: "line",
-                      isDecorative: true,
-                    })}
-                  </w:r>
+                  <XML_FRAGMENT>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                        <w:u w:val="single" />
+                      </w:rPr>
+                      <w:t>${cdata("Go to online curriculum")}</w:t>
+                    </w:r>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                        <w:u w:val="none" />
+                      </w:rPr>
+                      ${createImage(images.jumpOutArrow, {
+                        width: cmToEmu(0.41),
+                        height: cmToEmu(0.35),
+                        isDecorative: true,
+                      })}
+                    </w:r>
+                  </XML_FRAGMENT>
                 `,
               )}
             </w:p>
@@ -404,26 +419,40 @@ export default async function generate(
               ${wrapInLinkToBookmark(
                 "section_threads_appendix",
                 safeXml`
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                      <w:b />
-                      <w:color w:val="222222" />
-                      <w:sz w:val="24" />
-                      <w:u w:val="single" />
-                    </w:rPr>
-                    <w:t>${cdata("Go to threads appendix")}</w:t>
-                    ${createImage(images.downArrow, {
-                      width: cmToEmu(0.62),
-                      height: cmToEmu(0.62),
-                      xPos: cmToEmu(0.3),
-                      yPos: cmToEmu(-0.01),
-                      xPosAnchor: "character",
-                      yPosAnchor: "line",
-                      isDecorative: true,
-                      isWrapTight: true,
-                    })}
-                  </w:r>
+                  <XML_FRAGMENT>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                        <w:u w:val="single" />
+                      </w:rPr>
+                      <w:t>${cdata("Go to threads appendix")}</w:t>
+                    </w:r>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:color w:val="222222" />
+                        <w:sz w:val="24" />
+                        <w:u w:val="none" />
+                      </w:rPr>
+                      ${createImage(images.downArrow, {
+                        width: cmToEmu(0.4),
+                        height: cmToEmu(0.4),
+                        isDecorative: true,
+                      })}
+                    </w:r>
+                  </XML_FRAGMENT>
                 `,
               )}
             </w:p>

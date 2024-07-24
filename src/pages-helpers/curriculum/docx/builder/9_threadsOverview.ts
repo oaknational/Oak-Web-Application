@@ -67,15 +67,19 @@ export default async function generate(
                 <w:u w:val="single" />
               </w:rPr>
               <w:t>${cdata(`See how to use threads`)}</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+                <w:u w:val="none" />
+              </w:rPr>
               ${createImage(images.upArrow, {
-                width: cmToEmu(0.58),
-                height: cmToEmu(0.58),
-                xPos: cmToEmu(0.3),
-                yPos: cmToEmu(-0.01),
-                xPosAnchor: "character",
-                yPosAnchor: "line",
+                width: cmToEmu(0.4),
+                height: cmToEmu(0.4),
                 isDecorative: true,
-                isWrapTight: true,
               })}
             </w:r>
           `,

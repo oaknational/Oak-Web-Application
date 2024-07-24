@@ -11,7 +11,6 @@ import {
   insertNumbering,
   wrapInLinkTo,
 } from "../../docx";
-import { generateGridCols } from "../helper";
 
 import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
@@ -172,19 +171,16 @@ function buildUnitOptionTitle(
           </w:rPr>
           <w:t>${cdata(unitOption.title)}</w:t>
         </w:r>
-        ${createImage(images.greenUnderline, {
-          width: cmToEmu(2.74),
-          height: cmToEmu(0.27),
-          xPos: cmToEmu(-0.21),
-          yPos: cmToEmu(0.66),
-          xPosAnchor: "column",
-          yPosAnchor: "line",
-          isDecorative: true,
-        })}
-      </w:p>
-      <w:p>
         <w:r>
-          <w:t />
+          ${createImage(images.greenUnderline, {
+            width: cmToEmu(2.74),
+            height: cmToEmu(0.27),
+            xPos: cmToEmu(-0.21),
+            yPos: cmToEmu(0.66),
+            xPosAnchor: "column",
+            yPosAnchor: "line",
+            isDecorative: true,
+          })}
         </w:r>
       </w:p>
       <w:p>
@@ -254,6 +250,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
+              <w:color w:val="000000" />
+              <w:i w:val="0" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Previous unit description</w:t>
@@ -306,6 +304,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
+              <w:color w:val="000000" />
+              <w:i w:val="0" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Future unit description</w:t>
@@ -370,6 +370,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
+              <w:color w:val="000000" />
+              <w:i w:val="0" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Unit description</w:t>
@@ -405,6 +407,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
+              <w:color w:val="000000" />
+              <w:i w:val="0" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Why this, why now?</w:t>
@@ -434,7 +438,8 @@ export async function buildUnit(
 
   const xml = safeXml`
     <XML_FRAGMENT>
-      <w:p>
+      ${
+        "" /*<w:p>
         <w:r>
           <w:rPr>
             <w:noProof />
@@ -449,58 +454,50 @@ export async function buildUnit(
             isDecorative: true,
           })}
         </w:r>
+      </w:p>*/
+      }
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:color w:val="222222" />
+          </w:rPr>
+          <w:t>Year ${cdata(unit.year)}</w:t>
+        </w:r>
       </w:p>
-      <w:tbl>
-        <w:tblPr>
-          <w:tblStyle w:val="TableGrid" />
-          <w:tblpPr
-            w:leftFromText="0"
-            w:rightFromText="0"
-            w:vertAnchor="page"
-            w:horzAnchor="margin"
-            w:tblpY="568"
-          />
-          <w:tblW w:w="10481" w:type="dxa" />
-          <w:tblBorders>
-            <w:top w:val="none" w:sz="0" w:space="0" w:color="auto" />
-            <w:left w:val="none" w:sz="0" w:space="0" w:color="auto" />
-            <w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto" />
-            <w:right w:val="none" w:sz="0" w:space="0" w:color="auto" />
-            <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto" />
-            <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto" />
-          </w:tblBorders>
-          <w:tblLayout w:type="fixed" />
-          <w:tblLook
-            w:val="04A0"
-            w:firstRow="1"
-            w:lastRow="0"
-            w:firstColumn="1"
-            w:lastColumn="0"
-            w:noHBand="0"
-            w:noVBand="1"
-          />
-        </w:tblPr>
-        <w:tblGrid>${generateGridCols(2, [1092])}</w:tblGrid>
-        <w:tr>
-          <w:tc>
-            <w:p>
-              <w:pPr>
-                <w:jc w:val="center" />
-                <w:rPr>
-                  <w:rFonts
-                    w:ascii="Arial"
-                    w:eastAsia="Arial"
-                    w:hAnsi="Arial"
-                    w:cs="Arial"
-                  />
-                  <w:color w:val="222222" />
-                </w:rPr>
-              </w:pPr>
-            </w:p>
-            <w:p>
-              <w:pPr>
-                <w:jc w:val="center" />
-              </w:pPr>
+
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading3" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="36" />
+            <w:szCs w:val="36" />
+          </w:rPr>
+          <w:t>${cdata(unitNumber)}: ${cdata(unit.title)}</w:t>
+        </w:r>
+      </w:p>
+
+      <w:p>
+        ${wrapInLinkTo(
+          links.onlineResources,
+          safeXml`
+            <XML_FRAGMENT>
               <w:r>
                 <w:rPr>
                   <w:rFonts
@@ -510,29 +507,10 @@ export async function buildUnit(
                     w:cs="Arial"
                   />
                   <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="36" />
-                  <w:szCs w:val="36" />
+                  <w:u w:val="single" />
                 </w:rPr>
-                <w:t>${cdata(unitNumber)}</w:t>
+                <w:t>Go to unit resources</w:t>
               </w:r>
-              <w:r>
-                <w:rPr>
-                  <w:noProof />
-                  <w:color w:val="222222" />
-                </w:rPr>
-                <w:t xml:space="preserve"> </w:t>
-              </w:r>
-            </w:p>
-          </w:tc>
-          <w:tc>
-            <w:tcPr>
-              <w:tcMar>
-                <w:left w:type="dxa" w:w="${cmToTwip(0.55)}" />
-                <w:right w:type="dxa" w:w="${cmToTwip(1)}" />
-              </w:tcMar>
-            </w:tcPr>
-            <w:p>
               <w:r>
                 <w:rPr>
                   <w:rFonts
@@ -542,58 +520,33 @@ export async function buildUnit(
                     w:cs="Arial"
                   />
                   <w:b />
-                  <w:color w:val="222222" />
+                  <w:u w:val="none" />
                 </w:rPr>
-                <w:t>Year ${cdata(unit.year)}</w:t>
+                ${createImage(images.jumpOutArrow, {
+                  width: cmToEmu(0.41),
+                  height: cmToEmu(0.35),
+                  isDecorative: true,
+                })}
               </w:r>
-            </w:p>
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts
-                    w:ascii="Arial"
-                    w:eastAsia="Arial"
-                    w:hAnsi="Arial"
-                    w:cs="Arial"
-                  />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="36" />
-                  <w:szCs w:val="36" />
-                </w:rPr>
-                <w:t>${cdata(unit.title)}</w:t>
-              </w:r>
-            </w:p>
-            <w:p>
-              ${wrapInLinkTo(
-                links.onlineResources,
-                safeXml`
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts
-                        w:ascii="Arial"
-                        w:eastAsia="Arial"
-                        w:hAnsi="Arial"
-                        w:cs="Arial"
-                      />
-                      <w:b />
-                      <w:u w:val="single" />
-                    </w:rPr>
-                    <w:t>Go to unit resources</w:t>
-                  </w:r>
-                  ${createImage(images.jumpOutArrow, {
-                    width: cmToEmu(0.34),
-                    height: cmToEmu(0.34),
-                    xPosAnchor: "character",
-                    yPosAnchor: "line",
-                    isDecorative: true,
-                  })}
-                `,
-              )}
-            </w:p>
-          </w:tc>
-        </w:tr>
-      </w:tbl>
+            </XML_FRAGMENT>
+          `,
+        )}
+      </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+
       <w:p>
         <w:r>
           <w:rPr>
@@ -644,6 +597,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
+            <w:color w:val="000000" />
+            <w:i w:val="0" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Threads</w:t>
@@ -678,6 +633,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
+            <w:color w:val="000000" />
+            <w:i w:val="0" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Lessons in unit</w:t>

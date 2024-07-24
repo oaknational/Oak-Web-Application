@@ -34,6 +34,40 @@ export default async function generate(
 
   const pageXml = safeXml`
     <root>
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading3" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t>${cdata("Our curriculum partner")}</w:t>
+          ${createImage(images.underline, {
+            width: cmToEmu(7.74),
+            height: cmToEmu(0.21),
+            xPos: cmToEmu(-0.19),
+            yPos: cmToEmu(0.9),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            isDecorative: true,
+          })}
+        </w:r>
+      </w:p>
+
       <w:tbl>
         <w:tblPr>
           <w:tblW w:type="pct" w:w="100%" />
@@ -55,30 +89,8 @@ export default async function generate(
                 <w:left w:type="dxa" w:w="${cmToTwip(0)}" />
               </w:tcMar>
               <w:vAlign w:val="center" />
+              <w:vAlign w:val="top" />
             </w:tcPr>
-            <w:p>
-              <w:pPr>
-                <w:pStyle w:val="Heading3" />
-              </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="36" />
-                </w:rPr>
-                <w:t>${cdata("Our curriculum partner")}</w:t>
-                ${createImage(images.underline, {
-                  width: cmToEmu(7.74),
-                  height: cmToEmu(0.21),
-                  xPos: cmToEmu(-0.19),
-                  yPos: cmToEmu(0.9),
-                  xPosAnchor: "column",
-                  yPosAnchor: "paragraph",
-                  isDecorative: true,
-                })}
-              </w:r>
-            </w:p>
 
             <w:p>
               <w:r>

@@ -87,9 +87,9 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
     isLast: true,
     margins: {
       top: cmToTwip(1.25),
-      right: cmToTwip(2.25),
+      right: cmToTwip(1.25),
       bottom: cmToTwip(1.25),
-      left: cmToTwip(2.5),
+      left: cmToTwip(1.25),
       header: cmToTwip(1.25),
       footer: cmToTwip(1.25),
     },

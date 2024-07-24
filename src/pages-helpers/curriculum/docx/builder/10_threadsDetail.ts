@@ -30,6 +30,7 @@ export default async function generate(
               <w:rPr>
                 <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                 <w:b w:val="true" />
+                <w:i w:val="0" />
                 <w:color w:val="222222" />
                 <w:sz w:val="28" />
               </w:rPr>
