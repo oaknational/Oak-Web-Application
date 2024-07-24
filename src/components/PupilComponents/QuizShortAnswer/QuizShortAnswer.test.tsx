@@ -3,16 +3,17 @@ import "@testing-library/jest-dom";
 import { act, fireEvent } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
-
 import { QuizShortAnswer } from "./QuizShortAnswer";
 
+import { createQuizEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createQuizEngineContext";
 import {
   QuizEngineContextType,
   QuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 
 const shortAnswerQuestion = quizQuestions?.find(
   (q) => q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
@@ -30,9 +31,12 @@ describe("QuizShortAnswer", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={context}>
+            <QuizShortAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -46,9 +50,12 @@ describe("QuizShortAnswer", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer onChange={onChange} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={context}>
+            <QuizShortAnswer onChange={onChange} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -65,9 +72,12 @@ describe("QuizShortAnswer", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={context}>
+            <QuizShortAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -90,9 +100,12 @@ describe("QuizShortAnswer", () => {
 
     const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizShortAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={context}>
+            <QuizShortAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 

@@ -2,11 +2,10 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
-import { createLessonEngineContext } from "../pupilTestHelpers/createLessonEngineContext";
-
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
+import { createQuizEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createQuizEngineContext";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   QuizEngineContext,
   QuizEngineContextType,
