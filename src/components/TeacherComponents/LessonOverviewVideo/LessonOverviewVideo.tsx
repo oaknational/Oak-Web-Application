@@ -23,7 +23,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
   const hasCaptions = transcriptSentences && transcriptSentences.length > 0;
-
   const toggleSignLanguage = () => {
     setSignLanguageOn(!signLanguageOn);
   };
