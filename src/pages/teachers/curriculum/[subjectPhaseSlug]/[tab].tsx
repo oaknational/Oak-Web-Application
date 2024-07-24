@@ -465,25 +465,28 @@ export function createDownloadsData(
     }
   });
 
-  const downloadsData = {
-    child_subjects: child_subjects.sort((a, b) => {
-      if (a.subject_slug === "combined-science") {
-        return -1;
-      }
+  const sortedChildSubjects = child_subjects.sort((a, b) => {
+    if (a.subject_slug === "combined-science") {
+      return -1;
+    }
 
-      if (b.subject_slug === "combined-science") {
-        return 1;
-      }
+    if (b.subject_slug === "combined-science") {
+      return 1;
+    }
 
-      return a.subject_slug.localeCompare(b.subject_slug, undefined, {
-        sensitivity: "base",
-      });
+    return a.subject_slug.localeCompare(b.subject_slug, undefined, {
+      sensitivity: "base",
+    });
+  });
+
+  const sortedTiers = tiers.sort((a, b) =>
+    a.tier_slug.localeCompare(b.tier_slug, undefined, {
+      sensitivity: "base",
     }),
-    tiers: tiers.sort((a, b) =>
-      a.tier_slug.localeCompare(b.tier_slug, undefined, {
-        sensitivity: "base",
-      }),
-    ),
+  );
+  const downloadsData = {
+    child_subjects: sortedChildSubjects,
+    tiers: sortedTiers,
   };
 
   return downloadsData;
