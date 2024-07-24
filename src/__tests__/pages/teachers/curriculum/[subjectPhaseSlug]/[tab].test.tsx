@@ -481,16 +481,16 @@ const unitData = [
 const mockCurriculumDownloadsData = {
   child_subjects: [
     {
+      subject: "Combined science",
+      subject_slug: "combined-science",
+    },
+    {
       subject: "Biology",
       subject_slug: "biology",
     },
     {
       subject: "Chemistry",
       subject_slug: "chemistry",
-    },
-    {
-      subject: "Combined science",
-      subject_slug: "combined-science",
     },
     {
       subject: "Physics",
