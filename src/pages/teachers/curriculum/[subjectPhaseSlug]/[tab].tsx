@@ -466,11 +466,15 @@ export function createDownloadsData(
   });
 
   const downloadsData = {
-    child_subjects: child_subjects.sort((a, b) =>
-      a.subject_slug.localeCompare(b.subject_slug, undefined, {
+    child_subjects: child_subjects.sort((a, b) => {
+      if (b.subject_slug === "combined-science") {
+        return 1;
+      }
+
+      return a.subject_slug.localeCompare(b.subject_slug, undefined, {
         sensitivity: "base",
-      }),
-    ),
+      });
+    }),
     tiers: tiers.sort((a, b) =>
       a.tier_slug.localeCompare(b.tier_slug, undefined, {
         sensitivity: "base",
