@@ -24,6 +24,7 @@ export type UnitsSectionData = {
   icon?: OakIconProps["iconName"];
   units: UnitListingBrowseData[number][][];
   breadcrumbs: string[];
+  labels?: { year: string; subject: string; tier?: string };
   counterText: string | null;
   counterLength: number | null;
 };
@@ -172,6 +173,8 @@ export const getStaticProps: GetStaticProps<
         programmeSlug,
         baseSlug,
         tierSlug,
+        subjectSlug,
+        yearSlug,
         phase,
         unitsByProgramme,
         breadcrumbs,
