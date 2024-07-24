@@ -6,8 +6,7 @@ import {
   OakJauntyAngleLabel,
 } from "@oaknational/oak-components";
 
-import { useLessonEngineContext } from "../LessonEngineProvider";
-
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import {
   getStemImage,

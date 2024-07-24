@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+import { createLessonEngineContext } from "../pupilTestHelpers/createLessonEngineContext";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
@@ -16,6 +17,7 @@ import {
   mcqImageAnswers,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 describe("QuizMCQMultiAnswer", () => {
   const multiMcqTextAnswers = [...mcqTextAnswers];
@@ -78,9 +80,12 @@ describe("QuizMCQMultiAnswer", () => {
   it("renders the answers", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={mockQuizEngineContext}>
+            <QuizMCQMultiAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -94,9 +99,12 @@ describe("QuizMCQMultiAnswer", () => {
   it("renders the answers as clickable in input mode", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={mockQuizEngineContext}>
+            <QuizMCQMultiAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -125,9 +133,12 @@ describe("QuizMCQMultiAnswer", () => {
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={mockQuizEngineContextFeedback}>
-          <QuizMCQMultiAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={mockQuizEngineContextFeedback}>
+            <QuizMCQMultiAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -148,11 +159,13 @@ describe("QuizMCQMultiAnswer", () => {
   it("renders images when they are present in the answers", () => {
     const { getAllByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider
-          value={mockQuizEngineContextWithImageAnswers}
-        >
-          <QuizMCQMultiAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider
+            value={mockQuizEngineContextWithImageAnswers}
+          >
+            <QuizMCQMultiAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
     const images = getAllByRole("presentation"); // NB. Images are currently unnamed but this will need to be replaced with alt text based search

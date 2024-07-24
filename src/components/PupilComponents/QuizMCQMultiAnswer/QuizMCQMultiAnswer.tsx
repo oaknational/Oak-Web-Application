@@ -17,8 +17,7 @@ import {
   OakQuizCheckBox,
 } from "@oaknational/oak-components";
 
-import { useLessonEngineContext } from "../LessonEngineProvider";
-
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
