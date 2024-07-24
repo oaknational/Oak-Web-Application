@@ -31,7 +31,7 @@ import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLe
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
   yearTitle?: string;
-  phase: "primary" | "secondary";
+  phase?: "primary" | "secondary";
   subjectTitle: string;
   subjectSlug: string;
   pupilLessonOutcome?: string;
@@ -47,7 +47,7 @@ export const PupilViewsLessonOverview = ({
   lessonTitle,
   subjectTitle,
   yearTitle,
-  phase,
+  phase = "primary",
   subjectSlug,
   pupilLessonOutcome,
   contentGuidance,

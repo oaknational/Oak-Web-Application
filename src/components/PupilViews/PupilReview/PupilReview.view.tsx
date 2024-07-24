@@ -20,11 +20,11 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase: "primary" | "secondary";
+  phase?: "primary" | "secondary";
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl, phase } = props;
+  const { lessonTitle, backUrl, phase = "primary" } = props;
   const {
     updateCurrentSection,
     sectionResults,
