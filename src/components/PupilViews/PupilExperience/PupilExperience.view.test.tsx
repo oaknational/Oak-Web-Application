@@ -1,5 +1,6 @@
 import { OakTooltipProps } from "@oaknational/oak-components";
 import { waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 
@@ -303,7 +304,7 @@ describe("PupilExperienceView", () => {
 
     expect(mockRouter.asPath).toBe("/initial-path");
     await userEvent.click(getByTestId("declineButton"));
-    waitFor(() => {
+    act(() => {
       expect(mockRouter.asPath).toBe("/somewhere-else");
     });
   });
