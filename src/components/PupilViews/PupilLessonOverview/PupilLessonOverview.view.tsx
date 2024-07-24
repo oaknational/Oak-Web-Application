@@ -142,7 +142,6 @@ export const PupilViewsLessonOverview = ({
       </OakGrid>
 
       <OakFlex
-        $minHeight="100%"
         $alignItems={["flex-start", "flex-start", "center"]}
         $pv="inner-padding-xl"
         $ph={["inner-padding-none", "inner-padding-xl", "inner-padding-none"]}
