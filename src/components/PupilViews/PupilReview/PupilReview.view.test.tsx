@@ -13,7 +13,7 @@ describe("PupilReview", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsReview lessonTitle="Lesson title" />
+          <PupilViewsReview lessonTitle="Lesson title" phase="secondary" />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -23,7 +23,7 @@ describe("PupilReview", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsReview lessonTitle="Lesson title" />
+          <PupilViewsReview lessonTitle="Lesson title" phase="primary" />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
