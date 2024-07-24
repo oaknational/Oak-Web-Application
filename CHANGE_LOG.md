@@ -1,3 +1,10 @@
+# [1.491.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.490.0...v1.491.0) (2024-07-24)
+
+
+### Features
+
+* bump oak components for wobbly borders ([9e7d4c4](https://github.com/oaknational/Oak-Web-Application/commit/9e7d4c4f10b8453b9ff19b16257d9775319d56ea))
+
 # [1.490.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.489.0...v1.490.0) (2024-07-24)
 
 
