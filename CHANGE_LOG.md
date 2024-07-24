@@ -1,3 +1,40 @@
+# [1.491.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.490.0...v1.491.0) (2024-07-24)
+
+
+### Features
+
+* bump oak components for wobbly borders ([9e7d4c4](https://github.com/oaknational/Oak-Web-Application/commit/9e7d4c4f10b8453b9ff19b16257d9775319d56ea))
+
+# [1.490.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.489.0...v1.490.0) (2024-07-24)
+
+
+### Bug Fixes
+
+* **lessons:** add banner fot lesson take downs ([de0530e](https://github.com/oaknational/Oak-Web-Application/commit/de0530ede185a95be4ddd2bd2949bd9982215910))
+
+
+### Features
+
+* **latest-schema:** commit latest schema ([ea81b22](https://github.com/oaknational/Oak-Web-Application/commit/ea81b22a508c3a62095fb554306c024fa85def52))
+* **latest-schema:** commit latest schema ([f6be9cb](https://github.com/oaknational/Oak-Web-Application/commit/f6be9cb94e88ed05fb0af570fa41558419105539))
+* **latest-schema:** commit latest schema ([34e42fc](https://github.com/oaknational/Oak-Web-Application/commit/34e42fc38f9f3fc226ff8da19a3912dde50e1dc2))
+* **main:** merge main ([bbdf6f1](https://github.com/oaknational/Oak-Web-Application/commit/bbdf6f1cc4cc21e8cf1bd35e1daa3d25ff725562))
+* **overview:** fix element size ([84cec42](https://github.com/oaknational/Oak-Web-Application/commit/84cec421726d4e9562e14f295f7d33ac9f605d7b))
+* **overview:** fix element size ([dd3b915](https://github.com/oaknational/Oak-Web-Application/commit/dd3b9155168b8681b3b289963d7ddcb3842b9753))
+* **overview:** fix element size ([c4112fb](https://github.com/oaknational/Oak-Web-Application/commit/c4112fb25346add6b079cb046fabf03457711fb0))
+* **overview:** fix element size ([5788485](https://github.com/oaknational/Oak-Web-Application/commit/57884859069140227d052ffba805098d2ff2370e))
+* **pupil-view:** cleanup logs ([c6db557](https://github.com/oaknational/Oak-Web-Application/commit/c6db557e323369eb27fa6c7e9c1dbbb67c9ec1bc))
+* **test:** increase test converage ([ad4a0a6](https://github.com/oaknational/Oak-Web-Application/commit/ad4a0a66cccc642afb7d15cf94ba56d8d5e7fd3d))
+* **test:** increase test converage ([55701ed](https://github.com/oaknational/Oak-Web-Application/commit/55701ed39adb3f50ffd35bd23954cbd8e497eed1))
+
+# [1.489.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.488.0...v1.489.0) (2024-07-23)
+
+
+### Features
+
+* adding abc backbutton test ([e31acd8](https://github.com/oaknational/Oak-Web-Application/commit/e31acd8fb01c1bdebdd95ae16eff0b0a91bc6a45))
+* implementing ab backbutton test ([96b40dc](https://github.com/oaknational/Oak-Web-Application/commit/96b40dcf949ca0488379cf999cd0887bf44c0b3f))
+
 # [1.488.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.487.0...v1.488.0) (2024-07-23)
 
 
