@@ -113,7 +113,6 @@ export const PupilViewsLessonOverview = ({
         $mb={["space-between-none", "space-between-s"]}
         $mh="auto"
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
-        $rg={"space-between-m"}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <ViewAllLessonsButton href={backUrl} />
@@ -137,6 +136,7 @@ export const PupilViewsLessonOverview = ({
             }}
             title="This lesson will soon be taken down."
             type="alert"
+            $mt={"space-between-m"}
           />
         </OakGridArea>
       </OakGrid>
