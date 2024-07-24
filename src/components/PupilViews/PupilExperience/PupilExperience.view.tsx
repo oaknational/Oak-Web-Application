@@ -73,7 +73,8 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
-  const { subject, subjectSlug, yearDescription } = browseData.programmeFields;
+  const { lessonData, programmeFields } = browseData;
+  const { subject, subjectSlug, yearDescription } = programmeFields;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
@@ -99,6 +100,7 @@ export const PupilPageContent = ({
           starterQuizNumQuestions={starterQuizNumQuestions}
           exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
+          expirationDate={lessonData.expirationDate}
         />
       );
     case "intro":
