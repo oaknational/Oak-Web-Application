@@ -374,6 +374,8 @@ describe("PupilExperienceView", () => {
       }),
     );
 
+    lessonBrowseData.programmeFields.phase = "secondary";
+
     render(
       <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
         <PupilExperienceView
