@@ -7,11 +7,13 @@ import {
   OakGridArea,
   OakHeading,
   OakIcon,
+  OakInlineBanner,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
   OakPrimaryButton,
   OakPupilContentGuidance,
+  OakSecondaryLink,
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
@@ -24,6 +26,7 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
@@ -36,6 +39,7 @@ type PupilViewsLessonOverviewProps = {
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
   backUrl?: string | null;
+  expirationDate: LessonBrowseData["lessonData"]["expirationDate"];
 };
 
 export const PupilViewsLessonOverview = ({
@@ -49,6 +53,7 @@ export const PupilViewsLessonOverview = ({
   exitQuizNumQuestions,
   starterQuizNumQuestions,
   backUrl,
+  expirationDate,
 }: PupilViewsLessonOverviewProps) => {
   const {
     sectionResults,
@@ -64,6 +69,8 @@ export const PupilViewsLessonOverview = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(expirationDate !== null);
 
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {
@@ -110,9 +117,31 @@ export const PupilViewsLessonOverview = ({
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <ViewAllLessonsButton href={backUrl} />
         </OakGridArea>
+        <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
+          <OakInlineBanner
+            canDismiss
+            cta={
+              <OakSecondaryLink
+                href="https://support.thenational.academy/lesson-unavailable"
+                iconName="chevron-right"
+                isTrailingIcon
+              >
+                Read the help article
+              </OakSecondaryLink>
+            }
+            isOpen={showExpiredLessonsBanner}
+            message="We've made brand new and improved lessons for you."
+            onDismiss={() => {
+              setShowExpiredLessonsBanner(false);
+            }}
+            title="This lesson will soon be taken down."
+            type="alert"
+            $mt={"space-between-m"}
+          />
+        </OakGridArea>
       </OakGrid>
+
       <OakFlex
-        $minHeight="100%"
         $alignItems={["flex-start", "flex-start", "center"]}
         $pv="inner-padding-xl"
         $ph={["inner-padding-none", "inner-padding-xl", "inner-padding-none"]}
