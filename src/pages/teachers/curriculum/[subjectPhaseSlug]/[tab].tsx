@@ -467,6 +467,10 @@ export function createDownloadsData(
 
   const downloadsData = {
     child_subjects: child_subjects.sort((a, b) => {
+      if (a.subject_slug === "combined-science") {
+        return -1;
+      }
+
       if (b.subject_slug === "combined-science") {
         return 1;
       }
