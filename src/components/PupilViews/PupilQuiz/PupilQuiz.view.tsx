@@ -194,6 +194,7 @@ const QuizInner = () => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={currentSection}
+      celebrate={isCorrect}
       topNavSlot={topNavSlot}
     >
       <QuizRenderer formId={formId} />

@@ -31,6 +31,7 @@ import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLe
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
   yearTitle?: string;
+  phase: "primary" | "secondary";
   subjectTitle: string;
   subjectSlug: string;
   pupilLessonOutcome?: string;
@@ -46,6 +47,7 @@ export const PupilViewsLessonOverview = ({
   lessonTitle,
   subjectTitle,
   yearTitle,
+  phase,
   subjectSlug,
   pupilLessonOutcome,
   contentGuidance,
@@ -87,6 +89,7 @@ export const PupilViewsLessonOverview = ({
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
+      phase={phase}
       topNavSlot={null}
       bottomNavSlot={
         <OakLessonBottomNav>
@@ -179,7 +182,11 @@ export const PupilViewsLessonOverview = ({
                   <OakSubjectIcon
                     iconName={subjectIconName}
                     alt=""
-                    fill="bg-decorative1-main"
+                    fill={
+                      phase === "primary"
+                        ? "bg-decorative4-main"
+                        : "bg-decorative3-main"
+                    }
                   />
                 </OakBox>
               )}
