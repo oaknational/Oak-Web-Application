@@ -13,6 +13,6 @@ describe("4_threadsExplainer", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

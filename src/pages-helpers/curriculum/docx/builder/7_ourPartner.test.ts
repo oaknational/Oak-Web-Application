@@ -25,7 +25,7 @@ describe("7_ourPartner", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 
   it("without partner image", async () => {
@@ -37,6 +37,6 @@ describe("7_ourPartner", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

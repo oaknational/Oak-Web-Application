@@ -1,5 +1,3 @@
-import type JSZip from "jszip";
-
 import { safeXml, xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
@@ -7,6 +5,7 @@ import {
   insertHeaders,
   createFooter,
   insertFooters,
+  JSZipCached,
 } from "../docx";
 
 const DISABLE_HEADERS = true;
@@ -21,7 +20,7 @@ type Margins = {
   footer: number;
 };
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { margins, isLast = false }: { margins: Margins; isLast?: boolean },
 ) {
   const wrapInParagraphIfNotLast = (isLast: boolean, xml: string) => {

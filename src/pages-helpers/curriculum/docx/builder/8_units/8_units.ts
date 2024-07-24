@@ -1,18 +1,18 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
 import { sortBy, uniqBy } from "lodash";
 
 import { cdata, safeXml, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData, Slugs } from "../..";
 import {
-  appendBodyElements,
   insertImages,
   insertLinks,
   wrapInBookmarkPoint,
   wrapInLinkTo,
   createImage,
   cmToEmu,
+  appendBodyElements,
+  JSZipCached,
 } from "../../docx";
 import { createCurriculumSlug, generateGridCols } from "../helper";
 
@@ -106,7 +106,7 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
 }
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
   const yearXml: string[] = [];
@@ -298,7 +298,7 @@ function removeDups(units: CombinedCurriculumData["units"]) {
 type Slug = { childSubject?: string; tier?: string; pathway?: string };
 
 async function buildYear(
-  zip: JSZip,
+  zip: JSZipCached,
   year: string,
   unitsInput: CombinedCurriculumData["units"],
   yearSlugs: Slug,
@@ -521,5 +521,6 @@ async function buildYear(
       </w:p>
     </XML_FRAGMENT>
   `;
+
   return xml;
 }

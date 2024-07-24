@@ -14,6 +14,6 @@ describe("6_subjectPrincipals", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

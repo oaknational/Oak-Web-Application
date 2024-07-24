@@ -12,6 +12,6 @@ describe("8_units", () => {
       data: data,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
@@ -9,10 +7,11 @@ import {
   cmToEmu,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {

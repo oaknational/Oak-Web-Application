@@ -17,6 +17,6 @@ describe("11_backCover", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

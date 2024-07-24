@@ -1,8 +1,6 @@
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { appendBodyElements } from "../docx";
+import { appendBodyElements, JSZipCached } from "../docx";
 
 import { createThreadOptions, threadUnitByYear } from "./helper";
 
@@ -13,7 +11,7 @@ function sortByOrder(units: Unit[]) {
 }
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const elements = createThreadOptions(data.units).map((thread) => {

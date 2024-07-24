@@ -1,5 +1,4 @@
 import type { Element } from "xml-js";
-import JSZip from "jszip";
 
 import { cdata, safeXml } from "../../xml";
 import { CombinedCurriculumData } from "../..";
@@ -9,6 +8,7 @@ import {
   createImage,
   insertLinks,
   insertNumbering,
+  JSZipCached,
   wrapInLinkTo,
 } from "../../docx";
 
@@ -19,7 +19,7 @@ const DISABLE_COLUMN_BREAKS = true;
 type Unit = CombinedCurriculumData["units"][number];
 
 async function buildUnitLessons(
-  zip: JSZip,
+  zip: JSZipCached,
   unit: Unit | Unit["unit_options"][number],
 ) {
   const numbering = await insertNumbering(zip, {
@@ -75,7 +75,7 @@ async function buildUnitLessons(
   return lessonsXmls.join("");
 }
 
-async function buildUnitThreads(zip: JSZip, unit: Unit) {
+async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
   const numbering = await insertNumbering(zip, {
     threadsNumbering: safeXml`
       <XML_FRAGMENT>
@@ -191,7 +191,7 @@ function buildUnitOptionTitle(
 }
 
 export async function buildUnit(
-  zip: JSZip,
+  zip: JSZipCached,
   unit: Unit,
   unitIndex: number,
   unitOption: undefined | Unit["unit_options"][number] | null,

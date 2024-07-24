@@ -151,7 +151,7 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const keys = Object.keys(await zipToSimpleObject(zip));
+      const keys = Object.keys(await zipToSimpleObject(zip.getJsZip()));
       expect(sortBy(keys)).toEqual(
         sortBy([
           "word/",
@@ -185,7 +185,7 @@ describe("docx", () => {
 
       const EMPTY_PNG = `data:image/png;base64,${EMPTY_PNG_BASE64}`;
       const EMPTY_INVALID = `data:image/foo;base64,${EMPTY_PNG_BASE64}`;
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       const dict = await insertImages(zip, {
@@ -198,7 +198,9 @@ describe("docx", () => {
         baz: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
         foo: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
       });
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
 
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
@@ -259,14 +261,16 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       await insertLinks(zip, {
         foobar: "http://example.com",
         baz: "http://example.com",
       });
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
 
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
@@ -310,7 +314,7 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
 
@@ -360,7 +364,9 @@ describe("docx", () => {
         `,
       });
 
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual(["word/numbering.xml"]);
       expect(diffResults).toMatchSnapshot();
@@ -408,28 +414,30 @@ describe("docx", () => {
   describe("appendBodyElements", () => {
     test("invalid", async () => {
       const zip = await generateEmptyDocx();
-      zip.remove("word/document.xml");
+      zip.getJsZip().remove("word/document.xml");
       await expect(
         appendBodyElements(zip, [{ type: "text", text: "test" }]),
       ).rejects.toThrow();
     });
     test("empty", async () => {
       const zip = await generateEmptyDocx();
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       appendBodyElements(zip);
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
       expect(initialState).toEqual(newState);
     });
     test("valid", async () => {
       const zip = await generateEmptyDocx();
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       await appendBodyElements(zip, [{ type: "text", text: "test" }]);
 
-      const newState = await zipToSimpleObject(zip, {
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       const diffResults = diff(initialState, newState);

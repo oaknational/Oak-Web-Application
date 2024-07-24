@@ -17,7 +17,7 @@ describe("12_pageLayout", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 
   it("isLast", async () => {
@@ -34,6 +34,6 @@ describe("12_pageLayout", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

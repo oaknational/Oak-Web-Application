@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { Slugs } from "..";
 import {
@@ -14,12 +12,13 @@ import {
   wrapInLinkTo,
   wrapInBookmarkPoint,
   cmToTwip,
+  JSZipCached,
 } from "../docx";
 
 import { createCurriculumSlug, generateGridCols } from "./helper";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { slugs }: { slugs: Slugs },
 ) {
   const links = await insertLinks(zip, {

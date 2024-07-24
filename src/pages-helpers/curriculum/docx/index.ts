@@ -28,77 +28,111 @@ export type Slugs = {
   keyStageSlug?: string;
 };
 
+const ENABLE_TIMER = false;
+const measure = (key: string, fn: () => void | Promise<void>) => {
+  if (!ENABLE_TIMER) {
+    const v = fn();
+    return v;
+  }
+  let err: unknown;
+  let v;
+  console.time(key);
+  try {
+    v = fn();
+  } catch (_err: unknown) {
+    err = _err;
+  } finally {
+    console.timeEnd(key);
+  }
+
+  if (err) throw err;
+  return v;
+};
+
 export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
   const zip = await generateEmptyDocx();
 
   // Run through the builders
-  await builder.frontCover(zip, { data });
-  await builder.pageLayout(zip, {
-    margins: {
-      top: cmToTwip(1.5),
-      right: cmToTwip(1.5),
-      bottom: cmToTwip(1.5),
-      left: cmToTwip(1.5),
-      header: cmToTwip(1.5),
-      footer: cmToTwip(1.5),
-    },
-  });
-  await builder.tableOfContents(zip, { data });
-  await builder.pageLayout(zip, {
-    margins: {
-      top: cmToTwip(1.25),
-      right: cmToTwip(1.25),
-      bottom: cmToTwip(1.25),
-      left: cmToTwip(1.25),
-      header: cmToTwip(1.25),
-      footer: cmToTwip(1.25),
-    },
-  });
-  await builder.ourCurriculum(zip);
-  await builder.threadsExplainer(zip, { slugs });
-  await builder.subjectExplainer(zip, { data });
-  await builder.subjectPrincipals(zip, { data });
-  await builder.ourPartner(zip, { data });
-  await builder.units(zip, { data, slugs });
-  await builder.threadsOverview(zip, { data });
-  await builder.pageLayout(zip, {
-    margins: {
-      top: cmToTwip(1.5),
-      right: cmToTwip(1.5),
-      bottom: cmToTwip(1.5),
-      left: cmToTwip(1.5),
-      header: cmToTwip(1.5),
-      footer: cmToTwip(1.5),
-    },
-  });
-  await builder.threadsDetail(zip, { data });
-  await builder.pageLayout(zip, {
-    margins: {
-      top: cmToTwip(1.75),
-      right: cmToTwip(1.75),
-      bottom: cmToTwip(1.75),
-      left: cmToTwip(1.75),
-      header: cmToTwip(1.75),
-      footer: cmToTwip(1.75),
-    },
-  });
-  await builder.backCover(zip, { data });
-  await builder.pageLayout(zip, {
-    isLast: true,
-    margins: {
-      top: cmToTwip(1.25),
-      right: cmToTwip(1.25),
-      bottom: cmToTwip(1.25),
-      left: cmToTwip(1.25),
-      header: cmToTwip(1.25),
-      footer: cmToTwip(1.25),
-    },
+  const runners = {
+    frontCover: async () => await builder.frontCover(zip, { data }),
+    frontCoverPageLayout: async () =>
+      await builder.pageLayout(zip, {
+        margins: {
+          top: cmToTwip(1.5),
+          right: cmToTwip(1.5),
+          bottom: cmToTwip(1.5),
+          left: cmToTwip(1.5),
+          header: cmToTwip(1.5),
+          footer: cmToTwip(1.5),
+        },
+      }),
+    tableOfContents: async () => await builder.tableOfContents(zip, { data }),
+    tableOfContentsPageLayout: async () =>
+      await builder.pageLayout(zip, {
+        margins: {
+          top: cmToTwip(1.25),
+          right: cmToTwip(1.25),
+          bottom: cmToTwip(1.25),
+          left: cmToTwip(1.25),
+          header: cmToTwip(1.25),
+          footer: cmToTwip(1.25),
+        },
+      }),
+    ourCurriculum: async () => await builder.ourCurriculum(zip),
+    threadsExplainer: async () =>
+      await builder.threadsExplainer(zip, { slugs }),
+    subjectExplainer: async () => await builder.subjectExplainer(zip, { data }),
+    subjectPrincipals: async () =>
+      await builder.subjectPrincipals(zip, { data }),
+    ourPartner: async () => await builder.ourPartner(zip, { data }),
+    units: async () => await builder.units(zip, { data, slugs }),
+    threadsOverview: async () => await builder.threadsOverview(zip, { data }),
+    threadsOverviewPageLayout: async () =>
+      await builder.pageLayout(zip, {
+        margins: {
+          top: cmToTwip(1.5),
+          right: cmToTwip(1.5),
+          bottom: cmToTwip(1.5),
+          left: cmToTwip(1.5),
+          header: cmToTwip(1.5),
+          footer: cmToTwip(1.5),
+        },
+      }),
+    threadsDetail: async () => await builder.threadsDetail(zip, { data }),
+    threadsDetailPageLayout: async () =>
+      await builder.pageLayout(zip, {
+        margins: {
+          top: cmToTwip(1.75),
+          right: cmToTwip(1.75),
+          bottom: cmToTwip(1.75),
+          left: cmToTwip(1.75),
+          header: cmToTwip(1.75),
+          footer: cmToTwip(1.75),
+        },
+      }),
+    backCover: async () => await builder.backCover(zip, { data }),
+    backCoverPageLayout: async () =>
+      await builder.pageLayout(zip, {
+        isLast: true,
+        margins: {
+          top: cmToTwip(1.25),
+          right: cmToTwip(1.25),
+          bottom: cmToTwip(1.25),
+          left: cmToTwip(1.25),
+          header: cmToTwip(1.25),
+          footer: cmToTwip(1.25),
+        },
+      }),
+  };
+
+  // Note: Just some code to messure some timings.
+  await measure("total", async () => {
+    for (const [key, runner] of Object.entries(runners)) {
+      await measure(key, async () => {
+        await runner();
+      });
+    }
   });
 
-  return await zip.generateAsync({
-    type: "uint8array",
-    mimeType:
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    compression: "DEFLATE",
-  });
+  return await zip.zipToBuffer();
 }

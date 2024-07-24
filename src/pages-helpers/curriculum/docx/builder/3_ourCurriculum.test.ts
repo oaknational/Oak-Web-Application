@@ -8,6 +8,6 @@ describe("3_ourCurriculum", () => {
     const zip = await generateEmptyDocx();
     await generate(zip);
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

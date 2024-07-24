@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { CombinedCurriculumData } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
@@ -9,6 +7,7 @@ import {
   cmToEmu,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
 import {
@@ -20,7 +19,7 @@ import {
 import { getSubjectIconAsset } from "@/image-data";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const iconKey = data.subjectTitle.toLowerCase();

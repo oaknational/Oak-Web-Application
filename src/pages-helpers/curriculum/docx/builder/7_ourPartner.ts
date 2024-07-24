@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
@@ -10,12 +8,13 @@ import {
   cmToTwip,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
 import { generateGridCols, makeTransparentIfSanity } from "./helper";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const sanityUrl = data.curriculumPartner.image?.asset?.url;

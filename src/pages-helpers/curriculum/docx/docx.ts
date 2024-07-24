@@ -4,7 +4,7 @@ import { createHash } from "crypto";
 
 import { glob } from "glob";
 import JSZip from "jszip";
-import { json2xml, type Element } from "xml-js";
+import { ElementCompact, type Element } from "xml-js";
 
 import {
   collapseFragments,
@@ -30,7 +30,7 @@ let maxId = 10000;
  * @returns key / id lookup table
  */
 export async function insertNumbering<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   numberingDefinition: T,
 ) {
   const lookup: Record<keyof typeof numberingDefinition, string> = {} as Record<
@@ -39,8 +39,7 @@ export async function insertNumbering<T extends Record<string, string>>(
   >;
 
   const docNumberingPath = "word/numbering.xml";
-  const xmlStr = await zip.file(docNumberingPath)!.async("text");
-  const json = xmlRootToJson(xmlStr);
+  const json = await zip.readJson(docNumberingPath);
 
   json.elements[0].elements = json.elements[0].elements ?? [];
 
@@ -65,10 +64,7 @@ export async function insertNumbering<T extends Record<string, string>>(
     );
   }
 
-  zip.file(
-    docNumberingPath,
-    jsonXmlToXmlString(collapseFragments(json as Element)),
-  );
+  zip.writeJson(docNumberingPath, collapseFragments(json as Element));
 
   return lookup;
 }
@@ -78,11 +74,11 @@ function extnameWithoutQuery(filepath: string) {
 }
 
 export async function insertImages<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   images: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const json = await zip.readJson(DOC_RELS);
 
   const existingImageIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -125,7 +121,7 @@ export async function insertImages<T extends Record<string, string>>(
 
         const filepath = `media/hash_${imagePathHash}${ext}`;
 
-        zip.file(join("word", filepath), file);
+        zip.writeBinary(join("word", filepath), file);
         return xmlElementToJson(safeXml`
           <Relationship
             Id="${id}"
@@ -143,16 +139,16 @@ export async function insertImages<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
 export async function insertLinks<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   links: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const json = await zip.readJson(DOC_RELS);
 
   const existingIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -189,26 +185,23 @@ export async function insertLinks<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
-async function addToContentTypesXml(zip: JSZip, xml: string) {
-  const contentXml = xmlRootToJson(
-    await zip.file("[Content_Types].xml")!.async("text"),
-  );
-  console.log(JSON.stringify(contentXml, null, 2));
+async function addToContentTypesXml(zip: JSZipCached, xml: string) {
+  const contentXml = await zip.readJson("[Content_Types].xml");
   contentXml.elements[0].elements.push(xmlElementToJson(xml));
-  zip.file("[Content_Types].xml", jsonXmlToXmlString(contentXml as Element));
+  zip.writeJson("[Content_Types].xml", contentXml as Element);
 }
 
 async function insertHeaderFooters<T extends Record<string, string>>(
   type: "header" | "footer",
-  zip: JSZip,
+  zip: JSZipCached,
   content: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const json = await zip.readJson(DOC_RELS);
 
   const existingIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -243,7 +236,7 @@ async function insertHeaderFooters<T extends Record<string, string>>(
         `,
       );
 
-      zip.file(zipfilepath, content.trim());
+      zip.writeString(zipfilepath, content.trim());
 
       return xmlElementToJson(`
         <Relationship Id="${id}" Type="http://purl.oclc.org/ooxml/officeDocument/relationships/${type}" Target="${filepath}" />
@@ -257,19 +250,19 @@ async function insertHeaderFooters<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
 export async function insertHeaders<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   content: T,
 ) {
   return insertHeaderFooters("header", zip, content);
 }
 
 export async function insertFooters<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   content: T,
 ) {
   return insertHeaderFooters("footer", zip, content);
@@ -464,19 +457,18 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
 }
 
 export async function appendBodyElements(
-  zip: JSZip,
+  zip: JSZipCached,
   childElements: Element[] = [],
 ) {
-  const docRaw = await zip.file("word/document.xml")?.async("string");
-  if (!docRaw) {
+  const doc = await zip.readJson("word/document.xml");
+  if (!doc) {
     throw new Error("Missing ./word/document.xml");
   }
-  const doc = xmlRootToJson(docRaw);
 
   const oldElements = doc.elements[0]!.elements![0].elements;
   doc.elements[0]!.elements![0].elements = [...oldElements, ...childElements];
 
-  zip.file("word/document.xml", json2xml(JSON.stringify(doc)));
+  zip.writeJson("word/document.xml", doc as Element);
 }
 
 function notUndefined<TValue>(value: TValue | undefined): value is TValue {
@@ -543,6 +535,71 @@ export async function mapOverElements(
   return runner(root, fn)!;
 }
 
+export class JSZipCached {
+  public _zip: JSZip;
+  private _cache: Record<string, Element | ElementCompact>;
+  constructor(zip?: JSZip) {
+    this._zip = zip ?? new JSZip();
+    this._cache = {};
+  }
+
+  async readJson(filename: string) {
+    if (this._cache[filename]) {
+      return this._cache[filename]!;
+    }
+    return this._zip
+      .file(filename)!
+      .async("text")
+      .then((res) => {
+        const val = xmlRootToJson(res);
+        this._cache[filename] = val;
+        return val!;
+      });
+  }
+
+  writeJson(filename: string, content: Element) {
+    this._cache[filename] = content;
+  }
+
+  readBinary(filename: string) {
+    return this._zip.file(filename)!.async("nodebuffer");
+  }
+
+  writeBinary(filename: string, content: Buffer) {
+    return this._zip.file(filename, content);
+  }
+
+  readString(filename: string) {
+    return this._zip.file(filename)!.async("string");
+  }
+
+  writeString(filename: string, content: string) {
+    return this._zip.file(filename, content);
+  }
+
+  flush() {
+    for (const [filename, content] of Object.entries(this._cache)) {
+      this._zip.file(filename, jsonXmlToXmlString(content as Element));
+    }
+    this._cache = {};
+  }
+
+  getJsZip() {
+    this.flush();
+    return this._zip;
+  }
+
+  async zipToBuffer() {
+    this.flush();
+    return this._zip.generateAsync({
+      type: "uint8array",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      compression: "DEFLATE",
+    });
+  }
+}
+
 export async function generateEmptyDocx() {
   const basedir = join(
     process.cwd(),
@@ -561,5 +618,5 @@ export async function generateEmptyDocx() {
     }
   }
 
-  return zip;
+  return new JSZipCached(zip);
 }

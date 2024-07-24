@@ -1,19 +1,18 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,
   createImage,
   insertImages,
+  JSZipCached,
   wrapInBookmarkPoint,
 } from "../docx";
 
 import { generateGridCols } from "./helper";
 
-export default async function generate(zip: JSZip) {
+export default async function generate(zip: JSZipCached) {
   const images = await insertImages(zip, {
     oakCurriculum: join(
       process.cwd(),
