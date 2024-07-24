@@ -29,8 +29,17 @@ async function getData(opts: {
   phaseSlug: string;
   examboardSlug: string;
   state: string;
+  tierSlug: string;
+  childSubjectSlug: string;
 }): Promise<getDataReturn> {
-  const { subjectSlug, phaseSlug, examboardSlug, state } = opts;
+  const {
+    subjectSlug,
+    phaseSlug,
+    examboardSlug,
+    state,
+    childSubjectSlug,
+    tierSlug,
+  } = opts;
 
   let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
@@ -50,6 +59,18 @@ async function getData(opts: {
     curriculumData = {
       ...curriculumDataUnsorted,
       units: [...curriculumDataUnsorted.units]
+        .filter((a) => {
+          if (a.keystage_slug === "ks4") {
+            if (a.subject_slug && childSubjectSlug) {
+              return a.subject_slug === childSubjectSlug;
+            }
+            if (a.tier_slug && tierSlug) {
+              return a.tier_slug === tierSlug;
+            }
+            return true;
+          }
+          return true;
+        })
         .sort((a) => {
           if (a.examboard) {
             return -1;
@@ -178,6 +199,8 @@ export default async function handler(
     phaseSlug = "",
     state = "",
     examboardSlug = "",
+    tierSlug = "",
+    childSubjectSlug = "",
   ] = slugs;
 
   const mvRefreshTime = parseInt(mvRefreshTimeRaw);
@@ -197,6 +220,8 @@ export default async function handler(
     phaseSlug,
     examboardSlug,
     state,
+    tierSlug,
+    childSubjectSlug,
   });
 
   // FIXME: Poor use of types here
