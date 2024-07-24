@@ -1,5 +1,12 @@
 import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakDownloadsJourneyChildSubjectTierSelector,
+  OakThemeProvider,
+  oakDefaultTheme,
+  Tier,
+  Subject,
+} from "@oaknational/oak-components";
+import { mapKeys, camelCase } from "lodash";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
@@ -31,16 +38,43 @@ function ScrollIntoViewWhenVisisble({
   return <div ref={ref}>{children}</div>;
 }
 
-type CurriculumDownloadTabProps = {
+export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
   slugs: CurriculumSelectionSlugs;
+  tiers: { tier: string; tier_slug: string }[];
+  child_subjects?: { subject: string; subject_slug: string }[];
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
   slugs,
+  tiers: snake_tiers,
+  child_subjects,
 }) => {
+  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
+
+  const [tiers] = useState<Tier[]>(
+    snake_tiers && snake_tiers.length > 0
+      ? snake_tiers.map(
+          (tier) =>
+            mapKeys(tier, (value, key) => camelCase(key)) as unknown as Tier,
+        )
+      : [],
+  );
+  const [childSubjects] = useState<Subject[]>(
+    child_subjects && child_subjects.length > 0
+      ? child_subjects.map(
+          (subject) =>
+            mapKeys(subject, (value, key) =>
+              camelCase(key),
+            ) as unknown as Subject,
+        )
+      : [],
+  );
+
   const { isLoading, data: localStorageData } = useDownloadsLocalStorage();
   const [isDone, setIsDone] = useState(false);
+  const [subjectTierSelectionVisible, setSubjectTierSelectionVisible] =
+    useState<boolean>(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
@@ -65,7 +99,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schools: [],
       });
     }
-  }, [localStorageData]);
+
+    // Set the subject tier selector as visible when tiers & child_subjects are present
+    if (
+      (snake_tiers && snake_tiers.length > 0) ||
+      (child_subjects && child_subjects.length > 0)
+    ) {
+      setSubjectTierSelectionVisible(true);
+    }
+  }, [localStorageData, snake_tiers, child_subjects]);
 
   const schoolPickerInputValue = data.schoolName;
   const { data: schoolList } = useFetch<School[]>(
@@ -97,6 +139,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     const blob = await resp.blob();
     const filename = resp.headers.get("x-filename") ?? "download.docx";
     downloadBlob(blob, filename);
+  };
+
+  const handleTierSubjectSelection = (
+    tierSlug: string,
+    childSubjectSlug?: string | null,
+  ) => {
+    setSubjectTierSelectionVisible(false);
+    // null action
+    console.log(tierSlug, childSubjectSlug);
   };
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
@@ -148,7 +199,14 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
-        {!isLoading && (
+        {subjectTierSelectionVisible === true && (
+          <OakDownloadsJourneyChildSubjectTierSelector
+            tiers={tiers}
+            childSubjects={childSubjects}
+            getTierSubjectValues={handleTierSubjectSelection}
+          />
+        )}
+        {!isLoading && subjectTierSelectionVisible === false && (
           <CurriculumDownloadView
             isSubmitting={isSubmitting}
             onSubmit={onSubmit}
