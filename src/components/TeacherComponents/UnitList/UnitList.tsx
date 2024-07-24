@@ -4,6 +4,7 @@ import {
   OakUL,
   OakFlex,
   OakUnitsContainer,
+  OakUnitListItem,
 } from "@oaknational/oak-components";
 
 import UnitListItem, {
@@ -23,6 +24,7 @@ import {
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
 export type Tier = {
   title: string;
   slug: string;
@@ -80,8 +82,9 @@ const UnitList: FC<UnitListProps> = (props) => {
       const baseIndex = index + pageSize * (currentPage - 1);
 
       let calculatedIndex = baseIndex;
+      const isMathsUnit = subjectSlug === "maths";
 
-      if (subjectSlug === "maths") {
+      if (isMathsUnit) {
         const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
         if (isItemLegacy) {
@@ -106,21 +109,40 @@ const UnitList: FC<UnitListProps> = (props) => {
               onClick={onClick}
             />
           ) : (
-            <OakFlex>
-              {item.map((unitOption) => {
-                return (
-                  <UnitListItem
-                    {...props}
-                    {...unitOption}
-                    key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                    hideTopHeading
-                    index={calculatedIndex}
-                    firstItemRef={index === 0 ? firstItemRef : null}
-                    onClick={onClick}
-                  />
-                );
-              })}
-            </OakFlex>
+            item.map((unitOption) => {
+              return isMathsUnit ? (
+                <OakUnitListItem
+                  {...props}
+                  {...unitOption}
+                  data-testid="list-item-index-container"
+                  key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+                  index={calculatedIndex + 1}
+                  isLegacy={isSlugLegacy(unitOption.programmeSlug)}
+                  onClick={() =>
+                    onClick({
+                      ...unitOption,
+                      index: 0,
+                      onClick,
+                    })
+                  }
+                  href={resolveOakHref({
+                    page: "lesson-index",
+                    unitSlug: unitOption.slug,
+                    programmeSlug: unitOption.programmeSlug,
+                  })}
+                />
+              ) : (
+                <UnitListItem
+                  {...props}
+                  {...unitOption}
+                  key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+                  hideTopHeading
+                  index={calculatedIndex}
+                  firstItemRef={index === 0 ? firstItemRef : null}
+                  onClick={onClick}
+                />
+              );
+            })
           )}
         </OakLI>
       );
