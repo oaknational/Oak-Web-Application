@@ -52,6 +52,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 }) => {
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
 
+  const [tierSelected, setTierSelected] = useState<string>("");
+  const [childSubjectSelected, setChildSubjectSelected] = useState<string>("");
   const [tiers] = useState<Tier[]>(
     snake_tiers && snake_tiers.length > 0
       ? snake_tiers.map(
@@ -146,8 +148,12 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     childSubjectSlug?: string | null,
   ) => {
     setSubjectTierSelectionVisible(false);
-    // null action
-    console.log(tierSlug, childSubjectSlug);
+    if (tierSlug && tierSlug.length > 0) {
+      setTierSelected(tierSlug);
+    }
+    if (childSubjectSlug && childSubjectSlug.length > 0) {
+      setChildSubjectSelected(childSubjectSlug);
+    }
   };
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
@@ -158,9 +164,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       slugs.phaseSlug,
       "published",
       slugs.examboardSlug,
-    ].join("/");
+      tierSelected,
+      childSubjectSelected,
+    ]
+      .filter(Boolean)
+      .join("/");
+
     const downloadPath = `/api/curriculum-downloads/${mvRefreshTime}/${slug}`;
 
+    console.log(slug);
     const schoolData = {
       schoolId: data.schoolId!,
       schoolName: data.schoolName!,
