@@ -109,13 +109,15 @@ export default async function generate(
             xPos: cmToEmu(0.25),
             yPos: cmToEmu(13.13),
             isDecorative: true,
+            relativeHeight: 100,
           })}
-                    ${createImage(images.icon, {
+          ${createImage(images.icon, {
             width: cmToEmu(12.59),
             height: cmToEmu(12.59),
             xPos: cmToEmu(7.92),
             yPos: cmToEmu(13.11),
             isDecorative: true,
+            relativeHeight: 400,
           })}
         </w:r>
       </w:p>

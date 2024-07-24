@@ -339,6 +339,7 @@ type ImageOpts = {
   yPosAnchor?: string;
   isDecorative?: boolean;
   isWrapTight?: boolean;
+  relativeHeight?: number;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
   const uid = IMAGE_ID++;
@@ -353,6 +354,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     yPosAnchor = "page",
     isDecorative = false,
     isWrapTight = false,
+    relativeHeight = 1,
   } = opts;
 
   const isDecorativeVal = isDecorative ? 1 : 0;
@@ -367,7 +369,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
         distL="0"
         distR="114300"
         simplePos="0"
-        relativeHeight="251658240"
+        relativeHeight="${relativeHeight}"
         behindDoc="1"
         locked="0"
         layoutInCell="1"
