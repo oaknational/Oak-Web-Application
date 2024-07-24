@@ -401,7 +401,7 @@ describe("PupilExperienceView", () => {
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
-        currentSection: "overview",
+        currentSection: "review",
       }),
     );
 
@@ -411,13 +411,13 @@ describe("PupilExperienceView", () => {
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
           hasWorksheet={false}
-          initialSection="overview"
+          initialSection="review"
         />
       </PupilAnalyticsProvider>,
     );
 
     expect(queryByText("Lesson Title")).toBeNull();
-    expect(getByText("Lesson outcome")).toBeInTheDocument();
+    expect(getByText("Lesson review")).toBeInTheDocument();
   });
 
   it("should show nothing with unknown section", async () => {
