@@ -90,6 +90,16 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   }));
 
   useLayoutEffect(() => {
+    // Set the subject tier selector as visible when tiers & child_subjects are present
+    if (
+      (snake_tiers && snake_tiers.length > 0) ||
+      (child_subjects && child_subjects.length > 0)
+    ) {
+      setSubjectTierSelectionVisible(true);
+    }
+  }, [snake_tiers, child_subjects]);
+
+  useLayoutEffect(() => {
     if (localStorageData) {
       setData({
         schoolId: localStorageData.schoolId,
@@ -101,15 +111,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schools: [],
       });
     }
-
-    // Set the subject tier selector as visible when tiers & child_subjects are present
-    if (
-      (snake_tiers && snake_tiers.length > 0) ||
-      (child_subjects && child_subjects.length > 0)
-    ) {
-      setSubjectTierSelectionVisible(true);
-    }
-  }, [localStorageData, snake_tiers, child_subjects]);
+  }, [localStorageData]);
 
   const schoolPickerInputValue = data.schoolName;
   const { data: schoolList } = useFetch<School[]>(
@@ -172,7 +174,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
     const downloadPath = `/api/curriculum-downloads/${mvRefreshTime}/${slug}`;
 
-    console.log(slug);
     const schoolData = {
       schoolId: data.schoolId!,
       schoolName: data.schoolName!,
