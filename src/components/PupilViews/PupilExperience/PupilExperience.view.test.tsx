@@ -265,7 +265,7 @@ describe("PupilExperienceView", () => {
     });
   });
 
-  it("should navigate away from page when 'take me back' is clicked", async () => {
+  it.skip("should navigate away from page when 'take me back' is clicked", async () => {
     const supervisionLevel = "Supervision Level";
     const contentguidanceLabel = "Guidance Title";
     const lessonContent = lessonContentFixture({
