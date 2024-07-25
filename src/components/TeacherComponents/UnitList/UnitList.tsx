@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  OakLI,
   OakUL,
   OakFlex,
   OakUnitsContainer,
@@ -96,55 +95,50 @@ const UnitList: FC<UnitListProps> = (props) => {
         }
       }
 
-      return (
-        <OakLI
-          key={`UnitList-UnitListItem-${item[0]?.slug}`}
+      return item.length > 1 && isUnitOption(item) ? (
+        <UnitListOptionalityCard
+          unitOptions={item}
+          index={calculatedIndex}
+          onClick={onClick}
           data-testid="unit-list-item"
-          $width="100%"
-        >
-          {item.length > 1 && isUnitOption(item) ? (
-            <UnitListOptionalityCard
-              unitOptions={item}
-              index={calculatedIndex}
-              onClick={onClick}
+        />
+      ) : (
+        item.map((unitOption) => {
+          return isMathsUnit ? (
+            <OakUnitListItem
+              {...props}
+              {...unitOption}
+              firstItemRef={index === 0 ? firstItemRef : null}
+              data-testid="unit-list-item"
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              index={calculatedIndex + 1}
+              isLegacy={isSlugLegacy(unitOption.programmeSlug)}
+              onClick={() =>
+                onClick({
+                  ...unitOption,
+                  index: 0,
+                  onClick,
+                })
+              }
+              href={resolveOakHref({
+                page: "lesson-index",
+                unitSlug: unitOption.slug,
+                programmeSlug: unitOption.programmeSlug,
+              })}
             />
           ) : (
-            item.map((unitOption) => {
-              return isMathsUnit ? (
-                <OakUnitListItem
-                  {...props}
-                  {...unitOption}
-                  data-testid="list-item-index-container"
-                  key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                  index={calculatedIndex + 1}
-                  isLegacy={isSlugLegacy(unitOption.programmeSlug)}
-                  onClick={() =>
-                    onClick({
-                      ...unitOption,
-                      index: 0,
-                      onClick,
-                    })
-                  }
-                  href={resolveOakHref({
-                    page: "lesson-index",
-                    unitSlug: unitOption.slug,
-                    programmeSlug: unitOption.programmeSlug,
-                  })}
-                />
-              ) : (
-                <UnitListItem
-                  {...props}
-                  {...unitOption}
-                  key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                  hideTopHeading
-                  index={calculatedIndex}
-                  firstItemRef={index === 0 ? firstItemRef : null}
-                  onClick={onClick}
-                />
-              );
-            })
-          )}
-        </OakLI>
+            <UnitListItem
+              {...props}
+              {...unitOption}
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              hideTopHeading
+              index={calculatedIndex}
+              firstItemRef={index === 0 ? firstItemRef : null}
+              onClick={onClick}
+              data-testid="unit-list-item"
+            />
+          );
+        })
       );
     });
 

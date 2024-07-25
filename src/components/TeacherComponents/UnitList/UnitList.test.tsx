@@ -92,7 +92,7 @@ describe("components/UnitList", () => {
       />,
     );
 
-    const indices = screen.getAllByTestId("list-item-index-container");
+    const indices = screen.getAllByTestId("unit-list-item");
     expect(indices[0]).toHaveTextContent("1");
     expect(indices[3]).toHaveTextContent("1");
   });

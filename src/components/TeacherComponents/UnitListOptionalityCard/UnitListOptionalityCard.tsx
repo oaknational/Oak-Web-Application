@@ -33,6 +33,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
       $mb={16}
       $borderRadius={4}
       data-testid="unit-optionality-card"
+      role="listitem"
     >
       <Flex>
         <Flex

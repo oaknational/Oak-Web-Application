@@ -34,11 +34,14 @@ describe("SpecialistUnitListing", () => {
     expect(themeSecondary).toHaveLength(2);
   });
 
-  test("speacialist unit list", () => {
-    const { getAllByTestId } = render(
+  test("specialist unit list", () => {
+    const { getAllByRole, getByLabelText } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
-    const unitListItems = getAllByTestId("unit-list-item");
-    expect(unitListItems).toHaveLength(3);
+    const unitList = getByLabelText("A list of units");
+    expect(unitList).toBeInTheDocument();
+
+    const listItems = getAllByRole("listitem", { container: unitList });
+    expect(listItems).toHaveLength(3);
   });
 });
