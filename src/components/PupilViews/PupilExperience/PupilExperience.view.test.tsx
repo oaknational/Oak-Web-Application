@@ -46,6 +46,10 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(),
+}));
+
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
@@ -385,5 +389,62 @@ describe("PupilExperienceView", () => {
     expect(
       document.querySelector("meta[name=robots]")?.getAttribute("content"),
     ).toEqual("noindex,nofollow");
+  });
+
+  it("should render with phase secondary and no lessonContent title", async () => {
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    lessonBrowseData.programmeFields.phase = "secondary";
+    lessonContent.lessonTitle = null;
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "review",
+      }),
+    );
+
+    const { getByText, queryByText } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="review"
+        />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(queryByText("Lesson Title")).toBeNull();
+    expect(getByText("Lesson review")).toBeInTheDocument();
+  });
+
+  it("should show nothing with unknown section", async () => {
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: undefined,
+      }),
+    );
+
+    const { queryByText } = render(
+      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+        />
+      </PupilAnalyticsProvider>,
+    );
+
+    expect(queryByText("Lesson Title")).toBeNull();
   });
 });
