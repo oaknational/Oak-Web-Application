@@ -51,10 +51,15 @@ async function buildUnitLessons(
         <w:p>
           <w:pPr>
             <w:numPr>
+              <w:ilvl w:val="0" />
               <w:numId w:val="${numbering.lessonNumbering}" />
             </w:numPr>
-            <w:spacing w:line="240" w:lineRule="auto" />
-            <w:ind w:left="425" w:right="-17" />
+            <w:spacing w:line="276" w:lineRule="auto" />
+            <w:ind
+              w:left="425.19685039370046"
+              w:right="-17.36220472440891"
+              w:hanging="360"
+            />
           </w:pPr>
           <w:r>
             <w:rPr>
@@ -83,16 +88,13 @@ async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
         <w:lvl w:ilvl="0">
           <w:start w:val="1" />
           <w:numFmt w:val="bullet" />
-          <w:lvlText w:val="" />
+          <w:lvlText w:val="●" />
           <w:lvlJc w:val="left" />
           <w:pPr>
-            <w:tabs>
-              <w:tab w:val="num" w:pos="720" />
-            </w:tabs>
-            <w:ind w:left="720" w:hanging="720" />
+            <w:ind w:left="720" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+            <w:u w:val="none" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>
@@ -117,6 +119,12 @@ async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
             <w:ilvl w:val="0" />
             <w:numId w:val="${numbering.threadsNumbering}" />
           </w:numPr>
+          <w:spacing w:line="276" w:lineRule="auto" />
+          <w:ind
+            w:left="425.19685039370046"
+            w:right="-17.36220472440891"
+            w:hanging="360"
+          />
         </w:pPr>
         <w:r>
           <w:rPr>
