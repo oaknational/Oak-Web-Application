@@ -1,3 +1,32 @@
+# [1.493.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.1...v1.493.0) (2024-07-25)
+
+
+### Features
+
+* flag enables posthog tracking of latest URLs in user profiles ([2e2f9c7](https://github.com/oaknational/Oak-Web-Application/commit/2e2f9c703cfbb1fc3112023aad842ac92e80a6e4))
+
+## [1.492.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.0...v1.492.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* adjust unit test that seems to be intermittently failing ([97522e9](https://github.com/oaknational/Oak-Web-Application/commit/97522e935dfd70c4f09a85c932f7ebc656785208))
+* adjusting to waitFor didn't work, skipping for the moment ([3e4f3f0](https://github.com/oaknational/Oak-Web-Application/commit/3e4f3f017029acb31b7e22580fe9143708a246ca))
+
+# [1.492.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.491.0...v1.492.0) (2024-07-24)
+
+
+### Features
+
+* update lesson layout with new colours, backgrounds and icon colour ([8ab42c6](https://github.com/oaknational/Oak-Web-Application/commit/8ab42c65587ecdc63ac9dcdb65e1e97a9837907f))
+
+# [1.491.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.490.0...v1.491.0) (2024-07-24)
+
+
+### Features
+
+* bump oak components for wobbly borders ([9e7d4c4](https://github.com/oaknational/Oak-Web-Application/commit/9e7d4c4f10b8453b9ff19b16257d9775319d56ea))
+
 # [1.490.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.489.0...v1.490.0) (2024-07-24)
 
 
