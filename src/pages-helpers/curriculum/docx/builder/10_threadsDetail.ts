@@ -39,7 +39,6 @@ export default async function generate(
             .map((unit) => {
               return safeXml`
                 <w:p>
-                  <w:pPr />
                   <w:r>
                     <w:rPr>
                       <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -71,7 +70,6 @@ export default async function generate(
           <w:pPr>
             <w:pStyle w:val="Heading3" />
           </w:pPr>
-          <w:pPr />
           <w:r>
             <w:rPr>
               <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />

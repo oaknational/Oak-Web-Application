@@ -55,11 +55,7 @@ async function buildUnitLessons(
               <w:numId w:val="${numbering.lessonNumbering}" />
             </w:numPr>
             <w:spacing w:line="276" w:lineRule="auto" />
-            <w:ind
-              w:left="425.19685039370046"
-              w:right="-17.36220472440891"
-              w:hanging="360"
-            />
+            <w:ind w:left="425" w:right="-17" w:hanging="360" />
           </w:pPr>
           <w:r>
             <w:rPr>
@@ -120,11 +116,7 @@ async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
             <w:numId w:val="${numbering.threadsNumbering}" />
           </w:numPr>
           <w:spacing w:line="276" w:lineRule="auto" />
-          <w:ind
-            w:left="425.19685039370046"
-            w:right="-17.36220472440891"
-            w:hanging="360"
-          />
+          <w:ind w:left="425" w:right="-17" w:hanging="360" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -256,8 +248,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Previous unit description</w:t>
@@ -310,8 +302,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Future unit description</w:t>
@@ -376,8 +368,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Unit description</w:t>
@@ -413,8 +405,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Why this, why now?</w:t>
@@ -603,8 +595,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
-            <w:color w:val="000000" />
             <w:i w:val="0" />
+            <w:color w:val="000000" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Threads</w:t>
@@ -639,8 +631,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
-            <w:color w:val="000000" />
             <w:i w:val="0" />
+            <w:color w:val="000000" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Lessons in unit</w:t>

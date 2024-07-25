@@ -213,11 +213,7 @@ export default async function generate(
                   <w:numId w:val="${numbering.threadsNumbering}" />
                 </w:numPr>
                 <w:spacing w:line="360" w:lineRule="auto" />
-                <w:ind
-                  w:left="425.19685039370046"
-                  w:right="-17.36220472440891"
-                  w:hanging="360"
-                />
+                <w:ind w:left="425" w:right="-17" w:hanging="360" />
               </w:pPr>
               <w:r>
                 <w:rPr>
