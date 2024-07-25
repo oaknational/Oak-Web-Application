@@ -11,11 +11,10 @@ import {
   wrapInLinkToBookmark,
   wrapInLinkTo,
   wrapInBookmarkPoint,
-  cmToTwip,
   JSZipCached,
 } from "../docx";
 
-import { createCurriculumSlug, generateGridCols } from "./helper";
+import { createCurriculumSlug } from "./helper";
 
 export default async function generate(
   zip: JSZipCached,
@@ -228,236 +227,207 @@ export default async function generate(
       <w:p />
       <w:p />
 
-      <w:tbl>
-        <w:tblPr>
-          <w:tblW w:type="pct" w:w="100%" />
-          <w:tblBorders>
-            <w:top w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:left w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:right w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:insideH w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
-          </w:tblBorders>
-        </w:tblPr>
-        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
-        <w:tr>
-          <w:tc>
-            <w:tcPr>
-              <w:tcMar>
-                <w:right w:type="dxa" w:w="${cmToTwip(1)}" />
-                <w:left w:type="dxa" w:w="${cmToTwip(0)}" />
-              </w:tcMar>
-              <w:vAlign w:val="center" />
-            </w:tcPr>
-            <w:p>
-              <w:pPr>
-                <w:pStyle w:val="Heading3" />
-              </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="28" />
-                </w:rPr>
-                <w:t>${cdata("Online curriculum")}</w:t>
-              </w:r>
-            </w:p>
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                <w:t>
-                  ${cdata(
-                    "Our interactive tool enables you to visualise how threads are sequenced across our curriculum plans.",
-                  )}
-                </w:t>
-              </w:r>
-            </w:p>
+      <w:p>
+        <w:r>
+          ${createImage(images.curriculumScreenshot, {
+            width: cmToEmu(10.5),
+            height: cmToEmu(8.63),
+            xPos: cmToEmu(7.62),
+            yPos: cmToEmu(0.48),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            // isWrapTight: true,
+            isDecorative: true,
+          })}
+        </w:r>
+      </w:p>
 
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:sz w:val="24" />
-                </w:rPr>
-                <w:t />
-              </w:r>
-            </w:p>
-
-            <w:p>
-              ${wrapInLinkTo(
-                links.onlineCurriculum,
-                safeXml`
-                  <XML_FRAGMENT>
-                    <w:r>
-                      <w:rPr>
-                        <w:rFonts
-                          w:ascii="Arial"
-                          w:hAnsi="Arial"
-                          w:cs="Arial"
-                        />
-                        <w:b />
-                        <w:color w:val="222222" />
-                        <w:sz w:val="24" />
-                        <w:u w:val="single" />
-                      </w:rPr>
-                      <w:t>${cdata("Go to online curriculum")}</w:t>
-                    </w:r>
-                    <w:r>
-                      <w:rPr>
-                        <w:rFonts
-                          w:ascii="Arial"
-                          w:hAnsi="Arial"
-                          w:cs="Arial"
-                        />
-                        <w:b />
-                        <w:color w:val="222222" />
-                        <w:sz w:val="24" />
-                        <w:u w:val="none" />
-                      </w:rPr>
-                      ${createImage(images.jumpOutArrow, {
-                        width: cmToEmu(0.41),
-                        height: cmToEmu(0.35),
-                        isDecorative: true,
-                      })}
-                    </w:r>
-                  </XML_FRAGMENT>
-                `,
-              )}
-            </w:p>
-          </w:tc>
-          <w:tc>
-            <w:p>
-              <w:r>
-                ${createImage(images.curriculumScreenshot, {
-                  width: cmToEmu(10.5),
-                  height: cmToEmu(8.63),
-                  isDecorative: true,
-                })}
-              </w:r>
-            </w:p>
-          </w:tc>
-        </w:tr>
-      </w:tbl>
       <w:p />
-      <w:tbl>
-        <w:tblPr>
-          <w:tblW w:type="pct" w:w="100%" />
-          <w:tblBorders>
-            <w:top w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:left w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:right w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:insideH w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
-          </w:tblBorders>
-        </w:tblPr>
-        <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
-        <w:tr>
-          <w:tc>
-            <w:p>
-              <w:r>
-                ${createImage(images.threadScreenshot, {
-                  width: cmToEmu(10.65),
-                  height: cmToEmu(8.75),
-                  isDecorative: true,
-                })}
-              </w:r>
-            </w:p>
-          </w:tc>
-          <w:tc>
-            <w:tcPr>
-              <w:tcMar>
-                <w:left w:type="dxa" w:w="${cmToTwip(1)}" />
-              </w:tcMar>
-              <w:vAlign w:val="center" />
-            </w:tcPr>
-            <w:p>
-              <w:pPr>
-                <w:pStyle w:val="Heading3" />
-              </w:pPr>
+      <w:p />
+      <w:p />
+
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading3" />
+          <w:ind w:right="6523" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="28" />
+          </w:rPr>
+          <w:t>${cdata("Online curriculum")}</w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:pPr>
+          <w:ind w:right="6523" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t>
+            ${cdata(
+              "Our interactive tool enables you to visualise how threads are sequenced across our curriculum plans.",
+            )}
+          </w:t>
+        </w:r>
+      </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+
+      <w:p>
+        <w:pPr>
+          <w:ind w:right="6523" />
+        </w:pPr>
+        ${wrapInLinkTo(
+          links.onlineCurriculum,
+          safeXml`
+            <XML_FRAGMENT>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
                   <w:color w:val="222222" />
-                  <w:sz w:val="28" />
+                  <w:sz w:val="24" />
+                  <w:u w:val="single" />
                 </w:rPr>
-                <w:t>${cdata("Threads in this document")}</w:t>
+                <w:t>${cdata("Go to online curriculum")}</w:t>
               </w:r>
-            </w:p>
-            <w:p>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
                   <w:color w:val="222222" />
                   <w:sz w:val="24" />
+                  <w:u w:val="none" />
                 </w:rPr>
-                <w:t>
-                  ${cdata(
-                    "The appendix displays the threads and their related units.",
-                  )}
-                </w:t>
+                ${createImage(images.jumpOutArrow, {
+                  width: cmToEmu(0.41),
+                  height: cmToEmu(0.35),
+                  isDecorative: true,
+                })}
               </w:r>
-            </w:p>
+            </XML_FRAGMENT>
+          `,
+        )}
+      </w:p>
 
-            <w:p>
+      ${Array(7)
+        .fill(true)
+        .map(() => {
+          return safeXml`<w:p />`;
+        })}
+      <w:p>
+        <w:r>
+          ${createImage(images.threadScreenshot, {
+            width: cmToEmu(10.65),
+            height: cmToEmu(8.75),
+            xPos: cmToEmu(0.02),
+            yPos: cmToEmu(0.15),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            // isWrapTight: true,
+            isDecorative: true,
+          })}
+        </w:r>
+      </w:p>
+
+      ${Array(3)
+        .fill(true)
+        .map(() => {
+          return safeXml`<w:p />`;
+        })}
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading3" />
+          <w:ind w:left="6521" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="28" />
+          </w:rPr>
+          <w:t>${cdata("Threads in this document")}</w:t>
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:pPr>
+          <w:ind w:left="6521" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t>
+            ${cdata(
+              "The appendix displays the threads and their related units.",
+            )}
+          </w:t>
+        </w:r>
+      </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t />
+        </w:r>
+      </w:p>
+
+      <w:p>
+        <w:pPr>
+          <w:ind w:left="6521" />
+        </w:pPr>
+        ${wrapInLinkToBookmark(
+          "section_threads_appendix",
+          safeXml`
+            <XML_FRAGMENT>
               <w:r>
                 <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
                   <w:sz w:val="24" />
+                  <w:u w:val="single" />
                 </w:rPr>
-                <w:t />
+                <w:t>${cdata("Go to threads appendix")}</w:t>
               </w:r>
-            </w:p>
-
-            <w:p>
-              ${wrapInLinkToBookmark(
-                "section_threads_appendix",
-                safeXml`
-                  <XML_FRAGMENT>
-                    <w:r>
-                      <w:rPr>
-                        <w:rFonts
-                          w:ascii="Arial"
-                          w:hAnsi="Arial"
-                          w:cs="Arial"
-                        />
-                        <w:b />
-                        <w:color w:val="222222" />
-                        <w:sz w:val="24" />
-                        <w:u w:val="single" />
-                      </w:rPr>
-                      <w:t>${cdata("Go to threads appendix")}</w:t>
-                    </w:r>
-                    <w:r>
-                      <w:rPr>
-                        <w:rFonts
-                          w:ascii="Arial"
-                          w:hAnsi="Arial"
-                          w:cs="Arial"
-                        />
-                        <w:b />
-                        <w:color w:val="222222" />
-                        <w:sz w:val="24" />
-                        <w:u w:val="none" />
-                      </w:rPr>
-                      ${createImage(images.downArrow, {
-                        width: cmToEmu(0.4),
-                        height: cmToEmu(0.4),
-                        isDecorative: true,
-                      })}
-                    </w:r>
-                  </XML_FRAGMENT>
-                `,
-              )}
-            </w:p>
-          </w:tc>
-        </w:tr>
-      </w:tbl>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                  <w:u w:val="none" />
+                </w:rPr>
+                ${createImage(images.downArrow, {
+                  width: cmToEmu(0.4),
+                  height: cmToEmu(0.4),
+                  isDecorative: true,
+                })}
+              </w:r>
+            </XML_FRAGMENT>
+          `,
+        )}
+      </w:p>
 
       <w:p>
         <w:r>
