@@ -1,3 +1,5 @@
+import { within } from "@testing-library/dom";
+
 import specialistUnitListingFixture from "./SpecialistUnitListing.fixture";
 import SpecialistUnitListing from "./SpecialistUnitListing.view";
 
@@ -35,13 +37,13 @@ describe("SpecialistUnitListing", () => {
   });
 
   test("specialist unit list", () => {
-    const { getAllByRole, getByLabelText } = render(
+    const { getByLabelText } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
     const unitList = getByLabelText("A list of units");
     expect(unitList).toBeInTheDocument();
 
-    const listItems = getAllByRole("listitem", { container: unitList });
+    const listItems = within(unitList).getAllByRole("listitem");
     expect(listItems).toHaveLength(3);
   });
 });
