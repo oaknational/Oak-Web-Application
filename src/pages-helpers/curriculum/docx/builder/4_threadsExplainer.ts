@@ -202,7 +202,7 @@ export default async function generate(
       </w:p>
       <w:p>
         <w:pPr>
-          <w:pStyle w:val="Heading2" />
+          <w:pStyle w:val="Heading3" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -248,7 +248,7 @@ export default async function generate(
 
       <w:p>
         <w:pPr>
-          <w:pStyle w:val="Heading3" />
+          <w:pStyle w:val="Heading4" />
           <w:ind w:right="6523" />
         </w:pPr>
         <w:r>
@@ -352,7 +352,7 @@ export default async function generate(
         })}
       <w:p>
         <w:pPr>
-          <w:pStyle w:val="Heading3" />
+          <w:pStyle w:val="Heading4" />
           <w:ind w:left="6521" />
         </w:pPr>
         <w:r>
