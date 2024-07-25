@@ -95,8 +95,6 @@ export default async function generate(zip: JSZipCached) {
       <w:p>
         <w:pPr>
           <w:sectPr>
-            <w:cols w:space="708" />
-            <w:docGrid w:linePitch="360" />
             <w:pgSz w:w="11909" w:h="16834" />
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
@@ -107,6 +105,8 @@ export default async function generate(zip: JSZipCached) {
               w:footer="${cmToTwip(1.5)}"
               w:gutter="0"
             />
+            <w:cols w:space="708" />
+            <w:docGrid w:linePitch="360" />
           </w:sectPr>
         </w:pPr>
       </w:p>
@@ -143,8 +143,6 @@ export default async function generate(zip: JSZipCached) {
         <w:pPr>
           <w:sectPr>
             <w:type w:val="continuous" />
-            <w:cols w:num="2" w:space="720" />
-            <w:docGrid w:linePitch="360" />
             <w:pgSz w:w="11909" w:h="16834" />
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
@@ -155,6 +153,8 @@ export default async function generate(zip: JSZipCached) {
               w:footer="${cmToTwip(1.5)}"
               w:gutter="0"
             />
+            <w:cols w:num="2" w:space="720" />
+            <w:docGrid w:linePitch="360" />
           </w:sectPr>
         </w:pPr>
       </w:p>
@@ -174,8 +174,6 @@ export default async function generate(zip: JSZipCached) {
         <w:pPr>
           <w:sectPr>
             <w:type w:val="continuous" />
-            <w:cols w:space="708" />
-            <w:docGrid w:linePitch="360" />
             <w:pgSz w:w="11909" w:h="16834" />
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
@@ -186,6 +184,8 @@ export default async function generate(zip: JSZipCached) {
               w:footer="${cmToTwip(1.5)}"
               w:gutter="0"
             />
+            <w:cols w:space="708" />
+            <w:docGrid w:linePitch="360" />
           </w:sectPr>
         </w:pPr>
       </w:p>
