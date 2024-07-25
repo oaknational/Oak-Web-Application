@@ -1,3 +1,10 @@
+# [1.492.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.491.0...v1.492.0) (2024-07-24)
+
+
+### Features
+
+* update lesson layout with new colours, backgrounds and icon colour ([8ab42c6](https://github.com/oaknational/Oak-Web-Application/commit/8ab42c65587ecdc63ac9dcdb65e1e97a9837907f))
+
 # [1.491.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.490.0...v1.491.0) (2024-07-24)
 
 

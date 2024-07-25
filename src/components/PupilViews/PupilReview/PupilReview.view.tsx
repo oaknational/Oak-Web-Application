@@ -20,10 +20,11 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
+  phase?: "primary" | "secondary";
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl } = props;
+  const { lessonTitle, backUrl, phase = "primary" } = props;
   const {
     updateCurrentSection,
     sectionResults,
@@ -55,6 +56,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
+      phase={phase}
       topNavSlot={null}
     >
       <OakGrid
