@@ -16,17 +16,17 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    oglLogo: join(
-      process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
-    ),
+    // oglLogo: join(
+    //   process.cwd(),
+    //   "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
+    // ),
     peopleIcon: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/people-icon.png",
     ),
     box: join(
       process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/box.png",
+      "src/pages-helpers/curriculum/docx/builder/images/box-with-logo.png",
     ),
   });
 
@@ -183,7 +183,8 @@ export default async function generate(
           <w:t />
         </w:r>
       </w:p>
-      <w:p>
+      ${
+        "" /*<w:p>
         <w:pPr>
           <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
           <w:jc w:val="right" />
@@ -195,7 +196,8 @@ export default async function generate(
             isDecorative: true,
           })}
         </w:r>
-      </w:p>
+      </w:p>*/
+      }
     </root>
   `;
 
