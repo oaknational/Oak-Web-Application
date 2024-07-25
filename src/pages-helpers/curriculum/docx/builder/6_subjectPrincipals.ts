@@ -5,10 +5,13 @@ import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
+  cmToTwip,
   createImage,
   insertImages,
   JSZipCached,
 } from "../docx";
+
+import { generateGridCols } from "./helper";
 
 export default async function generate(
   zip: JSZipCached,
@@ -70,10 +73,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="4" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10" />
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2, [cmToTwip(1.5)])}</w:tblGrid>
         ${data.subjectPrinciples
           .map((subjectPrincipal) => {
             return safeXml`

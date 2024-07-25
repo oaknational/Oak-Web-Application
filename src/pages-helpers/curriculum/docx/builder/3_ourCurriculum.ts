@@ -65,12 +65,12 @@ export default async function generate(zip: JSZipCached) {
         <w:tblPr>
           <w:tblW w:type="pct" w:w="100%" />
           <w:tblBorders>
-            <w:top w:val="single" w:color="F5E9F2" w:sz="48" />
-            <w:left w:val="single" w:color="F5E9F2" w:sz="48" />
-            <w:bottom w:val="single" w:color="F5E9F2" w:sz="48" />
-            <w:right w:val="single" w:color="F5E9F2" w:sz="48" />
-            <w:insideH w:val="single" w:color="auto" w:sz="4" />
-            <w:insideV w:val="single" w:color="auto" w:sz="4" />
+            <w:top w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:left w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:right w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:insideH w:val="single" w:color="FFFFFF" w:sz="4" />
+            <w:insideV w:val="single" w:color="FFFFFF" w:sz="4" />
           </w:tblBorders>
         </w:tblPr>
         <w:tblGrid>${generateGridCols(2)}</w:tblGrid>
