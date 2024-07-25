@@ -1,3 +1,11 @@
+## [1.492.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.0...v1.492.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* adjust unit test that seems to be intermittently failing ([97522e9](https://github.com/oaknational/Oak-Web-Application/commit/97522e935dfd70c4f09a85c932f7ebc656785208))
+* adjusting to waitFor didn't work, skipping for the moment ([3e4f3f0](https://github.com/oaknational/Oak-Web-Application/commit/3e4f3f017029acb31b7e22580fe9143708a246ca))
+
 # [1.492.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.491.0...v1.492.0) (2024-07-24)
 
 
