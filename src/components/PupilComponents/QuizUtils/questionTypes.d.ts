@@ -24,6 +24,6 @@ type QuestionState = {
   offerHint: boolean;
   pupilAnswer?: PupilAnswer | null;
   feedback?: QuestionFeedbackType | QuestionFeedbackType[];
-  correctAnswer?: string | string[];
+  correctAnswer?: string | (string | undefined)[];
   isPartiallyCorrect?: boolean;
 };
