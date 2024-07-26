@@ -1,3 +1,14 @@
+# [1.494.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.493.0...v1.494.0) (2024-07-26)
+
+
+### Features
+
+* **main:** merge main ([a593e4d](https://github.com/oaknational/Oak-Web-Application/commit/a593e4d841670c1b2ec0ab113e8a646d31381bef))
+* **mcq:** add jaunty label to quiz questions ([143c393](https://github.com/oaknational/Oak-Web-Application/commit/143c39368eb583cae0ad6a32d81688478a59781f))
+* **package:** import latest oak component ([f60e784](https://github.com/oaknational/Oak-Web-Application/commit/f60e7840092ef319849234fab3c8602560d96d4b))
+* **quiz:** add jaunty to short answer questions ([fe8d076](https://github.com/oaknational/Oak-Web-Application/commit/fe8d076c4a466341cc585c3aef2d4f88b602d1eb))
+* **quiz:** add provider to test and fix imports ([7e72982](https://github.com/oaknational/Oak-Web-Application/commit/7e72982124da9a00dfd0016abf99527ecbf1066f))
+
 # [1.493.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.1...v1.493.0) (2024-07-25)
 
 
