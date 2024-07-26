@@ -19,28 +19,17 @@ import {
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import type {
+  QuestionFeedbackType,
+  QuestionModeType,
+  QuestionState,
+} from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 export type QuestionsArray = NonNullable<QuizQuestion[]>;
 
 export type QuizEngineProps = {
   children: ReactNode;
   questionsArray: QuestionsArray;
-};
-
-export type QuestionFeedbackType = "correct" | "incorrect" | null;
-export type QuestionModeType =
-  | "init"
-  | "incomplete"
-  | "input"
-  | "grading"
-  | "feedback";
-
-type QuestionState = {
-  mode: QuestionModeType;
-  grade: number;
-  offerHint: boolean;
-  feedback?: QuestionFeedbackType | QuestionFeedbackType[];
-  isPartiallyCorrect?: boolean;
 };
 
 export type QuizEngineContextType = {
@@ -103,6 +92,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           ...currentState[currentQuestionIndex],
           ...incomingQuestionState,
         };
+
+        // TODO: modify this to include the question answer and feedback
         updateSectionResult({
           grade: newState.reduce((pv, v) => pv + v.grade, 0),
           numQuestions: numInteractiveQuestions,
