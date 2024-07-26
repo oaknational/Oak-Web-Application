@@ -1,7 +1,7 @@
 import { OakSpan } from "@oaknational/oak-components";
 
-import { useQuizEngineContext } from "../QuizEngineProvider";
-import { isText } from "../QuizUtils/stemUtils";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 export const QuizMCQMultiAnswerFeedback = () => {
   const quizEngineContext = useQuizEngineContext();
