@@ -1,3 +1,10 @@
+# [1.493.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.1...v1.493.0) (2024-07-25)
+
+
+### Features
+
+* flag enables posthog tracking of latest URLs in user profiles ([2e2f9c7](https://github.com/oaknational/Oak-Web-Application/commit/2e2f9c703cfbb1fc3112023aad842ac92e80a6e4))
+
 ## [1.492.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.0...v1.492.1) (2024-07-25)
 
 

@@ -44,6 +44,15 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.capture("$pageview");
   },
   track: (name, properties) => {
+    const m = window.location.search.match(/update_tracking_profile=true/);
+
+    if ((name === "$pageview" || name === "$autocapture") && m) {
+      client.capture("$set", {
+        $set: {
+          latest_search_params: window.location.search,
+        },
+      });
+    }
     client.capture(name, properties);
   },
   optIn: () => {
