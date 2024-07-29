@@ -24,6 +24,7 @@ export type UnitsSectionData = {
   icon?: OakIconProps["iconName"];
   units: UnitListingBrowseData[number][][];
   breadcrumbs: string[];
+  labels?: { year: string; subject: string; tier?: string };
   counterText: string | null;
   counterLength: number | null;
 };
@@ -34,6 +35,7 @@ export type UnitListingPageProps = {
   backHrefSlugs: UseBackHrefProps;
   yearDescription: string;
   unitSections: UnitsSectionData[];
+  subjectCategories: string[];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -46,6 +48,7 @@ const PupilUnitListingPage = ({
   backHrefSlugs,
   yearDescription,
   unitSections,
+  subjectCategories,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -61,6 +64,7 @@ const PupilUnitListingPage = ({
           unitSections={unitSections}
           phase={phase}
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={subjectCategories}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -119,7 +123,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No curriculum data");
       }
 
-      const { programmeFields } = selectedProgramme;
+      const { programmeFields, isLegacy } = selectedProgramme;
       const {
         subject,
         phase,
@@ -138,6 +142,18 @@ export const getStaticProps: GetStaticProps<
 
       const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
 
+      // a unique list of subject categories that appear in the unit listing
+
+      const allSubjectCategories = curriculumData
+        .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
+        .flat()
+        .filter((s) => s?.toLocaleLowerCase() !== subjectSlug)
+        .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
+        .filter((s) => !!s);
+
+      // ts will not accept that the above removes the possibility of undefined
+      const subjectCategories = _.uniq(allSubjectCategories) as string[];
+
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];
 
@@ -153,24 +169,31 @@ export const getStaticProps: GetStaticProps<
         breadcrumbs.push(tierDescription);
       }
 
+      const secondUnitSection: UnitsSectionData = getSecondUnitSection({
+        programmeSlug,
+        baseSlug,
+        tierSlug,
+        subjectSlug,
+        yearSlug,
+        phase,
+        unitsByProgramme,
+        breadcrumbs,
+      });
+
+      const secondSectionLength = secondUnitSection.units.length;
+
       const firstUnitSection: UnitsSectionData = {
         units: optionalityUnits,
         phase,
         icon: `subject-${subjectSlug}`,
         breadcrumbs,
-        counterText: "Choose a unit",
+        counterText:
+          secondSectionLength > 0 && isLegacy
+            ? "Choose a previously released unit"
+            : "Choose a unit",
         counterLength: mainUnits.length,
         title: subject,
       };
-
-      const secondUnitSection: UnitsSectionData = getSecondUnitSection({
-        programmeSlug,
-        baseSlug,
-        tierSlug,
-        phase,
-        unitsByProgramme,
-        breadcrumbs,
-      });
 
       const backHrefSlugs: UseBackHrefProps = {
         baseSlug,
@@ -185,6 +208,7 @@ export const getStaticProps: GetStaticProps<
           phase,
           yearDescription,
           backHrefSlugs,
+          subjectCategories,
           unitSections: [firstUnitSection, secondUnitSection],
         },
       };

@@ -5,9 +5,9 @@ import type {
   PortableTextBlock,
   PortableTextMarkDefinition,
 } from "@portabletext/types";
+import { OakBox, OakLI, OakOL, OakSpan } from "@oaknational/oak-components";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 
 export type Footnote = {
   index: number;
@@ -59,10 +59,10 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
   }
 
   return (
-    <span>
+    <OakSpan>
       {props.children}
 
-      <Box as="sup" $position="relative">
+      <OakBox as="sup" $position="relative">
         <AnchorTarget id={footnoteBackLinkAnchor(footnote.markKey)} />
 
         <a
@@ -72,8 +72,8 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
         >
           {footnote.index}
         </a>
-      </Box>
-    </span>
+      </OakBox>
+    </OakSpan>
   );
 };
 
@@ -92,6 +92,11 @@ const FootnoteLink = styled.a`
   color: ${(props) => props.theme.colors.navy};
 `;
 
+const StyledLabel = styled.span`
+  word-wrap: break-word;
+  max-width: 100%;
+`;
+
 export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   footnotes,
 }) => {
@@ -100,27 +105,29 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   }
 
   return (
-    <Box as="footer" role="doc-endnotes" $pt={20}>
+    <OakBox as="footer" $pt={"inner-padding-l"} $maxWidth={"100%"}>
       <h3>References</h3>
 
-      <Box as="ol" $pl={16}>
-        {footnotes.map(({ markKey, index, label, source }) => (
-          <li id={footnoteCitationAnchor(markKey)} key={markKey}>
-            {source ? (
-              <FootnoteLink href={source}>{label}</FootnoteLink>
-            ) : (
-              label
-            )}{" "}
-            <FootnoteLink
-              href={`#${footnoteBackLinkAnchor(markKey)}`}
-              aria-label={`Back to reference ${index}`}
-              role="doc-backlink"
-            >
-              ↩
-            </FootnoteLink>
-          </li>
-        ))}
-      </Box>
-    </Box>
+      <OakOL>
+        {footnotes.map(({ markKey, index, label, source }) => {
+          return (
+            <OakLI id={footnoteCitationAnchor(markKey)} key={markKey}>
+              {source ? (
+                <FootnoteLink href={source}>{label}</FootnoteLink>
+              ) : (
+                <StyledLabel>{label}</StyledLabel>
+              )}{" "}
+              <FootnoteLink
+                href={`#${footnoteBackLinkAnchor(markKey)}`}
+                aria-label={`Back to reference ${index}`}
+                role="doc-backlink"
+              >
+                ↩
+              </FootnoteLink>
+            </OakLI>
+          );
+        })}
+      </OakOL>
+    </OakBox>
   );
 };

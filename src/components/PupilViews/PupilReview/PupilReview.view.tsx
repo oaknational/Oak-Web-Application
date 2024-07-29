@@ -9,19 +9,22 @@ import {
   OakLessonLayout,
   OakLessonReviewItem,
   OakPrimaryButton,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
+import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
+  phase?: "primary" | "secondary";
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl } = props;
+  const { lessonTitle, backUrl, phase = "primary" } = props;
   const {
     updateCurrentSection,
     sectionResults,
@@ -30,16 +33,21 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
 
+  const { finalFeedback } = useLessonReviewFeedback(
+    isLessonComplete,
+    sectionResults,
+  );
+
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", updateCurrentSection)}
+        href={backUrl || undefined}
         iconName="arrow-right"
         isTrailingIcon
         width={["100%", "max-content"]}
       >
-        Lesson overview
+        View all lessons
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
@@ -48,6 +56,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
+      phase={phase}
       topNavSlot={null}
     >
       <OakGrid
@@ -58,7 +67,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton href={backUrl} />
+          <OakTertiaryButton
+            iconName="arrow-left"
+            element="a"
+            {...getSectionLinkProps("overview", updateCurrentSection)}
+          >
+            Lesson overview
+          </OakTertiaryButton>
 
           <OakFlex $mv="space-between-xl">
             <OakFlex
@@ -118,9 +133,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $font="heading-5"
                 $textAlign={["center", "left", "left"]}
               >
-                {isLessonComplete
-                  ? "Fantastic job, well done!"
-                  : "Well done, you're Oaking it!"}
+                {finalFeedback}
               </OakFlex>
             </OakHandDrawnCard>
           </OakFlex>

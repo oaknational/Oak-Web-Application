@@ -772,6 +772,8 @@ export type Cat_Contentguidance_Avg_Fields = {
   __typename?: 'cat_contentguidance_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -862,6 +864,8 @@ export type Cat_Contentguidance_Max_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -878,6 +882,8 @@ export type Cat_Contentguidance_Min_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -987,6 +993,8 @@ export type Cat_Contentguidance_Stddev_Fields = {
   __typename?: 'cat_contentguidance_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -995,6 +1003,8 @@ export type Cat_Contentguidance_Stddev_Pop_Fields = {
   __typename?: 'cat_contentguidance_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1003,6 +1013,8 @@ export type Cat_Contentguidance_Stddev_Samp_Fields = {
   __typename?: 'cat_contentguidance_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1037,6 +1049,8 @@ export type Cat_Contentguidance_Sum_Fields = {
   __typename?: 'cat_contentguidance_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1096,6 +1110,8 @@ export type Cat_Contentguidance_Var_Pop_Fields = {
   __typename?: 'cat_contentguidance_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1104,6 +1120,8 @@ export type Cat_Contentguidance_Var_Samp_Fields = {
   __typename?: 'cat_contentguidance_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1112,6 +1130,8 @@ export type Cat_Contentguidance_Variance_Fields = {
   __typename?: 'cat_contentguidance_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
+  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1210,6 +1230,8 @@ export type Cat_Examboardspecs_Avg_Fields = {
   __typename?: 'cat_examboardspecs_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_examboardspecs". All fields are combined with a logical 'AND'. */
@@ -1235,7 +1257,7 @@ export type Cat_Examboardspecs_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_examboardspecs" */
 export enum Cat_Examboardspecs_Constraint {
-  /** unique or primary key constraint on columns "_state", "examboardspecs_id" */
+  /** unique or primary key constraint on columns "examboardspecs_id", "_state" */
   CatExamboardspecsPkey = 'cat_examboardspecs_pkey'
 }
 
@@ -1288,6 +1310,8 @@ export type Cat_Examboardspecs_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1301,6 +1325,8 @@ export type Cat_Examboardspecs_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1396,6 +1422,8 @@ export type Cat_Examboardspecs_Stddev_Fields = {
   __typename?: 'cat_examboardspecs_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1403,6 +1431,8 @@ export type Cat_Examboardspecs_Stddev_Pop_Fields = {
   __typename?: 'cat_examboardspecs_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1410,6 +1440,8 @@ export type Cat_Examboardspecs_Stddev_Samp_Fields = {
   __typename?: 'cat_examboardspecs_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_examboardspecs" */
@@ -1440,6 +1472,8 @@ export type Cat_Examboardspecs_Sum_Fields = {
   __typename?: 'cat_examboardspecs_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_examboardspecs" */
@@ -1492,6 +1526,8 @@ export type Cat_Examboardspecs_Var_Pop_Fields = {
   __typename?: 'cat_examboardspecs_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1499,6 +1535,8 @@ export type Cat_Examboardspecs_Var_Samp_Fields = {
   __typename?: 'cat_examboardspecs_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1506,6 +1544,8 @@ export type Cat_Examboardspecs_Variance_Fields = {
   __typename?: 'cat_examboardspecs_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
+  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_nationalcurriculum" */
@@ -1603,6 +1643,8 @@ export type Cat_Nationalcurriculum_Avg_Fields = {
   __typename?: 'cat_nationalcurriculum_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_nationalcurriculum". All fields are combined with a logical 'AND'. */
@@ -1681,6 +1723,8 @@ export type Cat_Nationalcurriculum_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1694,6 +1738,8 @@ export type Cat_Nationalcurriculum_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1789,6 +1835,8 @@ export type Cat_Nationalcurriculum_Stddev_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1796,6 +1844,8 @@ export type Cat_Nationalcurriculum_Stddev_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1803,6 +1853,8 @@ export type Cat_Nationalcurriculum_Stddev_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_nationalcurriculum" */
@@ -1833,6 +1885,8 @@ export type Cat_Nationalcurriculum_Sum_Fields = {
   __typename?: 'cat_nationalcurriculum_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_nationalcurriculum" */
@@ -1885,6 +1939,8 @@ export type Cat_Nationalcurriculum_Var_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1892,6 +1948,8 @@ export type Cat_Nationalcurriculum_Var_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1899,6 +1957,8 @@ export type Cat_Nationalcurriculum_Variance_Fields = {
   __typename?: 'cat_nationalcurriculum_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
+  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_subjectcategories" */
@@ -2011,6 +2071,8 @@ export type Cat_Subjectcategories_Avg_Fields = {
   __typename?: 'cat_subjectcategories_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_subjectcategories" */
@@ -2095,6 +2157,8 @@ export type Cat_Subjectcategories_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2120,6 +2184,8 @@ export type Cat_Subjectcategories_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2227,6 +2293,8 @@ export type Cat_Subjectcategories_Stddev_Fields = {
   __typename?: 'cat_subjectcategories_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_subjectcategories" */
@@ -2240,6 +2308,8 @@ export type Cat_Subjectcategories_Stddev_Pop_Fields = {
   __typename?: 'cat_subjectcategories_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_subjectcategories" */
@@ -2253,6 +2323,8 @@ export type Cat_Subjectcategories_Stddev_Samp_Fields = {
   __typename?: 'cat_subjectcategories_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_subjectcategories" */
@@ -2289,6 +2361,8 @@ export type Cat_Subjectcategories_Sum_Fields = {
   __typename?: 'cat_subjectcategories_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_subjectcategories" */
@@ -2347,6 +2421,8 @@ export type Cat_Subjectcategories_Var_Pop_Fields = {
   __typename?: 'cat_subjectcategories_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_subjectcategories" */
@@ -2360,6 +2436,8 @@ export type Cat_Subjectcategories_Var_Samp_Fields = {
   __typename?: 'cat_subjectcategories_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_subjectcategories" */
@@ -2373,6 +2451,8 @@ export type Cat_Subjectcategories_Variance_Fields = {
   __typename?: 'cat_subjectcategories_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
+  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_subjectcategories" */
@@ -2894,7 +2974,11 @@ export type Cat_Tags_Append_Input = {
 export type Cat_Tags_Avg_Fields = {
   __typename?: 'cat_tags_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_tags" */
@@ -2929,7 +3013,7 @@ export type Cat_Tags_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_tags" */
 export enum Cat_Tags_Constraint {
-  /** unique or primary key constraint on columns "tag_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "tag_id" */
   CatTagsPkey = 'cat_tags_pkey'
 }
 
@@ -2981,9 +3065,13 @@ export type Cat_Tags_Max_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3008,9 +3096,13 @@ export type Cat_Tags_Min_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3124,7 +3216,11 @@ export type Cat_Tags_Set_Input = {
 export type Cat_Tags_Stddev_Fields = {
   __typename?: 'cat_tags_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_tags" */
@@ -3137,7 +3233,11 @@ export type Cat_Tags_Stddev_Order_By = {
 export type Cat_Tags_Stddev_Pop_Fields = {
   __typename?: 'cat_tags_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_tags" */
@@ -3150,7 +3250,11 @@ export type Cat_Tags_Stddev_Pop_Order_By = {
 export type Cat_Tags_Stddev_Samp_Fields = {
   __typename?: 'cat_tags_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_tags" */
@@ -3187,7 +3291,11 @@ export type Cat_Tags_Stream_Cursor_Value_Input = {
 export type Cat_Tags_Sum_Fields = {
   __typename?: 'cat_tags_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_tags" */
@@ -3247,7 +3355,11 @@ export type Cat_Tags_Updates = {
 export type Cat_Tags_Var_Pop_Fields = {
   __typename?: 'cat_tags_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_tags" */
@@ -3260,7 +3372,11 @@ export type Cat_Tags_Var_Pop_Order_By = {
 export type Cat_Tags_Var_Samp_Fields = {
   __typename?: 'cat_tags_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_tags" */
@@ -3273,7 +3389,11 @@ export type Cat_Tags_Var_Samp_Order_By = {
 export type Cat_Tags_Variance_Fields = {
   __typename?: 'cat_tags_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__lessons__count" */
+  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__cat_tags__units__count" */
+  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_tags" */
@@ -4301,6 +4421,10 @@ export type Internal_Review_Lessons_Max_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
+  firstapproval?: Maybe<Scalars['timestamp']['output']>;
+  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
+  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -4344,6 +4468,10 @@ export type Internal_Review_Lessons_Min_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
+  firstapproval?: Maybe<Scalars['timestamp']['output']>;
+  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
+  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -8963,7 +9091,7 @@ export type Pf_Developmentstages_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_developmentstages" */
 export enum Pf_Developmentstages_Constraint {
-  /** unique or primary key constraint on columns "developmentstage_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "developmentstage_id" */
   PfDevelopmentstagesPkey = 'pf_developmentstages_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfDevelopmentstagesSlugStateCohortKey = 'pf_developmentstages_slug__state__cohort_key'
@@ -10491,7 +10619,7 @@ export type Pf_Phases_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_phases" */
 export enum Pf_Phases_Constraint {
-  /** unique or primary key constraint on columns "phase_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "phase_id" */
   PfPhasesPkey = 'pf_phases_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfPhasesSlugStateCohortKey = 'pf_phases_slug__state__cohort_key'
@@ -10864,6 +10992,8 @@ export type Pf_Subjects_Avg_Fields = {
   __typename?: 'pf_subjects_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -10947,6 +11077,8 @@ export type Pf_Subjects_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -10963,6 +11095,8 @@ export type Pf_Subjects_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -11075,6 +11209,8 @@ export type Pf_Subjects_Stddev_Fields = {
   __typename?: 'pf_subjects_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11084,6 +11220,8 @@ export type Pf_Subjects_Stddev_Pop_Fields = {
   __typename?: 'pf_subjects_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11093,6 +11231,8 @@ export type Pf_Subjects_Stddev_Samp_Fields = {
   __typename?: 'pf_subjects_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11127,6 +11267,8 @@ export type Pf_Subjects_Sum_Fields = {
   __typename?: 'pf_subjects_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
   subject_parent_id?: Maybe<Scalars['Int']['output']>;
 };
@@ -11185,6 +11327,8 @@ export type Pf_Subjects_Var_Pop_Fields = {
   __typename?: 'pf_subjects_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11194,6 +11338,8 @@ export type Pf_Subjects_Var_Samp_Fields = {
   __typename?: 'pf_subjects_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11203,6 +11349,8 @@ export type Pf_Subjects_Variance_Fields = {
   __typename?: 'pf_subjects_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
+  /** A computed field, executes function "function__pf_subjects__programmes__count" */
+  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -11294,7 +11442,7 @@ export type Pf_Tiers_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_tiers" */
 export enum Pf_Tiers_Constraint {
-  /** unique or primary key constraint on columns "tier_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "tier_id" */
   PfTiersPkey = 'pf_tiers_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfTiersSlugStateCohortKey = 'pf_tiers_slug__state__cohort_key'
@@ -12179,7 +12327,7 @@ export type Programme_Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "programme_threads" */
 export enum Programme_Threads_Constraint {
-  /** unique or primary key constraint on columns "_state", "thread_id", "programme_id" */
+  /** unique or primary key constraint on columns "thread_id", "_state", "programme_id" */
   ProgrammeThreadsPkey = 'programme_threads_pkey'
 }
 
@@ -24375,6 +24523,494 @@ export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Va
   lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1 = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Null_UnitvariantArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Supplementary_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_aggregate_fields';
+  avg?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Avg_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_avg_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  expired?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_count?: InputMaybe<Int_Comparison_Exp>;
+  lesson_expired_count?: InputMaybe<Int_Comparison_Exp>;
+  lesson_sensitive_count?: InputMaybe<Int_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_max_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_min_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1". */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Order_By = {
+  base_slug?: InputMaybe<Order_By>;
+  expired?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_count?: InputMaybe<Order_By>;
+  lesson_expired_count?: InputMaybe<Order_By>;
+  lesson_sensitive_count?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export enum Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column {
+  /** column name */
+  BaseSlug = 'base_slug',
+  /** column name */
+  Expired = 'expired',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  LessonCount = 'lesson_count',
+  /** column name */
+  LessonExpiredCount = 'lesson_expired_count',
+  /** column name */
+  LessonSensitiveCount = 'lesson_sensitive_count',
+  /** column name */
+  NullUnitvariant = 'null_unitvariant',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  SupplementaryData = 'supplementary_data',
+  /** column name */
+  UnitData = 'unit_data',
+  /** column name */
+  UnitSlug = 'unit_slug'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_stddev_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_stddev_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_stddev_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stream_Cursor_Value_Input = {
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  expired?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_count?: InputMaybe<Scalars['Int']['input']>;
+  lesson_expired_count?: InputMaybe<Scalars['Int']['input']>;
+  lesson_sensitive_count?: InputMaybe<Scalars['Int']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Sum_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_sum_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Var_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_var_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Var_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_var_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Variance_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_variance_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2 = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Null_UnitvariantArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Supplementary_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2>;
+};
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_aggregate_fields';
+  avg?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Avg_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_avg_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  expired?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  lesson_count?: InputMaybe<Int_Comparison_Exp>;
+  lesson_expired_count?: InputMaybe<Int_Comparison_Exp>;
+  lesson_sensitive_count?: InputMaybe<Int_Comparison_Exp>;
+  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Max_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_max_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Min_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_min_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2". */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Order_By = {
+  base_slug?: InputMaybe<Order_By>;
+  expired?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  lesson_count?: InputMaybe<Order_By>;
+  lesson_expired_count?: InputMaybe<Order_By>;
+  lesson_sensitive_count?: InputMaybe<Order_By>;
+  null_unitvariant?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export enum Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column {
+  /** column name */
+  BaseSlug = 'base_slug',
+  /** column name */
+  Expired = 'expired',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  LessonCount = 'lesson_count',
+  /** column name */
+  LessonExpiredCount = 'lesson_expired_count',
+  /** column name */
+  LessonSensitiveCount = 'lesson_sensitive_count',
+  /** column name */
+  NullUnitvariant = 'null_unitvariant',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  SupplementaryData = 'supplementary_data',
+  /** column name */
+  UnitData = 'unit_data',
+  /** column name */
+  UnitSlug = 'unit_slug'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_stddev_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_stddev_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_stddev_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stream_Cursor_Value_Input = {
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  expired?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  lesson_count?: InputMaybe<Scalars['Int']['input']>;
+  lesson_expired_count?: InputMaybe<Scalars['Int']['input']>;
+  lesson_sensitive_count?: InputMaybe<Scalars['Int']['input']>;
+  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Sum_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_sum_fields';
+  lesson_count?: Maybe<Scalars['Int']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Int']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Var_Pop_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_var_pop_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Var_Samp_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_var_samp_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Variance_Fields = {
+  __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_variance_fields';
+  lesson_count?: Maybe<Scalars['Float']['output']>;
+  lesson_expired_count?: Maybe<Scalars['Float']['output']>;
+  lesson_sensitive_count?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0" */
 export type Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0 = {
   __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0';
@@ -25199,198 +25835,6 @@ export type Published_View_Synthetic_Programmes_3_Stream_Cursor_Value_Input = {
   synthetic_programme_slug?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
-/** columns and relationships of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4 = {
-  __typename?: 'published_view_synthetic_programmes_4';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['jsonb']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4Synthetic_Programme_SlugArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4_Aggregate = {
-  __typename?: 'published_view_synthetic_programmes_4_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Programmes_4_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Programmes_4>;
-};
-
-/** aggregate fields of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_programmes_4_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Programmes_4_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Programmes_4_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_programmes_4". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Programmes_4_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<Jsonb_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Programmes_4_Max_Fields = {
-  __typename?: 'published_view_synthetic_programmes_4_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Programmes_4_Min_Fields = {
-  __typename?: 'published_view_synthetic_programmes_4_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_programmes_4". */
-export type Published_View_Synthetic_Programmes_4_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_programmes_4" */
-export enum Published_View_Synthetic_Programmes_4_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug'
-}
-
-/** Streaming cursor of the table "published_view_synthetic_programmes_4" */
-export type Published_View_Synthetic_Programmes_4_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Programmes_4_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Programmes_4_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['jsonb']['input']>;
-};
-
-/** columns and relationships of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5 = {
-  __typename?: 'published_view_synthetic_programmes_5';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['jsonb']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5Synthetic_Programme_SlugArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5_Aggregate = {
-  __typename?: 'published_view_synthetic_programmes_5_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Programmes_5_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Programmes_5>;
-};
-
-/** aggregate fields of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_programmes_5_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Programmes_5_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Programmes_5_Min_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_programmes_5". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Programmes_5_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<Jsonb_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Programmes_5_Max_Fields = {
-  __typename?: 'published_view_synthetic_programmes_5_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Programmes_5_Min_Fields = {
-  __typename?: 'published_view_synthetic_programmes_5_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_programmes_5". */
-export type Published_View_Synthetic_Programmes_5_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_programmes_5" */
-export enum Published_View_Synthetic_Programmes_5_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug'
-}
-
-/** Streaming cursor of the table "published_view_synthetic_programmes_5" */
-export type Published_View_Synthetic_Programmes_5_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Programmes_5_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Programmes_5_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['jsonb']['input']>;
-};
-
 /** columns and relationships of "published.view_synthetic_unitvariant_lessons_3" */
 export type Published_View_Synthetic_Unitvariant_Lessons_3 = {
   __typename?: 'published_view_synthetic_unitvariant_lessons_3';
@@ -25637,498 +26081,6 @@ export type Published_View_Synthetic_Unitvariant_Lessons_3_Variance_Fields = {
   uv_lessons_count?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4 = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  lesson_data?: Maybe<Scalars['jsonb']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Lesson_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariant_Lessons_4>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_4_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_avg_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariant_lessons_4". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  lesson_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-  uv_lessons_count?: InputMaybe<Bigint_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariant_lessons_4". */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  lesson_data?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-  uv_lessons_count?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariant_lessons_4" */
-export enum Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  LessonData = 'lesson_data',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug',
-  /** column name */
-  UnitvariantId = 'unitvariant_id',
-  /** column name */
-  UvLessonsCount = 'uv_lessons_count'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_stddev_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_stddev_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_stddev_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariant_lessons_4" */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariant_Lessons_4_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  lesson_data?: InputMaybe<Scalars['jsonb']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-  uv_lessons_count?: InputMaybe<Scalars['bigint']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_sum_fields';
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_var_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_var_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_4_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_4_variance_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5 = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  lesson_data?: Maybe<Scalars['jsonb']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Lesson_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariant_Lessons_5>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariant_Lessons_5_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_avg_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariant_lessons_5". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  lesson_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-  uv_lessons_count?: InputMaybe<Bigint_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariant_lessons_5". */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  lesson_data?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-  uv_lessons_count?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariant_lessons_5" */
-export enum Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  LessonData = 'lesson_data',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug',
-  /** column name */
-  UnitvariantId = 'unitvariant_id',
-  /** column name */
-  UvLessonsCount = 'uv_lessons_count'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_stddev_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_stddev_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_stddev_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariant_lessons_5" */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariant_Lessons_5_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  lesson_data?: InputMaybe<Scalars['jsonb']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-  uv_lessons_count?: InputMaybe<Scalars['bigint']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_sum_fields';
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-  uv_lessons_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_var_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_var_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariant_Lessons_5_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariant_lessons_5_variance_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-  uv_lessons_count?: Maybe<Scalars['Float']['output']>;
-};
-
 /** columns and relationships of "published.view_synthetic_unitvariants_3" */
 export type Published_View_Synthetic_Unitvariants_3 = {
   __typename?: 'published_view_synthetic_unitvariants_3';
@@ -26344,454 +26296,6 @@ export type Published_View_Synthetic_Unitvariants_3_Var_Samp_Fields = {
 /** aggregate variance on columns */
 export type Published_View_Synthetic_Unitvariants_3_Variance_Fields = {
   __typename?: 'published_view_synthetic_unitvariants_3_variance_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4 = {
-  __typename?: 'published_view_synthetic_unitvariants_4';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariants_4_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariants_4_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariants_4>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariants_4_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariants_4_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariants_4_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariants_4_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariants_4_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariants_4_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariants_4_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariants_4_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariants_4_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariants_4_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariants_4_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_avg_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariants_4". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariants_4_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariants_4_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariants_4_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariants_4". */
-export type Published_View_Synthetic_Unitvariants_4_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_legacy?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariants_4" */
-export enum Published_View_Synthetic_Unitvariants_4_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug',
-  /** column name */
-  UnitvariantId = 'unitvariant_id'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariants_4_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_stddev_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariants_4_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_stddev_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariants_4_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_stddev_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariants_4" */
-export type Published_View_Synthetic_Unitvariants_4_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariants_4_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariants_4_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariants_4_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_sum_fields';
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariants_4_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_var_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariants_4_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_var_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariants_4_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_4_variance_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5 = {
-  __typename?: 'published_view_synthetic_unitvariants_5';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariants_5_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariants_5_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariants_5>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariants_5_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariants_5_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariants_5_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariants_5_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariants_5_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariants_5_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariants_5_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariants_5_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariants_5_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariants_5_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariants_5_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_avg_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariants_5". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariants_5_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Bool_Exp>>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariants_5_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_max_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariants_5_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_min_fields';
-  base_slug?: Maybe<Scalars['String']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariants_5". */
-export type Published_View_Synthetic_Unitvariants_5_Order_By = {
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_legacy?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariants_5" */
-export enum Published_View_Synthetic_Unitvariants_5_Select_Column {
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug',
-  /** column name */
-  UnitvariantId = 'unitvariant_id'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariants_5_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_stddev_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariants_5_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_stddev_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariants_5_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_stddev_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariants_5" */
-export type Published_View_Synthetic_Unitvariants_5_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariants_5_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariants_5_Stream_Cursor_Value_Input = {
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariants_5_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_sum_fields';
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariants_5_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_var_pop_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariants_5_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_var_samp_fields';
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariants_5_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_5_variance_fields';
   unitvariant_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -27014,450 +26518,6 @@ export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Var_Samp_Fie
 /** aggregate variance on columns */
 export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Variance_Fields = {
   __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_3_variance_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4 = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4';
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  lesson_ids?: Maybe<Scalars['jsonb']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Lesson_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_avg_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariants_with_lesson_ids_4". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  lesson_count?: InputMaybe<Bigint_Comparison_Exp>;
-  lesson_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_max_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_min_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariants_with_lesson_ids_4". */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Order_By = {
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  lesson_count?: InputMaybe<Order_By>;
-  lesson_ids?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-export enum Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column {
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  LessonCount = 'lesson_count',
-  /** column name */
-  LessonIds = 'lesson_ids',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_stddev_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_stddev_pop_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_stddev_samp_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariants_with_lesson_ids_4" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stream_Cursor_Value_Input = {
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  lesson_count?: InputMaybe<Scalars['bigint']['input']>;
-  lesson_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_sum_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_var_pop_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_var_samp_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_4_variance_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5 = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5';
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_published?: Maybe<Scalars['Boolean']['output']>;
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  lesson_ids?: Maybe<Scalars['jsonb']['output']>;
-  null_unitvariant?: Maybe<Scalars['jsonb']['output']>;
-  programme_ids?: Maybe<Scalars['jsonb']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Lesson_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Null_UnitvariantArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Programme_IdsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_aggregate';
-  aggregate?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate_Fields>;
-  nodes: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5>;
-};
-
-/** aggregate fields of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_aggregate_fields';
-  avg?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Max_Fields>;
-  min?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Min_Fields>;
-  stddev?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Avg_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_avg_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_synthetic_unitvariants_with_lesson_ids_5". All fields are combined with a logical 'AND'. */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_published?: InputMaybe<Boolean_Comparison_Exp>;
-  lesson_count?: InputMaybe<Bigint_Comparison_Exp>;
-  lesson_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  null_unitvariant?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_ids?: InputMaybe<Jsonb_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Max_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_max_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Min_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_min_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
-  unit_slug?: Maybe<Scalars['String']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_synthetic_unitvariants_with_lesson_ids_5". */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Order_By = {
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_published?: InputMaybe<Order_By>;
-  lesson_count?: InputMaybe<Order_By>;
-  lesson_ids?: InputMaybe<Order_By>;
-  null_unitvariant?: InputMaybe<Order_By>;
-  programme_ids?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  synthetic_programme_slug?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-export enum Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column {
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsPublished = 'is_published',
-  /** column name */
-  LessonCount = 'lesson_count',
-  /** column name */
-  LessonIds = 'lesson_ids',
-  /** column name */
-  NullUnitvariant = 'null_unitvariant',
-  /** column name */
-  ProgrammeIds = 'programme_ids',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  SyntheticProgrammeSlug = 'synthetic_programme_slug',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitSlug = 'unit_slug'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_stddev_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_stddev_pop_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stddev_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_stddev_samp_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_synthetic_unitvariants_with_lesson_ids_5" */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stream_Cursor_Value_Input = {
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_published?: InputMaybe<Scalars['Boolean']['input']>;
-  lesson_count?: InputMaybe<Scalars['bigint']['input']>;
-  lesson_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  null_unitvariant?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_ids?: InputMaybe<Scalars['jsonb']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Sum_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_sum_fields';
-  lesson_count?: Maybe<Scalars['bigint']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Var_Pop_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_var_pop_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Var_Samp_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_var_samp_fields';
-  lesson_count?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Variance_Fields = {
-  __typename?: 'published_view_synthetic_unitvariants_with_lesson_ids_5_variance_fields';
   lesson_count?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -27704,514 +26764,6 @@ export type Published_View_Unit_Unitvariant_Programmes_3_Var_Samp_Fields = {
 /** aggregate variance on columns */
 export type Published_View_Unit_Unitvariant_Programmes_3_Variance_Fields = {
   __typename?: 'published_view_unit_unitvariant_programmes_3_variance_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4 = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  programme_fields_p?: Maybe<Scalars['jsonb']['output']>;
-  programme_fields_uv?: Maybe<Scalars['jsonb']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unit_overrides?: Maybe<Scalars['jsonb']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Programme_Fields_PArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Programme_Fields_UvArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4Unit_OverridesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4_Aggregate = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_aggregate';
-  aggregate?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Aggregate_Fields>;
-  nodes: Array<Published_View_Unit_Unitvariant_Programmes_4>;
-};
-
-/** aggregate fields of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4_Aggregate_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_aggregate_fields';
-  avg?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Max_Fields>;
-  min?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Min_Fields>;
-  stddev?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Unit_Unitvariant_Programmes_4_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Avg_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_avg_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_unit_unitvariant_programmes_4". All fields are combined with a logical 'AND'. */
-export type Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>>;
-  _state_uv?: InputMaybe<String_Comparison_Exp>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  programme_fields_p?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_fields_uv?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_id?: InputMaybe<Int_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_id?: InputMaybe<Int_Comparison_Exp>;
-  unit_overrides?: InputMaybe<Jsonb_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Max_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_max_fields';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Min_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_min_fields';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_unit_unitvariant_programmes_4". */
-export type Published_View_Unit_Unitvariant_Programmes_4_Order_By = {
-  _state_uv?: InputMaybe<Order_By>;
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_legacy?: InputMaybe<Order_By>;
-  programme_fields_p?: InputMaybe<Order_By>;
-  programme_fields_uv?: InputMaybe<Order_By>;
-  programme_id?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_id?: InputMaybe<Order_By>;
-  unit_overrides?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_unit_unitvariant_programmes_4" */
-export enum Published_View_Unit_Unitvariant_Programmes_4_Select_Column {
-  /** column name */
-  StateUv = '_state_uv',
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  ProgrammeFieldsP = 'programme_fields_p',
-  /** column name */
-  ProgrammeFieldsUv = 'programme_fields_uv',
-  /** column name */
-  ProgrammeId = 'programme_id',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitId = 'unit_id',
-  /** column name */
-  UnitOverrides = 'unit_overrides',
-  /** column name */
-  UnitvariantId = 'unitvariant_id'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Stddev_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_stddev_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Stddev_Pop_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_stddev_pop_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Stddev_Samp_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_stddev_samp_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_unit_unitvariant_programmes_4" */
-export type Published_View_Unit_Unitvariant_Programmes_4_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Unit_Unitvariant_Programmes_4_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Unit_Unitvariant_Programmes_4_Stream_Cursor_Value_Input = {
-  _state_uv?: InputMaybe<Scalars['String']['input']>;
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  programme_fields_p?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_fields_uv?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_id?: InputMaybe<Scalars['Int']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_id?: InputMaybe<Scalars['Int']['input']>;
-  unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Sum_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_sum_fields';
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Var_Pop_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_var_pop_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Var_Samp_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_var_samp_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Unit_Unitvariant_Programmes_4_Variance_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_4_variance_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5 = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  combined_programme_fields?: Maybe<Scalars['jsonb']['output']>;
-  is_legacy?: Maybe<Scalars['Boolean']['output']>;
-  programme_fields_p?: Maybe<Scalars['jsonb']['output']>;
-  programme_fields_uv?: Maybe<Scalars['jsonb']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_data?: Maybe<Scalars['jsonb']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unit_overrides?: Maybe<Scalars['jsonb']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Combined_Programme_FieldsArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Programme_Fields_PArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Programme_Fields_UvArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Supplementary_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Unit_DataArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5Unit_OverridesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5_Aggregate = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_aggregate';
-  aggregate?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Aggregate_Fields>;
-  nodes: Array<Published_View_Unit_Unitvariant_Programmes_5>;
-};
-
-/** aggregate fields of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5_Aggregate_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_aggregate_fields';
-  avg?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Max_Fields>;
-  min?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Min_Fields>;
-  stddev?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Sum_Fields>;
-  var_pop?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Var_Samp_Fields>;
-  variance?: Maybe<Published_View_Unit_Unitvariant_Programmes_5_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Avg_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_avg_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.view_unit_unitvariant_programmes_5". All fields are combined with a logical 'AND'. */
-export type Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>>;
-  _state_uv?: InputMaybe<String_Comparison_Exp>;
-  base_slug?: InputMaybe<String_Comparison_Exp>;
-  combined_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
-  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
-  programme_fields_p?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_fields_uv?: InputMaybe<Jsonb_Comparison_Exp>;
-  programme_id?: InputMaybe<Int_Comparison_Exp>;
-  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
-  unit_id?: InputMaybe<Int_Comparison_Exp>;
-  unit_overrides?: InputMaybe<Jsonb_Comparison_Exp>;
-  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Max_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_max_fields';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Min_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_min_fields';
-  _state_uv?: Maybe<Scalars['String']['output']>;
-  base_slug?: Maybe<Scalars['String']['output']>;
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** Ordering options when selecting data from "published.view_unit_unitvariant_programmes_5". */
-export type Published_View_Unit_Unitvariant_Programmes_5_Order_By = {
-  _state_uv?: InputMaybe<Order_By>;
-  base_slug?: InputMaybe<Order_By>;
-  combined_programme_fields?: InputMaybe<Order_By>;
-  is_legacy?: InputMaybe<Order_By>;
-  programme_fields_p?: InputMaybe<Order_By>;
-  programme_fields_uv?: InputMaybe<Order_By>;
-  programme_id?: InputMaybe<Order_By>;
-  supplementary_data?: InputMaybe<Order_By>;
-  unit_data?: InputMaybe<Order_By>;
-  unit_id?: InputMaybe<Order_By>;
-  unit_overrides?: InputMaybe<Order_By>;
-  unitvariant_id?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "published.view_unit_unitvariant_programmes_5" */
-export enum Published_View_Unit_Unitvariant_Programmes_5_Select_Column {
-  /** column name */
-  StateUv = '_state_uv',
-  /** column name */
-  BaseSlug = 'base_slug',
-  /** column name */
-  CombinedProgrammeFields = 'combined_programme_fields',
-  /** column name */
-  IsLegacy = 'is_legacy',
-  /** column name */
-  ProgrammeFieldsP = 'programme_fields_p',
-  /** column name */
-  ProgrammeFieldsUv = 'programme_fields_uv',
-  /** column name */
-  ProgrammeId = 'programme_id',
-  /** column name */
-  SupplementaryData = 'supplementary_data',
-  /** column name */
-  UnitData = 'unit_data',
-  /** column name */
-  UnitId = 'unit_id',
-  /** column name */
-  UnitOverrides = 'unit_overrides',
-  /** column name */
-  UnitvariantId = 'unitvariant_id'
-}
-
-/** aggregate stddev on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Stddev_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_stddev_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Stddev_Pop_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_stddev_pop_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Stddev_Samp_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_stddev_samp_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_view_unit_unitvariant_programmes_5" */
-export type Published_View_Unit_Unitvariant_Programmes_5_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_View_Unit_Unitvariant_Programmes_5_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_View_Unit_Unitvariant_Programmes_5_Stream_Cursor_Value_Input = {
-  _state_uv?: InputMaybe<Scalars['String']['input']>;
-  base_slug?: InputMaybe<Scalars['String']['input']>;
-  combined_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
-  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
-  programme_fields_p?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_fields_uv?: InputMaybe<Scalars['jsonb']['input']>;
-  programme_id?: InputMaybe<Scalars['Int']['input']>;
-  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
-  unit_id?: InputMaybe<Scalars['Int']['input']>;
-  unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
-  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Sum_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_sum_fields';
-  programme_id?: Maybe<Scalars['Int']['output']>;
-  unit_id?: Maybe<Scalars['Int']['output']>;
-  unitvariant_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** aggregate var_pop on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Var_Pop_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_var_pop_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Var_Samp_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_var_samp_fields';
-  programme_id?: Maybe<Scalars['Float']['output']>;
-  unit_id?: Maybe<Scalars['Float']['output']>;
-  unitvariant_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_View_Unit_Unitvariant_Programmes_5_Variance_Fields = {
-  __typename?: 'published_view_unit_unitvariant_programmes_5_variance_fields';
   programme_id?: Maybe<Scalars['Float']['output']>;
   unit_id?: Maybe<Scalars['Float']['output']>;
   unitvariant_id?: Maybe<Scalars['Float']['output']>;
@@ -29097,6 +27649,14 @@ export type Query_Root = {
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate;
   /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0" */
@@ -29121,62 +27681,22 @@ export type Query_Root = {
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3_aggregate: Published_View_Synthetic_Programmes_3_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_programmes_4" */
-  published_view_synthetic_programmes_4: Array<Published_View_Synthetic_Programmes_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_4" */
-  published_view_synthetic_programmes_4_aggregate: Published_View_Synthetic_Programmes_4_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_programmes_5" */
-  published_view_synthetic_programmes_5: Array<Published_View_Synthetic_Programmes_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_5" */
-  published_view_synthetic_programmes_5_aggregate: Published_View_Synthetic_Programmes_5_Aggregate;
   /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3: Array<Published_View_Synthetic_Unitvariant_Lessons_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3_aggregate: Published_View_Synthetic_Unitvariant_Lessons_3_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_4" */
-  published_view_synthetic_unitvariant_lessons_4: Array<Published_View_Synthetic_Unitvariant_Lessons_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_4" */
-  published_view_synthetic_unitvariant_lessons_4_aggregate: Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_5" */
-  published_view_synthetic_unitvariant_lessons_5: Array<Published_View_Synthetic_Unitvariant_Lessons_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_5" */
-  published_view_synthetic_unitvariant_lessons_5_aggregate: Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate;
   /** fetch data from the table: "published.view_synthetic_unitvariants_3" */
   published_view_synthetic_unitvariants_3: Array<Published_View_Synthetic_Unitvariants_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_3" */
   published_view_synthetic_unitvariants_3_aggregate: Published_View_Synthetic_Unitvariants_3_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_4" */
-  published_view_synthetic_unitvariants_4: Array<Published_View_Synthetic_Unitvariants_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_4" */
-  published_view_synthetic_unitvariants_4_aggregate: Published_View_Synthetic_Unitvariants_4_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_5" */
-  published_view_synthetic_unitvariants_5: Array<Published_View_Synthetic_Unitvariants_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_5" */
-  published_view_synthetic_unitvariants_5_aggregate: Published_View_Synthetic_Unitvariants_5_Aggregate;
   /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_3" */
   published_view_synthetic_unitvariants_with_lesson_ids_3: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_3" */
   published_view_synthetic_unitvariants_with_lesson_ids_3_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-  published_view_synthetic_unitvariants_with_lesson_ids_4: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-  published_view_synthetic_unitvariants_with_lesson_ids_4_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-  published_view_synthetic_unitvariants_with_lesson_ids_5: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-  published_view_synthetic_unitvariants_with_lesson_ids_5_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate;
   /** fetch data from the table: "published.view_unit_unitvariant_programmes_3" */
   published_view_unit_unitvariant_programmes_3: Array<Published_View_Unit_Unitvariant_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_3" */
   published_view_unit_unitvariant_programmes_3_aggregate: Published_View_Unit_Unitvariant_Programmes_3_Aggregate;
-  /** fetch data from the table: "published.view_unit_unitvariant_programmes_4" */
-  published_view_unit_unitvariant_programmes_4: Array<Published_View_Unit_Unitvariant_Programmes_4>;
-  /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_4" */
-  published_view_unit_unitvariant_programmes_4_aggregate: Published_View_Unit_Unitvariant_Programmes_4_Aggregate;
-  /** fetch data from the table: "published.view_unit_unitvariant_programmes_5" */
-  published_view_unit_unitvariant_programmes_5: Array<Published_View_Unit_Unitvariant_Programmes_5>;
-  /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_5" */
-  published_view_unit_unitvariant_programmes_5_aggregate: Published_View_Unit_Unitvariant_Programmes_5_Aggregate;
   /** fetch data from the table: "published.viewmanager" */
   published_viewmanager: Array<Published_Viewmanager>;
   /** fetch aggregated fields from the table: "published.viewmanager" */
@@ -30500,6 +29020,42 @@ export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Yea
 };
 
 
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30608,42 +29164,6 @@ export type Query_RootPublished_View_Synthetic_Programmes_3_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_View_Synthetic_Programmes_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Programmes_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Programmes_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Programmes_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30659,42 +29179,6 @@ export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_3_AggregateAr
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_3_Order_By>>;
   where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_3_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariant_Lessons_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
 };
 
 
@@ -30716,42 +29200,6 @@ export type Query_RootPublished_View_Synthetic_Unitvariants_3_AggregateArgs = {
 };
 
 
-export type Query_RootPublished_View_Synthetic_Unitvariants_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30770,42 +29218,6 @@ export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Ag
 };
 
 
-export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-};
-
-
 export type Query_RootPublished_View_Unit_Unitvariant_Programmes_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -30821,42 +29233,6 @@ export type Query_RootPublished_View_Unit_Unitvariant_Programmes_3_AggregateArgs
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_3_Order_By>>;
   where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_3_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Unit_Unitvariant_Programmes_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Unit_Unitvariant_Programmes_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Unit_Unitvariant_Programmes_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_View_Unit_Unitvariant_Programmes_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
 };
 
 
@@ -32052,7 +30428,7 @@ export type Quiz_Questions_Bool_Exp = {
 
 /** unique or primary key constraints on table "quiz_questions" */
 export enum Quiz_Questions_Constraint {
-  /** unique or primary key constraint on columns "question_id", "quiz_id", "_state" */
+  /** unique or primary key constraint on columns "quiz_id", "question_id", "_state" */
   QuizQuestionsPkey = 'quiz_questions_pkey'
 }
 
@@ -33436,6 +31812,18 @@ export type Subscription_Root = {
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_0_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_0>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_1_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1>;
+  /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_aggregate: Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2" */
+  published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2_stream: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2>;
   /** fetch data from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0" */
   published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0: Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0" */
@@ -33472,90 +31860,30 @@ export type Subscription_Root = {
   published_view_synthetic_programmes_3_aggregate: Published_View_Synthetic_Programmes_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3_stream: Array<Published_View_Synthetic_Programmes_3>;
-  /** fetch data from the table: "published.view_synthetic_programmes_4" */
-  published_view_synthetic_programmes_4: Array<Published_View_Synthetic_Programmes_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_4" */
-  published_view_synthetic_programmes_4_aggregate: Published_View_Synthetic_Programmes_4_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_programmes_4" */
-  published_view_synthetic_programmes_4_stream: Array<Published_View_Synthetic_Programmes_4>;
-  /** fetch data from the table: "published.view_synthetic_programmes_5" */
-  published_view_synthetic_programmes_5: Array<Published_View_Synthetic_Programmes_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_5" */
-  published_view_synthetic_programmes_5_aggregate: Published_View_Synthetic_Programmes_5_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_programmes_5" */
-  published_view_synthetic_programmes_5_stream: Array<Published_View_Synthetic_Programmes_5>;
   /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3: Array<Published_View_Synthetic_Unitvariant_Lessons_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3_aggregate: Published_View_Synthetic_Unitvariant_Lessons_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3_stream: Array<Published_View_Synthetic_Unitvariant_Lessons_3>;
-  /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_4" */
-  published_view_synthetic_unitvariant_lessons_4: Array<Published_View_Synthetic_Unitvariant_Lessons_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_4" */
-  published_view_synthetic_unitvariant_lessons_4_aggregate: Published_View_Synthetic_Unitvariant_Lessons_4_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariant_lessons_4" */
-  published_view_synthetic_unitvariant_lessons_4_stream: Array<Published_View_Synthetic_Unitvariant_Lessons_4>;
-  /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_5" */
-  published_view_synthetic_unitvariant_lessons_5: Array<Published_View_Synthetic_Unitvariant_Lessons_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_5" */
-  published_view_synthetic_unitvariant_lessons_5_aggregate: Published_View_Synthetic_Unitvariant_Lessons_5_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariant_lessons_5" */
-  published_view_synthetic_unitvariant_lessons_5_stream: Array<Published_View_Synthetic_Unitvariant_Lessons_5>;
   /** fetch data from the table: "published.view_synthetic_unitvariants_3" */
   published_view_synthetic_unitvariants_3: Array<Published_View_Synthetic_Unitvariants_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_3" */
   published_view_synthetic_unitvariants_3_aggregate: Published_View_Synthetic_Unitvariants_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_3" */
   published_view_synthetic_unitvariants_3_stream: Array<Published_View_Synthetic_Unitvariants_3>;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_4" */
-  published_view_synthetic_unitvariants_4: Array<Published_View_Synthetic_Unitvariants_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_4" */
-  published_view_synthetic_unitvariants_4_aggregate: Published_View_Synthetic_Unitvariants_4_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_4" */
-  published_view_synthetic_unitvariants_4_stream: Array<Published_View_Synthetic_Unitvariants_4>;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_5" */
-  published_view_synthetic_unitvariants_5: Array<Published_View_Synthetic_Unitvariants_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_5" */
-  published_view_synthetic_unitvariants_5_aggregate: Published_View_Synthetic_Unitvariants_5_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_5" */
-  published_view_synthetic_unitvariants_5_stream: Array<Published_View_Synthetic_Unitvariants_5>;
   /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_3" */
   published_view_synthetic_unitvariants_with_lesson_ids_3: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_3" */
   published_view_synthetic_unitvariants_with_lesson_ids_3_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_with_lesson_ids_3" */
   published_view_synthetic_unitvariants_with_lesson_ids_3_stream: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3>;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-  published_view_synthetic_unitvariants_with_lesson_ids_4: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-  published_view_synthetic_unitvariants_with_lesson_ids_4_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_with_lesson_ids_4" */
-  published_view_synthetic_unitvariants_with_lesson_ids_4_stream: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4>;
-  /** fetch data from the table: "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-  published_view_synthetic_unitvariants_with_lesson_ids_5: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5>;
-  /** fetch aggregated fields from the table: "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-  published_view_synthetic_unitvariants_with_lesson_ids_5_aggregate: Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_synthetic_unitvariants_with_lesson_ids_5" */
-  published_view_synthetic_unitvariants_with_lesson_ids_5_stream: Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5>;
   /** fetch data from the table: "published.view_unit_unitvariant_programmes_3" */
   published_view_unit_unitvariant_programmes_3: Array<Published_View_Unit_Unitvariant_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_3" */
   published_view_unit_unitvariant_programmes_3_aggregate: Published_View_Unit_Unitvariant_Programmes_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_unit_unitvariant_programmes_3" */
   published_view_unit_unitvariant_programmes_3_stream: Array<Published_View_Unit_Unitvariant_Programmes_3>;
-  /** fetch data from the table: "published.view_unit_unitvariant_programmes_4" */
-  published_view_unit_unitvariant_programmes_4: Array<Published_View_Unit_Unitvariant_Programmes_4>;
-  /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_4" */
-  published_view_unit_unitvariant_programmes_4_aggregate: Published_View_Unit_Unitvariant_Programmes_4_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_unit_unitvariant_programmes_4" */
-  published_view_unit_unitvariant_programmes_4_stream: Array<Published_View_Unit_Unitvariant_Programmes_4>;
-  /** fetch data from the table: "published.view_unit_unitvariant_programmes_5" */
-  published_view_unit_unitvariant_programmes_5: Array<Published_View_Unit_Unitvariant_Programmes_5>;
-  /** fetch aggregated fields from the table: "published.view_unit_unitvariant_programmes_5" */
-  published_view_unit_unitvariant_programmes_5_aggregate: Published_View_Unit_Unitvariant_Programmes_5_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_unit_unitvariant_programmes_5" */
-  published_view_unit_unitvariant_programmes_5_stream: Array<Published_View_Unit_Unitvariant_Programmes_5>;
   /** fetch data from the table: "published.viewmanager" */
   published_viewmanager: Array<Published_Viewmanager>;
   /** fetch aggregated fields from the table: "published.viewmanager" */
@@ -35336,6 +33664,56 @@ export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids
 };
 
 
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_9_0_2_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Year_10_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35486,56 +33864,6 @@ export type Subscription_RootPublished_View_Synthetic_Programmes_3_StreamArgs = 
 };
 
 
-export type Subscription_RootPublished_View_Synthetic_Programmes_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Programmes_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Programmes_4_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Programmes_4_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Programmes_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Programmes_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Programmes_5_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Programmes_5_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Programmes_5_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35558,56 +33886,6 @@ export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_3_Stre
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_3_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_4_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariant_Lessons_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariant_Lessons_5_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariant_Lessons_5_Bool_Exp>;
 };
 
 
@@ -35636,56 +33914,6 @@ export type Subscription_RootPublished_View_Synthetic_Unitvariants_3_StreamArgs 
 };
 
 
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_4_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariants_4_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_5_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariants_5_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_5_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35711,56 +33939,6 @@ export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_I
 };
 
 
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_4_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Order_By>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Synthetic_Unitvariants_With_Lesson_Ids_5_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Synthetic_Unitvariants_With_Lesson_Ids_5_Bool_Exp>;
-};
-
-
 export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -35783,56 +33961,6 @@ export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_3_Stream
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Unit_Unitvariant_Programmes_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_3_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_4Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_4_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_4_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_4_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_4_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_5Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_5_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Unit_Unitvariant_Programmes_5_Order_By>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_View_Unit_Unitvariant_Programmes_5_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Unit_Unitvariant_Programmes_5_Bool_Exp>;
 };
 
 
@@ -37029,7 +35157,7 @@ export type Thirdpartycontent_Bool_Exp = {
 
 /** unique or primary key constraints on table "thirdpartycontent" */
 export enum Thirdpartycontent_Constraint {
-  /** unique or primary key constraint on columns "thirdpartycontent_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "thirdpartycontent_id" */
   ThirdpartycontentPkey = 'thirdpartycontent_pkey'
 }
 
@@ -37790,7 +35918,7 @@ export type Thread_Units_Bool_Exp = {
 
 /** unique or primary key constraints on table "thread_units" */
 export enum Thread_Units_Constraint {
-  /** unique or primary key constraint on columns "unit_id", "_state", "thread_id" */
+  /** unique or primary key constraint on columns "unit_id", "thread_id", "_state" */
   ThreadUnitsPkey = 'thread_units_pkey'
 }
 
@@ -38443,7 +36571,7 @@ export type Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "threads" */
 export enum Threads_Constraint {
-  /** unique or primary key constraint on columns "_state", "thread_id" */
+  /** unique or primary key constraint on columns "thread_id", "_state" */
   ThreadsPkey = 'threads_pkey'
 }
 
@@ -39015,7 +37143,7 @@ export type Tpc_Media_Bool_Exp = {
 
 /** unique or primary key constraints on table "tpc_media" */
 export enum Tpc_Media_Constraint {
-  /** unique or primary key constraint on columns "media_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "media_id" */
   TpcMediaPkey = 'tpc_media_pkey'
 }
 
@@ -39990,6 +38118,8 @@ export type Units_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
+  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -40035,6 +38165,8 @@ export type Units_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
+  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
+  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -41377,7 +39509,7 @@ export type Unitvariants_Bool_Exp = {
 export enum Unitvariants_Constraint {
   /** unique or primary key constraint on columns "unitvariant_id", "_state" */
   UnitvariantsPkey = 'unitvariants_pkey',
-  /** unique or primary key constraint on columns "unit_id", "programme_fields", "_state" */
+  /** unique or primary key constraint on columns "programme_fields", "unit_id", "_state" */
   UnitvariantsUnitIdProgrammeFieldsStateKey = 'unitvariants_unit_id_programme_fields__state_key'
 }
 
@@ -41995,7 +40127,7 @@ export type Videocaptions_Bool_Exp = {
 
 /** unique or primary key constraints on table "videocaptions" */
 export enum Videocaptions_Constraint {
-  /** unique or primary key constraint on columns "caption_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "caption_id" */
   VideocaptionsPkey = 'videocaptions_pkey'
 }
 
@@ -42593,7 +40725,7 @@ export type Videos_Bool_Exp = {
 
 /** unique or primary key constraints on table "videos" */
 export enum Videos_Constraint {
-  /** unique or primary key constraint on columns "video_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "video_id" */
   VideosPkey = 'videos_pkey'
 }
 
@@ -43167,7 +41299,7 @@ export type PupilUnitListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0', base_slug?: string | null, programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null }> };
+export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2', base_slug?: string | null, programme_slug?: string | null, unit_slug?: string | null, is_legacy?: boolean | null, programme_fields?: any | null, unit_data?: any | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null }> };
 
 export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -43584,7 +41716,7 @@ export const PupilSubjectListingDocument = gql`
     `;
 export const PupilUnitListingDocument = gql`
     query pupilUnitListing($baseSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0(
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_9_0_2(
     where: {base_slug: {_eq: $baseSlug}}
   ) {
     base_slug

@@ -1,19 +1,12 @@
 import { Story } from "@storybook/react";
-import { useState } from "react";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
-import noop from "../__tests__/__helpers__/noop";
-
-import { cookieConsentContext } from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 export default function CookieConsentDecorator(Story: Story) {
-  const [state] = useState({
-    showConsentManager: noop,
-    getConsentState: () => "denied",
-  });
-
   return (
-    <cookieConsentContext.Provider value={state}>
+    <CookieConsentProvider client={new MockOakConsentClient()}>
       <Story />
-    </cookieConsentContext.Provider>
+    </CookieConsentProvider>
   );
 }

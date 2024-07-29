@@ -7,6 +7,8 @@ interface GetSecondUnitSectionArgs {
   programmeSlug: string;
   baseSlug: string;
   tierSlug: string | null;
+  subjectSlug: string;
+  yearSlug: string;
   phase: "primary" | "secondary";
   unitsByProgramme: Record<string, UnitListingBrowseData[number][]>;
   breadcrumbs: string[];
@@ -16,6 +18,8 @@ export function getSecondUnitSection({
   programmeSlug,
   baseSlug,
   tierSlug,
+  subjectSlug,
+  yearSlug,
   phase,
   unitsByProgramme,
   breadcrumbs,
@@ -23,6 +27,12 @@ export function getSecondUnitSection({
   // Determine if the desired programme is a legacy programme
   const isLegacy = programmeSlug.endsWith("-l");
   const result: Partial<UnitsSectionData> = {};
+  const capitalise = (word: string) =>
+    word.charAt(0).toUpperCase() + word.slice(1);
+  result.labels = {
+    year: capitalise(yearSlug.replace("-", " ")),
+    subject: capitalise(subjectSlug),
+  };
   if (isLegacy) {
     // Check for "new" programmes that could be displayed
     result.units = Object.values(
@@ -31,7 +41,7 @@ export function getSecondUnitSection({
         (unit) => unit.unitData.title,
       ),
     );
-    result.counterText = "Choose a new unit";
+    result.counterText = "Choose a unit";
     result.counterLength = result.units.length;
   } else {
     // Check for "legacy" programmes that could be displayed
@@ -43,6 +53,9 @@ export function getSecondUnitSection({
           (unit) => unit.unitData.title,
         ),
       );
+      if (result.units.length > 0) {
+        result.labels.tier = capitalise(tierSlug);
+      }
     }
     // If no tier slug is found, display all legacy units
     if (!result.units || result.units.length === 0) {
@@ -53,7 +66,7 @@ export function getSecondUnitSection({
         ),
       );
     }
-    result.counterText = "Choose a legacy unit";
+    result.counterText = "Choose a previously released unit";
     result.counterLength = result.units.length;
   }
   return {
@@ -61,6 +74,7 @@ export function getSecondUnitSection({
     phase: phase,
     counterText: result.counterText,
     counterLength: result.counterLength,
+    labels: result.labels,
     title: null,
     breadcrumbs,
   };

@@ -2,13 +2,14 @@ import Bugsnag from "@bugsnag/js";
 import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import ErrorBoundary from ".";
 
 import noop from "@/__tests__/__helpers__/noop";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import theme from "@/styles/theme";
-import MockedCookieConsentProvider from "@/__tests__/__helpers__/MockedCookieConsentProvider";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
@@ -31,28 +32,22 @@ const TantrumChild = () => {
 };
 
 const WithStatisticsConsent: FC = (props) => {
+  const client = new MockOakConsentClient();
+  client.getConsent = () => "granted";
+
   return (
     <ThemeProvider theme={theme}>
-      <MockedCookieConsentProvider
-        {...props}
-        value={{
-          showConsentManager: jest.fn(),
-          getConsentState: () => "granted",
-        }}
-      />
+      <CookieConsentProvider client={client} {...props} />
     </ThemeProvider>
   );
 };
 const WithoutStatisticsConsent: FC = (props) => {
+  const client = new MockOakConsentClient();
+  client.getConsent = () => "denied";
+
   return (
     <ThemeProvider theme={theme}>
-      <MockedCookieConsentProvider
-        {...props}
-        value={{
-          showConsentManager: jest.fn(),
-          getConsentState: () => "denied",
-        }}
-      />
+      <CookieConsentProvider client={client} {...props} />
     </ThemeProvider>
   );
 };
