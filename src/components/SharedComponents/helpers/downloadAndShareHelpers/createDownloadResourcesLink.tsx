@@ -1,9 +1,6 @@
 import { z } from "zod";
 
 import OakError from "@/errors/OakError";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-
-const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
  * Expected response schema
@@ -27,14 +24,17 @@ const createDownloadResourcesLink = async (
   selection: string,
   isLegacyDownload: boolean,
 ) => {
-  const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
+  const url = new URL(window.location.href);
+  url.pathname = "/api/download/";
+  url.searchParams.append("lessonSlug", lessonSlug);
+  url.searchParams.append("selection", selection);
 
   const meta = {
     lessonSlug,
     selection,
     isLegacyDownload,
   };
-  const res = await fetch(downloadEnpoint);
+  const res = await fetch(url.toString());
 
   if (!res.ok) {
     throw new OakError({
