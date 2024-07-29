@@ -14,7 +14,7 @@ import {
   xmlRootToJson,
 } from "./xml";
 
-function generateHash(buffer: Buffer | string) {
+export function generateHash(buffer: Buffer | string) {
   const hash = createHash("SHA-256");
   hash.setEncoding("hex");
   hash.write(buffer);

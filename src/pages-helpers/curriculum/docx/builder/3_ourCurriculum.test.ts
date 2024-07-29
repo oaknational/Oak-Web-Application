@@ -1,13 +1,13 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./3_ourCurriculum";
+import { zipToSnapshotObject } from "./helper";
 
 describe("3_ourCurriculum", () => {
   it("simple", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip);
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

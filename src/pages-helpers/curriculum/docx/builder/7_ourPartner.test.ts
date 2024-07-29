@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./7_ourPartner";
+import { zipToSnapshotObject } from "./helper";
 
 import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
@@ -25,7 +25,7 @@ describe("7_ourPartner", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 
   it("without partner image", async () => {
@@ -37,6 +37,6 @@ describe("7_ourPartner", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

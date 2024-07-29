@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./12_pageLayout";
+import { zipToSnapshotObject } from "./helper";
 
 describe("12_pageLayout", () => {
   it("section", async () => {
@@ -17,7 +17,7 @@ describe("12_pageLayout", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 
   it("isLast", async () => {
@@ -34,6 +34,6 @@ describe("12_pageLayout", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

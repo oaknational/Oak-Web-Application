@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./4_threadsExplainer";
+import { zipToSnapshotObject } from "./helper";
 
 describe("4_threadsExplainer", () => {
   it("simple", async () => {
@@ -13,6 +13,6 @@ describe("4_threadsExplainer", () => {
       },
     });
 
-    expect(zipToSimpleObject(zip.getJsZip())).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });
