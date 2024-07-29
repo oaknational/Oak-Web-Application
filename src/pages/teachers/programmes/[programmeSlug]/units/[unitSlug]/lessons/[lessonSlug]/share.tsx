@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps<
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "downloads::getStaticProps",
+    page: "share::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
