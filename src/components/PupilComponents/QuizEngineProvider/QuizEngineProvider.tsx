@@ -7,9 +7,6 @@ import React, {
   useState,
 } from "react";
 
-import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
-import { invariant } from "../pupilUtils/invariant";
-
 import type {
   QuizQuestion,
   MCAnswer,
@@ -19,6 +16,17 @@ import {
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getInteractiveQuestions } from "@/components/PupilComponents/QuizUtils/questionUtils";
+import type {
+  QuestionFeedbackType,
+  QuestionModeType,
+  QuestionState,
+} from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import {
+  isMatchAnswer,
+  isOrderAnswer,
+} from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 
 export type QuestionsArray = NonNullable<QuizQuestion[]>;
 
@@ -27,26 +35,11 @@ export type QuizEngineProps = {
   questionsArray: QuestionsArray;
 };
 
-export type QuestionFeedbackType = "correct" | "incorrect" | null;
-export type QuestionModeType =
-  | "init"
-  | "incomplete"
-  | "input"
-  | "grading"
-  | "feedback";
-
-type QuestionState = {
-  mode: QuestionModeType;
-  grade: number;
-  offerHint: boolean;
-  feedback?: QuestionFeedbackType | QuestionFeedbackType[];
-  isPartiallyCorrect?: boolean;
-};
-
 export type QuizEngineContextType = {
   currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
   currentQuestionDisplayIndex: number; // this excludes explanatory-text questions
+  currentQuestionState?: QuestionState;
   questionState: QuestionState[];
   score: number;
   numQuestions: number;
@@ -78,12 +71,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestionData = questionsArray[currentQuestionIndex];
+
   const [questionState, setQuestionState] = useState<QuestionState[]>(
     questionsArray.map(() => ({
       mode: "init",
       offerHint: false,
       grade: 0,
-      feedback: undefined,
     })),
   );
 
@@ -103,9 +96,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           ...currentState[currentQuestionIndex],
           ...incomingQuestionState,
         };
+
         updateSectionResult({
           grade: newState.reduce((pv, v) => pv + v.grade, 0),
           numQuestions: numInteractiveQuestions,
+          questionResults: newState,
         });
         return newState;
       });
@@ -131,6 +126,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         ? pupilAnswer
         : [pupilAnswer];
 
+      const pupilAnswerIndexes = pupilAnswerArray.map((answer) => {
+        return questionAnswers?.findIndex(
+          (questionAnswer) => questionAnswer === answer,
+        );
+      });
+
       const feedback = questionAnswers?.map((answer) => {
         // every answer receives feedback whether the student has selected it or not
         // which are the correct choices are implied by the combination of whether it is selected and the feedback
@@ -154,11 +155,18 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           )) ??
         false;
 
+      const correctAnswerText = correctAnswers
+        ?.map((answer) => answer.answer?.find(isText))
+        .map((answer) => answer?.text)
+        .filter((answer) => answer !== undefined);
+
       updateCurrentQuestion({
         mode: "feedback",
         grade,
         feedback,
         isPartiallyCorrect,
+        pupilAnswer: pupilAnswerIndexes,
+        correctAnswer: correctAnswerText,
       });
     },
     [currentQuestionData?.answers, updateCurrentQuestion],
@@ -182,6 +190,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         mode: "feedback",
         grade,
         feedback,
+        pupilAnswer,
+        correctAnswer: correctAnswers,
       });
     },
     [currentQuestionData?.answers, updateCurrentQuestion],
@@ -202,6 +212,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       );
 
       const correctAnswers = answers.order.map((answer) => answer.correctOrder);
+
+      const sortedAnswers = [...answers.order]
+        .sort((a, b) => (a.correctOrder ?? 0) - (b.correctOrder ?? 0))
+        .map((answer) => answer.answer?.[0]?.text)
+        .filter((answer) => answer !== undefined);
+
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
         (pupilAnswer, i) =>
           correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
@@ -215,6 +231,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         grade: isCorrect ? 1 : 0,
         feedback,
         isPartiallyCorrect,
+        pupilAnswer: pupilAnswers,
+        correctAnswer: sortedAnswers,
       });
     },
     [currentQuestionData?.answers, updateCurrentQuestion],
@@ -236,14 +254,27 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       const isPartiallyCorrect =
         !isCorrect && feedback.some((feedback) => feedback === "correct");
 
+      const answers = currentQuestionData?.answers;
+
+      invariant(
+        answers && isMatchAnswer(answers),
+        "answers are not for a match question",
+      );
+
+      const correctAnswers = matches
+        .map((m) => answers["match"][Number(m)]?.correctChoice)
+        .map((answer) => answer?.find(isText)?.text ?? "");
+
       updateCurrentQuestion({
         mode: "feedback",
         grade: isCorrect ? 1 : 0,
         feedback,
         isPartiallyCorrect,
+        pupilAnswer: choices,
+        correctAnswer: correctAnswers,
       });
     },
-    [updateCurrentQuestion],
+    [currentQuestionData?.answers, updateCurrentQuestion],
   );
 
   const handleNextQuestion = useCallback(() => {
@@ -268,6 +299,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         currentQuestionData,
         currentQuestionIndex,
         currentQuestionDisplayIndex,
+        currentQuestionState: questionState[currentQuestionIndex],
         questionState,
         score,
         numQuestions,

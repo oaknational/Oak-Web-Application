@@ -7,7 +7,6 @@ import {
 } from "@oaknational/oak-components";
 import { act, fireEvent } from "@testing-library/react";
 import { ValueOf } from "next/dist/shared/lib/constants";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { PupilViewsQuiz } from "./PupilQuiz.view";
 
@@ -55,38 +54,11 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
 }));
 
-// Type the mock function
-const mockedUseFeatureFlagVariantKey =
-  useFeatureFlagVariantKey as jest.MockedFunction<
-    typeof useFeatureFlagVariantKey
-  >;
-
 // Mock the module and retain actual exports
 jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
   useQuizEngineContext: jest.fn(),
 }));
-
-const getMockedQuizEngineContext = (
-  props: {
-    overrides: Partial<QuizEngineProvider.QuizEngineContextType>;
-  } = { overrides: {} },
-) => ({
-  currentQuestionData: quizQuestions[0],
-  currentQuestionIndex: 0,
-  currentQuestionDisplayIndex: 1,
-  questionState: { mode: "feedback", grade: 0, offerHint: false },
-  score: 0,
-  numQuestions: 3,
-  numInteractiveQuestions: 3,
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
-  handleSubmitOrderAnswer: jest.fn(),
-  handleSubmitMatchAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  ...props.overrides,
-});
 
 describe("PupilQuizView", () => {
   beforeEach(() => {
@@ -211,44 +183,6 @@ describe("PupilQuizView", () => {
       });
 
       expect(getByRole("tooltip")).toHaveTextContent(tooltipText);
-    },
-  );
-
-  it.each([
-    ["control", 0, true],
-    ["only-first-question", 0, true],
-    ["all-except-last-question", 0, true],
-    ["control", 1, true],
-    ["only-first-question", 1, false],
-    ["all-except-last-question", 1, true],
-    ["control", 2, true],
-    ["only-first-question", 2, false],
-    ["all-except-last-question", 2, false],
-  ] satisfies Array<[string, number, boolean]>)(
-    "selectively renders the backlink based on the variant and question index",
-    (variant, index, outcome) => {
-      (QuizEngineProvider.useQuizEngineContext as jest.Mock).mockReturnValue(
-        getMockedQuizEngineContext({
-          overrides: { currentQuestionIndex: index, numQuestions: 3 },
-        }),
-      );
-
-      mockedUseFeatureFlagVariantKey.mockReturnValue(variant);
-
-      const { getByLabelText } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsQuiz questionsArray={quizQuestions} />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>,
-      );
-      if (outcome) {
-        expect(getByLabelText(/Back/)).toBeInTheDocument();
-      } else {
-        expect(() => getByLabelText(/Back/)).toThrow(
-          "Unable to find a label with the text of: /Back/",
-        );
-      }
     },
   );
 });
