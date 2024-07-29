@@ -97,6 +97,22 @@ export const subjectListingFixture2023 = (
         unitCount: 4,
         programmeCount: 2,
       },
+      {
+        subjectSlug: "chemistry",
+        subjectTitle: "Chemistry",
+        programmeSlug: "chemistry-secondary-ks4-l",
+        lessonCount: 5,
+        unitCount: 2,
+        programmeCount: 1,
+      },
+      {
+        subjectSlug: "music",
+        subjectTitle: "Music",
+        programmeSlug: "music-secondary-ks4-l",
+        lessonCount: 23,
+        unitCount: 4,
+        programmeCount: 1,
+      },
     ],
     ...partial,
   };
