@@ -151,63 +151,65 @@ export const getStaticProps: GetStaticProps<
           : foundSubject;
       };
 
-      // We are trialling combining the maths subjects from the legacy and new curriculums in ks1-4
-      const getMaths = () => {
-        const newMaths = curriculumData.subjects.find(
-          (subject) => subject.subjectSlug === "maths",
+      const getLegacySubject = (subjectSlug: string) => {
+        return curriculumDataLegacy.subjects.find(
+          (subject) => subject.subjectSlug === subjectSlug,
         );
-        const legacyMaths = curriculumDataLegacy.subjects.find(
-          (subject) => subject.subjectSlug === "maths",
-        );
+      };
 
-        if (!newMaths || !legacyMaths) {
+      const getNewSubject = (subjectSlug: string) => {
+        return curriculumData.subjects.find(
+          (subject) => subject.subjectSlug === subjectSlug,
+        );
+      };
+
+      const getCombinedSubjects = (subjectSlug: string) => {
+        const newSubject = getNewSubject(subjectSlug);
+        const legacySubject = getLegacySubject(subjectSlug);
+
+        if (!newSubject && !legacySubject) {
           return {
             notFound: true,
           };
         }
 
         const programmeCount = Math.max(
-          newMaths.programmeCount,
-          legacyMaths.programmeCount,
+          newSubject?.programmeCount ?? 0,
+          legacySubject?.programmeCount ?? 0,
         );
         const unitCount = isEyfs
-          ? legacyMaths.unitCount
-          : newMaths.unitCount + legacyMaths.unitCount;
+          ? legacySubject!.unitCount
+          : (newSubject?.unitCount ?? 0) + (legacySubject?.unitCount ?? 0);
         const lessonCount = isEyfs
-          ? legacyMaths.lessonCount
-          : newMaths.lessonCount + legacyMaths.lessonCount;
+          ? legacySubject!.lessonCount
+          : (newSubject?.lessonCount ?? 0) + (legacySubject?.lessonCount ?? 0);
 
-        const combinedMaths: KeyStageSubjectData = {
-          programmeSlug: newMaths.programmeSlug,
+        const combinedSubject: KeyStageSubjectData = {
+          programmeSlug:
+            newSubject?.programmeSlug ?? legacySubject!.programmeSlug,
           programmeCount,
-          subjectSlug: newMaths.subjectSlug,
-          subjectTitle: newMaths.subjectTitle,
+          subjectSlug: newSubject?.subjectSlug ?? legacySubject!.subjectSlug,
+          subjectTitle: newSubject?.subjectTitle ?? legacySubject!.subjectTitle,
           unitCount,
           lessonCount,
         };
 
-        return combinedMaths;
+        return combinedSubject;
       };
 
       const getOldSubjects = (subjectSlug: string) => {
-        if (subjectSlug === "maths") {
-          if (isEyfs) {
-            return getMaths();
-          } else {
-            return null;
-          }
-        } else {
+        if (isEyfs && subjectSlug !== "math") {
           return getSubject(curriculumDataLegacy, subjectSlug, true);
+        } else {
+          return null;
         }
       };
 
       const getNewSubjects = (subjectSlug: string) => {
-        if (isEyfs) {
-          return null;
-        } else if (subjectSlug === "maths") {
-          return getMaths();
+        if (getNewSubject(subjectSlug)) {
+          return getCombinedSubjects(subjectSlug);
         } else {
-          return getSubject(curriculumData, subjectSlug, false);
+          return null;
         }
       };
 
