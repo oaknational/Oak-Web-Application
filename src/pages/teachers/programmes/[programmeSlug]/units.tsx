@@ -333,22 +333,24 @@ export const getStaticProps: GetStaticProps<
           programmeSlug,
         });
 
-        // We are trialling combining the new and legacy curriculum data for Maths
-        if (programmeSlug.startsWith("maths") && !isEyfs) {
-          const legacyCurriculumData = await curriculumApi2023.unitListing({
-            programmeSlug: programmeSlug + "-l",
-          });
-
-          curriculumData.units = [
-            ...curriculumData.units,
-            ...legacyCurriculumData.units,
-          ];
-        }
-
         if (!curriculumData) {
           return {
             notFound: true,
           };
+        }
+
+        // We are trialling combining the new and legacy curriculum data for Maths
+        if (!isEyfs) {
+          const legacyCurriculumData = await curriculumApi2023.unitListing({
+            programmeSlug: programmeSlug + "-l",
+          });
+
+          if (legacyCurriculumData) {
+            curriculumData.units = [
+              ...curriculumData.units,
+              ...legacyCurriculumData.units,
+            ];
+          }
         }
 
         const results: GetStaticPropsResult<UnitListingPageProps> = {

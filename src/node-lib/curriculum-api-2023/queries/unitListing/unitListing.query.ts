@@ -16,10 +16,7 @@ const unitListingQuery =
     const unitsForProgramme = res.units;
 
     if (!unitsForProgramme || unitsForProgramme.length === 0) {
-      throw new OakError({
-        code: "curriculum-api/not-found",
-        originalError: `No programme data found for ${args.programmeSlug}`,
-      });
+      return null;
     }
 
     const parsedRawUnits = unitsForProgramme.map((p) =>

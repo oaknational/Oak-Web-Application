@@ -1,10 +1,5 @@
 import React, { FC } from "react";
-import {
-  OakLI,
-  OakUL,
-  OakFlex,
-  OakUnitsContainer,
-} from "@oaknational/oak-components";
+import { OakLI, OakFlex, OakUnitsContainer } from "@oaknational/oak-components";
 
 import UnitListItem, {
   UnitListItemProps,
@@ -81,15 +76,13 @@ const UnitList: FC<UnitListProps> = (props) => {
 
       let calculatedIndex = baseIndex;
 
-      if (subjectSlug === "maths") {
-        const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
+      const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
-        if (isItemLegacy) {
-          if (newAndLegacyUnitsOnPage) {
-            calculatedIndex = index;
-          } else {
-            calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
-          }
+      if (isItemLegacy) {
+        if (newAndLegacyUnitsOnPage) {
+          calculatedIndex = index;
+        } else {
+          calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
         }
       }
 
@@ -142,7 +135,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
-        subject="maths"
+        subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
@@ -159,7 +152,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     legacyPageItems.length && keystageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
-        subject="maths"
+        subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-previous-downloads",
@@ -180,16 +173,10 @@ const UnitList: FC<UnitListProps> = (props) => {
   return (
     <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
-        subjectSlug === "maths" ? (
-          <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <NewUnits />
-            <LegacyUnits />
-          </OakFlex>
-        ) : (
-          <OakUL aria-label="A list of units" $reset>
-            {getUnitCards(currentPageItems)}
-          </OakUL>
-        )
+        <OakFlex $flexDirection="column" $gap="space-between-xxl">
+          <NewUnits />
+          <LegacyUnits />
+        </OakFlex>
       ) : null}
       {units.length > 5 ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
