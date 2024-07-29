@@ -39,6 +39,7 @@ export type QuizEngineContextType = {
   currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
   currentQuestionDisplayIndex: number; // this excludes explanatory-text questions
+  currentQuestionState?: QuestionState;
   questionState: QuestionState[];
   score: number;
   numQuestions: number;
@@ -299,6 +300,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         currentQuestionData,
         currentQuestionIndex,
         currentQuestionDisplayIndex,
+        currentQuestionState: questionState[currentQuestionIndex],
         questionState,
         score,
         numQuestions,

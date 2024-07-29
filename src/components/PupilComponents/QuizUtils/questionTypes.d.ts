@@ -23,7 +23,7 @@ type QuestionState = {
   grade: number;
   offerHint: boolean;
   pupilAnswer?: PupilAnswer | null;
-  feedback?: QuestionFeedbackType | QuestionFeedbackType[];
-  correctAnswer?: string | (string | undefined)[];
+  feedback?: QuestionFeedbackType | QuestionFeedbackType[]; // whether each part of the answer is correct or incorrect
+  correctAnswer?: string | (string | undefined)[]; // The text for the correct answer to be displayed in the feedback in the review section
   isPartiallyCorrect?: boolean;
 };

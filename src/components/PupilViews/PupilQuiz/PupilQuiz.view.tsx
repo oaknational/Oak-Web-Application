@@ -17,7 +17,6 @@ import {
 } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { pickFeedBackComponent } from "@/components/PupilComponents/QuizUtils/pickFeedback";
 import {
   isMatchAnswer,
   isMultiAnswerMCQ,
@@ -29,6 +28,7 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -75,8 +75,12 @@ const QuizInner = () => {
   );
 
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
-    if (answers) {
-      return <MathJaxWrap>{pickFeedBackComponent(answers)}</MathJaxWrap>;
+    if (answers && !isMatchAnswer(answers)) {
+      return (
+        <MathJaxWrap>
+          <QuizCorrectAnswers />
+        </MathJaxWrap>
+      );
     }
     return null;
   };
