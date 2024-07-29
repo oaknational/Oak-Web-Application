@@ -2,10 +2,11 @@ import { useMemo } from "react";
 import {
   OakRadioGroup,
   OakQuizRadioButton,
-  OakSpan,
   OakFlex,
+  OakJauntyAngleLabel,
 } from "@oaknational/oak-components";
 
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import {
   getStemImage,
@@ -27,7 +28,9 @@ export type QuizMCQSingleAnswerProps = {
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const { onChange } = props;
   const quizEngineContext = useQuizEngineContext();
+  const lessonEngineContext = useLessonEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
+  const { currentSection } = lessonEngineContext;
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
@@ -43,11 +46,18 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-      <OakSpan
-        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
-      >
-        Select one answer
-      </OakSpan>
+      <OakFlex $mt={["space-between-s", "space-between-l", "space-between-xl"]}>
+        <OakJauntyAngleLabel
+          $background={
+            currentSection === "starter-quiz"
+              ? "bg-decorative1-main"
+              : "bg-decorative5-main"
+          }
+          $color={"text-primary"}
+          label="Select one answer"
+        />
+      </OakFlex>
+
       <OakRadioGroup
         name={questionUid || "mcq-single-answer"}
         $flexDirection={"column"}

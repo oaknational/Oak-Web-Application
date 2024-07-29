@@ -13,10 +13,11 @@ import { useMemo } from "react";
 import {
   OakCloudinaryImage,
   OakFlex,
+  OakJauntyAngleLabel,
   OakQuizCheckBox,
-  OakSpan,
 } from "@oaknational/oak-components";
 
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
@@ -31,7 +32,9 @@ export type QuizMCQMultiAnswerProps = {
 
 export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
+  const lessonEngineContext = useLessonEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
+  const { currentSection } = lessonEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
   const numCorrectAnswers = currentQuestionData?.answers?.[
@@ -50,11 +53,17 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-      <OakSpan
-        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
-      >
-        Select {numCorrectAnswers} answers
-      </OakSpan>
+      <OakFlex $mt={["space-between-s", "space-between-l", "space-between-xl"]}>
+        <OakJauntyAngleLabel
+          $background={
+            currentSection === "starter-quiz"
+              ? "bg-decorative1-main"
+              : "bg-decorative5-main"
+          }
+          $color={"text-primary"}
+          label={`Select ${numCorrectAnswers} answers`}
+        />
+      </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {answers.map((answer, index) => {
           const filterByText = answer.answer.filter(isText);

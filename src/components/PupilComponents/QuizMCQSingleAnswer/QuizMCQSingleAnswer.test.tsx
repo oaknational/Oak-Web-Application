@@ -3,6 +3,8 @@ import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
+import { LessonEngineContext } from "../LessonEngineProvider";
+import { createLessonEngineContext } from "../pupilTestHelpers/createLessonEngineContext";
 
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 
@@ -28,9 +30,12 @@ describe("QuizMCQSingleAnswer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizMCQSingleAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          {" "}
+          <QuizEngineContext.Provider value={context}>
+            <QuizMCQSingleAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
