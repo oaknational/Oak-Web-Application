@@ -4955,11 +4955,15 @@ export type Lessons = {
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   key_learning_points?: Maybe<Scalars['json']['output']>;
   keywords?: Maybe<Scalars['json']['output']>;
   lesson_id: Scalars['Int']['output'];
   lesson_outline?: Maybe<Scalars['json']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
+  media_clips?: Maybe<Scalars['jsonb']['output']>;
+  /** A computed field, executes function "function__lessons__media_clip_groups" */
+  media_clips_groups?: Maybe<Array<Templates_Media_Clip_Groups>>;
   misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
   pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
   /** An object relationship */
@@ -5157,6 +5161,22 @@ export type LessonsKeywordsArgs = {
 /** columns and relationships of "lessons" */
 export type LessonsLesson_OutlineArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "lessons" */
+export type LessonsMedia_ClipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "lessons" */
+export type LessonsMedia_Clips_GroupsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Groups_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
 };
 
 
@@ -5431,6 +5451,7 @@ export type Lessons_Aggregate_Order_By = {
 export type Lessons_Append_Input = {
   additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
   tpc_media_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -5507,11 +5528,14 @@ export type Lessons_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  expiration_date?: InputMaybe<Date_Comparison_Exp>;
   key_learning_points?: InputMaybe<Json_Comparison_Exp>;
   keywords?: InputMaybe<Json_Comparison_Exp>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
   lesson_outline?: InputMaybe<Json_Comparison_Exp>;
   lesson_uid?: InputMaybe<Bpchar_Comparison_Exp>;
+  media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
+  media_clips_groups?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
   misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
   pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
   quiz_exit?: InputMaybe<Quizzes_Bool_Exp>;
@@ -5560,6 +5584,7 @@ export enum Lessons_Constraint {
 export type Lessons_Delete_At_Path_Input = {
   additional_files?: InputMaybe<Array<Scalars['String']['input']>>;
   deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  media_clips?: InputMaybe<Array<Scalars['String']['input']>>;
   thirdpartycontent_list?: InputMaybe<Array<Scalars['String']['input']>>;
   tpc_media_list?: InputMaybe<Array<Scalars['String']['input']>>;
 };
@@ -5568,6 +5593,7 @@ export type Lessons_Delete_At_Path_Input = {
 export type Lessons_Delete_Elem_Input = {
   additional_files?: InputMaybe<Scalars['Int']['input']>;
   deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+  media_clips?: InputMaybe<Scalars['Int']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['Int']['input']>;
   tpc_media_list?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -5576,6 +5602,7 @@ export type Lessons_Delete_Elem_Input = {
 export type Lessons_Delete_Key_Input = {
   additional_files?: InputMaybe<Scalars['String']['input']>;
   deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['String']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['String']['input']>;
   tpc_media_list?: InputMaybe<Scalars['String']['input']>;
 };
@@ -5621,11 +5648,13 @@ export type Lessons_Insert_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
   keywords?: InputMaybe<Scalars['json']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_outline?: InputMaybe<Scalars['json']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
   pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
   quiz_exit?: InputMaybe<Quizzes_Obj_Rel_Insert_Input>;
@@ -5667,6 +5696,7 @@ export type Lessons_Max_Fields = {
   asset_id_worksheet_answers?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
@@ -5691,6 +5721,7 @@ export type Lessons_Max_Order_By = {
   asset_id_worksheet_answers?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
   pupil_lesson_outcome?: InputMaybe<Order_By>;
@@ -5716,6 +5747,7 @@ export type Lessons_Min_Fields = {
   asset_id_worksheet_answers?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
@@ -5740,6 +5772,7 @@ export type Lessons_Min_Order_By = {
   asset_id_worksheet_answers?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
   pupil_lesson_outcome?: InputMaybe<Order_By>;
@@ -5805,11 +5838,14 @@ export type Lessons_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   equipment_and_resources?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   key_learning_points?: InputMaybe<Order_By>;
   keywords?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
   lesson_outline?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
+  media_clips?: InputMaybe<Order_By>;
+  media_clips_groups_aggregate?: InputMaybe<Templates_Media_Clip_Groups_Aggregate_Order_By>;
   misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
   pupil_lesson_outcome?: InputMaybe<Order_By>;
   quiz_exit?: InputMaybe<Quizzes_Order_By>;
@@ -5851,6 +5887,7 @@ export type Lessons_Pk_Columns_Input = {
 export type Lessons_Prepend_Input = {
   additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
   tpc_media_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -5892,6 +5929,8 @@ export enum Lessons_Select_Column {
   /** column name */
   EquipmentAndResources = 'equipment_and_resources',
   /** column name */
+  ExpirationDate = 'expiration_date',
+  /** column name */
   KeyLearningPoints = 'key_learning_points',
   /** column name */
   Keywords = 'keywords',
@@ -5901,6 +5940,8 @@ export enum Lessons_Select_Column {
   LessonOutline = 'lesson_outline',
   /** column name */
   LessonUid = 'lesson_uid',
+  /** column name */
+  MediaClips = 'media_clips',
   /** column name */
   MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
   /** column name */
@@ -5964,11 +6005,13 @@ export type Lessons_Set_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
   keywords?: InputMaybe<Scalars['json']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_outline?: InputMaybe<Scalars['json']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
   pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
   quiz_id_exit?: InputMaybe<Scalars['Int']['input']>;
@@ -6100,11 +6143,13 @@ export type Lessons_Stream_Cursor_Value_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
   keywords?: InputMaybe<Scalars['json']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_outline?: InputMaybe<Scalars['json']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
   pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
   quiz_id_exit?: InputMaybe<Scalars['Int']['input']>;
@@ -6188,6 +6233,8 @@ export enum Lessons_Update_Column {
   /** column name */
   EquipmentAndResources = 'equipment_and_resources',
   /** column name */
+  ExpirationDate = 'expiration_date',
+  /** column name */
   KeyLearningPoints = 'key_learning_points',
   /** column name */
   Keywords = 'keywords',
@@ -6197,6 +6244,8 @@ export enum Lessons_Update_Column {
   LessonOutline = 'lesson_outline',
   /** column name */
   LessonUid = 'lesson_uid',
+  /** column name */
+  MediaClips = 'media_clips',
   /** column name */
   MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
   /** column name */
@@ -6446,6 +6495,10 @@ export type Mutation_Root = {
   delete_quizzes?: Maybe<Quizzes_Mutation_Response>;
   /** delete single row from the table: "quizzes" */
   delete_quizzes_by_pk?: Maybe<Quizzes>;
+  /** delete data from the table: "templates.media_clip_groups" */
+  delete_templates_media_clip_groups?: Maybe<Templates_Media_Clip_Groups_Mutation_Response>;
+  /** delete data from the table: "templates.media_clip_items" */
+  delete_templates_media_clip_items?: Maybe<Templates_Media_Clip_Items_Mutation_Response>;
   /** delete data from the table: "templates.permitted_programme_fields" */
   delete_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
   /** delete data from the table: "thirdpartycontent" */
@@ -6592,6 +6645,14 @@ export type Mutation_Root = {
   insert_quizzes?: Maybe<Quizzes_Mutation_Response>;
   /** insert a single row into the table: "quizzes" */
   insert_quizzes_one?: Maybe<Quizzes>;
+  /** insert data into the table: "templates.media_clip_groups" */
+  insert_templates_media_clip_groups?: Maybe<Templates_Media_Clip_Groups_Mutation_Response>;
+  /** insert a single row into the table: "templates.media_clip_groups" */
+  insert_templates_media_clip_groups_one?: Maybe<Templates_Media_Clip_Groups>;
+  /** insert data into the table: "templates.media_clip_items" */
+  insert_templates_media_clip_items?: Maybe<Templates_Media_Clip_Items_Mutation_Response>;
+  /** insert a single row into the table: "templates.media_clip_items" */
+  insert_templates_media_clip_items_one?: Maybe<Templates_Media_Clip_Items>;
   /** insert data into the table: "templates.permitted_programme_fields" */
   insert_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
   /** insert a single row into the table: "templates.permitted_programme_fields" */
@@ -6794,6 +6855,14 @@ export type Mutation_Root = {
   update_quizzes_by_pk?: Maybe<Quizzes>;
   /** update multiples rows of table: "quizzes" */
   update_quizzes_many?: Maybe<Array<Maybe<Quizzes_Mutation_Response>>>;
+  /** update data of the table: "templates.media_clip_groups" */
+  update_templates_media_clip_groups?: Maybe<Templates_Media_Clip_Groups_Mutation_Response>;
+  /** update multiples rows of table: "templates.media_clip_groups" */
+  update_templates_media_clip_groups_many?: Maybe<Array<Maybe<Templates_Media_Clip_Groups_Mutation_Response>>>;
+  /** update data of the table: "templates.media_clip_items" */
+  update_templates_media_clip_items?: Maybe<Templates_Media_Clip_Items_Mutation_Response>;
+  /** update multiples rows of table: "templates.media_clip_items" */
+  update_templates_media_clip_items_many?: Maybe<Array<Maybe<Templates_Media_Clip_Items_Mutation_Response>>>;
   /** update data of the table: "templates.permitted_programme_fields" */
   update_templates_permitted_programme_fields?: Maybe<Templates_Permitted_Programme_Fields_Mutation_Response>;
   /** update multiples rows of table: "templates.permitted_programme_fields" */
@@ -7204,6 +7273,18 @@ export type Mutation_RootDelete_QuizzesArgs = {
 export type Mutation_RootDelete_Quizzes_By_PkArgs = {
   _state: Scalars['String']['input'];
   quiz_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Templates_Media_Clip_GroupsArgs = {
+  where: Templates_Media_Clip_Groups_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Templates_Media_Clip_ItemsArgs = {
+  where: Templates_Media_Clip_Items_Bool_Exp;
 };
 
 
@@ -7707,6 +7788,30 @@ export type Mutation_RootInsert_QuizzesArgs = {
 export type Mutation_RootInsert_Quizzes_OneArgs = {
   object: Quizzes_Insert_Input;
   on_conflict?: InputMaybe<Quizzes_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Media_Clip_GroupsArgs = {
+  objects: Array<Templates_Media_Clip_Groups_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Media_Clip_Groups_OneArgs = {
+  object: Templates_Media_Clip_Groups_Insert_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Media_Clip_ItemsArgs = {
+  objects: Array<Templates_Media_Clip_Items_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Templates_Media_Clip_Items_OneArgs = {
+  object: Templates_Media_Clip_Items_Insert_Input;
 };
 
 
@@ -8679,6 +8784,38 @@ export type Mutation_RootUpdate_Quizzes_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Quizzes_ManyArgs = {
   updates: Array<Quizzes_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Media_Clip_GroupsArgs = {
+  _append?: InputMaybe<Templates_Media_Clip_Groups_Append_Input>;
+  _delete_at_path?: InputMaybe<Templates_Media_Clip_Groups_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Templates_Media_Clip_Groups_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Templates_Media_Clip_Groups_Delete_Key_Input>;
+  _prepend?: InputMaybe<Templates_Media_Clip_Groups_Prepend_Input>;
+  _set?: InputMaybe<Templates_Media_Clip_Groups_Set_Input>;
+  where: Templates_Media_Clip_Groups_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Media_Clip_Groups_ManyArgs = {
+  updates: Array<Templates_Media_Clip_Groups_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Media_Clip_ItemsArgs = {
+  _inc?: InputMaybe<Templates_Media_Clip_Items_Inc_Input>;
+  _set?: InputMaybe<Templates_Media_Clip_Items_Set_Input>;
+  where: Templates_Media_Clip_Items_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Templates_Media_Clip_Items_ManyArgs = {
+  updates: Array<Templates_Media_Clip_Items_Updates>;
 };
 
 
@@ -27727,6 +27864,14 @@ export type Query_Root = {
   quizzes_aggregate: Quizzes_Aggregate;
   /** fetch data from the table: "quizzes" using primary key columns */
   quizzes_by_pk?: Maybe<Quizzes>;
+  /** fetch data from the table: "templates.media_clip_groups" */
+  templates_media_clip_groups: Array<Templates_Media_Clip_Groups>;
+  /** fetch aggregated fields from the table: "templates.media_clip_groups" */
+  templates_media_clip_groups_aggregate: Templates_Media_Clip_Groups_Aggregate;
+  /** fetch data from the table: "templates.media_clip_items" */
+  templates_media_clip_items: Array<Templates_Media_Clip_Items>;
+  /** fetch aggregated fields from the table: "templates.media_clip_items" */
+  templates_media_clip_items_aggregate: Templates_Media_Clip_Items_Aggregate;
   /** fetch data from the table: "templates.permitted_programme_fields" */
   templates_permitted_programme_fields: Array<Templates_Permitted_Programme_Fields>;
   /** fetch aggregated fields from the table: "templates.permitted_programme_fields" */
@@ -29352,6 +29497,42 @@ export type Query_RootQuizzes_AggregateArgs = {
 export type Query_RootQuizzes_By_PkArgs = {
   _state: Scalars['String']['input'];
   quiz_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootTemplates_Media_Clip_GroupsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Groups_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+};
+
+
+export type Query_RootTemplates_Media_Clip_Groups_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Groups_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+};
+
+
+export type Query_RootTemplates_Media_Clip_ItemsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Items_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+};
+
+
+export type Query_RootTemplates_Media_Clip_Items_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Items_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
 };
 
 
@@ -31924,6 +32105,18 @@ export type Subscription_Root = {
   quizzes_by_pk?: Maybe<Quizzes>;
   /** fetch data from the table in a streaming manner: "quizzes" */
   quizzes_stream: Array<Quizzes>;
+  /** fetch data from the table: "templates.media_clip_groups" */
+  templates_media_clip_groups: Array<Templates_Media_Clip_Groups>;
+  /** fetch aggregated fields from the table: "templates.media_clip_groups" */
+  templates_media_clip_groups_aggregate: Templates_Media_Clip_Groups_Aggregate;
+  /** fetch data from the table in a streaming manner: "templates.media_clip_groups" */
+  templates_media_clip_groups_stream: Array<Templates_Media_Clip_Groups>;
+  /** fetch data from the table: "templates.media_clip_items" */
+  templates_media_clip_items: Array<Templates_Media_Clip_Items>;
+  /** fetch aggregated fields from the table: "templates.media_clip_items" */
+  templates_media_clip_items_aggregate: Templates_Media_Clip_Items_Aggregate;
+  /** fetch data from the table in a streaming manner: "templates.media_clip_items" */
+  templates_media_clip_items_stream: Array<Templates_Media_Clip_Items>;
   /** fetch data from the table: "templates.permitted_programme_fields" */
   templates_permitted_programme_fields: Array<Templates_Permitted_Programme_Fields>;
   /** fetch aggregated fields from the table: "templates.permitted_programme_fields" */
@@ -34118,6 +34311,56 @@ export type Subscription_RootQuizzes_StreamArgs = {
 };
 
 
+export type Subscription_RootTemplates_Media_Clip_GroupsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Groups_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Media_Clip_Groups_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Groups_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Media_Clip_Groups_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Templates_Media_Clip_Groups_Stream_Cursor_Input>>;
+  where?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Media_Clip_ItemsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Items_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Media_Clip_Items_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Items_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+};
+
+
+export type Subscription_RootTemplates_Media_Clip_Items_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Templates_Media_Clip_Items_Stream_Cursor_Input>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+};
+
+
 export type Subscription_RootTemplates_Permitted_Programme_FieldsArgs = {
   distinct_on?: InputMaybe<Array<Templates_Permitted_Programme_Fields_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -34421,6 +34664,456 @@ export type Subscription_RootVideos_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Videos_Stream_Cursor_Input>>;
   where?: InputMaybe<Videos_Bool_Exp>;
+};
+
+/** columns and relationships of "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups = {
+  __typename?: 'templates_media_clip_groups';
+  group_id?: Maybe<Scalars['String']['output']>;
+  /** A computed field, executes function "templates.function__media_clip_groups__media_clip_items" */
+  media_clip_items?: Maybe<Array<Templates_Media_Clip_Items>>;
+  media_clips: Scalars['jsonb']['output'];
+};
+
+
+/** columns and relationships of "templates.media_clip_groups" */
+export type Templates_Media_Clip_GroupsMedia_Clip_ItemsArgs = {
+  distinct_on?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Templates_Media_Clip_Items_Order_By>>;
+  where?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+};
+
+
+/** columns and relationships of "templates.media_clip_groups" */
+export type Templates_Media_Clip_GroupsMedia_ClipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Aggregate = {
+  __typename?: 'templates_media_clip_groups_aggregate';
+  aggregate?: Maybe<Templates_Media_Clip_Groups_Aggregate_Fields>;
+  nodes: Array<Templates_Media_Clip_Groups>;
+};
+
+/** aggregate fields of "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Aggregate_Fields = {
+  __typename?: 'templates_media_clip_groups_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Templates_Media_Clip_Groups_Max_Fields>;
+  min?: Maybe<Templates_Media_Clip_Groups_Min_Fields>;
+};
+
+
+/** aggregate fields of "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Templates_Media_Clip_Groups_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Templates_Media_Clip_Groups_Max_Order_By>;
+  min?: InputMaybe<Templates_Media_Clip_Groups_Min_Order_By>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Templates_Media_Clip_Groups_Append_Input = {
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "templates.media_clip_groups". All fields are combined with a logical 'AND'. */
+export type Templates_Media_Clip_Groups_Bool_Exp = {
+  _and?: InputMaybe<Array<Templates_Media_Clip_Groups_Bool_Exp>>;
+  _not?: InputMaybe<Templates_Media_Clip_Groups_Bool_Exp>;
+  _or?: InputMaybe<Array<Templates_Media_Clip_Groups_Bool_Exp>>;
+  group_id?: InputMaybe<String_Comparison_Exp>;
+  media_clip_items?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+  media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
+};
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Templates_Media_Clip_Groups_Delete_At_Path_Input = {
+  media_clips?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Templates_Media_Clip_Groups_Delete_Elem_Input = {
+  media_clips?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Templates_Media_Clip_Groups_Delete_Key_Input = {
+  media_clips?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for inserting data into table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Insert_Input = {
+  group_id?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate max on columns */
+export type Templates_Media_Clip_Groups_Max_Fields = {
+  __typename?: 'templates_media_clip_groups_max_fields';
+  group_id?: Maybe<Scalars['String']['output']>;
+};
+
+/** order by max() on columns of table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Max_Order_By = {
+  group_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Templates_Media_Clip_Groups_Min_Fields = {
+  __typename?: 'templates_media_clip_groups_min_fields';
+  group_id?: Maybe<Scalars['String']['output']>;
+};
+
+/** order by min() on columns of table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Min_Order_By = {
+  group_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Mutation_Response = {
+  __typename?: 'templates_media_clip_groups_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Templates_Media_Clip_Groups>;
+};
+
+/** Ordering options when selecting data from "templates.media_clip_groups". */
+export type Templates_Media_Clip_Groups_Order_By = {
+  group_id?: InputMaybe<Order_By>;
+  media_clip_items_aggregate?: InputMaybe<Templates_Media_Clip_Items_Aggregate_Order_By>;
+  media_clips?: InputMaybe<Order_By>;
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Templates_Media_Clip_Groups_Prepend_Input = {
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "templates.media_clip_groups" */
+export enum Templates_Media_Clip_Groups_Select_Column {
+  /** column name */
+  GroupId = 'group_id',
+  /** column name */
+  MediaClips = 'media_clips'
+}
+
+/** input type for updating data in table "templates.media_clip_groups" */
+export type Templates_Media_Clip_Groups_Set_Input = {
+  group_id?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Streaming cursor of the table "templates_media_clip_groups" */
+export type Templates_Media_Clip_Groups_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Templates_Media_Clip_Groups_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Templates_Media_Clip_Groups_Stream_Cursor_Value_Input = {
+  group_id?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+export type Templates_Media_Clip_Groups_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Templates_Media_Clip_Groups_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Templates_Media_Clip_Groups_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Templates_Media_Clip_Groups_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Templates_Media_Clip_Groups_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Templates_Media_Clip_Groups_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Templates_Media_Clip_Groups_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Templates_Media_Clip_Groups_Bool_Exp;
+};
+
+/** columns and relationships of "templates.media_clip_items" */
+export type Templates_Media_Clip_Items = {
+  __typename?: 'templates_media_clip_items';
+  custom_title?: Maybe<Scalars['String']['output']>;
+  media_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  /** An object relationship */
+  tpc_media?: Maybe<Tpc_Media>;
+};
+
+/** aggregated selection of "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Aggregate = {
+  __typename?: 'templates_media_clip_items_aggregate';
+  aggregate?: Maybe<Templates_Media_Clip_Items_Aggregate_Fields>;
+  nodes: Array<Templates_Media_Clip_Items>;
+};
+
+/** aggregate fields of "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Aggregate_Fields = {
+  __typename?: 'templates_media_clip_items_aggregate_fields';
+  avg?: Maybe<Templates_Media_Clip_Items_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Templates_Media_Clip_Items_Max_Fields>;
+  min?: Maybe<Templates_Media_Clip_Items_Min_Fields>;
+  stddev?: Maybe<Templates_Media_Clip_Items_Stddev_Fields>;
+  stddev_pop?: Maybe<Templates_Media_Clip_Items_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Templates_Media_Clip_Items_Stddev_Samp_Fields>;
+  sum?: Maybe<Templates_Media_Clip_Items_Sum_Fields>;
+  var_pop?: Maybe<Templates_Media_Clip_Items_Var_Pop_Fields>;
+  var_samp?: Maybe<Templates_Media_Clip_Items_Var_Samp_Fields>;
+  variance?: Maybe<Templates_Media_Clip_Items_Variance_Fields>;
+};
+
+
+/** aggregate fields of "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Templates_Media_Clip_Items_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Aggregate_Order_By = {
+  avg?: InputMaybe<Templates_Media_Clip_Items_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Templates_Media_Clip_Items_Max_Order_By>;
+  min?: InputMaybe<Templates_Media_Clip_Items_Min_Order_By>;
+  stddev?: InputMaybe<Templates_Media_Clip_Items_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Templates_Media_Clip_Items_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Templates_Media_Clip_Items_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Templates_Media_Clip_Items_Sum_Order_By>;
+  var_pop?: InputMaybe<Templates_Media_Clip_Items_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Templates_Media_Clip_Items_Var_Samp_Order_By>;
+  variance?: InputMaybe<Templates_Media_Clip_Items_Variance_Order_By>;
+};
+
+/** aggregate avg on columns */
+export type Templates_Media_Clip_Items_Avg_Fields = {
+  __typename?: 'templates_media_clip_items_avg_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Avg_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "templates.media_clip_items". All fields are combined with a logical 'AND'. */
+export type Templates_Media_Clip_Items_Bool_Exp = {
+  _and?: InputMaybe<Array<Templates_Media_Clip_Items_Bool_Exp>>;
+  _not?: InputMaybe<Templates_Media_Clip_Items_Bool_Exp>;
+  _or?: InputMaybe<Array<Templates_Media_Clip_Items_Bool_Exp>>;
+  custom_title?: InputMaybe<String_Comparison_Exp>;
+  media_id?: InputMaybe<Int_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+  tpc_media?: InputMaybe<Tpc_Media_Bool_Exp>;
+};
+
+/** input type for incrementing numeric columns in table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Inc_Input = {
+  media_id?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Insert_Input = {
+  custom_title?: InputMaybe<Scalars['String']['input']>;
+  media_id?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  tpc_media?: InputMaybe<Tpc_Media_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Templates_Media_Clip_Items_Max_Fields = {
+  __typename?: 'templates_media_clip_items_max_fields';
+  custom_title?: Maybe<Scalars['String']['output']>;
+  media_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by max() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Max_Order_By = {
+  custom_title?: InputMaybe<Order_By>;
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Templates_Media_Clip_Items_Min_Fields = {
+  __typename?: 'templates_media_clip_items_min_fields';
+  custom_title?: Maybe<Scalars['String']['output']>;
+  media_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by min() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Min_Order_By = {
+  custom_title?: InputMaybe<Order_By>;
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Mutation_Response = {
+  __typename?: 'templates_media_clip_items_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Templates_Media_Clip_Items>;
+};
+
+/** Ordering options when selecting data from "templates.media_clip_items". */
+export type Templates_Media_Clip_Items_Order_By = {
+  custom_title?: InputMaybe<Order_By>;
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+  tpc_media?: InputMaybe<Tpc_Media_Order_By>;
+};
+
+/** select columns of table "templates.media_clip_items" */
+export enum Templates_Media_Clip_Items_Select_Column {
+  /** column name */
+  CustomTitle = 'custom_title',
+  /** column name */
+  MediaId = 'media_id',
+  /** column name */
+  Order = 'order'
+}
+
+/** input type for updating data in table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Set_Input = {
+  custom_title?: InputMaybe<Scalars['String']['input']>;
+  media_id?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Templates_Media_Clip_Items_Stddev_Fields = {
+  __typename?: 'templates_media_clip_items_stddev_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Stddev_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Templates_Media_Clip_Items_Stddev_Pop_Fields = {
+  __typename?: 'templates_media_clip_items_stddev_pop_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Stddev_Pop_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Templates_Media_Clip_Items_Stddev_Samp_Fields = {
+  __typename?: 'templates_media_clip_items_stddev_samp_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Stddev_Samp_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "templates_media_clip_items" */
+export type Templates_Media_Clip_Items_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Templates_Media_Clip_Items_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Templates_Media_Clip_Items_Stream_Cursor_Value_Input = {
+  custom_title?: InputMaybe<Scalars['String']['input']>;
+  media_id?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Templates_Media_Clip_Items_Sum_Fields = {
+  __typename?: 'templates_media_clip_items_sum_fields';
+  media_id?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** order by sum() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Sum_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+export type Templates_Media_Clip_Items_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Templates_Media_Clip_Items_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Templates_Media_Clip_Items_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Templates_Media_Clip_Items_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Templates_Media_Clip_Items_Var_Pop_Fields = {
+  __typename?: 'templates_media_clip_items_var_pop_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Var_Pop_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Templates_Media_Clip_Items_Var_Samp_Fields = {
+  __typename?: 'templates_media_clip_items_var_samp_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Var_Samp_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Templates_Media_Clip_Items_Variance_Fields = {
+  __typename?: 'templates_media_clip_items_variance_fields';
+  media_id?: Maybe<Scalars['Float']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "templates.media_clip_items" */
+export type Templates_Media_Clip_Items_Variance_Order_By = {
+  media_id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "templates.permitted_programme_fields" */
@@ -37264,6 +37957,13 @@ export type Tpc_Media_Mutation_Response = {
   returning: Array<Tpc_Media>;
 };
 
+/** input type for inserting object relation for remote table "tpc_media" */
+export type Tpc_Media_Obj_Rel_Insert_Input = {
+  data: Tpc_Media_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Tpc_Media_On_Conflict>;
+};
+
 /** on_conflict condition type for table "tpc_media" */
 export type Tpc_Media_On_Conflict = {
   constraint: Tpc_Media_Constraint;
@@ -37559,6 +38259,7 @@ export type Units = {
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   exam_board_specification_content?: Maybe<Scalars['json']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
   /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
   last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
@@ -37995,6 +38696,7 @@ export type Units_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   exam_board_specification_content?: InputMaybe<Json_Comparison_Exp>;
+  expiration_date?: InputMaybe<Date_Comparison_Exp>;
   intro_video_id?: InputMaybe<Int_Comparison_Exp>;
   last_updated_lesson_review_date?: InputMaybe<Timestamptz_Comparison_Exp>;
   national_curriculum_content?: InputMaybe<Json_Comparison_Exp>;
@@ -38083,6 +38785,7 @@ export type Units_Insert_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   national_curriculum_content?: InputMaybe<Scalars['json']['input']>;
   notes?: InputMaybe<Scalars['String']['input']>;
@@ -38117,6 +38820,7 @@ export type Units_Max_Fields = {
   connection_prior_unit_id?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
   /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
   last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
@@ -38141,6 +38845,7 @@ export type Units_Max_Order_By = {
   connection_prior_unit_id?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   intro_video_id?: InputMaybe<Order_By>;
   notes?: InputMaybe<Order_By>;
   planned_number_of_lessons?: InputMaybe<Order_By>;
@@ -38164,6 +38869,7 @@ export type Units_Min_Fields = {
   connection_prior_unit_id?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  expiration_date?: Maybe<Scalars['date']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
   /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
   last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
@@ -38188,6 +38894,7 @@ export type Units_Min_Order_By = {
   connection_prior_unit_id?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   intro_video_id?: InputMaybe<Order_By>;
   notes?: InputMaybe<Order_By>;
   planned_number_of_lessons?: InputMaybe<Order_By>;
@@ -38244,6 +38951,7 @@ export type Units_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   exam_board_specification_content?: InputMaybe<Order_By>;
+  expiration_date?: InputMaybe<Order_By>;
   intro_video_id?: InputMaybe<Order_By>;
   last_updated_lesson_review_date?: InputMaybe<Order_By>;
   national_curriculum_content?: InputMaybe<Order_By>;
@@ -38316,6 +39024,8 @@ export enum Units_Select_Column {
   /** column name */
   ExamBoardSpecificationContent = 'exam_board_specification_content',
   /** column name */
+  ExpirationDate = 'expiration_date',
+  /** column name */
   IntroVideoId = 'intro_video_id',
   /** column name */
   NationalCurriculumContent = 'national_curriculum_content',
@@ -38377,6 +39087,7 @@ export type Units_Set_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   national_curriculum_content?: InputMaybe<Scalars['json']['input']>;
   notes?: InputMaybe<Scalars['String']['input']>;
@@ -38481,6 +39192,7 @@ export type Units_Stream_Cursor_Value_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
+  expiration_date?: InputMaybe<Scalars['date']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   national_curriculum_content?: InputMaybe<Scalars['json']['input']>;
   notes?: InputMaybe<Scalars['String']['input']>;
@@ -38551,6 +39263,8 @@ export enum Units_Update_Column {
   Description = 'description',
   /** column name */
   ExamBoardSpecificationContent = 'exam_board_specification_content',
+  /** column name */
+  ExpirationDate = 'expiration_date',
   /** column name */
   IntroVideoId = 'intro_video_id',
   /** column name */
@@ -42028,7 +42742,7 @@ export const SpecialistUnitListingDocument = gql`
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
   subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
-    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}]}
   ) {
     programme_fields
     is_legacy

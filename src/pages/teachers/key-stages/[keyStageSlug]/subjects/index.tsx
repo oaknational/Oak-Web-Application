@@ -13,14 +13,11 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
-  SubjectListingPageData,
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -102,14 +99,9 @@ export const getStaticProps: GetStaticProps<
 
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
-        isLegacy: isEyfs,
-      });
-      const curriculumDataLegacy = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: keyStage,
-        isLegacy: true,
       });
 
-      if (!curriculumData || !curriculumDataLegacy) {
+      if (!curriculumData) {
         return {
           notFound: true,
         };
@@ -118,60 +110,23 @@ export const getStaticProps: GetStaticProps<
       const { keyStageSlug, keyStages } = curriculumData;
       const keyStageTitle = curriculumData.keyStageTitle;
 
-      const subjectSlugsLegacy =
-        curriculumDataLegacy?.subjects.map((s) => s.subjectSlug) || [];
-
-      const subjectSlugs =
-        curriculumData?.subjects.map((s) => s.subjectSlug) || [];
-
-      const uniqueSubjectSlugs = [
-        ...new Set(subjectSlugsLegacy.concat(subjectSlugs)),
-      ];
-
-      const getSubject = (
-        data: SubjectListingPageData,
-        subjectSlug: string,
-        isLegacy: boolean,
-      ) => {
-        const slugToMatch = (subjectSlug: string) =>
-          isLegacy ? removeLegacySlugSuffix(subjectSlug) : subjectSlug;
-
-        const foundSubject =
-          data.subjects.find(
-            (subject) => slugToMatch(subject.subjectSlug) === subjectSlug,
-          ) || null;
-
-        return foundSubject && isLegacy
-          ? {
-              ...foundSubject,
-              subjectSlug: isSlugLegacy(foundSubject.subjectSlug)
-                ? foundSubject.subjectSlug
-                : addLegacySlugSuffix(foundSubject.subjectSlug),
-            }
-          : foundSubject;
-      };
-
-      const getLegacySubject = (subjectSlug: string) => {
-        return curriculumDataLegacy.subjects.find(
-          (subject) => subject.subjectSlug === subjectSlug,
-        );
-      };
-
-      const getNewSubject = (subjectSlug: string) => {
-        return curriculumData.subjects.find(
-          (subject) => subject.subjectSlug === subjectSlug,
-        );
-      };
+      const uniqueSubjectSlugs = curriculumData?.subjects
+        .map((s) => s.subjectSlug)
+        .filter((value, index, self) => self.indexOf(value) === index);
 
       const getCombinedSubjects = (subjectSlug: string) => {
-        const newSubject = getNewSubject(subjectSlug);
-        const legacySubject = getLegacySubject(subjectSlug);
+        const subject = curriculumData.subjects.filter(
+          (s) => s.subjectSlug === subjectSlug,
+        );
 
-        if (!newSubject && !legacySubject) {
-          return {
-            notFound: true,
-          };
+        if (!subject || subject.length === 0) {
+          return null;
         }
+
+        const newSubject = subject.find((s) => !isSlugLegacy(s.programmeSlug));
+        const legacySubject = subject.find((s) =>
+          isSlugLegacy(s.programmeSlug),
+        );
 
         const programmeCount = Math.max(
           newSubject?.programmeCount ?? 0,
@@ -184,7 +139,7 @@ export const getStaticProps: GetStaticProps<
           ? legacySubject!.lessonCount
           : (newSubject?.lessonCount ?? 0) + (legacySubject?.lessonCount ?? 0);
 
-        const combinedSubject: KeyStageSubjectData = {
+        const combinedSubject: KeyStageSubjectData & { isNew: boolean } = {
           programmeSlug:
             newSubject?.programmeSlug ?? legacySubject!.programmeSlug,
           programmeCount,
@@ -192,33 +147,20 @@ export const getStaticProps: GetStaticProps<
           subjectTitle: newSubject?.subjectTitle ?? legacySubject!.subjectTitle,
           unitCount,
           lessonCount,
+          isNew: !!newSubject,
         };
 
         return combinedSubject;
       };
 
-      const getOldSubjects = (subjectSlug: string) => {
-        if (isEyfs && subjectSlug !== "math") {
-          return getSubject(curriculumDataLegacy, subjectSlug, true);
-        } else {
-          return null;
-        }
-      };
-
-      const getNewSubjects = (subjectSlug: string) => {
-        if (getNewSubject(subjectSlug)) {
-          return getCombinedSubjects(subjectSlug);
-        } else {
-          return null;
-        }
-      };
-
       const subjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
+          const combinedSubject = getCombinedSubjects(subjectSlug);
+
           return {
             subjectSlug: subjectSlug,
-            old: getOldSubjects(subjectSlug),
-            new: getNewSubjects(subjectSlug),
+            old: combinedSubject?.isNew ? null : combinedSubject,
+            new: combinedSubject?.isNew ? combinedSubject : null,
           };
         })
         // Filter out subjects that don't exist in either curriculum
