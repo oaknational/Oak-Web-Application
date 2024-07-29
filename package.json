@@ -164,7 +164,7 @@
     "@types/react-transition-group": "^4.4.9",
     "@types/styled-components": "^5.1.30",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "browserstack-local": "^1.5.5",
     "chromedriver": "^126.0.4",
     "copy-webpack-plugin": "^12.0.2",
