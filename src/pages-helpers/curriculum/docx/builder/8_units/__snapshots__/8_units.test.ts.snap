@@ -1581,25 +1581,6 @@ exports[`8_units simple 1`] = `
       </w:r>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -1625,10 +1606,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Step into the unknown: fiction reading and creative writing]]>
+          . <![CDATA[Step into the unknown: fiction reading and creative writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdec4480f03714251f8b90bb378ff0d814998ac43d05b9ad13e3a6a5426a7f72fa"
@@ -3348,25 +3349,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -3392,10 +3374,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[2]]>
-          : <![CDATA['The Tempest']]>
+          . <![CDATA['The Tempest']]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdd28222379e2478900e0919bd1fe714017cec0270185d97f0970e1e80ff0796e0"
@@ -5045,25 +5047,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -5089,10 +5072,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Poetry about place and home]]>
+          . <![CDATA[Poetry about place and home]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId3e202e38f0568fa22365de14c111bf723c1b5f6a689eda38e105ddc853d76109"
@@ -6287,25 +6290,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -6331,10 +6315,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Sherlock Holmes: short stories]]>
+          . <![CDATA[Sherlock Holmes: short stories]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdc9a042872bedfba50d7ca83ac3c0da7ff6d337c8ca2be11c27088c7d7dff6631"
@@ -7774,25 +7778,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -7818,10 +7803,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[5]]>
-          : <![CDATA['The Twisted Tree': fiction reading]]>
+          . <![CDATA['The Twisted Tree': fiction reading]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId61af27e664f9e96a2e72282e39a13d132fc5a520602eced99801026031a536e2"
@@ -9541,25 +9546,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[7]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -9585,10 +9571,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA[Dystopian settings: descriptive writing]]>
+          . <![CDATA[Dystopian settings: descriptive writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[7]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId9f799613ef4dad105bab4a65cf81fcad6ca4651f24596dc07fd1689f80591963"
@@ -11985,25 +11991,6 @@ exports[`8_units simple 1`] = `
       </w:r>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -12029,10 +12016,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Myths, legends and stories that inspire]]>
+          . <![CDATA[Myths, legends and stories that inspire]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId5e38d1d55265d8f2753b6d68dcb278e9185a2471bc5cea4862230cd7c3f0f35f"
@@ -13682,25 +13689,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -13726,10 +13714,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[2]]>
-          : <![CDATA['A Midsummer Night's Dream']]>
+          . <![CDATA['A Midsummer Night's Dream']]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId590935e0a4d1df126d26442f8da64347e7e78d3c040ab1e9ca919f455f0ac945"
@@ -15344,25 +15352,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -15388,10 +15377,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Taking a stand]]>
+          . <![CDATA[Taking a stand]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId84e1461423d69ecdd6026d1ac3be2bee05b460b0a74d3fd32c4a983205f3401c"
@@ -16516,25 +16525,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -16560,10 +16550,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Single poet study: Maya Angelou]]>
+          . <![CDATA[Single poet study: Maya Angelou]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdc7fb50a44aee927a864b057b8308646987be6ad9d88117437edc9611f5a2047a"
@@ -17898,25 +17908,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -17942,10 +17933,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[5]]>
-          : <![CDATA[Victorian childhood: non-fiction reading and writing]]>
+          . <![CDATA[Victorian childhood: non-fiction reading and writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdab358f083e1268dc6728c2101a99e20a4a6c707a6f4f83520721252a0f2ce340"
@@ -18860,25 +18871,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -18904,10 +18896,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA[A monster within: reading and writing Gothic fiction]]>
+          . <![CDATA[A monster within: reading and writing Gothic fiction]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId0bed0cebebfd056a454887bd35a310ac9b60a52916a02d292ab7e9f474eedaf6"
@@ -20697,25 +20709,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -20741,10 +20734,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[7]]>
-          : <![CDATA[Gothic poetry]]>
+          . <![CDATA[Gothic poetry]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdef07a2d5a23226e158291d937e8f4a0d88ba8a7fa134457717bb165f4b0ccfe1"
@@ -21554,25 +21567,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[8]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -21598,10 +21592,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[8]]>
-          : <![CDATA[A history of language]]>
+          . <![CDATA[A history of language]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[8]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId9d6be358cbc34878d1828af4ebebf95d658ad0b932a73241b424dacf004de822"
@@ -23685,25 +23699,6 @@ exports[`8_units simple 1`] = `
       </w:r>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -23729,10 +23724,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA['Lord of the Flies']]>
+          . <![CDATA['Lord of the Flies']]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdedac86645344614378fe268a5339873d33668ae697c485e6c03af97bccad28bb"
@@ -25207,25 +25222,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -25251,10 +25247,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[2]]>
-          : <![CDATA[Women's rights across the ages: non-fiction reading and writing]]>
+          . <![CDATA[Women's rights across the ages: non-fiction reading and writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIda9f6b55e29b7cf43bd8a86b98a23db2e7e68b643c9550aea46de41d9cbe1325b"
@@ -26834,25 +26850,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -26878,10 +26875,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Malevolent characters: descriptive and narrative writing]]>
+          . <![CDATA[Malevolent characters: descriptive and narrative writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdfca3e3ffdb9352b0c30badd6237124234f8bb692308c7c138d1171dddb9d9b57"
@@ -27831,25 +27848,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -27875,10 +27873,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Literary perspectives from the First World War]]>
+          . <![CDATA[Literary perspectives from the First World War]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId8d5f73f2529721e5bc3145e358c4537be0708eb835fc4a5a1dc207cb35c4e4d3"
@@ -29318,25 +29336,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -29362,10 +29361,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[5]]>
-          : <![CDATA[Comparing poetry from the First World War]]>
+          . <![CDATA[Comparing poetry from the First World War]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIddbe7eb6f4385b8959870e3180444776f8d44d2f6aa133335c793011a1724671d"
@@ -30385,25 +30404,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -30429,10 +30429,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA['Small Island']]>
+          . <![CDATA['Small Island']]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId1f30035d9a646fb2dcec22742c956d66af50d29cb8243e111d06447a5b588456"
@@ -31907,25 +31927,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[9]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -31951,10 +31952,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[7]]>
-          : <![CDATA['Othello']]>
+          . <![CDATA['Othello']]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[9]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId51c8f11005dfed0f2a9f1c850b3d342fce87876e25ef5462cdb2a44f1c9e8145"
@@ -34913,25 +34934,6 @@ exports[`8_units simple 1`] = `
       </w:r>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -34957,10 +34959,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Modern text: first study]]>
+          . <![CDATA[Modern text: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId413f440e2c9d799737fc0145f65a4f0c833494dccacb833e4ec4ae0c6693c4d3"
@@ -36687,25 +36709,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -36731,10 +36734,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Modern text: first study]]>
+          . <![CDATA[Modern text: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId3636cd0430900f5b226af35d443d47097636c909dae90d31310bcd874d96a6cb"
@@ -38461,25 +38484,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -38505,10 +38509,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[2]]>
-          : <![CDATA[Macbeth: Lady Macbeth as a machiavellian villain]]>
+          . <![CDATA[Macbeth: Lady Macbeth as a machiavellian villain]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdb0bc323ab3095d8e8a6d86811a0ad356184993e42a8804f8a982ecaa406f2bfd"
@@ -40088,25 +40112,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -40132,10 +40137,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Nineteenth century text: first study]]>
+          . <![CDATA[Nineteenth century text: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdab9da2f1069e4df9d2ffc9afcb93db1ceb5487e46b210a4c45a0a9347e352fa4"
@@ -41897,25 +41922,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -41941,10 +41947,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Nineteenth century text: first study]]>
+          . <![CDATA[Nineteenth century text: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId73e2faedf7cac4d76f5ecf112edd771a8d7ab59fdfcca425ba3bd7ebfd0d7fb9"
@@ -43706,25 +43732,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -43750,10 +43757,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: first study]]>
+          . <![CDATA[Poetry anthology: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId6b03bba9d45f01a6aaf5629d4af2c263df67537e062bb65441850294f38bbcba"
@@ -45760,25 +45787,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -45804,10 +45812,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: first study]]>
+          . <![CDATA[Poetry anthology: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId68eb0cb0536cf45b570a9ee3d0f71414e6f94bded513a77ef0e728430aec4328"
@@ -47814,25 +47842,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -47858,10 +47867,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: first study]]>
+          . <![CDATA[Poetry anthology: first study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIddffd1ee25312f2a71ec43349deeb0536431740a2a7efaed87f97e00dc68bd877"
@@ -49868,25 +49897,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -49912,10 +49922,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[5]]>
-          : <![CDATA[Non-fiction: crime and punishment]]>
+          . <![CDATA[Non-fiction: crime and punishment]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId358e3f9285fb1c369c807ab3a30937fb4024e268270d2e44b868c93d8f328abf"
@@ -51005,25 +51035,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -51049,10 +51060,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA[Fiction: read around the world]]>
+          . <![CDATA[Fiction: read around the world]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId0263cff1809722459e160b2081050560ee012afeaaf7e695fae57a218907a57a"
@@ -52317,25 +52348,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -52361,10 +52373,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[7]]>
-          : <![CDATA[Spoken language: the language of change]]>
+          . <![CDATA[Spoken language: the language of change]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId700cec63a6bf974583c30dec84ec1b0ac004da00ab198037a238e5bb6f269f0a"
@@ -53513,25 +53545,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -53557,10 +53570,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[8]]>
-          : <![CDATA[Fiction: science fiction writing]]>
+          . <![CDATA[Fiction: science fiction writing]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId93957d7294e774dffb8fb2ff6c777d31a7d47f0d0831c33c76767ef5be863edf"
@@ -54510,25 +54543,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[10]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -54554,10 +54568,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[9]]>
-          : <![CDATA[Non-fiction: changing views]]>
+          . <![CDATA[Non-fiction: changing views]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[10]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdf465bacab697e80641b732d490e431920ef70e112a3109c936a210528ad233d3"
@@ -57943,25 +57977,6 @@ exports[`8_units simple 1`] = `
       </w:r>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -57987,10 +58002,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Modern text: first deep dive]]>
+          . <![CDATA[Modern text: first deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId2f6d06965de564fa0908ae6a47386f59dad843e760c9073baa7e4cea5436fa71"
@@ -59052,25 +59087,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -59096,10 +59112,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[1]]>
-          : <![CDATA[Modern text: first deep dive]]>
+          . <![CDATA[Modern text: first deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId4faaa8175f2d5bed276c0b1ddc8e28478d73387aa3a932e84f850174ea42194e"
@@ -60161,25 +60197,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -60205,10 +60222,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[2]]>
-          : <![CDATA[Macbeth: a tragic hero]]>
+          . <![CDATA[Macbeth: a tragic hero]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId9e5eda17208f7d172a0d34419565a96704f97547f5691b04a9ed6eb0db51bcdb"
@@ -61088,25 +61125,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -61132,10 +61150,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Nineteenth century text: first deep dive]]>
+          . <![CDATA[Nineteenth century text: first deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId8eba1e3d298540fc3841d3480c95473621a77100c0c849dc7cd521a56ad71e2a"
@@ -62232,25 +62270,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -62276,10 +62295,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[3]]>
-          : <![CDATA[Nineteenth century text: first deep dive]]>
+          . <![CDATA[Nineteenth century text: first deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId98adb4277c112422ae75b9b2c69d844242a5d72e98663a1dbfb257053bba40d2"
@@ -63376,25 +63415,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -63420,10 +63440,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: continued study]]>
+          . <![CDATA[Poetry anthology: continued study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId3c8a6956372ba36a87504f7d94d296aa992ea200aa3512d97951804d816138e8"
@@ -64730,25 +64770,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -64774,10 +64795,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: continued study]]>
+          . <![CDATA[Poetry anthology: continued study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIde2456c765eb75d24f1b7db02608b5c73bda39432a7fba82199b9f8ba4658aac2"
@@ -66084,25 +66125,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -66128,10 +66150,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[4]]>
-          : <![CDATA[Poetry anthology: continued study]]>
+          . <![CDATA[Poetry anthology: continued study]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIde1125544ba4f0d5dcce8ffc3feeea2bfc43fff340acb688b1d67762b2c05f3ba"
@@ -67438,25 +67480,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -67482,10 +67505,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[5]]>
-          : <![CDATA[Unseen poetry]]>
+          . <![CDATA[Unseen poetry]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIde75969afc29f035fcbdc1ad77040f6102db66ed8b63f853977578acc868f2034"
@@ -68844,25 +68887,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -68888,10 +68912,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA[Modern text: second deep dive]]>
+          . <![CDATA[Modern text: second deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId53b14c616c273f20128b4663a9e769c254bec8f32b4525761106efa9a3de954f"
@@ -69942,25 +69986,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -69986,10 +70011,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[6]]>
-          : <![CDATA[Modern text: second deep dive]]>
+          . <![CDATA[Modern text: second deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId639f288dcf87e54761fa986bb8c9db8e3ec40ca17471b1b8e1b97ffc0f664790"
@@ -71040,25 +71085,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -71084,10 +71110,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[7]]>
-          : <![CDATA[Macbeth and masculinity: the struggle for power]]>
+          . <![CDATA[Macbeth and masculinity: the struggle for power]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId3a700d7b6b7cf9cbdc51d24f81cd71f9f8e6413ecf7c917c0f660cd5b8f68e57"
@@ -71991,25 +72037,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -72035,10 +72062,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[8]]>
-          : <![CDATA[Nineteenth century text: second deep dive]]>
+          . <![CDATA[Nineteenth century text: second deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId5ac4f0a48d951e955ceaf406fd35f1c6ecde59226747f3a4bea968bfcc3405b8"
@@ -73124,25 +73171,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -73168,10 +73196,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[8]]>
-          : <![CDATA[Nineteenth century text: second deep dive]]>
+          . <![CDATA[Nineteenth century text: second deep dive]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId672e43e423caad7834d2f8516ee2d0654ea56d43b6ead9c0da05bb485b02aa37"
@@ -74257,25 +74305,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -74301,10 +74330,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[9]]>
-          : <![CDATA[Fiction: books that changed my world]]>
+          . <![CDATA[Fiction: books that changed my world]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdfe80df2181c7287f4168890d43f4e3ec5e63d66901208c7099956e3c067db3ea"
@@ -75394,25 +75443,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -75438,10 +75468,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[10]]>
-          : <![CDATA[Non-fiction: teenage kicks]]>
+          . <![CDATA[Non-fiction: teenage kicks]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIddcf0d45997b469b49a05c62952ce9013c5ec089fc79098c498bfd05b39f594f3"
@@ -76671,25 +76721,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -76715,10 +76746,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[11]]>
-          : <![CDATA[Fiction: inner musings]]>
+          . <![CDATA[Fiction: inner musings]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId5e9464c2f458a03c31b3b4f847f5bdb6b432b9eed9cb5cd98d9c734347901401"
@@ -77703,25 +77754,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -77747,10 +77779,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[12]]>
-          : <![CDATA[Non-fiction: explorers]]>
+          . <![CDATA[Non-fiction: explorers]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rId2c264efa48bee594799fb50e94a9b2bafd42507092a50356efdf9f18aa5277b9"
@@ -78689,25 +78741,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:eastAsia="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-        </w:rPr>
-        <w:t>
-          Year <![CDATA[11]]>
-        </w:t>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
@@ -78733,10 +78766,30 @@ exports[`8_units simple 1`] = `
           ></w:szCs>
         </w:rPr>
         <w:t><![CDATA[13]]>
-          : <![CDATA[Writing masters]]>
+          . <![CDATA[Writing masters]]>
         </w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:eastAsia="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:color
+            w:val="222222"
+          ></w:color>
+        </w:rPr>
+        <w:t>
+          Year <![CDATA[11]]>
+        </w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
     <w:p>
       <w:hyperlink
         r:id="rIdacd203a0fc707befa42415c826c71da6df7cd993fd205e53c03e7d4fd15ed4df"

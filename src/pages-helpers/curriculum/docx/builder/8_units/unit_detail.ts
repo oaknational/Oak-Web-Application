@@ -455,22 +455,6 @@ export async function buildUnit(
       </w:p>*/
       }
       <w:p>
-        <w:r>
-          <w:rPr>
-            <w:rFonts
-              w:ascii="Arial"
-              w:eastAsia="Arial"
-              w:hAnsi="Arial"
-              w:cs="Arial"
-            />
-            <w:b />
-            <w:color w:val="222222" />
-          </w:rPr>
-          <w:t>Year ${cdata(unit.year)}</w:t>
-        </w:r>
-      </w:p>
-
-      <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />
         </w:pPr>
@@ -487,9 +471,27 @@ export async function buildUnit(
             <w:sz w:val="36" />
             <w:szCs w:val="36" />
           </w:rPr>
-          <w:t>${cdata(unitNumber)}: ${cdata(unit.title)}</w:t>
+          <w:t>${cdata(unitNumber)}. ${cdata(unit.title)}</w:t>
         </w:r>
       </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:color w:val="222222" />
+          </w:rPr>
+          <w:t>Year ${cdata(unit.year)}</w:t>
+        </w:r>
+      </w:p>
+
+      <w:p />
 
       <w:p>
         ${wrapInLinkTo(
