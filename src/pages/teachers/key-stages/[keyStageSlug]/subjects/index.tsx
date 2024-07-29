@@ -25,9 +25,9 @@ export type KeyStagePageProps = {
 };
 
 export type Subjects = {
-  subjectSlug: string;
-  new?: KeyStageSubjectData;
-  old?: KeyStageSubjectData;
+  slug: string;
+  data: KeyStageSubjectData;
+  hasNewContent: boolean;
 }[];
 
 export type SubjectListingPageProps = {
@@ -156,17 +156,16 @@ export const getStaticProps: GetStaticProps<
       const subjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
           const combinedSubject = getCombinedSubjects(subjectSlug);
-
           return {
-            subjectSlug: subjectSlug,
-            old: combinedSubject?.isNew ? null : combinedSubject,
-            new: combinedSubject?.isNew ? combinedSubject : null,
+            slug: subjectSlug,
+            data: combinedSubject,
+            hasNewContent: combinedSubject?.isNew,
           };
         })
         // Filter out subjects that don't exist in either curriculum
-        .filter((subject) => subject.old || subject.new)
+        .filter((subject) => subject.data !== null)
         // sort by slug so the old and new subjects are intermingled
-        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
+        .sort((a, b) => (a.slug > b.slug ? 1 : -1));
 
       const results = {
         props: {

@@ -16,16 +16,8 @@ const subjectPagePropsFixture = (
     ],
     subjects: [
       {
-        subjectSlug: "biology",
-        old: {
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          unitCount: 1,
-          lessonCount: 6,
-          programmeSlug: "biology-secondary-ks4",
-          programmeCount: 1,
-        },
-        new: {
+        slug: "biology",
+        data: {
           subjectSlug: "biology",
           subjectTitle: "Biology",
           unitCount: 6,
@@ -33,10 +25,11 @@ const subjectPagePropsFixture = (
           programmeSlug: "biology-secondary-ks4-higher-aqa",
           programmeCount: 12,
         },
+        hasNewContent: true,
       },
       {
-        subjectSlug: "maths",
-        old: {
+        slug: "maths",
+        data: {
           subjectSlug: "maths",
           subjectTitle: "Maths",
           unitCount: 1,
@@ -44,18 +37,11 @@ const subjectPagePropsFixture = (
           programmeSlug: "maths-secondary-ks4",
           programmeCount: 2,
         },
-        new: {
-          subjectSlug: "maths",
-          subjectTitle: "Maths",
-          unitCount: 6,
-          lessonCount: 35,
-          programmeSlug: "maths-secondary-ks4",
-          programmeCount: 1,
-        },
+        hasNewContent: true,
       },
       {
-        subjectSlug: "computing",
-        new: {
+        slug: "computing",
+        data: {
           subjectSlug: "computing",
           subjectTitle: "Computing",
           unitCount: 6,
@@ -63,10 +49,11 @@ const subjectPagePropsFixture = (
           programmeSlug: "computing-secondary-ks4",
           programmeCount: 1,
         },
+        hasNewContent: true,
       },
       {
-        subjectSlug: "music",
-        old: {
+        slug: "music",
+        data: {
           subjectSlug: "music",
           subjectTitle: "Music",
           unitCount: 6,
@@ -74,6 +61,7 @@ const subjectPagePropsFixture = (
           programmeSlug: "music-secondary-ks4",
           programmeCount: 1,
         },
+        hasNewContent: false,
       },
     ],
     ...partial,
