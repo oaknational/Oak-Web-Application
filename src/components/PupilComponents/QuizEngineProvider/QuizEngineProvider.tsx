@@ -77,7 +77,6 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       mode: "init",
       offerHint: false,
       grade: 0,
-      feedback: undefined,
     })),
   );
 
