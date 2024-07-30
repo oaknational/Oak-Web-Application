@@ -15,7 +15,7 @@ import {
 } from "./xml";
 
 export function generateHash(buffer: Buffer | string) {
-  const hash = createHash("SHA-256");
+  const hash = createHash("sha1");
   hash.setEncoding("hex");
   hash.write(buffer);
   hash.end();
