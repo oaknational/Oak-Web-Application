@@ -1,3 +1,18 @@
+# [1.495.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.494.0...v1.495.0) (2024-07-29)
+
+
+### Bug Fixes
+
+* empty commit ([d08d1b1](https://github.com/oaknational/Oak-Web-Application/commit/d08d1b157ab46cd468ff2d54e30b26310d433b36))
+* remove feature flag implementation ([7bf1143](https://github.com/oaknational/Oak-Web-Application/commit/7bf1143e2b041ede0d63c8633fa919afbdfcd921))
+* type errors ([55b0bea](https://github.com/oaknational/Oak-Web-Application/commit/55b0bead7126710df6067a8dfb90fba25fb92e6b))
+* updated tests for new data schema ([8ce734b](https://github.com/oaknational/Oak-Web-Application/commit/8ce734b4b103e930a1db3a9d4a55e51ec04c2e65))
+
+
+### Features
+
+* refactored to use feedback calculated in QuizEngineProvider ([ff3c4fc](https://github.com/oaknational/Oak-Web-Application/commit/ff3c4fc3a842b284af7b31c74fc2423c40751718))
+
 # [1.494.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.493.0...v1.494.0) (2024-07-26)
 
 
