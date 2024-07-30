@@ -10,11 +10,13 @@ import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineCon
 import { QuizShortAnswer } from "./QuizShortAnswer";
 
 import {
-  QuestionFeedbackType,
-  QuestionModeType,
   QuizEngineContext,
   QuizEngineContextType,
 } from "@/components/PupilComponents/QuizEngineProvider";
+import {
+  QuestionFeedbackType,
+  QuestionModeType,
+} from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
 const meta = {
