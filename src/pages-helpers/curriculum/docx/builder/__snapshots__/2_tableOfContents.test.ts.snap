@@ -639,13 +639,6 @@ exports[`2_tableOfContents simple 1`] = `
         </w:r>
       </w:hyperlink>
     </w:p>
-    <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
-    </w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml

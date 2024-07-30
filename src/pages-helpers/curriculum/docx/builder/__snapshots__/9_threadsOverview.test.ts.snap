@@ -690,13 +690,6 @@ exports[`9_threadsOverview simple 1`] = `
         </w:tc>
       </w:tr>
     </w:tbl>
-    <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
-    </w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml

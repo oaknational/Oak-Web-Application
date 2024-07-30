@@ -684,8 +684,8 @@ exports[`3_ourCurriculum simple 1`] = `
             distR="0"
           >
             <wp:extent
-              cx="4294800"
-              cy="3974400"
+              cx="3963600"
+              cy="3668400"
             ></wp:extent>
             <wp:effectExtent
               l="0"
@@ -773,8 +773,8 @@ exports[`3_ourCurriculum simple 1`] = `
                         y="0"
                       ></a:off>
                       <a:ext
-                        cx="4294800"
-                        cy="3974400"
+                        cx="3963600"
+                        cy="3668400"
                       ></a:ext>
                     </a:xfrm>
                     <a:prstGeom

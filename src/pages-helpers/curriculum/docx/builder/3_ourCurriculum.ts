@@ -164,8 +164,8 @@ export default async function generate(zip: JSZipCached) {
         </w:pPr>
         <w:r>
           ${createImage(images.oakCurriculum, {
-            width: cmToEmu(11.93),
-            height: cmToEmu(11.04),
+            width: cmToEmu(11.01),
+            height: cmToEmu(10.19),
             desc: "A bee hive diagram showing each of Oak's 6 curriculum principles",
           })}
         </w:r>

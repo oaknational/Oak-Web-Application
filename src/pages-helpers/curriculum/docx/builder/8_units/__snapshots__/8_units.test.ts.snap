@@ -10780,13 +10780,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading2"
@@ -22590,13 +22583,6 @@ exports[`8_units simple 1`] = `
       </w:pPr>
     </w:p>
     <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
-    </w:p>
-    <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading2"
@@ -33608,13 +33594,6 @@ exports[`8_units simple 1`] = `
           ></w:cols>
         </w:sectPr>
       </w:pPr>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
     </w:p>
     <w:p>
       <w:pPr>
@@ -56100,13 +56079,6 @@ exports[`8_units simple 1`] = `
           ></w:cols>
         </w:sectPr>
       </w:pPr>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
     </w:p>
     <w:p>
       <w:pPr>
@@ -80137,13 +80109,6 @@ exports[`8_units simple 1`] = `
           ></w:cols>
         </w:sectPr>
       </w:pPr>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:br
-          w:type="page"
-        ></w:br>
-      </w:r>
     </w:p>
     <w:p>
       <w:r>

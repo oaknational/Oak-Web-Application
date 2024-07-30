@@ -14,8 +14,10 @@ export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
-  const elements = createThreadOptions(data.units).map((thread) => {
+  const allThreadOptions = createThreadOptions(data.units);
+  const elements = allThreadOptions.map((thread, threadIndex) => {
     const threadInfo = threadUnitByYear(data.units, thread.slug);
+    const isLast = threadIndex === allThreadOptions.length - 1;
 
     const yearElements = Object.entries(threadInfo).map(([year, units]) => {
       return safeXml`
@@ -100,11 +102,15 @@ export default async function generate(
         </w:p>
 
         ${yearElements.join("")}
-        <w:p>
-          <w:r>
-            <w:br w:type="page" />
-          </w:r>
-        </w:p>
+        ${isLast
+          ? ""
+          : safeXml`
+              <w:p>
+                <w:r>
+                  <w:br w:type="page" />
+                </w:r>
+              </w:p>
+            `}
       </XML_FRAGMENT>
     `;
   });

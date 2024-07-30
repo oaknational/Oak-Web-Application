@@ -520,11 +520,6 @@ async function buildYear(
         </w:r>
       </w:p>
       ${unitsXml}
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
-        </w:r>
-      </w:p>
     </XML_FRAGMENT>
   `;
 
