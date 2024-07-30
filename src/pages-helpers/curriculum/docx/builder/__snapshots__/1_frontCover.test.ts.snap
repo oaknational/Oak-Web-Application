@@ -395,7 +395,9 @@ exports[`1_frontCover simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -686,7 +688,9 @@ exports[`1_frontCover simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -821,7 +825,9 @@ exports[`1_frontCover simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="21216000"
+                    >
                       <a:off
                         x="0"
                         y="0"

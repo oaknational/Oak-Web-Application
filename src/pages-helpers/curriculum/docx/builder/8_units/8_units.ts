@@ -151,6 +151,12 @@ function buildOptions({
           </w:pPr>
           <w:r>
             <w:rPr>
+              <w:rFonts
+                w:ascii="Arial"
+                w:cs="Arial"
+                w:eastAsia="Arial"
+                w:hAnsi="Arial"
+              />
               <w:color w:val="ffffff" />
               <w:shd w:val="clear" w:fill="287c34" />
               <w:rtl w:val="0" />

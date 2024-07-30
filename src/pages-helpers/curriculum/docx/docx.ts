@@ -289,6 +289,10 @@ export function cmToDxa(cm: number) {
   return inches * 72 * 20;
 }
 
+export function degreeToOoxmlDegree(degrees: number) {
+  return Math.round(degrees * 60000);
+}
+
 export function lineHeight(pointHeight: number, multiplier: number) {
   return Math.round(pointToDxa(pointHeight) * multiplier);
 }
@@ -332,6 +336,7 @@ type ImageOpts = {
   isDecorative?: boolean;
   isWrapTight?: boolean;
   relativeHeight?: number;
+  rotation?: number;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
   const uid = IMAGE_ID++;
@@ -347,6 +352,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     isDecorative = false,
     isWrapTight = false,
     relativeHeight = 1,
+    rotation = 0,
   } = opts;
 
   const isDecorativeVal = isDecorative ? 1 : 0;
@@ -439,7 +445,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
                                 </a:stretch>
                             </pic:blipFill>
                             <pic:spPr>
-                                <a:xfrm>
+                                <a:xfrm rot="${degreeToOoxmlDegree(rotation)}">
                                     <a:off x="0" y="0"/>
                                     <a:ext cx="${width}" cy="${height}"/>
                                 </a:xfrm>

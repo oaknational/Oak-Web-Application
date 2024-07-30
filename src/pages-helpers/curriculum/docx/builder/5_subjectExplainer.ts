@@ -110,13 +110,19 @@ export default async function generate(
           `;
         })
         .join("")}
+      ${Array(9)
+        .fill(true)
+        .map(() => {
+          return `<w:p />`;
+        })}
       <w:p>
+        <w:pPr>
+          <w:jc w:val="center" />
+        </w:pPr>
         <w:r>
           ${createImage(images.educationRoad, {
             width: cmToEmu(13.92),
             height: cmToEmu(10.29),
-            xPos: cmToEmu(3.7),
-            yPos: cmToEmu(17.57),
             isDecorative: true,
           })}
         </w:r>

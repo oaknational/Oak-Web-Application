@@ -802,7 +802,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -1753,7 +1755,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -1912,7 +1916,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -3521,7 +3527,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -3680,7 +3688,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -5219,7 +5229,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -5378,7 +5390,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -6462,7 +6476,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -6621,7 +6637,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -7950,7 +7968,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -8109,7 +8129,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -9718,7 +9740,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -9877,7 +9901,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -10929,7 +10955,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -12163,7 +12191,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -12322,7 +12352,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -13861,7 +13893,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -14020,7 +14054,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -15524,7 +15560,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -15683,7 +15721,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -16697,7 +16737,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -16856,7 +16898,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -18080,7 +18124,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -18239,7 +18285,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -19043,7 +19091,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -19202,7 +19252,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -20881,7 +20933,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -21040,7 +21094,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -21739,7 +21795,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -21898,7 +21956,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -22705,7 +22765,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -23871,7 +23933,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -24030,7 +24094,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -25394,7 +25460,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -25553,7 +25621,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -27022,7 +27092,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -27181,7 +27253,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -28020,7 +28094,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -28179,7 +28255,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -29508,7 +29586,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -29667,7 +29747,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -30576,7 +30658,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -30735,7 +30819,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -32099,7 +32185,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -32258,7 +32346,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -33695,7 +33785,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -33908,6 +34000,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -34175,6 +34273,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -34330,6 +34434,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -35106,7 +35216,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -35265,7 +35377,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -35443,7 +35557,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -36881,7 +36997,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -37040,7 +37158,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -37218,7 +37338,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -38656,7 +38778,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -38815,7 +38939,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -40284,7 +40410,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -40443,7 +40571,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -40621,7 +40751,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -42094,7 +42226,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -42253,7 +42387,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -42431,7 +42567,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -43904,7 +44042,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -44063,7 +44203,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -44241,7 +44383,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -45959,7 +46103,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -46118,7 +46264,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -46296,7 +46444,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -48014,7 +48164,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -48173,7 +48325,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -48351,7 +48505,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -50069,7 +50225,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -50228,7 +50386,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -51207,7 +51367,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -51366,7 +51528,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -52520,7 +52684,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -52679,7 +52845,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -53717,7 +53885,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -53876,7 +54046,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -54715,7 +54887,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -54874,7 +55048,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -56101,7 +56277,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -56314,6 +56492,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -56581,6 +56765,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -56736,6 +56926,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -57003,6 +57199,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -57275,6 +57477,12 @@ exports[`8_units simple 1`] = `
             </w:pPr>
             <w:r>
               <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:cs="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                ></w:rFonts>
                 <w:color
                   w:val="ffffff"
                 ></w:color>
@@ -58149,7 +58357,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -58308,7 +58518,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -58486,7 +58698,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -59259,7 +59473,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -59418,7 +59634,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -59596,7 +59814,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -60369,7 +60589,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -60528,7 +60750,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -61297,7 +61521,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -61456,7 +61682,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -61634,7 +61862,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -62442,7 +62672,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -62601,7 +62833,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -62779,7 +63013,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -63587,7 +63823,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -63746,7 +63984,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -63924,7 +64164,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -64942,7 +65184,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -65101,7 +65345,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -65279,7 +65525,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -66297,7 +66545,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -66456,7 +66706,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -66634,7 +66886,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -67652,7 +67906,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -67811,7 +68067,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -69059,7 +69317,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -69218,7 +69478,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -69396,7 +69658,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -70158,7 +70422,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -70317,7 +70583,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -70495,7 +70763,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -71257,7 +71527,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -71416,7 +71688,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -72209,7 +72483,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -72368,7 +72644,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -72546,7 +72824,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -73343,7 +73623,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -73502,7 +73784,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -73680,7 +73964,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -74477,7 +74763,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -74636,7 +74924,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -75615,7 +75905,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -75774,7 +76066,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -76893,7 +77187,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -77052,7 +77348,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -77926,7 +78224,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -78085,7 +78385,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -78913,7 +79215,9 @@ exports[`8_units simple 1`] = `
                       </a:stretch>
                     </pic:blipFill>
                     <pic:spPr>
-                      <a:xfrm>
+                      <a:xfrm
+                        rot="0"
+                      >
                         <a:off
                           x="0"
                           y="0"
@@ -79072,7 +79376,9 @@ exports[`8_units simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"

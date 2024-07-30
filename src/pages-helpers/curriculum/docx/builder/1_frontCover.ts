@@ -117,6 +117,7 @@ export default async function generate(
             yPos: cmToEmu(13.11),
             isDecorative: true,
             relativeHeight: 400,
+            rotation: 353.6,
           })}
         </w:r>
       </w:p>

@@ -110,14 +110,9 @@ export default async function generate(
           })
           .join("")}
       </w:tbl>
-      <w:p>
-        <w:r>
-          <w:rPr>
-            <w:sz w:val="36" />
-          </w:rPr>
-          <w:t />
-        </w:r>
-      </w:p>
+      ${Array(3)
+        .fill(true)
+        .map(() => `<w:p />`)}
     </root>
   `;
 

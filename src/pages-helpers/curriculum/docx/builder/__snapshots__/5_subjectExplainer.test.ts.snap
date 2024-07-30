@@ -485,7 +485,9 @@ exports[`5_tableOfContents simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -577,39 +579,29 @@ exports[`5_tableOfContents simple 1`] = `
         <w:t><![CDATA[something]]></w:t>
       </w:r>
     </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
     <w:p>
+      <w:pPr>
+        <w:jc
+          w:val="center"
+        ></w:jc>
+      </w:pPr>
       <w:r>
         <w:drawing>
-          <wp:anchor
+          <wp:inline
             distT="0"
             distB="0"
             distL="0"
-            distR="114300"
-            simplePos="0"
-            relativeHeight="1"
-            behindDoc="1"
-            locked="0"
-            layoutInCell="1"
-            allowOverlap="1"
+            distR="0"
           >
-            <wp:simplePos
-              x="0"
-              y="0"
-            ></wp:simplePos>
-            <wp:positionH
-              relativeFrom="page"
-            >
-              <wp:posOffset>
-                1332000
-              </wp:posOffset>
-            </wp:positionH>
-            <wp:positionV
-              relativeFrom="page"
-            >
-              <wp:posOffset>
-                6325200
-              </wp:posOffset>
-            </wp:positionV>
             <wp:extent
               cx="5011200"
               cy="3704400"
@@ -620,7 +612,6 @@ exports[`5_tableOfContents simple 1`] = `
               r="0"
               b="0"
             ></wp:effectExtent>
-            <wp:wrapNone></wp:wrapNone>
             <wp:docPr
               id="10001"
               name=""
@@ -693,7 +684,9 @@ exports[`5_tableOfContents simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -712,7 +705,7 @@ exports[`5_tableOfContents simple 1`] = `
                 </pic:pic>
               </a:graphicData>
             </a:graphic>
-          </wp:anchor>
+          </wp:inline>
         </w:drawing>
       </w:r>
     </w:p>
@@ -920,7 +913,7 @@ exports[`5_tableOfContents simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_5a017ff7ff94c680e1f95973d7e81384aa50bb6d.png": "3aaa981fa13e325c101aa40618f690ee36f8f197",
+  "word/media/hash_5a017ff7ff94c680e1f95973d7e81384aa50bb6d.png": "a41dcbcfef3efa128b43cca8870f191908e11f89",
   "word/media/hash_e049a564c67565ca11b85e1710d780a7de02b780.png": "5f3341e60ac60db591ce2c97e3ff4762a62735a7",
   "word/numbering.xml": "<?xml
   version="1.0"

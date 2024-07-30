@@ -765,7 +765,9 @@ exports[`3_ourCurriculum simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -1013,7 +1015,7 @@ exports[`3_ourCurriculum simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_efc2ed6977ae02ef89303778d38b0bb0b5a6bdb8.png": "6a92039d7a57d8f82081b7460d40ef0fed1812f7",
+  "word/media/hash_efc2ed6977ae02ef89303778d38b0bb0b5a6bdb8.png": "5980239afc8319b4a9de006d70c6ea0654315b87",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

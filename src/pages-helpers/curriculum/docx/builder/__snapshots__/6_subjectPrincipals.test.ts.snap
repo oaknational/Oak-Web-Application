@@ -435,7 +435,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                     </a:stretch>
                   </pic:blipFill>
                   <pic:spPr>
-                    <a:xfrm>
+                    <a:xfrm
+                      rot="0"
+                    >
                       <a:off
                         x="0"
                         y="0"
@@ -608,7 +610,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                           </a:stretch>
                         </pic:blipFill>
                         <pic:spPr>
-                          <a:xfrm>
+                          <a:xfrm
+                            rot="0"
+                          >
                             <a:off
                               x="0"
                               y="0"
@@ -746,7 +750,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                           </a:stretch>
                         </pic:blipFill>
                         <pic:spPr>
-                          <a:xfrm>
+                          <a:xfrm
+                            rot="0"
+                          >
                             <a:off
                               x="0"
                               y="0"
@@ -884,7 +890,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                           </a:stretch>
                         </pic:blipFill>
                         <pic:spPr>
-                          <a:xfrm>
+                          <a:xfrm
+                            rot="0"
+                          >
                             <a:off
                               x="0"
                               y="0"
@@ -1022,7 +1030,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                           </a:stretch>
                         </pic:blipFill>
                         <pic:spPr>
-                          <a:xfrm>
+                          <a:xfrm
+                            rot="0"
+                          >
                             <a:off
                               x="0"
                               y="0"
@@ -1160,7 +1170,9 @@ exports[`6_subjectPrincipals simple 1`] = `
                           </a:stretch>
                         </pic:blipFill>
                         <pic:spPr>
-                          <a:xfrm>
+                          <a:xfrm
+                            rot="0"
+                          >
                             <a:off
                               x="0"
                               y="0"
@@ -1206,16 +1218,9 @@ exports[`6_subjectPrincipals simple 1`] = `
         </w:tc>
       </w:tr>
     </w:tbl>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:sz
-            w:val="36"
-          ></w:sz>
-        </w:rPr>
-        <w:t></w:t>
-      </w:r>
-    </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml
