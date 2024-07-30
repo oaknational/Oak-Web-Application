@@ -43,7 +43,6 @@ import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialis
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
-import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -327,7 +326,6 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { programmeSlug } = context.params;
-      const isEyfs = isSlugEYFS(programmeSlug);
       try {
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
@@ -339,18 +337,15 @@ export const getStaticProps: GetStaticProps<
           };
         }
 
-        // We are trialling combining the new and legacy curriculum data for Maths
-        if (!isEyfs) {
-          const legacyCurriculumData = await curriculumApi2023.unitListing({
-            programmeSlug: programmeSlug + "-l",
-          });
+        const legacyCurriculumData = await curriculumApi2023.unitListing({
+          programmeSlug: programmeSlug + "-l",
+        });
 
-          if (legacyCurriculumData) {
-            curriculumData.units = [
-              ...curriculumData.units,
-              ...legacyCurriculumData.units,
-            ];
-          }
+        if (legacyCurriculumData) {
+          curriculumData.units = [
+            ...curriculumData.units,
+            ...legacyCurriculumData.units,
+          ];
         }
 
         const results: GetStaticPropsResult<UnitListingPageProps> = {
