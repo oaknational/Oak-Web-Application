@@ -10,7 +10,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
-
 export const isCurrentPageItems = (
   u: CurrentPageItemsProps[] | SpecialistUnit[][],
 ): u is CurrentPageItemsProps[] => {
