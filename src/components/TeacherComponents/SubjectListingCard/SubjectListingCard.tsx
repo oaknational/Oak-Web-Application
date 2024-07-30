@@ -58,7 +58,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
             $font={"heading-6"}
             tag={titleTag}
           >
-            {subject.data.subjectTitle || subject.data.subjectTitle}
+            {subject.data.subjectTitle}
           </OakHeading>
         </Flex>
       </Flex>
