@@ -110,10 +110,9 @@ export async function insertImages<T extends Record<string, string>>(
             "unknown";
         } else if (filePathOrUrl.match(/^(https?):/)) {
           const res = await fetch(filePathOrUrl);
-          ext =
-            "." + res.headers.get("content-type")?.split("/")[1] ?? "unknown";
+          const headerExt = res.headers.get("content-type")?.split("/")[1];
+          ext = `.${headerExt ?? "unknown"}`;
           file = Buffer.from(await res.arrayBuffer());
-          // ext = extnameWithoutQuery(filePathOrUrl);
         } else {
           file = await readFile(filePathOrUrl);
           ext = extnameWithoutQuery(filePathOrUrl);
