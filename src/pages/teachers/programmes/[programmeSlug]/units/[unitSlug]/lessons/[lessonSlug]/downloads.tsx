@@ -1,5 +1,4 @@
 import {
-  NextPage,
   GetStaticProps,
   GetStaticPathsResult,
   GetStaticPropsResult,
@@ -21,9 +20,7 @@ export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsPageData;
 };
 
-const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
-  curriculumData,
-}) => {
+const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
   const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
 
   return (
