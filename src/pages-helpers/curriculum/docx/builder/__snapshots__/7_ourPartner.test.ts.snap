@@ -533,11 +533,11 @@ exports[`7_ourPartner without partner image 1`] = `
             <w:tcMar>
               <w:start
                 w:type="dxa"
-                w:w="567"
+                w:w="0"
               ></w:start>
               <w:end
                 w:type="dxa"
-                w:w="0"
+                w:w="567"
               ></w:end>
             </w:tcMar>
             <w:vAlign

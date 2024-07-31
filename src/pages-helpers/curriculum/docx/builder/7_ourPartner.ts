@@ -84,8 +84,8 @@ export default async function generate(
           <w:tc>
             <w:tcPr>
               <w:tcMar>
-                <w:start w:type="dxa" w:w="${cmToTwip(1)}" />
-                <w:end w:type="dxa" w:w="${cmToTwip(0)}" />
+                <w:start w:type="dxa" w:w="${cmToTwip(0)}" />
+                <w:end w:type="dxa" w:w="${cmToTwip(1)}" />
               </w:tcMar>
               <w:vAlign w:val="top" />
             </w:tcPr>

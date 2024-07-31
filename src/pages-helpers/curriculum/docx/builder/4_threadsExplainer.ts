@@ -1,7 +1,9 @@
 import { join } from "path";
 
+import { uniqBy } from "lodash";
+
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { Slugs } from "..";
+import { CombinedCurriculumData, Slugs } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -19,8 +21,13 @@ import { createCurriculumSlug } from "./helper";
 
 export default async function generate(
   zip: JSZipCached,
-  { slugs }: { slugs: Slugs },
+  { slugs, data }: { slugs: Slugs; data: CombinedCurriculumData },
 ) {
+  const threads = uniqBy(
+    data.units.flatMap((unit) => unit.threads),
+    (thread) => thread.title,
+  ).sort((a, b) => a.order - b.order);
+
   const links = await insertLinks(zip, {
     onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
       slugs,
@@ -63,6 +70,26 @@ export default async function generate(
 
   const numbering = await insertNumbering(zip, {
     threadsNumbering: safeXml`
+      <XML_FRAGMENT>
+        <w:multiLevelType w:val="multilevel" />
+        <w:lvl w:ilvl="0">
+          <w:start w:val="1" />
+          <w:numFmt w:val="bullet" />
+          <w:lvlText w:val="" />
+          <w:lvlJc w:val="left" />
+          <w:pPr>
+            <w:tabs>
+              <w:tab w:val="num" w:pos="720" />
+            </w:tabs>
+            <w:ind w:left="720" w:hanging="720" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+          </w:rPr>
+        </w:lvl>
+      </XML_FRAGMENT>
+    `,
+    allThreadsNumbering: safeXml`
       <XML_FRAGMENT>
         <w:multiLevelType w:val="multilevel" />
         <w:lvl w:ilvl="0">
@@ -184,7 +211,7 @@ export default async function generate(
           </w:rPr>
           <w:t>${cdata("How to use threads")}</w:t>
           ${createImage(images.underline, {
-            width: cmToEmu(6.71),
+            width: cmToEmu(6.3),
             height: cmToEmu(0.21),
             xPos: cmToEmu(-0.19),
             yPos: cmToEmu(0.9),
@@ -222,6 +249,59 @@ export default async function generate(
                   <w:sz w:val="24" />
                 </w:rPr>
                 <w:t>${cdata(howToUseThreadsItem)}</w:t>
+              </w:r>
+            </w:p>
+          `;
+        })
+        .join("")}
+      <w:p>
+        <w:r>
+          <w:br w:type="page" />
+        </w:r>
+      </w:p>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading3" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:color w:val="222222" />
+            <w:sz w:val="36" />
+          </w:rPr>
+          <w:t>${cdata(`Threads in subject`)}</w:t>
+          ${createImage(images.underline, {
+            width: cmToEmu(6),
+            height: cmToEmu(0.21),
+            xPos: cmToEmu(-0.19),
+            yPos: cmToEmu(0.9),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            isDecorative: true,
+          })}
+        </w:r>
+      </w:p>
+      <w:p />
+      ${threads
+        .map((thread) => {
+          return safeXml`
+            <w:p>
+              <w:pPr>
+                <w:numPr>
+                  <w:ilvl w:val="0" />
+                  <w:numId w:val="${numbering.allThreadsNumbering}" />
+                </w:numPr>
+                <w:spacing w:line="360" w:lineRule="auto" />
+                <w:ind w:left="425" w:right="-17" w:hanging="360" />
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                </w:rPr>
+                <w:t>${cdata(thread.title)}</w:t>
               </w:r>
             </w:p>
           `;
@@ -358,7 +438,7 @@ export default async function generate(
         )}
       </w:p>
 
-      ${Array(5)
+      ${Array(6)
         .fill(true)
         .map(() => {
           return safeXml`<w:p />`;
@@ -378,7 +458,7 @@ export default async function generate(
         </w:r>
       </w:p>
 
-      ${Array(3)
+      ${Array(4)
         .fill(true)
         .map(() => {
           return safeXml`<w:p />`;

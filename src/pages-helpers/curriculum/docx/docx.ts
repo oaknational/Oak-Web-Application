@@ -76,9 +76,15 @@ function extnameWithoutQuery(filepath: string) {
 export async function insertImages<T extends Record<string, string>>(
   zip: JSZipCached,
   images: T,
+  file = "document.xml",
 ) {
-  const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = await zip.readJson(DOC_RELS);
+  const DOC_RELS = `word/_rels/${file}.rels`;
+  const json = zip.exists(DOC_RELS)
+    ? await zip.readJson(DOC_RELS)
+    : xmlRootToJson(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`)!;
+
+  json.elements[0].elements = json.elements[0].elements ?? [];
 
   const existingImageIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -194,54 +200,91 @@ async function addToContentTypesXml(zip: JSZipCached, xml: string) {
   zip.writeJson("[Content_Types].xml", contentXml as Element);
 }
 
+export function getFooterFilenameFromContent(content: string) {
+  const contentHash = generateHash(content).slice(0, 12);
+  return `footer-${contentHash}.xml`;
+}
+
 async function insertHeaderFooters<T extends Record<string, string>>(
   type: "header" | "footer",
   zip: JSZipCached,
-  content: T,
+  data: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
   const json = await zip.readJson(DOC_RELS);
 
-  const existingIds = json.elements[0].elements
-    .map((element: Element) => element.attributes?.Id)
-    .filter(Boolean);
-  const output: Record<keyof typeof content, string> = {} as Record<
-    keyof typeof content,
+  const output: Record<keyof typeof data, string> = {} as Record<
+    keyof typeof data,
     string
   >;
 
-  const elements = await Promise.all(
-    Object.entries(content).map(async ([key, content]) => {
-      const contentHash = generateHash(content).slice(0, 12);
-      const id = "rId" + contentHash;
-      output[key as keyof T] = id;
+  const elements: (Element | undefined)[] = [];
+  for (const [key, content] of Object.entries(data)) {
+    const id = "rId" + key;
+    output[key as keyof T] = id;
 
-      if (existingIds.includes(id)) {
-        return null;
-      } else {
-        existingIds.push(id);
-      }
+    const filepath = `${type}-${key}.xml`;
+    const zipfilepath = `word/${filepath}`;
 
-      const filepath = `header-${contentHash}.xml`;
-      const zipfilepath = `word/${filepath}`;
+    await addToContentTypesXml(
+      zip,
+      safeXml`
+        <Override
+          PartName="/${zipfilepath}"
+          ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.${type}+xml"
+        />
+      `,
+    );
 
-      await addToContentTypesXml(
-        zip,
-        safeXml`
-          <Override
-            PartName="/${zipfilepath}"
-            ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.${type}+xml"
-          />
-        `,
-      );
+    zip.writeString(
+      zipfilepath,
+      `
+        <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+        <w:ftr
+          xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+          xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+          xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex"
+          xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex"
+          xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex"
+          xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex"
+          xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex"
+          xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex"
+          xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex"
+          xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink"
+          xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:oel="http://schemas.microsoft.com/office/2019/extlst"
+          xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+          xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+          xmlns:v="urn:schemas-microsoft-com:vml"
+          xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+          xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+          xmlns:w10="urn:schemas-microsoft-com:office:word"
+          xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+          xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+          xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+          xmlns:w16cex="http://schemas.microsoft.com/office/word/2018/wordml/cex"
+          xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid"
+          xmlns:w16="http://schemas.microsoft.com/office/word/2018/wordml"
+          xmlns:w16sdtdh="http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash"
+          xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+          xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+          xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+          xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+          xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+          mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh wp14"
+        >${content.trim()}</w:ftr>
+      `.trim(),
+    );
 
-      zip.writeString(zipfilepath, content.trim());
-
-      return xmlElementToJson(`
+    elements.push(
+      xmlElementToJson(`
         <Relationship Id="${id}" Type="http://purl.oclc.org/ooxml/officeDocument/relationships/${type}" Target="${filepath}" />
-      `);
-    }),
-  );
+      `),
+    );
+  }
 
   for (const element of elements) {
     if (element) {
@@ -546,6 +589,10 @@ export class JSZipCached {
   constructor(zip?: JSZip) {
     this._zip = zip ?? new JSZip();
     this._cache = {};
+  }
+
+  exists(filename: string) {
+    return filename in this._zip.files;
   }
 
   async readJson(filename: string) {

@@ -157,6 +157,15 @@ function buildUnitOptionTitle(
             <w:sz w:val="32" />
           </w:rPr>
           <w:t xml:space="preserve">Option ${cdata(unitOptionIndex + 1)}: </w:t>
+          ${createImage(images.greenUnderline, {
+            width: cmToEmu(2.74),
+            height: cmToEmu(0.27),
+            xPos: cmToEmu(-0.21),
+            yPos: cmToEmu(0.7),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            isDecorative: true,
+          })}
         </w:r>
         <w:r>
           <w:rPr>
@@ -170,15 +179,6 @@ function buildUnitOptionTitle(
             <w:sz w:val="32" />
           </w:rPr>
           <w:t>${cdata(unitOption.title)}</w:t>
-          ${createImage(images.greenUnderline, {
-            width: cmToEmu(2.74),
-            height: cmToEmu(0.27),
-            xPos: cmToEmu(-0.21),
-            yPos: cmToEmu(0.66),
-            xPosAnchor: "column",
-            yPosAnchor: "paragraph",
-            isDecorative: true,
-          })}
         </w:r>
       </w:p>
       <w:p>
@@ -574,7 +574,7 @@ export async function buildUnit(
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
               w:right="${cmToTwip(1.5)}"
-              w:bottom="${cmToTwip(1.5)}"
+              w:bottom="${cmToTwip(2.5)}"
               w:left="${cmToTwip(1.5)}"
               w:header="${cmToTwip(1.5)}"
               w:footer="${cmToTwip(1.5)}"
@@ -650,7 +650,7 @@ export async function buildUnit(
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
               w:right="${cmToTwip(1.5)}"
-              w:bottom="${cmToTwip(1.5)}"
+              w:bottom="${cmToTwip(2.5)}"
               w:left="${cmToTwip(1.5)}"
               w:header="${cmToTwip(1.5)}"
               w:footer="${cmToTwip(1.5)}"
