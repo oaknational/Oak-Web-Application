@@ -1,5 +1,4 @@
 import type { Element } from "xml-js";
-import JSZip from "jszip";
 
 import { cdata, safeXml } from "../../xml";
 import { CombinedCurriculumData } from "../..";
@@ -9,6 +8,7 @@ import {
   createImage,
   insertLinks,
   insertNumbering,
+  JSZipCached,
   wrapInLinkTo,
 } from "../../docx";
 
@@ -19,7 +19,7 @@ const DISABLE_COLUMN_BREAKS = true;
 type Unit = CombinedCurriculumData["units"][number];
 
 async function buildUnitLessons(
-  zip: JSZip,
+  zip: JSZipCached,
   unit: Unit | Unit["unit_options"][number],
 ) {
   const numbering = await insertNumbering(zip, {
@@ -51,10 +51,11 @@ async function buildUnitLessons(
         <w:p>
           <w:pPr>
             <w:numPr>
+              <w:ilvl w:val="0" />
               <w:numId w:val="${numbering.lessonNumbering}" />
             </w:numPr>
-            <w:spacing w:line="240" w:lineRule="auto" />
-            <w:ind w:left="425" w:right="-17" />
+            <w:spacing w:line="276" w:lineRule="auto" />
+            <w:ind w:left="425" w:right="-17" w:hanging="360" />
           </w:pPr>
           <w:r>
             <w:rPr>
@@ -75,7 +76,7 @@ async function buildUnitLessons(
   return lessonsXmls.join("");
 }
 
-async function buildUnitThreads(zip: JSZip, unit: Unit) {
+async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
   const numbering = await insertNumbering(zip, {
     threadsNumbering: safeXml`
       <XML_FRAGMENT>
@@ -83,16 +84,13 @@ async function buildUnitThreads(zip: JSZip, unit: Unit) {
         <w:lvl w:ilvl="0">
           <w:start w:val="1" />
           <w:numFmt w:val="bullet" />
-          <w:lvlText w:val="" />
+          <w:lvlText w:val="●" />
           <w:lvlJc w:val="left" />
           <w:pPr>
-            <w:tabs>
-              <w:tab w:val="num" w:pos="720" />
-            </w:tabs>
-            <w:ind w:left="720" w:hanging="720" />
+            <w:ind w:left="720" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+            <w:u w:val="none" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>
@@ -117,6 +115,8 @@ async function buildUnitThreads(zip: JSZip, unit: Unit) {
             <w:ilvl w:val="0" />
             <w:numId w:val="${numbering.threadsNumbering}" />
           </w:numPr>
+          <w:spacing w:line="276" w:lineRule="auto" />
+          <w:ind w:left="425" w:right="-17" w:hanging="360" />
         </w:pPr>
         <w:r>
           <w:rPr>
@@ -157,6 +157,15 @@ function buildUnitOptionTitle(
             <w:sz w:val="32" />
           </w:rPr>
           <w:t xml:space="preserve">Option ${cdata(unitOptionIndex + 1)}: </w:t>
+          ${createImage(images.greenUnderline, {
+            width: cmToEmu(2.74),
+            height: cmToEmu(0.27),
+            xPos: cmToEmu(-0.21),
+            yPos: cmToEmu(0.7),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
+            isDecorative: true,
+          })}
         </w:r>
         <w:r>
           <w:rPr>
@@ -170,15 +179,6 @@ function buildUnitOptionTitle(
             <w:sz w:val="32" />
           </w:rPr>
           <w:t>${cdata(unitOption.title)}</w:t>
-          ${createImage(images.greenUnderline, {
-            width: cmToEmu(2.74),
-            height: cmToEmu(0.27),
-            xPos: cmToEmu(-0.21),
-            yPos: cmToEmu(0.66),
-            xPosAnchor: "column",
-            yPosAnchor: "paragraph",
-            isDecorative: true,
-          })}
         </w:r>
       </w:p>
       <w:p>
@@ -191,7 +191,7 @@ function buildUnitOptionTitle(
 }
 
 export async function buildUnit(
-  zip: JSZip,
+  zip: JSZipCached,
   unit: Unit,
   unitIndex: number,
   unitOption: undefined | Unit["unit_options"][number] | null,
@@ -248,8 +248,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Previous unit description</w:t>
@@ -302,8 +302,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Future unit description</w:t>
@@ -368,8 +368,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Unit description</w:t>
@@ -405,8 +405,8 @@ export async function buildUnit(
                 w:cs="Arial"
               />
               <w:b />
-              <w:color w:val="000000" />
               <w:i w:val="0" />
+              <w:color w:val="000000" />
               <w:sz w:val="28" />
             </w:rPr>
             <w:t>Why this, why now?</w:t>
@@ -455,22 +455,6 @@ export async function buildUnit(
       </w:p>*/
       }
       <w:p>
-        <w:r>
-          <w:rPr>
-            <w:rFonts
-              w:ascii="Arial"
-              w:eastAsia="Arial"
-              w:hAnsi="Arial"
-              w:cs="Arial"
-            />
-            <w:b />
-            <w:color w:val="222222" />
-          </w:rPr>
-          <w:t>Year ${cdata(unit.year)}</w:t>
-        </w:r>
-      </w:p>
-
-      <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />
         </w:pPr>
@@ -487,9 +471,27 @@ export async function buildUnit(
             <w:sz w:val="36" />
             <w:szCs w:val="36" />
           </w:rPr>
-          <w:t>${cdata(unitNumber)}: ${cdata(unit.title)}</w:t>
+          <w:t>${cdata(unitNumber)}. ${cdata(unit.title)}</w:t>
         </w:r>
       </w:p>
+
+      <w:p>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:color w:val="222222" />
+          </w:rPr>
+          <w:t>Year ${cdata(unit.year)}</w:t>
+        </w:r>
+      </w:p>
+
+      <w:p />
 
       <w:p>
         ${wrapInLinkTo(
@@ -572,7 +574,7 @@ export async function buildUnit(
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
               w:right="${cmToTwip(1.5)}"
-              w:bottom="${cmToTwip(1.5)}"
+              w:bottom="${cmToTwip(2.5)}"
               w:left="${cmToTwip(1.5)}"
               w:header="${cmToTwip(1.5)}"
               w:footer="${cmToTwip(1.5)}"
@@ -595,8 +597,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
-            <w:color w:val="000000" />
             <w:i w:val="0" />
+            <w:color w:val="000000" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Threads</w:t>
@@ -631,8 +633,8 @@ export async function buildUnit(
               w:cs="Arial"
             />
             <w:b />
-            <w:color w:val="000000" />
             <w:i w:val="0" />
+            <w:color w:val="000000" />
             <w:sz w:val="28" />
           </w:rPr>
           <w:t>Lessons in unit</w:t>
@@ -648,7 +650,7 @@ export async function buildUnit(
             <w:pgMar
               w:top="${cmToTwip(1.5)}"
               w:right="${cmToTwip(1.5)}"
-              w:bottom="${cmToTwip(1.5)}"
+              w:bottom="${cmToTwip(2.5)}"
               w:left="${cmToTwip(1.5)}"
               w:header="${cmToTwip(1.5)}"
               w:footer="${cmToTwip(1.5)}"

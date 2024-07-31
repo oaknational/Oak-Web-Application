@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
@@ -9,6 +7,7 @@ import {
   cmToEmu,
   createImage,
   insertImages,
+  JSZipCached,
   wrapInBookmarkPoint,
   wrapInLinkToBookmark,
 } from "../docx";
@@ -20,7 +19,7 @@ import {
 } from "./helper";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
@@ -149,12 +148,6 @@ export default async function generate(
           })
           .join("")}
       </w:tbl>
-
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
-        </w:r>
-      </w:p>
     </root>
   `;
 

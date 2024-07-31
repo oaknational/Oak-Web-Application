@@ -1,8 +1,6 @@
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { appendBodyElements } from "../docx";
+import { appendBodyElements, JSZipCached } from "../docx";
 
 import { createThreadOptions, threadUnitByYear } from "./helper";
 
@@ -13,11 +11,13 @@ function sortByOrder(units: Unit[]) {
 }
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
-  const elements = createThreadOptions(data.units).map((thread) => {
+  const allThreadOptions = createThreadOptions(data.units);
+  const elements = allThreadOptions.map((thread, threadIndex) => {
     const threadInfo = threadUnitByYear(data.units, thread.slug);
+    const isLast = threadIndex === allThreadOptions.length - 1;
 
     const yearElements = Object.entries(threadInfo).map(([year, units]) => {
       return safeXml`
@@ -41,14 +41,24 @@ export default async function generate(
             .map((unit) => {
               return safeXml`
                 <w:p>
-                  <w:pPr />
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:color w:val="222222" />
+                      <w:sz w:val="24" />
+                      <w:b />
+                    </w:rPr>
+                    <w:t xml:space="preserve">${cdata(
+                        `Unit ${unit.order}, `,
+                      )}</w:t>
+                  </w:r>
                   <w:r>
                     <w:rPr>
                       <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                       <w:color w:val="222222" />
                       <w:sz w:val="24" />
                     </w:rPr>
-                    <w:t>${cdata(`Unit ${unit.order}: ${unit.title}`)}</w:t>
+                    <w:t>${cdata(`${unit.title}`)}</w:t>
                   </w:r>
                 </w:p>
               `;
@@ -73,14 +83,13 @@ export default async function generate(
           <w:pPr>
             <w:pStyle w:val="Heading3" />
           </w:pPr>
-          <w:pPr />
           <w:r>
             <w:rPr>
               <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
               <w:color w:val="222222" />
               <w:sz w:val="36" />
             </w:rPr>
-            <w:t xml:space="preserve">${cdata(`Thread: `)}</w:t>
+            <w:t xml:space="preserve">${cdata(`Thread, `)}</w:t>
           </w:r>
           <w:r>
             <w:rPr>
@@ -89,7 +98,7 @@ export default async function generate(
               <w:color w:val="222222" />
               <w:sz w:val="36" />
             </w:rPr>
-            <w:t>${cdata(thread.title)}</w:t>
+            <w:t>${cdata(`‘${thread.title}’`)}</w:t>
           </w:r>
         </w:p>
 
@@ -104,11 +113,15 @@ export default async function generate(
         </w:p>
 
         ${yearElements.join("")}
-        <w:p>
-          <w:r>
-            <w:br w:type="page" />
-          </w:r>
-        </w:p>
+        ${isLast
+          ? ""
+          : safeXml`
+              <w:p>
+                <w:r>
+                  <w:br w:type="page" />
+                </w:r>
+              </w:p>
+            `}
       </XML_FRAGMENT>
     `;
   });

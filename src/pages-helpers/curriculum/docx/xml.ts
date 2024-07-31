@@ -32,8 +32,10 @@ export function safeXml(
     }
   }
 
-  // Just for assertion
-  xmlRootToJson(outXml);
+  if (process.env.NODE_ENV === "development") {
+    // NOTE: Only assertions in development.
+    xmlRootToJson(outXml);
+  }
 
   return outXml;
 }

@@ -1,6 +1,8 @@
 import { sum } from "lodash";
+import JSZip from "jszip";
 
 import { Slugs } from "..";
+import { zipToSimpleObject } from "../zip";
 
 import {
   Thread,
@@ -154,4 +156,8 @@ export function generateGridCols(amount: number, sizes: number[] = []) {
       return `<w:gridCol w:w="${colWidth}" />`;
     })
     .join("");
+}
+
+export function zipToSnapshotObject(zip: JSZip) {
+  return zipToSimpleObject(zip, { hashBuffers: true });
 }

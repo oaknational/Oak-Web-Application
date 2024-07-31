@@ -1,9 +1,8 @@
-import type JSZip from "jszip";
-
 import { CombinedCurriculumData } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
+  JSZipCached,
   lineHeight,
   pointToDxa,
   wrapInLinkToBookmark,
@@ -12,7 +11,7 @@ import {
 import { uncapitalizeSubject } from "./helper";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const years = Array.from(
@@ -110,11 +109,6 @@ export default async function generate(
           `;
         })
         .join("")}
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
-        </w:r>
-      </w:p>
     </root>
   `;
 

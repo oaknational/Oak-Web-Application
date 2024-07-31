@@ -1,5 +1,5 @@
 import { generateEmptyDocx } from "../../docx";
-import { zipToSimpleObject } from "../../zip";
+import { zipToSnapshotObject } from "../helper";
 
 import generate from "./8_units";
 import { data, slugs } from "./8_units.fixture";
@@ -12,6 +12,6 @@ describe("8_units", () => {
       data: data,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

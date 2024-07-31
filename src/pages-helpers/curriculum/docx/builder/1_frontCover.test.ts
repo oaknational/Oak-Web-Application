@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./1_frontCover";
+import { zipToSnapshotObject } from "./helper";
 
 import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
@@ -16,6 +16,6 @@ describe("1_frontCover", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

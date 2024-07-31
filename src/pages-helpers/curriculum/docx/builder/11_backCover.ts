@@ -1,38 +1,38 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
+  cmToTwip,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    oglLogo: join(
-      process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
-    ),
+    // oglLogo: join(
+    //   process.cwd(),
+    //   "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
+    // ),
     peopleIcon: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/people-icon.png",
     ),
     box: join(
       process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/box.png",
+      "src/pages-helpers/curriculum/docx/builder/images/box-with-logo.png",
     ),
   });
 
   const pageXml = safeXml`
     <root>
-      ${Array(4)
+      ${Array(2)
         .fill(true)
         .map(() => {
           return safeXml`
@@ -50,6 +50,9 @@ export default async function generate(
         })
         .join("")}
       <w:p>
+        <w:pPr>
+          <w:jc w:val="center" />
+        </w:pPr>
         <w:r>
           ${createImage(images.peopleIcon, {
             width: cmToEmu(9.56),
@@ -60,7 +63,7 @@ export default async function generate(
           })}
         </w:r>
       </w:p>
-      ${Array(2)
+      ${Array(3)
         .fill(true)
         .map(() => {
           return safeXml`
@@ -87,8 +90,10 @@ export default async function generate(
           ${createImage(images.box, {
             width: cmToEmu(18.26),
             height: cmToEmu(7.49),
-            // xPos: cmToEmu(1.38),
-            // yPos: cmToEmu(18.14),
+            xPos: cmToEmu(-0.02),
+            yPos: cmToEmu(-0.02),
+            xPosAnchor: "column",
+            yPosAnchor: "paragraph",
             isDecorative: true,
           })}
         </w:r>
@@ -104,6 +109,9 @@ export default async function generate(
         </w:r>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -114,6 +122,9 @@ export default async function generate(
         </w:r>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -124,6 +135,9 @@ export default async function generate(
         </w:r>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -148,6 +162,9 @@ export default async function generate(
         </w:r>
       </w:p>
       <w:p>
+        <w:pPr>
+          <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
+        </w:pPr>
         <w:r>
           <w:rPr>
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -166,17 +183,21 @@ export default async function generate(
           <w:t />
         </w:r>
       </w:p>
-      <w:p>
+      ${
+        "" /*<w:p>
+        <w:pPr>
+          <w:ind w:left="${cmToTwip(1)}" w:right="${cmToTwip(1)}" />
+          <w:jc w:val="right" />
+        </w:pPr>
         <w:r>
           ${createImage(images.oglLogo, {
             width: cmToEmu(2.18),
             height: cmToEmu(1.1),
-            // xPos: cmToEmu(16.29),
-            // yPos: cmToEmu(22.96),
             isDecorative: true,
           })}
         </w:r>
-      </w:p>
+      </w:p>*/
+      }
     </root>
   `;
 

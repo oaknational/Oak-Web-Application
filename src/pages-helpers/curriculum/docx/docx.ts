@@ -4,7 +4,7 @@ import { createHash } from "crypto";
 
 import { glob } from "glob";
 import JSZip from "jszip";
-import { json2xml, type Element } from "xml-js";
+import { ElementCompact, type Element } from "xml-js";
 
 import {
   collapseFragments,
@@ -14,8 +14,8 @@ import {
   xmlRootToJson,
 } from "./xml";
 
-function generateHash(buffer: Buffer | string) {
-  const hash = createHash("SHA-256");
+export function generateHash(buffer: Buffer | string) {
+  const hash = createHash("sha1");
   hash.setEncoding("hex");
   hash.write(buffer);
   hash.end();
@@ -30,7 +30,7 @@ let maxId = 10000;
  * @returns key / id lookup table
  */
 export async function insertNumbering<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   numberingDefinition: T,
 ) {
   const lookup: Record<keyof typeof numberingDefinition, string> = {} as Record<
@@ -39,8 +39,7 @@ export async function insertNumbering<T extends Record<string, string>>(
   >;
 
   const docNumberingPath = "word/numbering.xml";
-  const xmlStr = await zip.file(docNumberingPath)!.async("text");
-  const json = xmlRootToJson(xmlStr);
+  const json = await zip.readJson(docNumberingPath);
 
   json.elements[0].elements = json.elements[0].elements ?? [];
 
@@ -65,10 +64,7 @@ export async function insertNumbering<T extends Record<string, string>>(
     );
   }
 
-  zip.file(
-    docNumberingPath,
-    jsonXmlToXmlString(collapseFragments(json as Element)),
-  );
+  zip.writeJson(docNumberingPath, collapseFragments(json as Element));
 
   return lookup;
 }
@@ -78,11 +74,17 @@ function extnameWithoutQuery(filepath: string) {
 }
 
 export async function insertImages<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   images: T,
+  file = "document.xml",
 ) {
-  const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const DOC_RELS = `word/_rels/${file}.rels`;
+  const json = zip.exists(DOC_RELS)
+    ? await zip.readJson(DOC_RELS)
+    : xmlRootToJson(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`)!;
+
+  json.elements[0].elements = json.elements[0].elements ?? [];
 
   const existingImageIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -114,10 +116,9 @@ export async function insertImages<T extends Record<string, string>>(
             "unknown";
         } else if (filePathOrUrl.match(/^(https?):/)) {
           const res = await fetch(filePathOrUrl);
-          ext =
-            "." + res.headers.get("content-type")?.split("/")[1] ?? "unknown";
+          const headerExt = res.headers.get("content-type")?.split("/")[1];
+          ext = `.${headerExt ?? "unknown"}`;
           file = Buffer.from(await res.arrayBuffer());
-          // ext = extnameWithoutQuery(filePathOrUrl);
         } else {
           file = await readFile(filePathOrUrl);
           ext = extnameWithoutQuery(filePathOrUrl);
@@ -125,7 +126,7 @@ export async function insertImages<T extends Record<string, string>>(
 
         const filepath = `media/hash_${imagePathHash}${ext}`;
 
-        zip.file(join("word", filepath), file);
+        zip.writeBinary(join("word", filepath), file);
         return xmlElementToJson(safeXml`
           <Relationship
             Id="${id}"
@@ -143,16 +144,16 @@ export async function insertImages<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
 export async function insertLinks<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   links: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const json = await zip.readJson(DOC_RELS);
 
   const existingIds = json.elements[0].elements
     .map((element: Element) => element.attributes?.Id)
@@ -189,67 +190,101 @@ export async function insertLinks<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
-async function addToContentTypesXml(zip: JSZip, xml: string) {
-  const contentXml = xmlRootToJson(
-    await zip.file("[Content_Types].xml")!.async("text"),
-  );
-  console.log(JSON.stringify(contentXml, null, 2));
+async function addToContentTypesXml(zip: JSZipCached, xml: string) {
+  const contentXml = await zip.readJson("[Content_Types].xml");
   contentXml.elements[0].elements.push(xmlElementToJson(xml));
-  zip.file("[Content_Types].xml", jsonXmlToXmlString(contentXml as Element));
+  zip.writeJson("[Content_Types].xml", contentXml as Element);
+}
+
+export function getFooterFilenameFromContent(content: string) {
+  const contentHash = generateHash(content).slice(0, 12);
+  return `footer-${contentHash}.xml`;
 }
 
 async function insertHeaderFooters<T extends Record<string, string>>(
   type: "header" | "footer",
-  zip: JSZip,
-  content: T,
+  zip: JSZipCached,
+  data: T,
 ) {
   const DOC_RELS = "word/_rels/document.xml.rels";
-  const json = xmlRootToJson(await zip.file(DOC_RELS)!.async("text"));
+  const json = await zip.readJson(DOC_RELS);
 
-  const existingIds = json.elements[0].elements
-    .map((element: Element) => element.attributes?.Id)
-    .filter(Boolean);
-  const output: Record<keyof typeof content, string> = {} as Record<
-    keyof typeof content,
+  const output: Record<keyof typeof data, string> = {} as Record<
+    keyof typeof data,
     string
   >;
 
-  const elements = await Promise.all(
-    Object.entries(content).map(async ([key, content]) => {
-      const contentHash = generateHash(content).slice(0, 12);
-      const id = "rId" + contentHash;
-      output[key as keyof T] = id;
+  const elements: (Element | undefined)[] = [];
+  for (const [key, content] of Object.entries(data)) {
+    const id = "rId" + key;
+    output[key as keyof T] = id;
 
-      if (existingIds.includes(id)) {
-        return null;
-      } else {
-        existingIds.push(id);
-      }
+    const filepath = `${type}-${key}.xml`;
+    const zipfilepath = `word/${filepath}`;
 
-      const filepath = `header-${contentHash}.xml`;
-      const zipfilepath = `word/${filepath}`;
+    await addToContentTypesXml(
+      zip,
+      safeXml`
+        <Override
+          PartName="/${zipfilepath}"
+          ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.${type}+xml"
+        />
+      `,
+    );
 
-      await addToContentTypesXml(
-        zip,
-        safeXml`
-          <Override
-            PartName="/${zipfilepath}"
-            ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.${type}+xml"
-          />
-        `,
-      );
+    zip.writeString(
+      zipfilepath,
+      `
+        <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+        <w:ftr
+          xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+          xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+          xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex"
+          xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex"
+          xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex"
+          xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex"
+          xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex"
+          xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex"
+          xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex"
+          xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink"
+          xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:oel="http://schemas.microsoft.com/office/2019/extlst"
+          xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+          xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+          xmlns:v="urn:schemas-microsoft-com:vml"
+          xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+          xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+          xmlns:w10="urn:schemas-microsoft-com:office:word"
+          xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+          xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+          xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+          xmlns:w16cex="http://schemas.microsoft.com/office/word/2018/wordml/cex"
+          xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid"
+          xmlns:w16="http://schemas.microsoft.com/office/word/2018/wordml"
+          xmlns:w16sdtdh="http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash"
+          xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+          xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+          xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+          xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+          xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+          mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh wp14"
+        >${content.trim()}</w:ftr>
+      `.trim(),
+    );
 
-      zip.file(zipfilepath, content.trim());
-
-      return xmlElementToJson(`
+    elements.push(
+      xmlElementToJson(`
         <Relationship Id="${id}" Type="http://purl.oclc.org/ooxml/officeDocument/relationships/${type}" Target="${filepath}" />
-      `);
-    }),
-  );
+      `),
+    );
+  }
 
   for (const element of elements) {
     if (element) {
@@ -257,19 +292,19 @@ async function insertHeaderFooters<T extends Record<string, string>>(
     }
   }
 
-  zip.file(DOC_RELS, jsonXmlToXmlString(json as Element));
+  zip.writeJson(DOC_RELS, json as Element);
   return output;
 }
 
 export async function insertHeaders<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   content: T,
 ) {
   return insertHeaderFooters("header", zip, content);
 }
 
 export async function insertFooters<T extends Record<string, string>>(
-  zip: JSZip,
+  zip: JSZipCached,
   content: T,
 ) {
   return insertHeaderFooters("footer", zip, content);
@@ -295,6 +330,10 @@ export function pointToDxa(input: number) {
 export function cmToDxa(cm: number) {
   const inches = cm / 2.54;
   return inches * 72 * 20;
+}
+
+export function degreeToOoxmlDegree(degrees: number) {
+  return Math.round(degrees * 60000);
 }
 
 export function lineHeight(pointHeight: number, multiplier: number) {
@@ -340,6 +379,7 @@ type ImageOpts = {
   isDecorative?: boolean;
   isWrapTight?: boolean;
   relativeHeight?: number;
+  rotation?: number;
 };
 export function createImage(rId: string, opts: ImageOpts = {}) {
   const uid = IMAGE_ID++;
@@ -355,6 +395,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
     isDecorative = false,
     isWrapTight = false,
     relativeHeight = 1,
+    rotation = 0,
   } = opts;
 
   const isDecorativeVal = isDecorative ? 1 : 0;
@@ -447,7 +488,7 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
                                 </a:stretch>
                             </pic:blipFill>
                             <pic:spPr>
-                                <a:xfrm>
+                                <a:xfrm rot="${degreeToOoxmlDegree(rotation)}">
                                     <a:off x="0" y="0"/>
                                     <a:ext cx="${width}" cy="${height}"/>
                                 </a:xfrm>
@@ -464,19 +505,18 @@ export function createImage(rId: string, opts: ImageOpts = {}) {
 }
 
 export async function appendBodyElements(
-  zip: JSZip,
+  zip: JSZipCached,
   childElements: Element[] = [],
 ) {
-  const docRaw = await zip.file("word/document.xml")?.async("string");
-  if (!docRaw) {
+  const doc = await zip.readJson("word/document.xml");
+  if (!doc) {
     throw new Error("Missing ./word/document.xml");
   }
-  const doc = xmlRootToJson(docRaw);
 
   const oldElements = doc.elements[0]!.elements![0].elements;
   doc.elements[0]!.elements![0].elements = [...oldElements, ...childElements];
 
-  zip.file("word/document.xml", json2xml(JSON.stringify(doc)));
+  zip.writeJson("word/document.xml", doc as Element);
 }
 
 function notUndefined<TValue>(value: TValue | undefined): value is TValue {
@@ -543,6 +583,75 @@ export async function mapOverElements(
   return runner(root, fn)!;
 }
 
+export class JSZipCached {
+  public _zip: JSZip;
+  private _cache: Record<string, Element | ElementCompact>;
+  constructor(zip?: JSZip) {
+    this._zip = zip ?? new JSZip();
+    this._cache = {};
+  }
+
+  exists(filename: string) {
+    return filename in this._zip.files;
+  }
+
+  async readJson(filename: string) {
+    if (this._cache[filename]) {
+      return this._cache[filename]!;
+    }
+    return this._zip
+      .file(filename)!
+      .async("text")
+      .then((res) => {
+        const val = xmlRootToJson(res);
+        this._cache[filename] = val;
+        return val!;
+      });
+  }
+
+  writeJson(filename: string, content: Element) {
+    this._cache[filename] = content;
+  }
+
+  readBinary(filename: string) {
+    return this._zip.file(filename)!.async("nodebuffer");
+  }
+
+  writeBinary(filename: string, content: Buffer) {
+    return this._zip.file(filename, content);
+  }
+
+  readString(filename: string) {
+    return this._zip.file(filename)!.async("string");
+  }
+
+  writeString(filename: string, content: string) {
+    return this._zip.file(filename, content);
+  }
+
+  flush() {
+    for (const [filename, content] of Object.entries(this._cache)) {
+      this._zip.file(filename, jsonXmlToXmlString(content as Element));
+    }
+    this._cache = {};
+  }
+
+  getJsZip() {
+    this.flush();
+    return this._zip;
+  }
+
+  async zipToBuffer() {
+    this.flush();
+    return this._zip.generateAsync({
+      type: "uint8array",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      compression: "DEFLATE",
+    });
+  }
+}
+
 export async function generateEmptyDocx() {
   const basedir = join(
     process.cwd(),
@@ -561,5 +670,5 @@ export async function generateEmptyDocx() {
     }
   }
 
-  return zip;
+  return new JSZipCached(zip);
 }

@@ -151,7 +151,7 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const keys = Object.keys(await zipToSimpleObject(zip));
+      const keys = Object.keys(await zipToSimpleObject(zip.getJsZip()));
       expect(sortBy(keys)).toEqual(
         sortBy([
           "word/",
@@ -185,7 +185,7 @@ describe("docx", () => {
 
       const EMPTY_PNG = `data:image/png;base64,${EMPTY_PNG_BASE64}`;
       const EMPTY_INVALID = `data:image/foo;base64,${EMPTY_PNG_BASE64}`;
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       const dict = await insertImages(zip, {
@@ -194,17 +194,19 @@ describe("docx", () => {
         baz: EMPTY_INVALID,
       });
       expect(dict).toEqual({
-        bar: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
-        baz: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
-        foo: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
+        bar: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
+        baz: "rIddb6a7f8ac6fba01dcd3d3220201569d016b447a8",
+        foo: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
       });
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
 
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
         "word/media/__added",
-        "word/media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png__added",
-        "word/media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo__added",
+        "word/media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng__added",
+        "word/media/hash_db6a7f8ac6fba01dcd3d3220201569d016b447a8foo__added",
         "word/_rels/document.xml.rels",
       ]);
 
@@ -227,10 +229,10 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
+                      Id: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
                       Target:
-                        "media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
+                        "media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng",
                     },
                   },
                 ],
@@ -240,9 +242,9 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
+                      Id: "rIddb6a7f8ac6fba01dcd3d3220201569d016b447a8",
                       Target:
-                        "media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
+                        "media/hash_db6a7f8ac6fba01dcd3d3220201569d016b447a8foo",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
                     },
                   },
@@ -259,14 +261,16 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       await insertLinks(zip, {
         foobar: "http://example.com",
         baz: "http://example.com",
       });
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
 
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
@@ -291,7 +295,7 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rIdf0e6a6a97042a4f1f1c87f5f7d44315b2d852c2df5c7991cc66241bf7072d1c4",
+                      Id: "rId89dce6a446a69d6b9bdc01ac75251e4c322bcdff",
                       Target: "http://example.com",
                       TargetMode: "External",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
@@ -310,7 +314,7 @@ describe("docx", () => {
     it("test", async () => {
       const zip = await generateEmptyDocx();
 
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
 
@@ -360,7 +364,9 @@ describe("docx", () => {
         `,
       });
 
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual(["word/numbering.xml"]);
       expect(diffResults).toMatchSnapshot();
@@ -408,28 +414,30 @@ describe("docx", () => {
   describe("appendBodyElements", () => {
     test("invalid", async () => {
       const zip = await generateEmptyDocx();
-      zip.remove("word/document.xml");
+      zip.getJsZip().remove("word/document.xml");
       await expect(
         appendBodyElements(zip, [{ type: "text", text: "test" }]),
       ).rejects.toThrow();
     });
     test("empty", async () => {
       const zip = await generateEmptyDocx();
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       appendBodyElements(zip);
-      const newState = await zipToSimpleObject(zip, { convertXmlToJson: true });
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
+        convertXmlToJson: true,
+      });
       expect(initialState).toEqual(newState);
     });
     test("valid", async () => {
       const zip = await generateEmptyDocx();
-      const initialState = await zipToSimpleObject(zip, {
+      const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       await appendBodyElements(zip, [{ type: "text", text: "test" }]);
 
-      const newState = await zipToSimpleObject(zip, {
+      const newState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
       });
       const diffResults = diff(initialState, newState);

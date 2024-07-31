@@ -1,18 +1,20 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
+  cmToTwip,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
+import { generateGridCols } from "./helper";
+
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
@@ -71,10 +73,7 @@ export default async function generate(
             <w:insideV w:val="single" w:color="FFFFFF" w:sz="4" />
           </w:tblBorders>
         </w:tblPr>
-        <w:tblGrid>
-          <w:gridCol w:w="10" />
-          <w:gridCol w:w="10515" />
-        </w:tblGrid>
+        <w:tblGrid>${generateGridCols(2, [cmToTwip(1.5)])}</w:tblGrid>
         ${data.subjectPrinciples
           .map((subjectPrincipal) => {
             return safeXml`
@@ -111,14 +110,9 @@ export default async function generate(
           })
           .join("")}
       </w:tbl>
-      <w:p>
-        <w:r>
-          <w:rPr>
-            <w:sz w:val="36" />
-          </w:rPr>
-          <w:t />
-        </w:r>
-      </w:p>
+      ${Array(3)
+        .fill(true)
+        .map(() => `<w:p />`)}
     </root>
   `;
 

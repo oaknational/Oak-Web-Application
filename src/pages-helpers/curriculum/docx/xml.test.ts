@@ -281,6 +281,20 @@ describe("xml", () => {
   });
 
   describe("safeXml", () => {
+    const originalEnv = process.env;
+
+    beforeEach(() => {
+      jest.resetModules();
+      process.env = {
+        ...originalEnv,
+        NODE_ENV: "development",
+      };
+    });
+
+    afterEach(() => {
+      process.env = originalEnv;
+    });
+
     it("string", () => {
       const element = safeXml`<test>${"testing"}</test>`;
       expect(element).toEqual("<test>testing</test>");
@@ -301,7 +315,7 @@ describe("xml", () => {
       expect(element).toEqual("<test>123</test>");
     });
 
-    it("throws", () => {
+    it("throws in development", () => {
       expect(() => {
         safeXml`<test>${"testing"}</testing>`;
       }).toThrow();

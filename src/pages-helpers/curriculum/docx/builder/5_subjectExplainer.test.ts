@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./5_subjectExplainer";
+import { zipToSnapshotObject } from "./helper";
 
 import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
@@ -15,6 +15,6 @@ describe("5_tableOfContents", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

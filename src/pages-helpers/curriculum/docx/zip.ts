@@ -4,8 +4,12 @@ import JSZip from "jszip";
 import { ElementCompact, Element, json2xml } from "xml-js";
 
 import { xmlRootToJson } from "./xml";
+import { generateHash } from "./docx";
 
-type zipToSimpleObjectOpts = { convertXmlToJson?: boolean };
+type zipToSimpleObjectOpts = {
+  convertXmlToJson?: boolean;
+  hashBuffers?: boolean;
+};
 export async function zipToSimpleObject(
   zip: JSZip,
   opts: zipToSimpleObjectOpts = {},
@@ -33,6 +37,8 @@ export async function zipToSimpleObject(
       } else {
         output[file.name] = content;
       }
+    } else if (opts.hashBuffers) {
+      output[file.name] = generateHash(buffer);
     } else {
       output[file.name] = buffer;
     }

@@ -1,7 +1,7 @@
 import { generateEmptyDocx } from "../docx";
-import { zipToSimpleObject } from "../zip";
 
 import generate from "./9_threadsOverview";
+import { zipToSnapshotObject } from "./helper";
 
 import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
@@ -66,6 +66,6 @@ describe("9_threadsOverview", () => {
       } as CombinedCurriculumData,
     });
 
-    expect(zipToSimpleObject(zip)).toMatchSnapshot();
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 });

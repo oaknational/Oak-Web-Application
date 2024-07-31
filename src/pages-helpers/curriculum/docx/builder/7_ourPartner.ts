@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
@@ -10,12 +8,13 @@ import {
   cmToTwip,
   createImage,
   insertImages,
+  JSZipCached,
 } from "../docx";
 
 import { generateGridCols, makeTransparentIfSanity } from "./helper";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const sanityUrl = data.curriculumPartner.image?.asset?.url;
@@ -85,10 +84,9 @@ export default async function generate(
           <w:tc>
             <w:tcPr>
               <w:tcMar>
-                <w:right w:type="dxa" w:w="${cmToTwip(1)}" />
-                <w:left w:type="dxa" w:w="${cmToTwip(0)}" />
+                <w:start w:type="dxa" w:w="${cmToTwip(0)}" />
+                <w:end w:type="dxa" w:w="${cmToTwip(1)}" />
               </w:tcMar>
-              <w:vAlign w:val="center" />
               <w:vAlign w:val="top" />
             </w:tcPr>
 

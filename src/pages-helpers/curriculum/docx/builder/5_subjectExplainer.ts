@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import type JSZip from "jszip";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
@@ -9,11 +7,12 @@ import {
   cmToEmu,
   createImage,
   insertImages,
+  JSZipCached,
   wrapInBookmarkPoint,
 } from "../docx";
 
 export default async function generate(
-  zip: JSZip,
+  zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
@@ -111,20 +110,21 @@ export default async function generate(
           `;
         })
         .join("")}
+      ${Array(9)
+        .fill(true)
+        .map(() => {
+          return `<w:p />`;
+        })}
       <w:p>
+        <w:pPr>
+          <w:jc w:val="center" />
+        </w:pPr>
         <w:r>
           ${createImage(images.educationRoad, {
             width: cmToEmu(13.92),
             height: cmToEmu(10.29),
-            xPos: cmToEmu(3.7),
-            yPos: cmToEmu(17.57),
             isDecorative: true,
           })}
-        </w:r>
-      </w:p>
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
         </w:r>
       </w:p>
     </root>
