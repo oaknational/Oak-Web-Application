@@ -1,4 +1,4 @@
-import { initAuth0 } from "@auth0/nextjs-auth0/edge";
+import { initAuth0 } from "@auth0/nextjs-auth0";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";

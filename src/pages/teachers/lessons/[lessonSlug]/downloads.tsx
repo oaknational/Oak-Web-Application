@@ -1,5 +1,4 @@
 import {
-  NextPage,
   GetStaticProps,
   GetStaticPathsResult,
   GetStaticPropsResult,
@@ -21,9 +20,9 @@ export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
 };
 
-const LessonDownloadsCanonicalPage: NextPage<
-  LessonDownloadsCanonicalPageProps
-> = (props) => {
+const LessonDownloadsCanonicalPage = (
+  props: LessonDownloadsCanonicalPageProps,
+) => {
   const { curriculumData } = props;
   const { lessonTitle, pathways } = curriculumData;
   const commonPathway = getCommonPathway(pathways);
