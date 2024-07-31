@@ -61,6 +61,22 @@ const isUnitListData = (
   return (u as UnitListingData).keyStageSlug !== undefined;
 };
 
+const isUnitFirstItemRef = (
+  programmeSlug: string,
+  newAndLegacyUnitsOnPage: boolean,
+  index: number,
+) => {
+  if (index === 0 && !newAndLegacyUnitsOnPage) {
+    return true;
+  } else if (
+    index === 0 &&
+    newAndLegacyUnitsOnPage &&
+    !isSlugLegacy(programmeSlug)
+  ) {
+    return true;
+  }
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
@@ -108,7 +124,15 @@ const UnitList: FC<UnitListProps> = (props) => {
             <OakUnitListItem
               {...props}
               {...unitOption}
-              firstItemRef={index === 0 ? firstItemRef : null}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
               data-testid="unit-list-item"
               key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
               index={calculatedIndex + 1}
@@ -133,7 +157,15 @@ const UnitList: FC<UnitListProps> = (props) => {
               key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
               hideTopHeading
               index={calculatedIndex}
-              firstItemRef={index === 0 ? firstItemRef : null}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
               onClick={onClick}
               data-testid="unit-list-item"
             />
