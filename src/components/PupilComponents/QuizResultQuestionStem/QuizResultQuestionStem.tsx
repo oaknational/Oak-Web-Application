@@ -14,15 +14,14 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
-export const QuizResultQuestionStem = ({
-  questionStem,
-  index,
-  takeFullHeight,
-}: {
+export type QuizQuestionStemProps = {
   questionStem: (ImageItem | TextItem)[];
   index: number;
   takeFullHeight?: boolean;
-}) => {
+};
+
+export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
+  const { questionStem, index, takeFullHeight } = props;
   const displayNumber = `Q${index + 1}.`;
 
   return (

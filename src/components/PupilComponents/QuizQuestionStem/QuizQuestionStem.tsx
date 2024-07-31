@@ -4,25 +4,16 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import { QuizQuestionStemProps } from "../QuizResultQuestionStem/QuizResultQuestionStem";
+
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import {
-  ImageItem,
-  TextItem,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
-export const QuizQuestionStem = ({
-  questionStem,
-  index,
-  takeFullHeight,
-}: {
-  questionStem: (ImageItem | TextItem)[];
-  index: number;
-  takeFullHeight?: boolean;
-}) => {
+export const QuizQuestionStem = (props: QuizQuestionStemProps) => {
+  const { questionStem, index, takeFullHeight } = props;
   const displayNumber = `Q${index + 1}.`;
 
   return (
