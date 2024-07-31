@@ -246,9 +246,9 @@ exports[`3_ourCurriculum simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rIdefc2ed6977ae02ef89303778d38b0bb0b5a6bdb8"
+    Id="rId20f6bde684d35fb8e50e40cc9470d917d0f62fd5b00ad495dc89d4fea32a9229"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_efc2ed6977ae02ef89303778d38b0bb0b5a6bdb8.png"
+    Target="media/hash_20f6bde684d35fb8e50e40cc9470d917d0f62fd5b00ad495dc89d4fea32a9229.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -747,7 +747,7 @@ exports[`3_ourCurriculum simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIdefc2ed6977ae02ef89303778d38b0bb0b5a6bdb8"
+                      r:embed="rId20f6bde684d35fb8e50e40cc9470d917d0f62fd5b00ad495dc89d4fea32a9229"
                     >
                       <a:extLst>
                         <a:ext
@@ -1015,7 +1015,7 @@ exports[`3_ourCurriculum simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_efc2ed6977ae02ef89303778d38b0bb0b5a6bdb8.png": "5980239afc8319b4a9de006d70c6ea0654315b87",
+  "word/media/hash_20f6bde684d35fb8e50e40cc9470d917d0f62fd5b00ad495dc89d4fea32a9229.png": "f9588a6a0cb986076ea6e39bf1de0a337e3d66bd67fdbfd3a44e6d5a858998f4",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

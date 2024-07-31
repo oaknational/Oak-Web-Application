@@ -246,19 +246,19 @@ exports[`1_frontCover simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rIdbf4fb1757cf9fe0af5cb261d5263f5980cabd13e"
+    Id="rId9f67bbfc080a35e2ffc0fedafff464f5ac38cbce368b8caaff5ddfb3ec151547"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_bf4fb1757cf9fe0af5cb261d5263f5980cabd13e.png"
+    Target="media/hash_9f67bbfc080a35e2ffc0fedafff464f5ac38cbce368b8caaff5ddfb3ec151547.png"
   ></Relationship>
   <Relationship
-    Id="rId2c8f79764ecfded0a35c3cfc36aa7263c196d3a7"
+    Id="rIda77c50cd664b1248582430d14c107bbdb93d98e229d7c6fdd3d11d182a22028d"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_2c8f79764ecfded0a35c3cfc36aa7263c196d3a7.png"
+    Target="media/hash_a77c50cd664b1248582430d14c107bbdb93d98e229d7c6fdd3d11d182a22028d.png"
   ></Relationship>
   <Relationship
-    Id="rIdbcba40bdcba8bee2722f6928a7a24cada23a2ad6"
+    Id="rId2c08afe396a6753dc07465ca7ef89988659bf5d81baa0215fdf06e56a3b1564b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_bcba40bdcba8bee2722f6928a7a24cada23a2ad6.png"
+    Target="media/hash_2c08afe396a6753dc07465ca7ef89988659bf5d81baa0215fdf06e56a3b1564b.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -377,7 +377,7 @@ exports[`1_frontCover simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIdbcba40bdcba8bee2722f6928a7a24cada23a2ad6"
+                      r:embed="rId2c08afe396a6753dc07465ca7ef89988659bf5d81baa0215fdf06e56a3b1564b"
                     >
                       <a:extLst>
                         <a:ext
@@ -670,7 +670,7 @@ exports[`1_frontCover simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rId2c8f79764ecfded0a35c3cfc36aa7263c196d3a7"
+                      r:embed="rIda77c50cd664b1248582430d14c107bbdb93d98e229d7c6fdd3d11d182a22028d"
                     >
                       <a:extLst>
                         <a:ext
@@ -807,7 +807,7 @@ exports[`1_frontCover simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIdbf4fb1757cf9fe0af5cb261d5263f5980cabd13e"
+                      r:embed="rId9f67bbfc080a35e2ffc0fedafff464f5ac38cbce368b8caaff5ddfb3ec151547"
                     >
                       <a:extLst>
                         <a:ext
@@ -1047,9 +1047,9 @@ exports[`1_frontCover simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_2c8f79764ecfded0a35c3cfc36aa7263c196d3a7.png": "e2726b67034cd2b00397c312f067d11c76bdb48e",
-  "word/media/hash_bcba40bdcba8bee2722f6928a7a24cada23a2ad6.png": "b52c4c1fabd11607784bbcc79c00640dc0ea4a1f",
-  "word/media/hash_bf4fb1757cf9fe0af5cb261d5263f5980cabd13e.png": "466594c081dd0f0cc85396cde24200cbd3c3165b",
+  "word/media/hash_2c08afe396a6753dc07465ca7ef89988659bf5d81baa0215fdf06e56a3b1564b.png": "68b8742f1baf1eb88f78e9a91cf161daf82f640c09e5825bbb72a89b54a88a43",
+  "word/media/hash_9f67bbfc080a35e2ffc0fedafff464f5ac38cbce368b8caaff5ddfb3ec151547.png": "423734b37668115e688b843325376576e467da28b8b85ce8304e417b06210db0",
+  "word/media/hash_a77c50cd664b1248582430d14c107bbdb93d98e229d7c6fdd3d11d182a22028d.png": "c308d140b5d0d9b6faee3c9f5bcb8f40a2f1825adba95a9112f36fa9a09d1c30",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

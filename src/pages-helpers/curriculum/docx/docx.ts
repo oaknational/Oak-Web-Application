@@ -15,7 +15,7 @@ import {
 } from "./xml";
 
 export function generateHash(buffer: Buffer | string) {
-  const hash = createHash("sha1");
+  const hash = createHash("sha256");
   hash.setEncoding("hex");
   hash.write(buffer);
   hash.end();
@@ -653,7 +653,7 @@ export class JSZipCached {
 }
 
 export async function generateEmptyDocx() {
-  const basedir = join(
+  const basedir = relative(
     process.cwd(),
     "./src/pages-helpers/curriculum/docx/empty-document.docx",
   );

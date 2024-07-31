@@ -246,14 +246,14 @@ exports[`11_backCover simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rIdf38a1c61153f3824e18d99d72f904f0222b9c7bb"
+    Id="rId2980b9c00bb8bdd14f521c12fe9878ec5b86ad7aa61300d99c3dfb962beb839a"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_f38a1c61153f3824e18d99d72f904f0222b9c7bb.png"
+    Target="media/hash_2980b9c00bb8bdd14f521c12fe9878ec5b86ad7aa61300d99c3dfb962beb839a.png"
   ></Relationship>
   <Relationship
-    Id="rIdaac6135e2d5b21885c71f6f6c8f3d5ec5109836c"
+    Id="rIdb77e138067612da2fffe34e031fe1298bd8012d1c3812cec9f13aa3acd1e96bf"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_aac6135e2d5b21885c71f6f6c8f3d5ec5109836c.png"
+    Target="media/hash_b77e138067612da2fffe34e031fe1298bd8012d1c3812cec9f13aa3acd1e96bf.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -413,7 +413,7 @@ exports[`11_backCover simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIdf38a1c61153f3824e18d99d72f904f0222b9c7bb"
+                      r:embed="rId2980b9c00bb8bdd14f521c12fe9878ec5b86ad7aa61300d99c3dfb962beb839a"
                     >
                       <a:extLst>
                         <a:ext
@@ -621,7 +621,7 @@ exports[`11_backCover simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIdaac6135e2d5b21885c71f6f6c8f3d5ec5109836c"
+                      r:embed="rIdb77e138067612da2fffe34e031fe1298bd8012d1c3812cec9f13aa3acd1e96bf"
                     >
                       <a:extLst>
                         <a:ext
@@ -998,8 +998,8 @@ exports[`11_backCover simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_aac6135e2d5b21885c71f6f6c8f3d5ec5109836c.png": "9624d5746848f8c0a9a85c8bb009850b771bfa0b",
-  "word/media/hash_f38a1c61153f3824e18d99d72f904f0222b9c7bb.png": "4e37ba19f6f4e8b2c8e71bf695180071ef6409f3",
+  "word/media/hash_2980b9c00bb8bdd14f521c12fe9878ec5b86ad7aa61300d99c3dfb962beb839a.png": "aae2bf20be55e46c00d887b6ce696a87a9a4b043a68fd9a5da1d7f84a14e7de4",
+  "word/media/hash_b77e138067612da2fffe34e031fe1298bd8012d1c3812cec9f13aa3acd1e96bf.png": "9dd9d339ea11401b25d3da4f2d8858dbc8423f7fd56d3a975d58812edfbb18f8",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"
