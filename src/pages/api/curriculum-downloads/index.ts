@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
+import { z } from "zod";
+import { isUndefined, omitBy } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -13,24 +15,36 @@ import docx, {
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
+const curriculumDownloadQuerySchema = z.object({
+  mvRefreshTime: z.string(),
+  subjectSlug: z.string(),
+  phaseSlug: z.string(),
+  state: z.string(),
+  examboardSlug: z.string().optional(),
+  tierSlug: z.string().optional(),
+  childSubjectSlug: z.string().optional(),
+});
+
 type getDataReturn =
   | { notFound: true }
   | {
       notFound: false;
       combinedCurriculumData: CombinedCurriculumData;
-      examboardSlug: string;
+      examboardSlug?: string;
       subjectSlug: string;
       phaseSlug: string;
       state: string;
+      tierSlug?: string;
+      childSubjectSlug?: string;
       dataWarnings: string[];
     };
 async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
-  examboardSlug: string;
+  examboardSlug?: string;
   state: string;
-  tierSlug: string;
-  childSubjectSlug: string;
+  tierSlug?: string;
+  childSubjectSlug?: string;
 }): Promise<getDataReturn> {
   const {
     subjectSlug,
@@ -51,7 +65,7 @@ async function getData(opts: {
       await curriculumApi2023.curriculumUnitsIncludeNew({
         subjectSlug,
         phaseSlug,
-        examboardSlug,
+        examboardSlug: examboardSlug ?? null,
         state,
       });
 
@@ -61,13 +75,21 @@ async function getData(opts: {
       units: [...curriculumDataUnsorted.units]
         .filter((a) => {
           if (a.keystage_slug === "ks4") {
-            if (a.subject_slug && childSubjectSlug) {
-              return a.subject_slug === childSubjectSlug;
+            const unitIsChildSubject =
+              a.subject_slug &&
+              a.subject_slug === childSubjectSlug &&
+              childSubjectSlug !== "";
+            const unitHasCorrectTier =
+              a.tier_slug && a.tier_slug === tierSlug && tierSlug !== "";
+            if (childSubjectSlug && tierSlug) {
+              return unitIsChildSubject && unitHasCorrectTier;
             }
-            if (a.tier_slug && tierSlug) {
-              return a.tier_slug === tierSlug;
+            if (childSubjectSlug) {
+              return unitIsChildSubject;
             }
-            return true;
+            if (tierSlug) {
+              return unitHasCorrectTier;
+            }
           }
           return true;
         })
@@ -179,6 +201,8 @@ async function getData(opts: {
     subjectSlug,
     phaseSlug,
     state,
+    tierSlug,
+    childSubjectSlug,
     dataWarnings,
   };
 }
@@ -190,27 +214,36 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
-  const slugs = Array.isArray(req.query.slugs)
-    ? req.query.slugs
-    : [req.query.slugs];
-  const [
-    mvRefreshTimeRaw = "",
-    subjectSlug = "",
-    phaseSlug = "",
-    state = "",
-    examboardSlug = "",
-    tierSlug = "",
-    childSubjectSlug = "",
-  ] = slugs;
+  const {
+    mvRefreshTime,
+    subjectSlug,
+    phaseSlug,
+    state,
+    examboardSlug,
+    tierSlug,
+    childSubjectSlug,
+  } = curriculumDownloadQuerySchema.parse(req.query);
 
-  const mvRefreshTime = parseInt(mvRefreshTimeRaw);
+  const mvRefreshTimeParsed = parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
   // Check if we should redirect (new cache-hit)
-  if (mvRefreshTime !== actualMvRefreshTime) {
-    const newSlugs = [...slugs];
-    newSlugs[0] = String(actualMvRefreshTime);
-    const redirectUrl = `/api/curriculum-downloads/${newSlugs.join("/")}`;
+  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
+    const slugOb = omitBy(
+      {
+        subjectSlug,
+        phaseSlug,
+        state,
+        examboardSlug,
+        tierSlug,
+        childSubjectSlug,
+        mvRefreshTime: actualMvRefreshTime,
+      },
+      isUndefined,
+    ) as Record<string, string>;
+    const newSlugs = new URLSearchParams(slugOb);
+
+    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
     res.redirect(307, redirectUrl);
     return;
   }
