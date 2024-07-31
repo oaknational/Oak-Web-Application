@@ -9,7 +9,6 @@ import {
   OakSpan,
   OakTooltip,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
   QuestionsArray,
@@ -18,7 +17,6 @@ import {
 } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { pickFeedBackComponent } from "@/components/PupilComponents/QuizUtils/pickFeedback";
 import {
   isMatchAnswer,
   isMultiAnswerMCQ,
@@ -30,6 +28,7 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -45,7 +44,6 @@ const QuizInner = () => {
   const { currentSection, updateCurrentSection } = useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
-  const variant = useFeatureFlagVariantKey("pupil-quiz-back-button-test");
 
   if (!isQuizSection(currentSection)) {
     return null;
@@ -77,8 +75,12 @@ const QuizInner = () => {
   );
 
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
-    if (answers) {
-      return <MathJaxWrap>{pickFeedBackComponent(answers)}</MathJaxWrap>;
+    if (answers && !isMatchAnswer(answers)) {
+      return (
+        <MathJaxWrap>
+          <QuizCorrectAnswers />
+        </MathJaxWrap>
+      );
     }
     return null;
   };
@@ -150,24 +152,12 @@ const QuizInner = () => {
     </OakLessonBottomNav>
   );
 
-  const showBackLink = ((variant: string | boolean | undefined) => {
-    if (variant === "only-first-question") {
-      return currentQuestionIndex === 0;
-    } else if (variant === "all-except-last-question") {
-      return currentQuestionIndex < numQuestions - 1;
-    } else {
-      return true;
-    }
-  })(variant);
-
   const topNavSlot = (
     <OakLessonTopNav
       backLinkSlot={
-        showBackLink ? (
-          <OakBackLink
-            {...getSectionLinkProps("overview", updateCurrentSection)}
-          />
-        ) : null
+        <OakBackLink
+          {...getSectionLinkProps("overview", updateCurrentSection)}
+        />
       }
       counterSlot={
         !isExplanatoryText && (
