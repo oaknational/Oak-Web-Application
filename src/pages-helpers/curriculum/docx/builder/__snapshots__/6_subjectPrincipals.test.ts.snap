@@ -500,12 +500,12 @@ exports[`6_subjectPrincipals simple 1`] = `
           <w:insideH
             w:val="single"
             w:color="FFFFFF"
-            w:sz="4"
+            w:sz="0"
           ></w:insideH>
           <w:insideV
             w:val="single"
             w:color="FFFFFF"
-            w:sz="4"
+            w:sz="0"
           ></w:insideV>
         </w:tblBorders>
       </w:tblPr>
@@ -519,6 +519,26 @@ exports[`6_subjectPrincipals simple 1`] = `
       </w:tblGrid>
       <w:tr>
         <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top
+                w:type="dxa"
+                w:w="0"
+              ></w:top>
+              <w:left
+                w:type="dxa"
+                w:w="0"
+              ></w:left>
+              <w:bottom
+                w:type="dxa"
+                w:w="227"
+              ></w:bottom>
+              <w:right
+                w:type="dxa"
+                w:w="0"
+              ></w:right>
+            </w:tcMar>
+          </w:tcPr>
           <w:p>
             <w:r>
               <w:drawing>
@@ -659,6 +679,26 @@ exports[`6_subjectPrincipals simple 1`] = `
       </w:tr>
       <w:tr>
         <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top
+                w:type="dxa"
+                w:w="0"
+              ></w:top>
+              <w:left
+                w:type="dxa"
+                w:w="0"
+              ></w:left>
+              <w:bottom
+                w:type="dxa"
+                w:w="227"
+              ></w:bottom>
+              <w:right
+                w:type="dxa"
+                w:w="0"
+              ></w:right>
+            </w:tcMar>
+          </w:tcPr>
           <w:p>
             <w:r>
               <w:drawing>
@@ -799,6 +839,26 @@ exports[`6_subjectPrincipals simple 1`] = `
       </w:tr>
       <w:tr>
         <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top
+                w:type="dxa"
+                w:w="0"
+              ></w:top>
+              <w:left
+                w:type="dxa"
+                w:w="0"
+              ></w:left>
+              <w:bottom
+                w:type="dxa"
+                w:w="227"
+              ></w:bottom>
+              <w:right
+                w:type="dxa"
+                w:w="0"
+              ></w:right>
+            </w:tcMar>
+          </w:tcPr>
           <w:p>
             <w:r>
               <w:drawing>
@@ -939,6 +999,26 @@ exports[`6_subjectPrincipals simple 1`] = `
       </w:tr>
       <w:tr>
         <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top
+                w:type="dxa"
+                w:w="0"
+              ></w:top>
+              <w:left
+                w:type="dxa"
+                w:w="0"
+              ></w:left>
+              <w:bottom
+                w:type="dxa"
+                w:w="227"
+              ></w:bottom>
+              <w:right
+                w:type="dxa"
+                w:w="0"
+              ></w:right>
+            </w:tcMar>
+          </w:tcPr>
           <w:p>
             <w:r>
               <w:drawing>
@@ -1079,6 +1159,26 @@ exports[`6_subjectPrincipals simple 1`] = `
       </w:tr>
       <w:tr>
         <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top
+                w:type="dxa"
+                w:w="0"
+              ></w:top>
+              <w:left
+                w:type="dxa"
+                w:w="0"
+              ></w:left>
+              <w:bottom
+                w:type="dxa"
+                w:w="227"
+              ></w:bottom>
+              <w:right
+                w:type="dxa"
+                w:w="0"
+              ></w:right>
+            </w:tcMar>
+          </w:tcPr>
           <w:p>
             <w:r>
               <w:drawing>
