@@ -329,7 +329,7 @@ export function pointToDxa(input: number) {
 
 export function cmToDxa(cm: number) {
   const inches = cm / 2.54;
-  return inches * 72 * 20;
+  return Math.round(inches * 72 * 20);
 }
 
 export function degreeToOoxmlDegree(degrees: number) {
