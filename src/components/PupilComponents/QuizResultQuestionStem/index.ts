@@ -1,0 +1,1 @@
+export { QuizResultQuestionStem } from "./QuizResultQuestionStem";
