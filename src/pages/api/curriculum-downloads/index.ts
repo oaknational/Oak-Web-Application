@@ -15,7 +15,7 @@ import docx, {
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
-const curriculumDownloadQuerySchema = z.object({
+export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
