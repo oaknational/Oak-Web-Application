@@ -169,6 +169,10 @@ describe("QuizEngineContext", () => {
         feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
         isPartiallyCorrect: false,
+        correctAnswer: [
+          "a group of words that contains a verb and makes complete sense",
+        ],
+        pupilAnswer: [2],
       });
     });
 
@@ -193,6 +197,10 @@ describe("QuizEngineContext", () => {
         feedback: ["incorrect", "correct", "incorrect", "correct"],
         offerHint: false,
         isPartiallyCorrect: false,
+        correctAnswer: [
+          "a group of words that contains a verb and makes complete sense",
+        ],
+        pupilAnswer: [0],
       });
     });
 
@@ -227,6 +235,11 @@ describe("QuizEngineContext", () => {
         feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
         isPartiallyCorrect: false,
+        correctAnswer: [
+          "a sentence starter followed by a comma",
+          "a group of words that contains a verb and makes complete sense",
+        ],
+        pupilAnswer: [0, 2],
       });
     });
 
@@ -271,6 +284,11 @@ describe("QuizEngineContext", () => {
         feedback: ["correct", "incorrect", "incorrect", "correct"],
         offerHint: false,
         isPartiallyCorrect: true,
+        pupilAnswer: [0, 1],
+        correctAnswer: [
+          "a sentence starter followed by a comma",
+          "a group of words that contains a verb and makes complete sense",
+        ],
       });
     });
   });
@@ -307,6 +325,8 @@ describe("QuizEngineContext", () => {
         grade: 1,
         feedback: "correct",
         offerHint: false,
+        correctAnswer: ["earth", "wind", "fire"],
+        pupilAnswer: "earth",
       });
     });
   });
@@ -337,6 +357,8 @@ describe("QuizEngineContext", () => {
       grade: 0,
       feedback: "incorrect",
       offerHint: false,
+      correctAnswer: ["earth", "wind", "fire"],
+      pupilAnswer: "this is not the correct answer",
     });
   });
 

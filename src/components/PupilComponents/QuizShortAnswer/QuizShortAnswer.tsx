@@ -1,10 +1,12 @@
 import {
   OakFlex,
+  OakJauntyAngleLabel,
   OakLabel,
   OakQuizTextInput,
 } from "@oaknational/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz
@@ -15,6 +17,7 @@ export type QuizShortAnswerProps = {
 
 export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
+  const lessonEngineContext = useLessonEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
@@ -35,12 +38,20 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
       $gap={"space-between-m"}
       $font={"body-1"}
     >
-      <OakLabel
-        htmlFor={`short-answer-${questionUid}`}
-        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
-        $color={"text-subdued"}
-      >
-        Type your answer here
+      <OakLabel htmlFor={`short-answer-${questionUid}`}>
+        <OakFlex
+          $mt={["space-between-s", "space-between-l", "space-between-xl"]}
+        >
+          <OakJauntyAngleLabel
+            $background={
+              lessonEngineContext.currentSection === "starter-quiz"
+                ? "bg-decorative1-main"
+                : "bg-decorative5-main"
+            }
+            $color={"text-primary"}
+            label="Type your answer here"
+          />
+        </OakFlex>
       </OakLabel>
       <OakQuizTextInput
         id={`short-answer-${questionUid}`}
