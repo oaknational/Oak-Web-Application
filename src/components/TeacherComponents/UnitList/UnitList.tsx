@@ -62,6 +62,7 @@ const isUnitListData = (
 };
 
 const isUnitFirstItemRef = (
+  // first item ref is used to focus on the first list item when the pagination is used
   programmeSlug: string,
   newAndLegacyUnitsOnPage: boolean,
   index: number,
