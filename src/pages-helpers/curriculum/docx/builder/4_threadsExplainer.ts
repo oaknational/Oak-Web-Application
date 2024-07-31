@@ -71,20 +71,16 @@ export default async function generate(
   const numbering = await insertNumbering(zip, {
     threadsNumbering: safeXml`
       <XML_FRAGMENT>
-        <w:multiLevelType w:val="multilevel" />
         <w:lvl w:ilvl="0">
           <w:start w:val="1" />
-          <w:numFmt w:val="bullet" />
-          <w:lvlText w:val="" />
+          <w:numFmt w:val="decimal" />
+          <w:lvlText w:val="%1." />
           <w:lvlJc w:val="left" />
           <w:pPr>
-            <w:tabs>
-              <w:tab w:val="num" w:pos="720" />
-            </w:tabs>
-            <w:ind w:left="720" w:hanging="720" />
+            <w:ind w:left="360" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+            <w:rFonts w:hint="default" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>

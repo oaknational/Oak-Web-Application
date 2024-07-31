@@ -62,6 +62,10 @@ exports[`4_threadsExplainer simple 1`] = `
     PartName="/word/endnotes.xml"
     ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml"
   ></Override>
+  <Override
+    PartName="/word/numbering.xml"
+    ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"
+  ></Override>
 </Types>",
   "_rels/": "",
   "_rels/.rels": "<?xml
@@ -246,6 +250,11 @@ exports[`4_threadsExplainer simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
+    Id="rId7"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering"
+    Target="numbering.xml"
+  ></Relationship>
+  <Relationship
     Id="rIdf16c1c9a9340f578e7bd5750120d1972d39d7a7ecc84840313759b5bceb11fe9"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
     Target="https://www.thenational.academy/teachers/curriculum/science-secondary/units"
@@ -327,7 +336,7 @@ exports[`4_threadsExplainer simple 1`] = `
         ></w:pStyle>
       </w:pPr>
       <w:bookmarkStart
-        w:id="10001"
+        w:id="20001"
         w:name="section_threads"
       ></w:bookmarkStart>
       <w:r>
@@ -348,7 +357,7 @@ exports[`4_threadsExplainer simple 1`] = `
         <w:t><![CDATA[Threads]]></w:t>
       </w:r>
       <w:bookmarkEnd
-        w:id="10001"
+        w:id="20001"
       ></w:bookmarkEnd>
     </w:p>
     <w:p>
@@ -431,7 +440,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10000"
+              id="30000"
               name=""
               descr=""
             >
@@ -465,7 +474,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10000"
+                      id="30000"
                       name=""
                       descr=""
                     >
@@ -670,7 +679,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10001"
+              id="30001"
               name=""
               descr=""
             >
@@ -704,7 +713,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10001"
+                      id="30001"
                       name=""
                       descr=""
                     >
@@ -1112,7 +1121,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10002"
+              id="30002"
               name=""
               descr=""
             >
@@ -1146,7 +1155,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10002"
+                      id="30002"
                       name=""
                       descr=""
                     >
@@ -1355,7 +1364,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10003"
+              id="30003"
               name=""
               descr=""
             >
@@ -1389,7 +1398,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10003"
+                      id="30003"
                       name=""
                       descr=""
                     >
@@ -1498,7 +1507,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10004"
+              id="30004"
               name=""
               descr=""
             >
@@ -1532,7 +1541,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10004"
+                      id="30004"
                       name=""
                       descr=""
                     >
@@ -1725,7 +1734,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 b="0"
               ></wp:effectExtent>
               <wp:docPr
-                id="10005"
+                id="30005"
                 name=""
                 descr=""
               >
@@ -1759,7 +1768,7 @@ exports[`4_threadsExplainer simple 1`] = `
                   >
                     <pic:nvPicPr>
                       <pic:cNvPr
-                        id="10005"
+                        id="30005"
                         name=""
                         descr=""
                       >
@@ -1873,7 +1882,7 @@ exports[`4_threadsExplainer simple 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="10006"
+              id="30006"
               name=""
               descr=""
             >
@@ -1907,7 +1916,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="10006"
+                      id="30006"
                       name=""
                       descr=""
                     >
@@ -2101,7 +2110,7 @@ exports[`4_threadsExplainer simple 1`] = `
                 b="0"
               ></wp:effectExtent>
               <wp:docPr
-                id="10007"
+                id="30007"
                 name=""
                 descr=""
               >
@@ -2135,7 +2144,7 @@ exports[`4_threadsExplainer simple 1`] = `
                   >
                     <pic:nvPicPr>
                       <pic:cNvPr
-                        id="10007"
+                        id="30007"
                         name=""
                         descr=""
                       >
@@ -2312,7 +2321,32 @@ exports[`4_threadsExplainer simple 1`] = `
   xmlns:w16sdtdh="http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash"
   xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
   mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh"
-></w:fonts>",
+>
+  <w:font
+    w:name="Symbol"
+  >
+    <w:panose1
+      w:val="05050102010706020507"
+    ></w:panose1>
+    <w:charset
+      w:val="02"
+    ></w:charset>
+    <w:family
+      w:val="decorative"
+    ></w:family>
+    <w:pitch
+      w:val="variable"
+    ></w:pitch>
+    <w:sig
+      w:usb0="00000000"
+      w:usb1="10000000"
+      w:usb2="00000000"
+      w:usb3="00000000"
+      w:csb0="80000000"
+      w:csb1="00000000"
+    ></w:sig>
+  </w:font>
+</w:fonts>",
   "word/footnotes.xml": "<?xml
   version="1.0"
   encoding="UTF-8"
@@ -2449,7 +2483,8 @@ exports[`4_threadsExplainer simple 1`] = `
   mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh wp14"
 >
   <w:abstractNum
-    w:abstractNumId="10000"
+    w:abstractNumId="10002"
+    w15:restartNumberingAfterBreak="0"
   >
     <w:multiLevelType
       w:val="multilevel"
@@ -2485,6 +2520,38 @@ exports[`4_threadsExplainer simple 1`] = `
         <w:rFonts
           w:ascii="Symbol"
           w:hAnsi="Symbol"
+          w:hint="default"
+        ></w:rFonts>
+      </w:rPr>
+    </w:lvl>
+  </w:abstractNum>
+  <w:abstractNum
+    w:abstractNumId="10000"
+    w15:restartNumberingAfterBreak="0"
+  >
+    <w:lvl
+      w:ilvl="0"
+    >
+      <w:start
+        w:val="1"
+      ></w:start>
+      <w:numFmt
+        w:val="decimal"
+      ></w:numFmt>
+      <w:lvlText
+        w:val="%1."
+      ></w:lvlText>
+      <w:lvlJc
+        w:val="left"
+      ></w:lvlJc>
+      <w:pPr>
+        <w:ind
+          w:left="360"
+          w:hanging="360"
+        ></w:ind>
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts
           w:hint="default"
         ></w:rFonts>
       </w:rPr>
@@ -2497,48 +2564,6 @@ exports[`4_threadsExplainer simple 1`] = `
       w:val="10000"
     ></w:abstractNumId>
   </w:num>
-  <w:abstractNum
-    w:abstractNumId="10002"
-  >
-    <w:multiLevelType
-      w:val="multilevel"
-    ></w:multiLevelType>
-    <w:lvl
-      w:ilvl="0"
-    >
-      <w:start
-        w:val="1"
-      ></w:start>
-      <w:numFmt
-        w:val="bullet"
-      ></w:numFmt>
-      <w:lvlText
-        w:val=""
-      ></w:lvlText>
-      <w:lvlJc
-        w:val="left"
-      ></w:lvlJc>
-      <w:pPr>
-        <w:tabs>
-          <w:tab
-            w:val="num"
-            w:pos="720"
-          ></w:tab>
-        </w:tabs>
-        <w:ind
-          w:left="720"
-          w:hanging="720"
-        ></w:ind>
-      </w:pPr>
-      <w:rPr>
-        <w:rFonts
-          w:ascii="Symbol"
-          w:hAnsi="Symbol"
-          w:hint="default"
-        ></w:rFonts>
-      </w:rPr>
-    </w:lvl>
-  </w:abstractNum>
   <w:num
     w:numId="10003"
   >

@@ -25,20 +25,16 @@ async function buildUnitLessons(
   const numbering = await insertNumbering(zip, {
     lessonNumbering: safeXml`
       <XML_FRAGMENT>
-        <w:nsid w:val="099A081C" />
-        <w:multiLevelType w:val="hybridMultilevel" />
         <w:lvl w:ilvl="0">
           <w:start w:val="1" />
-          <w:numFmt w:val="upperLetter" />
+          <w:numFmt w:val="decimal" />
           <w:lvlText w:val="%1." />
-          <w:lvlJc w:val="start" />
+          <w:lvlJc w:val="left" />
           <w:pPr>
-            <w:ind w:start="360" w:hanging="360" />
+            <w:ind w:left="360" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:rFonts w:ascii="Arial Black" w:hAnsi="Arial Black" />
-            <w:color w:val="C00000" />
-            <w:sz w:val="28" />
+            <w:rFonts w:hint="default" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>
@@ -80,17 +76,19 @@ async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
   const numbering = await insertNumbering(zip, {
     threadsNumbering: safeXml`
       <XML_FRAGMENT>
+        <w:nsid w:val="1E776843" />
         <w:multiLevelType w:val="multilevel" />
+        <w:tmpl w:val="20BC537A" />
         <w:lvl w:ilvl="0">
           <w:start w:val="1" />
           <w:numFmt w:val="bullet" />
-          <w:lvlText w:val="●" />
+          <w:lvlText w:val="" />
           <w:lvlJc w:val="left" />
           <w:pPr>
-            <w:ind w:left="720" w:hanging="360" />
+            <w:ind w:left="360" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:u w:val="none" />
+            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>
