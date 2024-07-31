@@ -30,7 +30,7 @@ type Story = StoryObj<typeof meta>;
  *
  */
 export const CorrectSingle: Story = {
-  render: () => {
+  render: (args) => {
     return <QuizResultMCQ {...args} />;
   },
   args: {

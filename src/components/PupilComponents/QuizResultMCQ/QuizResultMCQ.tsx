@@ -38,8 +38,8 @@ export const QuizResultMCQ = ({
     return (
       <OakQuizResultItem
         key={index}
-        standardText={text && text.text}
-        imageURL={image && image.imageObject.secureUrl}
+        standardText={text?.text}
+        imageURL={image?.imageObject?.secureUrl}
         imageAlt={"Image for option " + (index + 1)}
         feedbackState={feedbackState}
       />
