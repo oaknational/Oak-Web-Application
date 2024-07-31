@@ -46,8 +46,19 @@ export default async function generate(
                       <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                       <w:color w:val="222222" />
                       <w:sz w:val="24" />
+                      <w:b />
                     </w:rPr>
-                    <w:t>${cdata(`Unit ${unit.order}: ${unit.title}`)}</w:t>
+                    <w:t xml:space="preserve">${cdata(
+                        `Unit ${unit.order}, `,
+                      )}</w:t>
+                  </w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:color w:val="222222" />
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:t>${cdata(`${unit.title}`)}</w:t>
                   </w:r>
                 </w:p>
               `;
@@ -78,7 +89,7 @@ export default async function generate(
               <w:color w:val="222222" />
               <w:sz w:val="36" />
             </w:rPr>
-            <w:t xml:space="preserve">${cdata(`Thread: `)}</w:t>
+            <w:t xml:space="preserve">${cdata(`Thread, `)}</w:t>
           </w:r>
           <w:r>
             <w:rPr>
@@ -87,7 +98,7 @@ export default async function generate(
               <w:color w:val="222222" />
               <w:sz w:val="36" />
             </w:rPr>
-            <w:t>${cdata(thread.title)}</w:t>
+            <w:t>${cdata(`‘${thread.title}’`)}</w:t>
           </w:r>
         </w:p>
 

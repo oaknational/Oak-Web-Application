@@ -311,7 +311,7 @@ exports[`10_threadsDetail simple 1`] = `
         </w:rPr>
         <w:t
           xml:space="preserve"
-        ><![CDATA[Thread: ]]></w:t>
+        ><![CDATA[Thread, ]]></w:t>
       </w:r>
       <w:r>
         <w:rPr>
@@ -328,7 +328,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[thread-one]]></w:t>
+        <w:t><![CDATA[‘thread-one’]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -391,8 +391,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test A]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test A]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -453,8 +472,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test A]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test A]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -515,8 +553,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test A]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test A]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -577,8 +634,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test A]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test A]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -639,8 +715,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test A]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test A]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -687,7 +782,7 @@ exports[`10_threadsDetail simple 1`] = `
         </w:rPr>
         <w:t
           xml:space="preserve"
-        ><![CDATA[Thread: ]]></w:t>
+        ><![CDATA[Thread, ]]></w:t>
       </w:r>
       <w:r>
         <w:rPr>
@@ -704,7 +799,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[thread-two]]></w:t>
+        <w:t><![CDATA[‘thread-two’]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -767,8 +862,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test B]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test B]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -829,8 +943,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test B]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test B]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -891,8 +1024,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test B]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test B]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -953,8 +1105,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test B]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test B]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1015,8 +1186,27 @@ exports[`10_threadsDetail simple 1`] = `
           <w:sz
             w:val="24"
           ></w:sz>
+          <w:b></w:b>
         </w:rPr>
-        <w:t><![CDATA[Unit undefined: Test B]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Unit undefined, ]]></w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Test B]]></w:t>
       </w:r>
     </w:p>
     <w:p>
