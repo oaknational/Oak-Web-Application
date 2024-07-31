@@ -385,13 +385,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -466,13 +466,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -547,13 +547,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -628,13 +628,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -709,13 +709,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -856,13 +856,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -937,13 +937,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -1018,13 +1018,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -1099,13 +1099,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"
@@ -1180,13 +1180,13 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
             w:val="24"
           ></w:sz>
-          <w:b></w:b>
         </w:rPr>
         <w:t
           xml:space="preserve"

@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { join } from "path";
 
 import type {
   CurriculumOverviewMVData,
@@ -64,7 +64,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
   const images = await insertImages(
     zip,
     {
-      footerImage: relative(
+      footerImage: join(
         process.cwd(),
         "src/pages-helpers/curriculum/docx/builder/images/footer-logo.png",
       ),

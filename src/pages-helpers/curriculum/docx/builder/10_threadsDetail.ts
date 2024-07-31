@@ -44,9 +44,9 @@ export default async function generate(
                   <w:r>
                     <w:rPr>
                       <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                      <w:b />
                       <w:color w:val="222222" />
                       <w:sz w:val="24" />
-                      <w:b />
                     </w:rPr>
                     <w:t xml:space="preserve">${cdata(
                         `Unit ${unit.order}, `,
