@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
 import { z } from "zod";
-import { isUndefined, omitBy } from "lodash";
+import { capitalize, isUndefined, omitBy } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -19,7 +19,7 @@ export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
-  state: z.string(),
+  state: z.enum(["new", "published"]),
   examboardSlug: z.string().optional(),
   tierSlug: z.string().optional(),
   childSubjectSlug: z.string().optional(),
@@ -266,12 +266,15 @@ export default async function handler(
       examboardSlug: data.examboardSlug,
     });
 
-    const pageTitle: string = `${data.combinedCurriculumData
-      ?.subjectTitle} - ${data.combinedCurriculumData?.phaseTitle}${
-      data.combinedCurriculumData.examboardTitle
-        ? ` - ${data.combinedCurriculumData.examboardTitle}`
-        : ""
-    }`;
+    const pageTitle: string = [
+      data.combinedCurriculumData?.subjectTitle,
+      data.combinedCurriculumData?.phaseTitle,
+      data.combinedCurriculumData?.examboardTitle,
+      capitalize(tierSlug),
+      capitalize(childSubjectSlug),
+    ]
+      .filter(Boolean)
+      .join(" - ");
 
     const filename = `${pageTitle} - ${format(
       Date.now(),
