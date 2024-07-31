@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
@@ -13,7 +13,7 @@ import {
 
 export default async function generate(zip: JSZipCached) {
   const images = await insertImages(zip, {
-    oakCurriculum: relative(
+    oakCurriculum: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/oak-curriculum.png",
     ),

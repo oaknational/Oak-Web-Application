@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
@@ -23,7 +23,7 @@ export default async function generate(
   { data }: { data: CombinedCurriculumData },
 ) {
   const images = await insertImages(zip, {
-    upArrow: relative(
+    upArrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/up-arrow.png",
     ),

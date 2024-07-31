@@ -97,7 +97,10 @@ export async function insertImages<T extends Record<string, string>>(
   const elements = await Promise.all(
     Object.entries(images).map(
       async ([key, filePathOrUrl]: [keyof typeof images, string]) => {
-        const imagePathHash = generateHash(filePathOrUrl);
+        const hashUrl = filePathOrUrl.match(/^(data|https?):/)
+          ? filePathOrUrl
+          : relative(process.cwd(), filePathOrUrl);
+        const imagePathHash = generateHash(hashUrl);
         const id = "rId" + imagePathHash;
         output[key] = id;
 
@@ -653,7 +656,7 @@ export class JSZipCached {
 }
 
 export async function generateEmptyDocx() {
-  const basedir = relative(
+  const basedir = join(
     process.cwd(),
     "./src/pages-helpers/curriculum/docx/empty-document.docx",
   );

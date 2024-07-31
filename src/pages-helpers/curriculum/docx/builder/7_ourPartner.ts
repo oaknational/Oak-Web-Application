@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
@@ -21,11 +21,11 @@ export default async function generate(
   const images = await insertImages(zip, {
     partnerImage: sanityUrl
       ? makeTransparentIfSanity(sanityUrl)
-      : relative(
+      : join(
           process.cwd(),
           "src/pages-helpers/curriculum/docx/builder/images/transparent_pixel.png",
         ),
-    underline: relative(
+    underline: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/underline.png",
     ),
