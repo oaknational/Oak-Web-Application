@@ -246,14 +246,14 @@ exports[`5_tableOfContents simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rId5a017ff7ff94c680e1f95973d7e81384aa50bb6d"
+    Id="rId2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_5a017ff7ff94c680e1f95973d7e81384aa50bb6d.png"
+    Target="media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png"
   ></Relationship>
   <Relationship
-    Id="rIde049a564c67565ca11b85e1710d780a7de02b780"
+    Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_e049a564c67565ca11b85e1710d780a7de02b780.png"
+    Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -467,7 +467,7 @@ exports[`5_tableOfContents simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIde049a564c67565ca11b85e1710d780a7de02b780"
+                      r:embed="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
                     >
                       <a:extLst>
                         <a:ext
@@ -666,7 +666,7 @@ exports[`5_tableOfContents simple 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rId5a017ff7ff94c680e1f95973d7e81384aa50bb6d"
+                      r:embed="rId2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4"
                     >
                       <a:extLst>
                         <a:ext
@@ -906,8 +906,8 @@ exports[`5_tableOfContents simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_5a017ff7ff94c680e1f95973d7e81384aa50bb6d.png": "a41dcbcfef3efa128b43cca8870f191908e11f89",
-  "word/media/hash_e049a564c67565ca11b85e1710d780a7de02b780.png": "5f3341e60ac60db591ce2c97e3ff4762a62735a7",
+  "word/media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png": "0cd608625d1c1085fcb481ad42b436cd10fd2ae6eb3c5272aeb420587ee005f5",
+  "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

@@ -194,9 +194,9 @@ describe("docx", () => {
         baz: EMPTY_INVALID,
       });
       expect(dict).toEqual({
-        bar: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
-        baz: "rIddb6a7f8ac6fba01dcd3d3220201569d016b447a8",
-        foo: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
+        bar: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
+        baz: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
+        foo: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
       });
       const newState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
@@ -205,8 +205,8 @@ describe("docx", () => {
       const diffResults = diff(initialState, newState);
       expect(Object.keys(diffResults)).toEqual([
         "word/media/__added",
-        "word/media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng__added",
-        "word/media/hash_db6a7f8ac6fba01dcd3d3220201569d016b447a8foo__added",
+        "word/media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png__added",
+        "word/media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo__added",
         "word/_rels/document.xml.rels",
       ]);
 
@@ -229,10 +229,10 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rId9cfc90df07d91d4dc758241ab56c592936ba10fe",
+                      Id: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
                       Target:
-                        "media/hash_9cfc90df07d91d4dc758241ab56c592936ba10fepng",
+                        "media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
                     },
                   },
                 ],
@@ -242,9 +242,9 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rIddb6a7f8ac6fba01dcd3d3220201569d016b447a8",
+                      Id: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
                       Target:
-                        "media/hash_db6a7f8ac6fba01dcd3d3220201569d016b447a8foo",
+                        "media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
                     },
                   },
@@ -295,7 +295,7 @@ describe("docx", () => {
                     type: "element",
                     name: "Relationship",
                     attributes: {
-                      Id: "rId89dce6a446a69d6b9bdc01ac75251e4c322bcdff",
+                      Id: "rIdf0e6a6a97042a4f1f1c87f5f7d44315b2d852c2df5c7991cc66241bf7072d1c4",
                       Target: "http://example.com",
                       TargetMode: "External",
                       Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",

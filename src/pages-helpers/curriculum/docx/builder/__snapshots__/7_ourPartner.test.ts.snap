@@ -248,14 +248,14 @@ exports[`7_ourPartner without partner image 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rId51ea150cf2b2a117cdc085331296c3d338e74d76"
+    Id="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_51ea150cf2b2a117cdc085331296c3d338e74d76.png"
+    Target="media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png"
   ></Relationship>
   <Relationship
-    Id="rIde049a564c67565ca11b85e1710d780a7de02b780"
+    Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_e049a564c67565ca11b85e1710d780a7de02b780.png"
+    Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -437,7 +437,7 @@ exports[`7_ourPartner without partner image 1`] = `
                   </pic:nvPicPr>
                   <pic:blipFill>
                     <a:blip
-                      r:embed="rIde049a564c67565ca11b85e1710d780a7de02b780"
+                      r:embed="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
                     >
                       <a:extLst>
                         <a:ext
@@ -652,7 +652,7 @@ exports[`7_ourPartner without partner image 1`] = `
                         </pic:nvPicPr>
                         <pic:blipFill>
                           <a:blip
-                            r:embed="rId51ea150cf2b2a117cdc085331296c3d338e74d76"
+                            r:embed="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
                           >
                             <a:extLst>
                               <a:ext
@@ -902,8 +902,8 @@ exports[`7_ourPartner without partner image 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_51ea150cf2b2a117cdc085331296c3d338e74d76.png": "951a7532d0a3fc688dae3d93af1b144e54bfcc8e",
-  "word/media/hash_e049a564c67565ca11b85e1710d780a7de02b780.png": "5f3341e60ac60db591ce2c97e3ff4762a62735a7",
+  "word/media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
+  "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

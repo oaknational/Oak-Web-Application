@@ -1,4 +1,4 @@
-import { join } from "path";
+import { relative } from "path";
 
 import { sortBy, uniqBy } from "lodash";
 
@@ -311,19 +311,19 @@ async function buildYear(
   slugs: Slugs,
 ) {
   const images = await insertImages(zip, {
-    jumpOutArrow: join(
+    jumpOutArrow: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow-2.png",
     ),
-    greenCircle: join(
+    greenCircle: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/green-circle.png",
     ),
-    underline: join(
+    underline: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/underline.png",
     ),
-    greenUnderline: join(
+    greenUnderline: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/green-underline.png",
     ),

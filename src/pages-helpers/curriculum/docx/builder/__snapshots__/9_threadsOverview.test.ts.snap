@@ -246,9 +246,9 @@ exports[`9_threadsOverview simple 1`] = `
     Target="endnotes.xml"
   ></Relationship>
   <Relationship
-    Id="rId9749d866fc26f33dc4a8d8ef73b37b2bfe95998f"
+    Id="rIdcb2d6f58375a7930b19d5cf2e317137bcaa832bd7ea97da24baf337b28364f6a"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_9749d866fc26f33dc4a8d8ef73b37b2bfe95998f.png"
+    Target="media/hash_cb2d6f58375a7930b19d5cf2e317137bcaa832bd7ea97da24baf337b28364f6a.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -438,7 +438,7 @@ exports[`9_threadsOverview simple 1`] = `
                     </pic:nvPicPr>
                     <pic:blipFill>
                       <a:blip
-                        r:embed="rId9749d866fc26f33dc4a8d8ef73b37b2bfe95998f"
+                        r:embed="rIdcb2d6f58375a7930b19d5cf2e317137bcaa832bd7ea97da24baf337b28364f6a"
                       >
                         <a:extLst>
                           <a:ext
@@ -887,7 +887,7 @@ exports[`9_threadsOverview simple 1`] = `
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_9749d866fc26f33dc4a8d8ef73b37b2bfe95998f.png": "271ae52feec9c1b71bd6fd277ba1123063abe2ea",
+  "word/media/hash_cb2d6f58375a7930b19d5cf2e317137bcaa832bd7ea97da24baf337b28364f6a.png": "0ec3635a14f63c9cadcda4ebeb1f531c8a3afa44bc366a6ecc8c7dbbeb98c738",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

@@ -1,4 +1,4 @@
-import { join } from "path";
+import { relative } from "path";
 
 import { CombinedCurriculumData } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
@@ -28,15 +28,15 @@ export default async function generate(
   const images = await insertImages(zip, {
     icon: sanityUrl
       ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
-      : join(
+      : relative(
           process.cwd(),
           "src/pages-helpers/curriculum/docx/builder/images/icon.png",
         ),
-    arrow: join(
+    arrow: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",
     ),
-    logo: join(
+    logo: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/logo.png",
     ),

@@ -1,4 +1,4 @@
-import { join } from "path";
+import { relative } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
@@ -20,11 +20,11 @@ export default async function generate(
     //   process.cwd(),
     //   "src/pages-helpers/curriculum/docx/builder/images/ogl-logo.png",
     // ),
-    peopleIcon: join(
+    peopleIcon: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/people-icon.png",
     ),
-    box: join(
+    box: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/box-with-logo.png",
     ),

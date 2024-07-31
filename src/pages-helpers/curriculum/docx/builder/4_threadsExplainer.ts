@@ -1,4 +1,4 @@
-import { join } from "path";
+import { relative } from "path";
 
 import { uniqBy } from "lodash";
 
@@ -34,23 +34,23 @@ export default async function generate(
     )}/units`,
   });
   const images = await insertImages(zip, {
-    curriculumScreenshot: join(
+    curriculumScreenshot: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/our-curriculum-screenshot.png",
     ),
-    threadScreenshot: join(
+    threadScreenshot: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/threads-screenshot.png",
     ),
-    underline: join(
+    underline: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/underline.png",
     ),
-    jumpOutArrow: join(
+    jumpOutArrow: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow-2.png",
     ),
-    downArrow: join(
+    downArrow: relative(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/down-arrow.png",
     ),
