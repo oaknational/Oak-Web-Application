@@ -17,13 +17,16 @@ import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
+// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
+
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
+  phase?: "primary" | "secondary";
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl } = props;
+  const { lessonTitle, backUrl, phase = "primary" } = props;
   const {
     updateCurrentSection,
     sectionResults,
@@ -55,6 +58,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
+      phase={phase}
       topNavSlot={null}
     >
       <OakGrid

@@ -12,6 +12,7 @@ import {
   useLessonPopStateHandler,
   useNavigateToSection,
 } from "../pupilUtils/lessonNavigation";
+import { QuestionState } from "../QuizUtils/questionTypes";
 
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
@@ -46,7 +47,12 @@ export function isLessonReviewSection(
   return allLessonReviewSections.includes(section as LessonReviewSection);
 }
 
-export type QuizResult = { grade: number; numQuestions: number };
+export type QuizResult = {
+  grade: number;
+  numQuestions: number;
+  questionResults?: QuestionState[];
+};
+
 export type VideoResult = {
   played: boolean;
   duration: number;

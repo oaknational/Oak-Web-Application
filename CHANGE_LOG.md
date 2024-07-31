@@ -1,3 +1,51 @@
+# [1.495.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.494.0...v1.495.0) (2024-07-29)
+
+
+### Bug Fixes
+
+* empty commit ([d08d1b1](https://github.com/oaknational/Oak-Web-Application/commit/d08d1b157ab46cd468ff2d54e30b26310d433b36))
+* remove feature flag implementation ([7bf1143](https://github.com/oaknational/Oak-Web-Application/commit/7bf1143e2b041ede0d63c8633fa919afbdfcd921))
+* type errors ([55b0bea](https://github.com/oaknational/Oak-Web-Application/commit/55b0bead7126710df6067a8dfb90fba25fb92e6b))
+* updated tests for new data schema ([8ce734b](https://github.com/oaknational/Oak-Web-Application/commit/8ce734b4b103e930a1db3a9d4a55e51ec04c2e65))
+
+
+### Features
+
+* refactored to use feedback calculated in QuizEngineProvider ([ff3c4fc](https://github.com/oaknational/Oak-Web-Application/commit/ff3c4fc3a842b284af7b31c74fc2423c40751718))
+
+# [1.494.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.493.0...v1.494.0) (2024-07-26)
+
+
+### Features
+
+* **main:** merge main ([a593e4d](https://github.com/oaknational/Oak-Web-Application/commit/a593e4d841670c1b2ec0ab113e8a646d31381bef))
+* **mcq:** add jaunty label to quiz questions ([143c393](https://github.com/oaknational/Oak-Web-Application/commit/143c39368eb583cae0ad6a32d81688478a59781f))
+* **package:** import latest oak component ([f60e784](https://github.com/oaknational/Oak-Web-Application/commit/f60e7840092ef319849234fab3c8602560d96d4b))
+* **quiz:** add jaunty to short answer questions ([fe8d076](https://github.com/oaknational/Oak-Web-Application/commit/fe8d076c4a466341cc585c3aef2d4f88b602d1eb))
+* **quiz:** add provider to test and fix imports ([7e72982](https://github.com/oaknational/Oak-Web-Application/commit/7e72982124da9a00dfd0016abf99527ecbf1066f))
+
+# [1.493.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.1...v1.493.0) (2024-07-25)
+
+
+### Features
+
+* flag enables posthog tracking of latest URLs in user profiles ([2e2f9c7](https://github.com/oaknational/Oak-Web-Application/commit/2e2f9c703cfbb1fc3112023aad842ac92e80a6e4))
+
+## [1.492.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.492.0...v1.492.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* adjust unit test that seems to be intermittently failing ([97522e9](https://github.com/oaknational/Oak-Web-Application/commit/97522e935dfd70c4f09a85c932f7ebc656785208))
+* adjusting to waitFor didn't work, skipping for the moment ([3e4f3f0](https://github.com/oaknational/Oak-Web-Application/commit/3e4f3f017029acb31b7e22580fe9143708a246ca))
+
+# [1.492.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.491.0...v1.492.0) (2024-07-24)
+
+
+### Features
+
+* update lesson layout with new colours, backgrounds and icon colour ([8ab42c6](https://github.com/oaknational/Oak-Web-Application/commit/8ab42c65587ecdc63ac9dcdb65e1e97a9837907f))
+
 # [1.491.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.490.0...v1.491.0) (2024-07-24)
 
 
