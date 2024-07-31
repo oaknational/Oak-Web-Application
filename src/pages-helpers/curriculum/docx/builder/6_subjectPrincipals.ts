@@ -4,6 +4,7 @@ import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
+  cmToDxa,
   cmToEmu,
   cmToTwip,
   createImage,
@@ -69,8 +70,8 @@ export default async function generate(
             <w:left w:val="single" w:color="FFFFFF" w:sz="0" />
             <w:bottom w:val="single" w:color="FFFFFF" w:sz="0" />
             <w:right w:val="single" w:color="FFFFFF" w:sz="0" />
-            <w:insideH w:val="single" w:color="FFFFFF" w:sz="4" />
-            <w:insideV w:val="single" w:color="FFFFFF" w:sz="4" />
+            <w:insideH w:val="single" w:color="FFFFFF" w:sz="0" />
+            <w:insideV w:val="single" w:color="FFFFFF" w:sz="0" />
           </w:tblBorders>
         </w:tblPr>
         <w:tblGrid>${generateGridCols(2, [cmToTwip(1.5)])}</w:tblGrid>
@@ -79,6 +80,14 @@ export default async function generate(
             return safeXml`
               <w:tr>
                 <w:tc>
+                  <w:tcPr>
+                    <w:tcMar>
+                      <w:top w:type="dxa" w:w="${cmToDxa(0)}" />
+                      <w:left w:type="dxa" w:w="${cmToDxa(0)}" />
+                      <w:bottom w:type="dxa" w:w="${cmToDxa(0.4)}" />
+                      <w:right w:type="dxa" w:w="${cmToDxa(0)}" />
+                    </w:tcMar>
+                  </w:tcPr>
                   <w:p>
                     <w:r>
                       ${createImage(images.arrowBullet, {
