@@ -9,7 +9,7 @@ describe("QuizResultShortAnswer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           answers={"This is the correct answer"}
-          pupilAnswers={"This is the correct answer"}
+          pupilAnswer={"This is the correct answer"}
         />
         ,
       </OakThemeProvider>,
@@ -23,7 +23,7 @@ describe("QuizResultShortAnswer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           answers={"This is the correct answer"}
-          pupilAnswers={"This is the correct answer"}
+          pupilAnswer={"This is the correct answer"}
         />
         ,
       </OakThemeProvider>,
@@ -39,7 +39,7 @@ describe("QuizResultShortAnswer", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           answers={"This is the correct answer"}
-          pupilAnswers={"This is not the correct answer"}
+          pupilAnswer={"This is not the correct answer"}
         />
         ,
       </OakThemeProvider>,

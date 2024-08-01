@@ -37,7 +37,7 @@ export const Correct: Story = {
   },
   args: {
     answers: "This is the correct answer",
-    pupilAnswers: "This is the correct answer",
+    pupilAnswer: "This is the correct answer",
   },
 };
 
@@ -50,7 +50,7 @@ export const CorrectMultipleCorrect: Story = {
       "This is one of the correct answer",
       "this is another correct answer",
     ],
-    pupilAnswers: "This is one of the correct answer",
+    pupilAnswer: "This is one of the correct answer",
   },
 };
 
@@ -60,7 +60,7 @@ export const IncorrectSingle: Story = {
   },
   args: {
     answers: "This is the correct answer",
-    pupilAnswers: "This is the incorrect answer",
+    pupilAnswer: "This is the incorrect answer",
   },
 };
 
@@ -73,6 +73,6 @@ export const InCorrectMultipleCorrect: Story = {
       "This is one of the correct answer",
       "this is another correct answer",
     ],
-    pupilAnswers: "This is not one of the correct answers",
+    pupilAnswer: "This is not one of the correct answers",
   },
 };

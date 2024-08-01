@@ -9,39 +9,31 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultShortAnswerProps = {
   answers: string | (string | undefined)[];
-  pupilAnswers: string;
+  pupilAnswer: string;
 };
 
 export const QuizResultShortAnswer = ({
   answers,
-  pupilAnswers,
+  pupilAnswer,
 }: QuizResultShortAnswerProps) => {
   const feedbackState = (() => {
     switch (true) {
-      case answers.includes(pupilAnswers):
+      case answers.includes(pupilAnswer):
         return "correct";
-      case pupilAnswers === answers:
+      case pupilAnswer === answers:
         return "correct";
-      case pupilAnswers !== answers:
+      case pupilAnswer !== answers:
         return "incorrect";
       default:
         return null;
     }
   })();
 
-  //   const imageURL =
-  //     isImage(image) && image?.imageObject?.secureUrl
-  //       ? image.imageObject.secureUrl
-  //       : undefined;
-
-  //   const standardText = isText(text) && text?.text ? text.text : undefined;
-
-  // return
   const resultItems = (
     <MathJaxWrap>
       <OakQuizResultItem
-        key={pupilAnswers}
-        standardText={pupilAnswers}
+        key={pupilAnswer}
+        standardText={pupilAnswer}
         feedbackState={feedbackState}
       />
     </MathJaxWrap>
