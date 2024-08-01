@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
 
+import { OakHeading, OakP } from "@oaknational/oak-components";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import UnitListItem, {
@@ -33,6 +33,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
       $mb={16}
       $borderRadius={4}
       data-testid="unit-optionality-card"
+      role="listitem"
     >
       <Flex>
         <Flex

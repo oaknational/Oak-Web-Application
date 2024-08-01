@@ -1,6 +1,6 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
+import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
 import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
@@ -122,6 +122,8 @@ const LessonListItem: FC<
       background={expired ? "grey20" : "white"}
       containerProps={containerProps}
       expired={expired}
+      key={`LessonList-LessonListItem-${lessonSlug}`}
+      data-testid={"lesson-list-item"}
     >
       <ListItemIndexDesktop
         index={index + 1}
