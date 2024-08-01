@@ -47,9 +47,12 @@ export async function insertNumbering<T extends Record<string, string>>(
     const abstractNumId = maxId++;
     const numId = maxId++;
     lookup[key as keyof T] = String(numId);
-    json.elements[0].elements.push(
+    json.elements[0].elements.unshift(
       xmlElementToJson(safeXml`
-        <w:abstractNum w:abstractNumId="${abstractNumId}">
+        <w:abstractNum
+          w:abstractNumId="${abstractNumId}"
+          w15:restartNumberingAfterBreak="0"
+        >
           ${definition}
         </w:abstractNum>
       `),
@@ -363,13 +366,13 @@ export function wrapInLinkToBookmark(anchor: string, childXml: string) {
   return `<w:hyperlink w:anchor="${anchor}">${childXml}</w:hyperlink>`;
 }
 
-export const CURRENT_BOOKMARK = { id: 10000 };
+export const CURRENT_BOOKMARK = { id: 20000 };
 export function wrapInBookmarkPoint(anchor: string, childXml: string) {
   CURRENT_BOOKMARK.id++;
   return `<w:bookmarkStart w:id="${CURRENT_BOOKMARK.id}" w:name="${anchor}"/>${childXml}<w:bookmarkEnd w:id="${CURRENT_BOOKMARK.id}"/>`;
 }
 
-let IMAGE_ID = 10000;
+let IMAGE_ID = 30000;
 type ImageOpts = {
   name?: string;
   desc?: string;

@@ -1,6 +1,6 @@
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
-import { appendBodyElements, JSZipCached } from "../docx";
+import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 
 import { createThreadOptions, threadUnitByYear } from "./helper";
 
@@ -14,6 +14,29 @@ export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
+  const numbering = await insertNumbering(zip, {
+    unitNumbering: safeXml`
+      <XML_FRAGMENT>
+        <w:multiLevelType w:val="multilevel" />
+        <w:lvl w:ilvl="0">
+          <w:start w:val="1" />
+          <w:numFmt w:val="bullet" />
+          <w:lvlText w:val="" />
+          <w:lvlJc w:val="left" />
+          <w:pPr>
+            <w:tabs>
+              <w:tab w:val="num" w:pos="720" />
+            </w:tabs>
+            <w:ind w:left="720" w:hanging="720" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+          </w:rPr>
+        </w:lvl>
+      </XML_FRAGMENT>
+    `,
+  });
+
   const allThreadOptions = createThreadOptions(data.units);
   const elements = allThreadOptions.map((thread, threadIndex) => {
     const threadInfo = threadUnitByYear(data.units, thread.slug);
@@ -41,6 +64,14 @@ export default async function generate(
             .map((unit) => {
               return safeXml`
                 <w:p>
+                  <w:pPr>
+                    <w:numPr>
+                      <w:ilvl w:val="0" />
+                      <w:numId w:val="${numbering.unitNumbering}" />
+                    </w:numPr>
+                    <w:spacing w:line="276" w:lineRule="auto" />
+                    <w:ind w:left="425" w:right="-17" w:hanging="360" />
+                  </w:pPr>
                   <w:r>
                     <w:rPr>
                       <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
