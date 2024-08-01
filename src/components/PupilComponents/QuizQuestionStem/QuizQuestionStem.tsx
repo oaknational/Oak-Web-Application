@@ -3,17 +3,25 @@ import {
   OakFlex,
   OakSpan,
 } from "@oaknational/oak-components";
-
-import { QuizQuestionStemProps } from "../QuizResultQuestionStem/QuizResultQuestionStem";
-
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import {
+  ImageItem,
+  TextItem,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export const QuizQuestionStem = (props: QuizQuestionStemProps) => {
-  const { questionStem, index, takeFullHeight } = props;
+export const QuizQuestionStem = ({
+  questionStem,
+  index,
+  takeFullHeight,
+}: {
+  questionStem: (ImageItem | TextItem)[];
+  index: number;
+  takeFullHeight?: boolean;
+}) => {
   const displayNumber = `Q${index + 1}.`;
 
   return (

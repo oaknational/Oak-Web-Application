@@ -3,7 +3,6 @@ import {
   OakFlex,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
@@ -14,14 +13,14 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
-export type QuizQuestionStemProps = {
+type QuizQuestionStemProps = {
   questionStem: (ImageItem | TextItem)[];
   index: number;
-  takeFullHeight?: boolean;
 };
 
 export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
-  const { questionStem, index, takeFullHeight } = props;
+  const { questionStem, index } = props;
+
   const displayNumber = `Q${index + 1}.`;
 
   return (
@@ -29,17 +28,9 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
       $flexDirection={"column"}
       $gap={"space-between-m"}
       $color={"text-primary"}
-      $height={takeFullHeight ? "100%" : "auto"}
       $justifyContent={["center", "flex-start"]}
     >
-      <OakFlex
-        key="stem-header"
-        $mt={
-          takeFullHeight
-            ? ["space-between-none", "space-between-xl", "space-between-xxl"]
-            : "space-between-none"
-        }
-      >
+      <OakFlex key="stem-header">
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
