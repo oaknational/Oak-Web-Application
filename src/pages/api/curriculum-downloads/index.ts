@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
+import { z } from "zod";
+import { capitalize, isUndefined, omitBy } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -13,24 +15,49 @@ import docx, {
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
+export const curriculumDownloadQuerySchema = z.object({
+  mvRefreshTime: z.string(),
+  subjectSlug: z.string(),
+  phaseSlug: z.string(),
+  state: z.enum(["new", "published"]),
+  examboardSlug: z.string().optional(),
+  tierSlug: z.string().optional(),
+  childSubjectSlug: z.string().optional(),
+});
+
+export type curriculumDownloadQueryProps = z.infer<
+  typeof curriculumDownloadQuerySchema
+>;
+
 type getDataReturn =
   | { notFound: true }
   | {
       notFound: false;
       combinedCurriculumData: CombinedCurriculumData;
-      examboardSlug: string;
+      examboardSlug?: string;
       subjectSlug: string;
       phaseSlug: string;
       state: string;
+      tierSlug?: string;
+      childSubjectSlug?: string;
       dataWarnings: string[];
     };
 async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
-  examboardSlug: string;
+  examboardSlug?: string;
   state: string;
+  tierSlug?: string;
+  childSubjectSlug?: string;
 }): Promise<getDataReturn> {
-  const { subjectSlug, phaseSlug, examboardSlug, state } = opts;
+  const {
+    subjectSlug,
+    phaseSlug,
+    examboardSlug,
+    state,
+    childSubjectSlug,
+    tierSlug,
+  } = opts;
 
   let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
@@ -42,7 +69,7 @@ async function getData(opts: {
       await curriculumApi2023.curriculumUnitsIncludeNew({
         subjectSlug,
         phaseSlug,
-        examboardSlug,
+        examboardSlug: examboardSlug ?? null,
         state,
       });
 
@@ -50,6 +77,26 @@ async function getData(opts: {
     curriculumData = {
       ...curriculumDataUnsorted,
       units: [...curriculumDataUnsorted.units]
+        .filter((a) => {
+          if (a.keystage_slug === "ks4") {
+            const unitIsChildSubject =
+              a.subject_slug &&
+              a.subject_slug === childSubjectSlug &&
+              childSubjectSlug !== null;
+            const unitHasCorrectTier =
+              a.tier_slug && a.tier_slug === tierSlug && tierSlug !== null;
+            if (childSubjectSlug && tierSlug) {
+              return unitIsChildSubject && unitHasCorrectTier;
+            }
+            if (childSubjectSlug) {
+              return unitIsChildSubject;
+            }
+            if (tierSlug) {
+              return unitHasCorrectTier;
+            }
+          }
+          return true;
+        })
         .sort((a) => {
           if (a.examboard) {
             return -1;
@@ -158,6 +205,8 @@ async function getData(opts: {
     subjectSlug,
     phaseSlug,
     state,
+    tierSlug,
+    childSubjectSlug,
     dataWarnings,
   };
 }
@@ -169,25 +218,36 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
-  const slugs = Array.isArray(req.query.slugs)
-    ? req.query.slugs
-    : [req.query.slugs];
-  const [
-    mvRefreshTimeRaw = "",
-    subjectSlug = "",
-    phaseSlug = "",
-    state = "",
-    examboardSlug = "",
-  ] = slugs;
+  const {
+    mvRefreshTime,
+    subjectSlug,
+    phaseSlug,
+    state,
+    examboardSlug,
+    tierSlug,
+    childSubjectSlug,
+  } = curriculumDownloadQuerySchema.parse(req.query);
 
-  const mvRefreshTime = parseInt(mvRefreshTimeRaw);
+  const mvRefreshTimeParsed = parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
   // Check if we should redirect (new cache-hit)
-  if (mvRefreshTime !== actualMvRefreshTime) {
-    const newSlugs = [...slugs];
-    newSlugs[0] = String(actualMvRefreshTime);
-    const redirectUrl = `/api/curriculum-downloads/${newSlugs.join("/")}`;
+  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
+    const slugOb = omitBy(
+      {
+        subjectSlug,
+        phaseSlug,
+        state,
+        examboardSlug,
+        tierSlug,
+        childSubjectSlug,
+        mvRefreshTime: actualMvRefreshTime,
+      },
+      isUndefined,
+    ) as Record<string, string>;
+    const newSlugs = new URLSearchParams(slugOb);
+
+    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
     res.redirect(307, redirectUrl);
     return;
   }
@@ -197,6 +257,8 @@ export default async function handler(
     phaseSlug,
     examboardSlug,
     state,
+    tierSlug,
+    childSubjectSlug,
   });
 
   // FIXME: Poor use of types here
@@ -208,12 +270,15 @@ export default async function handler(
       examboardSlug: data.examboardSlug,
     });
 
-    const pageTitle: string = `${data.combinedCurriculumData
-      ?.subjectTitle} - ${data.combinedCurriculumData?.phaseTitle}${
-      data.combinedCurriculumData.examboardTitle
-        ? ` - ${data.combinedCurriculumData.examboardTitle}`
-        : ""
-    }`;
+    const pageTitle: string = [
+      data.combinedCurriculumData?.subjectTitle,
+      data.combinedCurriculumData?.phaseTitle,
+      data.combinedCurriculumData?.examboardTitle,
+      capitalize(childSubjectSlug),
+      capitalize(tierSlug),
+    ]
+      .filter(Boolean)
+      .join(" - ");
 
     const filename = `${pageTitle} - ${format(
       Date.now(),
