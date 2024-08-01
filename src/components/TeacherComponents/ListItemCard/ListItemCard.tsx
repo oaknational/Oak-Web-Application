@@ -32,6 +32,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
 
   return (
     <Card
+      role="listitem"
       $justifyContent={"space-between"}
       $flexDirection={"row"}
       $mb={16}

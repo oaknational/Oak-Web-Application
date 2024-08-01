@@ -1,3 +1,17 @@
+# [1.496.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.495.0...v1.496.0) (2024-08-01)
+
+
+### Bug Fixes
+
+* first item pagination ref ([a46c8a3](https://github.com/oaknational/Oak-Web-Application/commit/a46c8a312112a621608fa4ec4f4fafc289b918d7))
+* focus on first item from pagaination ([9bff600](https://github.com/oaknational/Oak-Web-Application/commit/9bff6002c774bfdce42113b9b45b6a604056dab4))
+* pa11y errors ([b9b86be](https://github.com/oaknational/Oak-Web-Application/commit/b9b86bec11dc6fe405c18ad32fa2b57355f82df2))
+
+
+### Features
+
+* new unit listing card ([4a776b1](https://github.com/oaknational/Oak-Web-Application/commit/4a776b1411e636847a7e06c6f176847b19a44efd))
+
 # [1.495.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.494.0...v1.495.0) (2024-07-29)
 
 
