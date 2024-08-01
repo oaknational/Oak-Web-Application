@@ -29,7 +29,7 @@ export const QuizResultShortAnswer = ({
     }
   })();
 
-  const resultItems = (
+  const resultItem = (
     <MathJaxWrap>
       <OakQuizResultItem
         key={pupilAnswer}
@@ -42,7 +42,7 @@ export const QuizResultShortAnswer = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      {resultItems}
+      {resultItem}
     </OakFlex>
   );
 };
