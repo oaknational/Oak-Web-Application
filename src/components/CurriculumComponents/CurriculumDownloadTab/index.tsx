@@ -38,6 +38,29 @@ function ScrollIntoViewWhenVisisble({
   return <div ref={ref}>{children}</div>;
 }
 
+export function createCurriculumDownloadsQuery(
+  mvRefreshTime: number,
+  subjectSlug: string,
+  phaseSlug: string,
+  examboardSlug: string | null,
+  tierSlug: string | null,
+  childSubjectSlug: string | null,
+) {
+  const query = new URLSearchParams({
+    mvRefreshTime: String(mvRefreshTime),
+    subjectSlug: subjectSlug,
+    phaseSlug: phaseSlug,
+    state: "published",
+  });
+  examboardSlug && query.set("examboardSlug", examboardSlug);
+  tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
+  childSubjectSlug &&
+    childSubjectSlug !== null &&
+    query.set("childSubjectSlug", childSubjectSlug);
+
+  return query;
+}
+
 export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
   slugs: CurriculumSelectionSlugs;
@@ -52,8 +75,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 }) => {
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
 
-  const [tierSelected, setTierSelected] = useState<string>("");
-  const [childSubjectSelected, setChildSubjectSelected] = useState<string>("");
+  const [tierSelected, setTierSelected] = useState<string | null>(null);
+  const [childSubjectSelected, setChildSubjectSelected] = useState<
+    string | null
+  >(null);
   const [tiers] = useState<Tier[]>(
     snake_tiers && snake_tiers.length > 0
       ? snake_tiers.map(
@@ -160,16 +185,24 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
-    const query = new URLSearchParams();
-    query.set("mvRefreshTime", String(mvRefreshTime));
-    query.set("subjectSlug", slugs.subjectSlug);
-    query.set("phaseSlug", slugs.phaseSlug);
-    query.set("state", "published");
-    slugs.examboardSlug && query.set("examboardSlug", slugs.examboardSlug);
-    tierSelected !== "" && query.set("tierSlug", tierSelected);
-    childSubjectSelected !== "" &&
-      query.set("childSubjectSlug", childSubjectSelected);
 
+    // const query = new URLSearchParams();
+    // query.set("mvRefreshTime", String(mvRefreshTime));
+    // query.set("subjectSlug", slugs.subjectSlug);
+    // query.set("phaseSlug", slugs.phaseSlug);
+    // query.set("state", "published");
+    // slugs.examboardSlug && query.set("examboardSlug", slugs.examboardSlug);
+    // tierSelected !== "" && query.set("tierSlug", tierSelected);
+    // childSubjectSelected !== "" &&
+    //   query.set("childSubjectSlug", childSubjectSelected);
+    const query = createCurriculumDownloadsQuery(
+      mvRefreshTime,
+      slugs.subjectSlug,
+      slugs.phaseSlug,
+      slugs.examboardSlug,
+      tierSelected,
+      childSubjectSelected,
+    );
     const downloadPath = `/api/curriculum-downloads/?${query}`;
 
     const schoolData = {

@@ -25,6 +25,10 @@ export const curriculumDownloadQuerySchema = z.object({
   childSubjectSlug: z.string().optional(),
 });
 
+export type curriculumDownloadQueryProps = z.infer<
+  typeof curriculumDownloadQuerySchema
+>;
+
 type getDataReturn =
   | { notFound: true }
   | {
@@ -78,9 +82,9 @@ async function getData(opts: {
             const unitIsChildSubject =
               a.subject_slug &&
               a.subject_slug === childSubjectSlug &&
-              childSubjectSlug !== "";
+              childSubjectSlug !== null;
             const unitHasCorrectTier =
-              a.tier_slug && a.tier_slug === tierSlug && tierSlug !== "";
+              a.tier_slug && a.tier_slug === tierSlug && tierSlug !== null;
             if (childSubjectSlug && tierSlug) {
               return unitIsChildSubject && unitHasCorrectTier;
             }

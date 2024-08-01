@@ -1,15 +1,11 @@
-import { z } from "zod";
-
-import handler, {
-  curriculumDownloadQuerySchema,
-} from "../../../../pages/api/curriculum-downloads/index";
+import handler, { curriculumDownloadQueryProps } from "../../../../pages/api/curriculum-downloads/index";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
-const createReqRes = (slugs: z.infer<typeof curriculumDownloadQuerySchema>) => {
+const createReqRes = (slugs: curriculumDownloadQueryProps) => {
   const { req, res } = createNextApiMocks({
     query: slugs,
   });

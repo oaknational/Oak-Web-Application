@@ -1,10 +1,11 @@
-import CurriculumDownloadTab from ".";
+import CurriculumDownloadTab, { createCurriculumDownloadsQuery } from ".";
 
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
 
 const render = renderWithProviders();
+const mvRefreshTime = 1721314874829;
 
 const tiersMock = [
   { tier: "Foundation", tier_slug: "foundation" },
@@ -38,7 +39,7 @@ describe("Component - Curriculum Download Tab", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       slugs: parseSubjectPhaseSlug("english-secondary-aqa"),
-      mvRefreshTime: 1721314874829,
+      mvRefreshTime,
       tiers: [],
       childSubjects: [],
       ...overrides,
@@ -126,5 +127,52 @@ describe("Component - Curriculum Download Tab", () => {
       expect(childSubjectRadios[2]).toHaveTextContent("Chemistry");
       expect(childSubjectRadios[3]).toHaveTextContent("Physics");
     });
+  });
+});
+
+describe("Downloads tab: unit tests", () => {
+  const mvRefreshTime = 1721314874829;
+  test("Query is created properly: Science secondary AQA", async () => {
+    const data = {
+      mvRefreshTime: 1721314874829,
+      subjectSlug: "science",
+      phaseSlug: "secondary",
+      examboardSlug: "aqa",
+      tierSlug: "foundation",
+      childSubjectSlug: "combined-science",
+    };
+    const {
+      mvRefreshTime,
+      subjectSlug,
+      phaseSlug,
+      examboardSlug,
+      tierSlug,
+      childSubjectSlug,
+    } = data;
+    const query = createCurriculumDownloadsQuery(
+      mvRefreshTime,
+      subjectSlug,
+      phaseSlug,
+      examboardSlug,
+      tierSlug,
+      childSubjectSlug,
+    );
+    expect(query.toString()).toEqual(
+      `mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&examboardSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+    );
+  });
+
+  test("Query is created properly: English primary", async () => {
+    const query = createCurriculumDownloadsQuery(
+      mvRefreshTime,
+      "english",
+      "primary",
+      null,
+      null,
+      null,
+    );
+    expect(query.toString()).toEqual(
+      `mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+    );
   });
 });
