@@ -5,10 +5,12 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { isImage } from "../QuizUtils/stemUtils";
-
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { PupilAnswerMCQ } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import {
+  isImage,
+  isText,
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
@@ -39,10 +41,10 @@ export const QuizResultMCQ = ({
 
     const imageURL =
       isImage(image) && image?.imageObject?.secureUrl
-        ? image?.imageObject?.secureUrl
+        ? image.imageObject.secureUrl
         : undefined;
 
-    const standardText = isText(text) && text?.text ? text?.text : undefined;
+    const standardText = isText(text) && text?.text ? text.text : undefined;
 
     return (
       <OakQuizResultItem
