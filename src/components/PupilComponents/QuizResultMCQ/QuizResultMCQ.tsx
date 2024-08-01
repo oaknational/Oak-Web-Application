@@ -48,20 +48,22 @@ export const QuizResultMCQ = ({
     const standardText = isText(text) && text?.text ? text.text : undefined;
 
     return (
-      <OakQuizResultItem
-        key={index}
-        standardText={standardText}
-        imageURL={imageURL}
-        imageAlt={"Image for option " + (index + 1)}
-        feedbackState={feedbackState}
-      />
+      <MathJaxWrap>
+        <OakQuizResultItem
+          key={index}
+          standardText={standardText}
+          imageURL={imageURL}
+          imageAlt={"Image for option " + (index + 1)}
+          feedbackState={feedbackState}
+        />
+      </MathJaxWrap>
     );
   });
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      <MathJaxWrap>{resultItems}</MathJaxWrap>
+      {resultItems}
     </OakFlex>
   );
 };

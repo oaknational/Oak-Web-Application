@@ -8,6 +8,7 @@ import {
   mcqImageAnswers,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 const mcqMulitpleCorrectAnswers = [
   mcqTextAnswers[0],
@@ -20,9 +21,11 @@ const meta = {
   component: QuizResultMCQ,
   decorators: [
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
+      <MathJaxProvider>
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <Story />
+        </OakThemeProvider>
+      </MathJaxProvider>
     ),
   ],
   parameters: {
