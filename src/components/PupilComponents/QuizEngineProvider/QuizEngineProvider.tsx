@@ -211,16 +211,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         "answers are not for an order question",
       );
 
-      const correctAnswers = answers.order.map((answer) => answer.correctOrder);
-
       const sortedAnswers = [...answers.order]
         .sort((a, b) => (a.correctOrder ?? 0) - (b.correctOrder ?? 0))
         .map((answer) => answer.answer?.[0]?.text)
         .filter((answer) => answer !== undefined);
 
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
-        (pupilAnswer, i) =>
-          correctAnswers[i] === pupilAnswer ? "correct" : "incorrect",
+        (pupilAnswer, i) => (pupilAnswer === i + 1 ? "correct" : "incorrect"),
       );
       const isCorrect = feedback.every((feedback) => feedback === "correct");
       const isPartiallyCorrect =
