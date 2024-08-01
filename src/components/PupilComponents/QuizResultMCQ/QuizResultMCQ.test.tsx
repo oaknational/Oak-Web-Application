@@ -64,7 +64,7 @@ describe("QuizResultMCQ", () => {
   it("marks incorrect answers as incorrect", () => {
     const incorrectAnswerIndexes = mcqTextAnswers
       .map((answer, i) => (answer.answerIsCorrect ? undefined : i))
-      .filter((i) => i !== undefined);
+      .filter((i) => i !== undefined) as number[]; // TS doesn't know that we've filtered out the undefineds
 
     const { getAllByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
