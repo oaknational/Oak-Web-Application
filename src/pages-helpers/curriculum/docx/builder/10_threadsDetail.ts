@@ -89,7 +89,7 @@ export default async function generate(
                       <w:color w:val="222222" />
                       <w:sz w:val="24" />
                     </w:rPr>
-                    <w:t>${cdata(`${unit.title}`)}</w:t>
+                    <w:t>${cdata(`'${unit.title}’`)}</w:t>
                   </w:r>
                 </w:p>
               `;
@@ -129,7 +129,7 @@ export default async function generate(
               <w:color w:val="222222" />
               <w:sz w:val="36" />
             </w:rPr>
-            <w:t>${cdata(`‘${thread.title}’`)}</w:t>
+            <w:t>${cdata(`'${thread.title}’`)}</w:t>
           </w:r>
         </w:p>
 
