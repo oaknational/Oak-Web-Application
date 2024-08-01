@@ -1,3 +1,5 @@
+import { within } from "@testing-library/dom";
+
 import specialistLessonListingFixture from "./SpecialistLessonListing.fixture";
 import SpecialistLessonListing from "./SpecialistLessonListing.view";
 
@@ -18,12 +20,15 @@ describe("SpecialistUnitListing", () => {
   });
 
   test("specialist lesson list", () => {
-    const { getAllByTestId } = render(
+    const { getByLabelText } = render(
       <SpecialistLessonListing
         curriculumData={specialistLessonListingFixture()}
       />,
     );
-    const unitListItems = getAllByTestId("lesson-list-item");
-    expect(unitListItems).toHaveLength(3);
+    const unitList = getByLabelText("A list of lessons");
+    expect(unitList).toBeInTheDocument();
+
+    const listItems = within(unitList).getAllByRole("listitem");
+    expect(listItems).toHaveLength(3);
   });
 });
