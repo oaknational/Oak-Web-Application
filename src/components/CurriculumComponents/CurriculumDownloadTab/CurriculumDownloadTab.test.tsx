@@ -150,6 +150,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const query = createCurriculumDownloadsQuery(
+      "published",
       mvRefreshTime,
       subjectSlug,
       phaseSlug,
@@ -164,6 +165,7 @@ describe("Downloads tab: unit tests", () => {
 
   test("Query is created properly: English primary", async () => {
     const query = createCurriculumDownloadsQuery(
+      "published",
       mvRefreshTime,
       "english",
       "primary",

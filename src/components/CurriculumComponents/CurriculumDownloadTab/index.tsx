@@ -39,6 +39,7 @@ function ScrollIntoViewWhenVisisble({
 }
 
 export function createCurriculumDownloadsQuery(
+  state: "new" | "published",
   mvRefreshTime: number,
   subjectSlug: string,
   phaseSlug: string,
@@ -50,7 +51,7 @@ export function createCurriculumDownloadsQuery(
     mvRefreshTime: String(mvRefreshTime),
     subjectSlug: subjectSlug,
     phaseSlug: phaseSlug,
-    state: "published",
+    state: state,
   });
   examboardSlug && query.set("examboardSlug", examboardSlug);
   tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
@@ -186,16 +187,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
-    // const query = new URLSearchParams();
-    // query.set("mvRefreshTime", String(mvRefreshTime));
-    // query.set("subjectSlug", slugs.subjectSlug);
-    // query.set("phaseSlug", slugs.phaseSlug);
-    // query.set("state", "published");
-    // slugs.examboardSlug && query.set("examboardSlug", slugs.examboardSlug);
-    // tierSelected !== "" && query.set("tierSlug", tierSelected);
-    // childSubjectSelected !== "" &&
-    //   query.set("childSubjectSlug", childSubjectSelected);
     const query = createCurriculumDownloadsQuery(
+      "published",
       mvRefreshTime,
       slugs.subjectSlug,
       slugs.phaseSlug,

@@ -21,6 +21,7 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Box from "@/components/SharedComponents/Box";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { createCurriculumDownloadsQuery } from "@/components/CurriculumComponents/CurriculumDownloadTab";
 
 type CurriculumUnitsTabDataIncludeNewUnit =
   CurriculumUnitsTabDataIncludeNew["units"][number] & {
@@ -41,7 +42,7 @@ type PageProps = {
   examboardSlug: string;
   subjectSlug: string;
   phaseSlug: string;
-  state: string;
+  state: "new" | "published";
   cache: number;
   dataWarnings: string[];
 };
@@ -57,8 +58,16 @@ export default function Page({
 }: PageProps) {
   const router = useRouter();
   const onSubmit = async () => {
-    const slug = [subjectSlug, phaseSlug, state, examboardSlug].join("/");
-    const redirectPath = `/api/curriculum-downloads/${cache}/${slug}`;
+    const query = createCurriculumDownloadsQuery(
+      state,
+      cache,
+      subjectSlug,
+      phaseSlug,
+      examboardSlug,
+      null,
+      null,
+    );
+    const redirectPath = `/api/curriculum-downloads/?${query}`;
     router.push(redirectPath);
   };
 
