@@ -11,6 +11,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
@@ -60,7 +61,7 @@ export const QuizResultMCQ = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      {resultItems}
+      <MathJaxWrap>{resultItems}</MathJaxWrap>
     </OakFlex>
   );
 };
