@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { initAuth0 } from "@auth0/nextjs-auth0";
 
 import getServerConfig from "@/node-lib/getServerConfig";
