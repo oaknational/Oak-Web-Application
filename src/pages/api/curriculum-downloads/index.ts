@@ -270,8 +270,8 @@ export default async function handler(
       data.combinedCurriculumData?.subjectTitle,
       data.combinedCurriculumData?.phaseTitle,
       data.combinedCurriculumData?.examboardTitle,
-      capitalize(tierSlug),
       capitalize(childSubjectSlug),
+      capitalize(tierSlug),
     ]
       .filter(Boolean)
       .join(" - ");
