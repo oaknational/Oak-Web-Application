@@ -5,18 +5,29 @@ import {
 } from "@oaknational/oak-components";
 
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import {
+  PupilAnswerOrder,
+  QuestionFeedbackType,
+} from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 export type QuizResultOrderProps = {
   answers: OrderAnswer[];
   feedback: QuestionFeedbackType[];
+  pupilAnswers: PupilAnswerOrder;
 };
 
 export const QuizResultOrder = ({
   answers,
   feedback,
+  pupilAnswers,
 }: QuizResultOrderProps) => {
-  const resultItems = answers.map((answer, index) => {
+  const resultItems = pupilAnswers.map((pupilAnswer, index) => {
+    const answer = answers[pupilAnswer];
+
+    if (!answer) {
+      throw new Error(`Answer not found for index ${pupilAnswer}`);
+    }
+
     const feedbackState = feedback[index];
     const standardText = answer.answer.find((answer) => answer?.type === "text")
       ?.text;
