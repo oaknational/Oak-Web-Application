@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
+import Logo from "@/components/AppComponents/Logo";
 
 const onboardingFormSchema = z.object({
   school: z
@@ -66,10 +67,17 @@ export const OnboardingView = () => {
   return (
     <OakFlex
       $flexDirection="column"
-      $gap="all-spacing-10"
-      $mv="space-between-m"
+      $alignItems="flex-start"
+      $gap="all-spacing-8"
+      $width="all-spacing-21"
+      $pa="inner-padding-xl3"
+      $dropShadow="drop-shadow-standard"
+      $borderRadius="border-radius-s"
     >
-      <OakHeading tag="h1">Onboarding</OakHeading>
+      <Logo height={48} width={104} variant="with text" />
+      <OakHeading tag="h2" $font="heading-light-5">
+        Select your school
+      </OakHeading>
       <ResourcePageSchoolPicker
         hasError={formState.errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
@@ -85,6 +93,7 @@ export const OnboardingView = () => {
           (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
         }
         disabled={formState.errors?.school !== undefined || !formState.isValid}
+        width="100%"
       >
         Continue
       </OakPrimaryButton>
