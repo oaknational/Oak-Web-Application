@@ -3,17 +3,13 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizResultShortAnswer } from "./QuizResultShortAnswer";
 
-import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-
 const meta = {
   component: QuizResultShortAnswer,
   decorators: [
     (Story) => (
-      <MathJaxProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
-      </MathJaxProvider>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
     ),
   ],
   parameters: {
@@ -36,17 +32,17 @@ export const Correct: Story = {
     return <QuizResultShortAnswer {...args} />;
   },
   args: {
-    answers: "This is the correct answer",
+    feedback: "correct",
     pupilAnswer: "This is the correct answer",
   },
 };
 
-export const IncorrectSingle: Story = {
+export const Incorrect: Story = {
   render: (args) => {
     return <QuizResultShortAnswer {...args} />;
   },
   args: {
-    answers: "This is the correct answer",
+    feedback: "incorrect",
     pupilAnswer: "This is the incorrect answer",
   },
 };
