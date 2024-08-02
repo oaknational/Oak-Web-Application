@@ -18,14 +18,12 @@ export const QuizResultShortAnswer = ({
 }: QuizResultShortAnswerProps) => {
   const feedbackState = (() => {
     switch (true) {
-      case answers.includes(pupilAnswer):
-        return "correct";
       case pupilAnswer === answers:
+        return "correct";
+      case answers.includes(pupilAnswer):
         return "correct";
       case pupilAnswer !== answers:
         return "incorrect";
-      default:
-        return null;
     }
   })();
 
