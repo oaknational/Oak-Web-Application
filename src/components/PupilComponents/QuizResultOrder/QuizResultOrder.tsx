@@ -41,6 +41,7 @@ export const QuizResultOrder = ({
       <MathJaxWrap>
         <OakQuizResultItem
           key={standardText?.trim()}
+          boldPrefixText={`${pupilAnswer + 1}`}
           standardText={standardText}
           feedbackState={feedbackState}
         />
