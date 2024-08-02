@@ -213,6 +213,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  auth0BaseURL: {
+    value: process.env.AUTH0_BASE_URL,
+    envName: "AUTH0_BASE_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
