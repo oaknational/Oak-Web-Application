@@ -6,6 +6,7 @@ import { QuizResultOrder } from "./QuizResultOrder";
 
 import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 describe("QuizResultOrder", () => {
   beforeAll(() => {
@@ -65,13 +66,15 @@ describe("QuizResultOrder", () => {
 
   it("renders incorrect answers as incorrect", () => {
     const { getAllByAltText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizResultOrder
-          answers={orderAnswers}
-          feedback={["correct", "correct", "correct", "incorrect"]}
-          pupilAnswers={[0, 1, 2, 3]}
-        />
-      </OakThemeProvider>,
+      <MathJaxProvider>
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizResultOrder
+            answers={orderAnswers}
+            feedback={["correct", "correct", "correct", "incorrect"]}
+            pupilAnswers={[0, 1, 2, 3]}
+          />
+        </OakThemeProvider>
+      </MathJaxProvider>,
     );
 
     expect(getAllByAltText("tick")).toHaveLength(3);
@@ -81,13 +84,15 @@ describe("QuizResultOrder", () => {
   it("throws if the pupilAnswer is not in the answers", () => {
     expect(() => {
       renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizResultOrder
-            answers={orderAnswers}
-            feedback={["correct", "correct", "correct", "correct"]}
-            pupilAnswers={[0, 1, 2, 4]}
-          />
-        </OakThemeProvider>,
+        <MathJaxProvider>
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <QuizResultOrder
+              answers={orderAnswers}
+              feedback={["correct", "correct", "correct", "correct"]}
+              pupilAnswers={[0, 1, 2, 4]}
+            />
+          </OakThemeProvider>
+        </MathJaxProvider>,
       );
     }).toThrow("Answer not found for index 4");
   });
@@ -102,13 +107,15 @@ describe("QuizResultOrder", () => {
     ];
     expect(() => {
       renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizResultOrder
-            answers={orderAnswersWithNoText}
-            feedback={["correct", "correct"]}
-            pupilAnswers={[0, 1]}
-          />
-        </OakThemeProvider>,
+        <MathJaxProvider>
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <QuizResultOrder
+              answers={orderAnswersWithNoText}
+              feedback={["correct", "correct"]}
+              pupilAnswers={[0, 1]}
+            />
+          </OakThemeProvider>
+        </MathJaxProvider>,
       );
     }).toThrow("Text is missing from order answer");
   });

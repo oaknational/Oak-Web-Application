@@ -9,6 +9,7 @@ import {
   PupilAnswerOrder,
   QuestionFeedbackType,
 } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultOrderProps = {
   answers: OrderAnswer[];
@@ -37,11 +38,13 @@ export const QuizResultOrder = ({
     }
 
     return (
-      <OakQuizResultItem
-        key={standardText?.trim()}
-        standardText={standardText}
-        feedbackState={feedbackState}
-      />
+      <MathJaxWrap>
+        <OakQuizResultItem
+          key={standardText?.trim()}
+          standardText={standardText}
+          feedbackState={feedbackState}
+        />
+      </MathJaxWrap>
     );
   });
 
