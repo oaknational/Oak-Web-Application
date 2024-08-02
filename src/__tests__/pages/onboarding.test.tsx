@@ -11,7 +11,7 @@ describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
     renderWithProviders()(<OnboardingPage />);
 
-    const heading = screen.getByRole("heading", { name: "Onboarding" });
+    const heading = screen.getByRole("heading", { name: "Select your school" });
     expect(heading).toBeInTheDocument();
   });
 });
