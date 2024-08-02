@@ -1,11 +1,11 @@
 import { FC } from "react";
-
 import {
   OakHeading,
   OakUL,
   OakHeadingTag,
   OakFlex,
 } from "@oaknational/oak-components";
+
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";

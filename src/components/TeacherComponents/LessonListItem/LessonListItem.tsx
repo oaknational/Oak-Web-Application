@@ -1,6 +1,6 @@
 import { FC, MutableRefObject } from "react";
-
 import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
+
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
 import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
