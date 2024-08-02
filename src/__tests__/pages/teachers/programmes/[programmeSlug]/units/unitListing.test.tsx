@@ -168,11 +168,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
 describe("tracking", () => {
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
-    const { getByRole } = render(
+    const { getByText } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />,
     );
 
-    const unit = getByRole("link", { name: "1. Data Representation" });
+    const unit = getByText("Data Representation");
 
     await userEvent.click(unit);
 
