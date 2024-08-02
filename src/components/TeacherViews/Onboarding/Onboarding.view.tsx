@@ -54,7 +54,7 @@ export const OnboardingView = () => {
     schoolPickerInputValue,
     setSchoolPickerInputValue,
     schools,
-  } = useSchoolPicker();
+  } = useSchoolPicker({ withHomeschool: false });
 
   useEffect(() => {
     if (selectedSchool && schoolPickerInputValue !== "") {
@@ -82,6 +82,7 @@ export const OnboardingView = () => {
         label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
+        withHomeschool={false}
       />
       <OakPrimaryButton
         onClick={
