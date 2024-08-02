@@ -7,7 +7,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 describe("Onboarding view", () => {
   it("renders a heading", () => {
     renderWithProviders()(<OnboardingView />);
-    const heading = screen.getByRole("heading", { name: "Onboarding" });
+    const heading = screen.getByRole("heading", { name: "Select your school" });
     expect(heading).toBeInTheDocument();
   });
   it("renders a school picker", () => {
