@@ -216,6 +216,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         .map((answer) => answer.answer?.[0]?.text)
         .filter((answer) => answer !== undefined);
 
+      // NB. feedback is in the order that the pupil arranged the answers not for the correct ordering
       const feedback: QuestionFeedbackType[] = pupilAnswers.map(
         (pupilAnswer, i) => (pupilAnswer === i + 1 ? "correct" : "incorrect"),
       );
