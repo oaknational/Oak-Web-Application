@@ -34,12 +34,42 @@ describe("QuizResultShortAnswer", () => {
       "Unable to find an element with the alt text: cross",
     );
   });
+  it("marks correct answers as correct for multipe answers", () => {
+    const { getAllByAltText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizResultShortAnswer
+          answers={["This is the correct answer", "another correct answer"]}
+          pupilAnswer={"This is the correct answer"}
+        />
+        ,
+      </OakThemeProvider>,
+    );
+    expect(getAllByAltText("tick")).toHaveLength(1);
+    expect(() => getAllByAltText("cross")).toThrow(
+      "Unable to find an element with the alt text: cross",
+    );
+  });
 
   it("marks incorrect answers as incorrect", () => {
     const { getAllByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           answers={"This is the correct answer"}
+          pupilAnswer={"This is not the correct answer"}
+        />
+        ,
+      </OakThemeProvider>,
+    );
+    expect(getAllByAltText("cross")).toHaveLength(1);
+    expect(() => getAllByAltText("tick")).toThrow(
+      "Unable to find an element with the alt text: tick",
+    );
+  });
+  it("marks incorrect answers as incorrect for multiple correct", () => {
+    const { getAllByAltText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizResultShortAnswer
+          answers={["This is the correct answer", "another correct answer"]}
           pupilAnswer={"This is not the correct answer"}
         />
         ,
