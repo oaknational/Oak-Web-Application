@@ -1,3 +1,24 @@
+# [1.497.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.496.0...v1.497.0) (2024-08-01)
+
+
+### Bug Fixes
+
+* empty commit ([8b5e4b8](https://github.com/oaknational/Oak-Web-Application/commit/8b5e4b8c782ebf55c41e8f7bbf4fd557c038f7a4))
+* maths jax issue ([40b7fd1](https://github.com/oaknational/Oak-Web-Application/commit/40b7fd1b78a31496d7e14850061325a7fc44a7a7))
+* merge conflicts ([603cc2a](https://github.com/oaknational/Oak-Web-Application/commit/603cc2a1ffedc184e0b03dca8e520b4651a51a64))
+* type errors ([11ee42e](https://github.com/oaknational/Oak-Web-Application/commit/11ee42ecbc4c9c9a2b346d82641bfe23b4a8cd82))
+* type errors ([66e7a1b](https://github.com/oaknational/Oak-Web-Application/commit/66e7a1bac9c619283e96962015ddb1dbd53e08f9))
+* type errors ([25b2df4](https://github.com/oaknational/Oak-Web-Application/commit/25b2df4f72d9116b98d45887213741e520a201e8))
+
+
+### Features
+
+* maths jax support ([b15d6a9](https://github.com/oaknational/Oak-Web-Application/commit/b15d6a9f6070c1841cef66c328d328008d8a97ae))
+* quiz result mcq ([3e394d8](https://github.com/oaknational/Oak-Web-Application/commit/3e394d83a4f275824255f94ba0ab8fd815c25e9d))
+* quiz result mcq ([19aa087](https://github.com/oaknational/Oak-Web-Application/commit/19aa0878b19c9cf335776b17617773d7b7df4e1e))
+* wip QuizResultMCQ ([d6e69ab](https://github.com/oaknational/Oak-Web-Application/commit/d6e69abf46be8a5249537d3d7db1f8b4ec2d6fb7))
+* working on QuizResultMCQ ([57abd4f](https://github.com/oaknational/Oak-Web-Application/commit/57abd4f1ae92888e85261f9a57156ac73bbbe23c))
+
 # [1.496.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.495.0...v1.496.0) (2024-08-01)
 
 
