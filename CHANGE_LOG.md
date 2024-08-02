@@ -1,3 +1,21 @@
+# [1.498.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.497.0...v1.498.0) (2024-08-02)
+
+
+### Features
+
+* **package:** lint ([1719c34](https://github.com/oaknational/Oak-Web-Application/commit/1719c342d32b2c615172dc61f9cd89ad2906f98e))
+* **package:** update oak components ([785fb12](https://github.com/oaknational/Oak-Web-Application/commit/785fb120de498fe6cddaddc5dcd1543975100233))
+* **package:** update oak components ([3af4cb1](https://github.com/oaknational/Oak-Web-Application/commit/3af4cb1728bf484521f45e956384cc1d64f65529))
+* **package:** update oak components ([31470fe](https://github.com/oaknational/Oak-Web-Application/commit/31470fe8610e00637de87329b0b5176c0cb65eae))
+* **question-stem:** refactor stem props type ([f8cffa5](https://github.com/oaknational/Oak-Web-Application/commit/f8cffa51233b9d7b299c21cf34295f39150e051d))
+* **result-stem:** create results question stem and story for quiz stem ([eb08c54](https://github.com/oaknational/Oak-Web-Application/commit/eb08c54d10a7b858f820722d707d1aa4c6b1f0d0))
+* **result-stem:** create results question stem and story for quiz stem ([8904f22](https://github.com/oaknational/Oak-Web-Application/commit/8904f220dbfa9d4ebf20a40946f92286a6ed9334))
+* **review-item:** update snaps ([4675bf2](https://github.com/oaknational/Oak-Web-Application/commit/4675bf22e00e879bd7b207d42e15ccff931a3847))
+* **stem:** defactor ([28fceee](https://github.com/oaknational/Oak-Web-Application/commit/28fceeedd1fb2eafffaddd9afe22b1d2a2402698))
+* **stem:** defactor ([7e51c64](https://github.com/oaknational/Oak-Web-Application/commit/7e51c64755a8659890540e4c572812b8e870d1ab))
+* **stem:** defactor ([35ab649](https://github.com/oaknational/Oak-Web-Application/commit/35ab6495daa1eb0b317eaf478f9676d89c3d81bc))
+* **stem:** defactor ([7b5db52](https://github.com/oaknational/Oak-Web-Application/commit/7b5db5270b2e91fcaafcd6c021b43cafe42d80d4))
+
 # [1.497.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.496.0...v1.497.0) (2024-08-01)
 
 
