@@ -8,45 +8,38 @@ import {
   removeMarkdown,
   shortAnswerTitleFormatter,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import {
   ImageItem,
   TextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
-export const QuizQuestionStem = ({
-  questionStem,
-  index,
-  takeFullHeight,
-}: {
+type QuizQuestionStemProps = {
   questionStem: (ImageItem | TextItem)[];
   index: number;
-  takeFullHeight?: boolean;
-}) => {
+};
+
+export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
+  const { questionStem, index } = props;
+
   const displayNumber = `Q${index + 1}.`;
 
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap={"space-between-s"}
+      $gap={"space-between-m"}
       $color={"text-primary"}
-      $height={takeFullHeight ? "100%" : "auto"}
       $justifyContent={["center", "flex-start"]}
     >
-      <OakFlex
-        key="stem-header"
-        $mt={
-          takeFullHeight
-            ? ["space-between-none", "space-between-xl", "space-between-xxl"]
-            : "space-between-none"
-        }
-      >
+      <OakFlex key="stem-header">
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
-            $font={["heading-6", "heading-4", "heading-4"]}
+            $font={"body-2-bold"}
           >
-            {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+            {`${displayNumber} ${shortAnswerTitleFormatter(
+              removeMarkdown(questionStem[0].text),
+            )}`}
           </OakSpan>
         )}
       </OakFlex>
@@ -56,17 +49,14 @@ export const QuizQuestionStem = ({
           return (
             <OakSpan
               key={`q-${displayNumber}-stem-element-${i}`}
-              $font={["body-2-bold", "body-1-bold"]}
+              $font={"body-2-bold"}
             >
               {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
             </OakSpan>
           );
         } else if (stemItem.type === "image") {
           return (
-            <OakFlex
-              $pv={"inner-padding-xl"}
-              key={`q-${displayNumber}-stem-element-${i}`}
-            >
+            <OakFlex key={`q-${displayNumber}-stem-element-${i}`}>
               {stemItem.imageObject.publicId && (
                 <OakCloudinaryImage
                   cloudinaryId={stemItem.imageObject.publicId}
