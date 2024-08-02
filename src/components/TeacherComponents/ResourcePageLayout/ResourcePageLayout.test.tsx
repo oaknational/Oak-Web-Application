@@ -29,6 +29,7 @@ const props: PropsWithoutForm = {
   cta: <button>CTA</button>,
   resourcesHeader: "Lesson downloads",
   updatedAt: "2022-01-01T00:00:00Z",
+  withHomeschool: true,
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
