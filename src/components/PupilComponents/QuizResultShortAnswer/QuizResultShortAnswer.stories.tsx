@@ -41,19 +41,6 @@ export const Correct: Story = {
   },
 };
 
-export const CorrectMultipleCorrect: Story = {
-  render: (args) => {
-    return <QuizResultShortAnswer {...args} />;
-  },
-  args: {
-    answers: [
-      "This is one of the correct answer",
-      "this is another correct answer",
-    ],
-    pupilAnswer: "This is one of the correct answer",
-  },
-};
-
 export const IncorrectSingle: Story = {
   render: (args) => {
     return <QuizResultShortAnswer {...args} />;
@@ -61,18 +48,5 @@ export const IncorrectSingle: Story = {
   args: {
     answers: "This is the correct answer",
     pupilAnswer: "This is the incorrect answer",
-  },
-};
-
-export const InCorrectMultipleCorrect: Story = {
-  render: (args) => {
-    return <QuizResultShortAnswer {...args} />;
-  },
-  args: {
-    answers: [
-      "This is one of the correct answer",
-      "this is another correct answer",
-    ],
-    pupilAnswer: "This is not one of the correct answers",
   },
 };
