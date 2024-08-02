@@ -1,3 +1,18 @@
+# [1.499.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.498.0...v1.499.0) (2024-08-02)
+
+
+### Bug Fixes
+
+* quiz order grading ([b7cd43d](https://github.com/oaknational/Oak-Web-Application/commit/b7cd43d5ad306e8600751af755eded191ac546f4))
+
+
+### Features
+
+* add correct order number ([3cb1e21](https://github.com/oaknational/Oak-Web-Application/commit/3cb1e213703b80217757f5c65ce9bb672198f28a))
+* added mathjax support ([6dd36b7](https://github.com/oaknational/Oak-Web-Application/commit/6dd36b777093a2ccbc7825fc3aae644b4a43aaa2))
+* quiz result order ([696bc7c](https://github.com/oaknational/Oak-Web-Application/commit/696bc7cc0873be79e9ede28507ff4a9630ec1cfb))
+* quiz result order ([e7d8fa7](https://github.com/oaknational/Oak-Web-Application/commit/e7d8fa7e706a92ffbc40caa9677cb786fdd9d0bd))
+
 # [1.498.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.497.0...v1.498.0) (2024-08-02)
 
 
