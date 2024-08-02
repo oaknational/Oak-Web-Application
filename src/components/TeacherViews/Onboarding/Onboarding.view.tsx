@@ -27,7 +27,7 @@ const onboardingFormSchema = z.object({
 });
 type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
 type OnboardingFormProps = OnboardingFormValues & {
-  onSubmit: (values: OnboardingFormValues) => Promise<string | void>;
+  onSubmit: (values: OnboardingFormValues) => Promise<void>;
 };
 
 export const OnboardingView = () => {
@@ -36,7 +36,7 @@ export const OnboardingView = () => {
     mode: "onBlur",
   });
 
-  const setSchool = useCallback(
+  const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
       setValue("school", value, {
         shouldValidate: true,
@@ -58,13 +58,13 @@ export const OnboardingView = () => {
 
   useEffect(() => {
     if (selectedSchool && schoolPickerInputValue !== "") {
-      setSchool(selectedSchool.toString(), schoolPickerInputValue);
+      setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, schoolPickerInputValue, setSchool]);
+  }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     // TODO: something with this data
-    console.log("onboarding form values", data);
+    console.log("onboarding form values: ", data);
   };
 
   return (
