@@ -1,19 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import {
-  OakLI,
   OakFlex,
-  OakUnitsContainer,
   OakUL,
+  OakUnitsContainer,
+  OakUnitListItem,
+  OakUnitListOptionalityItem,
 } from "@oaknational/oak-components";
+import { NextRouter, useRouter } from "next/router";
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
 
 import {
-  getPageItems,
-  getProgrammeFactors,
-  isUnitListData,
-  isUnitOption,
-} from "./helpers";
-
-import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
@@ -21,7 +20,6 @@ import Box from "@/components/SharedComponents/Box";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -48,10 +46,75 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
 
+const isUnitOption = (
+  x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
+): x is UnitOption[] => {
+  if (x[0]) {
+    return "keyStageTitle" in x[0];
+  } else {
+    return false;
+  }
+};
+
+const isUnitListData = (
+  u: UnitListingData | SpecialistUnitListingData,
+): u is UnitListingData => {
+  return (u as UnitListingData).keyStageSlug !== undefined;
+};
+
+const getOptionalityUnits = (
+  unit: CurrentPageItemsProps | SpecialistUnit[],
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void,
+  router: NextRouter,
+) => {
+  return unit.map((unitOption) => {
+    const handleClick = (e: MouseEvent<HTMLElement>) => {
+      // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
+      const target = e.currentTarget;
+      onClick({
+        ...unitOption,
+        index: 0,
+        onClick,
+      });
+      if (target instanceof HTMLAnchorElement) {
+        router.push(target.href);
+      }
+    };
+    return {
+      title: unitOption.title,
+      href: resolveOakHref({
+        page: "lesson-index",
+        unitSlug: unitOption.slug,
+        programmeSlug: unitOption.programmeSlug,
+      }),
+      lessonCount: unitOption.lessonCount || 0,
+      onClick: handleClick,
+    };
+  });
+};
+
+const isUnitFirstItemRef = (
+  // first item ref is used to focus on the first list item when the pagination is used
+  programmeSlug: string,
+  newAndLegacyUnitsOnPage: boolean,
+  index: number,
+) => {
+  if (index === 0 && !newAndLegacyUnitsOnPage) {
+    return true;
+  } else if (
+    index === 0 &&
+    newAndLegacyUnitsOnPage &&
+    !isSlugLegacy(programmeSlug)
+  ) {
+    return true;
+  }
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
+  const router = useRouter();
 
   const newPageItems = getPageItems(currentPageItems, false);
   const legacyPageItems = getPageItems(currentPageItems, true);
@@ -81,36 +144,61 @@ const UnitList: FC<UnitListProps> = (props) => {
         }
       }
 
-      return (
-        <OakLI
-          key={`UnitList-UnitListItem-${item[0]?.slug}`}
-          data-testid="unit-list-item"
-          $width="100%"
-        >
-          {item.length > 1 && isUnitOption(item) ? (
-            <UnitListOptionalityCard
-              unitOptions={item}
-              index={calculatedIndex}
-              onClick={onClick}
-            />
-          ) : (
-            <OakFlex>
-              {item.map((unitOption) => {
-                return (
-                  <UnitListItem
-                    {...props}
-                    {...unitOption}
-                    key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                    hideTopHeading
-                    index={calculatedIndex}
-                    firstItemRef={index === 0 ? firstItemRef : null}
-                    onClick={onClick}
-                  />
-                );
+      return item.length > 1 && isUnitOption(item) ? (
+        <OakUnitListOptionalityItem
+          index={calculatedIndex + 1}
+          key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
+          data-testid="unit-optionality-card"
+          nullTitle={item[0]!.nullTitle}
+          firstItemRef={
+            isUnitFirstItemRef(
+              item[0]!.programmeSlug,
+              newAndLegacyUnitsOnPage,
+              index,
+            )
+              ? firstItemRef
+              : null
+          }
+          optionalityUnits={getOptionalityUnits(item, onClick, router)}
+        />
+      ) : (
+        item.map((unitOption) => {
+          const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+            // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
+            e.preventDefault();
+            onClick({
+              ...unitOption,
+              index: 0,
+              onClick,
+            });
+            router.push(e.currentTarget.href);
+          };
+          return (
+            <OakUnitListItem
+              {...props}
+              {...unitOption}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
+              data-testid="unit-list-item"
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              index={calculatedIndex + 1}
+              isLegacy={isSlugLegacy(unitOption.programmeSlug)}
+              onClick={handleClick}
+              href={resolveOakHref({
+                page: "lesson-index",
+                unitSlug: unitOption.slug,
+                programmeSlug: unitOption.programmeSlug,
               })}
-            </OakFlex>
-          )}
-        </OakLI>
+            />
+          );
+        })
       );
     });
   };
