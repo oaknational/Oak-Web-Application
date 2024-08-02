@@ -15,14 +15,10 @@ const onboardingFormSchema = z.object({
   school: z
     .string({
       errorMap: () => ({
-        message:
-          "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
+        message: "Select school",
       }),
     })
-    .min(
-      1,
-      "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
-    ),
+    .min(1, "Select school"),
   schoolName: z.string().optional(),
 });
 type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
