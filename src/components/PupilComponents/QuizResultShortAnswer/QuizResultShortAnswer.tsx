@@ -1,10 +1,10 @@
 import React from "react";
-
 import {
   OakFlex,
   OakQuizResultItem,
   OakSpan,
 } from "@oaknational/oak-components";
+
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultShortAnswerProps = {

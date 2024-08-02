@@ -1,6 +1,7 @@
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
 import { QuizResultShortAnswer } from "./QuizResultShortAnswer";
 
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("QuizResultShortAnswer", () => {

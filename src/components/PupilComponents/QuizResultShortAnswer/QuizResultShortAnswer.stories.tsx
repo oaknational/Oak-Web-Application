@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizResultShortAnswer } from "./QuizResultShortAnswer";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 const meta = {
