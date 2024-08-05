@@ -149,6 +149,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
           data-testid="unit-optionality-card"
           nullTitle={item[0]!.nullTitle}
+          yearTitle={item[0]?.yearTitle}
           firstItemRef={
             isUnitFirstItemRef(
               item[0]!.programmeSlug,
