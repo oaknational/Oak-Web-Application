@@ -54,8 +54,11 @@ export default async function generate(
     : "";
 
   const subtitle =
-    [examboardTitle, childSubjectTitle, tierTitle].filter(Boolean).join(", ") +
-    " (KS4)";
+    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle || ""
+      ? [examboardTitle, childSubjectTitle, tierTitle]
+          .filter(Boolean)
+          .join(", ") + " (KS4)"
+      : "";
 
   const pageXml = safeXml`
     <root>
