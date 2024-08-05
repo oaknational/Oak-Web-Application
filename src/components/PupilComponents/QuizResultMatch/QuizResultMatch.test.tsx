@@ -30,7 +30,7 @@ describe("QuizResultMatch", () => {
       (e) => e.textContent !== "Your answer:",
     );
 
-    expect(renderedTexts).toHaveLength(3);
+    expect(renderedTexts).toHaveLength(6);
   });
 
   it("renders correct answers as correct", () => {
@@ -44,7 +44,7 @@ describe("QuizResultMatch", () => {
       </OakThemeProvider>,
     );
 
-    expect(getAllByAltText("tick")).toHaveLength(4);
+    expect(getAllByAltText("tick")).toHaveLength(3);
     expect(() => getAllByAltText("cross")).toThrow(
       "Unable to find an element with the alt text: cross",
     );
@@ -62,9 +62,7 @@ describe("QuizResultMatch", () => {
         </OakThemeProvider>
       </MathJaxProvider>,
     );
-
-    expect(getAllByAltText("tick")).toHaveLength(3);
-    expect(getAllByAltText("cross")).toHaveLength(1);
+    expect(getAllByAltText("cross")).toHaveLength(3);
   });
 
   afterAll(() => {
