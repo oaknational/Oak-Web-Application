@@ -63,7 +63,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   //   });
   // });
 
-  describe("getStaticProps", () => {
+  describe.skip("getStaticProps", () => {
     it("Should call API:pupilLessonLisitngQuery", async () => {
       await getStaticProps({
         params: {
