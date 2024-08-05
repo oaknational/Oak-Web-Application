@@ -21,4 +21,18 @@ describe("Onboarding view", () => {
     expect(continueButton).toBeInTheDocument();
     expect(continueButton).toBeDisabled();
   });
+  it("renders terms and conditions text", () => {
+    renderWithProviders()(<OnboardingView />);
+    const tsAndCs = screen.getByText("Oak's terms & conditions", {
+      exact: false,
+    });
+    expect(tsAndCs).toBeInTheDocument();
+    expect(tsAndCs).toHaveAttribute("href", "/legal/terms-and-conditions");
+  });
+  it("renders contact us text", () => {
+    renderWithProviders()(<OnboardingView />);
+    const contactUs = screen.getByText("Contact us", { exact: false });
+    expect(contactUs).toBeInTheDocument();
+    expect(contactUs).toHaveAttribute("href", "/contact-us");
+  });
 });
