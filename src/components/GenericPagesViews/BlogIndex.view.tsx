@@ -9,6 +9,7 @@ import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -28,30 +29,46 @@ const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
     pageSize: PAGE_SIZE,
     items: blogs,
   });
-  const { paginationTitle } = paginationProps;
+  const {
+    paginationTitle,
+    currentPage,
+    totalPages,
+    prevPageUrlObject,
+    nextPageUrlObject,
+  } = paginationProps;
+  const isLastPage = currentPage === totalPages;
+  const isFirstPage = currentPage === 1;
 
   return (
-    <PostListing
-      seo={{
-        title: `${
-          pageData.seo?.title || "Latest Blogs & Insights"
-        }${paginationTitle}`,
-        description:
-          pageData.seo?.description ||
-          "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
-        canonicalURL: pageData.seo?.canonicalURL || undefined,
-      }}
-      pageData={pageData}
-      categories={categories}
-      categorySlug={categorySlug}
-      postsWithCategories={props}
-      page={"blog-index"}
-      posts={blogs}
-      variant={{
-        slug: "blog",
-        title: "Blog",
-      }}
-    />
+    <>
+      <PaginationHead
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
+      <PostListing
+        seo={{
+          title: `${
+            pageData.seo?.title || "Latest Blogs & Insights"
+          }${paginationTitle}`,
+          description:
+            pageData.seo?.description ||
+            "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
+          canonicalURL: pageData.seo?.canonicalURL || undefined,
+        }}
+        pageData={pageData}
+        categories={categories}
+        categorySlug={categorySlug}
+        postsWithCategories={props}
+        page={"blog-index"}
+        posts={blogs}
+        variant={{
+          slug: "blog",
+          title: "Blog",
+        }}
+      />
+    </>
   );
 };
 

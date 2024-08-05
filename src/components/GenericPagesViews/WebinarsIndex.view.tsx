@@ -8,6 +8,7 @@ import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -31,29 +32,46 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
     pageSize: PAGE_SIZE,
     items: webinars,
   });
-  const { paginationTitle } = paginationProps;
+  const {
+    paginationTitle,
+    currentPage,
+    totalPages,
+    prevPageUrlObject,
+    nextPageUrlObject,
+  } = paginationProps;
+  const isLastPage = currentPage === totalPages;
+  const isFirstPage = currentPage === 1;
 
   return (
-    <PostListing
-      seo={{
-        title:
-          `${pageData.seo ? pageData.seo.title : "Webinars"}` + paginationTitle,
-        description:
-          pageData.seo?.description ||
-          "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
-        canonicalURL: pageData.seo?.canonicalURL || undefined,
-      }}
-      pageData={pageData}
-      page={"webinar-index"}
-      categories={categories}
-      categorySlug={categorySlug}
-      postsWithCategories={props}
-      posts={webinars}
-      variant={{
-        slug: "webinars",
-        title: "Webinars",
-      }}
-    />
+    <>
+      <PaginationHead
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
+      <PostListing
+        seo={{
+          title:
+            `${pageData.seo ? pageData.seo.title : "Webinars"}` +
+            paginationTitle,
+          description:
+            pageData.seo?.description ||
+            "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
+          canonicalURL: pageData.seo?.canonicalURL || undefined,
+        }}
+        pageData={pageData}
+        page={"webinar-index"}
+        categories={categories}
+        categorySlug={categorySlug}
+        postsWithCategories={props}
+        posts={webinars}
+        variant={{
+          slug: "webinars",
+          title: "Webinars",
+        }}
+      />
+    </>
   );
 };
 

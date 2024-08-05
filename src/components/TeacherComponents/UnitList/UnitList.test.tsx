@@ -19,22 +19,26 @@ const render = (children: React.ReactNode) =>
 describe("components/UnitList", () => {
   test("renders the list items", () => {
     render(
-      <UnitList
-        {...unitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={[]}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={[]}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
   });
   test("renders the optionality list card when data has optional units", () => {
     const { getByTestId } = render(
-      <UnitList
-        {...unitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={optionalityProps.units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={optionalityProps.units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
     const optionalityCard = getByTestId("unit-optionality-card");
     expect(optionalityCard).toBeInTheDocument();
@@ -42,24 +46,28 @@ describe("components/UnitList", () => {
 
   test("does not render the optionality list card when no optional units", () => {
     const { queryByTestId } = render(
-      <UnitList
-        {...unitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={unitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={unitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
     const optionalityCard = queryByTestId("unit-optionality-card");
     expect(optionalityCard).not.toBeInTheDocument();
   });
-  test("onClick is called when a unit is clicked", () => {
+  test.only("onClick is called when a unit is clicked", () => {
     const { getByText } = render(
-      <UnitList
-        {...unitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={unitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={unitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
     const unit = getByText("Data Representation");
 
@@ -71,12 +79,14 @@ describe("components/UnitList", () => {
   });
   test("renders new and legacy units together", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={combinedUnitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
 
     const unitCards = screen.getAllByTestId("unit-list-item");
@@ -84,12 +94,14 @@ describe("components/UnitList", () => {
   });
   test("begins index at 1 for legacy units on the same page as new units", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={combinedUnitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
 
     const indices = screen.getAllByTestId("list-item-index-container");
@@ -98,12 +110,14 @@ describe("components/UnitList", () => {
   });
   test("shows header for new units when on the first page", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={mockPaginationProps}
-        currentPageItems={combinedUnitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
 
     const header = screen.getByRole("heading", { name: "Maths units" });
@@ -111,12 +125,15 @@ describe("components/UnitList", () => {
   });
   test("does not show header for new units when on a subsequent page", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
-        currentPageItems={combinedUnitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+        ,
+      </OakThemeProvider>,
     );
 
     const header = screen.queryByText("Maths units");
@@ -124,12 +141,14 @@ describe("components/UnitList", () => {
   });
   test("renders the header for legacy lessons on their first appearance regardless of page number", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
-        currentPageItems={combinedUnitListingFixture().units}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
 
     const header = screen.getByRole("heading", {
@@ -139,12 +158,14 @@ describe("components/UnitList", () => {
   });
   test("does not render any headings when there are only legacy units", () => {
     render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
-        currentPageItems={combinedUnitListingFixture().units.slice(3)}
-        onClick={onClick}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={{ ...mockPaginationProps, currentPage: 2 }}
+          currentPageItems={combinedUnitListingFixture().units.slice(3)}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
     );
 
     const header = screen.queryByRole("heading", {

@@ -14,6 +14,8 @@ const currentPageItems: UnitListProps = {
   lessonCount: 10,
   currentPageItems: unitListingFixture().units.slice(0, 5),
   paginationProps: {
+    nextHref: "/",
+    prevHref: "/",
     currentPage: 1,
     totalPages: 2,
     pageSize: 20,
@@ -41,6 +43,8 @@ const currentPageItemsWithTiers: UnitListProps = {
   lessonCount: 10,
   currentPageItems: unitListingWithTiers().units.slice(0, 5),
   paginationProps: {
+    nextHref: "/",
+    prevHref: "/",
     currentPage: 1,
     totalPages: 2,
     pageSize: 20,

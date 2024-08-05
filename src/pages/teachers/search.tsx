@@ -13,6 +13,7 @@ import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "@/components/TeacherComponents/SearchResults";
 import getPageProps from "@/node-lib/getPageProps";
+import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -42,7 +43,15 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     items: results,
   });
 
-  const { paginationTitle } = paginationProps;
+  const {
+    paginationTitle,
+    currentPage,
+    totalPages,
+    prevPageUrlObject,
+    nextPageUrlObject,
+  } = paginationProps;
+  const isLastPage = currentPage === totalPages;
+  const isFirstPage = currentPage === 1;
 
   const searchFilters = useSearchFilters({
     ...searchProps,
@@ -53,11 +62,16 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
   });
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
+      <PaginationHead
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
       <AppLayout
         seoProps={{
           ...getSeoProps({
             title: `Search for Free Teaching Resources${paginationTitle}`,
-
             description: "Search for Free Teaching Resources",
           }),
         }}

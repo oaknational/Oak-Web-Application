@@ -5,16 +5,18 @@ import {
   OakUL,
   OakHeadingTag,
   OakFlex,
+  OakPagination,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";
 import Box from "@/components/SharedComponents/Box";
-import Pagination, {
+import {
+  UsePaginationProps,
   PaginationProps,
-} from "@/components/SharedComponents/Pagination";
-import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+} from "@/components/SharedComponents/Pagination/usePagination";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
@@ -49,6 +51,10 @@ const LessonList: FC<LessonListProps> = (props) => {
     onClick,
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
+
+  const router = useRouter();
+
+  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $flexDirection={["column-reverse", "column"]}>
@@ -85,7 +91,26 @@ const LessonList: FC<LessonListProps> = (props) => {
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination pageName={unitTitle} {...paginationProps} />
+          <OakPagination
+            {...paginationProps}
+            initialPage={currentPage}
+            onPageChange={(page: number) => {
+              router
+                .push(
+                  {
+                    pathname: paginationRoute,
+                    query: { page },
+                  },
+                  undefined,
+                  { shallow: true, scroll: false },
+                )
+                .then(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }}
+            pageName={unitTitle}
+            paginationHref={paginationRoute}
+          />
         </Box>
       ) : (
         <Box $pb={32} />

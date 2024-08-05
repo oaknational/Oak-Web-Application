@@ -44,6 +44,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
+import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -80,7 +81,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     items: unitsFilteredByLearningTheme,
   });
 
-  const { currentPageItems, paginationTitle } = paginationProps;
+  const {
+    paginationTitle,
+    currentPage,
+    totalPages,
+    prevPageUrlObject,
+    nextPageUrlObject,
+    currentPageItems,
+  } = paginationProps;
+  const isLastPage = currentPage === totalPages;
+  const isFirstPage = currentPage === 1;
 
   const theme = useTheme();
 
@@ -122,6 +132,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout seoProps={unitsSEO}>
+        <PaginationHead
+          prevPageUrlObject={prevPageUrlObject}
+          nextPageUrlObject={nextPageUrlObject}
+          isFirstPage={isFirstPage}
+          isLastPage={isLastPage}
+        />
         <HeaderListing
           breadcrumbs={[
             {

@@ -1,9 +1,19 @@
 import { encode } from "querystring";
 
-import { useRouter } from "next/router";
-import { useMemo, useRef } from "react";
+import Router, { useRouter } from "next/router";
+import { RefObject, useMemo, useRef } from "react";
+import { resolveHref } from "next/dist/client/resolve-href";
 
-import { PaginationProps } from "./Pagination";
+export type PaginationProps = {
+  currentPage: number;
+  totalPages: number;
+  prevPageUrlObject?: Parameters<typeof resolveHref>[1];
+  nextPageUrlObject?: Parameters<typeof resolveHref>[1];
+  firstItemRef?: RefObject<HTMLAnchorElement> | null;
+  paginationTitle?: string;
+  prevHref: string;
+  nextHref: string;
+};
 
 type Items<T> = { items: T[] };
 
@@ -45,6 +55,16 @@ const usePagination = <T>(
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
 
+  const nextPageUrlObject = isLastPage
+    ? { pathname: router.asPath }
+    : { pathname: pathname, query: Object.fromEntries(nextPageParams) };
+  const prevPageUrlObject = isFirstPage
+    ? { pathname: router.asPath }
+    : { pathname: pathname, query: Object.fromEntries(prevPageParams) };
+
+  const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject || "", true);
+  const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject || "", true);
+
   return {
     paginationTitle,
     pageSize,
@@ -59,6 +79,8 @@ const usePagination = <T>(
     prevPageUrlObject: isFirstPage
       ? { pathname: router.asPath }
       : { pathname: pathname, query: Object.fromEntries(prevPageParams) },
+    prevHref,
+    nextHref,
   };
 };
 

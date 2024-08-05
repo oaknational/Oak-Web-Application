@@ -18,6 +18,8 @@ describe("usePostList.ts", () => {
         pageSize: 4,
         paginationTitle: "",
         currentPage: 1,
+        prevHref: "/",
+        nextHref: "/?page=2",
         totalPages: 0,
         totalResults: 0,
         nextPageUrlObject: { pathname: "/", query: { page: "2" } },
@@ -42,6 +44,8 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
+        prevHref: "/",
+        nextHref: "/",
         nextPageUrlObject: { pathname: "/" },
         prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
@@ -69,6 +73,8 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
+        nextHref: "/",
+        prevHref: "/",
         nextPageUrlObject: { pathname: "/" },
         prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
@@ -98,6 +104,8 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
+        nextHref: "/",
+        prevHref: "/",
         nextPageUrlObject: { pathname: "/" },
         prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
@@ -126,6 +134,8 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 8,
         totalResults: 30,
+        prevHref: "/",
+        nextHref: "/?page=2",
         nextPageUrlObject: { pathname: "/", query: { page: "2" } },
         prevPageUrlObject: { pathname: "/" },
         firstItemRef: {
