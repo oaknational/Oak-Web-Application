@@ -11,11 +11,20 @@ type PupilLessonListingURLParams = {
   unitSlug: string;
 };
 
-export type LessonListingPageProps = {
-  browseData: LessonListingBrowseData;
+export type PupilLessonListingBackLink = {
+  programmeSlug: string;
+  options?: boolean;
 };
 
-const PupilLessonListingPage = ({ browseData }: LessonListingPageProps) => {
+export type LessonListingPageProps = {
+  browseData: LessonListingBrowseData;
+  backLink: PupilLessonListingBackLink;
+};
+
+const PupilLessonListingPage = ({
+  browseData,
+  backLink,
+}: LessonListingPageProps) => {
   const unitData = browseData[0]?.unitData;
   const programmeFields = browseData[0]?.programmeFields;
   const programmeSlug = browseData[0]?.programmeSlug;
@@ -39,6 +48,7 @@ const PupilLessonListingPage = ({ browseData }: LessonListingPageProps) => {
       programmeFields={programmeFields}
       orderedCurriculumData={orderedBrowseData}
       programmeSlug={programmeSlug}
+      backLink={backLink}
     />
   );
 };
@@ -89,28 +99,33 @@ export const getStaticProps: GetStaticProps<
        *
        */
 
-      const backLink = (() => {
+      const backLink: PupilLessonListingBackLink = (() => {
         const baseSlug = programmeSlug.match(/.*?year-\d{1,2}/)?.[0];
         const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
         const backLinkEquivalent = backLinkData.find(
           (b) => b.programmeSlug === nonLegacyProgrammeSlug,
         );
 
+        if (!baseSlug) {
+          throw new Error("programme slug does not match expected pattern");
+        }
+
         switch (true) {
           case !programmeSlug.endsWith("-l"):
-            return programmeSlug;
+            return { programmeSlug };
           case backLinkEquivalent !== undefined:
-            return backLinkEquivalent.programmeSlug;
+            return { programmeSlug: backLinkEquivalent.programmeSlug };
           case backLinkData.length > 1:
-            return `${baseSlug}/options`;
+            return { programmeSlug: baseSlug, options: true };
           default:
-            return nonLegacyProgrammeSlug;
+            return { programmeSlug: nonLegacyProgrammeSlug };
         }
       })();
 
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           browseData: filteredBrowseData,
+          backLink,
         },
       };
       return results;
