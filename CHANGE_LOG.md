@@ -1,3 +1,19 @@
+# [1.501.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.1...v1.501.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* missing homeschool prop ([3500f37](https://github.com/oaknational/Oak-Web-Application/commit/3500f3713c26976fc14063d0834f633c62b0900e))
+* reset form when no valid school found for input ([a344c31](https://github.com/oaknational/Oak-Web-Application/commit/a344c315b6b3c5547944921e07362ae965995bb5))
+
+
+### Features
+
+* add basic styling to form component ([be23110](https://github.com/oaknational/Oak-Web-Application/commit/be23110575df821f56a5a87e41b9451c6b24c908))
+* add onboarding page with ff redirect ([c100488](https://github.com/oaknational/Oak-Web-Application/commit/c10048849a0cc59ba39327a3e4dabc8c8940b952))
+* add school picker to onboarding page ([b19a015](https://github.com/oaknational/Oak-Web-Application/commit/b19a0150e8200ab166decf65d4e590c55a2f7149))
+* remove homeschool from schoolpicker on onboarding page ([00d6525](https://github.com/oaknational/Oak-Web-Application/commit/00d652566a42b58307c2074346784db0975fcf4d))
+
 ## [1.500.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.0...v1.500.1) (2024-08-05)
 
 
