@@ -1,7 +1,6 @@
 import { FC } from "react";
 import {
   OakHeading,
-  OakLI,
   OakUL,
   OakHeadingTag,
   OakFlex,
@@ -71,20 +70,15 @@ const LessonList: FC<LessonListProps> = (props) => {
         <>
           <OakUL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
-              <OakLI
-                key={`LessonList-LessonListItem-${item.lessonSlug}`}
-                data-testid={"lesson-list-item"}
-              >
-                <LessonListItem
-                  {...props}
-                  {...item}
-                  unitTitle={unitTitle}
-                  hideTopHeading
-                  index={index + pageSize * (currentPage - 1)}
-                  firstItemRef={index === 0 ? firstItemRef : null}
-                  onClick={onClick}
-                />
-              </OakLI>
+              <LessonListItem
+                {...props}
+                {...item}
+                unitTitle={unitTitle}
+                hideTopHeading
+                index={index + pageSize * (currentPage - 1)}
+                firstItemRef={index === 0 ? firstItemRef : null}
+                onClick={onClick}
+              />
             ))}
           </OakUL>
         </>

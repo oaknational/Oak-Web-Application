@@ -1,0 +1,54 @@
+import React from "react";
+import {
+  OakFlex,
+  OakQuizResultItem,
+  OakSpan,
+} from "@oaknational/oak-components";
+
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import {
+  isImage,
+  isText,
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+
+export type QuizResultMCQProps = {
+  answers: MCAnswer[];
+  feedback: QuestionFeedbackType[];
+};
+
+export const QuizResultMCQ = ({ answers, feedback }: QuizResultMCQProps) => {
+  const resultItems = answers.map((answer, index) => {
+    const text = answer.answer.filter((answer) => answer?.type === "text")[0];
+    const image = answer.answer.filter((answer) => answer?.type === "image")[0];
+
+    const feedbackState = feedback[index];
+
+    const imageURL =
+      isImage(image) && image?.imageObject?.secureUrl
+        ? image.imageObject.secureUrl
+        : undefined;
+
+    const standardText = isText(text) && text?.text ? text.text : undefined;
+
+    return (
+      <MathJaxWrap>
+        <OakQuizResultItem
+          key={index}
+          standardText={standardText}
+          imageURL={imageURL}
+          imageAlt={"Image for option " + (index + 1)}
+          feedbackState={feedbackState}
+        />
+      </MathJaxWrap>
+    );
+  });
+
+  return (
+    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
+      {resultItems}
+    </OakFlex>
+  );
+};

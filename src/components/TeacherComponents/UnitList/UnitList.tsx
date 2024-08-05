@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from "react";
-import { useRouter } from "next/router";
 import {
-  OakLI,
   OakUL,
   OakFlex,
   OakUnitsContainer,
+  OakUnitListItem,
   OakPagination,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import UnitListItem, {
   UnitListItemProps,
@@ -23,6 +23,7 @@ import {
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
 export type Tier = {
   title: string;
   slug: string;
@@ -60,6 +61,23 @@ const isUnitListData = (
   return (u as UnitListingData).keyStageSlug !== undefined;
 };
 
+const isUnitFirstItemRef = (
+  // first item ref is used to focus on the first list item when the pagination is used
+  programmeSlug: string,
+  newAndLegacyUnitsOnPage: boolean,
+  index: number,
+) => {
+  if (index === 0 && !newAndLegacyUnitsOnPage) {
+    return true;
+  } else if (
+    index === 0 &&
+    newAndLegacyUnitsOnPage &&
+    !isSlugLegacy(programmeSlug)
+  ) {
+    return true;
+  }
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
@@ -91,8 +109,9 @@ const UnitList: FC<UnitListProps> = (props) => {
       const baseIndex = index + pageSize * (currentPage - 1);
 
       let calculatedIndex = baseIndex;
+      const isMathsUnit = subjectSlug === "maths";
 
-      if (subjectSlug === "maths") {
+      if (isMathsUnit) {
         const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
         if (isItemLegacy) {
@@ -104,36 +123,66 @@ const UnitList: FC<UnitListProps> = (props) => {
         }
       }
 
-      return (
-        <OakLI
-          key={`UnitList-UnitListItem-${item[0]?.slug}`}
+      return item.length > 1 && isUnitOption(item) ? (
+        <UnitListOptionalityCard
+          unitOptions={item}
+          index={calculatedIndex}
+          onClick={onClick}
           data-testid="unit-list-item"
-          $width="100%"
-        >
-          {item.length > 1 && isUnitOption(item) ? (
-            <UnitListOptionalityCard
-              unitOptions={item}
-              index={calculatedIndex}
-              onClick={onClick}
+        />
+      ) : (
+        item.map((unitOption) => {
+          return isMathsUnit ? (
+            <OakUnitListItem
+              {...props}
+              {...unitOption}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
+              data-testid="unit-list-item"
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              index={calculatedIndex + 1}
+              isLegacy={isSlugLegacy(unitOption.programmeSlug)}
+              onClick={() =>
+                onClick({
+                  ...unitOption,
+                  index: 0,
+                  onClick,
+                })
+              }
+              href={resolveOakHref({
+                page: "lesson-index",
+                unitSlug: unitOption.slug,
+                programmeSlug: unitOption.programmeSlug,
+              })}
             />
           ) : (
-            <OakFlex>
-              {item.map((unitOption) => {
-                return (
-                  <UnitListItem
-                    {...props}
-                    {...unitOption}
-                    key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-                    hideTopHeading
-                    index={calculatedIndex}
-                    firstItemRef={index === 0 ? firstItemRef : null}
-                    onClick={onClick}
-                  />
-                );
-              })}
-            </OakFlex>
-          )}
-        </OakLI>
+            <UnitListItem
+              {...props}
+              {...unitOption}
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              hideTopHeading
+              index={calculatedIndex}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
+              onClick={onClick}
+              data-testid="unit-list-item"
+            />
+          );
+        })
       );
     });
 
