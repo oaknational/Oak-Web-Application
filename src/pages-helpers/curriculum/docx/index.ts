@@ -35,6 +35,8 @@ export type Slugs = {
   phaseSlug?: string;
   examboardSlug?: string;
   keyStageSlug?: string;
+  tierSlug?: string;
+  childSubjectSlug?: string;
 };
 
 const ENABLE_TIMER = false;
@@ -122,7 +124,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
 
   // Run through the builders
   const runners = {
-    frontCover: async () => await builder.frontCover(zip, { data }),
+    frontCover: async () => await builder.frontCover(zip, { data, slugs }),
     frontCoverPageLayout: async () =>
       await builder.pageLayout(zip, {
         margins: {

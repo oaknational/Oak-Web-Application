@@ -259,6 +259,8 @@ export default async function handler(
       phaseSlug: data.phaseSlug,
       keyStageSlug: data.phaseSlug,
       examboardSlug: data.examboardSlug,
+      tierSlug,
+      childSubjectSlug,
     });
 
     const pageTitle: string = [
