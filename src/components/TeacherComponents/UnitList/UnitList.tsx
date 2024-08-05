@@ -191,6 +191,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               index={calculatedIndex + 1}
               isLegacy={isSlugLegacy(unitOption.programmeSlug)}
               onClick={handleClick}
+              unavailable={unitOption.expired || undefined}
               href={resolveOakHref({
                 page: "lesson-index",
                 unitSlug: unitOption.slug,
