@@ -1,7 +1,6 @@
 import React, { FC, MouseEvent } from "react";
 import {
   OakFlex,
-  OakUL,
   OakUnitsContainer,
   OakUnitListItem,
   OakUnitListOptionalityItem,
@@ -252,9 +251,19 @@ const UnitList: FC<UnitListProps> = (props) => {
             <LegacyUnits />
           </OakFlex>
         ) : (
-          <OakUL aria-label="A list of units" $reset>
-            {getUnitCards(currentPageItems)}
-          </OakUL>
+          <OakUnitsContainer
+            isLegacy={true}
+            subject={subjectSlug}
+            phase={"Specialist and therapies"}
+            curriculumHref={`${resolveOakHref({
+              page: "curriculum-previous-downloads",
+              query: {
+                subject: subjectSlug,
+              },
+            })}#Specialist`}
+            showHeader={true}
+            unitCards={getUnitCards(currentPageItems)}
+          />
         )
       ) : null}
       {units.length > 5 ? (

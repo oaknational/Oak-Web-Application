@@ -285,7 +285,7 @@ type CurriculumPreviousDownloadsLinkProps = {
   page: "curriculum-previous-downloads";
   query?: {
     subject: string;
-    keystage: string;
+    keystage?: string;
   };
 };
 
