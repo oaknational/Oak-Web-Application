@@ -12,15 +12,15 @@ type PupilLessonListingURLParams = {
 };
 
 export type LessonListingPageProps = {
-  curriculumData: LessonListingBrowseData;
+  browseData: LessonListingBrowseData;
 };
 
-const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
-  const unitData = curriculumData[0]?.unitData;
-  const programmeFields = curriculumData[0]?.programmeFields;
-  const programmeSlug = curriculumData[0]?.programmeSlug;
+const PupilLessonListingPage = ({ browseData }: LessonListingPageProps) => {
+  const unitData = browseData[0]?.unitData;
+  const programmeFields = browseData[0]?.programmeFields;
+  const programmeSlug = browseData[0]?.programmeSlug;
 
-  const orderedCurriculumData = curriculumData.sort((a, b) => {
+  const orderedBrowseData = browseData.sort((a, b) => {
     const aLessonOrder = a.supplementaryData?.orderInUnit;
     const bLessonOrder = b.supplementaryData?.orderInUnit;
     return aLessonOrder - bLessonOrder;
@@ -37,7 +37,7 @@ const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
     <PupilViewsLessonListing
       unitData={unitData}
       programmeFields={programmeFields}
-      orderedCurriculumData={orderedCurriculumData}
+      orderedCurriculumData={orderedBrowseData}
       programmeSlug={programmeSlug}
     />
   );
@@ -62,24 +62,55 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      let curriculumData = await curriculumApi2023.pupilLessonListingQuery({
-        programmeSlug,
-        unitSlug,
-      });
+      const { browseData, backLinkData } =
+        await curriculumApi2023.pupilLessonListingQuery({
+          programmeSlug,
+          unitSlug,
+        });
 
-      curriculumData = curriculumData.filter(
+      const filteredBrowseData = browseData.filter(
         (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,
       );
 
-      if (!curriculumData || curriculumData.length === 0) {
+      if (!filteredBrowseData || filteredBrowseData.length === 0) {
         return {
           notFound: true,
         };
       }
 
+      /**
+       *
+       * Backlink cases to handle:
+       *
+       * 1. its a non-legacy programme => programmeSlug
+       * 2. legacy programme equivalent in the backLinkData => nonLegacyProgrammeSlug
+       * 3. legacy programme not in the backLinkData & backLinkData has multiple entries => baseSlug/options
+       * 4. legacy programme not in the backLinkData & backLinkData has a single entry => nonLegacyProgrammeSlug
+       *
+       */
+
+      const backLink = (() => {
+        const baseSlug = programmeSlug.match(/.*?year-\d{1,2}/)?.[0];
+        const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
+        const backLinkEquivalent = backLinkData.find(
+          (b) => b.programmeSlug === nonLegacyProgrammeSlug,
+        );
+
+        switch (true) {
+          case !programmeSlug.endsWith("-l"):
+            return programmeSlug;
+          case backLinkEquivalent !== undefined:
+            return backLinkEquivalent.programmeSlug;
+          case backLinkData.length > 1:
+            return `${baseSlug}/options`;
+          default:
+            return nonLegacyProgrammeSlug;
+        }
+      })();
+
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
-          curriculumData,
+          browseData: filteredBrowseData,
         },
       };
       return results;

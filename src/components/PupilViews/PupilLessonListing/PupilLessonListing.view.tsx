@@ -38,6 +38,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     examboardDescription,
     phaseSlug,
   } = programmeFields;
+
+  const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
+
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
     useState<boolean>(unitData.expirationDate !== null);
 

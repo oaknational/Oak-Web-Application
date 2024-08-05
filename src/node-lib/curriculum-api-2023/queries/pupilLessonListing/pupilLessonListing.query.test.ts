@@ -11,7 +11,7 @@ describe("pupilLessonListing()", () => {
       syntheticUnitvariantLessonsFixture({
         overrides: {
           unit_slug: "unit-slug-test",
-          programme_slug: "programme-slug-test",
+          programme_slug: "programme-slug-test-year-10",
         },
       });
 
@@ -21,20 +21,21 @@ describe("pupilLessonListing()", () => {
         () =>
           Promise.resolve({
             browseData: [_syntheticUnitvariantLessonsFixture],
+            backLinkData: [],
           }) as Promise<PupilLessonListingQuery>, // Add the correct return type
       ),
     })({
       unitSlug: "test",
-      programmeSlug: "test",
+      programmeSlug: "programme-slug-test-year-10",
     });
 
-    expect(lesson[0]?.lessonSlug).toEqual(
+    expect(lesson.browseData[0]?.lessonSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.lesson_slug,
     );
-    expect(lesson[0]?.unitSlug).toEqual(
+    expect(lesson.browseData[0]?.unitSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.unit_slug,
     );
-    expect(lesson[0]?.programmeSlug).toEqual(
+    expect(lesson.browseData[0]?.programmeSlug).toEqual(
       _syntheticUnitvariantLessonsFixture.programme_slug,
     );
   });
@@ -63,12 +64,14 @@ describe("pupilLessonListing()", () => {
       ),
     })({
       unitSlug: "test",
-      programmeSlug: "test",
+      programmeSlug: "programme-slug-test-year-10",
     });
 
-    expect(lesson[0]?.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
-    expect(lesson[0]?.unitSlug).toEqual(fixtures[0]?.unit_slug);
-    expect(lesson[0]?.programmeSlug).toEqual(fixtures[0]?.programme_slug);
-    expect(lesson[0]?.isLegacy).toEqual(fixtures[0]?.is_legacy);
+    expect(lesson.browseData[0]?.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
+    expect(lesson.browseData[0]?.unitSlug).toEqual(fixtures[0]?.unit_slug);
+    expect(lesson.browseData[0]?.programmeSlug).toEqual(
+      fixtures[0]?.programme_slug,
+    );
+    expect(lesson.browseData[0]?.isLegacy).toEqual(fixtures[0]?.is_legacy);
   });
 });
