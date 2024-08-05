@@ -12,6 +12,7 @@ const setSchool = jest.fn();
 const props = {
   setSchool: setSchool,
   errors: {},
+  withHomeschool: true,
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -56,7 +57,9 @@ describe("ResourcePageSchoolDetails", () => {
       <ResourcePageSchoolDetails {...props} />,
     );
 
-    const useSchoolPickerHook = renderHook(() => useSchoolPicker());
+    const useSchoolPickerHook = renderHook(() =>
+      useSchoolPicker({ withHomeschool: true }),
+    );
 
     const checkbox = getByRole("checkbox");
     const user = userEvent.setup();
@@ -96,7 +99,9 @@ describe("ResourcePageSchoolDetails", () => {
   });
   it("calls onSchoolChange when a school is selected ", async () => {
     const { rerender } = render(<ResourcePageSchoolDetails {...props} />);
-    const useSchoolPickerHook = renderHook(() => useSchoolPicker());
+    const useSchoolPickerHook = renderHook(() =>
+      useSchoolPicker({ withHomeschool: true }),
+    );
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
       setSelectedSchool("anything");
