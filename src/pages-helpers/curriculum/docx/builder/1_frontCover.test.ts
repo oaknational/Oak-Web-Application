@@ -1,3 +1,4 @@
+import { Slugs } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./1_frontCover";
@@ -14,6 +15,9 @@ describe("1_frontCover", () => {
         phaseTitle: "",
         examboardTitle: "",
       } as CombinedCurriculumData,
+      slugs: {
+        subjectSlug: "",
+      } as Slugs,
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
