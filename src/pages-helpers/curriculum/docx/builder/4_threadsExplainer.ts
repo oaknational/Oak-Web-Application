@@ -1,7 +1,5 @@
 import { join } from "path";
 
-import { uniqBy } from "lodash";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData, Slugs } from "..";
 import {
@@ -17,16 +15,13 @@ import {
   insertNumbering,
 } from "../docx";
 
-import { createCurriculumSlug } from "./helper";
+import { createCurriculumSlug, createThreadOptions } from "./helper";
 
 export default async function generate(
   zip: JSZipCached,
   { slugs, data }: { slugs: Slugs; data: CombinedCurriculumData },
 ) {
-  const threads = uniqBy(
-    data.units.flatMap((unit) => unit.threads),
-    (thread) => thread.title,
-  ).sort((a, b) => a.order - b.order);
+  const threads = createThreadOptions(data.units);
 
   const links = await insertLinks(zip, {
     onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
