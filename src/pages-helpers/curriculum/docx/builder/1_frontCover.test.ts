@@ -17,7 +17,6 @@ describe("1_frontCover", () => {
       } as CombinedCurriculumData,
       slugs: {
         subjectSlug: "",
-        examboardTitle: "",
       } as Slugs,
     });
 
