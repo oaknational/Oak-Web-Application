@@ -24,15 +24,15 @@ export const isUnitListData = (
 
 export const getPageItems = (
   pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
-  legacy: boolean,
+  pickLegacyItems: boolean,
 ) => {
-  return isCurrentPageItems(pageItems)
-    ? pageItems.filter((item) =>
-        legacy
-          ? isSlugLegacy(item[0]!.programmeSlug)
-          : !isSlugLegacy(item[0]!.programmeSlug),
-      )
-    : [];
+  if (!isCurrentPageItems(pageItems)) {
+    return [];
+  }
+  return pageItems.filter((item) => {
+    const isLegacy = isSlugLegacy(item[0]!.programmeSlug);
+    return pickLegacyItems ? isLegacy : !isLegacy;
+  });
 };
 
 export const getProgrammeFactors = (props: UnitListProps) => {
