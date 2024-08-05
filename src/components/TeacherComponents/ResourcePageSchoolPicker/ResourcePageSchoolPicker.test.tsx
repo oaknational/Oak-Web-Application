@@ -61,6 +61,7 @@ describe("search autocomplete", () => {
         schoolPickerInputValue={"Dor"}
         label={"School picker"}
         setSelectedSchool={setSelectedSchool}
+        withHomeschool={true}
       />,
     );
 
@@ -83,6 +84,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
         />
       );
     };
@@ -112,6 +114,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
         />
       );
     };
@@ -134,6 +137,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
         />
       );
     };
@@ -158,6 +162,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
           required={true}
         />
       );
@@ -182,6 +187,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
         />
       );
     };
@@ -211,6 +217,7 @@ describe("search autocomplete", () => {
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
           setSelectedSchool={setSelectedSchool}
+          withHomeschool={true}
         />
       );
     };

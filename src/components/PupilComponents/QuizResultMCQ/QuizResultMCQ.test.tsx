@@ -12,7 +12,11 @@ describe("QuizResultMCQ", () => {
   it("renders the text for all of the answers", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizResultMCQ answers={mcqTextAnswers} pupilAnswers={2} />,
+        <QuizResultMCQ
+          answers={mcqTextAnswers}
+          feedback={[null, null, null, null]}
+        />
+        ,
       </OakThemeProvider>,
     );
 
@@ -28,7 +32,11 @@ describe("QuizResultMCQ", () => {
   it("renders the image for all of the answers", () => {
     const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizResultMCQ answers={mcqImageAnswers} pupilAnswers={2} />,
+        <QuizResultMCQ
+          answers={mcqImageAnswers}
+          feedback={[null, null, null, null]}
+        />
+        ,
       </OakThemeProvider>,
     );
 
@@ -42,15 +50,11 @@ describe("QuizResultMCQ", () => {
   });
 
   it("marks correct answers as correct", () => {
-    const correctAnswerIndex = mcqTextAnswers.findIndex(
-      (answer) => answer.answerIsCorrect,
-    );
-
     const { getAllByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
-          pupilAnswers={correctAnswerIndex}
+          feedback={["correct", null, null, null]}
         />
         ,
       </OakThemeProvider>,
@@ -62,22 +66,16 @@ describe("QuizResultMCQ", () => {
   });
 
   it("marks incorrect answers as incorrect", () => {
-    const incorrectAnswerIndexes = mcqTextAnswers
-      .map((answer, i) => (answer.answerIsCorrect ? undefined : i))
-      .filter((i) => i !== undefined) as number[]; // TS doesn't know that we've filtered out the undefineds
-
     const { getAllByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
-          pupilAnswers={incorrectAnswerIndexes}
+          feedback={[null, "incorrect", "incorrect", null]}
         />
         ,
       </OakThemeProvider>,
     );
-    expect(getAllByAltText("cross")).toHaveLength(
-      incorrectAnswerIndexes.length,
-    );
+    expect(getAllByAltText("cross")).toHaveLength(2);
     expect(() => getAllByAltText("tick")).toThrow(
       "Unable to find an element with the alt text: tick",
     );

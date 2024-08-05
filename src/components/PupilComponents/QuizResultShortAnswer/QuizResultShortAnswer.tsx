@@ -5,36 +5,23 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 export type QuizResultShortAnswerProps = {
-  answers: string | (string | undefined)[];
   pupilAnswer: string;
+  feedback: QuestionFeedbackType;
 };
 
 export const QuizResultShortAnswer = ({
-  answers,
   pupilAnswer,
+  feedback,
 }: QuizResultShortAnswerProps) => {
-  const feedbackState = (() => {
-    switch (true) {
-      case pupilAnswer === answers:
-        return "correct";
-      case answers.includes(pupilAnswer):
-        return "correct";
-      case pupilAnswer !== answers:
-        return "incorrect";
-    }
-  })();
-
   const resultItem = (
-    <MathJaxWrap>
-      <OakQuizResultItem
-        key={pupilAnswer}
-        standardText={pupilAnswer}
-        feedbackState={feedbackState}
-      />
-    </MathJaxWrap>
+    <OakQuizResultItem
+      key={pupilAnswer}
+      standardText={pupilAnswer}
+      feedbackState={feedback}
+    />
   );
 
   return (

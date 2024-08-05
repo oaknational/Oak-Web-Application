@@ -1,5 +1,5 @@
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
+Hash: SHA512
 
 # Oak National Academy - reporting security vulnerabilities to the Oak National team
 
@@ -13,7 +13,7 @@ Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
 
 # This security is annually reviewed
-Expires: 2024-07-31T20:59:00.000Z
+Expires: 2025-07-31T20:59:00.000Z
 
 # Oak National Academy Security Disclosure Policy
 Policy: https://www.thenational.academy/legal/security-disclosure-policy/
@@ -30,17 +30,17 @@ Hiring: https://jobs.thenational.academy
 # Please see https://securitytxt.org/ for details of the specification of this file
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmSHDA0ACgkQlx8GIFG2
-C3342w/+K5DuDMWdMGlwfsrMRXZYfrShWpxsHf8IsRC1wd7ZQBdeotXuhWpRw6Rt
-KZYZxwYOutXe2alqM3R2aFveTaIg8gV/zFtfFXQGucr/ggNJ012uIhWlzU9wmMD5
-A0GwTyqMcUXhKNhdMZ5sURuIhqpwT+NE/UJyhfi7aAUATqzws1gZ0gk1ivTzW4dv
-f6hG7ZoKb45S8koEEN5tKRTVGFvjSJcpT59XeNN3Edl0GbjJf7JdgTeDc0DJ54Fc
-be5pI2Zoux0AXWGrYgbVfwFZlUpwRm6f7C+FwzO08dnVpCBlFUqnJEI88w8oczHy
-EocWWj+NLsdbKIoORuvNBLBobL2QqjUwuWGNdMDLey3tQe2Fg2WG9YqlnLUDT9e+
-Lmp1SBjCzFR/t2GfnMpqOecENFJ8fuG64SX4stsSx0PeAcs/Nsv35YL8Xw0iAg/T
-StjzqXgwDLnZFzAtZfdrBPl1Iz04Ozr+146ep0ZZygBFvgiP9rc3yTLzWHDHZQDI
-BUZfOwXUdmzGLX0Zbh2oQ2uNTvCoD4xM3lvF45yVIvzaXP86OqWIO31+FbIhX7aZ
-sWjLghb9wpwVmDB4GVaqByPDJJuRDuyHrGtf/NZ10BcqKgwapWPYxAh6mKpVna/D
-JmCcRRK9J3/IbtPIoAvWgkgQIdQ0Q32HvEl7l62E3gGCLTmc3Bs=
-=Ac16
+iQIzBAEBCgAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmao6tIACgkQlx8GIFG2
+C302aQ/+PFi4Z5tUz8nWS/TyNi7jBzCfn3d/qXn7gAAtUQ0IREo3Ks/0uo1NwRiv
+E1pTI9Sl3tb+ZcBEs99H2E9yEV3aeys5ptauDte/4BL+LNDnLgLwQuaQxqrWJJtD
+lf7ADNFl4Knnn52aEpgoT6WLL+kWjZbTa6c/aJ2EBibR5cd0eL4LEcfjbytibmPV
+kGlhvjECclHR7ByscaFyW4k+iQhEOA3R9A1aS7l5N9is5U/JFw/PwyOwDM2I6Ati
+04Ejq3tefEhce/Kt3vssbb6a5GaTOjkbwzqS1byT3GN/vobpRNguQvMuGWIJinsd
+1qpTpoYQrho0nUqJEQ2aQV1lxkstBI7PSYjI+lCxODyv4oZAYJc1vWlq98Oyv/6k
+BIx5I/CMy/rbOxmYZBDLacrJd6V4owfrGv6mlr7OmzZ+JsFG4krcwmCtxlK0alBw
+9iQvEvNn1UdsFryw+aVUn6z9Clh27QlLM/Li3X+nabaeu9trBoi0GMKzE9epvvOQ
+9Jcg7MxCJYZ5K1zkhvrNh8/HkM58VTz7qSfF3RBAC3w3lqYwzqdo1OEGIgyPHu5V
+T3rQjKvNv3bVwnwcHWCy46NIpzmZesD/ANrNnfMixAWnOu7OOqWeoWD7pMP5spVi
+y+jfajD/cPTlBge+ys332vKXEr+5gZfoNH9hgqPBp5HD2DRFMoE=
+=EUmq
 -----END PGP SIGNATURE-----
