@@ -65,6 +65,36 @@ describe("QuizResultMatch", () => {
     expect(getAllByAltText("cross")).toHaveLength(3);
   });
 
+  it("throws an error if the answer is not found", () => {
+    expect(() =>
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizResultMatch
+            answers={matchAnswers}
+            feedback={["correct", "correct", "correct"]}
+            pupilAnswers={["grass", "cow", "human", "dog"]}
+          />
+        </OakThemeProvider>,
+      ),
+    ).toThrow("Answer not found for index 3");
+  });
+
+  it("throws error if correct choice object not found", () => {
+    matchAnswers.push({ correctChoice: [] });
+    console.log(matchAnswers);
+    expect(() =>
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizResultMatch
+            answers={matchAnswers}
+            feedback={["correct", "correct", "correct"]}
+            pupilAnswers={["grass", "cow", "human", "dog"]}
+          />
+        </OakThemeProvider>,
+      ),
+    ).toThrow("Correct choice not found for pupil answer dog");
+  });
+
   afterAll(() => {
     jest.restoreAllMocks();
   });

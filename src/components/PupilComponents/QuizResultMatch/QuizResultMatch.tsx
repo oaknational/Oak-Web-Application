@@ -32,14 +32,12 @@ export const QuizResultMatch = ({
     const feedbackState = feedback[index];
 
     if (!answer?.correctChoice?.[0]) {
-      throw new Error(`Answer not found for index ${pupilAnswer}`);
+      throw new Error(
+        `Correct choice not found for pupil answer ${pupilAnswer}`,
+      );
     }
     const prefix = answer?.correctChoice[0].text;
     const standardText = pupilAnswer;
-
-    if (!standardText) {
-      throw new Error("Text is missing from match answer");
-    }
 
     return (
       <MathJaxWrap>
