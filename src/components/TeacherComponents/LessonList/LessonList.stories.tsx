@@ -26,6 +26,8 @@ const currentPageItems: LessonListProps = {
   subjectSlug: "computing",
   headingTag: "h2",
   paginationProps: {
+    isFirstPage: true,
+    isLastPage: false,
     prevHref: "/",
     nextHref: "/",
     currentPage: 1,

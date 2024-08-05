@@ -14,4 +14,6 @@ export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   nextHref: "/next",
   pageSize: 5,
   totalResults: 125,
+  isFirstPage: true,
+  isLastPage: false,
 };
