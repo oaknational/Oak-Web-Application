@@ -47,7 +47,9 @@ describe("useSchoolPicker", () => {
     jest.resetModules();
   });
   test("Schools should be returned with homeschool option if fetch succeeds", async () => {
-    const { result, rerender } = renderHook(useSchoolPicker);
+    const { result, rerender } = renderHook(() =>
+      useSchoolPicker({ withHomeschool: true }),
+    );
     act(() => result.current.setSchoolPickerInputValue("wes"));
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
@@ -62,13 +64,26 @@ describe("useSchoolPicker", () => {
       },
     ]);
   });
+  it("Schools not include homeschool if flag is false", () => {
+    const { result, rerender } = renderHook(() =>
+      useSchoolPicker({ withHomeschool: false }),
+    );
+    act(() => result.current.setSchoolPickerInputValue("wes"));
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: data,
+      error: null,
+    }));
+    rerender();
+    expect(result.current.schools).toEqual(data);
+  });
   test("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
       error: null,
     }));
-    const { result } = renderHook(() => useSchoolPicker());
-
+    const { result } = renderHook(() =>
+      useSchoolPicker({ withHomeschool: false }),
+    );
     expect(result.current.schools).toEqual([]);
   });
   test("should throw an error if failed to fetch school ", async () => {
@@ -93,7 +108,9 @@ describe("useSchoolPicker", () => {
       statusText: "Not Found",
     });
 
-    const { result } = renderHook(() => useSchoolPicker());
+    const { result } = renderHook(() =>
+      useSchoolPicker({ withHomeschool: true }),
+    );
 
     expect(result.current.schools).toEqual([]);
   });

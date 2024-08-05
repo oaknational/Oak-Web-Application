@@ -39,19 +39,25 @@ export type UseSchoolPickerReturnProps = {
   setSelectedSchool: React.Dispatch<React.SetStateAction<Key | undefined>>;
 };
 
-export default function useSchoolPicker(): UseSchoolPickerReturnProps {
+export default function useSchoolPicker(props: {
+  withHomeschool: boolean;
+}): UseSchoolPickerReturnProps {
   const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
   const [selectedSchool, setSelectedSchool] = useState<Key | undefined>();
 
   const queryUrl = `https://school-picker.thenational.academy/${schoolPickerInputValue}`;
 
   const { data, error } = useSWR(queryUrl, fetcher);
-  const dataWithHomeschoolOption = data
-    ? [...data, { name: "Homeschool", urn: HOMESCHOOL_URN }]
-    : [];
+
+  const schoolsWithHomeschool = props.withHomeschool
+    ? data?.concat([{ name: "Homeschool", urn: HOMESCHOOL_URN }])
+    : data;
+
+  const schoolsToReturn =
+    schoolPickerInputValue.length > 2 && data ? schoolsWithHomeschool : [];
 
   return {
-    schools: schoolPickerInputValue.length > 2 ? dataWithHomeschoolOption : [],
+    schools: schoolsToReturn,
     error,
     setSchoolPickerInputValue,
     schoolPickerInputValue,
