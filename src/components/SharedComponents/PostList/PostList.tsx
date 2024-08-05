@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { OakLI, OakUL } from "@oaknational/oak-components";
+import { OakLI, OakPagination, OakUL } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
 
@@ -8,9 +9,7 @@ import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
 import { Hr } from "@/components/SharedComponents/Typography";
-import Pagination, {
-  PaginationProps,
-} from "@/components/SharedComponents/Pagination";
+import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
@@ -56,9 +55,13 @@ const PostList: FC<PostListProps> = (props) => {
     showImageOnTablet,
   } = props;
 
-  const { firstItemRef } = paginationProps;
+  const { firstItemRef, currentPage } = paginationProps;
   const blogsOrWebinars =
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
+  const router = useRouter();
+
+  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
+
   return (
     <Flex
       $flexDirection="column"
@@ -97,7 +100,26 @@ const PostList: FC<PostListProps> = (props) => {
       ) : null}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination pageName={blogsOrWebinars} {...paginationProps} />
+          <OakPagination
+            {...paginationProps}
+            initialPage={currentPage}
+            onPageChange={(page: number) => {
+              router
+                .push(
+                  {
+                    pathname: paginationRoute,
+                    query: { page },
+                  },
+                  undefined,
+                  { shallow: true, scroll: false },
+                )
+                .then(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }}
+            pageName={blogsOrWebinars}
+            paginationHref={paginationRoute}
+          />
         </Box>
       )}
     </Flex>

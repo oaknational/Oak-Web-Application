@@ -1,8 +1,17 @@
-export const mockPaginationProps = {
-  totalResults: 1,
+import {
+  PaginationProps,
+  UsePaginationProps,
+} from "@/components/SharedComponents/Pagination/usePagination";
+
+export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   totalPages: 25,
   currentPage: 1,
-  pageSize: 20,
-  nextPageHref: "/prev",
-  prevPageHref: "/next",
+  firstItemRef: null,
+  paginationTitle: " | Page 1 of 25",
+  prevPageUrlObject: { pathname: "/prev" },
+  nextPageUrlObject: { pathname: "/next" },
+  prevHref: "/prev",
+  nextHref: "/next",
+  pageSize: 5,
+  totalResults: 125,
 };

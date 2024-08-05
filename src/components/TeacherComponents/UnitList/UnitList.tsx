@@ -1,19 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
   OakUL,
   OakFlex,
   OakUnitsContainer,
   OakUnitListItem,
+  OakPagination,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import UnitListItem, {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import Pagination, {
-  PaginationProps,
-} from "@/components/SharedComponents/Pagination";
+import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
 import {
@@ -81,7 +81,18 @@ const isUnitFirstItemRef = (
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
+  const router = useRouter();
+
+  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
+
   const { currentPage, pageSize, firstItemRef } = paginationProps;
+
+  useEffect(() => {
+    if (router.query.page && firstItemRef?.current) {
+      firstItemRef.current.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [firstItemRef, router.query.page]);
 
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
@@ -231,7 +242,6 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         subjectSlug === "maths" ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <p>test</p>
             <NewUnits />
             <LegacyUnits />
           </OakFlex>
@@ -243,10 +253,25 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : null}
       {units.length > 5 ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination
-            pageName={props.subjectTitle}
+          <OakPagination
             {...paginationProps}
-            firstItemRef={firstItemRef}
+            initialPage={currentPage}
+            onPageChange={(page: number) => {
+              router
+                .push(
+                  {
+                    pathname: paginationRoute,
+                    query: { page },
+                  },
+                  undefined,
+                  { shallow: true, scroll: false },
+                )
+                .then(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }}
+            pageName={props.subjectTitle}
+            paginationHref={paginationRoute}
           />
         </Box>
       ) : (
