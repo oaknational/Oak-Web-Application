@@ -1,7 +1,5 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
-import { resolveHref } from "next/dist/client/resolve-href";
-import Router from "next/router";
 
 import usePagination from "./usePagination";
 
@@ -13,10 +11,6 @@ const pathname = "/blogs";
 const totalResults = 41;
 const pageSize = 10;
 const items = Array(30);
-
-jest.mock("next/dist/client/resolve-href", () => ({
-  resolveHref: jest.fn(),
-}));
 
 describe("usePagination()", () => {
   jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -124,30 +118,6 @@ describe("usePagination()", () => {
     expect(result.current).toMatchObject({
       currentPageItems: items.slice(0, pageSize),
     });
-  });
-
-  test.only("should return correct hrefs for prevPageUrlObject and nextPageUrlObject", () => {
-    (resolveHref as jest.Mock).mockReturnValueOnce([
-      "/blogs?page=3",
-      "/blogs?page=5",
-    ]);
-
-    const prevPageUrlObject = { pathname, query: { page: "3" } };
-    const nextPageUrlObject = { pathname, query: { page: "5" } };
-
-    const [, prevHref = ""] = resolveHref(
-      Router,
-      prevPageUrlObject || "",
-      true,
-    );
-    const [, nextHref = ""] = resolveHref(
-      Router,
-      nextPageUrlObject || "",
-      true,
-    );
-
-    expect(prevHref).toBe("/blogs?page=3");
-    expect(nextHref).toBe("/blogs?page=5");
   });
 
   test("returns firstItemRef with a valid ref", () => {
