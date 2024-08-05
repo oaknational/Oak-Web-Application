@@ -73,6 +73,10 @@ export const OnboardingView = () => {
       $pa="inner-padding-xl3"
       $dropShadow="drop-shadow-standard"
       $borderRadius="border-radius-s"
+      as="form"
+      onSubmit={
+        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+      }
     >
       <Logo height={48} width={104} variant="with text" />
       <OakHeading tag="h2" $font="heading-light-5">
@@ -89,11 +93,9 @@ export const OnboardingView = () => {
         withHomeschool={false}
       />
       <OakPrimaryButton
-        onClick={
-          (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-        }
         disabled={formState.errors?.school !== undefined || !formState.isValid}
         width="100%"
+        type="submit"
       >
         Continue
       </OakPrimaryButton>
