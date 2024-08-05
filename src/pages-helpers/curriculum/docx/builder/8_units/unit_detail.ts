@@ -210,6 +210,10 @@ export async function buildUnit(
   const lessons = await buildUnitLessons(zip, unitOptionIfAvailable);
   const threads = await buildUnitThreads(zip, unit);
 
+  const hasPublishedLessons = (unitOptionIfAvailable.lessons ?? []).some(
+    (lesson) => lesson._state === "published",
+  );
+
   const links = await insertLinks(zip, {
     onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
       unit,
@@ -491,46 +495,49 @@ export async function buildUnit(
 
       <w:p />
 
-      <w:p>
-        ${wrapInLinkTo(
-          links.onlineResources,
-          safeXml`
-            <XML_FRAGMENT>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts
-                    w:ascii="Arial"
-                    w:eastAsia="Arial"
-                    w:hAnsi="Arial"
-                    w:cs="Arial"
-                  />
-                  <w:b />
-                  <w:u w:val="single" />
-                </w:rPr>
-                <w:t>Go to unit resources</w:t>
-              </w:r>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts
-                    w:ascii="Arial"
-                    w:eastAsia="Arial"
-                    w:hAnsi="Arial"
-                    w:cs="Arial"
-                  />
-                  <w:b />
-                  <w:u w:val="none" />
-                </w:rPr>
-                ${createImage(images.jumpOutArrow, {
-                  width: cmToEmu(0.41),
-                  height: cmToEmu(0.35),
-                  isDecorative: true,
-                })}
-              </w:r>
-            </XML_FRAGMENT>
-          `,
-        )}
-      </w:p>
-
+      ${!hasPublishedLessons
+        ? ""
+        : safeXml`
+            <w:p>
+              ${wrapInLinkTo(
+                links.onlineResources,
+                safeXml`
+                  <XML_FRAGMENT>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:eastAsia="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:u w:val="single" />
+                      </w:rPr>
+                      <w:t>Go to unit resources</w:t>
+                    </w:r>
+                    <w:r>
+                      <w:rPr>
+                        <w:rFonts
+                          w:ascii="Arial"
+                          w:eastAsia="Arial"
+                          w:hAnsi="Arial"
+                          w:cs="Arial"
+                        />
+                        <w:b />
+                        <w:u w:val="none" />
+                      </w:rPr>
+                      ${createImage(images.jumpOutArrow, {
+                        width: cmToEmu(0.41),
+                        height: cmToEmu(0.35),
+                        isDecorative: true,
+                      })}
+                    </w:r>
+                  </XML_FRAGMENT>
+                `,
+              )}
+            </w:p>
+          `}
       <w:p>
         <w:r>
           <w:rPr>
