@@ -50,7 +50,7 @@ export default async function generate(
   const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
   const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
   const childSubjectTitle = slugs.childSubjectSlug
-    ? `${capitalize(slugs.childSubjectSlug)}`
+    ? `${capitalize(slugs.childSubjectSlug.split("-").join(" "))}`
     : "";
 
   const subtitle =

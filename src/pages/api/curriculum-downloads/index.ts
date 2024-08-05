@@ -267,7 +267,7 @@ export default async function handler(
       data.combinedCurriculumData?.subjectTitle,
       data.combinedCurriculumData?.phaseTitle,
       data.combinedCurriculumData?.examboardTitle,
-      capitalize(childSubjectSlug),
+      capitalize(childSubjectSlug?.split("-").join(" ")),
       capitalize(tierSlug),
     ]
       .filter(Boolean)
