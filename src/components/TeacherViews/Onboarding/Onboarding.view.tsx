@@ -56,6 +56,8 @@ export const OnboardingView = () => {
   useEffect(() => {
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
+    } else {
+      setSchoolDetailsInForm("", "");
     }
   }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
 
