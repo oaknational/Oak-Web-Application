@@ -311,6 +311,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             apiError={apiError}
             hideSelectAll={Boolean(expired)}
             updatedAt={updatedAt}
+            withHomeschool={true}
             cardGroup={
               !showNoResources && (
                 <DownloadCardGroup
