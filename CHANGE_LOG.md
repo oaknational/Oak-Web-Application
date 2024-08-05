@@ -1,3 +1,18 @@
+## [1.502.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.0...v1.502.1) (2024-08-05)
+
+# [1.502.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.501.0...v1.502.0) (2024-08-05)
+
+
+### Features
+
+* **match:** add match question type to storybook ([d387f4b](https://github.com/oaknational/Oak-Web-Application/commit/d387f4b6d24dd1f9615e11504d64228bbde5320a))
+* **match:** add match question type to storybook ([6f8c48a](https://github.com/oaknational/Oak-Web-Application/commit/6f8c48ad580d9f77e103474566e73423432e154f))
+* **match:** create match component ([5b752a2](https://github.com/oaknational/Oak-Web-Application/commit/5b752a2a2fb1dff7b6058888f3dc24e30c4449cc))
+* **match:** create match component ([37199db](https://github.com/oaknational/Oak-Web-Application/commit/37199db918f5fefe78a12297ea74a78266b61204))
+* **match:** fix test coverage ([3ab9d4a](https://github.com/oaknational/Oak-Web-Application/commit/3ab9d4af00954b747c91c0e1f987be0a94c7e8b7))
+* **match:** fix test coverage ([67d34ff](https://github.com/oaknational/Oak-Web-Application/commit/67d34ff45db94130ddee5cb0cee9d10d310b33c7))
+* **match:** update package ([59a9b3a](https://github.com/oaknational/Oak-Web-Application/commit/59a9b3a0065ee5159136360c6a70964236c268ea))
+
 # [1.501.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.1...v1.501.0) (2024-08-05)
 
 
