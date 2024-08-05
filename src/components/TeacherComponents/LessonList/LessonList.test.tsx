@@ -1,4 +1,6 @@
 import userEvent from "@testing-library/user-event";
+import { fireEvent } from "@testing-library/react";
+import { useRouter } from "next/router";
 
 import LessonList from ".";
 
@@ -14,9 +16,30 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
 const onClick = jest.fn();
 
 describe("components/ Lesson List", () => {
+  let pushMock: jest.Mock;
+  let scrollToMock: jest.Mock;
+
+  beforeEach(() => {
+    pushMock = jest.fn().mockResolvedValue(true);
+    scrollToMock = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: pushMock,
+      asPath: "/current-path",
+    });
+    window.scrollTo = scrollToMock;
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("it renders the list items", () => {
     const { getByRole } = render(
       <LessonList
@@ -89,5 +112,38 @@ describe("components/ Lesson List", () => {
     await userEvent.click(unit);
 
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call router.push and scroll to top on page change", async () => {
+    const unitTitle = "Unit Title";
+
+    const { getByAltText } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={unitTitle}
+        lessonCount={30}
+        onClick={onClick}
+      />,
+    );
+
+    const paginationButton = getByAltText("chevron-right");
+    fireEvent.click(paginationButton);
+
+    expect(pushMock).toHaveBeenCalledWith(
+      {
+        pathname: "/current-path",
+        query: { page: 2 },
+      },
+      undefined,
+      { shallow: true, scroll: false },
+    );
+
+    await pushMock();
+
+    expect(scrollToMock).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
 });

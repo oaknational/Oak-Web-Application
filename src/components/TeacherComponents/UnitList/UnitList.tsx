@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import {
   OakUL,
   OakFlex,
@@ -86,13 +86,6 @@ const UnitList: FC<UnitListProps> = (props) => {
   const paginationRoute = router.asPath.split("?")[0] || router.asPath;
 
   const { currentPage, pageSize, firstItemRef } = paginationProps;
-
-  useEffect(() => {
-    if (router.query.page && firstItemRef?.current) {
-      firstItemRef.current.focus();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [firstItemRef, router.query.page]);
 
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
