@@ -34,7 +34,7 @@ async function buildUnitLessons(
             <w:ind w:left="360" w:hanging="360" />
           </w:pPr>
           <w:rPr>
-            <w:rFonts w:hint="default" />
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
           </w:rPr>
         </w:lvl>
       </XML_FRAGMENT>
