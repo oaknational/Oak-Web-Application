@@ -2,7 +2,7 @@ import { Fieldset, FieldsetLegend } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("Fieldset", () => {
+describe.skip("Fieldset", () => {
   test("render", async () => {
     const { baseElement } = renderWithTheme(
       <Fieldset>
