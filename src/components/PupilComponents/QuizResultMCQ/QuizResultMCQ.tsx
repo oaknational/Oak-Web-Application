@@ -6,7 +6,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { PupilAnswerMCQ } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import {
   isImage,
   isText,
@@ -15,30 +15,15 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
-  pupilAnswers: PupilAnswerMCQ;
+  feedback: QuestionFeedbackType[];
 };
 
-export const QuizResultMCQ = ({
-  answers,
-  pupilAnswers,
-}: QuizResultMCQProps) => {
+export const QuizResultMCQ = ({ answers, feedback }: QuizResultMCQProps) => {
   const resultItems = answers.map((answer, index) => {
     const text = answer.answer.filter((answer) => answer?.type === "text")[0];
     const image = answer.answer.filter((answer) => answer?.type === "image")[0];
-    const answerSelected = Array.isArray(pupilAnswers)
-      ? pupilAnswers.includes(index)
-      : pupilAnswers === index;
 
-    const feedbackState = (() => {
-      switch (true) {
-        case answerSelected && !answer.answerIsCorrect:
-          return "incorrect";
-        case answerSelected && answer.answerIsCorrect:
-          return "correct";
-        default:
-          return null;
-      }
-    })();
+    const feedbackState = feedback[index];
 
     const imageURL =
       isImage(image) && image?.imageObject?.secureUrl

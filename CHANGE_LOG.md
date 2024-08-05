@@ -1,3 +1,40 @@
+## [1.500.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.0...v1.500.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* make short answer use feedback prop ([2e02bf1](https://github.com/oaknational/Oak-Web-Application/commit/2e02bf1e58b43f4519e5f5e1df27a97d561109fe))
+* quiz result mcq uses feedback instead of pupil answer ([90984e5](https://github.com/oaknational/Oak-Web-Application/commit/90984e5ea76acf15c1b5c58c256a1daab955cd4e))
+
+# [1.500.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.499.0...v1.500.0) (2024-08-05)
+
+
+### Features
+
+* **package:** lint ([91ef846](https://github.com/oaknational/Oak-Web-Application/commit/91ef8463390aa7dada3aa23748f7fa7ba2aa3cdb))
+* **package:** lint ([33d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/33d8ae357487e7b5f5648b8b7c2e4b8d58fe0890))
+* **package:** story coverage ([b144793](https://github.com/oaknational/Oak-Web-Application/commit/b144793fc8d23e6e70ecc74822b4ffa61859ed2d))
+* **package:** test coverage ([94e21f2](https://github.com/oaknational/Oak-Web-Application/commit/94e21f298a873f48772f6126bfd8c58eac2abecb))
+* **package:** test coverage ([c830687](https://github.com/oaknational/Oak-Web-Application/commit/c83068779a13fcdb665a65289295e7347c0300ce))
+* **short-result:** make short result quiz answerr component ([5825771](https://github.com/oaknational/Oak-Web-Application/commit/58257713fa28aa80fb9321a26114aa87edec4ae5))
+* **short-result:** make short result quiz answerr component ([105f2ad](https://github.com/oaknational/Oak-Web-Application/commit/105f2adb1f859cea70978d90c85f4011562a9795))
+* **short-result:** make short result quiz answerr component ([8158c05](https://github.com/oaknational/Oak-Web-Application/commit/8158c05328b20570e933c981b7408e87d85ecd2b))
+
+# [1.499.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.498.0...v1.499.0) (2024-08-02)
+
+
+### Bug Fixes
+
+* quiz order grading ([b7cd43d](https://github.com/oaknational/Oak-Web-Application/commit/b7cd43d5ad306e8600751af755eded191ac546f4))
+
+
+### Features
+
+* add correct order number ([3cb1e21](https://github.com/oaknational/Oak-Web-Application/commit/3cb1e213703b80217757f5c65ce9bb672198f28a))
+* added mathjax support ([6dd36b7](https://github.com/oaknational/Oak-Web-Application/commit/6dd36b777093a2ccbc7825fc3aae644b4a43aaa2))
+* quiz result order ([696bc7c](https://github.com/oaknational/Oak-Web-Application/commit/696bc7cc0873be79e9ede28507ff4a9630ec1cfb))
+* quiz result order ([e7d8fa7](https://github.com/oaknational/Oak-Web-Application/commit/e7d8fa7e706a92ffbc40caa9677cb786fdd9d0bd))
+
 # [1.498.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.497.0...v1.498.0) (2024-08-02)
 
 
