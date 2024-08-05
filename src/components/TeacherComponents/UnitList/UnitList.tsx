@@ -69,7 +69,7 @@ const getOptionalityUnits = (
 ) => {
   return unit.map((unitOption) => {
     const handleClick = (e: MouseEvent<HTMLElement>) => {
-      // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
+      // Tracking data was not being sent to avo before the page reload, so we prevent the default and use router to navigate to the page after the onClick
       const target = e.currentTarget;
       onClick({
         ...unitOption,
