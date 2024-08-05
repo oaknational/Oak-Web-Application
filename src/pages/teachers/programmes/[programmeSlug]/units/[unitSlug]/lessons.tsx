@@ -39,6 +39,7 @@ import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/special
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
+import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -81,7 +82,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     items: lessons,
   });
 
-  const { currentPageItems, paginationTitle } = paginationProps;
+  const {
+    currentPageItems,
+    paginationTitle,
+    prevPageUrlObject,
+    nextPageUrlObject,
+    currentPage,
+    totalPages,
+  } = paginationProps;
+  const isLastPage = currentPage === totalPages;
+  const isFirstPage = currentPage === 1;
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -114,6 +124,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       }}
       $background="white"
     >
+      <PaginationHead
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
       <OakThemeProvider theme={oakDefaultTheme}>
         <HeaderListing
           breadcrumbs={[

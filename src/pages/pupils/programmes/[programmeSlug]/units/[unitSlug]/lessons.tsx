@@ -1,238 +1,57 @@
-import React from "react";
-import {
-  NextPage,
-  GetStaticProps,
-  GetStaticPropsResult,
-  GetStaticPathsResult,
-} from "next";
-import {
-  OakGrid,
-  OakGridArea,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
-import AppLayout from "@/components/SharedComponents/AppLayout";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import LessonList from "@/components/TeacherComponents/LessonList";
-import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
-import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonListingPageData,
-  lessonListingSchema,
-} from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import HeaderListing from "@/components/TeacherComponents/HeaderListing";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { NEW_COHORT } from "@/config/cohort";
-import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
-import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 
-export type LessonListingPageProps = {
-  curriculumData: LessonListingPageData;
-};
-
-/**
- * This function takes a unit and returns an array of lessons with the unit data
- * embedded in each lesson.
- *
- * We do this so that we don't have to send duplicate unit data for each lesson.
- * This data gets stored in the browser and is used to render the lesson list,
- * so it's important to keep it as small as possible.
- */
-function getHydratedLessonsFromUnit(unit: lessonListingSchema) {
-  const { lessons, ...rest } = unit;
-  return lessons.map((lesson) => ({
-    ...lesson,
-    ...rest,
-  }));
-}
-
-const LessonListPage: NextPage<LessonListingPageProps> = ({
-  curriculumData,
-}) => {
-  const {
-    unitSlug,
-    keyStageTitle,
-    keyStageSlug,
-    unitTitle,
-    subjectTitle,
-    programmeSlug,
-    subjectSlug,
-  } = curriculumData;
-
-  const lessons = getHydratedLessonsFromUnit(curriculumData);
-  const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
-  const paginationProps = usePagination({
-    totalResults: lessons.length,
-    pageSize: RESULTS_PER_PAGE,
-    items: lessons,
-  });
-
-  const {
-    currentPageItems,
-    paginationTitle,
-    prevPageUrlObject,
-    nextPageUrlObject,
-    currentPage,
-    totalPages,
-  } = paginationProps;
-  const isLastPage = currentPage === totalPages;
-  const isFirstPage = currentPage === 1;
-
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
-
-  const trackLessonSelected = ({
-    ...props
-  }: LessonListItemProps | SpecialistLesson) => {
-    track.lessonSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug: props.subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: props.lessonTitle,
-      lessonSlug: props.lessonSlug,
-      analyticsUseCase,
-    });
-  };
-
-  const isNew = hasNewContent ?? false;
-
-  return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}${paginationTitle}`,
-          description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
-        }),
-      }}
-      $background="white"
-    >
-      <PaginationHead
-        prevPageUrlObject={prevPageUrlObject}
-        nextPageUrlObject={nextPageUrlObject}
-        isFirstPage={isFirstPage}
-        isLastPage={isLastPage}
-      />
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <HeaderListing
-          breadcrumbs={[
-            {
-              oakLinkProps: {
-                page: "home",
-              },
-              label: "Home",
-            },
-            {
-              oakLinkProps: {
-                page: "subject-index",
-                keyStageSlug,
-              },
-              label: keyStageTitle,
-            },
-            {
-              oakLinkProps: {
-                page: "unit-index",
-                programmeSlug:
-                  subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
-                    ? removeLegacySlugSuffix(programmeSlug)
-                    : programmeSlug,
-              },
-              label: subjectTitle,
-            },
-
-            {
-              oakLinkProps: {
-                page: "lesson-index",
-                unitSlug,
-                programmeSlug: programmeSlug,
-              },
-
-              label: unitTitle,
-              disabled: true,
-            },
-          ]}
-          background={"pink30"}
-          subjectIconBackgroundColor={"pink"}
-          title={unitTitle}
-          programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-          isNew={isNew}
-          hasCurriculumDownload={isSlugLegacy(programmeSlug)}
-          {...curriculumData}
-        />
-        <MaxWidth $ph={16}>
-          <OakGrid>
-            <OakGridArea $colSpan={[12, 9]}>
-              <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-                isLegacy={isSlugLegacy(programmeSlug)}
-              />
-            </OakGridArea>
-          </OakGrid>
-          <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 9]}
-              $mt={["space-between-s", "space-between-m2"]}
-            >
-              <LessonList
-                {...curriculumData}
-                lessonCount={lessons.length}
-                currentPageItems={currentPageItems}
-                paginationProps={paginationProps}
-                headingTag={"h2"}
-                unitTitle={unitTitle}
-                onClick={trackLessonSelected}
-              />
-            </OakGridArea>
-          </OakGrid>
-        </MaxWidth>
-      </OakThemeProvider>
-    </AppLayout>
-  );
-};
-
-export type URLParams = {
+type PupilLessonListingURLParams = {
   programmeSlug: string;
   unitSlug: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
+export type LessonListingPageProps = {
+  curriculumData: LessonListingBrowseData;
 };
+
+const PupilLessonListingPage = ({ curriculumData }: LessonListingPageProps) => {
+  const unitData = curriculumData[0]?.unitData;
+  const programmeFields = curriculumData[0]?.programmeFields;
+  const programmeSlug = curriculumData[0]?.programmeSlug;
+
+  const orderedCurriculumData = curriculumData.sort((a, b) => {
+    const aLessonOrder = a.supplementaryData?.orderInUnit;
+    const bLessonOrder = b.supplementaryData?.orderInUnit;
+    return aLessonOrder - bLessonOrder;
+  });
+
+  if (
+    unitData === undefined ||
+    programmeFields === undefined ||
+    programmeSlug === undefined
+  ) {
+    throw new Error("unitData or programmeFields is undefined");
+  }
+  return (
+    <PupilViewsLessonListing
+      unitData={unitData}
+      programmeFields={programmeFields}
+      orderedCurriculumData={orderedCurriculumData}
+      programmeSlug={programmeSlug}
+    />
+  );
+};
+
+export const getStaticPaths =
+  getStaticPathsTemplate<PupilLessonListingURLParams>;
 
 export const getStaticProps: GetStaticProps<
   LessonListingPageProps,
-  URLParams
+  PupilLessonListingURLParams
 > = async (context) => {
   return getPageProps({
-    page: "lesson-listing::getStaticProps",
+    page: "pupil-lesson-listing::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
@@ -243,12 +62,16 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = await curriculumApi2023.lessonListing({
+      let curriculumData = await curriculumApi2023.pupilLessonListingQuery({
         programmeSlug,
         unitSlug,
       });
 
-      if (!curriculumData) {
+      curriculumData = curriculumData.filter(
+        (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,
+      );
+
+      if (!curriculumData || curriculumData.length === 0) {
         return {
           notFound: true,
         };
@@ -264,4 +87,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonListPage;
+export default PupilLessonListingPage;

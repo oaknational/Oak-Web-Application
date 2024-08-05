@@ -7,7 +7,6 @@ import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/ind
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
-import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 jest.mock(
   "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view",
@@ -24,27 +23,17 @@ jest.mock(
   }),
 );
 
-/**
- * ! - Temporary type casting fix
- */
-
-describe.skip("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
+describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
     it("should through error if no data", () => {
       expect(() => {
-        render(
-          <PupilLessonListingPage
-            curriculumData={[] as unknown as LessonListingPageData}
-          />,
-        );
+        render(<PupilLessonListingPage curriculumData={[]} />);
       }).toThrowError("unitData or programmeFields is undefined");
     });
     it("should call PupilViewsLessonListing with correct props", () => {
       render(
         <PupilLessonListingPage
-          curriculumData={
-            [lessonBrowseDataFixture({})] as unknown as LessonListingPageData
-          }
+          curriculumData={[lessonBrowseDataFixture({})]}
         />,
       );
       expect(PupilViewsLessonListing).toHaveBeenCalled();
@@ -52,24 +41,22 @@ describe.skip("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/
     it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
-          curriculumData={
-            [
-              lessonBrowseDataFixture({
-                lessonData: {
-                  ...lessonBrowseDataFixture({}).lessonData,
-                  title: "lesson-title-2",
-                },
-                supplementaryData: { orderInUnit: 2, unitOrder: 4 },
-              }),
-              lessonBrowseDataFixture({
-                lessonData: {
-                  ...lessonBrowseDataFixture({}).lessonData,
-                  title: "lesson-title-1",
-                },
-                supplementaryData: { orderInUnit: 1, unitOrder: 4 },
-              }),
-            ] as unknown as LessonListingPageData
-          }
+          curriculumData={[
+            lessonBrowseDataFixture({
+              lessonData: {
+                ...lessonBrowseDataFixture({}).lessonData,
+                title: "lesson-title-2",
+              },
+              supplementaryData: { orderInUnit: 2, unitOrder: 4 },
+            }),
+            lessonBrowseDataFixture({
+              lessonData: {
+                ...lessonBrowseDataFixture({}).lessonData,
+                title: "lesson-title-1",
+              },
+              supplementaryData: { orderInUnit: 1, unitOrder: 4 },
+            }),
+          ]}
         />,
       );
       const e1 = getByText("lesson-title-1");
