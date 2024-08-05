@@ -1,3 +1,11 @@
+## [1.500.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.0...v1.500.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* make short answer use feedback prop ([2e02bf1](https://github.com/oaknational/Oak-Web-Application/commit/2e02bf1e58b43f4519e5f5e1df27a97d561109fe))
+* quiz result mcq uses feedback instead of pupil answer ([90984e5](https://github.com/oaknational/Oak-Web-Application/commit/90984e5ea76acf15c1b5c58c256a1daab955cd4e))
+
 # [1.500.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.499.0...v1.500.0) (2024-08-05)
 
 
