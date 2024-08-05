@@ -34,13 +34,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   });
   const {
     paginationTitle,
-    currentPage,
-    totalPages,
     prevPageUrlObject,
     nextPageUrlObject,
+    isLastPage,
+    isFirstPage,
   } = paginationProps;
-  const isLastPage = currentPage === totalPages;
-  const isFirstPage = currentPage === 1;
 
   return (
     <>

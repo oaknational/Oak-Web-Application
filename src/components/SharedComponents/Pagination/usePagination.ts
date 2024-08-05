@@ -13,6 +13,8 @@ export type PaginationProps = {
   paginationTitle?: string;
   prevHref: string;
   nextHref: string;
+  isFirstPage: boolean;
+  isLastPage: boolean;
 };
 
 type Items<T> = { items: T[] };
@@ -81,6 +83,8 @@ const usePagination = <T>(
       : { pathname: pathname, query: Object.fromEntries(prevPageParams) },
     prevHref,
     nextHref,
+    isFirstPage,
+    isLastPage,
   };
 };
 

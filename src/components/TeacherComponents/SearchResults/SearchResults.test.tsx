@@ -181,9 +181,7 @@ describe("<SearchResults />", () => {
     );
 
     const paginationButton = getByTestId("forwards-button");
-    console.log(paginationButton);
     fireEvent.click(paginationButton);
-    console.log(pushMock, "<<");
     expect(pushMock).toHaveBeenCalledWith(
       {
         query: { page: 2 },

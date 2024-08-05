@@ -87,11 +87,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     paginationTitle,
     prevPageUrlObject,
     nextPageUrlObject,
-    currentPage,
-    totalPages,
+    isFirstPage,
+    isLastPage,
   } = paginationProps;
-  const isLastPage = currentPage === totalPages;
-  const isFirstPage = currentPage === 1;
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();

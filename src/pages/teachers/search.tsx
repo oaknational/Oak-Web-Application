@@ -45,13 +45,11 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
 
   const {
     paginationTitle,
-    currentPage,
-    totalPages,
     prevPageUrlObject,
     nextPageUrlObject,
+    isLastPage,
+    isFirstPage,
   } = paginationProps;
-  const isLastPage = currentPage === totalPages;
-  const isFirstPage = currentPage === 1;
 
   const searchFilters = useSearchFilters({
     ...searchProps,

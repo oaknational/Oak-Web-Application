@@ -83,14 +83,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const {
     paginationTitle,
-    currentPage,
-    totalPages,
     prevPageUrlObject,
     nextPageUrlObject,
     currentPageItems,
+    isLastPage,
+    isFirstPage,
   } = paginationProps;
-  const isLastPage = currentPage === totalPages;
-  const isFirstPage = currentPage === 1;
 
   const theme = useTheme();
 
