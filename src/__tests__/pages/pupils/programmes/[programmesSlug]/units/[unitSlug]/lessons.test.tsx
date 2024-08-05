@@ -34,7 +34,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect(() => {
         render(
           <PupilLessonListingPage
-            curriculumData={[] as never as LessonListingPageData}
+            curriculumData={[] as unknown as LessonListingPageData}
           />,
         );
       }).toThrowError("unitData or programmeFields is undefined");
@@ -43,7 +43,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       render(
         <PupilLessonListingPage
           curriculumData={
-            [lessonBrowseDataFixture({})] as never as LessonListingPageData
+            [lessonBrowseDataFixture({})] as unknown as LessonListingPageData
           }
         />,
       );
@@ -68,7 +68,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
                 },
                 supplementaryData: { orderInUnit: 1, unitOrder: 4 },
               }),
-            ] as never as LessonListingPageData
+            ] as unknown as LessonListingPageData
           }
         />,
       );
