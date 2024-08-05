@@ -38,7 +38,7 @@ export const QuizResultMatch = ({
     const standardText = pupilAnswer;
 
     if (!standardText) {
-      throw new Error("Text is missing from order answer");
+      throw new Error("Text is missing from match answer");
     }
 
     return (
