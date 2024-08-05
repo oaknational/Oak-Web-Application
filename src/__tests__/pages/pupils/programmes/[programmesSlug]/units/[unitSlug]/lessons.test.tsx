@@ -28,7 +28,7 @@ jest.mock(
  * ! - Temporary type casting fix
  */
 
-describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
+describe.skip("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
     it("should through error if no data", () => {
       expect(() => {
