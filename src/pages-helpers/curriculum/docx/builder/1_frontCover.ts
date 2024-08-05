@@ -1,6 +1,8 @@
 import { join } from "path";
 
-import { CombinedCurriculumData } from "..";
+import { capitalize } from "lodash";
+
+import { CombinedCurriculumData, Slugs } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
@@ -20,7 +22,7 @@ import { getSubjectIconAsset } from "@/image-data";
 
 export default async function generate(
   zip: JSZipCached,
-  { data }: { data: CombinedCurriculumData },
+  { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
   const iconKey = data.subjectTitle.toLowerCase();
 
@@ -44,9 +46,19 @@ export default async function generate(
 
   const phaseTitle = keyStageFromPhaseTitle(data.phaseTitle);
   const subjectTitle = data.subjectTitle;
-  const examboardTitle = data.examboardTitle
-    ? `${data.examboardTitle} (KS4)`
+
+  const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
+  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
+  const childSubjectTitle = slugs.childSubjectSlug
+    ? `${capitalize(slugs.childSubjectSlug.split("-").join(" "))}`
     : "";
+
+  const subtitle =
+    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle || ""
+      ? [examboardTitle, childSubjectTitle, tierTitle]
+          .filter(Boolean)
+          .join(", ") + " (KS4)"
+      : "";
 
   const pageXml = safeXml`
     <root>
@@ -97,7 +109,7 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="30" />
           </w:rPr>
-          <w:t>${cdata(examboardTitle)}</w:t>
+          <w:t>${cdata(subtitle)}</w:t>
         </w:r>
       </w:p>
       <w:p>

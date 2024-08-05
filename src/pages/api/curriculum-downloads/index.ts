@@ -80,20 +80,11 @@ async function getData(opts: {
         .filter((a) => {
           if (a.keystage_slug === "ks4") {
             const unitIsChildSubject =
-              a.subject_slug &&
-              a.subject_slug === childSubjectSlug &&
-              childSubjectSlug !== null;
+              !childSubjectSlug || a.subject_slug === childSubjectSlug;
             const unitHasCorrectTier =
-              a.tier_slug && a.tier_slug === tierSlug && tierSlug !== null;
-            if (childSubjectSlug && tierSlug) {
-              return unitIsChildSubject && unitHasCorrectTier;
-            }
-            if (childSubjectSlug) {
-              return unitIsChildSubject;
-            }
-            if (tierSlug) {
-              return unitHasCorrectTier;
-            }
+              a.tier_slug === tierSlug || !tierSlug || !a.tier_slug;
+
+            return unitIsChildSubject && unitHasCorrectTier;
           }
           return true;
         })
@@ -268,13 +259,15 @@ export default async function handler(
       phaseSlug: data.phaseSlug,
       keyStageSlug: data.phaseSlug,
       examboardSlug: data.examboardSlug,
+      tierSlug,
+      childSubjectSlug,
     });
 
     const pageTitle: string = [
       data.combinedCurriculumData?.subjectTitle,
       data.combinedCurriculumData?.phaseTitle,
       data.combinedCurriculumData?.examboardTitle,
-      capitalize(childSubjectSlug),
+      capitalize(childSubjectSlug?.split("-").join(" ")),
       capitalize(tierSlug),
     ]
       .filter(Boolean)
