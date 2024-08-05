@@ -83,6 +83,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 errors={form.errors}
                 setSchool={setSchool}
                 initialValue={schoolId ?? undefined}
+                withHomeschool={true}
                 initialSchoolName={
                   schoolName?.length && schoolName?.length > 0
                     ? schoolName.charAt(0).toUpperCase() + schoolName.slice(1)
