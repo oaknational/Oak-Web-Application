@@ -1,4 +1,4 @@
-import { relative } from "path";
+import { join } from "path";
 
 import { capitalize } from "lodash";
 
@@ -30,15 +30,15 @@ export default async function generate(
   const images = await insertImages(zip, {
     icon: sanityUrl
       ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
-      : relative(
+      : join(
           process.cwd(),
           "src/pages-helpers/curriculum/docx/builder/images/icon.png",
         ),
-    arrow: relative(
+    arrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",
     ),
-    logo: relative(
+    logo: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/logo.png",
     ),
