@@ -1,3 +1,63 @@
+# [1.503.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.1...v1.503.0) (2024-08-06)
+
+
+### Features
+
+* add t&cs text section with links ([8d0d6c9](https://github.com/oaknational/Oak-Web-Application/commit/8d0d6c9180c99e28e7bbf17d5c3109596b7ef4d2))
+
+## [1.502.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.0...v1.502.1) (2024-08-05)
+
+# [1.502.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.501.0...v1.502.0) (2024-08-05)
+
+
+### Features
+
+* **match:** add match question type to storybook ([d387f4b](https://github.com/oaknational/Oak-Web-Application/commit/d387f4b6d24dd1f9615e11504d64228bbde5320a))
+* **match:** add match question type to storybook ([6f8c48a](https://github.com/oaknational/Oak-Web-Application/commit/6f8c48ad580d9f77e103474566e73423432e154f))
+* **match:** create match component ([5b752a2](https://github.com/oaknational/Oak-Web-Application/commit/5b752a2a2fb1dff7b6058888f3dc24e30c4449cc))
+* **match:** create match component ([37199db](https://github.com/oaknational/Oak-Web-Application/commit/37199db918f5fefe78a12297ea74a78266b61204))
+* **match:** fix test coverage ([3ab9d4a](https://github.com/oaknational/Oak-Web-Application/commit/3ab9d4af00954b747c91c0e1f987be0a94c7e8b7))
+* **match:** fix test coverage ([67d34ff](https://github.com/oaknational/Oak-Web-Application/commit/67d34ff45db94130ddee5cb0cee9d10d310b33c7))
+* **match:** update package ([59a9b3a](https://github.com/oaknational/Oak-Web-Application/commit/59a9b3a0065ee5159136360c6a70964236c268ea))
+
+# [1.501.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.1...v1.501.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* missing homeschool prop ([3500f37](https://github.com/oaknational/Oak-Web-Application/commit/3500f3713c26976fc14063d0834f633c62b0900e))
+* reset form when no valid school found for input ([a344c31](https://github.com/oaknational/Oak-Web-Application/commit/a344c315b6b3c5547944921e07362ae965995bb5))
+
+
+### Features
+
+* add basic styling to form component ([be23110](https://github.com/oaknational/Oak-Web-Application/commit/be23110575df821f56a5a87e41b9451c6b24c908))
+* add onboarding page with ff redirect ([c100488](https://github.com/oaknational/Oak-Web-Application/commit/c10048849a0cc59ba39327a3e4dabc8c8940b952))
+* add school picker to onboarding page ([b19a015](https://github.com/oaknational/Oak-Web-Application/commit/b19a0150e8200ab166decf65d4e590c55a2f7149))
+* remove homeschool from schoolpicker on onboarding page ([00d6525](https://github.com/oaknational/Oak-Web-Application/commit/00d652566a42b58307c2074346784db0975fcf4d))
+
+## [1.500.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.0...v1.500.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* make short answer use feedback prop ([2e02bf1](https://github.com/oaknational/Oak-Web-Application/commit/2e02bf1e58b43f4519e5f5e1df27a97d561109fe))
+* quiz result mcq uses feedback instead of pupil answer ([90984e5](https://github.com/oaknational/Oak-Web-Application/commit/90984e5ea76acf15c1b5c58c256a1daab955cd4e))
+
+# [1.500.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.499.0...v1.500.0) (2024-08-05)
+
+
+### Features
+
+* **package:** lint ([91ef846](https://github.com/oaknational/Oak-Web-Application/commit/91ef8463390aa7dada3aa23748f7fa7ba2aa3cdb))
+* **package:** lint ([33d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/33d8ae357487e7b5f5648b8b7c2e4b8d58fe0890))
+* **package:** story coverage ([b144793](https://github.com/oaknational/Oak-Web-Application/commit/b144793fc8d23e6e70ecc74822b4ffa61859ed2d))
+* **package:** test coverage ([94e21f2](https://github.com/oaknational/Oak-Web-Application/commit/94e21f298a873f48772f6126bfd8c58eac2abecb))
+* **package:** test coverage ([c830687](https://github.com/oaknational/Oak-Web-Application/commit/c83068779a13fcdb665a65289295e7347c0300ce))
+* **short-result:** make short result quiz answerr component ([5825771](https://github.com/oaknational/Oak-Web-Application/commit/58257713fa28aa80fb9321a26114aa87edec4ae5))
+* **short-result:** make short result quiz answerr component ([105f2ad](https://github.com/oaknational/Oak-Web-Application/commit/105f2adb1f859cea70978d90c85f4011562a9795))
+* **short-result:** make short result quiz answerr component ([8158c05](https://github.com/oaknational/Oak-Web-Application/commit/8158c05328b20570e933c981b7408e87d85ecd2b))
+
 # [1.499.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.498.0...v1.499.0) (2024-08-02)
 
 

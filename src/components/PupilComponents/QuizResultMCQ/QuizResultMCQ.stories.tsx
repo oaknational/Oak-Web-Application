@@ -7,15 +7,7 @@ import {
   mcqTextAnswers,
   mcqImageAnswers,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-
-const mcqMulitpleCorrectAnswers = [
-  mcqTextAnswers[0],
-  mcqTextAnswers[1],
-  mcqTextAnswers[2],
-  { ...mcqTextAnswers[3], answerIsCorrect: true },
-] as MCAnswer[]; // for some reason TS gets upset about the possibility of undefined inside the answer property even thought that is on the MCAnswer type
 
 const meta = {
   component: QuizResultMCQ,
@@ -49,7 +41,7 @@ export const CorrectSingle: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    pupilAnswers: 2,
+    feedback: [null, null, "correct", null],
   },
 };
 
@@ -59,7 +51,7 @@ export const IncorrectSingle: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    pupilAnswers: 0,
+    feedback: ["incorrect", null, null, null],
   },
 };
 
@@ -69,7 +61,7 @@ export const MixedMultiple: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    pupilAnswers: [0, 2],
+    feedback: ["incorrect", null, "correct", null],
   },
 };
 
@@ -79,7 +71,7 @@ export const IncorrectMultiple: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    pupilAnswers: [0, 1],
+    feedback: ["incorrect", "incorrect", null, null],
   },
 };
 
@@ -88,8 +80,8 @@ export const CorrectMultiple: Story = {
     return <QuizResultMCQ {...args} />;
   },
   args: {
-    answers: mcqMulitpleCorrectAnswers,
-    pupilAnswers: [2, 3],
+    answers: mcqTextAnswers,
+    feedback: [null, null, "correct", "correct"],
   },
 };
 
@@ -99,6 +91,6 @@ export const WithImages: Story = {
   },
   args: {
     answers: mcqImageAnswers,
-    pupilAnswers: [1, 2],
+    feedback: [null, "incorrect", "correct", null],
   },
 };
