@@ -60,6 +60,7 @@
     "tough-cookie": ">=4.1.3"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@bugsnag/js": "^7.23.0",
     "@bugsnag/plugin-react": "^7.24.0",
     "@google-cloud/storage": "^7.11.2",
