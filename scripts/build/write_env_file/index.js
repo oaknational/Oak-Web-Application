@@ -69,6 +69,20 @@ async function main() {
     process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST ||
     oakConfig.sanity.assetCDNHost;
 
+  // Construct the user facing URL for the deployment.
+  const CUSTOM_URL = (() => {
+    switch (process.env.CONTEXT) {
+      case "deploy-preview":
+        // Deploy previews are fronted by Cloudflare on a thenational.academy sub-domain.
+        return process.env.DEPLOY_PRIME_URL.replace(
+          /\.app$/,
+          ".thenational.academy",
+        );
+      default:
+        return process.env.URL;
+    }
+  })();
+
   const env = {
     // Values calculated in this file.
     NEXT_PUBLIC_APP_VERSION: appVersion,
@@ -228,6 +242,15 @@ async function main() {
     NEXT_PUBLIC_OAK_USER_LOG_URL:
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
+
+    // Auth0
+    AUTH0_SECRET: process.env.AUTH0_SECRET || oakConfig.auth0?.secret,
+    AUTH0_ISSUER_BASE_URL:
+      process.env.AUTH0_ISSUER_BASE_URL || oakConfig.auth0?.issuerBaseUrl,
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || oakConfig.auth0?.clientId,
+    AUTH0_CLIENT_SECRET:
+      process.env.AUTH0_CLIENT_SECRET || oakConfig.auth0?.clientSecret,
+    AUTH0_BASE_URL: CUSTOM_URL || oakConfig.oak.appBaseUrl,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
