@@ -1,10 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
+import { useEffect, useState } from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type PupilLessonListingURLParams = {
   programmeSlug: string;
@@ -42,13 +44,43 @@ const PupilLessonListingPage = ({
   ) {
     throw new Error("unitData or programmeFields is undefined");
   }
+
+  const [resolvedOakHref, setResolvedOakHref] = useState(() =>
+    backLink.options
+      ? resolveOakHref({
+          page: "pupil-programme-index",
+          programmeSlug: backLink.programmeSlug,
+          optionSlug: "options",
+        })
+      : resolveOakHref({
+          page: "pupil-unit-index",
+          programmeSlug: backLink.programmeSlug,
+        }),
+  );
+
+  useEffect(() => {
+    const referrer = document.referrer;
+
+    if (referrer) {
+      console.log("referrer", referrer);
+      const referrerURL = new URL(referrer);
+      const currentURL = new URL(window.location.href);
+      if (
+        referrerURL.origin === currentURL.origin &&
+        referrerURL.pathname.split("/").pop() === "units"
+      ) {
+        setResolvedOakHref(referrer);
+      }
+    }
+  }, []);
+
   return (
     <PupilViewsLessonListing
       unitData={unitData}
       programmeFields={programmeFields}
       orderedCurriculumData={orderedBrowseData}
       programmeSlug={programmeSlug}
-      backLink={backLink}
+      backLink={resolvedOakHref}
     />
   );
 };
