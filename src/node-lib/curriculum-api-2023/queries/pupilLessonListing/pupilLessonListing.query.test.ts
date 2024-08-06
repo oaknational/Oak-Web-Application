@@ -74,4 +74,22 @@ describe("pupilLessonListing()", () => {
     );
     expect(lesson.browseData[0]?.isLegacy).toEqual(fixtures[0]?.is_legacy);
   });
+
+  it("throws an error if the programmeSlug has the incorrect format", async () => {
+    await expect(
+      pupilLessonListingQuery({
+        ...sdk,
+        pupilLessonListing: jest.fn(
+          () =>
+            Promise.resolve({
+              browseData: [],
+              backLinkData: [],
+            }) as Promise<PupilLessonListingQuery>,
+        ),
+      })({
+        unitSlug: "test",
+        programmeSlug: "programme-slug-test",
+      }),
+    ).rejects.toThrow("Resource not found");
+  });
 });

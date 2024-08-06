@@ -25,7 +25,7 @@ jest.mock(
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("renders", () => {
-    it("should through error if no data", () => {
+    it("should throw an error if no data", () => {
       expect(() => {
         render(
           <PupilLessonListingPage
@@ -33,8 +33,9 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
             backLink={{ programmeSlug: "programme-slug" }}
           />,
         );
-      }).toThrowError("unitData or programmeFields is undefined");
+      }).toThrow("unitData or programmeFields is undefined");
     });
+
     it("should call PupilViewsLessonListing with correct props", () => {
       render(
         <PupilLessonListingPage
@@ -44,6 +45,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       );
       expect(PupilViewsLessonListing).toHaveBeenCalled();
     });
+
     it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
@@ -91,5 +93,137 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         unitSlug,
       });
     });
+
+    it("should return the programmeSlug as the backlink for non-legacy programmes", async () => {
+      const programmeSlug = "programme-slug-secondary-year-10";
+      const unitSlug = "unit-slug";
+
+      const res = await getStaticProps({
+        params: {
+          programmeSlug,
+          unitSlug,
+        },
+      });
+
+      if ("props" in res) {
+        expect(res.props.backLink).toEqual({ programmeSlug });
+      } else {
+        throw new Error("getStaticProps did not return props.");
+      }
+    });
+
+    it("should return the non-legacy programmeSlug as the backlink for legacy programmes with a non-legacy equivalent", async () => {
+      const programmeSlug = "programme-slug-secondary-year-10-l";
+      const unitSlug = "unit-slug";
+
+      // mock the return value of the API call
+      (
+        curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+      ).mockResolvedValue({
+        browseData: [lessonBrowseDataFixture({})],
+        backLinkData: [{ programmeSlug: "programme-slug-secondary-year-10" }],
+      });
+
+      const res = await getStaticProps({
+        params: {
+          programmeSlug,
+          unitSlug,
+        },
+      });
+
+      if ("props" in res) {
+        expect(res.props.backLink).toEqual({
+          programmeSlug: "programme-slug-secondary-year-10",
+        });
+      } else {
+        throw new Error("getStaticProps did not return props.");
+      }
+    });
+
+    it("should return the baseSlug as the backlink for legacy programmes without a non-legacy equivalent where there are multiple entries in backLinkData", async () => {
+      const programmeSlug = "programme-slug-secondary-year-10-l";
+      const unitSlug = "unit-slug";
+
+      // mock the return value of the API call
+      (
+        curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+      ).mockResolvedValue({
+        browseData: [lessonBrowseDataFixture({})],
+        backLinkData: [
+          { programmeSlug: "programme-slug-secondary-year-10-aqa" },
+          { programmeSlug: "programme-slug-secondary-year-10-ocr" },
+        ],
+      });
+
+      const res = await getStaticProps({
+        params: {
+          programmeSlug,
+          unitSlug,
+        },
+      });
+
+      if ("props" in res) {
+        expect(res.props.backLink).toEqual({
+          programmeSlug: "programme-slug-secondary-year-10",
+          options: true,
+        });
+      } else {
+        throw new Error("getStaticProps did not return props.");
+      }
+    });
+
+    it("should return the non-legacy programmeSlug as the backlink for legacy programmes without a non-legacy equivalent where there is a single entry in backLinkData", async () => {
+      const programmeSlug = "programme-slug-secondary-year-10-aqa-l";
+      const unitSlug = "unit-slug";
+
+      // mock the return value of the API call
+      (
+        curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+      ).mockResolvedValue({
+        browseData: [lessonBrowseDataFixture({})],
+        backLinkData: [{ programmeSlug: "programme-slug-secondary-year-10" }],
+      });
+
+      const res = await getStaticProps({
+        params: {
+          programmeSlug,
+          unitSlug,
+        },
+      });
+
+      if ("props" in res) {
+        expect(res.props.backLink).toEqual({
+          programmeSlug: "programme-slug-secondary-year-10",
+        });
+      } else {
+        throw new Error("getStaticProps did not return props.");
+      }
+    });
+  });
+
+  it("goes falls back to the legcay programmeSlug if there are no non-legacy backlinks", async () => {
+    const programmeSlug = "programme-slug-secondary-year-10-l";
+    const unitSlug = "unit-slug";
+
+    // mock the return value of the API call
+    (
+      curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+    ).mockResolvedValue({
+      browseData: [lessonBrowseDataFixture({})],
+      backLinkData: [],
+    });
+
+    const res = await getStaticProps({
+      params: {
+        programmeSlug,
+        unitSlug,
+      },
+    });
+
+    if ("props" in res) {
+      expect(res.props.backLink).toEqual({ programmeSlug });
+    } else {
+      throw new Error("getStaticProps did not return  props.");
+    }
   });
 });

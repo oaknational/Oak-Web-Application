@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps<
        * 1. its a non-legacy programme => programmeSlug
        * 2. legacy programme equivalent in the backLinkData => nonLegacyProgrammeSlug
        * 3. legacy programme not in the backLinkData & backLinkData has multiple entries => baseSlug/options
-       * 4. legacy programme not in the backLinkData & backLinkData has a single entry => nonLegacyProgrammeSlug
+       * 4. legacy programme not in the backLinkData & backLinkData has a single entry => backLinkData.programmeSlug
        *
        */
 
@@ -117,8 +117,10 @@ export const getStaticProps: GetStaticProps<
             return { programmeSlug: backLinkEquivalent.programmeSlug };
           case backLinkData.length > 1:
             return { programmeSlug: baseSlug, options: true };
+          case backLinkData.length === 1:
+            return { programmeSlug: backLinkData[0]?.programmeSlug };
           default:
-            return { programmeSlug: nonLegacyProgrammeSlug };
+            return { programmeSlug };
         }
       })();
 
