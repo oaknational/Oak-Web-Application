@@ -83,9 +83,8 @@ const UnitList: FC<UnitListProps> = (props) => {
     props;
   const router = useRouter();
 
-  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
-
-  const { currentPage, pageSize, firstItemRef } = paginationProps;
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+    paginationProps;
 
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))

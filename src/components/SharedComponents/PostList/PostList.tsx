@@ -55,12 +55,10 @@ const PostList: FC<PostListProps> = (props) => {
     showImageOnTablet,
   } = props;
 
-  const { firstItemRef, currentPage } = paginationProps;
+  const { firstItemRef, currentPage, paginationRoute } = paginationProps;
   const blogsOrWebinars =
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
   const router = useRouter();
-
-  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
 
   return (
     <Flex

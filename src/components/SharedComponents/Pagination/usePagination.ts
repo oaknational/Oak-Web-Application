@@ -15,6 +15,7 @@ export type PaginationProps = {
   nextHref: string;
   isFirstPage: boolean;
   isLastPage: boolean;
+  paginationRoute: string;
 };
 
 type Items<T> = { items: T[] };
@@ -67,6 +68,8 @@ const usePagination = <T>(
   const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject || "", true);
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject || "", true);
 
+  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
+
   return {
     paginationTitle,
     pageSize,
@@ -85,6 +88,7 @@ const usePagination = <T>(
     nextHref,
     isFirstPage,
     isLastPage,
+    paginationRoute,
   };
 };
 

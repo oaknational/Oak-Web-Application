@@ -49,11 +49,11 @@ const LessonList: FC<LessonListProps> = (props) => {
     unitTitle,
     onClick,
   } = props;
-  const { currentPage, pageSize, firstItemRef } = paginationProps;
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+    paginationProps;
 
   const router = useRouter();
 
-  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $flexDirection={["column-reverse", "column"]}>

@@ -41,9 +41,9 @@ const SearchResults = (props: SearchResultsProps) => {
     items: hits,
   });
 
-  const { currentPageItems, currentPage, firstItemRef } = paginationProps;
+  const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
+    paginationProps;
 
-  const paginationRoute = router.asPath;
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;
   };

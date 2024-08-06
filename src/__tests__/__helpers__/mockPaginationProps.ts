@@ -16,4 +16,5 @@ export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   totalResults: 125,
   isFirstPage: true,
   isLastPage: false,
+  paginationRoute: "/search",
 };
