@@ -74,6 +74,7 @@ describe("PupilViewsLessonListing", () => {
       },
       supplementaryData: { orderInUnit: 2, unitOrder: 4 },
     })["programmeSlug"],
+    backLink: { programmeSlug: "programme-slug" },
   };
 
   it("should render the subjectTitle, unitTitle, and yearDescription", () => {

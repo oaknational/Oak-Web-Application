@@ -27,13 +27,19 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   describe("renders", () => {
     it("should through error if no data", () => {
       expect(() => {
-        render(<PupilLessonListingPage curriculumData={[]} />);
+        render(
+          <PupilLessonListingPage
+            browseData={[]}
+            backLink={{ programmeSlug: "programme-slug" }}
+          />,
+        );
       }).toThrowError("unitData or programmeFields is undefined");
     });
     it("should call PupilViewsLessonListing with correct props", () => {
       render(
         <PupilLessonListingPage
-          curriculumData={[lessonBrowseDataFixture({})]}
+          browseData={[lessonBrowseDataFixture({})]}
+          backLink={{ programmeSlug: "programme-slug" }}
         />,
       );
       expect(PupilViewsLessonListing).toHaveBeenCalled();
@@ -41,7 +47,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
-          curriculumData={[
+          browseData={[
             lessonBrowseDataFixture({
               lessonData: {
                 ...lessonBrowseDataFixture({}).lessonData,
@@ -57,6 +63,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
               supplementaryData: { orderInUnit: 1, unitOrder: 4 },
             }),
           ]}
+          backLink={{ programmeSlug: "programme-slug" }}
         />,
       );
       const e1 = getByText("lesson-title-1");
