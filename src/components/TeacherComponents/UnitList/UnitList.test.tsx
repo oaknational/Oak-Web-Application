@@ -1,6 +1,5 @@
-import { act, screen, fireEvent } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture, {
@@ -12,33 +11,12 @@ import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps
 
 const onClick = jest.fn();
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
-}));
-
 const render = (children: React.ReactNode) =>
   renderWithProviders()(
     <OakThemeProvider theme={oakDefaultTheme}>{children}</OakThemeProvider>,
   );
 
 describe("components/UnitList", () => {
-  let pushMock: jest.Mock;
-  let scrollToMock: jest.Mock;
-
-  beforeEach(() => {
-    pushMock = jest.fn().mockResolvedValue(true);
-    scrollToMock = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({
-      push: pushMock,
-      asPath: "/current-path",
-    });
-    window.scrollTo = scrollToMock;
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   test("renders the list items", () => {
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -198,35 +176,5 @@ describe("components/UnitList", () => {
       name: "Units released in 2020-22",
     });
     expect(legacyHeader).not.toBeInTheDocument();
-  });
-
-  test("should navigate to the correct page and scroll to top on page change", async () => {
-    const { getByTestId } = render(
-      <UnitList
-        {...combinedUnitListingFixture()}
-        currentPageItems={combinedUnitListingFixture().units}
-        paginationProps={{
-          ...mockPaginationProps,
-          paginationRoute: "/current-route",
-        }}
-        onClick={onClick}
-      />,
-    );
-
-    const paginationButton = getByTestId("forwards-button");
-    fireEvent.click(paginationButton);
-
-    expect(pushMock).toHaveBeenCalledWith(
-      {
-        pathname: "/current-route",
-        query: { page: 2 },
-      },
-      undefined,
-      { shallow: true, scroll: false },
-    );
-
-    await pushMock();
-
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
 });

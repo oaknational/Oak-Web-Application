@@ -26,6 +26,7 @@ const currentPageItems: LessonListProps = {
   subjectSlug: "computing",
   headingTag: "h2",
   paginationProps: {
+    onPageChange: () => {},
     paginationRoute: "/",
     isFirstPage: true,
     isLastPage: false,

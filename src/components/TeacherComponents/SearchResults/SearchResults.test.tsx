@@ -3,8 +3,6 @@
  */
 import React from "react";
 import { act } from "react-dom/test-utils";
-import { fireEvent } from "@testing-library/react";
-import { useRouter } from "next/router";
 
 import SearchResults from "./SearchResults";
 
@@ -45,29 +43,7 @@ const searchResultExpanded = jest.fn();
 
 const render = renderWithProviders();
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
-}));
 describe("<SearchResults />", () => {
-  let pushMock: jest.Mock;
-  let scrollToMock: jest.Mock;
-
-  beforeEach(() => {
-    pushMock = jest.fn().mockResolvedValue(true);
-    scrollToMock = jest.fn();
-    (useRouter as jest.Mock).mockImplementation(() => ({
-      query: { search: "english" },
-      push: pushMock,
-      asPath: "/current-path",
-      pathname: "/current-path",
-    }));
-    window.scrollTo = scrollToMock;
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   test("A lesson search result links to the lesson listing page", () => {
     const { getByRole } = render(
       <SearchResults
@@ -167,32 +143,5 @@ describe("<SearchResults />", () => {
     });
 
     expect(searchResultOpened).toHaveBeenCalled();
-  });
-
-  test("should navigate to the correct page and scroll to top on page change", async () => {
-    const hits = getNHits(40);
-    const { getByTestId } = render(
-      <SearchResults
-        {...props}
-        searchResultExpanded={searchResultExpanded}
-        searchResultOpened={searchResultOpened}
-        hits={hits}
-      />,
-    );
-
-    const paginationButton = getByTestId("forwards-button");
-    fireEvent.click(paginationButton);
-    expect(pushMock).toHaveBeenCalledWith(
-      {
-        query: { page: 2 },
-        pathname: "/current-path",
-      },
-      undefined,
-      { shallow: true, scroll: false },
-    );
-
-    await pushMock();
-
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
 });

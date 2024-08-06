@@ -17,4 +17,5 @@ export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   isFirstPage: true,
   isLastPage: false,
   paginationRoute: "/current-path",
+  onPageChange: jest.fn(),
 };

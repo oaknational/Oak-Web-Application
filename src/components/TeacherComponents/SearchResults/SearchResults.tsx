@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakPagination,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import SearchResultsItem, {
   SearchResultsItemProps,
@@ -30,8 +29,6 @@ interface SearchResultsProps {
 export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
-  const router = useRouter();
-  const { search, ...currentQuery } = router.query;
   const { hits, allKeyStages, searchResultOpened, searchResultExpanded } =
     props;
   const hitCount = hits.length;
@@ -41,8 +38,13 @@ const SearchResults = (props: SearchResultsProps) => {
     items: hits,
   });
 
-  const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
-    paginationProps;
+  const {
+    currentPageItems,
+    currentPage,
+    firstItemRef,
+    paginationRoute,
+    onPageChange,
+  } = paginationProps;
 
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;
@@ -84,20 +86,7 @@ const SearchResults = (props: SearchResultsProps) => {
           <OakPagination
             {...paginationProps}
             initialPage={currentPage}
-            onPageChange={(page: number) => {
-              router
-                .push(
-                  {
-                    pathname: router.pathname,
-                    query: { ...currentQuery, page },
-                  },
-                  undefined,
-                  { shallow: true, scroll: false },
-                )
-                .then(() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                });
-            }}
+            onPageChange={onPageChange}
             pageName={"Search"}
             paginationHref={paginationRoute}
           />

@@ -16,6 +16,7 @@ export type PaginationProps = {
   isFirstPage: boolean;
   isLastPage: boolean;
   paginationRoute: string;
+  onPageChange: (page: number) => void;
 };
 
 type Items<T> = { items: T[] };
@@ -46,6 +47,7 @@ const usePagination = <T>(
   const isFirstPage = currentPage === 1;
 
   const pathname = router.pathname;
+  const { ...currentQuery } = router.query;
 
   const currentPageItems = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -66,6 +68,20 @@ const usePagination = <T>(
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject || "", true);
 
   const paginationRoute = router.asPath?.split("?")[0] ?? router.asPath;
+  const onPageChange = (page: number) => {
+    router
+      .push(
+        {
+          pathname: router.pathname,
+          query: { ...currentQuery, page },
+        },
+        undefined,
+        { shallow: true, scroll: false },
+      )
+      .then(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+  };
 
   return {
     paginationTitle,
@@ -86,6 +102,7 @@ const usePagination = <T>(
     isFirstPage,
     isLastPage,
     paginationRoute,
+    onPageChange,
   };
 };
 

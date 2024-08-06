@@ -6,7 +6,6 @@ import {
   OakUnitListItem,
   OakPagination,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import UnitListItem, {
   UnitListItemProps,
@@ -81,9 +80,8 @@ const isUnitFirstItemRef = (
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
-  const router = useRouter();
 
-  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
     paginationProps;
 
   const indexOfFirstLegacyUnit = units
@@ -248,20 +246,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <OakPagination
             {...paginationProps}
             initialPage={currentPage}
-            onPageChange={(page: number) => {
-              router
-                .push(
-                  {
-                    pathname: paginationRoute,
-                    query: { page },
-                  },
-                  undefined,
-                  { shallow: true, scroll: false },
-                )
-                .then(() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                });
-            }}
+            onPageChange={onPageChange}
             pageName={props.subjectTitle}
             paginationHref={paginationRoute}
           />

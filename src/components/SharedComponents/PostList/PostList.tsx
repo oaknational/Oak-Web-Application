@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { OakLI, OakPagination, OakUL } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
 
@@ -55,10 +54,10 @@ const PostList: FC<PostListProps> = (props) => {
     showImageOnTablet,
   } = props;
 
-  const { firstItemRef, currentPage, paginationRoute } = paginationProps;
+  const { firstItemRef, currentPage, paginationRoute, onPageChange } =
+    paginationProps;
   const blogsOrWebinars =
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
-  const router = useRouter();
 
   return (
     <Flex
@@ -101,20 +100,7 @@ const PostList: FC<PostListProps> = (props) => {
           <OakPagination
             {...paginationProps}
             initialPage={currentPage}
-            onPageChange={(page: number) => {
-              router
-                .push(
-                  {
-                    pathname: paginationRoute,
-                    query: { page },
-                  },
-                  undefined,
-                  { shallow: true, scroll: false },
-                )
-                .then(() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                });
-            }}
+            onPageChange={onPageChange}
             pageName={blogsOrWebinars}
             paginationHref={paginationRoute}
           />

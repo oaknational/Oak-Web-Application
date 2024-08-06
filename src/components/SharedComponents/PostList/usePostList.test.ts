@@ -14,6 +14,7 @@ describe("usePostList.ts", () => {
       currentPageItems: [],
       upcomingItem: undefined,
       paginationProps: {
+        onPageChange: expect.any(Function),
         currentPageItems: [],
         pageSize: 4,
         paginationTitle: "",
@@ -47,7 +48,7 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         isFirstPage: true,
         paginationRoute: "/",
-
+        onPageChange: expect.any(Function),
         isLastPage: true,
         totalPages: 1,
         totalResults: 1,
@@ -78,7 +79,7 @@ describe("usePostList.ts", () => {
         pageSize: 4,
         paginationTitle: "",
         paginationRoute: "/",
-
+        onPageChange: expect.any(Function),
         isFirstPage: true,
         isLastPage: true,
         currentPage: 1,
@@ -111,9 +112,9 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: [pastPost],
         pageSize: 4,
+        onPageChange: expect.any(Function),
         paginationTitle: "",
         paginationRoute: "/",
-
         currentPage: 1,
         isFirstPage: true,
         isLastPage: true,
@@ -149,6 +150,7 @@ describe("usePostList.ts", () => {
         isFirstPage: true,
         isLastPage: false,
         currentPage: 1,
+        onPageChange: expect.any(Function),
         totalPages: 8,
         totalResults: 30,
         paginationRoute: "/",
