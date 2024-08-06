@@ -7,8 +7,8 @@ describe("validateProgrammeSlug", () => {
 
   it("should throw an error if the programmeSlug is too long", () => {
     expect(() => {
-      validateProgrammeSlug("abracodabra-".repeat(100));
-    }).toThrow("programmeSlug is too long. Max length is 100");
+      validateProgrammeSlug("test-primary-" + "abracodabra-".repeat(100));
+    }).toThrow(/programmeSlug is too long. Max length is/);
   });
 
   it.each([

@@ -8,11 +8,6 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 export const validateProgrammeSlug = (programmeSlug: string) => {
-  const maxSubjectLength = subjectSlugs._def.values.reduce(
-    (acc, subject) => Math.max(acc, subject.length),
-    0,
-  );
-
   const maxExamboardLength = examboardSlugs._def.values.reduce(
     (acc, examboard) => Math.max(acc, examboard.length),
     0,
@@ -33,21 +28,27 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
     0,
   );
 
-  const maxPhaseLength = phaseSlugs._def.values.reduce(
-    (acc, phase) => Math.max(acc, phase.length),
-    0,
+  const parts = programmeSlug.split("-");
+  const index = parts.findIndex((part) =>
+    phaseSlugs._def.values.find((slug) => slug === part),
   );
 
-  const trimmed = programmeSlug.replace(/-l$/, "");
+  if (index < 0) {
+    throw new Error("programmeSlug is invalid");
+  }
+
+  const subjectSlug = parts.slice(0, index).join("-");
+  const phaseSlug = parts[index];
+  const rest = parts.slice(index + 1).join("-");
+
+  const trimmed = rest.replace(/-l$/, "");
 
   // TODO: add pathways when released
   const maxProgrammeSlugLength =
-    maxSubjectLength +
-    maxPhaseLength +
     Math.max(maxYearLength, maxKeystageLength) +
     maxExamboardLength +
     maxTierLength +
-    4;
+    3;
 
   if (trimmed.length > maxProgrammeSlugLength) {
     throw new Error(
@@ -58,14 +59,12 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
   // NB. we've already guaranteed that the slug is not too long so this is safe to run
   // TODO: add pathways when released
   const matches =
-    /^([a-z-]*?)-(primary|secondary)-(year-\d{1,2}|ks\d|early-years-foundation-stage)-?([a-z]+)?-?([a-z]+)?$/.exec(
+    /^(year-\d{1,2}|ks\d|early-years-foundation-stage)-?([a-z]+)?-?([a-z]+)?$/.exec(
       trimmed,
     );
 
-  const subjectSlug = matches?.[1];
-  const phaseSlug = matches?.[2];
-  const yearKsSlug = matches?.[3];
-  const programmeFactors = [matches?.[4], matches?.[5]].filter(Boolean);
+  const yearKsSlug = matches?.[1];
+  const programmeFactors = [matches?.[2], matches?.[3]].filter(Boolean);
 
   subjectSlugs.parse(subjectSlug);
   phaseSlugs.parse(phaseSlug);
