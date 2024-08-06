@@ -36,13 +36,15 @@ export const QuizResultMatch = ({
         `Correct choice not found for pupil answer ${pupilAnswer}`,
       );
     }
-    const prefix = answer?.correctChoice[0].text;
-    const standardText = pupilAnswer;
+    const prefix = answer?.matchOption?.[0]?.text;
+    // const standardText = answers[pupilAnswer]?.correctChoice[0].text;
+    const standardText =
+      answers[parseInt(pupilAnswer)]?.correctChoice?.[0]?.text;
 
     return (
       <MathJaxWrap>
         <OakQuizResultItem
-          key={standardText?.trim()}
+          key={standardText}
           standardText={standardText}
           boldPrefixText={prefix}
           feedbackState={feedbackState}

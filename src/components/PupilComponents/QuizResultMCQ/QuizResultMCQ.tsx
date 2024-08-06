@@ -16,14 +16,24 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
   feedback: QuestionFeedbackType[];
+  pupilAnswer: number[];
 };
 
-export const QuizResultMCQ = ({ answers, feedback }: QuizResultMCQProps) => {
+export const QuizResultMCQ = ({
+  answers,
+  feedback,
+  pupilAnswer,
+}: QuizResultMCQProps) => {
+  const mappedFeedback = feedback.map((mark, index) => {
+    if (pupilAnswer.includes(index)) {
+      return mark;
+    } else return null;
+  });
   const resultItems = answers.map((answer, index) => {
     const text = answer.answer.filter((answer) => answer?.type === "text")[0];
     const image = answer.answer.filter((answer) => answer?.type === "image")[0];
 
-    const feedbackState = feedback[index];
+    const feedbackState = mappedFeedback[index];
 
     const imageURL =
       isImage(image) && image?.imageObject?.secureUrl

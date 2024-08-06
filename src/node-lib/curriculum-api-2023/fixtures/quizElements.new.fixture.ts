@@ -5,6 +5,7 @@
  *
  */
 
+import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 import {
   MCAnswer,
   ShortAnswer,
@@ -352,5 +353,415 @@ export const quizQuestionsNoImages: QuizQuestion[] = [
     ],
     questionType: "short-answer",
     order: 2,
+  },
+];
+
+export const sectionResults: LessonSectionResults = {
+  intro: {
+    worksheetDownloaded: false,
+    worksheetAvailable: true,
+    isComplete: true,
+  },
+  "starter-quiz": {
+    grade: 2,
+    numQuestions: 6,
+    questionResults: [
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: "incorrect",
+        pupilAnswer: "wqdqwedq",
+        correctAnswer: ["reciprocal"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: ["incorrect", "correct", "incorrect", "correct", "correct"],
+        isPartiallyCorrect: false,
+        pupilAnswer: [0],
+        correctAnswer: ["$$7x \\times {1\\over 7} = 8\\times {1\\over 7}$$"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: [
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+        ],
+        isPartiallyCorrect: false,
+        pupilAnswer: ["5", "0", "4", "1", "3", "2"],
+        correctAnswer: [
+          "$$1\\over 2$$",
+          "$$2$$",
+          "$$2\\over 3$$",
+          "$$-2$$",
+          "$$-{3\\over 2}$$",
+          "$$6$$",
+        ],
+      },
+      {
+        offerHint: false,
+        grade: 1,
+        mode: "feedback",
+        feedback: "correct",
+        pupilAnswer: "1",
+        correctAnswer: ["1"],
+      },
+      {
+        offerHint: false,
+        grade: 1,
+        mode: "feedback",
+        feedback: "correct",
+        pupilAnswer: "2",
+        correctAnswer: ["2"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: [
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "incorrect",
+        ],
+        isPartiallyCorrect: false,
+        pupilAnswer: ["5", "0", "3", "1", "2", "4"],
+        correctAnswer: [
+          "$$6x-12$$",
+          "$$6x-6$$",
+          "$$2x-12$$",
+          "$$6x+12$$",
+          "$$6x-18$$",
+          "$$-6x+18$$",
+        ],
+      },
+    ],
+    isComplete: true,
+  },
+  video: { isComplete: true },
+  "exit-quiz": {
+    grade: 1,
+    numQuestions: 6,
+    questionResults: [
+      {
+        offerHint: false,
+        grade: 1,
+        mode: "feedback",
+        feedback: "correct",
+        pupilAnswer: "18",
+        correctAnswer: ["18"],
+      },
+      {
+        offerHint: false,
+        grade: 1,
+        mode: "feedback",
+        feedback: ["correct", "correct", "correct", "correct", "correct"],
+        isPartiallyCorrect: false,
+        pupilAnswer: ["0", "1", "2", "3", "4"],
+        correctAnswer: [
+          "$$a = 28$$",
+          "$$a = 37$$",
+          "$$a = {7\\over 4}$$",
+          "$$a = 8$$",
+          "$$a = 11$$",
+        ],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: [
+          "incorrect",
+          "incorrect",
+          "incorrect",
+          "correct",
+          "incorrect",
+        ],
+        isPartiallyCorrect: true,
+        pupilAnswer: ["2", "0", "4", "3", "1"],
+        correctAnswer: [
+          "$$2x\\over 3$$",
+          "$$2({1\\over 3x})$$",
+          "$$2\\over 9x$$",
+          "$$2x\\over 9$$",
+          "$$3\\over 2x$$",
+        ],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: "incorrect",
+        pupilAnswer: "5",
+        correctAnswer: ["3"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: ["incorrect", "incorrect", "correct", "correct", "correct"],
+        isPartiallyCorrect: false,
+        pupilAnswer: [0],
+        correctAnswer: ["$$2\\over 15$$"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: ["incorrect", "correct", "incorrect", "correct", "correct"],
+        isPartiallyCorrect: false,
+        pupilAnswer: [0],
+        correctAnswer: ["$$1\\over 3$$"],
+      },
+      {
+        offerHint: false,
+        grade: 0,
+        mode: "feedback",
+        feedback: ["correct", "correct", "correct", "correct"],
+        // isPartiallyCorrect: true,
+        pupilAnswer: [1, 4, 2, 3],
+        correctAnswer: [
+          "Edward the Confessor was exiled in Normandy.",
+          "Edward the Confessor became king.",
+          "Harold Godwinson travelled to Normandy.",
+          "Edward the Confessor died.",
+        ],
+      },
+    ],
+    isComplete: true,
+  },
+};
+
+export const exitQuizQuestions: QuizQuestion[] = [
+  {
+    hint: "You need to multiply both sides of the equation by the reciprocal of $$1\\over 3$$. Check by substitution.",
+    order: 1,
+    active: false,
+    answers: {
+      "short-answer": [
+        { answer: [{ text: "18", type: "text" }], answerIsDefault: true },
+      ],
+    },
+    feedback: "$${1\\over 3}a \\times 3= 6\\times 3$$ so $$a = 18$$",
+    questionId: 254009,
+    questionUid: "QUES-XFKS2-54009",
+    questionStem: [
+      {
+        text: "The solution to the equation $${1\\over 3}a = 6$$ is when $$a =$${{}}.",
+        type: "text",
+      },
+    ],
+    questionType: "short-answer",
+  },
+  {
+    hint: "You need to maintain equality by performing the same operation to both sides, think about which order you should do the operations in. Substitute to check your answers.",
+    order: 2,
+    active: false,
+    answers: {
+      match: [
+        {
+          matchOption: [{ text: "$${1\\over 4}a + 3 = 10$$", type: "text" }],
+          correctChoice: [{ text: "$$a = 28$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$${1\\over 4}(a + 3)=10$$", type: "text" }],
+          correctChoice: [{ text: "$$a = 37$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$${4\\over 7} a = 1$$", type: "text" }],
+          correctChoice: [{ text: "$$a = {7\\over 4}$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$${7\\over 4}a=14$$", type: "text" }],
+          correctChoice: [{ text: "$$a = 8$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$$\\frac{a+3}{7} = 2$$", type: "text" }],
+          correctChoice: [{ text: "$$a = 11$$", type: "text" }],
+        },
+      ],
+    },
+    feedback:
+      "For $${1\\over 4}a + 3 = 10$$ subtracting 3 first is easier, then you can multiply by 4. For $${1\\over 4}(a + 3)=10$$ multiplying by 4 first is easier, then you can subtract 3. ",
+    questionId: 254010,
+    questionUid: "QUES-VCHO2-54010",
+    questionStem: [
+      { text: "Match each equation to its solution.", type: "text" },
+    ],
+    questionType: "match",
+  },
+  {
+    hint: "$${1\\over 5}x$$ is equivalent to $$x\\over 5$$ because dividing by a number (e.g. 5) is the same as multiplying by its reciprocal $$ ({1\\over 5})$$. You can use numerical values to test whether expressions are equivalent.",
+    order: 3,
+    active: false,
+    answers: {
+      match: [
+        {
+          matchOption: [{ text: "$${2\\over 3}x$$", type: "text" }],
+          correctChoice: [{ text: "$$2x\\over 3$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$$2\\over 3x$$", type: "text" }],
+          correctChoice: [{ text: "$$2({1\\over 3x})$$", type: "text" }],
+        },
+        {
+          matchOption: [
+            { text: "$${2\\over 3}\\times {1\\over 3x}$$", type: "text" },
+          ],
+          correctChoice: [{ text: "$$2\\over 9x$$", type: "text" }],
+        },
+        {
+          matchOption: [{ text: "$$2x \\times {1\\over 9}$$", type: "text" }],
+          correctChoice: [{ text: "$$2x\\over 9$$", type: "text" }],
+        },
+        {
+          matchOption: [
+            { text: "$${3\\over 2}\\times {1\\over x}$$", type: "text" },
+          ],
+          correctChoice: [{ text: "$$3\\over 2x$$", type: "text" }],
+        },
+      ],
+    },
+    feedback:
+      "$$2x\\over 3$$ is equivalent to $$2\\times {x\\over 3}$$. $$ 2\\over 3x$$ is equivalent to $$2\\times {1\\over 3x}$$",
+    questionId: 254011,
+    questionUid: "QUES-XDNR2-54011",
+    questionStem: [
+      {
+        text: "Match each expression to an equivalent expression.",
+        type: "text",
+      },
+    ],
+    questionType: "match",
+  },
+  {
+    hint: "Multiply both sides of the equation by $$a$$ first. Then what is your final step to solve for $$a$$?",
+    order: 4,
+    active: false,
+    answers: {
+      "short-answer": [
+        { answer: [{ text: "3", type: "text" }], answerIsDefault: true },
+      ],
+    },
+    feedback:
+      "$${6\\over a} \\times a=2\\times a$$, $$6=2a$$, therefore $$a = 3$$",
+    questionId: 254012,
+    questionUid: "QUES-OHFX2-54012",
+    questionStem: [
+      {
+        text: "The solution to the equation $${6\\over a}=2$$ is when $$a = $${{}}.",
+        type: "text",
+      },
+    ],
+    questionType: "short-answer",
+  },
+  {
+    hint: "$${4\\over 5a}=6$$ multiply both sides of the equation by $$5a$$. Then think about how to solve this new equation.",
+    order: 5,
+    active: false,
+    answers: {
+      "multiple-choice": [
+        {
+          answer: [{ text: "$$3\\over 10$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$2\\over 15$$", type: "text" }],
+          answerIsCorrect: true,
+        },
+        {
+          answer: [{ text: "$$2\\over 25$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$15\\over 2$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$25\\over 2$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+      ],
+    },
+    feedback:
+      "$${4\\over 5a}=6$$ gives $$4 = 30a$$. So $$a= {4\\over 30}$$ or $$a={2\\over 15}$$",
+    questionId: 254013,
+    questionUid: "QUES-RINS2-54013",
+    questionStem: [
+      {
+        text: "Which of these is the solution to the equation $${4\\over 5a}+2 = 8$$?",
+        type: "text",
+      },
+    ],
+    questionType: "multiple-choice",
+  },
+  {
+    hint: "Start by multiplying both sides of the equation by $$(a+3)$$. Make sure you use brackets where necessary.",
+    order: 6,
+    active: false,
+    answers: {
+      "multiple-choice": [
+        {
+          answer: [{ text: "$$-{27\\over 10}$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$-{3\\over 10}$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$1\\over 3$$", type: "text" }],
+          answerIsCorrect: true,
+        },
+        {
+          answer: [{ text: "$$17\\over 6$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+        {
+          answer: [{ text: "$$20\\over 3$$", type: "text" }],
+          answerIsCorrect: false,
+        },
+      ],
+    },
+    feedback:
+      "$$20 = 6(a+3)$$, $${20\\over 6}=a+3$$, $${10\\over 3}-3=a$$. Therefore $$a={1\\over 3}$$",
+    questionId: 254014,
+    questionUid: "QUES-WNIR2-54014",
+    questionStem: [
+      {
+        text: "Which of these is the solution to the equation $$\\frac{20}{a+3}=6$$?",
+        type: "text",
+      },
+    ],
+    questionType: "multiple-choice",
+  },
+  {
+    hint: "A Horse chestnut tree grows from a conker.",
+    active: false,
+    questionStem: [
+      {
+        text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
+        type: "text",
+      },
+    ],
+    answers: {
+      order: orderAnswers,
+    },
+    feedback: "Correct! Trees do grow from seeds.",
+    questionId: 20,
+    questionUid: "QUES-CKPSN-KFF20",
+
+    questionType: "order",
+    order: 5,
   },
 ];

@@ -23,7 +23,7 @@ export const QuizResultOrder = ({
   pupilAnswers,
 }: QuizResultOrderProps) => {
   const resultItems = pupilAnswers.map((pupilAnswer, index) => {
-    const answer = answers[pupilAnswer];
+    const answer = answers[pupilAnswer - 1];
 
     if (!answer) {
       throw new Error(`Answer not found for index ${pupilAnswer}`);
@@ -41,7 +41,7 @@ export const QuizResultOrder = ({
       <MathJaxWrap>
         <OakQuizResultItem
           key={standardText?.trim()}
-          boldPrefixText={`${pupilAnswer + 1}`}
+          boldPrefixText={`${pupilAnswer}`}
           standardText={standardText}
           feedbackState={feedbackState}
         />
