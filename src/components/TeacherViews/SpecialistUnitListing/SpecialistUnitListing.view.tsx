@@ -148,6 +148,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <TabularNav
                     $mb={[10, 24]}
                     label="themes"
+                    $flexWrap={"wrap"}
                     $gap={[12, 0]}
                     links={developmentStage.map(
                       ({ title, slug, lessonCount, programmeSlug }) => ({

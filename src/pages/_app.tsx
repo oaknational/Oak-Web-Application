@@ -4,10 +4,12 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
+
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -23,6 +25,7 @@ import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
+import { featureFlaggedUserFetcher } from "@/browser-lib/user-fetcher/user-fetcher";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
@@ -37,27 +40,29 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   return (
     <>
       <GlobalStyle />
-      <CookieConsentProvider>
-        <ThemeProvider theme={theme}>
-          <ErrorBoundary>
-            <PostHogProvider client={posthog}>
-              <AnalyticsProvider {...analyticsOptions}>
-                <DefaultSeo />
-                <OverlayProvider>
-                  <MenuProvider>
-                    <ToastProvider>
-                      <Component {...pageProps} />
-                      <AppHooks />
-                    </ToastProvider>
-                  </MenuProvider>
-                </OverlayProvider>
-              </AnalyticsProvider>
-            </PostHogProvider>
-          </ErrorBoundary>
-          <SpriteSheet />
-          <InlineSpriteSheet />
-        </ThemeProvider>
-      </CookieConsentProvider>
+      <UserProvider fetcher={featureFlaggedUserFetcher}>
+        <CookieConsentProvider>
+          <ThemeProvider theme={theme}>
+            <ErrorBoundary>
+              <PostHogProvider client={posthog}>
+                <AnalyticsProvider {...analyticsOptions}>
+                  <DefaultSeo />
+                  <OverlayProvider>
+                    <MenuProvider>
+                      <ToastProvider>
+                        <Component {...pageProps} />
+                        <AppHooks />
+                      </ToastProvider>
+                    </MenuProvider>
+                  </OverlayProvider>
+                </AnalyticsProvider>
+              </PostHogProvider>
+            </ErrorBoundary>
+            <SpriteSheet />
+            <InlineSpriteSheet />
+          </ThemeProvider>
+        </CookieConsentProvider>
+      </UserProvider>
     </>
   );
 };
