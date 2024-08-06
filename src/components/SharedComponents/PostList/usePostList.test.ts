@@ -17,6 +17,7 @@ describe("usePostList.ts", () => {
         currentPageItems: [],
         pageSize: 4,
         paginationTitle: "",
+        paginationRoute: "/",
         currentPage: 1,
         isFirstPage: true,
         isLastPage: false,
@@ -45,6 +46,8 @@ describe("usePostList.ts", () => {
         paginationTitle: "",
         currentPage: 1,
         isFirstPage: true,
+        paginationRoute: "/",
+
         isLastPage: true,
         totalPages: 1,
         totalResults: 1,
@@ -74,6 +77,8 @@ describe("usePostList.ts", () => {
         currentPageItems: [pastPost],
         pageSize: 4,
         paginationTitle: "",
+        paginationRoute: "/",
+
         isFirstPage: true,
         isLastPage: true,
         currentPage: 1,
@@ -107,6 +112,8 @@ describe("usePostList.ts", () => {
         currentPageItems: [pastPost],
         pageSize: 4,
         paginationTitle: "",
+        paginationRoute: "/",
+
         currentPage: 1,
         isFirstPage: true,
         isLastPage: true,
@@ -144,6 +151,7 @@ describe("usePostList.ts", () => {
         currentPage: 1,
         totalPages: 8,
         totalResults: 30,
+        paginationRoute: "/",
         prevHref: "/",
         nextHref: "/?page=2",
         nextPageUrlObject: { pathname: "/", query: { page: "2" } },

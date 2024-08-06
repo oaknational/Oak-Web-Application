@@ -34,7 +34,6 @@ const usePagination = <T>(
   const { page: pageRaw } = router.query;
   const pageString = (Array.isArray(pageRaw) ? pageRaw[0] : pageRaw) || "";
   const pageNumber = Math.max(Math.min(parseInt(pageString), totalPages), 1);
-
   const currentPage = isNaN(pageNumber) ? 1 : pageNumber;
 
   const nextPageParams = new URLSearchParams(encode(router.query));
@@ -57,18 +56,16 @@ const usePagination = <T>(
   const firstItemRef = useRef<HTMLAnchorElement | null>(null);
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
-
   const nextPageUrlObject = isLastPage
     ? { pathname: router.asPath }
     : { pathname: pathname, query: Object.fromEntries(nextPageParams) };
   const prevPageUrlObject = isFirstPage
     ? { pathname: router.asPath }
     : { pathname: pathname, query: Object.fromEntries(prevPageParams) };
-
   const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject || "", true);
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject || "", true);
 
-  const paginationRoute = router.asPath.split("?")[0] || router.asPath;
+  const paginationRoute = router.asPath?.split("?")[0] ?? router.asPath;
 
   return {
     paginationTitle,

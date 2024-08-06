@@ -205,7 +205,10 @@ describe("components/UnitList", () => {
       <UnitList
         {...combinedUnitListingFixture()}
         currentPageItems={combinedUnitListingFixture().units}
-        paginationProps={mockPaginationProps}
+        paginationProps={{
+          ...mockPaginationProps,
+          paginationRoute: "/current-route",
+        }}
         onClick={onClick}
       />,
     );
@@ -215,7 +218,7 @@ describe("components/UnitList", () => {
 
     expect(pushMock).toHaveBeenCalledWith(
       {
-        pathname: "/current-path",
+        pathname: "/current-route",
         query: { page: 2 },
       },
       undefined,
