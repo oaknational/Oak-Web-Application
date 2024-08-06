@@ -17,7 +17,9 @@ export const pupilLessonListingQuery =
   }): Promise<PupilLessonListingQueryData> => {
     const { unitSlug, programmeSlug } = args;
 
-    const matches = /.*?year-\d{1,2}/.exec(programmeSlug);
+    const matches = /^([a-z-]*?)-(primary|secondary)-year-\d{1,2}/.exec(
+      programmeSlug,
+    );
     if (!matches?.[0]) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }

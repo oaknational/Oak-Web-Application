@@ -103,6 +103,8 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
+      // TODO: it would be good to validate the programmeSlug ahead of the call to the API
+
       const { browseData, backLinkData } =
         await curriculumApi2023.pupilLessonListingQuery({
           programmeSlug,
@@ -131,7 +133,11 @@ export const getStaticProps: GetStaticProps<
        */
 
       const backLink: PupilLessonListingBackLink = (() => {
-        const baseSlug = /.*?year-\d{1,2}/.exec(programmeSlug)?.[0];
+        const matches = /^([a-z-]*?)-(primary|secondary)-year-\d{1,2}/.exec(
+          programmeSlug,
+        );
+        console.log("matches", matches);
+        const baseSlug = matches?.[0];
         const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
         const backLinkEquivalent = backLinkData.find(
           (b) => b.programmeSlug === nonLegacyProgrammeSlug,
