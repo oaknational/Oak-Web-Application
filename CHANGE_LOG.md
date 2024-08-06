@@ -1,3 +1,10 @@
+# [1.503.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.1...v1.503.0) (2024-08-06)
+
+
+### Features
+
+* add t&cs text section with links ([8d0d6c9](https://github.com/oaknational/Oak-Web-Application/commit/8d0d6c9180c99e28e7bbf17d5c3109596b7ef4d2))
+
 ## [1.502.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.0...v1.502.1) (2024-08-05)
 
 # [1.502.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.501.0...v1.502.0) (2024-08-05)
