@@ -13,19 +13,20 @@ import {
   OakInlineBanner,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { PupilLessonListingBackLink } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
   programmeFields: LessonListingBrowseData[number]["programmeFields"];
   orderedCurriculumData: LessonListingBrowseData;
   programmeSlug: string;
-  backLink: string;
+  backLink: PupilLessonListingBackLink;
 };
 
 export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
@@ -41,6 +42,34 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
 
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
     useState<boolean>(unitData.expirationDate !== null);
+
+  const [resolvedOakHref, setResolvedOakHref] = useState(() =>
+    backLink.options
+      ? resolveOakHref({
+          page: "pupil-programme-index",
+          programmeSlug: backLink.programmeSlug,
+          optionSlug: "options",
+        })
+      : resolveOakHref({
+          page: "pupil-unit-index",
+          programmeSlug: backLink.programmeSlug,
+        }),
+  );
+
+  useEffect(() => {
+    const referrer = document.referrer;
+
+    if (referrer) {
+      const referrerURL = new URL(referrer);
+      const currentURL = new URL(window.location.href);
+      if (
+        referrerURL.origin === currentURL.origin &&
+        referrerURL.pathname.split("/").pop() === "units"
+      ) {
+        setResolvedOakHref(referrer);
+      }
+    }
+  }, []);
 
   const noneExpiredLessons = orderedCurriculumData.filter(
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
@@ -69,17 +98,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       optionalityTitle={optionality && unitData?.title}
     />
   );
-
-  const resolvedOakHref = backLink.options
-    ? resolveOakHref({
-        page: "pupil-programme-index",
-        programmeSlug: backLink.programmeSlug,
-        optionSlug: "options",
-      })
-    : resolveOakHref({
-        page: "pupil-unit-index",
-        programmeSlug: backLink.programmeSlug,
-      });
 
   const BacktoUnits = (
     <OakTertiaryButton iconName="arrow-left" href={resolvedOakHref} element="a">
