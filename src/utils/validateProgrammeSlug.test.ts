@@ -11,13 +11,15 @@ describe("validateProgrammeSlug", () => {
     }).toThrow("programmeSlug is too long. Max length is 100");
   });
 
-  it.only.each([
+  it.each([
     "english-primary-year-1",
     "english-primary-ks1",
     "english-secondary-year-10-aqa",
     "english-secondary-year-10-foundation",
     "english-secondary-year-10-foundation-aqa",
     "english-secondary-year-10-aqa-foundation",
+    "combined-science-secondary-year-10",
+    "combined-science-secondary-year-10-aqa-foundation",
     "english-secondary-year-10-l",
   ])("should validate a valid programmeSlug", (slug) => {
     expect(() => {
