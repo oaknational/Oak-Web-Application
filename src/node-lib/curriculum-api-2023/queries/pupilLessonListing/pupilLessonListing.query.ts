@@ -17,7 +17,7 @@ export const pupilLessonListingQuery =
   }): Promise<PupilLessonListingQueryData> => {
     const { unitSlug, programmeSlug } = args;
 
-    const matches = /^([a-z-]*?)-(primary|secondary)-year-\d{1,2}/.exec(
+    const matches = /^([a-z-]+?)-(primary|secondary)-year-\d{1,2}/.exec(
       programmeSlug,
     );
 

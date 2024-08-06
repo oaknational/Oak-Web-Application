@@ -40,8 +40,6 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
 
   const trimmed = programmeSlug.replace(/-l$/, "");
 
-  console.log(trimmed);
-
   // TODO: add pathways when released
   const maxProgrammeSlugLength =
     maxSubjectLength +
@@ -57,9 +55,10 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
     );
   }
 
+  // NB. we've already guaranteed that the slug is not too long so this is safe to run
   // TODO: add pathways when released
   const matches =
-    /^([a-z-]*?)-(primary|secondary)-(year-\d{1,2}|ks\d|early-years-foundation-stage)-?([a-z]*)?-?([a-z]*)?$/.exec(
+    /^([a-z-]*?)-(primary|secondary)-(year-\d{1,2}|ks\d|early-years-foundation-stage)-?([a-z]+)?-?([a-z]+)?$/.exec(
       trimmed,
     );
 
