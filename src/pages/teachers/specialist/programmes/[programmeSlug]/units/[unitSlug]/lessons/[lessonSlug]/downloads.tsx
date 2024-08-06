@@ -1,5 +1,4 @@
 import {
-  NextPage,
   GetStaticProps,
   GetStaticPathsResult,
   GetStaticPropsResult,
@@ -16,9 +15,9 @@ import SpecialistLessonDownloads from "@/components/TeacherViews/SpecialistLesso
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
-const SpecialistLessonDownloadsPage: NextPage<
-  SpecialistLessonDownloadsPageData
-> = ({ curriculumData }) => {
+const SpecialistLessonDownloadsPage = ({
+  curriculumData,
+}: SpecialistLessonDownloadsPageData) => {
   const { lesson } = curriculumData;
   return (
     <AppLayout
