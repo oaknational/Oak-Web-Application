@@ -117,8 +117,8 @@ export const getStaticProps: GetStaticProps<
             return { programmeSlug: backLinkEquivalent.programmeSlug };
           case backLinkData.length > 1:
             return { programmeSlug: baseSlug, options: true };
-          case backLinkData.length === 1:
-            return { programmeSlug: backLinkData[0]?.programmeSlug };
+          case backLinkData[0]?.programmeSlug !== undefined:
+            return { programmeSlug: backLinkData[0].programmeSlug };
           default:
             return { programmeSlug };
         }
