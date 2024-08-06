@@ -20,6 +20,7 @@ export const pupilLessonListingQuery =
     const matches = /^([a-z-]*?)-(primary|secondary)-year-\d{1,2}/.exec(
       programmeSlug,
     );
+
     if (!matches?.[0]) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }

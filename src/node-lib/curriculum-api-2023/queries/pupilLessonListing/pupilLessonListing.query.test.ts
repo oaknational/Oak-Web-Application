@@ -11,7 +11,7 @@ describe("pupilLessonListing()", () => {
       syntheticUnitvariantLessonsFixture({
         overrides: {
           unit_slug: "unit-slug-test",
-          programme_slug: "programme-slug-test-year-10",
+          programme_slug: "programme-slug-test-secondary-year-10",
         },
       });
 
@@ -26,7 +26,7 @@ describe("pupilLessonListing()", () => {
       ),
     })({
       unitSlug: "test",
-      programmeSlug: "programme-slug-test-year-10",
+      programmeSlug: "programme-slug-test-secondary-year-10",
     });
 
     expect(lesson.browseData[0]?.lessonSlug).toEqual(
@@ -45,7 +45,7 @@ describe("pupilLessonListing()", () => {
       syntheticUnitvariantLessonsFixture({
         overrides: {
           unit_slug: "unit-slug-test",
-          programme_slug: "programme-slug-test",
+          programme_slug: "programme-slug-secondary-year-10",
         },
       }),
       syntheticUnitvariantLessonsFixture(),
@@ -64,7 +64,7 @@ describe("pupilLessonListing()", () => {
       ),
     })({
       unitSlug: "test",
-      programmeSlug: "programme-slug-test-year-10",
+      programmeSlug: "programme-slug-test-secondary-year-10",
     });
 
     expect(lesson.browseData[0]?.lessonSlug).toEqual(fixtures[0]?.lesson_slug);
