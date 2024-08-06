@@ -7,6 +7,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { resolveOakHref } from "@/common-lib/urls";
+import { validateProgrammeSlug } from "@/utils/validateProgrammeSlug";
 
 type PupilLessonListingURLParams = {
   programmeSlug: string;
@@ -103,7 +104,8 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      // TODO: it would be good to validate the programmeSlug ahead of the call to the API
+      // validate the programmeSlug ahead of the call to the API
+      validateProgrammeSlug(programmeSlug);
 
       const { browseData, backLinkData } =
         await curriculumApi2023.pupilLessonListingQuery({
@@ -136,7 +138,7 @@ export const getStaticProps: GetStaticProps<
         const matches = /^([a-z-]*?)-(primary|secondary)-year-\d{1,2}/.exec(
           programmeSlug,
         );
-        console.log("matches", matches);
+
         const baseSlug = matches?.[0];
         const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
         const backLinkEquivalent = backLinkData.find(

@@ -75,7 +75,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         render(
           <PupilLessonListingPage
             browseData={[]}
-            backLink={{ programmeSlug: "programme-slug" }}
+            backLink={{ programmeSlug: "english" }}
           />,
         );
       }).toThrow("unitData or programmeFields is undefined");
@@ -91,7 +91,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       render(
         <PupilLessonListingPage
           browseData={[lessonBrowseDataFixture({})]}
-          backLink={{ programmeSlug: "programme-slug-secondary-year-10" }}
+          backLink={{ programmeSlug: "english-secondary-year-10" }}
         />,
       );
 
@@ -110,8 +110,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         const callArgs = call[0];
         expect(callArgs).toEqual(
           expect.objectContaining({
-            backLink:
-              "/pupils/programmes/programme-slug-secondary-year-10/units",
+            backLink: "/pupils/programmes/english-secondary-year-10/units",
           }),
         );
       });
@@ -119,7 +118,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     it("should call PupilViewsLessonListing with the referrer as the backlink when available", () => {
       const referrer =
-        "https://example.com/programmes/programme-slug-secondary-year-10/units";
+        "https://example.com/programmes/english-secondary-year-10/units";
 
       // mock document referrer
       Object.defineProperty(document, "referrer", {
@@ -129,14 +128,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       Object.defineProperty(window.location, "href", {
         value:
-          "https://example.com/programmes/programme-slug-secondary-year-10/units/unit-slug/lessons",
+          "https://example.com/programmes/english-secondary-year-10/units/unit-slug/lessons",
         writable: true,
       });
 
       render(
         <PupilLessonListingPage
           browseData={[lessonBrowseDataFixture({})]}
-          backLink={{ programmeSlug: "programme-slug" }}
+          backLink={{ programmeSlug: "english" }}
         />,
       );
 
@@ -162,7 +161,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       render(
         <PupilLessonListingPage
           browseData={[lessonBrowseDataFixture({})]}
-          backLink={{ programmeSlug: "programme-slug" }}
+          backLink={{ programmeSlug: "english" }}
         />,
       );
       expect.assertions(1);
@@ -188,7 +187,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
               supplementaryData: { orderInUnit: 1, unitOrder: 4 },
             }),
           ]}
-          backLink={{ programmeSlug: "programme-slug" }}
+          backLink={{ programmeSlug: "english" }}
         />,
       );
       const e1 = getByText("lesson-title-1");
@@ -199,7 +198,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
   describe("getStaticProps", () => {
     it("Should call API:pupilLessonListingQuery", async () => {
-      const programmeSlug = "programme-slug-secondary-year-10";
+      const programmeSlug = "english-secondary-year-10";
       const unitSlug = "unit-slug";
 
       await getStaticProps({
@@ -218,7 +217,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
 
     it("should return the programmeSlug as the backlink for non-legacy programmes", async () => {
-      const programmeSlug = "programme-slug-secondary-year-10";
+      const programmeSlug = "english-secondary-year-10";
       const unitSlug = "unit-slug";
 
       const res = await getStaticProps({
@@ -236,7 +235,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
 
     it("should return the non-legacy programmeSlug as the backlink for legacy programmes with a non-legacy equivalent", async () => {
-      const programmeSlug = "programme-slug-secondary-year-10-l";
+      const programmeSlug = "english-secondary-year-10-l";
       const unitSlug = "unit-slug";
 
       // mock the return value of the API call
@@ -244,7 +243,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
       ).mockResolvedValue({
         browseData: [lessonBrowseDataFixture({})],
-        backLinkData: [{ programmeSlug: "programme-slug-secondary-year-10" }],
+        backLinkData: [{ programmeSlug: "english-secondary-year-10" }],
       });
 
       const res = await getStaticProps({
@@ -256,7 +255,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       if ("props" in res) {
         expect(res.props.backLink).toEqual({
-          programmeSlug: "programme-slug-secondary-year-10",
+          programmeSlug: "english-secondary-year-10",
         });
       } else {
         throw new Error("getStaticProps did not return props.");
@@ -264,7 +263,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
 
     it("should return the baseSlug as the backlink for legacy programmes without a non-legacy equivalent where there are multiple entries in backLinkData", async () => {
-      const programmeSlug = "programme-slug-secondary-year-10-l";
+      const programmeSlug = "english-secondary-year-10-l";
       const unitSlug = "unit-slug";
 
       // mock the return value of the API call
@@ -273,8 +272,8 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       ).mockResolvedValue({
         browseData: [lessonBrowseDataFixture({})],
         backLinkData: [
-          { programmeSlug: "programme-slug-secondary-year-10-aqa" },
-          { programmeSlug: "programme-slug-secondary-year-10-ocr" },
+          { programmeSlug: "english-secondary-year-10-aqa" },
+          { programmeSlug: "english-secondary-year-10-ocr" },
         ],
       });
 
@@ -287,7 +286,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       if ("props" in res) {
         expect(res.props.backLink).toEqual({
-          programmeSlug: "programme-slug-secondary-year-10",
+          programmeSlug: "english-secondary-year-10",
           options: true,
         });
       } else {
@@ -296,7 +295,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
 
     it("should return the non-legacy programmeSlug as the backlink for legacy programmes without a non-legacy equivalent where there is a single entry in backLinkData", async () => {
-      const programmeSlug = "programme-slug-secondary-year-10-aqa-l";
+      const programmeSlug = "english-secondary-year-10-aqa-l";
       const unitSlug = "unit-slug";
 
       // mock the return value of the API call
@@ -304,7 +303,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
       ).mockResolvedValue({
         browseData: [lessonBrowseDataFixture({})],
-        backLinkData: [{ programmeSlug: "programme-slug-secondary-year-10" }],
+        backLinkData: [{ programmeSlug: "english-secondary-year-10" }],
       });
 
       const res = await getStaticProps({
@@ -316,7 +315,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       if ("props" in res) {
         expect(res.props.backLink).toEqual({
-          programmeSlug: "programme-slug-secondary-year-10",
+          programmeSlug: "english-secondary-year-10",
         });
       } else {
         throw new Error("getStaticProps did not return props.");
@@ -324,8 +323,8 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
   });
 
-  it("goes falls back to the legcay programmeSlug if there are no non-legacy backlinks", async () => {
-    const programmeSlug = "programme-slug-secondary-year-10-l";
+  it("falls back to the legacy programmeSlug if there are no non-legacy backlinks", async () => {
+    const programmeSlug = "english-secondary-year-10-l";
     const unitSlug = "unit-slug";
 
     // mock the return value of the API call
