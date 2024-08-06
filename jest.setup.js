@@ -35,6 +35,8 @@ jest.mock("posthog-js", () => ({
   default: {
     init: jest.fn(),
     capture: jest.fn(),
+    onFeatureFlags: jest.fn(),
+    isFeatureEnabled: jest.fn(),
   },
 }));
 
