@@ -1,3 +1,10 @@
+## [1.504.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.0...v1.504.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* wrap quiz hints in mathjax ([5ef9497](https://github.com/oaknational/Oak-Web-Application/commit/5ef9497b4325c64a35629fda255b5d91327c7f1c))
+
 # [1.504.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.503.0...v1.504.0) (2024-08-06)
 
 
