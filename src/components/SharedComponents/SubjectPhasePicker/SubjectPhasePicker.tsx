@@ -113,6 +113,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const examboardErrorId = useId();
   const phaseErrorId = useId();
+  const subjectErrorId = useId();
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -407,7 +408,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 scrollLock={false}
               >
                 {showSubjectError && (
-                  <Flex $flexDirection={"row"} $mb={20}>
+                  <Flex id={subjectErrorId} $flexDirection={"row"} $mb={20}>
                     <Icon
                       $color={"red"}
                       name="content-guidance"
@@ -436,6 +437,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   role="radiogroup"
                   aria-labelledby={subjectInputId}
                   aria-required="true"
+                  aria-describedby={
+                    showSubjectError ? subjectErrorId : undefined
+                  }
                 >
                   {subjects.map((subject) => (
                     <ButtonContainer
