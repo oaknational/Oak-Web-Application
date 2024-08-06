@@ -62,7 +62,6 @@ const PupilLessonListingPage = ({
     const referrer = document.referrer;
 
     if (referrer) {
-      console.log("referrer", referrer);
       const referrerURL = new URL(referrer);
       const currentURL = new URL(window.location.href);
       if (
@@ -132,7 +131,7 @@ export const getStaticProps: GetStaticProps<
        */
 
       const backLink: PupilLessonListingBackLink = (() => {
-        const baseSlug = programmeSlug.match(/.*?year-\d{1,2}/)?.[0];
+        const baseSlug = /.*?year-\d{1,2}/.exec(programmeSlug)?.[0];
         const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
         const backLinkEquivalent = backLinkData.find(
           (b) => b.programmeSlug === nonLegacyProgrammeSlug,
