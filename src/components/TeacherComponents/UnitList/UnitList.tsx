@@ -135,6 +135,8 @@ const UnitList: FC<UnitListProps> = (props) => {
       let calculatedIndex = baseIndex;
       const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
+      const isSpecialistUnit = !isUnitListData(props);
+
       if (isItemLegacy) {
         if (newAndLegacyUnitsOnPage) {
           calculatedIndex = index;
@@ -193,7 +195,9 @@ const UnitList: FC<UnitListProps> = (props) => {
               onClick={handleClick}
               unavailable={unitOption.expired || undefined}
               href={resolveOakHref({
-                page: "lesson-index",
+                page: `${
+                  isSpecialistUnit ? "specialist-lesson-index" : "lesson-index"
+                }`,
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
