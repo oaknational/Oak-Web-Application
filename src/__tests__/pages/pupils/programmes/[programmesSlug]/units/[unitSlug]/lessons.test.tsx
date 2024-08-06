@@ -73,19 +73,22 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   describe("getStaticProps", () => {
-    it("Should call API:pupilLessonLisitngQuery", async () => {
+    it("Should call API:pupilLessonListingQuery", async () => {
+      const programmeSlug = "programme-slug-secondary-year-10";
+      const unitSlug = "unit-slug";
+
       await getStaticProps({
         params: {
-          programmeSlug: "ks123",
-          unitSlug: "unitSlug",
+          programmeSlug,
+          unitSlug,
         },
       });
 
       expect(
         curriculumApi2023.default.pupilLessonListingQuery,
       ).toHaveBeenCalledWith({
-        programmeSlug: "ks123",
-        unitSlug: "unitSlug",
+        programmeSlug,
+        unitSlug,
       });
     });
   });
