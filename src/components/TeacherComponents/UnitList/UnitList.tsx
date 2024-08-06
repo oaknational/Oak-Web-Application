@@ -245,7 +245,6 @@ const UnitList: FC<UnitListProps> = (props) => {
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
           <OakPagination
             {...paginationProps}
-            initialPage={currentPage}
             onPageChange={onPageChange}
             pageName={props.subjectTitle}
             paginationHref={paginationRoute}

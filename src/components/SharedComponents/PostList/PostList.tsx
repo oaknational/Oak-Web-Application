@@ -54,8 +54,7 @@ const PostList: FC<PostListProps> = (props) => {
     showImageOnTablet,
   } = props;
 
-  const { firstItemRef, currentPage, paginationRoute, onPageChange } =
-    paginationProps;
+  const { firstItemRef, paginationRoute, onPageChange } = paginationProps;
   const blogsOrWebinars =
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
 
@@ -99,7 +98,6 @@ const PostList: FC<PostListProps> = (props) => {
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
           <OakPagination
             {...paginationProps}
-            initialPage={currentPage}
             onPageChange={onPageChange}
             pageName={blogsOrWebinars}
             paginationHref={paginationRoute}

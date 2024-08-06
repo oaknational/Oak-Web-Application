@@ -90,7 +90,6 @@ const LessonList: FC<LessonListProps> = (props) => {
         >
           <OakPagination
             {...paginationProps}
-            initialPage={currentPage}
             onPageChange={onPageChange}
             pageName={unitTitle}
             paginationHref={paginationRoute}

@@ -85,7 +85,6 @@ const SearchResults = (props: SearchResultsProps) => {
         <Box $width="100%" $mt={[0, "auto"]} $pb={72} $pt={48}>
           <OakPagination
             {...paginationProps}
-            initialPage={currentPage}
             onPageChange={onPageChange}
             pageName={"Search"}
             paginationHref={paginationRoute}
