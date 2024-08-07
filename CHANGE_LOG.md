@@ -1,3 +1,20 @@
+# [1.508.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.507.0...v1.508.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* false positive test ([0ca3b04](https://github.com/oaknational/Oak-Web-Application/commit/0ca3b0484c19610faffb958b9c3ac4382718bec4))
+
+
+### Features
+
+* add signout button to hamburger menu ([f017b7c](https://github.com/oaknational/Oak-Web-Application/commit/f017b7c6591a05fb4d90f21d675ea48b93a07d2a))
+* **LESQ-972:** add an endpoint to fully log a use out of Auth0 and OWA ([350c745](https://github.com/oaknational/Oak-Web-Application/commit/350c745a04d44b26461006418e2c449e61ceac17))
+* **LESQ-972:** install `UserProvider` ([45e171b](https://github.com/oaknational/Oak-Web-Application/commit/45e171be3087aaaa96d7356a0e29d8c5a274806d))
+* **LESQ-972:** install Auth0 ([9deb085](https://github.com/oaknational/Oak-Web-Application/commit/9deb08502961d0d685a4b7f0a76a7f93922fc77d))
+* **LESQ-972:** put the download page behind sign in ([3c92296](https://github.com/oaknational/Oak-Web-Application/commit/3c9229657661708f93a4162fbedd58eb8d2e4129))
+* **LESQ-972:** use the authenticated download page when the feature is enabled ([a443213](https://github.com/oaknational/Oak-Web-Application/commit/a443213de9d1927a0562b82dae0ad1ae942409e9))
+
 # [1.507.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.506.0...v1.507.0) (2024-08-07)
 
 
