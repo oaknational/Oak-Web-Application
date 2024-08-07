@@ -21,9 +21,8 @@ export type YearData = {
   [key: string]: {
     units: Unit[];
     childSubjects: Subject[];
-    domains: Domain[];
     tiers: Tier[];
-    disciplines: Discipline[];
+    subjectCategories: SubjectCategory[];
   };
 };
 
@@ -45,7 +44,7 @@ export interface Domain {
   domain_id: number;
 }
 
-export interface Discipline {
+export interface SubjectCategory {
   id: number;
   title: string;
 }
@@ -57,7 +56,7 @@ export interface Tier {
 
 export interface YearSelection {
   [key: string]: {
-    discipline?: Discipline | null;
+    subjectCategory?: SubjectCategory | null;
     subject?: Subject | null;
     domain?: Domain | null;
     tier?: Tier | null;
@@ -71,10 +70,12 @@ type CurriculumVisualiserProps = {
   selectedYear: string | null;
   examboardSlug: string | null;
   yearData: YearData;
-  handleSelectDomain: (year: string, domain: Domain) => void;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
-  handleSelectDiscipline: (year: string, discipline: Discipline) => void;
+  handleSelectSubjectCatgeory: (
+    year: string,
+    subjectCategory: SubjectCategory,
+  ) => void;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
@@ -102,30 +103,18 @@ export function isVisibleUnit(
   }
   const filterBySubject =
     !s.subject || s.subject.subject_slug === unit.subject_slug;
-  const filterByDiscipline =
-    s.discipline?.id == -1 ||
-    unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
-  const filterByDomain =
-    !s.domain ||
-    s.domain.domain_id === 0 ||
-    s.domain.domain_id === unit.domain_id;
+  const filterBySubjectCategory =
+    s.subjectCategory?.id == -1 ||
+    unit.subjectcategories?.findIndex(
+      (subjectcategory) => subjectcategory.id === s.subjectCategory?.id,
+    ) !== -1;
   const filterByTier =
     !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
 
   // Look for duplicates that don't have an examboard, tier or subject parent
   // (i.e. aren't handled by other filters)
 
-  return (
-    filterBySubject && filterByDomain && filterByTier && filterByDiscipline
-  );
-}
-
-function isSelectedDomain(
-  yearSelection: YearSelection,
-  year: string,
-  domain: Domain,
-) {
-  return yearSelection[year]?.domain?.domain_id === domain.domain_id;
+  return filterBySubject && filterBySubjectCategory && filterByTier;
 }
 
 function isSelectedSubject(
@@ -144,12 +133,12 @@ function isSelectedTier(
   return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
 }
 
-function isSelectedDiscipline(
+function isSelectedSubjectCategory(
   yearSelection: YearSelection,
   year: string,
-  discipline: Discipline,
+  subjectCategory: SubjectCategory,
 ) {
-  return yearSelection[year]?.discipline?.id === discipline.id;
+  return yearSelection[year]?.subjectCategory?.id === subjectCategory.id;
 }
 
 function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
@@ -180,10 +169,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   selectedYear,
   examboardSlug,
   yearData,
-  handleSelectDomain,
   handleSelectSubject,
   handleSelectTier,
-  handleSelectDiscipline,
+  handleSelectSubjectCatgeory,
   mobileHeaderScrollOffset,
   setUnitData,
   selectedThread,
@@ -257,8 +245,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
           .map((year, index) => {
-            const { units, childSubjects, domains, tiers, disciplines } =
-              yearData[year] as YearData[string];
+            const { units, childSubjects, tiers, subjectCategories } = yearData[
+              year
+            ] as YearData[string];
+
+            console.log({ year, subjectCategories });
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -294,13 +285,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   Year {year}
                 </OakHeading>
-                {disciplines?.length > 1 && (
-                  <Box role="group" aria-label="Disciplines">
-                    {disciplines.map((discipline, index) => {
-                      const isSelected = isSelectedDiscipline(
+                {subjectCategories?.length > 1 && (
+                  <Box role="group" aria-label="Subject category">
+                    {subjectCategories.map((subjectCategory, index) => {
+                      const isSelected = isSelectedSubjectCategory(
                         yearSelection,
                         year,
-                        discipline,
+                        subjectCategory,
                       );
 
                       return (
@@ -309,12 +300,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           $mr={20}
                           background={isSelected ? "black" : "white"}
                           key={index}
-                          label={discipline.title}
+                          label={subjectCategory.title}
                           onClick={() =>
-                            handleSelectDiscipline(year, discipline)
+                            handleSelectSubjectCatgeory(year, subjectCategory)
                           }
                           size="small"
-                          data-testid="discipline-button"
+                          data-testid="subjectCategory-button"
                           aria-pressed={isSelected}
                         />
                       );
@@ -346,31 +337,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         );
                       },
                     )}
-                  </Box>
-                )}
-                {domains.length > 0 && (
-                  <Box role="group" aria-label="Domains">
-                    {domains.map((domain: Domain) => {
-                      const isSelected = isSelectedDomain(
-                        yearSelection,
-                        year,
-                        domain,
-                      );
-
-                      return (
-                        <Button
-                          $mb={20}
-                          $mr={20}
-                          background={isSelected ? "black" : "white"}
-                          key={domain.domain_id}
-                          label={domain.domain}
-                          onClick={() => handleSelectDomain(year, domain)}
-                          size="small"
-                          data-testid="domain-button"
-                          aria-pressed={isSelected}
-                        />
-                      );
-                    })}
                   </Box>
                 )}
                 {tiers.length > 0 && (
