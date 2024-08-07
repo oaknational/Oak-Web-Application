@@ -38,8 +38,7 @@ describe("usePagination()", () => {
     expect(result.current.currentPage).toBe(1);
   });
   test("correct hrefs on first page", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
-
+    useRouter.mockReturnValue({ pathname, query: { page: 1 } });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -119,6 +118,7 @@ describe("usePagination()", () => {
       currentPageItems: items.slice(0, pageSize),
     });
   });
+
   test("returns firstItemRef with a valid ref", () => {
     useRouter.mockReturnValueOnce({ pathname, query: {} });
     const { result } = renderHook(() =>
