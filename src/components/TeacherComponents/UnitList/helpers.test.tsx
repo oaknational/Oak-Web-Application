@@ -5,6 +5,8 @@ import {
   isUnitOption,
 } from "./helpers";
 
+import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
+
 describe("unit list helpers", () => {
   test("isUnitOption determines if the item is a unit option", () => {
     const result = isUnitOption([
@@ -84,12 +86,7 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
-      paginationProps: {
-        currentPage: 1,
-        pageSize: 10,
-        firstItemRef: null,
-        totalPages: 1,
-      },
+      paginationProps: mockPaginationProps,
       onClick: () => {},
     });
     expect(result).toEqual({
@@ -117,12 +114,7 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
-      paginationProps: {
-        currentPage: 1,
-        pageSize: 10,
-        firstItemRef: null,
-        totalPages: 1,
-      },
+      paginationProps: mockPaginationProps,
       onClick: () => {},
     });
     expect(result).toEqual({
