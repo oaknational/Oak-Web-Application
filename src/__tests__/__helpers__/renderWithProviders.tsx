@@ -117,7 +117,6 @@ export const allProviders = Object.entries(providersByName).reduce(
 const renderWithProviders =
   (providers: Partial<ProviderPartialProps> = allProviders) =>
   (ui: ReactElement, renderOptions?: Omit<RenderOptions, "wrapper">) => {
-    console.log("diego providers", providers);
     const MockedProviders = getMockedProviders(providers);
     return render(ui, { wrapper: MockedProviders, ...renderOptions });
   };
