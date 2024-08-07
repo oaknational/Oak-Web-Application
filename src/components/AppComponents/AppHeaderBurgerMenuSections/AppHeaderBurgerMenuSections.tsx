@@ -32,7 +32,7 @@ const AppHeaderBurgerburgerMenuSections: FC<
   return (
     <OakFlex $flexDirection="column" $gap="all-spacing-7">
       {user && (
-        <OakSecondaryButton element="a" href="/api/auth/oidc-logout">
+        <OakSecondaryButton element="a" href="/api/auth/logout">
           Sign out
         </OakSecondaryButton>
       )}
