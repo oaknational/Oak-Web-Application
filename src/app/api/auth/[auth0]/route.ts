@@ -12,5 +12,4 @@ export const GET = auth0.handleAuth({
   "oidc-logout": auth0.handleLogout({
     returnTo: oidcLogoutUrl.toString(),
   }),
-  logout: auth0.handleLogout({ returnTo: "/" }),
 });
