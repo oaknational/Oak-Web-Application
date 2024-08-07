@@ -104,7 +104,7 @@ export const getMockedProviders =
     );
   };
 
-const allProviders = Object.entries(providersByName).reduce(
+export const allProviders = Object.entries(providersByName).reduce(
   (acc, [name, [, defaultProps]]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -117,6 +117,7 @@ const allProviders = Object.entries(providersByName).reduce(
 const renderWithProviders =
   (providers: Partial<ProviderPartialProps> = allProviders) =>
   (ui: ReactElement, renderOptions?: Omit<RenderOptions, "wrapper">) => {
+    console.log("diego providers", providers);
     const MockedProviders = getMockedProviders(providers);
     return render(ui, { wrapper: MockedProviders, ...renderOptions });
   };
