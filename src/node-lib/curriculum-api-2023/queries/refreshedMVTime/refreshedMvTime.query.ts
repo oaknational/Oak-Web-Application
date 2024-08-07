@@ -10,6 +10,7 @@ const refreshedMVTimeQuery =
       throw new OakError({ code: "getRefreshedMVTime/params-incorrect" });
     }
 
+    console.log({ viewName });
     const res = await sdk.refreshedMVTime({
       viewName,
     });

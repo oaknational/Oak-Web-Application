@@ -9,6 +9,7 @@ const curriculumUnitsIncludeNewSchema = z.object({
       connection_prior_unit_title: z.string().nullable(),
       description: z.string().nullable(),
       why_this_why_now: z.string().nullable(),
+      cycle: z.string().nullable(),
       domain: z.string().nullable(),
       domain_id: z.number().nullable(),
       examboard: z.string().nullable(),

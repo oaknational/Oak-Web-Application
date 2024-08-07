@@ -225,10 +225,7 @@ export async function buildUnit(
   });
 
   let unitDescriptions: string = "";
-  if (
-    unitOptionIfAvailable.connection_prior_unit_title ||
-    unitOptionIfAvailable.connection_future_unit_title
-  ) {
+  if (unit.cycle === "1") {
     const priorUnitTitle = unitOptionIfAvailable.connection_prior_unit_title
       ? unitOptionIfAvailable.connection_prior_unit_title
       : "-";
