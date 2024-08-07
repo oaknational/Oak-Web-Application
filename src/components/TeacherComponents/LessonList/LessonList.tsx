@@ -48,7 +48,7 @@ const LessonList: FC<LessonListProps> = (props) => {
     unitTitle,
     onClick,
   } = props;
-  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
 
   return (
@@ -90,7 +90,6 @@ const LessonList: FC<LessonListProps> = (props) => {
         >
           <OakPagination
             {...paginationProps}
-            onPageChange={onPageChange}
             pageName={unitTitle}
             paginationHref={paginationRoute}
           />

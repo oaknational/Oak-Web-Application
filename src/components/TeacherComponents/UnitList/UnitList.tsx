@@ -81,7 +81,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
 
-  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
 
   const indexOfFirstLegacyUnit = units
@@ -245,7 +245,6 @@ const UnitList: FC<UnitListProps> = (props) => {
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
           <OakPagination
             {...paginationProps}
-            onPageChange={onPageChange}
             pageName={props.subjectTitle}
             paginationHref={paginationRoute}
           />

@@ -38,13 +38,8 @@ const SearchResults = (props: SearchResultsProps) => {
     items: hits,
   });
 
-  const {
-    currentPageItems,
-    currentPage,
-    firstItemRef,
-    paginationRoute,
-    onPageChange,
-  } = paginationProps;
+  const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
+    paginationProps;
 
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;
@@ -85,7 +80,6 @@ const SearchResults = (props: SearchResultsProps) => {
         <Box $width="100%" $mt={[0, "auto"]} $pb={72} $pt={48}>
           <OakPagination
             {...paginationProps}
-            onPageChange={onPageChange}
             pageName={"Search"}
             paginationHref={paginationRoute}
           />
