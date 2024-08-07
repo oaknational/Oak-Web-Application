@@ -1,3 +1,21 @@
+# [1.507.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.506.0...v1.507.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* disabled cards ([4b3b3c4](https://github.com/oaknational/Oak-Web-Application/commit/4b3b3c4dea03ac6e6f693793c6e4b60fb02b1618))
+* specialist page link ([9721d1a](https://github.com/oaknational/Oak-Web-Application/commit/9721d1aa1c4d11a826c785d2b47152ff28307443))
+* update test params ([ed8b0b2](https://github.com/oaknational/Oak-Web-Application/commit/ed8b0b2dbc4c1caff237b53ace251f0962f713bc))
+
+
+### Features
+
+* add specialist unit header ([12ecd04](https://github.com/oaknational/Oak-Web-Application/commit/12ecd048786e49b393cc9f7da3ec4e8944d9ef24))
+* add year time ([3dab179](https://github.com/oaknational/Oak-Web-Application/commit/3dab1790ff059bed200014ec9ab0ff5a2fa29299))
+* combine subjects on subject listing page ([a4db1fa](https://github.com/oaknational/Oak-Web-Application/commit/a4db1fa7490e3a31ed72963d5d4e40131ba42c47))
+* implement combined unit listing pages for all ks1-4 subjects ([b261a55](https://github.com/oaknational/Oak-Web-Application/commit/b261a558b20fe998f79627e081f4127cacc880e9))
+* optionality card ([d794ac3](https://github.com/oaknational/Oak-Web-Application/commit/d794ac321b3c1fbf4bd5e6ac221a467dafff5801))
+
 # [1.506.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.505.0...v1.506.0) (2024-08-07)
 
 
