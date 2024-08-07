@@ -4,16 +4,17 @@ import {
   OakUL,
   OakHeadingTag,
   OakFlex,
+  OakPagination,
 } from "@oaknational/oak-components";
 
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";
 import Box from "@/components/SharedComponents/Box";
-import Pagination, {
+import {
+  UsePaginationProps,
   PaginationProps,
-} from "@/components/SharedComponents/Pagination";
-import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+} from "@/components/SharedComponents/Pagination/usePagination";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
@@ -47,7 +48,9 @@ const LessonList: FC<LessonListProps> = (props) => {
     unitTitle,
     onClick,
   } = props;
-  const { currentPage, pageSize, firstItemRef } = paginationProps;
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+    paginationProps;
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $flexDirection={["column-reverse", "column"]}>
@@ -78,8 +81,18 @@ const LessonList: FC<LessonListProps> = (props) => {
         </>
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
-        <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination pageName={unitTitle} {...paginationProps} />
+        <Box
+          $width="100%"
+          $mt={[0, "auto"]}
+          $pb={[30, 44]}
+          $pt={[46, 36]}
+          data-testid="pagination-box"
+        >
+          <OakPagination
+            {...paginationProps}
+            pageName={unitTitle}
+            paginationHref={paginationRoute}
+          />
         </Box>
       ) : (
         <Box $pb={32} />

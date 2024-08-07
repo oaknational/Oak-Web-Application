@@ -9,6 +9,12 @@ const blogAndWebinarListData: BlogAndWebinarListProps = {
     currentPageItems: [],
     upcomingItem: undefined,
     paginationProps: {
+      paginationRoute: "/blog",
+      onPageChange: () => null,
+      isFirstPage: true,
+      isLastPage: false,
+      prevHref: "",
+      nextHref: "",
       paginationTitle: "",
       currentPage: 1,
       totalPages: 0,

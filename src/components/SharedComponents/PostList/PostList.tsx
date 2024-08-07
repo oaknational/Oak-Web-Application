@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakLI, OakUL } from "@oaknational/oak-components";
+import { OakLI, OakPagination, OakUL } from "@oaknational/oak-components";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
 
@@ -8,9 +8,7 @@ import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
 import { Hr } from "@/components/SharedComponents/Typography";
-import Pagination, {
-  PaginationProps,
-} from "@/components/SharedComponents/Pagination";
+import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
@@ -56,9 +54,10 @@ const PostList: FC<PostListProps> = (props) => {
     showImageOnTablet,
   } = props;
 
-  const { firstItemRef } = paginationProps;
+  const { firstItemRef, paginationRoute } = paginationProps;
   const blogsOrWebinars =
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
+
   return (
     <Flex
       $flexDirection="column"
@@ -97,7 +96,11 @@ const PostList: FC<PostListProps> = (props) => {
       ) : null}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination pageName={blogsOrWebinars} {...paginationProps} />
+          <OakPagination
+            {...paginationProps}
+            pageName={blogsOrWebinars}
+            paginationHref={paginationRoute}
+          />
         </Box>
       )}
     </Flex>

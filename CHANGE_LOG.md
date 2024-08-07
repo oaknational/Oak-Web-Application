@@ -1,3 +1,21 @@
+## [1.504.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.0...v1.504.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* wrap quiz hints in mathjax ([5ef9497](https://github.com/oaknational/Oak-Web-Application/commit/5ef9497b4325c64a35629fda255b5d91327c7f1c))
+
+# [1.504.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.503.0...v1.504.0) (2024-08-06)
+
+
+### Features
+
+* **LESQ-972:** add an endpoint to fully log a use out of Auth0 and OWA ([28743b1](https://github.com/oaknational/Oak-Web-Application/commit/28743b1752761d3f061ddcb6da7bb9726a31014c))
+* **LESQ-972:** install `UserProvider` ([8bb023a](https://github.com/oaknational/Oak-Web-Application/commit/8bb023afc3ce2799f62fa70be89f4faf975f342b))
+* **LESQ-972:** install Auth0 ([d79ccaa](https://github.com/oaknational/Oak-Web-Application/commit/d79ccaa8d24fd8817df4675ba3c88651a187f111))
+* **LESQ-972:** put the download page behind sign in ([c711b2b](https://github.com/oaknational/Oak-Web-Application/commit/c711b2b12bbd3cc3a5da308f3ac5eb3de350494a))
+* **LESQ-972:** use the authenticated download page when the feature is enabled ([bdebe18](https://github.com/oaknational/Oak-Web-Application/commit/bdebe189cbdcb354243653426f30c2202cdeb5ac))
+
 # [1.503.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.1...v1.503.0) (2024-08-06)
 
 
