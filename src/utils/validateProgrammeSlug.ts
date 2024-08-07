@@ -8,76 +8,55 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 export const validateProgrammeSlug = (programmeSlug: string) => {
-  const maxExamboardLength = examboardSlugs._def.values.reduce(
-    (acc, examboard) => Math.max(acc, examboard.length),
-    0,
-  );
-
-  const maxTierLength = tierSlugs._def.values.reduce(
-    (acc, tier) => Math.max(acc, tier.length),
-    0,
-  );
-
-  const maxYearLength = yearSlugs._def.values.reduce(
-    (acc, year) => Math.max(acc, year.length),
-    0,
-  );
-
-  const maxKeystageLength = keystageSlugs._def.values.reduce(
-    (acc, keystage) => Math.max(acc, keystage.length),
-    0,
-  );
-
   const parts = programmeSlug.split("-");
-  const index = parts.findIndex((part) =>
+
+  if (parts.at(-1) === "l") {
+    parts.pop();
+  }
+
+  const phaseIndex = parts.findIndex((part) =>
     phaseSlugs._def.values.find((slug) => slug === part),
   );
 
-  if (index < 0) {
-    throw new Error("programmeSlug is invalid");
+  if (phaseIndex < 0) {
+    throw new Error("Invalid phase slug");
   }
 
-  const subjectSlug = parts.slice(0, index).join("-");
-  const phaseSlug = parts[index];
-  const rest = parts.slice(index + 1).join("-");
-
-  const trimmed = rest.replace(/-l$/, "");
-
-  // TODO: add pathways when released
-  const maxProgrammeSlugLength =
-    Math.max(maxYearLength, maxKeystageLength) +
-    maxExamboardLength +
-    maxTierLength +
-    3;
-
-  if (trimmed.length > maxProgrammeSlugLength) {
-    throw new Error(
-      `programmeSlug is too long. Max length is ${maxProgrammeSlugLength}`,
-    );
-  }
-
-  // NB. we've already guaranteed that the slug is not too long so this is safe to run
-  // TODO: add pathways when released
-  const matches =
-    /^(year-\d{1,2}|ks\d|early-years-foundation-stage)-?([a-z]+)?-?([a-z]+)?$/.exec(
-      trimmed,
-    );
-
-  const yearKsSlug = matches?.[1];
-  const programmeFactors = [matches?.[2], matches?.[3]].filter(Boolean);
-
+  const subjectSlug = parts.splice(0, phaseIndex).join("-");
   subjectSlugs.parse(subjectSlug);
+
+  const phaseSlug = parts.splice(0, 1).join();
   phaseSlugs.parse(phaseSlug);
+
+  // Now programme factors
+  // TODO: add pathways when released
+
+  const tierIndex = parts.findIndex((part) =>
+    tierSlugs._def.values.find((slug) => slug === part),
+  );
+
+  if (tierIndex > -1) {
+    const tierSlug = parts.splice(tierIndex, 1).join();
+    if (tierSlug) {
+      tierSlugs.parse(tierSlug);
+    }
+  }
+
+  const examboardIndex = parts.findIndex((part) =>
+    examboardSlugs._def.values.find((slug) => slug === part),
+  );
+
+  if (examboardIndex > -1) {
+    const examboardSlug = parts.splice(examboardIndex, 1).join();
+    examboardSlugs.parse(examboardSlug);
+  }
+
+  // we should now be left with a year slug or a keystage slug
+  const yearKsSlug = parts.join("-");
+
   try {
     yearSlugs.parse(yearKsSlug);
   } catch (e) {
     keystageSlugs.parse(yearKsSlug);
   }
-  programmeFactors.forEach((factor) => {
-    try {
-      examboardSlugs.parse(factor);
-    } catch (e) {
-      tierSlugs.parse(factor);
-    }
-  });
 };

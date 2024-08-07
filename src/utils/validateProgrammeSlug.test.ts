@@ -5,12 +5,6 @@ describe("validateProgrammeSlug", () => {
     jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
-  it("should throw an error if the programmeSlug is too long", () => {
-    expect(() => {
-      validateProgrammeSlug("test-primary-" + "abracodabra-".repeat(100));
-    }).toThrow(/programmeSlug is too long. Max length is/);
-  });
-
   it.each([
     "english-primary-year-1",
     "english-primary-ks1",
