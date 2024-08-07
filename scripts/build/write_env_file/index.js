@@ -251,6 +251,13 @@ async function main() {
     AUTH0_CLIENT_SECRET:
       process.env.AUTH0_CLIENT_SECRET || oakConfig.auth0?.clientSecret,
     AUTH0_BASE_URL: CUSTOM_URL || oakConfig.oak.appBaseUrl,
+
+    AUTH0_USER_MANAGEMENT_CLIENT_ID:
+      process.env.AUTH0_USER_MANAGEMENT_CLIENT_ID ||
+      oakConfig.auth0.userManagementClientId,
+    AUTH0_USER_MANAGEMENT_CLIENT_SECRET:
+      process.env.AUTH0_USER_MANAGEMENT_CLIENT_SECRET ||
+      oakConfig.auth0.userManagementClientSecret,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
