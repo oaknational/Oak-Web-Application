@@ -91,27 +91,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            <Flex $display={["none", "flex"]}>
-              {hasCurriculumDownload && isKeyStagesAvailable && (
-                <HeaderListingCurriculumDownloadButton
-                  keyStageSlug={keyStageSlug}
-                  subjectSlug={subjectSlug}
-                />
-              )}
-              {hasCurriculumDownload && !isKeyStagesAvailable && (
-                <ButtonAsLink
-                  icon={"download"}
-                  iconBackground="black"
-                  label={"Curriculum download"}
-                  href={specialistDownloadLink}
-                  page={null}
-                  size="large"
-                  variant="minimal"
-                  $iconPosition={"trailing"}
-                  data-testid="curriculum-downloads-link"
-                />
-              )}
-            </Flex>
           </Flex>
         </Flex>
       </Flex>

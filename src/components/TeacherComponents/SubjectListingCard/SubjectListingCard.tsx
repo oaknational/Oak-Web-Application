@@ -3,11 +3,11 @@ import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
 
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
-import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardDoubleCountCard";
+import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
-export type SubjectListingCardDoubleProps = Omit<CardProps, "children"> & {
+export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
 } & {
   subject: Subjects[number];
@@ -16,7 +16,7 @@ export type SubjectListingCardDoubleProps = Omit<CardProps, "children"> & {
   keyStageTitle: string;
 };
 
-const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
+const SubjectListingCard: FC<SubjectListingCardProps> = ({
   titleTag = "h2",
   subject,
   keyStageSlug,
@@ -58,34 +58,22 @@ const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
             $font={"heading-6"}
             tag={titleTag}
           >
-            {subject.new?.subjectTitle || subject.old?.subjectTitle}
+            {subject.data.subjectTitle}
           </OakHeading>
         </Flex>
       </Flex>
       <Flex role={"list"} $pb={12} $ph={12} $gap={12} $width={"100%"}>
-        {subject.old && (
-          <Flex role={"listitem"} $flex={1}>
-            <SubjectListingCardDoubleCountCard
-              isLegacyLesson={true}
-              keyStageSlug={keyStageSlug}
-              keyStageTitle={keyStageTitle}
-              {...subject.old}
-            />
-          </Flex>
-        )}
-        {subject.new && (
-          <Flex role={"listitem"} $flex={1}>
-            <SubjectListingCardDoubleCountCard
-              isLegacyLesson={false}
-              keyStageTitle={keyStageTitle}
-              keyStageSlug={keyStageSlug}
-              {...subject.new}
-            />
-          </Flex>
-        )}
+        <Flex role={"listitem"} $flex={1}>
+          <SubjectListingCardDoubleCountCard
+            isLegacyLesson={!subject.hasNewContent}
+            keyStageSlug={keyStageSlug}
+            keyStageTitle={keyStageTitle}
+            {...subject.data}
+          />
+        </Flex>
       </Flex>
     </Card>
   );
 };
 
-export default SubjectListingCardDouble;
+export default SubjectListingCard;
