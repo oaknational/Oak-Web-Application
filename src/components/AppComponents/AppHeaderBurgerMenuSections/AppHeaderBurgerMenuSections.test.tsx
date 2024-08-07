@@ -34,7 +34,7 @@ describe("AppHeaderBurgerburgerMenuSections", () => {
       <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
     );
 
-    const signOutButton = screen.queryByRole("button", { name: "Sign out" });
+    const signOutButton = screen.queryByRole("link", { name: "Sign out" });
     expect(signOutButton).not.toBeInTheDocument();
   });
   it("renders a sign out button when a user is logged in", async () => {
