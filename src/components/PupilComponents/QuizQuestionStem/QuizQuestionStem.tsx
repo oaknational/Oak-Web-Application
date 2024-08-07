@@ -8,11 +8,11 @@ import {
   removeMarkdown,
   shortAnswerTitleFormatter,
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import {
   ImageItem,
   TextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 export const QuizQuestionStem = ({
   questionStem,

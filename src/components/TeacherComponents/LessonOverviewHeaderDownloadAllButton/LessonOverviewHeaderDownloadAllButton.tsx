@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -32,6 +33,9 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   } = props;
 
   const preselected = "all";
+  const downloads = useFeatureFlagEnabled("use-auth-owa")
+    ? "downloads-auth"
+    : "downloads";
 
   if (expired || !showDownloadAll) {
     return null;
@@ -47,6 +51,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           lessonSlug,
           unitSlug,
           programmeSlug,
+          downloads,
           query: { preselected },
         }
       : programmeSlug && unitSlug && !isSpecialist
@@ -55,11 +60,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
             lessonSlug,
             unitSlug,
             programmeSlug,
+            downloads,
             query: { preselected },
           }
         : {
             page: "lesson-downloads-canonical",
             lessonSlug,
+            downloads,
             query: { preselected },
           };
 

@@ -15,6 +15,7 @@ export type ResourcePageSchoolDetailsProps = {
       school: string;
     }>
   >;
+  withHomeschool: boolean;
 };
 
 const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
@@ -22,6 +23,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
   initialValue,
   initialSchoolName,
   errors,
+  withHomeschool,
 }) => {
   const [checkboxValue, setCheckboxValue] = useState(
     initialValue === "notListed",
@@ -32,7 +34,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
     schoolPickerInputValue,
     setSchoolPickerInputValue,
     schools,
-  } = useSchoolPicker();
+  } = useSchoolPicker({ withHomeschool });
 
   // initial values
   useEffect(() => {
@@ -93,6 +95,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         required={true}
         aria-invalid={errors?.school?.message ? true : false}
         aria-describedby={"school-error"}
+        withHomeschool={withHomeschool}
       />
       <OakFlex $mt="space-between-xs" $mb="space-between-m2">
         <Checkbox

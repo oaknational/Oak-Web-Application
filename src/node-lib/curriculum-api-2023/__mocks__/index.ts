@@ -72,7 +72,10 @@ const curriculumApi: Pick<
     };
   }),
   pupilLessonListingQuery: jest.fn(async () => {
-    return [lessonBrowseDataFixture({})];
+    return {
+      browseData: [lessonBrowseDataFixture({})],
+      backLinkData: [{ programmeSlug: "programmeSlug", isLegacy: false }],
+    };
   }),
   pupilUnitListingQuery: jest.fn(async () => {
     return [unitBrowseDataFixture({})];

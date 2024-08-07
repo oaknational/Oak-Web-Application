@@ -16,6 +16,7 @@ type ResourcePageSchoolPickerProps = Omit<
   hasError: boolean;
   required?: boolean;
   errorId?: string;
+  withHomeschool: boolean;
 };
 
 export type School = {
@@ -51,6 +52,7 @@ const ResourcePageSchoolPicker: FC<ResourcePageSchoolPickerProps> = (props) => {
         }
       }}
       required={props.required}
+      withHomeschool={props.withHomeschool}
     >
       {(item) => {
         const formattedSchool = formatSchoolName(
