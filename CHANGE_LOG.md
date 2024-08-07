@@ -1,3 +1,26 @@
+# [1.506.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.505.0...v1.506.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* address security hotspot ([27652b9](https://github.com/oaknational/Oak-Web-Application/commit/27652b96d2fafeaf42a7bdd896e7210702228595))
+* broken test ([1b181c2](https://github.com/oaknational/Oak-Web-Application/commit/1b181c266895324ee5a12709ffba1f360a3b81a4))
+* overwrite backlink when navigation is internal ([b611d9e](https://github.com/oaknational/Oak-Web-Application/commit/b611d9e2a181eaec73cfc20ab3baef2dd11df93f))
+* regex reliability ([f173111](https://github.com/oaknational/Oak-Web-Application/commit/f1731119c10ef9c6fc59ade33da9ce537327a491))
+* remove regex from validation function ([9ad2b23](https://github.com/oaknational/Oak-Web-Application/commit/9ad2b23036247d68075ad284a442998d30cdb0cd))
+* securit hotspot ([dd1cf95](https://github.com/oaknational/Oak-Web-Application/commit/dd1cf95764f9a217c5c08ff104f97e9e7ce15e8e))
+* type error ([873b35a](https://github.com/oaknational/Oak-Web-Application/commit/873b35ab075f62ddfeb267a4c8c1554a1bd3062a))
+* type errors ([5007540](https://github.com/oaknational/Oak-Web-Application/commit/500754029e67c6574cfef2db8c7a65df0dba53cb))
+* type errors ([d08da4c](https://github.com/oaknational/Oak-Web-Application/commit/d08da4c0f0f9df5267d0261da1359487b627de07))
+* use schema for phase slugs ([be0f8f3](https://github.com/oaknational/Oak-Web-Application/commit/be0f8f32343fbd7f5ac9290f47587cd0d064c59f))
+
+
+### Features
+
+* added programme slug validation for ddos safety ([2ae49eb](https://github.com/oaknational/Oak-Web-Application/commit/2ae49eb7b63805a5fc9449d5ab8bf812a103c1c2))
+* choose correct backlink for lesson listing ([74dba21](https://github.com/oaknational/Oak-Web-Application/commit/74dba21f5bdcbc0ad779b67c62a1da99ee07a44f))
+* updating lesson listing query and page to choose appropriate backlink ([e79243f](https://github.com/oaknational/Oak-Web-Application/commit/e79243f1034a60245c5295f0ec055e1088551e80))
+
 # [1.505.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.1...v1.505.0) (2024-08-07)
 
 
