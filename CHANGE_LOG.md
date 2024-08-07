@@ -1,3 +1,15 @@
+# [1.505.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.1...v1.505.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* isLast and isFirst destructured from the usePagination hook ([c958a5e](https://github.com/oaknational/Oak-Web-Application/commit/c958a5e65d002753f5e42463db163361296cf381))
+
+
+### Features
+
+* implement new pagination component on owa ([8aaf257](https://github.com/oaknational/Oak-Web-Application/commit/8aaf257971c28db09083aed9812449474264e9d5))
+
 ## [1.504.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.0...v1.504.1) (2024-08-06)
 
 
