@@ -1,20 +1,22 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import {
-  OakUL,
   OakFlex,
   OakUnitsContainer,
   OakUnitListItem,
+  OakUnitListOptionalityItem,
   OakPagination,
 } from "@oaknational/oak-components";
+import { NextRouter, useRouter } from "next/router";
 
-import UnitListItem, {
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
+import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
-import { UnitOption } from "@/components/TeacherComponents/UnitListOptionalityCard/UnitListOptionalityCard";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -22,6 +24,7 @@ import {
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 
 export type Tier = {
   title: string;
@@ -29,19 +32,16 @@ export type Tier = {
   unitCount: number | null;
 };
 
-type PageSize = { pageSize: number };
-type CurrentPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
+export type PageSize = { pageSize: number };
+export type CurrentPageItemsProps = Omit<
+  UnitListItemProps,
+  "index" | "onClick"
+>[];
 
 export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
-};
-
-const isCurrentPageItems = (
-  u: CurrentPageItemsProps[] | SpecialistUnit[][],
-): u is CurrentPageItemsProps[] => {
-  return (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined;
 };
 
 const isUnitOption = (
@@ -58,6 +58,37 @@ const isUnitListData = (
   u: UnitListingData | SpecialistUnitListingData,
 ): u is UnitListingData => {
   return (u as UnitListingData).keyStageSlug !== undefined;
+};
+
+const getOptionalityUnits = (
+  unit: CurrentPageItemsProps | SpecialistUnit[],
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void,
+  router: NextRouter,
+) => {
+  return unit.map((unitOption) => {
+    const handleClick = (e: MouseEvent<HTMLElement>) => {
+      // Tracking data was not being sent to avo before the page reload, so we prevent the default and use router to navigate to the page after the onClick
+      const target = e.currentTarget;
+      onClick({
+        ...unitOption,
+        index: 0,
+        onClick,
+      });
+      if (target instanceof HTMLAnchorElement) {
+        router.push(target.href);
+      }
+    };
+    return {
+      title: unitOption.title,
+      href: resolveOakHref({
+        page: "lesson-index",
+        unitSlug: unitOption.slug,
+        programmeSlug: unitOption.programmeSlug,
+      }),
+      lessonCount: unitOption.lessonCount || 0,
+      onClick: handleClick,
+    };
+  });
 };
 
 const isUnitFirstItemRef = (
@@ -80,49 +111,71 @@ const isUnitFirstItemRef = (
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
-
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
+  const router = useRouter();
 
+  const newPageItems = getPageItems(currentPageItems, false);
+  const legacyPageItems = getPageItems(currentPageItems, true);
+
+  const { phaseSlug, keyStageSlug, examBoardSlug } = getProgrammeFactors(props);
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
-  const newAndLegacyUnitsOnPage =
-    currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
-    currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
-
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
-  ) =>
-    pageItems.map((item, index) => {
+  ) => {
+    const newAndLegacyUnitsOnPage =
+      currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
+      currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
+
+    return pageItems.map((item, index) => {
       const baseIndex = index + pageSize * (currentPage - 1);
-
       let calculatedIndex = baseIndex;
-      const isMathsUnit = subjectSlug === "maths";
+      const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
-      if (isMathsUnit) {
-        const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
+      const isSpecialistUnit = !isUnitListData(props);
 
-        if (isItemLegacy) {
-          if (newAndLegacyUnitsOnPage) {
-            calculatedIndex = index;
-          } else {
-            calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
-          }
+      if (isItemLegacy) {
+        if (newAndLegacyUnitsOnPage) {
+          calculatedIndex = index;
+        } else {
+          calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
         }
       }
 
       return item.length > 1 && isUnitOption(item) ? (
-        <UnitListOptionalityCard
-          unitOptions={item}
-          index={calculatedIndex}
-          onClick={onClick}
-          data-testid="unit-list-item"
+        <OakUnitListOptionalityItem
+          index={calculatedIndex + 1}
+          key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
+          data-testid="unit-optionality-card"
+          nullTitle={item[0]!.nullTitle}
+          yearTitle={item[0]?.yearTitle}
+          firstItemRef={
+            isUnitFirstItemRef(
+              item[0]!.programmeSlug,
+              newAndLegacyUnitsOnPage,
+              index,
+            )
+              ? firstItemRef
+              : null
+          }
+          optionalityUnits={getOptionalityUnits(item, onClick, router)}
         />
       ) : (
         item.map((unitOption) => {
-          return isMathsUnit ? (
+          const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+            // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
+            e.preventDefault();
+            onClick({
+              ...unitOption,
+              index: 0,
+              onClick,
+            });
+            router.push(e.currentTarget.href);
+          };
+          return (
             <OakUnitListItem
               {...props}
               {...unitOption}
@@ -139,60 +192,27 @@ const UnitList: FC<UnitListProps> = (props) => {
               key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
               index={calculatedIndex + 1}
               isLegacy={isSlugLegacy(unitOption.programmeSlug)}
-              onClick={() =>
-                onClick({
-                  ...unitOption,
-                  index: 0,
-                  onClick,
-                })
-              }
+              onClick={handleClick}
+              unavailable={unitOption.expired || undefined}
               href={resolveOakHref({
-                page: "lesson-index",
+                page: `${
+                  isSpecialistUnit ? "specialist-lesson-index" : "lesson-index"
+                }`,
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-            />
-          ) : (
-            <UnitListItem
-              {...props}
-              {...unitOption}
-              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-              hideTopHeading
-              index={calculatedIndex}
-              firstItemRef={
-                isUnitFirstItemRef(
-                  unitOption.programmeSlug,
-                  newAndLegacyUnitsOnPage,
-                  index,
-                )
-                  ? firstItemRef
-                  : null
-              }
-              onClick={onClick}
-              data-testid="unit-list-item"
             />
           );
         })
       );
     });
-
-  // TODO: handle specialist pages properly, as we are only handling maths currently
-  const phaseSlug = isUnitListData(props) ? props.phase : undefined;
-  const examBoardSlug = isUnitListData(props) ? props.examBoardSlug : undefined;
-  const keystageSlug = isUnitListData(props) ? props.keyStageSlug : undefined;
-
-  const newPageItems = isCurrentPageItems(currentPageItems)
-    ? currentPageItems.filter((item) => !isSlugLegacy(item[0]!.programmeSlug))
-    : [];
-  const legacyPageItems = isCurrentPageItems(currentPageItems)
-    ? currentPageItems.filter((item) => isSlugLegacy(item[0]!.programmeSlug))
-    : [];
+  };
 
   const NewUnits = () =>
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
-        subject="maths"
+        subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
@@ -206,16 +226,16 @@ const UnitList: FC<UnitListProps> = (props) => {
     ) : null;
 
   const LegacyUnits = () =>
-    legacyPageItems.length && keystageSlug && phaseSlug ? (
+    legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
-        subject="maths"
+        subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-previous-downloads",
           query: {
             subject: subjectSlug,
-            keystage: keystageSlug,
+            keystage: keyStageSlug,
           },
         })}
         showHeader={
@@ -230,15 +250,25 @@ const UnitList: FC<UnitListProps> = (props) => {
   return (
     <OakFlex $flexDirection="column">
       {currentPageItems.length ? (
-        subjectSlug === "maths" ? (
+        isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
             <NewUnits />
             <LegacyUnits />
           </OakFlex>
         ) : (
-          <OakUL aria-label="A list of units" $reset>
-            {getUnitCards(currentPageItems)}
-          </OakUL>
+          <OakUnitsContainer
+            isLegacy={true}
+            subject={subjectSlug}
+            phase={"Specialist and therapies"}
+            curriculumHref={`${resolveOakHref({
+              page: "curriculum-previous-downloads",
+              query: {
+                subject: subjectSlug,
+              },
+            })}#Specialist`}
+            showHeader={true}
+            unitCards={getUnitCards(currentPageItems)}
+          />
         )
       ) : null}
       {units.length > 5 ? (

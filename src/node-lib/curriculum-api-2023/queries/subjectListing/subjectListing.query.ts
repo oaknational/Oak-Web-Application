@@ -8,7 +8,7 @@ import { constructSubjectsFromLessonData } from "./constructSubjectsFromLessonDa
 import OakError from "@/errors/OakError";
 
 const subjectListingQuery =
-  (sdk: Sdk) => async (args: { keyStageSlug: string; isLegacy: boolean }) => {
+  (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
     const { subjectLessons, key_stages } = subjectLisitingRawSchema.parse(res);

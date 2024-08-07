@@ -4,7 +4,7 @@ import { OakSpan, OakFlex } from "@oaknational/oak-components";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
-import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";
+import { SubjectListingCardProps } from "@/components/TeacherComponents/SubjectListingCard";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -14,14 +14,12 @@ import {
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 
-export type SubjectListingCardDoubleCountCardProps = KeyStageSubjectData &
-  Pick<SubjectListingCardDoubleProps, "keyStageSlug" | "keyStageTitle"> & {
+export type SubjectListingCardCountCardProps = KeyStageSubjectData &
+  Pick<SubjectListingCardProps, "keyStageSlug" | "keyStageTitle"> & {
     isLegacyLesson?: boolean;
   };
 
-const SubjectListingCardDoubleCountCard: FC<
-  SubjectListingCardDoubleCountCardProps
-> = ({
+const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
   keyStageSlug,
   keyStageTitle,
   programmeSlug,
@@ -98,4 +96,4 @@ const SubjectListingCardDoubleCountCard: FC<
   );
 };
 
-export default SubjectListingCardDoubleCountCard;
+export default SubjectListingCardCountCard;
