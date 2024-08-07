@@ -4,6 +4,7 @@ import {
   OakUnitsContainer,
   OakUnitListItem,
   OakUnitListOptionalityItem,
+  OakPagination,
 } from "@oaknational/oak-components";
 import { NextRouter, useRouter } from "next/router";
 
@@ -16,9 +17,6 @@ import {
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
-import Pagination, {
-  PaginationProps,
-} from "@/components/SharedComponents/Pagination";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -26,6 +24,7 @@ import {
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 
 export type Tier = {
   title: string;
@@ -112,7 +111,8 @@ const isUnitFirstItemRef = (
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
     props;
-  const { currentPage, pageSize, firstItemRef } = paginationProps;
+  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+    paginationProps;
   const router = useRouter();
 
   const newPageItems = getPageItems(currentPageItems, false);
@@ -273,10 +273,10 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : null}
       {units.length > 5 ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination
-            pageName={props.subjectTitle}
+          <OakPagination
             {...paginationProps}
-            firstItemRef={firstItemRef}
+            pageName={props.subjectTitle}
+            paginationHref={paginationRoute}
           />
         </Box>
       ) : (

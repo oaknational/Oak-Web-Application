@@ -14,6 +14,10 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
 const onClick = jest.fn();
 
 describe("components/ Lesson List", () => {
