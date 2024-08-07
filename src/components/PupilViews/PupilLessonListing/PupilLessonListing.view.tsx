@@ -25,11 +25,11 @@ export type PupilLessonListingViewProps = {
   programmeFields: LessonListingBrowseData[number]["programmeFields"];
   orderedCurriculumData: LessonListingBrowseData;
   programmeSlug: string;
+  backLink: string;
 };
 
 export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
-  const { unitData, programmeFields, orderedCurriculumData, programmeSlug } =
-    props;
+  const { unitData, programmeFields, orderedCurriculumData, backLink } = props;
   const {
     yearDescription,
     subject,
@@ -38,6 +38,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     examboardDescription,
     phaseSlug,
   } = programmeFields;
+
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
     useState<boolean>(unitData.expirationDate !== null);
 
@@ -70,14 +71,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   const BacktoUnits = (
-    <OakTertiaryButton
-      iconName="arrow-left"
-      href={resolveOakHref({
-        page: "pupil-unit-index",
-        programmeSlug: programmeSlug,
-      })}
-      element="a"
-    >
+    <OakTertiaryButton iconName="arrow-left" href={backLink} element="a">
       Change unit
     </OakTertiaryButton>
   );
