@@ -109,7 +109,11 @@ const QuizInner = () => {
 
   const bottomNavSlot = (
     <OakLessonBottomNav
-      hint={currentQuestionData?.hint}
+      hint={
+        currentQuestionData?.hint && (
+          <MathJaxWrap>{currentQuestionData.hint}</MathJaxWrap>
+        )
+      }
       feedback={
         isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
       }
