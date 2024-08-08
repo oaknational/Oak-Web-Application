@@ -89,15 +89,14 @@ jest.mock("../../sdk", () => {
 });
 
 describe("unitListing()", () => {
-  test("throws a not found error if no unit is found", async () => {
-    await expect(async () => {
-      await unitListing({
-        ...sdk,
-        unitListing: jest.fn(() => Promise.resolve({ units: [] })),
-      })({
-        programmeSlug: "programme-slug",
-      });
-    }).rejects.toThrow(`Resource not found`);
+  test("returns null if no unit is found", async () => {
+    const res = await unitListing({
+      ...sdk,
+      unitListing: jest.fn(() => Promise.resolve({ units: [] })),
+    })({
+      programmeSlug: "programme-slug",
+    });
+    expect(res).toBeNull();
   });
   test("returns the correct data", async () => {
     mockBatched.mockResolvedValueOnce(

@@ -11,10 +11,11 @@ import "../../browser-lib/oak-globals/oakGlobals";
 
 import renderWithProviders, {
   ProviderPartialProps,
+  allProviders,
 } from "./renderWithProviders";
 
 const renderWithSeo =
-  (providers?: Partial<ProviderPartialProps>) =>
+  (providers: Partial<ProviderPartialProps> = allProviders) =>
   (ui: ReactElement, options?: Omit<RenderOptions, "wrapper">) => {
     const renderResult = renderWithProviders(providers)(ui, options);
 

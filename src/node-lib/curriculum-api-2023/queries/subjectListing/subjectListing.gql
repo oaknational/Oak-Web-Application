@@ -3,7 +3,6 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     where: {
       _and: [
         { programme_fields: { _contains: { keystage_slug: $keyStageSlug } } }
-        { is_legacy: { _eq: $isLegacy } }
       ]
     }
   ) {
