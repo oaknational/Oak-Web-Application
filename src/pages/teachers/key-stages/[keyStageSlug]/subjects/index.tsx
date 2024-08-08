@@ -13,14 +13,11 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
-  SubjectListingPageData,
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
+import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -28,9 +25,9 @@ export type KeyStagePageProps = {
 };
 
 export type Subjects = {
-  subjectSlug: string;
-  new?: KeyStageSubjectData;
-  old?: KeyStageSubjectData;
+  slug: string;
+  data: KeyStageSubjectData;
+  hasNewContent: boolean;
 }[];
 
 export type SubjectListingPageProps = {
@@ -102,134 +99,40 @@ export const getStaticProps: GetStaticProps<
 
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
-        isLegacy: isEyfs,
-      });
-      const curriculumDataLegacy = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: keyStage,
-        isLegacy: true,
       });
 
-      if (!curriculumData || !curriculumDataLegacy) {
+      if (!curriculumData) {
         return {
           notFound: true,
         };
       }
 
-      const { keyStageSlug, keyStages } = curriculumData;
-      const keyStageTitle = curriculumData.keyStageTitle;
+      const uniqueSubjectSlugs = curriculumData?.subjects
+        .map((s) => s.subjectSlug)
+        .filter((value, index, self) => self.indexOf(value) === index);
 
-      const subjectSlugsLegacy =
-        curriculumDataLegacy?.subjects.map((s) => s.subjectSlug) || [];
-
-      const subjectSlugs =
-        curriculumData?.subjects.map((s) => s.subjectSlug) || [];
-
-      const uniqueSubjectSlugs = [
-        ...new Set(subjectSlugsLegacy.concat(subjectSlugs)),
-      ];
-
-      const getSubject = (
-        data: SubjectListingPageData,
-        subjectSlug: string,
-        isLegacy: boolean,
-      ) => {
-        const slugToMatch = (subjectSlug: string) =>
-          isLegacy ? removeLegacySlugSuffix(subjectSlug) : subjectSlug;
-
-        const foundSubject =
-          data.subjects.find(
-            (subject) => slugToMatch(subject.subjectSlug) === subjectSlug,
-          ) || null;
-
-        return foundSubject && isLegacy
-          ? {
-              ...foundSubject,
-              subjectSlug: isSlugLegacy(foundSubject.subjectSlug)
-                ? foundSubject.subjectSlug
-                : addLegacySlugSuffix(foundSubject.subjectSlug),
-            }
-          : foundSubject;
-      };
-
-      // We are trialling combining the maths subjects from the legacy and new curriculums in ks1-4
-      const getMaths = () => {
-        const newMaths = curriculumData.subjects.find(
-          (subject) => subject.subjectSlug === "maths",
-        );
-        const legacyMaths = curriculumDataLegacy.subjects.find(
-          (subject) => subject.subjectSlug === "maths",
-        );
-
-        if (!newMaths || !legacyMaths) {
-          return {
-            notFound: true,
-          };
-        }
-
-        const programmeCount = Math.max(
-          newMaths.programmeCount,
-          legacyMaths.programmeCount,
-        );
-        const unitCount = isEyfs
-          ? legacyMaths.unitCount
-          : newMaths.unitCount + legacyMaths.unitCount;
-        const lessonCount = isEyfs
-          ? legacyMaths.lessonCount
-          : newMaths.lessonCount + legacyMaths.lessonCount;
-
-        const combinedMaths: KeyStageSubjectData = {
-          programmeSlug: newMaths.programmeSlug,
-          programmeCount,
-          subjectSlug: newMaths.subjectSlug,
-          subjectTitle: newMaths.subjectTitle,
-          unitCount,
-          lessonCount,
-        };
-
-        return combinedMaths;
-      };
-
-      const getOldSubjects = (subjectSlug: string) => {
-        if (subjectSlug === "maths") {
-          if (isEyfs) {
-            return getMaths();
-          } else {
-            return null;
-          }
-        } else {
-          return getSubject(curriculumDataLegacy, subjectSlug, true);
-        }
-      };
-
-      const getNewSubjects = (subjectSlug: string) => {
-        if (isEyfs) {
-          return null;
-        } else if (subjectSlug === "maths") {
-          return getMaths();
-        } else {
-          return getSubject(curriculumData, subjectSlug, false);
-        }
-      };
-
-      const subjects = uniqueSubjectSlugs
+      const combinedAndFilteredSubjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
+          const combinedSubject = getCombinedSubjects(
+            curriculumData,
+            subjectSlug,
+            isEyfs,
+          );
           return {
-            subjectSlug: subjectSlug,
-            old: getOldSubjects(subjectSlug),
-            new: getNewSubjects(subjectSlug),
+            slug: subjectSlug,
+            data: combinedSubject,
+            hasNewContent: combinedSubject?.isNew,
           };
         })
         // Filter out subjects that don't exist in either curriculum
-        .filter((subject) => subject.old || subject.new)
+        .filter((subject) => subject.data !== null)
         // sort by slug so the old and new subjects are intermingled
-        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
+        .sort((a, b) => (a.slug > b.slug ? 1 : -1));
 
       const results = {
         props: {
-          keyStageSlug,
-          keyStageTitle,
-          subjects,
-          keyStages,
+          ...curriculumData,
+          subjects: combinedAndFilteredSubjects,
         },
       };
 

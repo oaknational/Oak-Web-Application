@@ -46,8 +46,8 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         keyStageTitle="Early years foundation stage"
         subjects={[
           {
-            subjectSlug: "maths",
-            old: {
+            slug: "maths",
+            data: {
               subjectSlug: "maths",
               subjectTitle: "Maths",
               unitCount: 1,
@@ -55,22 +55,12 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
               programmeSlug: "maths-early-years-foundation-stage",
               programmeCount: 2,
             },
-            new: {
-              subjectSlug: "maths",
-              subjectTitle: "Maths",
-              unitCount: 1,
-              lessonCount: 6,
-              programmeSlug: "maths-early-years-foundation-stage",
-              programmeCount: 1,
-            },
+            hasNewContent: true,
           },
         ]}
       />,
     );
     expect(screen.getByText("Maths")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "Maths: 1 unit, 6 lessons" }),
-    ).toBeInTheDocument();
   });
   it("renders correct counts for non EYFS subjects", () => {
     renderWithProviders()(<SubjectListingPage {...props} />);
@@ -115,21 +105,16 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should call API::subjectListing for legacy and new data", async () => {
+    it("Should call API::subjectListing once", async () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
         },
       });
-      expect(curriculumApi.subjectListingPage).toHaveBeenCalledTimes(2);
+      expect(curriculumApi.subjectListingPage).toHaveBeenCalledTimes(1);
 
       expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(1, {
         keyStageSlug: "ks123",
-        isLegacy: false,
-      });
-      expect(curriculumApi.subjectListingPage).toHaveBeenNthCalledWith(2, {
-        keyStageSlug: "ks123",
-        isLegacy: true,
       });
     });
     it("should return notFound when a landing page is missing", async () => {
@@ -190,10 +175,9 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         },
       })) as { props: SubjectListingPageProps };
 
-      const maths = res?.props.subjects.find((s) => s.subjectSlug === "maths");
-
-      expect(maths?.old).toBeNull();
-      expect(maths?.new?.subjectSlug).toBe("maths");
+      const maths = res?.props.subjects.find((s) => s.slug === "maths");
+      expect(maths?.hasNewContent).toBe(true);
+      expect(maths?.data.subjectSlug).toBe("maths");
     });
     it("should not combine counts for EYFS maths", async () => {
       const mockEyfsMathsResponse = {
@@ -223,11 +207,9 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         },
       })) as { props: SubjectListingPageProps };
 
-      const maths = res?.props.subjects.find((s) => s.subjectSlug === "maths");
-      expect(maths?.old).not.toBeNull();
-      expect(maths?.new).toBeNull();
-      expect(maths?.old?.unitCount).toBe(1);
-      expect(maths?.old?.lessonCount).toBe(6);
+      const maths = res?.props.subjects.find((s) => s.slug === "maths");
+      expect(maths?.data).not.toBeNull();
+      expect(maths?.hasNewContent).toBe(false);
     });
   });
 });

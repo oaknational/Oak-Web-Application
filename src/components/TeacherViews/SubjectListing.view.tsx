@@ -4,7 +4,7 @@ import { OakHeading, OakFlex } from "@oaknational/oak-components";
 import OwaLink from "../SharedComponents/OwaLink";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
-import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCardDouble";
+import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
 import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { P } from "@/components/SharedComponents/Typography";
@@ -61,12 +61,12 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           {subjects.map((subject, i) => {
             return (
               <GridAreaListItem
-                key={`subject-list-item-${subject.subjectSlug}-${i}`}
+                key={`subject-list-item-${subject.slug}-${i}`}
                 $colSpan={[12, 6, 3]}
               >
                 <SubjectListingCardDouble
                   subject={subject}
-                  subjectSlug={subject.subjectSlug}
+                  subjectSlug={subject.slug}
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={sentenceCaseKeyStageTitle}
                 />

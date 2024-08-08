@@ -3,13 +3,6 @@ import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-const providers = {
-  theme: {},
-  menu: {},
-  router: {},
-  analytics: {},
-  cookieConsent: {},
-};
 const fixture = searchPageFixture();
 if (!fixture) {
   throw new Error("Cannot find search page fixture");
@@ -25,7 +18,7 @@ jest.mock("posthog-js/react", () => ({
 
 describe("pages/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
-    const { seo } = renderWithSeo(providers)(
+    const { seo } = renderWithSeo()(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
       />,
@@ -45,7 +38,7 @@ describe("pages/teachers/search.tsx", () => {
   });
 
   test("renders correct examBoard filters", async () => {
-    const { getAllByRole } = renderWithSeo(providers)(
+    const { getAllByRole } = renderWithSeo()(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
       />,
@@ -57,7 +50,7 @@ describe("pages/teachers/search.tsx", () => {
     );
   });
   test("renders correct key stage filters", async () => {
-    const { getAllByRole } = renderWithSeo(providers)(
+    const { getAllByRole } = renderWithSeo()(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
       />,
@@ -69,7 +62,7 @@ describe("pages/teachers/search.tsx", () => {
     );
   });
   test("renders correct subject filters", () => {
-    const { getAllByRole } = renderWithSeo(providers)(
+    const { getAllByRole } = renderWithSeo()(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
       />,
@@ -81,7 +74,7 @@ describe("pages/teachers/search.tsx", () => {
     );
   });
   test("renders correct content type filters", () => {
-    const { getAllByRole } = renderWithSeo(providers)(
+    const { getAllByRole } = renderWithSeo()(
       <SearchPage
         curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
       />,

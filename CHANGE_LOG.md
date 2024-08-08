@@ -1,3 +1,45 @@
+## [1.508.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.0...v1.508.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* update to published_mv_curriculum_units_0_6 which filters out year=All from MV ([a6b49e2](https://github.com/oaknational/Oak-Web-Application/commit/a6b49e25d21a3b7fa1f90dfa6d57c81738b1eb35))
+
+# [1.508.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.507.0...v1.508.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* false positive test ([0ca3b04](https://github.com/oaknational/Oak-Web-Application/commit/0ca3b0484c19610faffb958b9c3ac4382718bec4))
+
+
+### Features
+
+* add signout button to hamburger menu ([f017b7c](https://github.com/oaknational/Oak-Web-Application/commit/f017b7c6591a05fb4d90f21d675ea48b93a07d2a))
+* **LESQ-972:** add an endpoint to fully log a use out of Auth0 and OWA ([350c745](https://github.com/oaknational/Oak-Web-Application/commit/350c745a04d44b26461006418e2c449e61ceac17))
+* **LESQ-972:** install `UserProvider` ([45e171b](https://github.com/oaknational/Oak-Web-Application/commit/45e171be3087aaaa96d7356a0e29d8c5a274806d))
+* **LESQ-972:** install Auth0 ([9deb085](https://github.com/oaknational/Oak-Web-Application/commit/9deb08502961d0d685a4b7f0a76a7f93922fc77d))
+* **LESQ-972:** put the download page behind sign in ([3c92296](https://github.com/oaknational/Oak-Web-Application/commit/3c9229657661708f93a4162fbedd58eb8d2e4129))
+* **LESQ-972:** use the authenticated download page when the feature is enabled ([a443213](https://github.com/oaknational/Oak-Web-Application/commit/a443213de9d1927a0562b82dae0ad1ae942409e9))
+
+# [1.507.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.506.0...v1.507.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* disabled cards ([4b3b3c4](https://github.com/oaknational/Oak-Web-Application/commit/4b3b3c4dea03ac6e6f693793c6e4b60fb02b1618))
+* specialist page link ([9721d1a](https://github.com/oaknational/Oak-Web-Application/commit/9721d1aa1c4d11a826c785d2b47152ff28307443))
+* update test params ([ed8b0b2](https://github.com/oaknational/Oak-Web-Application/commit/ed8b0b2dbc4c1caff237b53ace251f0962f713bc))
+
+
+### Features
+
+* add specialist unit header ([12ecd04](https://github.com/oaknational/Oak-Web-Application/commit/12ecd048786e49b393cc9f7da3ec4e8944d9ef24))
+* add year time ([3dab179](https://github.com/oaknational/Oak-Web-Application/commit/3dab1790ff059bed200014ec9ab0ff5a2fa29299))
+* combine subjects on subject listing page ([a4db1fa](https://github.com/oaknational/Oak-Web-Application/commit/a4db1fa7490e3a31ed72963d5d4e40131ba42c47))
+* implement combined unit listing pages for all ks1-4 subjects ([b261a55](https://github.com/oaknational/Oak-Web-Application/commit/b261a558b20fe998f79627e081f4127cacc880e9))
+* optionality card ([d794ac3](https://github.com/oaknational/Oak-Web-Application/commit/d794ac321b3c1fbf4bd5e6ac221a467dafff5801))
+
 # [1.506.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.505.0...v1.506.0) (2024-08-07)
 
 

@@ -44340,7 +44340,7 @@ export const SpecialistUnitListingDocument = gql`
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
   subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_6_0_0(
-    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
+    where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}]}
   ) {
     programme_fields
     is_legacy
