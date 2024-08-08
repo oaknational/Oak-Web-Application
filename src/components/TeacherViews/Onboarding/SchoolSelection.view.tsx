@@ -95,7 +95,6 @@ export const SchoolSelectionView = () => {
         <OakHeading tag="h2" $font="heading-light-5">
           Select your school
         </OakHeading>
-
         <ResourcePageSchoolPicker
           hasError={formState.errors?.school !== undefined}
           schoolPickerInputValue={schoolPickerInputValue}
@@ -106,7 +105,6 @@ export const SchoolSelectionView = () => {
           required={true}
           withHomeschool={false}
         />
-
         <OakPrimaryButton
           disabled={
             formState.errors?.school !== undefined || !formState.isValid
