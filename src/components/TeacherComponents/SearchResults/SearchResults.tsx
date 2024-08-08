@@ -1,9 +1,13 @@
-import { OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakUL,
+  OakFlex,
+  OakPagination,
+} from "@oaknational/oak-components";
 
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "@/components/TeacherComponents/SearchResultsItem";
-import Pagination from "@/components/SharedComponents/Pagination";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
@@ -33,7 +37,10 @@ const SearchResults = (props: SearchResultsProps) => {
     pageSize: RESULTS_PER_PAGE,
     items: hits,
   });
-  const { currentPageItems, currentPage, firstItemRef } = paginationProps;
+
+  const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
+    paginationProps;
+
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;
   };
@@ -71,7 +78,11 @@ const SearchResults = (props: SearchResultsProps) => {
 
       {hits.length > RESULTS_PER_PAGE && (
         <Box $width="100%" $mt={[0, "auto"]} $pb={72} $pt={48}>
-          <Pagination pageName="Search" {...paginationProps} />
+          <OakPagination
+            {...paginationProps}
+            pageName={"Search"}
+            paginationHref={paginationRoute}
+          />
         </Box>
       )}
     </OakFlex>

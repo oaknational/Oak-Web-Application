@@ -1,10 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakLI,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
-
 /**
  * New menu sections to be used in the hamburger menu for the beta site
  */
@@ -22,8 +27,15 @@ const AppHeaderBurgerburgerMenuSections: FC<
   AppHeaderBurgerburgerMenuSectionsProps
 > = (props) => {
   const { burgerMenuSections } = props;
+  const { user } = useUser();
+
   return (
     <OakFlex $flexDirection="column" $gap="all-spacing-7">
+      {user && (
+        <OakSecondaryButton element="a" href="/api/auth/logout">
+          Sign out
+        </OakSecondaryButton>
+      )}
       {burgerMenuSections.map((section, i) => (
         <OakFlex
           $flexDirection="column"

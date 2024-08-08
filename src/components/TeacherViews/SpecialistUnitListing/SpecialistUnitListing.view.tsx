@@ -126,11 +126,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             </Box>
           </OakGridArea>
           <OakGridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
-            <Flex
-              $flexDirection={["column-reverse", "column"]}
-              $pt={[48]}
-              $mt={[0, 32]}
-            >
+            <Flex $flexDirection={["column-reverse", "column"]} $pt={[48]}>
               <OakFlex
                 $minWidth="all-spacing-16"
                 $mb="space-between-m"
@@ -148,6 +144,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <TabularNav
                     $mb={[10, 24]}
                     label="themes"
+                    $flexWrap={"wrap"}
                     $gap={[12, 0]}
                     links={developmentStage.map(
                       ({ title, slug, lessonCount, programmeSlug }) => ({

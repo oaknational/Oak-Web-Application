@@ -176,6 +176,8 @@ export type LessonDownloadsLinkProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -191,6 +193,8 @@ export type SpecialistLessonDownloadsLinkProps = Omit<
 export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
   lessonSlug: string;
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -207,7 +211,7 @@ export type LessonShareLinkProps = {
 
 export type SpecialistLessonShareLinkProps = Omit<
   LessonDownloadsLinkProps,
-  "page" | "query"
+  "page" | "query" | "downloads"
 > & {
   page: "specialist-lesson-share";
   query?: {
@@ -285,7 +289,7 @@ type CurriculumPreviousDownloadsLinkProps = {
   page: "curriculum-previous-downloads";
   query?: {
     subject: string;
-    keystage: string;
+    keystage?: string;
   };
 };
 
@@ -685,21 +689,24 @@ export const OAK_PAGES: {
     pageType: "lesson-overview-canonical",
   }),
   "lesson-downloads": createOakPageConfig({
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
     pathPattern:
-      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
   }),
   "specialist-lesson-downloads": createOakPageConfig({
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
     pathPattern:
-      "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "specialist-lesson-downloads",
   }),
   "lesson-downloads-canonical": createOakPageConfig({
-    pathPattern: "/teachers/lessons/:lessonSlug/downloads",
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
+    pathPattern: "/teachers/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",

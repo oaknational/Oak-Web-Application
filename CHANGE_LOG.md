@@ -1,3 +1,226 @@
+## [1.508.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.0...v1.508.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* update to published_mv_curriculum_units_0_6 which filters out year=All from MV ([a6b49e2](https://github.com/oaknational/Oak-Web-Application/commit/a6b49e25d21a3b7fa1f90dfa6d57c81738b1eb35))
+
+# [1.508.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.507.0...v1.508.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* false positive test ([0ca3b04](https://github.com/oaknational/Oak-Web-Application/commit/0ca3b0484c19610faffb958b9c3ac4382718bec4))
+
+
+### Features
+
+* add signout button to hamburger menu ([f017b7c](https://github.com/oaknational/Oak-Web-Application/commit/f017b7c6591a05fb4d90f21d675ea48b93a07d2a))
+* **LESQ-972:** add an endpoint to fully log a use out of Auth0 and OWA ([350c745](https://github.com/oaknational/Oak-Web-Application/commit/350c745a04d44b26461006418e2c449e61ceac17))
+* **LESQ-972:** install `UserProvider` ([45e171b](https://github.com/oaknational/Oak-Web-Application/commit/45e171be3087aaaa96d7356a0e29d8c5a274806d))
+* **LESQ-972:** install Auth0 ([9deb085](https://github.com/oaknational/Oak-Web-Application/commit/9deb08502961d0d685a4b7f0a76a7f93922fc77d))
+* **LESQ-972:** put the download page behind sign in ([3c92296](https://github.com/oaknational/Oak-Web-Application/commit/3c9229657661708f93a4162fbedd58eb8d2e4129))
+* **LESQ-972:** use the authenticated download page when the feature is enabled ([a443213](https://github.com/oaknational/Oak-Web-Application/commit/a443213de9d1927a0562b82dae0ad1ae942409e9))
+
+# [1.507.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.506.0...v1.507.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* disabled cards ([4b3b3c4](https://github.com/oaknational/Oak-Web-Application/commit/4b3b3c4dea03ac6e6f693793c6e4b60fb02b1618))
+* specialist page link ([9721d1a](https://github.com/oaknational/Oak-Web-Application/commit/9721d1aa1c4d11a826c785d2b47152ff28307443))
+* update test params ([ed8b0b2](https://github.com/oaknational/Oak-Web-Application/commit/ed8b0b2dbc4c1caff237b53ace251f0962f713bc))
+
+
+### Features
+
+* add specialist unit header ([12ecd04](https://github.com/oaknational/Oak-Web-Application/commit/12ecd048786e49b393cc9f7da3ec4e8944d9ef24))
+* add year time ([3dab179](https://github.com/oaknational/Oak-Web-Application/commit/3dab1790ff059bed200014ec9ab0ff5a2fa29299))
+* combine subjects on subject listing page ([a4db1fa](https://github.com/oaknational/Oak-Web-Application/commit/a4db1fa7490e3a31ed72963d5d4e40131ba42c47))
+* implement combined unit listing pages for all ks1-4 subjects ([b261a55](https://github.com/oaknational/Oak-Web-Application/commit/b261a558b20fe998f79627e081f4127cacc880e9))
+* optionality card ([d794ac3](https://github.com/oaknational/Oak-Web-Application/commit/d794ac321b3c1fbf4bd5e6ac221a467dafff5801))
+
+# [1.506.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.505.0...v1.506.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* address security hotspot ([27652b9](https://github.com/oaknational/Oak-Web-Application/commit/27652b96d2fafeaf42a7bdd896e7210702228595))
+* broken test ([1b181c2](https://github.com/oaknational/Oak-Web-Application/commit/1b181c266895324ee5a12709ffba1f360a3b81a4))
+* overwrite backlink when navigation is internal ([b611d9e](https://github.com/oaknational/Oak-Web-Application/commit/b611d9e2a181eaec73cfc20ab3baef2dd11df93f))
+* regex reliability ([f173111](https://github.com/oaknational/Oak-Web-Application/commit/f1731119c10ef9c6fc59ade33da9ce537327a491))
+* remove regex from validation function ([9ad2b23](https://github.com/oaknational/Oak-Web-Application/commit/9ad2b23036247d68075ad284a442998d30cdb0cd))
+* securit hotspot ([dd1cf95](https://github.com/oaknational/Oak-Web-Application/commit/dd1cf95764f9a217c5c08ff104f97e9e7ce15e8e))
+* type error ([873b35a](https://github.com/oaknational/Oak-Web-Application/commit/873b35ab075f62ddfeb267a4c8c1554a1bd3062a))
+* type errors ([5007540](https://github.com/oaknational/Oak-Web-Application/commit/500754029e67c6574cfef2db8c7a65df0dba53cb))
+* type errors ([d08da4c](https://github.com/oaknational/Oak-Web-Application/commit/d08da4c0f0f9df5267d0261da1359487b627de07))
+* use schema for phase slugs ([be0f8f3](https://github.com/oaknational/Oak-Web-Application/commit/be0f8f32343fbd7f5ac9290f47587cd0d064c59f))
+
+
+### Features
+
+* added programme slug validation for ddos safety ([2ae49eb](https://github.com/oaknational/Oak-Web-Application/commit/2ae49eb7b63805a5fc9449d5ab8bf812a103c1c2))
+* choose correct backlink for lesson listing ([74dba21](https://github.com/oaknational/Oak-Web-Application/commit/74dba21f5bdcbc0ad779b67c62a1da99ee07a44f))
+* updating lesson listing query and page to choose appropriate backlink ([e79243f](https://github.com/oaknational/Oak-Web-Application/commit/e79243f1034a60245c5295f0ec055e1088551e80))
+
+# [1.505.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.1...v1.505.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* isLast and isFirst destructured from the usePagination hook ([c958a5e](https://github.com/oaknational/Oak-Web-Application/commit/c958a5e65d002753f5e42463db163361296cf381))
+
+
+### Features
+
+* implement new pagination component on owa ([8aaf257](https://github.com/oaknational/Oak-Web-Application/commit/8aaf257971c28db09083aed9812449474264e9d5))
+
+## [1.504.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.504.0...v1.504.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* wrap quiz hints in mathjax ([5ef9497](https://github.com/oaknational/Oak-Web-Application/commit/5ef9497b4325c64a35629fda255b5d91327c7f1c))
+
+# [1.504.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.503.0...v1.504.0) (2024-08-06)
+
+
+### Features
+
+* **LESQ-972:** add an endpoint to fully log a use out of Auth0 and OWA ([28743b1](https://github.com/oaknational/Oak-Web-Application/commit/28743b1752761d3f061ddcb6da7bb9726a31014c))
+* **LESQ-972:** install `UserProvider` ([8bb023a](https://github.com/oaknational/Oak-Web-Application/commit/8bb023afc3ce2799f62fa70be89f4faf975f342b))
+* **LESQ-972:** install Auth0 ([d79ccaa](https://github.com/oaknational/Oak-Web-Application/commit/d79ccaa8d24fd8817df4675ba3c88651a187f111))
+* **LESQ-972:** put the download page behind sign in ([c711b2b](https://github.com/oaknational/Oak-Web-Application/commit/c711b2b12bbd3cc3a5da308f3ac5eb3de350494a))
+* **LESQ-972:** use the authenticated download page when the feature is enabled ([bdebe18](https://github.com/oaknational/Oak-Web-Application/commit/bdebe189cbdcb354243653426f30c2202cdeb5ac))
+
+# [1.503.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.1...v1.503.0) (2024-08-06)
+
+
+### Features
+
+* add t&cs text section with links ([8d0d6c9](https://github.com/oaknational/Oak-Web-Application/commit/8d0d6c9180c99e28e7bbf17d5c3109596b7ef4d2))
+
+## [1.502.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.502.0...v1.502.1) (2024-08-05)
+
+# [1.502.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.501.0...v1.502.0) (2024-08-05)
+
+
+### Features
+
+* **match:** add match question type to storybook ([d387f4b](https://github.com/oaknational/Oak-Web-Application/commit/d387f4b6d24dd1f9615e11504d64228bbde5320a))
+* **match:** add match question type to storybook ([6f8c48a](https://github.com/oaknational/Oak-Web-Application/commit/6f8c48ad580d9f77e103474566e73423432e154f))
+* **match:** create match component ([5b752a2](https://github.com/oaknational/Oak-Web-Application/commit/5b752a2a2fb1dff7b6058888f3dc24e30c4449cc))
+* **match:** create match component ([37199db](https://github.com/oaknational/Oak-Web-Application/commit/37199db918f5fefe78a12297ea74a78266b61204))
+* **match:** fix test coverage ([3ab9d4a](https://github.com/oaknational/Oak-Web-Application/commit/3ab9d4af00954b747c91c0e1f987be0a94c7e8b7))
+* **match:** fix test coverage ([67d34ff](https://github.com/oaknational/Oak-Web-Application/commit/67d34ff45db94130ddee5cb0cee9d10d310b33c7))
+* **match:** update package ([59a9b3a](https://github.com/oaknational/Oak-Web-Application/commit/59a9b3a0065ee5159136360c6a70964236c268ea))
+
+# [1.501.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.1...v1.501.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* missing homeschool prop ([3500f37](https://github.com/oaknational/Oak-Web-Application/commit/3500f3713c26976fc14063d0834f633c62b0900e))
+* reset form when no valid school found for input ([a344c31](https://github.com/oaknational/Oak-Web-Application/commit/a344c315b6b3c5547944921e07362ae965995bb5))
+
+
+### Features
+
+* add basic styling to form component ([be23110](https://github.com/oaknational/Oak-Web-Application/commit/be23110575df821f56a5a87e41b9451c6b24c908))
+* add onboarding page with ff redirect ([c100488](https://github.com/oaknational/Oak-Web-Application/commit/c10048849a0cc59ba39327a3e4dabc8c8940b952))
+* add school picker to onboarding page ([b19a015](https://github.com/oaknational/Oak-Web-Application/commit/b19a0150e8200ab166decf65d4e590c55a2f7149))
+* remove homeschool from schoolpicker on onboarding page ([00d6525](https://github.com/oaknational/Oak-Web-Application/commit/00d652566a42b58307c2074346784db0975fcf4d))
+
+## [1.500.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.500.0...v1.500.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* make short answer use feedback prop ([2e02bf1](https://github.com/oaknational/Oak-Web-Application/commit/2e02bf1e58b43f4519e5f5e1df27a97d561109fe))
+* quiz result mcq uses feedback instead of pupil answer ([90984e5](https://github.com/oaknational/Oak-Web-Application/commit/90984e5ea76acf15c1b5c58c256a1daab955cd4e))
+
+# [1.500.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.499.0...v1.500.0) (2024-08-05)
+
+
+### Features
+
+* **package:** lint ([91ef846](https://github.com/oaknational/Oak-Web-Application/commit/91ef8463390aa7dada3aa23748f7fa7ba2aa3cdb))
+* **package:** lint ([33d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/33d8ae357487e7b5f5648b8b7c2e4b8d58fe0890))
+* **package:** story coverage ([b144793](https://github.com/oaknational/Oak-Web-Application/commit/b144793fc8d23e6e70ecc74822b4ffa61859ed2d))
+* **package:** test coverage ([94e21f2](https://github.com/oaknational/Oak-Web-Application/commit/94e21f298a873f48772f6126bfd8c58eac2abecb))
+* **package:** test coverage ([c830687](https://github.com/oaknational/Oak-Web-Application/commit/c83068779a13fcdb665a65289295e7347c0300ce))
+* **short-result:** make short result quiz answerr component ([5825771](https://github.com/oaknational/Oak-Web-Application/commit/58257713fa28aa80fb9321a26114aa87edec4ae5))
+* **short-result:** make short result quiz answerr component ([105f2ad](https://github.com/oaknational/Oak-Web-Application/commit/105f2adb1f859cea70978d90c85f4011562a9795))
+* **short-result:** make short result quiz answerr component ([8158c05](https://github.com/oaknational/Oak-Web-Application/commit/8158c05328b20570e933c981b7408e87d85ecd2b))
+
+# [1.499.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.498.0...v1.499.0) (2024-08-02)
+
+
+### Bug Fixes
+
+* quiz order grading ([b7cd43d](https://github.com/oaknational/Oak-Web-Application/commit/b7cd43d5ad306e8600751af755eded191ac546f4))
+
+
+### Features
+
+* add correct order number ([3cb1e21](https://github.com/oaknational/Oak-Web-Application/commit/3cb1e213703b80217757f5c65ce9bb672198f28a))
+* added mathjax support ([6dd36b7](https://github.com/oaknational/Oak-Web-Application/commit/6dd36b777093a2ccbc7825fc3aae644b4a43aaa2))
+* quiz result order ([696bc7c](https://github.com/oaknational/Oak-Web-Application/commit/696bc7cc0873be79e9ede28507ff4a9630ec1cfb))
+* quiz result order ([e7d8fa7](https://github.com/oaknational/Oak-Web-Application/commit/e7d8fa7e706a92ffbc40caa9677cb786fdd9d0bd))
+
+# [1.498.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.497.0...v1.498.0) (2024-08-02)
+
+
+### Features
+
+* **package:** lint ([1719c34](https://github.com/oaknational/Oak-Web-Application/commit/1719c342d32b2c615172dc61f9cd89ad2906f98e))
+* **package:** update oak components ([785fb12](https://github.com/oaknational/Oak-Web-Application/commit/785fb120de498fe6cddaddc5dcd1543975100233))
+* **package:** update oak components ([3af4cb1](https://github.com/oaknational/Oak-Web-Application/commit/3af4cb1728bf484521f45e956384cc1d64f65529))
+* **package:** update oak components ([31470fe](https://github.com/oaknational/Oak-Web-Application/commit/31470fe8610e00637de87329b0b5176c0cb65eae))
+* **question-stem:** refactor stem props type ([f8cffa5](https://github.com/oaknational/Oak-Web-Application/commit/f8cffa51233b9d7b299c21cf34295f39150e051d))
+* **result-stem:** create results question stem and story for quiz stem ([eb08c54](https://github.com/oaknational/Oak-Web-Application/commit/eb08c54d10a7b858f820722d707d1aa4c6b1f0d0))
+* **result-stem:** create results question stem and story for quiz stem ([8904f22](https://github.com/oaknational/Oak-Web-Application/commit/8904f220dbfa9d4ebf20a40946f92286a6ed9334))
+* **review-item:** update snaps ([4675bf2](https://github.com/oaknational/Oak-Web-Application/commit/4675bf22e00e879bd7b207d42e15ccff931a3847))
+* **stem:** defactor ([28fceee](https://github.com/oaknational/Oak-Web-Application/commit/28fceeedd1fb2eafffaddd9afe22b1d2a2402698))
+* **stem:** defactor ([7e51c64](https://github.com/oaknational/Oak-Web-Application/commit/7e51c64755a8659890540e4c572812b8e870d1ab))
+* **stem:** defactor ([35ab649](https://github.com/oaknational/Oak-Web-Application/commit/35ab6495daa1eb0b317eaf478f9676d89c3d81bc))
+* **stem:** defactor ([7b5db52](https://github.com/oaknational/Oak-Web-Application/commit/7b5db5270b2e91fcaafcd6c021b43cafe42d80d4))
+
+# [1.497.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.496.0...v1.497.0) (2024-08-01)
+
+
+### Bug Fixes
+
+* empty commit ([8b5e4b8](https://github.com/oaknational/Oak-Web-Application/commit/8b5e4b8c782ebf55c41e8f7bbf4fd557c038f7a4))
+* maths jax issue ([40b7fd1](https://github.com/oaknational/Oak-Web-Application/commit/40b7fd1b78a31496d7e14850061325a7fc44a7a7))
+* merge conflicts ([603cc2a](https://github.com/oaknational/Oak-Web-Application/commit/603cc2a1ffedc184e0b03dca8e520b4651a51a64))
+* type errors ([11ee42e](https://github.com/oaknational/Oak-Web-Application/commit/11ee42ecbc4c9c9a2b346d82641bfe23b4a8cd82))
+* type errors ([66e7a1b](https://github.com/oaknational/Oak-Web-Application/commit/66e7a1bac9c619283e96962015ddb1dbd53e08f9))
+* type errors ([25b2df4](https://github.com/oaknational/Oak-Web-Application/commit/25b2df4f72d9116b98d45887213741e520a201e8))
+
+
+### Features
+
+* maths jax support ([b15d6a9](https://github.com/oaknational/Oak-Web-Application/commit/b15d6a9f6070c1841cef66c328d328008d8a97ae))
+* quiz result mcq ([3e394d8](https://github.com/oaknational/Oak-Web-Application/commit/3e394d83a4f275824255f94ba0ab8fd815c25e9d))
+* quiz result mcq ([19aa087](https://github.com/oaknational/Oak-Web-Application/commit/19aa0878b19c9cf335776b17617773d7b7df4e1e))
+* wip QuizResultMCQ ([d6e69ab](https://github.com/oaknational/Oak-Web-Application/commit/d6e69abf46be8a5249537d3d7db1f8b4ec2d6fb7))
+* working on QuizResultMCQ ([57abd4f](https://github.com/oaknational/Oak-Web-Application/commit/57abd4f1ae92888e85261f9a57156ac73bbbe23c))
+
+# [1.496.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.495.0...v1.496.0) (2024-08-01)
+
+
+### Bug Fixes
+
+* first item pagination ref ([a46c8a3](https://github.com/oaknational/Oak-Web-Application/commit/a46c8a312112a621608fa4ec4f4fafc289b918d7))
+* focus on first item from pagaination ([9bff600](https://github.com/oaknational/Oak-Web-Application/commit/9bff6002c774bfdce42113b9b45b6a604056dab4))
+* pa11y errors ([b9b86be](https://github.com/oaknational/Oak-Web-Application/commit/b9b86bec11dc6fe405c18ad32fa2b57355f82df2))
+
+
+### Features
+
+* new unit listing card ([4a776b1](https://github.com/oaknational/Oak-Web-Application/commit/4a776b1411e636847a7e06c6f176847b19a44efd))
+
 # [1.495.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.494.0...v1.495.0) (2024-07-29)
 
 
