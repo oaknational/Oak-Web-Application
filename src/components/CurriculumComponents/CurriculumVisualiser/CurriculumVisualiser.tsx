@@ -2,7 +2,14 @@ import { join } from "path";
 
 import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
-import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakGridArea,
+  OakHeading,
+  OakFlex,
+  OakP,
+  OakIcon,
+  OakSpan,
+} from "@oaknational/oak-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
@@ -360,50 +367,75 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         }
                         $justifyContent={"space-between"}
                       >
-                        <Box>
-                          <OutlineHeading
-                            tag={"div"}
-                            $font={"heading-5"}
-                            $fontSize={24}
-                            $mb={12}
+                        <Link
+                          href={unitUrl}
+                          scroll={false}
+                          style={{ flex: 1, display: "inherit" }}
+                        >
+                          <OakFlex
+                            $justifyContent={"space-between"}
+                            $width={"100%"}
+                            $flexDirection={"column"}
+                            $flexGrow={1}
                           >
-                            {index + 1}
-                          </OutlineHeading>
-                          <Link href={unitUrl} scroll={false}>
-                            {isHighlighted && (
-                              <VisuallyHidden>
-                                Highlighted:&nbsp;
-                              </VisuallyHidden>
-                            )}
-                            {unit.title}
-                          </Link>
-                          {unit.unit_options.length > 1 && (
-                            <Box
-                              $mt={12}
-                              $mb={20}
-                              $zIndex={"neutral"}
-                              data-testid="options-tag"
-                              $position={"relative"}
-                            >
-                              <TagFunctional
-                                color="lavender"
-                                text={`${unit.unit_options.length} unit options`}
+                            <Box>
+                              <OutlineHeading
+                                tag={"div"}
+                                $font={"heading-5"}
+                                $fontSize={24}
+                                $mb={12}
+                              >
+                                {index + 1}
+                              </OutlineHeading>
+                              <OakP $font={"heading-7"} $mb="space-between-s">
+                                {isHighlighted && (
+                                  <VisuallyHidden>
+                                    Highlighted:&nbsp;
+                                  </VisuallyHidden>
+                                )}
+                                {unit.title}
+                              </OakP>
+                              {unit.unit_options.length > 1 && (
+                                <Box
+                                  $mt={12}
+                                  $mb={20}
+                                  $zIndex={"neutral"}
+                                  data-testid="options-tag"
+                                  $position={"relative"}
+                                >
+                                  <TagFunctional
+                                    color="lavender"
+                                    text={`${unit.unit_options.length} unit options`}
+                                  />
+                                </Box>
+                              )}
+                              <BrushBorders
+                                color={isHighlighted ? "black" : "white"}
                               />
                             </Box>
-                          )}
-                          <BrushBorders
-                            color={isHighlighted ? "black" : "white"}
-                          />
-                        </Box>
 
-                        <OakFlex
-                          $flexDirection={"row"}
-                          $justifyContent={"flex-end"}
-                        >
-                          <Link href={unitUrl} scroll={false}>
-                            Unit info
-                          </Link>
-                        </OakFlex>
+                            <OakFlex
+                              $flexDirection={"row"}
+                              $justifyContent={"flex-end"}
+                            >
+                              <OakP $font={"body-2-bold"}>
+                                <OakFlex
+                                  $flexDirection={"row"}
+                                  $alignItems={"center"}
+                                  $justifyContent={"flex-end"}
+                                  $gap={"all-spacing-3"}
+                                >
+                                  <OakSpan>Unit info</OakSpan>
+                                  <OakIcon
+                                    $height="all-spacing-5"
+                                    $width="all-spacing-5"
+                                    iconName="chevron-right"
+                                  />
+                                </OakFlex>
+                              </OakP>
+                            </OakFlex>
+                          </OakFlex>
+                        </Link>
                       </Card>
                     );
                   })}
