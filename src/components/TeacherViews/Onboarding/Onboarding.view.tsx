@@ -1,28 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  OakBox,
   OakFlex,
   OakHeading,
-  OakP,
   OakPrimaryButton,
+  OakRadioButton,
+  OakRadioGroup,
 } from "@oaknational/oak-components";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
-import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import Logo from "@/components/AppComponents/Logo";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 
 const onboardingFormSchema = z.object({
-  school: z
-    .string({
-      errorMap: () => ({
-        message: "Select school",
-      }),
-    })
-    .min(1, "Select school"),
-  schoolName: z.string().optional(),
+  worksInSchool: z.boolean({
+    errorMap: () => ({
+      message: "Please select if you work in a school",
+    }),
+  }),
 });
 type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
 type OnboardingFormProps = OnboardingFormValues & {
@@ -30,47 +26,26 @@ type OnboardingFormProps = OnboardingFormValues & {
 };
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit } = useForm<OnboardingFormProps>({
-    resolver: zodResolver(onboardingFormSchema),
-    mode: "onBlur",
-  });
+  const { formState, setValue, handleSubmit, watch } =
+    useForm<OnboardingFormProps>({
+      resolver: zodResolver(onboardingFormSchema),
+      mode: "onBlur",
+    });
+  const worksInSchool = watch("worksInSchool");
 
-  const setSchoolDetailsInForm = useCallback(
-    (value: string, name: string) => {
-      setValue("school", value, {
-        shouldValidate: true,
-      });
-      setValue("schoolName", name, {
+  const setWorksInSchool = useCallback(
+    (value: boolean) => {
+      setValue("worksInSchool", value, {
         shouldValidate: true,
       });
     },
     [setValue],
   );
 
-  const {
-    selectedSchool,
-    setSelectedSchool,
-    schoolPickerInputValue,
-    setSchoolPickerInputValue,
-    schools,
-  } = useSchoolPicker({ withHomeschool: false });
-
-  useEffect(() => {
-    if (selectedSchool && schoolPickerInputValue !== "") {
-      setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
-    }
-  }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
-
-  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (value === "") {
-      setSchoolDetailsInForm("", "");
-    }
-    setSchoolPickerInputValue(value);
-  };
-
   const onFormSubmit = async (data: OnboardingFormProps) => {
     // TODO: something with this data
-    console.log("onboarding form values: ", data);
+
+    console.log("Hi onboarding form values: ", data);
   };
 
   return (
@@ -82,7 +57,6 @@ export const OnboardingView = () => {
       <OakFlex
         $flexDirection="column"
         $alignItems="flex-start"
-        $gap="all-spacing-8"
         $pa="inner-padding-xl3"
         $dropShadow="drop-shadow-standard"
         $borderRadius="border-radius-s"
@@ -92,74 +66,48 @@ export const OnboardingView = () => {
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakHeading tag="h2" $font="heading-light-5">
-          Select your school
+        <OakHeading
+          $mb={"space-between-s"}
+          $mt={"space-between-m"}
+          tag="h2"
+          $font="heading-light-6"
+        >
+          Do you work in a school?
         </OakHeading>
-        <ResourcePageSchoolPicker
-          hasError={formState.errors?.school !== undefined}
-          schoolPickerInputValue={schoolPickerInputValue}
-          setSchoolPickerInputValue={onSchoolPickerInputChange}
-          schools={schools}
-          label={"School"}
-          setSelectedSchool={setSelectedSchool}
-          required={true}
-          withHomeschool={false}
-        />
+        <OakBox $pv={"inner-padding-xl"}>
+          <OakRadioGroup
+            onChange={(value) =>
+              setWorksInSchool(value.target.value === "yes" ? true : false)
+            }
+            $flexDirection={"column"}
+            name={"Do you work in a school?"}
+          >
+            <OakRadioButton id="option-1" label="Yes" value="yes" />
+            <OakRadioButton id="option-2" label="No" value="no" />
+          </OakRadioGroup>
+        </OakBox>
+
         <OakPrimaryButton
+          $mv={"space-between-m"}
           disabled={
-            formState.errors?.school !== undefined || !formState.isValid
+            formState.errors?.worksInSchool !== undefined || !formState.isValid
           }
-          width="100%"
+          element={
+            formState.errors?.worksInSchool !== undefined || !formState.isValid
+              ? "button"
+              : "a"
+          }
+          href={
+            // this should be added to url.tsx
+            worksInSchool
+              ? "/onboarding/school-selection"
+              : "/onboarding/role-selection"
+          }
           type="submit"
         >
           Continue
         </OakPrimaryButton>
       </OakFlex>
-
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
-        By continuing you agree to{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="terms-and-conditions"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Terms and conditions (opens in a new tab)"
-          }`,
-          }}
-        >
-          Oak's terms & conditions
-        </OwaLink>{" "}
-        and{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="privacy-policy"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": "Privacy policy (opens in a new tab)",
-          }}
-        >
-          privacy policy
-        </OwaLink>
-        .
-      </OakP>
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
-        Need help?{" "}
-        <OwaLink
-          page="contact"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Contact us (opens in a new tab)"
-          }`,
-          }}
-        >
-          {" "}
-          Contact us
-        </OwaLink>
-        .
-      </OakP>
     </OakFlex>
   );
 };
