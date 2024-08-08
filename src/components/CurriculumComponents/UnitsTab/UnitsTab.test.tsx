@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { act, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 import UnitsTab, { createProgrammeSlug } from "./UnitsTab";
 
@@ -41,6 +41,7 @@ const secondaryScienceUnits = {
       subject_parent_slug: "science",
       subject_slug: "combined-science",
       tags: null,
+      subjectcategories: null,
       threads: [],
       tier: null,
       tier_slug: null,
@@ -69,6 +70,7 @@ const secondaryScienceUnits = {
       subject_parent_slug: "science",
       subject_slug: "physics",
       tags: null,
+      subjectcategories: null,
       threads: [],
       tier: null,
       tier_slug: null,
@@ -108,6 +110,7 @@ const primaryEnglishData = {
       subject_parent_slug: null,
       subject_slug: "english",
       tags: null,
+      subjectcategories: null,
       threads: [
         {
           title: "Developing grammatical knowledge",
@@ -142,6 +145,7 @@ const primaryEnglishData = {
       subject_parent_slug: null,
       subject_slug: "english",
       tags: null,
+      subjectcategories: null,
       threads: [
         {
           title: "Texts that inform",
@@ -270,6 +274,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent_slug: null,
           subject_slug: "english",
           tags: null,
+          subjectcategories: null,
           threads: [
             {
               title: "Developing grammatical knowledge",
@@ -306,6 +311,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           tier: null,
           tier_slug: null,
           tags: null,
+          subjectcategories: null,
           threads: [
             {
               title: "Aspiration",
@@ -415,6 +421,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent_slug: null,
           subject_slug: "english",
           tags: null,
+          subjectcategories: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -462,6 +469,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent_slug: null,
           subject_slug: "english",
           tags: null,
+          subjectcategories: null,
           threads: [],
           tier: null,
           tier_slug: null,
@@ -563,33 +571,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test("user can filter units by domain", async () => {
-    const { findAllByTestId } = render(
-      <UnitsTab
-        trackingData={trackingDataPrimaryEnglish}
-        formattedData={formatCurriculumUnitsData(primaryEnglishData)}
-      />,
-    );
-
-    let unitCards = null;
-    await act(async () => {
-      unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(2);
-    });
-
-    const domainButtons = await findAllByTestId("domain-button");
-    // When there are domains, "All" button is added, so 3 expected
-    expect(domainButtons).toHaveLength(3);
-    if (!domainButtons[1]) {
-      throw new Error("Missing second domain button");
-    }
-    userEvent.click(domainButtons[1]);
-    await waitFor(async () => {
-      unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(1);
-    });
-  });
-
   test("user can filter units by discipline", async () => {
     const data = curriculumUnitsTabFixture();
     const { findAllByTestId, queryAllByTestId } = render(
@@ -616,22 +597,24 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       expect(unitCards).toHaveLength(14);
     });
 
-    const disciplineButtons = await findAllByTestId("discipline-button");
+    const subjectCategoryButtons = await findAllByTestId(
+      "subjectCategory-button",
+    );
 
     if (
-      !disciplineButtons[0] ||
-      !disciplineButtons[1] ||
-      !disciplineButtons[2]
+      !subjectCategoryButtons[0] ||
+      !subjectCategoryButtons[1] ||
+      !subjectCategoryButtons[2]
     ) {
       throw new Error("Missing second subject button");
     }
 
-    expect(disciplineButtons[0]).toHaveTextContent("All");
-    expect(disciplineButtons[1]).toHaveTextContent("Biology");
-    expect(disciplineButtons[2]).toHaveTextContent("Chemistry");
+    expect(subjectCategoryButtons[0]).toHaveTextContent("All");
+    expect(subjectCategoryButtons[1]).toHaveTextContent("Biology");
+    expect(subjectCategoryButtons[2]).toHaveTextContent("Chemistry");
 
     // Check we have 6 units after clicking the Biology button.
-    await userEvent.click(disciplineButtons[1]);
+    await userEvent.click(subjectCategoryButtons[1]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(6);
@@ -650,14 +633,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
 
     // Check we have 4 units after clicking the Chemistry button.
-    await userEvent.click(disciplineButtons[2]);
+    await userEvent.click(subjectCategoryButtons[2]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(4);
     });
 
     // Check we have 2 units after clicking the All button.
-    await userEvent.click(disciplineButtons[0]);
+    await userEvent.click(subjectCategoryButtons[0]);
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(14);
@@ -688,6 +671,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent_slug: "science",
           subject_slug: "combined-science",
           tags: null,
+          subjectcategories: null,
           threads: [],
           tier: "Foundation",
           tier_slug: "foundation",
@@ -703,6 +687,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           domain: null,
           domain_id: null,
           tags: null,
+          subjectcategories: null,
           threads: [],
           examboard: null,
           examboard_slug: null,
@@ -762,6 +747,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           domain: null,
           domain_id: null,
           tags: null,
+          subjectcategories: null,
           threads: [],
           examboard: null,
           examboard_slug: null,
@@ -840,6 +826,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent_slug: null,
         subject_slug: "science",
         tags: null,
+        subjectcategories: null,
         threads: [],
         tier: null,
         tier_slug: null,
@@ -871,6 +858,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent_slug: null,
         subject_slug: "science",
         tags: null,
+        subjectcategories: null,
         threads: [],
         tier: null,
         tier_slug: null,
@@ -902,6 +890,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent_slug: "science",
         subject_slug: "combined-science",
         tags: null,
+        subjectcategories: null,
         threads: [],
         tier: null,
         tier_slug: null,
@@ -935,6 +924,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent_slug: "science",
         subject_slug: "combined-science",
         tags: null,
+        subjectcategories: null,
         threads: [],
         tier: null,
         tier_slug: null,
@@ -969,6 +959,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         subject_parent_slug: "science",
         subject_slug: "combined-science",
         tags: null,
+        subjectcategories: null,
         threads: [],
         tier: null,
         tier_slug: null,
