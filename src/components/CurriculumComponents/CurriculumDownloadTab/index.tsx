@@ -233,6 +233,13 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     );
   }
 
+  let onBackToKs4Options: undefined | (() => void);
+  if (tiers.length > 0 || childSubjects.length > 0) {
+    onBackToKs4Options = () => {
+      setSubjectTierSelectionVisible(true);
+    };
+  }
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
@@ -245,6 +252,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         )}
         {!isLoading && subjectTierSelectionVisible === false && (
           <CurriculumDownloadView
+            onBackToKs4Options={onBackToKs4Options}
             isSubmitting={isSubmitting}
             onSubmit={onSubmit}
             onChange={setData}

@@ -1,27 +1,67 @@
-// import CurriculumDownloadView from ".";
+import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
-// import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 describe("CurriculumDownloadView", () => {
-  test.skip("renders correctly", async () => {
-    // const initialData = {
-    //   school: "test",
-    //   email: "test@example.com",
-    //   downloadType: "word",
-    //   termsAndConditionsSchema: true,
-    // } as const;
-    // const { getByTestId } = renderWithTheme(
-    //   <CurriculumDownloadView data={initialData} />,
-    // );
-    // const schoolElement = getByTestId("download-school");
-    // expect(schoolElement).toHaveValue(initialData.school);
-    // const emailElement = getByTestId("download-email");
-    // expect(emailElement).toHaveValue(initialData.email);
-    // const downloadTypeElement = getByTestId("download-download-type");
-    // expect(downloadTypeElement).toHaveValue(initialData.downloadType);
-    // const termsAndConditionsSchemaElement = getByTestId(
-    //   "download-accept-terms",
-    // );
-    // expect(termsAndConditionsSchemaElement).toBeChecked();
+  test("with data", async () => {
+    const initialData: CurriculumDownloadViewData = {
+      schoolId: undefined,
+      schools: [
+        {
+          urn: "",
+          la: "",
+          name: "Test",
+          postcode: "TEST",
+          fullInfo: "test",
+          status: "",
+        },
+      ],
+      email: "test@example.com",
+      downloadType: "word",
+      schoolNotListed: true,
+      termsAndConditions: true,
+    } as const;
+    const { getByTestId } = render(
+      <CurriculumDownloadView
+        data={initialData}
+        schools={[]}
+        isSubmitting={false}
+      />,
+    );
+    const completeElement = getByTestId("details-completed");
+    expect(completeElement).toContainHTML("My school isn’t listed");
+    expect(completeElement).toContainHTML("test@example.com");
+  });
+
+  test("no data", async () => {
+    const initialData: CurriculumDownloadViewData = {
+      schoolId: undefined,
+      schools: [
+        {
+          urn: "",
+          la: "",
+          name: "Test",
+          postcode: "TEST",
+          fullInfo: "test",
+          status: "",
+        },
+      ],
+      email: undefined,
+      downloadType: "word",
+      schoolNotListed: false,
+      termsAndConditions: true,
+    } as const;
+    const { getByTestId } = render(
+      <CurriculumDownloadView
+        data={initialData}
+        schools={[]}
+        isSubmitting={false}
+      />,
+    );
+    expect(getByTestId("download-school-isnt-listed")).toBeVisible();
+    expect(getByTestId("download-email")).toBeVisible();
+    expect(getByTestId("download-accept-terms")).toBeVisible();
   });
 });
