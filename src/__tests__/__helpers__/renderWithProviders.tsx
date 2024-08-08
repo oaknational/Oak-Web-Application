@@ -77,7 +77,7 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
-  user: [UserProvider, { user: undefined }],
+  user: [UserProvider, { user: undefined, fetcher: async () => undefined }],
 };
 
 type ProviderName = keyof ProviderPropsByName;
