@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useEffect } from "react";
 
-import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
+import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection.view";
 
 const SchoolSelectionPage: NextPage = () => {
   const ffEnabled = useFeatureFlagEnabled("use-auth-owa");
@@ -23,7 +23,7 @@ const SchoolSelectionPage: NextPage = () => {
   return ffEnabled ? (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakMaxWidth>
-        <OnboardingView />
+        <SchoolSelectionView />
       </OakMaxWidth>
     </OakThemeProvider>
   ) : null;

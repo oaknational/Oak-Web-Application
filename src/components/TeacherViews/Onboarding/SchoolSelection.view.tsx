@@ -29,7 +29,7 @@ type OnboardingFormProps = OnboardingFormValues & {
   onSubmit: (values: OnboardingFormValues) => Promise<void>;
 };
 
-export const OnboardingView = () => {
+export const SchoolSelectionView = () => {
   const { formState, setValue, handleSubmit } = useForm<OnboardingFormProps>({
     resolver: zodResolver(onboardingFormSchema),
     mode: "onBlur",
@@ -164,4 +164,4 @@ export const OnboardingView = () => {
   );
 };
 
-export default OnboardingView;
+export default SchoolSelectionView;
