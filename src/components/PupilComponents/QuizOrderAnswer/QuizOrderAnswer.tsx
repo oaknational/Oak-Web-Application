@@ -9,8 +9,8 @@ import {
 } from "@oaknational/oak-components";
 
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
-import { invariant } from "../pupilUtils/invariant";
 
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
 export type QuizOrderAnswerProps = {

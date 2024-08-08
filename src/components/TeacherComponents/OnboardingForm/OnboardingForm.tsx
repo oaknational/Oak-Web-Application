@@ -1,6 +1,7 @@
 import {
   OakCheckBox,
   OakFlex,
+  OakInlineBanner,
   OakLink,
   OakP,
   OakPrimaryButton,
@@ -13,11 +14,12 @@ import {
   UseFormStateReturn,
   UseFormTrigger,
 } from "react-hook-form";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
+import { onboardUser } from "./onboardingActions";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -50,6 +52,7 @@ const OnboardingForm = ({
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
@@ -61,6 +64,14 @@ const OnboardingForm = ({
         }),
       );
     } else {
+      try {
+        await onboardUser();
+        await user?.reload();
+      } catch (error) {
+        setSubmitError("Something went wrong. Please try again.");
+        // No point in proceeding to hubspot sign-up if onboarding failed
+        return;
+      }
       const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
       const userEmail = user?.primaryEmailAddress?.emailAddress;
       const hubspotFormPayload = getHubspotOnboardingFormPayload({
@@ -122,12 +133,24 @@ const OnboardingForm = ({
           <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
             {props.heading}
           </OakSpan>
+          <div aria-live="polite">
+            {submitError && (
+              <OakInlineBanner
+                isOpen
+                icon="error"
+                type="error"
+                message={submitError}
+                $width="100%"
+              />
+            )}
+          </div>
           {props.children}
           <OakPrimaryButton
             disabled={!props.canSubmit}
             width="100%"
             type="submit"
             onClick={props.onSubmit}
+            aria-description={submitError ?? undefined}
           >
             Continue
           </OakPrimaryButton>
