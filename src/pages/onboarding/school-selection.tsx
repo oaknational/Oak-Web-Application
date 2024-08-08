@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useEffect } from "react";
 
-import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection.view";
+import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view";
 
 const SchoolSelectionPage: NextPage = () => {
   const ffEnabled = useFeatureFlagEnabled("use-auth-owa");
