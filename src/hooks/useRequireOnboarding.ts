@@ -1,6 +1,8 @@
-import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import { resolveOakHref } from "@/common-lib/urls";
 
 // 500 and 404 pages are included to avoid an infinite redirect loop
 // should the onboarding page break
@@ -11,6 +13,7 @@ const skipFor = ["/onboarding", "/500", "/404"];
  * when they have not previously completed onboarding
  */
 export function useRequireOnboarding() {
+  const { useUser } = useFeatureFlaggedClerk();
   const { user } = useUser();
   const router = useRouter();
 
@@ -19,9 +22,9 @@ export function useRequireOnboarding() {
       return;
     }
 
-    if (user && !user["owa:onboarded"]) {
+    if (user && !user.publicMetadata["owa:onboarded"]) {
       router.replace({
-        pathname: "/onboarding",
+        pathname: resolveOakHref({ page: "onboarding" }),
         query: { returnTo: router.asPath },
       });
     }

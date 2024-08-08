@@ -5,7 +5,6 @@ function RenderChildren({ children }: PropsWithChildren) {
 }
 
 module.exports = {
-  ...jest.createMockFromModule("@clerk/nextjs"),
   useUser() {
     return {
       isLoaded: true,
