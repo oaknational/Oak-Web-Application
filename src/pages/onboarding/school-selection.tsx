@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
 
-const OnboardingPage: NextPage = () => {
+const SchoolSelectionPage: NextPage = () => {
   const ffEnabled = useFeatureFlagEnabled("use-auth-owa");
   const router = useRouter();
 
@@ -29,4 +29,4 @@ const OnboardingPage: NextPage = () => {
   ) : null;
 };
 
-export default OnboardingPage;
+export default SchoolSelectionPage;
