@@ -111,6 +111,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const tab = (router.query.tab as CurriculumTab) ?? "units";
   const path = router.asPath;
 
+  const examboardErrorId = useId();
+  const phaseErrorId = useId();
+  const subjectErrorId = useId();
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -404,7 +408,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 scrollLock={false}
               >
                 {showSubjectError && (
-                  <Flex $flexDirection={"row"} $mb={20}>
+                  <Flex id={subjectErrorId} $flexDirection={"row"} $mb={20}>
                     <Icon
                       $color={"red"}
                       name="content-guidance"
@@ -433,6 +437,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   role="radiogroup"
                   aria-labelledby={subjectInputId}
                   aria-required="true"
+                  aria-describedby={
+                    showSubjectError ? subjectErrorId : undefined
+                  }
                 >
                   {subjects.map((subject) => (
                     <ButtonContainer
@@ -577,7 +584,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   scrollLock={false}
                 >
                   {showPhaseError && (
-                    <Flex $flexDirection={"row"} $mb={20}>
+                    <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
                       <Icon
                         $color={"red"}
                         name="content-guidance"
@@ -589,7 +596,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     </Flex>
                   )}
                   {showExamboardError ? (
-                    <Flex $flexDirection={"row"} $mb={20}>
+                    <Flex id={examboardErrorId} $flexDirection={"row"} $mb={20}>
                       <Icon
                         $color={"red"}
                         name="content-guidance"
@@ -615,6 +622,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     radioGroup="radiogroup"
                     aria-labelledby={schoolPhaseInputId}
                     aria-required="true"
+                    aria-describedby={showPhaseError ? phaseErrorId : undefined}
                   >
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
                       <ButtonContainer className="multi-line" key={phase.slug}>
@@ -649,6 +657,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           role="radiogroup"
                           aria-labelledby={examBoardInputId}
                           aria-required="true"
+                          aria-describedby={
+                            showExamboardError ? examboardErrorId : undefined
+                          }
                         >
                           {selectedSubject.examboards.map(
                             (examboard, index) => (
