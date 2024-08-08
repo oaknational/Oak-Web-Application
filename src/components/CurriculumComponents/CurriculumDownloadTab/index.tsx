@@ -233,9 +233,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     );
   }
 
-  let onBackToK4sOptions: undefined | (() => void);
+  let onBackToKs4Options: undefined | (() => void);
   if (tiers.length > 0 || childSubjects.length > 0) {
-    onBackToK4sOptions = () => {
+    onBackToKs4Options = () => {
       setSubjectTierSelectionVisible(true);
     };
   }
@@ -252,7 +252,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         )}
         {!isLoading && subjectTierSelectionVisible === false && (
           <CurriculumDownloadView
-            onBackToK4sOptions={onBackToK4sOptions}
+            onBackToKs4Options={onBackToKs4Options}
             isSubmitting={isSubmitting}
             onSubmit={onSubmit}
             onChange={setData}

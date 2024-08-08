@@ -94,7 +94,7 @@ export type CurriculumDownloadViewProps = {
   schools: School[];
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
-  onBackToK4sOptions?: () => void;
+  onBackToKs4Options?: () => void;
 };
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   schools,
@@ -102,7 +102,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   onChange,
   onSubmit,
   isSubmitting,
-  onBackToK4sOptions,
+  onBackToKs4Options,
 }) => {
   const [downloadType, setDownloadType] = useState(DOWNLOAD_TYPES[0]!.id);
   const errorMessageListId = useId();
@@ -142,15 +142,15 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
       <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
         Download
       </OakHeading>
-      {onBackToK4sOptions && (
+      {onBackToKs4Options && (
         <Box $mb={24}>
           <Button
             variant={"buttonStyledAsLink"}
             icon="chevron-left"
             data-testid="back-to-downloads-link"
             size="small"
-            label="Back to K4S options"
-            onClick={onBackToK4sOptions}
+            label="Back to KS4 options"
+            onClick={onBackToKs4Options}
           />
         </Box>
       )}
