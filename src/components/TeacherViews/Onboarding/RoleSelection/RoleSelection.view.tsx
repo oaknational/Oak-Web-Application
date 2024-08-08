@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   OakFlex,
   OakHeading,
@@ -5,7 +6,10 @@ import {
   OakRadioButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import FieldError from "@/components/SharedComponents/FieldError";
 
 const roleOptions: Record<string, string> = {
   "teacher-training": "Training to become a teacher",
@@ -16,8 +20,27 @@ const roleOptions: Record<string, string> = {
   nonprofit: "Working at an educational nonprofit",
 };
 
+const roleSelectFormSchema = z.object({
+  role: z.string({
+    errorMap: () => ({
+      message: "Select a role",
+    }),
+  }),
+});
+type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
+type RoleSelectFormProps = RoleSelectFormValues & {
+  onSubmit: (values: RoleSelectFormValues) => Promise<void>;
+};
+
 const RoleSelectionView = () => {
-  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const { formState, setValue, handleSubmit } = useForm<RoleSelectFormProps>({
+    resolver: zodResolver(roleSelectFormSchema),
+    mode: "onBlur",
+  });
+
+  const onFormSubmit = async (values: RoleSelectFormValues) => {
+    console.log("TODO: something with these values", values);
+  };
 
   return (
     <OakFlex
@@ -28,8 +51,8 @@ const RoleSelectionView = () => {
       $width="all-spacing-21"
       $gap="space-between-m"
       as="form"
-      onSubmit={() =>
-        console.log("TODO: something with this data", selectedRole)
+      onSubmit={
+        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
       }
     >
       <OakHeading tag="h2" $font="heading-light-5">
@@ -40,13 +63,20 @@ const RoleSelectionView = () => {
         $flexDirection="column"
         $alignItems="flex-start"
         $gap="all-spacing-8"
-        onChange={(event) => setSelectedRole(event.target.value)}
+        onChange={(event) => setValue("role", event.target.value)}
       >
         {Object.entries(roleOptions).map(([value, label]) => (
           <OakRadioButton key={value} id={value} label={label} value={value} />
         ))}
       </OakRadioGroup>
-      <OakPrimaryButton width="100%" type="submit">
+      {formState.errors.role && (
+        <FieldError id="role-error">{formState.errors.role.message}</FieldError>
+      )}
+      <OakPrimaryButton
+        width="100%"
+        type="submit"
+        disabled={!!formState.errors.role}
+      >
         Continue
       </OakPrimaryButton>
     </OakFlex>

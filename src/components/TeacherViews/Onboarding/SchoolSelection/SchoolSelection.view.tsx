@@ -14,7 +14,7 @@ import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePag
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 
-const onboardingFormSchema = z.object({
+const schoolSelectFormSchema = z.object({
   school: z
     .string({
       errorMap: () => ({
@@ -24,14 +24,14 @@ const onboardingFormSchema = z.object({
     .min(1, "Select school"),
   schoolName: z.string().optional(),
 });
-type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
-type OnboardingFormProps = OnboardingFormValues & {
-  onSubmit: (values: OnboardingFormValues) => Promise<void>;
+type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
+type SchoolSelectFormProps = SchoolSelectFormValues & {
+  onSubmit: (values: SchoolSelectFormValues) => Promise<void>;
 };
 
 export const SchoolSelectionView = () => {
-  const { formState, setValue, handleSubmit } = useForm<OnboardingFormProps>({
-    resolver: zodResolver(onboardingFormSchema),
+  const { formState, setValue, handleSubmit } = useForm<SchoolSelectFormProps>({
+    resolver: zodResolver(schoolSelectFormSchema),
     mode: "onBlur",
   });
 
@@ -68,7 +68,7 @@ export const SchoolSelectionView = () => {
     setSchoolPickerInputValue(value);
   };
 
-  const onFormSubmit = async (data: OnboardingFormProps) => {
+  const onFormSubmit = async (data: SchoolSelectFormProps) => {
     // TODO: something with this data
     console.log("onboarding form values: ", data);
   };
