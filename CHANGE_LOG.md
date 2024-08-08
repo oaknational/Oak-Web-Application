@@ -1,3 +1,10 @@
+## [1.508.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.0...v1.508.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* update to published_mv_curriculum_units_0_6 which filters out year=All from MV ([a6b49e2](https://github.com/oaknational/Oak-Web-Application/commit/a6b49e25d21a3b7fa1f90dfa6d57c81738b1eb35))
+
 # [1.508.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.507.0...v1.508.0) (2024-08-07)
 
 
