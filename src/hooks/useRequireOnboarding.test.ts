@@ -1,23 +1,48 @@
 import mockRouter from "next-router-mock";
 import { act } from "react-dom/test-utils";
+import { useUser } from "@clerk/nextjs";
 
 import { useRequireOnboarding } from "./useRequireOnboarding";
 
 import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
+import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+
+type UseUserReturn = ReturnType<typeof useUser>;
 
 describe(useRequireOnboarding, () => {
+  const renderHook = renderHookWithProviders();
+
+  let useUserReturn: UseUserReturn = {
+    isLoaded: true,
+    isSignedIn: false,
+    user: null,
+  };
+
   beforeEach(() => {
+    jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({
+      ...featureFlaggedClerk.fakeClerkApi,
+      useUser() {
+        return useUserReturn;
+      },
+    });
+
     mockRouter.setCurrentUrl("/original");
   });
 
   describe("when the user is not logged in", () => {
-    const renderHookWithNoUser = renderHookWithProviders({
-      user: { user: undefined },
+    beforeEach(() => {
+      useUserReturn = {
+        isLoaded: true,
+        isSignedIn: false,
+        user: null,
+      };
     });
 
     it("does nothing", async () => {
       await act(async () => {
-        await renderHookWithNoUser(useRequireOnboarding);
+        await renderHook(useRequireOnboarding);
       });
 
       expect(mockRouter.pathname).toEqual("/original");
@@ -26,24 +51,32 @@ describe(useRequireOnboarding, () => {
 
   describe("when the user is logged in", () => {
     describe("and the user has completed onboarding", () => {
-      const renderHookWithOnboardedUser = renderHookWithProviders({
-        user: { user: { "owa:onboarded": true } },
+      beforeEach(() => {
+        useUserReturn = {
+          isLoaded: true,
+          isSignedIn: true,
+          user: { publicMetadata: { "owa:onboarded": true } },
+        } as unknown as UseUserReturn;
       });
 
       it("does nothing", () => {
-        renderHookWithOnboardedUser(useRequireOnboarding);
+        renderHook(useRequireOnboarding);
 
         expect(mockRouter.pathname).toEqual("/original");
       });
     });
 
     describe("and the user has not completed onboarding", () => {
-      const renderHookWithUser = renderHookWithProviders({
-        user: { user: {} },
+      beforeEach(() => {
+        useUserReturn = {
+          isLoaded: true,
+          isSignedIn: true,
+          user: { publicMetadata: {} },
+        } as UseUserReturn;
       });
 
       it("redirects to the onboarding page", () => {
-        renderHookWithUser(useRequireOnboarding);
+        renderHook(useRequireOnboarding);
 
         expect(mockRouter.pathname).toEqual("/onboarding");
         expect(mockRouter.query.returnTo).toEqual("/original");
@@ -54,7 +87,7 @@ describe(useRequireOnboarding, () => {
         (route) => {
           mockRouter.setCurrentUrl(route);
 
-          renderHookWithUser(useRequireOnboarding);
+          renderHook(useRequireOnboarding);
 
           expect(mockRouter.pathname).toEqual(route);
         },
