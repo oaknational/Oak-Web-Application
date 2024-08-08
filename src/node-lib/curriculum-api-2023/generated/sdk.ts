@@ -43451,7 +43451,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_1', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_0_3', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
 
 export type CurriculumUnitsQueryVariables = Exact<{
   where?: InputMaybe<Published_Mv_Curriculum_Units_0_3_Bool_Exp>;
@@ -43459,6 +43459,13 @@ export type CurriculumUnitsQueryVariables = Exact<{
 
 
 export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_0_3', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
+
+export type CurriculumUnitsIncludeNewQueryVariables = Exact<{
+  where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_11_Bool_Exp>;
+}>;
+
+
+export type CurriculumUnitsIncludeNewQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_including_new_0_0_13', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, why_this_why_now?: string | null, cycle?: string | null, description?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, state?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, pathway?: string | null, pathway_slug?: string | null, tags?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -43544,6 +43551,13 @@ export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PupilsSitemapQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_7_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_8_0_0', programme_slug?: string | null, unit_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_6_0_0', programme_slug?: string | null, unit_slug?: string | null, lesson_slug?: string | null }> };
+
+export type RefreshedMvTimeQueryVariables = Exact<{
+  viewName: Scalars['String']['input'];
+}>;
+
+
+export type RefreshedMvTimeQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_viewmanager_mvs', last_refresh_finish?: any | null, materializedview_name?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -43659,6 +43673,11 @@ export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>
 
 export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_1', title?: string | null, slug?: string | null, phases?: any | null, examboards?: any | null }> };
 
+export type SubjectPhaseOptionsIncludeNewQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SubjectPhaseOptionsIncludeNewQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_including_new_0_0_1', title?: string | null, slug?: string | null, state?: string | null, phases?: any | null, examboards?: any | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -43694,7 +43713,7 @@ export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typ
 
 export const CurriculumOverviewDocument = gql`
     query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
-  curriculumOverview: published_mv_curriculum_overview_1(
+  curriculumOverview: published_mv_curriculum_overview_0_3(
     where: {phase_slug: {_eq: $phaseSlug}, subject_slug: {_eq: $subjectSlug}}
     limit: 1
   ) {
@@ -43706,8 +43725,8 @@ export const CurriculumOverviewDocument = gql`
 }
     `;
 export const CurriculumUnitsDocument = gql`
-    query curriculumUnits($where: published_mv_curriculum_units_0_3_bool_exp) {
-  units: published_mv_curriculum_units_0_3(where: $where) {
+    query curriculumUnits($where: published_mv_curriculum_units_0_5_bool_exp) {
+  units: published_mv_curriculum_units_0_5(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
@@ -43727,6 +43746,44 @@ export const CurriculumUnitsDocument = gql`
     subject_slug
     subject_parent
     subject_parent_slug
+    tags
+    tier
+    tier_slug
+    title
+    unit_options
+    threads
+    year
+  }
+}
+    `;
+export const CurriculumUnitsIncludeNewDocument = gql`
+    query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_new_0_0_13_bool_exp) {
+  units: published_mv_curriculum_units_including_new_0_0_13(where: $where) {
+    connection_prior_unit_description
+    connection_future_unit_description
+    connection_future_unit_title
+    connection_prior_unit_title
+    why_this_why_now
+    cycle
+    description
+    domain
+    domain_id
+    examboard
+    examboard_slug
+    keystage_slug
+    lessons
+    order
+    planned_number_of_lessons
+    phase
+    phase_slug
+    slug
+    state
+    subject
+    subject_slug
+    subject_parent
+    subject_parent_slug
+    pathway
+    pathway_slug
     tags
     tier
     tier_slug
@@ -43991,6 +44048,16 @@ export const PupilsSitemapDocument = gql`
     programme_slug
     unit_slug
     lesson_slug
+  }
+}
+    `;
+export const RefreshedMvTimeDocument = gql`
+    query refreshedMVTime($viewName: String!) {
+  data: published_viewmanager_mvs(
+    where: {materializedview_name: {_like: $viewName}}
+  ) {
+    last_refresh_finish
+    materializedview_name
   }
 }
     `;
@@ -44303,6 +44370,17 @@ export const SubjectPhaseOptionsDocument = gql`
   }
 }
     `;
+export const SubjectPhaseOptionsIncludeNewDocument = gql`
+    query subjectPhaseOptionsIncludeNew {
+  options: published_mv_subject_phase_options_including_new_0_0_1 {
+    title
+    slug
+    state
+    phases
+    examboards
+  }
+}
+    `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
   teachersHomePage: published_mv_homepage_3_0_1 {
@@ -44402,6 +44480,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     curriculumUnits(variables?: CurriculumUnitsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsQuery>(CurriculumUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnits', 'query', variables);
     },
+    curriculumUnitsIncludeNew(variables?: CurriculumUnitsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsIncludeNewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsIncludeNewQuery>(CurriculumUnitsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnitsIncludeNew', 'query', variables);
+    },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);
     },
@@ -44434,6 +44515,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilsSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>(PupilsSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilsSitemap', 'query', variables);
+    },
+    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RefreshedMvTimeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>(RefreshedMvTimeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'refreshedMVTime', 'query', variables);
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query', variables);
@@ -44482,6 +44566,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     subjectPhaseOptions(variables?: SubjectPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsQuery>(SubjectPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptions', 'query', variables);
+    },
+    subjectPhaseOptionsIncludeNew(variables?: SubjectPhaseOptionsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsIncludeNewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsIncludeNewQuery>(SubjectPhaseOptionsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptionsIncludeNew', 'query', variables);
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);

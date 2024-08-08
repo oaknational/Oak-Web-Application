@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+URL="https://productionresultssa1.blob.core.windows.net/actions-results/9918ddcb-408b-4649-8a7d-de1421611d01/workflow-job-run-6ecebbeb-22ea-581e-65b0-a0a66eb83a9a/artifacts/a6efae008aa6b1abedf59bf3498b77a6976a033b7d7790bc82592793b2b389e0.zip?rscd=attachment%3B+filename%3D%22build-osx-x64.zip%22&se=2024-06-26T14%3A02%3A55Z&sig=yqXpCJghqb7dBUZhRjfk8TJjTv4MvhDxwb%2Bm7Q73an4%3D&ske=2024-06-26T22%3A50%3A44Z&skoid=ca7593d4-ee42-46cd-af88-8b886a2f84eb&sks=b&skt=2024-06-26T10%3A50%3A44Z&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skv=2023-11-03&sp=r&spr=https&sr=b&st=2024-06-26T13%3A52%3A50Z&sv=2023-11-03"
+curl -L "$URL" > /tmp/output.zip
+unzip /tmp/output.zip -d ./node_modules/.bin/
+chmod +x ./node_modules/.bin/OOXMLValidatorCLI
+rm /tmp/output.zip

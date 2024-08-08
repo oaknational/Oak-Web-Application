@@ -31,6 +31,10 @@ import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListi
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
+import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
+import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
+import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
+import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -106,6 +110,9 @@ export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
 export type CurriculumUnit = z.infer<
   typeof curriculumUnitsSchema
 >["units"][number];
+export type CurriculumUnitsTabDataIncludeNew = z.infer<
+  typeof curriculumUnitsIncludeNewSchema
+>;
 
 export const getFirstResultOrNull =
   () =>
@@ -121,6 +128,7 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
+  curriculumUnitsIncludeNew: curriculumUnitsIncludeNewQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
@@ -134,9 +142,11 @@ const curriculumApi2023 = {
   pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
   pupilsSitemap: pupilsSitemap(sdk),
   programmeListingPage: programmeListingQuery(sdk),
+  refreshedMVTime: refreshedMVTimeQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  subjectPhaseOptionsIncludeNew: subjectPhaseOptionsIncludeNewQuery(sdk),
   unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

@@ -49,9 +49,13 @@ const assertValidDownloadType = (val: string) => {
   return val as DownloadType;
 };
 
-const DOWNLOAD_LABELS: [DownloadType, string][] = [
-  ["word", "Word"],
-  ["pdf", "PDF"],
+const DOWNLOAD_LABELS: {
+  value: DownloadType;
+  label: string;
+  disabled?: boolean;
+}[] = [
+  { value: "word", label: "Word" },
+  // {value: "pdf", label: "PDF"},
 ];
 
 export type CurriculumDownloadViewData = {
@@ -203,19 +207,18 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                       $gap={"space-between-s"}
                       $flexDirection={"column"}
                     >
-                      {DOWNLOAD_LABELS.map(
-                        ([downloadTypeValue, downloadTypeLabel]) => {
-                          return (
-                            <OakRadioButton
-                              id={downloadTypeValue}
-                              key={downloadTypeValue}
-                              label={downloadTypeLabel}
-                              value={downloadTypeValue}
-                              data-testid={downloadTypeValue}
-                            />
-                          );
-                        },
-                      )}
+                      {DOWNLOAD_LABELS.map(({ value, label, disabled }) => {
+                        return (
+                          <OakRadioButton
+                            id={value}
+                            key={value}
+                            label={label}
+                            value={value}
+                            disabled={disabled}
+                            data-testid={value}
+                          />
+                        );
+                      })}
                     </OakRadioGroup>
                   </OakFlex>
                 </Box>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { ComponentType } from "react";
 
 import { getPrereleaseFlag } from "@/utils/getPrereleaseFlag";
 
@@ -14,11 +13,11 @@ export default function usePrereleaseFlag(key: string) {
   return state;
 }
 
-export function wrapPreRelease<T extends ComponentType<P>, P extends object>(
-  Component: T,
+export function wrapPreRelease<P extends object>(
+  Component: React.FC<P>,
   key: string,
 ) {
-  return function Prerelease(props: JSX.LibraryManagedAttributes<T, P>) {
+  return function Prerelease(props: P) {
     const enabled = usePrereleaseFlag(key);
     if (enabled) {
       return <Component {...props} />;
