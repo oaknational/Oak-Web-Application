@@ -283,8 +283,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   Year {year}
                 </OakHeading>
-                {subjectCategories?.length > 1 && (
-                  <Box role="group" aria-label="Subject category">
+                {childSubjects.length < 1 && subjectCategories?.length > 1 && (
+                  <Box role="group" aria-label="Categories">
                     {subjectCategories.map((subjectCategory, index) => {
                       const isSelected = isSelectedSubjectCategory(
                         yearSelection,
