@@ -1,24 +1,22 @@
 import mockRouter from "next-router-mock";
 import { act } from "react-dom/test-utils";
-import { useUser } from "@clerk/nextjs";
 
 import { useRequireOnboarding } from "./useRequireOnboarding";
 
 import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
 import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import {
+  mockLoadingUser,
+  mockLoggedIn,
+  mockLoggedOut,
+} from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
-
-type UseUserReturn = ReturnType<typeof useUser>;
 
 describe(useRequireOnboarding, () => {
   const renderHook = renderHookWithProviders();
 
-  let useUserReturn: UseUserReturn = {
-    isLoaded: true,
-    isSignedIn: false,
-    user: null,
-  };
+  let useUserReturn = mockLoadingUser;
 
   beforeEach(() => {
     jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({
@@ -33,11 +31,7 @@ describe(useRequireOnboarding, () => {
 
   describe("when the user is not logged in", () => {
     beforeEach(() => {
-      useUserReturn = {
-        isLoaded: true,
-        isSignedIn: false,
-        user: null,
-      };
+      useUserReturn = mockLoggedOut;
     });
 
     it("does nothing", async () => {
@@ -53,10 +47,12 @@ describe(useRequireOnboarding, () => {
     describe("and the user has completed onboarding", () => {
       beforeEach(() => {
         useUserReturn = {
-          isLoaded: true,
-          isSignedIn: true,
-          user: { publicMetadata: { "owa:onboarded": true } },
-        } as unknown as UseUserReturn;
+          ...mockLoggedIn,
+          user: {
+            ...mockLoggedIn.user,
+            publicMetadata: { "owa:onboarded": true },
+          },
+        };
       });
 
       it("does nothing", () => {
@@ -68,11 +64,7 @@ describe(useRequireOnboarding, () => {
 
     describe("and the user has not completed onboarding", () => {
       beforeEach(() => {
-        useUserReturn = {
-          isLoaded: true,
-          isSignedIn: true,
-          user: { publicMetadata: {} },
-        } as UseUserReturn;
+        useUserReturn = mockLoggedIn;
       });
 
       it("redirects to the onboarding page", () => {

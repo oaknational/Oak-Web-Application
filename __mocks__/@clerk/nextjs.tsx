@@ -16,4 +16,5 @@ module.exports = {
   SignedIn: RenderChildren,
   SignedOut: RenderChildren,
   SignOutButton: RenderChildren,
+  RedirectToSignIn: RenderChildren,
 };

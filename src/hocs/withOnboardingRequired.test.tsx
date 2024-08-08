@@ -4,6 +4,11 @@ import { useUser } from "@clerk/nextjs";
 import { withOnboardingRequired } from "./withOnboardingRequired";
 
 import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import {
+  mockLoadingUser,
+  mockLoggedIn,
+  mockLoggedOut,
+} from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
@@ -15,11 +20,7 @@ describe(withOnboardingRequired, () => {
   let useUserReturn: UseUserReturn;
 
   beforeEach(() => {
-    useUserReturn = {
-      user: undefined,
-      isLoaded: false,
-      isSignedIn: undefined,
-    };
+    useUserReturn = mockLoadingUser;
 
     jest.spyOn(clerk, "useFeatureFlaggedClerk").mockReturnValue({
       ...clerk.fakeClerkApi,
@@ -30,26 +31,9 @@ describe(withOnboardingRequired, () => {
   });
 
   describe.each<[string, UseUserReturn]>([
-    [
-      "clerk has yet to load",
-      {
-        user: undefined,
-        isLoaded: false,
-        isSignedIn: undefined,
-      },
-    ],
-    [
-      "the user is not signed-in",
-      { user: null, isLoaded: true, isSignedIn: false },
-    ],
-    [
-      "the user is signed in but not onboarded",
-      {
-        user: { id: "123", publicMetadata: {} },
-        isLoaded: true,
-        isSignedIn: true,
-      } as UseUserReturn,
-    ],
+    ["clerk has yet to load", mockLoadingUser],
+    ["the user is not signed-in", mockLoggedOut],
+    ["the user is signed in but not onboarded", mockLoggedIn],
   ])("%s", (__, currentUseUserReturn) => {
     beforeEach(() => {
       useUserReturn = currentUseUserReturn;
@@ -83,13 +67,12 @@ describe(withOnboardingRequired, () => {
   describe("when the user is signed in and onboarded", () => {
     beforeEach(() => {
       useUserReturn = {
+        ...mockLoggedIn,
         user: {
-          userId: "123",
+          ...mockLoggedIn.user,
           publicMetadata: { "owa:onboarded": true },
         },
-        isLoaded: true,
-        isSignedIn: true,
-      } as unknown as UseUserReturn;
+      };
     });
 
     it("renders the component", () => {
