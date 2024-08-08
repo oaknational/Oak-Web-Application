@@ -30,6 +30,7 @@ const ERROR_CODES = [
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
   "auth/missing-session",
+  "onboarding/request-error",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -159,6 +160,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "auth/missing-session": {
     message: "Session is missing",
+    shouldNotify: true,
+  },
+  "onboarding/request-error": {
+    message: "Onboarding request failed",
     shouldNotify: true,
   },
 };

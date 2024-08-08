@@ -3,11 +3,15 @@ import {
   OakFlex,
   OakHeading,
   OakP,
+  OakInlineBanner,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/router";
+
+import { onboardUser } from "./onboardingActions";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
@@ -30,10 +34,11 @@ type OnboardingFormProps = OnboardingFormValues & {
 };
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit } = useForm<OnboardingFormProps>({
-    resolver: zodResolver(onboardingFormSchema),
-    mode: "onBlur",
-  });
+  const { formState, setValue, handleSubmit, setError } =
+    useForm<OnboardingFormProps>({
+      resolver: zodResolver(onboardingFormSchema),
+      mode: "onBlur",
+    });
 
   const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
@@ -60,6 +65,7 @@ export const OnboardingView = () => {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
   }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
+  const router = useRouter();
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (value === "") {
@@ -69,8 +75,23 @@ export const OnboardingView = () => {
   };
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
-    // TODO: something with this data
-    console.log("onboarding form values: ", data);
+    try {
+      // TODO: something with this data
+      console.log("onboarding form values: ", data);
+
+      await onboardUser();
+
+      // Log the user in again (without a prompt) so that their
+      // id and access tokens are updated with their onboarding status
+      router.replace({
+        pathname: "/api/auth/silent-login",
+        query: { returnTo: router.query.returnTo?.toString() },
+      });
+    } catch (error) {
+      setError("root", {
+        message: "Something went wrong. Please try again.",
+      });
+    }
   };
 
   return (
@@ -92,6 +113,15 @@ export const OnboardingView = () => {
         }
       >
         <Logo height={48} width={104} variant="with text" />
+        {formState.errors?.root && (
+          <OakInlineBanner
+            isOpen
+            icon="error"
+            type="error"
+            message={formState.errors.root.message}
+            $width="100%"
+          />
+        )}
         <OakHeading tag="h2" $font="heading-light-5">
           Select your school
         </OakHeading>

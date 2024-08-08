@@ -1,13 +1,18 @@
-import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { screen, waitFor } from "@testing-library/dom";
+import userEvent, { UserEvent } from "@testing-library/user-event";
 import fetchMock from "jest-fetch-mock";
+import mockRouter from "next-router-mock";
 
 import OnboardingView from "./Onboarding.view";
+import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+jest.mock("./onboardingActions");
+
 describe("Onboarding view", () => {
   beforeAll(() => {
+    fetchMock.enableMocks();
     fetchMock.doMock(
       JSON.stringify([
         {
@@ -20,6 +25,10 @@ describe("Onboarding view", () => {
         },
       ]),
     );
+  });
+
+  afterAll(() => {
+    fetchMock.disableMocks();
   });
 
   it("renders a heading", async () => {
@@ -62,14 +71,10 @@ describe("Onboarding view", () => {
       name: "Continue",
     });
     expect(continueButton).toBeDisabled();
-    const inputBox = await screen.findByRole("combobox");
 
     const user = userEvent.setup();
-    await user.type(inputBox, "Bea");
-    const school = await screen.findByText("uvoir Primary School", {
-      exact: false,
-    });
-    await user.click(school);
+    await completeForm(user);
+
     expect(
       await screen.findByRole("button", {
         name: "Continue",
@@ -86,4 +91,69 @@ describe("Onboarding view", () => {
     await user.tab();
     expect(await screen.findByRole("combobox")).toHaveValue("");
   });
+
+  describe("on submit", () => {
+    beforeEach(() => {
+      mockRouter.setCurrentUrl({
+        pathname: "/onboarding",
+        query: { returnTo: "/home" },
+      });
+    });
+
+    describe("when successful", () => {
+      beforeEach(() => {
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockResolvedValue({ "owa:onboarded": true });
+      });
+
+      it("logs the user in again silently and returns them to their original page", async () => {
+        renderWithProviders()(<OnboardingView />);
+        const user = userEvent.setup();
+        await completeForm(user);
+        await submitForm(user);
+
+        await waitFor(() => {
+          expect(mockRouter.pathname).toEqual("/api/auth/silent-login");
+          expect(mockRouter.query.returnTo).toEqual("/home");
+        });
+      });
+    });
+
+    describe("when the server returns an error", () => {
+      beforeEach(async () => {
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockRejectedValue(new Error());
+      });
+
+      it("displays an error", async () => {
+        renderWithProviders()(<OnboardingView />);
+        const user = userEvent.setup();
+        await completeForm(user);
+        await submitForm(user);
+
+        expect(
+          screen.getByText("Something went wrong. Please try again."),
+        ).toBeInTheDocument();
+      });
+    });
+  });
 });
+
+async function completeForm(user: UserEvent) {
+  const inputBox = await screen.findByRole("combobox");
+  await user.type(inputBox, "Bea");
+  const school = await screen.findByText("uvoir Primary School", {
+    exact: false,
+  });
+  await user.click(school);
+}
+
+async function submitForm(user: UserEvent) {
+  await user.click(
+    await screen.findByRole("button", {
+      name: "Continue",
+    }),
+  );
+}
