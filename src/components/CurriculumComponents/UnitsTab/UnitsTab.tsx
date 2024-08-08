@@ -112,7 +112,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
-  function handleSelectSubjectCatgeory(
+  function handleSelectSubjectCategory(
     year: string,
     subjectCategory: SubjectCategory,
   ) {
@@ -330,7 +330,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             selectedYear={selectedYear}
             examboardSlug={examboardSlug}
             yearData={yearData}
-            handleSelectSubjectCatgeory={handleSelectSubjectCatgeory}
+            handleSelectSubjectCategory={handleSelectSubjectCategory}
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}

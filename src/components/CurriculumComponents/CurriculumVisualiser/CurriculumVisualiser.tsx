@@ -72,7 +72,7 @@ type CurriculumVisualiserProps = {
   yearData: YearData;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
-  handleSelectSubjectCatgeory: (
+  handleSelectSubjectCategory: (
     year: string,
     subjectCategory: SubjectCategory,
   ) => void;
@@ -171,7 +171,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   yearData,
   handleSelectSubject,
   handleSelectTier,
-  handleSelectSubjectCatgeory,
+  handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
   setUnitData,
   selectedThread,
@@ -249,8 +249,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               year
             ] as YearData[string];
 
-            console.log({ year, subjectCategories });
-
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
@@ -302,7 +300,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           key={index}
                           label={subjectCategory.title}
                           onClick={() =>
-                            handleSelectSubjectCatgeory(year, subjectCategory)
+                            handleSelectSubjectCategory(year, subjectCategory)
                           }
                           size="small"
                           data-testid="subjectCategory-button"

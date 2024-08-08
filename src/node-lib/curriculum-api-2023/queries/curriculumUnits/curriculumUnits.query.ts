@@ -51,7 +51,6 @@ const curriculumUnitsQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    console.log("res=", JSON.stringify(res, null, 2));
     return CurriculumUnitsSchema.parse(res);
   };
 
