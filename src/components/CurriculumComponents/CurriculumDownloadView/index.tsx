@@ -60,7 +60,7 @@ const DOWNLOAD_TYPES: {
   {
     id: "word",
     label: "Curriculum plan",
-    subTitle: "Word (accessible format)",
+    subTitle: "Word (accessible)",
     icon: "maths",
   },
   // {
