@@ -1,6 +1,11 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import { join } from "path";
+
+import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
 
@@ -55,18 +60,18 @@ export interface Tier {
   tier_slug: string;
 }
 
-export interface YearSelection {
-  [key: string]: {
-    discipline?: Discipline | null;
-    subject?: Subject | null;
-    domain?: Domain | null;
-    tier?: Tier | null;
-  };
+export interface Filter {
+  discipline_id?: Discipline["id"] | null;
+  subject_slug?: Subject["subject_slug"] | null;
+  domain_id?: Domain["domain_id"] | null;
+  tier_slug?: Tier["tier_slug"] | null;
+  year: string;
+  thread_slug?: string | null;
 }
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
-  yearSelection: YearSelection;
+  filter: Filter;
   selectedThread: Thread | null;
   selectedYear: string | null;
   examboardSlug: string | null;
@@ -76,8 +81,8 @@ type CurriculumVisualiserProps = {
   handleSelectTier: (year: string, tier: Tier) => void;
   handleSelectDiscipline: (year: string, discipline: Discipline) => void;
   mobileHeaderScrollOffset?: number;
-  setUnitData: (unit: Unit) => void;
-  setVisibleMobileYearRefID: (refID: string) => void;
+  selectedUnit?: string;
+  basePath: string;
 };
 
 function dedupUnits(units: Unit[]) {
@@ -91,26 +96,19 @@ function dedupUnits(units: Unit[]) {
   });
 }
 
-export function isVisibleUnit(
-  yearSelection: YearSelection,
-  year: string,
-  unit: Unit,
-) {
-  const s = yearSelection[year];
+export function isVisibleUnit(filter: Filter, unit: Unit) {
+  const s = filter;
   if (!s) {
     return false;
   }
   const filterBySubject =
-    !s.subject || s.subject.subject_slug === unit.subject_slug;
+    !s.subject_slug || s.subject_slug === unit.subject_slug;
   const filterByDiscipline =
-    s.discipline?.id == -1 ||
-    unit.tags?.findIndex((tag) => tag.id === s.discipline?.id) !== -1;
+    !s.discipline_id ||
+    unit.tags?.findIndex((tag) => tag.id === s.discipline_id) !== -1;
   const filterByDomain =
-    !s.domain ||
-    s.domain.domain_id === 0 ||
-    s.domain.domain_id === unit.domain_id;
-  const filterByTier =
-    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
+    !s.domain_id || s.domain_id === 0 || s.domain_id === unit.domain_id;
+  const filterByTier = !unit.tier_slug || s.tier_slug === unit.tier_slug;
 
   // Look for duplicates that don't have an examboard, tier or subject parent
   // (i.e. aren't handled by other filters)
@@ -120,36 +118,20 @@ export function isVisibleUnit(
   );
 }
 
-function isSelectedDomain(
-  yearSelection: YearSelection,
-  year: string,
-  domain: Domain,
-) {
-  return yearSelection[year]?.domain?.domain_id === domain.domain_id;
+function isSelectedDomain(filter: Filter, domain: Domain) {
+  return filter.domain_id === domain.domain_id;
 }
 
-function isSelectedSubject(
-  yearSelection: YearSelection,
-  year: string,
-  subject: Subject,
-) {
-  return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
+function isSelectedSubject(filter: Filter, subject: Subject) {
+  return filter.subject_slug === subject.subject_slug;
 }
 
-function isSelectedTier(
-  yearSelection: YearSelection,
-  year: string,
-  tier: Tier,
-) {
-  return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
+function isSelectedTier(filter: Filter, tier: Tier) {
+  return filter.tier_slug === tier.tier_slug;
 }
 
-function isSelectedDiscipline(
-  yearSelection: YearSelection,
-  year: string,
-  discipline: Discipline,
-) {
-  return yearSelection[year]?.discipline?.id === discipline.id;
+function isSelectedDiscipline(filter: Filter, discipline: Discipline) {
+  return filter.discipline_id === discipline.id;
 }
 
 function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
@@ -175,8 +157,7 @@ function sortChildSubjects(subjects: Subject[]) {
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
-  unitData,
-  yearSelection,
+  filter,
   selectedYear,
   examboardSlug,
   yearData,
@@ -185,66 +166,25 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   handleSelectTier,
   handleSelectDiscipline,
   mobileHeaderScrollOffset,
-  setUnitData,
   selectedThread,
-  setVisibleMobileYearRefID,
+  selectedUnit,
+  basePath,
 }) => {
   // Selection state helpers
-  const [displayModal, setDisplayModal] = useState(false);
-  const [unitOptionsAvailable, setUnitOptionsAvailable] =
-    useState<boolean>(false);
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
-  const modalButtonRef = useRef<HTMLButtonElement>(null);
-
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-  const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
-  /* Intersection observer to update year filter selection when 
-  scrolling through the visualiser on mobile */
-  useEffect(() => {
-    const options = { rootMargin: "-50% 0px 0px 0px" };
-    const yearsLoaded = Object.keys(yearData).length;
-    // All refs have been created for year groups & data is loaded
-    if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const year = parseInt(entry.target.id, 10);
-          if (entry.isIntersecting) {
-            visibleYears.current.add(year);
-          } else {
-            visibleYears.current.delete(year);
-          }
-          if (visibleYears.current.size > 0) {
-            const lowestYear = Math.min(...visibleYears.current).toString();
-            setVisibleMobileYearRefID(lowestYear);
-          }
-        });
-      }, options);
-      itemEls.current.forEach((el) => io.observe(el as Element));
-      return () => {
-        io.disconnect();
-      };
-    }
-  }, [setVisibleMobileYearRefID, yearData]);
+  const searchParams = useSearchParams();
 
-  const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
-    setDisplayModal((prev) => !prev);
-    setUnitOptionsAvailable(unitOptions);
-    setUnitData({ ...unit });
-    setCurrentUnitLessons(unit.lessons ?? []);
-  };
+  const units = Object.values(yearData).flatMap((obj) => obj.units);
+  const selectedUnitData = units.find((unit) => unit.slug === selectedUnit);
+
+  const router = useRouter();
 
   const handleCloseModal = () => {
-    setDisplayModal(false);
-    setCurrentUnitLessons([]);
+    router.push(basePath, undefined, { scroll: false });
   };
-
-  // FIXME: This is kind of a HACK, currently units don't have tier_slug if
-  // they are across multiple year. So we have to do this awkward step.
-  const unitDataTier = unitData?.year
-    ? yearSelection[unitData?.year]?.tier?.tier_slug
-    : undefined;
 
   return (
     <OakGridArea
@@ -263,9 +203,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
-            const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearSelection, year, unit),
-            );
+            const filteredUnits = units.filter((unit: Unit) => {
+              return isVisibleUnit(filter, unit);
+            });
             const dedupedUnits = dedupUnits(filteredUnits);
 
             return (
@@ -298,8 +238,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   <Box role="group" aria-label="Disciplines">
                     {disciplines.map((discipline, index) => {
                       const isSelected = isSelectedDiscipline(
-                        yearSelection,
-                        year,
+                        filter,
                         discipline,
                       );
 
@@ -325,11 +264,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   <Box role="group" aria-label="Child Subjects">
                     {sortChildSubjects(childSubjects).map(
                       (subject: Subject) => {
-                        const isSelected = isSelectedSubject(
-                          yearSelection,
-                          year,
-                          subject,
-                        );
+                        const isSelected = isSelectedSubject(filter, subject);
 
                         return (
                           <Button
@@ -351,11 +286,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 {domains.length > 0 && (
                   <Box role="group" aria-label="Domains">
                     {domains.map((domain: Domain) => {
-                      const isSelected = isSelectedDomain(
-                        yearSelection,
-                        year,
-                        domain,
-                      );
+                      const isSelected = isSelectedDomain(filter, domain);
 
                       return (
                         <Button
@@ -376,11 +307,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 {tiers.length > 0 && (
                   <Box role="group" aria-label="Tiers">
                     {tiers.map((tier: Tier) => {
-                      const isSelected = isSelectedTier(
-                        yearSelection,
-                        year,
-                        tier,
-                      );
+                      const isSelected = isSelectedTier(filter, tier);
                       return (
                         <Button
                           $font={"heading-6"}
@@ -410,7 +337,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       unit,
                       selectedThread,
                     );
-                    const unitOptions = unit.unit_options.length >= 1;
+
+                    const unitUrl =
+                      join(basePath, unit.slug) + `?${searchParams.toString()}`;
 
                     return (
                       <Card
@@ -440,18 +369,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           >
                             {index + 1}
                           </OutlineHeading>
-                          <OakHeading
-                            tag={"h4"}
-                            $font={"heading-7"}
-                            $mb="space-between-s"
-                          >
+                          <Link href={unitUrl} scroll={false}>
                             {isHighlighted && (
                               <VisuallyHidden>
                                 Highlighted:&nbsp;
                               </VisuallyHidden>
                             )}
                             {unit.title}
-                          </OakHeading>
+                          </Link>
                           {unit.unit_options.length > 1 && (
                             <Box
                               $mt={12}
@@ -475,20 +400,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           $flexDirection={"row"}
                           $justifyContent={"flex-end"}
                         >
-                          <Button
-                            icon="chevron-right"
-                            $iconPosition="trailing"
-                            data-testid={`unit-info-button-${unit.slug}${
-                              unit.tier_slug ? `-${unit.tier_slug}` : ""
-                            }`}
-                            variant={isHighlighted ? "brush" : "minimal"}
-                            background={isHighlighted ? "black" : undefined}
-                            label="Unit info"
-                            onClick={() => {
-                              handleOpenModal(unitOptions, unit);
-                            }}
-                            ref={modalButtonRef}
-                          />
+                          <Link href={unitUrl} scroll={false}>
+                            Unit info
+                          </Link>
                         </OakFlex>
                       </Card>
                     );
@@ -497,29 +411,35 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               </Box>
             );
           })}
-      {displayModal && (
+      {selectedUnitData && (
         <UnitsTabSidebar
-          displayModal={displayModal}
+          displayModal={!!selectedUnitData}
           onClose={handleCloseModal}
           lessons={currentUnitLessons}
           programmeSlug={createProgrammeSlug(
-            unitData,
+            selectedUnitData,
             examboardSlug,
-            unitDataTier,
+            filter.tier_slug ?? undefined,
           )}
-          unitOptionsAvailable={unitOptionsAvailable}
-          unitSlug={unitData?.slug}
+          unitOptionsAvailable={
+            (selectedUnitData?.unit_options ?? []).length > 0
+          }
+          unitSlug={selectedUnitData?.slug}
           unitVariantID={unitVariantID}
         >
           <UnitModal
             setCurrentUnitLessons={setCurrentUnitLessons}
             setUnitVariantID={setUnitVariantID}
-            unitData={unitData}
-            displayModal={displayModal}
-            setUnitOptionsAvailable={setUnitOptionsAvailable}
-            unitOptionsAvailable={unitOptionsAvailable}
+            unitData={selectedUnitData}
+            displayModal={!!selectedUnitData}
+            setUnitOptionsAvailable={() => {}}
+            unitOptionsAvailable={
+              (selectedUnitData?.unit_options ?? []).length > 0
+            }
             isHighlighted={
-              unitData ? isHighlightedUnit(unitData, selectedThread) : false
+              selectedUnitData
+                ? isHighlightedUnit(selectedUnitData, selectedThread)
+                : false
             }
           />
         </UnitsTabSidebar>

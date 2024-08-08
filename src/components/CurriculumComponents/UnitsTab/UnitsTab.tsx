@@ -1,4 +1,4 @@
-import React, { FC, useState, useLayoutEffect, ChangeEvent } from "react";
+import React, { FC, ChangeEvent, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -15,6 +15,7 @@ import CurriculumVisualiser, {
   Tier,
   Unit,
   isVisibleUnit,
+  Filter,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 import SkipLink from "../OakComponentsKitchen/SkipLink";
@@ -29,13 +30,15 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[...slugs]";
 
 // Types and interfaces
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
+  selectedUnit?: string;
+  basePath: string;
 };
 
 export interface YearSelection {
@@ -66,70 +69,73 @@ export function createProgrammeSlug(
 
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
+const UnitsTab: FC<UnitsTabProps> = ({
+  trackingData,
+  formattedData,
+  selectedUnit,
+  basePath,
+}) => {
   // Initialize constants
-  const { yearData, threadOptions, yearOptions, initialYearSelection } =
-    formattedData;
+  const { yearData, threadOptions, yearOptions } = formattedData;
   const { examboardSlug } = trackingData;
   // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const [unitData, setUnitData] = useState<Unit | null>(null);
 
-  const [yearSelection, setYearSelection] = useState<YearSelection>({
-    ...initialYearSelection,
+  const [filter, setFilter] = useState<Filter>({
+    discipline_id: null,
+    subject_slug: null,
+    domain_id: null,
+    tier_slug: null,
+    year: null ?? "",
+    thread_slug: null,
   });
-  // This useLayoutEffect hook should be deprecated once the url structure of the visualiser should be updated
-  useLayoutEffect(() => {
-    setYearSelection(initialYearSelection);
-  }, [initialYearSelection]);
 
-  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
-  const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
-    useState<number>(0);
-  const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
-    string | null
-  >(null);
+  const selectedYear = filter.year;
 
-  // Filter interaction handlers
+  const unitData = Object.values(formattedData.yearData)
+    .flatMap((d) => d.units)
+    .find((unit) => unit.slug === selectedUnit);
+  const selectedThreadSlug = filter.thread_slug;
+  const selectedThread = !selectedThreadSlug
+    ? undefined
+    : threadOptions.find(
+        (thread) => (thread.slug as string) === selectedThreadSlug,
+      );
+  formattedData.threadOptions;
+
+  function pushQuery(partial: Partial<Filter>) {
+    setFilter({ ...filter, ...partial });
+  }
 
   function handleSelectThread(slug: string): void {
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     if (thread) {
       trackSelectThread(thread);
+      pushQuery({ thread_slug: thread?.slug });
     }
-    setSelectedThread(thread);
   }
 
   function handleSelectYear(e: ChangeEvent<HTMLInputElement>): void {
     const year = e.target.value;
     trackSelectYear(year);
-    setSelectedYear(year);
+    pushQuery({ year: year });
   }
 
   function handleSelectDomain(year: string, domain: Domain) {
-    const selection = { ...yearSelection[year] };
-    selection.domain = domain;
-    setYearSelection({ ...yearSelection, [year]: selection });
+    pushQuery({ domain_id: domain.domain_id });
   }
 
   function handleSelectSubject(year: string, subject: Subject) {
-    const selection = { ...yearSelection[year] };
-    selection.subject = subject;
-    setYearSelection({ ...yearSelection, [year]: selection });
+    pushQuery({ subject_slug: subject.subject_slug });
   }
 
   function handleSelectDiscipline(year: string, discipline: Discipline) {
-    const selection = { ...yearSelection[year] };
-    selection.discipline = discipline;
-    setYearSelection({ ...yearSelection, [year]: selection });
+    pushQuery({ discipline_id: discipline.id });
   }
 
   function handleSelectTier(year: string, tier: Tier) {
-    const selection = { ...yearSelection[year] };
-    selection.tier = tier;
-    setYearSelection({ ...yearSelection, [year]: selection });
+    pushQuery({ tier_slug: tier.tier_slug });
   }
 
   // Visibility helpers
@@ -140,10 +146,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
       const units = yearData[year]?.units;
       if (units && (!selectedYear || selectedYear === year)) {
         units.forEach((unit) => {
-          if (
-            isVisibleUnit(yearSelection, year, unit) &&
-            isHighlightedUnit(unit)
-          ) {
+          if (isVisibleUnit(filter, unit) && isHighlightedUnit(unit)) {
             count++;
           }
         });
@@ -192,10 +195,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     }
   }
 
-  function updateMobileHeaderScroll(height: number) {
-    if (!mobileHeaderScrollOffset) {
-      setMobileHeaderScrollOffset(height);
-    }
+  function updateMobileHeaderScroll() {
+    // if (!mobileHeaderScrollOffset) {
+    //   setMobileHeaderScrollOffset(height);
+    // }
   }
 
   return (
@@ -219,14 +222,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
         </OakP>
         <UnitsTabMobile
           updateMobileHeaderScroll={updateMobileHeaderScroll}
-          selectedThread={selectedThread}
+          selectedThread={selectedThread ?? null}
           handleSelectThread={handleSelectThread}
           threadOptions={threadOptions}
           isSelectedThread={isSelectedThread}
           highlightedUnitCount={highlightedUnitCount}
           trackSelectYear={trackSelectYear}
           yearOptions={yearOptions}
-          visibleMobileYearRefID={visibleMobileYearRefID}
+          // FIXME
+          visibleMobileYearRefID={null}
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
@@ -330,8 +334,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser
-            unitData={unitData}
-            yearSelection={yearSelection}
+            basePath={basePath}
+            selectedUnit={selectedUnit}
+            unitData={unitData ?? null}
+            filter={filter}
             selectedYear={selectedYear}
             examboardSlug={examboardSlug}
             yearData={yearData}
@@ -339,10 +345,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
             handleSelectDiscipline={handleSelectDiscipline}
-            mobileHeaderScrollOffset={mobileHeaderScrollOffset}
-            setUnitData={setUnitData}
-            selectedThread={selectedThread}
-            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+            selectedThread={selectedThread ?? null}
           />
         </OakGrid>
       </Box>

@@ -7,6 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { usePathname } from "next/navigation";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -38,6 +39,7 @@ import {
   Discipline,
   Tier,
   Unit,
+  Filter,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
@@ -87,6 +89,7 @@ export type CurriculumInfoPageProps = {
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  searchParams?: Filter;
 };
 
 const VALID_TABS = ["overview", "units", "downloads"] as const;
@@ -100,7 +103,10 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumUnitsFormattedData,
 }) => {
   const router = useRouter();
-  const tab = router.query.tab as CurriculumTab;
+  const pathname = usePathname();
+
+  const [tab, ...slugs] = router.query.slugs as CurriculumTab;
+  const basePath = pathname.replace(slugs.join("/"), "");
 
   const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
@@ -140,6 +146,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "units":
       tabContent = (
         <UnitsTab
+          basePath={basePath}
+          selectedUnit={slugs[0]}
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
         />
@@ -189,7 +197,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 };
 
 export type URLParams = {
-  tab: "units" | "overview";
+  slugs: string[];
   subjectPhaseSlug: string;
 };
 
@@ -424,9 +432,14 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      const tab = context.params.tab;
+      const [tab] = context.params.slugs;
+
+      if (!(tab && VALID_TABS.includes(tab as (typeof VALID_TABS)[number]))) {
+        throw new Error("Invalid tab");
+      }
+
       const isPreviewMode = context.preview === true;
-      if (!VALID_TABS.includes(tab)) {
+      if (!VALID_TABS.includes(tab as (typeof VALID_TABS)[number])) {
         throw new OakError({
           code: "curriculum-api/not-found",
         });
