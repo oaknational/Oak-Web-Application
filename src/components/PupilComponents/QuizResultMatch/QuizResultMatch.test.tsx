@@ -12,9 +12,9 @@ describe("QuizResultMatch", () => {
   });
 
   it.each([
-    { pupilAnswers: ["0", "1", "2"] },
-    { pupilAnswers: ["1", "2", "0"] },
-    { pupilAnswers: ["1", "2", "0"] },
+    { pupilAnswers: [0, 1, 2] },
+    { pupilAnswers: [1, 2, 0] },
+    { pupilAnswers: [1, 2, 0] },
   ])("renders the text for all of the answers", ({ pupilAnswers }) => {
     const { getAllByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -39,7 +39,7 @@ describe("QuizResultMatch", () => {
         <QuizResultMatch
           answers={matchAnswers}
           feedback={["correct", "correct", "correct"]}
-          pupilAnswers={["0", "1", "2"]}
+          pupilAnswers={[0, 1, 2]}
         />
       </OakThemeProvider>,
     );
@@ -57,7 +57,7 @@ describe("QuizResultMatch", () => {
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["incorrect", "incorrect", "incorrect"]}
-            pupilAnswers={["1", "2", "0"]}
+            pupilAnswers={[1, 2, 0]}
           />
         </OakThemeProvider>
       </MathJaxProvider>,
@@ -72,7 +72,7 @@ describe("QuizResultMatch", () => {
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["correct", "correct", "correct"]}
-            pupilAnswers={["0", "1", "2", "3s"]}
+            pupilAnswers={[0, 1, 2, 3]}
           />
         </OakThemeProvider>,
       ),
@@ -87,7 +87,7 @@ describe("QuizResultMatch", () => {
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["correct", "correct", "correct"]}
-            pupilAnswers={["0", "1", "2", "3"]}
+            pupilAnswers={[0, 1, 2, 3]}
           />
         </OakThemeProvider>,
       ),
