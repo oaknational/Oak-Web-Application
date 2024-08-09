@@ -7,9 +7,9 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import {
   exitQuizQuestions,
   quizQuestions,
-  sectionResults,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/ lessonSectionResults.fixture";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
   starterGrade: number;
@@ -67,14 +67,15 @@ export const Default: Story = {
                 grade: args.exitGrade,
                 numQuestions: 5,
                 isComplete: args.isComplete,
-                questionResults: sectionResults["exit-quiz"]?.questionResults,
+                questionResults:
+                  sectionResultsFixture["exit-quiz"]?.questionResults,
               },
               "starter-quiz": {
                 grade: args.starterGrade,
                 numQuestions: 5,
                 isComplete: args.isComplete,
                 questionResults:
-                  sectionResults["starter-quiz"]?.questionResults,
+                  sectionResultsFixture["starter-quiz"]?.questionResults,
               },
               video: {
                 played: false,
