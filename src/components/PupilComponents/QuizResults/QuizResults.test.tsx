@@ -1,13 +1,13 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { QuestionState } from "../QuizUtils/questionTypes";
+
 import { QuizResults } from "./QuizResults";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import {
-  exitQuizQuestions,
-  sectionResults,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/ lessonSectionResults.fixture";
 
 jest.mock("@/components/PupilComponents/QuizResultMCQ/QuizResultMCQ", () => ({
   QuizResultMCQ: () => <div>Multiple Choice Question</div>,
@@ -38,7 +38,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -53,17 +53,17 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
       </MathJaxProvider>,
     );
     const listItems = getAllByRole("listitem");
-    sectionResults?.["exit-quiz"]?.questionResults?.forEach(
-      (quizQuestion, index) => {
+    sectionResultsFixture?.["exit-quiz"]?.questionResults?.forEach(
+      (questionResult: QuestionState, index: number) => {
         const listItem = listItems[index]?.firstChild?.firstChild;
-        if (quizQuestion.grade === 1) {
+        if (questionResult.grade === 1) {
           expect(listItem).toHaveAttribute("alt", "tick");
         } else {
           expect(listItem).toHaveAttribute("alt", "cross");
@@ -77,7 +77,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -92,7 +92,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -112,7 +112,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -132,7 +132,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -152,7 +152,7 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
@@ -172,17 +172,17 @@ describe("QuizResult", () => {
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResults
             quizArray={exitQuizQuestions}
-            sectionResults={sectionResults}
+            sectionResults={sectionResultsFixture}
             lessonSection="exit-quiz"
           />
         </OakThemeProvider>
       </MathJaxProvider>,
     );
     const listItems = getAllByRole("listitem");
-    sectionResults?.["exit-quiz"]?.questionResults?.forEach(
-      (quizQuestion, index) => {
+    sectionResultsFixture?.["exit-quiz"]?.questionResults?.forEach(
+      (questionResult: QuestionState, index: number) => {
         const listItem = listItems[index]?.children[1]?.children[2];
-        if (quizQuestion.grade === 0) {
+        if (questionResult.grade === 0) {
           expect(listItem).toHaveTextContent("Correct answer:");
         }
       },
