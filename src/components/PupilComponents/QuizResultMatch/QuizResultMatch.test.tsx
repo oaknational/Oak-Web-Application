@@ -12,9 +12,9 @@ describe("QuizResultMatch", () => {
   });
 
   it.each([
-    { pupilAnswers: ["grass", "cow", "human"] },
-    { pupilAnswers: ["cow", "human", "grass"] },
-    { pupilAnswers: ["cow", "human", "grass"] },
+    { pupilAnswers: [0, 1, 2] },
+    { pupilAnswers: [1, 2, 0] },
+    { pupilAnswers: [1, 2, 0] },
   ])("renders the text for all of the answers", ({ pupilAnswers }) => {
     const { getAllByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -39,7 +39,7 @@ describe("QuizResultMatch", () => {
         <QuizResultMatch
           answers={matchAnswers}
           feedback={["correct", "correct", "correct"]}
-          pupilAnswers={["grass", "cow", "human"]}
+          pupilAnswers={[0, 1, 2]}
         />
       </OakThemeProvider>,
     );
@@ -57,7 +57,7 @@ describe("QuizResultMatch", () => {
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["incorrect", "incorrect", "incorrect"]}
-            pupilAnswers={["cow", "human", "grass"]}
+            pupilAnswers={[1, 2, 0]}
           />
         </OakThemeProvider>
       </MathJaxProvider>,
@@ -72,7 +72,7 @@ describe("QuizResultMatch", () => {
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["correct", "correct", "correct"]}
-            pupilAnswers={["grass", "cow", "human", "dog"]}
+            pupilAnswers={[0, 1, 2, 3]}
           />
         </OakThemeProvider>,
       ),
@@ -81,18 +81,17 @@ describe("QuizResultMatch", () => {
 
   it("throws error if correct choice object not found", () => {
     matchAnswers.push({ correctChoice: [] });
-    console.log(matchAnswers);
     expect(() =>
       renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResultMatch
             answers={matchAnswers}
             feedback={["correct", "correct", "correct"]}
-            pupilAnswers={["grass", "cow", "human", "dog"]}
+            pupilAnswers={[0, 1, 2, 3]}
           />
         </OakThemeProvider>,
       ),
-    ).toThrow("Correct choice not found for pupil answer dog");
+    ).toThrow("Correct choice not found for pupil answer 3");
   });
 
   afterAll(() => {

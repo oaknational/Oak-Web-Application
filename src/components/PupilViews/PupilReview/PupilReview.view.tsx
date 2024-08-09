@@ -7,7 +7,8 @@ import {
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
-  OakLessonReviewItem,
+  OakLessonReviewIntroVideo,
+  OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
@@ -16,6 +17,8 @@ import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizResults } from "@/components/PupilComponents/QuizResults";
 
 // TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
@@ -23,10 +26,18 @@ type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
   phase?: "primary" | "secondary";
+  starterQuizQuestionsArray: QuestionsArray;
+  exitQuizQuestionsArray: QuestionsArray;
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl, phase = "primary" } = props;
+  const {
+    lessonTitle,
+    backUrl,
+    phase = "primary",
+    starterQuizQuestionsArray,
+    exitQuizQuestionsArray,
+  } = props;
   const {
     updateCurrentSection,
     sectionResults,
@@ -108,19 +119,44 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $mb="space-between-xl"
           >
             {lessonReviewSections.map((lessonSection) => {
-              return (
-                <OakLessonReviewItem
-                  key={lessonSection}
-                  lessonSectionName={lessonSection}
-                  completed={!!sectionResults[lessonSection]?.isComplete}
-                  grade={sectionResults[lessonSection]?.grade ?? 0}
-                  numQuestions={
-                    sectionResults[lessonSection]?.numQuestions ?? 0
-                  }
-                />
-              );
+              if (lessonSection === "intro" || lessonSection === "video") {
+                return (
+                  <OakLessonReviewIntroVideo
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                  />
+                );
+              } else if (
+                lessonSection === "exit-quiz" ||
+                lessonSection === "starter-quiz"
+              ) {
+                const quizArray =
+                  lessonSection === "exit-quiz"
+                    ? exitQuizQuestionsArray
+                    : starterQuizQuestionsArray;
+                return (
+                  <OakLessonReviewQuiz
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                    grade={sectionResults[lessonSection]?.grade ?? 0}
+                    numQuestions={
+                      sectionResults[lessonSection]?.numQuestions ?? 0
+                    }
+                    resultsSlot={
+                      <QuizResults
+                        sectionResults={sectionResults}
+                        quizArray={quizArray}
+                        lessonSection={lessonSection}
+                      />
+                    }
+                  />
+                );
+              }
             })}
           </OakFlex>
+
           <OakFlex
             $flexGrow={1}
             $flexDirection={["row", "column"]}

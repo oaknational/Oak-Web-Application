@@ -130,6 +130,8 @@ export const PupilPageContent = ({
           lessonTitle={lessonTitle ?? ""}
           backUrl={backUrl}
           phase={phase as "primary" | "secondary"}
+          starterQuizQuestionsArray={starterQuiz ?? []}
+          exitQuizQuestionsArray={exitQuiz ?? []}
         />
       );
     default:
