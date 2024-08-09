@@ -40,6 +40,14 @@ describe("Onboarding view", () => {
     expect(contactUs).toBeInTheDocument();
     expect(contactUs).toHaveAttribute("href", "/contact-us");
   });
+  it("renders newsletter signup checkbox", () => {
+    renderWithProviders()(<OnboardingView />);
+    expect(
+      screen.getByLabelText(
+        "Sign up to receive helpful content via email. Unsubscribe at any time.",
+      ),
+    ).toBeInTheDocument();
+  });
   it("it enables the continue button when a school is selected", async () => {
     renderWithProviders()(<OnboardingView />);
     const continueButton = await screen.findByRole("button", {
