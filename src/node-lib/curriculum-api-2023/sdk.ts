@@ -12,10 +12,15 @@ const curriculumApiAuthKey = getServerConfig("curriculumApi2023AuthKey");
 /**
  * TS complaining when Headers in not typed.
  */
-type Headers = { "x-oak-auth-type": string; "x-oak-auth-key": string };
+type Headers = {
+  "x-oak-auth-type": string;
+  "x-oak-auth-key": string;
+  "user-agent": string;
+};
 const headers: Headers = {
   "x-oak-auth-type": curriculumApiAuthType,
   "x-oak-auth-key": curriculumApiAuthKey,
+  "user-agent": "OWA Curriculum API Client",
 };
 
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
