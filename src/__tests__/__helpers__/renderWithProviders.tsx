@@ -104,7 +104,7 @@ export const getMockedProviders =
     );
   };
 
-const allProviders = Object.entries(providersByName).reduce(
+export const allProviders = Object.entries(providersByName).reduce(
   (acc, [name, [, defaultProps]]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
