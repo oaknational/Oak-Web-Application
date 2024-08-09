@@ -4,10 +4,8 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { QuizResults } from "./QuizResults";
 
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import {
-  exitQuizQuestions,
-  sectionResults,
-} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/ lessonSectionResults.fixture";
 
 const meta: Meta<typeof QuizResults> = {
   component: QuizResults,
@@ -37,7 +35,7 @@ export const Default: Story = {
   },
   args: {
     quizArray: exitQuizQuestions,
-    sectionResults: sectionResults,
+    sectionResults: sectionResultsFixture,
     lessonSection: "exit-quiz",
   },
 } as Story; // Add the type definition here

@@ -24,11 +24,10 @@ export const QuizResultMCQ = ({
   feedback,
   pupilAnswer,
 }: QuizResultMCQProps) => {
-  const mappedFeedback = feedback.map((mark, index) => {
-    if (pupilAnswer.includes(index)) {
-      return mark;
-    } else return null;
-  });
+  const mappedFeedback = feedback.map((mark, index) =>
+    pupilAnswer.includes(index) ? mark : null,
+  );
+
   const resultItems = answers.map((answer, index) => {
     const text = answer.answer.filter((answer) => answer?.type === "text")[0];
     const image = answer.answer.filter((answer) => answer?.type === "image")[0];

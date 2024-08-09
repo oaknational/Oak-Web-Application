@@ -40,9 +40,8 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
               key={`q-${displayNumber}-stem-element-0`}
               $font={"body-2-bold"}
             >
-              {`${displayNumber} ${shortAnswerTitleFormatter(
-                removeMarkdown(questionStem[0].text),
-              )}`}
+              {displayNumber}{" "}
+              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
             </OakSpan>
           )}
         </OakFlex>

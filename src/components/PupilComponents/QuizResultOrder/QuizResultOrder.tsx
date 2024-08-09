@@ -23,6 +23,7 @@ export const QuizResultOrder = ({
   pupilAnswers,
 }: QuizResultOrderProps) => {
   const resultItems = pupilAnswers.map((pupilAnswer, index) => {
+    // for order questions the pupil answers are 1-indexed
     const answer = answers[pupilAnswer - 1];
 
     if (!answer) {

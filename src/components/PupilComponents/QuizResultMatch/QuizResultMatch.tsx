@@ -5,16 +5,13 @@ import {
 } from "@oaknational/oak-components";
 
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import {
-  PupilAnswerMatch,
-  QuestionFeedbackType,
-} from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultMatchProps = {
   answers: MatchAnswer[];
   feedback: QuestionFeedbackType[];
-  pupilAnswers: PupilAnswerMatch;
+  pupilAnswers: number[];
 };
 
 export const QuizResultMatch = ({
@@ -37,14 +34,12 @@ export const QuizResultMatch = ({
       );
     }
     const prefix = answer?.matchOption?.[0]?.text;
-    // const standardText = answers[pupilAnswer]?.correctChoice[0].text;
-    const standardText =
-      answers[parseInt(pupilAnswer)]?.correctChoice?.[0]?.text;
+    const standardText = answers[pupilAnswer]?.correctChoice?.[0]?.text;
 
     return (
       <MathJaxWrap>
         <OakQuizResultItem
-          key={standardText}
+          key={standardText?.trim()}
           standardText={standardText}
           boldPrefixText={prefix}
           feedbackState={feedbackState}
