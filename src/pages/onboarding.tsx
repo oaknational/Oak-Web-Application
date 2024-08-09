@@ -7,6 +7,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useEffect } from "react";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
 
@@ -29,4 +30,4 @@ const OnboardingPage: NextPage = () => {
   ) : null;
 };
 
-export default OnboardingPage;
+export default withPageAuthRequired(OnboardingPage);

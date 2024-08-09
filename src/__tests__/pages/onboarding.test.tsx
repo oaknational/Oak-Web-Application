@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
+import theme from "@/styles/theme";
 import OnboardingPage from "@/pages/onboarding";
 
 jest.mock("posthog-js/react", () => ({
@@ -9,7 +10,10 @@ jest.mock("posthog-js/react", () => ({
 }));
 describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
-    renderWithProviders()(<OnboardingPage />);
+    renderWithProviders({
+      user: { user: {} },
+      theme: { theme },
+    })(<OnboardingPage />);
 
     const heading = screen.getByRole("heading", { name: "Select your school" });
     expect(heading).toBeInTheDocument();

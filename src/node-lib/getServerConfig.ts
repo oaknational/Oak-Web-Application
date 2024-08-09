@@ -220,6 +220,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  auth0UserManagementClientId: {
+    value: process.env.AUTH0_USER_MANAGEMENT_CLIENT_ID,
+    envName: "AUTH0_USER_MANAGEMENT_CLIENT_ID",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  auth0UserManagementClientSecret: {
+    value: process.env.AUTH0_USER_MANAGEMENT_CLIENT_SECRET,
+    envName: "AUTH0_USER_MANAGEMENT_CLIENT_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

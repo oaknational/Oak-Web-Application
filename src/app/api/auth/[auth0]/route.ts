@@ -12,4 +12,9 @@ export const GET = auth0.handleAuth({
   "oidc-logout": auth0.handleLogout({
     returnTo: oidcLogoutUrl.toString(),
   }),
+  "silent-login": auth0.handleLogin({
+    authorizationParams: {
+      prompt: "none",
+    },
+  }),
 });
