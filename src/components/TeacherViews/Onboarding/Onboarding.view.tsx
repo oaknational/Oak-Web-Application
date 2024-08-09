@@ -131,7 +131,6 @@ export const OnboardingView = () => {
             };
             return (
               <OakCheckBox
-                defaultChecked
                 checked={value}
                 name={name}
                 onBlur={onBlur}
