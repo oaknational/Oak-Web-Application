@@ -19,10 +19,13 @@ import {
   useDownloadsLocalStorage,
 } from "./helper";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { ResourceTypeValueType } from "@/browser-lib/avo/Avo";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -74,8 +77,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   tiers: snake_tiers,
   child_subjects,
 }) => {
-  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
+  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
   const [childSubjectSelected, setChildSubjectSelected] = useState<
     string | null
@@ -184,6 +189,35 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     }
   };
 
+  function trackCurriculumDownload(
+    data: CurriculumDownloadViewData,
+    subject: string,
+  ) {
+    const {
+      schoolId,
+      schoolName: dataSchoolName,
+      email,
+      schoolNotListed,
+    } = data;
+
+    const schoolName =
+      dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
+    const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
+
+    console.log(schoolName, email, schoolNotListed);
+
+    track.curriculumResourcesDownloaded({
+      analyticsUseCase, // string (restricted to : "Pupil", "Teacher")
+      emailSupplied: email != null, // bool
+      resourceType: "" as ResourceTypeValueType, // list of string (restricted to : "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials")
+      schoolOption, // string (restricted to : "Homeschool", "Not listed", "Selected school")
+      subject: subject, // string
+      schoolUrn: schoolId ? parseInt(schoolId) : 0, // int
+      category: "", // key stage
+      schoolName: dataSchoolName || "", // string
+    });
+  }
+
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
@@ -211,6 +245,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       await downloadFileFromUrl(downloadPath);
       // TODO: Log to hubspot here...
     } finally {
+      trackCurriculumDownload(data, slugs.subjectSlug);
       setIsSubmitting(false);
       setIsDone(true);
     }
