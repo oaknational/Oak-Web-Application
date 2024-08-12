@@ -88,7 +88,6 @@ export type FontProps = {
 };
 
 const fontVariant = css<FontProps>`
-  font-family: "__Lexend_866216", "__Lexend_Fallback_866216";
   ${responsive("font-weight", (props) => props.$font, getFontWeight)}
   ${responsive("font-size", (props) => props.$font, getFontSize)}
   ${responsive("line-height", (props) => props.$font, getLineHeight)}

@@ -13,7 +13,6 @@ const oakStyles = css`
   body {
     padding: 0;
     margin: 0;
-    font-family: "__Lexend_866216", "__Lexend_Fallback_866216";
     font-weight: 300;
     line-height: 1.4;
   }

@@ -1,11 +1,11 @@
 import { FC } from "react";
 import type { AppProps } from "next/app";
+import { Lexend } from "next/font/google";
 import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { Lexend } from "next/font/google";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -28,6 +28,8 @@ import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteS
 import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { featureFlaggedUserFetcher } from "@/browser-lib/user-fetcher/user-fetcher";
 
+const lexend = Lexend({ subsets: ["latin"] });
+
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
 };
@@ -41,12 +43,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
 
   return (
     <>
-      <style jsx global>{`
-        html {
-          font-family: ${lexend.style.fontFamily};
-        }
-      `}</style>
-      <GlobalStyle />
+      <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <UserProvider fetcher={featureFlaggedUserFetcher}>
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
@@ -57,6 +54,13 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                   <OverlayProvider>
                     <MenuProvider>
                       <ToastProvider>
+                        <>
+                          <style jsx global>{`
+                            html {
+                              font-family: ${lexend.style.fontFamily};
+                            }
+                          `}</style>
+                        </>
                         <Component {...pageProps} />
                         <AppHooks />
                       </ToastProvider>
