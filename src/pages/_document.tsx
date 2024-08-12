@@ -44,10 +44,10 @@ class MyDocument extends Document {
         <Head>
           {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
 
-          <link
+          {/* <link
             href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
             rel="stylesheet"
-          />
+          /> */}
 
           <meta
             name="release-stage"
