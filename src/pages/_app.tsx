@@ -33,7 +33,7 @@ const lexend = Lexend({ subsets: ["latin"] });
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
 };
-const lexend = Lexend({ subsets: ["latin"] });
+
 const OakWebApplication: FC<OakWebApplicationProps> = ({
   Component,
   pageProps,
