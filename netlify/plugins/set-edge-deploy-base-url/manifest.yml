@@ -1,0 +1,6 @@
+name: set-edge-deploy-base-url
+inputs:
+  - name: config_path
+    description: Path to write the JSON config to
+    required: true
+    default: "src/edge-lib/runtime-config.json"

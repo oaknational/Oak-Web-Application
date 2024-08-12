@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 import { auth0 } from "@/edge-lib/auth/auth0";
-import getServerConfig from "@/node-lib/getServerConfig";
+import { getConfigVar } from "@/edge-lib/getConfigVar";
 
-const oidcLogoutUrl = new URL(getServerConfig("auth0IssuerBaseURL"));
+const oidcLogoutUrl = new URL(getConfigVar("AUTH0_ISSUER_BASE_URL"));
 oidcLogoutUrl.pathname = "/oidc/logout";
-oidcLogoutUrl.searchParams.set("client_id", getServerConfig("auth0ClientId"));
+oidcLogoutUrl.searchParams.set("client_id", getConfigVar("AUTH0_CLIENT_ID"));
 
 export const runtime = "edge";
 export const GET = auth0.handleAuth({

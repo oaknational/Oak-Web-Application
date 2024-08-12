@@ -4,6 +4,8 @@ package = "./netlify/plugins/github-deployments"
 # Disabled while testing adding the runtime plugin from the package.json.
 # [[plugins]]
 # package = "@netlify/plugin-nextjs"
+[[plugins]]
+package = "./netlify/plugins/set-edge-deploy-base-url"
 
 # Force all access through the managed TLD (default). HTTP
 [[redirects]]

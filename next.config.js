@@ -77,6 +77,9 @@ module.exports = async (phase) => {
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
+    experimental: {
+      esmExternals: "loose",
+    },
     webpack: (config, { dev, defaultLoaders }) => {
       /**
        * Enable inlining of SVGs as components
