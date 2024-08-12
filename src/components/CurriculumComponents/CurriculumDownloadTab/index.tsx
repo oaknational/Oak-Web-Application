@@ -209,7 +209,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     track.curriculumResourcesDownloaded({
       analyticsUseCase, // string (restricted to : "Pupil", "Teacher")
       emailSupplied: email != null, // bool
-      resourceType: "" as ResourceTypeValueType, // list of string (restricted to : "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials")
+      resourceType: [
+        "additional material" as ResourceTypeValueType,
+      ] as ResourceTypeValueType[],
+      //   "ADDITION // list of string (restricted to : "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials")
       schoolOption, // string (restricted to : "Homeschool", "Not listed", "Selected school")
       subject: subject, // string
       schoolUrn: schoolId ? parseInt(schoolId) : 0, // int
