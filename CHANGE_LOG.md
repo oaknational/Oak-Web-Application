@@ -1,3 +1,19 @@
+## [1.509.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.0...v1.509.1) (2024-08-13)
+
+# [1.509.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.1...v1.509.0) (2024-08-12)
+
+
+### Bug Fixes
+
+* conflicts ([d70e325](https://github.com/oaknational/Oak-Web-Application/commit/d70e3254ad63b1445704d09fb0c23035e9a1f1a7))
+* revert gleap ([ea3a6dd](https://github.com/oaknational/Oak-Web-Application/commit/ea3a6dddcfcd18d2c47ed41ecf6db868a1e9017c))
+* storybook with google fonts ([7bb7a99](https://github.com/oaknational/Oak-Web-Application/commit/7bb7a998592cde7ddb898ef5e0db0815ea6a99bc))
+
+
+### Features
+
+* change lexend font to next/font ([c97b09b](https://github.com/oaknational/Oak-Web-Application/commit/c97b09b3bd7c0c01fc5b4f6b4a371bd1169ccc29))
+
 ## [1.508.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.0...v1.508.1) (2024-08-08)
 
 
