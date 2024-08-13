@@ -1,4 +1,8 @@
+import { Lexend } from "next/font/google";
+
 import { OakTheme } from "./types";
+
+const lexend = Lexend({ subsets: ["latin"] });
 
 const theme: OakTheme = {
   name: "default",
@@ -106,12 +110,12 @@ const theme: OakTheme = {
   },
   fonts: {
     // Paragraphs etc.
-    body: "Lexend, sans-serif",
+    body: lexend.style.fontFamily,
     // Buttons etc.
-    ui: "Lexend, sans-serif",
+    ui: lexend.style.fontFamily,
     // Headings etc.
-    heading: "Lexend, sans-serif",
-    headingLight: "Lexend, sans-serif",
+    heading: lexend.style.fontFamily,
+    headingLight: lexend.style.fontFamily,
   },
   input: {
     height: "60px",
