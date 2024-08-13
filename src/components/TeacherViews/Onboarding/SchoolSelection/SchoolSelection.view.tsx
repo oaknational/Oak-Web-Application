@@ -1,20 +1,25 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
+  OnboardingFormProps,
   SchoolSelectFormProps,
   schoolSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
 export const SchoolSelectionView = () => {
-  const { formState, setValue, handleSubmit } = useForm<SchoolSelectFormProps>({
-    resolver: zodResolver(schoolSelectFormSchema),
-    mode: "onBlur",
-  });
+  const { formState, setValue, handleSubmit, control, trigger } =
+    useForm<SchoolSelectFormProps>({
+      resolver: zodResolver(schoolSelectFormSchema),
+      mode: "onBlur",
+      defaultValues: {
+        newsletterSignUp: true,
+      },
+    });
 
   const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
@@ -51,6 +56,8 @@ export const SchoolSelectionView = () => {
 
   return (
     <OnboardingForm
+      control={control as Control<OnboardingFormProps>}
+      trigger={trigger as UseFormTrigger<OnboardingFormProps>}
       formState={formState}
       heading="Select your school"
       handleSubmit={handleSubmit}

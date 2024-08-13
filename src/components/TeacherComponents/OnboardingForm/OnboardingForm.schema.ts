@@ -7,6 +7,7 @@ export const roleSelectFormSchema = z.object({
     }),
   }),
   other: z.string().optional(),
+  newsletterSignUp: z.boolean(),
 });
 export type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
 export type RoleSelectFormProps = RoleSelectFormValues & {
@@ -22,6 +23,7 @@ export const schoolSelectFormSchema = z.object({
     })
     .min(1, "Select school"),
   schoolName: z.string().optional(),
+  newsletterSignUp: z.boolean(),
 });
 export type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
 export type SchoolSelectFormProps = SchoolSelectFormValues & {

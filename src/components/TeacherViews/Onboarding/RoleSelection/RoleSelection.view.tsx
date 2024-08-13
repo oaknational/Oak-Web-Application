@@ -1,11 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OakRadioButton, OakRadioGroup } from "@oaknational/oak-components";
-import { useForm } from "react-hook-form";
+import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
+  OnboardingFormProps,
   RoleSelectFormProps,
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
@@ -29,9 +30,14 @@ const RoleSelectionView = () => {
     clearErrors,
     setError,
     getValues,
+    control,
+    trigger,
   } = useForm<RoleSelectFormProps>({
     resolver: zodResolver(roleSelectFormSchema),
     mode: "onBlur",
+    defaultValues: {
+      newsletterSignUp: true,
+    },
   });
 
   const handleChange = (role: "other" | "role", value: string) => {
@@ -53,6 +59,8 @@ const RoleSelectionView = () => {
         !getValues().other &&
         setError("other", { message: "Please tell us what your role is" })
       }
+      control={control as Control<OnboardingFormProps>}
+      trigger={trigger as UseFormTrigger<OnboardingFormProps>}
     >
       <OakRadioGroup
         name="role-selection"

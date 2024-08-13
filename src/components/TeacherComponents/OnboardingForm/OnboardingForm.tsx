@@ -1,10 +1,18 @@
 import {
+  OakCheckBox,
   OakFlex,
   OakHeading,
   OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { UseFormHandleSubmit, UseFormStateReturn } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  UseFormHandleSubmit,
+  UseFormStateReturn,
+  UseFormTrigger,
+} from "react-hook-form";
+import { ChangeEvent } from "react";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
@@ -18,6 +26,8 @@ const OnboardingForm = (props: {
   heading: string;
   continueDisabled: boolean;
   onSubmit?: () => void;
+  control: Control<OnboardingFormProps>;
+  trigger: UseFormTrigger<OnboardingFormProps>;
 }) => {
   const onFormSubmit = async (data: OnboardingFormProps) => {
     // TODO: something with this data
@@ -55,6 +65,27 @@ const OnboardingForm = (props: {
         >
           Continue
         </OakPrimaryButton>
+        <Controller
+          control={props.control}
+          name="newsletterSignUp"
+          render={({ field: { value, onChange, name, onBlur } }) => {
+            const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+              onChange(e.target.checked);
+              props.trigger();
+            };
+            return (
+              <OakCheckBox
+                checked={value}
+                name={name}
+                onBlur={onBlur}
+                onChange={onChangeHandler}
+                value="Sign up to receive helpful content via email. Unsubscribe at any
+                    time."
+                id="newsletterSignUp"
+              />
+            );
+          }}
+        />
       </OakFlex>
 
       <OakP $font="body-2" color="text-primary" $textAlign="center">

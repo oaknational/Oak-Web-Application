@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import _ from "lodash";
+import { groupBy, uniq } from "lodash";
 import {
   OakIconProps,
   OakThemeProvider,
@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Foundation phase not supported");
       }
 
-      const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
+      const unitsByProgramme = groupBy(curriculumData, "programmeSlug");
 
       // a unique list of subject categories that appear in the unit listing
 
@@ -152,13 +152,13 @@ export const getStaticProps: GetStaticProps<
         .filter((s) => !!s);
 
       // ts will not accept that the above removes the possibility of undefined
-      const subjectCategories = _.uniq(allSubjectCategories) as string[];
+      const subjectCategories = uniq(allSubjectCategories) as string[];
 
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];
 
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
-        _.groupBy(mainUnits, (unit) => unit?.unitData.title),
+        groupBy(mainUnits, (unit) => unit?.unitData.title),
       );
 
       const breadcrumbs: string[] = [yearDescription];
