@@ -1,3 +1,10 @@
+## [1.510.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.1...v1.510.2) (2024-08-13)
+
+
+### Performance Improvements
+
+* added loading "eager" to image above fold ([52bc449](https://github.com/oaknational/Oak-Web-Application/commit/52bc449d2ecdd5bf7210c8c7b0f38046f980600b))
+
 ## [1.510.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.0...v1.510.1) (2024-08-13)
 
 
