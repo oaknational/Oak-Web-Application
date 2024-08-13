@@ -69,13 +69,9 @@ const RoleSelectionView = () => {
       )}
       {getValues().role === "other" && (
         <>
-          {formState.errors.other && (
-            <FieldError id="other-error">
-              {formState.errors.other.message}
-            </FieldError>
-          )}
           <Input
             id="other"
+            error={formState.errors.other?.message}
             label="Please specify"
             required={true}
             onChange={(event) => handleChange("other", event.target.value)}
