@@ -1,26 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
-
-const schoolSelectFormSchema = z.object({
-  school: z
-    .string({
-      errorMap: () => ({
-        message: "Select school",
-      }),
-    })
-    .min(1, "Select school"),
-  schoolName: z.string().optional(),
-});
-type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
-export type SchoolSelectFormProps = SchoolSelectFormValues & {
-  onSubmit: (values: SchoolSelectFormValues) => Promise<void>;
-};
+import {
+  SchoolSelectFormProps,
+  schoolSelectFormSchema,
+} from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
 export const SchoolSelectionView = () => {
   const { formState, setValue, handleSubmit } = useForm<SchoolSelectFormProps>({
@@ -66,6 +54,9 @@ export const SchoolSelectionView = () => {
       formState={formState}
       heading="Select your school"
       handleSubmit={handleSubmit}
+      continueDisabled={
+        formState.errors?.school !== undefined || !formState.isValid
+      }
     >
       <ResourcePageSchoolPicker
         hasError={formState.errors?.school !== undefined}

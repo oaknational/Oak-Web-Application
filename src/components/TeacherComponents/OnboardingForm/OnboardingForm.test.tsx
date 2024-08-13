@@ -27,6 +27,7 @@ describe("Onboarding form", () => {
         handleSubmit={handleSubmitMock}
         formState={formStateMock}
         heading="Select your school"
+        continueDisabled={false}
       >
         <div />
       </OnboardingForm>,
