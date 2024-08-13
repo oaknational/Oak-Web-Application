@@ -1,18 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  OakFlex,
-  OakHeading,
-  OakP,
-  OakPrimaryButton,
-} from "@oaknational/oak-components";
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
-import Logo from "@/components/AppComponents/Logo";
-import OwaLink from "@/components/SharedComponents/OwaLink";
+import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 
 const schoolSelectFormSchema = z.object({
   school: z
@@ -25,7 +18,7 @@ const schoolSelectFormSchema = z.object({
   schoolName: z.string().optional(),
 });
 type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
-type SchoolSelectFormProps = SchoolSelectFormValues & {
+export type SchoolSelectFormProps = SchoolSelectFormValues & {
   onSubmit: (values: SchoolSelectFormValues) => Promise<void>;
 };
 
@@ -68,99 +61,23 @@ export const SchoolSelectionView = () => {
     setSchoolPickerInputValue(value);
   };
 
-  const onFormSubmit = async (data: SchoolSelectFormProps) => {
-    // TODO: something with this data
-    console.log("onboarding form values: ", data);
-  };
-
   return (
-    <OakFlex
-      $flexDirection="column"
-      $width="all-spacing-21"
-      $gap="space-between-m"
+    <OnboardingForm
+      formState={formState}
+      heading="Select your school"
+      handleSubmit={handleSubmit}
     >
-      <OakFlex
-        $flexDirection="column"
-        $alignItems="flex-start"
-        $gap="all-spacing-8"
-        $pa="inner-padding-xl3"
-        $dropShadow="drop-shadow-standard"
-        $borderRadius="border-radius-s"
-        as="form"
-        onSubmit={
-          (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-        }
-      >
-        <Logo height={48} width={104} variant="with text" />
-        <OakHeading tag="h2" $font="heading-light-5">
-          Select your school
-        </OakHeading>
-        <ResourcePageSchoolPicker
-          hasError={formState.errors?.school !== undefined}
-          schoolPickerInputValue={schoolPickerInputValue}
-          setSchoolPickerInputValue={onSchoolPickerInputChange}
-          schools={schools}
-          label={"School"}
-          setSelectedSchool={setSelectedSchool}
-          required={true}
-          withHomeschool={false}
-        />
-        <OakPrimaryButton
-          disabled={
-            formState.errors?.school !== undefined || !formState.isValid
-          }
-          width="100%"
-          type="submit"
-        >
-          Continue
-        </OakPrimaryButton>
-      </OakFlex>
-
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
-        By continuing you agree to{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="terms-and-conditions"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Terms and conditions (opens in a new tab)"
-          }`,
-          }}
-        >
-          Oak's terms & conditions
-        </OwaLink>{" "}
-        and{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="privacy-policy"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": "Privacy policy (opens in a new tab)",
-          }}
-        >
-          privacy policy
-        </OwaLink>
-        .
-      </OakP>
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
-        Need help?{" "}
-        <OwaLink
-          page="contact"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Contact us (opens in a new tab)"
-          }`,
-          }}
-        >
-          {" "}
-          Contact us
-        </OwaLink>
-        .
-      </OakP>
-    </OakFlex>
+      <ResourcePageSchoolPicker
+        hasError={formState.errors?.school !== undefined}
+        schoolPickerInputValue={schoolPickerInputValue}
+        setSchoolPickerInputValue={onSchoolPickerInputChange}
+        schools={schools}
+        label={"School"}
+        setSelectedSchool={setSelectedSchool}
+        required={true}
+        withHomeschool={false}
+      />
+    </OnboardingForm>
   );
 };
 
