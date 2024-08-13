@@ -1,3 +1,10 @@
+# [1.513.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.512.0...v1.513.0) (2024-08-13)
+
+
+### Features
+
+* onboarding pages ([8c1c7ea](https://github.com/oaknational/Oak-Web-Application/commit/8c1c7eab0ef1c5dbc951476cb4e1e4fc483d4d50))
+
 # [1.512.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.511.0...v1.512.0) (2024-08-13)
 
 
