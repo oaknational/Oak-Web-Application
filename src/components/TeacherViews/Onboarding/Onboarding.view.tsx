@@ -82,7 +82,7 @@ export const OnboardingView = () => {
             <OakBox $pv={"inner-padding-xl"}>
               <OakRadioGroup
                 onChange={(value) =>
-                  setWorksInSchool(value.target.value === "yes" ? true : false)
+                  setWorksInSchool(value.target.value === "yes")
                 }
                 $flexDirection={"column"}
                 name={"Do you work in a school?"}
