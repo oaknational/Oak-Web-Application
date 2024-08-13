@@ -1,6 +1,5 @@
 import { fireEvent, screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { act } from "@testing-library/react";
 
 import OnboardingView from "./Onboarding.view";
 
@@ -50,16 +49,14 @@ describe("Onboarding view", () => {
     ).toBeInTheDocument();
   });
   it("should render the Controller component and handle checkbox change", async () => {
-    const { getByRole } = renderWithProviders()(<OnboardingView />);
+    renderWithProviders()(<OnboardingView />);
 
-    const checkbox = getByRole("checkbox", {
+    const checkbox = await screen.findByRole("checkbox", {
       name: /Sign up to receive helpful content via email. Unsubscribe at any time./i,
     });
     expect(checkbox).toBeChecked();
 
-    await act(async () => {
-      fireEvent.click(checkbox);
-    });
+    fireEvent.click(checkbox);
 
     expect(checkbox).not.toBeChecked();
   });
