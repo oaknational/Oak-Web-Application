@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { groupBy } from "lodash";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
@@ -36,7 +36,7 @@ export function getSecondUnitSection({
   if (isLegacy) {
     // Check for "new" programmes that could be displayed
     result.units = Object.values(
-      _.groupBy(
+      groupBy(
         unitsByProgramme[`${programmeSlug.replace("-l", "")}`] || [],
         (unit) => unit.unitData.title,
       ),
@@ -48,7 +48,7 @@ export function getSecondUnitSection({
     // Match the tier slug if it exists
     if (tierSlug) {
       result.units = Object.values(
-        _.groupBy(
+        groupBy(
           unitsByProgramme[`${baseSlug}-${tierSlug}-l`] || [],
           (unit) => unit.unitData.title,
         ),
@@ -60,7 +60,7 @@ export function getSecondUnitSection({
     // If no tier slug is found, display all legacy units
     if (!result.units || result.units.length === 0) {
       result.units = Object.values(
-        _.groupBy(
+        groupBy(
           unitsByProgramme[`${baseSlug}-l`] || [],
           (unit) => unit.unitData.title,
         ),

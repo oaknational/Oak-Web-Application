@@ -99,11 +99,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               >
                 <Illustration
                   noCrop
-                  sizes={getSizes([500, 800])}
+                  sizes={getSizes([340, 480])}
                   slug="curriculum-approach"
                   $objectFit="contain"
                   $objectPosition={"center"}
                   fill
+                  format={null}
                   alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>

@@ -51,7 +51,7 @@ export const QuizResultMatch = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {resultItems}
       </OakFlex>
     </OakFlex>

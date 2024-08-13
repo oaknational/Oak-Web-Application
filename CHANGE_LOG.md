@@ -1,3 +1,29 @@
+## [1.510.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.1...v1.510.2) (2024-08-13)
+
+
+### Performance Improvements
+
+* added loading "eager" to image above fold ([52bc449](https://github.com/oaknational/Oak-Web-Application/commit/52bc449d2ecdd5bf7210c8c7b0f38046f980600b))
+
+## [1.510.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.0...v1.510.1) (2024-08-13)
+
+
+### Performance Improvements
+
+* import function rather than module for lodash to improve performance ([6b466d7](https://github.com/oaknational/Oak-Web-Application/commit/6b466d73b68f08488b19f94f57dff7029fd74745))
+
+# [1.510.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.1...v1.510.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* change test to replicate structure of other tests ([05cb6f8](https://github.com/oaknational/Oak-Web-Application/commit/05cb6f84293f0fc9ecf9ba14f5c4787678175eb5))
+
+
+### Features
+
+* newsletter signup check box and form added to onboarding ([c9c80af](https://github.com/oaknational/Oak-Web-Application/commit/c9c80af33f31b2f9b13ab8811b8396f43375db9b))
+
 ## [1.509.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.0...v1.509.1) (2024-08-13)
 
 # [1.509.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.1...v1.509.0) (2024-08-12)

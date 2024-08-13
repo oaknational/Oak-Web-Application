@@ -4,7 +4,7 @@ import {
   OakQuizResultItem,
   OakSpan,
 } from "@oaknational/oak-components";
-import { isArray } from "lodash";
+import { isArray, isString } from "lodash";
 
 import { QuestionState } from "../QuizUtils/questionTypes";
 
@@ -26,22 +26,38 @@ type CorectAnswerSectionProps = {
 
 const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
   const { questionResult, quizQuestion } = props;
+
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakSpan $font={"body-3-bold"}>Correct answer:</OakSpan>
+      <OakSpan $font={"body-3-bold"}>
+        {isArray(questionResult?.correctAnswer) &&
+        questionResult?.correctAnswer.length > 1
+          ? "Correct answers:"
+          : "Correct answer:"}
+      </OakSpan>
       <OakFlex $flexDirection={"column"}>
         {isArray(questionResult?.correctAnswer) &&
           questionResult?.correctAnswer?.map((correctAnswer, index) => {
+            const correctAnswerText = isString(correctAnswer)
+              ? correctAnswer
+              : undefined;
+
+            const imageURL = !isString(correctAnswer)
+              ? correctAnswer?.imageObject.secureUrl
+              : undefined;
+
             return (
               <MathJaxWrap>
                 <OakQuizResultItem
                   key={index}
-                  standardText={correctAnswer}
+                  standardText={correctAnswerText}
                   boldPrefixText={pickBoldPretext(
                     quizQuestion?.questionType,
                     index,
                     quizQuestion?.answers,
                   )}
+                  imageURL={imageURL}
+                  imageAlt={"Image for option " + (index + 1)}
                 />
               </MathJaxWrap>
             );
