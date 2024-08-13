@@ -66,7 +66,7 @@ const RoleSelectionView = () => {
         name="role-selection"
         $flexDirection="column"
         $alignItems="flex-start"
-        $gap="all-spacing-8"
+        $gap="space-between-s"
         onChange={(event) => handleChange("role", event.target.value)}
       >
         {Object.entries(roleOptions).map(([value, label]) => (
@@ -77,15 +77,13 @@ const RoleSelectionView = () => {
         <FieldError id="role-error">{formState.errors.role.message}</FieldError>
       )}
       {getValues().role === "other" && (
-        <>
-          <Input
-            id="other"
-            error={formState.errors.other?.message}
-            label="Please specify"
-            required={true}
-            onChange={(event) => handleChange("other", event.target.value)}
-          />
-        </>
+        <Input
+          id="other"
+          error={formState.errors.other?.message}
+          label="Please specify"
+          required={true}
+          onChange={(event) => handleChange("other", event.target.value)}
+        />
       )}
     </OnboardingForm>
   );
