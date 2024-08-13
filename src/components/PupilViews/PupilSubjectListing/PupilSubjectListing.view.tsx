@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { groupBy } from "lodash";
 import {
   OakFlex,
   OakGrid,
@@ -20,7 +20,7 @@ type PupilViewsSubjectListingProps = {
 export const PupilViewsSubjectListing = ({
   subjects,
 }: PupilViewsSubjectListingProps) => {
-  const groupedBySubject = _.groupBy(
+  const groupedBySubject = groupBy(
     subjects,
     (subject) => subject.programmeFields.subjectSlug,
   );
@@ -84,11 +84,11 @@ export const PupilViewsSubjectListing = ({
                 );
               }
 
-              const examOptions = _.groupBy(
+              const examOptions = groupBy(
                 subjectData,
                 (subject) => subject.programmeFields.examboardSlug,
               );
-              const tierOptions = _.groupBy(
+              const tierOptions = groupBy(
                 subjectData,
                 (subject) => subject.programmeFields.tierSlug,
               );
