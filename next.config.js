@@ -173,14 +173,6 @@ module.exports = async (phase) => {
 
       return config;
     },
-    /**
-     * Disable font optimization as we're using Cloudflare's fast-google-fonts
-     * worker which not only includes this optimization but also rewrites all
-     * relevant domains to be first party.
-     * @see https://nextjs.org/docs/basic-features/font-optimization
-     * @see https://blog.cloudflare.com/fast-google-fonts-with-cloudflare-workers/
-     */
-    optimizeFonts: false,
     poweredByHeader: false,
     reactStrictMode: true,
     compiler: {
