@@ -7,7 +7,6 @@ import { OnboardingFormProps } from "./OnboardingForm.schema";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-
 describe("Onboarding form", () => {
   it("should render the onboarding form", async () => {
     const { result } = renderHook(() => useForm<OnboardingFormProps>());
