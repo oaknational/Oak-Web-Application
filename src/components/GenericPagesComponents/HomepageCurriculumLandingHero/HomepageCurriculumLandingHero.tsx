@@ -53,6 +53,8 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
             $position={"absolute"}
             sizes={getSizes([400, 600])}
             slug="planning-curriculum"
+            loading="eager"
+            format={null}
           />
         </OakFlex>
       </Cover>
