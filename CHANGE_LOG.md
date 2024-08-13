@@ -1,3 +1,10 @@
+## [1.510.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.0...v1.510.1) (2024-08-13)
+
+
+### Performance Improvements
+
+* import function rather than module for lodash to improve performance ([6b466d7](https://github.com/oaknational/Oak-Web-Application/commit/6b466d73b68f08488b19f94f57dff7029fd74745))
+
 # [1.510.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.1...v1.510.0) (2024-08-13)
 
 
