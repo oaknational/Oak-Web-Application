@@ -10,6 +10,7 @@ export const sectionResultsFixture: LessonSectionResults = {
     grade: 2,
     numQuestions: 6,
     questionResults: [
+      //shrt answer question
       {
         offerHint: false,
         grade: 0,
@@ -18,6 +19,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: "wqdqwedq",
         correctAnswer: ["reciprocal"],
       },
+      // mcq question
       {
         offerHint: false,
         grade: 0,
@@ -27,6 +29,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: [0],
         correctAnswer: ["$$7x \\times {1\\over 7} = 8\\times {1\\over 7}$$"],
       },
+      //  match question
       {
         offerHint: false,
         grade: 0,
@@ -50,6 +53,7 @@ export const sectionResultsFixture: LessonSectionResults = {
           "$$6$$",
         ],
       },
+      // short answer
       {
         offerHint: false,
         grade: 1,
@@ -58,6 +62,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: "1",
         correctAnswer: ["1"],
       },
+      // short answer question
       {
         offerHint: false,
         grade: 1,
@@ -66,6 +71,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: "2",
         correctAnswer: ["2"],
       },
+      //match question
       {
         offerHint: false,
         grade: 0,
@@ -97,6 +103,7 @@ export const sectionResultsFixture: LessonSectionResults = {
     grade: 1,
     numQuestions: 6,
     questionResults: [
+      //short answer
       {
         offerHint: false,
         grade: 1,
@@ -105,6 +112,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: "18",
         correctAnswer: ["18"],
       },
+      //match question
       {
         offerHint: false,
         grade: 1,
@@ -120,6 +128,7 @@ export const sectionResultsFixture: LessonSectionResults = {
           "$$a = 11$$",
         ],
       },
+      //match question
       {
         offerHint: false,
         grade: 0,
@@ -141,6 +150,7 @@ export const sectionResultsFixture: LessonSectionResults = {
           "$$3\\over 2x$$",
         ],
       },
+      //short answer
       {
         offerHint: false,
         grade: 0,
@@ -149,6 +159,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: "5",
         correctAnswer: ["3"],
       },
+      // mcq question
       {
         offerHint: false,
         grade: 0,
@@ -158,6 +169,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: [0],
         correctAnswer: ["$$2\\over 15$$"],
       },
+      //mcq question
       {
         offerHint: false,
         grade: 0,
@@ -167,6 +179,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         pupilAnswer: [0],
         correctAnswer: ["$$1\\over 3$$"],
       },
+      // order quesion
       {
         offerHint: false,
         grade: 0,
