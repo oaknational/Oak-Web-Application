@@ -1,3 +1,16 @@
+## [1.510.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.2...v1.510.3) (2024-08-13)
+
+
+### Bug Fixes
+
+* added aria-describedby to subject in <SubjectPhasePicker/> ([8851a22](https://github.com/oaknational/Oak-Web-Application/commit/8851a223c1660a34f54c2e3320601281ddf756a1))
+* added missing aria-describedby to phase/examboard errors ([bd700b8](https://github.com/oaknational/Oak-Web-Application/commit/bd700b8f664f194c5ee48351e8ca800935543d81))
+
+
+### Performance Improvements
+
+* set format to SVG and fixed image sizes ([7e42ae8](https://github.com/oaknational/Oak-Web-Application/commit/7e42ae81557894d45ad74fd3a9176338173fc866))
+
 ## [1.510.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.1...v1.510.2) (2024-08-13)
 
 
