@@ -9,17 +9,27 @@ import { UseFormHandleSubmit, UseFormStateReturn } from "react-hook-form";
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { SchoolSelectFormProps } from "@/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view";
+import { RoleSelectFormProps } from "@/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view";
+
+type OnboardingFormProps = SchoolSelectFormProps | RoleSelectFormProps;
 
 const OnboardingForm = (props: {
   children: React.ReactNode;
-  handleSubmit: UseFormHandleSubmit<SchoolSelectFormProps>;
-  formState: UseFormStateReturn<SchoolSelectFormProps>;
+  handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
+  formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
 }) => {
-  const onFormSubmit = async (data: SchoolSelectFormProps) => {
+  const onFormSubmit = async (data: OnboardingFormProps) => {
     // TODO: something with this data
     console.log("onboarding form values: ", data);
   };
+
+  // TODO: tidy this
+  const continueDisabled =
+    (props.formState as UseFormStateReturn<SchoolSelectFormProps>).errors
+      ?.school !== undefined &&
+    (props.formState as UseFormStateReturn<RoleSelectFormProps>).errors
+      ?.role !== undefined;
 
   return (
     <OakFlex
@@ -45,10 +55,7 @@ const OnboardingForm = (props: {
         </OakHeading>
         {props.children}
         <OakPrimaryButton
-          disabled={
-            props.formState.errors?.school !== undefined ||
-            !props.formState.isValid
-          }
+          disabled={continueDisabled}
           width="100%"
           type="submit"
         >

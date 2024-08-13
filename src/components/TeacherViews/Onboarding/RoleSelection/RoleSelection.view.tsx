@@ -1,17 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  OakFlex,
-  OakHeading,
-  OakPrimaryButton,
-  OakRadioButton,
-  OakRadioGroup,
-} from "@oaknational/oak-components";
+import { OakRadioButton, OakRadioGroup } from "@oaknational/oak-components";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
+import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 
 const roleOptions: Record<string, string> = {
   "teacher-training": "Training to become a teacher",
@@ -32,7 +27,7 @@ const roleSelectFormSchema = z.object({
   other: z.string().optional(),
 });
 type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
-type RoleSelectFormProps = RoleSelectFormValues & {
+export type RoleSelectFormProps = RoleSelectFormValues & {
   onSubmit: (values: RoleSelectFormValues) => Promise<void>;
 };
 
@@ -43,31 +38,17 @@ const RoleSelectionView = () => {
     mode: "onBlur",
   });
 
-  const onFormSubmit = async (values: RoleSelectFormValues) => {
-    console.log("TODO: something with these values", values);
-  };
-
   const handleChange = (role: string) => {
     setValue("role", role);
     setSelectedRole(role);
   };
 
   return (
-    <OakFlex
-      $flexDirection="column"
-      $pa="inner-padding-xl3"
-      $dropShadow="drop-shadow-standard"
-      $borderRadius="border-radius-s"
-      $width="all-spacing-21"
-      $gap="space-between-m"
-      as="form"
-      onSubmit={
-        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-      }
+    <OnboardingForm
+      heading="Which of the following best describes what you do?"
+      formState={formState}
+      handleSubmit={handleSubmit}
     >
-      <OakHeading tag="h2" $font="heading-light-5">
-        Which of the following best describes what you do?
-      </OakHeading>
       <OakRadioGroup
         name="role-selection"
         $flexDirection="column"
@@ -88,14 +69,7 @@ const RoleSelectionView = () => {
           <Input id="other" label="Please specify" required={true} />
         </>
       )}
-      <OakPrimaryButton
-        width="100%"
-        type="submit"
-        disabled={!!formState.errors.role}
-      >
-        Continue
-      </OakPrimaryButton>
-    </OakFlex>
+    </OnboardingForm>
   );
 };
 
