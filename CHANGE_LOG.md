@@ -1,3 +1,42 @@
+# [1.513.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.512.0...v1.513.0) (2024-08-13)
+
+
+### Features
+
+* onboarding pages ([8c1c7ea](https://github.com/oaknational/Oak-Web-Application/commit/8c1c7eab0ef1c5dbc951476cb4e1e4fc483d4d50))
+
+# [1.512.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.511.0...v1.512.0) (2024-08-13)
+
+
+### Features
+
+* use keystages MV in subject listing page query ([6c4eb2d](https://github.com/oaknational/Oak-Web-Application/commit/6c4eb2dbdc1f956113e9a1ec5351dd99d57f497e))
+
+# [1.511.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.3...v1.511.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* only allow subject categories when no child subjects ([970828c](https://github.com/oaknational/Oak-Web-Application/commit/970828c0d5baf816dc4c9b23042e24a898662c94))
+
+
+### Features
+
+* initial work to move over to subject categories in visualizer ([1b0fe0f](https://github.com/oaknational/Oak-Web-Application/commit/1b0fe0f3527e5f9a09323e8ff39262ea7be55174))
+
+## [1.510.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.2...v1.510.3) (2024-08-13)
+
+
+### Bug Fixes
+
+* added aria-describedby to subject in <SubjectPhasePicker/> ([8851a22](https://github.com/oaknational/Oak-Web-Application/commit/8851a223c1660a34f54c2e3320601281ddf756a1))
+* added missing aria-describedby to phase/examboard errors ([bd700b8](https://github.com/oaknational/Oak-Web-Application/commit/bd700b8f664f194c5ee48351e8ca800935543d81))
+
+
+### Performance Improvements
+
+* set format to SVG and fixed image sizes ([7e42ae8](https://github.com/oaknational/Oak-Web-Application/commit/7e42ae81557894d45ad74fd3a9176338173fc866))
+
 ## [1.510.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.1...v1.510.2) (2024-08-13)
 
 

@@ -1,32 +1,20 @@
-import {
-  OakMaxWidth,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useEffect } from "react";
+import { NextPage } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view";
 
-const RoleSelectionPage = () => {
-  const ffEnabled = useFeatureFlagEnabled("use-auth-owa");
-  const router = useRouter();
-
-  // TODO: extract into shared hook
-  useEffect(() => {
-    if (ffEnabled === false) {
-      router.replace("/404");
-    }
-  }, [ffEnabled, router]);
-
-  return ffEnabled ? (
+const RoleSelectionComponent: NextPage = () => {
+  return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakMaxWidth>
-        <RoleSelectionView />
-      </OakMaxWidth>
+      <RoleSelectionView />
     </OakThemeProvider>
-  ) : null;
+  );
 };
+
+const RoleSelectionPage = withFeatureFlag(
+  RoleSelectionComponent,
+  "use-auth-owa",
+);
 
 export default RoleSelectionPage;
