@@ -183,7 +183,7 @@ describe("QuizResult", () => {
       (questionResult: QuestionState, index: number) => {
         const listItem = listItems[index]?.children[1]?.children[2];
         if (questionResult.grade === 0) {
-          expect(listItem).toHaveTextContent("Correct answer:");
+          expect(listItem).toHaveTextContent("Correct");
         }
       },
     );
