@@ -1,3 +1,15 @@
+# [1.511.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.3...v1.511.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* only allow subject categories when no child subjects ([970828c](https://github.com/oaknational/Oak-Web-Application/commit/970828c0d5baf816dc4c9b23042e24a898662c94))
+
+
+### Features
+
+* initial work to move over to subject categories in visualizer ([1b0fe0f](https://github.com/oaknational/Oak-Web-Application/commit/1b0fe0f3527e5f9a09323e8ff39262ea7be55174))
+
 ## [1.510.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.2...v1.510.3) (2024-08-13)
 
 
