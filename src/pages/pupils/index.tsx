@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import { useEffect, useState } from "react";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -11,7 +12,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
-import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
+import PupilTab from "@/components/GenericPagesComponents/PupilTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -42,6 +43,8 @@ export type HomePageProps = {
 };
 
 export type HomePageTab = "teachers" | "curriculum" | "pupils" | "ai";
+const isHomePageTab = (u: unknown): u is HomePageTab =>
+  u === "teachers" || u === "curriculum" || u === "pupils" || u === "ai";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -54,18 +57,42 @@ export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
 };
 
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
+  const [current, setCurrent] = useState<HomePageTab | undefined>();
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { track } = useAnalytics();
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
 
+  useEffect(() => {
+    console.log("window.location.hash", window.location.hash);
+    const tabHash = window.location.hash;
+    const tabName = tabHash.slice(1);
+
+    if (isHomePageTab(tabName) && current !== tabName) {
+      setCurrent(tabName as HomePageTab);
+    } else if (current === undefined) {
+      // default value when first loading the page or invalid hash
+      setActiveTab("teachers");
+    }
+  }, [current]);
+  const setActiveTab = (tab: HomePageTab) => {
+    setCurrent(tab);
+    const newUrl = `#${tab}`;
+    // using window history instead of nextjs router to avoid re-rendering the page when the anchor changes
+    // see https://github.com/vercel/next.js/discussions/18072
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      "",
+      newUrl,
+    );
+  };
+
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
-      <HomePageTabImageNav current={"teachers"} />
-      <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
+      <HomePageTabImageNav current={"pupils"} />
+      <PupilTab aria-current="page" />
       <MaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

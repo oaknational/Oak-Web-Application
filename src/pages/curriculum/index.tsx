@@ -11,7 +11,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
-import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
+import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -54,7 +54,6 @@ export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
 };
 
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { track } = useAnalytics();
@@ -64,8 +63,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
-      <HomePageTabImageNav current={"teachers"} />
-      <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
+      <HomePageTabImageNav current={"curriculum"} />
+      <CurriculumTab aria-current="page" />
       <MaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

@@ -7,12 +7,16 @@ import { HomePageTab } from "@/pages";
 
 const HomePageTabImageNav = ({
   current,
-  setCurrent,
   ...flexProps
 }: FlexProps & {
   current: HomePageTab | undefined;
-  setCurrent: (tab: HomePageTab) => void;
 }) => {
+  const setCurrent = (tab: HomePageTab) => {
+    if (tab === current) {
+      return;
+    }
+    window.location.href = `/${tab}`;
+  };
   return (
     <OakFlex $flexDirection={"column"}>
       <Flex
