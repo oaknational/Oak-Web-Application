@@ -1,3 +1,54 @@
+# [1.511.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.3...v1.511.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* only allow subject categories when no child subjects ([970828c](https://github.com/oaknational/Oak-Web-Application/commit/970828c0d5baf816dc4c9b23042e24a898662c94))
+
+
+### Features
+
+* initial work to move over to subject categories in visualizer ([1b0fe0f](https://github.com/oaknational/Oak-Web-Application/commit/1b0fe0f3527e5f9a09323e8ff39262ea7be55174))
+
+## [1.510.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.2...v1.510.3) (2024-08-13)
+
+
+### Bug Fixes
+
+* added aria-describedby to subject in <SubjectPhasePicker/> ([8851a22](https://github.com/oaknational/Oak-Web-Application/commit/8851a223c1660a34f54c2e3320601281ddf756a1))
+* added missing aria-describedby to phase/examboard errors ([bd700b8](https://github.com/oaknational/Oak-Web-Application/commit/bd700b8f664f194c5ee48351e8ca800935543d81))
+
+
+### Performance Improvements
+
+* set format to SVG and fixed image sizes ([7e42ae8](https://github.com/oaknational/Oak-Web-Application/commit/7e42ae81557894d45ad74fd3a9176338173fc866))
+
+## [1.510.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.1...v1.510.2) (2024-08-13)
+
+
+### Performance Improvements
+
+* added loading "eager" to image above fold ([52bc449](https://github.com/oaknational/Oak-Web-Application/commit/52bc449d2ecdd5bf7210c8c7b0f38046f980600b))
+
+## [1.510.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.0...v1.510.1) (2024-08-13)
+
+
+### Performance Improvements
+
+* import function rather than module for lodash to improve performance ([6b466d7](https://github.com/oaknational/Oak-Web-Application/commit/6b466d73b68f08488b19f94f57dff7029fd74745))
+
+# [1.510.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.1...v1.510.0) (2024-08-13)
+
+
+### Bug Fixes
+
+* change test to replicate structure of other tests ([05cb6f8](https://github.com/oaknational/Oak-Web-Application/commit/05cb6f84293f0fc9ecf9ba14f5c4787678175eb5))
+
+
+### Features
+
+* newsletter signup check box and form added to onboarding ([c9c80af](https://github.com/oaknational/Oak-Web-Application/commit/c9c80af33f31b2f9b13ab8811b8396f43375db9b))
+
 ## [1.509.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.509.0...v1.509.1) (2024-08-13)
 
 # [1.509.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.508.1...v1.509.0) (2024-08-12)
