@@ -1,3 +1,10 @@
+# [1.512.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.511.0...v1.512.0) (2024-08-13)
+
+
+### Features
+
+* use keystages MV in subject listing page query ([6c4eb2d](https://github.com/oaknational/Oak-Web-Application/commit/6c4eb2dbdc1f956113e9a1ec5351dd99d57f497e))
+
 # [1.511.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.510.3...v1.511.0) (2024-08-13)
 
 
