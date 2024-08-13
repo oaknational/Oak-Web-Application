@@ -10,7 +10,7 @@ describe("onboarding page", () => {
   test("it renders the role selection page", () => {
     renderWithProviders()(<RoleSelectionPage />);
 
-    const heading = screen.getByText("Continue");
-    expect(heading).toBeInTheDocument();
+    const p = screen.getByText("Role selection");
+    expect(p).toBeInTheDocument();
   });
 });
