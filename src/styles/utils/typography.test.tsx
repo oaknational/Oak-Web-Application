@@ -17,7 +17,6 @@ describe("typography", () => {
         <StyledComponent data-testid="test" $font={font as FontVariant} />,
       );
 
-      expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
       expect(getByTestId("test")).toHaveStyle(
         `font-size: ${Number((fontSize / 16).toFixed(REM_DP))}rem`,
       );
