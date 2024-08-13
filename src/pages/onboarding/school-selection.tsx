@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection.view";
-import withFeatureFlag from "@/hoc/withFeatureFlag";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 const SchoolSelectionComponent: NextPage = () => {
   return <SchoolSelectionView />;

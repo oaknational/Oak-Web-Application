@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
-import withFeatureFlag from "@/hoc/withFeatureFlag";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 const OnboardingComponent: NextPage = () => {
   return <OnboardingView />;
