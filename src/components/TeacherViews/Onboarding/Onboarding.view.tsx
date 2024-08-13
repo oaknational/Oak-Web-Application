@@ -4,9 +4,10 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
+  OakCheckBox,
 } from "@oaknational/oak-components";
-import { useCallback, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { ChangeEvent, useCallback, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
@@ -23,6 +24,7 @@ const onboardingFormSchema = z.object({
     })
     .min(1, "Select school"),
   schoolName: z.string().optional(),
+  newsletterSignUp: z.boolean(),
 });
 type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
 type OnboardingFormProps = OnboardingFormValues & {
@@ -30,10 +32,14 @@ type OnboardingFormProps = OnboardingFormValues & {
 };
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit } = useForm<OnboardingFormProps>({
-    resolver: zodResolver(onboardingFormSchema),
-    mode: "onBlur",
-  });
+  const { formState, setValue, handleSubmit, control, trigger } =
+    useForm<OnboardingFormProps>({
+      resolver: zodResolver(onboardingFormSchema),
+      mode: "onBlur",
+      defaultValues: {
+        newsletterSignUp: true,
+      },
+    });
 
   const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
@@ -95,6 +101,7 @@ export const OnboardingView = () => {
         <OakHeading tag="h2" $font="heading-light-5">
           Select your school
         </OakHeading>
+
         <ResourcePageSchoolPicker
           hasError={formState.errors?.school !== undefined}
           schoolPickerInputValue={schoolPickerInputValue}
@@ -114,6 +121,27 @@ export const OnboardingView = () => {
         >
           Continue
         </OakPrimaryButton>
+        <Controller
+          control={control}
+          name="newsletterSignUp"
+          render={({ field: { value, onChange, name, onBlur } }) => {
+            const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+              onChange(e.target.checked);
+              trigger();
+            };
+            return (
+              <OakCheckBox
+                checked={value}
+                name={name}
+                onBlur={onBlur}
+                onChange={onChangeHandler}
+                value="Sign up to receive helpful content via email. Unsubscribe at any
+                    time."
+                id="newsletterSignUp"
+              />
+            );
+          }}
+        />
       </OakFlex>
 
       <OakP $font="body-2" color="text-primary" $textAlign="center">
