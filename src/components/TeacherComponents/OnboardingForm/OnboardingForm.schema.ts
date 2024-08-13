@@ -1,13 +1,17 @@
 import { z } from "zod";
 
+const baseSchema = z.object({
+  newsletterSignUp: z.boolean(),
+});
+
 export const roleSelectFormSchema = z.object({
+  ...baseSchema.shape,
   role: z.string({
     errorMap: () => ({
       message: "Select a role",
     }),
   }),
   other: z.string().optional(),
-  newsletterSignUp: z.boolean(),
 });
 export type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
 export type RoleSelectFormProps = RoleSelectFormValues & {
@@ -15,6 +19,7 @@ export type RoleSelectFormProps = RoleSelectFormValues & {
 };
 
 export const schoolSelectFormSchema = z.object({
+  ...baseSchema.shape,
   school: z
     .string({
       errorMap: () => ({
@@ -23,7 +28,6 @@ export const schoolSelectFormSchema = z.object({
     })
     .min(1, "Select school"),
   schoolName: z.string().optional(),
-  newsletterSignUp: z.boolean(),
 });
 export type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
 export type SchoolSelectFormProps = SchoolSelectFormValues & {
