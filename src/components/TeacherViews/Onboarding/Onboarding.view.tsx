@@ -24,7 +24,7 @@ const onboardingFormSchema = z.object({
     })
     .min(1, "Select school"),
   schoolName: z.string().optional(),
-  newsletterSignUp: z.boolean().optional(),
+  newsletterSignUp: z.boolean(),
 });
 type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
 type OnboardingFormProps = OnboardingFormValues & {
