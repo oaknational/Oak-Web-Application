@@ -85,7 +85,7 @@ export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
-  curriculumOverviewSanityData: CurriculumOverviewSanityData;
+  curriculumOverviewSanityData?: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
@@ -127,13 +127,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   switch (tab) {
     case "overview":
       tabContent = (
-        <OverviewTab
-          data={{
-            curriculumInfo: curriculumOverviewTabData,
-            curriculumCMSInfo: curriculumOverviewSanityData,
-            curriculumSelectionSlugs,
-          }}
-        />
+        <>
+          {curriculumOverviewSanityData && <div>Missing...</div>}
+          {curriculumOverviewSanityData && (
+            <OverviewTab
+              data={{
+                curriculumInfo: curriculumOverviewTabData,
+                curriculumCMSInfo: curriculumOverviewSanityData,
+                curriculumSelectionSlugs,
+              }}
+            />
+          )}
+        </>
       );
 
       break;
@@ -443,12 +448,18 @@ export const getStaticProps: GetStaticProps<
           ...slugs,
         });
 
-      if (!curriculumOverviewSanityData) {
-        return {
-          notFound: true,
-        };
-      }
-      const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      // if (!curriculumOverviewSanityData) {
+      //   return {
+      //     notFound: true,
+      //   };
+      // }
+      const querySlugs = {
+        ...slugs,
+        state: "new",
+      };
+
+      const curriculumUnitsTabData =
+        await curriculumApi.curriculumUnits(querySlugs);
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser
@@ -467,6 +478,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,

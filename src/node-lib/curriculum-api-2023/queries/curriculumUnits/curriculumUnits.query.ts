@@ -18,6 +18,10 @@ const curriculumUnitsQuery =
     const baseWhere = {
       _and: [
         {
+          // TODO: Make this configurable
+          state: { _in: ["published", "new"] },
+        },
+        {
           _or: [
             { subject_slug: { _eq: subjectSlug } },
             { subject_parent_slug: { _eq: subjectSlug } },

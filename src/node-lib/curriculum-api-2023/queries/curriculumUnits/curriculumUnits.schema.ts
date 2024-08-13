@@ -18,13 +18,13 @@ const curriculumUnitsSchema = z.object({
       lessons: z
         .array(
           z.object({
-            slug: z.string().optional(),
-            title: z.string(),
-            _state: z.string().optional(),
+            slug: z.string().optional().nullable(),
+            title: z.string().nullable(),
+            _state: z.string().optional().nullable(),
           }),
         )
         .nullable(),
-      order: z.number(),
+      order: z.number().nullable(),
       slug: z.string(),
       subject: z.string(),
       subject_slug: z.string(),
