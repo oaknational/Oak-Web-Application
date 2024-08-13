@@ -3,8 +3,13 @@ import { NextPage } from "next";
 import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection.view";
 import withFeatureFlag from "@/hoc/withFeatureFlag";
 
-const RoleSelection: NextPage = () => {
+const SchoolSelectionComponent: NextPage = () => {
   return <SchoolSelectionView />;
 };
 
-export default withFeatureFlag(RoleSelection, "use-auth-owa");
+const SchoolSelectionPage = withFeatureFlag(
+  SchoolSelectionComponent,
+  "use-auth-owa",
+);
+
+export default SchoolSelectionPage;

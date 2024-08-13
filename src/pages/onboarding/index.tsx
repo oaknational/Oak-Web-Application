@@ -3,8 +3,10 @@ import { NextPage } from "next";
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
 import withFeatureFlag from "@/hoc/withFeatureFlag";
 
-const OnBoarding: NextPage = () => {
+const OnboardingComponent: NextPage = () => {
   return <OnboardingView />;
 };
 
-export default withFeatureFlag(OnBoarding, "use-auth-owa");
+const OnboardingPage = withFeatureFlag(OnboardingComponent, "use-auth-owa");
+
+export default OnboardingPage;
