@@ -16,10 +16,10 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     lesson_slug
     programme_slug
   }
-  key_stages: pf_keystages(where: { slug: { _neq: "ks5" } }) {
-    keystage
+  key_stages: published_mv_key_stages_2_0_0 {
+    keystage: short_code
     slug
-    description
+    description: title
     display_order
   }
 }
