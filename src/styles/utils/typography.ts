@@ -88,7 +88,6 @@ export type FontProps = {
 };
 
 const fontVariant = css<FontProps>`
-  font-family: Lexend, sans-serif;
   ${responsive("font-weight", (props) => props.$font, getFontWeight)}
   ${responsive("font-size", (props) => props.$font, getFontSize)}
   ${responsive("line-height", (props) => props.$font, getLineHeight)}
