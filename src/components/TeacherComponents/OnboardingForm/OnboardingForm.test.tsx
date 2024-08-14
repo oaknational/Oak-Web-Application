@@ -15,7 +15,7 @@ describe("Onboarding form", () => {
         handleSubmit={result.current.handleSubmit}
         formState={result.current.formState}
         heading="Select your school"
-        continueDisabled={false}
+        canSubmit={true}
         trigger={result.current.trigger}
         control={result.current.control}
       >
@@ -35,7 +35,7 @@ describe("Onboarding form", () => {
         handleSubmit={result.current.handleSubmit}
         formState={result.current.formState}
         heading="Select your school"
-        continueDisabled={false}
+        canSubmit={true}
         trigger={result.current.trigger}
         control={result.current.control}
       >
@@ -60,7 +60,7 @@ describe("Onboarding form", () => {
         handleSubmit={result.current.handleSubmit}
         formState={result.current.formState}
         heading="Select your school"
-        continueDisabled={false}
+        canSubmit={true}
         trigger={result.current.trigger}
         control={result.current.control}
       >

@@ -24,7 +24,7 @@ const OnboardingForm = (props: {
   handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
-  continueDisabled: boolean;
+  canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
@@ -58,7 +58,7 @@ const OnboardingForm = (props: {
         </OakHeading>
         {props.children}
         <OakPrimaryButton
-          disabled={props.continueDisabled}
+          disabled={!props.canSubmit}
           width="100%"
           type="submit"
           onClick={props.onSubmit}

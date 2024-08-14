@@ -50,9 +50,9 @@ const RoleSelectionView = () => {
       heading="Which of the following best describes what you do?"
       formState={formState}
       handleSubmit={handleSubmit}
-      continueDisabled={
-        formState.errors.role !== undefined &&
-        formState.errors.other !== undefined
+      canSubmit={
+        formState.errors.role === undefined &&
+        formState.errors.other === undefined
       }
       onSubmit={() =>
         getValues().role === "other" &&

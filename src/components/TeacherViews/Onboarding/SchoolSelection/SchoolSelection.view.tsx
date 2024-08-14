@@ -61,9 +61,7 @@ export const SchoolSelectionView = () => {
       formState={formState}
       heading="Select your school"
       handleSubmit={handleSubmit}
-      continueDisabled={
-        formState.errors?.school !== undefined || !formState.isValid
-      }
+      canSubmit={formState.isValid}
     >
       <ResourcePageSchoolPicker
         hasError={formState.errors?.school !== undefined}
