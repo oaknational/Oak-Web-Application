@@ -1,6 +1,6 @@
 import { ImageItem } from "@//node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export type QuestionFeedbackType = "correct" | "incorrect" | null;
+export type QuestionFeedbackType = "correct" | "incorrect";
 export type QuestionModeType =
   | "init"
   | "incomplete"
