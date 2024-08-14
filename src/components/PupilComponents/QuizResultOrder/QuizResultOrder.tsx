@@ -23,7 +23,8 @@ export const QuizResultOrder = ({
   pupilAnswers,
 }: QuizResultOrderProps) => {
   const resultItems = pupilAnswers.map((pupilAnswer, index) => {
-    const answer = answers[pupilAnswer];
+    // for order questions the pupil answers are 1-indexed
+    const answer = answers[pupilAnswer - 1];
 
     if (!answer) {
       throw new Error(`Answer not found for index ${pupilAnswer}`);
@@ -41,7 +42,7 @@ export const QuizResultOrder = ({
       <MathJaxWrap>
         <OakQuizResultItem
           key={standardText?.trim()}
-          boldPrefixText={`${pupilAnswer + 1}`}
+          boldPrefixText={`${pupilAnswer}`}
           standardText={standardText}
           feedbackState={feedbackState}
         />
@@ -52,7 +53,7 @@ export const QuizResultOrder = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {resultItems}
       </OakFlex>
     </OakFlex>

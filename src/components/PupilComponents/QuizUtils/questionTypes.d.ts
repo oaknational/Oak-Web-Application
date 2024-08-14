@@ -1,4 +1,6 @@
-export type QuestionFeedbackType = "correct" | "incorrect" | null;
+import { ImageItem } from "@//node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+
+export type QuestionFeedbackType = "correct" | "incorrect";
 export type QuestionModeType =
   | "init"
   | "incomplete"
@@ -24,6 +26,6 @@ type QuestionState = {
   offerHint: boolean;
   pupilAnswer?: PupilAnswer | null;
   feedback?: QuestionFeedbackType | QuestionFeedbackType[]; // whether each part of the answer is correct or incorrect
-  correctAnswer?: string | (string | undefined)[]; // The text for the correct answer to be displayed in the feedback in the review section
+  correctAnswer?: string | (string | ImageItem | undefined)[]; // The text for the correct answer to be displayed in the feedback in the review section
   isPartiallyCorrect?: boolean;
 };

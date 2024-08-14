@@ -39,7 +39,7 @@ export const CorrectMatch: Story = {
   args: {
     answers: matchAnswers,
     feedback: ["correct", "correct", "correct"],
-    pupilAnswers: ["grass", "cow", "human"],
+    pupilAnswers: [0, 1, 2],
   },
 };
 
@@ -50,6 +50,6 @@ export const IncorrectOrder: Story = {
   args: {
     answers: matchAnswers,
     feedback: ["correct", "incorrect", "incorrect"],
-    pupilAnswers: ["grass", "human", "cow"],
+    pupilAnswers: [0, 2, 1],
   },
 };
