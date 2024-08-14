@@ -14,28 +14,20 @@ import {
 } from "@oaknational/oak-components";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import Logo from "@/components/AppComponents/Logo";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { resolveOakHref } from "@/common-lib/urls";
-
-const onboardingFormSchema = z.object({
-  worksInSchool: z.boolean({
-    errorMap: () => ({
-      message: "Please select if you work in a school",
-    }),
-  }),
-});
-type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
-type OnboardingFormProps = OnboardingFormValues & {
-  onSubmit: (values: OnboardingFormValues) => Promise<void>;
-};
+import {
+  OnboardingFormProps,
+  WorksInSchoolFormProps,
+  worksInSchoolFormSchema,
+} from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
 export const OnboardingView = () => {
   const { formState, setValue, handleSubmit, watch } =
-    useForm<OnboardingFormProps>({
-      resolver: zodResolver(onboardingFormSchema),
+    useForm<WorksInSchoolFormProps>({
+      resolver: zodResolver(worksInSchoolFormSchema),
       mode: "onBlur",
     });
   const worksInSchool = watch("worksInSchool");
