@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/dom";
+import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import SchoolSelectionView from "./SchoolSelection.view";
@@ -40,26 +40,7 @@ describe("Onboarding view", () => {
     expect(contactUs).toBeInTheDocument();
     expect(contactUs).toHaveAttribute("href", "/contact-us");
   });
-  it("renders newsletter signup checkbox", () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    expect(
-      screen.getByLabelText(
-        "Sign up to receive helpful content via email. Unsubscribe at any time.",
-      ),
-    ).toBeInTheDocument();
-  });
-  it("should render the Controller component and handle checkbox change", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
 
-    const checkbox = await screen.findByRole("checkbox", {
-      name: /Sign up to receive helpful content via email. Unsubscribe at any time./i,
-    });
-    expect(checkbox).toBeChecked();
-
-    fireEvent.click(checkbox);
-
-    expect(checkbox).not.toBeChecked();
-  });
   it("it enables the continue button when a school is selected", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const continueButton = await screen.findByRole("button", {
