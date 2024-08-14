@@ -38,53 +38,7 @@ describe("Onboarding view", () => {
 
     expect(fieldset).toContainElement(legend);
   });
-  it("changes the Continue button to an anchor element when a radio option is selected", async () => {
-    renderWithProviders()(<OnboardingView />);
 
-    // Simulate selecting a radio option
-    await act(async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "Yes" }));
-    });
-
-    // Check that the button is replaced by an anchor element
-    const continueLink = await screen.findByRole("link", {
-      name: "Continue",
-    });
-
-    expect(continueLink).toBeInTheDocument();
-    expect(continueLink).not.toHaveAttribute("disabled");
-    expect(continueLink.tagName).toBe("A");
-  });
-  it("changes the Continue button to an anchor element with the correct href when a radio option is selected", async () => {
-    renderWithProviders()(<OnboardingView />);
-
-    await act(async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "Yes" }));
-    });
-
-    let continueLink = await screen.findByRole("link", {
-      name: "Continue",
-    });
-
-    expect(continueLink).toBeInTheDocument();
-    expect(continueLink).toHaveAttribute(
-      "href",
-      "/onboarding/school-selection",
-    );
-    expect(continueLink.tagName).toBe("A");
-
-    await act(async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "No" }));
-    });
-
-    continueLink = await screen.findByRole("link", {
-      name: "Continue",
-    });
-
-    expect(continueLink).toBeInTheDocument();
-    expect(continueLink).toHaveAttribute("href", "/onboarding/role-selection");
-    expect(continueLink.tagName).toBe("A");
-  });
   it("shows no error message if button is clicked with a radio selected", async () => {
     renderWithProviders()(<OnboardingView />);
 

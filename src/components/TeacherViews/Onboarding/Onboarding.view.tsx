@@ -1,36 +1,28 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   OakBox,
-  oakDefaultTheme,
   OakFlex,
-  OakLink,
   OakMaxWidth,
-  OakP,
-  OakPrimaryButton,
   OakRadioButton,
   OakRadioGroup,
-  OakSpan,
-  OakThemeProvider,
 } from "@oaknational/oak-components";
 import { useCallback } from "react";
-import { useForm } from "react-hook-form";
+import { Control, useForm, UseFormTrigger } from "react-hook-form";
 
-import Logo from "@/components/AppComponents/Logo";
 import FieldError from "@/components/SharedComponents/FieldError";
-import { resolveOakHref } from "@/common-lib/urls";
 import {
   OnboardingFormProps,
   WorksInSchoolFormProps,
   worksInSchoolFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit, watch } =
+  const { formState, setValue, handleSubmit, control, trigger } =
     useForm<WorksInSchoolFormProps>({
       resolver: zodResolver(worksInSchoolFormSchema),
       mode: "onBlur",
     });
-  const worksInSchool = watch("worksInSchool");
 
   const setWorksInSchool = useCallback(
     (value: boolean) => {
@@ -41,88 +33,38 @@ export const OnboardingView = () => {
     [setValue],
   );
 
-  const onFormSubmit = async (data: OnboardingFormProps) => {
-    // TODO: something with this data
-
-    console.log("Hi onboarding form values: ", data);
-  };
-
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $background={"bg-decorative1-main"}>
-        <OakMaxWidth $justifyContent={"center"} $height={"100vh"}>
-          <OakFlex
-            $flexDirection="column"
-            $width="all-spacing-20"
-            $gap="space-between-m"
-          >
-            <OakFlex
-              $flexDirection="column"
-              $alignItems="flex-start"
-              $pa="inner-padding-xl3"
-              $background={"white"}
-              $dropShadow="drop-shadow-standard"
-              $borderRadius="border-radius-s"
-              as="form"
-              onSubmit={
-                (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-              }
-            >
-              <Logo height={48} width={104} variant="with text" />
-              <OakFlex $flexDirection={"column"} role={"fieldset"}>
-                <OakSpan
-                  role="legend"
-                  $mb={"space-between-s"}
-                  $mt={"space-between-m"}
-                  $font="heading-light-6"
-                >
-                  Do you work in a school?
-                </OakSpan>
-                <FieldError withoutMarginBottom id={"onboarding-error"}>
-                  {formState.errors.worksInSchool?.message}
-                </FieldError>
-                <OakBox $pv={"inner-padding-xl"}>
-                  <OakRadioGroup
-                    onChange={(value) =>
-                      setWorksInSchool(value.target.value === "yes")
-                    }
-                    $flexDirection={"column"}
-                    name={"Do you work in a school?"}
-                  >
-                    <OakRadioButton id="option-1" label="Yes" value="yes" />
-                    <OakRadioButton id="option-2" label="No" value="no" />
-                  </OakRadioGroup>
-                </OakBox>
+    <OakFlex $background={"bg-decorative1-main"}>
+      <OakMaxWidth $justifyContent={"center"} $height={"100vh"}>
+        <OnboardingForm
+          control={control as Control<OnboardingFormProps>}
+          trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+          formState={formState}
+          heading="Do you work in a school?"
+          handleSubmit={handleSubmit}
+          canSubmit={!formState.errors.worksInSchool}
+          showNewsletterSignUp={false}
+          showTermsAndConditions={false}
+        >
+          <OakBox>
+            <FieldError id={"onboarding-error"}>
+              {formState.errors.worksInSchool?.message}
+            </FieldError>
 
-                <OakPrimaryButton
-                  disabled={Boolean(formState.errors.worksInSchool)}
-                  element={!formState.isValid ? "button" : "a"}
-                  href={resolveOakHref({
-                    page: worksInSchool
-                      ? "onboarding-school-selection"
-                      : "onboarding-role-selection",
-                  })}
-                  type="submit"
-                >
-                  Continue
-                </OakPrimaryButton>
-              </OakFlex>
-            </OakFlex>
-            <OakFlex $ph={"inner-padding-xl3"} $justifyContent={"center"}>
-              <OakP $font="body-2">
-                Need help{" "}
-                <OakLink
-                  color="black"
-                  href={resolveOakHref({ page: "contact" })}
-                >
-                  Contact us
-                </OakLink>
-              </OakP>
-            </OakFlex>
-          </OakFlex>
-        </OakMaxWidth>
-      </OakFlex>
-    </OakThemeProvider>
+            <OakRadioGroup
+              onChange={(value) =>
+                setWorksInSchool(value.target.value === "yes")
+              }
+              $flexDirection={"column"}
+              name={"Do you work in a school?"}
+            >
+              <OakRadioButton id="option-1" label="Yes" value="yes" />
+              <OakRadioButton id="option-2" label="No" value="no" />
+            </OakRadioGroup>
+          </OakBox>
+        </OnboardingForm>
+      </OakMaxWidth>
+    </OakFlex>
   );
 };
 
