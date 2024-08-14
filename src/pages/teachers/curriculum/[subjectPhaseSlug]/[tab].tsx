@@ -484,7 +484,22 @@ export const getStaticProps: GetStaticProps<
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
-          curriculumOverviewSanityData,
+          // TODO: Hack to null the object for testing
+          curriculumOverviewSanityData:
+            curriculumOverviewSanityData !== null
+              ? curriculumOverviewSanityData
+              : {
+                  id: "",
+                  subjectPrinciples: [],
+                  partnerBio: "",
+                  curriculumPartner: {
+                    name: "",
+                    image: null,
+                  },
+                  video: null,
+                  videoAuthor: null,
+                  videoExplainer: null,
+                },
           curriculumUnitsFormattedData,
         },
       };
