@@ -67,7 +67,10 @@ const RoleSelectionView = () => {
         $flexDirection="column"
         $alignItems="flex-start"
         $gap="space-between-s"
-        onChange={(event) => handleChange("role", event.target.value)}
+        onChange={(event) => {
+          handleChange("role", event.target.value);
+          clearErrors();
+        }}
       >
         {Object.entries(roleOptions).map(([value, label]) => (
           <OakRadioButton key={value} id={value} label={label} value={value} />
