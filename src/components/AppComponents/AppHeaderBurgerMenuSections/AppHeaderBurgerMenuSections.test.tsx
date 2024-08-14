@@ -1,4 +1,5 @@
 import { screen, within } from "@testing-library/react";
+import * as clerk from "@clerk/nextjs";
 
 import AppHeaderBurgerMenuSections from "./AppHeaderBurgerMenuSections";
 
@@ -26,5 +27,29 @@ describe("AppHeaderBurgerburgerMenuSections", () => {
     expect(header).toBeInTheDocument();
     const list = within(firstSection!).getByRole("list");
     expect(list).toBeInTheDocument();
+  });
+
+  it("does not render a sign out button when user is not logged in", () => {
+    jest.spyOn(clerk, "SignedIn").mockImplementation(() => null);
+
+    renderWithProviders()(
+      <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
+    );
+
+    const signOutButton = screen.queryByText("Sign out");
+    expect(signOutButton).not.toBeInTheDocument();
+  });
+  it("renders a sign out button when a user is logged in", async () => {
+    jest
+      .spyOn(clerk, "SignedIn")
+      .mockImplementation(({ children }) => <>{children}</>);
+
+    renderWithProviders()(
+      <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
+    );
+    const signOutButton = await screen.findByRole("button", {
+      name: "Sign out",
+    });
+    expect(signOutButton).toBeInTheDocument();
   });
 });

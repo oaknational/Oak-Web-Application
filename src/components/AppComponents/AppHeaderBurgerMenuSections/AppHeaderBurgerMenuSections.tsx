@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakLI,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
+import { SignOutButton, SignedIn } from "@clerk/nextjs";
 
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
@@ -24,6 +30,11 @@ const AppHeaderBurgerburgerMenuSections: FC<
 
   return (
     <OakFlex $flexDirection="column" $gap="all-spacing-7">
+      <SignedIn>
+        <SignOutButton>
+          <OakSecondaryButton>Sign out</OakSecondaryButton>
+        </SignOutButton>
+      </SignedIn>
       {burgerMenuSections.map((section, i) => (
         <OakFlex
           $flexDirection="column"
