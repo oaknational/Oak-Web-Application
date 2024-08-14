@@ -168,7 +168,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
-                {phase.slug === "secondary" && (
+                {keyStages.includes("ks4") && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
