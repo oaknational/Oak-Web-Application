@@ -85,8 +85,9 @@ const RoleSelectionView = () => {
         <Input
           id="other"
           error={formState.errors.other?.message}
-          label="Please specify"
-          isRequired={true}
+          label="Your role"
+          isRequired
+          required
           onChange={(event) => handleChange("other", event.target.value)}
           $mb={0}
           placeholder="Type your role"
