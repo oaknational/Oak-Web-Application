@@ -86,6 +86,7 @@ const RoleSelectionView = () => {
           isRequired={true}
           onChange={(event) => handleChange("other", event.target.value)}
           $mb={0}
+          placeholder="Type your role"
           withoutMarginBottom
         />
       )}
