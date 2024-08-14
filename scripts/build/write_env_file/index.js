@@ -228,6 +228,12 @@ async function main() {
     NEXT_PUBLIC_OAK_USER_LOG_URL:
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
+
+    // Clerk
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+      oakConfig.clerk.publishableKey,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || oakConfig.clerk.secretKey,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

@@ -5,11 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { ClerkProvider } from "@clerk/nextjs";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
-
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -42,34 +42,36 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   return (
     <>
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <CookieConsentProvider>
-        <ThemeProvider theme={theme}>
-          <ErrorBoundary>
-            <PostHogProvider client={posthog}>
-              <AnalyticsProvider {...analyticsOptions}>
-                <DefaultSeo />
-                <OverlayProvider>
-                  <MenuProvider>
-                    <ToastProvider>
-                      <>
-                        <style jsx global>{`
-                          html {
-                            font-family: ${lexend.style.fontFamily};
-                          }
-                        `}</style>
-                      </>
-                      <Component {...pageProps} />
-                      <AppHooks />
-                    </ToastProvider>
-                  </MenuProvider>
-                </OverlayProvider>
-              </AnalyticsProvider>
-            </PostHogProvider>
-          </ErrorBoundary>
-          <SpriteSheet />
-          <InlineSpriteSheet />
-        </ThemeProvider>
-      </CookieConsentProvider>
+      <ClerkProvider>
+        <CookieConsentProvider>
+          <ThemeProvider theme={theme}>
+            <ErrorBoundary>
+              <PostHogProvider client={posthog}>
+                <AnalyticsProvider {...analyticsOptions}>
+                  <DefaultSeo />
+                  <OverlayProvider>
+                    <MenuProvider>
+                      <ToastProvider>
+                        <>
+                          <style jsx global>{`
+                            html {
+                              font-family: ${lexend.style.fontFamily};
+                            }
+                          `}</style>
+                        </>
+                        <Component {...pageProps} />
+                        <AppHooks />
+                      </ToastProvider>
+                    </MenuProvider>
+                  </OverlayProvider>
+                </AnalyticsProvider>
+              </PostHogProvider>
+            </ErrorBoundary>
+            <SpriteSheet />
+            <InlineSpriteSheet />
+          </ThemeProvider>
+        </CookieConsentProvider>
+      </ClerkProvider>
     </>
   );
 };

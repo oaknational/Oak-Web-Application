@@ -55,5 +55,9 @@
     "policiesUrl": "https://example.com/policies/",
     "consentLogUrl": "https://example.com/consent/",
     "userLogUrl": "https://example.com/user/"
+  },
+  "clerk": {
+    "publishableKey": "clerk public key",
+    "secretKey": "clerk super secret"
   }
 }
