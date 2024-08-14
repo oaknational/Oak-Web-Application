@@ -16,6 +16,7 @@ const subjectPhaseOptionsSchema = z
     title: z.string(),
     phases: z.array(phaseSchema),
     examboards: z.array(examboard).optional().nullable(),
+    state: z.string(),
   })
   .array();
 

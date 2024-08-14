@@ -19,7 +19,7 @@ const curriculumUnitsQuery =
       _and: [
         {
           // TODO: Make this configurable
-          state: { _in: ["published", "new"] },
+          state: { _in: ["new"] },
         },
         {
           _or: [

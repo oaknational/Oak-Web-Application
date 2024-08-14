@@ -45740,6 +45740,7 @@ export const SubjectPhaseOptionsDocument = gql`
     slug
     phases
     examboards
+    state
   }
 }
     `;
