@@ -83,7 +83,7 @@ const RoleSelectionView = () => {
       )}
       {getValues().role === "other" && (
         <Input
-          id="other"
+          id="other-role"
           error={formState.errors.other?.message}
           label="Your role"
           isRequired
