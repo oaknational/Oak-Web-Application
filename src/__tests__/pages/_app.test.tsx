@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import mockRouter from "next-router-mock";
+import { PropsWithChildren } from "react";
 
 import MyApp from "../../pages/_app";
 
@@ -20,6 +21,12 @@ jest.mock("../../hooks/useOakTheme", () => ({
 }));
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+jest.mock("@clerk/nextjs", () => {
+  return {
+    ClerkProvider: ({ children }: PropsWithChildren) => <>{children}</>,
+  };
+});
 
 describe("<MyApp>", () => {
   it("Renders Component", () => {

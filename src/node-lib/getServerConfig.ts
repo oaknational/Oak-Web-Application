@@ -185,6 +185,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  clerkPublishableKey: {
+    value: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    envName: "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  clerkSecretKey: {
+    value: process.env.CLERK_SECRET_KEY,
+    envName: "CLERK_SECRET_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
