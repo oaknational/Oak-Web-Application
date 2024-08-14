@@ -74,15 +74,19 @@ const RoleSelectionView = () => {
         ))}
       </OakRadioGroup>
       {formState.errors.role && (
-        <FieldError id="role-error">{formState.errors.role.message}</FieldError>
+        <FieldError id="role-error" withoutMarginBottom>
+          {formState.errors.role.message}
+        </FieldError>
       )}
       {getValues().role === "other" && (
         <Input
           id="other"
           error={formState.errors.other?.message}
           label="Please specify"
-          required={true}
+          isRequired={true}
           onChange={(event) => handleChange("other", event.target.value)}
+          $mb={0}
+          withoutMarginBottom
         />
       )}
     </OnboardingForm>
