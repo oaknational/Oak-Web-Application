@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import mockRouter from "next-router-mock";
-import { PropsWithChildren } from "react";
 
 import MyApp from "../../pages/_app";
 

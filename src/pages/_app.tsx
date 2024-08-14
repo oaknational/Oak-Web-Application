@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { ClerkProvider } from "@clerk/nextjs";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -25,6 +24,7 @@ import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
+import { FeatureFlaggedClerkProvider } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -42,7 +42,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   return (
     <>
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <ClerkProvider>
+      <FeatureFlaggedClerkProvider>
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
             <ErrorBoundary>
@@ -71,7 +71,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
             <InlineSpriteSheet />
           </ThemeProvider>
         </CookieConsentProvider>
-      </ClerkProvider>
+      </FeatureFlaggedClerkProvider>
     </>
   );
 };
