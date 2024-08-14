@@ -5,7 +5,7 @@ import { QuizResults } from "./QuizResults";
 
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
-import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/ lessonSectionResults.fixture";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
 const meta: Meta<typeof QuizResults> = {
   component: QuizResults,

@@ -9,7 +9,7 @@ import {
   quizQuestions,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/ lessonSectionResults.fixture";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
   starterGrade: number;
