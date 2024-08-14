@@ -1,3 +1,28 @@
+# [1.514.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.513.0...v1.514.0) (2024-08-14)
+
+
+### Features
+
+* **fixture:** add comments ([337dc08](https://github.com/oaknational/Oak-Web-Application/commit/337dc08ca22a323b9a1452334c14b580df7d2cd7))
+* **quizresults:** fix edge case bugs for results ([2361641](https://github.com/oaknational/Oak-Web-Application/commit/23616418d745ee0b5a3e23c4c04d0c3aacd9985f))
+* **quizresults:** fix edge case bugs for results ([4c56847](https://github.com/oaknational/Oak-Web-Application/commit/4c56847f9c863bb28e5b72908b9647b9b649d761))
+* **quizresults:** fix edge case bugs for results ([29a651c](https://github.com/oaknational/Oak-Web-Application/commit/29a651c33a9c33816aa3c40cc4dba7775b481c9c))
+* **quizresults:** fix edge case bugs for results ([b9a79a6](https://github.com/oaknational/Oak-Web-Application/commit/b9a79a645639b909ceca450f1d810f7dda31221f))
+* **results:** change gap to order answers ([08b7020](https://github.com/oaknational/Oak-Web-Application/commit/08b70200c78588d5eff38891a54a48f6d7038b4d))
+* **results:** create quiz results ([82356b4](https://github.com/oaknational/Oak-Web-Application/commit/82356b40175ed2fa23299bf5ab5dc8f90a32c64f))
+* **results:** create quiz results ([9e698b8](https://github.com/oaknational/Oak-Web-Application/commit/9e698b85f9dc6b0212eec2c991e69cc2b6855ad3))
+* **results:** create quiz results ([962c82f](https://github.com/oaknational/Oak-Web-Application/commit/962c82f975f391f4c995889e49b41e65713e1df1))
+* **results:** create quiz results ([43c80d1](https://github.com/oaknational/Oak-Web-Application/commit/43c80d1e28b42ec855d30ca7b699d47901108bc0))
+* **results:** fix tests for changes to result sections ([46f914c](https://github.com/oaknational/Oak-Web-Application/commit/46f914cb59cd9ba0562e6a9b474ff9455f750c2a))
+* **results:** fix tests for changes to result sections ([edb506c](https://github.com/oaknational/Oak-Web-Application/commit/edb506cd33ca1f36f736842b3c9ec762d017f5ff))
+* **results:** remove nulls from mcq ([a57b307](https://github.com/oaknational/Oak-Web-Application/commit/a57b307c916a3e71ca37636c37401576ff92a315))
+* **results:** remove nulls from mcq ([2e4bdb0](https://github.com/oaknational/Oak-Web-Application/commit/2e4bdb004dd3822cc0f7d6cd02ac7e03ddf4c5f8))
+* **results:** respond to review ([cd5f7f0](https://github.com/oaknational/Oak-Web-Application/commit/cd5f7f0d38ad15126e6f0f8e3feff72cdb32fc42))
+* **results:** respond to review ([b25e865](https://github.com/oaknational/Oak-Web-Application/commit/b25e8659bb20e951592e6d58fbdba5ccaa7c8e00))
+* **results:** respond to review ([0bcf79c](https://github.com/oaknational/Oak-Web-Application/commit/0bcf79cd31d3662d439aee3666849a34f437029d))
+* **results:** respond to review ([73b4d9a](https://github.com/oaknational/Oak-Web-Application/commit/73b4d9a526a0d91e384a273f3be422a4b24315bd))
+* **results:** respond to review ([3fe9fec](https://github.com/oaknational/Oak-Web-Application/commit/3fe9fec4f7fee5a6a1a5de0d3bc5c194a92376e2))
+
 # [1.513.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.512.0...v1.513.0) (2024-08-13)
 
 

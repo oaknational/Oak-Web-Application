@@ -41,7 +41,8 @@ export const CorrectSingle: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    feedback: [null, null, "correct", null],
+    feedback: ["correct", "correct", "correct", "correct"],
+    pupilAnswer: [2],
   },
 };
 
@@ -51,7 +52,8 @@ export const IncorrectSingle: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    feedback: ["incorrect", null, null, null],
+    feedback: ["incorrect", "correct", "correct", "incorrect"],
+    pupilAnswer: [0],
   },
 };
 
@@ -61,7 +63,8 @@ export const MixedMultiple: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    feedback: ["incorrect", null, "correct", null],
+    feedback: ["incorrect", "correct", "correct", "incorrect"],
+    pupilAnswer: [0, 2],
   },
 };
 
@@ -71,7 +74,8 @@ export const IncorrectMultiple: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    feedback: ["incorrect", "incorrect", null, null],
+    feedback: ["incorrect", "incorrect", "incorrect", "incorrect"],
+    pupilAnswer: [0, 1],
   },
 };
 
@@ -81,7 +85,8 @@ export const CorrectMultiple: Story = {
   },
   args: {
     answers: mcqTextAnswers,
-    feedback: [null, null, "correct", "correct"],
+    feedback: ["correct", "correct", "correct", "correct"],
+    pupilAnswer: [2, 3],
   },
 };
 
@@ -91,6 +96,7 @@ export const WithImages: Story = {
   },
   args: {
     answers: mcqImageAnswers,
-    feedback: [null, "incorrect", "correct", null],
+    feedback: ["incorrect", "incorrect", "correct", "incorrect"],
+    pupilAnswer: [2, 3],
   },
 };
