@@ -113,3 +113,98 @@ export const getHubspotDownloadsFormPayload = (props: {
 
   return payload;
 };
+
+type OnboardingUKTeacherProps = {
+  school: string;
+  schoolName: string;
+};
+const isOnboardingUKTeacherProps = (
+  u: unknown,
+): u is OnboardingUKTeacherProps => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    "school" in u &&
+    "schoolName" in u &&
+    typeof (u as OnboardingUKTeacherProps).school === "string" &&
+    typeof (u as OnboardingUKTeacherProps).schoolName === "string"
+  );
+};
+type OnboardingInternationalTeacherProps = {
+  schoolAddress: string;
+  schoolPostcode: string;
+};
+const isOnboardingInternationalTeacherProps = (
+  u: unknown,
+): u is OnboardingInternationalTeacherProps => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    "schoolAddress" in u &&
+    "schoolPostcode" in u &&
+    typeof (u as OnboardingInternationalTeacherProps).schoolAddress ===
+      "string" &&
+    typeof (u as OnboardingInternationalTeacherProps).schoolPostcode ===
+      "string"
+  );
+};
+type OnboardingNonTeacherProps = {
+  role: string;
+  roleOther?: string;
+};
+const isOnboardingNonTeacherProps = (
+  u: unknown,
+): u is OnboardingNonTeacherProps => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    "role" in u &&
+    typeof (u as OnboardingNonTeacherProps).role === "string" &&
+    ((u as OnboardingNonTeacherProps).role === "other"
+      ? "roleOther" in u
+      : true)
+  );
+};
+export type OnboardingHubspotFormData = {
+  email: string;
+  oakUserId: string;
+  emailConsent: boolean;
+} & UtmParams &
+  (
+    | OnboardingUKTeacherProps
+    | OnboardingInternationalTeacherProps
+    | OnboardingNonTeacherProps
+  );
+
+export const getHubspotOnboardingFormPayload = (props: {
+  data: OnboardingHubspotFormData;
+  hutk?: string;
+}): HubspotPayload => {
+  const { hutk, data } = props;
+  const isUkTeacher = isOnboardingUKTeacherProps(data);
+  const isInternationalTeacher = isOnboardingInternationalTeacherProps(data);
+  const isNonTeacher = isOnboardingNonTeacherProps(data);
+
+  const snakeCaseData = {
+    email: data.email,
+    email_consent_on_account_creation: data.emailConsent ? "Yes" : "No",
+    do_you_work_in_a_school:
+      isUkTeacher || isInternationalTeacher ? "Yes" : "No",
+    contact_school_name: isUkTeacher ? data.schoolName : undefined,
+    contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
+    manual_input_school_address: isInternationalTeacher
+      ? data.schoolAddress
+      : undefined,
+    school_postcode: isInternationalTeacher ? data.schoolPostcode : undefined,
+    non_school_role_description: isNonTeacher ? data.role : undefined,
+    non_school_role_description_freetext: isNonTeacher
+      ? data.roleOther
+      : undefined,
+    oak_user_id: data.oakUserId,
+    ...getUtmSnakeCaseData(data),
+  };
+
+  const payload = getPayload(snakeCaseData, hutk);
+
+  return payload;
+};
