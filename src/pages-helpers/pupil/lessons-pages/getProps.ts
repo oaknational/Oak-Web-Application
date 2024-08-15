@@ -11,11 +11,12 @@ import {
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
-  unitSlug: string;
-  programmeSlug: string;
+  unitSlug?: string;
+  programmeSlug?: string;
   section: string;
 };
 
@@ -27,12 +28,17 @@ export const getProps = ({
 }: {
   page: PageType;
   context: GetStaticPropsContext<PupilLessonPageURLParams, PreviewData>;
-}) => {
+}): (() => Promise<GetStaticPropsResult<PupilExperienceViewProps>>) => {
   return async () => {
     if (!context.params) {
       throw new Error("context.params is undefined");
     }
     const { lessonSlug, unitSlug, programmeSlug, section } = context.params;
+
+    if (page === "browse") {
+      invariant(unitSlug, "unitSlug is required for browse page");
+      invariant(programmeSlug, "programmeSlug is required for browse page");
+    }
 
     // 404 if the section is not valid
     if (!isLessonSection(section)) {
@@ -41,11 +47,26 @@ export const getProps = ({
       };
     }
 
-    const res = await curriculumApi2023.pupilLessonQuery({
-      programmeSlug,
-      lessonSlug,
-      unitSlug,
-    });
+    const res = await (() => {
+      switch (page) {
+        case "preview":
+          return curriculumApi2023.pupilPreviewLessonQuery({
+            lessonSlug,
+          });
+        case "canonical":
+          return curriculumApi2023.pupilLessonQuery({
+            lessonSlug,
+          });
+        case "browse":
+          return curriculumApi2023.pupilLessonQuery({
+            programmeSlug,
+            lessonSlug,
+            unitSlug,
+          });
+        default:
+          throw new Error(`Invalid page type: ${page}`);
+      }
+    })();
 
     if (!res) {
       return {
@@ -65,11 +86,14 @@ export const getProps = ({
       };
     }
 
-    const backUrl = resolveOakHref({
-      page: "pupil-lesson-index",
-      programmeSlug,
-      unitSlug,
-    });
+    const backUrl =
+      page === "browse" && unitSlug && programmeSlug
+        ? resolveOakHref({
+            page: "pupil-lesson-index",
+            programmeSlug,
+            unitSlug,
+          })
+        : resolveOakHref({ page: "pupil-year-index" });
 
     const { transcriptSentences, hasWorksheet } = await requestLessonResources({
       lessonContent: content,
