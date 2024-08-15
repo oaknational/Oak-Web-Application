@@ -4,6 +4,12 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { PupilViewsReview } from "./PupilReview.view";
 
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  exitQuizQuestions,
+  quizQuestions,
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
   starterGrade: number;
@@ -51,43 +57,59 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <LessonEngineContext.Provider
-        value={{
-          currentSection: "review",
-          sectionResults: {
-            "exit-quiz": {
-              grade: args.exitGrade,
-              numQuestions: 5,
-              isComplete: args.isComplete,
+      <MathJaxProvider>
+        {" "}
+        <LessonEngineContext.Provider
+          value={{
+            currentSection: "review",
+            sectionResults: {
+              "exit-quiz": {
+                grade: args.exitGrade,
+                numQuestions: 5,
+                isComplete: args.isComplete,
+                questionResults:
+                  sectionResultsFixture["exit-quiz"]?.questionResults,
+              },
+              "starter-quiz": {
+                grade: args.starterGrade,
+                numQuestions: 5,
+                isComplete: args.isComplete,
+                questionResults:
+                  sectionResultsFixture["starter-quiz"]?.questionResults,
+              },
+              video: {
+                played: false,
+                duration: 0,
+                timeElapsed: 0,
+                isComplete: args.isComplete,
+              },
+              intro: {
+                worksheetAvailable: false,
+                worksheetDownloaded: false,
+                isComplete: args.isComplete,
+              },
             },
-            "starter-quiz": {
-              grade: args.starterGrade,
-              numQuestions: 5,
-              isComplete: args.isComplete,
-            },
-            video: {
-              played: false,
-              duration: 0,
-              timeElapsed: 0,
-              isComplete: args.isComplete,
-            },
-            intro: {
-              worksheetAvailable: false,
-              worksheetDownloaded: false,
-              isComplete: args.isComplete,
-            },
-          },
-          isLessonComplete: args.isComplete,
-          completeSection: () => {},
-          updateCurrentSection: () => {},
-          proceedToNextSection: () => {},
-          updateSectionResult: () => {},
-          lessonReviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
-          lessonStarted: true,
-        }}
-      >
-        <PupilViewsReview lessonTitle={args.lessonTitle} />
-      </LessonEngineContext.Provider>
+            isLessonComplete: args.isComplete,
+            completeSection: () => {},
+            updateCurrentSection: () => {},
+            proceedToNextSection: () => {},
+            updateSectionResult: () => {},
+            lessonReviewSections: [
+              "intro",
+              "starter-quiz",
+              "video",
+              "exit-quiz",
+            ],
+            lessonStarted: true,
+          }}
+        >
+          <PupilViewsReview
+            lessonTitle={args.lessonTitle}
+            starterQuizQuestionsArray={quizQuestions}
+            exitQuizQuestionsArray={exitQuizQuestions}
+          />
+        </LessonEngineContext.Provider>
+      </MathJaxProvider>
     );
   },
   args: {

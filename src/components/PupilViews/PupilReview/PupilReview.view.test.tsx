@@ -13,7 +13,12 @@ describe("PupilReview", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsReview lessonTitle="Lesson title" phase="secondary" />
+          <PupilViewsReview
+            lessonTitle="Lesson title"
+            phase="secondary"
+            exitQuizQuestionsArray={[]}
+            starterQuizQuestionsArray={[]}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -23,7 +28,12 @@ describe("PupilReview", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsReview lessonTitle="Lesson title" phase="primary" />
+          <PupilViewsReview
+            lessonTitle="Lesson title"
+            phase="primary"
+            exitQuizQuestionsArray={[]}
+            starterQuizQuestionsArray={[]}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -36,7 +46,11 @@ describe("PupilReview", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsReview lessonTitle="Lesson title" />
+          <PupilViewsReview
+            lessonTitle="Lesson title"
+            exitQuizQuestionsArray={[]}
+            starterQuizQuestionsArray={[]}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -49,7 +63,11 @@ describe("PupilReview", () => {
         <LessonEngineContext.Provider
           value={createLessonEngineContext({ isLessonComplete: true })}
         >
-          <PupilViewsReview lessonTitle="Lesson title" />
+          <PupilViewsReview
+            lessonTitle="Lesson title"
+            exitQuizQuestionsArray={[]}
+            starterQuizQuestionsArray={[]}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );

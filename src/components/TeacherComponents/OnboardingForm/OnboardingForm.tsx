@@ -96,7 +96,7 @@ const OnboardingForm = ({
               render={({ field: { value, onChange, name, onBlur } }) => {
                 const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
                   onChange(e.target.checked);
-                  props.trigger();
+                  props.trigger("newsletterSignUp");
                 };
                 return (
                   <OakCheckBox

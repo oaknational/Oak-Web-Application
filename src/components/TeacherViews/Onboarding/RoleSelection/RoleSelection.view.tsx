@@ -74,7 +74,10 @@ const RoleSelectionView = () => {
             $flexDirection="column"
             $alignItems="flex-start"
             $gap="space-between-s"
-            onChange={(event) => handleChange("role", event.target.value)}
+            onChange={(event) => {
+              handleChange("role", event.target.value);
+              clearErrors();
+            }}
           >
             {Object.entries(roleOptions).map(([value, label]) => (
               <OakRadioButton
@@ -86,17 +89,21 @@ const RoleSelectionView = () => {
             ))}
           </OakRadioGroup>
           {formState.errors.role && (
-            <FieldError id="role-error">
+            <FieldError id="role-error" withoutMarginBottom>
               {formState.errors.role.message}
             </FieldError>
           )}
           {getValues().role === "other" && (
             <Input
-              id="other"
+              id="other-role"
               error={formState.errors.other?.message}
-              label="Please specify"
-              required={true}
+              label="Your role"
+              isRequired
+              required
               onChange={(event) => handleChange("other", event.target.value)}
+              $mb={0}
+              placeholder="Type your role"
+              withoutMarginBottom
             />
           )}
         </OnboardingForm>
