@@ -33,6 +33,7 @@ import {
   KeyStageTitleValueType,
   ResourceFileTypeValueType,
 } from "@/browser-lib/avo/Avo";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -87,6 +88,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   curriculumInfo,
 }) => {
   const { track } = useAnalytics();
+  const { onHubspotSubmit } = useHubspotSubmit();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
@@ -198,7 +200,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     }
   };
 
-  function trackCurriculumDownload(
+  async function trackCurriculumDownload(
     data: CurriculumDownloadViewData,
     subject: string,
     resourceFileType: ResourceFileTypeValueType,
@@ -210,6 +212,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       schoolNotListed,
     } = data;
 
+    if (!data.termsAndConditions) return;
+
     const schoolName =
       dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
     const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
@@ -219,6 +223,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       assert(found);
       return found;
     };
+
+    await onHubspotSubmit({
+      school: data.schoolId ?? "0",
+      schoolName: data.schoolName,
+      email: data.email,
+      terms: data.termsAndConditions,
+      resources: ["docx"],
+      onSubmit: async () => {},
+    });
 
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,

@@ -9,6 +9,7 @@ import CurriculumDownloads, {
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
@@ -38,10 +39,11 @@ jest.mock("next/router", () => ({
 }));
 
 const testSubject = "test-subject";
-const testCategory = "test-category";
+const testCategory = "EYFS";
 const frenchResource = {
   icon: "french",
   label: "French Subject",
+  slug: "french",
   url: `https://this-url-needs-to-end-in-the-subject?param=${testSubject}`,
   // TODO - the radio is selected based of the end of the url. This isn't ideal and should be refactored
 };
@@ -54,7 +56,7 @@ beforeEach(() => {
 describe("Component - Curriculum Header", () => {
   const renderComponent = () => {
     const defaultProps = {
-      category: testCategory,
+      category: testCategory as DownloadCategory,
       downloads: downloads,
     };
     return render(<CurriculumDownloads {...defaultProps} />);
@@ -128,7 +130,9 @@ describe("Component - Curriculum Header", () => {
     const { getByTestId } = render(
       <CurriculumDownloads
         category={testCategory}
-        downloads={[{ icon: "english", label: "English", url: "" }]}
+        downloads={[
+          { icon: "english", label: "English", url: "", slug: "english" },
+        ]}
       />,
     );
     await userEvent.click(getByTestId("checkbox-download")!);
