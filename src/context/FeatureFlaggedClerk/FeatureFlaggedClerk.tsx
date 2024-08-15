@@ -1,5 +1,6 @@
 import {
   ClerkProvider,
+  RedirectToSignIn,
   SignedIn,
   SignedOut,
   SignOutButton,
@@ -8,33 +9,30 @@ import {
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { PropsWithChildren, createContext, useContext } from "react";
 
-export type ClerkApi = {
-  useUser: typeof useUser;
-  SignedIn: typeof SignedIn;
-  SignedOut: typeof SignedOut;
-  SignOutButton: typeof SignOutButton;
-};
-
-function EmptySignedOutButton() {
+function EmptyComponent() {
   return null;
 }
-EmptySignedOutButton.displayName = "EmptySignedOutButton";
+EmptyComponent.displayName = "EmptyComponent";
 
-const realClerkApi: ClerkApi = {
+const realClerkApi = {
   useUser,
   SignedIn,
   SignedOut,
   SignOutButton,
+  RedirectToSignIn,
 };
+type ClerkApi = typeof realClerkApi;
+
 export const fakeClerkApi: ClerkApi = {
   useUser: () => ({
     isLoaded: false,
     isSignedIn: undefined,
     user: undefined,
   }),
-  SignedIn: () => null,
-  SignedOut: () => null,
-  SignOutButton: EmptySignedOutButton,
+  SignedIn: EmptyComponent,
+  SignedOut: EmptyComponent,
+  SignOutButton: EmptyComponent,
+  RedirectToSignIn: EmptyComponent,
 };
 
 const clerkApiContext = createContext<ClerkApi>(fakeClerkApi);
