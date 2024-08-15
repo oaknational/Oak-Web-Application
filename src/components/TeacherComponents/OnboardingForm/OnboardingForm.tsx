@@ -2,6 +2,7 @@ import {
   OakCheckBox,
   OakFlex,
   OakHeading,
+  OakLink,
   OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
@@ -17,7 +18,7 @@ import { ChangeEvent } from "react";
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
 import Logo from "@/components/AppComponents/Logo";
-import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const OnboardingForm = (props: {
   children: React.ReactNode;
@@ -90,46 +91,39 @@ const OnboardingForm = (props: {
 
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         By continuing you agree to{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="terms-and-conditions"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Terms and conditions (opens in a new tab)"
-          }`,
-          }}
+        <OakLink
+          href={resolveOakHref({
+            page: "legal",
+            legalSlug: "terms-and-conditions",
+          })}
+          target="_blank"
+          aria-label="Terms and conditions (opens in a new tab)"
         >
           Oak's terms & conditions
-        </OwaLink>{" "}
+        </OakLink>{" "}
         and{" "}
-        <OwaLink
-          page="legal"
-          legalSlug="privacy-policy"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": "Privacy policy (opens in a new tab)",
-          }}
+        <OakLink
+          href={resolveOakHref({
+            page: "legal",
+            legalSlug: "privacy-policy",
+          })}
+          target="_blank"
+          aria-label="Privacy policy (opens in a new tab)"
         >
           privacy policy
-        </OwaLink>
+        </OakLink>
         .
       </OakP>
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         Need help?{" "}
-        <OwaLink
-          page="contact"
-          $isInline
-          htmlAnchorProps={{
-            target: "_blank",
-            "aria-label": `Contact us (opens in a new tab)"
-          }`,
-          }}
+        <OakLink
+          href={resolveOakHref({
+            page: "contact",
+          })}
         >
           {" "}
           Contact us
-        </OwaLink>
+        </OakLink>
         .
       </OakP>
     </OakFlex>
