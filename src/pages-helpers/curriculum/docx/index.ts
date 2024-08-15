@@ -1,5 +1,7 @@
 import { join } from "path";
 
+import { format } from "date-fns";
+
 import type {
   CurriculumOverviewMVData,
   CurriculumUnitsTabDataIncludeNew,
@@ -85,7 +87,10 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
             <w:rPr>
                 <w:rtl w:val="0"/>
             </w:rPr>
-            <w:t xml:space="preserve"> </w:t>
+            <w:t xml:space="preserve">Exported ${format(
+              new Date(),
+              "dd MMMM yyyy",
+            )} — </w:t>
             <w:tab/>
         </w:r>
         <w:r>
