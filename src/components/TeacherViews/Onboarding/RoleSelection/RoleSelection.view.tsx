@@ -73,6 +73,7 @@ const RoleSelectionView = () => {
           handleChange("role", event.target.value);
           clearErrors();
         }}
+        aria-describedby={formState.errors.role ? "role-error" : undefined}
       >
         {Object.entries(roleOptions).map(([value, label]) => (
           <OakRadioButton
@@ -100,6 +101,7 @@ const RoleSelectionView = () => {
           $mb={0}
           placeholder="Type your role"
           withoutMarginBottom
+          aria-describedby={formState.errors.other ? "other-role" : undefined}
         />
       )}
     </OnboardingForm>
