@@ -1,3 +1,5 @@
+import assert from "assert";
+
 import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   OakDownloadsJourneyChildSubjectTierSelector,
@@ -25,7 +27,12 @@ import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { ResourceTypeValueType } from "@/browser-lib/avo/Avo";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import {
+  KeyStageTitle,
+  KeyStageTitleValueType,
+  ResourceFileTypeValueType,
+} from "@/browser-lib/avo/Avo";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -67,6 +74,7 @@ export function createCurriculumDownloadsQuery(
 
 export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
+  curriculumInfo: CurriculumOverviewMVData;
   slugs: CurriculumSelectionSlugs;
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
@@ -76,6 +84,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   slugs,
   tiers: snake_tiers,
   child_subjects,
+  curriculumInfo,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -192,6 +201,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   function trackCurriculumDownload(
     data: CurriculumDownloadViewData,
     subject: string,
+    resourceFileType: ResourceFileTypeValueType,
   ) {
     const {
       schoolId,
@@ -204,20 +214,29 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
     const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
 
-    console.log(schoolName, email, schoolNotListed);
+    const assertKeyStage = (input: string): KeyStageTitleValueType => {
+      const found = Object.values(KeyStageTitle).find((v) => v === input);
+      assert(found);
+      return found;
+    };
 
-    track.curriculumResourcesDownloaded({
-      analyticsUseCase, // string (restricted to : "Pupil", "Teacher")
-      emailSupplied: email != null, // bool
-      resourceType: [
-        "additional material" as ResourceTypeValueType,
-      ] as ResourceTypeValueType[],
-      //   "ADDITION // list of string (restricted to : "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials")
-      schoolOption, // string (restricted to : "Homeschool", "Not listed", "Selected school")
-      subject: subject, // string
-      schoolUrn: schoolId ? parseInt(schoolId) : 0, // int
-      category: "", // key stage
-      schoolName: dataSchoolName || "", // string
+    track.curriculumResourcesDownloadedCurriculumDocument({
+      subjectTitle: curriculumInfo.subjectTitle,
+      subjectSlug: slugs.subjectSlug,
+      keyStageTitle: assertKeyStage(curriculumInfo.phaseTitle),
+      keyStageSlug: slugs.phaseSlug,
+      analyticsUseCase: analyticsUseCase,
+      emailSupplied: email != null,
+      schoolOption: schoolOption,
+      schoolUrn: schoolId ? parseInt(schoolId) : 0,
+      schoolName: dataSchoolName || "",
+      resourceFileType: resourceFileType,
+      tierName: tierSelected,
+      childSubjectName: subject,
+      childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
+        ?.subject,
+      resourceType: ["curriculum document"],
+      examBoardSlug: slugs.examboardSlug,
     });
   }
 
@@ -248,7 +267,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       await downloadFileFromUrl(downloadPath);
       // TODO: Log to hubspot here...
     } finally {
-      trackCurriculumDownload(data, slugs.subjectSlug);
+      trackCurriculumDownload(data, slugs.subjectSlug, "docx");
       setIsSubmitting(false);
       setIsDone(true);
     }
