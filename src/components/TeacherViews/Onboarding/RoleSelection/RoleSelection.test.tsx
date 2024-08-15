@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import RoleSelectionView from "./RoleSelection.view";
 
@@ -12,5 +13,57 @@ describe("RoleSelection", () => {
     expect(radioGroup).toBeDefined();
 
     expect(radioGroup.closest("form")).toBeDefined();
+  });
+  it("renders a role error", async () => {
+    renderWithProviders()(<RoleSelectionView />);
+
+    const continueButton = await screen.findByRole("button", {
+      name: /continue/i,
+    });
+
+    await userEvent.click(continueButton);
+
+    const roleError = await screen.findByText(/Please select your role/i);
+    expect(roleError).toBeDefined();
+    expect(roleError).toBeVisible();
+  });
+  it('renders an "other" role input when "other" is selected', async () => {
+    renderWithProviders()(<RoleSelectionView />);
+
+    const otherRadio = await screen.findByLabelText(/other/i);
+
+    userEvent.click(otherRadio);
+
+    const otherRoleInput = await screen.findByLabelText(/your role/i);
+    expect(otherRoleInput).toBeDefined();
+    expect(otherRoleInput).toBeVisible();
+
+    const continueButton = await screen.findByRole("button", {
+      name: /continue/i,
+    });
+    await userEvent.click(continueButton);
+
+    const otherRoleError = await screen.findByText(
+      /Please tell us what your role is/i,
+    );
+    expect(otherRoleError).toBeDefined();
+    expect(otherRoleError).toBeVisible();
+  });
+  it("clears errors when a role is selected", async () => {
+    renderWithProviders()(<RoleSelectionView />);
+
+    const continueButton = await screen.findByRole("button", {
+      name: /continue/i,
+    });
+    await userEvent.click(continueButton);
+
+    const roleError = await screen.findByText(/Please select your role/i);
+    expect(roleError).toBeDefined();
+    expect(roleError).toBeVisible();
+
+    const teacherRadio = await screen.findByLabelText(/teacher trainer/i);
+    await userEvent.click(teacherRadio);
+
+    expect(screen.queryByText(/Please select your role/i)).toBeNull();
   });
 });

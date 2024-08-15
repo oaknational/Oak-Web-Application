@@ -61,11 +61,15 @@ const RoleSelectionView = () => {
             formState.errors.role === undefined &&
             formState.errors.other === undefined
           }
-          onSubmit={() =>
-            getValues().role === "other" &&
-            !getValues().other &&
-            setError("other", { message: "Please tell us what your role is" })
-          }
+          onSubmit={() => {
+            if (getValues().role === "other" && !getValues().other) {
+              setError("other", {
+                message: "Please tell us what your role is",
+              });
+            } else if (!getValues().role) {
+              setError("role", { message: "Please select your role" });
+            }
+          }}
           control={control as Control<OnboardingFormProps>}
           trigger={trigger as UseFormTrigger<OnboardingFormProps>}
         >
@@ -79,6 +83,7 @@ const RoleSelectionView = () => {
               handleChange("role", event.target.value);
               clearErrors();
             }}
+            aria-describedby={formState.errors.role ? "role-error" : undefined}
           >
             {Object.entries(roleOptions).map(([value, label]) => (
               <OakRadioButton
@@ -86,6 +91,7 @@ const RoleSelectionView = () => {
                 id={value}
                 label={label}
                 value={value}
+                required
               />
             ))}
           </OakRadioGroup>
@@ -105,6 +111,9 @@ const RoleSelectionView = () => {
               $mb={0}
               placeholder="Type your role"
               withoutMarginBottom
+              aria-describedby={
+                formState.errors.other ? "other-role" : undefined
+              }
             />
           )}
         </OnboardingForm>
