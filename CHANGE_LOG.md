@@ -1,3 +1,25 @@
+# [1.515.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.514.0...v1.515.0) (2024-08-15)
+
+
+### Bug Fixes
+
+* add placeholder text ([fb4833b](https://github.com/oaknational/Oak-Web-Application/commit/fb4833bd36316361cd90fcdbe479a3b4fe9c80d1))
+* clear errors on select new value ([0fec4a4](https://github.com/oaknational/Oak-Web-Application/commit/0fec4a4182b063fc45090e0c2898fd5202f5ec45))
+* form spacing ([9637428](https://github.com/oaknational/Oak-Web-Application/commit/963742824a7869a4fa6b7e1b0b1d3230d5785cef))
+* newsletter checkbox clearing error ([8288b03](https://github.com/oaknational/Oak-Web-Application/commit/8288b03c24c54139668216cc5e5468db1c99a547))
+* radio spacing ([956c374](https://github.com/oaknational/Oak-Web-Application/commit/956c374f8f7b46a2c87365bc4fd00788dd15897b))
+* test condition ([aace977](https://github.com/oaknational/Oak-Web-Application/commit/aace977e184832e6b412e2672e8af9cb31e255e0))
+
+
+### Features
+
+* add other text input ([8af2654](https://github.com/oaknational/Oak-Web-Application/commit/8af2654de4c2320874630ac6f72ba8476721e48a))
+* add page and role selection form ([0570bf3](https://github.com/oaknational/Oak-Web-Application/commit/0570bf3e79fca55e13c48bb8903188d5522230c9))
+* implement other selection ([16f1cc6](https://github.com/oaknational/Oak-Web-Application/commit/16f1cc66d1a0e0d90f31aa2254c2ae4eac78f5c2))
+* merge in main ([092f92d](https://github.com/oaknational/Oak-Web-Application/commit/092f92dd1a9e8e947ae9eaf30f51d47ea15e2fda))
+* show error and prevent continuing when no role is selected ([c86ac3d](https://github.com/oaknational/Oak-Web-Application/commit/c86ac3df6016b66b593ea36e7ef56d7d83b2125b))
+* update radio button to required ([0a56821](https://github.com/oaknational/Oak-Web-Application/commit/0a568211d2db3fc0ee7df0cee6d1bc53568793c0))
+
 # [1.514.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.513.0...v1.514.0) (2024-08-14)
 
 

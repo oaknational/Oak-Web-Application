@@ -1,16 +1,18 @@
 import { screen } from "@testing-library/dom";
 
-import RoleSelectionPage from "@/pages/onboarding/role-selection";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import RoleSelectionPage from "@/pages/onboarding/role-selection";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
-describe("onboarding page", () => {
-  test("it renders the role selection page", () => {
-    renderWithProviders()(<RoleSelectionPage />);
 
-    const p = screen.getByText("Role selection");
-    expect(p).toBeInTheDocument();
+describe("Onboarding role selection page", () => {
+  it("should render the onboarding role selection page", async () => {
+    renderWithProviders()(<RoleSelectionPage />);
+    const heading = await screen.findByRole("heading", {
+      name: "Which of the following best describes what you do?",
+    });
+    expect(heading).toBeInTheDocument();
   });
 });
