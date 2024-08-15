@@ -1,3 +1,10 @@
+# [1.517.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.516.0...v1.517.0) (2024-08-15)
+
+
+### Features
+
+* update search mv version ([37a3011](https://github.com/oaknational/Oak-Web-Application/commit/37a3011381e345b9a1708d41ae04423b224291f8))
+
 # [1.516.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.515.0...v1.516.0) (2024-08-15)
 
 
