@@ -90,7 +90,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
             <w:t xml:space="preserve">Exported ${format(
               new Date(),
               "dd MMMM yyyy",
-            )} — </w:t>
+            )}     </w:t>
             <w:tab/>
         </w:r>
         <w:r>
