@@ -1,10 +1,10 @@
 import {
   OakCheckBox,
   OakFlex,
-  OakHeading,
   OakLink,
   OakP,
   OakPrimaryButton,
+  OakSpan,
 } from "@oaknational/oak-components";
 import {
   Control,
@@ -14,13 +14,18 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 import { ChangeEvent } from "react";
+import { useRouter } from "next/router";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 
-const OnboardingForm = (props: {
+const OnboardingForm = ({
+  showNewsletterSignUp = true,
+  showTermsAndConditions = true,
+  ...props
+}: {
   children: React.ReactNode;
   handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
   formState: UseFormStateReturn<OnboardingFormProps>;
@@ -29,17 +34,29 @@ const OnboardingForm = (props: {
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
+  showNewsletterSignUp?: boolean;
+  showTermsAndConditions?: boolean;
 }) => {
+  const router = useRouter();
   const onFormSubmit = async (data: OnboardingFormProps) => {
-    // TODO: something with this data
+    if ("worksInSchool" in data) {
+      router.push(
+        resolveOakHref({
+          page: data.worksInSchool
+            ? "onboarding-school-selection"
+            : "onboarding-role-selection",
+        }),
+      );
+    }
     console.log("onboarding form values: ", data);
   };
 
   return (
     <OakFlex
       $flexDirection="column"
-      $width="all-spacing-21"
       $gap="space-between-m"
+      $justifyContent={"center"}
+      $alignSelf={"start"}
     >
       <OakFlex
         $flexDirection="column"
@@ -48,72 +65,84 @@ const OnboardingForm = (props: {
         $pa="inner-padding-xl3"
         $dropShadow="drop-shadow-standard"
         $borderRadius="border-radius-s"
+        $background={"white"}
         as="form"
         onSubmit={
           (event) => void props.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakHeading tag="h2" $font="heading-light-5">
-          {props.heading}
-        </OakHeading>
-        {props.children}
-        <OakPrimaryButton
-          disabled={!props.canSubmit}
-          width="100%"
-          type="submit"
-          onClick={props.onSubmit}
+        <OakFlex
+          $gap="all-spacing-8"
+          $flexDirection={"column"}
+          role={"fieldset"}
         >
-          Continue
-        </OakPrimaryButton>
-        <Controller
-          control={props.control}
-          name="newsletterSignUp"
-          render={({ field: { value, onChange, name, onBlur } }) => {
-            const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-              onChange(e.target.checked);
-              props.trigger("newsletterSignUp");
-            };
-            return (
-              <OakCheckBox
-                checked={value}
-                name={name}
-                onBlur={onBlur}
-                onChange={onChangeHandler}
-                value="Sign up to receive helpful content via email. Unsubscribe at any
+          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
+            {props.heading}
+          </OakSpan>
+          {props.children}
+          <OakPrimaryButton
+            disabled={!props.canSubmit}
+            width="100%"
+            type="submit"
+            onClick={props.onSubmit}
+          >
+            Continue
+          </OakPrimaryButton>
+          {showNewsletterSignUp && (
+            <Controller
+              control={props.control}
+              name="newsletterSignUp"
+              render={({ field: { value, onChange, name, onBlur } }) => {
+                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                  onChange(e.target.checked);
+                  props.trigger("newsletterSignUp");
+                };
+                return (
+                  <OakCheckBox
+                    checked={value}
+                    name={name}
+                    onBlur={onBlur}
+                    onChange={onChangeHandler}
+                    value="Sign up to receive helpful content via email. Unsubscribe at any
                     time."
-                id="newsletterSignUp"
-              />
-            );
-          }}
-        />
+                    id="newsletterSignUp"
+                  />
+                );
+              }}
+            />
+          )}
+        </OakFlex>
       </OakFlex>
 
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
-        By continuing you agree to{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "legal",
-            legalSlug: "terms-and-conditions",
-          })}
-          target="_blank"
-          aria-label="Terms and conditions (opens in a new tab)"
-        >
-          Oak's terms & conditions
-        </OakLink>{" "}
-        and{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "legal",
-            legalSlug: "privacy-policy",
-          })}
-          target="_blank"
-          aria-label="Privacy policy (opens in a new tab)"
-        >
-          privacy policy
-        </OakLink>
-        .
-      </OakP>
+      {showTermsAndConditions && (
+        <OakP $font="body-2" color="text-primary" $textAlign="center">
+          By continuing you agree to{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "legal",
+              legalSlug: "terms-and-conditions",
+            })}
+            target="_blank"
+            aria-label="Terms and conditions (opens in a new tab)"
+          >
+            Oak's terms & conditions
+          </OakLink>{" "}
+          and{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "legal",
+              legalSlug: "privacy-policy",
+            })}
+            target="_blank"
+            aria-label="Privacy policy (opens in a new tab)"
+          >
+            privacy policy
+          </OakLink>
+          .
+        </OakP>
+      )}
+
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         Need help?{" "}
         <OakLink

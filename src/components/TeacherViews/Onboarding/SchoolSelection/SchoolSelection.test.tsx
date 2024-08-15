@@ -6,12 +6,15 @@ import SchoolSelectionView from "./SchoolSelection.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("Onboarding view", () => {
-  it("renders a heading", async () => {
+  it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
-    const heading = await screen.findByRole("heading", {
-      name: "Select your school",
-    });
-    expect(heading).toBeInTheDocument();
+
+    const fieldset = screen.getByRole("fieldset");
+    expect(fieldset).toBeInTheDocument();
+    const legend = screen.getByText(/Select your school/i);
+    expect(legend).toBeInTheDocument();
+
+    expect(fieldset).toContainElement(legend);
   });
   it("renders a school picker", async () => {
     renderWithProviders()(<SchoolSelectionView />);
