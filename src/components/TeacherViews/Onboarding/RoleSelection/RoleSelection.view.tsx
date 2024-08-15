@@ -1,5 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { OakRadioButton, OakRadioGroup } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakMaxWidth,
+  OakRadioButton,
+  OakRadioGroup,
+} from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -46,65 +51,74 @@ const RoleSelectionView = () => {
   };
 
   return (
-    <OnboardingForm
-      heading="Which of the following best describes what you do?"
-      formState={formState}
-      handleSubmit={handleSubmit}
-      canSubmit={
-        formState.errors.role === undefined &&
-        formState.errors.other === undefined
-      }
-      onSubmit={() => {
-        if (getValues().role === "other" && !getValues().other) {
-          setError("other", { message: "Please tell us what your role is" });
-        } else if (!getValues().role) {
-          setError("role", { message: "Please select your role" });
-        }
-      }}
-      control={control as Control<OnboardingFormProps>}
-      trigger={trigger as UseFormTrigger<OnboardingFormProps>}
-    >
-      <OakRadioGroup
-        name="role-selection"
-        $flexDirection="column"
-        $alignItems="flex-start"
-        $gap="space-between-s"
-        onChange={(event) => {
-          handleChange("role", event.target.value);
-          clearErrors();
-        }}
-        aria-describedby={formState.errors.role ? "role-error" : undefined}
-      >
-        {Object.entries(roleOptions).map(([value, label]) => (
-          <OakRadioButton
-            key={value}
-            id={value}
-            label={label}
-            value={value}
-            required
-          />
-        ))}
-      </OakRadioGroup>
-      {formState.errors.role && (
-        <FieldError id="role-error" withoutMarginBottom>
-          {formState.errors.role.message}
-        </FieldError>
-      )}
-      {getValues().role === "other" && (
-        <Input
-          id="other-role"
-          error={formState.errors.other?.message}
-          label="Your role"
-          isRequired
-          required
-          onChange={(event) => handleChange("other", event.target.value)}
-          $mb={0}
-          placeholder="Type your role"
-          withoutMarginBottom
-          aria-describedby={formState.errors.other ? "other-role" : undefined}
-        />
-      )}
-    </OnboardingForm>
+    <OakFlex $background={"bg-decorative1-main"}>
+      <OakMaxWidth $justifyContent={"center"} $height={"100vh"}>
+        <OnboardingForm
+          heading="Which of the following best describes what you do?"
+          formState={formState}
+          handleSubmit={handleSubmit}
+          canSubmit={
+            formState.errors.role === undefined &&
+            formState.errors.other === undefined
+          }
+          onSubmit={() => {
+            if (getValues().role === "other" && !getValues().other) {
+              setError("other", {
+                message: "Please tell us what your role is",
+              });
+            } else if (!getValues().role) {
+              setError("role", { message: "Please select your role" });
+            }
+          }}
+          control={control as Control<OnboardingFormProps>}
+          trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        >
+          <OakRadioGroup
+            name="role-selection"
+            $flexDirection="column"
+            $alignItems="flex-start"
+            $gap="space-between-s"
+            aria-labelledby={"form-legend"}
+            onChange={(event) => {
+              handleChange("role", event.target.value);
+              clearErrors();
+            }}
+            aria-describedby={formState.errors.role ? "role-error" : undefined}
+          >
+            {Object.entries(roleOptions).map(([value, label]) => (
+              <OakRadioButton
+                key={value}
+                id={value}
+                label={label}
+                value={value}
+                required
+              />
+            ))}
+          </OakRadioGroup>
+          {formState.errors.role && (
+            <FieldError id="role-error" withoutMarginBottom>
+              {formState.errors.role.message}
+            </FieldError>
+          )}
+          {getValues().role === "other" && (
+            <Input
+              id="other-role"
+              error={formState.errors.other?.message}
+              label="Your role"
+              isRequired
+              required
+              onChange={(event) => handleChange("other", event.target.value)}
+              $mb={0}
+              placeholder="Type your role"
+              withoutMarginBottom
+              aria-describedby={
+                formState.errors.other ? "other-role" : undefined
+              }
+            />
+          )}
+        </OnboardingForm>
+      </OakMaxWidth>
+    </OakFlex>
   );
 };
 

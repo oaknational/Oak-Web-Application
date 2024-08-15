@@ -8,7 +8,7 @@ import { OnboardingFormProps } from "./OnboardingForm.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("Onboarding form", () => {
-  it("should render the onboarding form", async () => {
+  it("should render the onboarding form with fieldset and legend", async () => {
     const { result } = renderHook(() => useForm<OnboardingFormProps>());
     renderWithProviders()(
       <OnboardingForm
@@ -22,11 +22,15 @@ describe("Onboarding form", () => {
         <div />
       </OnboardingForm>,
     );
-    const heading = await screen.findByRole("heading", {
-      name: "Select your school",
-    });
-    expect(heading).toBeInTheDocument();
+
+    const fieldset = screen.getByRole("fieldset");
+    expect(fieldset).toBeInTheDocument();
+    const legend = screen.getByText(/Select your school/i);
+    expect(legend).toBeInTheDocument();
+
+    expect(fieldset).toContainElement(legend);
   });
+
   it("renders newsletter signup checkbox", () => {
     const { result } = renderHook(() => useForm<OnboardingFormProps>());
 
