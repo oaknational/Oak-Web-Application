@@ -1,3 +1,5 @@
+import assert from "assert";
+
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -5,7 +7,10 @@ import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
-import curriculumPreviousDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+import curriculumPreviousDownloadsFixture, {
+  DOWNLOAD_CATEGORIES,
+  DownloadCategory,
+} from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -23,12 +28,12 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
-  const [activeTab, setActiveTab] = useState<string>("EYFS");
+  const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
   type Document = (typeof data)["documents"][0];
 
   const categoryDocuments = useMemo(() => {
-    const documents: { [key: string]: Document[] } = {};
+    const documents: { [key in DownloadCategory]?: Document[] } = {};
     data.documents.forEach((document) => {
       const documentsArray = documents[document.category] || [];
       documentsArray.push(document);
@@ -37,7 +42,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     return documents;
   }, [data.documents]);
 
-  const updateTab = (category: string) => {
+  const assertIsDownloadCategory = (input: string) => {
+    const category = DOWNLOAD_CATEGORIES.find((c) => c === input);
+    assert(category);
+    return category;
+  };
+
+  const updateTab = (categoryRaw: string) => {
+    const category = assertIsDownloadCategory(categoryRaw);
     setActiveTab(category);
     const newUrl = `${window.location.pathname}#${category}`;
     window.history.replaceState(
@@ -53,11 +65,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
   const links: ButtonAsLinkProps[] = [];
   const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 
-  for (const category of Object.keys(categoryDocuments)) {
+  for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
     if (category == activeTab) {
-      categoryDocuments[category]?.forEach((document) => {
+      categoryDocuments[category as DownloadCategory]?.forEach((document) => {
         downloads.push({
           label: document.subject,
+          slug: document.slug,
           url: `${LEGACY_DOWNLOADS_API_URL}/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
           icon: document.icon,
         });
@@ -78,7 +91,8 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
 
   useEffect(() => {
     const keystage = router.query.keystage as string;
-    const hashTab = keystage?.toUpperCase() || window.location.hash.slice(1);
+    const hashTab = (keystage?.toUpperCase() ||
+      window.location.hash.slice(1)) as DownloadCategory;
     if (hashTab && categoryDocuments[hashTab]) {
       setActiveTab(hashTab);
     }
