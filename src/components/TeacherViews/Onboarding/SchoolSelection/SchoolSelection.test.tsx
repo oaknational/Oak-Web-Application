@@ -32,13 +32,17 @@ describe("Onboarding view", () => {
       exact: false,
     });
     expect(tsAndCs).toBeInTheDocument();
-    expect(tsAndCs).toHaveAttribute("href", "/legal/terms-and-conditions");
+    expect(tsAndCs.closest("a")).toHaveAttribute(
+      "href",
+      "/legal/terms-and-conditions",
+    );
   });
   it("renders contact us text", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const contactUs = await screen.findByText("Contact us", { exact: false });
+    screen.debug(contactUs);
     expect(contactUs).toBeInTheDocument();
-    expect(contactUs).toHaveAttribute("href", "/contact-us");
+    expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
   });
 
   it("it enables the continue button when a school is selected", async () => {
