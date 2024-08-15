@@ -57,6 +57,7 @@ export const OnboardingView = () => {
               }
               $flexDirection={"column"}
               name={"Do you work in a school?"}
+              aria-labelledby={"form-legend"}
             >
               <OakRadioButton id="option-1" label="Yes" value="yes" />
               <OakRadioButton id="option-2" label="No" value="no" />

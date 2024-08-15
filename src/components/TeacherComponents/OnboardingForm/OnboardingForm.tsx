@@ -77,7 +77,7 @@ const OnboardingForm = ({
           $flexDirection={"column"}
           role={"fieldset"}
         >
-          <OakSpan role="legend" $font="heading-light-5">
+          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
             {props.heading}
           </OakSpan>
           {props.children}

@@ -74,6 +74,7 @@ const RoleSelectionView = () => {
             $flexDirection="column"
             $alignItems="flex-start"
             $gap="space-between-s"
+            aria-labelledby={"form-legend"}
             onChange={(event) => {
               handleChange("role", event.target.value);
               clearErrors();
