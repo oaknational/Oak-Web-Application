@@ -51,6 +51,17 @@ describe("Onboarding view", () => {
 
     expect(error).not.toBeInTheDocument();
   });
+  it("shows error message if button is clicked with no radio selected", async () => {
+    renderWithProviders()(<OnboardingView />);
+
+    await act(async () => {
+      await userEvent.click(screen.getByText("Continue"));
+    });
+
+    const error = screen.queryByText(/Please select if you work in a school/i);
+
+    expect(error).toBeInTheDocument();
+  });
   it("does not show the error message initially", () => {
     renderWithProviders()(<OnboardingView />);
 
