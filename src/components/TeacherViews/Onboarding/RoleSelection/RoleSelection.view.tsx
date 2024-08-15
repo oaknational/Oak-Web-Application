@@ -54,11 +54,13 @@ const RoleSelectionView = () => {
         formState.errors.role === undefined &&
         formState.errors.other === undefined
       }
-      onSubmit={() =>
-        getValues().role === "other" &&
-        !getValues().other &&
-        setError("other", { message: "Please tell us what your role is" })
-      }
+      onSubmit={() => {
+        if (getValues().role === "other" && !getValues().other) {
+          setError("other", { message: "Please tell us what your role is" });
+        } else if (!getValues().role) {
+          setError("role", { message: "Please select your role" });
+        }
+      }}
       control={control as Control<OnboardingFormProps>}
       trigger={trigger as UseFormTrigger<OnboardingFormProps>}
     >
@@ -73,7 +75,13 @@ const RoleSelectionView = () => {
         }}
       >
         {Object.entries(roleOptions).map(([value, label]) => (
-          <OakRadioButton key={value} id={value} label={label} value={value} />
+          <OakRadioButton
+            key={value}
+            id={value}
+            label={label}
+            value={value}
+            required
+          />
         ))}
       </OakRadioGroup>
       {formState.errors.role && (
