@@ -8,7 +8,8 @@ import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 describe(withPageAuthRequired, () => {
-  const Subject = withPageAuthRequired(() => <div data-testid="canary" />);
+  const OriginalComponent = () => <div data-testid="canary" />;
+  const Subject = withPageAuthRequired(OriginalComponent);
 
   describe("when clerk has yet to load", () => {
     beforeEach(() => {
@@ -24,6 +25,24 @@ describe(withPageAuthRequired, () => {
       const { container } = render(<Subject />);
 
       expect(container).toBeEmptyDOMElement();
+    });
+
+    describe("and a fallback component was supplied", () => {
+      const SubjectWithFallback = withPageAuthRequired(
+        OriginalComponent,
+        ({ children }) => {
+          return <div data-testid="fallback">{children}</div>;
+        },
+      );
+
+      it("renders the fallback component with the original as its children", () => {
+        render(<SubjectWithFallback />);
+
+        expect(screen.queryByTestId("canary")).toBeInTheDocument();
+        expect(screen.getByTestId("fallback")).toContainElement(
+          screen.getByTestId("canary"),
+        );
+      });
     });
   });
 

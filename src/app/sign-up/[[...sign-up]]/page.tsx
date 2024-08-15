@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 "use client";
 
 import { SignUp } from "@clerk/nextjs";

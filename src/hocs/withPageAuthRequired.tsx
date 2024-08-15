@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, PropsWithChildren } from "react";
 
 import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
@@ -9,12 +9,21 @@ import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFla
  */
 export function withPageAuthRequired<P extends object>(
   Component: ComponentType<P>,
+  FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
   function WrappedComponent(props: P) {
     const { useUser, RedirectToSignIn } = useFeatureFlaggedClerk();
     const { isSignedIn, isLoaded } = useUser();
 
     if (!isLoaded) {
+      if (FallbackComponent) {
+        return (
+          <FallbackComponent>
+            <Component {...props} />
+          </FallbackComponent>
+        );
+      }
+
       return null;
     }
 
