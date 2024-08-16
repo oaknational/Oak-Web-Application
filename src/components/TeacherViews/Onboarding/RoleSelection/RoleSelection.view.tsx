@@ -23,7 +23,7 @@ const roleOptions: Record<string, string> = {
   "adult-helping-child":
     "Adult helping a child, e.g. with revision, homeschooling",
   "mat-or-lea": "Working at multi-academy trust or local educational authority",
-  nonprofit: "Working at an educational nonprofit",
+  nonprofit: "Working at an education nonprofit",
   other: "Other",
 };
 
