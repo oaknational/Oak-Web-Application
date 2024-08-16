@@ -78,4 +78,88 @@ describe("Onboarding view", () => {
     await user.tab();
     expect(await screen.findByRole("combobox")).toHaveValue("");
   });
+
+  describe("ManualEntrySchoolDetails component", () => {
+    it("renders ManualEntrySchoolDetails component when Enter manually button clicked", async () => {
+      renderWithProviders()(<SchoolSelectionView />);
+
+      expect(await screen.queryByText("School name")).toBeNull();
+      expect(await screen.queryByText("School address")).toBeNull();
+
+      const manualButton = await screen.findByRole("button", {
+        name: "Enter manually",
+      });
+
+      userEvent.click(manualButton);
+
+      expect(await screen.findByText("School name")).toBeInTheDocument();
+      expect(await screen.findByText("School address")).toBeInTheDocument();
+    });
+
+    it("shows error message when school name is not entered correctly", async () => {
+      renderWithProviders()(<SchoolSelectionView />);
+      const user = userEvent.setup();
+
+      const manualButton = await screen.findByRole("button", {
+        name: "Enter manually",
+      });
+      userEvent.click(manualButton);
+      const inputBox = await screen.findByPlaceholderText("Type school name");
+      await user.type(inputBox, "B");
+      await user.tab();
+
+      const schoolNameError = await screen.findByText("Enter school name");
+      expect(schoolNameError).toBeInTheDocument();
+    });
+    it("shows error message when school address is not entered correctly", async () => {
+      renderWithProviders()(<SchoolSelectionView />);
+      const user = userEvent.setup();
+
+      const manualButton = await screen.findByRole("button", {
+        name: "Enter manually",
+      });
+      userEvent.click(manualButton);
+      const inputBox = await screen.findByPlaceholderText(
+        "Type school address",
+      );
+      await user.type(inputBox, "B");
+      await user.tab();
+
+      const schoolAddressError = await screen.findByText(
+        "Enter school address",
+      );
+      expect(schoolAddressError).toBeInTheDocument();
+    });
+    it("enables continue button when school name and address are entered", async () => {
+      renderWithProviders()(<SchoolSelectionView />);
+      const user = userEvent.setup();
+
+      const manualButton = await screen.findByRole("button", {
+        name: "Enter manually",
+      });
+      userEvent.click(manualButton);
+
+      expect(
+        await screen.findByRole("button", {
+          name: "Continue",
+        }),
+      ).toBeDisabled();
+
+      const schoolNameInput =
+        await screen.findByPlaceholderText("Type school name");
+      const schoolAddressInput = await screen.findByPlaceholderText(
+        "Type school address",
+      );
+
+      await user.type(schoolNameInput, "Old Swinford");
+      await user.type(schoolAddressInput, "123 Oak Street");
+      await user.tab();
+
+      expect(
+        await screen.findByRole("button", {
+          name: "Continue",
+        }),
+      ).toBeEnabled();
+    });
+  });
 });
