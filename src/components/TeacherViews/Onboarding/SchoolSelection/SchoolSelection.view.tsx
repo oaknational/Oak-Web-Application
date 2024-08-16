@@ -32,18 +32,15 @@ export const SchoolSelectionView = () => {
     });
 
   const setSchoolDetailsInManualForm = useCallback(
-    (
-      manualSchoolName: string | undefined,
-      schoolAddress: string | undefined,
-    ) => {
-      if (manualSchoolName) {
-        setValue("manualSchoolName", manualSchoolName, {
+    (isSchoolName: boolean, value: string) => {
+      if (isSchoolName) {
+        setValue("manualSchoolName", value, {
           shouldValidate: true,
         });
       }
 
-      if (schoolAddress) {
-        setValue("schoolAddress", schoolAddress, {
+      if (!isSchoolName) {
+        setValue("schoolAddress", value, {
           shouldValidate: true,
         });
       }
@@ -51,14 +48,13 @@ export const SchoolSelectionView = () => {
     [setValue],
   );
 
-  const onManualSchoolInputChange = (
-    manualSchoolName: string | undefined,
-    schoolAddress: string | undefined,
-  ) => {
-    if (manualSchoolName === "" && schoolAddress === "") {
-      setSchoolDetailsInManualForm("", "");
+  const onManualSchoolInputChange = (isSchoolName: boolean, value: string) => {
+    if (isSchoolName) {
+      setSchoolDetailsInManualForm(true, value);
     }
-    setSchoolDetailsInManualForm(manualSchoolName, schoolAddress);
+    if (!isSchoolName) {
+      setSchoolDetailsInManualForm(false, value);
+    }
   };
 
   const setSchoolDetailsInForm = useCallback(

@@ -18,10 +18,7 @@ type ManualEntrySchoolDetailsProps = {
   setRenderManualSchoolInput: Dispatch<SetStateAction<boolean>>;
   control: Control<SchoolSelectFormProps>;
   hasErrors: FieldErrors<SchoolSelectFormProps>;
-  onManualSchoolInputChange: (
-    manualSchoolName: string | undefined,
-    schoolAddress: string | undefined,
-  ) => void;
+  onManualSchoolInputChange: (isSchoolName: boolean, value: string) => void;
   reset: UseFormReset<SchoolSelectFormProps>;
 };
 
@@ -50,12 +47,12 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             if (e.target.value.length > 2) {
-              onManualSchoolInputChange(e.target.value, undefined);
+              onManualSchoolInputChange(true, e.target.value);
             }
           };
           const onBlurHandler = () => {
             onBlur();
-            onManualSchoolInputChange(value, undefined);
+            onManualSchoolInputChange(true, value);
           };
 
           return (
@@ -85,13 +82,13 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             if (e.target.value.length > 2) {
-              onManualSchoolInputChange(undefined, e.target.value);
+              onManualSchoolInputChange(false, e.target.value);
             }
           };
 
           const onBlurHandler = () => {
             onBlur();
-            onManualSchoolInputChange(undefined, value);
+            onManualSchoolInputChange(false, value);
           };
 
           return (
