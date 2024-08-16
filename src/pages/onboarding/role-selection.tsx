@@ -1,10 +1,15 @@
 import { NextPage } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection.view";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
+import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view";
 
 const RoleSelectionComponent: NextPage = () => {
-  return <RoleSelectionView />;
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <RoleSelectionView />
+    </OakThemeProvider>
+  );
 };
 
 const RoleSelectionPage = withFeatureFlag(
