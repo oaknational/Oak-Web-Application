@@ -165,7 +165,7 @@ const isOnboardingNonTeacherProps = (
   );
 };
 export type OnboardingHubspotFormData = {
-  email: string;
+  email?: string;
   oakUserId: string | null;
   newsletterSignUp: boolean;
 } & UtmParams &
