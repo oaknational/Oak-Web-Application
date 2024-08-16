@@ -10,6 +10,21 @@ import {
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
+/**
+ * Test URLs:
+ *
+ * Non-published legacy lesson - should result in 404:
+ * http://localhost:3000/pupils/lessons/what-is-video-c4v68d
+ *
+ * Published legacy lesson:
+ * http://localhost:3000/pupils/lessons/myths-and-folktales-6cwk0c
+ *
+ * Published lesson:
+ * http://localhost:3000/pupils/lessons/transverse-waves
+ *
+ *
+ */
+
 export const getStaticPaths = getStaticPathsTemplate<PupilLessonPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
@@ -17,8 +32,8 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageURLParams
 > = async (context) => {
   return getPageProps({
-    page: "pupils-lesson-overview::getStaticProps",
+    page: "pupils-preview-lesson::getStaticProps",
     context,
-    getProps: getProps({ context, page: "browse" }),
+    getProps: getProps({ context, page: "preview" }),
   });
 };

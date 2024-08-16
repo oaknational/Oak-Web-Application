@@ -227,6 +227,11 @@ module.exports = async (phase) => {
           permanent: true,
         },
         {
+          source: "/pupils/beta/previews/lessons/:lessonSlug",
+          destination: "/pupils/beta/previews/lessons/:lessonSlug/overview",
+          permanent: true,
+        },
+        {
           source:
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
           destination:
