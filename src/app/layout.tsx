@@ -1,6 +1,8 @@
 /* istanbul ignore file */
 import { ClerkProvider } from "@clerk/nextjs";
 
+import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
+
 export const metadata = {
   title: "Oak National Academy",
   description:
@@ -14,8 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ClerkProvider>{children}</ClerkProvider>
+      <body style={{ margin: "0px" }}>
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <ClerkProvider>{children}</ClerkProvider>
+        </OakThemeProvider>
       </body>
     </html>
   );

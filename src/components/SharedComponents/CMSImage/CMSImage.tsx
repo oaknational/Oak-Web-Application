@@ -1,3 +1,4 @@
+"use client";
 import { FC, useCallback, useMemo } from "react";
 import { ImageLoader } from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
