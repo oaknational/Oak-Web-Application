@@ -8,24 +8,29 @@ export default function RegistrationLayout({
   children: React.ReactNode;
 }) {
   return (
-    <OakBox $background="bg-decorative1-main" $overflow="hidden">
-      <OakMaxWidth $justifyContent={"center"} $height="100vh">
+    <OakBox $background={["white", "bg-decorative1-main"]} $overflow="hidden">
+      <OakMaxWidth
+        $justifyContent="center"
+        $alignItems={["center", "initial"]}
+        $height="100vh"
+      >
         <CMSImage
           image={getIllustrationAsset("auth0-background")}
           $position="fixed"
           $width="auto"
           $height="100%"
           $right={0}
-          $display={["none", "none", "block"]}
+          $display={["none", "block"]}
         />
-        <OakFlex
-          $pl={[
-            "inner-padding-none",
-            "inner-padding-none",
-            "inner-padding-xl8",
-          ]}
-        >
-          {children}
+        <OakFlex $pl={["inner-padding-none", "inner-padding-xl8"]}>
+          <OakBox
+            $dropShadow="drop-shadow-standard"
+            $borderRadius="border-radius-l"
+            $display={["none", "block"]}
+          >
+            {children}
+          </OakBox>
+          <OakBox $display={["block", "none"]}>{children}</OakBox>
         </OakFlex>
       </OakMaxWidth>
     </OakBox>
