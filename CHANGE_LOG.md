@@ -1,3 +1,16 @@
+# [1.520.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.519.0...v1.520.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflict ([de2d349](https://github.com/oaknational/Oak-Web-Application/commit/de2d349f83352eb912082c00815baef03e3bb257))
+* refactor to remove code duplications ([a61737f](https://github.com/oaknational/Oak-Web-Application/commit/a61737fa2a027e46ee926f6e013209dbc932141a))
+
+
+### Features
+
+* canonical preview page ([01501a6](https://github.com/oaknational/Oak-Web-Application/commit/01501a6d8c37825787f41b36760d0f95b88e469e))
+
 # [1.519.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.518.0...v1.519.0) (2024-08-16)
 
 
