@@ -55,3 +55,4 @@ jest.mock("./src/common-lib/error-reporter", () => ({
 }));
 
 jest.mock("@oaknational/oak-consent-client");
+jest.mock("@clerk/nextjs");

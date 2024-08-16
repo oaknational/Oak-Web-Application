@@ -5,12 +5,10 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
-
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -26,7 +24,7 @@ import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
-import { featureFlaggedUserFetcher } from "@/browser-lib/user-fetcher/user-fetcher";
+import { FeatureFlaggedClerkProvider } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -44,7 +42,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   return (
     <>
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <UserProvider fetcher={featureFlaggedUserFetcher}>
+      <FeatureFlaggedClerkProvider>
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
             <ErrorBoundary>
@@ -73,7 +71,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
             <InlineSpriteSheet />
           </ThemeProvider>
         </CookieConsentProvider>
-      </UserProvider>
+      </FeatureFlaggedClerkProvider>
     </>
   );
 };

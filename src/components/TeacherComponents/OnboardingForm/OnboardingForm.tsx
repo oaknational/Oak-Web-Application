@@ -14,8 +14,8 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 import { ChangeEvent } from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
+import { useUser } from "@clerk/nextjs";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
@@ -62,13 +62,14 @@ const OnboardingForm = ({
       );
     } else {
       const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
+      const userEmail = user?.primaryEmailAddress?.emailAddress;
       const hubspotFormPayload = getHubspotOnboardingFormPayload({
         hutk,
         data: {
           ...utmParams,
           ...data,
           oakUserId: posthogDistinctId,
-          email: user?.email ?? undefined,
+          email: userEmail,
         },
       });
 

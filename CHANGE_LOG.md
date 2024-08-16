@@ -1,3 +1,49 @@
+# [1.521.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.520.0...v1.521.0) (2024-08-16)
+
+
+### Features
+
+* install Clerk ([0016204](https://github.com/oaknational/Oak-Web-Application/commit/0016204ea635505a86c20f273ed71f68d0e12ebe))
+* **LESQ-1024:** hide content on download pages while checking for auth ([72e8e4b](https://github.com/oaknational/Oak-Web-Application/commit/72e8e4b5e10dcf4fa59de7debb091570f24ecee3))
+* restore the Sign out button ([d8426e8](https://github.com/oaknational/Oak-Web-Application/commit/d8426e87c44182426fcf0a6e1f2123b4eb5bab72))
+
+# [1.520.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.519.0...v1.520.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflict ([de2d349](https://github.com/oaknational/Oak-Web-Application/commit/de2d349f83352eb912082c00815baef03e3bb257))
+* refactor to remove code duplications ([a61737f](https://github.com/oaknational/Oak-Web-Application/commit/a61737fa2a027e46ee926f6e013209dbc932141a))
+
+
+### Features
+
+* canonical preview page ([01501a6](https://github.com/oaknational/Oak-Web-Application/commit/01501a6d8c37825787f41b36760d0f95b88e469e))
+
+# [1.519.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.518.0...v1.519.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflict ([4020c29](https://github.com/oaknational/Oak-Web-Application/commit/4020c2998d01ec32bde9e0a36a3fa80cb072b17b))
+
+
+### Features
+
+* pupilPreviewLesson query ([bb80665](https://github.com/oaknational/Oak-Web-Application/commit/bb8066569b5110153e800cfc1ad32861fd80a601))
+
+# [1.518.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.517.0...v1.518.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflicts ([1d90800](https://github.com/oaknational/Oak-Web-Application/commit/1d908004253dddd8be3508186c6761d3076a6a3f))
+
+
+### Features
+
+* updated mvs to version 10 ([6c77d6e](https://github.com/oaknational/Oak-Web-Application/commit/6c77d6ea5f62a657792642b0db94a0ad41970704))
+
 # [1.517.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.516.0...v1.517.0) (2024-08-15)
 
 
