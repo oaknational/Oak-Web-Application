@@ -1,20 +1,5 @@
-query pupilLesson(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_year_10_0_0_bool_exp
-  $lessonSlug: String!
-) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_year_10_0_0(
-    where: $browseDataWhere
-  ) {
-    lesson_slug
-    unit_slug
-    programme_slug
-    is_legacy
-    lesson_data
-    unit_data
-    programme_fields
-    supplementary_data
-  }
-  content: published_mv_lesson_content_published_2_0_0(
+query pupilPreviewLesson($lessonSlug: String!) {
+  content: published_mv_lesson_content_new_2_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id

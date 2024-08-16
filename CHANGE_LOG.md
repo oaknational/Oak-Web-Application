@@ -1,3 +1,27 @@
+# [1.519.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.518.0...v1.519.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflict ([4020c29](https://github.com/oaknational/Oak-Web-Application/commit/4020c2998d01ec32bde9e0a36a3fa80cb072b17b))
+
+
+### Features
+
+* pupilPreviewLesson query ([bb80665](https://github.com/oaknational/Oak-Web-Application/commit/bb8066569b5110153e800cfc1ad32861fd80a601))
+
+# [1.518.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.517.0...v1.518.0) (2024-08-16)
+
+
+### Bug Fixes
+
+* conflicts ([1d90800](https://github.com/oaknational/Oak-Web-Application/commit/1d908004253dddd8be3508186c6761d3076a6a3f))
+
+
+### Features
+
+* updated mvs to version 10 ([6c77d6e](https://github.com/oaknational/Oak-Web-Application/commit/6c77d6ea5f62a657792642b0db94a0ad41970704))
+
 # [1.517.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.516.0...v1.517.0) (2024-08-15)
 
 

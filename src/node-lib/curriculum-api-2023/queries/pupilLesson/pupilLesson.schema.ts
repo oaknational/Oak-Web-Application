@@ -41,7 +41,7 @@ export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
 export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
-  state: true,
+  _state: true,
   video_duration: true,
   has_worksheet_google_drive_downloadable_version: true,
   slide_deck_asset_id: true,

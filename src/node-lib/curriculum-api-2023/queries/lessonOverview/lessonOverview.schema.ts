@@ -10,7 +10,7 @@ import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
-  state: true,
+  _state: true,
   exit_quiz: true,
   starter_quiz: true,
   video_duration: true,
