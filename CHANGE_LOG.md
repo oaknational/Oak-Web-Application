@@ -1,3 +1,10 @@
+## [1.521.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.0...v1.521.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* incorrect onboarding page name ([b20e8af](https://github.com/oaknational/Oak-Web-Application/commit/b20e8af06af1848e6a209199cf16338d7263acd6))
+
 # [1.521.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.520.0...v1.521.0) (2024-08-16)
 
 
