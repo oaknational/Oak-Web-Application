@@ -1,16 +1,17 @@
 import { screen } from "@testing-library/dom";
 
-import SchoolSelectionPage from "@/pages/onboarding/school-selection";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+
+import SchoolSelection from "@/pages/onboarding/school-selection";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
-describe("onboarding page", () => {
+describe("Onboarding school selection page", () => {
   test("it renders the onboarding page", () => {
-    renderWithProviders()(<SchoolSelectionPage />);
+    renderWithProviders()(<SchoolSelection />);
 
-    const heading = screen.getByText("Continue");
+    const heading = screen.getByText("Select your school");
     expect(heading).toBeInTheDocument();
   });
 });
