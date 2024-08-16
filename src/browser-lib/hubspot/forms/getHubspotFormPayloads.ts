@@ -154,12 +154,13 @@ type OnboardingNonTeacherProps = {
 const isOnboardingNonTeacherProps = (
   u: unknown,
 ): u is OnboardingNonTeacherProps => {
+  console.log("diego u", u);
   return (
     typeof u === "object" &&
     u !== null &&
     "role" in u &&
     typeof (u as OnboardingNonTeacherProps).role === "string" &&
-    ((u as OnboardingNonTeacherProps).role === "other" ? "other" in u : true)
+    ((u as OnboardingNonTeacherProps).role === "Other" ? "other" in u : true)
   );
 };
 export type OnboardingHubspotFormData = {
@@ -181,7 +182,7 @@ export const getHubspotOnboardingFormPayload = (props: {
   const isUkTeacher = isOnboardingUKTeacherProps(data);
   const isInternationalTeacher = isOnboardingInternationalTeacherProps(data);
   const isNonTeacher = isOnboardingNonTeacherProps(data);
-
+  console.log("diego is non teacher", isNonTeacher);
   const snakeCaseData = {
     email: data.email,
     email_consent_on_account_creation: data.newsletterSignUp ? "Yes" : "No",
