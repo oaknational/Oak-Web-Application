@@ -14,17 +14,13 @@ import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 import FieldError from "@/components/SharedComponents/FieldError";
 
 type ManualEntrySchoolDetailsProps = {
-  manualSchoolName: string;
-  manualSchoolAddress: string;
-  setManualSchoolName: Dispatch<SetStateAction<string>>;
-  setManualSchoolAddress: Dispatch<SetStateAction<string>>;
   setValue: UseFormSetValue<SchoolSelectFormProps>;
   setRenderManualSchoolInput: Dispatch<SetStateAction<boolean>>;
   control: Control<SchoolSelectFormProps>;
   hasErrors: FieldErrors<SchoolSelectFormProps>;
   onManualSchoolInputChange: (
-    manualSchoolName: string,
-    schoolAddress: string,
+    manualSchoolName: string | undefined,
+    schoolAddress: string | undefined,
   ) => void;
   reset: UseFormReset<SchoolSelectFormProps>;
 };
@@ -33,10 +29,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
   setRenderManualSchoolInput,
   control,
   onManualSchoolInputChange,
-  setManualSchoolName,
-  setManualSchoolAddress,
-  manualSchoolAddress,
-  manualSchoolName,
+
   hasErrors,
   reset,
 }) => {
@@ -50,11 +43,19 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <Controller
         name="manualSchoolName"
         control={control}
-        render={({ field: { onChange, onBlur }, fieldState: { error } }) => {
+        render={({
+          field: { onChange, onBlur, value },
+          fieldState: { error },
+        }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
-            setManualSchoolName(e.target.value);
-            onManualSchoolInputChange(e.target.value, manualSchoolAddress);
+            if (e.target.value.length > 2) {
+              onManualSchoolInputChange(e.target.value, undefined);
+            }
+          };
+          const onBlurHandler = () => {
+            onBlur();
+            onManualSchoolInputChange(value, undefined);
           };
 
           return (
@@ -63,7 +64,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
               placeholder="Type school name"
               background="lemon"
               hasError={!!error}
-              onBlur={onBlur}
+              onBlur={onBlurHandler}
               onChange={onChangeHandler}
             />
           );
@@ -77,11 +78,20 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <Controller
         name="schoolAddress"
         control={control}
-        render={({ field: { onChange, onBlur }, fieldState: { error } }) => {
+        render={({
+          field: { onChange, onBlur, value },
+          fieldState: { error },
+        }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
-            setManualSchoolAddress(e.target.value);
-            onManualSchoolInputChange(manualSchoolName, e.target.value);
+            if (e.target.value.length > 2) {
+              onManualSchoolInputChange(undefined, e.target.value);
+            }
+          };
+
+          const onBlurHandler = () => {
+            onBlur();
+            onManualSchoolInputChange(undefined, value);
           };
 
           return (
@@ -90,7 +100,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
               placeholder="Type school address"
               background="lemon"
               hasError={!!error}
-              onBlur={onBlur}
+              onBlur={onBlurHandler}
               onChange={onChangeHandler}
             />
           );

@@ -22,8 +22,6 @@ import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntry
 export const SchoolSelectionView = () => {
   const [renderManualSchoolInput, setRenderManualSchoolInput] =
     useState<boolean>(false);
-  const [manualSchoolName, setManualSchoolName] = useState<string>("");
-  const [manualSchoolAddress, setManualSchoolAddress] = useState<string>("");
   const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm<SchoolSelectFormProps>({
       resolver: zodResolver(schoolSelectFormSchema),
@@ -34,20 +32,28 @@ export const SchoolSelectionView = () => {
     });
 
   const setSchoolDetailsInManualForm = useCallback(
-    (manualSchoolName: string, schoolAddress: string) => {
-      setValue("schoolAddress", schoolAddress, {
-        shouldValidate: true,
-      });
-      setValue("manualSchoolName", manualSchoolName, {
-        shouldValidate: true,
-      });
+    (
+      manualSchoolName: string | undefined,
+      schoolAddress: string | undefined,
+    ) => {
+      if (manualSchoolName) {
+        setValue("manualSchoolName", manualSchoolName, {
+          shouldValidate: true,
+        });
+      }
+
+      if (schoolAddress) {
+        setValue("schoolAddress", schoolAddress, {
+          shouldValidate: true,
+        });
+      }
     },
     [setValue],
   );
 
   const onManualSchoolInputChange = (
-    manualSchoolName: string,
-    schoolAddress: string,
+    manualSchoolName: string | undefined,
+    schoolAddress: string | undefined,
   ) => {
     if (manualSchoolName === "" && schoolAddress === "") {
       setSchoolDetailsInManualForm("", "");
@@ -155,10 +161,6 @@ export const SchoolSelectionView = () => {
                 setValue={setValue}
                 control={control}
                 setRenderManualSchoolInput={setRenderManualSchoolInput}
-                manualSchoolName={manualSchoolName}
-                manualSchoolAddress={manualSchoolAddress}
-                setManualSchoolName={setManualSchoolName}
-                setManualSchoolAddress={setManualSchoolAddress}
                 reset={reset}
               />
             )}
