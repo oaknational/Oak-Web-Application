@@ -31,6 +31,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 import OakError from "@/errors/OakError";
+import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
   showNewsletterSignUp = true,
@@ -57,13 +58,14 @@ const OnboardingForm = ({
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
-      router.push(
-        resolveOakHref({
+      router.push({
+        pathname: resolveOakHref({
           page: data.worksInSchool
             ? "onboarding-school-selection"
             : "onboarding-role-selection",
         }),
-      );
+        query: router.query,
+      });
     } else {
       try {
         await onboardUser();
@@ -102,6 +104,15 @@ const OnboardingForm = ({
           );
         }
       }
+
+      // Return the user to the page they originally arrived from
+      // or to the home page as a fallback
+      router.push(
+        toSafeRedirect(
+          router.query.returnTo?.toString() ?? "/",
+          new URL(location.origin),
+        ) ?? "/",
+      );
     }
   };
 
@@ -134,20 +145,19 @@ const OnboardingForm = ({
           <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
             {props.heading}
           </OakSpan>
-          <OakBox>
-            <div aria-live="polite">
-              {submitError && (
-                <OakInlineBanner
-                  isOpen
-                  icon="error"
-                  type="error"
-                  message={submitError}
-                  $width="100%"
-                />
-              )}
-            </div>
-            {props.children}
+          <OakBox aria-live="polite" $display="contents">
+            {submitError && (
+              <OakInlineBanner
+                isOpen
+                icon="error"
+                type="error"
+                message={submitError}
+                $width="100%"
+                $mt="space-between-m"
+              />
+            )}
           </OakBox>
+          <OakBox>{props.children}</OakBox>
           <OakPrimaryButton
             disabled={!props.canSubmit}
             width="100%"

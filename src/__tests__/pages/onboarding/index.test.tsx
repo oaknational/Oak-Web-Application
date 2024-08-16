@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/dom";
-import { useUser } from "@clerk/nextjs";
 
 import OnboardingPage from "@/pages/onboarding";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 jest.mock("posthog-js/react", () => ({
@@ -14,10 +14,7 @@ describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
     jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({
       ...featureFlaggedClerk.fakeClerkApi,
-      useUser: () =>
-        ({ user: {}, isLoaded: true, isSignedIn: true }) as ReturnType<
-          typeof useUser
-        >,
+      useUser: () => mockLoggedIn,
     });
 
     renderWithProviders()(<OnboardingPage />);
