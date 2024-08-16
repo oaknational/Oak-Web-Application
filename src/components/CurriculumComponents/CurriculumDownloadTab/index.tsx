@@ -237,7 +237,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,
       keyStageTitle: assertKeyStage(curriculumInfo.phaseTitle),
-      keyStageSlug: slugs.phaseSlug,
+      // keyStageSlug: slugs.phaseSlug,
       analyticsUseCase: analyticsUseCase,
       emailSupplied: email != null,
       schoolOption: schoolOption,
@@ -248,7 +248,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       childSubjectName: subject,
       childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
         ?.subject,
-      resourceType: ["curriculum document"],
       examBoardSlug: slugs.examboardSlug,
     });
   }
