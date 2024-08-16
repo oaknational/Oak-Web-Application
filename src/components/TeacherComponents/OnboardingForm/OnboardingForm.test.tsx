@@ -1,7 +1,8 @@
-import { fireEvent, screen } from "@testing-library/dom";
+import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import { DefaultValues, useForm } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
 
 import OnboardingForm from "./OnboardingForm";
 import { OnboardingFormProps } from "./OnboardingForm.schema";
@@ -10,6 +11,7 @@ import * as onboardingActions from "./onboardingActions";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
+jest.mock("@/browser-lib/hubspot/forms");
 jest.mock("./onboardingActions");
 jest.mock("@clerk/nextjs", () => {
   return {
@@ -55,16 +57,47 @@ describe("Onboarding form", () => {
     expect(checkbox).not.toBeChecked();
   });
 
+  it.each<[string, string, boolean]>([
+    ["/onboarding/school-selection", "works in a school", true],
+    ["/onboarding/role-selection", "does not work in a school", false],
+  ])(
+    "redirects to %p when the user %s",
+    async (pathname, __, worksInSchool) => {
+      mockRouter.setCurrentUrl("/onboarding?returnTo=/home");
+
+      await submitForm({ worksInSchool });
+
+      expect(mockRouter.route).toEqual(pathname);
+      expect(mockRouter.query.returnTo).toEqual("/home");
+    },
+  );
+
   describe.each<[string, OnboardingFormState]>([
     ["of school selection", { school: "Grange Hill" }],
     ["of role selection", { role: "teacher-trainer" }],
   ])("on submit %s", (__, formState) => {
+    beforeEach(() => {
+      mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
+    });
+
     it("onboards the user through Clerk", async () => {
       jest.spyOn(onboardingActions, "onboardUser");
 
       await submitForm(formState);
 
       expect(onboardingActions.onboardUser).toHaveBeenCalled();
+    });
+
+    it("redirects the user back to the page they came from", async () => {
+      jest
+        .spyOn(onboardingActions, "onboardUser")
+        .mockResolvedValue({ "owa:onboarded": true });
+
+      await submitForm(formState);
+
+      await waitFor(() => {
+        expect(mockRouter.asPath).toEqual("/downloads");
+      });
     });
 
     describe("when Clerk onboarding fails", () => {
@@ -80,12 +113,6 @@ describe("Onboarding form", () => {
         ).toBeInTheDocument();
       });
     });
-
-    async function submitForm(formState: OnboardingFormState) {
-      renderForm(formState);
-
-      await userEvent.setup().click(screen.getByText("Continue"));
-    }
   });
 });
 
@@ -110,4 +137,10 @@ function renderForm(
       <div />
     </OnboardingForm>,
   );
+}
+
+async function submitForm(formState: OnboardingFormState) {
+  renderForm(formState);
+
+  await userEvent.setup().click(screen.getByText("Continue"));
 }

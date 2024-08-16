@@ -4,6 +4,11 @@ import { useUser } from "@clerk/nextjs";
 import { withPageAuthRequired } from "./withPageAuthRequired";
 
 import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import {
+  mockLoadingUser,
+  mockLoggedIn,
+  mockLoggedOut,
+} from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
@@ -18,11 +23,7 @@ describe(withPageAuthRequired, () => {
   let useUserReturn: ReturnType<typeof useUser>;
 
   beforeEach(() => {
-    useUserReturn = {
-      user: undefined,
-      isLoaded: false,
-      isSignedIn: undefined,
-    };
+    useUserReturn = mockLoadingUser;
     jest.spyOn(clerk, "useFeatureFlaggedClerk").mockReturnValue({
       ...clerk.fakeClerkApi,
       RedirectToSignIn: MockRedirectToSignIn,
@@ -59,38 +60,20 @@ describe(withPageAuthRequired, () => {
   });
 
   describe("when the user is not signed-in", () => {
-    it("renders nothing", () => {
-      const { container } = render(<Subject />);
-
-      expect(container).toBeEmptyDOMElement();
+    beforeEach(() => {
+      useUserReturn = mockLoggedOut;
     });
 
-    describe("and a fallback component was supplied", () => {
-      const SubjectWithFallback = withPageAuthRequired(
-        OriginalComponent,
-        ({ children }) => {
-          return <div data-testid="fallback">{children}</div>;
-        },
-      );
+    it("redirects the user to sign-in", () => {
+      render(<Subject />);
 
-      it("renders the fallback component with the original as its children", () => {
-        render(<SubjectWithFallback />);
-
-        expect(screen.queryByTestId("canary")).toBeInTheDocument();
-        expect(screen.getByTestId("fallback")).toContainElement(
-          screen.getByTestId("canary"),
-        );
-      });
+      expect(screen.queryByTestId("redirectToSignIn")).toBeInTheDocument();
     });
   });
 
   describe("when the user is signed-in", () => {
     beforeEach(() => {
-      useUserReturn = {
-        user: { id: "123" },
-        isLoaded: true,
-        isSignedIn: true,
-      } as ReturnType<typeof useUser>;
+      useUserReturn = mockLoggedIn;
     });
 
     it("redirects them to sign-in", () => {
