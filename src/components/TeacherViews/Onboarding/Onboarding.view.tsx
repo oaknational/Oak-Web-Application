@@ -5,8 +5,9 @@ import {
   OakP,
   OakPrimaryButton,
   OakCheckBox,
+  OakLink,
 } from "@oaknational/oak-components";
-import { ChangeEvent, useCallback, useEffect } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 
@@ -14,25 +15,45 @@ import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPi
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
+import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntrySchoolDetails";
 
-const onboardingFormSchema = z.object({
-  school: z
-    .string({
-      errorMap: () => ({
-        message: "Select school",
-      }),
-    })
-    .min(1, "Select school"),
-  schoolName: z.string().optional(),
-  newsletterSignUp: z.boolean(),
-});
-type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
-type OnboardingFormProps = OnboardingFormValues & {
+const onboardingFormSchema = z
+  .object({
+    school: z
+      .string({
+        errorMap: () => ({
+          message: "Select school",
+        }),
+      })
+      .min(1, "Select school"),
+    schoolName: z.string().optional(),
+    newsletterSignUp: z.boolean(),
+  })
+  .or(
+    z.object({
+      manualSchoolName: z
+        .string()
+        .min(3, "School name must be at least 3 characters long"),
+
+      schoolAddress: z
+        .string()
+        .min(3, "School address must be at least 3 characters long"),
+
+      newsletterSignUp: z.boolean(),
+    }),
+  );
+
+export type OnboardingFormValues = z.infer<typeof onboardingFormSchema>;
+export type OnboardingFormProps = OnboardingFormValues & {
   onSubmit: (values: OnboardingFormValues) => Promise<void>;
 };
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit, control, trigger } =
+  const [renderManualSchoolInput, setRenderManualSchoolInput] =
+    useState<boolean>(false);
+  const [manualSchoolName, setManualSchoolName] = useState<string>("");
+  const [manualSchoolAddress, setManualSchoolAddress] = useState<string>("");
+  const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm<OnboardingFormProps>({
       resolver: zodResolver(onboardingFormSchema),
       mode: "onBlur",
@@ -53,6 +74,18 @@ export const OnboardingView = () => {
     [setValue],
   );
 
+  const setSchoolDetailsInManualForm = useCallback(
+    (manualSchoolName: string, schoolAddress: string) => {
+      setValue("schoolAddress", schoolAddress, {
+        shouldValidate: true,
+      });
+      setValue("manualSchoolName", manualSchoolName, {
+        shouldValidate: true,
+      });
+    },
+    [setValue],
+  );
+
   const {
     selectedSchool,
     setSelectedSchool,
@@ -65,7 +98,26 @@ export const OnboardingView = () => {
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
+    if (renderManualSchoolInput) {
+      reset();
+    }
+  }, [
+    selectedSchool,
+    schoolPickerInputValue,
+    setSchoolDetailsInForm,
+    renderManualSchoolInput,
+    reset,
+  ]);
+
+  const onManualSchoolInputChange = (
+    manualSchoolName: string,
+    schoolAddress: string,
+  ) => {
+    if (manualSchoolName === "" && schoolAddress === "") {
+      setSchoolDetailsInManualForm("", "");
+    }
+    setSchoolDetailsInManualForm(manualSchoolName, schoolAddress);
+  };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (value === "") {
@@ -102,20 +154,55 @@ export const OnboardingView = () => {
           Select your school
         </OakHeading>
 
-        <ResourcePageSchoolPicker
-          hasError={formState.errors?.school !== undefined}
-          schoolPickerInputValue={schoolPickerInputValue}
-          setSchoolPickerInputValue={onSchoolPickerInputChange}
-          schools={schools}
-          label={"School"}
-          setSelectedSchool={setSelectedSchool}
-          required={true}
-          withHomeschool={false}
-        />
+        {!renderManualSchoolInput && (
+          <>
+            <ResourcePageSchoolPicker
+              hasError={
+                !renderManualSchoolInput &&
+                "school" in formState.errors &&
+                formState.errors?.school !== undefined
+              }
+              schoolPickerInputValue={schoolPickerInputValue}
+              setSchoolPickerInputValue={onSchoolPickerInputChange}
+              schools={schools}
+              label={"School"}
+              setSelectedSchool={setSelectedSchool}
+              required={true}
+              withHomeschool={false}
+            />
+            <OakFlex $alignItems={"center"} $font={"body-2-bold"}>
+              <OakP $font={"body-2"} $mr={"space-between-sssx"}>
+                Can't find your school?
+              </OakP>
+              <OakLink
+                onClick={() => {
+                  setRenderManualSchoolInput(true);
+                  reset();
+                }}
+                element="button"
+              >
+                Enter manually
+              </OakLink>
+            </OakFlex>
+          </>
+        )}
+
+        {renderManualSchoolInput && (
+          <ManualEntrySchoolDetails
+            hasErrors={formState.errors}
+            onManualSchoolInputChange={onManualSchoolInputChange}
+            setValue={setValue}
+            control={control}
+            setRenderManualSchoolInput={setRenderManualSchoolInput}
+            manualSchoolName={manualSchoolName}
+            manualSchoolAddress={manualSchoolAddress}
+            setManualSchoolName={setManualSchoolName}
+            setManualSchoolAddress={setManualSchoolAddress}
+            reset={reset}
+          />
+        )}
         <OakPrimaryButton
-          disabled={
-            formState.errors?.school !== undefined || !formState.isValid
-          }
+          disabled={!formState.isValid}
           width="100%"
           type="submit"
         >

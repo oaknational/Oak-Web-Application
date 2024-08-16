@@ -9,12 +9,19 @@ type FieldErrorProps = {
   id: string;
   children: ReactNode;
   withoutMarginBottom?: boolean;
+  withoutMarginTop?: boolean;
   variant?: FieldErrorVariant | null;
   ariaLive?: "off" | "polite" | "assertive";
 };
 
 const FieldError = (props: FieldErrorProps) => {
-  const { id, children, withoutMarginBottom = false, variant } = props;
+  const {
+    id,
+    children,
+    withoutMarginBottom = false,
+    variant,
+    withoutMarginTop = false,
+  } = props;
   if (!children) {
     /**
      * Return early to avoid unwanted whitespace when there's no error
@@ -23,7 +30,7 @@ const FieldError = (props: FieldErrorProps) => {
   }
   return (
     <OakFlex
-      $mt="space-between-sssx"
+      $mt={withoutMarginTop ? "space-between-none" : "space-between-sssx"}
       $alignItems={"center"}
       $flexDirection={"row"}
       $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
