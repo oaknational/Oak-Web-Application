@@ -32,7 +32,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
 }) => {
   return (
     <>
-      {"manualSchoolName" in hasErrors && hasErrors.manualSchoolName && (
+      {"manualSchoolName" in hasErrors && (
         <FieldError withoutMarginBottom id={"school-name-error"}>
           Enter school name
         </FieldError>
@@ -67,7 +67,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           );
         }}
       />
-      {"schoolAddress" in hasErrors && hasErrors.schoolAddress && (
+      {"schoolAddress" in hasErrors && (
         <FieldError withoutMarginBottom id={"school-address-error"}>
           Enter school address
         </FieldError>
