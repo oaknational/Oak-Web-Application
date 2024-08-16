@@ -159,9 +159,7 @@ const isOnboardingNonTeacherProps = (
     u !== null &&
     "role" in u &&
     typeof (u as OnboardingNonTeacherProps).role === "string" &&
-    ((u as OnboardingNonTeacherProps).role === "other"
-      ? "roleOther" in u
-      : true)
+    ((u as OnboardingNonTeacherProps).role === "other" ? "other" in u : true)
   );
 };
 export type OnboardingHubspotFormData = {
