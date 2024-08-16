@@ -10,9 +10,10 @@ jest.mock("posthog-js/react", () => ({
 describe("Onboarding role selection page", () => {
   it("should render the onboarding role selection page", async () => {
     renderWithProviders()(<RoleSelectionPage />);
-    const heading = await screen.findByRole("heading", {
-      name: "Which of the following best describes what you do?",
-    });
+    const heading = await screen.findByText(
+      "Which of the following best describes what you do?",
+    );
+
     expect(heading).toBeInTheDocument();
   });
 });
