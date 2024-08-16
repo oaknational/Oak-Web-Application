@@ -8,10 +8,10 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 
-import SchoolDetailsInputBox from "../SchoolDetailsInputBox";
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
 import FieldError from "@/components/SharedComponents/FieldError";
+import Input from "@/components/SharedComponents/Input";
 
 type ManualEntrySchoolDetailsProps = {
   setValue: UseFormSetValue<SchoolSelectFormProps>;
@@ -40,10 +40,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <Controller
         name="manualSchoolName"
         control={control}
-        render={({
-          field: { onChange, onBlur, value },
-          fieldState: { error },
-        }) => {
+        render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             if (e.target.value.length > 2) {
@@ -56,11 +53,13 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <SchoolDetailsInputBox
-              labelText="School name"
+            <Input
+              label="School name"
               placeholder="Type school name"
-              background="lemon"
-              hasError={!!error}
+              value={value}
+              isRequired
+              id={"school-name"}
+              withoutMarginBottom
               onBlur={onBlurHandler}
               onChange={onChangeHandler}
             />
@@ -72,13 +71,11 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           Enter school address
         </FieldError>
       )}
+
       <Controller
         name="schoolAddress"
         control={control}
-        render={({
-          field: { onChange, onBlur, value },
-          fieldState: { error },
-        }) => {
+        render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             if (e.target.value.length > 2) {
@@ -92,11 +89,13 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <SchoolDetailsInputBox
-              labelText="School address"
+            <Input
+              label="School address"
               placeholder="Type school address"
-              background="lemon"
-              hasError={!!error}
+              value={value}
+              isRequired
+              withoutMarginBottom
+              id={"school-address"}
               onBlur={onBlurHandler}
               onChange={onChangeHandler}
             />
