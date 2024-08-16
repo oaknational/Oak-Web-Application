@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/dom";
+import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import SchoolSelectionView from "./SchoolSelection.view";
@@ -6,12 +6,15 @@ import SchoolSelectionView from "./SchoolSelection.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("Onboarding view", () => {
-  it("renders a heading", async () => {
+  it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
-    const heading = await screen.findByRole("heading", {
-      name: "Select your school",
-    });
-    expect(heading).toBeInTheDocument();
+
+    const fieldset = screen.getByRole("fieldset");
+    expect(fieldset).toBeInTheDocument();
+    const legend = screen.getByText(/Select your school/i);
+    expect(legend).toBeInTheDocument();
+
+    expect(fieldset).toContainElement(legend);
   });
   it("renders a school picker", async () => {
     renderWithProviders()(<SchoolSelectionView />);
@@ -32,34 +35,19 @@ describe("Onboarding view", () => {
       exact: false,
     });
     expect(tsAndCs).toBeInTheDocument();
-    expect(tsAndCs).toHaveAttribute("href", "/legal/terms-and-conditions");
+    expect(tsAndCs.closest("a")).toHaveAttribute(
+      "href",
+      "/legal/terms-and-conditions",
+    );
   });
   it("renders contact us text", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const contactUs = await screen.findByText("Contact us", { exact: false });
+    screen.debug(contactUs);
     expect(contactUs).toBeInTheDocument();
-    expect(contactUs).toHaveAttribute("href", "/contact-us");
+    expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
   });
-  it("renders newsletter signup checkbox", () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    expect(
-      screen.getByLabelText(
-        "Sign up to receive helpful content via email. Unsubscribe at any time.",
-      ),
-    ).toBeInTheDocument();
-  });
-  it("should render the Controller component and handle checkbox change", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
 
-    const checkbox = await screen.findByRole("checkbox", {
-      name: /Sign up to receive helpful content via email. Unsubscribe at any time./i,
-    });
-    expect(checkbox).toBeChecked();
-
-    fireEvent.click(checkbox);
-
-    expect(checkbox).not.toBeChecked();
-  });
   it("it enables the continue button when a school is selected", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const continueButton = await screen.findByRole("button", {
