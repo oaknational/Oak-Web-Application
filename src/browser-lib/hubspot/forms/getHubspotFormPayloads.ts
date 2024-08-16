@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { UtmParams } from "../../../hooks/useUtmParams";
 
 import { HubspotPayload } from "./hubspotSubmitForm";
@@ -114,53 +116,43 @@ export const getHubspotDownloadsFormPayload = (props: {
   return payload;
 };
 
-type OnboardingUKTeacherProps = {
-  school: string;
-  schoolName: string;
-};
+const onboardingUKTeacherPropsSchema = z.object({
+  school: z.string(),
+  schoolName: z.string(),
+});
+type OnboardingUKTeacherProps = z.infer<typeof onboardingUKTeacherPropsSchema>;
 const isOnboardingUKTeacherProps = (
   u: unknown,
 ): u is OnboardingUKTeacherProps => {
-  return (
-    typeof u === "object" &&
-    u !== null &&
-    "school" in u &&
-    "schoolName" in u &&
-    typeof (u as OnboardingUKTeacherProps).school === "string" &&
-    typeof (u as OnboardingUKTeacherProps).schoolName === "string"
-  );
+  const parsed = onboardingUKTeacherPropsSchema.safeParse(u);
+  return parsed.success;
 };
-type OnboardingInternationalTeacherProps = {
-  schoolAddress: string;
-  schoolName: string;
-};
+
+const onboardingInternationalTeacherPropsSchema = z.object({
+  schoolAddress: z.string(),
+  schoolName: z.string(),
+});
+type OnboardingInternationalTeacherProps = z.infer<
+  typeof onboardingInternationalTeacherPropsSchema
+>;
 const isOnboardingInternationalTeacherProps = (
   u: unknown,
 ): u is OnboardingInternationalTeacherProps => {
-  return (
-    typeof u === "object" &&
-    u !== null &&
-    "schoolAddress" in u &&
-    "schoolName" in u &&
-    typeof (u as OnboardingInternationalTeacherProps).schoolAddress ===
-      "string" &&
-    typeof (u as OnboardingInternationalTeacherProps).schoolName === "string"
-  );
+  const parsed = onboardingInternationalTeacherPropsSchema.safeParse(u);
+  return parsed.success;
 };
-type OnboardingNonTeacherProps = {
-  role: string;
-  other?: string;
-};
+const onboardingNonTeacherPropsSchema = z.object({
+  role: z.string(),
+  other: z.string().optional(),
+});
+type OnboardingNonTeacherProps = z.infer<
+  typeof onboardingNonTeacherPropsSchema
+>;
 const isOnboardingNonTeacherProps = (
   u: unknown,
 ): u is OnboardingNonTeacherProps => {
-  return (
-    typeof u === "object" &&
-    u !== null &&
-    "role" in u &&
-    typeof (u as OnboardingNonTeacherProps).role === "string" &&
-    ((u as OnboardingNonTeacherProps).role === "Other" ? "other" in u : true)
-  );
+  const parsed = onboardingNonTeacherPropsSchema.safeParse(u);
+  return parsed.success;
 };
 export type OnboardingHubspotFormData = {
   email?: string;
