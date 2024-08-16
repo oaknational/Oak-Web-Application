@@ -1,3 +1,12 @@
+# [1.521.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.520.0...v1.521.0) (2024-08-16)
+
+
+### Features
+
+* install Clerk ([0016204](https://github.com/oaknational/Oak-Web-Application/commit/0016204ea635505a86c20f273ed71f68d0e12ebe))
+* **LESQ-1024:** hide content on download pages while checking for auth ([72e8e4b](https://github.com/oaknational/Oak-Web-Application/commit/72e8e4b5e10dcf4fa59de7debb091570f24ecee3))
+* restore the Sign out button ([d8426e8](https://github.com/oaknational/Oak-Web-Application/commit/d8426e87c44182426fcf0a6e1f2123b4eb5bab72))
+
 # [1.520.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.519.0...v1.520.0) (2024-08-16)
 
 
