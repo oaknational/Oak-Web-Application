@@ -167,7 +167,7 @@ describe("getHubspotOnboardingFormPayload", () => {
       hutk: "hubspotutk value 123",
       data: {
         email: "email value",
-        emailConsent: true,
+        newsletterSignUp: true,
         school: "school_id value",
         schoolName: "school_name value",
         oakUserId: "oak_user_id value",
@@ -197,7 +197,7 @@ describe("getHubspotOnboardingFormPayload", () => {
       hutk: "hubspotutk value 123",
       data: {
         email: "email value",
-        emailConsent: true,
+        newsletterSignUp: true,
         schoolAddress: "123 plain lane",
         schoolPostcode: "XYZ 789",
         oakUserId: "oak_user_id value",
@@ -227,9 +227,9 @@ describe("getHubspotOnboardingFormPayload", () => {
       hutk: "hubspotutk value 123",
       data: {
         email: "email value",
-        emailConsent: true,
+        newsletterSignUp: true,
         role: "role value",
-        roleOther: "role_other value",
+        other: "role_other value",
         oakUserId: "oak_user_id value",
         utm_campaign: "a campaign",
         utm_content: "some content",

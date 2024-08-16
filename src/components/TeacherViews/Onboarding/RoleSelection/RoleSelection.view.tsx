@@ -55,7 +55,7 @@ const RoleSelectionView = () => {
         formState.errors.other === undefined
       }
       onSubmit={() => {
-        if (getValues().role === "other" && !getValues().other) {
+        if (getValues().role === "Other" && !getValues().other) {
           setError("other", { message: "Please tell us what your role is" });
         } else if (!getValues().role) {
           setError("role", { message: "Please select your role" });
@@ -70,7 +70,7 @@ const RoleSelectionView = () => {
         $alignItems="flex-start"
         $gap="space-between-s"
         onChange={(event) => {
-          handleChange("role", event.target.value);
+          handleChange("role", roleOptions[event.target.value] || "");
           clearErrors();
         }}
         aria-describedby={formState.errors.role ? "role-error" : undefined}
@@ -90,7 +90,7 @@ const RoleSelectionView = () => {
           {formState.errors.role.message}
         </FieldError>
       )}
-      {getValues().role === "other" && (
+      {getValues().role === "Other" && (
         <Input
           id="other-role"
           error={formState.errors.other?.message}

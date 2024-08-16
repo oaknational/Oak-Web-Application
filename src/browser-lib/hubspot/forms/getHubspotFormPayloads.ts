@@ -150,7 +150,7 @@ const isOnboardingInternationalTeacherProps = (
 };
 type OnboardingNonTeacherProps = {
   role: string;
-  roleOther?: string;
+  other?: string;
 };
 const isOnboardingNonTeacherProps = (
   u: unknown,
@@ -167,8 +167,8 @@ const isOnboardingNonTeacherProps = (
 };
 export type OnboardingHubspotFormData = {
   email: string;
-  oakUserId: string;
-  emailConsent: boolean;
+  oakUserId: string | null;
+  newsletterSignUp: boolean;
 } & UtmParams &
   (
     | OnboardingUKTeacherProps
@@ -187,7 +187,7 @@ export const getHubspotOnboardingFormPayload = (props: {
 
   const snakeCaseData = {
     email: data.email,
-    email_consent_on_account_creation: data.emailConsent ? "Yes" : "No",
+    email_consent_on_account_creation: data.newsletterSignUp ? "Yes" : "No",
     do_you_work_in_a_school:
       isUkTeacher || isInternationalTeacher ? "Yes" : "No",
     contact_school_name: isUkTeacher ? data.schoolName : undefined,
@@ -197,10 +197,8 @@ export const getHubspotOnboardingFormPayload = (props: {
       : undefined,
     school_postcode: isInternationalTeacher ? data.schoolPostcode : undefined,
     non_school_role_description: isNonTeacher ? data.role : undefined,
-    non_school_role_description_freetext: isNonTeacher
-      ? data.roleOther
-      : undefined,
-    oak_user_id: data.oakUserId,
+    non_school_role_description_freetext: isNonTeacher ? data.other : undefined,
+    oak_user_id: data.oakUserId ?? undefined,
     ...getUtmSnakeCaseData(data),
   };
 

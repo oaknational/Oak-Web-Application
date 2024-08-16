@@ -19,6 +19,13 @@ import { OnboardingFormProps } from "./OnboardingForm.schema";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useUtmParams from "@/hooks/useUtmParams";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import OakError from "@/errors/OakError";
 
 const OnboardingForm = (props: {
   children: React.ReactNode;
@@ -30,9 +37,39 @@ const OnboardingForm = (props: {
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
 }) => {
+  const hutk = getHubspotUserToken();
+  const utmParams = useUtmParams();
+  const { posthogDistinctId } = useAnalytics();
+
   const onFormSubmit = async (data: OnboardingFormProps) => {
-    // TODO: something with this data
-    console.log("onboarding form values: ", data);
+    const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
+    const hubspotFormPayload = getHubspotOnboardingFormPayload({
+      hutk,
+      data: {
+        ...utmParams,
+        ...data,
+        oakUserId: posthogDistinctId,
+        email: "TODO: get email from user account",
+      },
+    });
+
+    try {
+      await hubspotSubmitForm({
+        hubspotFormId,
+        payload: hubspotFormPayload,
+      });
+    } catch (error) {
+      if (error instanceof OakError) {
+        reportError(error);
+      } else {
+        reportError(
+          new OakError({
+            code: "hubspot/unknown",
+            originalError: error,
+          }),
+        );
+      }
+    }
   };
 
   return (

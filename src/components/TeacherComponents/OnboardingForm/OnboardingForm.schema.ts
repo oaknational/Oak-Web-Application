@@ -27,7 +27,7 @@ export const schoolSelectFormSchema = z.object({
       }),
     })
     .min(1, "Select school"),
-  schoolName: z.string().optional(),
+  schoolName: z.string(),
 });
 export type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
 export type SchoolSelectFormProps = SchoolSelectFormValues & {
