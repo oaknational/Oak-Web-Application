@@ -199,7 +199,7 @@ describe("getHubspotOnboardingFormPayload", () => {
         email: "email value",
         newsletterSignUp: true,
         schoolAddress: "123 plain lane",
-        schoolPostcode: "XYZ 789",
+        schoolName: "Totally real school",
         oakUserId: "oak_user_id value",
         utm_campaign: "a campaign",
         utm_content: "some content",
@@ -209,6 +209,7 @@ describe("getHubspotOnboardingFormPayload", () => {
       },
     });
     expect(result.fields).toEqual([
+      { name: "contact_school_name", value: "Totally real school" },
       { name: "do_you_work_in_a_school", value: "Yes" },
       { name: "email", value: "email value" },
       { name: "email_consent_on_account_creation", value: "Yes" },
@@ -219,7 +220,6 @@ describe("getHubspotOnboardingFormPayload", () => {
       { name: "latest_utm_term", value: "term" },
       { name: "manual_input_school_address", value: "123 plain lane" },
       { name: "oak_user_id", value: "oak_user_id value" },
-      { name: "school_postcode", value: "XYZ 789" },
     ]);
   });
   test("non-teacher form payload is correct", () => {
