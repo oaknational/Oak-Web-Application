@@ -79,7 +79,16 @@ export const SchoolSelectionView = () => {
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, schoolPickerInputValue, setSchoolDetailsInForm]);
+    if (renderManualSchoolInput) {
+      reset();
+    }
+  }, [
+    selectedSchool,
+    schoolPickerInputValue,
+    setSchoolDetailsInForm,
+    renderManualSchoolInput,
+    reset,
+  ]);
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (value === "") {
