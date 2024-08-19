@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { UtmParams } from "../../../hooks/useUtmParams";
 
 import { HubspotPayload } from "./hubspotSubmitForm";
@@ -108,6 +110,86 @@ export const getHubspotDownloadsFormPayload = (props: {
 }): HubspotPayload => {
   const { hutk, data } = props;
   const snakeCaseData = getDownloadsSnakeCaseData(data);
+
+  const payload = getPayload(snakeCaseData, hutk);
+
+  return payload;
+};
+
+const onboardingUKTeacherPropsSchema = z.object({
+  school: z.string(),
+  schoolName: z.string(),
+});
+type OnboardingUKTeacherProps = z.infer<typeof onboardingUKTeacherPropsSchema>;
+const isOnboardingUKTeacherProps = (
+  u: unknown,
+): u is OnboardingUKTeacherProps => {
+  const parsed = onboardingUKTeacherPropsSchema.safeParse(u);
+  return parsed.success;
+};
+
+const onboardingInternationalTeacherPropsSchema = z.object({
+  schoolAddress: z.string(),
+  schoolName: z.string(),
+});
+type OnboardingInternationalTeacherProps = z.infer<
+  typeof onboardingInternationalTeacherPropsSchema
+>;
+const isOnboardingInternationalTeacherProps = (
+  u: unknown,
+): u is OnboardingInternationalTeacherProps => {
+  const parsed = onboardingInternationalTeacherPropsSchema.safeParse(u);
+  return parsed.success;
+};
+const onboardingNonTeacherPropsSchema = z.object({
+  role: z.string(),
+  other: z.string().optional(),
+});
+type OnboardingNonTeacherProps = z.infer<
+  typeof onboardingNonTeacherPropsSchema
+>;
+const isOnboardingNonTeacherProps = (
+  u: unknown,
+): u is OnboardingNonTeacherProps => {
+  const parsed = onboardingNonTeacherPropsSchema.safeParse(u);
+  return parsed.success;
+};
+export type OnboardingHubspotFormData = {
+  email?: string;
+  oakUserId: string | null;
+  newsletterSignUp: boolean;
+} & UtmParams &
+  (
+    | OnboardingUKTeacherProps
+    | OnboardingInternationalTeacherProps
+    | OnboardingNonTeacherProps
+  );
+
+export const getHubspotOnboardingFormPayload = (props: {
+  data: OnboardingHubspotFormData;
+  hutk?: string;
+}): HubspotPayload => {
+  const { hutk, data } = props;
+  const isUkTeacher = isOnboardingUKTeacherProps(data);
+  const isInternationalTeacher = isOnboardingInternationalTeacherProps(data);
+  const isNonTeacher = isOnboardingNonTeacherProps(data);
+
+  const snakeCaseData = {
+    email: data.email,
+    email_consent_on_account_creation: data.newsletterSignUp ? "Yes" : "No",
+    do_you_work_in_a_school:
+      isUkTeacher || isInternationalTeacher ? "Yes" : "No",
+    contact_school_name:
+      isUkTeacher || isInternationalTeacher ? data.schoolName : undefined,
+    contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
+    manual_input_school_address: isInternationalTeacher
+      ? data.schoolAddress
+      : undefined,
+    non_school_role_description: isNonTeacher ? data.role : undefined,
+    non_school_role_description_freetext: isNonTeacher ? data.other : undefined,
+    oak_user_id: data.oakUserId ?? undefined,
+    ...getUtmSnakeCaseData(data),
+  };
 
   const payload = getPayload(snakeCaseData, hutk);
 
