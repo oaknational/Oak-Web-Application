@@ -1,6 +1,7 @@
 import {
   getHubspotDownloadsFormPayload,
   getHubspotNewsletterPayload,
+  getHubspotOnboardingFormPayload,
 } from "./getHubspotFormPayloads";
 
 describe("getHubspotNewsletterFormPayload()", () => {
@@ -158,5 +159,100 @@ describe("getHubspotDownloadFormPayload()", () => {
         pageName: "",
       },
     });
+  });
+});
+describe("getHubspotOnboardingFormPayload", () => {
+  test("uk teacher form payload is correct", () => {
+    const result = getHubspotOnboardingFormPayload({
+      hutk: "hubspotutk value 123",
+      data: {
+        email: "email value",
+        newsletterSignUp: true,
+        school: "school_id value",
+        schoolName: "school_name value",
+        oakUserId: "oak_user_id value",
+        utm_campaign: "a campaign",
+        utm_content: "some content",
+        utm_medium: "some medium",
+        utm_source: "a source",
+        utm_term: "term",
+      },
+    });
+    expect(result.fields).toEqual([
+      { name: "contact_school_name", value: "school_name value" },
+      { name: "contact_school_urn", value: "school_id value" },
+      { name: "do_you_work_in_a_school", value: "Yes" },
+      { name: "email", value: "email value" },
+      { name: "email_consent_on_account_creation", value: "Yes" },
+      { name: "latest_utm_campaign", value: "a campaign" },
+      { name: "latest_utm_content", value: "some content" },
+      { name: "latest_utm_medium", value: "some medium" },
+      { name: "latest_utm_source", value: "a source" },
+      { name: "latest_utm_term", value: "term" },
+      { name: "oak_user_id", value: "oak_user_id value" },
+    ]);
+  });
+  test("non-uk teacher form payload is correct", () => {
+    const result = getHubspotOnboardingFormPayload({
+      hutk: "hubspotutk value 123",
+      data: {
+        email: "email value",
+        newsletterSignUp: true,
+        schoolAddress: "123 plain lane",
+        schoolName: "Totally real school",
+        oakUserId: "oak_user_id value",
+        utm_campaign: "a campaign",
+        utm_content: "some content",
+        utm_medium: "some medium",
+        utm_source: "a source",
+        utm_term: "term",
+      },
+    });
+    expect(result.fields).toEqual([
+      { name: "contact_school_name", value: "Totally real school" },
+      { name: "do_you_work_in_a_school", value: "Yes" },
+      { name: "email", value: "email value" },
+      { name: "email_consent_on_account_creation", value: "Yes" },
+      { name: "latest_utm_campaign", value: "a campaign" },
+      { name: "latest_utm_content", value: "some content" },
+      { name: "latest_utm_medium", value: "some medium" },
+      { name: "latest_utm_source", value: "a source" },
+      { name: "latest_utm_term", value: "term" },
+      { name: "manual_input_school_address", value: "123 plain lane" },
+      { name: "oak_user_id", value: "oak_user_id value" },
+    ]);
+  });
+  test("non-teacher form payload is correct", () => {
+    const result = getHubspotOnboardingFormPayload({
+      hutk: "hubspotutk value 123",
+      data: {
+        email: "email value",
+        newsletterSignUp: true,
+        role: "role value",
+        other: "role_other value",
+        oakUserId: "oak_user_id value",
+        utm_campaign: "a campaign",
+        utm_content: "some content",
+        utm_medium: "some medium",
+        utm_source: "a source",
+        utm_term: "term",
+      },
+    });
+    expect(result.fields).toEqual([
+      { name: "do_you_work_in_a_school", value: "No" },
+      { name: "email", value: "email value" },
+      { name: "email_consent_on_account_creation", value: "Yes" },
+      { name: "latest_utm_campaign", value: "a campaign" },
+      { name: "latest_utm_content", value: "some content" },
+      { name: "latest_utm_medium", value: "some medium" },
+      { name: "latest_utm_source", value: "a source" },
+      { name: "latest_utm_term", value: "term" },
+      { name: "non_school_role_description", value: "role value" },
+      {
+        name: "non_school_role_description_freetext",
+        value: "role_other value",
+      },
+      { name: "oak_user_id", value: "oak_user_id value" },
+    ]);
   });
 });

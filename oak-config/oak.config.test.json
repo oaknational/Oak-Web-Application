@@ -14,6 +14,7 @@
     "portalId": "12345",
     "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
     "downloadsFormId": "uuid-oijfeoe-ijfere-g-ererg",
+    "onboardingFormId": "uuid-ergerg-ergerg-ergerg",
     "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
     "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"]
   },
