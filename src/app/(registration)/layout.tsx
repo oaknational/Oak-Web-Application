@@ -13,12 +13,12 @@ function RegistrationLayout({ children }: { children: React.ReactNode }) {
         $height="100vh"
       >
         <CMSImage
-          image={getIllustrationAsset("auth0-background")}
+          image={getIllustrationAsset("auth-acorn")}
           $position="fixed"
-          $width="auto"
-          $height="100%"
-          $right={0}
           $display={["none", "block"]}
+          $height="55%"
+          $width="auto"
+          $right={200}
         />
         <OakFlex $pl={["inner-padding-none", "inner-padding-xl8"]}>
           <OakBox
