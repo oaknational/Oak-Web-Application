@@ -1,3 +1,19 @@
+# [1.522.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.2...v1.522.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* capitalisation of other ([e618742](https://github.com/oaknational/Oak-Web-Application/commit/e618742dfcc4deb9b3a685764dfa4889e834f3cd))
+* prop name change ([75944e3](https://github.com/oaknational/Oak-Web-Application/commit/75944e3be81874d593111508fc874da08b21f0f1))
+
+
+### Features
+
+* add email from users account to hubspot form ([93e8e51](https://github.com/oaknational/Oak-Web-Application/commit/93e8e51090aa31416dceed58ec0424a8d13d2a97))
+* add hubspot payload helper fns for onboarding ([97deeec](https://github.com/oaknational/Oak-Web-Application/commit/97deeec2dbf2cd03f8aa6670aebca8606b9678e5))
+* add new hubspot form token to env ([e06301f](https://github.com/oaknational/Oak-Web-Application/commit/e06301fcce836bdb64ea5d2122bc658b7ec00c26))
+* submit form to hubspot on continue ([1cd16d8](https://github.com/oaknational/Oak-Web-Application/commit/1cd16d892279c692bc6a85e5030931dcb223efeb))
+
 ## [1.521.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.1...v1.521.2) (2024-08-19)
 
 
