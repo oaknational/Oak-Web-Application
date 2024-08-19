@@ -1,8 +1,47 @@
 "use client";
+import { resolveOakHref } from "@/common-lib/urls";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { getIllustrationAsset } from "@/image-data";
-import { OakBox, OakFlex, OakMaxWidth } from "@/styles/oakThemeApp";
+import {
+  OakBox,
+  OakFlex,
+  OakLink,
+  OakMaxWidth,
+  OakP,
+} from "@/styles/oakThemeApp";
+
+const TermsAndConditions = () => {
+  return (
+    <>
+      <OakP $font="body-2" color="text-primary" $textAlign="center">
+        By continuing you agree to{" "}
+        <OakLink
+          href={resolveOakHref({
+            page: "legal",
+            legalSlug: "terms-and-conditions",
+          })}
+          target="_blank"
+          aria-label="Terms and conditions (opens in a new tab)"
+        >
+          Oak's terms & conditions
+        </OakLink>{" "}
+        and{" "}
+        <OakLink
+          href={resolveOakHref({
+            page: "legal",
+            legalSlug: "privacy-policy",
+          })}
+          target="_blank"
+          aria-label="Privacy policy (opens in a new tab)"
+        >
+          privacy policy
+        </OakLink>
+        .
+      </OakP>
+    </>
+  );
+};
 
 function RegistrationLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,14 +60,28 @@ function RegistrationLayout({ children }: { children: React.ReactNode }) {
           $right={200}
         />
         <OakFlex $pl={["inner-padding-none", "inner-padding-xl8"]}>
-          <OakBox
-            $dropShadow="drop-shadow-standard"
-            $borderRadius="border-radius-l"
-            $display={["none", "block"]}
+          <OakFlex
+            $flexDirection="column"
+            $display={["none", "flex"]}
+            $alignItems="center"
           >
-            {children}
-          </OakBox>
-          <OakBox $display={["block", "none"]}>{children}</OakBox>
+            <OakBox
+              $dropShadow="drop-shadow-standard"
+              $borderRadius="border-radius-l"
+              $width="max-content"
+            >
+              {children}
+            </OakBox>
+            <TermsAndConditions />
+          </OakFlex>
+          <OakFlex
+            $flexDirection="column"
+            $alignItems="center"
+            $display={["flex", "none"]}
+          >
+            <OakBox $display={["block", "none"]}>{children}</OakBox>
+            <TermsAndConditions />
+          </OakFlex>
         </OakFlex>
       </OakMaxWidth>
     </OakBox>

@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={lexend.className}>
       <body style={{ margin: "0px" }}>
         <PHProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
