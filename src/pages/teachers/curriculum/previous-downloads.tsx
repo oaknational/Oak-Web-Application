@@ -70,7 +70,6 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       categoryDocuments[category as DownloadCategory]?.forEach((document) => {
         downloads.push({
           label: document.subject,
-          slug: document.slug,
           url: `${LEGACY_DOWNLOADS_API_URL}/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
           icon: document.icon,
         });
