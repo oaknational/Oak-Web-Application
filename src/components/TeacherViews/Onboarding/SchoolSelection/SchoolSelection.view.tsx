@@ -48,15 +48,6 @@ export const SchoolSelectionView = () => {
     [setValue],
   );
 
-  const onManualSchoolInputChange = (isSchoolName: boolean, value: string) => {
-    if (isSchoolName) {
-      setSchoolDetailsInManualForm(true, value);
-    }
-    if (!isSchoolName) {
-      setSchoolDetailsInManualForm(false, value);
-    }
-  };
-
   const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
       setValue("school", value, {
@@ -130,7 +121,7 @@ export const SchoolSelectionView = () => {
                   />
                 </OakBox>
                 <OakFlex
-                  $mt={"space-between-none"}
+                  $mt={"space-between-s"}
                   $alignItems={"center"}
                   $font={"body-2-bold"}
                 >
@@ -153,7 +144,7 @@ export const SchoolSelectionView = () => {
             {renderManualSchoolInput && (
               <ManualEntrySchoolDetails
                 hasErrors={formState.errors}
-                onManualSchoolInputChange={onManualSchoolInputChange}
+                onManualSchoolInputChange={setSchoolDetailsInManualForm}
                 setValue={setValue}
                 control={control}
                 setRenderManualSchoolInput={setRenderManualSchoolInput}

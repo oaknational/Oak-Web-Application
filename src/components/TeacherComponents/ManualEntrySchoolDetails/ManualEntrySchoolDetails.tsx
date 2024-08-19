@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, FC, ChangeEvent } from "react";
-import { OakBox, OakLink } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 import {
   Control,
   Controller,
@@ -31,7 +31,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
   reset,
 }) => {
   return (
-    <>
+    <OakFlex $flexDirection={"column"}>
       {"manualSchoolName" in hasErrors && (
         <FieldError withoutMarginBottom id={"school-name-error"}>
           Enter school name
@@ -53,16 +53,18 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <Input
-              label="School name"
-              placeholder="Type school name"
-              value={value}
-              isRequired
-              id={"school-name"}
-              withoutMarginBottom
-              onBlur={onBlurHandler}
-              onChange={onChangeHandler}
-            />
+            <OakBox $mt={"space-between-m"}>
+              <Input
+                label="School name"
+                placeholder="Type school name"
+                value={value}
+                isRequired
+                id={"school-name"}
+                withoutMarginBottom
+                onBlur={onBlurHandler}
+                onChange={onChangeHandler}
+              />
+            </OakBox>
           );
         }}
       />
@@ -89,16 +91,18 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <Input
-              label="School address"
-              placeholder="Type school address"
-              value={value}
-              isRequired
-              withoutMarginBottom
-              id={"school-address"}
-              onBlur={onBlurHandler}
-              onChange={onChangeHandler}
-            />
+            <OakBox $mt={"space-between-m"}>
+              <Input
+                label="School address"
+                placeholder="Type school address"
+                value={value}
+                isRequired
+                withoutMarginBottom
+                id={"school-address"}
+                onBlur={onBlurHandler}
+                onChange={onChangeHandler}
+              />
+            </OakBox>
           );
         }}
       />
@@ -113,7 +117,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           Select from dropdown
         </OakLink>
       </OakBox>
-    </>
+    </OakFlex>
   );
 };
 
