@@ -1,12 +1,4 @@
 import {
-  OakCheckBox,
-  OakFlex,
-  OakLink,
-  OakP,
-  OakPrimaryButton,
-  OakSpan,
-} from "@oaknational/oak-components";
-import {
   Control,
   Controller,
   UseFormHandleSubmit,
@@ -19,6 +11,14 @@ import { useUser } from "@clerk/nextjs";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
+import {
+  OakCheckBox,
+  OakFlex,
+  OakLink,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -31,7 +31,6 @@ import OakError from "@/errors/OakError";
 
 const OnboardingForm = ({
   showNewsletterSignUp = true,
-  showTermsAndConditions = true,
   ...props
 }: {
   children: React.ReactNode;
@@ -43,7 +42,6 @@ const OnboardingForm = ({
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
   showNewsletterSignUp?: boolean;
-  showTermsAndConditions?: boolean;
 }) => {
   const router = useRouter();
   const hutk = getHubspotUserToken();
@@ -156,34 +154,6 @@ const OnboardingForm = ({
           )}
         </OakFlex>
       </OakFlex>
-
-      {showTermsAndConditions && (
-        <OakP $font="body-2" color="text-primary" $textAlign="center">
-          By continuing you agree to{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "terms-and-conditions",
-            })}
-            target="_blank"
-            aria-label="Terms and conditions (opens in a new tab)"
-          >
-            Oak's terms & conditions
-          </OakLink>{" "}
-          and{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy-policy",
-            })}
-            target="_blank"
-            aria-label="Privacy policy (opens in a new tab)"
-          >
-            privacy policy
-          </OakLink>
-          .
-        </OakP>
-      )}
 
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         Need help?{" "}

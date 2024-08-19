@@ -1,4 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCallback } from "react";
+import { Control, useForm, UseFormTrigger } from "react-hook-form";
+
 import {
   OakBox,
   OakFlex,
@@ -6,9 +9,6 @@ import {
   OakRadioButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
-import { useCallback } from "react";
-import { Control, useForm, UseFormTrigger } from "react-hook-form";
-
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
   OnboardingFormProps,
@@ -44,7 +44,6 @@ export const OnboardingView = () => {
           handleSubmit={handleSubmit}
           canSubmit={!formState.errors.worksInSchool}
           showNewsletterSignUp={false}
-          showTermsAndConditions={false}
         >
           <OakBox>
             <FieldError id={"onboarding-error"}>
