@@ -7,6 +7,8 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 
+jest.mock("next/navigation", () => require("next-router-mock"));
+
 describe("Onboarding role selection page", () => {
   it("should render the onboarding role selection page", async () => {
     renderWithProviders()(<RoleSelectionPage />);

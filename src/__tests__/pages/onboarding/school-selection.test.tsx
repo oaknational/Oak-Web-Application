@@ -7,6 +7,9 @@ import SchoolSelection from "@/pages/onboarding/school-selection";
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
+
+jest.mock("next/navigation", () => require("next-router-mock"));
+
 describe("Onboarding school selection page", () => {
   test("it renders the onboarding page", () => {
     renderWithProviders()(<SchoolSelection />);
