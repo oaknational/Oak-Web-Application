@@ -45,7 +45,7 @@ describe("Component - Curriculum Download Tab", () => {
       curriculumInfo: {
         curriculaDesc: "",
         subjectTitle: "English",
-        phaseTitle: "KS4",
+        phaseTitle: "Secondary",
         examboardTitle: null,
       },
       ...overrides,

@@ -1,5 +1,3 @@
-import assert from "assert";
-
 import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   OakDownloadsJourneyChildSubjectTierSelector,
@@ -29,8 +27,7 @@ import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
-  KeyStageTitle,
-  KeyStageTitleValueType,
+  PhaseValueType,
   ResourceFileTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
@@ -218,12 +215,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
     const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
 
-    const assertKeyStage = (input: string): KeyStageTitleValueType => {
-      const found = Object.values(KeyStageTitle).find((v) => v === input);
-      assert(found);
-      return found;
-    };
-
     await onHubspotSubmit({
       school: data.schoolId ?? "0",
       schoolName: data.schoolName,
@@ -237,8 +228,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,
-      keyStageTitle: assertKeyStage(curriculumInfo.phaseTitle),
-      // keyStageSlug: slugs.phaseSlug,
+      phase: slugs.phaseSlug as PhaseValueType,
       analyticsUseCase: analyticsUseCase,
       emailSupplied: email != null,
       schoolOption: schoolOption,
