@@ -1,4 +1,5 @@
 import {
+  OakBox,
   OakCheckBox,
   OakFlex,
   OakLink,
@@ -122,7 +123,7 @@ const OnboardingForm = ({
           <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
             {props.heading}
           </OakSpan>
-          {props.children}
+          <OakBox>{props.children}</OakBox>
           <OakPrimaryButton
             disabled={!props.canSubmit}
             width="100%"
