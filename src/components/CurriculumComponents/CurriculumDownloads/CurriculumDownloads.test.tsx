@@ -38,12 +38,11 @@ jest.mock("next/router", () => ({
   }),
 }));
 
-const testSubject = "test-subject";
+const testSubject = "french";
 const testCategory = "EYFS";
 const frenchResource = {
   icon: "french",
   label: "French Subject",
-  slug: "french",
   url: `https://this-url-needs-to-end-in-the-subject?param=${testSubject}`,
   // TODO - the radio is selected based of the end of the url. This isn't ideal and should be refactored
 };
@@ -130,9 +129,7 @@ describe("Component - Curriculum Header", () => {
     const { getByTestId } = render(
       <CurriculumDownloads
         category={testCategory}
-        downloads={[
-          { icon: "english", label: "English", url: "", slug: "english" },
-        ]}
+        downloads={[{ icon: "english", label: "English", url: "" }]}
       />,
     );
     await userEvent.click(getByTestId("checkbox-download")!);
@@ -184,7 +181,7 @@ describe("Component - Curriculum Header", () => {
 
   test("selects subject when specified in URL", async () => {
     (useRouter as jest.Mock).mockReturnValue({
-      query: { subject: testSubject, keystage: testCategory },
+      query: { subject: testSubject, keystage: "eyfs" },
       asPath: "/some-path",
     });
     const { getByText } = renderComponent();

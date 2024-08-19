@@ -35,7 +35,6 @@ export type CurriculumDownload = {
   label: string;
   url: string;
   icon: string;
-  slug: string;
 };
 
 export type CurriculumDownloadsRef = {
@@ -164,7 +163,7 @@ function CurriculumDownloads(
       return obj[input];
     };
 
-    // @ts-expect-error: ignore for Avo types
+    // @ts-expect-error: ignore as avo types are incorrect
     track.curriculumResourcesDownloaded({
       keyStageTitle: downloadCategoryAsKeyStageTitle(category),
       subjectTitle: selectedDownload
