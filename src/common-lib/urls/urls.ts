@@ -827,7 +827,7 @@ export const OAK_PAGES: {
   }),
   onboarding: createOakPageConfig({
     pathPattern: "/onboarding",
-    analyticsPageName: "Onboarding",
+    analyticsPageName: "Onboarding: Work In School",
     configType: "internal",
     pageType: "onboarding",
   }),
