@@ -47,6 +47,15 @@ const curriculumUnitsIncludeNewSchema = z.object({
           }),
         )
         .nullable(),
+      subjectcategories: z
+        .array(
+          z.object({
+            id: z.number(),
+            title: z.string(),
+            category: z.string().optional(),
+          }),
+        )
+        .nullable(),
       threads: z.array(
         z.object({
           title: z.string(),
