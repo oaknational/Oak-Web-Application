@@ -5,6 +5,7 @@ import { Lexend } from "next/font/google";
 import { PHProvider } from "./providers";
 
 import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -19,32 +20,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={lexend.className}>
       <body style={{ margin: "0px" }}>
         <PHProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
-            <ClerkProvider
-              appearance={{
-                variables: {
-                  colorPrimary: "#222222",
-                  fontFamily: lexend.style.fontFamily,
-                  borderRadius: "8px",
-                },
-                elements: {
-                  cardBox: {
-                    boxShadow: "none",
+            <CookieConsentProvider>
+              <ClerkProvider
+                appearance={{
+                  variables: {
+                    colorPrimary: "#222222",
+                    fontFamily: lexend.style.fontFamily,
+                    borderRadius: "8px",
                   },
-                  card: {
-                    boxShadow: "none",
+                  elements: {
+                    cardBox: {
+                      boxShadow: "none",
+                    },
+                    card: {
+                      boxShadow: "none",
+                    },
+                    footer: {
+                      background: "#ffffff",
+                    },
                   },
-                  footer: {
-                    background: "#ffffff",
-                  },
-                },
-              }}
-            >
-              {children}
-            </ClerkProvider>
+                }}
+              >
+                {children}
+              </ClerkProvider>
+            </CookieConsentProvider>
           </OakThemeProvider>
         </PHProvider>
       </body>

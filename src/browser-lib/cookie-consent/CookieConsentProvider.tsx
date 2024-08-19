@@ -3,6 +3,7 @@
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
+"use client";
 import { PropsWithChildren, useEffect, useState } from "react";
 import {
   MockOakConsentClient,
@@ -10,6 +11,9 @@ import {
   OakConsentProvider,
   useOakConsent,
 } from "@oaknational/oak-consent-client";
+
+import { consentClient } from "./consentClient";
+
 import {
   OakCookieConsent,
   OakCookieConsentProvider,
@@ -18,7 +22,6 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-import { consentClient } from "./consentClient";
 
 const RequiresInteraction = () => {
   const { state } = useOakConsent();
