@@ -1,5 +1,5 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import _ from "lodash";
+import { groupBy } from "lodash";
 import {
   ProgrammeFields,
   examboardSlugs,
@@ -94,7 +94,7 @@ export const isExamboardSlug = (
   Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
 
 const getExamboards = (programmes: PupilProgrammeListingData[]) => {
-  const allExamboards: { [key: string]: ExamboardData[] } = _.groupBy(
+  const allExamboards: { [key: string]: ExamboardData[] } = groupBy(
     getAvailableProgrammeFactor({
       programmes,
       factorPrefix: "examboard",
@@ -119,7 +119,7 @@ const getExamboards = (programmes: PupilProgrammeListingData[]) => {
 };
 
 const getTiers = (programmes: PupilProgrammeListingData[]) => {
-  const allTiers: { [key: string]: TierData[] } = _.groupBy(
+  const allTiers: { [key: string]: TierData[] } = groupBy(
     getAvailableProgrammeFactor({
       programmes: programmes,
       factorPrefix: "tier",

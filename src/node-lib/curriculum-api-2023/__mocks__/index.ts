@@ -32,6 +32,7 @@ const curriculumApi: Pick<
   | "programmeListingPage"
   | "teachersHomePage"
   | "pupilLessonQuery"
+  | "pupilPreviewLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
   | "pupilSubjectListingQuery"
@@ -66,6 +67,12 @@ const curriculumApi: Pick<
     return teachersHomePageFixture();
   }),
   pupilLessonQuery: jest.fn(async () => {
+    return {
+      browseData: lessonBrowseDataFixture({}),
+      content: lessonContentFixture({}),
+    };
+  }),
+  pupilPreviewLessonQuery: jest.fn(async () => {
     return {
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),

@@ -10,7 +10,7 @@ import {
   OakPupilJourneyUnitsFilter,
   OakBulletList,
 } from "@oaknational/oak-components";
-import _ from "lodash";
+import { intersection } from "lodash";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -80,7 +80,7 @@ export const PupilUnitsSection = ({
       ? indexedUnits.filter(
           (unit) =>
             unit[0] &&
-            (_.intersection(unit[0].unitData.subjectcategories, filterItems)
+            (intersection(unit[0].unitData.subjectcategories, filterItems)
               .length > 0 ||
               filterItems.includes("All")),
         )

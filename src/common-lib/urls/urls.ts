@@ -293,6 +293,18 @@ type CurriculumPreviousDownloadsLinkProps = {
   };
 };
 
+type OnboardingLinkProps = {
+  page: "onboarding";
+};
+
+type OnboardingSchoolSelectionLinkProps = {
+  page: "onboarding-school-selection";
+};
+
+type OnboardingRoleSelectionLinkProps = {
+  page: "onboarding-role-selection";
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -346,7 +358,10 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps;
+  | CurriculumPreviousDownloadsLinkProps
+  | OnboardingLinkProps
+  | OnboardingSchoolSelectionLinkProps
+  | OnboardingRoleSelectionLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -809,6 +824,24 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Previous Downloads",
     configType: "internal",
     pageType: "curriculum-previous-downloads",
+  }),
+  onboarding: createOakPageConfig({
+    pathPattern: "/onboarding",
+    analyticsPageName: "Onboarding: Work In School",
+    configType: "internal",
+    pageType: "onboarding",
+  }),
+  "onboarding-school-selection": createOakPageConfig({
+    pathPattern: "/onboarding/school-selection",
+    analyticsPageName: "Onboarding: School Selection",
+    configType: "internal",
+    pageType: "onboarding-school-selection",
+  }),
+  "onboarding-role-selection": createOakPageConfig({
+    pathPattern: "/onboarding/role-selection",
+    analyticsPageName: "Onboarding: Role Selection",
+    configType: "internal",
+    pageType: "onboarding-role-selection",
   }),
 };
 

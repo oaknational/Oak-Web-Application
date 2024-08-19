@@ -1,8 +1,7 @@
 import { screen } from "@testing-library/dom";
 
-import renderWithProviders from "../__helpers__/renderWithProviders";
-
 import OnboardingPage from "@/pages/onboarding";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
@@ -11,7 +10,7 @@ describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
     renderWithProviders()(<OnboardingPage />);
 
-    const heading = screen.getByRole("heading", { name: "Select your school" });
+    const heading = screen.getByText("Do you work in a school?");
     expect(heading).toBeInTheDocument();
   });
 });
