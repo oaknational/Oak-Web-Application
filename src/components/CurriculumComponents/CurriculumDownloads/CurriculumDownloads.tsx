@@ -164,6 +164,7 @@ function CurriculumDownloads(
       return obj[input];
     };
 
+    // @ts-expect-error: ignore for Avo types
     track.curriculumResourcesDownloaded({
       keyStageTitle: downloadCategoryAsKeyStageTitle(category),
       subjectTitle: selectedDownload
