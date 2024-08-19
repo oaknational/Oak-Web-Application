@@ -118,7 +118,7 @@ export const getHubspotDownloadsFormPayload = (props: {
 
 const onboardingUKTeacherPropsSchema = z.object({
   school: z.string(),
-  schoolName: z.string(),
+  schoolName: z.string().optional(),
 });
 type OnboardingUKTeacherProps = z.infer<typeof onboardingUKTeacherPropsSchema>;
 const isOnboardingUKTeacherProps = (
@@ -130,7 +130,7 @@ const isOnboardingUKTeacherProps = (
 
 const onboardingInternationalTeacherPropsSchema = z.object({
   schoolAddress: z.string(),
-  schoolName: z.string(),
+  schoolName: z.string().optional(),
 });
 type OnboardingInternationalTeacherProps = z.infer<
   typeof onboardingInternationalTeacherPropsSchema
