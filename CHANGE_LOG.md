@@ -1,3 +1,16 @@
+# [1.523.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.522.0...v1.523.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* add a form reset ([d4b43d2](https://github.com/oaknational/Oak-Web-Application/commit/d4b43d25d22d9062e59ee12512684ee036e26a42))
+* remove undefined from functions ([cdb888b](https://github.com/oaknational/Oak-Web-Application/commit/cdb888b824ec8c6aa09ca8c8eb8bc2fdb74c8355))
+
+
+### Features
+
+* adds manual entry components and button to change forms ([4bd04da](https://github.com/oaknational/Oak-Web-Application/commit/4bd04da43c1aa1b97022ee4efb65f9f04186c513))
+
 # [1.522.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.2...v1.522.0) (2024-08-19)
 
 
