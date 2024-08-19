@@ -50313,6 +50313,7 @@ export const CurriculumUnitsIncludeNewDocument = gql`
     pathway
     pathway_slug
     tags
+    subjectcategories
     tier
     tier_slug
     title
