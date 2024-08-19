@@ -13,9 +13,9 @@ import {
 
 const TermsAndConditions = () => {
   return (
-    <>
+    <OakBox $maxWidth="all-spacing-20">
       <OakP $font="body-2" color="text-primary" $textAlign="center">
-        By continuing you agree to{" "}
+        By continuing you are agreeing to Oak's{" "}
         <OakLink
           href={resolveOakHref({
             page: "legal",
@@ -24,7 +24,7 @@ const TermsAndConditions = () => {
           target="_blank"
           aria-label="Terms and conditions (opens in a new tab)"
         >
-          Oak's terms & conditions
+          terms & conditions
         </OakLink>{" "}
         and{" "}
         <OakLink
@@ -39,7 +39,7 @@ const TermsAndConditions = () => {
         </OakLink>
         .
       </OakP>
-    </>
+    </OakBox>
   );
 };
 
@@ -78,8 +78,9 @@ function RegistrationLayout({ children }: { children: React.ReactNode }) {
             $flexDirection="column"
             $alignItems="center"
             $display={["flex", "none"]}
+            $gap="space-between-m"
           >
-            <OakBox $display={["block", "none"]}>{children}</OakBox>
+            {children}
             <TermsAndConditions />
           </OakFlex>
         </OakFlex>
