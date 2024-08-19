@@ -15,17 +15,21 @@ describe(onboardUser, () => {
   });
 
   it("makes a request to mark the user as onboarded", async () => {
-    await onboardUser();
+    await onboardUser({ "owa:isTeacher": true });
 
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching("/api/auth/onboarding"),
-      { method: "POST" },
+      expect.objectContaining({
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ "owa:isTeacher": true }),
+      }),
     );
   });
 
   describe("when successful", () => {
     it("returns the response JSON", async () => {
-      await expect(onboardUser()).resolves.toEqual({
+      await expect(onboardUser({ "owa:isTeacher": true })).resolves.toEqual({
         "owa:onboarded": true,
       });
     });
@@ -40,7 +44,9 @@ describe(onboardUser, () => {
         };
       });
 
-      await expect(onboardUser()).rejects.toEqual(expect.any(OakError));
+      await expect(onboardUser({ "owa:isTeacher": true })).rejects.toEqual(
+        expect.any(OakError),
+      );
     });
   });
 });

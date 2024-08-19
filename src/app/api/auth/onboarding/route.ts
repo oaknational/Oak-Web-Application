@@ -1,17 +1,30 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
+import { ZodError } from "zod";
 
-export async function POST() {
+import { onboardingSchema } from "@/common-lib/schemas/onboarding";
+
+export async function POST(req: Request) {
   const { userId } = auth();
 
   if (!userId) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const publicMetadata = { "owa:onboarded": true };
+  try {
+    const data = onboardingSchema.parse(await req.json());
 
-  await clerkClient().users.updateUserMetadata(userId, {
-    publicMetadata,
-  });
+    const publicMetadata = { ...data, "owa:onboarded": true };
 
-  return Response.json(publicMetadata);
+    await clerkClient().users.updateUserMetadata(userId, {
+      publicMetadata,
+    });
+
+    return Response.json(publicMetadata);
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return Response.json(error.format(), { status: 400 });
+    }
+
+    throw error;
+  }
 }
