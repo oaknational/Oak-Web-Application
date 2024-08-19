@@ -1,3 +1,10 @@
+## [1.521.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.1...v1.521.2) (2024-08-19)
+
+
+### Bug Fixes
+
+* wrap requestLessonResources in try catch ([96422c3](https://github.com/oaknational/Oak-Web-Application/commit/96422c3bb8138f42116cefbccf07871595833587))
+
 ## [1.521.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.0...v1.521.1) (2024-08-16)
 
 
