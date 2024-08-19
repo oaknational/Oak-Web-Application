@@ -233,6 +233,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       onSubmit: async () => {},
     });
 
+    // @ts-expect-error: ignored due to variant types
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,

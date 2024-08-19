@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Huh3DODkjlJKIVTruriF",
+          "ac": "ya4mZb2DTQbPvKNd3x0J",
           "br": "PiSfgIXmN",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Huh3DODkjlJKIVTruriF",
+          "ac": "ya4mZb2DTQbPvKNd3x0J",
           "br": "PiSfgIXmN",
           "en": env,
           "ty": type,
@@ -1193,6 +1193,10 @@ export const PageName = {
   'CURRICULUM_DOWNLOADS': 'Curriculum Downloads',
   'LESSON_SHARE': 'Lesson Share',
   'CURRICULUM_PREVIOUS_DOWNLOADS': 'Curriculum Previous Downloads',
+  'ONBOARDING_SCHOOL_SELECTION': 'Onboarding: School Selection',
+  'ONBOARDING_ROLE_SELECTION': 'Onboarding: Role Selection',
+  'ONBOARDING_WORK_IN_SCHOOL': 'Onboarding: Work In School',
+  'ONBOARDING_USE_OF_OAK': 'Onboarding: Use Of Oak',
 } as const;
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];
@@ -2658,7 +2662,7 @@ export function pageview(properties: PageviewProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "iYVEEwNT0q", "afb1d91d2313d225b4fb064c736f5abd0462201811d2d43289e6ac01c945e7ea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "iYVEEwNT0q", "d29e7cdf55be9c4e870bbeff9003c221ea8ae12417b0b27f8535bdead88e8f15", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("$pageview", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2669,7 +2673,7 @@ export function pageview(properties: PageviewProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("$pageview", eventProperties, "iYVEEwNT0q", "afb1d91d2313d225b4fb064c736f5abd0462201811d2d43289e6ac01c945e7ea");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("$pageview", eventProperties, "iYVEEwNT0q", "d29e7cdf55be9c4e870bbeff9003c221ea8ae12417b0b27f8535bdead88e8f15");
     }
     // destination PostHogEU
     PostHogEU.logEvent("$pageview", (Object as any).assign({}, eventProperties));
@@ -2716,7 +2720,7 @@ export function resourceContainerExpanded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "B-ti6Ajp8", "75ebb101362f979a88be64732c1d568d0becd3dd832ef8edf1f40b4ce703dcfa", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "B-ti6Ajp8", "1e6faa042271b6261d37f87fb29758409e05bfc714ffaee72ab92f66677ace53", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Resource Container Expanded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2727,7 +2731,7 @@ export function resourceContainerExpanded(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resource Container Expanded", eventProperties, "B-ti6Ajp8", "75ebb101362f979a88be64732c1d568d0becd3dd832ef8edf1f40b4ce703dcfa");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resource Container Expanded", eventProperties, "B-ti6Ajp8", "1e6faa042271b6261d37f87fb29758409e05bfc714ffaee72ab92f66677ace53");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Resource Container Expanded", (Object as any).assign({}, eventProperties));
@@ -2782,7 +2786,7 @@ export function curriculumMapDownloaded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "W9R2vOSii_", "688a20c012f2ac5128ea3fdf289befde0a3d9b854b179058161a1bc968807d20", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "W9R2vOSii_", "c4a239d62a337d400a87f284bf70f1726135460176a70a9ae073862778155220", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Map Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2793,7 +2797,7 @@ export function curriculumMapDownloaded(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Map Downloaded", eventProperties, "W9R2vOSii_", "688a20c012f2ac5128ea3fdf289befde0a3d9b854b179058161a1bc968807d20");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Map Downloaded", eventProperties, "W9R2vOSii_", "c4a239d62a337d400a87f284bf70f1726135460176a70a9ae073862778155220");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Map Downloaded", (Object as any).assign({}, eventProperties));
@@ -2945,7 +2949,7 @@ export function searchAttempted(properties: SearchAttemptedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "93e57b62c029e13889dd20d51ffd29207ff9029ee2833f410929d361d4e0691a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "79ed1fd316f3ffd24983cfe142b872f225d07f98f6dde3c67af538b1b42dd71e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Attempted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2956,7 +2960,7 @@ export function searchAttempted(properties: SearchAttemptedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Attempted", eventProperties, "I_dSzYI2PB", "93e57b62c029e13889dd20d51ffd29207ff9029ee2833f410929d361d4e0691a");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Attempted", eventProperties, "I_dSzYI2PB", "79ed1fd316f3ffd24983cfe142b872f225d07f98f6dde3c67af538b1b42dd71e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Attempted", (Object as any).assign({}, eventProperties));
