@@ -1,12 +1,10 @@
+"use client";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { getIllustrationAsset } from "@/image-data";
 import { OakBox, OakFlex, OakMaxWidth } from "@/styles/oakThemeApp";
 
-export default function RegistrationLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RegistrationLayout({ children }: { children: React.ReactNode }) {
   return (
     <OakBox $background={["white", "bg-decorative1-main"]} $overflow="hidden">
       <OakMaxWidth
@@ -36,3 +34,10 @@ export default function RegistrationLayout({
     </OakBox>
   );
 }
+
+const RegistrationLayoutWithFF = withFeatureFlag(
+  RegistrationLayout,
+  "use-auth-owa",
+);
+
+export default RegistrationLayoutWithFF;

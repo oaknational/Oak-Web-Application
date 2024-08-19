@@ -2,6 +2,8 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
 
+import { PHProvider } from "./providers";
+
 import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 
 export const metadata = {
@@ -19,30 +21,32 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ margin: "0px" }}>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <ClerkProvider
-            appearance={{
-              variables: {
-                colorPrimary: "#222222",
-                fontFamily: lexend.style.fontFamily,
-                borderRadius: "8px",
-              },
-              elements: {
-                cardBox: {
-                  boxShadow: "none",
+        <PHProvider>
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <ClerkProvider
+              appearance={{
+                variables: {
+                  colorPrimary: "#222222",
+                  fontFamily: lexend.style.fontFamily,
+                  borderRadius: "8px",
                 },
-                card: {
-                  boxShadow: "none",
+                elements: {
+                  cardBox: {
+                    boxShadow: "none",
+                  },
+                  card: {
+                    boxShadow: "none",
+                  },
+                  footer: {
+                    background: "#ffffff",
+                  },
                 },
-                footer: {
-                  background: "#ffffff",
-                },
-              },
-            }}
-          >
-            {children}
-          </ClerkProvider>
-        </OakThemeProvider>
+              }}
+            >
+              {children}
+            </ClerkProvider>
+          </OakThemeProvider>
+        </PHProvider>
       </body>
     </html>
   );
