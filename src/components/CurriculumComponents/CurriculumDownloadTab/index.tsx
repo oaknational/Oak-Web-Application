@@ -135,8 +135,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       (child_subjects && child_subjects.length > 0)
     ) {
       setSubjectTierSelectionVisible(true);
+    } else {
+      setSubjectTierSelectionVisible(false);
     }
-  }, [snake_tiers, child_subjects]);
+  }, [slugs, snake_tiers, child_subjects]);
 
   useLayoutEffect(() => {
     if (localStorageData) {
@@ -151,6 +153,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       });
     }
   }, [localStorageData]);
+
+  useEffect(() => {
+    setIsDone(false);
+  }, [slugs]);
 
   const schoolPickerInputValue = data.schoolName;
   const { data: schoolList } = useFetch<School[]>(
