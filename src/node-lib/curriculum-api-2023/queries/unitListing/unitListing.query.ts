@@ -23,10 +23,7 @@ const unitListingQuery =
     const subjectParent = unitsForProgramme[0]?.programme_fields.subject_parent;
 
     const parsedRawUnits = unitsForProgramme.map((p) => {
-      console.log(p.programme_fields, "< P PROGRAMME FIELDS");
-      const y = syntheticUnitvariantLessonsSchema.parse(p);
-      console.log(y.programme_fields.subject_parent, "< X");
-      return y;
+      return syntheticUnitvariantLessonsSchema.parse(p);
     });
 
     const firstUnit = parsedRawUnits[0];
