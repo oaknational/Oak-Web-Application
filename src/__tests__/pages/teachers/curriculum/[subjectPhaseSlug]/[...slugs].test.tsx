@@ -526,7 +526,7 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
 const curriculumUnitsFormattedData = formatCurriculumUnitsData(
   curriculumUnitsTabFixture(),
 );
-describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
+describe("pages/teachers/curriculum/[subjectPhaseSlug]/[...slugs]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const mockIntersectionObserver = jest.fn();
@@ -559,7 +559,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
+        query: { slugs: ["overview"] },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
@@ -580,7 +580,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     it("renders the Curriculum Overview Tab", () => {
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
+        query: { slugs: ["overview"] },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
@@ -602,7 +602,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     it("renders the Curriculum Units Tab", () => {
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "units" },
+        query: { slugs: ["units"] },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
@@ -624,7 +624,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     it("renders the Curriculum Downloads Tab (with prerelease)", () => {
       mockPrerelease("curriculum.downloads");
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "downloads" },
+        query: { slugs: ["downloads"] },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
@@ -662,7 +662,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const props = await getStaticProps({
         params: {
-          tab: "overview",
+          slugs: ["overview"],
           subjectPhaseSlug: "english-secondary-aqa",
         },
       });
@@ -1283,25 +1283,19 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     it("Should return default year filter selection", async () => {
       const initialYearFilterSelection = {
         "7": {
-          subject: null,
-          subjectCategory: { id: -1, title: "All" },
-          tier: null,
+          subject_slug: null,
+          subjectcategory_id: -1,
+          tier_slug: null,
         },
         "10": {
-          subject: {
-            subject: "Combined science",
-            subject_slug: "combined-science",
-          },
-          subjectCategory: { id: -1, title: "All" },
-          tier: null,
+          subject_slug: "combined-science",
+          subjectcategory_id: -1,
+          tier_slug: null,
         },
         "11": {
-          subject: {
-            subject: "Combined science",
-            subject_slug: "combined-science",
-          },
-          subjectCategory: { id: -1, title: "All" },
-          tier: { tier: "Foundation", tier_slug: "foundation" },
+          subject_slug: "combined-science",
+          subjectcategory_id: -1,
+          tier_slug: "foundation",
         },
       };
       const yearData = createUnitsListingByYear(unitData);

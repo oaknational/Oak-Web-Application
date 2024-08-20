@@ -207,6 +207,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -218,6 +219,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -236,6 +238,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -332,6 +335,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     };
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(data)}
       />,
@@ -350,6 +354,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -368,6 +373,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -383,6 +389,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -497,7 +504,11 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       phaseSlug: "secondary",
     };
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab trackingData={trackingData} formattedData={formattedData} />,
+      <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
+        trackingData={trackingData}
+        formattedData={formattedData}
+      />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(1);
@@ -508,6 +519,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
@@ -532,6 +544,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -551,6 +564,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can filter units by parent subject", async () => {
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(secondaryScienceUnits)}
       />,
@@ -575,6 +589,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const data = curriculumUnitsTabFixture();
     const { findAllByTestId, queryAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -772,6 +787,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     };
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(data)}
       />,
@@ -795,6 +811,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see correct number of unit options", async () => {
     const { findByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataPrimaryEnglish}
         formattedData={formatCurriculumUnitsData(primaryEnglishData)}
       />,
@@ -984,6 +1001,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -1018,6 +1036,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -1036,6 +1055,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,
@@ -1054,6 +1074,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
     const { findAllByTestId } = render(
       <UnitsTab
+        basePath="/teachers/curriculum/science-secondary-aqa/units"
         trackingData={trackingDataSecondaryScience}
         formattedData={formatCurriculumUnitsData(curriculumUnitsTabFixture())}
       />,

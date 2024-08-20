@@ -15,7 +15,7 @@ import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,
   CurriculumTab,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[...slugs]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import usePrereleaseFlag from "@/hooks/usePrereleaseFlag";
 

@@ -67,72 +67,93 @@ export function createProgrammeSlug(
 
 // Function component
 
+type GlobFilter = {
+  thread_slug: string | null;
+  year: string | null;
+};
+
 const UnitsTab: FC<UnitsTabProps> = ({
   trackingData,
   formattedData,
   selectedUnit,
   basePath,
 }) => {
+  const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
+    useState<number>(0);
   // Initialize constants
-  const { yearData, threadOptions, yearOptions } = formattedData;
+  const { yearData, threadOptions, yearOptions, initialYearSelection } =
+    formattedData;
   const { examboardSlug } = trackingData;
   // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const [filter, setFilter] = useState<Filter>({
-    subject_slug: null,
-    domain_id: null,
-    tier_slug: null,
-    subjectcategory_id: null,
+  const [filter, setFilter] = useState<Filter>(initialYearSelection as Filter);
+  const [globFilter, setGlobFilter] = useState<GlobFilter>({
     thread_slug: null,
     year: null,
   });
+  const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
+    string | null
+  >(null);
 
   const selectedYear = filter.year;
 
   const unitData = Object.values(formattedData.yearData)
     .flatMap((d) => d.units)
     .find((unit) => unit.slug === selectedUnit);
-  const selectedThreadSlug = filter.thread_slug;
-  const selectedThread = !selectedThreadSlug
+  const selectedThread = !globFilter.thread_slug
     ? undefined
     : threadOptions.find(
-        (thread) => (thread.slug as string) === selectedThreadSlug,
+        (thread) => (thread.slug as string) === globFilter.thread_slug,
       );
-  formattedData.threadOptions;
 
-  function pushQuery(partial: Partial<Filter>) {
-    setFilter({ ...filter, ...partial });
+  function pushYearState(year: string, partial: Partial<Filter[string]>) {
+    setFilter({
+      ...filter,
+      [year]: {
+        ...filter[year],
+        ...partial,
+      },
+    });
+  }
+
+  function pushGlobState(partial: Partial<GlobFilter>) {
+    setGlobFilter({
+      ...globFilter,
+      ...partial,
+    });
   }
 
   function handleSelectThread(slug: string): void {
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     if (thread) {
       trackSelectThread(thread);
-      pushQuery({ thread_slug: thread?.slug });
+      pushGlobState({ thread_slug: thread?.slug });
+    } else {
+      pushGlobState({ thread_slug: null });
     }
   }
 
   function handleSelectYear(e: ChangeEvent<HTMLInputElement>): void {
     const year = e.target.value;
     trackSelectYear(year);
-    pushQuery({ year: year });
+    pushGlobState({ year: year === "" ? null : year });
   }
 
   function handleSelectSubject(year: string, subject: Subject) {
-    pushQuery({ subject_slug: subject.subject_slug });
+    pushYearState(year, { subject_slug: subject.subject_slug });
   }
 
   function handleSelectSubjectCategory(
     year: string,
     subjectCategory: SubjectCategory,
   ) {
-    pushQuery({ subjectcategory_id: subjectCategory.id });
+    pushYearState(year, { subjectcategory_id: subjectCategory.id });
   }
 
   function handleSelectTier(year: string, tier: Tier) {
-    pushQuery({ tier_slug: tier.tier_slug });
+    pushYearState(year, { tier_slug: tier.tier_slug });
   }
 
   // Visibility helpers
@@ -143,7 +164,10 @@ const UnitsTab: FC<UnitsTabProps> = ({
       const units = yearData[year]?.units;
       if (units && (!selectedYear || selectedYear === year)) {
         units.forEach((unit) => {
-          if (isVisibleUnit(filter, unit) && isHighlightedUnit(unit)) {
+          if (
+            isVisibleUnit(unit.year, filter, unit) &&
+            isHighlightedUnit(unit)
+          ) {
             count++;
           }
         });
@@ -153,14 +177,14 @@ const UnitsTab: FC<UnitsTabProps> = ({
   }
 
   function isHighlightedUnit(unit: Unit) {
-    if (!selectedThread) {
+    if (!globFilter.thread_slug) {
       return false;
     }
-    return unit.threads.some((t) => t.slug === selectedThread.slug);
+    return unit.threads.some((t) => t.slug === globFilter.thread_slug);
   }
 
   function isSelectedThread(thread: Thread) {
-    return selectedThread?.slug === thread.slug;
+    return globFilter.thread_slug === thread.slug;
   }
 
   // Analytics handlers
@@ -192,10 +216,10 @@ const UnitsTab: FC<UnitsTabProps> = ({
     }
   }
 
-  function updateMobileHeaderScroll() {
-    // if (!mobileHeaderScrollOffset) {
-    //   setMobileHeaderScrollOffset(height);
-    // }
+  function updateMobileHeaderScroll(height: number) {
+    if (!mobileHeaderScrollOffset) {
+      setMobileHeaderScrollOffset(height);
+    }
   }
 
   return (
@@ -226,8 +250,7 @@ const UnitsTab: FC<UnitsTabProps> = ({
           highlightedUnitCount={highlightedUnitCount}
           trackSelectYear={trackSelectYear}
           yearOptions={yearOptions}
-          // FIXME
-          visibleMobileYearRefID={null}
+          visibleMobileYearRefID={visibleMobileYearRefID}
         />
         <OakGrid>
           <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
@@ -247,7 +270,7 @@ const UnitsTab: FC<UnitsTabProps> = ({
               <RadioGroup
                 name="thread"
                 onChange={(e) => handleSelectThread(e.target.value)}
-                value={selectedThread ? selectedThread.slug : ""}
+                value={globFilter.thread_slug ?? ""}
               >
                 <SkipLink href="#content">Skip to units</SkipLink>
                 <Box $mv={16}>
@@ -312,7 +335,7 @@ const UnitsTab: FC<UnitsTabProps> = ({
               </FieldsetLegend>
               <RadioGroup
                 name="year"
-                value={selectedYear}
+                value={globFilter.year ?? ""}
                 onChange={handleSelectYear}
               >
                 <Box $mb={16}>
@@ -335,16 +358,15 @@ const UnitsTab: FC<UnitsTabProps> = ({
             selectedUnit={selectedUnit}
             unitData={unitData ?? null}
             filter={filter}
-            selectedYear={selectedYear}
+            selectedYear={globFilter.year}
             examboardSlug={examboardSlug}
             yearData={yearData}
             handleSelectSubjectCategory={handleSelectSubjectCategory}
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
-            // mobileHeaderScrollOffset={mobileHeaderScrollOffset}
-            // setUnitData={setUnitData}
-            selectedThread={selectedThread ?? null}
-            // setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+            mobileHeaderScrollOffset={mobileHeaderScrollOffset}
+            selectedThreadSlug={globFilter.thread_slug}
+            onChangeVisibleMobileYearRefID={setVisibleMobileYearRefID}
           />
         </OakGrid>
       </Box>

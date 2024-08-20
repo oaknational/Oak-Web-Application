@@ -1,6 +1,6 @@
 import { join } from "path";
 
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 import {
   OakGridArea,
@@ -9,6 +9,7 @@ import {
   OakP,
   OakIcon,
   OakSpan,
+  OakRoundIcon,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -66,19 +67,20 @@ export interface Tier {
   tier_slug: string;
 }
 
-export interface Filter {
-  subjectcategory_id?: SubjectCategory["id"] | null;
-  subject_slug?: Subject["subject_slug"] | null;
-  domain_id?: Domain["domain_id"] | null;
-  tier_slug?: Tier["tier_slug"] | null;
-  year: string | null;
-  thread_slug?: string | null;
-}
+export type Filter = Record<
+  string,
+  {
+    subjectcategory_id?: SubjectCategory["id"] | null;
+    subject_slug?: Subject["subject_slug"] | null;
+    tier_slug?: Tier["tier_slug"] | null;
+    thread_slug?: string | null;
+  }
+>;
 
-type CurriculumVisualiserProps = {
+export type CurriculumVisualiserProps = {
   unitData: Unit | null;
   filter: Filter;
-  selectedThread: Thread | null;
+  selectedThreadSlug: Thread["slug"] | null;
   selectedYear: string | null;
   examboardSlug: string | null;
   yearData: YearData;
@@ -91,6 +93,7 @@ type CurriculumVisualiserProps = {
   mobileHeaderScrollOffset?: number;
   selectedUnit?: string;
   basePath: string;
+  onChangeVisibleMobileYearRefID: (id: string) => void;
 };
 
 function dedupUnits(units: Unit[]) {
@@ -104,46 +107,52 @@ function dedupUnits(units: Unit[]) {
   });
 }
 
-export function isVisibleUnit(filter: Filter, unit: Unit) {
-  const s = filter;
+export function isVisibleUnit(year: string, filter: Filter, unit: Unit) {
+  const s = filter[year];
   if (!s) {
     return false;
   }
   const filterBySubject =
     !s.subject_slug || s.subject_slug === unit.subject_slug;
   const filterBySubjectCategory =
-    !s.subjectCategory ||
-    unit.subjectcategories?.findIndex(
-      (subjectCategory) => subjectCategory.id === s.subjectCategory?.id,
-    ) !== -1;
-  const filterByTier = !unit.tier_slug || s.tier_slug === unit.tier_slug;
-
+    s.subjectcategory_id === -1 ||
+    unit.subjectcategories?.findIndex((subjectCategory) => {
+      return (
+        subjectCategory.id === -1 || subjectCategory.id === s.subjectcategory_id
+      );
+    }) !== -1;
+  const filterByTier =
+    !s.tier_slug || !unit.tier_slug || s.tier_slug === unit.tier_slug;
   // Look for duplicates that don't have an examboard, tier or subject parent
   // (i.e. aren't handled by other filters)
 
   return filterBySubject && filterByTier && filterBySubjectCategory;
 }
 
-function isSelectedSubject(filter: Filter, subject: Subject) {
-  return filter.subject_slug === subject.subject_slug;
+function isSelectedSubject(year: string, filter: Filter, subject: Subject) {
+  return filter[year]?.subject_slug === subject.subject_slug;
 }
 
-function isSelectedTier(filter: Filter, tier: Tier) {
-  return filter.tier_slug === tier.tier_slug;
+function isSelectedTier(year: string, filter: Filter, tier: Tier) {
+  return filter[year]?.tier_slug === tier.tier_slug;
 }
 
 function isSelectedSubjectCategory(
+  year: string,
   filter: Filter,
   subjectCategory: SubjectCategory,
 ) {
-  return filter?.subjectCategory?.id === subjectCategory.id;
+  return filter[year]?.subjectcategory_id === subjectCategory.id;
 }
 
-function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
-  if (!selectedThread) {
+function isHighlightedUnit(
+  unit: Unit,
+  selectedThreadSlug: Thread["slug"] | null,
+) {
+  if (!selectedThreadSlug) {
     return false;
   }
-  return unit.threads.some((t) => t.slug === selectedThread.slug);
+  return unit.threads.some((t) => t.slug === selectedThreadSlug);
 }
 
 function sortChildSubjects(subjects: Subject[]) {
@@ -170,16 +179,46 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   handleSelectTier,
   handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
-  selectedThread,
+  selectedThreadSlug,
   selectedUnit,
   basePath,
+  onChangeVisibleMobileYearRefID,
 }) => {
   // Selection state helpers
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
+  const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
+
+  /* Intersection observer to update year filter selection when 
+  scrolling through the visualiser on mobile */
+  useEffect(() => {
+    const options = { rootMargin: "-50% 0px 0px 0px" };
+    const yearsLoaded = Object.keys(yearData).length;
+    // All refs have been created for year groups & data is loaded
+    if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const year = parseInt(entry.target.id, 10);
+          if (entry.isIntersecting) {
+            visibleYears.current.add(year);
+          } else {
+            visibleYears.current.delete(year);
+          }
+          if (visibleYears.current.size > 0) {
+            const lowestYear = Math.min(...visibleYears.current).toString();
+            onChangeVisibleMobileYearRefID(lowestYear);
+          }
+        });
+      }, options);
+      itemEls.current.forEach((el) => io.observe(el as Element));
+      return () => {
+        io.disconnect();
+      };
+    }
+  }, [onChangeVisibleMobileYearRefID, yearData]);
 
   const units = Object.values(yearData).flatMap((obj) => obj.units);
   const selectedUnitData = units.find((unit) => unit.slug === selectedUnit);
@@ -209,7 +248,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               itemEls.current[index] = element;
             };
             const filteredUnits = units.filter((unit: Unit) => {
-              return isVisibleUnit(filter, unit);
+              return isVisibleUnit(year, filter, unit);
             });
             const dedupedUnits = dedupUnits(filteredUnits);
 
@@ -243,6 +282,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   <Box role="group" aria-label="Categories">
                     {subjectCategories.map((subjectCategory, index) => {
                       const isSelected = isSelectedSubjectCategory(
+                        year,
                         filter,
                         subjectCategory,
                       );
@@ -269,7 +309,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   <Box role="group" aria-label="Child Subjects">
                     {sortChildSubjects(childSubjects).map(
                       (subject: Subject) => {
-                        const isSelected = isSelectedSubject(filter, subject);
+                        const isSelected = isSelectedSubject(
+                          year,
+                          filter,
+                          subject,
+                        );
 
                         return (
                           <Button
@@ -291,7 +335,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 {tiers.length > 0 && (
                   <Box role="group" aria-label="Tiers">
                     {tiers.map((tier: Tier) => {
-                      const isSelected = isSelectedTier(filter, tier);
+                      const isSelected = isSelectedTier(year, filter, tier);
                       return (
                         <Button
                           $font={"heading-6"}
@@ -319,7 +363,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   {dedupedUnits.map((unit: Unit, index: number) => {
                     const isHighlighted = isHighlightedUnit(
                       unit,
-                      selectedThread,
+                      selectedThreadSlug,
                     );
 
                     const unitUrl =
@@ -396,21 +440,29 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                               $flexDirection={"row"}
                               $justifyContent={"flex-end"}
                             >
-                              <OakP $font={"body-2-bold"}>
-                                <OakFlex
-                                  $flexDirection={"row"}
-                                  $alignItems={"center"}
-                                  $justifyContent={"flex-end"}
-                                  $gap={"all-spacing-3"}
-                                >
-                                  <OakSpan>Unit info</OakSpan>
+                              <OakFlex
+                                $font={"body-2-bold"}
+                                $flexDirection={"row"}
+                                $alignItems={"center"}
+                                $justifyContent={"flex-end"}
+                                $gap={"all-spacing-3"}
+                              >
+                                <OakSpan>Unit info</OakSpan>
+                                {isHighlighted ? (
+                                  <OakRoundIcon
+                                    $height="all-spacing-7"
+                                    $width="all-spacing-7"
+                                    iconName="chevron-right"
+                                  />
+                                ) : (
                                   <OakIcon
                                     $height="all-spacing-5"
                                     $width="all-spacing-5"
                                     iconName="chevron-right"
+                                    $background="white"
                                   />
-                                </OakFlex>
-                              </OakP>
+                                )}
+                              </OakFlex>
                             </OakFlex>
                           </OakFlex>
                         </Link>
@@ -429,7 +481,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           programmeSlug={createProgrammeSlug(
             selectedUnitData,
             examboardSlug,
-            filter.tier_slug ?? undefined,
+            filter[selectedUnitData.year]?.tier_slug ?? undefined,
           )}
           unitOptionsAvailable={
             (selectedUnitData?.unit_options ?? []).length > 0
@@ -448,7 +500,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             }
             isHighlighted={
               selectedUnitData
-                ? isHighlightedUnit(selectedUnitData, selectedThread)
+                ? isHighlightedUnit(selectedUnitData, selectedThreadSlug)
                 : false
             }
           />

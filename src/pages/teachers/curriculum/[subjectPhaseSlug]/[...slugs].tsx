@@ -40,7 +40,6 @@ import {
   Filter,
   SubjectCategory,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
-import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -77,7 +76,7 @@ export type CurriculumUnitsFormattedData = {
   yearData: CurriculumUnitsYearData;
   threadOptions: Thread[];
   yearOptions: string[];
-  initialYearSelection: YearSelection;
+  initialYearSelection: Filter;
 };
 
 export type CurriculumInfoPageProps = {
@@ -103,7 +102,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const pathname = usePathname();
 
   const [tab, ...slugs] = router.query.slugs as CurriculumTab;
-  const basePath = pathname.replace(slugs.join("/"), "");
+  const basePath = !pathname ? "" : pathname.replace(slugs.join("/"), "");
 
   const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
@@ -282,8 +281,8 @@ export function createYearOptions(units: Unit[]): string[] {
 
 export function createInitialYearFilterSelection(
   yearData: CurriculumUnitsYearData,
-): YearSelection {
-  const initialYearSelection = {} as YearSelection;
+): Filter {
+  const initialYearSelection = {} as Filter;
   Object.keys(yearData).forEach((year) => {
     const filters = yearData[year];
     if (!filters) {
@@ -300,12 +299,11 @@ export function createInitialYearFilterSelection(
     }
 
     initialYearSelection[year] = {
-      subject:
-        filters.childSubjects.find(
-          (s) => s.subject_slug === "combined-science",
-        ) ?? null,
-      subjectCategory: allSubjectCategoryTag,
-      tier: filters.tiers.length ? filters.tiers[0] : null,
+      subject_slug:
+        filters.childSubjects.find((s) => s.subject_slug === "combined-science")
+          ?.subject_slug ?? null,
+      subjectcategory_id: allSubjectCategoryTag.id,
+      tier_slug: filters.tiers.length ? filters.tiers[0]?.tier_slug : null,
     };
   });
 

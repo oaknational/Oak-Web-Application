@@ -1,7 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
 
-import CurriculumVisualiser from "./CurriculumVisualiser";
+import CurriculumVisualiser, {
+  CurriculumVisualiserProps,
+} from "./CurriculumVisualiser";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -20,7 +22,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-const curriculumVisualiserFixture = {
+const curriculumVisualiserFixture: CurriculumVisualiserProps = {
+  basePath: "/teachers/curriculum/science-secondary-aqa/units",
   updateMobileHeaderScroll: jest.fn(() => {}),
   handleSelectThread: jest.fn(() => {}),
   handleSelectTier: jest.fn(() => {}),
@@ -30,37 +33,33 @@ const curriculumVisualiserFixture = {
   setUnitData: jest.fn(() => {}),
   highlightedUnitCount: jest.fn(() => 1),
   trackSelectYear: jest.fn(() => {}),
+  selectedThreadSlug: null,
   unitData: null,
-  yearSelection: {
+  filter: {
     "7": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
+      subject_slug: null,
+      tier_slug: null,
+      subjectcategory_id: -1,
     },
     "8": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
+      subject_slug: null,
+      tier_slug: null,
+      subjectcategory_id: -1,
     },
     "9": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
+      subject_slug: null,
+      tier_slug: null,
+      subjectcategory_id: -1,
     },
     "10": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
+      subject_slug: null,
+      tier_slug: null,
+      subjectcategory_id: -1,
     },
     "11": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
+      subject_slug: null,
+      tier_slug: null,
+      subjectcategory_id: -1,
     },
   },
   selectedYear: null,
