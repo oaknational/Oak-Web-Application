@@ -6,10 +6,10 @@ import {
   UseFormReset,
   UseFormSetValue,
 } from "react-hook-form";
+import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
-import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
 
