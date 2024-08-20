@@ -109,8 +109,17 @@ const isUnitFirstItemRef = (
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
-    props;
+  const {
+    units,
+    paginationProps,
+    currentPageItems,
+    onClick,
+    subjectSlug,
+    subjectParent,
+  } = props;
+
+  const linkSubject = subjectParent ? subjectParent.toLowerCase() : subjectSlug;
+
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
   const router = useRouter();
@@ -216,7 +225,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
-          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
+          subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
             examBoardSlug ? `-${examBoardSlug}` : ""
           }`,
         })}
@@ -234,7 +243,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         curriculumHref={resolveOakHref({
           page: "curriculum-previous-downloads",
           query: {
-            subject: subjectSlug,
+            subject: linkSubject,
             keystage: keyStageSlug,
           },
         })}

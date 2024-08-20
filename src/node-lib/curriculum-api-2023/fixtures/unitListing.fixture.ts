@@ -80,7 +80,6 @@ export const unitListingFixture = (
           unitStudyOrder: 3,
           expired: false,
           yearOrder: 1,
-
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
@@ -132,7 +131,6 @@ export const unitListingFixture = (
           unitStudyOrder: 5,
           expired: false,
           yearOrder: 1,
-
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
