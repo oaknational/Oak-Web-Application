@@ -35,6 +35,8 @@ export default function RootLayout({
                   elements: {
                     cardBox: {
                       boxShadow: "none",
+                      maxHeight: "100vh",
+                      overflow: "auto",
                     },
                     card: {
                       boxShadow: "none",
