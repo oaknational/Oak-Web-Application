@@ -1,17 +1,33 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import fetchMock from "jest-fetch-mock";
 
 import SchoolSelectionView from "./SchoolSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("Onboarding view", () => {
+  beforeAll(() => {
+    fetchMock.doMock(
+      JSON.stringify([
+        {
+          urn: "100224",
+          la: "Hackney",
+          name: "De Beauvoir Primary School",
+          postcode: "E8 3DY",
+          fullInfo: "100224, Hackney, De Beauvoir Primary School, E8 3DY",
+          status: "Open, but proposed to close",
+        },
+      ]),
+    );
+  });
+
   it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
 
-    const fieldset = screen.getByRole("fieldset");
+    const fieldset = await screen.findByRole("fieldset");
     expect(fieldset).toBeInTheDocument();
-    const legend = screen.getByText(/Select your school/i);
+    const legend = await screen.findByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
 
     expect(fieldset).toContainElement(legend);
@@ -43,7 +59,7 @@ describe("Onboarding view", () => {
   it("renders contact us text", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const contactUs = await screen.findByText("Contact us", { exact: false });
-    screen.debug(contactUs);
+
     expect(contactUs).toBeInTheDocument();
     expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
   });
