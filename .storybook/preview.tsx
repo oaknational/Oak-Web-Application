@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
+import { Lexend } from "next/font/google";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
@@ -53,17 +54,21 @@ export const parameters = {
   },
 };
 
+const lexend = Lexend({ subsets: ["latin"] });
+
 const withThemeProvider = (Story, context) => {
   const { theme } = useOakTheme({ overrideTheme: context.globals.theme });
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <link
-          href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
-          rel="stylesheet"
-        />
-
+        <GlobalStyle fontFamily={lexend.style.fontFamily} />
+        <>
+          <style jsx global>{`
+            html {
+              font-family: ${lexend.style.fontFamily};
+            }
+          `}</style>
+        </>
         <Story {...context} />
         <SpriteSheet />
         <InlineSpriteSheet />

@@ -32,7 +32,7 @@ const constructLessonDownloads = (
     lessonTitle: parsedCurrentLesson.lesson_data.title,
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
     subjectTitle: parsedCurrentLesson.programme_fields.subject,
-    unitSlug: parsedCurrentLesson.unit_data.slug,
+    unitSlug: parsedCurrentLesson.unit_slug,
     unitTitle: parsedCurrentLesson.unit_data.title,
     lessonCohort: parsedCurrentLesson.lesson_data._cohort,
     expired: expired ? expired : null,

@@ -128,15 +128,28 @@ type InputProps = UnstyledInputProps &
     id: string;
     label: string;
     error?: string;
+    withoutMarginBottom?: boolean;
   };
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
-    props;
+  const {
+    id,
+    icon,
+    label,
+    error,
+    isOptional,
+    isRequired,
+    withoutMarginBottom,
+    ...inputProps
+  } = props;
   const errorId = `${id}-error`;
   const labelId = `${id}-label`;
   return (
     <>
-      {error && <FieldError id={errorId}>{error}</FieldError>}
+      {error && (
+        <FieldError id={errorId} withoutMarginBottom={withoutMarginBottom}>
+          {error}
+        </FieldError>
+      )}
       <InputFieldWrap
         $mb={props.$mb ?? 32}
         $alignItems="center"

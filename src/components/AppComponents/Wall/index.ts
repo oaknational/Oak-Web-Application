@@ -1,0 +1,1 @@
+export { Wall } from "./Wall";

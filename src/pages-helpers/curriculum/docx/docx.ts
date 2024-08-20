@@ -72,8 +72,12 @@ export async function insertNumbering<T extends Record<string, string>>(
   return lookup;
 }
 
-function extnameWithoutQuery(filepath: string) {
-  return extname(filepath).replace(/\?.*$/, "");
+function extnameWithoutQuery(urlOrFilepath: string) {
+  const urlString = urlOrFilepath.startsWith("/")
+    ? `file://${urlOrFilepath}`
+    : urlOrFilepath;
+  const url = new URL(urlString);
+  return extname(url.pathname);
 }
 
 export async function insertImages<T extends Record<string, string>>(

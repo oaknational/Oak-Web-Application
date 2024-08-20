@@ -74,6 +74,7 @@ const unitData = [
     tier: "Foundation",
     tier_slug: "foundation",
     tags: [],
+    subjectcategories: [],
     threads: [
       {
         title: "BQ02 Biology: How do living things grow and reproduce?",
@@ -148,6 +149,7 @@ const unitData = [
     tier: null,
     tier_slug: null,
     tags: [{ id: 5, title: "Biology", category: "Discipline" }],
+    subjectcategories: [{ id: 5, title: "Biology" }],
     threads: [
       {
         title:
@@ -219,6 +221,7 @@ const unitData = [
     tier: null,
     tier_slug: null,
     tags: [],
+    subjectcategories: [],
     threads: [
       {
         title: "BQ05 Biology: How do living things stay healthy?",
@@ -302,6 +305,7 @@ const unitData = [
     tier: "Higher",
     tier_slug: "higher",
     tags: [],
+    subjectcategories: [],
     threads: [
       {
         title:
@@ -381,6 +385,7 @@ const unitData = [
     tier: "Foundation",
     tier_slug: "foundation",
     tags: [],
+    subjectcategories: [],
     threads: [
       {
         title:
@@ -464,6 +469,7 @@ const unitData = [
     tier: null,
     tier_slug: null,
     tags: [],
+    subjectcategories: [],
     threads: [
       {
         title:
@@ -791,9 +797,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_slug: "combined-science",
             },
           ],
-          disciplines: [],
-          domains: [],
           pathways: [],
+          subjectCategories: [],
           tiers: [],
           units: [
             {
@@ -862,6 +867,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent_slug: "science",
               subject_slug: "combined-science",
               tags: [],
+              subjectcategories: [],
               threads: [
                 {
                   order: 5,
@@ -888,9 +894,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_slug: "combined-science",
             },
           ],
-          disciplines: [],
-          domains: [],
           pathways: [],
+          subjectCategories: [],
           tiers: [
             {
               tier: "Foundation",
@@ -952,6 +957,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent_slug: "science",
               subject_slug: "biology",
               tags: [],
+              subjectcategories: [],
               threads: [
                 {
                   order: 2,
@@ -1040,6 +1046,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent_slug: "science",
               subject_slug: "biology",
               tags: [],
+              subjectcategories: [],
               threads: [
                 {
                   order: 1,
@@ -1123,6 +1130,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent_slug: "science",
               subject_slug: "biology",
               tags: [],
+              subjectcategories: [],
               threads: [
                 {
                   order: 1,
@@ -1208,6 +1216,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent_slug: "science",
               subject_slug: "combined-science",
               tags: [],
+              subjectcategories: [],
               threads: [
                 {
                   order: 1,
@@ -1226,13 +1235,12 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         },
         "7": {
           childSubjects: [],
-          disciplines: [
+          subjectCategories: [
             {
               id: 5,
               title: "Biology",
             },
           ],
-          domains: [],
           pathways: [],
           tiers: [],
           units: [
@@ -1311,6 +1319,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                   title: "Biology",
                 },
               ],
+              subjectcategories: [{ id: 5, title: "Biology" }],
               threads: [
                 {
                   order: 3,
@@ -1337,8 +1346,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const initialYearFilterSelection = {
         "7": {
           subject: null,
-          discipline: { id: -1, title: "All" },
-          domain: null,
+          subjectCategory: { id: -1, title: "All" },
           tier: null,
         },
         "10": {
@@ -1346,8 +1354,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             subject: "Combined science",
             subject_slug: "combined-science",
           },
-          discipline: { id: -1, title: "All" },
-          domain: null,
+          subjectCategory: { id: -1, title: "All" },
           tier: null,
         },
         "11": {
@@ -1355,8 +1362,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             subject: "Combined science",
             subject_slug: "combined-science",
           },
-          discipline: { id: -1, title: "All" },
-          domain: null,
+          subjectCategory: { id: -1, title: "All" },
           tier: { tier: "Foundation", tier_slug: "foundation" },
         },
       };

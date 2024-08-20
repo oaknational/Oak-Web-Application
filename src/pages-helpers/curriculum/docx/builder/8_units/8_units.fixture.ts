@@ -1,4 +1,6 @@
-export const data = {
+import { CombinedCurriculumData } from "../..";
+
+export const data: CombinedCurriculumData = {
   units: [
     {
       connection_prior_unit_description: null,
@@ -29,6 +31,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -52,7 +55,6 @@ export const data = {
           connection_future_unit_title: "Modern text: second deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: barriers to leadership",
           unitvariant_id: 169,
@@ -104,7 +106,6 @@ export const data = {
           connection_future_unit_title: "Modern text: second deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Leave Taking: The power of education",
           unitvariant_id: 188,
@@ -178,6 +179,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -201,7 +203,6 @@ export const data = {
           connection_future_unit_title: "Modern text: first deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: the pigs and power",
           unitvariant_id: 152,
@@ -347,7 +348,6 @@ export const data = {
           connection_future_unit_title: "Modern text: first deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Leave Taking: a sense of belonging",
           unitvariant_id: 198,
@@ -517,6 +517,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -540,7 +541,6 @@ export const data = {
           connection_future_unit_title: "Modern text: second deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: barriers to leadership",
           unitvariant_id: 169,
@@ -769,6 +769,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -819,6 +820,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -842,7 +844,6 @@ export const data = {
           connection_future_unit_title: "Modern text: first deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: the pigs and power",
           unitvariant_id: 152,
@@ -1190,6 +1191,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -1354,6 +1356,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -1543,6 +1546,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -1740,6 +1744,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -1919,6 +1924,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -2098,6 +2104,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -2193,6 +2200,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Power, control and oppressive regimes",
@@ -2238,6 +2246,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -2267,7 +2276,6 @@ export const data = {
             "Nineteenth century text: second deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "A Christmas Carol: a ghost story",
           unitvariant_id: 190,
@@ -2319,7 +2327,6 @@ export const data = {
             "Nineteenth century text: second deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Jekyll & Hyde: the divided city",
           unitvariant_id: 171,
@@ -2446,6 +2453,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -2486,6 +2494,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -2515,7 +2524,6 @@ export const data = {
             "Nineteenth century text: first deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "A Christmas Carol: Scrooge's redemption",
           unitvariant_id: 200,
@@ -2662,7 +2670,6 @@ export const data = {
             "Nineteenth century text: first deep dive",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Jekyll & Hyde: duality and evil",
           unitvariant_id: 154,
@@ -2911,6 +2918,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -3039,6 +3047,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Language of persuasion",
@@ -3090,6 +3099,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -3124,7 +3134,6 @@ export const data = {
           connection_future_unit_title: "Poetry anthology: continued study",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "'Love and Relationships'",
           unitvariant_id: 201,
@@ -3305,7 +3314,6 @@ export const data = {
           connection_future_unit_title: "Poetry anthology: continued study",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "'Power and Conflict'",
           unitvariant_id: 155,
@@ -3483,7 +3491,6 @@ export const data = {
           connection_future_unit_title: "Poetry anthology: continued study",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "'World and Lives'",
           unitvariant_id: 199,
@@ -3695,6 +3702,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -3728,7 +3736,6 @@ export const data = {
           connection_future_unit_title: "Unseen poetry",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Love and relationships poetry continued",
           unitvariant_id: 191,
@@ -3805,7 +3812,6 @@ export const data = {
           connection_future_unit_title: "Unseen poetry",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: " Power and conflict poetry continued",
           unitvariant_id: 172,
@@ -3881,7 +3887,6 @@ export const data = {
           connection_future_unit_title: "Unseen poetry",
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "World and lives poetry continued",
           unitvariant_id: 189,
@@ -4093,6 +4098,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -4246,6 +4252,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -4425,6 +4432,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Power, control and oppressive regimes",
@@ -4529,6 +4537,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -4739,6 +4748,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -4818,6 +4828,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -4976,6 +4987,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -5090,6 +5102,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -5224,6 +5237,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -5427,6 +5441,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -5606,6 +5621,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -5646,6 +5662,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -5668,7 +5685,6 @@ export const data = {
           connection_future_unit_title: null,
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: lies and deception",
           unitvariant_id: 174,
@@ -5718,7 +5734,6 @@ export const data = {
           connection_future_unit_title: null,
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Leave Taking: an intersectional analysis",
           unitvariant_id: 194,
@@ -5828,6 +5843,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -5997,6 +6013,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -6155,6 +6172,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -6200,6 +6218,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -6222,7 +6241,6 @@ export const data = {
           connection_future_unit_title: null,
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Animal Farm: lies and deception",
           unitvariant_id: 174,
@@ -6334,6 +6352,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -6428,6 +6447,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -6547,6 +6567,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Identity, belonging and community",
@@ -6597,6 +6618,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -6625,7 +6647,6 @@ export const data = {
           connection_future_unit_title: null,
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "A Christmas Carol: a Christian parable",
           unitvariant_id: 196,
@@ -6676,7 +6697,6 @@ export const data = {
           connection_future_unit_title: null,
           description: "",
           why_this_why_now: null,
-          cycle: "1",
           state: "published",
           title: "Jekyll & Hyde: society as the villain",
           unitvariant_id: 176,
@@ -6805,6 +6825,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -6938,6 +6959,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -7076,6 +7098,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -7207,6 +7230,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -7319,6 +7343,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Exploring the unknown: mystery, intrigue and Gothic fiction",
@@ -7412,6 +7437,7 @@ export const data = {
           category: "",
         },
       ],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -7514,6 +7540,7 @@ export const data = {
       pathway: null,
       pathway_slug: null,
       tags: [],
+      subjectcategories: [],
       threads: [
         {
           title: "Comparing viewpoints and experiences",
@@ -7580,7 +7607,6 @@ export const data = {
   videoAuthor: "Chris Fountain ",
   videoExplainer:
     "Here, our English subject lead Chris Fountain, talks to Sam Barnsley from Twyford Academies Trust to highlight some of the thinking behind the design of our secondary English curriculum. They offer suggestions on what you might need to consider when exploring it for your school too. ",
-  state: "published",
 };
 
 export const slugs = {
