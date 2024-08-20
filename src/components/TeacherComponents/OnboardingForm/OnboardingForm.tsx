@@ -9,10 +9,6 @@ import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 
-
-import { OnboardingFormProps } from "./OnboardingForm.schema";
-import { onboardUser } from "./onboardingActions";
-
 import {
   OakBox,
   OakCheckBox,
@@ -23,6 +19,10 @@ import {
   OakPrimaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
+
+import { OnboardingFormProps } from "./OnboardingForm.schema";
+import { onboardUser } from "./onboardingActions";
+
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";

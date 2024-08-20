@@ -1,6 +1,6 @@
-import { QuizResultOrder } from "./QuizResultOrder";
-
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
+import { QuizResultOrder } from "./QuizResultOrder";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
