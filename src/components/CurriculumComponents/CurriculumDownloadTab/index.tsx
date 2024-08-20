@@ -1,4 +1,11 @@
-import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  FC,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   OakDownloadsJourneyChildSubjectTierSelector,
   OakThemeProvider,
@@ -93,24 +100,25 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const [childSubjectSelected, setChildSubjectSelected] = useState<
     string | null
   >(null);
-  const [tiers] = useState<Tier[]>(
-    snake_tiers && snake_tiers.length > 0
+  const tiers = useMemo<Tier[]>(() => {
+    return snake_tiers && snake_tiers.length > 0
       ? snake_tiers.map(
           (tier) =>
             mapKeys(tier, (value, key) => camelCase(key)) as unknown as Tier,
         )
-      : [],
-  );
-  const [childSubjects] = useState<Subject[]>(
-    child_subjects && child_subjects.length > 0
+      : [];
+  }, [snake_tiers]);
+
+  const childSubjects = useMemo<Subject[]>(() => {
+    return child_subjects && child_subjects.length > 0
       ? child_subjects.map(
           (subject) =>
             mapKeys(subject, (value, key) =>
               camelCase(key),
             ) as unknown as Subject,
         )
-      : [],
-  );
+      : [];
+  }, [child_subjects]);
 
   const { isLoading, data: localStorageData } = useDownloadsLocalStorage();
   const [isDone, setIsDone] = useState(false);
