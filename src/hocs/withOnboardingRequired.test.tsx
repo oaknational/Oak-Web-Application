@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { useUser } from "@clerk/nextjs";
 
-import { withPageAuthRequired } from "./withPageAuthRequired";
+import { withOnboardingRequired } from "./withOnboardingRequired";
 
 import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import {
@@ -12,28 +12,33 @@ import {
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
-function MockRedirectToSignIn() {
-  return <div data-testid="redirectToSignIn" />;
-}
-MockRedirectToSignIn.displayName = "MockRedirectToSignIn";
+type UseUserReturn = ReturnType<typeof useUser>;
 
-describe(withPageAuthRequired, () => {
+describe(withOnboardingRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
-  const Subject = withPageAuthRequired(OriginalComponent);
-  let useUserReturn: ReturnType<typeof useUser>;
+  const Subject = withOnboardingRequired(() => <div data-testid="canary" />);
+  let useUserReturn: UseUserReturn;
 
   beforeEach(() => {
     useUserReturn = mockLoadingUser;
+
     jest.spyOn(clerk, "useFeatureFlaggedClerk").mockReturnValue({
       ...clerk.fakeClerkApi,
-      RedirectToSignIn: MockRedirectToSignIn,
       useUser() {
         return useUserReturn;
       },
     });
   });
 
-  describe("when clerk has yet to load", () => {
+  describe.each<[string, UseUserReturn]>([
+    ["clerk has yet to load", mockLoadingUser],
+    ["the user is not signed-in", mockLoggedOut],
+    ["the user is signed in but not onboarded", mockLoggedIn],
+  ])("%s", (__, currentUseUserReturn) => {
+    beforeEach(() => {
+      useUserReturn = currentUseUserReturn;
+    });
+
     it("renders nothing", () => {
       const { container } = render(<Subject />);
 
@@ -41,14 +46,14 @@ describe(withPageAuthRequired, () => {
     });
 
     describe("and a fallback component was supplied", () => {
-      const SubjectWithFallback = withPageAuthRequired(
+      const SubjectWithFallback = withOnboardingRequired(
         OriginalComponent,
         ({ children }) => {
           return <div data-testid="fallback">{children}</div>;
         },
       );
 
-      it("renders the fallback component with the component as its children", () => {
+      it("renders the fallback component with the component as its child", () => {
         render(<SubjectWithFallback />);
 
         expect(screen.queryByTestId("canary")).toBeInTheDocument();
@@ -59,24 +64,18 @@ describe(withPageAuthRequired, () => {
     });
   });
 
-  describe("when the user is not signed-in", () => {
+  describe("when the user is signed in and onboarded", () => {
     beforeEach(() => {
-      useUserReturn = mockLoggedOut;
+      useUserReturn = {
+        ...mockLoggedIn,
+        user: {
+          ...mockLoggedIn.user,
+          publicMetadata: { "owa:onboarded": true },
+        },
+      };
     });
 
-    it("redirects the user to sign-in", () => {
-      render(<Subject />);
-
-      expect(screen.queryByTestId("redirectToSignIn")).toBeInTheDocument();
-    });
-  });
-
-  describe("when the user is signed-in", () => {
-    beforeEach(() => {
-      useUserReturn = mockLoggedIn;
-    });
-
-    it("redirects them to sign-in", () => {
+    it("renders the component", () => {
       render(<Subject />);
 
       expect(screen.queryByTestId("canary")).toBeInTheDocument();
