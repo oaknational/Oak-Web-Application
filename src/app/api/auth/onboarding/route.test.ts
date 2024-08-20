@@ -1,11 +1,13 @@
 /**
  * @jest-environment node
  */
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 
 import { POST } from "./route";
 
-let authReturn: Partial<ReturnType<typeof auth>>;
+import { mockCurrentUser } from "@/__tests__/__helpers__/mockUser";
+
+let user: Awaited<ReturnType<typeof currentUser>>;
 
 jest.mock("@clerk/nextjs/server", () => {
   const updateUserMetadataSpy = jest.fn();
@@ -18,24 +20,28 @@ jest.mock("@clerk/nextjs/server", () => {
         },
       };
     },
-    auth() {
-      return authReturn;
+    currentUser() {
+      return Promise.resolve(user);
     },
   };
 });
 
 describe("/api/auth/onboarding", () => {
-  const req = new Request("http://example.com", {
-    method: "POST",
-    body: JSON.stringify({ "owa:isTeacher": true }),
-  });
-
+  let req: Request;
   beforeEach(() => {
-    authReturn = { userId: "123" };
+    req = new Request("http://example.com", {
+      method: "POST",
+      body: JSON.stringify({ "owa:isTeacher": true }),
+      headers: {
+        referer: "http://example.com/foo",
+      },
+    });
+
+    user = mockCurrentUser;
   });
 
   it("requires authentication", async () => {
-    authReturn = { userId: null };
+    user = null;
     const response = await POST(req);
 
     expect(response.status).toBe(401);
@@ -45,17 +51,48 @@ describe("/api/auth/onboarding", () => {
     const response = await POST(req);
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
-      publicMetadata: {
+      publicMetadata: expect.objectContaining({
         "owa:isTeacher": true,
         "owa:onboarded": true,
-      },
+      }),
     });
     expect(response.status).toBe(200);
 
-    await expect(response.json()).resolves.toEqual({
-      "owa:isTeacher": true,
-      "owa:onboarded": true,
+    await expect(response.json()).resolves.toEqual(
+      expect.objectContaining({
+        "owa:isTeacher": true,
+        "owa:onboarded": true,
+      }),
+    );
+  });
+
+  it("sets the referer header as sourceApp", async () => {
+    await POST(req);
+
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
+      publicMetadata: expect.objectContaining({
+        sourceApp: "http://example.com",
+      }),
     });
+  });
+
+  it("does not change sourceApp when the user already has one", async () => {
+    user = Object.assign({}, mockCurrentUser, {
+      publicMetadata: {
+        sourceApp: "http://remember-me.com",
+      },
+    });
+
+    await POST(req);
+
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      expect.anything(),
+      {
+        publicMetadata: expect.objectContaining({
+          sourceApp: "http://remember-me.com",
+        }),
+      },
+    );
   });
 
   it("handles validation errors", async () => {

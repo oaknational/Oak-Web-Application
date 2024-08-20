@@ -1,21 +1,21 @@
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { ZodError } from "zod";
 
 import { onboardingSchema } from "@/common-lib/schemas/onboarding";
 
 export async function POST(req: Request) {
-  const { userId } = auth();
+  const user = await currentUser();
 
-  if (!userId) {
+  if (!user) {
     return new Response("Unauthorized", { status: 401 });
   }
 
   try {
     const data = onboardingSchema.parse(await req.json());
+    const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
+    const publicMetadata = { ...data, sourceApp, "owa:onboarded": true };
 
-    const publicMetadata = { ...data, "owa:onboarded": true };
-
-    await clerkClient().users.updateUserMetadata(userId, {
+    await clerkClient().users.updateUserMetadata(user.id, {
       publicMetadata,
     });
 
@@ -26,5 +26,13 @@ export async function POST(req: Request) {
     }
 
     throw error;
+  }
+}
+
+function getReferrerOrigin(req: Request) {
+  const referrer = req.headers.get("referer")?.toString();
+
+  if (typeof referrer === "string") {
+    return new URL(referrer).origin;
   }
 }
