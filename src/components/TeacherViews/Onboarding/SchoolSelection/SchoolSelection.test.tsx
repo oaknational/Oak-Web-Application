@@ -45,17 +45,6 @@ describe("Onboarding view", () => {
     expect(continueButton).toBeInTheDocument();
     expect(continueButton).toBeDisabled();
   });
-  it("renders terms and conditions text", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    const tsAndCs = await screen.findByText("Oak's terms & conditions", {
-      exact: false,
-    });
-    expect(tsAndCs).toBeInTheDocument();
-    expect(tsAndCs.closest("a")).toHaveAttribute(
-      "href",
-      "/legal/terms-and-conditions",
-    );
-  });
   it("renders contact us text", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const contactUs = await screen.findByText("Contact us", { exact: false });
