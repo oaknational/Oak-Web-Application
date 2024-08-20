@@ -15,7 +15,9 @@ import {
   insertNumbering,
 } from "../docx";
 
-import { createCurriculumSlug, createThreadOptions } from "./helper";
+import { createCurriculumSlug } from "./helper";
+
+import { createThreadOptions } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export default async function generate(
   zip: JSZipCached,

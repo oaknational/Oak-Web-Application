@@ -2,9 +2,10 @@ import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 
-import { createThreadOptions, threadUnitByYear } from "./helper";
+import { threadUnitByYear } from "./helper";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { createThreadOptions } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);

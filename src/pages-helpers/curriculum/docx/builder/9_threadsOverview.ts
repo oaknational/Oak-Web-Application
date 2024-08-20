@@ -12,11 +12,9 @@ import {
   wrapInLinkToBookmark,
 } from "../docx";
 
-import {
-  createThreadOptions,
-  generateGridCols,
-  uncapitalizeSubject,
-} from "./helper";
+import { generateGridCols, uncapitalizeSubject } from "./helper";
+
+import { createThreadOptions } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export default async function generate(
   zip: JSZipCached,
