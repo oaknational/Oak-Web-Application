@@ -164,6 +164,7 @@ async function getData(opts: {
       };
     }
   } catch (error) {
+    console.log(error);
     return {
       notFound: true,
     };
