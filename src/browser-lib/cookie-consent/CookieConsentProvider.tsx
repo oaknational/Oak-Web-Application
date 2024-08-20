@@ -12,8 +12,6 @@ import {
   useOakConsent,
 } from "@oaknational/oak-consent-client";
 
-import { consentClient } from "./consentClient";
-
 import {
   OakCookieConsent,
   OakCookieConsentProvider,
@@ -21,6 +19,8 @@ import {
   OakThemeProvider,
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
+
+import { consentClient } from "./consentClient";
 
 const RequiresInteraction = () => {
   const { state } = useOakConsent();
