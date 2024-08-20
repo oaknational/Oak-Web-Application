@@ -1,3 +1,19 @@
+# [1.524.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.523.0...v1.524.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* tests hitting the network ([e96a46a](https://github.com/oaknational/Oak-Web-Application/commit/e96a46af376470ee1edfdb110ac7db6843d0bd0c))
+
+
+### Features
+
+* **LESQ-977:** add a hook to send users through onboarding after signup ([c9e6976](https://github.com/oaknational/Oak-Web-Application/commit/c9e697639063a982c89c700f7791ebbc1a6a8090))
+* **LESQ-977:** add an endpoint to mark a user as onboarded ([4df0b87](https://github.com/oaknational/Oak-Web-Application/commit/4df0b87f2e2d7d54fd2da4f84c19485eb66a5ef6))
+* **LESQ-977:** mark the user as onboarded on submit ([535a744](https://github.com/oaknational/Oak-Web-Application/commit/535a744b26e9da95211b0808116b7306381759ac))
+* **LESQ-977:** require authentication to access the onboarding page ([050cc33](https://github.com/oaknational/Oak-Web-Application/commit/050cc33684d57493ed5b46ca72d73e1c96fbd037))
+* **LESQ-977:** return the user to the page they came from before onboarding ([a034020](https://github.com/oaknational/Oak-Web-Application/commit/a034020768711cb6f91d11cd199bd1ed2c323274))
+
 # [1.523.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.522.0...v1.523.0) (2024-08-19)
 
 
