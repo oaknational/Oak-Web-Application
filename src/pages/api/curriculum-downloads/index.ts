@@ -222,6 +222,12 @@ export default async function handler(
   const mvRefreshTimeParsed = parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
+  // Note: Disable this check to allow 'new' documents
+  if (state === "new") {
+    res.status(404).end();
+    return;
+  }
+
   // Check if we should redirect (new cache-hit)
   if (mvRefreshTimeParsed !== actualMvRefreshTime) {
     const slugOb = omitBy(
