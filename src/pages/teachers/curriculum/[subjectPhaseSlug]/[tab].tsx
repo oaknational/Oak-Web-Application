@@ -160,6 +160,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "downloads":
       tabContent = (
         <CurriculumDownloadTab
+          curriculumInfo={curriculumOverviewTabData}
           mvRefreshTime={mvRefreshTime}
           slugs={curriculumSelectionSlugs}
           tiers={tiers}
