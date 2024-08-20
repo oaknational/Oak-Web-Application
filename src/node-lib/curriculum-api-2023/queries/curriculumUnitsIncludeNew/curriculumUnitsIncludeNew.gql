@@ -26,6 +26,7 @@ query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_
     pathway
     pathway_slug
     tags
+    subjectcategories
     tier
     tier_slug
     title
