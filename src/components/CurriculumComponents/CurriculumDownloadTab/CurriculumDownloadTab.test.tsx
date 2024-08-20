@@ -42,6 +42,12 @@ describe("Component - Curriculum Download Tab", () => {
       mvRefreshTime,
       tiers: [],
       childSubjects: [],
+      curriculumInfo: {
+        curriculaDesc: "",
+        subjectTitle: "English",
+        phaseTitle: "Secondary",
+        examboardTitle: null,
+      },
       ...overrides,
     };
 

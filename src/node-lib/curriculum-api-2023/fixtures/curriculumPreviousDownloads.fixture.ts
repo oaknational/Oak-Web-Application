@@ -1,6 +1,18 @@
+export const DOWNLOAD_CATEGORIES = [
+  "EYFS",
+  "KS1",
+  "KS2",
+  "KS3",
+  "KS4",
+  "Therapies",
+  "Specialist",
+  "EYFS",
+] as const;
+
+export type DownloadCategory = (typeof DOWNLOAD_CATEGORIES)[number];
 type curriculumPreviousDownloadsFixtureProps = {
   documents: {
-    category: string;
+    category: DownloadCategory;
     icon: string;
     subject: string;
     slug: string;

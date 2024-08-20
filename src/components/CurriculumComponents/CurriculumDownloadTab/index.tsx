@@ -19,10 +19,18 @@ import {
   useDownloadsLocalStorage,
 } from "./helper";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import {
+  PhaseValueType,
+  ResourceFileTypeValueType,
+} from "@/browser-lib/avo/Avo";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -64,6 +72,7 @@ export function createCurriculumDownloadsQuery(
 
 export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
+  curriculumInfo: CurriculumOverviewMVData;
   slugs: CurriculumSelectionSlugs;
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
@@ -73,9 +82,13 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   slugs,
   tiers: snake_tiers,
   child_subjects,
+  curriculumInfo,
 }) => {
-  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
+  const { track } = useAnalytics();
+  const { onHubspotSubmit } = useHubspotSubmit();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
+  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
   const [childSubjectSelected, setChildSubjectSelected] = useState<
     string | null
@@ -184,6 +197,52 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     }
   };
 
+  async function trackCurriculumDownload(
+    data: CurriculumDownloadViewData,
+    subject: string,
+    resourceFileType: ResourceFileTypeValueType,
+  ) {
+    const {
+      schoolId,
+      schoolName: dataSchoolName,
+      email,
+      schoolNotListed,
+    } = data;
+
+    if (!data.termsAndConditions) return;
+
+    const schoolName =
+      dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
+    const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
+
+    await onHubspotSubmit({
+      school: data.schoolId ?? "0",
+      schoolName: data.schoolName,
+      email: data.email,
+      terms: data.termsAndConditions,
+      resources: ["docx"],
+      onSubmit: async () => {},
+    });
+
+    // @ts-expect-error: ignored due to variant types
+    track.curriculumResourcesDownloadedCurriculumDocument({
+      subjectTitle: curriculumInfo.subjectTitle,
+      subjectSlug: slugs.subjectSlug,
+      phase: slugs.phaseSlug as PhaseValueType,
+      analyticsUseCase: analyticsUseCase,
+      emailSupplied: email != null,
+      schoolOption: schoolOption,
+      schoolUrn: schoolId ? parseInt(schoolId) : 0,
+      schoolName: dataSchoolName || "",
+      resourceFileType: resourceFileType,
+      tierName: tierSelected,
+      childSubjectName: subject,
+      childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
+        ?.subject,
+      examBoardSlug: slugs.examboardSlug,
+    });
+  }
+
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
@@ -211,6 +270,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       await downloadFileFromUrl(downloadPath);
       // TODO: Log to hubspot here...
     } finally {
+      trackCurriculumDownload(data, slugs.subjectSlug, "docx");
       setIsSubmitting(false);
       setIsDone(true);
     }
