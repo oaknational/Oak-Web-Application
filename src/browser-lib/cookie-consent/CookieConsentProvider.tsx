@@ -22,7 +22,6 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-
 const RequiresInteraction = () => {
   const { state } = useOakConsent();
   const { showBanner } = useCookieConsentUI();
