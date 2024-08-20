@@ -10,6 +10,8 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 
+jest.mock("next/navigation", () => require("next-router-mock"));
+
 describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
     jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({

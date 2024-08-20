@@ -1,14 +1,4 @@
 import {
-  OakBox,
-  OakCheckBox,
-  OakFlex,
-  OakInlineBanner,
-  OakLink,
-  OakP,
-  OakPrimaryButton,
-  OakSpan,
-} from "@oaknational/oak-components";
-import {
   Control,
   Controller,
   UseFormHandleSubmit,
@@ -18,6 +8,16 @@ import {
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
+import {
+  OakBox,
+  OakCheckBox,
+  OakFlex,
+  OakInlineBanner,
+  OakLink,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 import { onboardUser } from "./onboardingActions";
