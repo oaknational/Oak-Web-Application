@@ -34,6 +34,7 @@ describe("/api/auth/onboarding", () => {
       body: JSON.stringify({ "owa:isTeacher": true }),
       headers: {
         referer: "http://example.com/foo",
+        "cf-ipcountry": "GB",
       },
     });
 
@@ -54,6 +55,7 @@ describe("/api/auth/onboarding", () => {
       publicMetadata: expect.objectContaining({
         "owa:isTeacher": true,
         "owa:onboarded": true,
+        region: "GB",
       }),
     });
     expect(response.status).toBe(200);

@@ -13,7 +13,13 @@ export async function POST(req: Request) {
   try {
     const data = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const publicMetadata = { ...data, sourceApp, "owa:onboarded": true };
+    const region = req.headers.get("cf-ipcountry") || null;
+    const publicMetadata = {
+      ...data,
+      sourceApp,
+      "owa:onboarded": true,
+      region: user.publicMetadata.region || region,
+    };
 
     await clerkClient().users.updateUserMetadata(user.id, {
       publicMetadata,
