@@ -1,3 +1,19 @@
+# [1.525.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.524.0...v1.525.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* enable scrolling when zoomed in on sign up screen ([ef4fc22](https://github.com/oaknational/Oak-Web-Application/commit/ef4fc22c91c10971eef1ec1f49f3455316ba23d2))
+* refactor registration layout so the page is scrollable at high zoom levels ([6439ba3](https://github.com/oaknational/Oak-Web-Application/commit/6439ba32f1df0b57e77f54ace79c355e740e1440))
+
+
+### Features
+
+* add shared layout with background image for registration pages ([efb2253](https://github.com/oaknational/Oak-Web-Application/commit/efb2253cbe2434154bf9e067ef907e0bde761163))
+* put sign up pages behind feature flag ([c94bdbd](https://github.com/oaknational/Oak-Web-Application/commit/c94bdbd7b0307c82b2e9245e6aca785570e51b26))
+* style registration components ([0c04000](https://github.com/oaknational/Oak-Web-Application/commit/0c04000dacd99c629aa498d0ca144a3edba520cb))
+* wrap registration pages with cookie provider ([bade60d](https://github.com/oaknational/Oak-Web-Application/commit/bade60d3037a230bec5a2755132cfd745dd56ba6))
+
 # [1.524.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.523.0...v1.524.0) (2024-08-20)
 
 
