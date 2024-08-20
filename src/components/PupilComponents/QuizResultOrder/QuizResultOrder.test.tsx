@@ -1,9 +1,8 @@
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import { invariant } from "../pupilUtils/invariant";
-
 import { QuizResultOrder } from "./QuizResultOrder";
 
+import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
@@ -14,9 +13,9 @@ describe("QuizResultOrder", () => {
   });
 
   it.each([
-    { pupilAnswers: [0, 1, 2, 3] },
-    { pupilAnswers: [1, 2, 0, 3] },
-    { pupilAnswers: [3, 1, 0, 2] },
+    { pupilAnswers: [1, 2, 3, 4] },
+    { pupilAnswers: [2, 3, 1, 4] },
+    { pupilAnswers: [4, 2, 1, 3] },
   ])("renders the text for all of the answers", ({ pupilAnswers }) => {
     const { getAllByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -35,7 +34,7 @@ describe("QuizResultOrder", () => {
     expect(renderedTexts).toHaveLength(4);
 
     pupilAnswers.forEach((pupilAnswer, i) => {
-      const answer = orderAnswers[pupilAnswer];
+      const answer = orderAnswers[pupilAnswer - 1];
       if (!answer) {
         throw new Error("Answer not found");
       }
@@ -53,7 +52,7 @@ describe("QuizResultOrder", () => {
         <QuizResultOrder
           answers={orderAnswers}
           feedback={["correct", "correct", "correct", "correct"]}
-          pupilAnswers={[0, 1, 2, 3]}
+          pupilAnswers={[1, 2, 3, 4]}
         />
       </OakThemeProvider>,
     );
@@ -71,7 +70,7 @@ describe("QuizResultOrder", () => {
           <QuizResultOrder
             answers={orderAnswers}
             feedback={["correct", "correct", "correct", "incorrect"]}
-            pupilAnswers={[0, 1, 2, 3]}
+            pupilAnswers={[1, 2, 3, 4]}
           />
         </OakThemeProvider>
       </MathJaxProvider>,
@@ -89,12 +88,12 @@ describe("QuizResultOrder", () => {
             <QuizResultOrder
               answers={orderAnswers}
               feedback={["correct", "correct", "correct", "correct"]}
-              pupilAnswers={[0, 1, 2, 4]}
+              pupilAnswers={[1, 2, 3, 5]}
             />
           </OakThemeProvider>
         </MathJaxProvider>,
       );
-    }).toThrow("Answer not found for index 4");
+    }).toThrow("Answer not found for index 5");
   });
 
   it("throws if an answer does not have text", () => {
@@ -112,7 +111,7 @@ describe("QuizResultOrder", () => {
             <QuizResultOrder
               answers={orderAnswersWithNoText}
               feedback={["correct", "correct"]}
-              pupilAnswers={[0, 1]}
+              pupilAnswers={[1, 2]}
             />
           </OakThemeProvider>
         </MathJaxProvider>,

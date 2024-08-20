@@ -21,7 +21,10 @@ import type {
   QuestionModeType,
   QuestionState,
 } from "@/components/PupilComponents/QuizUtils/questionTypes";
-import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import {
+  isImage,
+  isText,
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
 import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
 import {
   isMatchAnswer,
@@ -155,9 +158,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           )) ??
         false;
 
-      const correctAnswerText = correctAnswers
-        ?.map((answer) => answer.answer?.find(isText))
-        .map((answer) => answer?.text)
+      const correctAnswerTextOrImageObject = correctAnswers
+        ?.map((answer) => {
+          const testAnswer = answer.answer?.find(isText)?.text;
+          const imageAnswer = answer.answer?.find(isImage);
+          return testAnswer ?? imageAnswer;
+        })
         .filter((answer) => answer !== undefined);
 
       updateCurrentQuestion({
@@ -166,7 +172,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         feedback,
         isPartiallyCorrect,
         pupilAnswer: pupilAnswerIndexes,
-        correctAnswer: correctAnswerText,
+        correctAnswer: correctAnswerTextOrImageObject,
       });
     },
     [currentQuestionData?.answers, updateCurrentQuestion],

@@ -35,11 +35,10 @@ import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumD
 import {
   Thread,
   Subject,
-  Domain,
-  Discipline,
   Tier,
   Unit,
   Filter,
+  SubjectCategory,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
@@ -52,9 +51,8 @@ export type CurriculumSelectionSlugs = {
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
   childSubjects: Subject[];
-  domains: Domain[];
   tiers: Tier[];
-  disciplines: Discipline[];
+  subjectCategories: SubjectCategory[];
   ref?: MutableRefObject<HTMLDivElement>;
 };
 
@@ -62,9 +60,8 @@ export type CurriculumUnitsYearData = {
   [key: string]: {
     units: Unit[];
     childSubjects: Subject[];
-    domains: Domain[];
+    subjectCategories: SubjectCategory[];
     tiers: Tier[];
-    disciplines: Discipline[];
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -292,21 +289,14 @@ export function createInitialYearFilterSelection(
     if (!filters) {
       throw new Error("year filters missing");
     }
-    if (filters.domains.length > 0) {
-      filters.domains.sort((a, b) => a.domain_id - b.domain_id);
-      filters.domains.unshift({
-        domain: "All",
-        domain_id: 0,
-      });
-    }
     filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
-    // Sort disciplines
-    filters.disciplines.sort((a, b) => a.title.localeCompare(b.title));
+    // Sort subject categories
+    filters.subjectCategories.sort((a, b) => a.title.localeCompare(b.title));
 
-    // Add an "All" option if there are 2 or more disciplines. Set to -1 id as this shouldn't ever appear in the DB
-    const allDisciplineTag: Discipline = { id: -1, title: "All" };
-    if (filters.disciplines.length >= 2) {
-      filters.disciplines.unshift(allDisciplineTag);
+    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+    if (filters.subjectCategories.length >= 2) {
+      filters.subjectCategories.unshift(allSubjectCategoryTag);
     }
 
     initialYearSelection[year] = {
@@ -314,8 +304,7 @@ export function createInitialYearFilterSelection(
         filters.childSubjects.find(
           (s) => s.subject_slug === "combined-science",
         ) ?? null,
-      discipline: allDisciplineTag,
-      domain: filters.domains.length ? filters.domains[0] : null,
+      subjectCategory: allSubjectCategoryTag,
       tier: filters.tiers.length ? filters.tiers[0] : null,
     };
   });
@@ -336,9 +325,8 @@ export function createUnitsListingByYear(
       currentYearData = {
         units: [],
         childSubjects: [],
-        domains: [],
+        subjectCategories: [],
         tiers: [],
-        disciplines: [],
       };
       yearData[unit.year] = currentYearData;
     }
@@ -361,19 +349,6 @@ export function createUnitsListingByYear(
       });
     }
 
-    // Populate list of domain filter values
-
-    if (
-      unit.domain &&
-      unit.domain_id &&
-      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
-    ) {
-      currentYearData.domains.push({
-        domain: unit.domain,
-        domain_id: unit.domain_id,
-      });
-    }
-
     // Populate list of tier filter values
 
     if (
@@ -387,17 +362,17 @@ export function createUnitsListingByYear(
       });
     }
 
-    // Loop through tags array and populate disciplines.
-    unit.tags?.forEach((tag) => {
-      if (tag.category === "Discipline") {
-        if (
-          currentYearData?.disciplines.findIndex((d) => d.id === tag.id) === -1
-        ) {
-          currentYearData.disciplines.push({
-            id: tag.id,
-            title: tag.title,
-          });
-        }
+    // Loop through tags array and populate subject categories.
+    unit.subjectcategories?.forEach((subjectCategory) => {
+      if (
+        currentYearData?.subjectCategories.findIndex(
+          (d) => d.id === subjectCategory.id,
+        ) === -1
+      ) {
+        currentYearData.subjectCategories.push({
+          id: subjectCategory.id,
+          title: subjectCategory.title,
+        });
       }
     });
   });

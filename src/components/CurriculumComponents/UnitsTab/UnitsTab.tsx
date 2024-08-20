@@ -10,12 +10,11 @@ import {
 import CurriculumVisualiser, {
   Thread,
   Subject,
-  Domain,
-  Discipline,
   Tier,
   Unit,
   isVisibleUnit,
   Filter,
+  SubjectCategory,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 import SkipLink from "../OakComponentsKitchen/SkipLink";
@@ -43,9 +42,8 @@ type UnitsTabProps = {
 
 export interface YearSelection {
   [key: string]: {
-    discipline?: Discipline | null;
+    subjectCategory?: SubjectCategory | null;
     subject?: Subject | null;
-    domain?: Domain | null;
     tier?: Tier | null;
   };
 }
@@ -83,12 +81,12 @@ const UnitsTab: FC<UnitsTabProps> = ({
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const [filter, setFilter] = useState<Filter>({
-    discipline_id: null,
     subject_slug: null,
     domain_id: null,
     tier_slug: null,
-    year: null ?? "",
+    subjectcategory_id: null,
     thread_slug: null,
+    year: null,
   });
 
   const selectedYear = filter.year;
@@ -122,16 +120,15 @@ const UnitsTab: FC<UnitsTabProps> = ({
     pushQuery({ year: year });
   }
 
-  function handleSelectDomain(year: string, domain: Domain) {
-    pushQuery({ domain_id: domain.domain_id });
-  }
-
   function handleSelectSubject(year: string, subject: Subject) {
     pushQuery({ subject_slug: subject.subject_slug });
   }
 
-  function handleSelectDiscipline(year: string, discipline: Discipline) {
-    pushQuery({ discipline_id: discipline.id });
+  function handleSelectSubjectCategory(
+    year: string,
+    subjectCategory: SubjectCategory,
+  ) {
+    pushQuery({ subjectcategory_id: subjectCategory.id });
   }
 
   function handleSelectTier(year: string, tier: Tier) {
@@ -341,11 +338,13 @@ const UnitsTab: FC<UnitsTabProps> = ({
             selectedYear={selectedYear}
             examboardSlug={examboardSlug}
             yearData={yearData}
-            handleSelectDomain={handleSelectDomain}
+            handleSelectSubjectCategory={handleSelectSubjectCategory}
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
-            handleSelectDiscipline={handleSelectDiscipline}
+            // mobileHeaderScrollOffset={mobileHeaderScrollOffset}
+            // setUnitData={setUnitData}
             selectedThread={selectedThread ?? null}
+            // setVisibleMobileYearRefID={setVisibleMobileYearRefID}
           />
         </OakGrid>
       </Box>

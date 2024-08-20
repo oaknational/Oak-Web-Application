@@ -33,9 +33,8 @@ export type YearData = {
   [key: string]: {
     units: Unit[];
     childSubjects: Subject[];
-    domains: Domain[];
     tiers: Tier[];
-    disciplines: Discipline[];
+    subjectCategories: SubjectCategory[];
   };
 };
 
@@ -57,7 +56,7 @@ export interface Domain {
   domain_id: number;
 }
 
-export interface Discipline {
+export interface SubjectCategory {
   id: number;
   title: string;
 }
@@ -68,11 +67,11 @@ export interface Tier {
 }
 
 export interface Filter {
-  discipline_id?: Discipline["id"] | null;
+  subjectcategory_id?: SubjectCategory["id"] | null;
   subject_slug?: Subject["subject_slug"] | null;
   domain_id?: Domain["domain_id"] | null;
   tier_slug?: Tier["tier_slug"] | null;
-  year: string;
+  year: string | null;
   thread_slug?: string | null;
 }
 
@@ -83,10 +82,12 @@ type CurriculumVisualiserProps = {
   selectedYear: string | null;
   examboardSlug: string | null;
   yearData: YearData;
-  handleSelectDomain: (year: string, domain: Domain) => void;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
-  handleSelectDiscipline: (year: string, discipline: Discipline) => void;
+  handleSelectSubjectCategory: (
+    year: string,
+    subjectCategory: SubjectCategory,
+  ) => void;
   mobileHeaderScrollOffset?: number;
   selectedUnit?: string;
   basePath: string;
@@ -110,23 +111,17 @@ export function isVisibleUnit(filter: Filter, unit: Unit) {
   }
   const filterBySubject =
     !s.subject_slug || s.subject_slug === unit.subject_slug;
-  const filterByDiscipline =
-    !s.discipline_id ||
-    unit.tags?.findIndex((tag) => tag.id === s.discipline_id) !== -1;
-  const filterByDomain =
-    !s.domain_id || s.domain_id === 0 || s.domain_id === unit.domain_id;
+  const filterBySubjectCategory =
+    !s.subjectCategory ||
+    unit.subjectcategories?.findIndex(
+      (subjectCategory) => subjectCategory.id === s.subjectCategory?.id,
+    ) !== -1;
   const filterByTier = !unit.tier_slug || s.tier_slug === unit.tier_slug;
 
   // Look for duplicates that don't have an examboard, tier or subject parent
   // (i.e. aren't handled by other filters)
 
-  return (
-    filterBySubject && filterByDomain && filterByTier && filterByDiscipline
-  );
-}
-
-function isSelectedDomain(filter: Filter, domain: Domain) {
-  return filter.domain_id === domain.domain_id;
+  return filterBySubject && filterByTier && filterBySubjectCategory;
 }
 
 function isSelectedSubject(filter: Filter, subject: Subject) {
@@ -137,8 +132,11 @@ function isSelectedTier(filter: Filter, tier: Tier) {
   return filter.tier_slug === tier.tier_slug;
 }
 
-function isSelectedDiscipline(filter: Filter, discipline: Discipline) {
-  return filter.discipline_id === discipline.id;
+function isSelectedSubjectCategory(
+  filter: Filter,
+  subjectCategory: SubjectCategory,
+) {
+  return filter?.subjectCategory?.id === subjectCategory.id;
 }
 
 function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
@@ -168,10 +166,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   selectedYear,
   examboardSlug,
   yearData,
-  handleSelectDomain,
   handleSelectSubject,
   handleSelectTier,
-  handleSelectDiscipline,
+  handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
   selectedThread,
   selectedUnit,
@@ -204,8 +201,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
           .map((year, index) => {
-            const { units, childSubjects, domains, tiers, disciplines } =
-              yearData[year] as YearData[string];
+            const { units, childSubjects, tiers, subjectCategories } = yearData[
+              year
+            ] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -241,12 +239,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   Year {year}
                 </OakHeading>
-                {disciplines?.length > 1 && (
-                  <Box role="group" aria-label="Disciplines">
-                    {disciplines.map((discipline, index) => {
-                      const isSelected = isSelectedDiscipline(
+                {childSubjects.length < 1 && subjectCategories?.length > 1 && (
+                  <Box role="group" aria-label="Categories">
+                    {subjectCategories.map((subjectCategory, index) => {
+                      const isSelected = isSelectedSubjectCategory(
                         filter,
-                        discipline,
+                        subjectCategory,
                       );
 
                       return (
@@ -255,12 +253,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           $mr={20}
                           background={isSelected ? "black" : "white"}
                           key={index}
-                          label={discipline.title}
+                          label={subjectCategory.title}
                           onClick={() =>
-                            handleSelectDiscipline(year, discipline)
+                            handleSelectSubjectCategory(year, subjectCategory)
                           }
                           size="small"
-                          data-testid="discipline-button"
+                          data-testid="subjectCategory-button"
                           aria-pressed={isSelected}
                         />
                       );
@@ -288,27 +286,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         );
                       },
                     )}
-                  </Box>
-                )}
-                {domains.length > 0 && (
-                  <Box role="group" aria-label="Domains">
-                    {domains.map((domain: Domain) => {
-                      const isSelected = isSelectedDomain(filter, domain);
-
-                      return (
-                        <Button
-                          $mb={20}
-                          $mr={20}
-                          background={isSelected ? "black" : "white"}
-                          key={domain.domain_id}
-                          label={domain.domain}
-                          onClick={() => handleSelectDomain(year, domain)}
-                          size="small"
-                          data-testid="domain-button"
-                          aria-pressed={isSelected}
-                        />
-                      );
-                    })}
                   </Box>
                 )}
                 {tiers.length > 0 && (
@@ -346,7 +323,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     );
 
                     const unitUrl =
-                      join(basePath, unit.slug) + `?${searchParams.toString()}`;
+                      join(basePath, unit.slug) +
+                      `?${!searchParams ? "" : searchParams.toString()}`;
 
                     return (
                       <Card

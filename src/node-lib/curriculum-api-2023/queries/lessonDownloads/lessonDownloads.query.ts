@@ -2,7 +2,7 @@ import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-s
 
 import {
   InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
 } from "../../generated/sdk";
 
 import lessonDownloadsSchema, {
@@ -27,7 +27,7 @@ const lessonDownloadsQuery =
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
       {};
 
     const canonicalLesson = !unitSlug && !programmeSlug;

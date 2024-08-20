@@ -43,12 +43,6 @@ class MyDocument extends Document {
       <Html lang="en-GB">
         <Head>
           {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
-
-          <link
-            href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
-            rel="stylesheet"
-          />
-
           <meta
             name="release-stage"
             content={getBrowserConfig("releaseStage")}

@@ -14,7 +14,8 @@ describe("QuizResultMCQ", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
-          feedback={[null, null, null, null]}
+          feedback={["correct", "correct", "correct", "correct"]}
+          pupilAnswer={[1]}
         />
         ,
       </OakThemeProvider>,
@@ -34,7 +35,8 @@ describe("QuizResultMCQ", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqImageAnswers}
-          feedback={[null, null, null, null]}
+          feedback={["correct", "correct", "correct", "correct"]}
+          pupilAnswer={[1]}
         />
         ,
       </OakThemeProvider>,
@@ -54,7 +56,8 @@ describe("QuizResultMCQ", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
-          feedback={["correct", null, null, null]}
+          feedback={["correct", "correct", "correct", "correct"]}
+          pupilAnswer={[0]}
         />
         ,
       </OakThemeProvider>,
@@ -70,7 +73,8 @@ describe("QuizResultMCQ", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
-          feedback={[null, "incorrect", "incorrect", null]}
+          feedback={["correct", "incorrect", "incorrect", "correct"]}
+          pupilAnswer={[1, 2]}
         />
         ,
       </OakThemeProvider>,
