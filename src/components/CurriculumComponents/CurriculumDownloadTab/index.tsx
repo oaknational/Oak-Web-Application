@@ -209,7 +209,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
     try {
       await downloadFileFromUrl(downloadPath);
-      // TODO: Log to hubspot here...
     } finally {
       setIsSubmitting(false);
       setIsDone(true);
