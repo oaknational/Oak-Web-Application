@@ -1,9 +1,8 @@
+import { CombinedCurriculumData } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./5_subjectExplainer";
 import { zipToSnapshotObject } from "./helper";
-
-import { CombinedCurriculumData } from "@/pages/teachers/curriculum/docx-poc/[...slugs]";
 
 describe("5_tableOfContents", () => {
   it("simple", async () => {
