@@ -1,3 +1,10 @@
+# [1.527.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.526.0...v1.527.0) (2024-08-21)
+
+
+### Features
+
+* remove prerelease from curriculum-downloads (docx) ([1d6b2cd](https://github.com/oaknational/Oak-Web-Application/commit/1d6b2cd20266fe5b7e7186da17d08ad8176cdf46))
+
 # [1.526.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.2...v1.526.0) (2024-08-21)
 
 
