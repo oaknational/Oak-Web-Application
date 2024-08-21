@@ -112,6 +112,7 @@ describe("unit list helpers", () => {
       subjectTitle: "Numeracy",
       units: [],
       learningThemes: [],
+      subjectParent: null,
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
