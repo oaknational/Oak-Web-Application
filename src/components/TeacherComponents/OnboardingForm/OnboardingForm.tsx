@@ -68,7 +68,7 @@ const OnboardingForm = ({
       const isTeacher = "school" in data || "manualSchoolName" in data;
 
       try {
-        await onboardUser({ "owa:isTeacher": isTeacher });
+        await onboardUser({ isTeacher });
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");

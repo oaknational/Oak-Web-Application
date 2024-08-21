@@ -11,7 +11,7 @@ const reportError = errorReporter("onboardingActions");
  */
 export async function onboardUser(
   data: OnboardingSchema,
-): Promise<OnboardingSchema & { "owa:onboarded": true }> {
+): Promise<UserPublicMetadata> {
   try {
     const response = await fetch(apiRoute, {
       method: "POST",

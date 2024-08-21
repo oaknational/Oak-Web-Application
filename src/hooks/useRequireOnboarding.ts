@@ -22,7 +22,7 @@ export function useRequireOnboarding() {
       return;
     }
 
-    if (user && !user.publicMetadata["owa:onboarded"]) {
+    if (user && !user.publicMetadata?.owa?.isOnboarded) {
       router.replace({
         pathname: resolveOakHref({ page: "onboarding" }),
         query: { returnTo: router.asPath },

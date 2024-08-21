@@ -74,21 +74,13 @@ describe("Onboarding form", () => {
   );
 
   describe.each<[string, OnboardingFormState, OnboardingSchema]>([
-    [
-      "of school selection",
-      { school: "Grange Hill" },
-      { "owa:isTeacher": true },
-    ],
+    ["of school selection", { school: "Grange Hill" }, { isTeacher: true }],
     [
       "of manual school selection",
       { manualSchoolName: "Grange Hill" },
-      { "owa:isTeacher": true },
+      { isTeacher: true },
     ],
-    [
-      "of role selection",
-      { role: "teacher-trainer" },
-      { "owa:isTeacher": false },
-    ],
+    ["of role selection", { role: "teacher-trainer" }, { isTeacher: false }],
   ])("on submit %s", (__, formState, onboardingPayload) => {
     beforeEach(() => {
       mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
@@ -107,7 +99,7 @@ describe("Onboarding form", () => {
     it("redirects the user back to the page they came from", async () => {
       jest
         .spyOn(onboardingActions, "onboardUser")
-        .mockResolvedValue({ "owa:isTeacher": true, "owa:onboarded": true });
+        .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
 
       await submitForm(formState);
 
