@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
@@ -70,6 +70,9 @@ export const Default: Story = {
               duration: 0,
               timeElapsed: 0,
               isComplete: args.isComplete,
+              muted: false,
+              signedOpened: false,
+              transcriptOpened: false,
             },
             intro: {
               worksheetAvailable: false,
@@ -78,12 +81,13 @@ export const Default: Story = {
             },
           },
           isLessonComplete: args.isComplete,
-          completeSection: () => {},
+          completeActivity: () => {},
           updateCurrentSection: () => {},
           proceedToNextSection: () => {},
           updateSectionResult: () => {},
           lessonReviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
           lessonStarted: true,
+          updateWorksheetDownloaded: () => {},
         }}
       >
         <PupilViewsReview lessonTitle={args.lessonTitle} />

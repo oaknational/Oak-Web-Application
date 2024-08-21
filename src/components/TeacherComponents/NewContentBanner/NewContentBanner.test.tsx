@@ -1,7 +1,6 @@
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-
 import NewContentBanner, { StyledVideoFlex } from "./NewContentBanner";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -10,7 +9,12 @@ const render = renderWithProviders();
 
 const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   if (userEventCallback) {
-    userEventCallback({ event: "play", timeElapsed: 20, duration: 40 });
+    userEventCallback({
+      event: "play",
+      timeElapsed: 20,
+      duration: 40,
+      muted: false,
+    });
   }
   return <video data-testid="video-player" />;
 };

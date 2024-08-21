@@ -61,16 +61,10 @@ export type VideoResult = {
   signedOpened: boolean;
   transcriptOpened: boolean;
 };
-export type IntroResult = {
+export type IntroResult = Partial<{
   worksheetAvailable: boolean;
   worksheetDownloaded: boolean;
-};
-
-type LessonSectionState = {
-  isComplete: boolean;
-} & QuizResult &
-  VideoResult &
-  Partial<IntroResult>;
+}>;
 
 type LessonEngineAction =
   | {
@@ -92,7 +86,12 @@ type LessonEngineAction =
 type LessonEngineState = {
   currentSection: LessonSection;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
-  sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
+  sections: Partial<{
+    "starter-quiz": { isComplete: boolean } & QuizResult;
+    "exit-quiz": { isComplete: boolean } & QuizResult;
+    video: { isComplete: boolean } & VideoResult;
+    intro: { isComplete: boolean } & IntroResult;
+  }>;
   lessonStarted: boolean;
 };
 
@@ -204,11 +203,36 @@ export const LessonEngineProvider = memo(
     initialLessonReviewSections,
     initialSection,
   }: LessonEngineProviderProps) => {
-    const [state, dispatch] = useReducer(lessonEngineReducer, {
+    const [state, dispatch] = useReducer<
+      Reducer<LessonEngineState, LessonEngineAction>
+    >(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
       currentSection: initialSection,
       lessonStarted: false,
-      sections: {},
+      sections: {
+        "starter-quiz": {
+          isComplete: false,
+          grade: 0,
+          numQuestions: 0,
+        },
+        "exit-quiz": {
+          isComplete: false,
+          grade: 0,
+          numQuestions: 0,
+        },
+        video: {
+          isComplete: false,
+          played: false,
+          duration: 0,
+          timeElapsed: 0,
+          muted: false,
+          signedOpened: false,
+          transcriptOpened: false,
+        },
+        intro: {
+          isComplete: false,
+        },
+      },
     });
     const navigateToSection = useNavigateToSection();
 
@@ -229,17 +253,6 @@ export const LessonEngineProvider = memo(
         track.lessonStarted({});
       }
     };
-
-    // const getSectionTrackingData = (section: LessonReviewSection) => ({
-    //   pupilExperienceLessonSection: section,
-    //   pupilQuizGrade: state.sections[section]?.grade,
-    //   pupilQuizNumQuestions: state.sections[section]?.numQuestions,
-    //   pupilVideoPlayed: state.sections[section]?.played,
-    //   pupilVideoDurationSeconds: state.sections[section]?.duration,
-    //   pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
-    //   pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
-    //   pupilWorksheetDownloaded: state.sections[section]?.worksheetDownloaded,
-    // });
 
     const getActivityTrackingData = (section: LessonReviewSection) => ({
       pupilExperienceLessonActivity: section,

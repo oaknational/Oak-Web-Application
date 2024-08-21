@@ -16,6 +16,7 @@ export function createLessonEngineContext(
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),
     updateSectionResult: jest.fn(),
+    updateWorksheetDownloaded: jest.fn(),
     ...overrides,
   };
 }
