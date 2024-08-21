@@ -6,6 +6,10 @@ describe("convertSubjectToSlug", () => {
       convertSubjectToSlug("Relationships, sex and health education"),
     ).toBe("rshe");
   });
+
+  it('should convert "Art and design" to "art"', () => {
+    expect(convertSubjectToSlug("Art and design")).toBe("art");
+  });
   it("handles one word subjects", () => {
     expect(convertSubjectToSlug("Biology")).toBe("biology");
     expect(convertSubjectToSlug("Chemistry")).toBe("chemistry");
