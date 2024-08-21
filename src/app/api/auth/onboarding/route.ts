@@ -14,6 +14,7 @@ export async function POST(req: Request) {
     const data = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
     const region = req.headers.get("cf-ipcountry") || "FR";
+    console.log("Request Headers:", req.headers);
 
     // const region = req.headers.get("cf-ipcountry") || DEVELOPMENT_USER_REGION;
 
