@@ -1,3 +1,87 @@
+# [1.525.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.524.0...v1.525.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* enable scrolling when zoomed in on sign up screen ([ef4fc22](https://github.com/oaknational/Oak-Web-Application/commit/ef4fc22c91c10971eef1ec1f49f3455316ba23d2))
+* refactor registration layout so the page is scrollable at high zoom levels ([6439ba3](https://github.com/oaknational/Oak-Web-Application/commit/6439ba32f1df0b57e77f54ace79c355e740e1440))
+
+
+### Features
+
+* add shared layout with background image for registration pages ([efb2253](https://github.com/oaknational/Oak-Web-Application/commit/efb2253cbe2434154bf9e067ef907e0bde761163))
+* put sign up pages behind feature flag ([c94bdbd](https://github.com/oaknational/Oak-Web-Application/commit/c94bdbd7b0307c82b2e9245e6aca785570e51b26))
+* style registration components ([0c04000](https://github.com/oaknational/Oak-Web-Application/commit/0c04000dacd99c629aa498d0ca144a3edba520cb))
+* wrap registration pages with cookie provider ([bade60d](https://github.com/oaknational/Oak-Web-Application/commit/bade60d3037a230bec5a2755132cfd745dd56ba6))
+
+# [1.524.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.523.0...v1.524.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* tests hitting the network ([e96a46a](https://github.com/oaknational/Oak-Web-Application/commit/e96a46af376470ee1edfdb110ac7db6843d0bd0c))
+
+
+### Features
+
+* **LESQ-977:** add a hook to send users through onboarding after signup ([c9e6976](https://github.com/oaknational/Oak-Web-Application/commit/c9e697639063a982c89c700f7791ebbc1a6a8090))
+* **LESQ-977:** add an endpoint to mark a user as onboarded ([4df0b87](https://github.com/oaknational/Oak-Web-Application/commit/4df0b87f2e2d7d54fd2da4f84c19485eb66a5ef6))
+* **LESQ-977:** mark the user as onboarded on submit ([535a744](https://github.com/oaknational/Oak-Web-Application/commit/535a744b26e9da95211b0808116b7306381759ac))
+* **LESQ-977:** require authentication to access the onboarding page ([050cc33](https://github.com/oaknational/Oak-Web-Application/commit/050cc33684d57493ed5b46ca72d73e1c96fbd037))
+* **LESQ-977:** return the user to the page they came from before onboarding ([a034020](https://github.com/oaknational/Oak-Web-Application/commit/a034020768711cb6f91d11cd199bd1ed2c323274))
+
+# [1.523.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.522.0...v1.523.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* add a form reset ([d4b43d2](https://github.com/oaknational/Oak-Web-Application/commit/d4b43d25d22d9062e59ee12512684ee036e26a42))
+* remove undefined from functions ([cdb888b](https://github.com/oaknational/Oak-Web-Application/commit/cdb888b824ec8c6aa09ca8c8eb8bc2fdb74c8355))
+
+
+### Features
+
+* adds manual entry components and button to change forms ([4bd04da](https://github.com/oaknational/Oak-Web-Application/commit/4bd04da43c1aa1b97022ee4efb65f9f04186c513))
+
+# [1.522.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.2...v1.522.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* capitalisation of other ([e618742](https://github.com/oaknational/Oak-Web-Application/commit/e618742dfcc4deb9b3a685764dfa4889e834f3cd))
+* prop name change ([75944e3](https://github.com/oaknational/Oak-Web-Application/commit/75944e3be81874d593111508fc874da08b21f0f1))
+
+
+### Features
+
+* add email from users account to hubspot form ([93e8e51](https://github.com/oaknational/Oak-Web-Application/commit/93e8e51090aa31416dceed58ec0424a8d13d2a97))
+* add hubspot payload helper fns for onboarding ([97deeec](https://github.com/oaknational/Oak-Web-Application/commit/97deeec2dbf2cd03f8aa6670aebca8606b9678e5))
+* add new hubspot form token to env ([e06301f](https://github.com/oaknational/Oak-Web-Application/commit/e06301fcce836bdb64ea5d2122bc658b7ec00c26))
+* submit form to hubspot on continue ([1cd16d8](https://github.com/oaknational/Oak-Web-Application/commit/1cd16d892279c692bc6a85e5030931dcb223efeb))
+
+## [1.521.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.1...v1.521.2) (2024-08-19)
+
+
+### Bug Fixes
+
+* wrap requestLessonResources in try catch ([96422c3](https://github.com/oaknational/Oak-Web-Application/commit/96422c3bb8138f42116cefbccf07871595833587))
+
+## [1.521.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.521.0...v1.521.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* incorrect onboarding page name ([b20e8af](https://github.com/oaknational/Oak-Web-Application/commit/b20e8af06af1848e6a209199cf16338d7263acd6))
+
+# [1.521.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.520.0...v1.521.0) (2024-08-16)
+
+
+### Features
+
+* install Clerk ([0016204](https://github.com/oaknational/Oak-Web-Application/commit/0016204ea635505a86c20f273ed71f68d0e12ebe))
+* **LESQ-1024:** hide content on download pages while checking for auth ([72e8e4b](https://github.com/oaknational/Oak-Web-Application/commit/72e8e4b5e10dcf4fa59de7debb091570f24ecee3))
+* restore the Sign out button ([d8426e8](https://github.com/oaknational/Oak-Web-Application/commit/d8426e87c44182426fcf0a6e1f2123b4eb5bab72))
+
 # [1.520.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.519.0...v1.520.0) (2024-08-16)
 
 
