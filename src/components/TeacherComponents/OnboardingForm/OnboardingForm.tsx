@@ -1,25 +1,37 @@
 import {
-  OakCheckBox,
-  OakFlex,
-  OakLink,
-  OakP,
-  OakPrimaryButton,
-  OakSpan,
-} from "@oaknational/oak-components";
-import {
   Control,
   Controller,
   UseFormHandleSubmit,
   UseFormStateReturn,
   UseFormTrigger,
 } from "react-hook-form";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
+import { useUser } from "@clerk/nextjs";
+import {
+  OakBox,
+  OakCheckBox,
+  OakFlex,
+  OakInlineBanner,
+  OakLink,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
+import { onboardUser } from "./onboardingActions";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useUtmParams from "@/hooks/useUtmParams";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import OakError from "@/errors/OakError";
+import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
   showNewsletterSignUp = true,
@@ -38,17 +50,70 @@ const OnboardingForm = ({
   showTermsAndConditions?: boolean;
 }) => {
   const router = useRouter();
+  const hutk = getHubspotUserToken();
+  const utmParams = useUtmParams();
+  const { posthogDistinctId } = useAnalytics();
+  const { user } = useUser();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
-      router.push(
-        resolveOakHref({
+      router.push({
+        pathname: resolveOakHref({
           page: data.worksInSchool
             ? "onboarding-school-selection"
             : "onboarding-role-selection",
         }),
+        query: router.query,
+      });
+    } else {
+      try {
+        await onboardUser();
+        await user?.reload();
+      } catch (error) {
+        setSubmitError("Something went wrong. Please try again.");
+        // No point in proceeding to hubspot sign-up if onboarding failed
+        return;
+      }
+      const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
+      const userEmail = user?.primaryEmailAddress?.emailAddress;
+      const hubspotFormPayload = getHubspotOnboardingFormPayload({
+        hutk,
+        data: {
+          ...utmParams,
+          ...data,
+          oakUserId: posthogDistinctId,
+          email: userEmail,
+        },
+      });
+
+      try {
+        await hubspotSubmitForm({
+          hubspotFormId,
+          payload: hubspotFormPayload,
+        });
+      } catch (error) {
+        if (error instanceof OakError) {
+          reportError(error);
+        } else {
+          reportError(
+            new OakError({
+              code: "hubspot/unknown",
+              originalError: error,
+            }),
+          );
+        }
+      }
+
+      // Return the user to the page they originally arrived from
+      // or to the home page as a fallback
+      router.push(
+        toSafeRedirect(
+          router.query.returnTo?.toString() ?? "/",
+          new URL(location.origin),
+        ) ?? "/",
       );
     }
-    console.log("onboarding form values: ", data);
   };
 
   return (
@@ -80,12 +145,25 @@ const OnboardingForm = ({
           <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
             {props.heading}
           </OakSpan>
-          {props.children}
+          <OakBox aria-live="polite" $display="contents">
+            {submitError && (
+              <OakInlineBanner
+                isOpen
+                icon="error"
+                type="error"
+                message={submitError}
+                $width="100%"
+                $mt="space-between-m"
+              />
+            )}
+          </OakBox>
+          <OakBox>{props.children}</OakBox>
           <OakPrimaryButton
             disabled={!props.canSubmit}
             width="100%"
             type="submit"
             onClick={props.onSubmit}
+            aria-description={submitError ?? undefined}
           >
             Continue
           </OakPrimaryButton>

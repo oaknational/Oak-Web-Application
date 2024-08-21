@@ -3,6 +3,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import SchoolSelectionView from "@/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view";
+import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 
 const SchoolSelectionComponent: NextPage = () => {
   return (
@@ -17,4 +18,4 @@ const SchoolSelectionPage = withFeatureFlag(
   "use-auth-owa",
 );
 
-export default SchoolSelectionPage;
+export default withPageAuthRequired(SchoolSelectionPage);

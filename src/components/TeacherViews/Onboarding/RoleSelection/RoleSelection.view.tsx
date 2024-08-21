@@ -23,7 +23,7 @@ const roleOptions: Record<string, string> = {
   "adult-helping-child":
     "Adult helping a child, e.g. with revision, homeschooling",
   "mat-or-lea": "Working at multi-academy trust or local educational authority",
-  nonprofit: "Working at an educational nonprofit",
+  nonprofit: "Working at an education nonprofit",
   other: "Other",
 };
 
@@ -62,7 +62,7 @@ const RoleSelectionView = () => {
             formState.errors.other === undefined
           }
           onSubmit={() => {
-            if (getValues().role === "other" && !getValues().other) {
+            if (getValues().role === "Other" && !getValues().other) {
               setError("other", {
                 message: "Please tell us what your role is",
               });
@@ -78,9 +78,8 @@ const RoleSelectionView = () => {
             $flexDirection="column"
             $alignItems="flex-start"
             $gap="space-between-s"
-            aria-labelledby={"form-legend"}
             onChange={(event) => {
-              handleChange("role", event.target.value);
+              handleChange("role", roleOptions[event.target.value] || "");
               clearErrors();
             }}
             aria-describedby={formState.errors.role ? "role-error" : undefined}
@@ -100,7 +99,7 @@ const RoleSelectionView = () => {
               {formState.errors.role.message}
             </FieldError>
           )}
-          {getValues().role === "other" && (
+          {getValues().role === "Other" && (
             <Input
               id="other-role"
               error={formState.errors.other?.message}
