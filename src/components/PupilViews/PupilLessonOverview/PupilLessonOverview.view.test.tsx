@@ -1,7 +1,6 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   LessonEngineContext,
@@ -71,7 +70,13 @@ describe(PupilViewsLessonOverview, () => {
         <LessonEngineContext.Provider
           value={createLessonEngineContext({
             currentSection: "starter-quiz",
-            sectionResults: { "starter-quiz": { grade: 1, isComplete: false } },
+            sectionResults: {
+              "starter-quiz": {
+                grade: 1,
+                isComplete: false,
+                numQuestions: 0,
+              },
+            },
           })}
         >
           <PupilViewsLessonOverview
@@ -123,14 +128,18 @@ describe(PupilViewsLessonOverview, () => {
     },
     {
       context: {
-        sectionResults: { "starter-quiz": { isComplete: true } },
+        sectionResults: {
+          "starter-quiz": { isComplete: true, numQuestions: 5, grade: 1 },
+        },
         lessonStarted: true,
       },
       label: "Continue lesson",
     },
     {
       context: {
-        sectionResults: { "exit-quiz": { isComplete: true } },
+        sectionResults: {
+          "exit-quiz": { isComplete: true, numQuestions: 5, grade: 1 },
+        },
         lessonStarted: true,
       },
       label: "Continue lesson",

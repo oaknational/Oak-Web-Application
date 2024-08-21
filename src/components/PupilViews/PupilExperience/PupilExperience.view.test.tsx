@@ -1,4 +1,3 @@
-import { OakTooltipProps } from "@oaknational/oak-components";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
@@ -8,6 +7,7 @@ import {
   pickAvailableSectionsForLesson,
 } from "./PupilExperience.view";
 
+import { OakTooltipProps } from "@oaknational/oak-components";
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
@@ -17,7 +17,9 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import {
   PupilAnalyticsProvider,
+  getPupilAudioData,
   getPupilPathwayData,
+  getPupilVideoData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
@@ -96,6 +98,8 @@ describe("PupilExperienceView", () => {
       });
       const lessonBrowseData = lessonBrowseDataFixture({});
       const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+      const pupilVideoData = getPupilVideoData(lessonContent);
+      const pupilAudioData = getPupilAudioData(lessonContent);
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -105,7 +109,11 @@ describe("PupilExperienceView", () => {
           }),
         );
       const { getByText } = render(
-        <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+        <PupilAnalyticsProvider
+          pupilPathwayData={pupilPathwayData}
+          pupilAudioData={pupilAudioData}
+          pupilVideoData={pupilVideoData}
+        >
           <PupilExperienceView
             lessonContent={lessonContent}
             browseData={lessonBrowseData}
@@ -137,9 +145,15 @@ describe("PupilExperienceView", () => {
           );
 
         const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+        const pupilVideoData = getPupilVideoData(lessonContent);
+        const pupilAudioData = getPupilAudioData(lessonContent);
 
         const { getByText } = render(
-          <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+          <PupilAnalyticsProvider
+            pupilPathwayData={pupilPathwayData}
+            pupilAudioData={pupilAudioData}
+            pupilVideoData={pupilVideoData}
+          >
             <PupilExperienceView
               lessonContent={lessonContent}
               browseData={lessonBrowseData}
@@ -161,6 +175,8 @@ describe("PupilExperienceView", () => {
     lessonBrowseData.lessonData.deprecatedFields = { expired: true };
 
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -169,7 +185,11 @@ describe("PupilExperienceView", () => {
     );
 
     const { getByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
@@ -198,6 +218,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -205,7 +227,11 @@ describe("PupilExperienceView", () => {
       }),
     );
     const { getByTestId, getByRole } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
@@ -243,6 +269,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -250,7 +278,11 @@ describe("PupilExperienceView", () => {
       }),
     );
     const { getByTestId, getByRole } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
@@ -281,6 +313,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -290,7 +324,11 @@ describe("PupilExperienceView", () => {
     mockRouter.push("/initial-path");
 
     const { getByTestId } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           backUrl="/somewhere-else"
           lessonContent={lessonContent}
@@ -323,6 +361,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilAudioData = getPupilAudioData(lessonContent);
+    const pupilVideoData = getPupilVideoData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -331,7 +371,11 @@ describe("PupilExperienceView", () => {
     );
 
     render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           backUrl="/somewhere-else"
           lessonContent={lessonContent}
@@ -366,6 +410,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilAudioData = getPupilAudioData(lessonContent);
+    const pupilVideoData = getPupilVideoData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -374,7 +420,11 @@ describe("PupilExperienceView", () => {
     );
 
     render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           backUrl="/somewhere-else"
           lessonContent={lessonContent}
@@ -398,6 +448,8 @@ describe("PupilExperienceView", () => {
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
     lessonBrowseData.programmeFields.phase = "secondary";
     lessonContent.lessonTitle = null;
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -406,7 +458,11 @@ describe("PupilExperienceView", () => {
     );
 
     const { getByText, queryByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
@@ -426,6 +482,8 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const pupilVideoData = getPupilVideoData(lessonContent);
+    const pupilAudioData = getPupilAudioData(lessonContent);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -434,7 +492,11 @@ describe("PupilExperienceView", () => {
     );
 
     const { queryByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
+      <PupilAnalyticsProvider
+        pupilPathwayData={pupilPathwayData}
+        pupilAudioData={pupilAudioData}
+        pupilVideoData={pupilVideoData}
+      >
         <PupilExperienceView
           lessonContent={lessonContent}
           browseData={lessonBrowseData}

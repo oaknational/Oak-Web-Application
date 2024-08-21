@@ -1,11 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { userEvent } from "@testing-library/user-event";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
@@ -185,7 +185,9 @@ describe("PupilIntro", () => {
       </OakThemeProvider>,
     );
     fireEvent.click(getByRole("link", { name: /I'm ready/i }));
-    expect(context.completeSection).toHaveBeenCalledWith("intro");
+    expect(context.sectionResults.intro?.isComplete).toHaveBeenCalledWith(
+      "intro",
+    );
   });
 
   it("updates the section results when the worksheet is downloaded", async () => {

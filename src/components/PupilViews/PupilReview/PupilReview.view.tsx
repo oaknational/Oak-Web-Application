@@ -1,3 +1,5 @@
+import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
+
 import {
   OakFlex,
   OakGrid,
@@ -11,9 +13,6 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-
-import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
-
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 
@@ -113,9 +112,17 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                   key={lessonSection}
                   lessonSectionName={lessonSection}
                   completed={!!sectionResults[lessonSection]?.isComplete}
-                  grade={sectionResults[lessonSection]?.grade ?? 0}
+                  grade={
+                    lessonSection === "exit-quiz" ||
+                    lessonSection === "starter-quiz"
+                      ? sectionResults[lessonSection]?.grade ?? 0
+                      : 0
+                  }
                   numQuestions={
-                    sectionResults[lessonSection]?.numQuestions ?? 0
+                    lessonSection === "exit-quiz" ||
+                    lessonSection === "starter-quiz"
+                      ? sectionResults[lessonSection]?.numQuestions ?? 0
+                      : 0
                   }
                 />
               );
