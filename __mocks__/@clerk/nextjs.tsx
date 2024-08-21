@@ -5,7 +5,6 @@ function RenderChildren({ children }: PropsWithChildren) {
 }
 
 module.exports = {
-  ...jest.createMockFromModule("@clerk/nextjs"),
   useUser() {
     return {
       isLoaded: true,
@@ -17,4 +16,5 @@ module.exports = {
   SignedIn: RenderChildren,
   SignedOut: RenderChildren,
   SignOutButton: RenderChildren,
+  RedirectToSignIn: RenderChildren,
 };
