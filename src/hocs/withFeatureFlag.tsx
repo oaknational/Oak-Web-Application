@@ -1,5 +1,6 @@
+"use client";
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 const withFeatureFlag = <P extends object>(
@@ -8,7 +9,6 @@ const withFeatureFlag = <P extends object>(
 ) => {
   const WithFeatureFlag: React.FC<P> = (props) => {
     const ffEnabled = useFeatureFlagEnabled(featureFlag);
-
     const router = useRouter();
 
     useEffect(() => {
